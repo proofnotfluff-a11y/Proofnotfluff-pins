@@ -44,4 +44,4 @@ Shipping-True-Cost-Calculator.zip: Shipping-True-Cost-Calculator.xlsx, Start-Her
 - Etsy fees page (updated Oct 5, 2026) and payment processing help page: $0.20 listing, 6.5% transaction, 3% + $0.25 processing in the US.
 
 ## Photos (10) and video
-redesign/7/1-cover.png to 10-inside.png; listing-videos/7.mp4 (12 s, 4:3).
+archive/etsy-era/redesign/7/1-cover.png to 10-inside.png; listing-videos/7.mp4 (12 s, 4:3).

@@ -36,4 +36,4 @@ Not affiliated with or endorsed by Microsoft or Google.
 - 2026 Social Security wage base $184,500: SSA Contribution and Benefit Base page, ssa.gov/oact/cola/cbb.html
 
 ## Listing kit
-Photos: repo redesign/14 (11 images, 2667 x 2000). Video: repo listing-videos/14.mp4 (11.6 s, 1920 x 1440, silent).
+Photos: repo archive/etsy-era/redesign/14 (11 images, 2667 x 2000). Video: repo listing-videos/14.mp4 (11.6 s, 1920 x 1440, silent).

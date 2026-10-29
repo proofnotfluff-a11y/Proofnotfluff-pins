@@ -41,14 +41,12 @@ A faceless brand selling money tools to small operators. Three shelves: $2.99 Et
 | permits/chicago/ | the free sample (sample.json), City data terms, the encrypted review set of every candidate's raw City text (review.enc.json), builder contacts from the builders' own sites, encrypted because this repo is public (builder_contacts.enc.json; never a plain builder_contacts.json), the do-not-list of builders who asked to be removed (builder_do_not_list.json, never shown a contact), tools/builder_contacts.py (--check also flags entries checked more than 90 days ago), holdout in builder_contacts_holdout.md | permits workflow; contacts: live session |
 | pm/ | prediction-market paper tracker record | pm-tracker workflow |
 | engines/ | build scripts for each Etsy spreadsheet product | factory, builders |
-| products/, flagship/, redesign/ | listing packs, flagship packs, v3 redesign packs | builders |
-| kdp/ | paperback editions | shop run |
-| pins/, shorts/, reels/, listing-videos/, promo/ | promo assets and specs | CMO, promote runs |
+| archive/etsy-era/ | the Etsy-era folders, moved Oct 29, 2026 (audit item 5, Todd's yes): products/, flagship/, redesign/ (listing packs), kdp/ (paperbacks), pins/, shorts/, reels/ (promo assets), affiliate/ (registry, never live), dashboard/, breaking/, reports/ (deep-research reports). Nothing reads them | none |
+| listing-videos/, promo/ | promo assets and specs | CMO, promote runs |
 | email/ | Kit setup, the A1 cleaning-company outreach email | live session |
-| affiliate/ | affiliate registry and gates (armed, not live) | COO, scout |
 | services/ | Fiverr kit (skipped Oct 17) | none |
 | scout/ | capability scout findings | scout |
-| reports/, research/, research_notes/ | deep-research reports and notes | whoever ran them |
+| research/, research_notes/ | research and notes (older reports: archive/etsy-era/reports/) | whoever ran them |
 | verify/ | flow files for tools/verify_site.py (what a person would click on each feature), Oct 27, 2026 | whoever ships the feature |
 | tools/ | every script; tools/README.md says how to run each | whoever changes one updates the README |
 

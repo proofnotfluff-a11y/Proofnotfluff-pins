@@ -186,7 +186,7 @@ High tier: add the tier clause's first two sentences as one extra line. A brand 
 
 ## 7. Affiliate links and disclosures (from Oct 13, 2026)
 
-Todd approved the $0 affiliate groundwork on Oct 13 (affiliate/README.md). The desk checks every page, video description, email or post that carries an affiliate link against this list. A miss is a FIX; a link to a program that affiliate/REGISTRY.md does not show as "approved" is a BLOCK.
+Todd approved the $0 affiliate groundwork on Oct 13 (archive/etsy-era/affiliate/README.md). The desk checks every page, video description, email or post that carries an affiliate link against this list. A miss is a FIX; a link to a program that archive/etsy-era/affiliate/REGISTRY.md does not show as "approved" is a BLOCK.
 
 1. **Where links may go:** the free calculator site (one disclosed "next step" block on the matching page), long-form YouTube walkthrough descriptions, and email once the list exists. Never inside a product file (Etsy downloads, KDP books, Gumroad kits), never in an Etsy listing or Etsy message, never in a pin (the pin points to the page and the page carries the link), never in a Short, Reel or TikTok caption.
 2. **Next to every affiliate link:** the words "(paid link)". At the top of the block, one plain sentence: "We earn a commission if you sign up through the links below." The FTC staff FAQ says "paid link" right next to an affiliate link should be adequate, that people may not understand "affiliate link", that "commissionable link" is probably not clear, that a disclosure at the bottom of a page may be missed, and that a single disclosure on a home page is not enough. So never rely on "affiliate link", "commissionable link", a footer or a separate disclosures page alone.

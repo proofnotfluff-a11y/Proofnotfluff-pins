@@ -28,7 +28,7 @@ Like: 4588972193
 ## Price
 List price: $2.99
 
-## Images (in this order, repo redesign/16)
+## Images (in this order, repo archive/etsy-era/redesign/16)
 1 cover, 2 worked example (Snowball vs Avalanche), 3 how it works, 4 what to pay next month, 5 Debts tab, 6 Payment Log, 7 the plan maths month by month, 8 Is this for you, 9 How you get it, 10 What's inside. Video: listing-videos/16.mp4.
 
 ## Description

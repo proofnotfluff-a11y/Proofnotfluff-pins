@@ -19,7 +19,7 @@ Bookkeeping Templates (ledger category rule: profit, costs and income tracking f
 ## Digital file
 Rental-Property-Spreadsheet-1-to-10-Doors.zip, version 2 (v3 design, Oct 7, 2026): Rental-Property-Spreadsheet-1-to-10-Doors.xlsx, Start-Here-Letter.pdf, Start-Here-A4.pdf, LICENSE-AND-DISCLAIMER.txt
 
-## Images (in order, repo redesign/19)
+## Images (in order, repo archive/etsy-era/redesign/19)
 1. Cover with the Rent Roll (badges Excel + Google Sheets, Instant download, 1 to 10 doors)
 2. Worked example: Oak Street House $4,844 profit, $550 kept (Cash flow by property card)
 3. How it works in 3 steps

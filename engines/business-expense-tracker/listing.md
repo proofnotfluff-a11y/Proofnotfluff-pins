@@ -14,7 +14,7 @@ Bookkeeping Templates
 ## Price
 $2.99 (ledger PRICE rule; no agent changes prices)
 
-## Images (in this order, repo redesign/18)
+## Images (in this order, repo archive/etsy-era/redesign/18)
 1 cover, 2 worked example (Summary month by month), 3 how it works, 4 Entries tab, 5 Checks, 6 Profit by month, 7 Categories, 8 Is this for you, 9 How you get it, 10 What's inside. Video: listing-videos/18.mp4.
 
 ## Description

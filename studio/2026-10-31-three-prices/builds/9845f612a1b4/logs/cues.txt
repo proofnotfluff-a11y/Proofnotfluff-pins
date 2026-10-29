@@ -1,0 +1,34 @@
+hook                     0.00   5.47  You quote one price?  [sfx: pop]
+  hook.three             2.36   4.00  usually quote three.
+  hook.build             4.00   5.47  Here's how to build  [sfx: pop]
+stakes                   5.47  17.25  ServiceTitan pulled a year  [sfx: whoosh]
+  stakes.window          6.47   8.23  a year of home jobs.
+  stakes.top             8.23  11.21  The top ten percent  [sfx: tick]
+  stakes.top57          11.21  13.31  fifty-seven percent of them.
+  stakes.rest           13.31  15.47  Everyone else? Forty-one.  [sfx: tick]
+  stakes.habit          15.47  17.25  That's a habit you  [sfx: pop]
+why                     17.25  30.82  Why three? Housecall Pro  [sfx: whoosh]
+  why.hcp               18.69  22.31  Housecall Pro surveyed over  [sfx: tick]
+  why.68                22.31  23.13  Sixty-eight percent go get  [sfx: pop]
+  why.quotes            23.13  26.91  go get more quotes  [sfx: tick]
+  why.three             26.91  30.82  With three, there's a  [sfx: pop]
+card                    30.82  43.42  Build your three like  [sfx: whoosh]
+  card.good             32.78  35.82  Good is the job  [sfx: tick]
+  card.better           35.82  38.72  Better is the one  [sfx: tick]
+  card.best             38.72  40.36  Best adds upgrades, like  [sfx: tick]
+  card.warranty         40.36  43.42  a longer warranty or
+survey                  43.42  65.01  Here's the part people skip.  [sfx: whoosh]
+  survey.ceiling        45.42  47.54  Your three is a  [sfx: blip]
+  survey.group          47.54  49.40  A heating and cooling  [sfx: tick]
+  survey.n              49.40  51.68  over a thousand contractors.
+  survey.pull           51.68  53.98  Those offering four or  [sfx: whoosh]
+  survey.52             53.98  56.06  fifty-two percent of the
+  survey.few            56.06  58.49  One to three? Forty-two.  [sfx: tick]
+  survey.caveat         58.49  60.81  That survey lumps one  [sfx: blip]
+  survey.cant           60.81  63.58  so it can't tell
+  survey.start          63.58  65.01  Start with three.  [sfx: pop]
+close                   65.01  74.45  Send this to whoever  [sfx: sting]
+  close.one             67.35  69.71  One price is a  [sfx: pop]
+  close.choice          69.71  74.45  Three prices? That's a
+-> 32 cues, 74.4 s (whisper medium.en int8, re-spelled from script.md)
+exit 0

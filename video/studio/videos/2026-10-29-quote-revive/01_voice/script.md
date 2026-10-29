@@ -1,6 +1,6 @@
-# Script: The text that revives a quote that went quiet (The Text, lesson 2; from script playbook example 1; trade sources only, re-read Oct 28, 2026; takes 3 and 5 rewritten)
+# Script: The text that revives a quote that went quiet (The Text, lesson 2; from script playbook example 1; trade sources only, re-read Oct 28, 2026; Oct 29 hook and length rebuild: 9 word hook, the cadence beat cut for the 75 s cap)
 
-[leaning in] Quote went quiet? Skip just checking in. Send this text instead.
+[leaning in] Quote went quiet? One text can bring it back. Here's what you send.
 
 [matter-of-fact] Software maker ServiceTitan says its data shows only thirty-seven percent of estimates close on the first visit. So most of your quotes aren't decided when you pull out of the driveway. The rest depend on your follow-up.
 
@@ -8,8 +8,6 @@
 
 [warmly] So here's the text. Their name, then yours, so they know it's you. Then one line. "Still want that water heater swapped before winter?" That's it. One question they can answer with a yes or a no.
 
-[short pause] Here's the part people skip. Text it. Don't email it. ServiceTitan's follow-up webinar says text messages beat email on open rates. In a Housecall Pro survey, fifty-nine percent of homeowners expect text updates. Your text fits right in.
-
-[matter-of-fact] When do you send it? Jobber says within two days of the quote. Then a week after you sent it. Then once more, a day or two before it expires. Still nothing? It's okay to close the file.
+[leaning in] Here's the part people skip. You text it, you don't email it. ServiceTitan's follow-up webinar says texts beat email on open rates. And in a Housecall Pro survey, fifty-nine percent of homeowners expect text updates.
 
 [confident] One name, one job, one question. Send this to whoever follows up on your quotes. Next time a quote goes quiet, you'll know what to send.

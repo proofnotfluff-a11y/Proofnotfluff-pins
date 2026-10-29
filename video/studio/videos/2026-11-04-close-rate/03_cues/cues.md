@@ -45,7 +45,7 @@ Room: garage. Header EXAMPLE on a dark band. A card with three rows shown as it 
 "14 / 40" writes in on the Close rate row; 35% slams in as it is said, sparks.
 ## example.range "right inside the median" [sfx: blip]
 A small range strip under the card: 31% to 38% lit, a marker drops at 35%.
-## example.own "Now plug in yours." [sfx: pop]
+## example.own "so plug in yours." [sfx: pop]
 "Your turn: __ / __" chip stamps under the strip.
 
 ## turn "Here's the part people" [sfx: whoosh]

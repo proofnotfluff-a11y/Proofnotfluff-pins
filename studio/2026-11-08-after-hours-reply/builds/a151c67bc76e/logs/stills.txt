@@ -1,0 +1,8 @@
+mouth: 1363 frames, 945 talking; closed 13%, slightly open 30%, open 48%, wide open 9.0% (under 10%: PASS), wide threshold 0.90 -> 02_transcript/mouth.js
+ERROR stage: Error: no cue hook.night
+    at Object.cue (file:///home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/_runtime/player.js:117:54)
+    at Object.S (file:///home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/_runtime/kit.js:166:22)
+    at hook (file:///home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-11-08-after-hours-reply/04_scene/scene.js?1793311512322:186:39)
+    at window.drawAt (file:///home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/_runtime/player.js:315:19)
+    at boot (file:///home/runner/work/Proofnot
+exit 1

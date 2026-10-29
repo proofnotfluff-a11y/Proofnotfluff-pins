@@ -1,0 +1,16 @@
+{
+ "gate": "facts-captions",
+ "round": 1,
+ "at": "2026-10-29T00:00:00-05:00",
+ "pass": true,
+ "score": {
+  "numbers": 9,
+  "mismatches": 0
+ },
+ "reasons": [
+  "round 0 faults gone (read via anim.py postcaptions): instagram and facebook line 1 now 'How to close more estimates when they say \"let me think about it\": plumbing and HVAC owners.' (92 chars, names trades, no 'homeowner'); youtube tag now 'let me think about it objection'",
+  "numbers unchanged and still match the ServiceTitan page re-fetched Oct 29, 2026: 10% (90th percentile of revenue in trade and market segment), 77%, 62%, 15-point gap and momentum, participating ServiceTitan customers, trailing 12 months through January 2026, May 19, 2026; population qualifier and correlation caveat on all four; ask lines match the script with [day]",
+  "rules: line 1 IG 92, TikTok 92, FB 92, YT description 88; YT title 65, keyword first, no hashtags; hashtags IG 4, TikTok 5, FB 3, YT 3; YT tags 10 with one misspelling; TikTok owner question present; no link in IG or FB; no AI voice line; no em or en dashes; AI toggles on; no private person, business or address",
+  "polish only, not a fault: on instagram and facebook, line 2 'For plumbing, HVAC and electrical business owners.' now partly repeats line 1; it could be cut, or kept to carry the 'business owners' keyword and electrical"
+ ]
+}

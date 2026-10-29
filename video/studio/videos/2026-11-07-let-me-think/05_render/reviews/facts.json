@@ -1,0 +1,19 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "pass": true,
+ "score": {"numbers": 7, "mismatches": 0},
+ "reasons": [
+  "All numbers match: voice 77 and 62; screen 10% (Top 10% by revenue = page title and 90th revenue percentile), 77%, 62%, 15 points, 12 months to Jan 2026, ask lines 1 to 3. data.js sha256 83a85560... matches 01_voice/facts.json; transcript words match script.md word for word.",
+  "Trades first: PASS. Core evidence is ServiceTitan contractor data (HVAC, plumbing, electrical, garage door, water treatment, other specialty trades); no non-trade caveat needed.",
+  "Correlation handled: scene.js proof shows 'Pattern, not proof.' while 77/62 are said; the voice attributes momentum ('It says the gap comes down to momentum').",
+  "Scope kept: says and shows 'estimates' and 'same visit', never 'home jobs' (page says only certain metrics are residential only).",
+  "Story elements read as story: 'SAY THIS (EXAMPLE)' header, 'example day' under Thursday, estimate line totals are bars with no figures, dispatch board and hourglass carry no numbers.",
+  "Note, not a fault: script.md 'That last question pulls the worry out while you're still in the driveway' is our advice, not a tested finding; it promises no number and fits the page's line that same-visit close measures handling objections in the moment. Keep as is.",
+  "Note, not a fault: scene.js proof 'Its customers, 12 months to Jan 2026' could read 'Participating customers, 12 months to Jan 2026' to match the page exactly; optional.",
+  "No real private person, business or address (host 'Snow' is the cartoon character). No em or en dashes in script, transcript, facts.json, brief.md or scene.js."
+ ],
+ "sources_checked": [
+  "https://www.servicetitan.com/toolbox/state-of-the-trades/trends/top-performer-profile: fetched Oct 29, 2026. Title 'The Profile of a Top Performer: Four Behaviors That Set the Top 10% of Contractors Apart', May 19, 2026; 'Top performers close 77% of their estimates during the same visit. For the rest, that number is 62%. The 15-point gap comes down to momentum.'; top performers = 90th percentile of revenue within their trade and market segment; participating ServiceTitan customers, trailing 12 months through January 2026, no sample size; window sentence (call a competitor, get distracted, or talk themselves out of the project); correlational footnote; trades list as in facts.json; 'Certain metrics apply to residential jobs only.'"
+ ]
+}

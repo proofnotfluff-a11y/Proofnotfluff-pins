@@ -1,19 +1,49 @@
 {
+ "gate": "facts",
+ "round": 1,
+ "at": "2026-10-29T13:15:59-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
+ "pass": true,
+ "score": {
+  "numbers": 11,
+  "mismatches": 0
+ },
+ "reasons": [
+  "data.js: all 11 numbers (43, 45, 13, 91, 56, 400, 2024, 2, 5, 1, 10) match facts.json paths and shown strings; data.js sha256 1d95aa18...294a equals sha256sum of 01_voice/facts.json. scene.js draws every number from k.data.numbers, none hard-coded.",
+  "words.json / transcript.md (fix round 1 re-voice): takes 5, 6, 7 now say 'And here's your one-star reply.', 'Answer your bad ones too.', '...and answer every new one you get.'. The 'your'/'you' additions change no number or claim. Reply quotes are word for word with facts.json (five1-3, one1-3) and with the chat bubbles on the sheets (30.37 to 44.47 s).",
+  "hook: 'Forty-three percent of contractors in one HVAC survey said they don't answer reviews on third-party sites' matches the page (43% don't). It keeps the scope: one survey, third-party sites, never 'half', never 'HVAC contractors' as a fixed population. Card '43% of contractors don't answer reviews' + 'ACHR News survey, 2024' + 'on third-party sites' (5.82, 9.00 s).",
+  "stakes: '91% of the 400 homeowners said reviews are important to them when they pick an HVAC contractor' matches the page (91% = 26 extremely + 35 very + 30 important). Plates '400 homeowners, 2024' and '91%: picking an HVAC contractor'. Crown 'SAY REVIEWS MATTER' is a fair shorthand for 'important factor'. '56% ... check reviews like yours on Google' and the plate '56% look on Google' match '56% ... use Google to seek out reviews of contractors'. The crown 'ACHR NEWS + CLEAR SEAS' keeps the attribution.",
+  "gap: YES 45%, NO 43%, DON'T KNOW 13%; 'Reviews on third-party sites' and 'Contractors, ACHR News survey, 2024' (26.23, 27.25 s) are correct. The spoken 'with the forty-five percent who do' has the right base ('on those sites'). The 1ST/2ND/3RD rank column is arcade-table furniture, not data.",
+  "Claims in words: the caveat says the survey shows reviews matter to homeowners and doesn't prove a reply wins the job. The two replies, the rules (short, calm, offline, never argue) and '10 minutes every Monday' are advice, not presented as findings. Nothing is promised that the source doesn't test. The 88% vendor line is not used anywhere, captions included.",
+  "Story elements: the 7:42 clock, the 'MON: reviews, 10 min' reminder, the 'New review' banners and the example reviews (furnace, late tech, the shop) do not read as data. The example reviews are tagged EXAMPLE on the hook close-up (0.5 to 1.5 s) and on the pillar during replies. Mid-spin reels at 66.24 s ('$', '2', '6') are slot-machine blur before Y E S lands, not readable as a statistic (same as the previous cut).",
+  "Trades first: the core evidence is The ACHR News (HVACR trade paper) with Clear Seas Research: homeowners choosing an HVAC contractor, and contractors answering reviews. No non-trade caveat is needed.",
+  "No real private person, business or address (Snow is the host; only ProofNotFluff and proofnotfluff.com appear). No em or en dashes in script, transcript, words, facts, brief, cues, scene or captions (checked by code point). The previous review's notes are all still satisfied; no earlier fault is back."
+ ],
+ "sources_checked": [
+  "https://www.achrnews.com/articles/155206-91-of-homeowners-rely-on-online-reviews-before-picking-contractor: re-fetched Oct 29, 2026. Confirms: title '91% of Homeowners Rely on Online Reviews Before Picking Contractors', Dylan Kurt, Sep 17, 2024; study by Clear Seas Research (BNP Media's research unit) with The ACHR News; 400 homeowners; 91% rate online reviews an important factor when choosing an HVAC contractor (26/35/30); 56% use Google to seek out reviews of contractors; among contractors surveyed, 45% answer reviews on third-party sites, 43% don't, 13% don't know; no contractor count given; contractors with 1 to 10 employees were least likely to answer; the 88% line is Chris Lollini's (Reputation Igniter) quote about people in general and is unused."
+ ],
+ "prior": {
   "gate": "facts",
   "round": 0,
+  "at": "2026-10-29T12:46:52-05:00",
+  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
   "pass": true,
-  "score": {"numbers": 11, "mismatches": 0},
+  "score": {
+   "numbers": 11,
+   "mismatches": 0
+  },
   "reasons": [
-    "data.js: all 11 numbers (43, 45, 13, 91, 56, 400, 2024, 2, 5, 1, 10) match facts.json paths and shown strings; data.js sha256 matches facts.json (1d95aa18...). scene.js takes every number from k.data, none hard-coded.",
-    "scene.js replies: the merged bubbles ('Thanks for trusting us with your furnace. Glad it's running right.' and 'Sorry we were late. That's on us. I want to make it right.') match facts.json replies and the voice word for word; the review lines show 5 stars / 1 star from data; EXAMPLE tag drawn.",
-    "scene.js acronyms: the ACRONYMS map only restores achr -> ACHR and hvac -> HVAC (the three words.json hits); no other word or number changes.",
-    "scene.js stakes slot timing: reels draw n.important.value (9, 1, %) and n.google.value (5, 6, %); plates read '400 homeowners, 2024', '91%: picking an HVAC contractor', '56% look on Google', all within the source.",
-    "Claims: 91% 'important when they pick an HVAC contractor' (page: rate online reviews as an important factor, 26/35/30); 56% Google; contractors 45/43/13 'on third-party sites'; 43% never called 'half'; the contractor population qualified as 'in one HVAC survey' / 'ACHR News survey'; caveat says it doesn't prove a reply wins the job.",
-    "Story elements (7:42 clock, MON reminder, sample reviews, furnace, late tech) read as examples, not data. Trades first: core evidence is The ACHR News (HVACR trade paper) with Clear Seas Research. The 88% vendor line is not used.",
-    "No real private person, business or address; no em or en dashes in script, transcript, words, facts, brief, cues, scene, data or captions.",
-    "Note, not a mismatch: '2024' is the article's publication year (the page does not state the fieldwork year); reads fairly."
+   "data.js: all 11 numbers (43, 45, 13, 91, 56, 400, 2024, 2, 5, 1, 10) match facts.json paths and shown strings; data.js sha256 1d95aa18... equals sha256sum of 01_voice/facts.json. scene.js draws every number from k.data, none hard-coded.",
+   "script.md / transcript.md / words.json (rebuild): the new hook 'Got a one-star review? Here's your reply to copy.' carries no number; 'Forty-three percent of contractors in one HVAC survey said they don't answer reviews on third-party sites' keeps the scope (one survey, third-party sites, never 'half', never 'HVAC contractors' as a fixed population); the spoken 13% is gone and 13% stays on screen only (gap row DON'T KNOW 13%), fair; take 3 says only the 45% 'on those sites', correct base.",
+   "stakes: '91% of the 400 homeowners said reviews are important to them when they pick an HVAC contractor' matches the page's 91% (26/35/30); '56% of them check reviews like yours on Google' matches '56% of respondents ... use Google to seek out reviews of contractors'. 'with Clear Seas Research' left the voice but the crown still reads ACHR NEWS + CLEAR SEAS (sheet 10.56 s) and the captions credit Clear Seas, so attribution holds.",
+   "scene.js / sheets: hook card '43% of contractors don't answer reviews' with 'ACHR News survey, 2024' and 'on third-party sites' (5.84 s, 9.00 s); plates '400 homeowners, 2024', '91%: picking an HVAC contractor', '56% look on Google'; gap 'Contractors, ACHR News survey, 2024' and 'Reviews on third-party sites'. All within the source. '2024' is the article's publication year (page gives no fieldwork date) and reads fairly.",
+   "Claims in words: caveat says the survey shows reviews matter to homeowners and does not prove a reply wins the job; the replies, rules and ten minutes every Monday are advice, not presented as findings; nothing promised that no source tests. The 88% vendor line is not used.",
+   "Story elements: the 7:42 clock, the MON reminder, the example reviews (furnace, late tech, the shop) are tagged EXAMPLE on the close-up and pillar; the REVIEWS CLINIC chip is a segment label. Spinning close reels briefly show '$', '2', '6' mid-spin (64.85 s) before landing Y E S; motion blur of a slot machine, not readable as data.",
+   "Trades first: core evidence is The ACHR News (HVACR trade paper) with Clear Seas Research, homeowners choosing an HVAC contractor and contractors answering reviews; no non-trade caveat needed.",
+   "No real private person, business or address (Snow is the host; ProofNotFluff and proofnotfluff.com only). No em or en dashes in script, transcript, words.json, facts, brief, cues, scene or captions. Faults in earlier review files are not back."
   ],
   "sources_checked": [
-    "https://www.achrnews.com/articles/155206-91-of-homeowners-rely-on-online-reviews-before-picking-contractor: Sep 17, 2024, Dylan Kurt; Clear Seas Research (BNP Media) with The ACHR News; 400 homeowners; 91% rate online reviews an important factor (26/35/30); 56% would check Google; contractors on third-party sites 45% answer, 43% don't, 13% don't know; no contractor count; 1 to 10 employee shops least likely to answer on third-party sites; 88% is a Reputation Igniter quote."
+   "https://www.achrnews.com/articles/155206-91-of-homeowners-rely-on-online-reviews-before-picking-contractor: title '91% of Homeowners Rely on Online Reviews Before Picking Contractors', Dylan Kurt, Sep 17, 2024; Clear Seas Research (BNP Media's research unit) with The ACHR News; 400 homeowners; 91% rate online reviews an important factor when choosing an HVAC contractor (26% extremely, 35% very, 30% important); 56% use Google to seek out reviews of contractors; among contractors surveyed 45% answer reviews on third-party sites, 43% don't, 13% don't know; no contractor count or fieldwork date given; 1 to 10 employee contractors least likely to answer; 88% is a quoted expert line about people in general (unused)."
   ]
+ }
 }

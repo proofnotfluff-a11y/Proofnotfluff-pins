@@ -1,9 +1,9 @@
 # Transcript: 2026-11-01-same-visit-close
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 199 words, 71.8 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 200 words, 71.4 s of voice.
 
 ## Flags
-none
+- 4.8 s heard 'closed seventy seven %' for 'close seventy-seven percent'
 
 ## Pace per take (target 160 to 195 wpm)
 ```
@@ -12,8 +12,8 @@ none
   03    19.2 s  178 wpm  
   04    32.7 s  198 wpm  
   05    44.8 s  153 wpm  
-  06    55.8 s  148 wpm  slow: rewrite it as talk, then speak --take 6
-  07    65.4 s  186 wpm  
+  06    55.8 s  162 wpm  
+  07    65.0 s  186 wpm  
 ```
 
 ## Words
@@ -60,18 +60,14 @@ none
 
 `00:50.6` ServiceTitan says same-visit closes show how well your tech handles objections.
 
-`00:55.8` One honest note.
+`00:55.8` One honest note: it's a pattern, not proof, and top shops might close more for other reasons.
 
-`00:57.4` It's a pattern, not proof.
+`01:01.8` But asking only costs you one sentence.
 
-`00:59.6` Top shops might close more for other reasons.
+`01:05.0` Don't drive off and wait.
 
-`01:02.1` But asking only costs you one sentence.
+`01:06.8` Ask for the yes.
 
-`01:05.4` Don't drive off and wait.
+`01:07.6` In the driveway.
 
-`01:07.2` Ask for the yes.
-
-`01:08.1` In the driveway.
-
-`01:09.9` Send this to whoever goes out on your estimates.
+`01:09.5` Send this to whoever goes out on your estimates.

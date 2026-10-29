@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: python3 tools/inspections_chicago.py --selftest
       - run: python3 tools/inspections_chicago.py --probe
-      - run: pip install --quiet cryptography openpyxl pillow
+      - run: pip install --quiet -c .github/ci-constraints.txt cryptography openpyxl pillow
       - run: python3 tools/rest_seal.py --selftest
       - run: python3 tools/inspections_chicago.py --full "$RUNNER_TEMP/inspections-full.json" --raw "$RUNNER_TEMP/inspections-raw.json"
       - name: Seal the raw pull for the crew's offline checks (public-key box; the private key is never in the repo)

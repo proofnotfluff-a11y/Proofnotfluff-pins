@@ -25,7 +25,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg tesseract-ocr > /dev/null
-          pip install --quiet playwright numpy scipy pillow fonttools brotli
+          pip install --quiet -c .github/ci-constraints.txt playwright numpy scipy pillow fonttools brotli
           python3 -m playwright install --with-deps chromium
           sudo mkdir -p /mnt/user-data/outputs && sudo chown "$USER" /mnt/user-data/outputs
       - name: Post copy

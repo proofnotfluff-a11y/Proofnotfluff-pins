@@ -23,7 +23,7 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
-      - run: pip install --quiet cryptography openpyxl pillow
+      - run: pip install --quiet -c .github/ci-constraints.txt cryptography openpyxl pillow
       - name: Source check (only on a push that asks for it)
         if: github.event_name == 'push' && contains(github.event.head_commit.message, '[probe]')
         run: python3 tools/dp_probe_b8.py

@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Self-test (offline)
         run: |
-          pip install --quiet pytest
+          pip install --quiet -c .github/ci-constraints.txt pytest
           python3 -m pytest -q -p no:cacheprovider tools/test_watch_video.py
       - name: Answer new jobs
         env:

@@ -32,7 +32,7 @@ jobs:
           pip install --quiet --require-hashes --only-binary :all: -r /tmp/build-req.txt
           pip install --quiet --require-hashes --no-build-isolation --only-binary :all: --no-binary jstyleson \
             -r tools/requirements-owner-rung.txt
-      - run: pip install --quiet cryptography
+      - run: pip install --quiet -c .github/ci-constraints.txt cryptography
       - run: python3 tools/data_box.py --selftest
       - run: python3 tools/test_gates.py
       - run: python3 tools/owners_chicago.py --selftest && python3 tools/site_emails.py --selftest && python3 tools/site_owners.py --selftest

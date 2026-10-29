@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: python3 tools/permits_chicago.py --selftest
       - run: python3 tools/permits_austin.py --selftest
-      - run: pip install --quiet pypdf openpyxl cryptography pillow
+      - run: pip install --quiet -c .github/ci-constraints.txt pypdf openpyxl cryptography pillow
       - name: Pull the City's data (the full list stays in the runner and is never committed in the clear)
         run: python3 tools/permits_austin.py --full "$RUNNER_TEMP/austin-full.json"
       - name: Build the Austin members' app (encrypted; skipped until the AUSTIN_LEADS_PASSWORD secret exists)

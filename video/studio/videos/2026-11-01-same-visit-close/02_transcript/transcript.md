@@ -1,6 +1,6 @@
 # Transcript: 2026-11-01-same-visit-close
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 191 words, 67.6 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 199 words, 70.7 s of voice.
 
 ## Flags
 none
@@ -10,10 +10,10 @@ none
   01     0.0 s  176 wpm  
   02     8.5 s  150 wpm  
   03    19.2 s  178 wpm  
-  04    32.7 s  207 wpm  fast: give it a landing beat, then speak --take 4
-  05    44.0 s  153 wpm  
-  06    54.9 s  136 wpm  slow: rewrite it as talk, then speak --take 6
-  07    61.5 s  211 wpm  fast: give it a landing beat, then speak --take 7
+  04    32.7 s  206 wpm  fast: give it a landing beat, then speak --take 4
+  05    44.1 s  153 wpm  
+  06    55.0 s  143 wpm  slow: rewrite it as talk, then speak --take 6
+  07    64.6 s  211 wpm  fast: give it a landing beat, then speak --take 7
 ```
 
 ## Words
@@ -46,26 +46,28 @@ none
 
 `00:34.7` It's three lines.
 
-`00:36.3` Here are your options.
+`00:36.2` Here are your options.
 
-`00:37.7` If you want to go ahead today, I can get you on the schedule for Thursday.
+`00:37.6` If you want to go ahead today, I can get you on the schedule for Thursday.
 
-`00:41.6` What questions do you have before you pick one?
+`00:41.5` What questions do you have before you pick one?
 
-`00:44.0` Here's the part people skip.
+`00:44.1` Here's the part people skip.
 
-`00:46.0` That last question brings the worry out while you're still there.
+`00:46.1` That last question brings the worry out while you're still there.
 
-`00:49.8` ServiceTitan says same-visit closes show how well your tech handles objections.
+`00:49.9` ServiceTitan says same-visit closes show how well your tech handles objections.
 
-`00:54.9` One honest note.
+`00:55.0` One honest note.
 
 `00:56.6` It's a pattern, not proof.
 
-`00:58.8` Asking still costs you one sentence.
+`00:58.6` Top shops might close more for other reasons.
 
-`01:01.5` Don't drive off and wait for a yes.
+`01:01.6` Asking still costs you one sentence.
 
-`01:03.8` Ask for it in the driveway.
+`01:04.6` Don't drive off and wait for a yes.
 
-`01:05.7` Send this to whoever goes out on your estimates.
+`01:07.0` Ask for it in the driveway.
+
+`01:08.9` Send this to whoever goes out on your estimates.

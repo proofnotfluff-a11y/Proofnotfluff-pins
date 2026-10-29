@@ -10,6 +10,6 @@
 
 [short pause] Here's the part people skip. That last question brings the worry out while you're still there. ServiceTitan says same-visit closes show how well your tech handles objections.
 
-[calm] One honest note. It's a pattern, not proof. Top shops might close more for other reasons, but asking still costs you just one sentence.
+[leaning in] One honest note. It's a pattern, not proof. Top shops might close more for other reasons, but asking only costs you one sentence.
 
 [confident] Don't drive off and wait. Ask for the yes. In the driveway. [short pause] Send this to whoever goes out on your estimates.

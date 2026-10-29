@@ -1,5 +1,5 @@
 {
- "about": "Every number this video shows or says, with its source. Checked by the facts gate against the source pages; from video/studio/research/runs/2026-10-28-script-playbook.md (example 3) and re-read on each source page on Oct 28, 2026.",
+ "about": "Every number this video shows or says, with its source. Trade evidence only (Todd, Oct 28: no other-industry studies). Checked by the facts gate against the source pages; every number re-read on its source page on Oct 28, 2026 (evening).",
  "servicetitan": {
   "title": "State of the Trades: Top Performer Profile",
   "publisher": "ServiceTitan",
@@ -15,20 +15,18 @@
   "quote": "On 57% of residential jobs, top performers present good-better-best proposals ... The rest do this on 41% of residential jobs.",
   "method": "internal analysis of aggregated, anonymized data from participating ServiceTitan customers, trailing 12 months through January 2026; metrics describe behaviors correlated with higher performance"
  },
- "menu": {
-  "title": "The compromise effect in action: Lessons from a restaurant's menu",
-  "authors": "Pia Pinger, Isabel Ruhmer-Krell, Heiner Schumacher",
-  "journal": "Journal of Economic Behavior and Organization",
-  "volume": 128,
-  "year": 2016,
-  "pages": "14 to 34",
-  "url": "https://www.sciencedirect.com/science/article/abs/pii/S0167268116300658",
-  "years": 7,
-  "choices": 88000,
-  "country": "Germany",
-  "middleGainPts": 5,
-  "quote": "an option that becomes a compromise gains on average five percentage points in market share (introduction); abstract: gain on average five percent in market share",
-  "highEnd": "The compromise effect tends to be bigger when adding a choice at the high end than at the low end."
+ "housecallpro": {
+  "title": "Housecall Pro Releases 2026 Home Service Spending Report",
+  "report": "The State of Home Service Spending",
+  "publisher": "Housecall Pro",
+  "date": "May 13, 2026",
+  "year": 2026,
+  "url": "https://www.housecallpro.com/resources/home-service-spending-report-2026-release/",
+  "homeowners": 1100,
+  "sample": "a survey of more than 1,100 U.S. homeowners by Housecall Pro (fieldwork dates not stated on the page)",
+  "seekMorePct": 68,
+  "quote": "68% of homeowners seek additional quotes when pricing comes in higher than expected",
+  "note": "Vendor survey of homeowners (Housecall Pro sells software to home service businesses). Said as 'over eleven hundred homeowners' and 'go get more quotes'. 'One price that surprises them can send them shopping' restates this finding; 'the cheaper option is already on your quote' describes the three-price quote itself (Good is the lowest price), not a finding."
  },
  "acca": {
   "title": "Survey reveals strategies to boost HVAC close rates by double digits",
@@ -44,7 +42,8 @@
   "fewClosePct": 42,
   "shareManyPct": 10,
   "quote": "Contractors offering four or more options see their closing rate jump by 10 percentage points to 52% ... 42% when offering one, two, or three options.",
-  "caveat": "The survey groups one, two and three options together, so it does not compare one option with three. Correlational, HVACR sample."
+  "caveat": "The survey groups one, two and three options together, so it does not compare one option with three. Correlational, HVACR sample.",
+  "shareManyQuote": "only 10% of contractors provide four or more options"
  },
  "gbb": {
   "source": "OURS: advice, not a finding",

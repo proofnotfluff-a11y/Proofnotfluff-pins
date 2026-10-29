@@ -62,3 +62,7 @@ The studio learns in three loops (Todd, Oct 28, 2026, 3:43 pm: "make this video 
 - 2026-10-28 book-the-call: Whisper skipped a whole take on the full file -> transcribe take by take. Proper names
   ("ServiceTitan", "Invoca") misheard -> a close spelling of a capitalized name counts as heard. The hook cover held
   still 2.8 s -> pings and sparks after frame 0 until the first number is said.
+- 2026-10-28 three-prices rebuild (Todd: trades-only evidence, new scenery and motion): the restaurant menu beat (take 3)
+  -> Housecall Pro's homeowner survey (68% get more quotes when a price is higher than expected); scenery -> counter,
+  scores, slots and two pieces of our own (a 100-house street, a tailgate clipboard). The settled hook card read as frozen
+  1.0 to 3.4 s at -70 dB even with shines on it -> the card swings a pixel on its strings from 0.6 s, sparks every 0.6 s.

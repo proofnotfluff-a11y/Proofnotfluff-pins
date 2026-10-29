@@ -1,11 +1,11 @@
 {
  "schema": "pnf.studio.cues.v1",
- "source": "whisper medium.en int8, re-spelled from script.md",
+ "source": "stand-in: whisper words for takes 1, 2, 4 to 7 (shifted), take 3 estimated at 180 wpm until the voice workflow re-voices it; never rendered for posting",
  "music": {
   "id": "rooms",
   "level": 0.16
  },
- "duration": 85.7,
+ "duration": 84.302,
  "cues": [
   {
    "id": "hook",
@@ -14,19 +14,31 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "Frame 0: the hook card, fully settled. \"Top shops quote 3 prices\" / \"on 57% of home jobs.\" The 3 in the accent, sparks. Source small: ServiceTitan, 12 months to Jan 2026. Host and dialog hidden.",
+   "text": "World: the storefront counter. Frame 0: the cover, fully settled. Shop sign QUOTE CLINIC; a toolbox on the counter with one price tag (\"$\"); a cream card hung on the counter front: \"Top shops quote\" / \"3 prices\" (big) / \"on 57% of home jobs.\" with the 3 and the 57% in red; source small: ServiceTitan data, 12 months to Jan 2026. Host and dialog hidden through the hook. After frame 0: sparks at 0.4 s and every 0.6 s, the card swings a pixel on its strings, shines cross the lines from 1 s, the OPEN sign blinks.",
    "t": 0.0,
    "word": 0,
    "end": 5.94
   },
   {
+   "id": "hook.three",
+   "level": 1,
+   "quote": "usually quote three.",
+   "sfx": null,
+   "shift": 0.0,
+   "pin": null,
+   "text": "On \"three\" the tag narrows to its edge, shows its barcode back and turns to \"$ $$ $$$\", sways to rest with sparks.",
+   "t": 2.72,
+   "word": 8,
+   "end": 4.44
+  },
+  {
    "id": "hook.build",
    "level": 1,
    "quote": "Here's how you build",
-   "sfx": "stamp",
+   "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "Room: framing. A quote slip with one price (\"$\") slides in; a red X stamps it; three slots ($ / $$ / $$$) slide in beside it. Chip QUOTE CLINIC.",
+   "text": "The chalk board on the wall writes \"3 prices.\" / \"1 quote.\" line by line; the card's 3 pulses gold once.",
    "t": 4.44,
    "word": 11,
    "end": 5.94
@@ -38,10 +50,10 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "Room: workshop. Panel SERVICETITAN: \"Good-better-best on home jobs\".",
+   "text": "World: the arcade high-score table. Marquee GOOD BETTER BEST, bulbs chasing; empty dashed rows; the source types on at the bottom of the screen: \"ServiceTitan customers\".",
    "t": 5.94,
    "word": 16,
-   "end": 18.6
+   "end": 18.639
   },
   {
    "id": "stakes.window",
@@ -50,7 +62,7 @@
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "The window stamps on the panel: \"12 months to Jan 2026\"; the two bar tracks slide in, empty.",
+   "text": "\"12 months to Jan 2026\" types under it.",
    "t": 8.14,
    "word": 23,
    "end": 9.62
@@ -62,7 +74,7 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "Bar 1 label slides in: \"Top 10% by revenue\". Track glows.",
+   "text": "Row 1 slides in: 1ST TOP 10% with the cursor, score \"--\" blinking. \"Top 10% = by revenue\" small under the table.",
    "t": 9.62,
    "word": 27,
    "end": 12.38
@@ -74,7 +86,7 @@
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "Bar 1 grows to 57% as it is said; 57% slams in at its end, sparks.",
+   "text": "The row's score counts to 57% as it is said (from 85%); sparks off the score.",
    "t": 12.38,
    "word": 36,
    "end": 14.26
@@ -86,7 +98,7 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "Bar 2 \"Everyone else\" grows to 41%, in grey; 41% lands.",
+   "text": "Row 2 slides in: 2ND THE REST; its score lands 41% on \"Forty-one\".",
    "t": 14.26,
    "word": 40,
    "end": 16.34
@@ -98,118 +110,106 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "Accent stamp under the bars: \"A habit you can copy.\" Snow points at it.",
+   "text": "The NEW RECORD line blinks in as \"A HABIT YOU CAN COPY\" (2 a second). Snow points at it.",
    "t": 16.34,
    "word": 43,
-   "end": 18.6
+   "end": 18.639
   },
   {
-   "id": "menu",
+   "id": "why",
    "level": 0,
-   "quote": "Why does that work?",
+   "quote": "Why give them a choice?",
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "Room: blackboard. Chalk header: WHY THE MIDDLE GAINS. A big menu card chalks in under the study lines.",
-   "t": 18.6,
+   "text": "World: a street of 100 houses at dusk (10 by 10), windows dark, a quote envelope flies in across the rooftops and lands on the first house.",
+   "t": 18.639,
    "word": 49,
-   "end": 36.36
+   "end": 34.962
   },
   {
-   "id": "menu.study",
+   "id": "why.hcp",
    "level": 1,
-   "quote": "Researchers tracked seven years of",
+   "quote": "Housecall Pro surveyed over",
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "Source in chalk: a restaurant in Germany, 7 years. Journal of Economic Behavior and Organization, 2016.",
-   "t": 20.24,
-   "word": 53,
-   "end": 22.24
+   "text": "The street sign plate: \"Housecall Pro survey, 2026\" and \"1,100+ homeowners\" counting up.",
+   "t": 20.173,
+   "word": 54,
+   "end": 23.005
   },
   {
-   "id": "menu.german",
+   "id": "why.68",
    "level": 1,
-   "quote": "at a German restaurant.",
-   "sfx": null,
-   "shift": 0.0,
-   "pin": null,
-   "text": "\"88,000+ choices\" counts up beside \"7 years\".",
-   "t": 22.24,
-   "word": 59,
-   "end": 23.7
-  },
-  {
-   "id": "menu.dishes",
-   "level": 1,
-   "quote": "When the menu changed,",
+   "quote": "sixty-eight percent said",
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "A three-dish menu card chalks in: $ / $$ / $$$, three plates.",
-   "t": 23.7,
-   "word": 63,
-   "end": 25.16
+   "text": "68 of the 100 houses light up in a fast run, row by row; \"68%\" slams on the plate as it is said.",
+   "t": 23.005,
+   "word": 61,
+   "end": 24.467
   },
   {
-   "id": "menu.lift",
+   "id": "why.quotes",
    "level": 1,
-   "quote": "a dish that landed in",
+   "quote": "go get more quotes",
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "The middle dish lifts and glows: it became the middle option.",
-   "t": 25.16,
-   "word": 67,
-   "end": 27.02
+   "text": "Over each lit house a small envelope pops up and floats off to the right: \"get more quotes when the price is higher than expected\".",
+   "t": 24.467,
+   "word": 65,
+   "end": 28.357
   },
   {
-   "id": "menu.five",
+   "id": "why.surprise",
    "level": 1,
-   "quote": "about five points of",
+   "quote": "One price that surprises",
+   "sfx": "pop",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The street dims; one big quote slip drops in: a single price \"$$$$\" with a red \"?!\" over it.",
+   "t": 28.357,
+   "word": 78,
+   "end": 30.16
+  },
+  {
+   "id": "why.shop",
+   "level": 1,
+   "quote": "send them shopping.",
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "\"+5 pts share, on average\" slams in under the middle dish as it is said.",
-   "t": 27.02,
-   "word": 75,
-   "end": 29.8
+   "text": "The slip slides off to the right after a wobble; \"can send them shopping\" under it.",
+   "t": 30.16,
+   "word": 84,
+   "end": 31.353
   },
   {
-   "id": "menu.pricey",
+   "id": "why.three",
    "level": 1,
-   "quote": "It worked even better",
-   "sfx": "blip",
+   "quote": "With three, the cheaper",
+   "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "The top dish gets a NEW tag: \"Bigger when the new dish was the pricey one.\"",
-   "t": 29.8,
-   "word": 82,
-   "end": 33.18
-  },
-  {
-   "id": "menu.above",
-   "level": 1,
-   "quote": "So put a price",
-   "sfx": "tick",
-   "shift": 0.0,
-   "pin": null,
-   "text": "An arrow from the top dish to the middle: \"Put a price above your middle.\"",
-   "t": 33.18,
-   "word": 94,
-   "end": 36.36
+   "text": "A three-price quote slips in: $ / $$ / $$$; on \"cheaper\" the $ row glows teal with a check: \"The cheaper option is already on your quote.\"",
+   "t": 31.353,
+   "word": 87,
+   "end": 34.962
   },
   {
    "id": "card",
    "level": 0,
-   "quote": "Build your three like this.",
+   "quote": "Build your three like",
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "Room: workshop. The big quote card (example), three rows, the copyable artifact. Snow steps back (small) so nothing covers it.",
-   "t": 36.36,
-   "word": 106,
-   "end": 48.94
+   "text": "World: a quote clipboard on a truck tailgate at dusk. The clipboard rises into frame; the header \"Your quote (example)\"; three empty ruled rows.",
+   "t": 34.962,
+   "word": 97,
+   "end": 47.542
   },
   {
    "id": "card.good",
@@ -218,10 +218,10 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "Row 1 GOOD ($): The job done right. Nothing extra.",
-   "t": 38.2,
-   "word": 111,
-   "end": 41.22
+   "text": "Row 1 lands: GOOD ($): The job done right. Nothing extra.",
+   "t": 36.802,
+   "word": 102,
+   "end": 39.822
   },
   {
    "id": "card.better",
@@ -230,10 +230,10 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "Row 2 BETTER ($$): What you'd pick for your own house. Marked as the middle.",
-   "t": 41.22,
-   "word": 119,
-   "end": 44.1
+   "text": "Row 2 lands on a gold band: BETTER ($$): What you'd pick for your own house. A \"the middle\" tag pops beside it.",
+   "t": 39.822,
+   "word": 110,
+   "end": 42.702
   },
   {
    "id": "card.best",
@@ -242,10 +242,22 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "Row 3 BEST ($$$): Longer warranty. Faster start date. The full card holds big to the end of the take.",
-   "t": 44.1,
-   "word": 129,
-   "end": 48.94
+   "text": "Row 3 lands: BEST ($$$): Plus upgrades.",
+   "t": 42.702,
+   "word": 120,
+   "end": 44.382
+  },
+  {
+   "id": "card.warranty",
+   "level": 1,
+   "quote": "a longer warranty or",
+   "sfx": null,
+   "shift": 0.0,
+   "pin": null,
+   "text": "\"Longer warranty\" and \"faster start date\" check in under BEST as said. The full card holds big to the end of the take.",
+   "t": 44.382,
+   "word": 124,
+   "end": 47.542
   },
   {
    "id": "survey",
@@ -254,22 +266,22 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "Room: garage. Header ONE MORE FROM THE DATA slams in on a dark band.",
-   "t": 48.94,
-   "word": 141,
-   "end": 75.46
+   "text": "World: the slot machine. The crown reads ONE MORE FROM THE DATA; reels at rest; bulbs chase slowly.",
+   "t": 47.542,
+   "word": 132,
+   "end": 74.062
   },
   {
-   "id": "survey.more",
+   "id": "survey.ceiling",
    "level": 1,
    "quote": "Three doesn't have to",
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "Chalk line: \"3 is not the ceiling.\"",
-   "t": 50.68,
-   "word": 147,
-   "end": 52.98
+   "text": "The crown flips to \"3 IS NOT THE CEILING\".",
+   "t": 49.282,
+   "word": 138,
+   "end": 51.582
   },
   {
    "id": "survey.group",
@@ -278,10 +290,10 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "Panel ACCA SURVEY: 1,000+ contractors, Contractor of the Future (ACHR News, 2026). Two empty bar tracks.",
-   "t": 52.98,
-   "word": 154,
-   "end": 54.86
+   "text": "In the coin tray, typed: \"ACCA survey, ACHR News 2026\".",
+   "t": 51.582,
+   "word": 145,
+   "end": 53.462
   },
   {
    "id": "survey.n",
@@ -290,22 +302,22 @@
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "\"1,000+ contractors\" lands on the panel.",
-   "t": 54.86,
-   "word": 161,
-   "end": 57.22
+   "text": "\"1,000+ HVAC contractors\" lands in the tray.",
+   "t": 53.462,
+   "word": 152,
+   "end": 55.822
   },
   {
-   "id": "survey.many",
+   "id": "survey.pull",
    "level": 1,
    "quote": "Those offering four or",
-   "sfx": "pop",
+   "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "The \"4+ options\" label and its empty track slide in.",
-   "t": 57.22,
-   "word": 165,
-   "end": 59.52
+   "text": "The crown reads \"4+ OPTIONS: CLOSE RATE\"; the lever pulls on \"four\", the reels spin.",
+   "t": 55.822,
+   "word": 156,
+   "end": 58.122
   },
   {
    "id": "survey.52",
@@ -314,10 +326,10 @@
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "The bar grows to 52% in the accent as it is said; 52% lands with sparks.",
-   "t": 59.52,
-   "word": 172,
-   "end": 61.72
+   "text": "The reels stop 5, 2, % on \"fifty-two percent\"; the bulbs chase fast; sparks; tray: \"4+ options: 52%\" and \"Only 10% offer 4+\".",
+   "t": 58.122,
+   "word": 163,
+   "end": 60.322
   },
   {
    "id": "survey.few",
@@ -326,10 +338,10 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "Bar \"1 to 3 options\" grows to 42% in grey; 42% lands.",
-   "t": 61.72,
-   "word": 177,
-   "end": 64.4
+   "text": "The crown reads \"1 TO 3 OPTIONS\"; the lever pulls again; the reels stop 4, 2, % on \"Forty-two\" (no coins); tray adds \"1 to 3 options: 42%\".",
+   "t": 60.322,
+   "word": 168,
+   "end": 63.002
   },
   {
    "id": "survey.caveat",
@@ -338,10 +350,10 @@
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "A bracket groups \"1 to 3\" into one bar; caveat box: \"1 to 3 options: one group here.\"",
-   "t": 64.4,
-   "word": 182,
-   "end": 67.62
+   "text": "The reels roll to 1, 2, 3; a gold bracket clamps across all three: ONE GROUP. Tray: \"1 to 3 options: one group here.\"",
+   "t": 63.002,
+   "word": 173,
+   "end": 66.222
   },
   {
    "id": "survey.cant",
@@ -350,10 +362,10 @@
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "\"It can't show 3 beats 1.\" stamps into the caveat box.",
-   "t": 67.62,
-   "word": 191,
-   "end": 70.58
+   "text": "Tray second line in the accent: \"It can't show 3 beats 1.\"",
+   "t": 66.222,
+   "word": 182,
+   "end": 69.182
   },
   {
    "id": "survey.yeses",
@@ -362,22 +374,22 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "The header swaps to \"More choices, more yeses.\" big on the dark band. Snow checks his clipboard.",
-   "t": 70.58,
-   "word": 199,
-   "end": 74.04
+   "text": "Crown: \"MORE CHOICES, MORE YESES\". Snow checks his clipboard.",
+   "t": 69.182,
+   "word": 190,
+   "end": 72.642
   },
   {
    "id": "survey.start",
    "level": 1,
    "quote": "Start with three.",
-   "sfx": null,
+   "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "\"Start with 3.\" stamps under the header.",
-   "t": 74.04,
-   "word": 209,
-   "end": 75.46
+   "text": "The lever pulls; the reels land 3, 3, 3; jackpot: coins in the tray, the crown reads START WITH 3.",
+   "t": 72.642,
+   "word": 200,
+   "end": 74.062
   },
   {
    "id": "close",
@@ -386,10 +398,10 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "Room: blackboard. Chalk: \"1 price: yes or no.\" slams in as said.",
-   "t": 75.46,
-   "word": 212,
-   "end": 85.7
+   "text": "World: the storefront counter again, tag on one price \"$\". Over the counter front a dark plate: \"1 price: yes or no.\" lands as said.",
+   "t": 74.062,
+   "word": 203,
+   "end": 84.302
   },
   {
    "id": "close.choice",
@@ -398,10 +410,10 @@
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "\"3 prices: a choice.\" slams in, in the accent.",
-   "t": 77.94,
-   "word": 220,
-   "end": 80.24
+   "text": "The tag flips to \"$ $$ $$$\" on \"Three\"; \"3 prices: a choice.\" lands in the accent on \"choice\".",
+   "t": 76.542,
+   "word": 211,
+   "end": 78.842
   },
   {
    "id": "close.send",
@@ -410,10 +422,10 @@
    "sfx": "sting",
    "shift": 0.0,
    "pin": null,
-   "text": "ProofNotFluff plate slams on; send line: \"Send this to whoever writes your quotes.\"",
-   "t": 80.24,
-   "word": 225,
-   "end": 81.98
+   "text": "ProofNotFluff chip; the send line: \"Send this to whoever writes your quotes.\"",
+   "t": 78.842,
+   "word": 216,
+   "end": 80.582
   },
   {
    "id": "close.next",
@@ -422,10 +434,10 @@
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "An accent line sweeps under the send line; sparks; Snow waves.",
-   "t": 81.98,
-   "word": 232,
-   "end": 85.7
+   "text": "An accent line sweeps under \"a choice.\"; sparks off the tag; Snow waves.",
+   "t": 80.582,
+   "word": 223,
+   "end": 84.302
   }
  ]
 }

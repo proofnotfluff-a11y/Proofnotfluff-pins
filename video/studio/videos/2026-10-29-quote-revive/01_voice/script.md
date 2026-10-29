@@ -8,6 +8,6 @@
 
 [warmly] So here's the text. Their name, then yours, so they know it's you. Then one line. "Still want that water heater swapped before winter?" That's it. One question they can answer with a yes or a no.
 
-[matter-of-fact] Here's the part people skip. You text it, you don't email it. ServiceTitan's follow-up webinar says texts beat email on open rates, and in a Housecall Pro survey, fifty-nine percent of homeowners expect text updates.
+[matter-of-fact] Here's the part people skip. You text it, you don't email it. [quickly] ServiceTitan's follow-up webinar says texts beat email on open rates, and in a Housecall Pro survey, fifty-nine percent of homeowners expect text updates.
 
 [confident] One name, one job, one question. Send this to whoever follows up on your quotes. Next time a quote goes quiet, you'll know what to send.

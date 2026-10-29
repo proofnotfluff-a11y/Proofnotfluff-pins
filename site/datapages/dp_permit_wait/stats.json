@@ -4,7 +4,7 @@
   "name": "Building Permits",
   "dataset": "ydr8-5enu",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
-  "fetchedAt": "2026-10-29T16:44:45-0500",
+  "fetchedAt": "2026-10-29T16:47:48-0500",
   "rowsUpdatedAt": "2026-10-29T12:07:54+00:00",
   "field": "processing_time",
   "fieldMeans": "Number of days between APPLICATION_START_DATE and ISSUE_DATE"

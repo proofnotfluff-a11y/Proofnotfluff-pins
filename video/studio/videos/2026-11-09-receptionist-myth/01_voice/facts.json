@@ -1,0 +1,27 @@
+{
+ "about": "Every number this video shows or says, with its source. PHCP Pros' Sep 29, 2026 article on ServiceTitan's 2026 State of AI in the Trades report re-read on Oct 29, 2026 (11% high or complete trust, 58% little or no trust, over 1,000 residential service contractors). The prompt and the drafted check-in are examples, not data.",
+ "servicetitan": {
+  "title": "ServiceTitan Report Finds AI Adoption Accelerating Across the Trades",
+  "report": "The Update: 2026 State of AI in the Trades Report (ServiceTitan)",
+  "publisher": "PHCP Pros",
+  "published": "September 29, 2026",
+  "url": "https://www.phcppros.com/articles/24198-servicetitan-report-finds-ai-adoption-accelerating-across-the-trades",
+  "reread": "2026-10-29",
+  "highTrustPct": 11,
+  "littleOrNoTrustPct": 58,
+  "quote": "only 11% of contractors place high or complete trust in the AI tools they use, while 58% report little or no trust",
+  "sampleOver": 1000,
+  "method": "Based on a study of over 1,000 residential service contractors across the US, in HVAC, electrical, plumbing, roofing, and other sectors",
+  "reportYear": 2026,
+  "scope": "Vendor survey reported by trade press. The article says 'contractors' for the trust figures without saying all respondents or AI users only, so the video says 'contractors'. Not cleaning-specific. Descriptive, not a correlation.",
+  "context": "Same article: active engagement with AI rose from 46% (Dec 2025) to 52% (Sep 2026); 34% cite providing off-hours support as a reason to experiment with AI; among AI users, accuracy and reliability is the leading concern at 35% (not used in the video)."
+ },
+ "prompt": {
+  "source": "OURS: advice, an example prompt (no AI product named)",
+  "line1": "Write a short check-in on this quote, in my voice.",
+  "line2": "Ask what questions they have.",
+  "lines": 2,
+  "draft": "Hi, just checking in on the quote I sent for your deep clean. Any questions I can answer?",
+  "note": "lines is the count of sentences in the prompt itself, not a finding; the draft is an example"
+ }
+}

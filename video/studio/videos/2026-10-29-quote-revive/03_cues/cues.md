@@ -1,78 +1,91 @@
 # Cues: The text that revives a quote that went quiet (lesson 2, The Text, arcade)
 
+Worlds (brief.md): the street (hook and stakes in one section, so the van pulls away without a cut; cadence), the
+homeowner's fridge (homework, our own piece), the chat set in the truck (the text), the mail desk (the turn, our own piece),
+the level-up screen (close). No stock room in any section; each top-level cue names its world in a "World:" line (not
+"Room:", so the music stays on one room loop). Every time in scene.js comes from a cue start or a spoken word, so the
+re-voiced takes 3 and 5 move the picture with them.
+
 music: rooms
 
 ## hook "Quote went quiet? Skip just" [sfx: pop]
-Room: framing. Hook card, settled on frame 0, host and dialog box hidden: chip THE TEXT; "Quote went quiet? Send this text." Then a phone: the quote you sent ("Here's your quote for the new water heater."), read, no reply; a chip NO REPLY YET.
-## hook.send "Send this text instead." [sfx: blip]
-A panel pops: "Send this." Snow points at the phone.
+World: the street. Frame 0 is the settled cover: the van parked at a frame house, a yard sign QUOTE with its arrow bobbing; in the sky a dark game window holds the chip THE TEXT, "Quote went" / "quiet?" (quiet in the accent) and "Send this text." Host and dialog box hidden. After frame 0: clouds drift, the sun's rays step, a typing bubble over the front door blinks its dots and never turns into a reply; sparks off "quiet?" at 1 s.
+## hook.skip "checking in. Send this" [sfx: tick]
+Under the card, a speech bubble pops up from the van: "Just checking in!" in grey, struck through 0.4 s after it lands (the card itself holds still).
+## hook.send "text instead." [sfx: blip]
+The window shrinks into the sky (the houses show again); "Send this text." slams in the accent, 'Not "just checking in."' under it; Snow steps in small at the side, pointing up at it.
+## hook.stakes "Software maker ServiceTitan says its" [sfx: whoosh]
+The sky window turns to the stakes: chip SERVICETITAN'S OWN DATA, the source line "ServiceTitan blog, 2026" under it; "Estimates that close / on the first visit:" while three estimate sheets drop in one by one.
+## hook.count "thirty-seven percent of estimates close" [sfx: tick]
+37% counts up from 85% of itself and lands with sparks; "of estimates close" / "on the first visit" slide in beside it.
+## hook.bar "So most of your quotes" [sfx: tick]
+A bar under it fills to 37% (closed, in the accent); the rest stays open and is labeled "still open".
+## hook.drive "pull out of the driveway." [sfx: whoosh]
+The van pulls away: the street scrolls in parallax, the QUOTE sign slides off to the left behind it, exhaust puffs.
+## hook.rest "The rest depend on your" [sfx: blip]
+The window's last line: "The rest depend on your follow-up." with a sweep under "follow-up".
 
-## stakes "Software maker ServiceTitan says its" [sfx: whoosh]
-Room: blackboard. Chalk header: ServiceTitan's own data, 2026.
-## stakes.count "thirty-seven percent of estimates close" [sfx: tick]
-37% slams in big, with "of estimates close on the first visit".
-## stakes.bar "So most of your quotes" [sfx: tick]
-A chalk bar fills to 37% in the accent; the rest of the bar is labeled "still open when you leave".
-## stakes.drive "pull out of the driveway."
-A pixel van rolls off the edge of the board: the quote leaves with you.
-## stakes.rest "The rest depend on your" [sfx: blip]
-Chalk line: "The rest ride on your follow-up." with a sweep under it.
-
-## homework "Here's the problem with "just" [sfx: whoosh]
-Room: garage. A phone: the quote, then your "Just checking in!" text arrives.
+## homework "Here's the problem with" [sfx: whoosh]
+World: the homeowner's fridge (our own piece): a kitchen wall with a ticking clock and a steaming kettle, the fridge with magnets. A phone on the counter buzzes with your text: a bubble "Just checking in!". A yellow sticky note slaps onto the fridge door: "Reply to" / "plumber".
 ## homework.sheet "It hands them homework." [sfx: stamp]
-Stamp on the phone: HOMEWORK. A homework sheet pops beside it: "Write me an answer: ____".
-## homework.write "They have to write you"
-A pixel pencil hovers over the sheet; nothing gets written.
-## homework.off "and a busy homeowner puts" [sfx: whoosh]
-The sheet slides onto a pile; chip LATER. Snow shrugs.
-## homework.fix "The fix comes from marketer" [sfx: pop]
-Panel: Dean Jackson's fix. "One short question about what they wanted."
-## homework.ask "one short question about what"
-First line types: "One short question about what they wanted."
-## homework.pitch "and no pitch." [sfx: tick]
-Second line slams: "No pitch."
+A red HOMEWORK tag stamps onto the freezer door right above the note, an arrow stepping down at it.
+## homework.write "sit down and write you" [sfx: tick]
+A pencil scribbles a line on the note, stops halfway and hovers (it bobs a pixel); nothing more gets written.
+## homework.off "and a busy homeowner puts" [sfx: pop]
+Other notes slap on one by one: Soccer 4pm, Dentist, Pay bills, Groceries. Dentist lands right on top of the plumber note; only its corner and pin peek out.
+## homework.fix "Try Jobber's follow-up tips" [sfx: whoosh]
+A game window slides in from the left over the counter: JOBBER'S TIPS, three empty check boxes.
+## homework.name "Use their name, name" [sfx: tick]
+Line 1 lands with a check: "Use their name."
+## homework.job "name the job, and" [sfx: tick]
+Line 2: "Name the job."
+## homework.ask "ask a question." [sfx: tick]
+Line 3: "Ask a question." The three checks sparkle once.
 
 ## text "So here's the text." [sfx: whoosh]
-Room: workshop. A big phone, a new message to the homeowner; chip THE TEXT.
+World: the chat set, the phone in the truck's dash mount (road rushing in the windshield, the air freshener swinging). The chat with Homeowner: your quote from before ("Here's your quote for the new water heater."), read. A draft bubble opens, empty, with a blinking cursor.
 ## text.name "Their name, then yours," [sfx: tick]
-"Hi [name], it's [you]." types in. Chip 1 OF 2: THEIR NAME, THEN YOURS.
-## text.know "so they know it's you."
-A side note pops: "So they know it's you."
-## text.line "Still want that water heater" [sfx: tick]
-"Still want that water heater swapped before winter?" types in. Chip 2 OF 2: ONE QUESTION.
+"Hi [name], it's [you]." types into the draft word by word as it is said.
+## text.know "so they know it's" [sfx: blip]
+The draft sends: the bubble lands in the chat.
+## text.line "Then one line." [sfx: tick]
+A new draft opens; "Still want that water heater swapped before winter?" types in word by word as it is said.
 ## text.hold "That's it. One question" [sfx: blip]
-The whole text holds; a ring draws around the question.
+The second bubble sends; a gold frame steps around it and holds (the artifact, held to the end of the section).
 ## text.yesno "a yes or a no." [sfx: pop]
-Two reply buttons pop under the bubble: YES and NO.
+Two answer tags pop beside the bubble: YES and NO.
 
 ## turn "Here's the part people skip." [sfx: whoosh]
-Room: blackboard. Chalk header: The part people skip.
-## turn.own "Keep it in your own" [sfx: blip]
-Slams: "Keep it in your own words."
-## turn.study "In a Management Science study" [sfx: tick]
-Chalk: "Speed Is a Signal", Management Science, 2026.
-## turn.fast "fast replies stopped helping"
-Chalk line: "Fast replies stopped helping"
-## turn.bot "once people thought a bot" [sfx: pop]
-A chalk robot pops with a cross; the line "Fast replies stopped helping once people thought a bot wrote them."
+World: the mail desk at night (our own piece): a window with the moon and stars, a laptop on the left with an email inbox, the phone on a stand on the right. Header: "The part people skip."
+## turn.text "Text it. Don't email" [sfx: stamp]
+"Text it." slams over the phone in the accent; the phone's text bubble lights with read ticks. "Don't email it." lands over the laptop; envelopes keep stacking into the inbox, unopened.
+## turn.st "ServiceTitan's follow-up webinar says" [sfx: tick]
+Line under the desk: "Texts beat email on open rates." Source: ServiceTitan follow-up webinar, 2026.
+## turn.hcp "In a Housecall Pro survey," [sfx: whoosh]
+The laptop slides off to the left; a game window slides in where it was. Source line: Housecall Pro survey, 1,040 U.S. homeowners, 2025.
+## turn.pct "fifty-nine percent of homeowners" [sfx: tick]
+59% counts up from 85% of itself and lands with sparks; "of homeowners" / "expect text" / "updates." under it.
+## turn.fits "Your text fits right" [sfx: pop]
+The phone's bubble gets a green check that pops, with sparks.
 
 ## cadence "When do you send it?" [sfx: whoosh]
-Room: framing. Panel JOBBER SAYS: when to send it; the timeline line draws on.
+World: the street again, the van parked at your shop's curb. Sky window: JOBBER'S TIMING, an empty timeline with three dots.
 ## cadence.first "within two days of the" [sfx: tick]
-Dot 1: Within 2 days (of the quote).
+The van drives one block and parks: yard sign TEXT 1. Dot 1 lights: "Within 2 days".
 ## cadence.week "Then a week after you" [sfx: tick]
-Dot 2: Day 7 (a week after).
+The van drives on (TEXT 1 slides away behind it) and parks: TEXT 2. Dot 2: "Day 7".
 ## cadence.final "a day or two before" [sfx: tick]
-Dot 3: 1 to 2 days before it expires.
-## cadence.close "It's okay to close the" [sfx: pop]
-Chip under the timeline: After 3, close the file.
+It drives on and parks: TEXT 3. Dot 3: "1 to 2 days" / "before it expires".
+## cadence.still "Still nothing?" [sfx: blip]
+A question mark pops over the house and bobs.
+## cadence.close "It's okay to close the" [sfx: stamp]
+Gold line: "After 3, close the file." A file folder in the window gets a CLOSED stamp.
 
 ## close "One name, one job, one" [sfx: stamp]
-Room: blackboard. Chalk rule, one line per word as said: ONE NAME. ONE JOB. ONE QUESTION.
+World: the level-up screen. The XP bar fills (LV 2) as the rule is said; a perk lands on each "one": + ONE NAME, + ONE JOB, + ONE QUESTION. On "question" the bar rolls over: LEVEL UP!, rays turning, sparks.
 ## close.send "Send this to whoever follows" [sfx: sting]
-Brand plate ProofNotFluff; "Send this to whoever follows up on your quotes."
+One left edge (x 366): ProofNotFluff chip, "Send this to whoever" / "follows up on your quotes." in the accent.
 ## close.quiet "Next time a quote goes" [sfx: pop]
-"Exact text in the caption." slides in.
+Under LEVEL UP: "Exact text in the caption."
 ## close.know "you'll know what to send." [sfx: tick]
-Echo of the hook card: "Quote went quiet? Now you know what to send." Snow waves.
+That line swaps for the hook's echo in gold: "Now you know what to send." Snow waves.

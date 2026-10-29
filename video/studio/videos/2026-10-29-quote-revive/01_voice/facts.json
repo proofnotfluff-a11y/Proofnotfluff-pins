@@ -1,5 +1,5 @@
 {
- "about": "Every number and named source this video shows or says, with its source. Each page opened and re-read on Oct 28, 2026 (Central); the note is the page's own sentence. Checked by the facts gate against the source pages.",
+ "about": "Every number and named source this video shows or says, with its source. Trade sources only (Todd, Oct 28, 2026: evidence from the trades). Each page opened and re-read on Oct 28, 2026 (Central); the note is the page's own sentence. Checked by the facts gate against the source pages.",
  "firstVisit": {
   "title": "Follow-Ups 101: Back 2 Basics",
   "publisher": "ServiceTitan (blog, webinar recap by Mike LaFollette)",
@@ -8,18 +8,21 @@
   "url": "https://www.servicetitan.com/blog/webinar-recap-follow-ups-101-back-2-basics",
   "closeFirstVisitPct": 37,
   "kind": "vendor data, method not shown; said on screen and in voice as ServiceTitan's own data",
-  "note": "Page description: \"Only 37% of estimates close on the first visit.\" Body: \"Burgess says most in-home sales don't close on the first visit. In fact, ServiceTitan data shows only 37% convert immediately, which leaves the majority of opportunities dependent on\" follow-up.",
-  "doNotUse": "the same page's 64%, 72% and 87% figures (KNOWLEDGE.md do-not-use list)"
+  "note": "Page description: \"Only 37% of estimates close on the first visit.\" Body: \"ServiceTitan data shows only 37% convert immediately, which leaves the majority of opportunities dependent on follow-up.\"",
+  "textVsEmail": "qualitative, no number: \"Burgess notes how text messages consistently outperform email, with significantly higher open rates.\" Brittany Burgess, Sr. Customer Advocacy Specialist at ServiceTitan, one of the webinar's two presenters. Said as \"ServiceTitan's follow-up webinar says texts beat email on open rates.\"",
+  "doNotUse": "the same page's 64%, 72% and 87% figures and its \"at least four times\" advice that rests on them (KNOWLEDGE.md do-not-use list)"
  },
- "speedStudy": {
-  "title": "Speed Is a Signal: When Faster Replies Increase Hiring Likelihood",
-  "publisher": "Management Science (UC San Diego news summary, Jun 25, 2026)",
-  "authors": "Einav Hart, On Amir, Eric VanEpps, Ovul Sezer",
-  "year": 2026,
-  "url": "https://today.ucsd.edu/story/looking-for-work-dont-worry-about-seeming-too-eager",
-  "paper": "https://pubsonline.informs.org/doi/10.1287/mnsc.2024.06185",
-  "value": "qualitative: fast replies lose their appeal when people believe they are automated or AI-written",
-  "note": "\"In the experiments, faster replies lost their appeal when recipients believed them to be generated automatically or by an AI.\" The study is about first replies (11.6 million Fiverr interactions plus experiments), so the script says \"fast replies\", not \"follow-ups\"."
+ "homeowners": {
+  "title": "The new home service standard: Why systems now win more customers",
+  "publisher": "Housecall Pro (homeowner survey report)",
+  "year": 2025,
+  "date": "2025-12-10",
+  "url": "https://www.housecallpro.com/resources/home-service-customer-service-report-trends-statistics/",
+  "expectTextUpdatesPct": 59,
+  "sample": 1040,
+  "population": "U.S. homeowners, online via SurveyMonkey Audience, fielded October 23, 2025",
+  "kind": "vendor survey (home service software maker); said as \"a Housecall Pro survey\"",
+  "note": "Chart: \"59% expect text updates\". Body: \"many now anticipate text updates as the job progresses.\" Method: \"This survey was conducted online on October 23, 2025, with 1,040 U.S. homeowners via SurveyMonkey Audience.\" Scope: text updates on a job, not quote follow-ups; the script says \"expect text updates\" and nothing more."
  },
  "cadence": {
   "title": "Quote Follow-Up Email Templates: 7 Examples to Close More Jobs",
@@ -35,16 +38,8 @@
   "finalBeforeExpiryDaysMax": 2,
   "daysNote": "24 to 48 hours, said as \"a day or two\"",
   "followUps": 3,
-  "kind": "practice advice, not data",
-  "note": "First follow-up \"should land in their inbox within two days after sending the quote\"; \"you can send your next email one week after sending your initial quote\"; \"it's best to send your final follow-up 24-48 hours before the quote expires\"; \"If you haven't heard back after your third follow-up, it's OK to close the file and move on.\""
- },
- "nineWord": {
-  "title": "The 9-Word Email: The Complete Guide by Its Creator",
-  "publisher": "Dean Jackson (deanjackson.com)",
-  "year": 2026,
-  "date": "2026-06-09",
-  "url": "https://deanjackson.com/blog/the-9-word-email/",
-  "value": "method only, no numbers quoted",
-  "note": "Body: \"Are you still looking for [the thing they inquired about]?\" \"You're asking a question, not making an announcement.\" \"That's the whole email. No signature. No pitch. No links.\""
+  "kind": "practice advice for quote follow-ups (written for email), not data; said as \"Jobber says\" and on screen as Jobber's timing",
+  "note": "First follow-up \"should land in their inbox within two days after sending the quote\"; \"you can send your next email one week after sending your initial quote\"; \"it's best to send your final follow-up 24-48 hours before the quote expires\"; \"If you haven't heard back after your third follow-up, it's OK to close the file and move on.\"",
+  "personalNote": "Checklist: \"personalized elements, like the client name and project details\". Sample: \"Do you have any questions about the quote we sent on [date]?\"; FAQ: \"Asking if the customer has any questions\" so a follow-up doesn't sound pushy. Said as \"Use their name, name the job, and ask a question.\""
  }
 }

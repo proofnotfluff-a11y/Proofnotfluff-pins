@@ -99,8 +99,9 @@ const quoteSheet = (k, d, n, X, Y, Wd, H, o = {}) => {
   const {P} = d, T = d.T;
   P(X + 3, Y + 3, Wd, H, INK); P(X - 1, Y - 1, Wd + 2, H + 2, INK); P(X, Y, Wd, H, '#FBF6EC');
   P(X, Y, Wd, 22, NAVY); d.tx('DEEP CLEAN QUOTE', X + 8, Y + 4, {color: CREAM});
-  const tg = 'EXAMPLE', tgw = d.tw(tg); P(X + Wd - tgw - 12, Y + 4, tgw + 8, 14, GOLD); d.tx(tg, X + Wd - tgw - 8, Y + 4, {color: INK});
-  d.tx(o.colHead || 'YOUR RATE', X + Wd - 8, Y + 27, {color: o.colHot ? ORANGE : MUTED, align: 'right'});
+  const tg = 'EXAMPLE', tgw = d.tw(tg); P(X + 6, Y + 25, tgw + 8, 15, GOLD); d.tx(tg, X + 10, Y + 26, {color: INK});
+  const ch = o.colHead || 'YOUR RATE', chx = Math.min(X + Wd - 8, 308);
+  d.tx(ch, chx, Y + 27, {color: o.colHot ? ORANGE : MUTED, align: 'right'});
   P(X + 6, Y + 41, Wd - 12, 1, SAND);
   ITEMS(n).forEach((s, i) => {
     const y = Y + 46 + i * (o.row || 24), at = o.itemAt ? o.itemAt(i) : -1;
@@ -229,7 +230,7 @@ window.SCENE = {
       P(X + 3, Y + 3, Wd, H, INK); P(X - 1, Y - 1, Wd + 2, H + 2, INK); P(X, Y, Wd, H, '#F7F1E6'); P(X, Y, Wd, 16, '#2B2033');
       [RED, GOLD, TEAL].forEach((c, i) => d.disc(X + 8 + i * 8, Y + 8, 2, c));
       d.tx('AI CHAT APP', X + 34, Y + 2, {color: CREAM});
-      const tg = 'EXAMPLE', tgw = d.tw(tg); P(X + Wd - tgw - 12, Y + 2, tgw + 8, 13, GOLD); d.tx(tg, X + Wd - tgw - 8, Y + 2, {color: INK});
+      const tg = 'EXAMPLE', tgw = d.tw(tg), tgx = X + 42 + d.tw('AI CHAT APP'); P(tgx, Y + 1, tgw + 8, 15, GOLD); d.tx(tg, tgx + 4, Y + 2, {color: INK});
       let y = (Y + 19) * 3;
       [{text: 'Turn these notes into an itemized quote.', at: tP1}, {text: 'Use only my price list.', at: tP2}, {text: "Flag anything I didn't price.", at: tP3}].forEach((r) => {
         typed(k, T, r.text, r.at, (X + 8) * 3, y, (X + Wd - 8) * 3, {size: 39, color: NAVY}); y += 45;

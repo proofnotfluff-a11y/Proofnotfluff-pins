@@ -27,7 +27,7 @@
    "shift": 0.0,
    "pin": null,
    "text": "Cut by 0.8 s: close on the quote's lines, each ticked.",
-   "t": 1.06,
+   "t": 1.04,
    "word": 3,
    "end": 2.16
   },
@@ -63,9 +63,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Night at the kitchen table: a blank quote, a thought bubble of half-remembered items.",
-   "t": 6.506,
+   "t": 7.006,
    "word": 18,
-   "end": 9.046
+   "end": 9.426
   },
   {
    "id": "play.oven",
@@ -75,7 +75,7 @@
    "shift": 0.0,
    "pin": null,
    "text": "An oven icon in the bubble gets a red X: \"Forgot: inside of the oven.\"",
-   "t": 9.046,
+   "t": 9.426,
    "word": 26,
    "end": 11.664
   },

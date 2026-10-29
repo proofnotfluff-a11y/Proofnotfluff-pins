@@ -200,18 +200,10 @@ window.SCENE = {
       const d = px(k), t0 = k.S('play');
       const tPay = W(/^pay$/i, t0, t0 + 0.4), tAns = W(/^answered/i, k.S('play.answer')), tQuotes = W(/^quotes/i, k.S('play.sit')), tSit = W(/^sit$/i, tQuotes, tQuotes + 1.2), tFol = W(/^follows/i, tSit, tSit + 1.2);
       const c = k.sets.calendar({month: 'THIS MONTH', start: 0, days: 30,
-        fills: [{day: 1, at: tPay, c: GOLD, mark: 'coin'}],
+        fills: [{day: 1, at: tPay, c: GOLD, mark: 'coin'}].concat(Array.from({length: 16}, (_, i) => ({day: 15 + i, at: tSit + i * 0.07, c: '#F2C2A0', mark: 'x'}))),
         run: {from: 2, to: 14, at: tAns, every: 0.06, c: '#BDE6CF', mark: 'check'}});
-      // the x's for the days the quotes sit (drawn over the same grid on the beat)
-      for (let day = 15, i = 0; day <= 30; day++, i++) {
-        const at = tSit + i * 0.07; if (T < at) continue;
-        const [x, y, w, h] = c.cell(day).map((v) => Math.round(v / 3)), f = d.fr(at);
-        if (f < 2) d.dith(x + 1, y + 1, w - 1, h - 1, '#F2C2A0'); else d.P(x + 1, y + 1, w - 1, h - 1, '#F2C2A0');
-        if (f >= 2) { const cx = x + w / 2, cy = y + h / 2 + 3 - (f < 4 ? 2 : 0); d.line(cx - 7, cy - 6, cx + 6, cy + 6, RED, 2); d.line(cx + 6, cy - 6, cx - 7, cy + 6, RED, 2); }
-        k.text(String(day), (x + 3) * 3, (y + 2) * 3, {size: 39, color: '#3D2E45'});
-      }
-      if (T >= tAns && T < tQuotes) k.slam('Calls: answered.', 300, 834, tAns, {size: 39, color: '#2F6F67', from: 0.4});
-      if (T >= tQuotes) k.slam(T < tFol ? 'Quotes: just sitting.' : 'Quotes: no follow-up.', 300, 834, T < tFol ? tQuotes : tFol, {size: 39, color: RED, from: 0.4});
+      if (T >= tAns && T < tQuotes) k.slam('Calls: answered.', 300, 834, tAns, {size: 39, color: CREAM, from: 0.4, drop: INK});
+      if (T >= tQuotes) k.slam(T < tFol ? 'Quotes: just sitting.' : 'Quotes: no follow-up.', 300, 834, T < tFol ? tQuotes : tFol, {size: 39, color: ORANGE, from: 0.4, drop: INK});
       return host(k, T >= tFol ? 'shrug' : null);
     },
 
@@ -232,7 +224,7 @@ window.SCENE = {
       P(cx + 3, cy + 3, cw, ch, '#5A3A22'); P(cx - 1, cy - 1, cw + 2, ch + 2, INK); P(cx, cy, cw, ch, CREAM); P(cx, cy, cw, 16, '#2B2033');
       d.disc(cx + cw / 2, cy + 2, 3, RED);
       d.tx('ASK AN AI CHAT APP', cx + 6, cy + 2, {size: 30, color: CREAM});
-      const tg = 'EXAMPLE', tgw = d.tw(tg, 30); P(cx + cw - tgw - 12, cy + 2, tgw + 8, 12, GOLD); d.tx(tg, cx + cw - tgw - 8, cy + 2, {size: 30, color: INK});
+      const tg = 'EXAMPLE', tgw = d.tw(tg, 30), tgx = cx + 14 + d.tw('ASK AN AI CHAT APP', 30); P(tgx, cy + 1, tgw + 8, 15, GOLD); d.tx(tg, tgx + 4, cy + 2, {size: 30, color: INK});
       let y = (cy + 21) * 3;
       [{text: 'Write a short check-in on this quote, in my voice.', at: tP1}, {text: 'Ask what questions they have.', at: tP2}].forEach((r) => {
         const ln = typed(k, T, r.text, r.at, (cx + 8) * 3, y, (cx + cw - 8) * 3, {size: 39, color: NAVY}); y += ln * 45;
@@ -253,7 +245,7 @@ window.SCENE = {
       }
       if (T >= tRead && T < tSend + 0.3) eye(d, 226, 206, ((d.F >> 3) % 6) !== 0);
       // the send key
-      const kx = 276, ky = 250, pr = sent && T < tSend + 0.25 ? 3 : (sent ? 1 : 0);
+      const kx = 262, ky = 250, pr = sent && T < tSend + 0.25 ? 3 : (sent ? 1 : 0);
       P(kx + 3, ky + 3, 60, 48, INK); P(kx - 1, ky + pr - 1, 60, 48, INK); P(kx, ky + pr, 58, 46, sent ? '#2F6F67' : '#3E9A6E'); P(kx, ky + pr, 58, 3, '#6FDC8C');
       d.tx('SEND', kx + 29, ky + pr + 16, {color: CREAM, align: 'center'});
       if (sent) k.burst((kx + 29) * 3, (ky + 20) * 3, tSend + 0.05, {n: 14, r: 160, colors: ['teal', 'paper']});

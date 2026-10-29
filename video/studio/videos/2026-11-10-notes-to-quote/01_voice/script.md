@@ -1,6 +1,6 @@
 # Script: Walkthrough notes to a quote (AI lead lane, lesson 3; facts re-read Oct 29)
 
-[curious] This deep clean quote started as messy walkthrough notes.
+[quickly] This deep clean quote started as messy walkthrough notes.
 
 [matter-of-fact] Usually those notes sit in your car all day. You rebuild the quote at night, from memory, and forget the inside of the oven.
 

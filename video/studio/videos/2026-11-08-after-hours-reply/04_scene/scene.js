@@ -163,8 +163,8 @@ const appWindow = (k, d, x, y, w, h) => {
   P(x, y, w, h, '#F7F1E6'); P(x, y, w, 20, '#2B2033'); P(x, y + 20, w, 1, INK);
   [RED, GOLD, TEAL].forEach((c, i) => { d.disc(x + 9 + i * 9, y + 10, 3, c); });
   d.tx('AI CHAT APP', x + 40, y + 4, {color: CREAM});
-  const tag = 'EXAMPLE', tw = d.tw(tag, 30);
-  P(x + w - tw - 14, y + 4, tw + 8, 13, GOLD); d.tx(tag, x + w - tw - 10, y + 5, {size: 30, color: INK});
+  const tag = 'EXAMPLE', tw = d.tw(tag, 30), tgx = x + 46 + d.tw('AI CHAT APP');
+  P(tgx, y + 3, tw + 8, 15, GOLD); d.tx(tag, tgx + 4, y + 4, {size: 30, color: INK});
   for (let yy = y + 26; yy < y + h - 4; yy += 8) for (let xx = x + 4 + ((yy >> 3) & 1) * 4; xx < x + w - 4; xx += 16) DOT(xx, yy, '#EDE3D2');
 };
 const bubbleBox = (d, x, y, w, h, c, edge) => { const {P} = d; P(x + 1, y, w - 2, h, c); P(x, y + 1, w, h - 2, c); P(x + 1, y + h - 1, w - 2, 1, edge); };
@@ -183,7 +183,7 @@ window.SCENE = {
     // clock ringing at 7 in the morning sun.
     hook: (k, T) => {
       const d = px(k), {P} = d, n = k.data.numbers;
-      const tEleven = W(/^eleven/i, k.S('hook.night'), 2.2), tYou = W(/^You$/i, k.S('hook.seen'), 3.6);
+      const tEleven = W(/^eleven/i, k.S('hook.msg'), 2.2), tYou = W(/^You$/i, k.S('hook.seen'), 3.6);
       const cut1 = 0.8, cut2 = Math.min(2.6, Math.max(1.5, tEleven - 0.05)), cut3 = Math.max(cut2 + 0.6, tYou - 0.05);
       if (T < cut1) {
         bedroom(k, d, {night: true});
@@ -323,10 +323,10 @@ window.SCENE = {
     button: (k, T) => {
       const d = px(k), n = k.data.numbers, t0 = k.S('button');
       const tNob = W(/^Nobody/i, t0, t0 + 0.1), tQuote = W(/^quote/i, k.S('button.quote')), tFirst = W(/^first/i, k.S('button.first')), tJob = WE(/^job/i, tFirst, tFirst + 0.6);
-      k.sets.flaps({title: 'TODAY', cols: 14, rows: [
+      k.sets.flaps({title: 'TODAY', cols: 12, rows: [
         {label: `${n.nightHour.shown} PM`, value: 'ASLEEP', at: tNob},
         {label: 'QUOTE', value: 'SENT', at: tQuote, hi: true},
-        {label: 'FIRST JOB', value: 'NEXT', at: tFirst},
+        {label: 'FIRST JOB', value: 'UP', at: tFirst},
       ]});
       if (T >= tQuote) k.slam('Answer the night quote', 120, 858, tQuote, {size: 39, color: CREAM, from: 0.4, drop: INK});
       if (T >= tFirst) k.slam('before your first job.', 120, 906, tFirst, {size: 39, color: GOLD, from: 0.4, drop: INK});

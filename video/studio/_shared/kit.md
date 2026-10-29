@@ -32,3 +32,8 @@ Everything below draws in every look (`_shared/looks.md`); scene.js calls it thr
   does the same for one line of text.
 - `SCENE.rooms = {sectionId: 'garage'}` names a section's room for its transition (the player also reads `k.room`);
   `SCENE.trauma = {cueId: 0.8}` gives the one big verdict a bigger shake.
+
+## Sets (`_shared/sets.md`)
+Sixteen full-screen game set pieces (`k.sets.street`, `dispatch`, `scores`, `boss`, `register`, `calendar`, `flaps`, `chat`,
+`weather`, `counter`, `gauge`, `slots`, `inventory`, `levelup`, `versus`, `hud`) and three transitions (`SCENE.transitions`:
+`levelselect`, `dissolve`, `gameover`). A lesson uses at most one room-and-panel section; the rest are sets.

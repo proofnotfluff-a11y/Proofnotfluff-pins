@@ -1,0 +1,98 @@
+{
+ "schema": "pnf.studio.takes.v1",
+ "requestedAt": "2026-10-28T22:06:41-05:00",
+ "voice": "W3pJy9ibur1FKUihVxzY",
+ "model": "eleven_v4",
+ "scriptSha256": "d3f8706e7a9a385f845a00c364ad839f8ddcdcf975cb256691b766a688a97838",
+ "voiceSha256": "bd34a01682e53be4a977d1915c482a2e023d47ddce053f538ca7eb63a46590b3",
+ "takes": [
+  {
+   "n": 1,
+   "file": "takes/01.mp3",
+   "sha256": "f31b7ed6ed6123df9ace47bf24d9e24eb96a9744c0bdfa87d7cde7e701d380e4",
+   "seconds": 7.811,
+   "chars": 119,
+   "start": 0.0,
+   "end": 7.811,
+   "wpm": 131
+  },
+  {
+   "n": 2,
+   "file": "takes/02.mp3",
+   "sha256": "087502937d6a32363d6804837a245f28ee0fae22f6794c2b6263bfb3213a0a69",
+   "seconds": 12.669,
+   "chars": 219,
+   "start": 8.131,
+   "end": 20.8,
+   "wpm": 147
+  },
+  {
+   "n": 3,
+   "file": "takes/03.mp3",
+   "sha256": "9c14047c854f8e2453fac1ea820bc616eb0fd2a048156d38767ab23c16ea017a",
+   "seconds": 8.751,
+   "chars": 142,
+   "start": 21.12,
+   "end": 29.871,
+   "wpm": 117
+  },
+  {
+   "n": 4,
+   "file": "takes/04.mp3",
+   "sha256": "9774d9f954554b001954b8a331cae656e20f8e0a2b3cbab702ddf92a24dc890e",
+   "seconds": 7.471,
+   "chars": 134,
+   "start": 30.191,
+   "end": 37.662,
+   "wpm": 169
+  },
+  {
+   "n": 5,
+   "file": "takes/05.mp3",
+   "sha256": "97b887210dca17fe52cef7bb62b51973aeaaa3d625c52ed39d97ddeca55f061e",
+   "seconds": 7.236,
+   "chars": 121,
+   "start": 37.982,
+   "end": 45.218,
+   "wpm": 191
+  },
+  {
+   "n": 6,
+   "file": "takes/06.mp3",
+   "sha256": "d255b707bdc520def66b131e49eea6084edc46a98ff2450746f1bc084bd8a64c",
+   "seconds": 9.404,
+   "chars": 144,
+   "start": 45.538,
+   "end": 54.942,
+   "wpm": 153
+  },
+  {
+   "n": 7,
+   "file": "takes/07.mp3",
+   "sha256": "65ba51e60ed03be450f657b97f1ae4d5856fa0a381160fd44a1ff34b28805d47",
+   "seconds": 11.154,
+   "chars": 180,
+   "start": 55.262,
+   "end": 66.416,
+   "wpm": 156
+  },
+  {
+   "n": 8,
+   "file": "takes/08.mp3",
+   "sha256": "13b8594a82ef79849b1d2c75c57b26daeeeda4f7f8ffc5e13a8ea6d04a1403c4",
+   "seconds": 7.811,
+   "chars": 142,
+   "start": 66.736,
+   "end": 74.547,
+   "wpm": 161
+  }
+ ],
+ "chars": 1201,
+ "at": "2026-10-28T22:24:11-05:00",
+ "credits": {
+  "used": 16466,
+  "limit": 40000,
+  "tier": "starter",
+  "resetsAt": 1794774902
+ }
+}

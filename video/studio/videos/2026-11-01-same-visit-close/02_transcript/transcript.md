@@ -3,8 +3,7 @@
 Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 213 words, 74.9 s of voice.
 
 ## Flags
-- 0.0 s added 'quotes': not in the script
-- 0.7 s heard 'open' for 'no yes'
+none
 
 ## Pace per take (target 160 to 195 wpm)
 ```
@@ -19,11 +18,11 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 213 words, 74.9 s of voice.
 
 ## Words
 
-`00:00.4` Still no yes when you leave the driveway?
+`00:00.0` Still no yes when you leave the driveway?
 
-`00:02.9` Top shops close seventy-seven percent of their estimates on the same visit.
+`00:02.8` Top shops close seventy-seven percent of their estimates on the same visit.
 
-`00:06.9` Here's how to ask.
+`00:06.8` Here's how to ask.
 
 `00:08.2` ServiceTitan looked at a year of data from its customers, up to this January.
 

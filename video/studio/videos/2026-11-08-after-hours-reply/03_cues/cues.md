@@ -3,7 +3,7 @@
 music: rooms
 
 ## hook "A move-out clean quote" [sfx: pop]
-Frame 0, the cover: a dark bedroom at night, the moon in the window, the phone on the nightstand lit with a quote request. The title plate up top, settled: "Quote request: 11 pm." / "You see it at 7." Snow in his spot.
+Frame 0, the cover: a dark bedroom at night, the moon in the window, the phone on the nightstand lit with a quote request. The title plate up top, settled: "Quote request, 11 pm." / "Seen at 7 am." Snow in his spot.
 ## hook.msg "request came in at" [sfx: whoosh]
 Cut by 0.8 s: close on the phone at night, the customer's message (example) in a bubble, the screen glow. The plate stays.
 ## hook.seen "You see it at" [sfx: blip]

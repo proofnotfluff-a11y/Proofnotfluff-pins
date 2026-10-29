@@ -13,7 +13,7 @@ Cut: the demo poster, and a red rubber stamp lands: "MYTH?". The plate stays.
 The calendar set: this month. On "pay" a coin lands on day 1.
 ## play.answer "The phone gets answered." [sfx: tick]
 A run of green checks fills the first two weeks. Line under the grid: "Calls: answered."
-## play.sit "But the quotes you" [sfx: blip]
+## play.sit "But the quotes you've" [sfx: blip]
 Red x's run through the days after. Line: "Quotes: no follow-up."
 
 ## fix "Fix follow-up first." [sfx: whoosh]

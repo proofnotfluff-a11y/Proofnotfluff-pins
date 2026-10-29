@@ -3,7 +3,7 @@
 PASS 12 of 12 (anim.py script: PASS)
 
 1. Drop-in: PASS 11 words, said by 3.34 s; a trade noun or you; no percent, source, call-out or greeting
-2. On-screen hook: PASS "Quote request: 11 pm. You see it at 7." (9 words), up on frame 0, held through the three cuts to 5.3 s, inside the safe area
+2. On-screen hook: PASS "Quote request, 11 pm. Seen at 7 am." (8 words), up on frame 0, held through the three cuts to 5.3 s, inside the safe area
 3. One idea: PASS 14 words ("an AI chat app drafts the night quote reply; you read and send it.")
 4. Acted: PASS beat 2 is acted by the scene (see cues.md play)
 5. Facts: PASS every number in voice, screen and caption maps to facts.json (anim.py data: every shown value matches)

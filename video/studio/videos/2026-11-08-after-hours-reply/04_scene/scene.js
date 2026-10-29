@@ -151,8 +151,8 @@ const flatPhone = (k, d, x, y, lit, o = {}) => {
 };
 const hookPlate = (k, d, n) => {
   d.win(14, 86, 332, 62, {base: DUSK, hi: '#3D2E45', lo: INK, rule: MAROON});
-  k.text(`Quote request: ${n.nightHour.shown} pm.`, 540, 276, {size: 39, color: GOLD, align: 'center'});
-  k.slam(`You see it at ${n.morningHour.shown}.`, 540, 336, -1, {size: 66, color: CREAM, align: 'center', drop: INK});
+  k.text(`Quote request, ${n.nightHour.shown} pm.`, 540, 276, {size: 39, color: GOLD, align: 'center'});
+  k.slam(`Seen at ${n.morningHour.shown} am.`, 540, 336, -1, {size: 66, color: CREAM, align: 'center', drop: INK});
 };
 const MSG = (n) => `Hi! Need a move-out clean before Friday. ${n.beds.shown} bed, ${n.baths.shown} bath. How much?`;
 

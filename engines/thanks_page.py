@@ -7,6 +7,7 @@ Used by engines/price-increase-letter/build.py and engines/job-estimate-template
 import html
 import os
 import re
+import sys
 
 E = html.escape
 
@@ -21,6 +22,9 @@ def write(root, slug, name, files, office_line, calc, note="", tail="", ui=False
     calculator, Oct 27, 2026): note, a line under the buttons; tail, HTML that ends the page; ui, the site script that wires
     the header's Search, as on the page the form sits on; crumb, a short name for the page in the breadcrumb (it must fit a
     320 px phone)."""
+    sys.path.insert(0, os.path.join(root, "tools"))
+    from make_site import analytics_tag   # the site's one analytics tag, which leaves our own visits out (Oct 29, 2026)
+    analytics = analytics_tag()
     page = os.path.join(root, "docs", slug, "index.html")
     src = open(page, encoding="utf-8").read()
     header = re.search(r'<header class="top">.*?</header>', src, re.S).group(0).replace('href="../', 'href="../../')
@@ -47,7 +51,7 @@ def write(root, slug, name, files, office_line, calc, note="", tail="", ui=False
 .tk p{{max-width:560px;color:var(--ink2)}}
 .tk .quiet{{display:inline-flex;align-items:center;min-height:44px}}
 </style>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token": "b40d887129c342ccb476aa67aad72034"}}'></script></head><body><a class="skip" href="#main">Skip to content</a>
+{analytics}</head><body><a class="skip" href="#main">Skip to content</a>
 {header}
 <main class="wrap tk" id="main"><nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../../">Home</a></li><li><a href="../">{E(crumb or h1)}</a></li><li aria-current="page">Download</li></ol></nav>
 <p class="eyebrow">Thanks for signing up</p>

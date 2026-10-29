@@ -34,6 +34,11 @@ SEARCH = [("Google", r"(^|\.)google\.[a-z.]+$"), ("Bing", r"(^|\.)bing\.com$"), 
 AI = r"(^|\.)(chatgpt\.com|openai\.com|perplexity\.ai|claude\.ai|gemini\.google\.com|copilot\.microsoft\.com)$"
 SOCIAL = r"(^|\.)(facebook\.com|instagram\.com|linkedin\.com|lnkd\.in|pinterest\.[a-z.]+|t\.co|x\.com|twitter\.com|youtube\.com|tiktok\.com|reddit\.com)$"
 ZERO_WEEKS = 3       # a live page with no visits this long gets flagged
+# Our own visits (audit Oct 29, 2026, Todd's yes): the site's tag skips automated browsers and any browser opened once with
+# ?pnf-internal=1 (tools/make_site.py analytics_tag), so they never reach Cloudflare from Oct 29 on. Our preview pages are
+# also left out here; they are counted under ownLeftOut instead of as visits.
+OWN = re.compile(r"^preview(/|$)")
+OWN_FROM = "2026-10-29"
 
 
 def source_of(host):
@@ -94,9 +99,13 @@ def load_pages():
 
 def build(by_path, prev_path, by_source, by_week, w, pages, fetched, search=None):
     """by_path/prev_path: [{path, views, visits}]; by_source: [{path, host, visits}]; by_week: [{date, visits}]."""
-    rows, stage = {}, {}
+    rows, stage, own = {}, {}, {"visits": 0, "views": 0}
     def add(table, r, key):
         slug, st = path_slug(r["path"])
+        if slug and OWN.match(slug):
+            if key == "now":
+                own["visits"] += int(r.get("visits", 0)); own["views"] += int(r.get("views", 0))
+            return
         if st:
             if key == "now":
                 stage.setdefault(st[0], {"use": 0, "upgrade": 0})[st[1]] += int(r.get("views", 0))
@@ -111,7 +120,7 @@ def build(by_path, prev_path, by_source, by_week, w, pages, fetched, search=None
     srcs, page_search = {}, {}
     for r in by_source:
         slug, st = path_slug(r["path"])
-        if st:
+        if st or (slug and OWN.match(slug)):
             continue
         lab = source_of(r.get("host"))
         srcs[lab] = srcs.get(lab, 0) + int(r.get("visits", 0))
@@ -143,10 +152,17 @@ def build(by_path, prev_path, by_source, by_week, w, pages, fetched, search=None
         d = dt.date.fromisoformat(r["date"][:10])
         wk = (d - dt.timedelta(days=d.weekday())).isoformat()
         weeks[wk] = weeks.get(wk, 0) + int(r.get("visits", 0))
+    # One number per week: the report's own week and the week before come from the page counts, so the trend can never
+    # show a second figure for them (Oct 19 to 25 read 204 in totals and 300 in the trend). Older weeks keep the daily counts.
+    weeks[w["from"].isoformat()] = tv
+    weeks[(w["from"] - dt.timedelta(days=7)).isoformat()] = pv
     trend = [{"week": k, "visits": v} for k, v in sorted(weeks.items()) if k < (w["to"] + dt.timedelta(days=1)).isoformat()][-12:]
     calc = [r for r in ordered if r["kind"] == "Calculator"]
     return {
         "about": "Counts only, from Cloudflare Web Analytics (cookie-free, sampled at low traffic, so small numbers are estimates) and the anonymous calculator stage counts. Built by tools/traffic_report.py.",
+        "ownVisits": (f"Our own visits are left out from {OWN_FROM} (automated checks and our marked browsers never count; our preview pages are "
+                      "set aside under ownLeftOut)." if w["to"].isoformat() >= OWN_FROM else
+                      f"This week is before {OWN_FROM}, when our own visits began to be left out, so it still includes our checks."),
         "ok": True, "fetchedAt": fetched,
         "week": {"from": w["from"].isoformat(), "to": w["to"].isoformat()},
         "totals": {"visits": tv, "views": sum(r["views"] for r in rows.values()), "prevVisits": pv,
@@ -154,6 +170,7 @@ def build(by_path, prev_path, by_source, by_week, w, pages, fetched, search=None
                    "search": sum(v for k, v in srcs.items() if is_search(k)),
                    "uses": sum(r["uses"] for r in calc), "upgrades": sum(r["upgrades"] for r in rows.values()),
                    "pagesWithVisits": sum(1 for r in rows.values() if r["visits"]), "livePages": len(pages)},
+        "ownLeftOut": own,
         "sources": [{"label": k, "visits": v} for k, v in sorted(srcs.items(), key=lambda kv: -kv[1]) if v],
         "trend": trend,
         "pages": ordered,
@@ -253,11 +270,12 @@ def selftest():
              "chicago-rat-complaints": {"slug": "chicago-rat-complaints", "name": "Chicago Rat Complaints", "kind": "Weekly City page", "published": "2026-10-01"}}
     now = [{"path": "/", "views": 120, "visits": 100}, {"path": "/snow-removal-pricing-calculator/", "views": 30, "visits": 25},
            {"path": "/e/snow-removal-pricing-calculator/use/", "views": 9, "visits": 0}, {"path": "/e/snow-removal-pricing-calculator/upgrade/", "views": 2, "visits": 0},
-           {"path": "/old-page/", "views": 3, "visits": 3}]
+           {"path": "/old-page/", "views": 3, "visits": 3}, {"path": "/preview/new-page/", "views": 7, "visits": 2}]
     prev = [{"path": "/", "views": 90, "visits": 80}, {"path": "/e/snow-removal-pricing-calculator/use/", "views": 4, "visits": 0}]
     src = [{"path": "/", "host": "", "visits": 70}, {"path": "/", "host": "www.google.com", "visits": 30},
            {"path": "/snow-removal-pricing-calculator/", "host": "www.bing.com", "visits": 5}, {"path": "/snow-removal-pricing-calculator/", "host": "proofnotfluff.com", "visits": 20},
-           {"path": "/e/snow-removal-pricing-calculator/use/", "host": "proofnotfluff.com", "visits": 0}, {"path": "/old-page/", "host": "chatgpt.com", "visits": 3}]
+           {"path": "/e/snow-removal-pricing-calculator/use/", "host": "proofnotfluff.com", "visits": 0}, {"path": "/old-page/", "host": "chatgpt.com", "visits": 3},
+           {"path": "/preview/new-page/", "host": "", "visits": 2}]
     days = [{"date": "2026-10-19", "visits": 40}, {"date": "2026-10-25", "visits": 40}, {"date": "2026-10-26", "visits": 60}, {"date": "2026-11-01", "visits": 68},
             {"date": "2026-11-02", "visits": 999}]
     r = build(now, prev, src, days, w, pages, "2026-11-02T07:00:00-06:00",
@@ -272,12 +290,19 @@ def selftest():
     assert r["flags"]["new"] == ["snow-removal-pricing-calculator"]
     assert [s["label"] for s in r["sources"]] == ["Direct", "Google", "Bing", "AI assistants"], r["sources"]
     assert r["trend"] == [{"week": "2026-10-19", "visits": 80}, {"week": "2026-10-26", "visits": 128}], r["trend"]   # the running week is left out
+    assert r["ownLeftOut"] == {"visits": 2, "views": 7} and not any(p["slug"].startswith("preview") for p in r["pages"]), "our preview pages left out"
+    off = build(now, prev, src, [{"date": "2026-10-27", "visits": 300}, {"date": "2026-10-20", "visits": 999}, {"date": "2026-10-12", "visits": 5}],
+                w, pages, "x")
+    assert off["trend"] == [{"week": "2026-10-12", "visits": 5}, {"week": "2026-10-19", "visits": 80}, {"week": "2026-10-26", "visits": 128}], \
+        "the trend shows the same number as the totals for the report week and the week before"
+    assert "left out from" in r["ownVisits"] and "before" in build([], [], [], [], week_window(dt.date(2026, 10, 26)), pages, "x")["ownVisits"]
     assert r["search"] == {"date": "2026-10-30", "clicks": 3, "impressions": 40}
     blob = json.dumps(r)
     assert not re.search(r"\b\d{1,3}(\.\d{1,3}){3}\b", blob) and "userAgent" not in blob, "counts only"
     empty = build([], [], [], [], w, pages, "x")
     assert empty["totals"]["change"] is None and empty["totals"]["visits"] == 0, "no traffic: no divide by zero"
-    print("traffic_report selftest: ok (windows across the DST change, paths, sources, stage counts, flags, trend, Search Console, counts only)")
+    print("traffic_report selftest: ok (windows across the DST change, paths, sources, stage counts, flags, trend, one number per week, "
+          "our preview pages left out, Search Console, counts only)")
 
 
 if __name__ == "__main__":

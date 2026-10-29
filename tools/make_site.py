@@ -2833,8 +2833,23 @@ def analytics_tag():
                 f'<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag("js",new Date());gtag("config","{E(ga)}",{{anonymize_ip:true}});</script>')
     cf = cfg.get("cloudflare", "")
     if cf:
-        out += f'<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon=\'{{"token": "{E(cf)}"}}\'></script>'
+        # Our own visits stay out of the counts (audit Oct 29, Todd's yes): the beacon tag is inert (type text/plain) and
+        # a tiny loader starts it, except in automated browsers (Playwright checks set navigator.webdriver) and in a
+        # browser marked ours by opening any page once with ?pnf-internal=1 (?pnf-internal=0 unmarks it). The
+        # data-cf-beacon attribute keeps its usual shape, which .gitleaks.toml allows.
+        out += (f'<script type="text/plain" id="pnf-cf" data-src="https://static.cloudflareinsights.com/beacon.min.js" '
+                f'data-cf-beacon=\'{{"token": "{E(cf)}"}}\'></script>' + INTERNAL_JS)
     return out
+
+
+# Loads the Cloudflare beacon unless the visit is our own (see analytics_tag); a blocked localStorage still counts the visit.
+INTERNAL_JS = ('<script>(function(){if(navigator.webdriver)return;try{var q=location.search,s=window.localStorage;'
+               'if(/[?&]pnf-internal=1(&|$)/.test(q))s.setItem("pnf-internal","1");'
+               'if(/[?&]pnf-internal=0(&|$)/.test(q))s.removeItem("pnf-internal");'
+               'if(s.getItem("pnf-internal"))return}catch(e){}'
+               'var t=document.getElementById("pnf-cf");if(!t)return;var b=document.createElement("script");b.defer=true;'
+               'b.src=t.getAttribute("data-src");b.setAttribute("data-cf-beacon",t.getAttribute("data-cf-beacon"));'
+               'document.head.appendChild(b)})();</script>')
 
 
 def load_links():

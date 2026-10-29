@@ -1142,8 +1142,9 @@
       // steady life (Todd, Oct 28: motion without the swim): once a slammed line has landed, a shine sweeps across it
       // every 1.4 s on whole low-res pixels. Nothing moves or rescales; only the glyphs light up as the band passes.
       const size = o.size || 48;
-      if (look.bitmap && size >= 60 && o.glint !== false && d > 0.6) {
-        const g = ((d - 0.6 + (o.glintAt || 0)) % 1.4) / 0.5;
+      const dg = T - Math.max(t0, 0.4);   // never on frame 0: that frame is the feed's cover
+      if (look.bitmap && size >= 60 && o.glint !== false && dg > 0.6) {
+        const g = ((dg - 0.6 + (o.glintAt || 0)) % 1.4) / 0.5;
         if (g < 1) {
           const w = measure(s, o), h = bmHeight(size), ax = o.align === 'center' ? -w / 2 : (o.align === 'right' ? -w : 0);
           const bw = Math.max(2 * U, Math.round(h * 0.22 / U) * U), sl = h * 0.45;

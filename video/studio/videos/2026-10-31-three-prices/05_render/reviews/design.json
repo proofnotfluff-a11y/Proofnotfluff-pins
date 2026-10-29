@@ -1,0 +1,20 @@
+{
+ "gate": "design",
+ "round": 1,
+ "at": "2026-10-28T19:20:00-05:00",
+ "pass": false,
+ "score": {
+  "first": 5,
+  "hierarchy": 4,
+  "type": 4,
+  "color": 5,
+  "spacing": 4,
+  "polish": 4,
+  "trust": 5,
+  "average": 4.43
+ },
+ "reasons": [
+  "menu card over the citation, hook period, sparks over the payoff line, CTA box past x 930 (all fixed)"
+ ],
+ "stop": "second FAIL of this gate: held for Todd's word"
+}

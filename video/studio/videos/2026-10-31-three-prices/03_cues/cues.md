@@ -30,8 +30,8 @@ Source in chalk: a restaurant in Germany, 7 years. Journal of Economic Behavior 
 A three-dish menu card chalks in: $ / $$ / $$$, three plates.
 ## menu.lift "a dish that landed in" [sfx: tick]
 The middle dish lifts and glows: it became the middle option.
-## menu.five "about five more points"
-"+5 pts of orders, on average" slams in under the middle dish as it is said.
+## menu.five "about five points of"
+"+5 pts share, on average" slams in under the middle dish as it is said.
 ## menu.pricey "It worked even better" [sfx: blip]
 The top dish gets a NEW tag: "Bigger when the new dish was the pricey one."
 ## menu.above "So put a price" [sfx: tick]

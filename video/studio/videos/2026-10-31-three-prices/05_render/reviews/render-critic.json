@@ -1,12 +1,12 @@
 {
  "gate": "render-critic",
  "round": 0,
- "at": "2026-10-28T16:58:00-05:00",
- "pass": true,
+ "at": "2026-10-28T19:20:00-05:00",
+ "pass": false,
  "score": {
-  "faults": 0
+  "faults": 1
  },
  "reasons": [
-  "hook readable frame 0; every spoken number on screen within 0.3 to 0.5 s; layout in bounds once settled; audio end clean; no flashes"
+  "menu card clipped the citation 20.6 to 23.9 s (fixed: card moved down)"
  ]
 }

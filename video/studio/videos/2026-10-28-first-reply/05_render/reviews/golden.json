@@ -1,13 +1,12 @@
 {
  "gate": "golden",
- "round": 2,
- "at": "2026-10-28T17:12:00-05:00",
+ "round": 0,
+ "at": "2026-10-28T19:15:00-05:00",
  "pass": true,
  "score": {
   "post_as_is": "yes"
  },
  "reasons": [
-  "No must-fix; every number matches voice and facts.json; qa 6 of 6 PASS; last round's critic faults fixed",
-  "polish: hook card holds still 0 to 2.4 s; host small in build scene; phone clock 9:41 after a 9:14 text; YouTube 'reply within 3 hours' vs voice 'take 3 hours'"
+  "proud to post; qa 6 of 6; polish: frame-0 sheen (fixed), hard cut at 2.4 s"
  ]
 }

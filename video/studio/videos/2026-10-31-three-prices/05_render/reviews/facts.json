@@ -1,0 +1,14 @@
+{
+ "gate": "facts",
+ "round": 1,
+ "at": "2026-10-28T19:15:00-05:00",
+ "pass": false,
+ "score": {
+  "numbers": 17,
+  "mismatches": 1
+ },
+ "reasons": [
+  "'five more points of all orders' changes the base (fixed: 'five points of share', take 3 re-voiced)"
+ ],
+ "stop": "second FAIL of this gate: held for Todd's word"
+}

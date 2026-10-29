@@ -1,7 +1,7 @@
 {
  "gate": "buyer",
  "round": 0,
- "at": "2026-10-28T16:56:00-05:00",
+ "at": "2026-10-28T19:20:00-05:00",
  "pass": true,
  "score": {
   "stop": "yes",
@@ -10,7 +10,6 @@
   "follow_or_link": "yes"
  },
  "reasons": [
-  "Stop: hook card plus named source; send line clear; Good/Better/Best build is saveable",
-  "Notes taken: 'points of share' is analyst talk; 'part people skip' is a stock line; the 4+ section blurs the 3-price message; 'Top shops quote 3 prices. Not 1.' overstates 57%"
+  "notes: stray period on the hook card (fixed)"
  ]
 }

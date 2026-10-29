@@ -1,0 +1,13 @@
+{
+ "gate": "golden",
+ "round": 1,
+ "at": "2026-10-28T19:20:00-05:00",
+ "pass": false,
+ "score": {
+  "post_as_is": "no"
+ },
+ "reasons": [
+  "MUST-FIX menu card clipped the citation (fixed); polish items fixed"
+ ],
+ "stop": "second FAIL of this gate: held for Todd's word"
+}

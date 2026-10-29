@@ -42,7 +42,7 @@ window.SCENE = {
         k.room('framing');
         k.shape(k.rectPts(0, 230, 1080, 860, 0), {fill: INK, line: false});
         k.slam('Top shops quote', 540, 290, -1, {size: 120, color: CHALK, align: 'center'});
-        k.slam(`${n.tiers.shown} prices.`, 540, 440, -1, {size: 200, color: 'accent', align: 'center'});
+        k.slam(`${n.tiers.shown} prices`, 540, 440, -1, {size: 200, color: 'accent', align: 'center'});
         k.slam(`on ${n.topGbb.shown}`, 540, 676, -1, {size: 120, color: CHALK, align: 'center'});
         k.slam('of home jobs.', 540, 800, -1, {size: 60, color: CHALK, align: 'center'});
         k.burst(540, 540, 0.1, {n: 26, r: 380});
@@ -73,7 +73,7 @@ window.SCENE = {
       const t3 = tx + 0.35;
       if (T >= t3) {
         k.ctx.save(); slideIn(k, t3, 600, 0);
-        k.panel2(560, 380, 370, 420, {title: `${n.tiers.shown} prices`});
+        k.panel2(560, 380, 364, 420, {title: `${n.tiers.shown} prices`});
         k.ctx.restore();
         TIERS.forEach(([, name, price], i) => {
           const t0 = t3 + 0.2 + i * 0.18; if (T < t0) return;
@@ -145,7 +145,7 @@ window.SCENE = {
       }
       if (T < k.S('menu.dishes')) {   // a menu, chalked in while the voice asks why (the board is never empty)
         const t0 = k.S('menu') + 0.4, q = k.clamp(k.pop(t0, 0.4), 0, 1.1);
-        k.ctx.save(); k.ctx.translate(540, 730); k.ctx.rotate(0.03); k.ctx.scale(1.4 * q, 1.4 * q);
+        k.ctx.save(); k.ctx.translate(540, 770); k.ctx.rotate(0.03); k.ctx.scale(1.4 * q, 1.4 * q);   // clear of the citation
         k.shape(k.rectPts(-130, -150, 260, 300, 0), {fill: CHALK, line: false});
         k.shape(k.rectPts(-130, -150, 260, 60, 0), {fill: '#7A3442', line: false});
         k.text('Menu', 0, -140, {size: 39, color: CHALK, align: 'center', lint: false});
@@ -154,7 +154,7 @@ window.SCENE = {
           k.shape(k.rectPts(54, -60 + i * 66, 16 + i * 14, 12, 0), {fill: '#D9A066', line: false});
         }
         k.ctx.restore();
-        k.burst(540, 730, t0 + 0.05, {n: 14, colors: ['paper', 'accent2']});
+        k.burst(540, 770, t0 + 0.05, {n: 14, colors: ['paper', 'accent2']});
       }
       // the menu: three dishes, cheap to pricey; the middle one lifts
       if (T >= k.S('menu.dishes')) {
@@ -235,7 +235,7 @@ window.SCENE = {
       const ty = k.S('survey.yeses'), ts = k.S('survey.start');
       k.shape(k.rectPts(72, 262, 840, 196, 0), {fill: INK, line: false});   // a dark band: no ruled lines through the header
       if (T < ty) k.slam('One more from the data', 96, 280, k.S('survey') + 0.1, {size: 60, color: 'accent', from: 0.8, shake: 6});
-      else if (T < ts) { k.burst(300, 312, ty + 0.4, {n: 18}); k.slam('More choices, more yeses.', 96, 280, ty + 0.3, {size: 60, color: 'accent', from: 0.6}); }
+      else if (T < ts) { k.burst(300, 372, ty + 0.4, {n: 18, r: 160}); /* sparks under the line */ k.slam('More choices, more yeses.', 96, 280, ty + 0.3, {size: 60, color: 'accent', from: 0.6}); }
       else { k.burst(420, 330, ts + 0.1, {n: 22, r: 300}); k.slam(`Start with ${n.tiers.shown}.`, 96, 262, ts, {size: 120, color: 'accent', from: 0.6, shake: 6}); }
       const tc = k.S('survey.caveat');
       if (T >= k.S('survey.more') && T < tc) {
@@ -285,11 +285,11 @@ window.SCENE = {
       if (T >= k.S('close.send')) {
         const t0 = k.S('close.send');
         k.ctx.save(); slideIn(k, t0, 0, 200);
-        k.panel2(84, 790, 900, 128, {fill: INK, border: 'accent', title: 'ProofNotFluff'});
-        k.text('Send this to whoever', 534, 806, {size: 60, color: CHALK, align: 'center'});
-        k.text('writes your quotes.', 534, 858, {size: 60, color: CHALK2, align: 'center'});
+        k.panel2(84, 790, 846, 128, {fill: INK, border: 'accent', title: 'ProofNotFluff'});
+        k.text('Send this to whoever', 507, 806, {size: 60, color: CHALK, align: 'center'});
+        k.text('writes your quotes.', 507, 858, {size: 60, color: CHALK2, align: 'center'});
         k.ctx.restore();
-        k.burst(534, 790, t0 + 0.1, {n: 16});
+        k.burst(507, 790, t0 + 0.1, {n: 16});
       }
       if (T >= k.S('close.next')) {   // the payoff line underlined as the last words echo the hook
         const t0 = k.S('close.next'), w = k.measure('a choice.', {size: 120});

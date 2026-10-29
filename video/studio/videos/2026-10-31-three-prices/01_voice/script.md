@@ -4,7 +4,7 @@
 
 [matter-of-fact] ServiceTitan pulled a year of home jobs, up to this January. The top ten percent offered good, better, best on fifty-seven percent of them. Everyone else? Forty-one. That's a habit you can copy.
 
-[curious] Why does that work? Researchers tracked seven years of orders at a German restaurant. When the menu changed, a dish that landed in the middle took about five more points of all orders, on average. It worked even better when the new dish was the pricey one. So put a price above the one you want them to pick.
+[curious] Why does that work? Researchers tracked seven years of orders at a German restaurant. When the menu changed, a dish that landed in the middle gained about five points of share, on average. It worked even better when the new dish was the pricey one. So put a price above the one you want them to pick.
 
 [warmly] Build your three like this. Good is the job done right, nothing extra. Better is the one you'd pick for your own house. Best adds upgrades, like a longer warranty or a faster start date.
 

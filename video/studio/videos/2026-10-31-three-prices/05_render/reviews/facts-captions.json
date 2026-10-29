@@ -1,0 +1,14 @@
+{
+ "gate": "facts-captions",
+ "round": 1,
+ "at": "2026-10-28T19:15:00-05:00",
+ "pass": false,
+ "score": {
+  "numbers": 71,
+  "mismatches": 3
+ },
+ "reasons": [
+  "ACCA survey without 'HVAC' on IG, FB, YT (fixed)"
+ ],
+ "stop": "second FAIL of this gate: held for Todd's word"
+}

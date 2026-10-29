@@ -178,7 +178,8 @@ const tailgate = (k, o) => {
 // ================================================================================================================
 // the tag close-up (hook, "one" to "Top"): the cut in on the one price (IMPROVE 00a). The hook rides on a title plate up
 // top with its source; below it the price tag drawn big on its string over the toolbox on the counter, the shop's shelves
-// big behind (one low-res pixel per 3 frame units, nothing scaled). The tag sways a pixel; a twinkle walks its corner.
+// big behind, the counter front to the bottom of the frame; Snow steps up big (a reframe, not a backdrop swap). The tag
+// sways a pixel; a twinkle walks its corner.
 const closeup = (k) => {
   const d = px(k), {P, DOT, F} = d, n = k.data.numbers;
   // the shop behind the glass: plum wall, uprights, two shelves of stock drawn big
@@ -195,8 +196,10 @@ const closeup = (k) => {
   k.text(a, x0, 352, {size: 66, color: CREAM, drop: INK}); k.text(b, x0 + wa, 352, {size: 66, color: GOLD, drop: INK}); k.text(c, x0 + wa + wb, 352, {size: 66, color: CREAM, drop: INK});
   k.text(`ServiceTitan data, ${n.stMonths.shown} months to Jan ${n.stYear.shown}`, 540, 432, {size: 30, color: SAND, align: 'center'});
   // the counter and the toolbox on it, big
-  P(0, 302, 360, 10, '#D9A066'); P(0, 302, 360, 2, GOLD); P(0, 312, 360, 3, '#6B4226'); P(0, 315, 360, 102, '#8C5A33');
-  for (let x = 6; x < 360; x += 70) { d.bevel(x, 324, 60, 86, '#8C5A33', '#B07A47', '#4A2E1B'); P(x + 6, 330, 48, 74, '#6B4226'); }
+  /* the counter front fills the frame to the bottom (no bare floor): two rows of big panels, brass pulls, a kick plate */
+  P(0, 302, 360, 10, '#D9A066'); P(0, 302, 360, 2, GOLD); P(0, 312, 360, 3, '#6B4226'); P(0, 315, 360, 325, '#8C5A33');
+  for (let x = 6; x < 360; x += 70) [[324, 120], [452, 150]].forEach(([y, h]) => { d.bevel(x, y, 60, h, '#8C5A33', '#B07A47', '#4A2E1B'); P(x + 6, y + 6, 48, h - 12, '#6B4226'); P(x + 26, y + 12, 8, 3, GOLD); P(x + 26, y + 15, 8, 1, '#B07A47'); });
+  P(0, 608, 360, 32, '#4A2E1B'); P(0, 608, 360, 2, '#B07A47');
   P(109, 265, 142, 38, INK); P(110, 266, 140, 36, RED); P(110, 266, 140, 3, ORANGE); P(226, 269, 24, 33, '#7A3442'); P(110, 284, 140, 3, '#7A3442'); P(170, 280, 20, 12, '#C9CCD3'); P(170, 280, 20, 2, CREAM);
   P(150, 254, 60, 4, '#4A4E5A'); P(150, 254, 4, 12, '#4A4E5A'); P(206, 254, 4, 12, '#4A4E5A');
   // the tag on its string, swaying a pixel; one price on it
@@ -205,8 +208,6 @@ const closeup = (k) => {
   P(cx - 61, 175, 122, 78, INK); P(cx - 60, 176, 120, 76, CREAM); P(cx - 60, 176, 120, 2, '#FFFFFF'); P(cx - 60, 248, 120, 4, SAND); P(cx - 2, 180, 5, 5, INK);
   k.text('$', cx * 3, 549, {size: 198, color: '#7A3442', align: 'center'});
   const f = F % 24; if (f < 12) d.twinkle(cx + 56, 180, f >> 1, GOLD);
-  // the sidewalk
-  P(0, 417, 360, 223, '#9AA0AD'); for (let y = 417; y < 640; y += 24) { P(0, y, 360, 1, '#6B7080'); for (let x = ((y / 24) & 1) * 30; x < 360; x += 60) P(x, y, 1, 24, '#6B7080'); }
 };
 
 window.SCENE = {
@@ -223,7 +224,8 @@ window.SCENE = {
     hook: (k, T) => {
       const n = k.data.numbers, d = px(k), tThree = wordT(k, 'hook.three', /^three/i, 0.6), tBuild = k.S('hook.build');
       const tIn = Math.min(0.8, Math.max(0.5, wordT(k, 'hook', /^one$/i, 0.6))), tOut = Math.min(2.6, Math.max(tIn + 0.6, wordT(k, 'hook', /^top$/i, 1.8)));
-      if (T >= tIn && T < tOut) { closeup(k); return Object.assign(host(k), {speech: false}); }
+      /* a real reframe: Snow steps up big at the counter for the close-up (hostScale 0.86), back to his wide size after */
+      if (T >= tIn && T < tOut) { closeup(k); return Object.assign(host(k), {hostScale: 0.86, hostX: 200, speech: false}); }
       storefront(k, {tags: [{price: '$', at: -1}, {price: '$ $$ $$$', at: tThree}], threeAt: tThree,
         chalk: T < tBuild ? [[`${n.single.shown} price?`, -1, CREAM, 450]] : [[`${n.tiers.shown} prices,`, tBuild, GOLD, 450], [`${n.single.shown} quote.`, tBuild + 0.3, CREAM, 528]]});
       // the hook card: cream, on two strings from the counter top (frame x 102 to 978, y 780 to 1158); no dialog in the hook

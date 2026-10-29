@@ -158,7 +158,7 @@ window.SCENE = {
   trauma: {'hook.myth': 0.5},
   sections: {
     // ---- hook: three shots under one plate. Cover: the laptop on the desk playing the demo. Cut by 0.8 s to the robot
-    // close up, its phones getting checks on "answer". Cut on "call" to the poster and the MYTH? stamp.
+    // close up, its phones getting checks on "answers". Cut on "call" to the poster and the MYTH? stamp.
     hook: (k, T) => {
       const d = px(k), {P} = d;
       const tAns = W(/^answer/i, k.S('hook.bot'), 1.6), tCall = W(/^call$/i, k.S('hook.myth'), 2.3);

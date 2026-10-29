@@ -1,6 +1,6 @@
 # Script: The AI receptionist myth (AI lead lane, lesson 2; facts re-read Oct 29)
 
-[curious] The demo says an AI receptionist will answer every call for you.
+[curious] The demo says an AI receptionist answers every call.
 
 [matter-of-fact] So you pay for the voice bot. The phone gets answered. But the quotes you already sent just sit there, and nobody follows up.
 

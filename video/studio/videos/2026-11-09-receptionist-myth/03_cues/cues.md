@@ -4,9 +4,9 @@ music: rooms
 
 ## hook "The demo says an" [sfx: pop]
 Frame 0, the cover: a laptop on an office desk playing a sales demo, a robot in a headset with a speech balloon full of ringing phones. The title plate up top, settled: "The demo says you need" / "an AI receptionist." Snow in his spot.
-## hook.bot "receptionist will answer every" [sfx: whoosh]
-Cut by 0.8 s: close on the robot in the headset; three phones ring around it and each gets a green check.
-## hook.myth "call for you." [sfx: stamp]
+## hook.bot "an AI receptionist" [sfx: whoosh]
+Cut by 0.8 s: close on the robot in the headset; three phones ring around it and each gets a green check on "answers".
+## hook.myth "answers every call." [sfx: stamp]
 Cut: the demo poster, and a red rubber stamp lands: "MYTH?". The plate stays.
 
 ## play "So you pay for" [sfx: whoosh]

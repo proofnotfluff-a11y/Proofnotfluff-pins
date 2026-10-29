@@ -2,11 +2,11 @@
 
 music: rooms
 
-## hook "This deep clean quote" [sfx: pop]
+## hook "This deep clean" [sfx: pop]
 Frame 0, the cover: the finished quote (example) on a clipboard: DEEP CLEAN QUOTE, five itemized lines with ticks, the price column marked "your rate". The title plate up top, settled: "This quote started as" / "messy notes." Snow in his spot.
-## hook.lines "started as messy notes" [sfx: whoosh]
+## hook.lines "quote started as" [sfx: whoosh]
 Cut by 0.8 s: close on the quote's lines, each ticked.
-## hook.notes "from the walkthrough." [sfx: blip]
+## hook.notes "messy walkthrough notes." [sfx: blip]
 Cut: the messy walkthrough notes, close: scribbles, a coffee ring, arrows, "ovn inside?". The plate stays.
 
 ## play "Usually those notes sit" [sfx: whoosh]

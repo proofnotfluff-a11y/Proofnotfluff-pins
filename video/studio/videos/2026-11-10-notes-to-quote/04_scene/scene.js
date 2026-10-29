@@ -153,10 +153,10 @@ window.SCENE = {
   trauma: {'button.prices': 0.5},
   sections: {
     // ---- hook: the result first. Cover: the finished quote on the desk under the plate. Cut by 0.8 s to its lines close
-    // up, each ticked. Cut on "from" to the messy walkthrough notes.
+    // up, each ticked. Cut on "messy" to the messy walkthrough notes.
     hook: (k, T) => {
       const d = px(k), {P} = d, n = k.data.numbers;
-      const tFrom = W(/^from$/i, k.S('hook.notes'), 2.4);
+      const tFrom = W(/^messy/i, k.S('hook.notes'), 2.1);
       const cut1 = 0.8, cut2 = Math.min(2.6, Math.max(1.6, tFrom - 0.05));
       if (T < cut1) {
         desk(d);

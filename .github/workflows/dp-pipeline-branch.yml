@@ -1,0 +1,25 @@
+name: Construction pipeline data (branch test)
+# Branch-only test pull for tools/dp_pipeline_data.py; prints the counts file to the log, commits nothing.
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/project-thread-4bg5nr]
+    paths: ["tools/dp_pipeline_data.py", ".github/workflows/dp-pipeline-branch.yml"]
+permissions:
+  contents: read
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install --quiet cryptography
+      - run: python3 tools/dp_pipeline_data.py --selftest
+      - name: Pull (tracker sealing tested, nothing committed)
+        env:
+          PNF_DATA_KEY: ${{ secrets.PNF_DATA_KEY }}
+        run: |
+          python3 tools/dp_pipeline_data.py
+          test -s site/datapages/dp_pipeline/state.sealed.json && echo "sealed state written ($(wc -c < site/datapages/dp_pipeline/state.sealed.json) bytes)" || echo "no sealed state"
+          grep -c '"' site/datapages/dp_pipeline/state.sealed.json >/dev/null 2>&1; python3 -c "import json;d=json.load(open('site/datapages/dp_pipeline/state.sealed.json'));print('sealed keys',sorted(d)[:6])" || true
+          echo "=== DATA ==="; python3 -c "import json;print(json.dumps(json.load(open('site/datapages/dp_pipeline/data.json')),separators=(',',':')))"; echo "=== END ==="

@@ -1,8 +1,11 @@
 {
  "meta": {
-  "when": "20261029-213812",
+  "when": "20261029-230836",
   "pages": [
-   "chicago-construction-pipeline"
+   "chicago-construction-pipeline",
+   "chicago-construction-cleaning-leads",
+   "austin-construction-cleaning-leads",
+   "chicago-data"
   ],
   "flows": [
    "chicago-construction-pipeline"
@@ -56,6 +59,114 @@
    "detail": "axe 0, 0 script errors, nothing cut off or scrolling sideways"
   },
   {
+   "page": "chicago-construction-cleaning-leads",
+   "width": 390,
+   "scheme": "light",
+   "shot": "after/chicago-construction-cleaning-leads-390-light.png",
+   "ok": true,
+   "label": "chicago-construction-cleaning-leads 390 light",
+   "detail": "axe 0, 0 script errors, nothing cut off or scrolling sideways"
+  },
+  {
+   "page": "chicago-construction-cleaning-leads",
+   "width": 390,
+   "scheme": "dark",
+   "shot": "after/chicago-construction-cleaning-leads-390-dark.png",
+   "ok": true,
+   "label": "chicago-construction-cleaning-leads 390 dark",
+   "detail": "axe 0, 0 script errors, nothing cut off or scrolling sideways"
+  },
+  {
+   "page": "chicago-construction-cleaning-leads",
+   "width": 1280,
+   "scheme": "light",
+   "shot": "after/chicago-construction-cleaning-leads-1280-light.png",
+   "ok": true,
+   "label": "chicago-construction-cleaning-leads 1280 light",
+   "detail": "axe 0, 0 script errors, nothing cut off or scrolling sideways"
+  },
+  {
+   "page": "chicago-construction-cleaning-leads",
+   "width": 1280,
+   "scheme": "dark",
+   "shot": "after/chicago-construction-cleaning-leads-1280-dark.png",
+   "ok": true,
+   "label": "chicago-construction-cleaning-leads 1280 dark",
+   "detail": "axe 0, 0 script errors, nothing cut off or scrolling sideways"
+  },
+  {
+   "page": "austin-construction-cleaning-leads",
+   "width": 390,
+   "scheme": "light",
+   "shot": "after/austin-construction-cleaning-leads-390-light.png",
+   "ok": true,
+   "label": "austin-construction-cleaning-leads 390 light",
+   "detail": "axe 0, 0 script errors, nothing cut off or scrolling sideways"
+  },
+  {
+   "page": "austin-construction-cleaning-leads",
+   "width": 390,
+   "scheme": "dark",
+   "shot": "after/austin-construction-cleaning-leads-390-dark.png",
+   "ok": true,
+   "label": "austin-construction-cleaning-leads 390 dark",
+   "detail": "axe 0, 0 script errors, nothing cut off or scrolling sideways"
+  },
+  {
+   "page": "austin-construction-cleaning-leads",
+   "width": 1280,
+   "scheme": "light",
+   "shot": "after/austin-construction-cleaning-leads-1280-light.png",
+   "ok": true,
+   "label": "austin-construction-cleaning-leads 1280 light",
+   "detail": "axe 0, 0 script errors, nothing cut off or scrolling sideways"
+  },
+  {
+   "page": "austin-construction-cleaning-leads",
+   "width": 1280,
+   "scheme": "dark",
+   "shot": "after/austin-construction-cleaning-leads-1280-dark.png",
+   "ok": true,
+   "label": "austin-construction-cleaning-leads 1280 dark",
+   "detail": "axe 0, 0 script errors, nothing cut off or scrolling sideways"
+  },
+  {
+   "page": "chicago-data",
+   "width": 390,
+   "scheme": "light",
+   "shot": "after/chicago-data-390-light.png",
+   "ok": true,
+   "label": "chicago-data 390 light",
+   "detail": "axe 0, 0 script errors, nothing cut off or scrolling sideways"
+  },
+  {
+   "page": "chicago-data",
+   "width": 390,
+   "scheme": "dark",
+   "shot": "after/chicago-data-390-dark.png",
+   "ok": true,
+   "label": "chicago-data 390 dark",
+   "detail": "axe 0, 0 script errors, nothing cut off or scrolling sideways"
+  },
+  {
+   "page": "chicago-data",
+   "width": 1280,
+   "scheme": "light",
+   "shot": "after/chicago-data-1280-light.png",
+   "ok": true,
+   "label": "chicago-data 1280 light",
+   "detail": "axe 0, 0 script errors, nothing cut off or scrolling sideways"
+  },
+  {
+   "page": "chicago-data",
+   "width": 1280,
+   "scheme": "dark",
+   "shot": "after/chicago-data-1280-dark.png",
+   "ok": true,
+   "label": "chicago-data 1280 dark",
+   "detail": "axe 0, 0 script errors, nothing cut off or scrolling sideways"
+  },
+  {
    "flow": "chicago-construction-pipeline",
    "width": 390,
    "scheme": "light",
@@ -93,6 +204,18 @@
   "PASS chicago-construction-pipeline 390 dark: axe 0, 0 script errors, nothing cut off or scrolling sideways",
   "PASS chicago-construction-pipeline 1280 light: axe 0, 0 script errors, nothing cut off or scrolling sideways",
   "PASS chicago-construction-pipeline 1280 dark: axe 0, 0 script errors, nothing cut off or scrolling sideways",
+  "PASS chicago-construction-cleaning-leads 390 light: axe 0, 0 script errors, nothing cut off or scrolling sideways",
+  "PASS chicago-construction-cleaning-leads 390 dark: axe 0, 0 script errors, nothing cut off or scrolling sideways",
+  "PASS chicago-construction-cleaning-leads 1280 light: axe 0, 0 script errors, nothing cut off or scrolling sideways",
+  "PASS chicago-construction-cleaning-leads 1280 dark: axe 0, 0 script errors, nothing cut off or scrolling sideways",
+  "PASS austin-construction-cleaning-leads 390 light: axe 0, 0 script errors, nothing cut off or scrolling sideways",
+  "PASS austin-construction-cleaning-leads 390 dark: axe 0, 0 script errors, nothing cut off or scrolling sideways",
+  "PASS austin-construction-cleaning-leads 1280 light: axe 0, 0 script errors, nothing cut off or scrolling sideways",
+  "PASS austin-construction-cleaning-leads 1280 dark: axe 0, 0 script errors, nothing cut off or scrolling sideways",
+  "PASS chicago-data 390 light: axe 0, 0 script errors, nothing cut off or scrolling sideways",
+  "PASS chicago-data 390 dark: axe 0, 0 script errors, nothing cut off or scrolling sideways",
+  "PASS chicago-data 1280 light: axe 0, 0 script errors, nothing cut off or scrolling sideways",
+  "PASS chicago-data 1280 dark: axe 0, 0 script errors, nothing cut off or scrolling sideways",
   "PASS flow chicago-construction-pipeline 390 light: 18 of 18 steps, 0 script errors, axe 0 after the flow",
   "PASS flow chicago-construction-pipeline 390 dark: 18 of 18 steps, 0 script errors, axe 0 after the flow",
   "PASS flow chicago-construction-pipeline 1280 light: 18 of 18 steps, 0 script errors, axe 0 after the flow",

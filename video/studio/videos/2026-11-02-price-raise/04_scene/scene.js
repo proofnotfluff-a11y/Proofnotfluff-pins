@@ -191,7 +191,7 @@ window.SCENE = {
       /* the cover, settled on frame 0: the 83% about 560 px wide, centered in the map's open land left of the lake (the one
          dominant number); its sentence in the panel under it, the block centered in the panel; the segment tag on the
          panel's top edge; on "Here's the note" the panel clears to the one headline, centered */
-      k.text(n.hvac.shown, 370, 350, {size: 396, color: 'accent', drop: INK, align: 'center'});
+      k.text(n.hvac.shown, 370, 360, {size: 396, color: 'accent', drop: INK, align: 'center'});   // its box starts under the HVAC label
       k.chip('Pricing Clinic', 668, 684, {size: 30, fill: 'accent', color: INK});
       if (T < tNote) {
         k.text('of HVAC companies raised', 72, 738, {size: 66, color: CREAM, drop: INK});
@@ -352,8 +352,8 @@ window.SCENE = {
         });
         /* the turn: "That last line" rings the third bubble in gold and sweeps a gold bar under it */
         if (y3 != null && T >= tLast) {
-          const g = GOLD; d.P(x3 - 2, y3 - 2, w3 + 4, 1, g); d.P(x3 - 2, y3 + h3 + 1, w3 + 4, 1, g); d.P(x3 - 2, y3 - 2, 1, h3 + 4, g); d.P(x3 + w3 + 1, y3 - 2, 1, h3 + 4, g);
-          k.sweep(x3 * 3, (y3 + h3 + 3) * 3, w3 * 3, 6, tLast + 0.1, {color: 'accent'});
+          const g = ORANGE; d.P(x3 - 3, y3 - 3, w3 + 6, 2, g); d.P(x3 - 3, y3 + h3 + 1, w3 + 6, 2, g); d.P(x3 - 3, y3 - 3, 2, h3 + 6, g); d.P(x3 + w3 + 1, y3 - 3, 2, h3 + 6, g);
+          k.sweep(x3 * 3, (y3 + h3 + 4) * 3, w3 * 3, 6, tLast + 0.1, {color: 'accent'});
         }
       });
       /* PROMISE stamps on the dash beside the third bubble (it rides up with the thread) */

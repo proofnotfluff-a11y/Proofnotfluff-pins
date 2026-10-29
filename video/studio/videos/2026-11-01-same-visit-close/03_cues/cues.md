@@ -3,7 +3,7 @@
 music: rooms
 
 ## hook "Still no yes when" [sfx: pop]
-The street. Three shots (IMPROVE 00a). Frame 0, the cover, fully settled: the claim on a plate in the sky, "Top shops close" / "77%" / "of estimates" / "same visit." (8 words) The 77% in the accent. Source small: ServiceTitan customers, 12 months to Jan 2026. The van parked in the driveway; host and dialog hidden. On "yes" cut in to the close-up: the street at twice the size on the driveway, the van big at the curb, the customer's door with a "?" bubble, the fence and lawn filling the lower frame; Snow comes in big at the lower left with the dialog box; the plate holds up top. On "backing" the van rolls off out of the close-up. On "Ask" cut back out to the whole street: the van gone down the road, the "?" still at the door.
+The street. Three shots (IMPROVE 00a). Frame 0, the cover, fully settled: the claim on a plate in the sky, "Top shops close" / "77%" / "of estimates" / "same visit." (8 words) The 77% in the accent. Source small: ServiceTitan customers, 12 months to Jan 2026. The van parked in the driveway; host and dialog hidden. On "yes" cut in to the close-up: the street at twice the size on the driveway, the van big at the curb, the customer's door with a "?" bubble, the fence and lawn filling the lower frame; Snow comes in big at the lower left with the dialog box; the plate holds up top. On "backing" the van rolls off out of the close-up. On "driveway" cut back out to the whole street: the van gone down the road, the "?" still at the door.
 ## hook.ask "Ask this." [sfx: blip]
 Snow drops back to his small spot and points at the plate.
 ## hook.top "Top shops close seventy-seven"

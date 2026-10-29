@@ -253,12 +253,12 @@ window.SCENE = {
     // Frame 0 is the cover: the claim on a plate in the sky, the van parked, no host, no dialog. Cut in on "yes" to the
     // close-up: the street at twice the size on the driveway (the van big at the curb, the customer's door with a "?",
     // the fence and lawn filling the lower frame), the claim on a smaller title plate up top, Snow big at the lower left;
-    // on "backing" the van rolls off out of the shot. Cut back out on "Ask" to the whole street: the van is down the road,
+    // on "backing" the van rolls off out of the shot. Cut back out on "driveway" (before the van's own roll-off adds up to a picture change, so the cut counts as its own change) to the whole street: the van is down the road,
     // the "?" still at the door; on "Top shops" it backs in again (REPLAY) and on "same visit" the bubble turns to a check.
     hook: (k, T) => {
       const n = k.data.numbers, d = px(k), {P} = d;
       const tIn = Math.min(0.8, Math.max(0.45, W(/^yes$/i, 0.5, 0.7))), tLeave = W(/^backing$/i, 1.2, 1.4);
-      const tOut = Math.min(2.6, W(/^Ask$/i, k.S('hook.ask'), 2.5)), tTop = W(/^Top$/i, k.S('hook.top')), t77 = W(/^seventy/i, tTop), tSame = W(/^same$/i, k.S('hook.same'));
+      const tOut = Math.min(2.4, W(/^driveway/i, 1.9, 2.1)), tTop = W(/^Top$/i, k.S('hook.top')), t77 = W(/^seventy/i, tTop), tSame = W(/^same$/i, k.S('hook.same'));
       // the van: parked; rolls off with the quote open; backs in on the replay
       let vx = 194, moving = false;
       if (T >= tLeave && T < tTop) { const t = T - tLeave; vx = 194 + Math.floor(70 * t * t + 8 * t); moving = true; }
@@ -504,7 +504,7 @@ window.SCENE = {
       perks.forEach((p, i) => { if (T >= p.at) return; const y = 236 + i * 18; d.tx('+', 110, y, {color: '#6B7080'}); d.P(122, y + 6, 100, 2, '#3D2E45'); d.P(230, y + 2, 7, 9, '#6B7080'); d.P(231, y, 5, 3, '#6B7080'); d.P(232, y + 1, 3, 2, DUSK); });
       /* the worry: a storm cloud the last question brings out over the locked perks; answered while you're there, it pops.
          Its label sits under the bolt's reach */
-      const tAns = W(/^answer$/i, tWhile), popT = tAns + 0.15, cx = 286;
+      const tAns = W(/^there/i, tWhile), popT = tAns + 0.15, cx = 286;
       if (T >= tBr + 0.3 && T < popT + 0.07) {
         const f = d.fr(tBr + 0.3), cy = 254 - (f < 6 ? [-24, -14, -7, -2, 1, 0][f] : 0) + ((d.F >> 4) & 1), hit = T >= popT - 0.07, gc = hit ? CREAM : '#6B7080', lc = hit ? CREAM : GREY;
         const c2 = k.ctx; c2.save(); c2.translate(-cx * 3, -(cy + 2) * 3); c2.scale(2, 2);

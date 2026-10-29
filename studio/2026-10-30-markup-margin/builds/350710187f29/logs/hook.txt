@@ -1,0 +1,5 @@
+{"first_change": null, "changes_by_3s": 0, "changes": [], "host_at": 3.0, "hook_words": 10, "hook_said_by": 3.28, "seconds": 73.56}
+ERROR hook: the picture first changes at None s (by 1.0 s)
+ERROR hook: 0 picture change(s) in the first 3 s (at least 2)
+hook: FAIL first change None s, 0 changes by 3 s, host 3.0 s, spoken hook 10 words by 3.28 s, 73.56 s long
+exit 1

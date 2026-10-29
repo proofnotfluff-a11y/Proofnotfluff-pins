@@ -1,0 +1,44 @@
+name: Studio post copy
+# Renders a queued studio lesson's post copy (video/studio/anim.py postcopy) for a session that has no Chromium of its
+# own, such as a chat thread posting through Claude in Chrome. The pinned commit's own code makes the picture and sound
+# and postcopy checks every fingerprint first, exactly as POSTING.md step 2. The MP4 comes back as a run artifact for
+# 3 days. Nothing is posted, committed or pushed here.
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Queued lesson slug (anim.py next)"
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: studio-postcopy
+  cancel-in-progress: false
+jobs:
+  postcopy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg tesseract-ocr > /dev/null
+          pip install --quiet playwright numpy scipy pillow fonttools brotli
+          python3 -m playwright install --with-deps chromium
+          sudo mkdir -p /mnt/user-data/outputs && sudo chown "$USER" /mnt/user-data/outputs
+      - name: Post copy
+        env:
+          SLUG: ${{ inputs.slug }}
+        run: |
+          case "$SLUG" in *[!a-z0-9-]*|"") echo "bad slug"; exit 1;; esac
+          git config user.name "proofnotfluff-bot"; git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          python3 video/studio/anim.py postcopy "$SLUG"
+          python3 video/studio/anim.py check "$SLUG" --mp4 "/mnt/user-data/outputs/$SLUG.mp4" || true
+          sha256sum "/mnt/user-data/outputs/$SLUG.mp4"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: postcopy-${{ inputs.slug }}
+          path: /mnt/user-data/outputs/${{ inputs.slug }}.mp4
+          retention-days: 3
+          if-no-files-found: error

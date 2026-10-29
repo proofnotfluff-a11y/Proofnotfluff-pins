@@ -1,13 +1,13 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-03-review-replies",
- "mp4Sha256": "b81bdda4d09816e6eb1218c7b435de5980f730f63119cb5f188ed158db41ef1b",
+ "mp4Sha256": "3fa5b820d5adc07d32a755f359ab21031fd240860b827aa41507405c77d1e9dc",
  "checks": [
   {
    "name": "length",
-   "value": 76.067,
+   "value": 73.367,
    "pass": true,
-   "detail": "76.07 s (45.0 to 90.0, studio lessons)"
+   "detail": "73.37 s (45.0 to 75.0, studio lessons, end card included)"
   },
   {
    "name": "loudness",
@@ -28,13 +28,13 @@
    "name": "frozen",
    "value": [],
    "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 66.74 s"
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 64.25 s"
   },
   {
    "name": "file",
    "value": {
-    "sha256": "b81bdda4d09816e6eb1218c7b435de5980f730f63119cb5f188ed158db41ef1b",
-    "bytes": 5325581
+    "sha256": "3fa5b820d5adc07d32a755f359ab21031fd240860b827aa41507405c77d1e9dc",
+    "bytes": 5347635
    },
    "pass": true,
    "detail": "H.264 1080x1920 30 fps, AAC, 5.3 MB, decodes clean"
@@ -47,5 +47,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-28T23:20:00-05:00"
+ "at": "2026-10-29T12:41:59-05:00"
 }

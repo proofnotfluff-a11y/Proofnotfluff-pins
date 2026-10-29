@@ -1,18 +1,25 @@
 {
  "gate": "golden",
- "slug": "2026-11-03-review-replies",
- "round": 1,
+ "round": 0,
+ "at": "2026-10-29T12:46:45-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
  "pass": true,
- "score": {"post_as_is": "yes"},
+ "score": {
+  "post_as_is": "yes"
+ },
  "reasons": [
-  "Round 0 must-fix resolved: Snow's bubble now reads 'That's The ACHR News' (9.6 s) and 'they pick an HVAC contractor.' (16.5 to 18.0 s); the reel label reads '91%: picking an HVAC contractor'. No lowercase acronym seen anywhere on screen. Checked on mp4 sha256 b81bdda4...ef1b.",
-  "1. polish 2.5 to 6.0 s: the SNOW bubble is up with its tail pointing at empty floor; Snow himself only walks in at 6.0 s. The bubble also skips the first spoken words 'In one HVAC survey,' (0.0 to 2.0 s), which is fine since the card says 'ACHR News survey, 2024', but bringing Snow in with the bubble would read cleaner.",
-  "2. polish 0 to 76 s: the bottom third (about y 1160 to 1920) is empty pattern the whole video. Works as a platform UI safe zone but reads as dead space on a phone.",
-  "3. polish 0 to 30 s pace: takes 1 to 3 are slow (131, 147, 117 wpm, gaps of 0.6 to 0.9 s). Still sounds like a person; the stats section drags slightly.",
-  "4. polish 67.0 to 76 s: the end slot machine spins through '$' and lands on YES with an orange S that reads close to a payout, right after the 'doesn't prove a reply wins the job' note. Mildly gimmicky. Snow's raised hand at 75 s now clears the end panel.",
-  "5. polish 13.0 and 18.3 s: mid-spin reels flash '2 6 $' before landing on 91% and 56%. Landed numbers are readable and hold several seconds.",
-  "Numbers: 43%, 91%, 400 homeowners 2024, 56% on Google, 45 / 43 / 13 on third-party sites, 10 minutes every Monday. All match the voice, facts.json and captions.json; no contradiction. qa.json all PASS with no doubtful values (76.07 s, -14.2 LUFS, true peak -3.2, 0 black, 0 frozen; the 66.5 s TV-off wipe is about 0.2 s, not a black stretch).",
-  "Trade-owner read: answer every review, good or bad, with two short replies you can copy, and block 10 minutes every Monday. Hook card (43%) earns the stop from frame 0 with the 'New review' banner moving by 1 s; honest note builds trust; 'Send this to whoever runs your Google profile' gives a clear reason to share. I would post it as is."
- ],
- "at": "2026-10-28"
+  "Trade-owner read: lots of contractors ignore reviews and homeowners care about them, so here are two short replies to copy (five-star and one-star). Answer the bad ones short and calm, take the details offline, never argue in public, and block 10 minutes every Monday. The numbers on screen match the voice, facts.json and captions.json: 43%, 400 homeowners 2024, 91%, 56% on Google, 45/43/13 on third-party sites, 10 min Monday. No contradiction.",
+  "Numbers readable when said: 43% card at 3.68 to 4.28 s (said 3.7), 400 plate at 13.98 (said 12.2 to 14.0), 91% reels land at 12.5 (said 12.2), 56% reels at 19.0 (said ~19.0), YES 45% row at 26.0 (said ~26), 10 min banner and bubble at 60.0 to 61.5 (said 60.1). The 13% shows on the board at 26.5 to 27.25 without being said, which is fine.",
+  "qa.json: all six checks PASS and none are doubtful. Length 73.37 s (limit 75), -14.2 LUFS, true peak -3.2 dBTP, 0 black stretches, 0 frozen stretches, voice 0 flags. The one-sample blacks at 27.5 s and 64.0 s are short transition wipes, not stretches.",
+  "First 3 s: the cover reads 'Got a 1-star review? / Copy this reply.' with the REVIEWS CLINIC chip at 0.0. It cuts in to the phone close-up with Snow and the EXAMPLE one-star review at 0.5, cuts back out at 2.0, and the hook clears at 3.68. That earns the stop. The reason to send is clear at 66.8 to 70.5 s ('Send this to whoever runs your Google profile'), and the two replies make it worth saving. The faults listed in earlier reviews (lowercase acronyms, scrolled-off reviews, bubble with no host) are not back.",
+  "1. polish 4.3 to 9.0 s: the sparks on the 43% card overlap the glyphs, so single frames read as broken letters ('4 3%', 'c/ contractors', 'ansv er', 'revie/ws' at 5.84 and 9.00). Keep the sparks off the key stat's letters or end them by ~5 s.",
+  "2. polish 10.0 to 14.0 s voice: 'That's The ACHR News.' is a stilted way to name the source. Then 'the four hundred homeowners' uses 'the' for a group that was never introduced, right after a contractor stat, so a listener can briefly mix up who was surveyed. The on-screen plate '400 homeowners, 2024' covers it.",
+  "3. polish 22.9 to 27.7 s: take 3 runs at 199 wpm, just over the 195 target. 'So if you answer reviews on those sites...' feels a touch rushed, and the 'So' doesn't follow from the Google stat.",
+  "4. polish 4.28 s: the 'New review' notification drops in over a statistic, not a review. It is a small mixed signal.",
+  "5. polish 0.0 to 73 s: the bottom third of the frame (about y 1250 to 1920) is empty pattern the whole time. It works as a safe zone for platform buttons and captions but reads as dead space (carried over from the last cut).",
+  "6. polish 11.5 to 12.0, 18.3 and 64.5 to 65.0 s: mid-spin reels flash '2 6 $' and '$ 2 2'. The end pull landing on YES with an orange S right after 'it doesn't prove a reply wins the job' is mildly gimmicky (carried over). The landed numbers hold and read fine.",
+  "7. polish 66.8 to 70.5 s: the PROOFNOTFLUFF tag sits tight under 'Don't leave reviews hanging.'; a few px more space would help.",
+  "8. polish 3.7 to 37.5 s: the hook promises 'your reply to copy' but the one-star reply only arrives at 37.5 s. The stats section is short enough that most viewers will stay, but a quick flash of the reply earlier would pay the hook off sooner.",
+  "Sounds like a person: yes. The lines are short and plain ('That's on us. I want to make it right.'), and the 'one honest note' caveat at 52.8 to 60 s builds trust. Nothing broken, cheap, off-brand or confusing enough to block. I would post it as is."
+ ]
 }

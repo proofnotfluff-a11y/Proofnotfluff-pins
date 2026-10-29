@@ -5,7 +5,7 @@
   "id": "rooms",
   "level": 0.16
  },
- "duration": 75.318,
+ "duration": 73.044,
  "cues": [
   {
    "id": "hook",
@@ -41,7 +41,7 @@
    "text": "The title plate turns to the claim: \"Median close rate, by US region\" / \"31% to 38%\" (31% orange, 38% teal).",
    "t": 4.02,
    "word": 10,
-   "end": 6.53
+   "end": 6.56
   },
   {
    "id": "hook.region",
@@ -51,9 +51,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The US NORTHEAST card (31%) drops into its slot on \"thirty-one\", the US WEST card (38%) on \"thirty-eight\"; each meter fills to its median and a marker lights on the floor map (Northeast, West).",
-   "t": 6.53,
+   "t": 6.56,
    "word": 17,
-   "end": 8.08
+   "end": 8.06
   },
   {
    "id": "hook.source",
@@ -63,7 +63,7 @@
    "shift": 0.0,
    "pin": null,
    "text": "The source plate's first half lights gold and is underlined.",
-   "t": 8.08,
+   "t": 8.06,
    "word": 20,
    "end": 10.36
   },
@@ -149,7 +149,7 @@
    "text": "Room: blackboard. Chalk header: THE MATH.",
    "t": 24.255,
    "word": 64,
-   "end": 33.666
+   "end": 33.169
   },
   {
    "id": "formula.shot",
@@ -159,9 +159,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Chip SCREENSHOT THIS pops beside the header.",
-   "t": 26.175,
-   "word": 70,
-   "end": 27.595
+   "t": 25.935,
+   "word": 71,
+   "end": 27.415
   },
   {
    "id": "formula.eq",
@@ -171,9 +171,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The formula card writes in: \"Close rate =\" then \"jobs sold\" over a line.",
-   "t": 27.595,
-   "word": 72,
-   "end": 29.455
+   "t": 27.415,
+   "word": 73,
+   "end": 29.295
   },
   {
    "id": "formula.div",
@@ -183,57 +183,57 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"estimates given\" lands under the line; the card glows.",
-   "t": 29.455,
-   "word": 77,
-   "end": 31.575
+   "t": 29.295,
+   "word": 78,
+   "end": 31.015
   },
   {
    "id": "formula.month",
    "level": 1,
-   "quote": "both over the same",
+   "quote": "over the same month.",
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
    "text": "\"Same month for both.\" stamps under the card.",
-   "t": 31.575,
-   "word": 81,
-   "end": 33.666
+   "t": 31.015,
+   "word": 82,
+   "end": 33.169
   },
   {
    "id": "example",
    "level": 0,
-   "quote": "Here's an example.",
+   "quote": "For example, say you",
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
    "text": "Room: garage. Header EXAMPLE on a dark band. A card with three rows shown as it opens: Estimates given, Jobs sold, Close rate, each value empty.",
-   "t": 33.666,
+   "t": 33.169,
    "word": 86,
-   "end": 45.715
+   "end": 44.251
   },
   {
    "id": "example.forty",
    "level": 1,
-   "quote": "Say you gave forty",
+   "quote": "gave forty estimates last",
    "sfx": null,
    "shift": 0.0,
    "pin": null,
    "text": "40 counts in on \"forty\"; 14 counts in on \"fourteen\".",
-   "t": 34.966,
-   "word": 89,
-   "end": 38.886
+   "t": 34.549,
+   "word": 90,
+   "end": 38.029
   },
   {
    "id": "example.div",
    "level": 1,
-   "quote": "Fourteen divided by forty",
+   "quote": "Fourteen over forty is",
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
    "text": "\"14 / 40\" writes in on the Close rate row; 35% slams in as it is said, sparks.",
-   "t": 38.886,
-   "word": 99,
-   "end": 41.826
+   "t": 38.029,
+   "word": 98,
+   "end": 40.629
   },
   {
    "id": "example.range",
@@ -243,9 +243,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A small range strip under the card: 31% to 38% lit, a marker drops at 35%.",
-   "t": 41.826,
-   "word": 106,
-   "end": 44.126
+   "t": 40.629,
+   "word": 104,
+   "end": 42.869
   },
   {
    "id": "example.own",
@@ -255,9 +255,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Your turn: __ / __\" chip stamps under the strip.",
-   "t": 44.126,
-   "word": 111,
-   "end": 45.715
+   "t": 42.869,
+   "word": 109,
+   "end": 44.251
   },
   {
    "id": "turn",
@@ -267,9 +267,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The dispatch map (its one appearance): a map of shops. Plate under it: THE PART PEOPLE SKIP with \"ServiceTitan's medians, May to Jul 2026\" on until turn.own.",
-   "t": 45.715,
-   "word": 115,
-   "end": 57.999
+   "t": 44.251,
+   "word": 113,
+   "end": 56.535
   },
   {
    "id": "turn.count",
@@ -279,9 +279,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Note 1 slides in: \"How it counts a close: not on the page.\"",
-   "t": 47.915,
-   "word": 120,
-   "end": 50.735
+   "t": 46.451,
+   "word": 118,
+   "end": 49.271
   },
   {
    "id": "turn.cust",
@@ -291,9 +291,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Note 2 slides in: \"ServiceTitan customers. Not every shop.\"; teal pins mark the customers.",
-   "t": 50.735,
-   "word": 128,
-   "end": 53.775
+   "t": 49.271,
+   "word": 126,
+   "end": 52.311
   },
   {
    "id": "turn.own",
@@ -303,9 +303,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The ghost lap board closes over the map in blinds: \"Beat your ghost\", lane GHOST: LAST MONTH (a dashed ghost bar to a checkered flag), lane YOU: THIS MONTH (a gold bar racing it); on the floor the ghost car and the gold car run the track. \"First number to beat:\" lands on the plate under the board. No numbers.",
-   "t": 53.775,
-   "word": 136,
-   "end": 55.295
+   "t": 52.311,
+   "word": 134,
+   "end": 53.831
   },
   {
    "id": "turn.yours",
@@ -315,33 +315,33 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Your own, last month.\" stamps in big in the accent; the gold bar closes on the ghost's flag. Snow points at it.",
-   "t": 55.295,
-   "word": 144,
-   "end": 57.999
+   "t": 53.831,
+   "word": 142,
+   "end": 56.535
   },
   {
    "id": "weekly",
    "level": 0,
-   "quote": "Track it every Friday.",
+   "quote": "Every Friday, put two",
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
    "text": "Room: workshop. The Friday board: \"Every Friday\" in red marker, underlined on \"Friday\"; both rows shown faint as it opens: Estimates given, Jobs sold.",
-   "t": 57.999,
-   "word": 150,
-   "end": 65.398
+   "t": 56.535,
+   "word": 148,
+   "end": 63.124
   },
   {
    "id": "weekly.two",
    "level": 1,
-   "quote": "Two numbers on the",
+   "quote": "numbers on the whiteboard,",
    "sfx": null,
    "shift": 0.0,
    "pin": null,
    "text": "Each row is written in marker as it is said and its box ticks; slips on the cork flip to SOLD as \"jobs sold\" is said.",
-   "t": 59.919,
-   "word": 154,
-   "end": 63.799
+   "t": 58.015,
+   "word": 152,
+   "end": 61.755
   },
   {
    "id": "weekly.all",
@@ -351,9 +351,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A gold sticky note stamps on under the rows: \"That's all\" / \"you need.\" Snow points at the board.",
-   "t": 63.799,
-   "word": 163,
-   "end": 65.398
+   "t": 61.755,
+   "word": 161,
+   "end": 63.124
   },
   {
    "id": "close",
@@ -363,9 +363,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The Friday board wiped clean: \"Close rate =\" (132) / \"jobs sold\" over \"estimates given\" (size 99, the 2x glyphs), a divider as long as the wider line. Shop floor props below.",
-   "t": 65.398,
-   "word": 167,
-   "end": 75.318
+   "t": 63.124,
+   "word": 165,
+   "end": 73.044
   },
   {
    "id": "close.send",
@@ -375,9 +375,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "ProofNotFluff plate slams on; send line: \"Send this to whoever writes your estimates.\"",
-   "t": 68.418,
-   "word": 173,
-   "end": 70.458
+   "t": 66.144,
+   "word": 171,
+   "end": 68.184
   },
   {
    "id": "close.friday",
@@ -387,9 +387,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "An accent line sweeps under \"Close rate\"; sparks; Snow waves.",
-   "t": 70.458,
-   "word": 180,
-   "end": 75.318
+   "t": 68.184,
+   "word": 178,
+   "end": 73.044
   }
  ]
 }

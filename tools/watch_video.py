@@ -119,8 +119,8 @@ def ask(video: dict, question: str | None, *, key: str, model: str, processing='
         data = _json(_call('GET', f"{INTERACTIONS}/{data['id']}", key)[1], key)
     if str(data.get('status', '')).lower() in ('failed', 'cancelled', 'canceled', 'incomplete'):
         error = data.get('error') or {}
-        detail = error.get('message') if isinstance(error, dict) else error
-        raise GeminiError('rejected', _clean(f"status {data['status']}: {detail or 'no detail'}", key))
+        detail = (error.get('message') if isinstance(error, dict) else error) or json.dumps(data)[:400]
+        raise GeminiError('rejected', _clean(f"status {data['status']}: {detail}", key))
     try:
         parts = [p['text'] for step in data['steps'] if step.get('type') == 'model_output'
                  for p in step.get('content', []) if p.get('type') == 'text' and p.get('text')]
@@ -131,6 +131,28 @@ def ask(video: dict, question: str | None, *, key: str, model: str, processing='
         raise GeminiError('response', f'no answer text (status {data.get("status")})')
     return {'text': '\n'.join(parts).strip(), 'tokens': tokens if isinstance(tokens, int) else None,
             'processing': processing}
+
+
+def ask_link(url: str, question: str | None, *, key: str, model: str, timeout=600.0) -> dict:
+    # generateContent with file_data is Google's long-standing YouTube path. The Interactions API ran
+    # 18 minutes on a public link and failed with no reason in both modes (live run, Oct 29).
+    payload = {'contents': [{'parts': [{'file_data': {'file_uri': url}},
+                                       {'text': ((question or '').strip() or DEFAULT_QUESTION) + SUFFIX}]}]}
+    _, body = _call('POST', f'{API}/v1beta/models/{model}:generateContent', key,
+                    data=json.dumps(payload).encode('utf-8'), headers={'Content-Type': 'application/json'},
+                    timeout=timeout)
+    data = _json(body, key)
+    try:
+        candidate = (data.get('candidates') or [{}])[0]
+        parts = [p['text'] for p in (candidate.get('content') or {}).get('parts', []) if p.get('text')]
+        tokens = (data.get('usageMetadata') or {}).get('totalTokenCount')
+    except (KeyError, TypeError, AttributeError, IndexError):
+        raise GeminiError('response', _clean(json.dumps(data)[:300], key)) from None
+    if not parts:
+        reason = candidate.get('finishReason') or (data.get('promptFeedback') or {}).get('blockReason')
+        raise GeminiError('rejected', f'no answer text (reason {reason or "none given"})')
+    return {'text': '\n'.join(parts).strip(), 'tokens': tokens if isinstance(tokens, int) else None,
+            'processing': 'generateContent'}
 
 
 def upload(path: Path, key: str, *, poll=2.0, max_wait=900.0, sleep=time.sleep) -> dict:
@@ -199,15 +221,14 @@ def main(argv=None) -> int:
     uploaded, note, sent = None, None, 'link sent to Google'
     try:
         if is_youtube(args.source):
-            video = {'uri': args.source}
             try:
-                result = ask(video, args.question, key=key, model=args.model, timeout=args.timeout)
+                result = ask_link(args.source, args.question, key=key, model=args.model, timeout=args.timeout)
             except GeminiError as exc:
-                if exc.category != 'rejected':
+                if exc.category != 'network':
                     raise
-                # Google documents agentic mode with uploads; for links, fall back to its default 1 fps reading.
-                result = ask(video, args.question, key=key, model=args.model, processing='static',
-                             timeout=args.timeout)
+                # One retry when the long request is dropped; uses the background Interactions path.
+                result = ask({'uri': args.source}, args.question, key=key, model=args.model,
+                             processing='static', timeout=args.timeout)
         elif re.match(r'^[a-z][a-z0-9+.-]*://', args.source, re.I):
             print('watch_video: only public YouTube links can be sent by link. TikTok, Instagram, Facebook and '
                   'other sites are not downloaded; save the video file first if it may be used.', file=sys.stderr)

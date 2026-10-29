@@ -51,25 +51,38 @@ def calls(monkeypatch):
     return log, queue
 
 
+def classic(text='At 00:05 the hook appears.'):
+    return Resp(json.dumps({'candidates': [{'content': {'parts': [{'text': text}]}, 'finishReason': 'STOP'}],
+                            'usageMetadata': {'totalTokenCount': 4321}}).encode())
+
+
 def test_youtube_link_sent_by_link_with_header_key(calls, capsys):
     log, queue = calls
-    queue.append(answer())
+    queue.append(classic())
     assert wv.main(['https://www.youtube.com/shorts/abc123', '--question', 'What is the hook?']) == 0
     req = log[0]
-    assert req.full_url == wv.INTERACTIONS
+    assert req.full_url == f'{wv.API}/v1beta/models/gemini-3.8-flash:generateContent'
     assert req.get_header('X-goog-api-key') == KEY
-    body = json.loads(req.data)
-    assert body['model'] == 'gemini-3.8-flash'
-    assert body['input'][0] == {'type': 'video', 'uri': 'https://www.youtube.com/shorts/abc123', 'processing': 'agentic'}
+    parts = json.loads(req.data)['contents'][0]['parts']
+    assert parts[0] == {'file_data': {'file_uri': 'https://www.youtube.com/shorts/abc123'}}
     out = capsys.readouterr().out
-    assert 'At 00:05 the hook appears.' in out and KEY not in out
+    assert 'At 00:05 the hook appears.' in out and 'Gemini tokens: 4321' in out and KEY not in out
 
 
-def test_agentic_rejected_falls_back_to_static(calls):
+def test_dropped_link_request_retries_in_background(calls):
     log, queue = calls
-    queue += [http_error(400, 'processing not supported for this input'), answer()]
+    queue += [OSError('Remote end closed connection'), answer()]
     assert wv.main(['https://youtu.be/abc']) == 0
-    assert json.loads(log[1].data)['input'][0]['processing'] == 'static'
+    body = json.loads(log[1].data)
+    assert log[1].full_url == wv.INTERACTIONS and body['background'] is True
+    assert body['input'][0]['processing'] == 'static'
+
+
+def test_empty_answer_reports_reason(calls, capsys):
+    _, queue = calls
+    queue.append(Resp(json.dumps({'candidates': [{'finishReason': 'SAFETY'}]}).encode()))
+    assert wv.main(['https://youtu.be/abc']) == 1
+    assert 'SAFETY' in capsys.readouterr().out
 
 
 def test_key_scrubbed_from_errors(calls, capsys):
@@ -144,10 +157,9 @@ def test_background_job_gives_up_at_timeout(calls):
     assert err.value.category == 'service'
 
 
-def test_failed_agentic_job_falls_back_to_static(calls, monkeypatch):
-    log, queue = calls
-    monkeypatch.setattr(wv.time, 'sleep', lambda s: None)
-    queue += [Resp(json.dumps({'id': 'i', 'status': 'failed', 'error': {'message': 'agentic not supported'}}).encode()),
-              answer()]
-    assert wv.main(['https://youtu.be/abc']) == 0
-    assert json.loads(log[1].data)['input'][0]['processing'] == 'static'
+def test_failed_job_reports_what_google_sent(calls):
+    _, queue = calls
+    queue.append(Resp(json.dumps({'id': 'i', 'status': 'failed'}).encode()))
+    with pytest.raises(wv.GeminiError) as err:
+        wv.ask({'uri': 'u'}, 'q', key=KEY, model='m', sleep=lambda s: None)
+    assert err.value.category == 'rejected' and '"id": "i"' in str(err.value)

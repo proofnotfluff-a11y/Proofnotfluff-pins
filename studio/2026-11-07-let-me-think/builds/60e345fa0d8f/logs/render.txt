@@ -1,0 +1,8 @@
+  300/1274 frames, 40 s
+  600/1274 frames, 80 s
+  900/1274 frames, 120 s
+  1200/1274 frames, 160 s
+mix: rooms framing 0.00 s
+mix: voice -22.9 LUFS, bed -21.8 LUFS after EQ; bed gain -19.1 dB under speech, -11.1 dB in pauses, 7 phrases
+render: /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-11-07-let-me-think/05_render/2026-11-07-let-me-think.mp4 (1274 frames, 42.47 s, voice, 178 s)
+exit 0

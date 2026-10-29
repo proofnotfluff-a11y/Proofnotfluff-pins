@@ -1,7 +1,8 @@
 {
  "gate": "design",
- "round": 1,
- "at": "2026-10-28T23:21:34-05:00",
+ "round": 0,
+ "at": "2026-10-29T12:46:45-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
  "pass": true,
  "score": {
   "first": 5,
@@ -9,13 +10,15 @@
   "type": 5,
   "color": 5,
   "spacing": 4,
-  "polish": 5,
+  "polish": 4,
   "trust": 5,
-  "average": 4.86
+  "average": 4.71
  },
  "reasons": [
-  "round 0 checks: close panel headline and 'Answer your reviews.' now at headline size (landed); panel ends about y 950 and the host's raised hand clears it from 73.0 on (landed); dialog reads 'ACHR' at 8.7 and 'HVAC' at 16.5-18.0 (landed; 'The ACHR News' is the publication's name, so the capital T is correct)",
-  "71.0-end close panel: the PROOFNOTFLUFF tag sits about 8 px under the headline's descenders; add about 12 px of space between 'Plenty leave reviews hanging.' and the tag so the three lines breathe as in lesson 9",
-  "freshness: phone chat, slot machine and survey board share nothing with lesson 5 (street, levelup, dispatch) or lesson 6 (weather, register, hud); no scene to replace"
+  "3.5-9.0 s hook card, 43% and 'of contractors / don't answer / reviews': the cream glint or spark streak cuts through the letters again and again (3.5 '43%' half gone; 4.5 'contrac ors', 'revi ws'; 5.84 '4 3%', 'c/ contractors'; 6.0 'answ r'; 7.0; 8.5 'c ntractors', 'dr n't'; 9.0 'contractor s', 'ansv er', 'revie s'). On a phone it reads as broken text. Fire the sparks once, around the 43% only, at hook.43 (about 3.6 to 4.2 s), keep them out of the body lines, and draw them under the glyphs so no letter pixel is ever replaced",
+  "64.85-71.0 s close panel: 'Don't leave reviews hanging.' / PROOFNOTFLUFF chip / 'Send this to whoever runs your Google profile.' are stacked with about 8 px above the chip and 0 px below it (the chip's bottom edge touches the send line's cap height). Last round asked for about 12 px between the headline and the tag, and it has not landed. Set about 14 px headline to chip and about 12 px chip to send line, and keep the 'The next 1-star gets a reply.' line where it is. The panel can grow about 26 px downward, since it ends near y 945 and the host and dialog start at y 975",
+  "0.5-1.5 s close-up cut-in: the phone keyboard below y 1250 has blank cream keys with no letters, so it reads as an unfinished placeholder in the strip that shows between the Reel's UI bands. Give the keys letter glyphs in the grey label tone (QWERTY rows), or darken the keys to the floor's tone so the keyboard sits back as scenery",
+  "round-0 checks on this rebuild: cover (0.0) holds the hook card 'Got a 1-star review? Copy this reply.' with the REVIEWS CLINIC chip; the picture changes by 0.5 s (cut in to the close-up with Snow and the dialog) and again by 2.0 s (cut back out), so the 1 s and 3 s rule holds. The previous cut's 'acronym case' and 'reply scroll' faults have not come back: dialog reads 'That's The ACHR' at 10.56, and both example reviews stay in view above their reply bubbles at 30-42 s",
+  "freshness: chat in the truck, slot machine and high-score table share nothing with lesson 5 (street, dispatch board) or lesson 6 (weather map, register counter, price-note room); no scene to replace"
  ]
 }

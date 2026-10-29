@@ -1,16 +1,25 @@
 {
-  "gate": "buyer",
-  "round": 0,
-  "pass": true,
-  "score": {"stop": "yes", "send": "yes", "save": "yes", "follow_or_link": "yes"},
-  "reasons": [
-    "1. As an HVAC owner: a lot of contractors ignore reviews, homeowners care about them, so here are two short replies to copy (five-star and one-star), answer the bad ones calmly, take it offline, and spend ten minutes every Monday on it.",
-    "2. Stop: yes. The first frame is one big orange 43% with 'of contractors don't answer reviews' and a named source, and by 0:06 the voice promises 'two replies to copy'. That is a concrete payoff, not a tease.",
-    "3. Save: yes, the two replies are short enough to copy straight into Google. Send: yes, the close says who to send it to (whoever runs your Google profile) and that is a real person in my shop. Follow or link: yes, a soft check. 'Free tools for trade owners: link in bio' with no pitch in the video itself.",
-    "4. No hype, no fake urgency, no pitch. The 'one honest note' line (the survey doesn't prove a reply wins the job) is the reason I trust it. The AI voice is disclosed in the caption. 'Plenty of contractors leave reviews hanging. Don't be one.' (1:06.7) leans a little preachy but does not make me scroll.",
-    "5. Minor, not blocking: caption line 'Among the contractors surveyed: 45% answer reviews on third-party sites, 43% don't, 13% don't know.' adds to 101%; a sharp viewer may notice. Fix: append '(rounded)' after 'don't know'.",
-    "5b. Minor, not blocking: the hook says '43% of contractors don't answer reviews' while the stat is about third-party sites. Fine for a viewer; the caption states it precisely.",
-    "5c. Minor, not blocking: 'Reviews Clinic, Lesson 7' and 'ACHR News' mean nothing to a stranger; the caption already explains ACHR as an HVAC trade paper, so no change needed.",
-    "6. Trust: yes. Named source, sample size, date, an admitted limit, and plain replies a real owner would say."
-  ]
+ "gate": "buyer",
+ "round": 0,
+ "at": "2026-10-29T12:46:28-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+ "pass": true,
+ "score": {
+  "stop": "yes",
+  "send": "yes",
+  "save": "yes",
+  "follow_or_link": "yes"
+ },
+ "reasons": [
+  "1. As an HVAC owner, here's what it tells me: homeowners lean hard on reviews and a lot of contractors don't answer them, so here are a five-star reply and a one-star reply to copy. Answer the bad ones short and calm, take it offline, and spend ten minutes on reviews every Monday.",
+  "2. Stop: yes. The 0.8 s frame is a phone close-up with 'Got a 1-star review?', a 1-star card that says 'The tech showed up late.' and 'Copy this reply.' in the reply box. Every owner has had that review. The voice line 'Got a one-star review? Here's your reply to copy.' matches the screen and promises a concrete payoff, so it doesn't read as a tease.",
+  "3. Save: yes. Both replies are short enough to paste straight into Google, and the caption gives fill-in templates ([job], [fell short]). Send: yes. The close names a real person to send it to (whoever runs your Google profile) and gives a reason (so the next one-star gets a reply). Follow or link: yes, a soft check. The only ask is 'Free tools for trade owners: link in bio' in the caption, and there's no pitch in the video.",
+  "4. No hype, no fake urgency, no pitch, and it doesn't feel like AI slop. 'One honest note... It doesn't prove a reply wins the job' (0:52.8 to 1:00.1) is what earns my trust. The AI voice is disclosed (aiLabel true). Nothing here would make me scroll past.",
+  "4b. Earlier faults stay fixed. The preachy 'Don't be one' line is gone, and the close is now 'Don't leave reviews hanging.' (1:04.3). The caption's 45/43/13 split now carries '(rounded)'. The 43% is now voiced precisely as 'third-party sites'.",
+  "5. Minor, not blocking: the one-star reply the hook promises doesn't arrive until 0:37.5. Before it come about 24 s of stats (0:03.7 to 0:27.7) and then the five-star reply first. An impatient viewer could drop in that stretch. Fix for a future cut: give the one-star reply first, or cut the stats to one line before the replies.",
+  "5b. Minor, not blocking: 'That's The ACHR News.' (0:10.0) is clipped and means nothing to a stranger by voice alone. Fix: 'That's from The ACHR News, an HVAC trade paper.' (The caption already explains it.)",
+  "5c. Minor, not blocking: 'Ninety-one percent of the four hundred homeowners' (0:12.2) says 'the' as if those homeowners were already introduced, but the line before talked about contractors. Fix: 'In the same survey, ninety-one percent of four hundred homeowners...'",
+  "5d. Minor, not blocking: 'So if you answer reviews on those sites, you're with the forty-five percent who do.' (0:22.9) lands flat and doesn't tell me why it matters. Fine to keep, but a tighter cut could drop it.",
+  "6. Trust: yes. It names the source and the sample size, the caption gives the date (Sept 2024), it admits the data's limit, and the replies sound like something a real shop owner would say."
+ ]
 }

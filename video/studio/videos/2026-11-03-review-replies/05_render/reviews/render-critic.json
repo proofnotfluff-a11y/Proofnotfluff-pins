@@ -1,15 +1,27 @@
 {
-  "gate": "render-critic",
-  "round": 1,
-  "pass": true,
-  "score": {"faults": 0},
-  "faults": [],
-  "reasons": [
-    "Round 0 faults: both gone. 36.0 to 38.0 s five-star chat: review '5 stars. Fixed our furnace fast.' stays fully visible at y 405 to 510 with both reply bubbles below it, no scroll (f16 at 36.45, timeline 36.0 to 37.5). 44.0 to 45.5 s one-star chat: '1 star. The tech showed up late.' fully visible at y 405 to 510 with both reply bubbles below, no scroll (f20 at 44.34, timeline 44.0 to 45.0).",
-    "Hook: PASS, '43%' and 'of contractors don't answer reviews.' on screen from 0.0 s (frame-0s, frame-0.8s, frame-2.0s).",
-    "Numbers: PASS, 400 label at 12.0 (said 12.05), 91% reels settle 14.0 (said 13.65), 56% reels 18.5 to 19.0 with '56% look on Google' (said 18.59), 45% row 22.5 (said 22.66), 43% row 26.5 (said 26.26), 13% row 28.0 (said 28.06), '10 min' banner 62.5 and '10 minutes' bubble 63.0 (said 63.10).",
-    "Layout: PASS, settled scenes keep words inside y 270 to 1250 and left of x 930 (end card longest line ends at x 929, measured); nothing hidden under the host or the speech bubble. Minor, not a fault: the 'Every Monday. 10 minutes.' bubble (63 to 66.5 s) sits flush on the chat input bar with no bottom gap, but all its words are visible.",
-    "Audio end: PASS, last word 'reviews.' ends 74.18 s, video 76.07 s, tail after 75.5 s peaks at -27.9 dB (music only), nothing cut mid-word.",
-    "Small text and flash: PASS, smallest text (source lines and table rows, about 26 px caps) readable on a phone; transitions at 8.0, 21.0, 30.0, 45.5, 55.0, 66.5 are single events, no flashing above 3 per second."
-  ]
+ "gate": "render-critic",
+ "round": 0,
+ "at": "2026-10-29T12:48:12-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+ "pass": false,
+ "score": {
+  "faults": 1
+ },
+ "faults": [
+  {
+   "kind": "cutoff",
+   "at": 0.5,
+   "text": "EXAMPLE",
+   "scene": "opening phone close-up (0.50 to 1.83 s, cut in with Snow)",
+   "what": "The orange EXAMPLE chip on the 1-star review card sits past the right safe line for the whole close-up. Measured on the mp4: the letters run x 786 to 935 and the chip box x 754 to 967, so it crosses x 930 by 5 px (text) and 37 px (box). On a phone it lands under the platform's right-side buttons. Moving the chip about 40 px left (box right edge 925 or less) clears it. The send '+' button at x 888 to 978 is an icon with no words, so it is not a fault."
+  }
+ ],
+ "reasons": [
+  "Earlier round: render-critic.json (round 1 of the previous cut) listed no open faults; its round-0 chat-scroll faults are still gone. The 36 s five-star chat and the 44 s one-star chat keep the review line and both reply bubbles fully visible (timeline 35.0 to 42.5).",
+  "1 Hook: PASS. The hook text 'Got a 1-star review? Copy this reply.' with '1-star' in large type is on screen from 0.0 s (frame-0s, frame-0.8s close-up header, frame-2.0s). The REVIEWS CLINIC chip shows on the cover. The 43% card replaces the hook at 3.5 to 4.0 s as the voice says 'Forty-three' (3.68 s).",
+  "2 Numbers: PASS. 43%: said 3.68, card from about 3.6. 91%: said 12.18, reels settle by 12.5. 400: said 13.38, '400 homeowners, 2024' at 13.5. 56%: said 18.98, reels landing at 19.0, settled 19.5 with '56% look on Google'. 45%: said 25.77, '1ST YES 45%' row at 26.0. Ten minutes: said 60.62, 'MON: reviews, 10 min' banner at 60.0 and 'Every Monday. 10 minutes.' bubble at 60.5. The five-star, one-star and 1-star lines (28.2, 35.9, 69.05) each match on-screen text.",
+  "3 Layout: FAIL, 1 fault (EXAMPLE chip in the opening close-up, above). Everything else that has settled stays inside y 270 to 1250 and left of x 930. Measured: table SHARE/DO columns end at x 915, the end slot's 'Send this to whoever runs your Google profile.' ends at x 929, and the five-star blue bubble ends at x 845. The 'NEVER' overflow at 50.5 s is mid slide-in and has settled by 51.0 s. Nothing is hidden under the host or the speech bubble. The close-up keyboard below y 1250 has no words.",
+  "4 Audio end: PASS. The last word 'reply.' ends at 70.47 s and the video runs 73.37 s. After that only music remains (max -14 dB at 70.6 to 71.6 s, fading to -27.8 dB by 72.6 s). No word is cut off.",
+  "5 Small text and flash: PASS. The smallest text (source lines such as 'ACHR News survey, 2024' and table rows, about 26 px caps) reads on a phone. The glint on the 43% card runs once every 1.4 s for about 0.57 s (measured 3.7, 4.37, 5.77, 7.17, 8.57 s), so it never makes letters unreadable for long and is well under 3 flashes per second. The opening cuts (0.5 s in, 1.83 s out, 3.5 s hook change) and the transitions at 22.5, 27.5, 43.0, 52.5 and 64.0 s are single events."
+ ]
 }

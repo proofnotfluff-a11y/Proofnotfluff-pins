@@ -1555,7 +1555,7 @@ HOOK = {"first_change_by": 1.0, "changes_in": 3.0, "changes_min": 2, "host_by": 
 # moment (no percent, no source, no call-out), has no tail after the answer, and puts the send line on the end card.
 V2 = {"min_seconds": 40.0, "max_seconds": 55.0, "words": (100, 135)}
 V2_TAIL = [(r"(?i)\bpart people skip\b", "the turn line"), (r"(?i)\bhonest note\b", "a spoken honest note"),
-           (r"(?i)\b(send|save) this\b", "a spoken send or save line"), (r"(?i)\b(like|follow|subscribe|comment)\b", "a spoken like, follow or comment ask")]
+           (r"(?i)\b(send|save) this\b", "a spoken send or save line"), (r"(?i)\b(like and (follow|subscribe)|follow (us|me|for)|subscribe|comment (below|yes|\w+ below)|drop a comment)\b", "a spoken like, follow or comment ask")]
 V2_CALLOUT = re.compile(r"(?i)^(trade|hvac|plumbing|roofing|electrical|contractor|home service|small business)?\s*(owners?|pros|contractors|plumbers|electricians|roofers),")
 V2_SOURCEWORDS = {"percent", "percentage", "study", "survey", "report", "data", "according"}
 

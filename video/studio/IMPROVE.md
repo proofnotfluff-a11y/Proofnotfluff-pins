@@ -12,10 +12,19 @@ The lab (Tue, Thu, Sat) ranks this list from its benchmark against _shared/style
 ## Backlog (most promising first)
 000. End card: the last 3 to 5 s show the ProofNotFluff lockup and proofnotfluff.com, music only (Jake Van Clief's
    voice-driven-animation end card; the buyer gate answered follow_or_link "no" on lessons 1 and 8).
-00a. Hook motion: the picture changes within 1 s and twice in the first 3 s, host on screen by 3 s (lesson 9 holds one
-   card 0 to 7.6 s; style board 01).
-00b. Type floor in `lint`: spoken words 44 px, labels 36 px at 1080 wide (lesson 9 runs about 20 to 27 px).
-00c. Length in `lint`: fail a lesson over 75 s (6 of 9 lessons run 76 to 87 s).
+00b. Type floor in `lint` (now the top item: since Oct 29 the design gate caps type at 4 on every lesson for it; dialog
+   words measure about 24 px cap height): spoken words 44 px, labels 36 px at 1080 wide (lesson 9 runs about 20 to 27 px).
+00e. Trim each voice take's silent tail to about 0.3 to 0.5 s in the voice pipeline: lesson 3's take 5 left a 1.39 s
+   tail (1.71 s of dead air at 59.9 s) and read 147 wpm on file length though it was spoken at 161; lesson 5's take 6
+   reads 148 on the file and 155 spoken. The pace check measures the file, so a long tail is a false slow flag.
+00f. End card holds 3 s: `cues` adds 2.9 s after the last word but the card drops 0.4 s after it, so it holds 2.3 to 2.5 s.
+   The style-board design gate caps polish at 4 for that on every lesson (lessons 6, 7, 8 on Oct 29).
+00g. Lint the on-screen hook hold (2.5 to 4.0 s) and the segment name on screen: two lessons failed the script gate on
+   these on Oct 29; lint does not check them.
+00h. Variety lint looks back two lessons only; the design gate caught set repeats three to four lessons back (shared
+   drawer-shop set, cream note sheet, flaps on lesson 9 next to lesson 8). Look back four.
+00i. qa 'frozen' window: it stops at the close cue, not the end card, so the close is never checked (two golden gates
+   flagged it Oct 29). Use the end card start.
 00d. Fill the frame: y 1250 to 1600 is bare floor in most rooms (style board 04 to 06); set dressing or a lower band
    edge there, and a bigger host.
 00. Motion: 60 fps renders (double render time) for smoother slides; Snow walk-ins, a point-at-board pose and a reaction
@@ -36,6 +45,12 @@ The lab (Tue, Thu, Sat) ranks this list from its benchmark against _shared/style
 12. Visual: a seasonal touch per week (snow outside the half-built house in winter, leaves in fall).
 
 ## Done (newest first: date, item, what changed, proof)
+- 2026-10-29 (Todd: "get this fixed today"): hook motion (00a) and the 75 s cap (00c). anim.py `hook` measures the
+  first 3 s (a change = 8% or more of the frame, first change by 1.0 s, two by 3 s, host by 3 s) and the spoken hook
+  (9 to 12 words, said by 3.6 s); `lint` runs it and `check` fails over 75 s; scene contract, looks and template carry
+  the rule. Proof: all seven waiting lessons failed it before; rebuilds pass it: lesson 3 (changes 0.8, 2.07 s; 74.6 s,
+  re-queued), lesson 7 (0.53, 1.87; 74.76 s), lesson 8 (0.8, 2.33; 73.28 s), lesson 4 (0.53, 1.93; 74.45 s), lesson 2
+  (0.67, 1.87; 72.0 s), lesson 6 (0.8, 2.6; 74.51 s). Gate results per lesson in their reviews/ on lab/hooks-<slug>.
 - 2026-10-29 (daily run): end card (backlog 000). player.js draws a plum plate that drops in on whole pixels 0.35 s after
   the last word: ProofNotFluff, proofnotfluff.com (underline draws on), "Lessons for trade owners", Snow waving on a floor
   strip, a corner twinkle every 8 frames; host and dialog step out, lint counts only the card's words. `cues` tail 1.9 s

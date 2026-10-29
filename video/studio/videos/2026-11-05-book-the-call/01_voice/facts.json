@@ -1,0 +1,69 @@
+{
+ "about": "Every number this video shows or says, with its source. From video/studio/research/runs/2026-10-28-trades-insights.md (bank lesson 1, 'Book the call, don't just answer it'); every page below re-read with WebFetch on Oct 28, 2026, evening (America/Chicago), and only what each page says is used.",
+ "servicetitan": {
+  "title": "The Profile of a Top Performer: Four Behaviors That Set the Top 10% of Contractors Apart",
+  "publisher": "ServiceTitan",
+  "published": "May 19, 2026",
+  "url": "https://www.servicetitan.com/toolbox/state-of-the-trades/trends/top-performer-profile",
+  "read": "Oct 28, 2026",
+  "topPct": 10,
+  "topPercentile": 90,
+  "topDefinition": "Top performers were defined as contractors in the 90th percentile of revenue within their trade and market segment.",
+  "topBookPct": 62,
+  "restBookPct": 39,
+  "gapPts": 23,
+  "quote": "Top performers book 62% of their inbound lead calls. The rest average 39%.",
+  "gapQuote": "That's a 23-point gap, and it sits at the very front of the funnel, where every dollar of marketing spend is on the line.",
+  "marketingQuote": "If your booking rate is closer to 39% than 62%, the problem probably isn't your marketing.",
+  "firstMinuteQuote": "It's often what happens in the first 60 seconds after the phone rings.",
+  "firstSeconds": 60,
+  "trades": "HVAC, plumbing, electrical, garage door, water treatment, and other specialty trades",
+  "windowMonths": 12,
+  "windowEnd": "January 2026",
+  "windowEndYear": 2026,
+  "method": "internal analysis of aggregated, anonymized data from participating ServiceTitan customers, trailing 12 months through January 2026; no sample size given",
+  "caveat": "These metrics describe behaviors correlated with higher performance and do not imply that any specific product feature or practice caused the observed outcomes. Results reflect platform-wide patterns among participating ServiceTitan customers; individual results will vary.",
+  "scope": "The page does not mention CSRs or define a lead call beyond 'inbound lead calls'. Said 'lead calls', shown 'lead calls'; the comparison group is 'the rest', said 'everyone else' (as lesson 5)."
+ },
+ "invoca": {
+  "title": "The Invoca Home Services Lead Conversion Benchmarks Report 2026",
+  "publisher": "Invoca",
+  "published": "July 2026",
+  "url": "https://invoca.com/reports/the-invoca-home-services-lead-conversion-benchmarks-report-2026",
+  "read": "Oct 28, 2026",
+  "noAskPct": 55,
+  "quote": "55% of home services businesses don't ask leads to buy or book the job",
+  "answeredPct": 52,
+  "answeredQuote": "Across home services, 52% of calls are answered by a person.",
+  "method": "anonymized data from phone calls tracked and analyzed by the Invoca platform; averages across Invoca's customer base; nine home services sub-industries (carpeting, construction, doors and windows, home security, HVAC, lawn and trees, pest control, plumbing, restoration); time period and number of businesses not stated on the page",
+  "scope": "Said 'home service businesses' and 'don't ask leads to buy or book the job', never 'never ask' or 'most shops'. The 52% answered figure is context for the caption only; not said in the voice."
+ },
+ "servicetitanScripts": {
+  "title": "How HVAC Call Scripts Help Boost Booking Rates (With Examples)",
+  "publisher": "ServiceTitan",
+  "published": "Feb 13, 2024",
+  "url": "https://www.servicetitan.com/blog/hvac-call-scripts",
+  "read": "Oct 28, 2026",
+  "quote": "Are mornings or afternoons better for you?",
+  "where": "Expired Memberships Script, step 6 (optional); said 'One of ServiceTitan's sample scripts asks it this way', never 'ServiceTitan's scripts always' or 'ServiceTitan recommends two times'",
+  "choices": 2
+ },
+ "ask": {
+  "source": "OURS: advice, not a finding (the bank's call-close takeaway, reworded for a plumbing call; the job, the times and the days are examples)",
+  "line1": "Got it, water at the base of the heater.",
+  "line2": "We can take care of that.",
+  "line3": "I can get a tech there today at 2, or tomorrow at 9. Which works better?",
+  "lines": 3,
+  "timeA": 2,
+  "timeAShown": "today 2 pm (example)",
+  "timeB": 9,
+  "timeBShown": "tomorrow 9 am (example)",
+  "options": 2,
+  "note": "lines is the count of lines in the script itself; options is the count of time choices offered; neither is a finding"
+ },
+ "track": {
+  "source": "OURS: the weekly habit, not a finding",
+  "formula": "booking rate = booked calls / lead calls, every Friday",
+  "day": "Friday"
+ }
+}

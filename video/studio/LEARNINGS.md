@@ -8,6 +8,10 @@ The studio learns in three loops (Todd, Oct 28, 2026, 3:43 pm: "make this video 
    hook formulas in research/runs/2026-10-28-script-playbook.md; what wins gets written into _shared/voice.md.
 
 ## Rules learned (newest first)
+- Frame 0 is the cover: no sheen, sparks or reveal on it (the shine waits until 1 s).
+- The freeze check flags only truly stuck pictures (qa.freezeNoiseDb -70, Todd's word): small crisp motion counts.
+- A number's base stays the source's: "points of share" is not "points of all orders" (facts caught lesson 4).
+- A trade-specific sample says its trade in every caption ("1,000+ HVAC contractors").
 - Pixel art never scales by a fraction: the arcade camera holds still (a 1.03x push-in made the tile lines swell and thin,
   Todd saw it); offsets snap to whole low-res pixels. Motion lives in the elements, not the camera.
 - The close is one column with one left edge (x 120), the host small at the side; the send box is the one filled element.
@@ -45,3 +49,6 @@ The studio learns in three loops (Todd, Oct 28, 2026, 3:43 pm: "make this video 
 - 2026-10-28 markup-margin: QA loudness -15.1 (the limiter ate the gain) -> the mix adds the gap back and limits again.
   Design 4.57: formula box empty 3.5 s, close cards on three edges with the host's hand on one, a room prop through the
   title, a strike that hid the number it struck -> card lands at once, one left edge, host to the side, strike after 0.4 s.
+- 2026-10-28 three-prices round 1: facts (base of the 5 points) and captions (HVAC) second FAIL, design 4.43 and golden
+  (menu card over the citation) second FAIL -> all fixed, held for Todd's word.
+- 2026-10-28 first-reply on the new art: critic 0 faults, design 4.71, golden post as is (sheen on frame 0 fixed after).

@@ -5,7 +5,7 @@
   "id": "rooms",
   "level": 0.16
  },
- "duration": 86.36,
+ "duration": 85.7,
  "cues": [
   {
    "id": "hook",
@@ -17,7 +17,7 @@
    "text": "Frame 0: the hook card, fully settled. \"Top shops quote 3 prices\" / \"on 57% of home jobs.\" The 3 in the accent, sparks. Source small: ServiceTitan, 12 months to Jan 2026. Host and dialog hidden.",
    "t": 0.0,
    "word": 0,
-   "end": 5.96
+   "end": 5.94
   },
   {
    "id": "hook.build",
@@ -29,7 +29,7 @@
    "text": "Room: framing. A quote slip with one price (\"$\") slides in; a red X stamps it; three slots ($ / $$ / $$$) slide in beside it. Chip QUOTE CLINIC.",
    "t": 4.44,
    "word": 11,
-   "end": 5.96
+   "end": 5.94
   },
   {
    "id": "stakes",
@@ -39,9 +39,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: workshop. Panel SERVICETITAN: \"Good-better-best on home jobs\".",
-   "t": 5.96,
+   "t": 5.94,
    "word": 16,
-   "end": 18.58
+   "end": 18.6
   },
   {
    "id": "stakes.window",
@@ -53,7 +53,7 @@
    "text": "The window stamps on the panel: \"12 months to Jan 2026\"; the two bar tracks slide in, empty.",
    "t": 8.14,
    "word": 23,
-   "end": 9.58
+   "end": 9.62
   },
   {
    "id": "stakes.top",
@@ -63,7 +63,7 @@
    "shift": 0.0,
    "pin": null,
    "text": "Bar 1 label slides in: \"Top 10% by revenue\". Track glows.",
-   "t": 9.58,
+   "t": 9.62,
    "word": 27,
    "end": 12.38
   },
@@ -101,7 +101,7 @@
    "text": "Accent stamp under the bars: \"A habit you can copy.\" Snow points at it.",
    "t": 16.34,
    "word": 43,
-   "end": 18.58
+   "end": 18.6
   },
   {
    "id": "menu",
@@ -111,9 +111,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: blackboard. Chalk header: WHY THE MIDDLE GAINS. A big menu card chalks in under the study lines.",
-   "t": 18.58,
+   "t": 18.6,
    "word": 49,
-   "end": 37.08
+   "end": 36.36
   },
   {
    "id": "menu.study",
@@ -125,7 +125,7 @@
    "text": "Source in chalk: a restaurant in Germany, 7 years. Journal of Economic Behavior and Organization, 2016.",
    "t": 20.24,
    "word": 53,
-   "end": 22.32
+   "end": 22.24
   },
   {
    "id": "menu.german",
@@ -135,9 +135,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"88,000+ choices\" counts up beside \"7 years\".",
-   "t": 22.32,
+   "t": 22.24,
    "word": 59,
-   "end": 23.86
+   "end": 23.7
   },
   {
    "id": "menu.dishes",
@@ -147,9 +147,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A three-dish menu card chalks in: $ / $$ / $$$, three plates.",
-   "t": 23.86,
+   "t": 23.7,
    "word": 63,
-   "end": 25.28
+   "end": 25.16
   },
   {
    "id": "menu.lift",
@@ -159,21 +159,21 @@
    "shift": 0.0,
    "pin": null,
    "text": "The middle dish lifts and glows: it became the middle option.",
-   "t": 25.28,
+   "t": 25.16,
    "word": 67,
-   "end": 27.04
+   "end": 27.02
   },
   {
    "id": "menu.five",
    "level": 1,
-   "quote": "about five more points",
+   "quote": "about five points of",
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "\"+5 pts of orders, on average\" slams in under the middle dish as it is said.",
-   "t": 27.04,
+   "text": "\"+5 pts share, on average\" slams in under the middle dish as it is said.",
+   "t": 27.02,
    "word": 75,
-   "end": 30.46
+   "end": 29.8
   },
   {
    "id": "menu.pricey",
@@ -183,9 +183,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The top dish gets a NEW tag: \"Bigger when the new dish was the pricey one.\"",
-   "t": 30.46,
-   "word": 84,
-   "end": 33.82
+   "t": 29.8,
+   "word": 82,
+   "end": 33.18
   },
   {
    "id": "menu.above",
@@ -195,9 +195,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "An arrow from the top dish to the middle: \"Put a price above your middle.\"",
-   "t": 33.82,
-   "word": 96,
-   "end": 37.08
+   "t": 33.18,
+   "word": 94,
+   "end": 36.36
   },
   {
    "id": "card",
@@ -207,9 +207,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: workshop. The big quote card (example), three rows, the copyable artifact. Snow steps back (small) so nothing covers it.",
-   "t": 37.08,
-   "word": 108,
-   "end": 49.62
+   "t": 36.36,
+   "word": 106,
+   "end": 48.94
   },
   {
    "id": "card.good",
@@ -219,9 +219,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 1 GOOD ($): The job done right. Nothing extra.",
-   "t": 38.94,
-   "word": 113,
-   "end": 41.94
+   "t": 38.2,
+   "word": 111,
+   "end": 41.22
   },
   {
    "id": "card.better",
@@ -231,9 +231,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 2 BETTER ($$): What you'd pick for your own house. Marked as the middle.",
-   "t": 41.94,
-   "word": 121,
-   "end": 44.86
+   "t": 41.22,
+   "word": 119,
+   "end": 44.1
   },
   {
    "id": "card.best",
@@ -243,9 +243,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 3 BEST ($$$): Longer warranty. Faster start date. The full card holds big to the end of the take.",
-   "t": 44.86,
-   "word": 131,
-   "end": 49.62
+   "t": 44.1,
+   "word": 129,
+   "end": 48.94
   },
   {
    "id": "survey",
@@ -255,9 +255,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: garage. Header ONE MORE FROM THE DATA slams in on a dark band.",
-   "t": 49.62,
-   "word": 143,
-   "end": 76.18
+   "t": 48.94,
+   "word": 141,
+   "end": 75.46
   },
   {
    "id": "survey.more",
@@ -267,9 +267,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Chalk line: \"3 is not the ceiling.\"",
-   "t": 51.4,
-   "word": 149,
-   "end": 53.7
+   "t": 50.68,
+   "word": 147,
+   "end": 52.98
   },
   {
    "id": "survey.group",
@@ -279,9 +279,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Panel ACCA SURVEY: 1,000+ contractors, Contractor of the Future (ACHR News, 2026). Two empty bar tracks.",
-   "t": 53.7,
-   "word": 156,
-   "end": 55.58
+   "t": 52.98,
+   "word": 154,
+   "end": 54.86
   },
   {
    "id": "survey.n",
@@ -291,9 +291,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"1,000+ contractors\" lands on the panel.",
-   "t": 55.58,
-   "word": 163,
-   "end": 57.94
+   "t": 54.86,
+   "word": 161,
+   "end": 57.22
   },
   {
    "id": "survey.many",
@@ -303,9 +303,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The \"4+ options\" label and its empty track slide in.",
-   "t": 57.94,
-   "word": 167,
-   "end": 60.24
+   "t": 57.22,
+   "word": 165,
+   "end": 59.52
   },
   {
    "id": "survey.52",
@@ -315,9 +315,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The bar grows to 52% in the accent as it is said; 52% lands with sparks.",
-   "t": 60.24,
-   "word": 174,
-   "end": 62.46
+   "t": 59.52,
+   "word": 172,
+   "end": 61.72
   },
   {
    "id": "survey.few",
@@ -327,9 +327,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Bar \"1 to 3 options\" grows to 42% in grey; 42% lands.",
-   "t": 62.46,
-   "word": 179,
-   "end": 65.16
+   "t": 61.72,
+   "word": 177,
+   "end": 64.4
   },
   {
    "id": "survey.caveat",
@@ -339,9 +339,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A bracket groups \"1 to 3\" into one bar; caveat box: \"1 to 3 options: one group here.\"",
-   "t": 65.16,
-   "word": 184,
-   "end": 68.34
+   "t": 64.4,
+   "word": 182,
+   "end": 67.62
   },
   {
    "id": "survey.cant",
@@ -351,9 +351,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"It can't show 3 beats 1.\" stamps into the caveat box.",
-   "t": 68.34,
-   "word": 193,
-   "end": 71.32
+   "t": 67.62,
+   "word": 191,
+   "end": 70.58
   },
   {
    "id": "survey.yeses",
@@ -363,9 +363,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The header swaps to \"More choices, more yeses.\" big on the dark band. Snow checks his clipboard.",
-   "t": 71.32,
-   "word": 201,
-   "end": 74.76
+   "t": 70.58,
+   "word": 199,
+   "end": 74.04
   },
   {
    "id": "survey.start",
@@ -375,9 +375,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Start with 3.\" stamps under the header.",
-   "t": 74.76,
-   "word": 211,
-   "end": 76.18
+   "t": 74.04,
+   "word": 209,
+   "end": 75.46
   },
   {
    "id": "close",
@@ -387,9 +387,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: blackboard. Chalk: \"1 price: yes or no.\" slams in as said.",
-   "t": 76.18,
-   "word": 214,
-   "end": 86.36
+   "t": 75.46,
+   "word": 212,
+   "end": 85.7
   },
   {
    "id": "close.choice",
@@ -399,9 +399,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"3 prices: a choice.\" slams in, in the accent.",
-   "t": 78.66,
-   "word": 222,
-   "end": 80.94
+   "t": 77.94,
+   "word": 220,
+   "end": 80.24
   },
   {
    "id": "close.send",
@@ -411,9 +411,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "ProofNotFluff plate slams on; send line: \"Send this to whoever writes your quotes.\"",
-   "t": 80.94,
-   "word": 227,
-   "end": 82.62
+   "t": 80.24,
+   "word": 225,
+   "end": 81.98
   },
   {
    "id": "close.next",
@@ -423,9 +423,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "An accent line sweeps under the send line; sparks; Snow waves.",
-   "t": 82.62,
-   "word": 234,
-   "end": 86.36
+   "t": 81.98,
+   "word": 232,
+   "end": 85.7
   }
  ]
 }

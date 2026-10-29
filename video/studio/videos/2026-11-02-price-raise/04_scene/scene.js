@@ -2,7 +2,7 @@
 // 03_cues/cues.md. Numbers only from k.data (brief.md -> data.js). Every time comes from a cue start (k.S) or a spoken word
 // (wordT), so a re-voiced take moves the picture with it.
 /* Worlds (brief.md): hook, stakes, caveat = the weather map (PRICE REPORT, a sun per trade); why = the register with the
-   HUD's coins; note = the price note on a desk, drawn here (a ticking clock, a steaming mug, a letterhead sheet);
+   HUD's coins; note = the chat (k.sets.chat): the note goes out as three text messages from the truck;
    close = the calendar (NEXT MONTH, the note going out). */
 const INK = '#120D14', CREAM = '#FFF7EA', SAND = '#E6D3BC', GOLD = '#F7C873', ORANGE = '#F2A541', RED = '#E2633B', TEAL = '#6FB7A8', GREY = '#9AA0AD';
 const hash = (n) => { const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
@@ -84,45 +84,77 @@ const allTrades = (n) => [['hvac', 'sun', -1, `HVAC ${n.hvac.shown}`], ['elec', 
 const SRC = (n) => `Jobber, ${n.owners.shown} home service owners, Dec ${n.field.shown}`;
 
 // ================================================================================================================
-// the desk (note): an office wall with a ticking clock, a desk, a steaming mug; the scene puts the letterhead on top
-const desk = (k) => {
-  const d = px(k), {P, DOT, disc, line, F, T} = d;
-  P(0, 0, 360, 286, '#2F5A4A'); for (let x = 0; x < 360; x += 16) { P(x, 0, 8, 286, '#24453A'); DOT(x + 4, 20 + (x % 7) * 9, '#3E7A62'); }
-  P(0, 236, 360, 50, '#5A3A22'); P(0, 236, 360, 2, '#8C5A33'); for (let x = 0; x < 360; x += 30) P(x, 238, 1, 48, '#4A2E1B');
-  // the clock on the wall right of the sheet: the second hand steps every half second
-  const cx = 334, cy = 104; disc(cx, cy, 15, INK); disc(cx, cy, 14, '#B07A47'); disc(cx, cy, 12, CREAM);
-  for (let s = 0; s < 12; s++) { const a = s * Math.PI / 6; DOT(cx + Math.round(Math.cos(a) * 10), cy + Math.round(Math.sin(a) * 10), s % 3 ? GREY : INK); }
-  const sa = (Math.floor(T * 2) % 120) * Math.PI / 60 - Math.PI / 2; line(cx, cy, cx + Math.round(Math.cos(sa) * 10), cy + Math.round(Math.sin(sa) * 10), RED);
-  line(cx, cy, cx, cy - 7, INK); line(cx, cy, cx + 5, cy, INK); DOT(cx, cy, INK);
-  // the desk top and its front
-  P(0, 286, 360, 8, '#D9A066'); P(0, 286, 360, 1, '#F7C873'); P(0, 293, 360, 2, '#6B4226'); P(0, 295, 360, 122, '#8C5A33');
-  for (let x = 12; x < 360; x += 80) { P(x, 306, 64, 100, '#6B4226'); P(x, 306, 64, 1, '#B07A47'); P(x + 28, 352, 8, 3, '#F7C873'); }
-  // the mug at the desk's right edge, steam rising on whole pixels every 3 frames
-  const mx = 326; P(mx - 1, 266, 20, 21, INK); P(mx, 267, 18, 19, RED); P(mx, 267, 18, 2, '#F09A9A'); P(mx + 14, 269, 4, 17, '#7A3442'); P(mx + 18, 271, 5, 9, INK); P(mx + 18, 273, 3, 5, RED);
-  for (let i = 0; i < 3; i++) for (let j = 0; j < 6; j++) { const y = 262 - ((Math.floor(F / 3) + j * 4 + i * 5) % 24); if (y > 238 && y < 263) DOT(mx + 4 + i * 5 + (Math.floor((y + i) / 4) % 2), y, '#C9CCD3'); }
-  // the floor
-  P(0, 417, 360, 223, '#4A2E1B'); for (let y = 417, r = 0; y < 640; y += 10, r++) { P(0, y, 360, 1, '#6B4226'); for (let x = (r * 37) % 60; x < 360; x += 60) P(x, y + 1, 1, 9, '#2B2033'); }
+// our own copy of the player's dialog box (same box, tail, name tag and typing) for one stretch where the player's
+// paging would open on the note's last word: it shows only the words said from t0 on, until t1
+const speechOwn = (k, T, t0, t1) => {
+  const ws = WS().filter((w) => w.start >= t0 && w.start < t1);
+  if (!ws.length) return;
+  const x = 372, y = 1046, w = 560, h = 190, pad = 30, maxX = x + w - pad, o = {size: 39, weight: 600, font: 'body'};
+  k.shape(k.rectPts(x + 10, y + 10, w, h, 0), {fill: '#120D14', line: false, alpha: 0.6});
+  k.shape(k.rectPts(x, y, w, h, 0), {fill: 'bubble', stroke: null, lw: 2});
+  k.shape(k.rectPts(x + 6, y + 6, w - 12, h - 12, 0), {stroke: 'bubbleText', lw: 6, line: false});
+  k.shape([[x + 2, y + h - 70], [x - 40, y + h - 40], [x + 2, y + h - 30]], {fill: 'bubble', line: false});
+  k.chip(window.SCENE.host_name || 'Snow', x + 24, y - 34, {size: 30, fill: 'tag', color: 'tagText'});
+  const sp = k.measure(' ', o); let cx = x + pad, cy = y + 26;
+  ws.forEach((wd) => {
+    const ww = k.measure(wd.w, o);
+    if (cx + ww > maxX && cx > x + pad) { cx = x + pad; cy += Math.round(39 * 1.18); }
+    if (T >= wd.start) k.text(wd.w, cx, cy, Object.assign({}, o, {color: T < wd.end + 0.05 ? 'tag' : 'bubbleText'}));
+    cx += ww + sp;
+  });
+  if ((T * 2) % 1 < 0.5) k.shape([[x + w - 52, y + h - 40], [x + w - 28, y + h - 40], [x + w - 40, y + h - 26]], {fill: 'bubbleText', line: false});
 };
 
 // ================================================================================================================
 // the close-up (hook, from "raised" to "Did"): the weather map drawn at three times, the HVAC sun big in the middle of
-// the frame (whole pixels: one low-res pixel = 9 frame units), a warm front of big red domes sweeping the land; the
-// sun's own label is not drawn at that size (it would run off the frame): ours sits beside the sun at heading size. The
-// claim and its source ride on a title plate up top, held from the cover.
-const SUN_AT = [470, 860];   /* where the HVAC sun lands on screen in the close-up */
-const sunClose = (k, t0) => {
+// the frame (whole pixels: one low-res pixel = 9 frame units). The map's land runs out to the title plate's left edge
+// (x 42), so the shot has one left edge. A warm front of big bright-red domes sweeps the land the whole time (our own,
+// drawn at the zoom; the set's thin maroon one read as a crack). The sun's own label is not drawn at that size (it would
+// run off the frame): ours sits beside the sun at heading size. The claim and its source ride on a title plate up top,
+// the source well clear of the plate's inner border, and the segment tag at its top right.
+const SUN_AT = [483, 860];   /* where the HVAC sun lands on screen in the close-up (the map's blue edge then sits at x 42) */
+const warmFront = (d, x) => {
+  for (let y = 82; y < 232; y++) { const fx = x + Math.round(5 * Math.sin((y - 82) * 0.06)); d.P(fx - 1, y, 1, 1, '#7A3442'); d.P(fx, y, 3, 1, RED); }
+  for (let yc = 94; yc < 232; yc += 32) {
+    const fx = x + Math.round(5 * Math.sin((yc - 82) * 0.06)) + 3;
+    [[10, INK], [9, ORANGE], [7, RED]].forEach(([r, c]) => { for (let j = -r; j <= r; j++) d.P(fx, yc + j, Math.round(Math.sqrt(r * r - j * j)) + (r === 10 ? 1 : 0), 1, c); });
+  }
+};
+const sunClose = (k, t0, t1) => {
   const n = k.data.numbers, d = px(k), c = k.ctx, sx = (14 + ICONS.hvac[0] * 332) * 3, sy = (82 + ICONS.hvac[1] * 150) * 3;
   c.save(); c.translate(SUN_AT[0], SUN_AT[1]); c.scale(3, 3); c.translate(-Math.round(sx / 3) * 3, -Math.round(sy / 3) * 3);
-  mute(k, () => true, () => k.sets.weather({title: 'PRICE REPORT', fronts: [{kind: 'warm', at: t0 + 0.05, dur: 1.6, x0: -0.02, x1: 0.42}],
-    icons: [{kind: 'sun', x: ICONS.hvac[0], y: ICONS.hvac[1], at: -1}], months: []}));
+  mute(k, () => true, () => k.sets.weather({title: 'PRICE REPORT', fronts: [], icons: [{kind: 'sun', x: ICONS.hvac[0], y: ICONS.hvac[1], at: -1}], months: []}));
+  /* the land runs left past the map's own edge (same dither phase), with the map's ink and blue rim moved out with it */
+  d.P(-13, 79, 1, 156, INK); d.P(-12, 80, 2, 154, '#3B82C4');
+  d.P(-10, 82, 24, 150, '#3E7A62'); d.dith(-10, 82, 24, 150, '#2F5A4A');
+  /* the front: linear, so it is still moving on the cut back out */
+  const p = clamp((k.T - t0) / Math.max(0.3, t1 - t0));
+  d.clip(-10, 82, 346, 150, () => warmFront(d, Math.round(-24 + 136 * p)));
+  /* the sun on top of the front */
+  const x0 = Math.round(14 + ICONS.hvac[0] * 332), y0 = Math.round(82 + ICONS.hvac[1] * 150), ro = Math.floor(k.T * 2) % 2;
+  d.disc(x0, y0, 7, '#B07A47'); d.disc(x0, y0, 6, ORANGE); d.disc(x0 - 1, y0 - 1, 4, GOLD);
+  for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4 + (ro ? Math.PI / 8 : 0); d.P(x0 + Math.round(Math.cos(a) * 10), y0 + Math.round(Math.sin(a) * 10), 2, 2, GOLD); }
   c.restore();
   k.text('HVAC', SUN_AT[0] + 120, SUN_AT[1] - 36, {size: 66, color: CREAM, drop: INK});
-  /* the title plate: the claim and its source */
-  d.win(14, 84, 332, 126, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
+  /* the title plate: the claim and its source (the source's descenders end about 31 px above the inner border) */
+  d.win(14, 84, 332, 140, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
+  k.chip('Pricing Clinic', 640, 276, {size: 30, fill: 'accent', color: INK});
   k.text(n.hvac.shown, 72, 276, {size: 132, color: 'accent', drop: INK});
   k.text('of HVAC companies raised', 72, 432, {size: 66, color: CREAM, drop: INK});
   k.text('prices last year.', 72, 506, {size: 66, color: CREAM, drop: INK});
   k.text(SRC(n), 72, 590, {size: 30, color: SAND});
+};
+
+// the weather desk under the map on the wide hook (the cover's lower third is no longer an empty floor): a presenter's
+// desk with a sun emblem, no words. Snow stands in front of it once the hook cuts in.
+const studioDesk = (k) => {
+  const d = px(k), {P, disc} = d;
+  P(22, 346, 316, 2, INK); P(22, 348, 316, 5, '#D9A066'); P(22, 348, 316, 1, GOLD); P(22, 353, 316, 2, '#6B4226');
+  P(28, 355, 304, 60, INK); P(29, 355, 302, 59, '#7A3442'); P(29, 355, 34, 59, '#5A2A35'); P(297, 355, 34, 59, '#5A2A35');
+  P(36, 362, 288, 1, GOLD); P(36, 406, 288, 1, GOLD);
+  disc(180, 384, 12, '#B07A47'); disc(180, 384, 11, ORANGE); disc(179, 383, 7, GOLD);
+  const ro = Math.floor(k.T * 2) % 2;
+  for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4 + (ro ? Math.PI / 8 : 0); P(180 + Math.round(Math.cos(a) * 17) - 1, 384 + Math.round(Math.sin(a) * 17) - 1, 3, 3, GOLD); }
 };
 
 window.SCENE = {
@@ -134,35 +166,41 @@ window.SCENE = {
   trauma: {'note.promise': 0.8},
   sections: {
     // ---- hook: three shots (IMPROVE 00a: the picture changes by 1 s and twice by 3 s, Snow on by 1 s). The cover: the
-    // weather map, the 83% and its sentence, the source (frame 0, held still to "raised"); no host or dialog. Cut in on
-    // "raised" to the close-up: the map at three times on the HVAC sun, a warm front of big red domes sweeping the land, the
-    // claim on a title plate up top, Snow big at the lower left. Cut back out on "Did" to the whole map: the front finishes,
-    // the sun's label reads HVAC 83%, the "?" cloud asks about your shop, and on "Here's the note" the panel clears.
+    // weather map, the 83% big and centered in the open land, its sentence and source in the panel, PRICING CLINIC on the
+    // panel's edge, the weather desk below (frame 0, held still to "raised"); no host or dialog. Cut in on "raised" to the
+    // close-up: the map at three times on the HVAC sun, a bright warm front sweeping the land, the claim on a title plate up
+    // top, Snow big at the lower left. Cut back out on "Did" to the whole map: the front finishes, the sun's label reads
+    // HVAC 83%, the "?" cloud asks about your shop, and just before "Here's the note" the panel clears.
     hook: (k, T) => {
-      const n = k.data.numbers, d = px(k), tYou = k.S('hook.you'), tNote = k.S('hook.note');
+      const n = k.data.numbers, d = px(k), tYou = k.S('hook.you');
+      /* the panel clears about 0.15 s before "Here's" (the on-screen hook holds under 4.0 s) */
+      const tNote = wordT(k, 'hook.note', /^Here/i, 0) - 0.15;
       const tIn = Math.min(0.8, Math.max(0.45, wordT(k, 'hook', /^raised/i, 0.65))), tOut = Math.min(2.6, wordT(k, 'hook.you', /^Did/i, 2.5));
       if (T >= tIn && T < tOut) {
-        sunClose(k, tIn);
+        sunClose(k, tIn, tOut);
         return {hostPose: k.talking() ? 'talk' : 'point', hostScale: 0.8, hostX: 170};
       }
       weatherMap(k, {noTitle: true, panelY: 236,
         fronts: [{kind: 'warm', at: tIn + 0.1, dur: 2.2, x0: -0.05, x1: 1.05}],
         icons: [['hvac', 'sun', -1, T >= tOut ? `HVAC ${n.hvac.shown}` : 'HVAC'], ['shop', 'cloud', tYou, 'YOUR SHOP?']],
       });
+      studioDesk(k);
       const [sx, sy] = [(14 + ICONS.hvac[0] * 332) * 3, (82 + ICONS.hvac[1] * 150) * 3];
       k.burst(sx, sy, tOut, {n: 18, r: 220});
       const pf = d.fr(tOut); if (pf >= 0 && pf < 12) { const g = 8 + pf * 2, cx = sx / 3, cy = sy / 3; d.P(cx - g, cy - g, 2 * g + 1, 1, CREAM); d.P(cx - g, cy + g, 2 * g + 1, 1, CREAM); d.P(cx - g, cy - g, 1, 2 * g + 1, CREAM); d.P(cx + g, cy - g, 1, 2 * g + 1, CREAM); }
-      /* the cover, settled on frame 0: the 83% big in the map's open lower left, its sentence directly under it on the
-         same left edge (one read); on "Here's the note" the panel clears to the one headline */
-      k.text(n.hvac.shown, 72, 424, {size: 264, color: 'accent', drop: INK});
+      /* the cover, settled on frame 0: the 83% about 560 px wide, centered in the map's open land left of the lake (the one
+         dominant number); its sentence in the panel under it, the block centered in the panel; the segment tag on the
+         panel's top edge; on "Here's the note" the panel clears to the one headline, centered */
+      k.text(n.hvac.shown, 370, 350, {size: 396, color: 'accent', drop: INK, align: 'center'});
+      k.chip('Pricing Clinic', 668, 684, {size: 30, fill: 'accent', color: INK});
       if (T < tNote) {
-        k.text('of HVAC companies raised', 72, 726, {size: 66, color: CREAM, drop: INK});
-        k.text('prices last year.', 72, 800, {size: 66, color: CREAM, drop: INK});
-        k.text(SRC(n), 72, 900, {size: 30, color: SAND});
+        k.text('of HVAC companies raised', 72, 738, {size: 66, color: CREAM, drop: INK});
+        k.text('prices last year.', 72, 812, {size: 66, color: CREAM, drop: INK});
+        k.text(SRC(n), 72, 912, {size: 30, color: SAND});
       } else {
-        k.slam('The note that tells', 72, 744, tNote, {size: 66, color: 'accent', from: 0.5, drop: INK});
-        k.slam('your customers.', 72, 818, tNote + 0.15, {size: 66, color: CREAM, from: 0.5, drop: INK});
-        k.sweep(72, 900, 420, 6, tNote + 0.35, {color: 'accent'});
+        k.slam('The note that tells', 72, 762, tNote, {size: 66, color: 'accent', from: 0.5, drop: INK});
+        k.slam('your customers.', 72, 836, tNote + 0.15, {size: 66, color: CREAM, from: 0.5, drop: INK});
+        k.sweep(72, 918, 420, 6, tNote + 0.35, {color: 'accent'});
       }
       /* the cover frame has no host; Snow and the dialog box come in on the cut and stay */
       if (T < tIn) return {host: false, speech: false};
@@ -182,11 +220,16 @@ window.SCENE = {
       /* the panel: the headline first (the question, then the HVAC 83% and the trades), the source under it */
       const [hx, hy] = [(14 + ICONS.hvac[0] * 332 + 30) * 3, (82 + ICONS.hvac[1] * 150) * 3];
       k.burst(hx, hy, tAll + 0.1, {n: 12, r: 160});
-      if (T >= tAll) {
+      /* on "seventy-four" the big number swaps to 74% at the same size as the 83%, over its own label, and the HVAC line
+         drops under it */
+      if (T >= t74) {
+        k.slam(cnt(k, n.plumb, t74, {suffix: '%'}), 72, 798, t74, {size: 132, color: 'accent', from: 0.5, drop: INK});
+        k.slam('Plumbing, electrical, roofing', 300, 812, t74 + 0.1, {size: 39, color: CREAM, from: 0.4});
+        k.slam(`HVAC companies: ${n.hvac.shown}`, 300, 862, t74 + 0.3, {size: 39, color: GOLD, from: 0.4});
+      } else if (T >= tAll) {
         k.slam(cnt(k, n.hvac, tAll, {suffix: '%'}), 72, 798, tAll, {size: 132, color: 'accent', from: 0.5, drop: INK});
         k.slam('of HVAC companies did.', 300, 812, tAll + 0.3, {size: 39, color: CREAM, from: 0.4});
-        if (T >= t74) k.slam(`Plumbing, electrical, roofing: ${n.plumb.shown}`, 300, 862, t74, {size: 39, color: GOLD, from: 0.4});
-        else if (T >= tPl) k.slam('Plumbing, electrical, roofing', 300, 862, tPl, {size: 39, color: GOLD, from: 0.4});
+        if (T >= tPl) k.slam('Plumbing, electrical, roofing', 300, 862, tPl, {size: 39, color: GOLD, from: 0.4});
       } else k.slam('Who raised prices last year?', 72, 806, t0 + 0.4, {size: 66, color: CREAM, from: 0.5, drop: INK});
       const src = SRC(n), typed = src.slice(0, Math.max(0, d0(k, t0 + 0.2)));
       k.text(typed, 72, 932, {size: 30, color: SAND, lint: typed.length === src.length});
@@ -235,86 +278,117 @@ window.SCENE = {
         if (T >= tRep) k.sets.hud({coins: {at: tRep, dur: 1.0, n: 10, x0: 230, x1: 320, floor: 288}});
         if (T >= tAll) k.sets.hud({coins: {at: tAll, dur: 1.0, n: 10, x0: 230, x1: 320, floor: 288}});
       });
-      /* the plate on the wall above the receipt: what is being rung up */
-      d.win(16, 84, 198, 42, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
+      /* the plate on the wall above the receipt: what is being rung up. The heading at heading size, the source a size
+         step under it in the source sand (the pixel font has no body size under 30, so the step is made on the heading) */
+      d.win(16, 84, 198, 50, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
       if (T < tFed) {
-        k.slam('Why they raised prices', 66, 264, t0 + 0.2, {size: 39, color: CREAM, from: 0.4});
-        k.text('Jobber survey, reasons named', 66, 318, {size: 30, color: SAND});
+        k.slam('Why they raised prices', 66, 268, t0 + 0.2, {size: 66, color: CREAM, from: 0.4, drop: INK});
+        k.text('Jobber survey, reasons named', 66, 338, {size: 30, color: SAND});
       } else {
-        if (crew) k.slam('Crew pay: above average', 66, 264, tCrew, {size: 39, color: GOLD, from: 0.4});
-        else k.slam('Federal pay data', 66, 264, tFed, {size: 39, color: GOLD, from: 0.4});
-        k.text(`BLS, ${n.months.shown} months to June 2026`, 66, 318, {size: 30, color: SAND});
+        if (crew) k.slam('Crew pay beat all pay', 66, 268, tCrew, {size: 66, color: GOLD, from: 0.4, drop: INK});
+        else k.slam('Federal pay data', 66, 268, tFed, {size: 66, color: GOLD, from: 0.4, drop: INK});
+        k.text(`BLS, ${n.months.shown} months to June 2026`, 66, 338, {size: 30, color: SAND});
       }
       return host(k, k.live('why.federal') || k.live('why.crew') ? 'point' : (k.live('why') || k.live('why.labor') ? 'clip' : null));
     },
 
-    // ---- note: the price note types on a letterhead as it is said; the turn lights the last line and stamps it
+    // ---- note: the price note goes out as three text messages from the truck (k.sets.chat), each typed in its bubble on
+    // the words that say it, read ticks once it is said. On "Here's the part people skip" only the app header changes; on
+    // "That last line" the third bubble is ringed and swept in gold; PROMISE stamps beside it on the dash; on "Raise the
+    // next job" the rule lands as a card in the chat (the thread scrolls up for it).
     note: (k, T) => {
-      const d = px(k), t0 = k.S('note'), tSkip = k.S('note.skip'), tLast = k.S('note.last'), tProm = wordT(k, 'note.promise', /^promise/i), tNext = k.S('note.next');
-      desk(k);
-      // the letterhead slides up onto the desk; header band, EXAMPLE tag
-      const open = d.ease(t0 + 0.15, 8, 160), X = 16, Y = 84 + open, W = 296, H = 168;
-      d.clip(0, 0, 360, 286, () => {
-        d.P(X + 3, Y + 3, W, H, '#1A332B'); d.P(X - 1, Y - 1, W + 2, H + 2, INK); d.P(X, Y, W, H, CREAM); d.P(X + W - 3, Y, 3, H, SAND);
-        d.P(X, Y, W, 18, '#7A3442'); d.P(X, Y + 17, W, 1, INK);
-        const head = T >= tSkip ? 'THE PART PEOPLE SKIP' : 'YOUR PRICE NOTE (EXAMPLE)', hs = T >= tSkip ? tSkip : -1;
-        if (hs < 0 || d.fr(hs) >= 3) d.tx(head, X + 8, Y + 3, {color: hs >= 0 ? GOLD : CREAM, lint: open === 0}); else d.dith(X + 8, Y + 4, 200, 11, '#3D2E45');
-      });
-      const n = k.data.numbers, rows = [
+      const d = px(k), tSkip = k.S('note.skip'), tLast = k.S('note.last'), tProm = wordT(k, 'note.promise', /^promise/i), tNext = k.S('note.next');
+      const tThat = wordT(k, 'note.last', /^That/i, 0);
+      const WHO = 'Your customers';
+      mute(k, (s) => T >= tSkip && String(s).toUpperCase() === WHO.toUpperCase(), () => k.sets.chat({who: WHO, clock: '7:42', msgs: []}));
+      const sx = 102, sy = 90, sw2 = 188, cy0 = 130, cy1 = 296, F = d.F;
+      /* the header: from "Here's the part people skip" a maroon bar with the gold line over the contact */
+      if (T >= tSkip) {
+        d.P(sx, sy, sw2, 36, '#7A3442'); d.P(sx, sy + 36, sw2, 1, INK);
+        if (d.fr(tSkip) >= 3) d.tx('THE PART PEOPLE SKIP', sx + 8, sy + 12, {color: GOLD}); else d.dith(sx + 8, sy + 13, 128, 11, '#3D2E45');
+      }
+      /* a blinking cursor in the composer while the note is being written */
+      if (T < tNext && (F >> 3) % 2) d.P(sx + 8, cy1 + 6, 1, 9, '#2B2033');
+      /* the EXAMPLE tag on the dash, under the stamp's spot */
+      k.chip('Example', 36, 880, {size: 30, fill: RED, color: CREAM});
+      // the three bubbles (sent, blue, right side): laid out word by word so each word types on as it is said
+      const sp = k.measure(' ', {size: 39}), WRAP = 492;
+      const rows = [
         {text: 'Starting the first of next month, our rates go up.', at: k.S('note.l1')},
         {text: 'Our labor and material costs rose this year.', at: k.S('note.l2')},
         {text: "Anything you've already approved stays at the price we quoted.", at: k.S('note.l3')},
-      ];
-      let lastY = 0, last0 = 0;
-      if (open === 0) {
-        let y = (84 + 24) * 3;
-        rows.forEach((r, i) => {
-          const dim = T >= tLast && i < rows.length - 1;
-          k.shape(k.rectPts(72, y + 3, 33, 39, 0), {fill: T >= r.at ? (dim ? SAND : GOLD) : '#E6D3BC', line: false});
-          k.text(String(i + 1), 88, y + 3, {size: 39, color: INK, align: 'center'});
-          const times = spoken(r.at, r.text), words = r.text.split(/\s+/), sp = k.measure(' ', {size: 39});
-          let x = 126, yy = y, lines = 1;
-          if (i === rows.length - 1) last0 = y;
-          words.forEach((wd, j) => {
-            const ww = k.measure(wd, {size: 39});
-            if (x + ww > 900 && x > 126) { x = 126; yy += 45; lines++; }
-            const [ws, we] = times[j] || [1e9, 1e9];
-            if (T < ws) k.shape(k.rectPts(x, yy + 33, ww, 3, 0), {fill: '#E6D3BC', line: false});
-            else k.text(wd, x, yy, {size: 39, color: T < we + 0.05 ? '#B07A47' : (dim ? '#6B7080' : '#2B2033')});
-            x += ww + sp;
+      ].map((r) => {
+        const times = spoken(r.at, r.text), words = r.text.split(/\s+/), lay = []; let x = 0, line = 0, maxX = 0;
+        words.forEach((wd, j) => { const ww = k.measure(wd, {size: 39}); if (x > 0 && x + ww > WRAP) { x = 0; line++; } lay.push({wd, x, line, ww, t: times[j]}); x += ww + sp; maxX = Math.max(maxX, x - sp); });
+        const w = Math.ceil(maxX / 3) + 10, h = (line + 1) * 15 + 8, tShow = times[0][0] - 0.05, tRead = times[times.length - 1][1] + 0.3;
+        return {lay, w, h, tShow, tRead};
+      });
+      const items = rows.filter((r) => T >= r.tShow).map((r) => ({kind: 'msg', r, h: r.h}));
+      if (T >= tNext) items.push({kind: 'card', h: 42});
+      const all = rows.reduce((a, r) => a + r.h + 6, 4) + 48, room = cy1 - cy0 - 8;
+      const scroll = T >= tNext ? Math.round(Math.max(0, all - room) * eo(d.fr(tNext) / 8)) : 0;
+      let y = cy0 + 4 - scroll, y3 = null, x3 = 0, w3 = 0, h3 = 0;
+      d.clip(sx, cy0, sw2, cy1 - cy0, () => {
+        items.forEach((it, i) => {
+          if (it.kind === 'card') {
+            const cy = y + d.ease(tNext, 6, 12), cx = sx + 6, cw = sw2 - 12;
+            d.P(cx + 1, cy + 1, cw, 42, '#2B2033'); d.P(cx, cy, cw, 42, INK); d.P(cx + 1, cy + 1, cw - 2, 40, '#1B1420'); d.P(cx + 2, cy + 2, cw - 4, 1, GOLD); d.P(cx + 2, cy + 39, cw - 4, 1, GOLD);
+            if (cy + 6 >= cy0 - 10) k.slam('Raise the next job.', (sx + sw2 / 2) * 3, (cy + 6) * 3, tNext, {size: 39, color: GOLD, from: 0.4, align: 'center'});
+            if (T >= tNext + 0.4 && cy + 22 >= cy0 - 10) k.slam('Never an approved one.', (sx + sw2 / 2) * 3, (cy + 22) * 3, tNext + 0.4, {size: 39, color: CREAM, from: 0.4, align: 'center'});
+            y += it.h + 6; return;
+          }
+          const {r} = it, w = r.w, h = r.h, bx = sx + sw2 - 8 - w, by = y + d.ease(r.tShow, 4, 8);
+          const base = '#3B82C4', lo = '#253048', hi = '#87CEEB';
+          d.P(bx + 1, by, w - 2, h, base); d.P(bx, by + 1, w, h - 2, base); d.P(bx + 1, by, w - 2, 1, hi); d.P(bx + 1, by + h - 1, w - 2, 1, lo);
+          d.P(bx + w, by + h - 5, 2, 3, base); d.P(bx + w + 2, by + h - 3, 2, 2, base);
+          r.lay.forEach((L) => {
+            const ly = by + 4 + L.line * 15;
+            if (ly < cy0 - 10 || T < L.t[0]) return;   // a line scrolled up under the header is not drawn
+            k.text(L.wd, (bx + 5) * 3 + L.x, ly * 3, {size: 39, color: T < L.t[1] + 0.05 ? GOLD : CREAM});
           });
-          y += lines * 45 + 12; lastY = y;
+          if (T >= r.tRead) [0, 4].forEach((o) => { d.DOT(bx + w - 12 + o, by + h - 5, hi); d.DOT(bx + w - 11 + o, by + h - 4, hi); d.line(bx + w - 10 + o, by + h - 5, bx + w - 7 + o, by + h - 8, hi); });
+          if (i === 2) { y3 = by; x3 = bx; w3 = w; h3 = h; }
+          y += h + 6;
         });
-        // the turn: a gold bar under the last line, then the PROMISE stamp in the sheet's lower right, clear of the words
-        if (T >= tLast) k.sweep(126, lastY - 12, 760, 6, tLast + 0.1, {color: 'accent'});
-        if (T >= tProm - 0.1) k.slam('PROMISE', 880, lastY + 24, tProm, {size: 66, color: RED, align: 'right', stamp: true, glint: false});
-        if (T >= tProm) k.burst(760, lastY + 50, tProm + 0.05, {n: 16, r: 200});
-      }
-      /* under the sheet, over the desk: the lesson's rule at heading size in a full-width bar, clear of its edges (the
-         bar stops short of the mug; the host stands below it) */
-      if (T >= tNext) {
-        d.win(12, 257, 306, 64, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#7A3442'});
-        k.slam('Raise the next job.', 84, 786, tNext, {size: 66, color: GOLD, from: 0.4, drop: INK});
-        k.slam('Never an approved one.', 84, 858, tNext + 0.4, {size: 66, color: CREAM, from: 0.4, drop: INK});
+        /* the turn: "That last line" rings the third bubble in gold and sweeps a gold bar under it */
+        if (y3 != null && T >= tLast) {
+          const g = GOLD; d.P(x3 - 2, y3 - 2, w3 + 4, 1, g); d.P(x3 - 2, y3 + h3 + 1, w3 + 4, 1, g); d.P(x3 - 2, y3 - 2, 1, h3 + 4, g); d.P(x3 + w3 + 1, y3 - 2, 1, h3 + 4, g);
+          k.sweep(x3 * 3, (y3 + h3 + 3) * 3, w3 * 3, 6, tLast + 0.1, {color: 'accent'});
+        }
+      });
+      /* PROMISE stamps on the dash beside the third bubble (it rides up with the thread) */
+      if (y3 != null && T >= tProm - 0.1) {
+        const yy = (y3 + h3 / 2) * 3 - 33;
+        k.stampIn(tProm, () => {
+          k.shape(k.rectPts(42, yy - 6, 216, 72, 0), {stroke: RED, lw: 6, line: false});
+          k.text('PROMISE', 150, yy, {size: 66, color: RED, align: 'center'});
+        }, {at: [150, yy + 66]});
+        k.burst(150, yy + 30, tProm + 0.05, {n: 16, r: 200});
       }
       const r = host(k, k.live('note.last') || k.live('note.next') ? 'point' : null);
-      if (T >= k.S('note.l1') - 0.05 && T < tSkip - 0.05) r.speech = false;   // the sheet is the dialog while the note is said
+      /* the thread is the dialog while the note is said; then, until "That last line", our own box carries "Here's the
+         part people skip." (the player's box would open on the note's last word and its closing quote) */
+      if (T >= k.S('note.l1') - 0.05 && T < tThat - 0.05) r.speech = false;
+      if (T >= tSkip - 0.05 && T < tThat - 0.05) speechOwn(k, T, tSkip - 0.05, tThat - 0.05);
       return r;
     },
 
     // ---- caveat: the map again, ONE HONEST NOTE; a cold front, a "?" cloud for how customers took it
     caveat: (k, T) => {
-      const n = k.data.numbers, t0 = k.S('caveat'), tSell = k.S('caveat.sells'), tTook = k.S('caveat.took'), tWatch = k.S('caveat.watch');
+      const n = k.data.numbers, d = px(k), t0 = k.S('caveat'), tSell = k.S('caveat.sells'), tTook = k.S('caveat.took'), tWatch = k.S('caveat.watch');
       weatherMap(k, {title: 'ONE HONEST NOTE', fronts: [{kind: 'cold', at: t0 + 0.2, dur: 2.4, x0: 1.05, x1: -0.05}],
         icons: allTrades(n).concat([['q', 'cloud', tTook, 'CUSTOMERS?']])});
+      /* the panel's text block is centered in it (top inset about 27 px, as on the stakes panel): one line in the middle,
+         then on "doesn't show" it steps up to make room for the two more */
       if (T < tWatch) {
-        if (T >= tSell) k.slam('Jobber sells software.', 72, 796, tSell, {size: 39, color: CREAM, from: 0.4});
-        else k.slam('Where the numbers come from', 72, 796, t0 + 0.3, {size: 39, color: SAND, from: 0.4});
-        if (T >= tTook) k.slam("Its survey doesn't show", 72, 852, tTook, {size: 39, color: GOLD, from: 0.4});
-        if (T >= tTook) k.slam('how customers took it.', 72, 908, tTook + 0.3, {size: 39, color: 'accent', from: 0.4});
+        const y1 = T < tTook ? 867 : 867 - Math.round(48 * eo(d.fr(tTook) / 6));
+        if (T >= tSell) k.slam('Jobber sells software.', 72, y1, tSell, {size: 39, color: CREAM, from: 0.4});
+        else k.slam('Where the numbers come from', 72, y1, t0 + 0.3, {size: 39, color: SAND, from: 0.4});
+        if (T >= tTook + 0.2) k.slam("Its survey doesn't show", 72, 867, tTook + 0.2, {size: 39, color: GOLD, from: 0.4});
+        if (T >= tTook + 0.45) k.slam('how customers took it.', 72, 915, tTook + 0.45, {size: 39, color: 'accent', from: 0.4});
       } else {
-        k.slam('Watch your close rate', 72, 800, tWatch, {size: 66, color: CREAM, from: 0.5, drop: INK});
-        k.slam('for a month after.', 72, 874, tWatch + 0.3, {size: 66, color: 'accent', from: 0.5, drop: INK});
+        k.slam('Watch your close rate', 72, 818, tWatch, {size: 66, color: CREAM, from: 0.5, drop: INK});
+        k.slam('for a month after.', 72, 892, tWatch + 0.3, {size: 66, color: 'accent', from: 0.5, drop: INK});
       }
       return host(k, k.live('caveat.took') ? 'shrug' : (k.live('caveat.watch') ? 'point' : null));
     },

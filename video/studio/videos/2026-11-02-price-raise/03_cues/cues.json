@@ -14,7 +14,7 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "World: the weather map. Three shots (IMPROVE 00a). Frame 0, the cover, fully settled: one sun over the west labeled HVAC, the 83% at four times body size in the map's open lower left, and directly under it in our panel: \"of HVAC companies raised\" / \"prices last year.\" on the same left edge, the source small under them (Jobber, 1,050 home service owners, Dec 2025). Host and dialog hidden. On \"raised\" cut in to the close-up: the map at three times, the HVAC sun big in the middle with HVAC under it, a warm front of big red domes sweeping across the land; the claim and the source on a title plate up top; Snow comes in big at the lower left with the dialog box. On \"Did\" cut back out to the whole map; the warm front finishes its sweep and the sun's label reads HVAC 83%.",
+   "text": "World: the weather map. Three shots (IMPROVE 00a). Frame 0, the cover, fully settled: one sun over the west labeled HVAC, the 83% about 560 px wide, centered in the map's open land left of the lake (the one dominant number), and under it in our panel, the block centered: \"of HVAC companies raised\" / \"prices last year.\", the source small under them (Jobber, 1,050 home service owners, Dec 2025). A PRICING CLINIC tag sits on the panel's top edge. Under the panel, the weather desk with a sun emblem (no words) fills the lower third. Host and dialog hidden. On \"raised\" cut in to the close-up: the map at three times, its land run out to the title plate's left edge (one left edge at x 42), the HVAC sun big in the middle with HVAC beside it, a bright red warm front with big domes sweeping across the land the whole close-up; the claim and the source on a title plate up top (the source well clear of its inner border), PRICING CLINIC at its top right; Snow comes in big at the lower left with the dialog box. On \"Did\" cut back out to the whole map; the warm front finishes its sweep and the sun's label reads HVAC 83%.",
    "t": 0.0,
    "word": 0,
    "end": 6.276
@@ -38,7 +38,7 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "The panel clears to the one headline: \"The note that tells\" / \"your customers.\" with an accent line under it. Snow points.",
+   "text": "About 0.15 s before \"Here's\" (the on-screen hook holds under 4.0 s) the panel clears to the one headline, centered in it: \"The note that tells\" / \"your customers.\" with an accent line under it. The 83% stays on the map. Snow points.",
    "t": 4.08,
    "word": 9,
    "end": 6.276
@@ -86,7 +86,7 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "Their labels land: 74% each, with a burst; the panel: \"Plumbing, electrical, roofing: 74%\".",
+   "text": "Their labels land: 74% each, with a burst. In the panel 74% slams in at the same size as the 83% it replaces, over \"Plumbing, electrical, roofing\", with \"HVAC companies: 83%\" in gold under it.",
    "t": 14.776,
    "word": 37,
    "end": 16.627
@@ -98,7 +98,7 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "World: the register (level select). A shop counter with a brass till on a plank floor. The receipt prints its source line, JOBBER SURVEY. The display reads REASON. The plate on the wall: \"Why they raised prices\" / \"Jobber survey, reasons named\". On \"Seventy-two\" the till rings INFLATION 72% onto the receipt; the $ flag pops; the display shows 72%.",
+   "text": "World: the register (level select). A shop counter with a brass till on a plank floor. The receipt prints its source line, JOBBER SURVEY. The display reads REASON. The plate on the wall: \"Why they raised prices\" at heading size / \"Jobber survey, reasons named\" smaller, in the source sand. On \"Seventy-two\" the till rings INFLATION 72% onto the receipt; the $ flag pops; the display shows 72%.",
    "t": 16.627,
    "word": 41,
    "end": 32.516
@@ -122,7 +122,7 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "The receipt prints its second source line, BLS PAY DATA. The drawer slides out; coins drop into it (only between the till and the drawer) to the end of the take. The plate: \"Federal pay data\" / \"BLS, 12 months to June 2026\".",
+   "text": "The receipt prints its second source line, BLS PAY DATA. The drawer slides out; coins drop into it (only between the till and the drawer) to the end of the take. The plate: \"Federal pay data\" / \"BLS, 12 months to June 2026\" (heading size over the small source).",
    "t": 21.867,
    "word": 50,
    "end": 23.807
@@ -146,7 +146,7 @@
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "The display reads CREW PAY +3.7%; the plate: \"Crew pay: above average\". On \"three point two\" ALL PAY +3.2% prints under it, then a gold line under REPAIR PAY. It holds to the end of the take, coins still landing.",
+   "text": "The display reads REPAIR PAY +3.7%; the plate: \"Crew pay beat all pay\". On \"three point two\" ALL PAY +3.2% prints under it, then a gold line under REPAIR PAY. It holds to the end of the take, coins still landing.",
    "t": 28.427,
    "word": 70,
    "end": 32.516
@@ -158,7 +158,7 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "World: the price note on the desk (iris). An office wall with a clock that ticks, a desk, a steaming mug, a letterhead sheet tagged EXAMPLE, three numbered rows showing empty. Header: \"Send this before your next quote.\"",
+   "text": "World: the chat (iris), not used in the two lessons before: a phone in the truck's dash mount, the road rushing in the windshield, the thread to \"Your customers\" empty, a cursor blinking in the composer, an EXAMPLE tag on the dash. The dialog box is off while the note is said (the thread carries it).",
    "t": 32.516,
    "word": 82,
    "end": 54.733
@@ -170,7 +170,7 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "Row 1 types word by word as it is said: \"Starting the first of next month, our rates go up.\"",
+   "text": "Bubble 1 slides up and types word by word as it is said: \"Starting the first of next month, our rates go up.\" Read ticks when it is said.",
    "t": 34.956,
    "word": 89,
    "end": 37.756
@@ -182,7 +182,7 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "Row 2 types: \"Our labor and material costs rose this year.\"",
+   "text": "Bubble 2 types: \"Our labor and material costs rose this year.\" Read ticks.",
    "t": 37.756,
    "word": 99,
    "end": 40.596
@@ -194,7 +194,7 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "Row 3 types: \"Anything you've already approved stays at the price we quoted.\" The full note holds 3 s or more, unchanged, through the next two beats.",
+   "text": "Bubble 3 types: \"Anything you've already approved stays at the price we quoted.\" Read ticks. The full note holds 3 s or more, unchanged, through the next two beats.",
    "t": 40.596,
    "word": 107,
    "end": 44.304
@@ -206,7 +206,7 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "Only the header changes: \"The part people skip.\"",
+   "text": "Only the app header changes: a maroon bar reads THE PART PEOPLE SKIP. The dialog box comes back starting at \"Here's\".",
    "t": 44.304,
    "word": 117,
    "end": 46.244
@@ -218,7 +218,7 @@
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "Row 3 gets a gold sweep under it; the numbers 1 and 2 dim a shade.",
+   "text": "Bubble 3 is ringed in gold with a gold sweep under it.",
    "t": 46.244,
    "word": 122,
    "end": 49.604
@@ -230,7 +230,7 @@
    "sfx": "stamp",
    "shift": 0.0,
    "pin": null,
-   "text": "A PROMISE stamp lands at the sheet's right edge, clear of the words.",
+   "text": "A PROMISE stamp lands on the dash beside bubble 3, clear of the phone.",
    "t": 49.604,
    "word": 132,
    "end": 51.144
@@ -242,7 +242,7 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "Under the sheet, a full-width bar: \"Raise the next job.\" in gold and \"Never an approved one.\" under it, both at heading size, clear of the bar's edges.",
+   "text": "The rule lands as a card in the thread (it scrolls up for it): \"Raise the next job.\" in gold and \"Never an approved one.\" under it, inside the phone's screen.",
    "t": 51.144,
    "word": 135,
    "end": 54.733
@@ -266,7 +266,7 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "Panel: \"Jobber sells software.\"",
+   "text": "Panel: \"Jobber sells software.\", one line centered in the panel.",
    "t": 56.533,
    "word": 148,
    "end": 58.713
@@ -278,7 +278,7 @@
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "A \"?\" cloud pops over the lake: CUSTOMERS ?. Panel lines 2 and 3: \"Its survey doesn't show\" / \"how customers took it.\"",
+   "text": "A \"?\" cloud pops over the lake: CUSTOMERS ?. Line 1 steps up and lines 2 and 3 land: \"Its survey doesn't show\" / \"how customers took it.\", the block centered with the stakes panel's top inset.",
    "t": 58.713,
    "word": 153,
    "end": 60.793
@@ -290,7 +290,7 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "The panel clears to: \"Watch your close rate for a month after.\" It holds to the end of the take.",
+   "text": "The panel clears to: \"Watch your close rate for a month after.\", centered. It holds to the end of the take.",
    "t": 60.793,
    "word": 159,
    "end": 63.726

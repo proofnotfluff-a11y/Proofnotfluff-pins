@@ -1,20 +1,20 @@
 # Transcript: 2026-11-04-close-rate
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 188 words, 72.4 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 186 words, 70.1 s of voice.
 
 ## Flags
-- 28.6 s heard 'job' for 'jobs'
-- 65.4 s heard 'Job' for 'Jobs'
+- 28.4 s heard 'job' for 'jobs'
+- 63.1 s heard 'Job' for 'Jobs'
 
 ## Pace per take (target 160 to 195 wpm)
 ```
   01     0.0 s  153 wpm  
   02    12.0 s  172 wpm  
-  03    24.3 s  145 wpm  slow: rewrite it as talk, then speak --take 3
-  04    33.7 s  148 wpm  slow: rewrite it as talk, then speak --take 4
-  05    45.7 s  176 wpm  
-  06    58.0 s  144 wpm  slow: rewrite it as talk, then speak --take 6
-  07    65.4 s  174 wpm  
+  03    24.3 s  154 wpm  
+  04    33.2 s  151 wpm  
+  05    44.3 s  176 wpm  
+  06    56.5 s  163 wpm  
+  07    63.1 s  174 wpm  
 ```
 
 ## Words
@@ -35,34 +35,28 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 188 words, 72.4 s of voice.
 
 `00:21.4` And you can't close a gap you never measured.
 
-`00:24.3` So here's how you measure it.
+`00:24.3` So here's how you measure it, and screenshot this.
 
-`00:26.2` Screenshot this.
+`00:27.4` Close rate equals jobs sold, divided by estimates given, over the same month.
 
-`00:27.6` Close rate equals jobs sold, divided by estimates given, both over the same month.
+`00:33.2` For example, say you gave forty estimates last month and sold fourteen.
 
-`00:33.7` Here's an example.
+`00:38.0` Fourteen over forty is thirty-five percent, right inside the median range.
 
-`00:35.0` Say you gave forty estimates last month and sold fourteen.
+`00:42.9` Now plug in yours.
 
-`00:38.9` Fourteen divided by forty is thirty-five percent, right inside the median range.
+`00:44.3` Here's the part people skip.
 
-`00:44.1` Now plug in yours.
+`00:46.5` ServiceTitan doesn't say how it counts a close, and its customers aren't every shop out there.
 
-`00:45.7` Here's the part people skip.
+`00:52.3` So the first number you need to beat is your OWN, from last month.
 
-`00:47.9` ServiceTitan doesn't say how it counts a close, and its customers aren't every shop out there.
+`00:56.5` Every Friday, put two numbers on the whiteboard, estimates given and jobs sold.
 
-`00:53.8` So the first number you need to beat is your OWN, from last month.
+`01:01.8` That's all you need.
 
-`00:58.0` Track it every Friday.
+`01:03.1` Jobs sold, divided by estimates given.
 
-`00:59.9` Two numbers on the whiteboard: estimates given, jobs sold.
+`01:06.1` Send this to whoever writes your estimates.
 
-`01:03.8` That's all you need.
-
-`01:05.4` Jobs sold, divided by estimates given.
-
-`01:08.4` Send this to whoever writes your estimates.
-
-`01:10.5` Then on Friday, you'll know your close rate.
+`01:08.2` Then on Friday, you'll know your close rate.

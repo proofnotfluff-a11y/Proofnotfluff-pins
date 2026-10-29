@@ -1,0 +1,60 @@
+name: Kimi jobs
+# Runs text-only reviews and first drafts on Todd's Kimi Code membership so they use less Claude (Todd, live chat,
+# Oct 29, 2026, 6:20 pm: "Yes" to the smaller plan: facts and facts-captions gates, caption first drafts, a weekly
+# second opinion, at most 8 Kimi calls a day; image gates stay on Claude). A run commits kimi/jobs/<name>.json; this
+# workflow answers each new job with tools/kimi_job.py and the KIMI_API secret (never printed) and commits
+# kimi/answers/<name>.json. Calls go through Claude Code, a coding agent Kimi documents for this key, one request per
+# job, one job at a time, never on a timer (Kimi's terms bar hand-made clients and automated bulk use).
+on:
+  push:
+    branches: [main]
+    paths: ["kimi/jobs/*.json"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: kimi-jobs
+  cancel-in-progress: false
+jobs:
+  kimi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Self-test (offline)
+        run: |
+          pip install --quiet pytest
+          python3 -m pytest -q -p no:cacheprovider tools/test_kimi_job.py
+      - name: Install Claude Code
+        run: npm install -g --silent @anthropic-ai/claude-code >/dev/null 2>&1 && claude --version
+      - name: Answer new jobs
+        env:
+          ANTHROPIC_BASE_URL: https://api.kimi.ai/coding/
+          ANTHROPIC_API_KEY: ${{ secrets.KIMI_API }}
+          KIMI_MODEL: k3.1-pro
+          ANTHROPIC_DEFAULT_HAIKU_MODEL: k3.1-pro
+          ANTHROPIC_DEFAULT_SONNET_MODEL: k3.1-pro
+          ANTHROPIC_DEFAULT_OPUS_MODEL: k3.1-pro
+          CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: "1"
+          DISABLE_TELEMETRY: "1"
+          DISABLE_AUTOUPDATER: "1"
+          CLAUDE_CODE_MAX_RETRIES: "1"
+          API_TIMEOUT_MS: "240000"
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then echo "KIMI_API secret missing"; exit 1; fi
+          mkdir -p kimi/answers
+          for job in kimi/jobs/*.json; do
+            [ -e "$job" ] || continue
+            name=$(basename "$job" .json)
+            [ -f "kimi/answers/$name.json" ] && continue
+            python3 tools/kimi_job.py run "$job" || true
+          done
+      - name: Commit answers
+        run: |
+          git config user.name "kimi-jobs"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add kimi/answers kimi/usage.json 2>/dev/null || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "kimi-jobs: answers"
+          for i in 1 2 3 4; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 5; done
+          exit 1

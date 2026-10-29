@@ -1,27 +1,52 @@
 {
  "gate": "design",
- "round": 0,
- "at": "2026-10-29T12:27:19-05:00",
- "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+ "round": 1,
+ "at": "2026-10-29T12:53:51-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
  "pass": false,
  "score": {
-  "first": 3,
-  "hierarchy": 4,
+  "first": 4,
+  "hierarchy": 5,
   "type": 5,
   "color": 5,
   "spacing": 4,
   "polish": 4,
   "trust": 5,
-  "average": 4.29
+  "average": 4.57
  },
  "reasons": [
-  "0.5 to 1.9 s hook close-up (freshness): the frame below the title plate is two rows of brown drawer cabinets under shelves of colored stock. That reads as the register shop from 10-30 (its math section at 8.7 to 16 s and its close at 62 to 74 s). Keep the tag and the plate, and replace the cabinets and shelves with storefront-exterior pieces, for example the shop window glass with the tag hanging in it, the door, and the sidewalk under the awning, so the cut-in stays outside the shop",
-  "65.0 to 74.0 s close (freshness): a dark plate over the brown drawer counter with a PROOFNOTFLUFF chip and a 'Send this to whoever' line repeats the layout of 10-30's close almost exactly. Move the plate up onto the brick facade or the shop window, between the awning and the sidewalk, and drop the drawer-cabinet counter front from this scene",
-  "65.0 to 68.5 s close plate: the earlier round's change did not land. The plate opens empty at four lines' height (65.3 s), then holds one or two lines over a half-empty dark block until about 68.5 s. Start it at one line's height and grow it a line at a time as 'writes your quotes.', '1 price: yes or no.' and '3 prices: a choice.' land",
-  "16.07 s stakes screen: the payoff 'A HABIT YOU CAN COPY' is set at footnote size, below the source lines. Raise it to the size of the row names (TOP 10%) in gold, centered in the empty band between the rows and the footnote",
-  "70.31 s close plate: a cream spark sits on the 's' of 'this' in 'Send this to whoever'. Keep the tag sparks above y 680 so they never cross the plate text",
-  "65.6 to 74.0 s close: the plate's top edge cuts the toolbox, leaving a stray orange sliver at y 650 to 680 between the chalkboard and the tag. Either drop the plate 40 px clear of the toolbox or hide the toolbox in this scene",
-  "56.2 to 57.2 s slot crown and tray: the crown already reads '1 TO 3 OPTIONS: CLOSE RATE' while the tray still shows '4+ options: 52% / Only 10% offer 4+.' Clear the tray's 4+ lines on the same frame the crown flips",
-  "59.1 to 63.5 s ONE GROUP bracket: the gold bracket across the three reels is a 1 px line under the reels and goes unseen on a phone. Make it a 3 px gold clamp over the reel tops with a small 'ONE GROUP' tag, so the caveat has a visual beat"
- ]
+  "69.9 to 71.7 s close plate sparks: the round-0 spark fault is back. Cream spark pixels from the tag fall onto the plate text: on the 's' of 'this' at 70.31 s, and on 'whoever', 'writes', 'price' and '3 prices' in the frames either side. Clip the tag's spark emitter so it stays above the counter line (frame y 650, never inside the plate's x 95 to 995, y 680 to 1000), or draw the plate over the sparks",
+  "4.0 to 5.4 s hook.build counter front: once the card rolls up, frame y 770 to 1250 is six empty brown drawer cabinets and nothing else. It is half the content band and reads like 10-30's register counter. Swap the cabinet front for the storefront base the close uses (window glass to a stone sill, brick down to the sidewalk), or put the 'Here's how to build' beat in that band, for example the chalk line on a large plate",
+  "71.27 to 72.0 s close payoff: 'a choice.' and its accent underline hold only about 0.6 s before the end card wipes in. Hold the close plate to at least 72.6 s and start the end card there (it still gets about 1.8 s), so the last line is read and not just glimpsed",
+  "2.0 to 3.9 s hook card: Snow stands over the card's left third (x 105 to 276), and his hand stops 17 px short of 'ServiceTitan'. Narrow the card so it starts right of the host (about x 300 to 975, which the 635 px source line still fits), or keep Snow off until the card rolls up at 3.97 s",
+  "65.0 to 67.3 s close chalk board: for about 2.3 s the board holds only the PROOFNOTFLUFF chip on an empty green panel. Write '1 price?' on it at 65.0 s, matching the hook, instead of at 67.3 s",
+  "63.5 to 64.3 s slot crown: the crown already reads START WITH 3 while the reels still show 2 6 $ and then 3 2 2. Flip the crown on the frame the reels land 3 3 3 (about 64.4 s)"
+ ],
+ "prior": {
+  "gate": "design",
+  "round": 0,
+  "at": "2026-10-29T12:27:19-05:00",
+  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+  "pass": false,
+  "score": {
+   "first": 3,
+   "hierarchy": 4,
+   "type": 5,
+   "color": 5,
+   "spacing": 4,
+   "polish": 4,
+   "trust": 5,
+   "average": 4.29
+  },
+  "reasons": [
+   "0.5 to 1.9 s hook close-up (freshness): the frame below the title plate is two rows of brown drawer cabinets under shelves of colored stock. That reads as the register shop from 10-30 (its math section at 8.7 to 16 s and its close at 62 to 74 s). Keep the tag and the plate, and replace the cabinets and shelves with storefront-exterior pieces, for example the shop window glass with the tag hanging in it, the door, and the sidewalk under the awning, so the cut-in stays outside the shop",
+   "65.0 to 74.0 s close (freshness): a dark plate over the brown drawer counter with a PROOFNOTFLUFF chip and a 'Send this to whoever' line repeats the layout of 10-30's close almost exactly. Move the plate up onto the brick facade or the shop window, between the awning and the sidewalk, and drop the drawer-cabinet counter front from this scene",
+   "65.0 to 68.5 s close plate: the earlier round's change did not land. The plate opens empty at four lines' height (65.3 s), then holds one or two lines over a half-empty dark block until about 68.5 s. Start it at one line's height and grow it a line at a time as 'writes your quotes.', '1 price: yes or no.' and '3 prices: a choice.' land",
+   "16.07 s stakes screen: the payoff 'A HABIT YOU CAN COPY' is set at footnote size, below the source lines. Raise it to the size of the row names (TOP 10%) in gold, centered in the empty band between the rows and the footnote",
+   "70.31 s close plate: a cream spark sits on the 's' of 'this' in 'Send this to whoever'. Keep the tag sparks above y 680 so they never cross the plate text",
+   "65.6 to 74.0 s close: the plate's top edge cuts the toolbox, leaving a stray orange sliver at y 650 to 680 between the chalkboard and the tag. Either drop the plate 40 px clear of the toolbox or hide the toolbox in this scene",
+   "56.2 to 57.2 s slot crown and tray: the crown already reads '1 TO 3 OPTIONS: CLOSE RATE' while the tray still shows '4+ options: 52% / Only 10% offer 4+.' Clear the tray's 4+ lines on the same frame the crown flips",
+   "59.1 to 63.5 s ONE GROUP bracket: the gold bracket across the three reels is a 1 px line under the reels and goes unseen on a phone. Make it a 3 px gold clamp over the reel tops with a small 'ONE GROUP' tag, so the caveat has a visual beat"
+  ]
+ }
 }

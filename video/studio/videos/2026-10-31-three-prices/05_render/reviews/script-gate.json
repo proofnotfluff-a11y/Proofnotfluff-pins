@@ -1,23 +1,117 @@
 {
  "gate": "script",
- "round": 0,
- "at": "2026-10-29T12:28:20-05:00",
- "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
- "pass": false,
- "score": "11 of 12",
- "points_condensed": "1 PASS (9 words, ends 3.44 s); 2 FAIL (on-screen hook held 5.47 s); 3 to 12 PASS (stakes 57% at 11.21 s; facts re-read Oct 29; payoff 4.00 s, card complete 57%; artifact held 4.7 s all rows; pace 163/152/150/171/150/174/173 wpm, 74.45 s; talk test; markup; retention, turn 58.3%; ending with send line naming a role)",
- "faults": [
-  "Point 2: the on-screen hook 'Top shops usually quote 3 prices' stays on screen for 5.47 s (0.0 to 5.466 s, cover card to title plate to card) against the 2.5 to 4.0 s band. Fix: take the hook text off by 4.0 s, for example clear or fold the cover card when hook.build starts at 4.0 s so the chalkboard's '3 prices, 1 quote.' carries 4.0 to 5.47 s"
+ "round": 1,
+ "at": "2026-10-29T12:54:14-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
+ "pass": true,
+ "score": "12 of 12",
+ "points": [
+  {
+   "n": 1,
+   "name": "Spoken hook",
+   "pass": true,
+   "evidence": "PASS 9 words, two whole sentences ('You quote one price? Top shops usually quote three.'), has 'You', concrete stake (one price vs top shops' three), no greeting; last word 'three.' ends 3.44 s on words.json (studio limit 3.6 s)"
+  },
+  {
+   "n": 2,
+   "name": "On-screen hook",
+   "pass": true,
+   "evidence": "PASS 6 words ('Top shops usually quote / 3 prices'), same claim as the voice; on screen at frame 0 (cover card y about 780 to 1160), title plate over the glass 0.53 to 1.93 s (text y about 288 to 470), back on the card from 1.93 s; card is rolling up at 3.8 s and gone at 3.93 s (frames pulled from the mp4), so the hold is about 3.9 s (band 2.5 to 4.0). Inside the safe area (top 269 px, bottom from 1248 px). Round 0 fault (5.47 s hold) is not back"
+  },
+  {
+   "n": 3,
+   "name": "One idea",
+   "pass": true,
+   "evidence": "PASS brief: 'put three prices on every quote: good, better, best.' (9 words); all 7 takes serve it; 'Your three is a floor' and the ACCA beat close on 'Start with three', no second lesson"
+  },
+  {
+   "n": 4,
+   "name": "Stakes early",
+   "pass": true,
+   "evidence": "PASS 'fifty-seven percent' starts 11.21 s (limit 14 s for a 75 s lesson); the top-shops gap is also in the hook at 1.9 s"
+  },
+  {
+   "n": 5,
+   "name": "Facts",
+   "pass": true,
+   "evidence": "PASS every spoken number traces to facts.json: ten percent (topPct 10), a year (windowMonths 12), fifty-seven / forty-one (57, 41, 'home jobs' for residential jobs), over eleven hundred homeowners (1,100+), sixty-eight percent go get more quotes when a price is higher than expected (68, seek additional quotes), a heating and cooling trade group, over a thousand contractors (1,000+), four or more options fifty-two percent, one to three forty-two (52, 42); 'three' and 'one' are gbb.tiers and gbb.single. Scope words kept; the 1 to 3 grouping caveat is spoken and on screen. On-screen numbers (Top 10% by revenue, 57%, 41%, 12 months to Jan 2026, 68%, 1,100+, 1,000+ HVAC contractors, 52%, 42%, Only 10% offer 4+) all in facts.json; captions carry the same figures with sources"
+  },
+  {
+   "n": 6,
+   "name": "Payoff timing",
+   "pass": true,
+   "evidence": "PASS 'Here's how to build yours.' at 4.00 to 4.96 s (limit 6 s); Good/Better/Best card complete by about 42.4 s = 57% of 74.45 s (limit 70%)"
+  },
+  {
+   "n": 7,
+   "name": "Copyable artifact",
+   "pass": true,
+   "evidence": "PASS the Good/Better/Best card is spoken and on screen; all three rows up from card.best 38.72 s to the cut at 43.42 s = 4.7 s (min 3 s); frame at 42.4 s shows the full card with 'longer warranty, faster start date'"
+  },
+  {
+   "n": 8,
+   "name": "Pace and length",
+   "pass": true,
+   "evidence": "PASS takes 163, 152, 150, 171, 150, 174, 173 wpm (transcript; word-span calc 169, 155, 156, 179, 156, 183, 184), all inside 150 to 200; duration 71.546 + 2.9 = 74.45 s (cap 75 s, qa 74.43 s); longest sentence 15 words, average 6.6 (186 words, 28 sentences)"
+  },
+  {
+   "n": 9,
+   "name": "Talk test",
+   "pass": true,
+   "evidence": "PASS each take has a contraction (Here's, That's, there's, you'd, Here's, can't, That's) and you/your; 0 banned words; 0 em or en dashes in script.md (hyphens in number words only)"
+  },
+  {
+   "n": 10,
+   "name": "Voice markup",
+   "pass": true,
+   "evidence": "PASS 1 tag per take, all allowed ([leaning in], [matter-of-fact], [curious], [warmly], [short pause], [calm], [confident]); 1 CAPS word (ALREADY, take 3); no digits, $, %, / or & in the voice text; no SSML"
+  },
+  {
+   "n": 11,
+   "name": "Retention beats",
+   "pass": true,
+   "evidence": "PASS cues.json: 32 cues plus in-cue shots (cut in 0.5 s, cut out 1.9 s, tag flip 3.04 s), longest gap 3.91 s (why.three to card); turn line 'Here's the part people skip.' at 43.42 s = 58.3% (band 55 to 75%)"
+  },
+  {
+   "n": 12,
+   "name": "Ending",
+   "pass": true,
+   "evidence": "PASS one CTA, send line names a role ('Send this to whoever writes your quotes.'); last sentence echoes the hook ('Three prices? That's a choice.' against 'You quote one price? Top shops usually quote three.'); no like/follow/comment YES/tag asks; LESSON 4 and QUOTE CLINIC on screen in the hook and close; captions carry all three sources. The AI voice line is left out on Todd's Oct 29 rule (voice.md and captions.md override the playbook), and each platform's AI label is on"
+  }
  ],
+ "faults": [],
  "notes": [
-  "Takes 2 (152 wpm), 3 (150) and 5 (150) are outside the 160 to 195 target but inside 150 to 200; take 3 and take 5 sit exactly on the 150 floor by file length",
-  "186 words is under the playbook's 200 to 240 guide for a 75 s slot; the runtime of 74.45 s is inside 45 to 75 s",
-  "Point 1: the playbook's 'ends by 3.0 s' is superseded by the studio's 3.6 s rule; the hook ends at 3.44 s",
-  "Point 9: takes 3, 5 and 7 meet the 'you' rule only through 'your'. That matches point 1's 'you/your' and the playbook's own example script 1, but a strict reading would want a bare 'you'",
-  "Count-up frames show passing values: 1,091+ homeowners at 19.29 s and 39% at 14.0 s. They are transient and not another group's figure, so the round 0 fault is not back",
-  "The 'a choice.' line shows at 70.31 s, before 'choice' is said at 71.27 s (cue says it lands on 'choice'); for the design/render gates",
-  "The Instagram caption also carries 'Free tools for trade owners: link in bio.' and a question beside the send line. The spoken ending has one CTA",
-  "Earlier review faults checked and not back: 'Not 1' hook, static first 3 s, count-up through the other group's figure, 2 s silent tail (last word 71.55 s, end card to 74.45 s)",
-  "The builder's script-check.md also measured the 5.5 s hook hold but scored it PASS"
- ]
+  "Takes 2 (152 wpm), 3 (150) and 5 (150) sit outside the 160 to 195 target but inside 150 to 200; takes 3 and 5 are right on the 150 floor by file length",
+  "186 words is under the playbook's 200 to 240 guide for a 75 s slot; runtime of 74.45 s is inside 45 to 75 s",
+  "The playbook's 'ends by 3.0 s' (point 1) gives way to the studio's 3.6 s rule; the hook ends at 3.44 s",
+  "Point 2: the title plate's border (y about 262) sits about 7 px into the top 14% band during the close-up; its text starts at about y 288, inside the safe area",
+  "Point 5: facts.json says the numbers were re-read Oct 28 (evening). This build changed only the picture, so no facts changed; the facts gate owns re-reading the sources",
+  "Point 9: takes 3, 5 and 7 pass the 'you' rule only through 'your', which point 1's 'you/your' allows",
+  "Count-up frames show values in passing (1,091+ homeowners at 19.29 s) before landing on 1,100+; they don't belong to any other group",
+  "Round 0 note fixed: '3 prices:' is up at 70.31 s and 'a choice.' lands at 71.4 s, after 'choice' starts at 71.27 s; the plate holds about 0.6 s before the end card comes in at about 72 s (a design gate matter)",
+  "Instagram caption also has 'Free tools for trade owners: link in bio.' and a comment question; the spoken ending has one CTA"
+ ],
+ "prior": {
+  "gate": "script",
+  "round": 0,
+  "at": "2026-10-29T12:28:20-05:00",
+  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+  "pass": false,
+  "score": "11 of 12",
+  "points_condensed": "1 PASS (9 words, ends 3.44 s); 2 FAIL (on-screen hook held 5.47 s); 3 to 12 PASS (stakes 57% at 11.21 s; facts re-read Oct 29; payoff 4.00 s, card complete 57%; artifact held 4.7 s all rows; pace 163/152/150/171/150/174/173 wpm, 74.45 s; talk test; markup; retention, turn 58.3%; ending with send line naming a role)",
+  "faults": [
+   "Point 2: the on-screen hook 'Top shops usually quote 3 prices' stays on screen for 5.47 s (0.0 to 5.466 s, cover card to title plate to card) against the 2.5 to 4.0 s band. Fix: take the hook text off by 4.0 s, for example clear or fold the cover card when hook.build starts at 4.0 s so the chalkboard's '3 prices, 1 quote.' carries 4.0 to 5.47 s"
+  ],
+  "notes": [
+   "Takes 2 (152 wpm), 3 (150) and 5 (150) are outside the 160 to 195 target but inside 150 to 200; take 3 and take 5 sit exactly on the 150 floor by file length",
+   "186 words is under the playbook's 200 to 240 guide for a 75 s slot; the runtime of 74.45 s is inside 45 to 75 s",
+   "Point 1: the playbook's 'ends by 3.0 s' is superseded by the studio's 3.6 s rule; the hook ends at 3.44 s",
+   "Point 9: takes 3, 5 and 7 meet the 'you' rule only through 'your'. That matches point 1's 'you/your' and the playbook's own example script 1, but a strict reading would want a bare 'you'",
+   "Count-up frames show passing values: 1,091+ homeowners at 19.29 s and 39% at 14.0 s. They are transient and not another group's figure, so the round 0 fault is not back",
+   "The 'a choice.' line shows at 70.31 s, before 'choice' is said at 71.27 s (cue says it lands on 'choice'); for the design/render gates",
+   "The Instagram caption also carries 'Free tools for trade owners: link in bio.' and a question beside the send line. The spoken ending has one CTA",
+   "Earlier review faults checked and not back: 'Not 1' hook, static first 3 s, count-up through the other group's figure, 2 s silent tail (last word 71.55 s, end card to 74.45 s)",
+   "The builder's script-check.md also measured the 5.5 s hook hold but scored it PASS"
+  ]
+ }
 }

@@ -1,8 +1,8 @@
 {
  "gate": "facts",
- "round": 0,
- "at": "2026-10-29T12:26:21-05:00",
- "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+ "round": 1,
+ "at": "2026-10-29T12:52:20-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
  "pass": true,
  "score": {
   "numbers": 17,
@@ -10,16 +10,41 @@
  },
  "reasons": [],
  "sources_checked": [
-  "https://www.servicetitan.com/toolbox/state-of-the-trades/trends/top-performer-profile: top performers = 90th percentile of revenue within their trade and market segment; good-better-best on 57% of residential jobs vs 41% for the rest; trailing 12 months through January 2026; metrics are correlational, not causal; posted May 19, 2026. This supports the new hook 'Top shops usually quote three' (57% is a majority, so 'usually' is fair), 'a year of home jobs', 'Top 10% = by revenue in their trade' and 'ServiceTitan data, 12 months to Jan 2026'.",
-  "https://www.housecallpro.com/resources/home-service-spending-report-2026-release/: survey of more than 1,100 U.S. homeowners; 68% seek additional quotes when pricing comes in higher than expected; May 13, 2026; no fieldwork dates. This supports 'over eleven hundred homeowners', '1,100+ homeowners', '68% ... get more quotes when a price is higher than expected' and 'Housecall Pro survey, 2026'. 'There's a cheaper option already on your quote' describes the three-price quote, not a finding.",
-  "https://www.achrnews.com/articles/165799-survey-reveals-strategies-to-boost-hvac-close-rates-by-double-digits: ACCA and Farmington Consulting Group, more than 1,000 contractors (HVAC trade group, HVAC close-rate study); 4+ options close 52%; one, two or three options grouped at 42%; only 10% provide 4+; February 10, 2026. This supports '1,000+ HVAC contractors', '4+ options: 52%', '1 to 3 options: 42%', 'Only 10% offer 4+.' and 'ACCA survey, ACHR News, Feb 2026'. The grouping caveat is both said and shown ('It can't show 3 beats 1.')."
+  "https://www.servicetitan.com/toolbox/state-of-the-trades/trends/top-performer-profile: top performers are the 90th percentile of revenue within their trade and market segment. They present good-better-best proposals on 57% of residential jobs, and the rest do on 41%. The window is the trailing 12 months through January 2026. The page says the metrics are correlated with performance and do not imply causation. Posted May 19, 2026. This supports 'Top shops usually quote 3 prices' (57% is a majority), 'Top 10%: 57% of home jobs', 'TOP 10% 57% / THE REST 41%', 'Top 10% = by revenue in their trade', 'ServiceTitan data, 12 months to Jan 2026' and 'A HABIT YOU CAN COPY' (habit, not cause).",
+  "https://www.housecallpro.com/resources/home-service-spending-report-2026-release/: a survey of more than 1,100 U.S. homeowners by Housecall Pro, posted May 13, 2026. '68% of homeowners seek additional quotes when pricing comes in higher than expected.' This supports 'over eleven hundred homeowners', '1,100+ homeowners', '68% ... get more quotes when a price is higher than expected' and 'HOUSECALL PRO SURVEY, 2026'. 'There's a cheaper option already on your quote' describes the three-price quote itself, not a finding.",
+  "https://www.achrnews.com/articles/165799-survey-reveals-strategies-to-boost-hvac-close-rates-by-double-digits: ACCA and Farmington Consulting Group surveyed more than 1,000 contractors, ACHR News, Feb 10, 2026. Four or more options close 52%. One, two or three options are grouped together at 42%. Only 10% provide four or more. This supports '1,000+ HVAC contractors', '4+ options: 52%', '1 to 3 options: 42%' (and the new second comparison line '4+ options: 52%' under it), 'Only 10% offer 4+.', '1, 2 AND 3: ONE GROUP' with the new ONE GROUP clamp, '1 to 3 options: one group here.', 'It can't show 3 beats 1.' and 'ACCA survey, ACHR News, Feb 2026'. The caveat is both said and shown."
  ],
  "observations": [
-  "data.js sha256 d0af96c6... matches facts.json on disk. All 17 numbers in data.js match facts.json by path and shown value. Every number in scene.js comes from k.data. The rendered sheets (f00 to f37) show the same values.",
-  "Earlier faults are not back: no 'Not 1.', the voice says 'usually quote three', no 'Why the middle wins'. 'The middle' chip only labels the Better row. 'MORE CHOICES, MORE YESES' is gone.",
-  "'Your three is a floor' and '3 IS THE FLOOR' are our advice, set up by the correlational ACCA survey. The script makes no causal claim, and the caveat follows on screen and in voice.",
-  "Story elements read as illustration, not data: the storefront tags $ / $ $$ $$$, the chalk '3 prices, 1 quote.', the 100-house street lighting 68, the 'YOUR QUOTE (EXAMPLE)' clipboard, spinning slot reels mid-roll (9 6 6, 2 6 $) and the 1,091+ count-up frame. Every one lands on the sourced value.",
-  "Trades first: ServiceTitan contractor data, a Housecall Pro home-service homeowner survey and an ACCA HVAC contractor survey. No non-trade study is used.",
-  "No real private person, business or address. 'QUOTE CLINIC' is the segment sign, Snow is the host, and proofnotfluff.com is on the end card. There are no em or en dashes in facts.json, brief.md, script.md, transcript.md, cues.md, scene.js, data.js or captions.json."
- ]
+  "This round changed the picture only. The script, transcript, facts.json and data.js are unchanged in substance. The facts.json sha256 d0af96c6... matches data.js, and all 17 data.js values match facts.json by path. Every number drawn in scene.js comes from k.data.",
+  "New picture elements checked in the sheets and timelines: the storefront close-up title plate ('Top shops usually / quote 3 prices', 'ServiceTitan data, 12 months to Jan 2026'); the hook card is gone by 4.60 s; the tag flips to '$ $$ $$$'; 'A HABIT YOU CAN COPY' is on the plum bar (16.07 s); the tray shows '1 to 3 options: 42%' then '4+ options: 52%' (57.0 to 58.0 s); the ONE GROUP clamp is over 1 2 3 (59.5 to 63.0 s); the close plate grows line by line and 'a choice.' lands at 71.5 s. All match the sources and the voice.",
+  "Earlier faults are not back. There is no 'Not 1.', the voice says 'usually quote three', 'Why the middle wins' is gone, and 'The middle' only labels the Better row.",
+  "Story elements read as illustration, not data: the $ / $$ / $$$ tags, the chalk lines, the 68-of-100 street, the 'YOUR QUOTE (EXAMPLE)' clipboard, mid-spin reels (9 6 6, 2 6 $, 4 6 %) and the 1,091+ count-up frame each settle on the sourced value within a fraction of a second. '3 IS THE FLOOR' and 'Your three is a floor' are our advice, followed by the caveat.",
+  "Trades first: the evidence is ServiceTitan contractor data, a Housecall Pro home-service homeowner survey and an ACCA HVAC contractor survey. No non-trade study is used.",
+  "There is no real private person, business or address. QUOTE CLINIC is the segment sign, Snow is the host, and proofnotfluff.com is on the end card. There are no em or en dashes in 01_voice, transcript.md, cues.md, 04_scene or captions.json."
+ ],
+ "prior": {
+  "gate": "facts",
+  "round": 0,
+  "at": "2026-10-29T12:26:21-05:00",
+  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+  "pass": true,
+  "score": {
+   "numbers": 17,
+   "mismatches": 0
+  },
+  "reasons": [],
+  "sources_checked": [
+   "https://www.servicetitan.com/toolbox/state-of-the-trades/trends/top-performer-profile: top performers = 90th percentile of revenue within their trade and market segment; good-better-best on 57% of residential jobs vs 41% for the rest; trailing 12 months through January 2026; metrics are correlational, not causal; posted May 19, 2026. This supports the new hook 'Top shops usually quote three' (57% is a majority, so 'usually' is fair), 'a year of home jobs', 'Top 10% = by revenue in their trade' and 'ServiceTitan data, 12 months to Jan 2026'.",
+   "https://www.housecallpro.com/resources/home-service-spending-report-2026-release/: survey of more than 1,100 U.S. homeowners; 68% seek additional quotes when pricing comes in higher than expected; May 13, 2026; no fieldwork dates. This supports 'over eleven hundred homeowners', '1,100+ homeowners', '68% ... get more quotes when a price is higher than expected' and 'Housecall Pro survey, 2026'. 'There's a cheaper option already on your quote' describes the three-price quote, not a finding.",
+   "https://www.achrnews.com/articles/165799-survey-reveals-strategies-to-boost-hvac-close-rates-by-double-digits: ACCA and Farmington Consulting Group, more than 1,000 contractors (HVAC trade group, HVAC close-rate study); 4+ options close 52%; one, two or three options grouped at 42%; only 10% provide 4+; February 10, 2026. This supports '1,000+ HVAC contractors', '4+ options: 52%', '1 to 3 options: 42%', 'Only 10% offer 4+.' and 'ACCA survey, ACHR News, Feb 2026'. The grouping caveat is both said and shown ('It can't show 3 beats 1.')."
+  ],
+  "observations": [
+   "data.js sha256 d0af96c6... matches facts.json on disk. All 17 numbers in data.js match facts.json by path and shown value. Every number in scene.js comes from k.data. The rendered sheets (f00 to f37) show the same values.",
+   "Earlier faults are not back: no 'Not 1.', the voice says 'usually quote three', no 'Why the middle wins'. 'The middle' chip only labels the Better row. 'MORE CHOICES, MORE YESES' is gone.",
+   "'Your three is a floor' and '3 IS THE FLOOR' are our advice, set up by the correlational ACCA survey. The script makes no causal claim, and the caveat follows on screen and in voice.",
+   "Story elements read as illustration, not data: the storefront tags $ / $ $$ $$$, the chalk '3 prices, 1 quote.', the 100-house street lighting 68, the 'YOUR QUOTE (EXAMPLE)' clipboard, spinning slot reels mid-roll (9 6 6, 2 6 $) and the 1,091+ count-up frame. Every one lands on the sourced value.",
+   "Trades first: ServiceTitan contractor data, a Housecall Pro home-service homeowner survey and an ACCA HVAC contractor survey. No non-trade study is used.",
+   "No real private person, business or address. 'QUOTE CLINIC' is the segment sign, Snow is the host, and proofnotfluff.com is on the end card. There are no em or en dashes in facts.json, brief.md, script.md, transcript.md, cues.md, scene.js, data.js or captions.json."
+  ]
+ }
 }

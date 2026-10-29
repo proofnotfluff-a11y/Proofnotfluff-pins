@@ -5,6 +5,11 @@ name: Verify site
 # The shots and the report are kept as the run's artifact for 14 days.
 on:
   workflow_dispatch:
+    inputs:
+      base:
+        description: "Commit to compare against (default: the commit before)"
+        required: false
+        default: "HEAD~1"
   push:
     branches: [main]
     paths: ["docs/**", "tools/verify_site.py", "verify/**", ".github/workflows/verify-site.yml"]
@@ -20,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 20
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -29,7 +34,13 @@ jobs:
       - name: Self-checks (planted cases)
         run: python3 tools/verify_site.py --selftest
       - name: Verify the changed pages and every flow
-        run: python3 tools/verify_site.py --changed HEAD~1 --flows --out data/verify/ci
+        # each FAIL line also becomes an error annotation, which cloud runs can read through the API (Oct 29, 2026)
+        env:
+          BASE: ${{ github.event.inputs.base || 'HEAD~1' }}
+        run: |
+          set -o pipefail
+          python3 tools/verify_site.py --changed "$BASE" --flows --out data/verify/ci | tee verify.txt \
+            || { grep -E '^(FAIL|ERROR)' verify.txt | head -40 | cut -c1-400 | sed 's/^/::error::/'; exit 1; }
       - if: always()
         uses: actions/upload-artifact@v4
         with:

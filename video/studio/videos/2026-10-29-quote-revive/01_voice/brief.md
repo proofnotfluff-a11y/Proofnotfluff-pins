@@ -33,6 +33,7 @@ Lesson 2, segment The Text. Planned from the script playbook (research/runs/2026
  "stYear": {"path": "firstVisit.year", "shown": "2026"},
  "textPct": {"path": "homeowners.expectTextUpdatesPct", "shown": "59%"},
  "hcpSample": {"path": "homeowners.sample", "shown": "1,040"},
- "hcpYear": {"path": "homeowners.year", "shown": "2025"}
+ "hcpYear": {"path": "homeowners.year", "shown": "2025"},
+ "jbYear": {"path": "cadence.year", "shown": "2026"}
 }}
 ```

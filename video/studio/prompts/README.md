@@ -9,3 +9,8 @@ second FAIL holds the lesson for Todd. A gate rerun because another gate's fix c
 Order: facts, facts-captions (after the script and captions exist), then after the render: render-critic, buyer, design,
 golden. Pass bars: facts and facts-captions no mismatch; render-critic 0 faults; buyer stop and send or save yes;
 design no score under 4 and average 4.61 or more; golden "post as is" (polish alone is not a FAIL).
+
+Kimi (Todd, Oct 29, 2026, 6:20 pm): facts and facts-captions run on Kimi first (.claude/skills/kimi-jobs/SKILL.md, tools/kimi_job.py
+pastes these prompts with the files and source excerpts, since Kimi has no tools). Claude checks every Kimi FAIL reason and
+confirms every "unconfirmed" item on its source page; the review JSON names the reviewer. Cap, error or no answer: the fresh
+opus agent as before. Render critic, buyer, design and golden stay on Claude.

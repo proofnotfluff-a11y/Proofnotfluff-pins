@@ -8,9 +8,10 @@
 2. `anim.py render <slug>`: every frame in Chromium at 30 fps; voice, music bed and cue sounds mixed to -14 LUFS, true
    peak at or under -1.5 dBTP; H.264 and AAC. `anim.py check <slug>`: length 40 to 55 s for a v2 lesson, 45 to 75 s for v1 (end card included), loudness, black, frozen, file.
 3. `captions.json` from `_shared/captions.md` (Instagram, TikTok, Facebook, YouTube: keyword line, proof, takeaway,
-   send line, tags; no AI voice line, Todd Oct 29).
+   send line, tags; no AI voice line, Todd Oct 29). Start from Kimi's draft (kimi-jobs skill) and edit it.
 4. `anim.py stills <slug>` and `anim.py gatepack <slug>`, then the gates in `video/studio/prompts/` (README there): facts,
-   facts-captions, render critic, buyer, design, golden, each a fresh agent (model opus). One fix round per gate; a
+   facts-captions, render critic, buyer, design, golden, each a fresh agent (model opus); facts and facts-captions on Kimi first
+   (prompts/README.md). One fix round per gate; a
    gate's own second FAIL holds the lesson for Todd.
 5. All PASS: commit the lesson, then `anim.py ready <slug>` (it pins the commit), commit and push. It posts on the next
    daily run (POSTING.md). Nothing posts that is not in the queue.

@@ -8,6 +8,6 @@
 
 [a little surprised] Want a real fifty percent margin? You'd have to DOUBLE your cost. That's a hundred percent markup. A thousand in cost, two thousand on the quote.
 
-[short pause] Here's the part people skip. [warmly] Screenshot this one. Price equals your cost, divided by one minus the margin you want. Want forty percent? Divide your cost by point six. A thousand becomes about sixteen hundred sixty-seven dollars.
+[warmly] Here's the part people skip. Screenshot this one. Price equals your cost, divided by one minus the margin you want. Want forty percent? Divide your cost by point six. A thousand becomes about sixteen hundred sixty-seven dollars.
 
 [confident] Markup is on cost. Margin is on price. Send this to whoever sets your prices, even if that's you. And your last quote? Was the margin half, or a third?

@@ -1533,7 +1533,7 @@ def hook_report(slug, pg=None):
     own = pg is None
     if own:
         pw, b, pg = open_stage(slug)
-    events, host_at, anchor, last = [], None, None, -9.0
+    events, peaks, host_at, anchor, last = [], [], None, None, -9.0
     for i in range(int(HOOK["changes_in"] * HOOK_FPS) + 1):
         t = i / HOOK_FPS
         r = pg.evaluate(f"({HOOK_JS})({t:.4f})")
@@ -1545,13 +1545,13 @@ def hook_report(slug, pg=None):
         frac = float((np.abs(f - anchor).max(axis=2) > HOOK_LEVEL).mean())
         if frac >= HOOK_DIFF:
             if t - last >= HOOK_MERGE:
-                events.append(round(t, 2)); last = t
+                events.append(round(t, 2)); peaks.append(round(frac, 3)); last = t
             anchor = f
     if own:
         b.close(); pw.stop()
     words = json.load(open(vdir(slug, "02_transcript", "words.json")))["words"]
     n, said = spoken_hook(words)
-    rep = {"first_change": events[0] if events else None, "changes_by_3s": len(events), "changes": events, "host_at": host_at,
+    rep = {"first_change": events[0] if events else None, "changes_by_3s": len(events), "changes": events, "share": peaks, "host_at": host_at,
            "hook_words": n, "hook_said_by": round(said, 2), "seconds": round(cues["duration"], 2)}
     bad = []
     if rep["first_change"] is None or rep["first_change"] > HOOK["first_change_by"]:

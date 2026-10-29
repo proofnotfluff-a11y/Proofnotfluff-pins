@@ -10,7 +10,7 @@ in docs/assets/fonts. Titles and body use text-wrap: balance, so no line ends on
 
 Slide roles and their json fields (every slide: eyebrow, title, optional source):
   hook   ink band: number, title, sub
-  proof  tiles: [{label, value, accent?}] (2 or 3; accent: true paints the one bar that matters)
+  proof  tiles: [{label, value, accent?}] (2 or 3; accent: true paints the one bar that matters), optional body
   where  rows: [[rank, name, value], ...] (5 at most)
   why    body, card: {label, value}
   work   body, bars: [{label, value}] (first bar ink, last bar accent, widths from the numbers)
@@ -126,7 +126,7 @@ def slide(s, i, n, footer):
         tiles = "".join(f'<div class="card"><div class="tv"><div class="lab">{esc(t["label"])}</div><div class="val">{esc(t["value"])}</div></div>'
                         f'<div class="tbar"><i style="width:{max(0.06, num(t["value"]) / top) * 100:.1f}%' + (f';background:{T["accent"]}' if t.get("accent") else "") + '"></i></div></div>'
                         for t in s["tiles"])
-        inner = f'{eb}{title}<div class="tiles grow">{tiles}</div>'
+        inner = f'{eb}{title}<div class="tiles grow">{tiles}</div>{body}'
     elif role == "where":
         # The order is the rank: no rank column (a tie read as "1, 2, 2, 4" looks like a typo).
         rows = "".join(f'<div class="row"><span class="n">{esc(r[1])}</span>'

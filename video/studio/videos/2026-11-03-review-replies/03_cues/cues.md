@@ -14,13 +14,13 @@ The card turns to the number: "43%" in the accent, "of contractors don't" / "ans
 
 ## stakes "That's The ACHR News." [sfx: whoosh]
 World: the slot machine (level select). The crown reads ACHR NEWS + CLEAR SEAS; the reels idle on ?, ?, ?.
-## stakes.pull "Ninety-one percent of" [sfx: tick]
+## stakes.pull "Ninety-one percent of the" [sfx: tick]
 The lever pulls in 3 steps; the reels spin and stop left to right on 9, 1, % as "ninety-one percent" is said. The crown flips to SAY REVIEWS MATTER; bulbs chase, coins jump in the tray.
 ## stakes.asked "four hundred homeowners said" [sfx: tick]
 The plate under the reels types: "400 homeowners, 2024"; the bulbs chase faster.
 ## stakes.hvac "when they pick an" [sfx: blip]
 The plate: "when they pick an HVAC contractor".
-## stakes.google "Fifty-six percent check reviews" [sfx: tick]
+## stakes.google "And fifty-six percent of" [sfx: tick]
 A second pull: the reels stop on 5, 6, %; the crown: LOOK ON GOOGLE.
 
 ## gap "So if you answer" [sfx: whoosh]

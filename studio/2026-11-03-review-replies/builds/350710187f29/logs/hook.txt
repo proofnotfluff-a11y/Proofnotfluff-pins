@@ -1,0 +1,8 @@
+{"first_change": 2.6, "changes_by_3s": 1, "changes": [2.6], "host_at": null, "hook_words": 11, "hook_said_by": 5.54, "seconds": 76.08}
+ERROR hook: the picture first changes at 2.6 s (by 1.0 s)
+ERROR hook: 1 picture change(s) in the first 3 s (at least 2)
+ERROR hook: the host is not on screen by 3 s
+ERROR hook: the spoken hook ends at 5.54 s (by 3.6 s)
+ERROR hook: the lesson runs 76.1 s (75 s at most, end card included)
+hook: FAIL first change 2.6 s, 1 changes by 3 s, host None s, spoken hook 11 words by 5.54 s, 76.08 s long
+exit 1

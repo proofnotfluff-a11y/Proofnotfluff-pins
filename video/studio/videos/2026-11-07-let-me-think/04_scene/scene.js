@@ -240,18 +240,20 @@ window.SCENE = {
   transitions: {play: 'dissolve', wait: 'levelselect', fix: 'iris', proof: 'xp', button: 'drive'},
   trauma: {'wait.comp': 0.5},
   sections: {
-    // ---- hook: the drop-in in three shots under one title plate. Cover: the finished estimate on the kitchen table (no
-    // host). Cut by 0.8 s to the street (the van in the drive, the homeowner's door, a thinking bubble; Snow comes in).
+    // ---- hook: the drop-in in three shots under one title plate. Cover: the finished estimate on the kitchen table, Snow
+    // in his spot. Cut by 0.8 s to the street (the van in the drive, the homeowner's door, a thinking bubble; Snow comes in).
     // Cut on "let" to the close-up: a big thought bubble and an hourglass on plum.
     hook: (k, T) => {
       const d = px(k), {P} = d;
       const tHome = W(/^they$/i, k.S('hook.home'), 0.8), tLet = W(/^let$/i, k.S('hook.let'), 2.0);
       const cut1 = Math.min(0.8, Math.max(0.5, tHome - 0.05)), cut2 = Math.min(2.6, Math.max(cut1 + 0.6, tLet - 0.05));
       if (T < cut1) {
-        kitchen(k, {optAt: -1, day: {}});
+        // the room drops 100 px-rows so the plate sits on the wall and the estimate, the coffee and the card show whole
+        P(0, 0, 360, 100, SAND); for (let x = 4; x < 360; x += 14) P(x, 0, 3, 100, PAPER);
+        k.ctx.save(); k.ctx.translate(0, 300); kitchen(k, {optAt: -1, day: {}}); k.ctx.restore();
         hookPlate(k, d);
-        k.burst(540, 480, 0.35, {n: 14, r: 220, colors: ['accent', 'paper']});
-        return {host: false, speech: false};
+        k.burst(540, 780, 0.35, {n: 14, r: 220, colors: ['accent', 'paper']});
+        return host(k);
       }
       if (T < cut2) {
         k.sets.street({t0: 1e6, van: false});
@@ -313,7 +315,7 @@ window.SCENE = {
       d.win(24, 88, 312, 40, {base: DUSK, hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
       k.slam('The waiting starts.', 96, 282, t0 + 0.05, {size: 66, color: CREAM, from: 0.5, drop: INK});
       if (T >= tComp && T < tTalk) k.slam('Call a competitor.', 270, 846, tComp, {size: 39, color: '#87CEEB', from: 0.4});
-      if (T >= tTalk) k.slam('Or talk themselves out of it.', 270, 846, tTalk, {size: 39, color: CREAM, from: 0.4});
+      if (T >= tTalk) k.slam('Or talk themselves out of it.', 120, 846, tTalk, {size: 39, color: CREAM, from: 0.4});
       return host(k, T >= tTalk ? 'shrug' : null);
     },
 
@@ -377,8 +379,8 @@ window.SCENE = {
       P(14, 174, 332, 2, INK); P(14, 300, 332, 2, INK); P(14, 174, 2, 128, INK); P(344, 174, 2, 128, INK);
       P(16, 176, 328, 1, MAROON); P(16, 299, 328, 1, MAROON); P(16, 176, 1, 124, MAROON); P(343, 176, 1, 124, MAROON);
       [[14, 174], [342, 174], [14, 298], [342, 298]].forEach(([x, y]) => { P(x, y, 4, 4, ORANGE); d.DOT(x + 1, y + 1, GOLD); });
-      P(22, 158, 4 + d.tw('Same-visit close rate', 30), 14, INK); P(23, 159, 2 + d.tw('Same-visit close rate', 30), 12, MAROON);
-      d.tx('Same-visit close rate', 24, 160, {size: 30, color: CREAM});
+      P(20, 157, 10 + d.tw('Same-visit close rate', 30), 16, INK); P(21, 158, 8 + d.tw('Same-visit close rate', 30), 14, MAROON);
+      d.tx('Same-visit close rate', 25, 160, {size: 30, color: CREAM});
       k.text('Pattern, not proof.', 930, 480, {size: 30, color: GOLD, align: 'right'});
       d.win(14, 84, 332, 70, {base: DUSK, hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
       sprites(k).icon('star', 304, 96, 3); if (T >= t0 + 1) d.twinkle(330, 98, (d.F >> 2) % 8 < 4 ? (d.F >> 2) % 4 : 0, GOLD);

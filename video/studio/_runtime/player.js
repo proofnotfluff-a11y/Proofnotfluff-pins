@@ -260,12 +260,12 @@
     if (f >= 12) P(ux, 216, Math.min(uw, (f - 12) * 8), 2, '#F7C873');   // the site's underline draws on
     k.text('Lessons for trade owners', 534, 690, {size: 39, color: '#E6D3BC', align: 'center', lint: drop === 0});
     // the send line (Lead Clinic v2, Oct 29): a v2 lesson says no call to action, so the card carries it, word-wrapped
-    // into the space under the plate, cream on plum
+    // onto the dark floor under Snow's feet (above the apps' caption band), where nothing stands in front of it
     const send = window.SCENE.sendLine;
     if (send) {
       const words = String(send).split(/\s+/), rows = [''];
-      words.forEach((w) => { const s = rows[rows.length - 1] ? rows[rows.length - 1] + ' ' + w : w; if (k.measure(s, {size: 39}) > 840 && rows[rows.length - 1]) rows.push(w); else rows[rows.length - 1] = s; });
-      rows.forEach((s, i) => k.text(s, 534, 870 + i * 51, {size: 39, color: '#FFF7EA', align: 'center', lint: drop === 0 && f >= 12}));
+      words.forEach((w) => { const s = rows[rows.length - 1] ? rows[rows.length - 1] + ' ' + w : w; if (k.measure(s, {size: 45}) > 900 && rows[rows.length - 1]) rows.push(w); else rows[rows.length - 1] = s; });
+      rows.forEach((s, i) => k.text(s, 534, 1380 + i * 57, {size: 45, color: '#FFF7EA', align: 'center', lint: drop === 0 && f >= 12}));
     }
     // a twinkle walks the plate's corners, one every 8 frames, so the held card is never a still picture
     const pts = [[46, 102], [310, 102], [310, 258], [46, 258]], g = f >= 10 ? Math.floor((f - 10) / 8) % 4 : -1;

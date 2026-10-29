@@ -1,0 +1,79 @@
+{
+ "job": "2026-10-29-quote-revive-captions-draft",
+ "model": "k3.1-pro",
+ "at": "2026-10-29T23:32:13+00:00",
+ "status": "ok",
+ "kind": "captions-draft",
+ "slug": "2026-10-29-quote-revive",
+ "sources": [],
+ "prompt_chars": 20229,
+ "usage": {
+  "input_tokens": 5850,
+  "cache_read_input_tokens": 0,
+  "output_tokens": 5415
+ },
+ "result": {
+  "schema": "pnf.studio.captions.v1",
+  "keywords": {
+   "primary": "plumbing business tips",
+   "secondary": [
+    "how to get more jobs as a contractor",
+    "home service business"
+   ],
+   "trades": [
+    "plumbing",
+    "HVAC",
+    "roofing"
+   ]
+  },
+  "instagram": {
+   "caption": "Plumbing business tips: one yes-or-no text HVAC and roofing business owners can copy.\nServiceTitan's own data shows only 37% of estimates close on the first visit (ServiceTitan, Follow-Ups 101: Back 2 Basics, Apr 17, 2026).\nIn a Housecall Pro survey of 1,040 U.S. homeowners, 59% expect text updates (The new home service standard, Dec 10, 2025).\n\nCopy this:\nHi [name], it's [you]. Still want that water heater swapped before winter?\n\nOne name, one job, one question. Text it, do not email it. ServiceTitan's follow-up webinar says texting beats email on open rates.\nJobber's email follow-up timing: first within 2 days after sending the quote, next 1 week after the initial quote, final a day or two before the quote expires. After 3 follow-ups, close the file (Jobber Academy, updated May 28, 2026).\nSend this to whoever follows up on your quotes.\n\n#homeservicebusiness #plumbingbusiness #hvacbusiness #quotefollowup",
+   "settings": {
+    "aiLabel": true,
+    "shareToFacebook": false
+   }
+  },
+  "tiktok": {
+   "caption": "Plumbing business tips: one yes-or-no text HVAC and roofing business owners can copy.\nServiceTitan's own data shows only 37% of estimates close on the first visit (ServiceTitan, Follow-Ups 101, Apr 17, 2026).\nIn a Housecall Pro survey of 1,040 U.S. homeowners, 59% expect text updates (Dec 10, 2025).\nCopy this: Hi [name], it's [you]. Still want that water heater swapped before winter?\nOne name, one job, one question. Jobber's email timing: within 2 days, again 1 week after the initial quote, then a day or two before expiry. After 3 follow-ups, close the file (Jobber Academy, updated May 28, 2026).\nWhat do you send when a quote goes quiet?\nSend this to whoever follows up on your quotes.\n#homeservicebusiness #plumbingbusiness #hvacbusiness #contractorbusiness #quotefollowup",
+   "settings": {
+    "aiGenerated": true,
+    "commercialDisclosure": false,
+    "suggestKeywords": [
+     "plumbing business tips",
+     "quote follow up",
+     "contractor business tips"
+    ]
+   }
+  },
+  "facebook": {
+   "caption": "Plumbing business tips: one yes-or-no text HVAC and roofing business owners can copy.\nServiceTitan's own data shows only 37% of estimates close on the first visit (ServiceTitan, Follow-Ups 101, Apr 17, 2026).\nIn a Housecall Pro survey of 1,040 U.S. homeowners, 59% expect text updates (Dec 10, 2025).\nCopy this: Hi [name], it's [you]. Still want that water heater swapped before winter?\nOne name, one job, one question. Jobber's email follow-up timing: within 2 days, again 1 week after the initial quote, then a day or two before expiry. After 3 follow-ups, close the file (Jobber Academy, updated May 28, 2026).\nSend this to whoever follows up on your quotes.\n#homeservicebusiness #contractorbusiness",
+   "settings": {
+    "aiLabel": true,
+    "audience": "Public"
+   }
+  },
+  "youtube": {
+   "title": "Plumbing Business Tips: A Quiet-Quote Text for HVAC and Roofing Owners",
+   "description": "Plumbing business tips: one quiet-quote text for HVAC, roofing and home service business owners.\nServiceTitan's own data shows only 37% of estimates close on the first visit (ServiceTitan, \"Follow-Ups 101: Back 2 Basics,\" Apr 17, 2026).\nIn a Housecall Pro survey of 1,040 U.S. homeowners, 59% expect text updates (\"The new home service standard,\" Dec 10, 2025; survey fielded Oct 23, 2025).\nServiceTitan's follow-up webinar says texting beats email on open rates.\n\nThe quiet-quote text:\n1. Hi [name], it's [you].\n2. Still want that water heater swapped before winter?\n3. Send it as a text, with one name, one job and one yes-or-no question.\n\nJobber's follow-up tips: use their name, name the job and ask a question. Jobber's email follow-up timing: first within 2 days after sending the quote, next 1 week after the initial quote, final a day or two before the quote expires. After 3 follow-ups, close the file (Jobber Academy, updated May 28, 2026).\nSend this to whoever follows up on your quotes.\nNext lesson: more practical quote follow-up help for trade business owners.\n#homeservicebusiness #contractorbusiness #quotefollowup",
+   "tags": [
+    "plumbing business tips",
+    "quiet quote follow up",
+    "how to get more jobs as a contractor",
+    "hvac business owner",
+    "roofing business tips",
+    "home service business",
+    "contractor business tips",
+    "quote follow up",
+    "how to respond to leads",
+    "plumbing busines tips"
+   ],
+   "settings": {
+    "madeForKids": false,
+    "aiUse": true,
+    "category": "Education",
+    "language": "English",
+    "visibility": "Public"
+   }
+  }
+ }
+}

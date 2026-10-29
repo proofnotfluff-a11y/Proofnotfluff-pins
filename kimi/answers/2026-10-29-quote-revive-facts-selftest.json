@@ -1,0 +1,50 @@
+{
+ "job": "2026-10-29-quote-revive-facts-selftest",
+ "model": "k3.1-pro",
+ "at": "2026-10-29T23:38:42+00:00",
+ "status": "ok",
+ "kind": "facts",
+ "slug": "2026-10-29-quote-revive",
+ "sources": [
+  {
+   "url": "https://www.servicetitan.com/blog/webinar-recap-follow-ups-101-back-2-basics",
+   "read": true,
+   "chars": 4270
+  },
+  {
+   "url": "https://www.housecallpro.com/resources/home-service-customer-service-report-trends-statistics/",
+   "read": true,
+   "chars": 3267
+  },
+  {
+   "url": "https://getjobber.com/academy/quote-follow-up-email-templates/",
+   "read": true,
+   "chars": 5006
+  }
+ ],
+ "prompt_chars": 30163,
+ "usage": {
+  "input_tokens": 7799,
+  "cache_read_input_tokens": 0,
+  "output_tokens": 2091
+ },
+ "result": {
+  "pass": false,
+  "score": {
+   "numbers": 8,
+   "mismatches": 1
+  },
+  "reasons": [
+   "02_transcript/transcript.md at 00:04.8: the voice says \"only forty-seven percent\" while 01_voice/script.md, 04_scene/data.js and the ServiceTitan source say 37%. Re-voice this line as \"only thirty-seven percent\" and update the transcript."
+  ],
+  "sources_checked": [
+   "https://www.servicetitan.com/blog/webinar-recap-follow-ups-101-back-2-basics: confirmed the April 17, 2026 date, ServiceTitan data showing only 37% convert immediately, the majority depending on follow-up, and texts outperforming email on open rates.",
+   "https://www.housecallpro.com/resources/home-service-customer-service-report-trends-statistics/: confirmed the December 10, 2025 date, the survey of 1,040 U.S. homeowners fielded online on October 23, 2025, and the context of text updates as a job progresses.",
+   "https://getjobber.com/academy/quote-follow-up-email-templates/: confirmed the May 28, 2026 date, follow-up timing within two days, after one week and 24 to 48 hours before expiry, and templates using the customer name, project details and a question."
+  ],
+  "unconfirmed": [
+   "https://www.housecallpro.com/resources/home-service-customer-service-report-trends-statistics/: the exact chart figure \"59% expect text updates\" is not visible in the pasted excerpt.",
+   "https://getjobber.com/academy/quote-follow-up-email-templates/: the caption-only advice to close the file after three follow-ups is not visible in the pasted excerpt."
+  ]
+ }
+}

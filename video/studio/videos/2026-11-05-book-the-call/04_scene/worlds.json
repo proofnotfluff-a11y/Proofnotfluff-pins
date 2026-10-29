@@ -1,0 +1,9 @@
+{
+ "schema": "pnf.studio.worlds.v1",
+ "share": {
+  "set:versus": 0.204,
+  "set:calendar": 0.188,
+  "set:boss": 0.138,
+  "set:flaps": 0.141
+ }
+}

@@ -55,3 +55,6 @@ The studio learns in three loops (Todd, Oct 28, 2026, 3:43 pm: "make this video 
 - 2026-10-28 three-prices round 1: facts (base of the 5 points) and captions (HVAC) second FAIL, design 4.43 and golden
   (menu card over the citation) second FAIL -> all fixed, held for Todd's word.
 - 2026-10-28 first-reply on the new art: critic 0 faults, design 4.71, golden post as is (sheen on frame 0 fixed after).
+- 2026-10-28 book-the-call: lint variety saw no set pieces (worlds.json empty): its spy assigned over k.sets, a getter, and
+  the assignment was dropped -> the spy redefines the property. Board text hidden under a card still counts for lint, so
+  occluded set text is not drawn (a 7-day calendar week, versus stats off in the close).

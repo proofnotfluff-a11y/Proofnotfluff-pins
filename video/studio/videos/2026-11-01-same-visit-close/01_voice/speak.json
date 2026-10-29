@@ -3,7 +3,7 @@
  "voice": "W3pJy9ibur1FKUihVxzY",
  "model": "eleven_v4",
  "takes": [
-  0
+  1
  ],
  "settings": {
   "stability": 0.6,
@@ -12,5 +12,5 @@
   "use_speaker_boost": true
  },
  "scriptSha256": "ba80bd2e85ee43f25d44351ac656493d1cb6f2e0a3e6915e0c30aa691f4d0ce1",
- "requestedAt": "2026-10-28T21:50:31-05:00"
+ "requestedAt": "2026-10-28T22:09:26-05:00"
 }

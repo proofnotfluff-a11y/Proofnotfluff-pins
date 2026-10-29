@@ -24,5 +24,5 @@ Newest run first. Each run: the ICM scorecard, the benchmark lines with values, 
 - End card: FAIL, none.
 - Length: FAIL, 6 of 9 over 75 s (71.7 to 86.8 s, about 173 words a minute).
 - Frame rate: 30 fps (60 fps in the backlog).
-- Design gate: 4.71 to 4.86 on all nine, judged against our own spec only. The lab's benchmark uses _shared/style-board/; pointing the design gate at it is a gate change for Todd.
+- Design gate: 4.71 to 4.86 on all nine, judged against our own spec only. From Oct 29 (Todd: "go with rec") the design gate also grades against _shared/style-board/: type floor, hook and end card each cap a score at 4.
 - Watch numbers: none yet (the Monday metrics step has not run).

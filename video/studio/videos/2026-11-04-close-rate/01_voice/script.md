@@ -6,7 +6,7 @@
 
 [warmly] So here's how you measure it, and screenshot this. Close rate equals jobs sold, divided by estimates given, over the same month.
 
-[curious] For example, say you gave forty estimates last month and sold fourteen. Fourteen over forty is thirty-five percent, right inside the median range. Now plug in yours.
+[curious] For example, say you gave forty estimates last month and sold fourteen. Fourteen over forty, that's thirty-five percent, right inside the median range. Now plug in yours.
 
 [short pause] Here's the part people skip. ServiceTitan doesn't say how it counts a close, and its customers aren't every shop out there. So the first number you need to beat is your OWN, from last month.
 

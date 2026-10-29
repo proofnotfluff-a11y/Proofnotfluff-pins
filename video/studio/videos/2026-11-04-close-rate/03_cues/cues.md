@@ -41,7 +41,7 @@ The formula card writes in: "Close rate =" then "jobs sold" over a line.
 Room: garage. Header EXAMPLE on a dark band. A card with three rows shown as it opens: Estimates given, Jobs sold, Close rate, each value empty.
 ## example.forty "gave forty estimates last"
 40 counts in on "forty"; 14 counts in on "fourteen".
-## example.div "Fourteen over forty is" [sfx: tick]
+## example.div "Fourteen over forty, that's" [sfx: tick]
 "14 / 40" writes in on the Close rate row; 35% slams in as it is said, sparks.
 ## example.range "right inside the median" [sfx: blip]
 A small range strip under the card: 31% to 38% lit, a marker drops at 35%.

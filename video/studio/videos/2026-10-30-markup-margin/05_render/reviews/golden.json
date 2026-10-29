@@ -1,12 +1,18 @@
 {
  "gate": "golden",
  "round": 0,
- "at": "2026-10-28T18:08:00-05:00",
+ "at": "2026-10-28T21:59:03-05:00",
  "pass": true,
  "score": {
   "post_as_is": "yes"
  },
  "reasons": [
-  "polish: static hook card; count-ups pass odd values ($1,595.62); small board labels; empty pegboard 23 to 24.5 s; take 05 at 147 wpm"
+  "1 polish 0.0-4.0 s: hook card is strong ('50% markup is NOT 50% margin', cost bar, A THIRD) but nearly still until Snow enters at 4.0 s; a small move in the first 2 s would help the stop.",
+  "2 polish 0.5 s: sparkle dots sit over the word 'markup' on the hook card for a beat.",
+  "3 polish 39.5-41.0 s: badge and voice say 'double your cost'; JLC's wording and fixed by the next line ($1,000 cost, $2,000 quote), but 'price = 2 x cost' would be cleaner for a lesson about what is measured on what.",
+  "4 polish 58.5-59.5 s: price count-up passes odd values ($1,655.48) while the voice says 'sixteen hundred'; it lands on $1,666.67 with the 40% check.",
+  "5 polish 65.9-68 s: recap card drops 'Markup is on cost.' when the send line appears, so only half the recap stays on screen.",
+  "6 polish: secondary board text (measured on your cost, Price = what the customer pays you, Check line) is small on a phone; key numbers ($1,000, $1,500, 33.3%, $2,000, $1,666.67) are large and on screen as said.",
+  "7 polish: take 05 (formula, 46.2 s) runs 147 wpm, under the 160 target; qa.json all 6 checks PASS, no doubtful pass; math and on-screen numbers match facts.json, no contradictions."
  ]
 }

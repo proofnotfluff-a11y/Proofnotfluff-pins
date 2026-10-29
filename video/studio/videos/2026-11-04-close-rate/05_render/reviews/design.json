@@ -1,0 +1,16 @@
+{
+ "gate": "design",
+ "round": 0,
+ "pass": false,
+ "score": {"first": 4, "hierarchy": 4, "type": 4, "color": 4, "spacing": 4, "polish": 3, "trust": 4, "average": 3.86},
+ "reasons": [
+  "48.70-54.18 turn, plate 'How it counts a close:' (scene.js line 377, plate h 30): 'not on the page.' hangs below the plate and the red bottom rule runs through it like a strikethrough; raise the plate to h 40 so both lines sit inside.",
+  "51.48-54.18 turn, plate 'ServiceTitan customers. / Not every shop.' (line 378, plate h 32): the second line sits on the bottom rule; raise to h 40.",
+  "21.62-24.70 stakes.measure, red sticker 'Can't close a gap / you never measured.' (line 268, win 116,263,128,40): text runs into both side borders and the top edge collides with the 0 and 100 labels; widen to win(100, 268, 160, 40) and move the lines to y 817 and 859.",
+  "46.52-54.18 turn, title panel 'The part people skip': the source line drops at the count cue and leaves the two-line panel half empty for 6 s; keep 'ServiceTitan's medians, May to Jul 2026' on until turn.own, or shrink the plate to one line.",
+  "54.18-58.90 turn.own, dimmed map: the 1-pixel checker dither over the whole map reads as grey moire on a phone; recolor the map to solid dark palette tones (#2B2033 / #3D2E45) so the gold pin and THIS MONTH pop.",
+  "Freshness: the dispatch map is used twice (hook and turn, 31%) and is the same board, river, park, mug, radio and checker floor as lesson 5 (2026-11-01 'why'); replace the turn section with a piece new to lessons 5 to 9, e.g. a bespoke 'beat your ghost' lap board (last month's rate as the ghost bar, this month racing it), so the map shows once.",
+  "0.00 cover, source plate (line 210, w 246): '2026' touches the plate's inner rule; widen to 254.",
+  "72.70-80.54 close: the payoff fraction 'jobs sold / estimates given' at size 66 is dwarfed by 'Close rate =' at 132 and leaves the lower right of the board empty; raise both lines to 99 and lengthen the divider to the wider line."
+ ]
+}

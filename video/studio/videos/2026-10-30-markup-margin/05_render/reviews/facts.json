@@ -1,13 +1,23 @@
 {
  "gate": "facts",
  "round": 0,
- "at": "2026-10-28T17:14:00-05:00",
+ "at": "2026-10-28T21:58:57-05:00",
  "pass": true,
  "score": {
   "numbers": 14,
   "mismatches": 0
  },
  "reasons": [
-  "11 formulas re-run, all 14 data paths resolve; JLC and Xero re-read"
+  "All 11 computed formulas in 01_voice/facts.json re-run and match; all 14 data.js paths resolve to the same value and shown string; data.js sha256 matches facts.json (ceb938e7...).",
+  "Voice (script.md, transcript.md) matches the numbers: a thousand, fifty percent, five hundred, fifteen hundred, one third, about thirty-three percent (33.3), a hundred percent, two thousand, forty percent, point six, about sixteen hundred sixty-seven (1,666.67). Rounding is fair.",
+  "scene.js strings checked (hook sign, register, gauge readouts, why rows, double plate, formula card and stats, close column): every number comes from k.data and matches; register totals sum to $1,500; gauge readout 33.3% then 50%.",
+  "Claims: says margin, never profit; 'not take-home pay, covers overhead and your pay' is supported by Xero's gross margin note; 'Example math. Sources: JLC, Xero' labels the example as an example.",
+  "Trades first: the core claim (50% markup = 33% margin, 100% markup = 50% margin, double the direct cost) rests on JLC, trade press for contractors and remodelers (Sal Alfano, Hanley Wood Remodeling); Xero supplies formulas only.",
+  "No real private person, business or address; no em or en dashes in brief, script, facts, transcript, data.js or scene.js.",
+  "Non-blocking note: 04_scene/scene.js formula stat 'PRICE' bar is scaled against doublePrice ($2,000) with no label (fills 83%); and dial() uses the gauge's default red/orange/teal zones, which color 33% red and 50% orange without a source. Both read as decoration, not data; optional fix: pass frac 1 for the PRICE bar and zones: [[0,100,'#3D2E45']] (neutral) to dial()."
+ ],
+ "sources_checked": [
+  "https://www.jlconline.com/business/markup-vs-margin_o/: $1,000 direct cost + $500 markup = $1,500; 'a 50% markup is equivalent to a 33% margin'; 'a 100% markup gives a 50% margin'; 'you must double the direct cost amount'",
+  "https://www.xero.com/us/glossary/margin-vs-markup/ (published 23 July 2026): Margin = (Revenue - COGS)/Revenue; Markup = (Revenue - COGS)/COGS; Markup = Margin/(1 - Margin); 50% markup gives 33.3% margin; margin on selling price, markup on cost; gross margin excludes rent, salaries and other operating expenses"
  ]
 }

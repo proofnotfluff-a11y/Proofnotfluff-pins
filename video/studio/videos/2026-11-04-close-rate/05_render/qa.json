@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-04-close-rate",
- "mp4Sha256": "0150baedf3502899aad7a1464fdd797d6feaf8ca7c6763a3ac200764beeb3f09",
+ "mp4Sha256": "e54d874879937e0322ec99b4fa10ca1ca33faa6b6739e72529f97d75e259b3b3",
  "checks": [
   {
    "name": "length",
@@ -33,19 +33,19 @@
   {
    "name": "file",
    "value": {
-    "sha256": "0150baedf3502899aad7a1464fdd797d6feaf8ca7c6763a3ac200764beeb3f09",
-    "bytes": 6593205
+    "sha256": "e54d874879937e0322ec99b4fa10ca1ca33faa6b6739e72529f97d75e259b3b3",
+    "bytes": 7094061
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 6.6 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 7.1 MB, decodes clean"
   },
   {
    "name": "voice",
    "value": "whisper medium.en int8, re-spelled from script.md",
-   "pass": false,
-   "detail": "whisper medium.en int8, re-spelled from script.md, 2 flag(s)"
+   "pass": true,
+   "detail": "whisper medium.en int8, re-spelled from script.md, 0 flag(s)"
   }
  ],
- "pass": false,
- "at": "2026-10-28T19:29:56-05:00"
+ "pass": true,
+ "at": "2026-10-28T22:08:01-05:00"
 }

@@ -1,7 +1,7 @@
 {
  "gate": "buyer",
  "round": 0,
- "at": "2026-10-28T17:58:00-05:00",
+ "at": "2026-10-28T21:58:07-05:00",
  "pass": true,
  "score": {
   "stop": "yes",
@@ -10,7 +10,11 @@
   "follow_or_link": "yes"
  },
  "reasons": [
-  "stop on the 50% markup is NOT 50% margin card; send and save on the formula and worked example",
-  "notes: hook footnote comma; formula should be on screen while said"
+  "1 (electrical shop owner): a 50% markup on cost is only a 33% margin on price; to hit a target margin, price = cost / (1 - margin).",
+  "2 stop yes: frame 0.8s '50% markup is NOT 50% margin' hits a number I quote every week and says I'm wrong; voice backs it in 4 s ('Nope. It's a third.').",
+  "3 send yes: to my office manager who builds quotes, the line literally asks for it. Save yes: 'Screenshot this one' plus the formula and the /0.6 worked example. Follow yes: 'Lesson 3' and 'Run the Numbers' say there is a series; no link pitch, which is fine.",
+  "4 none: no hype, no urgency, no product pitch; math checks ($500/$1,500 = 33.3%, $1,000/0.6 = $1,666.67, 100% markup = 50% margin); AI voice disclosed in caption; short talky lines, not robotic.",
+  "5 minor, not blocking: 'JLC' on the hook card and in the caption means nothing to a stranger; fix: caption 'Journal of Light Construction', card can stay short. 'Divide your cost by point six' could add '(one minus forty percent)' on screen if not already shown.",
+  "6 trust yes: example labeled 'Example math', sources named, closing question ('Was the margin half, or a third?') makes me check my own last quote rather than buy something."
  ]
 }

@@ -1,0 +1,21 @@
+{
+ "gate": "buyer",
+ "round": 0,
+ "at": "2026-10-28T22:09:12-05:00",
+ "pass": true,
+ "score": {
+  "stop": "yes",
+  "send": "yes",
+  "save": "yes",
+  "follow_or_link": "no"
+ },
+ "reasons": [
+  "1. As an HVAC owner: most shops close about a third of their estimates, the top quarter close about 70%, and here is how to work out my own rate (jobs sold / estimates given, same month) and track it every Friday, by count and by dollars.",
+  "2. Stop: yes. Frame 0.8s shows two big numbers (West 38%, Northeast 31%) under 'Median close rate, by region' with the source, and the first spoken line names my business and a number. I want to know where I sit.",
+  "3. Send: yes, to my estimator; the line 'Send this to whoever writes your estimates' fits how my shop works. Save: yes, the formula, the 40/14 = 35% worked example and the dollar check are worth keeping. Follow or link: no, not yet; one useful lesson earns a save, and 'free tools, link in bio' gives no reason to click today.",
+  "4. Hype, fake urgency, pitch, slop, robotic: nothing that would make me scroll past. No sales pitch, no countdown, and the caveat (ServiceTitan does not define close, its customers are not every shop) reads as honest, not hedging. 'Screenshot this one' and 'Here's the part people skip' are common creator phrases but not hype. AI voice is disclosed in the caption.",
+  "5. Unclear to a stranger, minor: the first frame draws national regions (West, Northeast) on what looks like one city map with a lakefront, so for a second 'West 38%' can read as a side of town. Fix: label the card 'US West' / 'US Northeast', or keep the card text and drop the city-map cue for this scene. Also minor: 'top quarter ... their median runs seventy to seventy-three' is a median of a median; caption states it clearly enough, voice could say 'the top quarter of shops close seventy to seventy-three percent'.",
+  "6. Trust: yes. Source and dates on screen, the worked example checks out (35% sits inside 31 to 38), and it tells me to beat my own number rather than chase the benchmark.",
+  "Weak spot, not blocking: the bottom 40% of frame 0.8s is empty desk and floor; the numbers sit up top so Reels UI does not cover them."
+ ]
+}

@@ -1,9 +1,9 @@
 # Transcript: 2026-10-29-quote-revive
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 191 words, 69.5 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 191 words, 69.8 s of voice.
 
 ## Flags
-- 53.3 s heard 'text' for 'texts'
+none
 
 ## Pace per take (target 160 to 195 wpm)
 ```
@@ -11,8 +11,8 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 191 words, 69.5 s of voice.
   02     4.8 s  174 wpm  
   03    17.9 s  169 wpm  
   04    33.5 s  169 wpm  
-  05    46.9 s  151 wpm  
-  06    61.1 s  182 wpm  
+  05    46.9 s  148 wpm  slow: rewrite it as talk, then speak --take 5
+  06    61.5 s  182 wpm  
 ```
 
 ## Words
@@ -51,12 +51,12 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 191 words, 69.5 s of voice.
 
 `00:48.8` You text it, you don't email it.
 
-`00:51.6` ServiceTitan's follow-up webinar says texts beat email on open rates.
+`00:51.6` ServiceTitan's follow-up webinar says texting beats email on open rates.
 
-`00:55.6` And in a Housecall Pro survey, fifty-nine percent of homeowners expect text updates.
+`00:55.7` And in a Housecall Pro survey, fifty-nine percent of homeowners expect text updates.
 
-`01:01.1` One name, one job, one question.
+`01:01.5` One name, one job, one question.
 
-`01:04.3` Send this to whoever follows up on your quotes.
+`01:04.6` Send this to whoever follows up on your quotes.
 
-`01:07.0` Next time a quote goes quiet, you'll know what to send.
+`01:07.4` Next time a quote goes quiet, you'll know what to send.

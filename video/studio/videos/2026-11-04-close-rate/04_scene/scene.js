@@ -1,12 +1,14 @@
 /* Scene: Know your close rate (Lesson 8, Numbers Clinic, arcade). One function per top-level cue in 03_cues/cues.md. */
 /* Numbers only from k.data (brief.md -> data.js). Every time comes from a cue start (k.S) or a spoken word (wordT), so a */
 /* re-voiced take moves the picture with it. */
-/* Worlds, one per section: hook = the region cards drawn here (the hook on the plate on frame 0, a cut in to the Friday board and back out, a US NORTHEAST and a US WEST card */
-/* that drop into their slots as the numbers are said, a plain US silhouette on the floor); stakes = the gauge (the median */
-/* band, the top quarter's band, the gap between them); formula, weekly and close = the Friday board drawn here (a */
-/* whiteboard written in marker beside a cork strip of estimate slips that flip SOLD); example = the inventory (estimates */
-/* and jobs sold as items, the close rate crafted from them); turn = the dispatch board once (a map of shops where only */
-/* some are ServiceTitan customers), then the ghost lap board drawn here (last month is the ghost to beat). */
+/* Worlds, one per section: hook = the region cards drawn here (the hook on the plate on frame 0 with both region cards */
+/* settled, a cut in to the Friday board close-up and back out, each card re-popping as its number is said, a plain US */
+/* silhouette on the floor); stakes = the gauge (the median band, the top quarter's band, the gap between them); formula = */
+/* the neon sign drawn here (the formula in tubes that switch on as it is said); example = the inventory (estimates and jobs */
+/* sold as items, the close rate crafted from them); turn = the dispatch board once (a plain town grid of shops where only */
+/* some are ServiceTitan customers), then the ghost lap board drawn here (last month is the ghost to beat); weekly = the */
+/* Friday board drawn here (the lesson's one room-and-panel section: a whiteboard written in marker beside a cork strip of */
+/* estimate slips that flip SOLD); close = the levelup set (the formula is the perk). */
 const INK = '#120D14', CREAM = '#FFF7EA', SAND = '#E6D3BC', GOLD = '#F7C873', ORANGE = '#F2A541', RED = '#E2633B', TEAL = '#6FB7A8', GREY = '#9AA0AD';
 const NAVY = '#253048', WINE = '#7A3442', PINE = '#2F6F67';
 const hash = (n) => { const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
@@ -90,21 +92,18 @@ const usMap = (d, fill, edge) => {
   const cover = (y, x) => (by[y] || []).some(([a, b]) => x >= a && x < b);
   rows.forEach(([y, a, b]) => { for (let x = a; x < b; x++) if (!cover(y - 1, x) || !cover(y + 1, x)) d.DOT(x, y, edge); });
 };
-/* one region card: label, the median, a 0 to 100 meter. q (0..1) is the card's drop into its slot */
+/* one region card: label, the median, a 0 to 100 meter. Settled in its slot from frame 0 (the cover shows both numbers); */
+/* when its number is said it re-pops: it lifts out, drops back in and its meter fills again from empty */
 const regionCard = (k, d, x, y, label, num, c, edge, at) => {
-  const f = d.fr(at), dy = f < 0 ? null : [-26, -16, -8, -2, 2, 0][Math.min(5, f)];
-  /* the slot: a recessed socket, there from frame 0 */
+  const f = d.fr(at), dy = f < 0 ? 0 : [-26, -16, -8, -2, 2, 0][Math.min(5, f)];
+  /* the slot: a recessed socket */
   d.P(x, y, 164, 80, '#120D14'); d.P(x + 1, y + 1, 162, 78, '#1B1420'); d.P(x + 1, y + 1, 162, 2, '#2B2033');
-  if (dy === null) {   /* an empty slot still reads as a card waiting: its label and edge in the region's dim colour */
-    d.P(x + 3, y + 3, 158, 1, edge); d.P(x + 3, y + 76, 158, 1, edge); d.P(x + 3, y + 3, 1, 74, edge); d.P(x + 160, y + 3, 1, 74, edge);
-    d.tx(label, x + 8, y + 8, {color: edge}); return;
-  }
   d.clip(x - 2, y - 2, 170, 86, () => {
     d.win(x, y + dy, 164, 80, {base: '#1B1420', hi: edge, lo: INK, rule: edge});
     d.tx(label, x + 8, y + 8 + dy, {color: c});
     k.text(num.shown, (x + 8) * 3, (y + 21 + dy) * 3, {size: 132, color: CREAM, drop: INK});
-    /* the meter: a 0 to 100 track, filled to the median a step at a time once the card has landed */
-    const mx = x + 80, mw = 74, my = y + 44 + dy, q = clamp((d.fr(at + 0.2) + 1) / 10);
+    /* the meter: a 0 to 100 track, full on the cover, refilled a step at a time once the card has dropped back in */
+    const mx = x + 80, mw = 74, my = y + 44 + dy, q = f < 0 ? 1 : clamp((d.fr(at + 0.2) + 1) / 10);
     d.P(mx - 1, my - 1, mw + 2, 10, INK); d.P(mx, my, mw, 8, '#3D2E45');
     for (let i = 1; i < 4; i++) d.P(mx + Math.round(mw * i / 4), my + 2, 1, 4, '#6B7080');
     d.P(mx, my, Math.round(mw * num.value / 100 * q), 8, c);
@@ -176,7 +175,7 @@ const ghostBoard = (k, o) => {
 const shop = (d, x, y, c) => { d.P(x - 1, y + 2, 11, 7, INK); d.P(x, y + 3, 9, 5, '#C9CCD3'); d.P(x + 3, y + 5, 3, 3, '#4A4E5A'); d.P(x - 1, y, 11, 3, INK); d.P(x, y, 9, 2, c); };
 
 /* ================================================================================================================ */
-/* the Friday board (formula, weekly, close): our own set piece. A pegboard wall in the shop, an aluminium-framed */
+/* the Friday board (the hook close-up, weekly): our own set piece. A pegboard wall in the shop, an aluminium-framed */
 /* whiteboard written in marker, a cork strip of estimate slips (each slip says $, $$ or $$$ once the dollars come in, */
 /* and flips over to a red SOLD back), a marker tray with an eraser, a shop stool and the concrete floor. */
 /* Whiteboard writing area (frame units): x 54 to 708 (or 1002 with no cork), y 270 to 918. */
@@ -266,8 +265,6 @@ const slip = (d, k, s, i, o) => {
   /* the pin (it stays on the cork when the slip falls) */
   P(x0 + w / 2 - 2, y0 - 2, 5, 5, INK); P(x0 + w / 2 - 1, y0 - 1, 3, 3, i % 3 === 1 ? '#3B82C4' : RED); DOT(x0 + w / 2 - 1, y0 - 1, CREAM);
 };
-/* a month grid on a calendar page: 7 columns of day boxes */
-const DOTS = (d, x, y, w, h) => { for (let r = 0; r < 5; r++) for (let c = 0; c < 7; c++) d.P(x + 1 + c * Math.floor(w / 7), y + r * Math.floor(h / 5), Math.floor(w / 7) - 2, Math.floor(h / 5) - 2, (r * 7 + c) % 9 === 4 ? '#C9CCD3' : '#E6D3BC'); };
 /* marker writing: the line appears left to right (whole pixels) with the marker's tip riding the head of the ink */
 const write = (k, s, x, y, t0, o = {}) => {
   if (k.T < t0) return false;
@@ -285,19 +282,60 @@ const write = (k, s, x, y, t0, o = {}) => {
 };
 
 /* ================================================================================================================ */
+/* the neon sign (formula): our own set piece. A brick wall at night, a black sign board bolted to it, the formula in */
+/* neon tubes. Every tube is there from the first frame as grey unlit glass (so the whole formula is readable while it */
+/* is said), and each one switches on, a warm-up frame then lit, on the word that says it. A conduit runs down to a */
+/* transformer whose pilot lamp is on while any tube is lit; on the wet pavement below, the lit tubes throw a reflection. */
+const NX0 = 12, NY0 = 88, NW = 336, NH = 174;
+const neonWall = (k, lit) => {
+  const d = px(k), {P, DOT, dith, F} = d;
+  /* the wall: dark brick, mortar lines, a few odd bricks */
+  P(0, 0, 360, 330, '#241B2B');
+  for (let r = 0, y = 0; y < 330; r++, y += 7) for (let x = (r & 1) ? -8 : 0; x < 360; x += 16) P(x, y, 15, 6, hash(r * 7.3 + x * 0.17) > 0.86 ? '#3D2E45' : '#33263B');
+  /* the sign board: a drop shadow, a steel edge (light top-left), black inside, a bolt at each corner */
+  P(NX0 + 3, NY0 + 3, NW, NH, INK);
+  P(NX0 - 1, NY0 - 1, NW + 2, NH + 2, INK); P(NX0, NY0, NW, NH, '#4A4E5A'); P(NX0, NY0, NW, 1, '#9AA0AD'); P(NX0, NY0, 1, NH, '#9AA0AD');
+  P(NX0 + 2, NY0 + 2, NW - 4, NH - 4, '#120D14');
+  [[NX0 + 5, NY0 + 5], [NX0 + NW - 7, NY0 + 5], [NX0 + 5, NY0 + NH - 7], [NX0 + NW - 7, NY0 + NH - 7]].forEach(([x, y]) => { P(x, y, 2, 2, '#9AA0AD'); DOT(x, y, CREAM); });
+  /* the conduit down the wall to the transformer, its pilot lamp on while the sign is lit */
+  P(328, NY0 + NH, 3, 276 - NY0 - NH, '#6B7080'); P(328, NY0 + NH, 1, 276 - NY0 - NH, '#9AA0AD');
+  P(316, 276, 28, 18, INK); P(317, 277, 26, 16, '#4A4E5A'); P(317, 277, 26, 1, '#9AA0AD');
+  for (let i = 0; i < 4; i++) P(320 + i * 4, 282, 2, 8, '#2B2033');
+  P(337, 281, 3, 3, lit ? RED : '#7A3442'); if (lit) DOT(337, 281, '#F09A9A');
+  /* the sill and the dark band under it */
+  P(0, 330, 360, 6, '#4A4E5A'); P(0, 330, 360, 1, '#9AA0AD'); P(0, 336, 360, 81, '#1B1420');
+  /* the wet pavement: slabs, a kerb, and the sign's reflection (dithered streaks that step every 10 frames) */
+  P(0, 417, 360, 223, '#241B2B'); P(0, 417, 360, 3, '#4A4E5A');
+  for (let y = 440; y < 640; y += 26) P(0, y, 360, 1, '#2B2033');
+  for (let x = 0; x < 360; x += 48) P(x, 420, 1, 220, '#2B2033');
+  (lit || []).forEach(([x0, w, c], i) => { const ph = Math.floor(F / 10) + i; for (let j = 0; j < 5; j++) dith(x0 + ((ph + j) % 3) - 1, 428 + i * 8 + j * 2, w - j * 6, 1, c, j & 1); });
+  return d;
+};
+/* one neon line: grey glass before its word, then a warm-up frame (the halo only), then lit (a halo in the glow colour, */
+/* one low-res pixel round every stroke, and the core) */
+const neon = (k, s, x, y, at, o = {}) => {
+  const size = o.size || 66, align = o.align, f = Math.floor((k.T - at) * 30 + 0.005), g = size >= 99 ? 6 : 3;
+  if (k.T < at) { k.text(s, x, y, {size, color: '#4A4E5A', align}); return false; }
+  [[-g, 0], [g, 0], [0, -g], [0, g]].forEach(([dx, dy]) => k.text(s, x + dx, y + dy, {size, color: o.glow, align, lint: false}));
+  k.text(s, x, y, {size, color: f === 0 ? o.glow : o.core, align});
+  return true;
+};
+
+/* ================================================================================================================ */
 /* the gauge (stakes): the library gauge; the needle is driven here (value given each frame, settled), the bands and */
 /* the gap are painted on its rim, the readout is our own LCD text */
 const GX = 180, GY = 214, GR = 100;
 const gAng = (v) => (135 + 2.7 * v) * Math.PI / 180;
 const rim = (d, v0, v1, c, r0 = GR - 8, r1 = GR - 3) => { for (let a = gAng(v0); a <= gAng(v1) + 1e-6; a += 0.006) for (let r = r0; r <= r1; r++) d.DOT(GX + Math.round(Math.cos(a) * r), GY + Math.round(Math.sin(a) * r), c); };
-const lcd = (k, d, s, c = GOLD, size = 66) => { d.P(GX - 37, GY + 19, 74, 28, '#1A332B'); d.P(GX - 36, GY + 20, 72, 26, '#24453A'); d.tx(s, GX, size >= 60 ? GY + 22 : GY + 27, {size, color: c, align: 'center'}); };
+/* our readout box, wider than the set's (x 138 to 222, frame 414 to 666) so '70% TO 73%' has room inside it */
+const lcd = (k, d, s, c = GOLD, size = 66) => { d.P(GX - 42, GY + 18, 84, 30, INK); d.P(GX - 41, GY + 19, 82, 28, '#1A332B'); d.P(GX - 40, GY + 20, 80, 26, '#24453A'); d.tx(s, GX, size >= 60 ? GY + 22 : GY + 27, {size, color: c, align: 'center'}); };
 
 window.SCENE = {
   look: 'arcade',
   images: [],
   host_name: 'Snow',
   hud: 'LESSON 8',
-  transitions: {stakes: 'levelselect', formula: 'blinds', example: 'dissolve', turn: 'iris', weekly: 'door', close: 'gameover'},
+  transitions: {stakes: 'levelselect', formula: 'blinds', example: 'dissolve', turn: 'iris', weekly: 'door', close: 'chalk'},
   trauma: {'turn.yours': 0.8},
   sections: {
     /* ---- hook: three shots (IMPROVE 00a: the picture changes by 1 s and twice by 3 s, Snow on by 3 s). The cover: the */
@@ -331,13 +369,14 @@ window.SCENE = {
         const wA = k.measure(`${n.medLow.shown} `, {size: 132}), wB = k.measure('to ', {size: 132});
         k.slam(n.medLow.shown, 60, 348, med + 0.1, {size: 132, color: ORANGE, drop: INK, from: 0.6});
         k.slam('to', 60 + wA, 348, med + 0.15, {size: 132, color: CREAM, drop: INK, from: 0.6});
-        k.slam(n.medHigh.shown, 60 + wA + wB, 348, med + 0.2, {size: 132, color: TEAL, drop: INK, from: 0.6});
+        /* the 38% slams from a smaller peak so it stays left of the NUMBERS CLINIC chip (x 640) at its largest */
+        k.slam(n.medHigh.shown, 60 + wA + wB, 348, med + 0.2, {size: 132, color: TEAL, drop: INK, from: 0.3});
       }
       /* life on the cover before the cut: one ping round the plate */
       d.ping(0.3, 12, 88, 336, 78, GOLD);
       /* the segment chip lands on the plate with the cut back out */
       if (T >= tOut) { k.ctx.save(); k.ctx.translate(0, d.ease(tOut, 6, 20) * 3); k.chip('Numbers Clinic', 640, 404, {size: 30, fill: 'accent', color: INK}); k.ctx.restore(); }
-      /* the region cards drop into their slots as the numbers are said */
+      /* the region cards, settled from frame 0, re-pop (lift out, drop back in, refill) as their numbers are said */
       regionCard(k, d, 12, 172, 'US NORTHEAST', n.medLow, ORANGE, '#B07A47', t31);
       regionCard(k, d, 184, 172, 'US WEST', n.medHigh, TEAL, PINE, t38);
       k.burst(330, 640, t31 + 0.12, {n: 16, r: 180}); k.burst(846, 640, t38 + 0.12, {n: 16, r: 180, colors: ['teal', 'paper', 'accent2']});
@@ -375,33 +414,30 @@ window.SCENE = {
       let v = swing(0, mid, t0 + 0.25, 0.8);
       if (T >= t70) v = swing(mid, top, t70, 0.9);
       if (T >= tNever) v = swing(top, 0, tNever, 0.6);
-      /* the set's own readout sits under our LCD; it is not drawn at all (hidden text still counts for the layout lint) */
+      /* the set's own readout sits under our LCD; it is not drawn at all (hidden text still counts for the layout lint). */
+      /* Its '100' label moves 24 px right and its '0' 12 px left, clear of our wider readout box */
       const text0 = k.text;
-      k.text = (s, x, y, o) => (o && o.size === 66 && y === (GY + 22) * 3 ? {w: 0, h: 0, lines: []} : text0(s, x, y, o));
+      k.text = (s, x, y, o) => (o && o.size === 66 && y === (GY + 22) * 3 ? {w: 0, h: 0, lines: []} : text0(s, s === '100' ? x + 24 : (s === '0' ? x - 12 : x), y, o));
       try { k.sets.gauge({value: Math.max(0, v), at: -10, dur: 1, zones: [[0, 100, '#3D2E45']]}); } finally { k.text = text0; }
       /* the bands on the rim: the median (gold) from the start, the top quarter (teal) when it is named */
       rim(d, n.medLow.value, n.medHigh.value, GOLD, GR - 10, GR - 2);
       if (T >= tTop) rim(d, n.topLow.value, n.topHigh.value, T >= tRank ? TEAL : '#4A4E5A', GR - 10, GR - 2);
       /* the gap: the rim between the two bands fills red a step at a time */
       if (T >= tGap) { const q = clamp(d.fr(tGap) / 12); rim(d, n.medHigh.value + 1, n.medHigh.value + 1 + (n.topLow.value - n.medHigh.value - 2) * q, RED, GR - 6, GR - 5); }
-      /* the corner plates, a leader line from each to its band */
-      const L = gAng((n.medLow.value + n.medHigh.value) / 2), Rr = gAng(top);
-      plate(d, 10, 88, 128, 44, GOLD);
-      d.tx('MEDIAN SHOP', 18, 93, {color: GOLD});
-      d.tx(`${n.medLow.shown} TO ${n.medHigh.shown}`, 18, 111, {color: CREAM});
-      d.line(74, 132, GX + Math.round(Math.cos(L) * (GR + 14)), GY + Math.round(Math.sin(L) * (GR + 14)), GOLD);
+      /* the corner plates: one line each (frame y 258 to 324), above the dial's rim, colour-coded to their bands */
+      plate(d, 8, 86, 134, 22, GOLD);
+      d.tx('MEDIAN', 15, 90, {color: GOLD});
+      d.tx(`${n.medLow.shown} TO ${n.medHigh.shown}`, 15 + d.tw('MEDIAN '), 90, {color: CREAM});
       if (T >= tTop) {
-        const sl = d.ease(tTop, 8, 40), lit = T >= tRank;
-        plate(d, 212 + sl, 88, 112, 44, lit ? TEAL : '#4A4E5A');
-        d.tx(`TOP ${n.topShare.shown}`, 220 + sl, 93, {color: lit ? TEAL : GREY});
-        if (T >= t70) d.tx(T >= t73 ? `${cnt(k, n.topLow, t70)}% TO ${cnt(k, n.topHigh, t73)}%` : `${cnt(k, n.topLow, t70)}% TO`, 220 + sl, 111, {color: CREAM});
-        else d.tx('BY CLOSE RATE', 220 + sl, 111, {color: lit ? CREAM : GREY});
-        if (sl === 0) d.line(268, 132, GX + Math.round(Math.cos(Rr) * (GR + 14)), GY + Math.round(Math.sin(Rr) * (GR + 14)), lit ? TEAL : GREY);
+        const sl = d.ease(tTop, 8, 40), lit = T >= tRank, lab = `TOP ${n.topShare.shown}`;
+        plate(d, 176 + sl, 86, 140, 22, lit ? TEAL : '#4A4E5A');
+        d.tx(lab, 183 + sl, 90, {color: lit ? TEAL : GREY});
+        if (T >= t70) d.tx(T >= t73 ? `${cnt(k, n.topLow, t70)}% TO ${cnt(k, n.topHigh, t73)}%` : `${cnt(k, n.topLow, t70)}% TO`, 183 + sl + d.tw(lab + ' '), 90, {color: CREAM});
       }
-      /* the readout: the band the needle sits in, then nothing to read */
-      if (T >= tNever) lcd(k, d, '?%', Math.floor((T - tNever) * 2) % 2 ? RED : GOLD);
-      else if (T >= t70 + 0.6) lcd(k, d, `${n.topLow.value} TO ${n.topHigh.value}`, TEAL, 39);
-      else lcd(k, d, `${n.medLow.value} TO ${n.medHigh.value}`, GOLD, 39);
+      /* the readout: the band the needle sits in, then yours, which nobody has measured yet */
+      if (T >= tNever) lcd(k, d, 'YOURS: ?', Math.floor((T - tNever) * 2) % 2 ? RED : GOLD, 39);
+      else if (T >= t70 + 0.6) lcd(k, d, `${n.topLow.shown} TO ${n.topHigh.shown}`, TEAL, 39);
+      else lcd(k, d, `${n.medLow.shown} TO ${n.medHigh.shown}`, GOLD, 39);
       if (T >= t70 + 0.6 && T < t70 + 1.3) k.burst(GX * 3, (GY + 32) * 3, t70 + 0.6, {n: 16, r: 200, colors: ['teal', 'paper']});
       /* THE GAP, at the top of the dial, under the 50 */
       if (T >= tGap) { const f = d.fr(tGap + 0.35); if (f >= 0) { plate(d, GX - 34, 154, 68, 26, RED); k.slam('THE GAP', GX * 3, 157 * 3, tGap + 0.35, {size: 39, color: RED, align: 'center', from: 0.5}); } }
@@ -418,43 +454,45 @@ window.SCENE = {
       return host(k, k.live('stakes.measure') ? 'point' : (k.live('stakes.gap') ? 'point' : null));
     },
 
-    /* ---- formula: the Friday board. The math is written in marker as it is said; SCREENSHOT flashes like a camera */
+    /* ---- formula: the neon sign. The formula is in tubes from the first frame (grey glass), and each tube switches on */
+    /* as it is said; SCREENSHOT THIS lands with a camera flash; the month on a neon calendar is boxed on "same month" */
     formula: (k, T) => {
       const t0 = k.S('formula'), shot = k.S('formula.shot');
       const tC = wordT(k, 'formula.eq', /^Close$/i), tJ = wordT(k, 'formula.eq', /^jobs$/i, 1.5), tD = wordT(k, 'formula.div', /^divided$/i), tE = wordT(k, 'formula.div', /^estimates$/i, 1), tM = k.S('formula.month');
-      const sold = {}; [1, 5, 9].forEach((i, j) => { sold[i] = tJ + 0.2 + j * 0.12; });
-      const d = board(k, {sold, inHand: T < tM + 1 ? 0 : null});
-      write(k, 'The math', 72, 282, t0 + 0.15, {color: RED});
+      /* the reflection on the pavement: one streak per lit tube, in its glow colour */
+      const refl = [];
+      if (T >= tC) refl.push([24, 190, RED]);
+      if (T >= tJ) refl.push([60, 110, TEAL]);
+      if (T >= tE) refl.push([40, 150, ORANGE]);
+      if (T >= tM + 0.3) refl.push([30, 170, '#3B82C4']);
+      const d = neonWall(k, refl.length ? refl : null);
+      neon(k, 'THE MATH', 72, 288, t0 + 0.15, {size: 39, glow: ORANGE, core: '#FFE2A8'});
       /* the camera: the board flashes white for 2 frames, a tag lands */
       if (T >= shot) {
         const f = d.fr(wordT(k, 'formula.shot', /^Screenshot/i));
-        if (f >= 0 && f < 2) { d.P(BX, BY, BW, BH, '#FFFFFF'); }
-        k.ctx.save(); k.ctx.translate(0, d.ease(shot, 6, -14) * 3); k.chip('Screenshot this', 402, 282, {size: 30, fill: 'accent', color: INK}); k.ctx.restore();
+        if (f >= 0 && f < 2) d.P(NX0 + 2, NY0 + 2, NW - 4, NH - 4, '#FFFFFF');
+        k.ctx.save(); k.ctx.translate(0, d.ease(shot, 6, -14) * 3); k.chip('Screenshot this', 300, 280, {size: 30, fill: 'accent', color: INK}); k.ctx.restore();
       }
-      /* the fraction: slots show as the board opens (faint guides), each line is written when it is said */
-      /* the slots show as the board opens (faint guides where each line will go), each written when it is said */
-      if (T < tC) k.text('Close rate =', 72, 392, {size: 66, color: '#E6D3BC', lint: false});
-      if (T < tJ) d.dith(84, 172, 86, 2, '#C9CCD3');
-      if (T < tE) d.dith(64, 208, 126, 2, '#C9CCD3');
-      write(k, 'Close rate =', 72, 392, tC, {color: NAVY});
-      write(k, 'jobs sold', 381, 494, tJ, {color: PINE, align: 'center'});
-      if (T >= tD) { const w = Math.round(176 * clamp((d.fr(tD) + 1) / 8)); d.P(127 - Math.round(w / 2), 191, w, 3, NAVY); }
-      else d.dith(39, 191, 176, 1, '#C9CCD3');
-      write(k, 'estimates given', 381, 594, tE, {color: WINE, align: 'center'});
-      if (T >= tE + 0.6) k.burst(381, 620, tE + 0.6, {n: 16, r: 220});
-      /* same month for both: a red box drawn round both lines, a calendar page pinned beside the note */
-      if (T >= tM) {
-        const f = d.fr(tM), per = Math.min(1, (f + 1) / 10), x0 = 30, y0 = 158, w = 194, h = 76, len = 2 * (w + h), drawn = Math.round(len * per);
+      /* the formula: "Close rate =" big in white and red, the fraction in teal over amber, a teal tube for the line */
+      neon(k, 'Close rate =', 72, 348, tC, {size: 132, glow: RED, core: CREAM});
+      neon(k, 'jobs sold', 300, 504, tJ, {glow: TEAL, core: '#BDE6F5', align: 'center'});
+      const bx = 32, by = 194, bw = 136;
+      if (T >= tD) { const w = Math.min(bw, Math.round(bw * (d.fr(tD) + 1) / 8)); d.P(bx, by - 1, w, 3, TEAL); d.P(bx, by, w, 1, '#BDE6F5'); }
+      else d.P(bx, by, bw, 1, '#4A4E5A');
+      neon(k, 'estimates given', 300, 600, tE, {glow: ORANGE, core: '#FFE2A8', align: 'center'});
+      if (T >= tE + 0.6) k.burst(300, 630, tE + 0.6, {n: 16, r: 220});
+      /* same month for both: the line lights blue, a neon calendar page beside the fraction, its month boxed in gold */
+      neon(k, 'Same month for both.', 72, 696, tM + 0.3, {glow: '#3B82C4', core: CREAM});
+      const cx0 = 206, cy0 = 174, cw = 96, ch = 56, calOn = T >= tM + 0.5;
+      const cc = calOn ? '#F09A9A' : '#4A4E5A', ccg = calOn ? RED : null;
+      if (ccg) { d.P(cx0 - 1, cy0 - 1, cw + 2, ch + 2, ccg); d.P(cx0 + 1, cy0 + 1, cw - 2, ch - 2, '#120D14'); }
+      d.P(cx0, cy0, cw, 1, cc); d.P(cx0, cy0 + ch - 1, cw, 1, cc); d.P(cx0, cy0, 1, ch, cc); d.P(cx0 + cw - 1, cy0, 1, ch, cc);
+      d.P(cx0, cy0 + 10, cw, 1, cc); [cx0 + 24, cx0 + cw - 26].forEach((x) => { d.P(x, cy0 - 4, 2, 8, cc); });
+      for (let r = 0; r < 4; r++) for (let c = 0; c < 7; c++) d.P(cx0 + 7 + c * 12, cy0 + 16 + r * 10, 4, 3, calOn ? ((r * 7 + c) % 9 === 4 ? '#FFE2A8' : '#F09A9A') : '#3D2E45');
+      if (T >= tM + 1.0) {   /* the gold box draws round the whole month, a pixel run a frame */
+        const f = d.fr(tM + 1.0), x0 = cx0 - 5, y0 = cy0 - 8, w = cw + 10, h = ch + 13, len = 2 * (w + h), drawn = Math.round(len * Math.min(1, (f + 1) / 10));
         const seg = [[x0, y0, w, 0], [x0 + w, y0, 0, h], [x0 + w, y0 + h, -w, 0], [x0, y0 + h, 0, -h]];
-        let left = drawn; seg.forEach(([sx, sy, dx, dy]) => { const l = Math.abs(dx + dy), u = Math.min(l, left); left -= u; if (u > 0) d.P(dx < 0 ? sx - u : sx, dy < 0 ? sy - u : sy, dx ? u : 2, dy ? u : 2, RED); });
-        write(k, 'Same month', 72, 752, tM + 0.3, {color: RED});
-        write(k, 'for both.', 72, 826, tM + 0.7, {color: RED});
-        /* the calendar page: a red header, a grid, the whole month circled once it lands */
-        k.stampIn(tM + 0.5, () => {
-          d.P(151, 248, 58, 50, INK); d.P(150, 247, 56, 48, CREAM); d.P(150, 247, 56, 10, RED);
-          d.P(176, 244, 4, 5, INK); DOTS(d, 152, 260, 52, 32);
-        }, {at: [534, 885]});
-        if (T >= tM + 1.0) { const q = clamp((d.fr(tM + 1.0) + 1) / 8); d.ring(178, 276, Math.max(2, Math.round(30 * q)), RED); }
+        let left = drawn; seg.forEach(([sx, sy, dx, dy]) => { const l = Math.abs(dx + dy), u = Math.min(l, left); left -= u; if (u > 0) d.P(dx < 0 ? sx - u : sx, dy < 0 ? sy - u : sy, dx ? u : 2, dy ? u : 2, GOLD); });
       }
       return host(k, k.live('formula.shot') ? 'point' : (k.live('formula.month') ? 'point' : null));
     },
@@ -472,8 +510,18 @@ window.SCENE = {
       if (T >= t35) items.push({icon: 'star', name: 'CLOSE RATE', stats: [{label: 'RATE', value: n.exRate.value, max: 100, text: n.exRate.shown}]});
       if (T >= own) { while (items.length < 3) items.push(null); items.push({icon: 'clock', name: 'YOURS', stats: [{label: 'RATE', value: 0, max: 100, text: '?'}]}); }
       const sel = [{slot: 0, at: t40}, {slot: 1, at: t14}, {slot: 2, at: t35}, {slot: 3, at: own}];
-      k.sets.inventory({title: 'EXAMPLE: LAST MONTH', items, select: sel, hint: 'LAST MONTH'});
+      /* the set right-aligns its readout values at frame x 945; ours end at x 921, clear of a platform's right rail */
+      const text0 = k.text;
+      k.text = (s, x, y, o) => text0(s, o && o.align === 'right' && x === (16 + 178 + 121) * 3 ? 921 : x, y, o);
+      try { k.sets.inventory({title: 'EXAMPLE: LAST MONTH', items, select: sel, hint: 'LAST MONTH'}); } finally { k.text = text0; }
       const d = px(k);
+      /* the rest of the belt is stocked, dimmed (a checker of the slot's dark over each icon): the tools the example */
+      /* doesn't use. Slot 2 stays empty for the close rate to be crafted into; slot 3 is yours, dim until "plug in yours" */
+      [[3, 'clock'], [4, 'coin'], [5, 'phone'], [6, 'wrench'], [7, 'mail']].forEach(([i, ic]) => {
+        if (items[i]) return;
+        const sx = 16 + 12 + (i % 4) * 40, sy = 94 + 14 + Math.floor(i / 4) * 40;
+        k.sets.icon(ic, sx + 7, sy + 7, 2); d.dith(sx + 2, sy + 2, 30, 30, '#1B1420', 0);
+      });
       /* the crafted item sparkles into its slot; the empty YOURS slot shows a ? instead of an icon */
       if (T >= t35) { const f = d.fr(t35); if (f < 10) { d.twinkle(108 + 4, 108 + 4, f); d.twinkle(108 + 30, 108 + 28, f + 2); } k.burst(375, 375, t35, {n: 18, r: 180}); }
       if (T >= own) { d.P(149, 109, 32, 32, '#1B1420'); k.text('?', 495, 363, {size: 66, color: GOLD, align: 'center'}); }
@@ -484,20 +532,20 @@ window.SCENE = {
       if (T < t35) k.text('= __', eqx, 612, {size: 132, color: '#3B82C4', lint: false});
       else k.slam(`= ${n.exRate.shown}`, eqx, 612, t35, {size: 132, color: 'accent', from: 0.6, drop: INK});
       if (T >= own) k.slam('Now yours: __ / __', 84, 756, own, {size: 39, color: GOLD, from: 0.4});
-      /* the range strip under the window: where the example sits against the medians */
+      /* the range strip under the window, on the dark gap above the band (frame y 825 to 885): a thin track that grows */
+      /* from the left with the medians lit gold, a marker that drops in at 35%, the label under it */
       if (T >= rng) {
-        const x0 = 24, w = 300, ax = (v) => x0 + Math.round((w * v) / 100), up = d.ease(rng, 8, 30);
-        d.clip(0, 272, 360, 60, () => {
-          const y = 280 + up;
-          d.P(x0 - 2, y - 2, w + 4, 14, INK); d.P(x0, y, w, 10, '#3D2E45');
-          for (let i = 1; i < 4; i++) d.P(x0 + (w * i) / 4, y + 2, 1, 6, '#6B7080');
-          d.P(ax(n.medLow.value), y - 2, ax(n.medHigh.value) - ax(n.medLow.value), 14, GOLD);
-          const tm = rng + 0.35, f = d.fr(tm);
-          if (f >= 0) { const mx = ax(n.exRate.value), dy = [-12, -7, -3, 1, 0][Math.min(4, f)]; d.P(mx - 1, y - 8 + dy, 3, 18, INK); d.P(mx, y - 7 + dy, 1, 16, CREAM); d.P(mx - 3, y - 11 + dy, 7, 4, RED); }
+        const x0 = 24, w = 300, ax = (v) => x0 + Math.round((w * v) / 100), grow = Math.round(w * clamp((d.fr(rng) + 1) / 8));
+        d.clip(x0 - 1, 274, grow + 2, 12, () => {
+          d.P(x0 - 1, 278, w + 2, 6, INK); d.P(x0, 279, w, 4, '#3D2E45');
+          for (let i = 1; i < 4; i++) d.P(x0 + (w * i) / 4, 280, 1, 2, '#6B7080');
+          d.P(ax(n.medLow.value), 278, ax(n.medHigh.value) - ax(n.medLow.value), 6, GOLD);
         });
-        if (up === 0) {
-          k.text(`Median ${n.medLow.shown} to ${n.medHigh.shown}`, 72, 888, {size: 39, color: GOLD});
-          if (T >= rng + 0.5) k.text(`${n.exRate.shown} sits inside`, 72 + k.measure(`Median ${n.medLow.shown} to ${n.medHigh.shown}   `, {size: 39}), 888, {size: 39, color: CREAM});
+        const f = d.fr(rng + 0.35);
+        if (f >= 0) d.clip(0, 274, 360, 12, () => { const mx = ax(n.exRate.value), dy = [-8, -5, -2, 1, 0][Math.min(4, f)]; d.P(mx - 1, 276 + dy, 3, 9, INK); d.P(mx, 277 + dy, 1, 7, CREAM); d.P(mx - 2, 275 + dy, 5, 3, RED); });
+        if (grow >= w) {
+          k.text(`Median ${n.medLow.shown} to ${n.medHigh.shown}`, 72, 855, {size: 39, color: GOLD});
+          if (T >= rng + 0.5) k.text(`${n.exRate.shown} sits inside`, 72 + k.measure(`Median ${n.medLow.shown} to ${n.medHigh.shown}   `, {size: 39}), 855, {size: 39, color: CREAM});
         }
       }
       return host(k, k.live('example.own') ? 'point' : (k.live('example.range') ? 'point' : null));
@@ -511,8 +559,26 @@ window.SCENE = {
       const wipe = 10;   /* frames the lap board takes to close over the map, in blinds */
       if (T < ownT + wipe / 30) {
         const stPins = [[0.47, 0.28], [0.56, 0.42], [0.42, 0.47], [0.62, 0.24]];
-        k.sets.dispatch({pins: T >= tShops ? stPins.map(([x, y], i) => ({x, y, at: tShops + i * 0.12, c: TEAL})) : []});
+        k.sets.dispatch({pins: []});
         const d = px(k);
+        /* the set's board, its map redrawn as a plain town grid (no river, lakefront or avenue: no real city implied): */
+        /* blocks with roofs, a park, streets every 22 pixels */
+        d.clip(18, 82, 324, 196, () => {
+          d.P(18, 82, 324, 196, '#E6D3BC');
+          for (let by = 82; by < 278; by += 22) for (let bx = 18; bx < 342; bx += 22) { const r = hash(bx * 0.37 + by * 1.3); for (let j = 0; j < 3; j++) { const rx = bx + 4 + Math.floor(hash(r * 9 + j) * 10), ry = by + 4 + Math.floor(hash(r * 7 + j * 3) * 10); d.P(rx, ry, 4, 3, '#B39A88'); d.P(rx, ry, 4, 1, '#F4E6D3'); } }
+          d.P(290, 100, 40, 38, '#3E7A62'); d.dith(290, 100, 40, 38, '#2F5A4A'); [[8, 8], [24, 12], [14, 26], [30, 28]].forEach(([a, b]) => { d.disc(290 + a, 100 + b, 3, '#24453A'); d.DOT(289 + a, 99 + b, '#6FB7A8'); });
+          for (let x = 38; x < 342; x += 22) { d.P(x, 82, 3, 196, '#FFF7EA'); d.P(x + 3, 82, 1, 196, '#C9CCD3'); }
+          for (let y = 102; y < 278; y += 22) { d.P(18, y, 324, 3, '#FFF7EA'); d.P(18, y + 3, 324, 1, '#C9CCD3'); }
+        });
+        /* the ServiceTitan pins, as the set drops them: a bounce, a shadow, one ping */
+        if (T >= tShops) stPins.forEach(([nx, ny], i) => {
+          const f = d.fr(tShops + i * 0.12); if (f < 0) return;
+          const x = Math.round(18 + nx * 324), y = Math.round(82 + ny * 196), dy = [-20, -14, -8, -3, 0, -3, -1, 0][Math.min(7, f)];
+          if (f >= 4) d.P(x - 3, y + 1, 7, 2, '#B39A88');
+          if (f >= 6 && f < 24) d.ring(x, y, 4 + Math.floor((f - 6) / 2), TEAL);
+          d.P(x - 1, y - 8 + dy, 2, 9, '#4A4E5A'); d.DOT(x - 1, y - 8 + dy, '#9AA0AD');
+          d.disc(x, y - 12 + dy, 7, INK); d.disc(x, y - 12 + dy, 6, TEAL); d.disc(x + 1, y - 11 + dy, 4, '#245752'); d.disc(x - 1, y - 13 + dy, 4, TEAL); d.P(x - 3, y - 15 + dy, 2, 2, CREAM);
+        });
         /* the shops: every one on the map, before the pins say which are ServiceTitan's */
         const SH = [[40, 100], [90, 96], [150, 104], [232, 92], [60, 150], [130, 140], [200, 150], [252, 132], [30, 210], [110, 200], [170, 190], [240, 196], [70, 250], [150, 246], [210, 240], [262, 236]];
         SH.forEach(([x, y], i) => { const on = T >= tShops && [2, 5, 6, 3].includes(i); shop(d, x, y + (d.fr(t0 + i * 0.06) < 4 && d.fr(t0 + i * 0.06) >= 0 ? -2 : 0), on ? TEAL : '#9AA0AD'); });
@@ -569,26 +635,31 @@ window.SCENE = {
       return host(k, k.live('weekly.all') ? 'point' : (k.live('weekly.two') ? 'point' : null));
     },
 
-    /* ---- close: the board wiped clean, one column at x 120: the formula, the send line, Friday */
+    /* ---- close: the levelup set. The XP bar fills while the formula is said and the perk line builds word by word: */
+    /* + CLOSE RATE = JOBS SOLD / ESTIMATES GIVEN; it levels up on "given". The send line lands on a plate over the rays, */
+    /* then the last perk line: + Friday: your close rate. */
     close: (k, T) => {
       const t0 = k.S('close'), send = k.S('close.send'), fri = k.S('close.friday');
-      const tJ = wordT(k, 'close', /^Jobs/i), tD = wordT(k, 'close', /^divided/i, 0.6), tE = wordT(k, 'close', /^estimates/i, 1.5), tF = wordT(k, 'close.friday', /^close$/i, 1.8);
-      const d = board(k, {cork: false, inHand: T < fri + 2 ? 0 : null});
-      /* the payoff fraction at size 99 (the pixel font draws it on the 2x display glyphs, level with "Close rate ="),
-         the divider as long as the wider line */
-      k.slam('Close rate =', 120, 262, t0 - 0.05, {size: 132, color: NAVY, from: 0.4, glint: false});
-      write(k, 'jobs sold', 120, 384, tJ, {color: PINE, size: 99});
-      const dw = Math.round(Math.max(k.measure('jobs sold', {size: 99}), k.measure('estimates given', {size: 99})) / 3);
-      if (T >= tD) { const w = Math.round(dw * clamp((d.fr(tD) + 1) / 8)); d.P(40, 172, w, 3, NAVY); }
-      write(k, 'estimates given', 120, 520, tE, {color: WINE, size: 99});
+      const tJ = wordT(k, 'close', /^Jobs/i), tD = wordT(k, 'close', /^divided/i, 0.6), tE = wordT(k, 'close', /^estimates/i, 1.5), tG = wordT(k, 'close', /^given/i, 2.0), tF = wordT(k, 'close.friday', /^close$/i, 1.8);
+      const lvAt = tG + 0.15;
+      k.sets.levelup({from: 30, to: 100, max: 100, at: t0, dur: Math.max(0.5, lvAt - t0), levelAt: lvAt, level: 1});
+      const d = px(k);
+      /* a perk line: a teal +, then its parts, each lit when it is said (low-res x 32 on, frame 96 to 858) */
+      const perk = (i, parts, at) => {
+        if (T < at) return;
+        const sl = d.ease(at, 5, 30), y = 236 + i * 18; let x = 32 + sl;
+        d.tx('+', 20 + sl, y, {color: TEAL});
+        parts.forEach(([str, a, c]) => { if (T >= a) d.tx(str, x, y, {color: c}); x += d.tw(str); });
+      };
+      perk(0, [['CLOSE RATE = ', t0, CREAM], ['JOBS SOLD', tJ, TEAL], [' / ', tD, CREAM], ['ESTIMATES GIVEN', tE, GOLD]], t0);
+      perk(1, [['Friday: your close rate.', fri + 0.1, CREAM]], fri + 0.1);
+      if (T >= tF) k.sweep(96, 804, k.measure('Friday: your close rate.', {size: 39}), 3, tF, {color: 'accent'});
+      /* the send line on its own plate over the rays (frame y 252 to 360), the ProofNotFluff tag beside it */
       if (T >= send) {
-        k.chip('ProofNotFluff', 120, 652, {size: 30});
-        k.slam('Send this to whoever', 120, 718, send + 0.1, {size: 66, color: NAVY, from: 0.4, glint: false});
-        k.slam('writes your estimates.', 120, 784, send + 0.3, {size: 66, color: NAVY, from: 0.4, glint: false});
-      }
-      if (T >= fri) {
-        write(k, 'Friday: your close rate.', 120, 852, fri + 0.1, {color: RED});
-        if (T >= tF) { k.sweep(120, 910, k.measure('Friday: your close rate.', {size: 66}), 3, tF, {color: 'accent'}); k.burst(120 + k.measure('Friday: your close rate.', {size: 66}), 880, tF + 0.2, {n: 16}); }
+        plate(d, 12, 84, 336, 36, GOLD);
+        k.slam('Send this to whoever', 60, 268, send + 0.1, {size: 39, color: CREAM, from: 0.4});
+        k.slam('writes your estimates.', 60, 306, send + 0.3, {size: 39, color: CREAM, from: 0.4});
+        k.chip('ProofNotFluff', 600, 280, {size: 30});
       }
       return host(k, k.live('close.friday') ? 'wave' : (k.live('close.send') ? 'point' : null));
     },

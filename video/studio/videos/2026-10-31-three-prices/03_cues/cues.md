@@ -9,11 +9,11 @@ in the sets (tags flipping, reels spinning, houses lighting, rows landing). Each
 music: rooms
 
 ## hook "You quote one price?" [sfx: pop]
-Three shots (IMPROVE 00a). The cover, frame 0, fully settled, host and dialog hidden: World: the storefront counter. Shop sign QUOTE CLINIC; a toolbox on the counter with one price tag ("$"); a cream card hung on the counter front: "Top shops usually quote" / "3 prices" (big, the 3 in red); under it "Top 10%: 57% of home jobs" and the source small: ServiceTitan data, 12 months to Jan 2026. On "one" cut in to the tag close-up: the hook on a title plate up top ("Top shops usually" / "quote 3 prices", source under it), the one-price tag big on its string over the toolbox, Snow comes in. On "Top" cut back out to the storefront, Snow on; the card swings a pixel on its strings, sparks off the tag.
+Three shots (IMPROVE 00a). The cover, frame 0, fully settled, host and dialog hidden: World: the storefront counter. Shop sign QUOTE CLINIC; a toolbox on the counter with one price tag ("$"); a cream card hung on the counter front: "Top shops usually quote" / "3 prices" (big, the 3 in red); under it "Top 10%: 57% of home jobs" and the source small: ServiceTitan data, 12 months to Jan 2026. On "one" cut in to the tag close-up, outside the shop, drawn big: the striped awning, the brick facade, the shop window with the one-price tag hanging in the glass over the toolbox on the display ledge (a light crosses the glass), the teal door with its OPEN sign, the sidewalk in the awning's shade; the hook on a title plate over the glass ("Top shops usually" / "quote 3 prices", source under it); Snow steps up big on the sidewalk. On "Top" cut back out to the storefront, Snow on; the card swings a pixel on its strings, sparks off the tag.
 ## hook.three "usually quote three."
-On "three" the tag narrows to its edge, shows its barcode back and turns to "$ $$ $$$", sways to rest with sparks.
+The tag narrows to its edge, shows its barcode back and shows "$ $$ $$$" on the word "three", sways to rest with sparks.
 ## hook.build "Here's how to build" [sfx: pop]
-The chalk board on the wall writes "3 prices," / "1 quote." line by line; the card's 3 pulses gold once.
+The hook card rolls up onto its strings and is gone by 4.0 s (the on-screen hook's hold ends); the chalk board on the wall writes "3 prices," / "1 quote." line by line and carries the rest of the take.
 
 ## stakes "ServiceTitan pulled a year" [sfx: whoosh]
 World: the arcade high-score table. Marquee GOOD BETTER BEST, bulbs chasing; empty dashed rows; the source types on at the bottom of the screen: "ServiceTitan customers".
@@ -26,7 +26,7 @@ The row's score counts to 57% as it is said (from 85%); sparks off the score.
 ## stakes.rest "Everyone else? Forty-one." [sfx: tick]
 Row 2 slides in: 2ND THE REST; its score lands 41% on "Forty-one".
 ## stakes.habit "That's a habit you" [sfx: pop]
-The NEW RECORD line blinks in as "A HABIT YOU CAN COPY" (2 a second). Snow points at it.
+A plum bar opens in the band between the rows and the footnote; "A HABIT YOU CAN COPY" lands on it on "habit", gold, at the row names' size, a twinkle at each end. The footnote (what the score is, the source, Top 10% = by revenue) sits under it. Snow points at it.
 
 ## why "Why three? Housecall Pro" [sfx: whoosh]
 World: a street of 100 houses at dusk (10 by 10), windows dark, a quote envelope flies in across the rooftops and lands on the first house; the plate asks "Why 3?".
@@ -51,7 +51,7 @@ Row 3 lands: BEST ($$$): Plus upgrades.
 "Longer warranty" and "faster start date" check in under BEST as said. The full card holds big to the end of the take.
 
 ## survey "Here's the part people skip." [sfx: whoosh]
-World: the slot machine. The crown reads THE PART PEOPLE SKIP; reels at rest; bulbs chase slowly. The turn.
+World: the slot machine. The crown reads THE PART PEOPLE SKIP; big bulbs chase up both sides of the cabinet and the waiting reels nudge a few pixels in turn (no still run over 1 s until the lever). The turn.
 ## survey.ceiling "Your three is a" [sfx: blip]
 The crown flips to "3 IS THE FLOOR".
 ## survey.group "A heating and cooling" [sfx: tick]
@@ -63,17 +63,17 @@ The crown reads "4+ OPTIONS: CLOSE RATE"; the lever pulls on "four", the reels s
 ## survey.52 "fifty-two percent of the"
 The reels stop 5, 2, % on "fifty-two percent"; the bulbs chase fast; sparks; tray: "4+ options: 52%" and "Only 10% offer 4+".
 ## survey.few "One to three? Forty-two." [sfx: tick]
-The crown reads "1 TO 3 OPTIONS"; the lever pulls again; the reels stop 4, 2, % on "Forty-two" (no coins); tray adds "1 to 3 options: 42%".
+The crown reads "1 TO 3 OPTIONS" and on the same frame the tray clears its 4+ lines and types "1 to 3 options:"; the lever pulls again; the reels stop 4, 2, % on "Forty-two" (no coins) as "42%" lands on the tray line; "4+ options: 52%" comes back under it to compare.
 ## survey.caveat "That survey lumps one" [sfx: blip]
-The reels roll to 1, 2, 3; a gold bracket clamps across all three: ONE GROUP. Tray: "1 to 3 options: one group here." Snow checks his clipboard.
+The reels roll to 1, 2, 3; a thick gold clamp grows across the reel tops, its jaws drop over the outer reels, and a small gold ONE GROUP tag sits on it. Tray: "1 to 3 options: one group here." Snow checks his clipboard.
 ## survey.cant "so it can't tell"
 Tray second line in the accent: "It can't show 3 beats 1."
 ## survey.start "Start with three." [sfx: pop]
 The lever pulls; the reels land 3, 3, 3; jackpot: coins in the tray, the crown reads START WITH 3.
 
 ## close "Send this to whoever" [sfx: sting]
-World: the storefront counter again, tag on one price "$". Over the counter front a dark plate; ProofNotFluff chip; the send line lands first: "Send this to whoever / writes your quotes."
+World: the storefront again, tag on one price "$", no counter front: the shop window ends at a stone sill and the brick facade runs down to the sidewalk (the toolbox is off the counter). A dark plate hangs on the brick at one line's height; ProofNotFluff chip; "Send this to whoever" lands, then the plate grows a line and "writes your quotes." lands on "writes".
 ## close.one "One price is a" [sfx: pop]
-"1 price: yes or no." lands under the send line as said.
+The plate grows a line; "1 price: yes or no." lands under the send line as said.
 ## close.choice "Three prices? That's a"
-The tag flips to "$ $$ $$$" on "Three"; "3 prices: a choice." lands in the accent on "choice"; an accent line sweeps under "a choice."; sparks off the tag; Snow waves.
+The tag shows "$ $$ $$$" on "Three" and the plate grows its last line: "3 prices:" lands in the accent; "a choice." lands on "choice"; an accent line sweeps under "a choice."; sparks off the tag's top into the awning (never over the plate); Snow waves.

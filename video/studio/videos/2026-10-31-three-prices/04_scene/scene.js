@@ -76,6 +76,7 @@ const spray = (k, x, y, t0, o = {}) => {
     const a = dir + (hash(i * 1.7 + t0 * 3.1) - 0.5) * spread, sp = (0.45 + hash(i * 4.3 + t0) * 0.55) * r, sz = dt < life * 0.5 ? 2 : 1;
     const fx = Math.round((x + Math.cos(a) * sp * q) / 3), fy = Math.round((y + Math.sin(a) * sp * q + 200 * dt * dt) / 3);
     if (avoid.some(([x0, y0, x1, y1]) => (fx + sz) * 3 > x0 && fx * 3 < x1 && (fy + sz) * 3 > y0 && fy * 3 < y1)) continue;
+    if (o.maxY != null && (fy + sz) * 3 > o.maxY) continue;
     P(fx, fy, sz, sz, cols[i % cols.length]);
   }
 };
@@ -85,6 +86,9 @@ const sparkle = (k, pts, at, c = GOLD) => {
   pts.forEach(([x, y], j) => { const g = f - j * 4; if (g >= 0 && g < 20) d.twinkle(x, y, g, c); });
 };
 const host = (k, pose) => ({hostPose: pose || (k.talking() ? 'talk' : 'stand'), hostScale: 0.55, hostX: 150});
+/* the counter's tag flip shows its new price 8 frames after it starts, so a flip that should land on a word starts
+   FLIP s before it */
+const FLIP = 8 / 30;
 
 // ================================================================================================================
 // the storefront (hook, close): the library counter, plus a light that sweeps the shop glass every 2.4 s, the chalk
@@ -176,16 +180,41 @@ const tailgate = (k, o) => {
 };
 
 // ================================================================================================================
-// the tag close-up (hook, "one" to "Top"): the cut in on the one price (IMPROVE 00a). The hook rides on a title plate up
-// top with its source; below it the price tag drawn big on its string over the toolbox on the counter, the shop's shelves
-// big behind, the counter front to the bottom of the frame; Snow steps up big (a reframe, not a backdrop swap). The tag
-// sways a pixel; a twinkle walks its corner.
+// the tag close-up (hook, "one" to "Top"): the cut in on the one price (IMPROVE 00a). Outside the shop, drawn big: the
+// awning up top, the brick facade, the shop window with the price tag hanging in the glass over the toolbox on the
+// display ledge, the door with its OPEN sign, the sidewalk in the awning's shade. The hook rides on a title plate over the
+// glass with its source; Snow steps up big on the sidewalk (a reframe, not a backdrop swap). The tag sways a pixel, a
+// glint crosses the glass, a twinkle walks the tag's corner.
 const closeup = (k) => {
-  const d = px(k), {P, DOT, F} = d, n = k.data.numbers;
-  // the shop behind the glass: plum wall, uprights, two shelves of stock drawn big
-  P(0, 0, 360, 417, '#3D2E45'); for (let x = 0; x < 360; x += 60) P(x, 40, 3, 262, '#2B2033');
-  [[206, 0], [300, 1]].forEach(([y, sh]) => { P(0, y, 360, 7, '#B07A47'); P(0, y, 360, 1, GOLD); P(0, y + 7, 360, 2, '#4A2E1B');
-    for (let x = 4 + sh * 22; x < 356; x += 46) { const c = [TEAL, ORANGE, '#87CEEB', RED][Math.floor(hash(x + y) * 4)]; P(x, y - 30, 30, 30, c); P(x, y - 30, 30, 2, CREAM); P(x + 26, y - 28, 4, 28, INK); } });
+  const d = px(k), {P, F} = d, n = k.data.numbers;
+  // the facade: big brick, wine mortar
+  P(0, 0, 360, 312, '#7A3442');
+  for (let y = 40, r = 0; y < 302; y += 8, r++) for (let x = (r & 1) ? -12 : 0; x < 360; x += 24) P(x, y, 23, 7, RED);
+  // the shop window: a dark wood frame, the glass (dusk blue, a darker street reflection low down)
+  P(4, 48, 252, 256, INK); d.bevel(6, 50, 248, 252, '#6B4226', '#B07A47', '#4A2E1B');
+  P(14, 58, 232, 222, '#253048'); d.dith(14, 236, 232, 44, '#1B2A40', 0);
+  /* a light that crosses the glass every 2.4 s on whole pixels, plus two still glints */
+  d.clip(14, 58, 232, 222, () => {
+    d.line(20, 270, 116, 62, '#2F3D5C', 6); d.line(40, 276, 132, 78, '#33476B', 2);
+    const g = Math.round(((F % 72) / 72) * 420) - 120; d.line(g, 278, g + 100, 58, '#3B82C4', 3); d.line(g + 10, 278, g + 110, 58, '#2F3D5C', 2);
+  });
+  // the display ledge and the toolbox on it (under the tag)
+  P(14, 280, 232, 6, '#B07A47'); P(14, 280, 232, 1, GOLD); P(14, 286, 232, 2, '#4A2E1B');
+  P(150, 246, 60, 3, '#4A4E5A'); P(150, 246, 3, 9, '#4A4E5A'); P(207, 246, 3, 9, '#4A4E5A');
+  P(129, 253, 102, 28, INK); P(130, 254, 100, 26, RED); P(130, 254, 100, 2, ORANGE); P(212, 256, 18, 24, '#7A3442'); P(130, 266, 100, 2, '#7A3442'); P(172, 262, 16, 8, '#C9CCD3'); P(172, 262, 16, 2, CREAM);
+  // the door: teal, a glass pane with the OPEN sign hung in it (glowing on and off once a second), a brass knob, a kick plate
+  P(258, 42, 98, 262, INK); d.bevel(262, 46, 92, 256, '#2F6F67', TEAL, '#1F4A44');
+  P(272, 56, 72, 146, '#253048'); P(272, 56, 72, 2, '#1B2A40'); d.line(276, 196, 338, 70, '#2F3D5C', 3);
+  P(278, 212, 60, 70, '#1F4A44'); d.bevel(280, 214, 56, 66, '#2F6F67', TEAL, '#1F4A44');
+  d.disc(270, 230, 3, GOLD); P(269, 229, 1, 1, CREAM); P(264, 288, 88, 12, '#C9CCD3'); P(264, 288, 88, 1, CREAM);
+  const on = Math.floor(k.T) % 2 === 0 || k.T < 1;
+  d.line(300, 162, 308, 170, SAND); d.line(316, 162, 308, 170, SAND);
+  P(285, 170, 48, 24, INK); P(286, 171, 46, 22, '#2B2033'); k.text('OPEN', 927, 522, {size: 39, color: on ? RED : '#7A3442', align: 'center', lint: false});
+  // the stone base course, the sidewalk in the awning's shade (big joints), the curb and the street
+  P(0, 302, 360, 10, '#9AA0AD'); P(0, 302, 360, 2, '#C9CCD3'); P(0, 311, 360, 1, '#4A4E5A');
+  P(0, 312, 360, 288, '#6B7080'); d.dith(0, 312, 360, 16, '#4A4E5A', 0);
+  for (let y = 360, r = 0; y < 596; y += 48, r++) { P(0, y, 360, 2, '#4A4E5A'); for (let x = (r & 1) ? 45 : 0; x < 360; x += 90) P(x, y - 48, 2, 48, '#4A4E5A'); }
+  P(0, 596, 360, 8, '#C9CCD3'); P(0, 596, 360, 2, CREAM); P(0, 604, 360, 36, '#2B2033');
   // the awning, big: stripes and a scalloped edge (above the safe area: art only)
   for (let x = 0; x < 360; x += 40) { P(x, 0, 20, 30, RED); P(x + 20, 0, 20, 30, CREAM); }
   for (let x = 0; x < 360; x += 20) { d.disc(x + 10, 31, 8, (x / 20) % 2 ? CREAM : RED); }
@@ -195,19 +224,24 @@ const closeup = (k) => {
   const a = 'quote ', b = n.tiers.shown, c = ' prices', wa = k.measure(a, {size: 66}), wb = k.measure(b, {size: 66}), x0 = 540 - (wa + wb + k.measure(c, {size: 66})) / 2;
   k.text(a, x0, 352, {size: 66, color: CREAM, drop: INK}); k.text(b, x0 + wa, 352, {size: 66, color: GOLD, drop: INK}); k.text(c, x0 + wa + wb, 352, {size: 66, color: CREAM, drop: INK});
   k.text(`ServiceTitan data, ${n.stMonths.shown} months to Jan ${n.stYear.shown}`, 540, 432, {size: 30, color: SAND, align: 'center'});
-  // the counter and the toolbox on it, big
-  /* the counter front fills the frame to the bottom (no bare floor): two rows of big panels, brass pulls, a kick plate */
-  P(0, 302, 360, 10, '#D9A066'); P(0, 302, 360, 2, GOLD); P(0, 312, 360, 3, '#6B4226'); P(0, 315, 360, 325, '#8C5A33');
-  for (let x = 6; x < 360; x += 70) [[324, 120], [452, 150]].forEach(([y, h]) => { d.bevel(x, y, 60, h, '#8C5A33', '#B07A47', '#4A2E1B'); P(x + 6, y + 6, 48, h - 12, '#6B4226'); P(x + 26, y + 12, 8, 3, GOLD); P(x + 26, y + 15, 8, 1, '#B07A47'); });
-  P(0, 608, 360, 32, '#4A2E1B'); P(0, 608, 360, 2, '#B07A47');
-  P(109, 265, 142, 38, INK); P(110, 266, 140, 36, RED); P(110, 266, 140, 3, ORANGE); P(226, 269, 24, 33, '#7A3442'); P(110, 284, 140, 3, '#7A3442'); P(170, 280, 20, 12, '#C9CCD3'); P(170, 280, 20, 2, CREAM);
-  P(150, 254, 60, 4, '#4A4E5A'); P(150, 254, 4, 12, '#4A4E5A'); P(206, 254, 4, 12, '#4A4E5A');
-  // the tag on its string, swaying a pixel; one price on it
+  // the tag on its string, hanging in the window and swaying a pixel; one price on it
   const sw = [0, 1, 0, -1][Math.floor(F / 8) % 4], cx = 180 + sw;
   d.line(180, 162, cx, 176, SAND);
   P(cx - 61, 175, 122, 78, INK); P(cx - 60, 176, 120, 76, CREAM); P(cx - 60, 176, 120, 2, '#FFFFFF'); P(cx - 60, 248, 120, 4, SAND); P(cx - 2, 180, 5, 5, INK);
   k.text('$', cx * 3, 549, {size: 198, color: '#7A3442', align: 'center'});
   const f = F % 24; if (f < 12) d.twinkle(cx + 56, 180, f >> 1, GOLD);
+};
+
+/* the close's storefront has no counter front: the shop window ends at a stone sill and the brick facade runs down to the
+   sidewalk, so the plate hangs on the brick. The toolbox comes off the counter (the shelf behind it is put back). */
+const facade = (k) => {
+  const d = px(k), {P} = d;
+  P(172, 180, 58, 46, '#3D2E45'); P(200, 180, 2, 46, '#2B2033');
+  [172, 194, 216].forEach((x) => { const c = [TEAL, ORANGE, '#87CEEB', RED][Math.floor(hash(x + 222) * 4)]; P(x, 208, 14, 14, c); P(x, 208, 14, 1, CREAM); P(x + 12, 209, 2, 13, INK); });
+  P(170, 222, 62, 3, '#B07A47');
+  P(0, 226, 360, 6, '#C9CCD3'); P(0, 226, 360, 1, CREAM); P(0, 231, 360, 1, '#4A4E5A');
+  P(0, 232, 360, 185, '#7A3442');
+  for (let y = 232, r = 0; y < 417; y += 5, r++) for (let x = (r & 1) ? 6 : 0; x < 360; x += 12) P(x, y, 11, 4, RED);
 };
 
 window.SCENE = {
@@ -219,29 +253,36 @@ window.SCENE = {
   sections: {
     // ---- hook: three shots (IMPROVE 00a: the picture changes by 1 s and twice by 3 s, Snow on by 1 s). The cover: the
     // storefront, settled on frame 0: one price on the tag, the hook card hung on the counter front. Cut in on "one" to the
-    // tag close-up (the hook on a title plate), Snow comes in; cut back out on "Top"; the tag flips to three on "three".
-    // The dialog box stays out through the hook (the card carries the words); Snow stays on from the cut in.
+    // tag close-up outside the shop window (the hook on a title plate), Snow comes in; cut back out on "Top"; the tag shows
+    // three prices on "three". The card rolls up onto its strings just before "Here's" (the on-screen hook is off by
+    // 4.0 s, playbook point 2) and the chalk board carries the rest. The dialog box stays out through the hook; Snow stays
+    // on from the cut in.
     hook: (k, T) => {
       const n = k.data.numbers, d = px(k), tThree = wordT(k, 'hook.three', /^three/i, 0.6), tBuild = k.S('hook.build');
       const tIn = Math.min(0.8, Math.max(0.5, wordT(k, 'hook', /^one$/i, 0.6))), tOut = Math.min(2.6, Math.max(tIn + 0.6, wordT(k, 'hook', /^top$/i, 1.8)));
       /* a real reframe: Snow steps up big at the counter for the close-up (hostScale 0.86), back to his wide size after */
       if (T >= tIn && T < tOut) { closeup(k); return Object.assign(host(k), {hostScale: 0.86, hostX: 200, speech: false}); }
-      storefront(k, {tags: [{price: '$', at: -1}, {price: '$ $$ $$$', at: tThree}], threeAt: tThree,
+      storefront(k, {tags: [{price: '$', at: -1}, {price: '$ $$ $$$', at: tThree - FLIP}], threeAt: tThree,
         chalk: T < tBuild ? [[`${n.single.shown} price?`, -1, CREAM, 450]] : [[`${n.tiers.shown} prices,`, tBuild, GOLD, 450], [`${n.single.shown} quote.`, tBuild + 0.3, CREAM, 528]]});
       // the hook card: cream, on two strings from the counter top (frame x 102 to 978, y 780 to 1158); no dialog in the hook
       // the card swings a pixel on its strings from 0.6 s (the cover holds still on frame 0), two steps a second
       const sw = T >= 0.6 ? [0, 1, 0, -1][Math.floor(d.F / 15) % 4] : 0;
+      /* the card rolls up: its bottom edge climbs to the strings over 6 frames and it is gone a frame before "Here's"
+         (and by 4.0 s whatever the voice does) */
+      const tGone = Math.min(tBuild, 4.0) - 1 / 30, roll = clamp((T - (tGone - 0.2)) / 0.2);
       /* motion before 1 s that crosses no words: a chalk line draws under "1 price?" from 0.5 s */
       if (T < tBuild && T >= 0.5) d.P(26, 175, Math.round(k.measure(`${n.single.shown} price?`, {size: 66}) / 3 * clamp(d.fr(0.5) / 8)), 1, SAND);
       /* sparks off the price tag into the shelves, before the card is drawn and kept off the tag, chalk board, OPEN sign
          and card: at 0.4 s, every 0.6 s until the tag flips, and as it lands on three prices */
-      const tagBox = T < tThree + 0.3 ? [672, 400, 900, 606] : [627, 400, 945, 540];
+      const tagBox = T < tThree ? [672, 400, 900, 606] : [627, 400, 945, 540];
       const avoid = [tagBox, [36, 402, 492, 654], [880, 552, 1026, 654], [96, 774, 984, 1164]];
       spray(k, 786, 612, 0.4, {n: 14, r: 140, dir: Math.PI / 2, spread: 2.4, avoid});
       [1.0, 1.6, 2.2, 2.8].forEach((t, i) => { if (t < tThree - 0.2) spray(k, i % 2 ? 912 : 660, 470, t, {n: 10, r: 120, dir: i % 2 ? 0 : Math.PI, spread: 1.6, avoid}); });
       spray(k, 786, 548, tThree + 0.3, {n: 18, r: 170, dir: Math.PI / 2, spread: 2.6, avoid});
+      if (roll < 1) {
+      const cb = 260 + Math.round(128 * (1 - eo(roll)));
       d.line(60, 252, 60 + sw, 260, SAND); d.line(300, 252, 300 + sw, 260, SAND);
-      k.ctx.save(); k.ctx.translate(sw * 3, 0);
+      k.ctx.save(); k.ctx.beginPath(); k.ctx.rect(0, 756, 1080, (cb - 252) * 3); k.ctx.clip(); k.ctx.translate(sw * 3, 0);
       d.P(36, 262, 292, 126, INK); d.P(34, 260, 292, 126, INK); d.P(35, 261, 290, 124, CREAM); d.P(35, 383, 290, 2, SAND); d.P(35, 261, 290, 1, '#FFFFFF');
       /* the on-screen hook in 6 words ("Top shops usually quote 3 prices"), then the number behind it and the source; the
          small lines sit right of centre so Snow (from the cut in) never stands on them */
@@ -255,6 +296,8 @@ window.SCENE = {
       k.text(n.topGbb.shown, x3 + k.measure(`Top ${n.topPct.shown}: `, {size: 39}), 1022, {size: 39, color: RED, lint: false});
       k.text(`ServiceTitan, ${n.stMonths.shown} months to Jan ${n.stYear.shown}`, 590, 1086, {size: 30, color: '#6B7080', align: 'center'});
       k.ctx.restore();
+      if (roll > 0) { d.P(34 + sw, cb - 4, 292, 5, INK); d.P(35 + sw, cb - 3, 290, 3, SAND); d.P(35 + sw, cb - 3, 290, 1, CREAM); }   // the roll
+      }
       if (T < tIn) return {host: false, speech: false};
       return Object.assign(host(k), {speech: false});
     },
@@ -265,8 +308,7 @@ window.SCENE = {
       const tRest = wordT(k, 'stakes.rest', /^Everyone/i), t41 = wordT(k, 'stakes.rest', /^Forty/i, 1), tHab = k.S('stakes.habit');
       const gap = Math.max(0.3, tRest - tTop), score = (at) => (T < at - LEAD ? ((d.F >> 3) & 1 ? '--' : '') : '');
       k.sets.scores({title: 'GOOD, BETTER, BEST', t0: tTop, gap,
-        rows: [{name: `TOP ${n.topPct.shown}`, value: score(t57), hi: true}, {name: 'THE REST', value: score(t41)}],
-        newAt: tHab, newText: 'A HABIT YOU CAN COPY'});
+        rows: [{name: `TOP ${n.topPct.shown}`, value: score(t57), hi: true}, {name: 'THE REST', value: score(t41)}]});
       /* the two scores at headline size in the SCORE column (gold, teal), sliding with their rows; twinkles at the box
          corners once each number has been read, never on it */
       [[n.topGbb, t57, GOLD], [n.restGbb, t41, TEAL]].forEach(([num, at, c], i) => {
@@ -275,11 +317,18 @@ window.SCENE = {
         k.text(pct(k, num, at), x1 * 3, y * 3 - 12, {size: 66, color: c, align: 'right'});
         sparkle(k, [[x1 + 4, y - 5], [x1 - w - 5, y + 18], [x1 + 4, y + 18]], at + 0.45, c);
       });
+      /* the payoff takes the band between the rows and the footnote, at the row names' size, gold, on a row's plum bar
+         (it lands on "habit", steady, with a twinkle at each end) */
+      if (T >= tHab) {
+        const tH = wordT(k, 'stakes.habit', /^habit/i, 0.3), w = Math.ceil(k.measure('A HABIT YOU CAN COPY', {size: 39}) / 3), q = clamp(d.fr(tHab) / 6);
+        d.P(32, 197, 276, 21, '#3D2E45'); d.P(32, 197, Math.round(276 * q), 1, GOLD); d.P(32, 217, Math.round(276 * q), 1, GOLD);
+        if (T >= tH) { k.slam('A HABIT YOU CAN COPY', 540, 606, tH, {size: 39, color: GOLD, align: 'center', from: 0.4}); sparkle(k, [[180 - w / 2 - 8, 207], [180 + w / 2 + 7, 207]], tH + 0.3, GOLD); }
+      }
       // under the table, on the black glass: what the score is, then the source, typing on (left edge 120)
-      d.type('Home jobs offered good, better, best.', 120, 612, t0 + 0.1, {color: CREAM});
-      d.type('ServiceTitan customers,', 120, 660, t0 + 0.6, {color: SAND});
-      d.type(`${n.stMonths.shown} months to Jan ${n.stYear.shown}`, 120, 708, k.S('stakes.window'), {color: SAND});
-      d.type(`Top ${n.topPct.shown} = by revenue in their trade`, 120, 756, tTop + 0.2, {color: TEAL});
+      d.type('Home jobs offered good, better, best.', 120, 684, t0 + 0.1, {color: CREAM});
+      d.type('ServiceTitan customers,', 120, 732, t0 + 0.6, {color: SAND});
+      d.type(`${n.stMonths.shown} months to Jan ${n.stYear.shown}`, 120, 780, k.S('stakes.window'), {color: SAND});
+      d.type(`Top ${n.topPct.shown} = by revenue in their trade`, 120, 828, tTop + 0.2, {color: TEAL});
       return host(k, k.live('stakes.habit') ? 'point' : (k.live('stakes.top57') ? 'point' : null));
     },
 
@@ -383,13 +432,42 @@ window.SCENE = {
       const label = T >= tStart ? `START WITH ${n.tiers.shown}` : T >= tCav ? `${n.single.shown}, 2 AND ${n.fewMax.shown}: ONE GROUP`
         : T >= tOpt ? `${n.single.shown} TO ${n.fewMax.shown} OPTIONS: CLOSE RATE` : T >= tFour ? `${n.manyOpt.shown}+ OPTIONS: CLOSE RATE` : T >= tCeil ? `${n.tiers.shown} IS THE FLOOR` : 'THE PART PEOPLE SKIP';
       k.sets.slots(Object.assign({label, idle: ['$', '$', '$']}, reel));
+      /* steady life on the cabinet (golden: no still run over 1 s): big bulbs chase up both sides of the cabinet, a step
+         every 3 frames, and while the reels wait for the lever each one nudges a few pixels in turn, like a reel being
+         jiggled; both run on whole low-res pixels */
+      for (let i = 0; i < 19; i++) { const y = 92 + i * 12, lit = (i + Math.floor(d.F / 3)) % 3 === 0;
+        [30, 318].forEach((x, s2) => { const l2 = s2 ? (18 - i + Math.floor(d.F / 3)) % 3 === 0 : lit; d.P(x, y, 5, 5, INK); d.P(x + 1, y + 1, 3, 3, l2 ? CREAM : '#B07A47'); if (l2) d.DOT(x + 2, y + 2, GOLD); }); }
+      if (T >= t0 && T < tFour - 0.05) {
+        const SYM = ['7', '$', '%', '9', '3', '5', '1', '0', '8', '2', '4', '6'];
+        for (let r = 0; r < 3; r++) {
+          const rx = 58 + r * 77, ry = 136, b = [0, 3, 0, -3, 0, 0][(Math.floor(d.F / 5) + r * 2) % 6];
+          if (b === 0) continue;
+          d.clip(rx, ry, 70, 92, () => {
+            d.P(rx, ry, 70, 92, CREAM);
+            k.text('$', (rx + 35) * 3, (ry + 24 + b) * 3, {size: 132, color: '#2B2033', align: 'center', lint: false});
+            k.text(SYM[(r * 3 + 1) % 12], (rx + 35) * 3, (ry + 24 + b - 50) * 3, {size: 132, color: '#C9CCD3', align: 'center', lint: false});
+            k.text(SYM[(r * 3 + 5) % 12], (rx + 35) * 3, (ry + 24 + b + 50) * 3, {size: 132, color: '#C9CCD3', align: 'center', lint: false});
+            d.P(rx, ry, 70, 6, SAND); d.P(rx, ry + 86, 70, 6, SAND); d.P(rx, ry, 70, 2, '#B39A88'); d.P(rx, ry + 90, 70, 2, '#B39A88');
+          });
+        }
+      }
       // sparks as the numbers land
       /* out of the cabinet's sides, never over the reels or the words */
       const cab = [[114, 246, 906, 966]], sn = reel.win ? 16 : 9;
       spray(k, 105, 520, reel.stops[2] + 0.05, {n: sn, r: 110, dir: Math.PI, spread: 1.6, avoid: cab});
       spray(k, 975, 520, reel.stops[2] + 0.05, {n: sn, r: 110, dir: 0, spread: 1.6, avoid: cab});
-      // the bracket: 1, 2 and 3 clamped as one group (under the reels, above the tray)
-      if (T >= tCav + 1.0 && T < tStart) { const f = d.fr(tCav + 1.0), w = Math.min(224, f * 28); d.P(170 - w / 2, 232, w, 3, GOLD); if (w >= 224) { d.P(58, 228, 3, 7, GOLD); d.P(279, 228, 3, 7, GOLD); d.P(168, 234, 5, 4, GOLD); } }
+      /* the clamp: 1, 2 and 3 held as one group. A thick gold bar over the reel tops grows out from the middle, its jaws
+         drop over the outer reels' edges, then a small ONE GROUP tag sits on it */
+      if (T >= tCav + 1.0 && T < tStart) {
+        const f = d.fr(tCav + 1.0), w = Math.min(232, f * 29), x0 = 170 - w / 2;
+        d.P(x0 - 1, 128, w + 2, 6, INK); d.P(x0, 129, w, 4, GOLD); d.P(x0, 129, w, 1, CREAM); d.P(x0, 132, w, 1, '#B07A47');
+        if (w >= 232) {
+          const j = Math.min(12, (f - 8) * 3);
+          [54, 282].forEach((x) => { d.P(x - 1, 128, 7, j + 2, INK); d.P(x, 129, 5, j, GOLD); d.P(x, 129, 1, j, CREAM); });
+          if (f >= 12) { const tw2 = Math.ceil(k.measure('ONE GROUP', {size: 30}) / 3); d.P(170 - tw2 / 2 - 5, 124, tw2 + 10, 16, INK); d.P(170 - tw2 / 2 - 4, 125, tw2 + 8, 14, GOLD); d.P(170 - tw2 / 2 - 4, 125, tw2 + 8, 1, CREAM);
+            k.text('ONE GROUP', 510, 378, {size: 30, color: PLUM, align: 'center'}); }
+        }
+      }
       // the strip on the cabinet front: the source, once the survey is named (frame y 909)
       d.P(52, 300, 236, 18, INK); d.P(53, 301, 234, 16, '#2B2033');
       d.type(`ACCA survey, ACHR News, Feb ${n.accaYear.shown}`, 510, 906, tGrp, {color: SAND, align: 'center'});
@@ -397,36 +475,46 @@ window.SCENE = {
       const tray = (a, b) => { if (a) d.type(a[0], 510, 750, a[1], {color: a[2] || CREAM, align: 'center'}); if (b) d.type(b[0], 510, 810, b[1], {color: b[2] || CREAM, align: 'center'}); };
       if (T < tN) tray(['How many options', t0 + 0.3], ['do you give?', t0 + 0.6, GOLD]);
       else if (T < tP52 + 0.2) tray([`${n.accaN.shown}+ HVAC contractors`, tN, GOLD], T >= tFour ? ['close rate by options given', tFour] : null);
-      else if (T < t42) tray([`${n.manyOpt.shown}+ options: ${n.manyClose.shown}`, tP52 + 0.2, GOLD], [`Only ${n.accaShare.shown} offer ${n.manyOpt.shown}+.`, tP52 + 0.5]);
-      else if (T < tCav) tray([`${n.manyOpt.shown}+ options: ${n.manyClose.shown}`, -1, GOLD], [`${n.single.shown} to ${n.fewMax.shown} options: ${n.fewClose.shown}`, t42 + 0.3]);
+      else if (T < tOpt) tray([`${n.manyOpt.shown}+ options: ${n.manyClose.shown}`, tP52 + 0.2, GOLD], [`Only ${n.accaShare.shown} offer ${n.manyOpt.shown}+.`, tP52 + 0.5]);
+      /* the crown flips to 1 TO 3 on the same frame the tray clears its 4+ lines; the 1 to 3 line types, its figure lands on
+         "Forty-two", then the 4+ figure comes back under it to compare */
+      else if (T < t42) tray([`${n.single.shown} to ${n.fewMax.shown} options:`, tOpt, GOLD], null);
+      else if (T < tCav) tray([`${n.single.shown} to ${n.fewMax.shown} options: ${n.fewClose.shown}`, -1, GOLD], [`${n.manyOpt.shown}+ options: ${n.manyClose.shown}`, t42 + 0.3, SAND]);
       else if (T < tStart) tray([`${n.single.shown} to ${n.fewMax.shown} options: one group here.`, tCav + 0.3], T >= tCant ? [`It can't show ${n.fewMax.shown} beats ${n.single.shown}.`, tCant, RED] : null);
       /* the jackpot's label: the tray's top band carries the line, the coins pile and hop under it */
       else { d.P(62, 248, 216, 15, '#2B2033'); d.type(`Start with ${n.tiers.shown} prices.`, 510, 747, tStart, {color: GOLD, align: 'center'}); }
       return host(k, k.live('survey.caveat') ? 'clip' : (k.live('survey.52') || k.live('survey.start') ? 'point' : null));
     },
 
-    // ---- close: the storefront again. One column on a dark plate (left edge 120): the send line first, then the line
-    // and the payoff; the tag flips to three prices on "Three"
+    // ---- close: the storefront again, no counter front: the plate hangs on the brick facade between the window sill and
+    // the sidewalk. One column (left edge 120), the plate growing a line at a time as each line is said: the send line,
+    // then its second half, the line, the payoff; "a choice." lands on "choice". The tag shows three prices on "Three"
     close: (k, T) => {
       const n = k.data.numbers, d = px(k), t0 = k.S('close'), tOne = k.S('close.one'), tYes = wordT(k, 'close.one', /^yes/i, 0.6), tThree = wordT(k, 'close.choice', /^Three/i);
-      const tCh = wordT(k, 'close.choice', /^choice/i, 0.9);
-      storefront(k, {tags: [{price: '$', at: -1}, {price: '$ $$ $$$', at: tThree}], threeAt: tThree,
+      const tCh = wordT(k, 'close.choice', /^choice/i, 0.9), tWr = wordT(k, 'close', /^writes/i, 0.6);
+      storefront(k, {tags: [{price: '$', at: -1}, {price: '$ $$ $$$', at: tThree - FLIP}], threeAt: tThree,
         chalk: T < tThree ? [[`${n.single.shown} price?`, tOne, CREAM, 450]] : [[`${n.tiers.shown} prices.`, tThree, GOLD, 450]]});
-      /* the plate holds four lines at one size (66): the send line on two lines, the line, the payoff */
-      const open = d.ease(t0 + 0.05, 8, 120);
-      d.clip(0, 227, 360, 190, () => d.win(30, 227 + open, 300, 108, {base: '#1B1420', hi: PLUM, lo: INK, rule: WINE}));
-      if (open === 0) {
-        k.slam('Send this to whoever', 120, 696, t0 + 0.3, {size: 66, color: GOLD, from: 0.4});
-        k.slam('writes your quotes.', 120, 768, t0 + 0.6, {size: 66, color: GOLD, from: 0.4});
-        if (T >= tOne) k.slam(`${n.single.shown} price: yes or no.`, 120, 846, Math.min(tOne + 0.2, tYes), {size: 66, color: CREAM, from: 0.5});
-        if (T >= tThree) k.slam(`${n.tiers.shown} prices: a choice.`, 120, 918, tThree + 0.1, {size: 66, color: 'accent', from: 0.5});   /* on "Three", so it holds past the last word */
-        if (T >= tCh + 0.3) { const x = 120 + k.measure(`${n.tiers.shown} prices: `, {size: 66}); k.sweep(x, 987, k.measure('a choice.', {size: 66}), 6, tCh + 0.3, {color: 'accent'}); }
-      }
+      facade(k);
+      /* the plate: one line's height when it opens, a line more (25 low-res, 75 frame) as each line lands; lines at frame
+         y 711, 786, 861, 936 */
+      const lands = [t0 + 0.3, tWr, Math.min(tOne + 0.2, tYes), tThree + 0.1], H = (m) => 9 + 25 * m;
+      let h = 0;
+      lands.forEach((at, i) => { const q = eo(d.fr(at - 0.17) / 5); if (T >= at - 0.17) h = Math.round(H(i) + (H(i + 1) - H(i)) * q); });
+      if (h > 0) d.win(30, 233, 300, h, {base: '#1B1420', hi: PLUM, lo: INK, rule: WINE});
+      const Y = (i) => 711 + i * 75;
+      if (T >= lands[0]) k.slam('Send this to whoever', 120, Y(0), lands[0], {size: 66, color: GOLD, from: 0.4});
+      if (T >= lands[1]) k.slam('writes your quotes.', 120, Y(1), lands[1], {size: 66, color: GOLD, from: 0.4});
+      if (T >= lands[2]) k.slam(`${n.single.shown} price: yes or no.`, 120, Y(2), lands[2], {size: 66, color: CREAM, from: 0.5});
+      if (T >= lands[3]) k.slam(`${n.tiers.shown} prices:`, 120, Y(3), lands[3], {size: 66, color: 'accent', from: 0.5});
+      const xc = 120 + k.measure(`${n.tiers.shown} prices: `, {size: 66});
+      if (T >= tCh) k.slam('a choice.', xc, Y(3), tCh, {size: 66, color: 'accent', from: 0.5});   /* on "choice", held past the last word */
+      if (T >= tCh + 0.3) k.sweep(xc, Y(3) + 69, k.measure('a choice.', {size: 66}), 6, tCh + 0.3, {color: 'accent'});
       k.chip('ProofNotFluff', 78, 540, {size: 30});
-      /* sparks off the tag's foot into the shelves, kept off the tag, chalk board, OPEN sign and plate */
-      const avoid = [[627, 400, 945, 540], [36, 402, 492, 654], [880, 552, 1026, 654], [84, 675, 996, 1011]];
-      spray(k, 786, 548, tThree + 0.35, {n: 18, r: 170, dir: Math.PI / 2, spread: 2.6, avoid});
-      spray(k, 786, 548, tCh + 0.3, {n: 14, r: 150, dir: Math.PI / 2, spread: 2.6, colors: [GOLD, CREAM], avoid});
+      /* sparks off the tag's top into the awning, never below frame y 672 (the plate starts at 699), kept off the tag, the
+         chalk board and the OPEN sign */
+      const avoid = [[627, 400, 945, 600], [36, 402, 492, 654], [880, 552, 1026, 654], [300, 230, 780, 320]];
+      spray(k, 786, 410, tThree + 0.35, {n: 18, r: 150, dir: -Math.PI / 2, spread: 2.4, avoid, maxY: 672});
+      spray(k, 786, 410, tCh + 0.3, {n: 14, r: 130, dir: -Math.PI / 2, spread: 2.4, colors: [GOLD, CREAM], avoid, maxY: 672});
       return host(k, T >= tCh ? 'wave' : (T < tOne ? 'point' : null));
     },
   },

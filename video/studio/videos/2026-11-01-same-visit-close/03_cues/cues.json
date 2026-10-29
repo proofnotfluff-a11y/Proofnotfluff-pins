@@ -5,7 +5,7 @@
   "id": "rooms",
   "level": 0.16
  },
- "duration": 77.04,
+ "duration": 76.54,
  "cues": [
   {
    "id": "hook",
@@ -17,7 +17,7 @@
    "text": "Frame 0: the hook card, fully settled. \"Top shops close\" / \"77%\" / \"of estimates\" / \"on the same visit.\" The 77% in the accent, sparks. Source small: ServiceTitan, 12 months to Jan 2026. Host and dialog hidden.",
    "t": 0.0,
    "word": 0,
-   "end": 8.42
+   "end": 8.38
   },
   {
    "id": "hook.top",
@@ -41,7 +41,7 @@
    "text": "A stamp hits the slip: \"SIGNED. Same visit.\" Snow points at it.",
    "t": 5.44,
    "word": 16,
-   "end": 6.9
+   "end": 6.88
   },
   {
    "id": "hook.ask",
@@ -51,9 +51,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A speech tag pops over the van: \"Ask before you leave.\" Sparks.",
-   "t": 6.9,
+   "t": 6.88,
    "word": 20,
-   "end": 8.42
+   "end": 8.38
   },
   {
    "id": "stakes",
@@ -63,9 +63,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: workshop. Panel SERVICETITAN: \"Estimates closed\" / \"on the same visit\". Both rows (labels and empty tracks) show as it opens.",
-   "t": 8.42,
+   "t": 8.38,
    "word": 24,
-   "end": 20.32
+   "end": 19.84
   },
   {
    "id": "stakes.window",
@@ -75,9 +75,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The window slides onto the panel: \"12 months to Jan 2026\".",
-   "t": 11.16,
+   "t": 11.22,
    "word": 34,
-   "end": 12.86
+   "end": 12.78
   },
   {
    "id": "stakes.top",
@@ -87,9 +87,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 1 label lights: \"Top 10% by revenue\". Track glows.",
-   "t": 12.86,
+   "t": 12.78,
    "word": 38,
-   "end": 14.54
+   "end": 14.48
   },
   {
    "id": "stakes.top77",
@@ -99,9 +99,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Bar 1 grows to 77% as it is said (count starts at 85%); 77% slams in at its end, sparks.",
-   "t": 14.54,
+   "t": 14.48,
    "word": 44,
-   "end": 17.82
+   "end": 17.5
   },
   {
    "id": "stakes.rest",
@@ -111,9 +111,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Bar 2 \"Everyone else\" grows to 62%, in grey; 62% lands.",
-   "t": 17.82,
+   "t": 17.5,
    "word": 51,
-   "end": 20.32
+   "end": 19.84
   },
   {
    "id": "why",
@@ -123,9 +123,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: blackboard. Chalk header: \"Why a 15 point gap?\" The 15 slams in, in the accent.",
-   "t": 20.32,
+   "t": 19.84,
    "word": 54,
-   "end": 34.04
+   "end": 33.58
   },
   {
    "id": "why.momentum",
@@ -135,9 +135,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Momentum.\" slams in big in chalk; source line: ServiceTitan.",
-   "t": 22.86,
+   "t": 22.32,
    "word": 59,
-   "end": 25.14
+   "end": 24.64
   },
   {
    "id": "why.wait",
@@ -147,9 +147,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A chalk line from QUOTE to DECISION stretches out; a chalk clock spins above it.",
-   "t": 25.14,
+   "t": 24.64,
    "word": 65,
-   "end": 27.62
+   "end": 27.14
   },
   {
    "id": "why.competitor",
@@ -159,9 +159,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Under the line: \"Call a competitor.\" chalks in, with a ringing phone.",
-   "t": 27.62,
+   "t": 27.14,
    "word": 75,
-   "end": 28.9
+   "end": 28.44
   },
   {
    "id": "why.talk",
@@ -171,9 +171,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Talk themselves out of it.\" chalks in under it.",
-   "t": 28.9,
+   "t": 28.44,
    "word": 79,
-   "end": 30.78
+   "end": 29.82
   },
   {
    "id": "why.fewer",
@@ -183,9 +183,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The line snaps short (QUOTE and DECISION side by side); \"Fewer follow-ups.\" slams in, in the accent.",
-   "t": 30.78,
+   "t": 29.82,
    "word": 84,
-   "end": 34.04
+   "end": 33.58
   },
   {
    "id": "ask",
@@ -195,9 +195,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: garage. Header on a dark band: \"Ask before you walk out.\" The big card \"Say this (example)\" opens with its three numbered rows showing, empty.",
-   "t": 34.04,
+   "t": 33.58,
    "word": 93,
-   "end": 44.84
+   "end": 44.34
   },
   {
    "id": "ask.l1",
@@ -207,9 +207,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 1: \"Here are your options.\"",
-   "t": 37.1,
+   "t": 36.6,
    "word": 101,
-   "end": 38.4
+   "end": 37.9
   },
   {
    "id": "ask.l2",
@@ -219,9 +219,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 2: \"If you want to go ahead today, I can get you on the schedule for Thursday.\"",
-   "t": 38.4,
+   "t": 37.9,
    "word": 105,
-   "end": 40.06
+   "end": 39.36
   },
   {
    "id": "ask.sched",
@@ -231,9 +231,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Thursday\" in row 2 gets an accent sweep (an example day, tagged \"example\").",
-   "t": 40.06,
+   "t": 39.36,
    "word": 112,
-   "end": 42.36
+   "end": 41.88
   },
   {
    "id": "ask.l3",
@@ -243,9 +243,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 3: \"What questions do you have before you pick one?\" The full card holds to the end of the take. Snow steps back, small.",
-   "t": 42.36,
+   "t": 41.88,
    "word": 121,
-   "end": 44.84
+   "end": 44.34
   },
   {
    "id": "skip",
@@ -255,9 +255,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: workshop. Header on a dark band: \"The part people skip.\" Row 3's line sits big in a quote box.",
-   "t": 44.84,
+   "t": 44.34,
    "word": 130,
-   "end": 59.56
+   "end": 58.86
   },
   {
    "id": "skip.worry",
@@ -267,9 +267,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Under the quote box (never on it): \"It brings the worry out\".",
-   "t": 46.72,
+   "t": 46.2,
    "word": 135,
-   "end": 48.94
+   "end": 48.44
   },
   {
    "id": "skip.there",
@@ -279,9 +279,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"while you're still there to answer it.\" lands under it; Snow points at it.",
-   "t": 48.94,
+   "t": 48.44,
    "word": 142,
-   "end": 51.16
+   "end": 50.68
   },
   {
    "id": "skip.st",
@@ -291,9 +291,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Panel SERVICETITAN: \"Same-visit closes show how well your tech:\" with three rows showing, unticked.",
-   "t": 51.16,
+   "t": 50.68,
    "word": 149,
-   "end": 54.74
+   "end": 54.26
   },
   {
    "id": "skip.obj",
@@ -303,9 +303,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Rows 1 and 2 tick as said: handles objections, frames financing.",
-   "t": 54.74,
+   "t": 54.26,
    "word": 158,
-   "end": 57.62
+   "end": 57.2
   },
   {
    "id": "skip.sale",
@@ -315,9 +315,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The last row ticks; \"asks for the sale\" highlights in the accent.",
-   "t": 57.62,
+   "t": 57.2,
    "word": 163,
-   "end": 59.56
+   "end": 58.86
   },
   {
    "id": "caveat",
@@ -327,9 +327,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: framing. Header on a dark band: \"One honest note.\"",
-   "t": 59.56,
+   "t": 58.86,
    "word": 167,
-   "end": 69.14
+   "end": 68.68
   },
   {
    "id": "caveat.pattern",
@@ -339,9 +339,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Stamp: \"A pattern, not proof.\" Source line: ServiceTitan says the numbers are correlated, not a cause.",
-   "t": 60.94,
+   "t": 60.5,
    "word": 170,
-   "end": 63.32
+   "end": 62.84
   },
   {
    "id": "caveat.other",
@@ -351,9 +351,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Top shops may close more for other reasons.\" slides in.",
-   "t": 63.32,
+   "t": 62.84,
    "word": 176,
-   "end": 66.12
+   "end": 65.62
   },
   {
    "id": "caveat.cost",
@@ -363,9 +363,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Asking costs one sentence.\" slams in, in the accent. Snow shrugs.",
-   "t": 66.12,
+   "t": 65.62,
    "word": 184,
-   "end": 69.14
+   "end": 68.68
   },
   {
    "id": "close",
@@ -375,9 +375,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: blackboard. Chalk: \"Don't drive off\" / \"and wait.\" slams in as said.",
-   "t": 69.14,
+   "t": 68.68,
    "word": 190,
-   "end": 77.04
+   "end": 76.54
   },
   {
    "id": "close.drive",
@@ -387,9 +387,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Ask in the driveway.\" slams in, in the accent.",
-   "t": 71.32,
+   "t": 70.84,
    "word": 198,
-   "end": 73.1
+   "end": 72.62
   },
   {
    "id": "close.send",
@@ -399,9 +399,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "ProofNotFluff plate slams on; send line: \"Send this to whoever goes out on your estimates.\"",
-   "t": 73.1,
+   "t": 72.62,
    "word": 204,
-   "end": 74.0
+   "end": 73.5
   },
   {
    "id": "close.next",
@@ -411,9 +411,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "An accent line sweeps under \"Ask in the driveway.\"; sparks; Snow waves.",
-   "t": 74.0,
+   "t": 73.5,
    "word": 208,
-   "end": 77.04
+   "end": 76.54
   }
  ]
 }

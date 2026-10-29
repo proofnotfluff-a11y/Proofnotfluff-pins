@@ -504,7 +504,7 @@ window.SCENE = {
         if (n < r.text.length || T < times[times.length - 1][1] + 0.15) tip = [62 + d.tw(s) + 1, r.y + 15];
       });
       // the source line (not spoken: it lands once "proof" is said), a red line under "not proof", the double underline
-      if (T >= tProof + 0.45) k.slam('ServiceTitan: correlated, not a cause.', 186, 448, tProof + 0.45, {size: 30, color: MAROON, from: 0.3});
+      if (T >= tProof + 0.45) k.slam('ServiceTitan: correlated, not shown to cause.', 62, 448, tProof + 0.45, {size: 27, color: MAROON, from: 0.3});
       if (T >= tProof + 0.2) {
         const l = 62 + d.tw('This is a pattern, '), r = 62 + d.tw('This is a pattern, not proof.'), q = clamp(d.fr(tProof + 0.2) / 6); d.P(l, 146, Math.round((r - l) * q), 1, RED); for (let x = l; x < l + Math.round((r - l) * q); x += 4) d.DOT(x + 1, 147, RED);
       }

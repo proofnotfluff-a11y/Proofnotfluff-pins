@@ -1,8 +1,8 @@
 {
  "schema": "pnf.studio.worlds.v1",
  "share": {
-  "set:street": 0.214,
-  "set:levelup": 0.346,
-  "set:dispatch": 0.178
+  "set:street": 0.215,
+  "set:levelup": 0.339,
+  "set:dispatch": 0.179
  }
 }

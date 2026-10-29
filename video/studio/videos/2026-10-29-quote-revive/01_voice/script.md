@@ -8,7 +8,7 @@
 
 [warmly] So here's the text. Their name, then yours, so they know it's you. Then one line. "Still want that water heater swapped before winter?" That's it. One question they can answer with a yes or a no.
 
-[short pause] Here's the part people skip. Text it. Don't email it. ServiceTitan's follow-up webinar says texts beat email on open rates. In a Housecall Pro survey, fifty-nine percent of homeowners expect text updates. Your text fits right in.
+[short pause] Here's the part people skip. Text it. Don't email it. ServiceTitan's follow-up webinar says text messages beat email on open rates. In a Housecall Pro survey, fifty-nine percent of homeowners expect text updates. Your text fits right in.
 
 [matter-of-fact] When do you send it? Jobber says within two days of the quote. Then a week after you sent it. Then once more, a day or two before it expires. Still nothing? It's okay to close the file.
 

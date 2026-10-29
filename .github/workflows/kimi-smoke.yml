@@ -1,5 +1,5 @@
 name: Kimi smoke test
-# One tiny test of Todd's Kimi Code membership key (secret KIMI_CODE_API_KEY, never printed), Oct 29, 2026.
+# One tiny test of Todd's Kimi Code membership key (repo secret KIMI_API, never printed), Oct 29, 2026.
 # Calls go through Claude Code, a coding agent Kimi documents for this key, pointed at Kimi's Anthropic-compatible
 # endpoint (https://api.kimi.ai/coding/, per kimi.com/code/docs/en/third-party-tools/claude-code.html). No hand-made
 # client and no changed User-Agent: Kimi's membership guide treats a changed User-Agent as a violation.
@@ -21,12 +21,12 @@ jobs:
       - name: One tiny call per model
         env:
           ANTHROPIC_BASE_URL: https://api.kimi.ai/coding/
-          ANTHROPIC_API_KEY: ${{ secrets.KIMI_CODE_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.KIMI_API }}
           CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: "1"
           DISABLE_TELEMETRY: "1"
           DISABLE_AUTOUPDATER: "1"
         run: |
-          if [ -z "$ANTHROPIC_API_KEY" ]; then echo "FAIL secret KIMI_CODE_API_KEY is empty or missing"; exit 1; fi
+          if [ -z "$ANTHROPIC_API_KEY" ]; then echo "FAIL secret KIMI_API is empty or missing"; exit 1; fi
           echo "PASS secret present (length ${#ANTHROPIC_API_KEY})"
           pass=0
           for m in k3.1-pro k3 kimi-for-coding; do

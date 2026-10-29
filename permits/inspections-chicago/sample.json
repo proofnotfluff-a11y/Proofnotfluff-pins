@@ -2,74 +2,154 @@
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "rowsUpdatedAt": "2026-10-27T09:21:34+00:00",
-  "fetchedAt": "2026-10-27T16:21:16+00:00",
+  "rowsUpdatedAt": "2026-10-29T09:08:12+00:00",
+  "fetchedAt": "2026-10-29T21:44:48+00:00",
   "modified": "Filtered by ProofNotFluff: food inspections of the last 7 days at licensed food businesses (schools, day care, hospitals, senior meal sites and mobile vendors left out) that failed with pest violations, failed or passed with conditions with hood, grease or grease trap violations, had a license (pre-opening) inspection, or failed twice in 30 days. Violation notes are read only to set category labels; inspector notes are not republished. Business-level fields only.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
  "window": {
-  "from": "2026-10-20",
-  "to": "2026-10-27"
+  "from": "2026-10-22",
+  "to": "2026-10-29"
  },
  "counts": {
-  "fetched": 1234,
-  "kept": 69,
+  "fetched": 1256,
+  "kept": 49,
   "segments": {
-   "pests": 20,
-   "hoodGrease": 13,
-   "newOpening": 45,
-   "repeatFail": 3
+   "pests": 13,
+   "hoodGrease": 9,
+   "newOpening": 35,
+   "repeatFail": 4
   },
   "excluded": {
-   "no lead segment (passed, or no buyer-relevant violation)": 78,
-   "institution or mobile vendor": 28
+   "institution or mobile vendor": 24,
+   "no lead segment (passed, or no buyer-relevant violation)": 74
   },
-  "licensePlaces": 41,
+  "licensePlaces": 30,
   "areas": [
    [
-    "West Town",
-    8
+    "Lake View",
+    5
    ],
    [
     "Loop",
-    8
+    4
    ],
    [
-    "Lake View",
-    7
+    "Near North Side",
+    4
+   ],
+   [
+    "Uptown",
+    3
+   ],
+   [
+    "Greater Grand Crossing",
+    3
    ],
    [
     "O'Hare",
-    4
-   ],
-   [
-    "Lincoln Park",
-    4
+    3
    ],
    [
     "Gage Park",
-    3
+    2
    ],
    [
-    "Humboldt Park",
-    3
+    "West Englewood",
+    2
    ],
    [
-    "McKinley Park",
-    3
+    "Ashburn",
+    2
    ],
    [
-    "Edgewater",
-    3
-   ],
-   [
-    "Near West Side",
+    "South Shore",
     2
    ]
   ]
  },
  "segments": {
   "pests": [
+   {
+    "business": "LA Coco Restaurant",
+    "address": "3808 W Lawrence Ave",
+    "communityArea": "Albany Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-10-27",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Grease trap",
+     "Hood and ventilation",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Family Dollar",
+    "address": "6349 S Cottage Grove Ave",
+    "communityArea": "Woodlawn",
+    "facilityType": "Grocery Store",
+    "result": "Fail",
+    "inspectionType": "Complaint",
+    "date": "2026-10-27",
+    "categories": [
+     "Cleaning and sanitation",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Jojigyros 786 Inc.",
+    "address": "2518 E 79th St",
+    "communityArea": "South Shore",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-10-26",
+    "categories": [
+     "Pests"
+    ]
+   },
+   {
+    "business": "JR's Jamaican Tropical Cafe",
+    "address": "2200 E 79th St",
+    "communityArea": "South Shore",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-10-26",
+    "categories": [
+     "Pests"
+    ]
+   },
+   {
+    "business": "Carnitas Don Pichi",
+    "address": "2702 W 47th St",
+    "communityArea": "Brighton Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-10-26",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease trap",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Nutrition House",
+    "address": "8553 S Cicero Ave",
+    "communityArea": "Ashburn",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "License",
+    "date": "2026-10-23",
+    "categories": [
+     "Cleaning and sanitation",
+     "Pests"
+    ]
+   },
    {
     "business": "Macaroni Grill",
     "address": "11601 W Touhy Ave",
@@ -85,6 +165,18 @@
     ]
    },
    {
+    "business": "Subway",
+    "address": "5131 S Pulaski Rd",
+    "communityArea": "West Elsdon",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass Re-Inspection",
+    "date": "2026-10-22",
+    "categories": [
+     "Pests"
+    ]
+   },
+   {
     "business": "Macaroni Grill",
     "address": "11601 W Touhy Ave",
     "communityArea": "O'Hare",
@@ -100,111 +192,65 @@
     ]
    },
    {
-    "business": "Fat Peach Bakery",
-    "address": "2907 S Archer Ave",
-    "communityArea": "Bridgeport",
-    "facilityType": "Bakery",
-    "result": "Fail",
-    "inspectionType": "Canvass",
-    "date": "2026-10-22",
-    "categories": [
-     "Cleaning and sanitation",
-     "Pests"
-    ]
-   },
-   {
-    "business": "Ann Sather Restaurant",
-    "address": "3042 N Broadway",
-    "communityArea": "Lake View",
-    "facilityType": "Restaurant",
+    "business": "Lion's Beverage Depot",
+    "address": "6601 S Halsted",
+    "communityArea": "Englewood",
+    "facilityType": "Grocery Store",
     "result": "Fail",
     "inspectionType": "License",
     "date": "2026-10-22",
     "categories": [
-     "Pests"
-    ]
-   },
-   {
-    "business": "Taipei Cafe",
-    "address": "2609-2611 S Halsted St",
-    "communityArea": "Bridgeport",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Canvass",
-    "date": "2026-10-21",
-    "categories": [
      "Cleaning and sanitation",
-     "Pests"
-    ]
-   },
-   {
-    "business": "LA Fiesta",
-    "address": "4248 S Archer Ave",
-    "communityArea": "Brighton Park",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Canvass",
-    "date": "2026-10-21",
-    "categories": [
-     "Cleaning and sanitation",
-     "Pests"
-    ]
-   },
-   {
-    "business": "LA Casa del Pueblo",
-    "address": "1834 S Blue Island Ave",
-    "communityArea": "Lower West Side",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Complaint",
-    "date": "2026-10-21",
-    "categories": [
-     "Pests"
-    ]
-   },
-   {
-    "business": "Jerk",
-    "address": "811 W Chicago Ave",
-    "communityArea": "West Town",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Canvass",
-    "date": "2026-10-21",
-    "categories": [
-     "Cleaning and sanitation",
-     "Hood and ventilation",
-     "Pests"
-    ]
-   },
-   {
-    "business": "Domino's Pizza",
-    "address": "3103 N Clark St",
-    "communityArea": "Lake View",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Complaint",
-    "date": "2026-10-21",
-    "categories": [
-     "Cleaning and sanitation",
-     "Hood and ventilation",
-     "Pests",
-     "Plumbing"
-    ]
-   },
-   {
-    "business": "Barbas VP",
-    "address": "4569 N Elston Ave",
-    "communityArea": "Albany Park",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Complaint",
-    "date": "2026-10-21",
-    "categories": [
      "Pests"
     ]
    }
   ],
   "hoodGrease": [
+   {
+    "business": "LA Coco Restaurant",
+    "address": "3808 W Lawrence Ave",
+    "communityArea": "Albany Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-10-27",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Grease trap",
+     "Hood and ventilation",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Hong Kong Restaurant",
+    "address": "2757 W 55th St",
+    "communityArea": "Gage Park",
+    "facilityType": "Restaurant",
+    "result": "Pass w/ Conditions",
+    "inspectionType": "License",
+    "date": "2026-10-27",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Pests",
+     "Plumbing"
+    ]
+   },
+   {
+    "business": "Carnitas Don Pichi",
+    "address": "2702 W 47th St",
+    "communityArea": "Brighton Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-10-26",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease trap",
+     "Pests"
+    ]
+   },
    {
     "business": "Macaroni Grill",
     "address": "11601 W Touhy Ave",
@@ -262,6 +308,20 @@
     ]
    },
    {
+    "business": "73 ST Harolds Chicken",
+    "address": "7318 S Vincennes Ave",
+    "communityArea": "Greater Grand Crossing",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint",
+    "date": "2026-10-22",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Pests"
+    ]
+   },
+   {
     "business": "5800 North Cafe",
     "address": "5800-5802 N Milwaukee Ave",
     "communityArea": "Norwood Park",
@@ -273,192 +333,129 @@
      "Cleaning and sanitation",
      "Grease buildup"
     ]
-   },
-   {
-    "business": "The Gray",
-    "address": "39 S La Salle St",
-    "communityArea": "Loop",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Complaint Re-Inspection",
-    "date": "2026-10-21",
-    "categories": [
-     "Cleaning and sanitation",
-     "Grease buildup",
-     "Hood and ventilation",
-     "Plumbing"
-    ]
-   },
-   {
-    "business": "Jewel Food Store #3470",
-    "address": "3570 N Elston Ave",
-    "communityArea": "Avondale",
-    "facilityType": "Grocery Store",
-    "result": "Fail",
-    "inspectionType": "Complaint",
-    "date": "2026-10-21",
-    "categories": [
-     "Cleaning and sanitation",
-     "Grease buildup",
-     "Plumbing"
-    ]
-   },
-   {
-    "business": "Jerk",
-    "address": "811 W Chicago Ave",
-    "communityArea": "West Town",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Canvass",
-    "date": "2026-10-21",
-    "categories": [
-     "Cleaning and sanitation",
-     "Hood and ventilation",
-     "Pests"
-    ]
-   },
-   {
-    "business": "Domino's Pizza",
-    "address": "3103 N Clark St",
-    "communityArea": "Lake View",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Complaint",
-    "date": "2026-10-21",
-    "categories": [
-     "Cleaning and sanitation",
-     "Hood and ventilation",
-     "Pests",
-     "Plumbing"
-    ]
-   },
-   {
-    "business": "Wok! You Want",
-    "address": "3051 N California Ave",
-    "communityArea": "Avondale",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Complaint",
-    "date": "2026-10-20",
-    "categories": [
-     "Hood and ventilation",
-     "Pests",
-     "Plumbing"
-    ]
    }
   ],
   "newOpening": [
    {
-    "business": "Paleta Haus",
-    "address": "4636 N Cumberland Ave",
-    "communityArea": "O'Hare",
-    "facilityType": "Restaurant",
-    "result": "Pass",
-    "inspectionType": "License",
-    "date": "2026-10-26",
-    "categories": [
-     "Plumbing"
-    ]
-   },
-   {
-    "business": "Masala Bowl",
-    "address": "3166-3168 N Clark St",
-    "communityArea": "Lake View",
+    "business": "Pizzeria Naples",
+    "address": "2819 W 63rd St",
+    "communityArea": "Chicago Lawn",
     "facilityType": "",
     "result": "Not Ready",
     "inspectionType": "License",
-    "date": "2026-10-26",
+    "date": "2026-10-28",
     "categories": []
    },
    {
-    "business": "Legacy Kitchen",
-    "address": "7354 S Ashland Ave",
-    "communityArea": "West Englewood",
-    "facilityType": "Restaurant",
-    "result": "Pass",
-    "inspectionType": "License",
-    "date": "2026-10-26",
-    "categories": []
-   },
-   {
-    "business": "Wing It On/Fresh Brothers/Tain",
-    "address": "3332 N Broadway",
-    "communityArea": "Lake View",
-    "facilityType": "Restaurant",
-    "result": "Pass",
-    "inspectionType": "License",
-    "date": "2026-10-23",
-    "categories": []
-   },
-   {
-    "business": "Me and My Bears Creamery & Sweet Shoppe",
-    "address": "948 W Newport Ave",
-    "communityArea": "Lake View",
-    "facilityType": "Restaurant",
-    "result": "Pass",
-    "inspectionType": "License",
-    "date": "2026-10-23",
-    "categories": [
-     "Cleaning and sanitation",
-     "Plumbing"
-    ]
-   },
-   {
-    "business": "Lotus Thai & Sushi",
-    "address": "4552 N Magnolia Ave",
+    "business": "Trader Joe's Store #884",
+    "address": "804 W Montrose Ave",
     "communityArea": "Uptown",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "License",
-    "date": "2026-10-23",
+    "facilityType": "Grocery Store",
+    "result": "Pass",
+    "inspectionType": "License Re-Inspection",
+    "date": "2026-10-27",
     "categories": []
    },
    {
-    "business": "Koji Japanese",
-    "address": "2114 W Lawrence Ave",
-    "communityArea": "Lincoln Square",
-    "facilityType": "Restaurant",
+    "business": "Trader Joe's Store #884",
+    "address": "804 W Montrose Ave",
+    "communityArea": "Uptown",
+    "facilityType": "Grocery Store",
     "result": "Pass",
-    "inspectionType": "License",
-    "date": "2026-10-23",
+    "inspectionType": "License Re-Inspection",
+    "date": "2026-10-27",
     "categories": []
    },
    {
-    "business": "Billal's",
-    "address": "131 N Clinton St",
-    "communityArea": "Near West Side",
-    "facilityType": "Restaurant",
-    "result": "Pass",
+    "business": "Taylormade II",
+    "address": "8314-8316 S Ashland Ave",
+    "communityArea": "Auburn Gresham",
+    "facilityType": "",
+    "result": "Not Ready",
     "inspectionType": "License",
-    "date": "2026-10-23",
-    "categories": [
-     "Cleaning and sanitation",
-     "Plumbing"
-    ]
+    "date": "2026-10-27",
+    "categories": []
    },
    {
-    "business": "Ann Sather Restaurant",
-    "address": "3042 N Broadway",
-    "communityArea": "Lake View",
+    "business": "Hotel Silversmith",
+    "address": "10-16 S Wabash Ave",
+    "communityArea": "Loop",
     "facilityType": "Restaurant",
     "result": "Pass",
     "inspectionType": "License Re-Inspection",
-    "date": "2026-10-23",
+    "date": "2026-10-27",
     "categories": []
    },
    {
-    "business": "Donut Dudes",
-    "address": "4901 S Western Blvd",
+    "business": "Hong Kong Restaurant",
+    "address": "2757 W 55th St",
     "communityArea": "Gage Park",
-    "facilityType": "",
-    "result": "Not Ready",
+    "facilityType": "Restaurant",
+    "result": "Pass w/ Conditions",
     "inspectionType": "License",
-    "date": "2026-10-22",
+    "date": "2026-10-27",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Pests",
+     "Plumbing"
+    ]
+   },
+   {
+    "business": "Falcon Fuel",
+    "address": "7101-7115 S Ashland Ave",
+    "communityArea": "West Englewood",
+    "facilityType": "Grocery Store",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-10-27",
+    "categories": []
+   },
+   {
+    "business": "Cha-Chin",
+    "address": "407 N Clark St",
+    "communityArea": "Near North Side",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-10-27",
+    "categories": []
+   },
+   {
+    "business": "Cha-Chin",
+    "address": "407 N Clark St",
+    "communityArea": "Near North Side",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-10-27",
+    "categories": []
+   },
+   {
+    "business": "Centennial Crafted Beer & Eatery",
+    "address": "733 N La Salle",
+    "communityArea": "Near North Side",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-10-27",
     "categories": []
    }
   ],
   "repeatFail": [
    {
+    "business": "Morrison's Soul Food",
+    "address": "148 W 79th St",
+    "communityArea": "Greater Grand Crossing",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "date": "2026-10-23",
+    "categories": [
+     "Cleaning and sanitation"
+    ]
+   },
+   {
     "business": "Macaroni Grill",
     "address": "11601 W Touhy Ave",
     "communityArea": "O'Hare",
@@ -469,6 +466,18 @@
     "categories": [
      "Cleaning and sanitation",
      "Grease buildup",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Subway",
+    "address": "5131 S Pulaski Rd",
+    "communityArea": "West Elsdon",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass Re-Inspection",
+    "date": "2026-10-22",
+    "categories": [
      "Pests"
     ]
    },
@@ -485,22 +494,6 @@
      "Grease buildup",
      "Hood and ventilation",
      "Pests"
-    ]
-   },
-   {
-    "business": "Macaroni Grill",
-    "address": "11601 W Touhy Ave",
-    "communityArea": "O'Hare",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Canvass Re-Inspection",
-    "date": "2026-10-20",
-    "categories": [
-     "Cleaning and sanitation",
-     "Grease buildup",
-     "Hood and ventilation",
-     "Pests",
-     "Plumbing"
     ]
    }
   ]

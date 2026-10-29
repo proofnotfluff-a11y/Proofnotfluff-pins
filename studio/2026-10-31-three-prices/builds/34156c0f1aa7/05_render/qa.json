@@ -1,0 +1,51 @@
+{
+ "schema": "pnf.studio.qa.v1",
+ "slug": "2026-10-31-three-prices",
+ "mp4Sha256": "fda9441b42f29953678457faf74faca94e220b8d0e07620dde96b03604423248",
+ "checks": [
+  {
+   "name": "length",
+   "value": 85.667,
+   "pass": true,
+   "detail": "85.67 s (45.0 to 90.0, studio lessons)"
+  },
+  {
+   "name": "loudness",
+   "value": {
+    "lufs": -14.2,
+    "truePeak": -2.7
+   },
+   "pass": true,
+   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -2.7 dBTP (at most -1.5)"
+  },
+  {
+   "name": "black",
+   "value": [],
+   "pass": true,
+   "detail": "0 black stretch(es) of 0.5 s or more"
+  },
+  {
+   "name": "frozen",
+   "value": [],
+   "pass": true,
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 75.43 s"
+  },
+  {
+   "name": "file",
+   "value": {
+    "sha256": "fda9441b42f29953678457faf74faca94e220b8d0e07620dde96b03604423248",
+    "bytes": 7090552
+   },
+   "pass": true,
+   "detail": "H.264 1080x1920 30 fps, AAC, 7.1 MB, decodes clean"
+  },
+  {
+   "name": "voice",
+   "value": "whisper medium.en int8, re-spelled from script.md",
+   "pass": true,
+   "detail": "whisper medium.en int8, re-spelled from script.md, 0 flag(s)"
+  }
+ ],
+ "pass": true,
+ "at": "2026-10-28T23:39:32-05:00"
+}

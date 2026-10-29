@@ -3,7 +3,7 @@
 // re-voiced take moves the picture with it.
 // Worlds, one per section (brief.md, Worlds): hook and close = the storefront counter (the price tag flips from one price
 // to three); stakes = the arcade high-score table; why = a street of 100 houses (our own piece: 68 light up and send out
-// quote envelopes, then one surprise price, then three); card = a quote clipboard on a truck tailgate at dusk (our own
+// quote envelopes, then the three-price quote); card = a quote clipboard on a truck tailgate at dusk (our own
 // piece); survey = the slot machine (4+ options lands 5 2 %, 1 to 3 lands 4 2 %, the 1 2 3 reels bracketed as one group,
 // then 3 3 3). Steady camera: no stamps, no trauma; the motion lives in the things on screen.
 const INK = '#120D14', CREAM = '#FFF7EA', SAND = '#E6D3BC', GOLD = '#F7C873', ORANGE = '#F2A541', RED = '#E2633B', TEAL = '#6FB7A8', GREY = '#9AA0AD', PLUM = '#3D2E45', WINE = '#7A3442';
@@ -175,6 +175,40 @@ const tailgate = (k, o) => {
   return dy;
 };
 
+// ================================================================================================================
+// the tag close-up (hook, "one" to "Top"): the cut in on the one price (IMPROVE 00a). The hook rides on a title plate up
+// top with its source; below it the price tag drawn big on its string over the toolbox on the counter, the shop's shelves
+// big behind (one low-res pixel per 3 frame units, nothing scaled). The tag sways a pixel; a twinkle walks its corner.
+const closeup = (k) => {
+  const d = px(k), {P, DOT, F} = d, n = k.data.numbers;
+  // the shop behind the glass: plum wall, uprights, two shelves of stock drawn big
+  P(0, 0, 360, 417, '#3D2E45'); for (let x = 0; x < 360; x += 60) P(x, 40, 3, 262, '#2B2033');
+  [[206, 0], [300, 1]].forEach(([y, sh]) => { P(0, y, 360, 7, '#B07A47'); P(0, y, 360, 1, GOLD); P(0, y + 7, 360, 2, '#4A2E1B');
+    for (let x = 4 + sh * 22; x < 356; x += 46) { const c = [TEAL, ORANGE, '#87CEEB', RED][Math.floor(hash(x + y) * 4)]; P(x, y - 30, 30, 30, c); P(x, y - 30, 30, 2, CREAM); P(x + 26, y - 28, 4, 28, INK); } });
+  // the awning, big: stripes and a scalloped edge (above the safe area: art only)
+  for (let x = 0; x < 360; x += 40) { P(x, 0, 20, 30, RED); P(x + 20, 0, 20, 30, CREAM); }
+  for (let x = 0; x < 360; x += 20) { d.disc(x + 10, 31, 8, (x / 20) % 2 ? CREAM : RED); }
+  // the title plate: the hook and its source, held from the cover (frame y 258 to 486)
+  d.win(14, 86, 332, 76, {base: '#253048', hi: '#3B82C4', lo: '#1B1420', rule: '#3B82C4'});
+  k.text('Top shops usually', 540, 276, {size: 66, color: CREAM, align: 'center', drop: INK});
+  const a = 'quote ', b = n.tiers.shown, c = ' prices', wa = k.measure(a, {size: 66}), wb = k.measure(b, {size: 66}), x0 = 540 - (wa + wb + k.measure(c, {size: 66})) / 2;
+  k.text(a, x0, 352, {size: 66, color: CREAM, drop: INK}); k.text(b, x0 + wa, 352, {size: 66, color: GOLD, drop: INK}); k.text(c, x0 + wa + wb, 352, {size: 66, color: CREAM, drop: INK});
+  k.text(`ServiceTitan data, ${n.stMonths.shown} months to Jan ${n.stYear.shown}`, 540, 432, {size: 30, color: SAND, align: 'center'});
+  // the counter and the toolbox on it, big
+  P(0, 302, 360, 10, '#D9A066'); P(0, 302, 360, 2, GOLD); P(0, 312, 360, 3, '#6B4226'); P(0, 315, 360, 102, '#8C5A33');
+  for (let x = 6; x < 360; x += 70) { d.bevel(x, 324, 60, 86, '#8C5A33', '#B07A47', '#4A2E1B'); P(x + 6, 330, 48, 74, '#6B4226'); }
+  P(109, 265, 142, 38, INK); P(110, 266, 140, 36, RED); P(110, 266, 140, 3, ORANGE); P(226, 269, 24, 33, '#7A3442'); P(110, 284, 140, 3, '#7A3442'); P(170, 280, 20, 12, '#C9CCD3'); P(170, 280, 20, 2, CREAM);
+  P(150, 254, 60, 4, '#4A4E5A'); P(150, 254, 4, 12, '#4A4E5A'); P(206, 254, 4, 12, '#4A4E5A');
+  // the tag on its string, swaying a pixel; one price on it
+  const sw = [0, 1, 0, -1][Math.floor(F / 8) % 4], cx = 180 + sw;
+  d.line(180, 162, cx, 176, SAND);
+  P(cx - 61, 175, 122, 78, INK); P(cx - 60, 176, 120, 76, CREAM); P(cx - 60, 176, 120, 2, '#FFFFFF'); P(cx - 60, 248, 120, 4, SAND); P(cx - 2, 180, 5, 5, INK);
+  k.text('$', cx * 3, 549, {size: 198, color: '#7A3442', align: 'center'});
+  const f = F % 24; if (f < 12) d.twinkle(cx + 56, 180, f >> 1, GOLD);
+  // the sidewalk
+  P(0, 417, 360, 223, '#9AA0AD'); for (let y = 417; y < 640; y += 24) { P(0, y, 360, 1, '#6B7080'); for (let x = ((y / 24) & 1) * 30; x < 360; x += 60) P(x, y, 1, 24, '#6B7080'); }
+};
+
 window.SCENE = {
   look: 'arcade',
   images: [],
@@ -182,9 +216,14 @@ window.SCENE = {
   hud: 'LESSON 4',
   transitions: {stakes: 'dissolve', why: 'levelselect', card: 'dissolve', survey: 'levelselect', close: 'gameover'},
   sections: {
-    // ---- hook: the storefront, settled on frame 0: one price on the tag, the hook card hung on the counter front
+    // ---- hook: three shots (IMPROVE 00a: the picture changes by 1 s and twice by 3 s, Snow on by 1 s). The cover: the
+    // storefront, settled on frame 0: one price on the tag, the hook card hung on the counter front. Cut in on "one" to the
+    // tag close-up (the hook on a title plate), Snow comes in; cut back out on "Top"; the tag flips to three on "three".
+    // The dialog box stays out through the hook (the card carries the words); Snow stays on from the cut in.
     hook: (k, T) => {
       const n = k.data.numbers, d = px(k), tThree = wordT(k, 'hook.three', /^three/i, 0.6), tBuild = k.S('hook.build');
+      const tIn = Math.min(0.8, Math.max(0.5, wordT(k, 'hook', /^one$/i, 0.6))), tOut = Math.min(2.6, Math.max(tIn + 0.6, wordT(k, 'hook', /^top$/i, 1.8)));
+      if (T >= tIn && T < tOut) { closeup(k); return Object.assign(host(k), {speech: false}); }
       storefront(k, {tags: [{price: '$', at: -1}, {price: '$ $$ $$$', at: tThree}], threeAt: tThree,
         chalk: T < tBuild ? [[`${n.single.shown} price?`, -1, CREAM, 450]] : [[`${n.tiers.shown} prices,`, tBuild, GOLD, 450], [`${n.single.shown} quote.`, tBuild + 0.3, CREAM, 528]]});
       // the hook card: cream, on two strings from the counter top (frame x 102 to 978, y 780 to 1158); no dialog in the hook
@@ -202,17 +241,20 @@ window.SCENE = {
       d.line(60, 252, 60 + sw, 260, SAND); d.line(300, 252, 300 + sw, 260, SAND);
       k.ctx.save(); k.ctx.translate(sw * 3, 0);
       d.P(36, 262, 292, 126, INK); d.P(34, 260, 292, 126, INK); d.P(35, 261, 290, 124, CREAM); d.P(35, 383, 290, 2, SAND); d.P(35, 261, 290, 1, '#FFFFFF');
-      const l2 = `${n.tiers.shown} prices`, l3 = `on ${n.topGbb.shown} of home jobs.`;
-      const x2 = 540 - k.measure(l2, {size: 132}) / 2, x3 = 540 - k.measure(l3, {size: 66}) / 2;
+      /* the on-screen hook in 6 words ("Top shops usually quote 3 prices"), then the number behind it and the source; the
+         small lines sit right of centre so Snow (from the cut in) never stands on them */
+      const l2 = `${n.tiers.shown} prices`, l3 = `Top ${n.topPct.shown}: ${n.topGbb.shown} of home jobs`;
+      const x2 = 540 - k.measure(l2, {size: 132}) / 2, x3 = 590 - k.measure(l3, {size: 39}) / 2;
       /* no shine on the cream card: the kit's shine paints plum letters cream, which read as holes */
-      k.slam('Top shops quote', 540, 798, -1, {size: 66, color: PLUM, align: 'center', glint: false});
+      k.slam('Top shops usually quote', 540, 798, -1, {size: 66, color: PLUM, align: 'center', glint: false});
       k.slam(l2, x2, 872, -1, {size: 132, color: PLUM, glint: false});
       k.text(n.tiers.shown, x2, 872, {size: 132, color: RED, lint: false});
-      k.slam(l3, x3, 1018, -1, {size: 66, color: PLUM, glint: false});
-      k.text(n.topGbb.shown, x3 + k.measure('on ', {size: 66}), 1018, {size: 66, color: RED, lint: false});
-      k.text(`ServiceTitan data, ${n.stMonths.shown} months to Jan ${n.stYear.shown}`, 540, 1108, {size: 30, color: '#6B7080', align: 'center'});
+      k.text(l3, x3, 1022, {size: 39, color: PLUM});
+      k.text(n.topGbb.shown, x3 + k.measure(`Top ${n.topPct.shown}: `, {size: 39}), 1022, {size: 39, color: RED, lint: false});
+      k.text(`ServiceTitan, ${n.stMonths.shown} months to Jan ${n.stYear.shown}`, 590, 1086, {size: 30, color: '#6B7080', align: 'center'});
       k.ctx.restore();
-      return {host: false, speech: false};
+      if (T < tIn) return {host: false, speech: false};
+      return Object.assign(host(k), {speech: false});
     },
 
     // ---- stakes: the high-score table. Rows land as they are said; the habit line takes the NEW RECORD slot
@@ -239,43 +281,28 @@ window.SCENE = {
       return host(k, k.live('stakes.habit') ? 'point' : (k.live('stakes.top57') ? 'point' : null));
     },
 
-    // ---- why: the street. 1,100+ homeowners; 68 of 100 houses light and send out envelopes; one surprise price; three
+    // ---- why: the street. 1,100+ homeowners; 68 of 100 houses light and send out envelopes; then the three-price quote
     why: (k, T) => {
       const n = k.data.numbers, d = px(k), t0 = k.S('why'), tH = k.S('why.hcp'), t68 = wordT(k, 'why.68', /^sixty/i);
-      const tQ = k.S('why.quotes'), tS = k.S('why.surprise'), tSh = wordT(k, 'why.shop', /^shopping/i, 0.6), t3 = k.S('why.three');
+      const tQ = k.S('why.quotes'), t3 = k.S('why.three');
       const tCheap = wordT(k, 'why.three', /^cheaper/i, 0.9);
-      street(k, {banner: [{text: 'WHY GIVE THEM A CHOICE?', at: t0 + 0.1}, {text: `HOUSECALL PRO SURVEY, ${n.hcpYear.shown}`, at: tH}],
-        lit: n.hcpShop.value, litAt: t68, envAt: tQ, envEnd: tS + 0.3, dimAt: tS});
+      street(k, {banner: [{text: `WHY ${n.tiers.shown} PRICES?`, at: t0 + 0.1}, {text: `HOUSECALL PRO SURVEY, ${n.hcpYear.shown}`, at: tH}],
+        lit: n.hcpShop.value, litAt: t68, envAt: tQ, envEnd: t3 + 0.3, dimAt: t3});
       // a quote envelope flies in across the rooftops as the question is asked, and lands on the first house
       if (T >= t0 && T < t0 + 1.2) { const q = eo((T - t0) / 0.8), x = Math.round(-10 + q * (HX(0) + 14)), y = Math.round(96 + q * (HY(0) - 100)); d.P(x - 1, y - 1, 10, 8, INK); d.P(x, y, 8, 6, CREAM); d.line(x, y, x + 4, y + 3, SAND); d.line(x + 7, y, x + 4, y + 3, SAND); }
       // the plate (frame y 789 to 972), one idea at a time
-      if (T < tH) k.slam('Why give them a choice?', 540, 840, t0 + 0.2, {size: 66, color: CREAM, align: 'center', from: 0.5});
+      if (T < tH) k.slam(`Why ${n.tiers.shown}?`, 540, 840, t0 + 0.2, {size: 66, color: CREAM, align: 'center', from: 0.5});
       else if (T < t68 - LEAD) k.slam(`${k.count(n.hcpN.value, clamp((T - tH - 0.1) / 0.8), {from: n.hcpN.value * 0.85, comma: true})}+ homeowners`, 540, 840, tH + 0.1, {size: 66, color: GOLD, align: 'center', from: 0.5});
-      else if (T < tS) {
+      else if (T < t3) {
         k.slam(pct(k, n.hcpShop, t68), 66, 820, t68 - LEAD, {size: 132, color: 'accent', from: 0.5});
         const w68 = Math.ceil(k.measure(`${n.hcpShop.shown}`, {size: 132}) / 3);
         sparkle(k, [[22 + w68 + 4, 272], [22 + w68 + 4, 318], [19, 318]], t68 + 0.45);
         d.type(`of ${n.hcpN.shown}+ homeowners`, 312, 816, t68 + 0.4, {color: CREAM});
         d.type('get more quotes when a', 312, 860, tQ, {color: CREAM});
         d.type('price is higher than expected.', 312, 904, tQ + 0.5, {color: GOLD});
-      } else if (T < t3) {
-        if (T < tSh) k.slam(`${n.single.shown} price that surprises...`, 540, 840, tS + 0.2, {size: 66, color: CREAM, align: 'center', from: 0.5});
-        else k.slam('can send them shopping.', 540, 840, tSh, {size: 66, color: 'accent', align: 'center', from: 0.5});
       } else {
-        k.slam('The cheaper option is', 72, 806, t3 + 0.1, {size: 66, color: CREAM, from: 0.5});
+        k.slam("There's a cheaper option", 72, 806, t3 + 0.1, {size: 66, color: CREAM, from: 0.5});
         if (T >= tCheap) k.slam('already on your quote.', 72, 884, tCheap + 0.4, {size: 66, color: TEAL, from: 0.5});
-      }
-      // the surprise slip: one price, a red ?! that wobbles; it slides off to the right on "shopping"
-      if (T >= tS && T < t3) {
-        const drop = d.ease(tS, 6, -150), off = T >= tSh ? Math.round(260 * eo((T - tSh) / 0.6)) : 0, wob = T >= tSh - 0.3 && T < tSh ? ((d.F >> 1) & 1 ? 1 : -1) : 0;
-        const x = 110 + off + wob, y = 130 + drop;
-        d.clip(0, 84, 360, 176, () => slip(k, x, y, 140, 112, (sx, sy) => {
-          d.P(sx, sy, 140, 18, WINE); d.tx('QUOTE', sx + 70, sy + 3, {color: CREAM, align: 'center', lint: false});
-          for (let i = 0; i < 3; i++) d.P(sx + 10, sy + 26 + i * 8, i === 2 ? 60 : 110, 3, '#C9CCD3');
-          d.tx('$$$$', sx + 70, sy + 56, {size: 132, color: PLUM, align: 'center', lint: off === 0 && drop === 0});
-          const tagF = d.fr(tS + 0.3);
-          if (tagF >= 0) { const sw = [0, -3, -2, 1, 2, 1, 0, -1, 0][Math.min(8, tagF >> 1)]; d.P(sx + 104 + sw, sy - 10, 32, 20, INK); d.P(sx + 105 + sw, sy - 9, 30, 18, RED); d.tx('?!', sx + 120 + sw, sy - 6, {color: CREAM, align: 'center', lint: false}); }
-        }));
       }
       // the three-price quote: slides in from the left; the cheaper row glows teal and gets a check on "cheaper"
       if (T >= t3) {
@@ -294,7 +321,7 @@ window.SCENE = {
         }));
         spray(k, 800, 430, tCheap + 0.2, {n: 14, r: 180, dir: 0, spread: 2.0, colors: [TEAL, GOLD, CREAM], avoid: [[288, 366, 795, 762], [48, 255, 1032, 336]]});
       }
-      return host(k, k.live('why.68') || k.live('why.three') ? 'point' : (k.live('why.surprise') ? 'shrug' : null));
+      return host(k, k.live('why.68') || k.live('why.three') ? 'point' : null);
     },
 
     // ---- card: the clipboard on the tailgate; the three rows land as they are said, the BEST upgrades light word by word
@@ -343,16 +370,16 @@ window.SCENE = {
       const n = k.data.numbers, d = px(k);
       const t0 = k.S('survey'), tCeil = k.S('survey.ceiling'), tGrp = k.S('survey.group'), tN = k.S('survey.n');
       const tFour = wordT(k, 'survey.pull', /^four/i, 0.5), t52 = wordT(k, 'survey.52', /^fifty/i), tP52 = wordT(k, 'survey.52', /^percent/i, 0.5);
-      const tOpt = wordT(k, 'survey.few', /^options/i, 0.5), t42 = wordT(k, 'survey.few', /^Forty/i, 1.4);
-      const tCav = k.S('survey.caveat'), tCant = k.S('survey.cant'), tYes = k.S('survey.yeses'), tStart = k.S('survey.start'), tThree = wordT(k, 'survey.start', /^three/i, 0.3);
+      const tOpt = wordT(k, 'survey.few', /^three/i, 0.3), t42 = wordT(k, 'survey.few', /^Forty/i, 1.0);
+      const tCav = k.S('survey.caveat'), tCant = k.S('survey.cant'), tStart = k.S('survey.start'), tThree = wordT(k, 'survey.start', /^three/i, 0.3);
       const dig = (num) => String(num.value).split('');
       let reel;
       if (T < tOpt) reel = {t0: tFour, stops: [t52, t52 + 0.25, Math.max(t52 + 0.4, tP52)], symbols: [...dig(n.manyClose), '%'], win: false};
       else if (T < tCav) reel = {t0: tOpt, stops: [t42, t42 + 0.2, t42 + 0.45], symbols: [...dig(n.fewClose), '%'], win: false};
       else if (T < tStart) reel = {t0: tCav + 0.1, stops: [tCav + 0.6, tCav + 0.8, tCav + 1.0], symbols: [n.single.shown, '2', n.fewMax.shown], win: false};
       else reel = {t0: tStart, stops: [tThree, tThree + 0.15, tThree + 0.3], symbols: [n.tiers.shown, n.tiers.shown, n.tiers.shown], win: true};
-      const label = T >= tStart ? `START WITH ${n.tiers.shown}` : T >= tYes ? 'MORE CHOICES, MORE YESES' : T >= tCav ? `${n.single.shown}, 2 AND ${n.fewMax.shown}: ONE GROUP`
-        : T >= tOpt ? `${n.single.shown} TO ${n.fewMax.shown} OPTIONS: CLOSE RATE` : T >= tFour ? `${n.manyOpt.shown}+ OPTIONS: CLOSE RATE` : T >= tCeil ? `${n.tiers.shown} IS NOT THE CEILING` : 'ONE MORE FROM THE DATA';
+      const label = T >= tStart ? `START WITH ${n.tiers.shown}` : T >= tCav ? `${n.single.shown}, 2 AND ${n.fewMax.shown}: ONE GROUP`
+        : T >= tOpt ? `${n.single.shown} TO ${n.fewMax.shown} OPTIONS: CLOSE RATE` : T >= tFour ? `${n.manyOpt.shown}+ OPTIONS: CLOSE RATE` : T >= tCeil ? `${n.tiers.shown} IS THE FLOOR` : 'THE PART PEOPLE SKIP';
       k.sets.slots(Object.assign({label, idle: ['$', '$', '$']}, reel));
       // sparks as the numbers land
       /* out of the cabinet's sides, never over the reels or the words */
@@ -373,30 +400,32 @@ window.SCENE = {
       else if (T < tStart) tray([`${n.single.shown} to ${n.fewMax.shown} options: one group here.`, tCav + 0.3], T >= tCant ? [`It can't show ${n.fewMax.shown} beats ${n.single.shown}.`, tCant, RED] : null);
       /* the jackpot's label: the tray's top band carries the line, the coins pile and hop under it */
       else { d.P(62, 248, 216, 15, '#2B2033'); d.type(`Start with ${n.tiers.shown} prices.`, 510, 747, tStart, {color: GOLD, align: 'center'}); }
-      return host(k, k.live('survey.yeses') ? 'clip' : (k.live('survey.52') || k.live('survey.start') ? 'point' : null));
+      return host(k, k.live('survey.caveat') ? 'clip' : (k.live('survey.52') || k.live('survey.start') ? 'point' : null));
     },
 
-    // ---- close: the storefront again. One column on a dark plate (left edge 120): the line, the payoff, the send line
+    // ---- close: the storefront again. One column on a dark plate (left edge 120): the send line first, then the line
+    // and the payoff; the tag flips to three prices on "Three"
     close: (k, T) => {
-      const n = k.data.numbers, d = px(k), t0 = k.S('close'), tYes = wordT(k, 'close', /^yes/i, 0.6), tThree = wordT(k, 'close.choice', /^Three/i);
-      const tCh = wordT(k, 'close.choice', /^choice/i, 0.9), tSend = k.S('close.send'), tNext = k.S('close.next');
+      const n = k.data.numbers, d = px(k), t0 = k.S('close'), tOne = k.S('close.one'), tYes = wordT(k, 'close.one', /^yes/i, 0.6), tThree = wordT(k, 'close.choice', /^Three/i);
+      const tCh = wordT(k, 'close.choice', /^choice/i, 0.9);
       storefront(k, {tags: [{price: '$', at: -1}, {price: '$ $$ $$$', at: tThree}], threeAt: tThree,
-        chalk: T < tThree ? [[`${n.single.shown} price?`, t0 + 0.1, CREAM, 450]] : [[`${n.tiers.shown} prices.`, tThree, GOLD, 450]].concat(T < tSend ? [['Your call.', tThree + 0.3, CREAM, 528]] : [])});
-      /* the plate holds four lines at one size (66): the line, the payoff, and the send line on two lines */
+        chalk: T < tThree ? [[`${n.single.shown} price?`, tOne, CREAM, 450]] : [[`${n.tiers.shown} prices.`, tThree, GOLD, 450], ['Your call.', tThree + 0.3, CREAM, 528]]});
+      /* the plate holds four lines at one size (66): the send line on two lines, the line, the payoff */
       const open = d.ease(t0 + 0.05, 8, 120);
       d.clip(0, 227, 360, 190, () => d.win(30, 227 + open, 300, 108, {base: '#1B1420', hi: PLUM, lo: INK, rule: WINE}));
       if (open === 0) {
-        k.slam(`${n.single.shown} price: yes or no.`, 120, 696, Math.min(t0 + 0.3, tYes), {size: 66, color: CREAM, from: 0.5});
-        if (T >= tThree) k.slam(`${n.tiers.shown} prices: a choice.`, 120, 768, tCh - 0.2, {size: 66, color: 'accent', from: 0.5});
-        if (T >= tSend) { k.slam('Send this to whoever', 120, 846, tSend + 0.05, {size: 66, color: GOLD, from: 0.4}); k.slam('writes your quotes.', 120, 918, tSend + 0.35, {size: 66, color: GOLD, from: 0.4}); }
-        if (T >= tNext) { const x = 120 + k.measure(`${n.tiers.shown} prices: `, {size: 66}); k.sweep(x, 837, k.measure('a choice.', {size: 66}), 6, tNext, {color: 'accent'}); }
+        k.slam('Send this to whoever', 120, 696, t0 + 0.3, {size: 66, color: GOLD, from: 0.4});
+        k.slam('writes your quotes.', 120, 768, t0 + 0.6, {size: 66, color: GOLD, from: 0.4});
+        if (T >= tOne) k.slam(`${n.single.shown} price: yes or no.`, 120, 846, Math.min(tOne + 0.2, tYes), {size: 66, color: CREAM, from: 0.5});
+        if (T >= tThree) k.slam(`${n.tiers.shown} prices: a choice.`, 120, 918, tCh - 0.2, {size: 66, color: 'accent', from: 0.5});
+        if (T >= tCh + 0.3) { const x = 120 + k.measure(`${n.tiers.shown} prices: `, {size: 66}); k.sweep(x, 987, k.measure('a choice.', {size: 66}), 6, tCh + 0.3, {color: 'accent'}); }
       }
-      if (T >= tSend) k.chip('ProofNotFluff', 78, 540, {size: 30});
+      k.chip('ProofNotFluff', 78, 540, {size: 30});
       /* sparks off the tag's foot into the shelves, kept off the tag, chalk board, OPEN sign and plate */
       const avoid = [[627, 400, 945, 540], [36, 402, 492, 654], [880, 552, 1026, 654], [84, 675, 996, 1011]];
       spray(k, 786, 548, tThree + 0.35, {n: 18, r: 170, dir: Math.PI / 2, spread: 2.6, avoid});
-      spray(k, 786, 548, tNext + 0.3, {n: 14, r: 150, dir: Math.PI / 2, spread: 2.6, colors: [GOLD, CREAM], avoid});
-      return host(k, k.live('close.next') ? 'wave' : (k.live('close.send') ? 'point' : null));
+      spray(k, 786, 548, tCh + 0.3, {n: 14, r: 150, dir: Math.PI / 2, spread: 2.6, colors: [GOLD, CREAM], avoid});
+      return host(k, T >= tCh ? 'wave' : (T < tOne ? 'point' : null));
     },
   },
 };

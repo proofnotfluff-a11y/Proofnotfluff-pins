@@ -2,30 +2,30 @@
  "source": {
   "name": "City of Austin, Issued Construction Permits",
   "url": "https://data.austintexas.gov/d/3syk-w9eu",
-  "rowsUpdatedAt": "2026-10-27T12:18:30+00:00",
-  "fetchedAt": "2026-10-27T16:21:31+00:00",
+  "rowsUpdatedAt": "2026-10-29T12:15:48+00:00",
+  "fetchedAt": "2026-10-29T21:44:45+00:00",
   "license": "Public Domain U.S. Government",
   "attribution": "City of Austin, Texas - data.austintexas.gov",
   "modified": "Filtered by ProofNotFluff: commercial building permits issued in the last 24 months, still Active, grouped into projects by the City's master permit, project valuation $500,000 or more (the largest valuation on its open building permits on the list, counted once; finaled, shell and garage permits do not count), with a business listed as general contractor; structures that are not buildings (carports, pergolas, canopies, enclosures, pools, EV chargers), parking garages, houses, duplexes and three-unit buildings, shell-only buildings, interior demolition, repairs, and roof, equipment, sign, elevator, site and exterior-only work left out; cleaning companies listed as contractor left out; only project-level and business fields kept.",
   "terms": "https://data.austintexas.gov/stories/s/ranj-cccq"
  },
  "window": {
-  "from": "2024-10-27",
-  "to": "2026-10-27"
+  "from": "2024-10-29",
+  "to": "2026-10-29"
  },
  "counts": {
-  "fetched": 8819,
+  "fetched": 8822,
   "kept": 156,
   "excluded": {
-   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 276,
-   "project valuation under $500,000": 1085,
+   "project valuation under $500,000": 1102,
    "kept": 156,
-   "work class Interior Demo Non-Structural (interior demolition or repair)": 58,
-   "no open building permit in the window": 4130,
+   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 180,
+   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 241,
    "work class Demolition (interior demolition or repair)": 66,
-   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 177,
-   "shell only, no finish work": 69,
-   "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)": 4,
+   "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)": 3,
+   "work class Interior Demo Non-Structural (interior demolition or repair)": 57,
+   "no open building permit in the window": 4159,
+   "shell only, no finish work": 66,
    "parking garage": 4,
    "no business listed as general contractor": 6,
    "work class Repair (interior demolition or repair)": 2,
@@ -33,22 +33,22 @@
    "second master permit of a development already listed": 1
   },
   "permitReasons": {
-   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 376,
-   "kept": 1966,
-   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 540,
-   "work class Interior Demo Non-Structural (interior demolition or repair)": 58,
-   "permit closed (final, expired, withdrawn, void or cancelled)": 5076,
+   "kept": 2007,
+   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 542,
+   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 342,
    "work class Demolition (interior demolition or repair)": 67,
-   "shell only, no finish work": 145,
-   "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)": 29,
-   "issued before the 24-month window": 491,
+   "shell only, no finish work": 146,
+   "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)": 28,
+   "work class Interior Demo Non-Structural (interior demolition or repair)": 57,
+   "permit closed (final, expired, withdrawn, void or cancelled)": 5083,
+   "issued before the 24-month window": 479,
    "parking garage": 58,
    "work class Repair (interior demolition or repair)": 2,
    "house, duplex or three-unit building": 11
   },
   "keptByType": {
-   "Remodel or addition": 43,
-   "New construction": 103,
+   "Remodel or addition": 42,
+   "New construction": 104,
    "Finish-out": 10
   },
   "byStage": {
@@ -56,13 +56,13 @@
    "Permit issued": 24,
    "Near finish": 1
   },
-  "keptCost": 7044697410,
-  "keptUnits": 8234,
+  "keptCost": 7041697410,
+  "keptUnits": 8636,
   "oddCosts": [
    26668001,
    18000001
   ],
-  "keptBuildings": 340,
+  "keptBuildings": 359,
   "topAreas": [
    [
     "78744",
@@ -89,11 +89,11 @@
     9
    ],
    [
-    "78753",
-    8
+    "78724",
+    7
    ],
    [
-    "78724",
+    "78735",
     7
    ]
   ],
@@ -109,6 +109,11 @@
     "cost": 197965058
    },
    {
+    "name": "OHT Construction LLC",
+    "projects": 5,
+    "cost": 154428623
+   },
+   {
     "name": "Skybeck Construction, LLC",
     "projects": 5,
     "cost": 43064409
@@ -117,11 +122,6 @@
     "name": "Swinerton Builders Inc.",
     "projects": 4,
     "cost": 255750000
-   },
-   {
-    "name": "OHT Construction LLC",
-    "projects": 4,
-    "cost": 153428623
    },
    {
     "name": "Joeris General Contractors",
@@ -672,20 +672,20 @@
  ],
  "nearFinish": [
   {
-   "permit": "13525226",
-   "issued": "2025-08-08",
+   "permit": "13633322",
+   "issued": "2026-02-17",
    "type": "Remodel or addition",
-   "scope": "Change of Use and Interior Remodel to create Research Services...",
+   "scope": "Interior Remodel to Existing Research Services and Light Manufacturing Phase 2 (11535 SF)",
    "units": null,
    "newUnits": 0,
-   "cost": 4000000,
-   "address": "507 E Howard Ln Bldg 3 Unit 100A",
+   "cost": 25000000,
+   "address": "507 E Howard Ln Bldg 3",
    "communityArea": "78753",
    "district": "7",
    "status": "Active",
    "milestone": "Near finish",
    "buildings": 1,
-   "buildingsFinal": 2,
+   "buildingsFinal": 1,
    "gc": [
     "CM Constructors"
    ],

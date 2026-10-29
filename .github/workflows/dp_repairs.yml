@@ -23,7 +23,7 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
-      - run: pip install --quiet cryptography openpyxl pillow
+      - run: pip install --quiet -c .github/ci-constraints.txt cryptography openpyxl pillow
       - name: Self-checks (planted cases)
         run: |
           python3 tools/dp_repairs_data.py --selftest

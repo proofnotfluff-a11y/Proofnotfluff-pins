@@ -1,0 +1,38 @@
+{
+ "about": "Every number this video shows or says, with its source. Jobber's 2026 Home Service Trends Report re-read on Oct 29, 2026 (of owners who use AI, 54% use it for quoting; 1,050 owners; Conjointly, December 2025). The notes, the quote lines and the prompt are examples, not data.",
+ "jobber": {
+  "title": "Blue Collar Strong: The 2026 Home Service Trends Report",
+  "publisher": "Jobber",
+  "published": "2026 (page modified March 25, 2026)",
+  "url": "https://www.getjobber.com/home-service-trends-report/",
+  "reread": "2026-10-29",
+  "quotingAmongAiUsersPct": 54,
+  "invoicingAmongAiUsersPct": 52,
+  "writingAmongAiUsersPct": 51,
+  "quote": "For those who've already adopted AI, usage is practical and task-focused: 54% use it for quoting, 52% for invoicing, and 51% for business writing.",
+  "useAiPct": 52,
+  "useAiQuote": "52% of blue collar business owners now use AI in their day-to-day operations",
+  "sampleOwners": 1050,
+  "method": "a survey of 1,050 home service business owners across the United States, conducted through Conjointly in December 2025, with a margin of error of plus or minus 3 percentage points at the 90% confidence level",
+  "fieldworkYear": 2025,
+  "reportYear": 2026,
+  "scope": "Base for 54%: owners who use AI (the body text). The chart caption says 'among home service businesses'; the video uses the body text's base. Not cleaning-specific. Descriptive, not a correlation."
+ },
+ "story": {
+  "source": "OURS: an example story, not data (shown with EXAMPLE on screen)",
+  "notes": ["3bd 2ba deep", "ovn inside?", "fridge yes", "bseboards", "pet hair LR", "blinds x6?"],
+  "beds": 3,
+  "baths": 2,
+  "lines": ["Deep clean, 3 bed, 2 bath", "Inside oven", "Inside fridge", "Baseboards", "Pet hair, living room"],
+  "flag": "Blinds: not on your price list",
+  "prices": "none shown: the price column is the owner's own list, drawn as bars with 'your rate'"
+ },
+ "prompt": {
+  "source": "OURS: advice, an example prompt (no AI product named)",
+  "line1": "Turn these notes into an itemized quote.",
+  "line2": "Use only my price list.",
+  "line3": "Flag anything I didn't price.",
+  "lines": 3,
+  "note": "lines is the count of sentences in the prompt itself, not a finding"
+ }
+}

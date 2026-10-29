@@ -8,11 +8,12 @@ One job: post yesterday's gated lesson to four platforms, make tomorrow's, and s
 
 ## Process (Executes)
 1. Date, preflight `video-studio`, config stop: tell Todd, end.
-2. Post: `anim.py next`, then `anim.py postcopy <slug>` (renders it from its gated commit). Follow POSTING.md for each missing platform (Claude in Chrome). Chrome unreachable or a stop condition: skip posting, tell Todd one line, go on to 3.
-3. Mondays: research run by research/README.md (fresh agent, opus), then read each posted lesson's numbers in Chrome (views, average watch, shares, saves) into research/metrics/<slug>.json; rank IDEAS.md by them.
+2. Post: `anim.py next`, then `anim.py postcopy <slug>` (renders it from its gated commit). Follow POSTING.md for each missing platform (Claude in Chrome): Instagram as a trial reel, then `anim.py trials` and share each due trial to followers (POSTING.md). Chrome unreachable or a stop condition: skip posting, tell Todd one line, go on to 3.
+3. Mondays: research run by research/README.md (fresh agent, opus), then read each posted lesson's numbers in Chrome (views, average watch, shares, saves) into research/metrics/<slug>.json; rank IDEAS.md by them; then `anim.py recuts` and add an IDEAS.md re-cut line for each due top-third lesson (POSTING.md).
 4. Queue rule first: after step 2, `anim.py waiting`. 3 or more listed: make no new lesson today; rebuild the first one listed on today's runtime instead (`fetch`, `stills` and read the sheets, `lint`, `render`, `check`, `gatepack`), then step 5 with every gate fresh; `ready <slug>` keeps its place in line. A gate's second FAIL there: `git checkout -- video/studio/videos/<slug>` (its old pin still posts), log "rebuild held: <slug>" in LEARNINGS.md and skip that slug in later rebuilds. Fewer than 3: make.
    Make: next idea from IDEAS.md's Trades-first bank (the top one not made; mix topics). Trade evidence only, no other-industry studies; each lesson its own worlds from _shared/sets.md (lint fails reused scenery). Slug <date>-<words>. Stages 01 to 05 by their contracts:
    - brief.md and facts.json: every number re-read on its source page today; numbers block; `anim.py data`.
+   - brief.md's Hook pattern, Treatment and Example lines: `anim.py variety <slug>` PASS before `speak` (a rebuild keeps its example; change the hook pattern if it fails).
    - script.md as talk (_shared/voice.md hook rules), 45 to 75 s, one stat hook, a copyable takeaway, a send line.
    - `speak`, push (check_repo first), wait for the Studio voice workflow (pull every minute, up to 15 min), `fetch`; flags 0 and pace 160 to 195 or re-roll that take once. takes.json credits left under 3,000: tell Todd.
    - cues.md (rooms, one beat every 2 to 4 s), `cues`; scene.js from the last lesson's pattern and the kit, motion rules in _shared/looks.md; `stills`, read the sheets, fix; `lint` PASS; `render`, `check`, `gatepack`.

@@ -1,0 +1,19 @@
+{
+ "gate": "golden",
+ "round": 0,
+ "at": "2026-10-29T17:46:43-05:00",
+ "build": "e0c1d27",
+ "pass": true,
+ "score": {
+  "post_as_is": "yes"
+ },
+ "reasons": [
+  "1. 42.0 to 42.5 s, polish: third board row (FIRST JOB NEXT) mid-flip at the cut to the end card; hold about 0.5 s longer.",
+  "2. qa.json, polish (doubtful PASS): frozen check puts the end card at 37.12 s but it starts about 42.4 s, so 37.1 to 42.4 s was not checked for frozen frames; timeline shows motion throughout.",
+  "3. 0.0 to 13.5 s, polish: story scenes have no EXAMPLE tag though facts.json says shown with EXAMPLE; reads plainly as a 'you' scenario.",
+  "4. 45.1 s end card, polish: 'requests.' alone on its line, crowded by Snow's hand and hat.",
+  "5. polish: bottom third empty panel (safe zone).",
+  "6. 14.0 to 14.6 s, polish: AI chat window blank for about half a second.",
+  "Checks: message matches facts.json and captions; 26% on the gauge as said (31.1 s), source line readable; prompt on screen about 10 s; voice human; qa no FAIL (45.4 s, -14.2 LUFS); first 3 s earn the stop for cleaning owners."
+ ]
+}

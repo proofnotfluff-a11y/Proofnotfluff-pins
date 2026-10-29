@@ -34,7 +34,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
-          pip install --quiet playwright pillow numpy scipy opencv-python-headless
+          pip install --quiet -c .github/ci-constraints.txt playwright pillow numpy scipy opencv-python-headless
           python3 -m playwright install --with-deps chromium > /dev/null
       - name: Build
         env:

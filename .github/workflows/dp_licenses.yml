@@ -23,7 +23,7 @@ jobs:
       - name: Self-checks (planted errors)
         run: python3 tools/dp_licenses_check.py --selftest
       - name: PDF reader
-        run: pip install --quiet pypdf
+        run: pip install --quiet -c .github/ci-constraints.txt pypdf
       - name: Re-read every agency page
         id: fetch
         continue-on-error: true

@@ -32,8 +32,13 @@ fresh reviewer checks before the next stage runs.
   next                     the oldest queued lesson not yet on all four platforms, and the commit its gates passed at
   postcaptions SLUG        the captions to paste, per platform, with any AI voice line taken out (Todd, Oct 29)
   waiting                  the queued lessons with no post yet, in posting order (the daily run's queue rule reads it)
+  variety [SLUG]           no two queued lessons alike: own example, no shared hook pattern plus treatment, no two
+                           in a row open on the same hook pattern (brief.md's Hook pattern, Treatment and Example lines; lint and ready run it)
   postcopy SLUG            render the queued lesson from that commit, check its fingerprints, export it to the upload folder
-  posted SLUG PLATFORM URL record one live post (instagram, tiktok, facebook, youtube)
+  posted SLUG PLATFORM URL record one live post (instagram, instagram-trial, tiktok, facebook, youtube)
+  trials                   Instagram trial reels not yet shared to followers (due at 72 hours)
+  feedshared SLUG          record that the trial reel was shared to followers (the same post, not a second one)
+  recuts                   each posted lesson's 90-day re-cut date, re-cuts done (brief.md "Re-cut of:"), numbers if read
   status SLUG              what exists
 """
 import argparse, base64, datetime as dt, difflib, glob, hashlib, json, math, os, re, shutil, subprocess, sys, tempfile, time, urllib.request, urllib.error, wave
@@ -1355,6 +1360,7 @@ def cmd_ready(slug):
             bad.append(f"{g}: FAIL")
     if not os.path.exists(vdir(slug, "05_render", "captions.json")):
         bad.append("captions.json: missing")
+    bad += [f"variety: {x}" for x in queue_variety_problems(slug)]
     if bad:
         raise SystemExit("ERROR ready: " + "; ".join(bad))
     # the gated files must be committed: the queue pins that commit, and posting renders from it (so later runtime
@@ -1446,16 +1452,70 @@ def cmd_postcopy(slug):
 
 
 def cmd_posted(slug, platform, url):
+    trial = platform == "instagram-trial"   # the Instagram post went up as a trial reel (non-followers first)
+    platform = "instagram" if trial else platform
     if platform not in PLATFORMS:
         raise SystemExit(f"ERROR posted: platform must be one of {', '.join(PLATFORMS)}")
     q = load_queue()
     it = next((i for i in q["items"] if i["slug"] == slug), None)
     if not it:
         raise SystemExit(f"ERROR posted: {slug} is not in the queue")
-    it["posts"][platform] = {"url": url, "at": now()}
+    it["posts"][platform] = {"url": url, "at": now(), **({"trial": True} if trial else {})}
     save_queue(q)
     print(f"posted: {slug} on {platform} ({len(it['posts'])} of 4)")
 
+
+
+# Instagram trial first, then the feed; a fresh re-cut of the winners about 90 days on (Todd, Oct 29, 2026, 3:59 pm:
+# "Fold it in"; POSTING.md). The trial reel is the lesson's one Instagram post; sharing it to followers is not a second
+# post. Mirrored or flipped reposts never: a re-cut is a new lesson (new slug, new hook and opening, every gate, variety).
+TRIAL_HOURS, RECUT_DAYS = 72, 90
+
+
+def _age_hours(at):
+    return (dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(at)).total_seconds() / 3600
+
+
+def cmd_feedshared(slug):
+    q = load_queue()
+    it = next((i for i in q["items"] if i["slug"] == slug), None)
+    if not it or "instagram" not in it["posts"]:
+        raise SystemExit(f"ERROR feedshared: {slug} has no Instagram trial post")
+    it["instagramFeed"] = {"at": now()}
+    save_queue(q)
+    print(f"feedshared: {slug} shared to followers")
+
+
+def cmd_trials():
+    """Instagram trial reels not yet shared to followers; due once 72 hours old."""
+    out = []
+    for i in load_queue()["items"]:
+        ig = i["posts"].get("instagram")
+        if ig and not i.get("instagramFeed") and ig.get("trial"):
+            h = _age_hours(ig["at"])
+            out.append({"slug": i["slug"], "url": ig["url"], "hours": round(h, 1), "due": h >= TRIAL_HOURS})
+    print(json.dumps(out))
+
+
+def cmd_recuts():
+    """Every posted lesson's re-cut date (90 days after its feed post), the ones already re-cut, and its numbers if read."""
+    done = {}
+    for d in sorted(os.listdir(VIDEOS)):
+        p = os.path.join(VIDEOS, d, "01_voice", "brief.md")
+        m = re.search(r"(?im)^- \*\*Re-cut of:\*\*\s*`?([0-9a-z-]+)`?", open(p, encoding="utf-8").read()) if os.path.exists(p) else None
+        if m:
+            done[m.group(1)] = d
+    rows = []
+    for i in load_queue()["items"]:
+        if not i["posts"]:
+            continue
+        feed = (i.get("instagramFeed") or {}).get("at") or min(v["at"] for v in i["posts"].values())
+        due = dt.datetime.fromisoformat(feed) + dt.timedelta(days=RECUT_DAYS)
+        days = round(-_age_hours(due.isoformat()) / 24)
+        mf = os.path.join(HERE, "research", "metrics", f"{i['slug']}.json")
+        rows.append({"slug": i["slug"], "recutOn": due.date().isoformat(), "daysLeft": days, "recutDone": done.get(i["slug"]),
+                     "metrics": json.load(open(mf)) if os.path.exists(mf) else None})
+    print(json.dumps(rows, indent=1))
 
 def cmd_gatepack(slug):
     """What the fresh reviewers look at: timeline sheets at 2 frames a second (labeled), the first frames, in
@@ -1543,6 +1603,70 @@ def variety_problems(slug, share):
         out.append(f"{len(new)} set piece(s) new against the two lessons before (at least 3)")
     return out
 
+
+
+# Variety across the queue (Todd, Oct 29, 2026, 3:56 pm: "Go with your recommendations for everything", to a check that
+# no two queued lessons share a hook pattern, format and example, so the platforms never read us as mass-produced).
+# brief.md names three things: the hook pattern, the treatment (the lesson's format) and the real example it is built on.
+# Rules for a lesson against the other unposted lessons in the queue: its example is its own (also against the last 3
+# posted lessons that name one); no other unposted lesson has the same hook pattern and treatment; and the lessons right
+# before and after it in posting order do not open on the same hook pattern.
+HOOK_PATTERNS = {"stuck-moment", "two-shops", "object-number", "which-pick", "your-move", "problem-question", "result-first", "myth"}
+TREATMENTS = {"story", "myth-fact", "steps", "before-after", "math-board", "copy-this"}
+VARIETY_FIELDS = (("hook", "Hook pattern"), ("treatment", "Treatment"), ("example", "Example"))
+
+
+def variety_of(slug):
+    p = vdir(slug, "01_voice", "brief.md")
+    txt = open(p, encoding="utf-8").read() if os.path.exists(p) else ""
+    out = {}
+    for key, label in VARIETY_FIELDS:
+        m = re.search(r"(?im)^- \*\*" + label + r":\*\*\s*`?([a-z0-9-]+)`?", txt)
+        out[key] = m.group(1).lower() if m else None
+    return out
+
+
+def queue_variety_problems(slug):
+    me = variety_of(slug)
+    out = [f"brief.md has no '- **{label}:**' line (_templates/brief.md)" for key, label in VARIETY_FIELDS if not me[key]]
+    if me["hook"] and me["hook"] not in HOOK_PATTERNS:
+        out.append(f"hook pattern '{me['hook']}' is not one of {', '.join(sorted(HOOK_PATTERNS))}")
+    if me["treatment"] and me["treatment"] not in TREATMENTS:
+        out.append(f"treatment '{me['treatment']}' is not one of {', '.join(sorted(TREATMENTS))}")
+    if out:
+        return out
+    items = load_queue()["items"]
+    order = [i["slug"] for i in items if not i["posts"] and os.path.isdir(vdir(i["slug"]))]
+    if slug not in order:
+        order.append(slug)   # a new lesson joins the back of the line
+    posted = [i["slug"] for i in items if i["posts"] and i["slug"] != slug and os.path.isdir(vdir(i["slug"]))][-3:]
+    n = order.index(slug)
+    for other in order[:n] + order[n + 1:] + posted:
+        o = variety_of(other)
+        if o["example"] and o["example"] == me["example"]:
+            out.append(f"example '{me['example']}' is also {other}'s")
+        if other in order and o["hook"] == me["hook"] and o["treatment"] == me["treatment"]:
+            out.append(f"same hook pattern and treatment as {other} ({me['hook']}, {me['treatment']})")
+    for other in [order[k] for k in (n - 1, n + 1) if 0 <= k < len(order)]:
+        if variety_of(other)["hook"] == me["hook"]:
+            out.append(f"hook pattern '{me['hook']}' is also the next lesson in line's ({other})")
+    return out
+
+
+def cmd_variety(slug=None):
+    """No two queued lessons alike (rules above). With a slug: that lesson against the queue. Without: every unposted lesson."""
+    slugs = [slug] if slug else [i["slug"] for i in load_queue()["items"] if not i["posts"]]
+    bad = 0
+    for s_ in slugs:
+        probs = queue_variety_problems(s_)
+        v = variety_of(s_)
+        if probs:
+            bad += 1
+            print(f"variety: FAIL {s_}: " + "; ".join(probs))
+        else:
+            print(f"variety: PASS {s_} ({v['hook']}, {v['treatment']}, {v['example']})")
+    if bad:
+        sys.exit(1)
 
 # The hook rules in code (IMPROVE 00a and 00c; Todd, Oct 29, 2026: "get this fixed today"; style board target spec): the
 # picture changes within 1 s and at least twice in the first 3 s, the host is on screen by 3 s, the spoken hook is 9 to 12
@@ -1743,6 +1867,7 @@ def cmd_lint(slug, step=0.25):
     errors += [f"ERROR lint hook: {x}" for x in hook_bad]
     errors += [f"ERROR lint script: {x}" for x in script_problems(slug, send_line)]
     errors += [f"ERROR lint variety: {x}" for x in variety_problems(slug, {w: round(n / max(1, steps), 3) for w, n in worlds.items()})]
+    errors += [f"ERROR lint queue variety: {x}" for x in queue_variety_problems(slug)]
     for (kind, what), ts in sorted(hits.items(), key=lambda kv: kv[1][0]):
         runs, start, prev = [], ts[0], ts[0]
         for x in ts[1:] + [None]:
@@ -1895,10 +2020,18 @@ def main():
         cmd_postcaptions(a.slug)
     elif c == "waiting":
         cmd_waiting()
+    elif c == "variety":
+        cmd_variety(a.slug)
+    elif c == "trials":
+        cmd_trials()
+    elif c == "recuts":
+        cmd_recuts()
     elif not a.slug:
         raise SystemExit(f"{c} needs a slug")
     elif c == "new":
         cmd_new(a.slug)
+    elif c == "feedshared":
+        cmd_feedshared(a.slug)
     elif c == "data":
         cmd_data(a.slug)
     elif c == "speak":

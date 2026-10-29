@@ -1,0 +1,203 @@
+{
+ "schema": "pnf.studio.cues.v1",
+ "source": "whisper medium.en int8, re-spelled from script.md",
+ "music": {
+  "id": "rooms",
+  "level": 0.16
+ },
+ "duration": 44.445,
+ "cues": [
+  {
+   "id": "hook",
+   "level": 0,
+   "quote": "The demo says an",
+   "sfx": "pop",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Frame 0, the cover: a laptop on an office desk playing a sales demo, a robot in a headset with a speech balloon full of ringing phones. The title plate up top, settled: \"The demo says you need\" / \"an AI receptionist.\" Snow in his spot.",
+   "t": 0.0,
+   "word": 0,
+   "end": 3.951
+  },
+  {
+   "id": "hook.bot",
+   "level": 1,
+   "quote": "an AI receptionist",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Cut by 0.8 s: close on the robot in the headset; three phones ring around it and each gets a green check on \"answers\".",
+   "t": 0.94,
+   "word": 3,
+   "end": 2.36
+  },
+  {
+   "id": "hook.myth",
+   "level": 1,
+   "quote": "answers every call.",
+   "sfx": "stamp",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Cut: the demo poster, and a red rubber stamp lands: \"MYTH?\". The plate stays.",
+   "t": 2.36,
+   "word": 6,
+   "end": 3.951
+  },
+  {
+   "id": "play",
+   "level": 0,
+   "quote": "So you pay for",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The calendar set: this month. On \"pay\" a coin lands on day 1.",
+   "t": 3.951,
+   "word": 9,
+   "end": 11.664
+  },
+  {
+   "id": "play.answer",
+   "level": 1,
+   "quote": "The phone gets answered.",
+   "sfx": "tick",
+   "shift": 0.0,
+   "pin": null,
+   "text": "A run of green checks fills the first two weeks. Line under the grid: \"Calls: answered.\"",
+   "t": 5.791,
+   "word": 16,
+   "end": 7.111
+  },
+  {
+   "id": "play.sit",
+   "level": 1,
+   "quote": "But the quotes you've",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Red x's run through the days after. Line: \"Quotes: no follow-up.\"",
+   "t": 7.111,
+   "word": 20,
+   "end": 11.664
+  },
+  {
+   "id": "fix",
+   "level": 0,
+   "quote": "Fix follow-up first.",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Our own outbox tray. \"Fix follow-up first.\" slams in; the prompt card (AI chat app, example) waits.",
+   "t": 11.664,
+   "word": 33,
+   "end": 25.306
+  },
+  {
+   "id": "fix.p1",
+   "level": 1,
+   "quote": "Write a short check-in",
+   "sfx": "tick",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Prompt line 1 types on as said.",
+   "t": 17.244,
+   "word": 46,
+   "end": 20.264
+  },
+  {
+   "id": "fix.p2",
+   "level": 1,
+   "quote": "Ask what questions they",
+   "sfx": "tick",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Line 2. The drafted check-in drops into the tray (example), a padlock on it: HELD FOR YOU.",
+   "t": 20.264,
+   "word": 56,
+   "end": 22.084
+  },
+  {
+   "id": "fix.send",
+   "level": 1,
+   "quote": "Nothing goes out until",
+   "sfx": "pop",
+   "shift": 0.0,
+   "pin": null,
+   "text": "An eye blinks over the draft on \"read\"; on \"send\" the big green key presses, the lock opens, the envelope flies out. The prompt stays up 3 s or more.",
+   "t": 22.084,
+   "word": 61,
+   "end": 25.306
+  },
+  {
+   "id": "proof",
+   "level": 0,
+   "quote": "ServiceTitan surveyed over a",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The high-score cabinet: \"TRUST IN AI TOOLS\". On screen: \"ServiceTitan survey\" / \"1,000+ residential service contractors, 2026\".",
+   "t": 25.306,
+   "word": 71,
+   "end": 35.265
+  },
+  {
+   "id": "proof.low",
+   "level": 1,
+   "quote": "Only eleven percent trust",
+   "sfx": "tick",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Row 1 slides in: \"HIGH OR COMPLETE 11%\", gold.",
+   "t": 28.766,
+   "word": 77,
+   "end": 31.926
+  },
+  {
+   "id": "proof.none",
+   "level": 1,
+   "quote": "Fifty-eight percent, little or",
+   "sfx": "tick",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Row 2: \"LITTLE OR NONE 58%\".",
+   "t": 31.926,
+   "word": 85,
+   "end": 35.265
+  },
+  {
+   "id": "button",
+   "level": 0,
+   "quote": "So your hand stays",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The boss arena: THE MYTH. The moves menu: \"You hit send\", \"Follow-up first\". On \"hand\" the first move hits.",
+   "t": 35.265,
+   "word": 92,
+   "end": 44.445
+  },
+  {
+   "id": "button.fix",
+   "level": 1,
+   "quote": "buy an AI receptionist",
+   "sfx": "stamp",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The second move hits on \"buy\"; on \"fix\" the myth breaks into pixels and \"BUSTED!\" stamps in.",
+   "t": 38.345,
+   "word": 101,
+   "end": 40.165
+  },
+  {
+   "id": "button.end",
+   "level": 1,
+   "quote": "you fix the follow-up.",
+   "sfx": "sting",
+   "shift": 0.0,
+   "pin": null,
+   "text": "\"Follow-up first.\" lands under it, gold. Then the end card with the send line: \"Send this to whoever handles your follow-ups.\"",
+   "t": 40.165,
+   "word": 106,
+   "end": 44.445
+  }
+ ]
+}

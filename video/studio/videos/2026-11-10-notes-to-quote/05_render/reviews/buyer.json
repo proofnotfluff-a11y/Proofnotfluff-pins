@@ -1,0 +1,21 @@
+{
+ "gate": "buyer",
+ "round": 0,
+ "at": "2026-10-29T17:46:06-05:00",
+ "build": "e0c1d27",
+ "pass": true,
+ "score": {
+  "stop": "yes",
+  "send": "no",
+  "save": "yes",
+  "follow_or_link": "yes"
+ },
+ "reasons": [
+  "1. What it tells me: paste my walkthrough notes into an AI chat app with a three-line prompt to get an itemized quote, then check every line against my own rates myself.",
+  "2. Stop: yes. The checklist under 'This quote started as messy notes.' is my exact night job; the pain lands at 3.2 to 10 s, so the first 3 s stop me on recognition rather than pain.",
+  "3. Save: yes. Send: no for a solo owner ('Send this to whoever writes your quotes' assumes someone else quotes). Follow: yes. Link in bio: probably not, too vague.",
+  "4. Hype, urgency, pitch, slop or robotic: none.",
+  "5. Unclear to a stranger: (a) 00:10.3 never says to paste the price list too; fix voice and caption to 'Paste your notes and your price list'. (b) caption 'AI lead lesson 3.' vs on-screen 'AI LESSON 3'; match. (c) 'messy notes' headline over neat typed text; show scrawled notes or say 'walkthrough notes'. (d) CTA skips solo owners: 'Save this for your next walkthrough, or send it to whoever writes your quotes.'",
+  "6. Trust: yes."
+ ]
+}

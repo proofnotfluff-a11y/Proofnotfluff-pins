@@ -6,6 +6,9 @@ Lesson 8, segment Numbers Clinic. Planned Oct 28, 2026 from the topic bank's top
 - **Audience:** a trades or home-service owner (plumber, electrician, HVAC, roofer) who gives estimates and has never worked out a close rate.
 - **The one idea:** close rate is jobs sold divided by estimates given; know yours, track it weekly. (15 words)
 - **Shape:** hook ("Do you know your close rate? Here's the one-line math.", then the regional median close rates, 31% to 38%, ServiceTitan customers, May to July 2026) -> stakes (the top 25% by close rate: medians 70% to 73%; you can't close a gap you never measured) -> the artifact (close rate = jobs sold / estimates given, same month) -> the worked example (example: 40 estimates, 14 sold, 35%) -> the turn (ServiceTitan doesn't say how it counts a close, and its customers aren't every shop, so beat your own last month first) -> what to track weekly (every Friday: estimates given, jobs sold) -> close (the formula again, send line, "you'll know your close rate"). Oct 29 rebuild for the 75 s cap and the 3 s hook: the dollar close rate (dollars sold over dollars quoted) is cut, a second idea the lesson didn't need.
+- **Hook pattern:** problem-question
+- **Treatment:** math-board
+- **Example:** servicetitan-regional-close-rates
 - **Metaphor:** none. The shop whiteboard carries the weekly habit.
 - **Voice:** Todd's clone in `_shared/voice.md`.
 - **Real screens:** the ServiceTitan medians as a range bar (31% to 38%) beside the top 25% range (70% to 73%), the source on screen while its number is; the formula card; a worked example card marked "example"; the Friday whiteboard with two rows (also the hook's close-up).

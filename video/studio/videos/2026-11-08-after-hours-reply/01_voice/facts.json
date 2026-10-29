@@ -1,0 +1,39 @@
+{
+ "about": "Every number this video shows or says, with its source. Jobber's 2026 Home Service Trends Report re-read on Oct 29, 2026 (26% of cleaning businesses reply within an hour, the fastest responders; 1,050 owners; Conjointly, December 2025; plus or minus 3 points at 90% confidence). The story numbers (11 pm, 7 am, two bed, one bath) and the prompt are examples, not data.",
+ "jobber": {
+  "title": "Blue Collar Strong: The 2026 Home Service Trends Report",
+  "publisher": "Jobber",
+  "published": "2026 (page modified March 25, 2026)",
+  "url": "https://www.getjobber.com/home-service-trends-report/",
+  "reread": "2026-10-29",
+  "cleaningWithinHourPct": 26,
+  "quote": "Cleaning businesses are the fastest responders (26% reply within an hour), while HVAC pros are the slowest.",
+  "fastestTrade": true,
+  "sampleOwners": 1050,
+  "method": "a survey of 1,050 home service business owners across the United States, conducted through Conjointly in December 2025, with a margin of error of plus or minus 3 percentage points at the 90% confidence level",
+  "fieldwork": "December 2025",
+  "fieldworkYear": 2025,
+  "reportYear": 2026,
+  "scope": "Self-reported by owners. The page does not give the cleaning subsample size. Descriptive survey data, not a correlation.",
+  "context": "The same page: 20% of all pros respond within the hour (not used in the video)."
+ },
+ "story": {
+  "source": "OURS: an example story, not data (shown with EXAMPLE on screen)",
+  "requestHour": 11,
+  "requestWhen": "11 pm (example)",
+  "seenHour": 7,
+  "seenWhen": "7 am (example)",
+  "message": "Hi! Need a move-out clean before Friday. 2 bed, 1 bath. How much?",
+  "beds": 2,
+  "baths": 1,
+  "reply": "Thanks for reaching out! A move-out clean for a 2 bed, 1 bath is [your rate]. Want the inside of the fridge and oven done too?"
+ },
+ "prompt": {
+  "source": "OURS: advice, an example prompt (no AI product named)",
+  "line1": "Write a short, friendly reply to this cleaning quote request.",
+  "line2": "Use my rates below.",
+  "line3": "Ask one question if anything's missing.",
+  "lines": 3,
+  "note": "lines is the count of sentences in the prompt itself, not a finding"
+ }
+}

@@ -20,6 +20,8 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+      - name: Install the workbook packages before the area seat selftest needs them
+        run: pip install --quiet -c .github/ci-constraints.txt openpyxl cryptography pillow
       - run: python3 tools/permits_chicago.py --selftest
       - run: python3 tools/builder_contacts.py --selftest
       - run: python3 tools/permits_chicago.py --full "$RUNNER_TEMP/chicago-full.json"
@@ -40,7 +42,7 @@ jobs:
           LEADS_PASSWORD: ${{ secrets.LEADS_PASSWORD }}
         run: |
           if [ -z "$LEADS_PASSWORD" ]; then echo "no LEADS_PASSWORD secret yet; members' page not built"; exit 0; fi
-          pip install --quiet openpyxl cryptography pillow
+          pip install --quiet -c .github/ci-constraints.txt openpyxl cryptography pillow
           python3 tools/leads_xlsx.py --selftest
           python3 tools/leads_page.py --selftest
           python3 tools/leads_app.py --selftest

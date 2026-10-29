@@ -8,6 +8,9 @@ with every source re-read that day.
 - **The one idea (15 words max):** a 50% markup is a 33% margin; price from margin, not markup. (14 words)
 - **Who sends it to whom:** the owner -> whoever sets the prices (often the owner).
 - **Shape:** hook (50% markup is not 50% margin) -> the math on the board (cost 1,000, markup 500, price 1,500, the 500 is a third) -> why (markup on cost, margin on price; margin still has to cover overhead) -> a real 50% margin needs a 100% markup -> the turn and the formula card, Price = Cost / (1 - margin), worked at 40% -> the rule and the send line.
+- **Hook pattern:** object-number
+- **Treatment:** math-board
+- **Example:** markup-1000-to-1500
 - **Metaphor:** none. A stacked bar carries it: the cost block, the markup slice on top, the slice measured against the whole.
 - **Voice:** Todd's own voice clone in `_shared/voice.md` (Eleven v4).
 - **Real screens:** none needed; the math is the real thing. The formula card is the copyable artifact (held 3 s or more).

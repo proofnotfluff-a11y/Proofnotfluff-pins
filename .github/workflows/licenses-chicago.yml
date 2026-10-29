@@ -23,9 +23,9 @@ jobs:
     timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
-      - run: pip install --quiet cryptography openpyxl pillow
+      - run: pip install --quiet -c .github/ci-constraints.txt cryptography openpyxl pillow
       - name: DuckDB for the phone step (the list still ships without it)
-        run: pip install --quiet duckdb || echo "duckdb unavailable; phones left empty"
+        run: pip install --quiet -c .github/ci-constraints.txt duckdb || echo "duckdb unavailable; phones left empty"
       - name: Self-checks (planted cases)
         run: |
           python3 tools/licenses_chicago.py --selftest

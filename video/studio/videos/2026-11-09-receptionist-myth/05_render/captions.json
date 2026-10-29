@@ -1,0 +1,63 @@
+{
+ "schema": "pnf.studio.captions.v1",
+ "keywords": {
+  "primary": "do you need an AI receptionist",
+  "secondary": [
+   "cleaning business tips",
+   "home service business"
+  ],
+  "trades": [
+   "cleaning",
+   "house cleaning",
+   "home service"
+  ]
+ },
+ "instagram": {
+  "caption": "Do you need an AI receptionist for your cleaning business? Fix follow-up first.\nIn ServiceTitan's 2026 survey of over 1,000 residential service contractors (as reported by PHCP Pros), only 11% said they place high or complete trust in their AI tools; 58% reported little or no trust.\n\nAI lead lesson 2. Before you pay for a voice bot, paste a quote you already sent into an AI chat app with this prompt (example):\n\"Write a short check-in on this quote, in my voice. Ask what questions they have.\"\n\nNothing goes out until you read it and hit send.\n\nSend this to whoever handles your follow-ups.\nWhat happens to your quotes after you send them?\nFree tools for trade owners: link in bio.\n\n#homeservicebusiness #cleaningbusiness #cleaningbusinessowner #leadfollowup",
+  "settings": {
+   "aiLabel": true,
+   "shareToFacebook": false
+  }
+ },
+ "tiktok": {
+  "caption": "Do you need an AI receptionist for your cleaning business? Fix follow-up first.\nServiceTitan's 2026 survey (over 1,000 residential service contractors, via PHCP Pros): only 11% place high or complete trust in their AI tools; 58% little or none.\nPaste a quote you already sent into an AI chat app with this prompt (example): \"Write a short check-in on this quote, in my voice. Ask what questions they have.\" Nothing goes out until you read it and hit send.\nOwners: what happens to your quotes after you send them?\nSend this to whoever handles your follow-ups.\n#homeservicebusiness #cleaningbusiness #cleaningbusinessowner #contractorbusiness",
+  "settings": {
+   "aiGenerated": true,
+   "commercialDisclosure": false,
+   "suggestKeywords": [
+    "do you need an ai receptionist",
+    "cleaning business tips",
+    "quote follow up"
+   ]
+  }
+ },
+ "facebook": {
+  "caption": "Do you need an AI receptionist for your cleaning business? Fix follow-up first.\nIn ServiceTitan's 2026 survey of over 1,000 residential service contractors (as reported by PHCP Pros), only 11% said they place high or complete trust in their AI tools; 58% reported little or no trust.\nPaste a quote you already sent into an AI chat app with this prompt (example): \"Write a short check-in on this quote, in my voice. Ask what questions they have.\" Nothing goes out until you read it and hit send.\nSend this to whoever handles your follow-ups.\n#homeservicebusiness #cleaningbusiness",
+  "settings": {
+   "aiLabel": true,
+   "audience": "Public"
+  }
+ },
+ "youtube": {
+  "title": "Do You Need an AI Receptionist? Fix Quote Follow-Up First (Cleaning Business)",
+  "description": "Do you need an AI receptionist? Fix follow-up on the quotes you sent first.\nFor cleaning business owners and home service business owners.\nPHCP Pros, \"ServiceTitan Report Finds AI Adoption Accelerating Across the Trades\" (Sep 29, 2026), on ServiceTitan's 2026 State of AI in the Trades report, a study of over 1,000 residential service contractors across the US in HVAC, electrical, plumbing, roofing and other sectors: only 11% of contractors place high or complete trust in the AI tools they use, while 58% report little or no trust.\n\nSteps (the prompt is an example):\n1. Paste a quote you already sent into an AI chat app.\n2. Ask: \"Write a short check-in on this quote, in my voice. Ask what questions they have.\"\n3. Read the draft and hit send yourself. Nothing goes out without you.\n\nSend this to whoever handles your follow-ups.\nNext lesson: turning walkthrough notes into a quote. More lessons and free tools for trade owners at proofnotfluff.com\n#cleaningbusiness #homeservicebusiness",
+  "tags": [
+   "do you need an ai receptionist",
+   "ai receptionist for cleaning business",
+   "cleaning business tips",
+   "quote follow up",
+   "cleaning business owner",
+   "home service business",
+   "contractor business tips",
+   "ai for small cleaning business",
+   "ai recepionist"
+  ],
+  "settings": {
+   "madeForKids": false,
+   "aiUse": true,
+   "category": "Education",
+   "language": "English",
+   "visibility": "Public"
+  }
+ }
+}

@@ -1,266 +1,266 @@
 scope,permit_type,review_path,community_area,period,permits,median_days,p80_days,p90_days,same_day_pct
-citywide,All,All,All,2025-10-27 to 2026-10-26,31646,6,42,91,23.71
-review path,All,Express Permit Program,All,2025-10-27 to 2026-10-26,20456,3,13,21,29.03
-review path,All,Standard Plan Review,All,2025-10-27 to 2026-10-26,3565,91,180,262,1.32
-review path,All,Self Certification,All,2025-10-27 to 2026-10-26,3009,32,73,115,0.66
-review path,All,Signs,All,2025-10-27 to 2026-10-26,2043,38,90,143,0.0
-review path,All,Elevators and Other Conveyances,All,2025-10-27 to 2026-10-26,1119,0,5,7,73.73
-review path,All,Wrecking and Demolition,All,2025-10-27 to 2026-10-26,669,46,84,117,34.53
-review path,All,Easy Permit,All,2025-10-27 to 2026-10-26,461,0,0,0,95.23
-review path,All,Direct Developer Services,All,2025-10-27 to 2026-10-26,320,113,210,384,0.0
-review path,All,Traditional Developer Services,All,2025-10-27 to 2026-10-26,4,,,,
-permit type,Express Permit Program,All,All,2025-10-27 to 2026-10-26,20456,3,13,21,29.03
-permit type and path,Express Permit Program,Express Permit Program,All,2025-10-27 to 2026-10-26,20456,3,13,21,29.03
-permit type,Renovation and Alteration,All,All,2025-10-27 to 2026-10-26,5348,59,143,212,0.41
-permit type and path,Renovation and Alteration,Standard Plan Review,All,2025-10-27 to 2026-10-26,2658,104,189,275,0.0
-permit type and path,Renovation and Alteration,Self Certification,All,2025-10-27 to 2026-10-26,2484,27,63,103,0.81
-permit type and path,Renovation and Alteration,Direct Developer Services,All,2025-10-27 to 2026-10-26,203,103,188,290,0.0
-permit type and path,Renovation and Alteration,Traditional Developer Services,All,2025-10-27 to 2026-10-26,3,,,,
-permit type,Signs,All,All,2025-10-27 to 2026-10-26,2043,38,90,143,0.0
-permit type and path,Signs,Signs,All,2025-10-27 to 2026-10-26,2043,38,90,143,0.0
-permit type,New Construction,All,All,2025-10-27 to 2026-10-26,1550,56,138,211,3.03
-permit type and path,New Construction,Standard Plan Review,All,2025-10-27 to 2026-10-26,907,44,139,209,5.18
-permit type and path,New Construction,Self Certification,All,2025-10-27 to 2026-10-26,525,56,112,168,0.0
-permit type and path,New Construction,Direct Developer Services,All,2025-10-27 to 2026-10-26,117,135,224,502,0.0
-permit type and path,New Construction,Traditional Developer Services,All,2025-10-27 to 2026-10-26,1,,,,
-permit type,Elevator Equipment,All,All,2025-10-27 to 2026-10-26,1119,0,5,7,73.73
-permit type and path,Elevator Equipment,Elevators and Other Conveyances,All,2025-10-27 to 2026-10-26,1119,0,5,7,73.73
-permit type,Wrecking and Demolition,All,All,2025-10-27 to 2026-10-26,669,46,84,117,34.53
-permit type and path,Wrecking and Demolition,Wrecking and Demolition,All,2025-10-27 to 2026-10-26,669,46,84,117,34.53
-permit type,Reinstated Revoked Permits,All,All,2025-10-27 to 2026-10-26,461,0,0,0,95.23
-permit type and path,Reinstated Revoked Permits,Easy Permit,All,2025-10-27 to 2026-10-26,461,0,0,0,95.23
-permit type,Easy Permit,All,All,2025-10-27 to 2026-10-26,0,,,,
-community area,All,All,Rogers Park,2025-10-27 to 2026-10-26,303,7,38,92,22.44
-community area,All,All,West Ridge,2025-10-27 to 2026-10-26,443,6,49,102,22.57
-community area,All,All,Uptown,2025-10-27 to 2026-10-26,437,7,48,105,21.51
-community area,All,All,Lincoln Square,2025-10-27 to 2026-10-26,476,8,57,100,21.43
-community area,All,All,North Center,2025-10-27 to 2026-10-26,501,15,58,106,20.96
-community area,All,All,Lake View,2025-10-27 to 2026-10-26,1175,9,51,103,21.28
-community area,All,All,Lincoln Park,2025-10-27 to 2026-10-26,1035,11,62,118,16.81
-community area,All,All,Near North Side,2025-10-27 to 2026-10-26,2404,7,32,69,16.51
-community area,All,All,Edison Park,2025-10-27 to 2026-10-26,109,10,60,116,25.69
-community area,All,All,Norwood Park,2025-10-27 to 2026-10-26,392,5,39,66,30.36
-community area,All,All,Jefferson Park,2025-10-27 to 2026-10-26,242,5,34,60,33.06
-community area,All,All,Forest Glen,2025-10-27 to 2026-10-26,248,6,58,130,32.26
-community area,All,All,North Park,2025-10-27 to 2026-10-26,153,4,36,97,33.99
-community area,All,All,Albany Park,2025-10-27 to 2026-10-26,304,7,46,112,25.33
-community area,All,All,Portage Park,2025-10-27 to 2026-10-26,572,4,29,60,30.24
-community area,All,All,Irving Park,2025-10-27 to 2026-10-26,515,8,52,96,25.63
-community area,All,All,Dunning,2025-10-27 to 2026-10-26,269,4,21,54,31.23
-community area,All,All,Montclare,2025-10-27 to 2026-10-26,115,8,24,86,23.48
-community area,All,All,Belmont Cragin,2025-10-27 to 2026-10-26,371,3,27,64,35.04
-community area,All,All,Hermosa,2025-10-27 to 2026-10-26,135,6,46,97,30.37
-community area,All,All,Avondale,2025-10-27 to 2026-10-26,292,13,64,137,20.21
-community area,All,All,Logan Square,2025-10-27 to 2026-10-26,820,12,74,126,21.1
-community area,All,All,Humboldt Park,2025-10-27 to 2026-10-26,512,8,71,133,22.66
-community area,All,All,West Town,2025-10-27 to 2026-10-26,1266,13,69,135,17.38
-community area,All,All,Austin,2025-10-27 to 2026-10-26,901,7,51,114,23.31
-community area,All,All,West Garfield Park,2025-10-27 to 2026-10-26,207,7,57,101,20.29
-community area,All,All,East Garfield Park,2025-10-27 to 2026-10-26,281,12,74,126,18.86
-community area,All,All,Near West Side,2025-10-27 to 2026-10-26,1584,6,41,91,23.17
-community area,All,All,North Lawndale,2025-10-27 to 2026-10-26,446,13,71,111,14.57
-community area,All,All,South Lawndale,2025-10-27 to 2026-10-26,396,8,52,121,21.46
-community area,All,All,Lower West Side,2025-10-27 to 2026-10-26,371,11,72,141,20.75
-community area,All,All,Loop,2025-10-27 to 2026-10-26,2398,4,15,34,23.02
-community area,All,All,Near South Side,2025-10-27 to 2026-10-26,369,4,28,86,20.33
-community area,All,All,Armour Square,2025-10-27 to 2026-10-26,75,14,82,163,20.0
-community area,All,All,Douglas,2025-10-27 to 2026-10-26,142,8,43,140,24.65
-community area,All,All,Oakland,2025-10-27 to 2026-10-26,47,3,14,69,17.02
-community area,All,All,Fuller Park,2025-10-27 to 2026-10-26,58,6,58,151,20.69
-community area,All,All,Grand Boulevard,2025-10-27 to 2026-10-26,312,8,69,121,18.91
-community area,All,All,Kenwood,2025-10-27 to 2026-10-26,198,11,52,111,13.13
-community area,All,All,Washington Park,2025-10-27 to 2026-10-26,133,18,94,173,14.29
-community area,All,All,Hyde Park,2025-10-27 to 2026-10-26,352,6,27,56,17.05
-community area,All,All,Woodlawn,2025-10-27 to 2026-10-26,328,9,60,112,19.21
-community area,All,All,South Shore,2025-10-27 to 2026-10-26,448,6,31,81,21.88
-community area,All,All,Chatham,2025-10-27 to 2026-10-26,321,6,35,65,22.12
-community area,All,All,Avalon Park,2025-10-27 to 2026-10-26,187,5,28,85,34.76
-community area,All,All,South Chicago,2025-10-27 to 2026-10-26,307,5,41,91,23.78
-community area,All,All,Burnside,2025-10-27 to 2026-10-26,35,6,39,48,28.57
-community area,All,All,Calumet Heights,2025-10-27 to 2026-10-26,191,1,10,20,40.31
-community area,All,All,Roseland,2025-10-27 to 2026-10-26,496,5,26,68,31.25
-community area,All,All,Pullman,2025-10-27 to 2026-10-26,131,10,73,125,25.95
-community area,All,All,South Deering,2025-10-27 to 2026-10-26,157,5,30,38,27.39
-community area,All,All,East Side,2025-10-27 to 2026-10-26,141,4,21,44,31.21
-community area,All,All,West Pullman,2025-10-27 to 2026-10-26,350,5,20,59,28.86
-community area,All,All,Riverdale,2025-10-27 to 2026-10-26,38,42,138,149,18.42
-community area,All,All,Hegewisch,2025-10-27 to 2026-10-26,97,2,11,17,16.49
-community area,All,All,Garfield Ridge,2025-10-27 to 2026-10-26,407,4,24,58,35.87
-community area,All,All,Archer Heights,2025-10-27 to 2026-10-26,110,5,33,62,22.73
-community area,All,All,Brighton Park,2025-10-27 to 2026-10-26,229,7,56,111,23.14
-community area,All,All,McKinley Park,2025-10-27 to 2026-10-26,160,5,69,144,31.25
-community area,All,All,Bridgeport,2025-10-27 to 2026-10-26,267,9,56,130,22.47
-community area,All,All,New City,2025-10-27 to 2026-10-26,417,8,54,129,20.38
-community area,All,All,West Elsdon,2025-10-27 to 2026-10-26,88,7,55,76,23.86
-community area,All,All,Gage Park,2025-10-27 to 2026-10-26,187,6,49,101,25.13
-community area,All,All,Clearing,2025-10-27 to 2026-10-26,157,3,14,32,36.31
-community area,All,All,West Lawn,2025-10-27 to 2026-10-26,221,4,18,40,27.6
-community area,All,All,Chicago Lawn,2025-10-27 to 2026-10-26,336,4,27,65,31.25
-community area,All,All,West Englewood,2025-10-27 to 2026-10-26,390,8,61,125,25.38
-community area,All,All,Englewood,2025-10-27 to 2026-10-26,349,10,68,126,19.2
-community area,All,All,Greater Grand Crossing,2025-10-27 to 2026-10-26,350,5,45,90,21.14
-community area,All,All,Ashburn,2025-10-27 to 2026-10-26,436,3,14,26,35.55
-community area,All,All,Auburn Gresham,2025-10-27 to 2026-10-26,583,5,31,78,28.64
-community area,All,All,Beverly,2025-10-27 to 2026-10-26,266,5,27,81,27.82
-community area,All,All,Washington Heights,2025-10-27 to 2026-10-26,418,4,24,76,30.14
-community area,All,All,Mount Greenwood,2025-10-27 to 2026-10-26,166,7,56,69,28.31
-community area,All,All,Morgan Park,2025-10-27 to 2026-10-26,313,4,23,89,31.95
-community area,All,All,O'Hare,2025-10-27 to 2026-10-26,397,0,7,26,53.65
-community area,All,All,Edgewater,2025-10-27 to 2026-10-26,508,7,51,87,24.8
-community area and path,All,Standard Plan Review,Rogers Park,2025-10-27 to 2026-10-26,45,85,155,216,2.22
-community area and path,All,Standard Plan Review,West Ridge,2025-10-27 to 2026-10-26,61,84,227,356,1.64
-community area and path,All,Standard Plan Review,Uptown,2025-10-27 to 2026-10-26,57,93,166,206,0.0
-community area and path,All,Standard Plan Review,Lincoln Square,2025-10-27 to 2026-10-26,62,78,197,283,0.0
-community area and path,All,Standard Plan Review,North Center,2025-10-27 to 2026-10-26,52,81,182,231,5.77
-community area and path,All,Standard Plan Review,Lake View,2025-10-27 to 2026-10-26,148,68,164,269,4.05
-community area and path,All,Standard Plan Review,Lincoln Park,2025-10-27 to 2026-10-26,117,83,149,211,1.71
-community area and path,All,Standard Plan Review,Near North Side,2025-10-27 to 2026-10-26,129,72,165,210,3.1
-community area and path,All,Standard Plan Review,Edison Park,2025-10-27 to 2026-10-26,17,,,,
-community area and path,All,Standard Plan Review,Norwood Park,2025-10-27 to 2026-10-26,40,73,152,282,0.0
-community area and path,All,Standard Plan Review,Jefferson Park,2025-10-27 to 2026-10-26,32,55,139,239,3.12
-community area and path,All,Standard Plan Review,Forest Glen,2025-10-27 to 2026-10-26,31,79,160,238,0.0
-community area and path,All,Standard Plan Review,North Park,2025-10-27 to 2026-10-26,22,106,200,252,4.55
-community area and path,All,Standard Plan Review,Albany Park,2025-10-27 to 2026-10-26,44,103,161,206,0.0
-community area and path,All,Standard Plan Review,Portage Park,2025-10-27 to 2026-10-26,51,77,159,199,0.0
-community area and path,All,Standard Plan Review,Irving Park,2025-10-27 to 2026-10-26,82,81,155,263,0.0
-community area and path,All,Standard Plan Review,Dunning,2025-10-27 to 2026-10-26,22,106,271,570,0.0
-community area and path,All,Standard Plan Review,Montclare,2025-10-27 to 2026-10-26,10,,,,
-community area and path,All,Standard Plan Review,Belmont Cragin,2025-10-27 to 2026-10-26,38,84,162,209,2.63
-community area and path,All,Standard Plan Review,Hermosa,2025-10-27 to 2026-10-26,17,,,,
-community area and path,All,Standard Plan Review,Avondale,2025-10-27 to 2026-10-26,48,135,262,404,0.0
-community area and path,All,Standard Plan Review,Logan Square,2025-10-27 to 2026-10-26,131,122,220,286,0.0
-community area and path,All,Standard Plan Review,Humboldt Park,2025-10-27 to 2026-10-26,109,91,205,322,0.0
-community area and path,All,Standard Plan Review,West Town,2025-10-27 to 2026-10-26,175,116,200,287,0.57
-community area and path,All,Standard Plan Review,Austin,2025-10-27 to 2026-10-26,103,103,197,301,0.0
-community area and path,All,Standard Plan Review,West Garfield Park,2025-10-27 to 2026-10-26,37,86,236,314,0.0
-community area and path,All,Standard Plan Review,East Garfield Park,2025-10-27 to 2026-10-26,66,79,168,253,0.0
-community area and path,All,Standard Plan Review,Near West Side,2025-10-27 to 2026-10-26,129,54,156,207,0.78
-community area and path,All,Standard Plan Review,North Lawndale,2025-10-27 to 2026-10-26,93,91,190,243,1.08
-community area and path,All,Standard Plan Review,South Lawndale,2025-10-27 to 2026-10-26,69,116,247,330,0.0
-community area and path,All,Standard Plan Review,Lower West Side,2025-10-27 to 2026-10-26,69,105,256,384,0.0
-community area and path,All,Standard Plan Review,Loop,2025-10-27 to 2026-10-26,138,6,76,112,10.14
-community area and path,All,Standard Plan Review,Near South Side,2025-10-27 to 2026-10-26,64,20,137,164,4.69
-community area and path,All,Standard Plan Review,Armour Square,2025-10-27 to 2026-10-26,16,,,,
-community area and path,All,Standard Plan Review,Douglas,2025-10-27 to 2026-10-26,13,,,,
-community area and path,All,Standard Plan Review,Oakland,2025-10-27 to 2026-10-26,4,,,,
-community area and path,All,Standard Plan Review,Fuller Park,2025-10-27 to 2026-10-26,11,,,,
-community area and path,All,Standard Plan Review,Grand Boulevard,2025-10-27 to 2026-10-26,60,96,182,252,0.0
-community area and path,All,Standard Plan Review,Kenwood,2025-10-27 to 2026-10-26,22,106,198,247,0.0
-community area and path,All,Standard Plan Review,Washington Park,2025-10-27 to 2026-10-26,46,91,173,198,0.0
-community area and path,All,Standard Plan Review,Hyde Park,2025-10-27 to 2026-10-26,45,51,139,159,0.0
-community area and path,All,Standard Plan Review,Woodlawn,2025-10-27 to 2026-10-26,75,78,133,227,1.33
-community area and path,All,Standard Plan Review,South Shore,2025-10-27 to 2026-10-26,53,89,209,323,0.0
-community area and path,All,Standard Plan Review,Chatham,2025-10-27 to 2026-10-26,29,96,185,403,0.0
-community area and path,All,Standard Plan Review,Avalon Park,2025-10-27 to 2026-10-26,22,104,167,211,0.0
-community area and path,All,Standard Plan Review,South Chicago,2025-10-27 to 2026-10-26,36,105,209,338,0.0
-community area and path,All,Standard Plan Review,Burnside,2025-10-27 to 2026-10-26,1,,,,
-community area and path,All,Standard Plan Review,Calumet Heights,2025-10-27 to 2026-10-26,7,,,,
-community area and path,All,Standard Plan Review,Roseland,2025-10-27 to 2026-10-26,36,120,161,187,0.0
-community area and path,All,Standard Plan Review,Pullman,2025-10-27 to 2026-10-26,17,,,,
-community area and path,All,Standard Plan Review,South Deering,2025-10-27 to 2026-10-26,10,,,,
-community area and path,All,Standard Plan Review,East Side,2025-10-27 to 2026-10-26,8,,,,
-community area and path,All,Standard Plan Review,West Pullman,2025-10-27 to 2026-10-26,30,93,163,312,0.0
-community area and path,All,Standard Plan Review,Riverdale,2025-10-27 to 2026-10-26,3,,,,
-community area and path,All,Standard Plan Review,Hegewisch,2025-10-27 to 2026-10-26,2,,,,
-community area and path,All,Standard Plan Review,Garfield Ridge,2025-10-27 to 2026-10-26,28,60,135,189,0.0
-community area and path,All,Standard Plan Review,Archer Heights,2025-10-27 to 2026-10-26,13,,,,
-community area and path,All,Standard Plan Review,Brighton Park,2025-10-27 to 2026-10-26,31,102,201,227,0.0
-community area and path,All,Standard Plan Review,McKinley Park,2025-10-27 to 2026-10-26,24,118,251,291,0.0
-community area and path,All,Standard Plan Review,Bridgeport,2025-10-27 to 2026-10-26,46,97,189,276,2.17
-community area and path,All,Standard Plan Review,New City,2025-10-27 to 2026-10-26,59,119,190,324,1.69
-community area and path,All,Standard Plan Review,West Elsdon,2025-10-27 to 2026-10-26,14,,,,
-community area and path,All,Standard Plan Review,Gage Park,2025-10-27 to 2026-10-26,13,,,,
-community area and path,All,Standard Plan Review,Clearing,2025-10-27 to 2026-10-26,8,,,,
-community area and path,All,Standard Plan Review,West Lawn,2025-10-27 to 2026-10-26,12,,,,
-community area and path,All,Standard Plan Review,Chicago Lawn,2025-10-27 to 2026-10-26,35,123,274,334,0.0
-community area and path,All,Standard Plan Review,West Englewood,2025-10-27 to 2026-10-26,62,119,233,282,0.0
-community area and path,All,Standard Plan Review,Englewood,2025-10-27 to 2026-10-26,62,109,220,338,0.0
-community area and path,All,Standard Plan Review,Greater Grand Crossing,2025-10-27 to 2026-10-26,46,100,212,260,0.0
-community area and path,All,Standard Plan Review,Ashburn,2025-10-27 to 2026-10-26,19,,,,
-community area and path,All,Standard Plan Review,Auburn Gresham,2025-10-27 to 2026-10-26,59,84,154,291,0.0
-community area and path,All,Standard Plan Review,Beverly,2025-10-27 to 2026-10-26,26,104,178,294,0.0
-community area and path,All,Standard Plan Review,Washington Heights,2025-10-27 to 2026-10-26,23,98,161,336,0.0
-community area and path,All,Standard Plan Review,Mount Greenwood,2025-10-27 to 2026-10-26,24,58,123,237,4.17
-community area and path,All,Standard Plan Review,Morgan Park,2025-10-27 to 2026-10-26,33,96,161,223,0.0
-community area and path,All,Standard Plan Review,O'Hare,2025-10-27 to 2026-10-26,19,,,,
-community area and path,All,Standard Plan Review,Edgewater,2025-10-27 to 2026-10-26,54,76,166,222,5.56
-community area and path,All,Express Permit Program,Rogers Park,2025-10-27 to 2026-10-26,204,3,14,28,29.41
-community area and path,All,Express Permit Program,West Ridge,2025-10-27 to 2026-10-26,304,3,13,20,28.29
-community area and path,All,Express Permit Program,Uptown,2025-10-27 to 2026-10-26,273,4,13,20,23.81
-community area and path,All,Express Permit Program,Lincoln Square,2025-10-27 to 2026-10-26,272,3,13,22,29.04
-community area and path,All,Express Permit Program,North Center,2025-10-27 to 2026-10-26,231,1,8,17,34.2
-community area and path,All,Express Permit Program,Lake View,2025-10-27 to 2026-10-26,617,3,14,21,27.07
-community area and path,All,Express Permit Program,Lincoln Park,2025-10-27 to 2026-10-26,605,4,17,34,20.17
-community area and path,All,Express Permit Program,Near North Side,2025-10-27 to 2026-10-26,1459,5,17,28,17.07
-community area and path,All,Express Permit Program,Edison Park,2025-10-27 to 2026-10-26,66,1,13,18,39.39
-community area and path,All,Express Permit Program,Norwood Park,2025-10-27 to 2026-10-26,282,1,10,17,40.07
-community area and path,All,Express Permit Program,Jefferson Park,2025-10-27 to 2026-10-26,182,1,11,17,42.86
-community area and path,All,Express Permit Program,Forest Glen,2025-10-27 to 2026-10-26,173,1,10,28,44.51
-community area and path,All,Express Permit Program,North Park,2025-10-27 to 2026-10-26,107,1,7,18,42.06
-community area and path,All,Express Permit Program,Albany Park,2025-10-27 to 2026-10-26,209,3,13,25,31.58
-community area and path,All,Express Permit Program,Portage Park,2025-10-27 to 2026-10-26,401,1,8,15,39.65
-community area and path,All,Express Permit Program,Irving Park,2025-10-27 to 2026-10-26,315,2,11,19,36.19
-community area and path,All,Express Permit Program,Dunning,2025-10-27 to 2026-10-26,226,2,10,21,34.07
-community area and path,All,Express Permit Program,Montclare,2025-10-27 to 2026-10-26,87,6,14,23,27.59
-community area and path,All,Express Permit Program,Belmont Cragin,2025-10-27 to 2026-10-26,272,1,8,17,40.44
-community area and path,All,Express Permit Program,Hermosa,2025-10-27 to 2026-10-26,90,1,11,18,40.0
-community area and path,All,Express Permit Program,Avondale,2025-10-27 to 2026-10-26,167,3,14,25,29.94
-community area and path,All,Express Permit Program,Logan Square,2025-10-27 to 2026-10-26,457,3,15,25,29.54
-community area and path,All,Express Permit Program,Humboldt Park,2025-10-27 to 2026-10-26,296,2,10,19,30.74
-community area and path,All,Express Permit Program,West Town,2025-10-27 to 2026-10-26,635,3,14,21,24.41
-community area and path,All,Express Permit Program,Austin,2025-10-27 to 2026-10-26,620,3,14,29,27.42
-community area and path,All,Express Permit Program,West Garfield Park,2025-10-27 to 2026-10-26,133,5,15,26,19.55
-community area and path,All,Express Permit Program,East Garfield Park,2025-10-27 to 2026-10-26,139,3,12,21,22.3
-community area and path,All,Express Permit Program,Near West Side,2025-10-27 to 2026-10-26,849,2,10,20,29.68
-community area and path,All,Express Permit Program,North Lawndale,2025-10-27 to 2026-10-26,257,5,18,30,15.56
-community area and path,All,Express Permit Program,South Lawndale,2025-10-27 to 2026-10-26,230,3,12,23,26.52
-community area and path,All,Express Permit Program,Lower West Side,2025-10-27 to 2026-10-26,206,4,12,22,27.18
-community area and path,All,Express Permit Program,Loop,2025-10-27 to 2026-10-26,1482,2,8,14,28.34
-community area and path,All,Express Permit Program,Near South Side,2025-10-27 to 2026-10-26,223,2,9,16,21.08
-community area and path,All,Express Permit Program,Armour Square,2025-10-27 to 2026-10-26,35,6,25,55,22.86
-community area and path,All,Express Permit Program,Douglas,2025-10-27 to 2026-10-26,88,6,18,34,17.05
-community area and path,All,Express Permit Program,Oakland,2025-10-27 to 2026-10-26,33,3,8,18,9.09
-community area and path,All,Express Permit Program,Fuller Park,2025-10-27 to 2026-10-26,30,3,9,14,16.67
-community area and path,All,Express Permit Program,Grand Boulevard,2025-10-27 to 2026-10-26,188,3,13,22,22.87
-community area and path,All,Express Permit Program,Kenwood,2025-10-27 to 2026-10-26,124,7,19,25,11.29
-community area and path,All,Express Permit Program,Washington Park,2025-10-27 to 2026-10-26,64,6,22,38,14.06
-community area and path,All,Express Permit Program,Hyde Park,2025-10-27 to 2026-10-26,211,4,13,17,19.43
-community area and path,All,Express Permit Program,Woodlawn,2025-10-27 to 2026-10-26,179,4,14,27,23.46
-community area and path,All,Express Permit Program,South Shore,2025-10-27 to 2026-10-26,337,4,15,27,20.77
-community area and path,All,Express Permit Program,Chatham,2025-10-27 to 2026-10-26,241,4,14,22,25.31
-community area and path,All,Express Permit Program,Avalon Park,2025-10-27 to 2026-10-26,148,2,12,19,42.57
-community area and path,All,Express Permit Program,South Chicago,2025-10-27 to 2026-10-26,225,3,11,22,25.33
-community area and path,All,Express Permit Program,Burnside,2025-10-27 to 2026-10-26,25,2,7,11,36.0
-community area and path,All,Express Permit Program,Calumet Heights,2025-10-27 to 2026-10-26,176,1,8,13,42.61
-community area and path,All,Express Permit Program,Roseland,2025-10-27 to 2026-10-26,373,3,14,21,33.51
-community area and path,All,Express Permit Program,Pullman,2025-10-27 to 2026-10-26,91,3,19,32,35.16
-community area and path,All,Express Permit Program,South Deering,2025-10-27 to 2026-10-26,116,3,9,17,31.03
-community area and path,All,Express Permit Program,East Side,2025-10-27 to 2026-10-26,114,3,14,26,33.33
-community area and path,All,Express Permit Program,West Pullman,2025-10-27 to 2026-10-26,272,3,9,15,31.62
-community area and path,All,Express Permit Program,Riverdale,2025-10-27 to 2026-10-26,17,,,,
-community area and path,All,Express Permit Program,Hegewisch,2025-10-27 to 2026-10-26,87,2,7,15,18.39
-community area and path,All,Express Permit Program,Garfield Ridge,2025-10-27 to 2026-10-26,326,1,13,23,42.94
-community area and path,All,Express Permit Program,Archer Heights,2025-10-27 to 2026-10-26,80,2,9,16,27.5
-community area and path,All,Express Permit Program,Brighton Park,2025-10-27 to 2026-10-26,155,3,12,25,27.74
-community area and path,All,Express Permit Program,McKinley Park,2025-10-27 to 2026-10-26,98,1,7,16,41.84
-community area and path,All,Express Permit Program,Bridgeport,2025-10-27 to 2026-10-26,166,4,15,35,26.51
-community area and path,All,Express Permit Program,New City,2025-10-27 to 2026-10-26,255,3,13,26,22.35
-community area and path,All,Express Permit Program,West Elsdon,2025-10-27 to 2026-10-26,62,2,19,31,30.65
-community area and path,All,Express Permit Program,Gage Park,2025-10-27 to 2026-10-26,130,2,12,20,32.31
-community area and path,All,Express Permit Program,Clearing,2025-10-27 to 2026-10-26,138,3,11,15,39.13
-community area and path,All,Express Permit Program,West Lawn,2025-10-27 to 2026-10-26,177,2,9,18,32.2
-community area and path,All,Express Permit Program,Chicago Lawn,2025-10-27 to 2026-10-26,268,2,10,20,36.94
-community area and path,All,Express Permit Program,West Englewood,2025-10-27 to 2026-10-26,237,5,14,29,27.43
-community area and path,All,Express Permit Program,Englewood,2025-10-27 to 2026-10-26,206,5,16,29,19.42
-community area and path,All,Express Permit Program,Greater Grand Crossing,2025-10-27 to 2026-10-26,246,3,12,25,22.36
-community area and path,All,Express Permit Program,Ashburn,2025-10-27 to 2026-10-26,382,2,10,15,39.53
-community area and path,All,Express Permit Program,Auburn Gresham,2025-10-27 to 2026-10-26,443,3,13,23,32.28
-community area and path,All,Express Permit Program,Beverly,2025-10-27 to 2026-10-26,219,4,14,25,30.59
-community area and path,All,Express Permit Program,Washington Heights,2025-10-27 to 2026-10-26,350,3,12,21,32.29
-community area and path,All,Express Permit Program,Mount Greenwood,2025-10-27 to 2026-10-26,102,2,8,13,39.22
-community area and path,All,Express Permit Program,Morgan Park,2025-10-27 to 2026-10-26,244,2,11,20,36.89
-community area and path,All,Express Permit Program,O'Hare,2025-10-27 to 2026-10-26,312,0,3,8,61.54
-community area and path,All,Express Permit Program,Edgewater,2025-10-27 to 2026-10-26,320,3,12,24,31.25
+citywide,All,All,All,2025-10-29 to 2026-10-28,31605,6,42,90,23.72
+review path,All,Express Permit Program,All,2025-10-29 to 2026-10-28,20392,3,12,21,29.08
+review path,All,Standard Plan Review,All,2025-10-29 to 2026-10-28,3552,90,180,262,1.32
+review path,All,Self Certification,All,2025-10-29 to 2026-10-28,3006,32,72,114,0.67
+review path,All,Signs,All,2025-10-29 to 2026-10-28,2071,38,89,141,0.0
+review path,All,Elevators and Other Conveyances,All,2025-10-29 to 2026-10-28,1132,0,5,7,74.29
+review path,All,Wrecking and Demolition,All,2025-10-29 to 2026-10-28,669,47,86,121,33.03
+review path,All,Easy Permit,All,2025-10-29 to 2026-10-28,456,0,0,0,95.18
+review path,All,Direct Developer Services,All,2025-10-29 to 2026-10-28,323,113,210,384,0.0
+review path,All,Traditional Developer Services,All,2025-10-29 to 2026-10-28,4,,,,
+permit type,Express Permit Program,All,All,2025-10-29 to 2026-10-28,20392,3,12,21,29.08
+permit type and path,Express Permit Program,Express Permit Program,All,2025-10-29 to 2026-10-28,20392,3,12,21,29.08
+permit type,Renovation and Alteration,All,All,2025-10-29 to 2026-10-28,5331,59,142,211,0.41
+permit type and path,Renovation and Alteration,Standard Plan Review,All,2025-10-29 to 2026-10-28,2642,104,189,275,0.0
+permit type and path,Renovation and Alteration,Self Certification,All,2025-10-29 to 2026-10-28,2482,27,63,102,0.81
+permit type and path,Renovation and Alteration,Direct Developer Services,All,2025-10-29 to 2026-10-28,204,102,188,290,0.0
+permit type and path,Renovation and Alteration,Traditional Developer Services,All,2025-10-29 to 2026-10-28,3,,,,
+permit type,Signs,All,All,2025-10-29 to 2026-10-28,2071,38,89,141,0.0
+permit type and path,Signs,Signs,All,2025-10-29 to 2026-10-28,2071,38,89,141,0.0
+permit type,New Construction,All,All,2025-10-29 to 2026-10-28,1554,55,139,211,3.02
+permit type and path,New Construction,Standard Plan Review,All,2025-10-29 to 2026-10-28,910,44,138,209,5.16
+permit type and path,New Construction,Self Certification,All,2025-10-29 to 2026-10-28,524,56,112,167,0.0
+permit type and path,New Construction,Direct Developer Services,All,2025-10-29 to 2026-10-28,119,135,224,502,0.0
+permit type and path,New Construction,Traditional Developer Services,All,2025-10-29 to 2026-10-28,1,,,,
+permit type,Elevator Equipment,All,All,2025-10-29 to 2026-10-28,1132,0,5,7,74.29
+permit type and path,Elevator Equipment,Elevators and Other Conveyances,All,2025-10-29 to 2026-10-28,1132,0,5,7,74.29
+permit type,Wrecking and Demolition,All,All,2025-10-29 to 2026-10-28,669,47,86,121,33.03
+permit type and path,Wrecking and Demolition,Wrecking and Demolition,All,2025-10-29 to 2026-10-28,669,47,86,121,33.03
+permit type,Reinstated Revoked Permits,All,All,2025-10-29 to 2026-10-28,456,0,0,0,95.18
+permit type and path,Reinstated Revoked Permits,Easy Permit,All,2025-10-29 to 2026-10-28,456,0,0,0,95.18
+permit type,Easy Permit,All,All,2025-10-29 to 2026-10-28,0,,,,
+community area,All,All,Rogers Park,2025-10-29 to 2026-10-28,301,7,38,92,22.92
+community area,All,All,West Ridge,2025-10-29 to 2026-10-28,441,6,49,102,22.45
+community area,All,All,Uptown,2025-10-29 to 2026-10-28,432,7,49,105,21.06
+community area,All,All,Lincoln Square,2025-10-29 to 2026-10-28,475,8,57,99,21.89
+community area,All,All,North Center,2025-10-29 to 2026-10-28,507,15,57,106,20.91
+community area,All,All,Lake View,2025-10-29 to 2026-10-28,1177,10,51,103,21.24
+community area,All,All,Lincoln Park,2025-10-29 to 2026-10-28,1028,11,62,118,16.54
+community area,All,All,Near North Side,2025-10-29 to 2026-10-28,2397,7,32,69,16.44
+community area,All,All,Edison Park,2025-10-29 to 2026-10-28,109,10,60,116,25.69
+community area,All,All,Norwood Park,2025-10-29 to 2026-10-28,396,5,37,66,30.05
+community area,All,All,Jefferson Park,2025-10-29 to 2026-10-28,237,5,34,62,32.49
+community area,All,All,Forest Glen,2025-10-29 to 2026-10-28,248,6,58,125,32.26
+community area,All,All,North Park,2025-10-29 to 2026-10-28,154,4,36,97,33.77
+community area,All,All,Albany Park,2025-10-29 to 2026-10-28,306,7,46,112,25.49
+community area,All,All,Portage Park,2025-10-29 to 2026-10-28,572,4,29,63,29.9
+community area,All,All,Irving Park,2025-10-29 to 2026-10-28,515,7,52,96,25.63
+community area,All,All,Dunning,2025-10-29 to 2026-10-28,272,4,21,54,31.25
+community area,All,All,Montclare,2025-10-29 to 2026-10-28,115,8,24,86,23.48
+community area,All,All,Belmont Cragin,2025-10-29 to 2026-10-28,371,3,27,64,35.31
+community area,All,All,Hermosa,2025-10-29 to 2026-10-28,135,6,46,97,30.37
+community area,All,All,Avondale,2025-10-29 to 2026-10-28,294,13,68,137,20.07
+community area,All,All,Logan Square,2025-10-29 to 2026-10-28,811,12,70,125,20.96
+community area,All,All,Humboldt Park,2025-10-29 to 2026-10-28,512,8,71,133,23.05
+community area,All,All,West Town,2025-10-29 to 2026-10-28,1264,13,70,138,17.25
+community area,All,All,Austin,2025-10-29 to 2026-10-28,906,7,51,115,23.29
+community area,All,All,West Garfield Park,2025-10-29 to 2026-10-28,205,7,60,101,20.0
+community area,All,All,East Garfield Park,2025-10-29 to 2026-10-28,283,12,73,120,19.08
+community area,All,All,Near West Side,2025-10-29 to 2026-10-28,1588,6,41,91,22.98
+community area,All,All,North Lawndale,2025-10-29 to 2026-10-28,445,13,71,111,14.61
+community area,All,All,South Lawndale,2025-10-29 to 2026-10-28,395,8,51,115,21.77
+community area,All,All,Lower West Side,2025-10-29 to 2026-10-28,368,11,75,141,20.65
+community area,All,All,Loop,2025-10-29 to 2026-10-28,2400,4,15,34,23.29
+community area,All,All,Near South Side,2025-10-29 to 2026-10-28,364,3,27,77,20.88
+community area,All,All,Armour Square,2025-10-29 to 2026-10-28,75,14,82,163,20.0
+community area,All,All,Douglas,2025-10-29 to 2026-10-28,140,8,43,140,25.0
+community area,All,All,Oakland,2025-10-29 to 2026-10-28,46,3,13,65,17.39
+community area,All,All,Fuller Park,2025-10-29 to 2026-10-28,57,7,58,151,19.3
+community area,All,All,Grand Boulevard,2025-10-29 to 2026-10-28,312,8,68,121,19.23
+community area,All,All,Kenwood,2025-10-29 to 2026-10-28,195,11,52,108,12.82
+community area,All,All,Washington Park,2025-10-29 to 2026-10-28,133,18,94,148,14.29
+community area,All,All,Hyde Park,2025-10-29 to 2026-10-28,350,6,27,56,17.14
+community area,All,All,Woodlawn,2025-10-29 to 2026-10-28,324,9,58,112,19.14
+community area,All,All,South Shore,2025-10-29 to 2026-10-28,449,6,35,83,21.83
+community area,All,All,Chatham,2025-10-29 to 2026-10-28,320,6,35,65,22.19
+community area,All,All,Avalon Park,2025-10-29 to 2026-10-28,188,5,28,85,34.57
+community area,All,All,South Chicago,2025-10-29 to 2026-10-28,307,5,40,91,24.1
+community area,All,All,Burnside,2025-10-29 to 2026-10-28,34,6,47,48,29.41
+community area,All,All,Calumet Heights,2025-10-29 to 2026-10-28,190,1,10,20,40.53
+community area,All,All,Roseland,2025-10-29 to 2026-10-28,496,5,26,69,31.25
+community area,All,All,Pullman,2025-10-29 to 2026-10-28,130,10,73,125,26.15
+community area,All,All,South Deering,2025-10-29 to 2026-10-28,158,5,30,38,27.22
+community area,All,All,East Side,2025-10-29 to 2026-10-28,138,4,22,44,31.88
+community area,All,All,West Pullman,2025-10-29 to 2026-10-28,349,5,20,59,29.23
+community area,All,All,Riverdale,2025-10-29 to 2026-10-28,39,49,138,149,17.95
+community area,All,All,Hegewisch,2025-10-29 to 2026-10-28,96,2,10,16,16.67
+community area,All,All,Garfield Ridge,2025-10-29 to 2026-10-28,408,4,24,58,36.03
+community area,All,All,Archer Heights,2025-10-29 to 2026-10-28,112,5,33,62,22.32
+community area,All,All,Brighton Park,2025-10-29 to 2026-10-28,227,7,54,111,23.35
+community area,All,All,McKinley Park,2025-10-29 to 2026-10-28,158,5,72,160,30.38
+community area,All,All,Bridgeport,2025-10-29 to 2026-10-28,265,9,56,130,21.89
+community area,All,All,New City,2025-10-29 to 2026-10-28,411,8,52,129,20.44
+community area,All,All,West Elsdon,2025-10-29 to 2026-10-28,89,7,55,76,23.6
+community area,All,All,Gage Park,2025-10-29 to 2026-10-28,189,6,50,116,24.87
+community area,All,All,Clearing,2025-10-29 to 2026-10-28,158,3,15,40,36.08
+community area,All,All,West Lawn,2025-10-29 to 2026-10-28,221,5,18,40,27.15
+community area,All,All,Chicago Lawn,2025-10-29 to 2026-10-28,337,4,26,64,31.16
+community area,All,All,West Englewood,2025-10-29 to 2026-10-28,388,8,61,125,25.52
+community area,All,All,Englewood,2025-10-29 to 2026-10-28,345,10,67,121,19.42
+community area,All,All,Greater Grand Crossing,2025-10-29 to 2026-10-28,345,5,45,93,20.87
+community area,All,All,Ashburn,2025-10-29 to 2026-10-28,438,3,14,26,36.07
+community area,All,All,Auburn Gresham,2025-10-29 to 2026-10-28,585,5,29,82,28.38
+community area,All,All,Beverly,2025-10-29 to 2026-10-28,266,5,27,81,27.82
+community area,All,All,Washington Heights,2025-10-29 to 2026-10-28,419,4,24,76,29.83
+community area,All,All,Mount Greenwood,2025-10-29 to 2026-10-28,167,7,56,69,28.14
+community area,All,All,Morgan Park,2025-10-29 to 2026-10-28,312,4,23,89,31.73
+community area,All,All,O'Hare,2025-10-29 to 2026-10-28,405,0,7,26,54.32
+community area,All,All,Edgewater,2025-10-29 to 2026-10-28,509,7,51,90,24.75
+community area and path,All,Standard Plan Review,Rogers Park,2025-10-29 to 2026-10-28,45,85,155,216,2.22
+community area and path,All,Standard Plan Review,West Ridge,2025-10-29 to 2026-10-28,61,84,227,356,1.64
+community area and path,All,Standard Plan Review,Uptown,2025-10-29 to 2026-10-28,56,93,166,206,0.0
+community area and path,All,Standard Plan Review,Lincoln Square,2025-10-29 to 2026-10-28,62,78,197,283,0.0
+community area and path,All,Standard Plan Review,North Center,2025-10-29 to 2026-10-28,52,81,182,231,5.77
+community area and path,All,Standard Plan Review,Lake View,2025-10-29 to 2026-10-28,148,68,164,269,4.05
+community area and path,All,Standard Plan Review,Lincoln Park,2025-10-29 to 2026-10-28,116,83,149,211,1.72
+community area and path,All,Standard Plan Review,Near North Side,2025-10-29 to 2026-10-28,129,72,165,210,3.1
+community area and path,All,Standard Plan Review,Edison Park,2025-10-29 to 2026-10-28,17,,,,
+community area and path,All,Standard Plan Review,Norwood Park,2025-10-29 to 2026-10-28,39,73,153,322,0.0
+community area and path,All,Standard Plan Review,Jefferson Park,2025-10-29 to 2026-10-28,32,55,139,239,3.12
+community area and path,All,Standard Plan Review,Forest Glen,2025-10-29 to 2026-10-28,31,79,160,238,0.0
+community area and path,All,Standard Plan Review,North Park,2025-10-29 to 2026-10-28,22,106,200,252,4.55
+community area and path,All,Standard Plan Review,Albany Park,2025-10-29 to 2026-10-28,44,103,161,206,0.0
+community area and path,All,Standard Plan Review,Portage Park,2025-10-29 to 2026-10-28,51,77,159,199,0.0
+community area and path,All,Standard Plan Review,Irving Park,2025-10-29 to 2026-10-28,80,82,155,263,0.0
+community area and path,All,Standard Plan Review,Dunning,2025-10-29 to 2026-10-28,22,106,271,570,0.0
+community area and path,All,Standard Plan Review,Montclare,2025-10-29 to 2026-10-28,10,,,,
+community area and path,All,Standard Plan Review,Belmont Cragin,2025-10-29 to 2026-10-28,38,84,162,209,2.63
+community area and path,All,Standard Plan Review,Hermosa,2025-10-29 to 2026-10-28,17,,,,
+community area and path,All,Standard Plan Review,Avondale,2025-10-29 to 2026-10-28,50,133,262,378,0.0
+community area and path,All,Standard Plan Review,Logan Square,2025-10-29 to 2026-10-28,128,119,221,289,0.0
+community area and path,All,Standard Plan Review,Humboldt Park,2025-10-29 to 2026-10-28,109,91,205,322,0.0
+community area and path,All,Standard Plan Review,West Town,2025-10-29 to 2026-10-28,177,114,200,287,0.56
+community area and path,All,Standard Plan Review,Austin,2025-10-29 to 2026-10-28,103,103,197,301,0.0
+community area and path,All,Standard Plan Review,West Garfield Park,2025-10-29 to 2026-10-28,37,86,236,314,0.0
+community area and path,All,Standard Plan Review,East Garfield Park,2025-10-29 to 2026-10-28,68,79,168,253,0.0
+community area and path,All,Standard Plan Review,Near West Side,2025-10-29 to 2026-10-28,129,54,148,186,0.78
+community area and path,All,Standard Plan Review,North Lawndale,2025-10-29 to 2026-10-28,92,91,190,243,1.09
+community area and path,All,Standard Plan Review,South Lawndale,2025-10-29 to 2026-10-28,68,115,247,330,0.0
+community area and path,All,Standard Plan Review,Lower West Side,2025-10-29 to 2026-10-28,69,105,256,384,0.0
+community area and path,All,Standard Plan Review,Loop,2025-10-29 to 2026-10-28,137,6,75,105,10.22
+community area and path,All,Standard Plan Review,Near South Side,2025-10-29 to 2026-10-28,64,19,136,164,4.69
+community area and path,All,Standard Plan Review,Armour Square,2025-10-29 to 2026-10-28,16,,,,
+community area and path,All,Standard Plan Review,Douglas,2025-10-29 to 2026-10-28,13,,,,
+community area and path,All,Standard Plan Review,Oakland,2025-10-29 to 2026-10-28,4,,,,
+community area and path,All,Standard Plan Review,Fuller Park,2025-10-29 to 2026-10-28,11,,,,
+community area and path,All,Standard Plan Review,Grand Boulevard,2025-10-29 to 2026-10-28,59,106,186,288,0.0
+community area and path,All,Standard Plan Review,Kenwood,2025-10-29 to 2026-10-28,21,106,198,247,0.0
+community area and path,All,Standard Plan Review,Washington Park,2025-10-29 to 2026-10-28,46,91,148,189,0.0
+community area and path,All,Standard Plan Review,Hyde Park,2025-10-29 to 2026-10-28,45,51,139,159,0.0
+community area and path,All,Standard Plan Review,Woodlawn,2025-10-29 to 2026-10-28,73,78,133,227,1.37
+community area and path,All,Standard Plan Review,South Shore,2025-10-29 to 2026-10-28,54,89,210,323,0.0
+community area and path,All,Standard Plan Review,Chatham,2025-10-29 to 2026-10-28,29,96,185,403,0.0
+community area and path,All,Standard Plan Review,Avalon Park,2025-10-29 to 2026-10-28,22,104,167,211,0.0
+community area and path,All,Standard Plan Review,South Chicago,2025-10-29 to 2026-10-28,37,105,209,338,0.0
+community area and path,All,Standard Plan Review,Burnside,2025-10-29 to 2026-10-28,1,,,,
+community area and path,All,Standard Plan Review,Calumet Heights,2025-10-29 to 2026-10-28,7,,,,
+community area and path,All,Standard Plan Review,Roseland,2025-10-29 to 2026-10-28,36,120,161,187,0.0
+community area and path,All,Standard Plan Review,Pullman,2025-10-29 to 2026-10-28,17,,,,
+community area and path,All,Standard Plan Review,South Deering,2025-10-29 to 2026-10-28,10,,,,
+community area and path,All,Standard Plan Review,East Side,2025-10-29 to 2026-10-28,7,,,,
+community area and path,All,Standard Plan Review,West Pullman,2025-10-29 to 2026-10-28,28,91,163,332,0.0
+community area and path,All,Standard Plan Review,Riverdale,2025-10-29 to 2026-10-28,4,,,,
+community area and path,All,Standard Plan Review,Hegewisch,2025-10-29 to 2026-10-28,2,,,,
+community area and path,All,Standard Plan Review,Garfield Ridge,2025-10-29 to 2026-10-28,28,60,135,189,0.0
+community area and path,All,Standard Plan Review,Archer Heights,2025-10-29 to 2026-10-28,13,,,,
+community area and path,All,Standard Plan Review,Brighton Park,2025-10-29 to 2026-10-28,30,98,201,227,0.0
+community area and path,All,Standard Plan Review,McKinley Park,2025-10-29 to 2026-10-28,24,118,231,291,0.0
+community area and path,All,Standard Plan Review,Bridgeport,2025-10-29 to 2026-10-28,45,117,189,276,2.22
+community area and path,All,Standard Plan Review,New City,2025-10-29 to 2026-10-28,57,121,190,324,1.75
+community area and path,All,Standard Plan Review,West Elsdon,2025-10-29 to 2026-10-28,14,,,,
+community area and path,All,Standard Plan Review,Gage Park,2025-10-29 to 2026-10-28,13,,,,
+community area and path,All,Standard Plan Review,Clearing,2025-10-29 to 2026-10-28,9,,,,
+community area and path,All,Standard Plan Review,West Lawn,2025-10-29 to 2026-10-28,12,,,,
+community area and path,All,Standard Plan Review,Chicago Lawn,2025-10-29 to 2026-10-28,34,110,274,334,0.0
+community area and path,All,Standard Plan Review,West Englewood,2025-10-29 to 2026-10-28,61,119,233,282,0.0
+community area and path,All,Standard Plan Review,Englewood,2025-10-29 to 2026-10-28,61,109,174,338,0.0
+community area and path,All,Standard Plan Review,Greater Grand Crossing,2025-10-29 to 2026-10-28,46,100,212,260,0.0
+community area and path,All,Standard Plan Review,Ashburn,2025-10-29 to 2026-10-28,18,,,,
+community area and path,All,Standard Plan Review,Auburn Gresham,2025-10-29 to 2026-10-28,60,84,154,246,0.0
+community area and path,All,Standard Plan Review,Beverly,2025-10-29 to 2026-10-28,26,104,178,294,0.0
+community area and path,All,Standard Plan Review,Washington Heights,2025-10-29 to 2026-10-28,23,98,161,336,0.0
+community area and path,All,Standard Plan Review,Mount Greenwood,2025-10-29 to 2026-10-28,24,58,123,237,4.17
+community area and path,All,Standard Plan Review,Morgan Park,2025-10-29 to 2026-10-28,34,96,164,288,0.0
+community area and path,All,Standard Plan Review,O'Hare,2025-10-29 to 2026-10-28,19,,,,
+community area and path,All,Standard Plan Review,Edgewater,2025-10-29 to 2026-10-28,55,77,166,222,5.45
+community area and path,All,Express Permit Program,Rogers Park,2025-10-29 to 2026-10-28,202,3,14,28,30.2
+community area and path,All,Express Permit Program,West Ridge,2025-10-29 to 2026-10-28,301,3,12,20,28.24
+community area and path,All,Express Permit Program,Uptown,2025-10-29 to 2026-10-28,270,4,13,21,23.33
+community area and path,All,Express Permit Program,Lincoln Square,2025-10-29 to 2026-10-28,271,2,13,22,29.52
+community area and path,All,Express Permit Program,North Center,2025-10-29 to 2026-10-28,231,1,8,17,34.2
+community area and path,All,Express Permit Program,Lake View,2025-10-29 to 2026-10-28,615,3,14,21,27.32
+community area and path,All,Express Permit Program,Lincoln Park,2025-10-29 to 2026-10-28,600,4,17,34,19.83
+community area and path,All,Express Permit Program,Near North Side,2025-10-29 to 2026-10-28,1444,5,17,28,16.76
+community area and path,All,Express Permit Program,Edison Park,2025-10-29 to 2026-10-28,66,1,13,18,39.39
+community area and path,All,Express Permit Program,Norwood Park,2025-10-29 to 2026-10-28,286,1,10,17,39.51
+community area and path,All,Express Permit Program,Jefferson Park,2025-10-29 to 2026-10-28,177,1,11,19,42.37
+community area and path,All,Express Permit Program,Forest Glen,2025-10-29 to 2026-10-28,174,1,10,28,44.25
+community area and path,All,Express Permit Program,North Park,2025-10-29 to 2026-10-28,106,1,7,18,42.45
+community area and path,All,Express Permit Program,Albany Park,2025-10-29 to 2026-10-28,211,3,13,21,31.75
+community area and path,All,Express Permit Program,Portage Park,2025-10-29 to 2026-10-28,400,1,8,15,39.25
+community area and path,All,Express Permit Program,Irving Park,2025-10-29 to 2026-10-28,315,2,11,18,36.19
+community area and path,All,Express Permit Program,Dunning,2025-10-29 to 2026-10-28,227,2,10,21,34.36
+community area and path,All,Express Permit Program,Montclare,2025-10-29 to 2026-10-28,87,5,14,23,27.59
+community area and path,All,Express Permit Program,Belmont Cragin,2025-10-29 to 2026-10-28,272,1,8,17,40.81
+community area and path,All,Express Permit Program,Hermosa,2025-10-29 to 2026-10-28,90,2,11,18,40.0
+community area and path,All,Express Permit Program,Avondale,2025-10-29 to 2026-10-28,167,3,14,25,29.94
+community area and path,All,Express Permit Program,Logan Square,2025-10-29 to 2026-10-28,451,3,15,24,29.27
+community area and path,All,Express Permit Program,Humboldt Park,2025-10-29 to 2026-10-28,296,2,10,19,31.42
+community area and path,All,Express Permit Program,West Town,2025-10-29 to 2026-10-28,629,3,14,21,24.32
+community area and path,All,Express Permit Program,Austin,2025-10-29 to 2026-10-28,622,3,14,29,27.49
+community area and path,All,Express Permit Program,West Garfield Park,2025-10-29 to 2026-10-28,133,5,15,27,19.55
+community area and path,All,Express Permit Program,East Garfield Park,2025-10-29 to 2026-10-28,139,3,12,21,22.3
+community area and path,All,Express Permit Program,Near West Side,2025-10-29 to 2026-10-28,838,2,10,20,29.71
+community area and path,All,Express Permit Program,North Lawndale,2025-10-29 to 2026-10-28,258,5,19,30,15.5
+community area and path,All,Express Permit Program,South Lawndale,2025-10-29 to 2026-10-28,230,3,12,23,26.52
+community area and path,All,Express Permit Program,Lower West Side,2025-10-29 to 2026-10-28,202,4,12,22,27.23
+community area and path,All,Express Permit Program,Loop,2025-10-29 to 2026-10-28,1482,2,8,14,28.68
+community area and path,All,Express Permit Program,Near South Side,2025-10-29 to 2026-10-28,220,2,8,16,21.82
+community area and path,All,Express Permit Program,Armour Square,2025-10-29 to 2026-10-28,35,6,25,55,22.86
+community area and path,All,Express Permit Program,Douglas,2025-10-29 to 2026-10-28,86,6,18,34,17.44
+community area and path,All,Express Permit Program,Oakland,2025-10-29 to 2026-10-28,32,3,8,13,9.38
+community area and path,All,Express Permit Program,Fuller Park,2025-10-29 to 2026-10-28,29,4,14,20,13.79
+community area and path,All,Express Permit Program,Grand Boulevard,2025-10-29 to 2026-10-28,188,3,13,22,22.87
+community area and path,All,Express Permit Program,Kenwood,2025-10-29 to 2026-10-28,125,7,19,25,11.2
+community area and path,All,Express Permit Program,Washington Park,2025-10-29 to 2026-10-28,64,6,22,38,14.06
+community area and path,All,Express Permit Program,Hyde Park,2025-10-29 to 2026-10-28,210,4,13,17,19.52
+community area and path,All,Express Permit Program,Woodlawn,2025-10-29 to 2026-10-28,178,4,13,26,23.6
+community area and path,All,Express Permit Program,South Shore,2025-10-29 to 2026-10-28,336,4,15,27,20.83
+community area and path,All,Express Permit Program,Chatham,2025-10-29 to 2026-10-28,240,4,14,22,25.42
+community area and path,All,Express Permit Program,Avalon Park,2025-10-29 to 2026-10-28,149,3,12,19,42.28
+community area and path,All,Express Permit Program,South Chicago,2025-10-29 to 2026-10-28,225,3,11,22,25.78
+community area and path,All,Express Permit Program,Burnside,2025-10-29 to 2026-10-28,24,1,7,11,37.5
+community area and path,All,Express Permit Program,Calumet Heights,2025-10-29 to 2026-10-28,175,1,8,13,42.86
+community area and path,All,Express Permit Program,Roseland,2025-10-29 to 2026-10-28,373,3,14,21,33.78
+community area and path,All,Express Permit Program,Pullman,2025-10-29 to 2026-10-28,90,3,19,32,35.56
+community area and path,All,Express Permit Program,South Deering,2025-10-29 to 2026-10-28,117,3,9,17,30.77
+community area and path,All,Express Permit Program,East Side,2025-10-29 to 2026-10-28,112,3,14,26,33.93
+community area and path,All,Express Permit Program,West Pullman,2025-10-29 to 2026-10-28,272,3,9,15,31.99
+community area and path,All,Express Permit Program,Riverdale,2025-10-29 to 2026-10-28,17,,,,
+community area and path,All,Express Permit Program,Hegewisch,2025-10-29 to 2026-10-28,86,2,7,15,18.6
+community area and path,All,Express Permit Program,Garfield Ridge,2025-10-29 to 2026-10-28,327,1,13,22,43.12
+community area and path,All,Express Permit Program,Archer Heights,2025-10-29 to 2026-10-28,82,2,10,19,26.83
+community area and path,All,Express Permit Program,Brighton Park,2025-10-29 to 2026-10-28,154,3,12,25,27.92
+community area and path,All,Express Permit Program,McKinley Park,2025-10-29 to 2026-10-28,95,1,7,16,41.05
+community area and path,All,Express Permit Program,Bridgeport,2025-10-29 to 2026-10-28,165,4,15,35,25.45
+community area and path,All,Express Permit Program,New City,2025-10-29 to 2026-10-28,252,3,13,26,22.62
+community area and path,All,Express Permit Program,West Elsdon,2025-10-29 to 2026-10-28,63,2,19,31,30.16
+community area and path,All,Express Permit Program,Gage Park,2025-10-29 to 2026-10-28,131,2,12,20,32.06
+community area and path,All,Express Permit Program,Clearing,2025-10-29 to 2026-10-28,138,3,9,15,39.13
+community area and path,All,Express Permit Program,West Lawn,2025-10-29 to 2026-10-28,177,3,9,18,31.64
+community area and path,All,Express Permit Program,Chicago Lawn,2025-10-29 to 2026-10-28,270,2,10,18,36.67
+community area and path,All,Express Permit Program,West Englewood,2025-10-29 to 2026-10-28,236,5,14,29,27.54
+community area and path,All,Express Permit Program,Englewood,2025-10-29 to 2026-10-28,205,5,16,28,19.51
+community area and path,All,Express Permit Program,Greater Grand Crossing,2025-10-29 to 2026-10-28,242,3,12,24,21.9
+community area and path,All,Express Permit Program,Ashburn,2025-10-29 to 2026-10-28,385,2,9,15,40.0
+community area and path,All,Express Permit Program,Auburn Gresham,2025-10-29 to 2026-10-28,445,3,13,23,32.13
+community area and path,All,Express Permit Program,Beverly,2025-10-29 to 2026-10-28,219,4,14,25,30.59
+community area and path,All,Express Permit Program,Washington Heights,2025-10-29 to 2026-10-28,351,3,12,21,31.91
+community area and path,All,Express Permit Program,Mount Greenwood,2025-10-29 to 2026-10-28,103,2,8,13,38.83
+community area and path,All,Express Permit Program,Morgan Park,2025-10-29 to 2026-10-28,243,2,11,19,37.04
+community area and path,All,Express Permit Program,O'Hare,2025-10-29 to 2026-10-28,320,0,3,7,62.19
+community area and path,All,Express Permit Program,Edgewater,2025-10-29 to 2026-10-28,319,3,12,24,31.35
 month,All,All,All,2024-10,3155,8,33,71,24.22
 month,All,All,All,2024-11,2231,8,39,78,22.01
 month,All,All,All,2024-12,1901,11,44,85,21.94

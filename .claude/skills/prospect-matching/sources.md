@@ -9,7 +9,9 @@ Todd, Oct 22, 2026, 10:55 pm, live chat: "Let's go with your recommendations" (w
 
 Official lists are looked up one business at a time, never pulled in bulk, and nothing from them (a person's name, a phone, a license number) is stored; read each site's terms once on first use (Legal desk, Oct 22, item 8).
 
-The ladder and limits do not change: the City's owner record, the business's own site, then Hunter at most 5 searches a run across every type; owner-read inboxes only; two checker subagents re-read each site; no form, call, sign-up or purchase.
+The ladder and limits do not change: the City's owner record, the business's own site, then Hunter at most 5 searches a run across every type; owner-read inboxes, or for chicago-construction one role inbox under pnf_rules.construction_role_inbox (Todd, Oct 29: same conditions as the pest seat, legal/reviews/2026-10-29-construction-role-inbox.md); two checker subagents re-read each site; no form, call, sign-up or purchase.
+
+Construction role inbox (Todd, Oct 29): when a chicago-construction site names no owner, one exact role inbox (info, office, contact, hello, mail, team, admin, general, inquiry, sales) on the site's own domain counts. Store emailSource "site", emailSourceUrl (the page showing it), emailStatus unverified and siteNotice "none" only after robots.txt allows that page and the site shows no no-solicitation, no-unsolicited-email, do-not-collect or no-share notice. Never guess an address. A named owner on the site still wins.
 
 ## Commission sellers for the licenses list (Todd, Oct 23, decision 4; Oct 24: POS first, then insurance)
 Scope: chicago-licenses only, Chicago and its near suburbs serving Chicago businesses. Count emails only (email/L2-COMMISSION.md), sales@ only.

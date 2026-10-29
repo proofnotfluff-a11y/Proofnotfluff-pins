@@ -1,0 +1,18 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "at": "2026-10-29T17:46:21-05:00",
+ "build": "e0c1d27",
+ "pass": true,
+ "score": {
+  "numbers": 5,
+  "mismatches": 0
+ },
+ "reasons": [
+  "04_scene/scene.js NOTES and quoteSheet flag read 'blinds?' and 'Blinds: not on your list' while facts.json story has 'blinds x6?' and 'Blinds: not on your price list'; example story text marked EXAMPLE, not data, so not a mismatch. Optional: align them.",
+  "Base note, no fix needed: Jobber chart alt text says 'among home service businesses' for 54%, body text says among owners who adopted AI; voice and screen follow the body text."
+ ],
+ "sources_checked": [
+  "https://www.getjobber.com/home-service-trends-report/: '54% use it for quoting' among adopters; 1,050 owners, Conjointly, Dec 2025, plus or minus 3 pts; trade source; story items labeled examples; no real person; no em or en dashes."
+ ]
+}

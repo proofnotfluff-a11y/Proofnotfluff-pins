@@ -1,44 +1,44 @@
 {
  "product": "Chicago Restaurant Inspection Leads",
- "asOf": "2026-10-27",
- "asOfText": "Oct 27, 2026",
- "through": "2026-10-26",
- "throughText": "Oct 26, 2026",
+ "asOf": "2026-10-29",
+ "asOfText": "Oct 29, 2026",
+ "through": "2026-10-28",
+ "throughText": "Oct 28, 2026",
  "window": {
-  "from": "2026-09-27",
-  "to": "2026-10-26",
-  "newFrom": "2026-10-20",
-  "repeatFrom": "2026-07-29"
+  "from": "2026-09-29",
+  "to": "2026-10-28",
+  "newFrom": "2026-10-22",
+  "repeatFrom": "2026-07-31"
  },
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-27T16:21:16+00:00",
-  "rowsUpdatedAt": "2026-10-27T09:21:34+00:00",
+  "fetchedAt": "2026-10-29T21:44:48+00:00",
+  "rowsUpdatedAt": "2026-10-29T09:08:12+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "places": 253,
-  "flagged": 130,
-  "opening": 128,
-  "repeat": 18,
-  "new": 62,
+  "places": 269,
+  "flagged": 136,
+  "opening": 138,
+  "repeat": 20,
+  "new": 40,
   "byCat": {
-   "pests": 88,
-   "hood": 28,
-   "drain": 16,
-   "clean": 102
+   "pests": 94,
+   "hood": 29,
+   "drain": 18,
+   "clean": 103
   },
-  "flaggedFail": 98,
-  "openingPassed": 95,
+  "flaggedFail": 102,
+  "openingPassed": 104,
   "excluded": {
    "business name is a person's name": 2,
-   "school, day care, hospital, senior or mobile vendor": 49,
-   "the City's latest result is out of business or not located": 2
+   "school, day care, hospital, senior or mobile vendor": 54,
+   "the City's latest result is out of business or not located": 3
   },
-  "rowsRead": 1234,
-  "historyRead": 770,
+  "rowsRead": 1256,
+  "historyRead": 762,
   "areas": [
    [
     "Loop",
@@ -65,6 +65,18 @@
     10
    ],
    [
+    "Albany Park",
+    8
+   ],
+   [
+    "Brighton Park",
+    8
+   ],
+   [
+    "Gage Park",
+    8
+   ],
+   [
     "South Lawndale",
     8
    ],
@@ -77,11 +89,15 @@
     8
    ],
    [
-    "Albany Park",
+    "Near North Side",
     7
    ],
    [
     "Uptown",
+    7
+   ],
+   [
+    "South Shore",
     7
    ],
    [
@@ -93,20 +109,8 @@
     7
    ],
    [
-    "Gage Park",
-    7
-   ],
-   [
-    "Brighton Park",
-    7
-   ],
-   [
     "Lower West Side",
     7
-   ],
-   [
-    "Lincoln Square",
-    6
    ],
    [
     "Lincoln Park",
@@ -117,15 +121,15 @@
     5
    ],
    [
-    "Near North Side",
+    "Lincoln Square",
     5
    ],
    [
-    "South Shore",
-    5
+    "Auburn Gresham",
+    4
    ],
    [
-    "Hyde Park",
+    "Greater Grand Crossing",
     4
    ],
    [
@@ -133,7 +137,15 @@
     4
    ],
    [
-    "Avondale",
+    "Hyde Park",
+    4
+   ],
+   [
+    "Beverly",
+    3
+   ],
+   [
+    "West Englewood",
     3
    ],
    [
@@ -141,11 +153,11 @@
     3
    ],
    [
-    "Edgewater",
+    "Avondale",
     3
    ],
    [
-    "Dunning",
+    "Edgewater",
     3
    ],
    [
@@ -153,11 +165,11 @@
     3
    ],
    [
-    "Roseland",
+    "Dunning",
     3
    ],
    [
-    "Auburn Gresham",
+    "Roseland",
     3
    ],
    [
@@ -169,7 +181,15 @@
     3
    ],
    [
-    "West Englewood",
+    "Avalon Park",
+    2
+   ],
+   [
+    "Ashburn",
+    2
+   ],
+   [
+    "Bridgeport",
     2
    ],
    [
@@ -177,7 +197,7 @@
     2
    ],
    [
-    "Bridgeport",
+    "Englewood",
     2
    ],
    [
@@ -189,14 +209,6 @@
     2
    ],
    [
-    "Greater Grand Crossing",
-    2
-   ],
-   [
-    "Beverly",
-    2
-   ],
-   [
     "Jefferson Park",
     2
    ],
@@ -205,12 +217,20 @@
     2
    ],
    [
-    "North Center",
+    "Near South Side",
     2
    ],
    [
-    "Near South Side",
-    2
+    "Chicago Lawn",
+    1
+   ],
+   [
+    "Woodlawn",
+    1
+   ],
+   [
+    "Archer Heights",
+    1
    ],
    [
     "Washington Park",
@@ -225,11 +245,7 @@
     1
    ],
    [
-    "Englewood",
-    1
-   ],
-   [
-    "New City",
+    "North Center",
     1
    ],
    [
@@ -237,7 +253,7 @@
     1
    ],
    [
-    "Ashburn",
+    "New City",
     1
    ],
    [
@@ -250,10 +266,6 @@
    ],
    [
     "Hermosa",
-    1
-   ],
-   [
-    "Avalon Park",
     1
    ],
    [
@@ -295,35 +307,36 @@
  "examples": {
   "flagged": [
    {
-    "type": "Restaurant",
-    "area": "Near West Side",
-    "date": "2026-10-23",
-    "result": "Pass w/ Conditions",
-    "inspectionType": "Canvass",
+    "type": "Grocery Store",
+    "area": "Woodlawn",
+    "date": "2026-10-27",
+    "result": "Fail",
+    "inspectionType": "Complaint",
     "categories": [
-     "Cleaning"
+     "Pests"
     ]
    },
    {
     "type": "Restaurant",
-    "area": "O'Hare",
-    "date": "2026-10-23",
+    "area": "Albany Park",
+    "date": "2026-10-27",
     "result": "Fail",
-    "inspectionType": "Canvass Re-Inspection",
+    "inspectionType": "Canvass",
     "categories": [
      "Pests",
      "Hood and exhaust",
+     "Grease trap and drains",
      "Cleaning"
     ]
    },
    {
     "type": "Restaurant",
-    "area": "Norwood Park",
-    "date": "2026-10-22",
+    "area": "Avalon Park",
+    "date": "2026-10-27",
     "result": "Pass w/ Conditions",
-    "inspectionType": "Canvass Re-Inspection",
+    "inspectionType": "Canvass",
     "categories": [
-     "Cleaning"
+     "Pests"
     ]
    }
   ],
@@ -342,21 +355,22 @@
    },
    {
     "type": "Restaurant",
-    "area": "Roseland",
-    "date": "2026-10-14",
+    "area": "Greater Grand Crossing",
+    "date": "2026-10-23",
     "result": "Fail",
     "inspectionType": "Complaint Re-Inspection",
     "categories": [
      "Pests",
+     "Hood and exhaust",
      "Cleaning"
     ]
    },
    {
-    "type": "Not given",
-    "area": "South Lawndale",
-    "date": "2026-10-14",
+    "type": "Restaurant",
+    "area": "West Elsdon",
+    "date": "2026-10-22",
     "result": "Fail",
-    "inspectionType": "Complaint Re-Inspection",
+    "inspectionType": "Canvass Re-Inspection",
     "categories": [
      "Pests"
     ]
@@ -364,31 +378,31 @@
   ],
   "opening": [
    {
-    "name": "Legacy Kitchen",
-    "address": "7354 S Ashland Ave",
-    "area": "West Englewood",
-    "type": "Restaurant",
-    "date": "2026-10-26",
+    "name": "Barney Callaghan's Pub",
+    "address": "10618 S Western Ave",
+    "area": "Beverly",
+    "type": "Liquor",
+    "date": "2026-10-27",
     "result": "Pass",
     "inspectionType": "License"
    },
    {
-    "name": "Paleta Haus",
-    "address": "4636 N Cumberland Ave",
-    "area": "O'Hare",
+    "name": "Centennial Crafted Beer & Eatery",
+    "address": "733 N La Salle",
+    "area": "Near North Side",
     "type": "Restaurant",
-    "date": "2026-10-26",
+    "date": "2026-10-27",
     "result": "Pass",
     "inspectionType": "License"
    },
    {
-    "name": "Ann Sather Restaurant",
-    "address": "3042 N Broadway",
-    "area": "Lake View",
+    "name": "Cha-Chin",
+    "address": "407 N Clark St",
+    "area": "Near North Side",
     "type": "Restaurant",
-    "date": "2026-10-23",
+    "date": "2026-10-27",
     "result": "Pass",
-    "inspectionType": "License Re-Inspection"
+    "inspectionType": "License"
    }
   ]
  }

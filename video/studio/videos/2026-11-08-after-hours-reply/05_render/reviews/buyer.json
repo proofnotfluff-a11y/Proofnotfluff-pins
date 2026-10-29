@@ -1,0 +1,21 @@
+{
+ "gate": "buyer",
+ "round": 0,
+ "at": "2026-10-29T17:45:54-05:00",
+ "build": "e0c1d27",
+ "pass": true,
+ "score": {
+  "stop": "yes",
+  "send": "yes",
+  "save": "yes",
+  "follow_or_link": "yes"
+ },
+ "reasons": [
+  "1. What it tells me: when a quote request lands overnight, paste it into an AI chat app with a three-line prompt and my rates, check the draft and send it before my first job, so I am not still typing at lunch while they book someone else.",
+  "2. Stop: yes. The first frame reads 'Quote request, 11 pm. Seen at 7 am.' over a real-looking lead ('move-out clean before Friday. 2 bed, 1 bath. How much?'). That is my exact morning, and the voice opens on the same line. Minor: the bottom 40 percent of frame 0.8s is empty dark space, so the hook reads small on a phone.",
+  "3. Send: yes, to whoever answers my quote requests; the caption asks for exactly that. Save: yes, the prompt is short, usable tonight and printed word for word in the caption. Follow or link: yes on follow, mild on the link; 'AI lead lesson 1' tells me a series is coming, and 'Free tools for trade owners: link in bio' is low pressure.",
+  "4. Hype, fake urgency, pitch, slop, robotic: none found. The 26 percent figure is sourced in the caption (Jobber, 1,050 owners, Dec 2025), 'You read it, fix it, and send it yourself' keeps me in control, and nothing is sold. The AI label is on.",
+  "5. Unclear to a stranger: (a) transcript 00:21.9 and caption line 'Use my rates below.' never tell me to actually paste my rates under the prompt; a stranger who copies only the quoted prompt gets made-up prices. Fix: add 'then paste your price list under it' after the quoted prompt in the caption, or have the voice say 'Use my rates below, then paste your rates.' (b) Line 00:39.4 'But the night quote should have your answer before your first job' reads awkwardly. Fix: 'But last night's quote should have your answer before your first job.' (c) The speaker tag 'SNOW' on frame 0.8s means nothing to a new viewer; harmless, but a plain label or none would read cleaner.",
+  "6. Trust: yes. The scenario is specific and true to cleaning work, the stat is attributed with sample size and date, and it never promises bookings or revenue."
+ ]
+}

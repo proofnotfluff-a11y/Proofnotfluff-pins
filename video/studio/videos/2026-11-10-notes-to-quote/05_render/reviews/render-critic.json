@@ -1,0 +1,41 @@
+{
+ "gate": "render-critic",
+ "round": 0,
+ "at": "2026-10-29T17:47:04-05:00",
+ "build": "e0c1d27",
+ "pass": false,
+ "score": {
+  "faults": 3
+ },
+ "faults": [
+  {
+   "kind": "overlap",
+   "at": 9.5,
+   "text": "Forgot: the oven.",
+   "scene": "play.oven",
+   "what": "Orange 'Forgot: the oven.' label (x 337 to 737, y 895) sits on the cream desk card (x 512 to 868, y 870 to 990) from about 9.4 s to the wipe at 10.0 s. Move the label clear of the card, or move the card."
+  },
+  {
+   "kind": "cutoff",
+   "at": 30.6,
+   "text": "54%",
+   "scene": "proof.pct",
+   "what": "54% runs x 873 to 941, the % crosses the x 930 safe edge by about 11 px, 30.5 to 33.0 s. Shift left."
+  },
+  {
+   "kind": "cutoff",
+   "at": 21.5,
+   "text": "Deep clean, 3 bed, 2 bath",
+   "scene": "fix.check",
+   "what": "DEEP CLEAN QUOTE card (x 437 to 1057): row text ends at x 941, past x 930; card body and price cells run to x 1057; about 10.5 to 25.0 s. Narrow the card or move the price column inside x 930."
+  }
+ ],
+ "reasons": [
+  "Hook PASS from 0.0 s.",
+  "Spoken numbers on timing PASS (1,050 from 25.5 s; 54% at 30.5 s).",
+  "Audio end PASS: last word ends 39.40 s, end card about 39.5 s.",
+  "Flash PASS.",
+  "Small text PASS.",
+  "Round 0."
+ ]
+}

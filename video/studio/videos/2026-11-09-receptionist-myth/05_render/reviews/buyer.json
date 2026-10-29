@@ -1,0 +1,21 @@
+{
+ "gate": "buyer",
+ "round": 0,
+ "at": "2026-10-29T17:46:06-05:00",
+ "build": "e0c1d27",
+ "pass": true,
+ "score": {
+  "stop": "yes",
+  "send": "yes",
+  "save": "yes",
+  "follow_or_link": "yes"
+ },
+ "reasons": [
+  "1. What it tells me: don't pay for an AI receptionist yet, because the money is in the quotes I already sent that nobody follows up on, and I can have an AI chat app draft that check-in in my voice while I still read it and hit send myself.",
+  "2. Stop in 3 s: yes. As a cleaning business owner I've been pitched these voice bots, and the headline 'The demo says you need an AI receptionist' over a big robot feels like it's about to push back on the pitch. The pixel art stands out from talking heads in the feed.",
+  "3. Send: yes. The caption's 'Send this to whoever handles your follow-ups' fits my office person, and the prompt is short enough to try tomorrow. Save: yes. Follow or link: yes, leaning.",
+  "4. Hype, fake urgency, a pitch, AI slop or robotic: nothing that would make me scroll past.",
+  "5. Unclear to a stranger, minor: (a) speech box labeled 'SNOW' reads like a snow removal trade; drop or replace. (b) headline 'The demo says you need an AI receptionist.' vs voice 'The demo says an AI receptionist answers every call.'; make them match. (c) 00:14.0 to 00:20.3 the spoken prompt runs on from 'and ask'; on-screen quoted text covers it. (d) frame 'AI LESSON 2' vs caption 'AI lead lesson 2'; use one name.",
+  "6. Trust: yes. The jump from 'only 11% trust their AI tools' to 'don't buy a receptionist first' is a little loose, but tied back by 'so your hand stays on the send button'."
+ ]
+}

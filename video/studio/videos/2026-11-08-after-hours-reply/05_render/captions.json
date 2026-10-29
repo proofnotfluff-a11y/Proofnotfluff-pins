@@ -1,0 +1,63 @@
+{
+ "schema": "pnf.studio.captions.v1",
+ "keywords": {
+  "primary": "how to reply to cleaning quote requests",
+  "secondary": [
+   "cleaning business tips",
+   "home service business"
+  ],
+  "trades": [
+   "cleaning",
+   "house cleaning",
+   "maid service"
+  ]
+ },
+ "instagram": {
+  "caption": "How to reply to cleaning quote requests that come in at night, with an AI chat app.\nIn Jobber's survey of 1,050 home service business owners (Dec 2025), only 26% of cleaning businesses said they reply to leads within an hour, and cleaning was the fastest trade.\n\nAI lead lesson 1. Paste their message into an AI chat app with this prompt (example):\n\"Write a short, friendly reply to this cleaning quote request. Use my rates below. Ask one question if anything's missing.\"\n\nThen you read the draft, fix it and send it yourself. Nothing goes to a customer without you.\n\nSend this to whoever answers your quote requests.\nHow fast do your night quote requests get an answer?\nFree tools for trade owners: link in bio.\n\n#homeservicebusiness #cleaningbusiness #cleaningbusinessowner #leadfollowup",
+  "settings": {
+   "aiLabel": true,
+   "shareToFacebook": false
+  }
+ },
+ "tiktok": {
+  "caption": "How to reply to cleaning quote requests that come in at night, with an AI chat app.\nJobber's survey (1,050 home service owners, Dec 2025): only 26% of cleaning businesses said they reply to leads within an hour, the fastest of any trade.\nPaste their message into an AI chat app with this prompt (example): \"Write a short, friendly reply to this cleaning quote request. Use my rates below. Ask one question if anything's missing.\" Then read it, fix it and send it yourself.\nCleaning owners: how fast do your night quote requests get an answer?\nSend this to whoever answers your quote requests.\n#homeservicebusiness #cleaningbusiness #cleaningbusinessowner #housecleaningbusiness",
+  "settings": {
+   "aiGenerated": true,
+   "commercialDisclosure": false,
+   "suggestKeywords": [
+    "how to reply to cleaning quote requests",
+    "cleaning business tips",
+    "ai for cleaning business"
+   ]
+  }
+ },
+ "facebook": {
+  "caption": "How to reply to cleaning quote requests that come in at night, with an AI chat app.\nIn Jobber's survey of 1,050 home service business owners (Dec 2025), only 26% of cleaning businesses said they reply to leads within an hour, and cleaning was the fastest trade.\nPaste their message into an AI chat app with this prompt (example): \"Write a short, friendly reply to this cleaning quote request. Use my rates below. Ask one question if anything's missing.\" Then read the draft, fix it and send it yourself.\nSend this to whoever answers your quote requests.\n#homeservicebusiness #cleaningbusiness",
+  "settings": {
+   "aiLabel": true,
+   "audience": "Public"
+  }
+ },
+ "youtube": {
+  "title": "How to Reply to Cleaning Quote Requests at Night With AI (You Still Hit Send)",
+  "description": "How to reply to cleaning quote requests at night: AI drafts it, you send it.\nFor cleaning business owners and home service business owners.\nJobber, \"Blue Collar Strong: The 2026 Home Service Trends Report\": a survey of 1,050 home service business owners across the United States, conducted through Conjointly in December 2025 (margin of error plus or minus 3 points at 90% confidence). Cleaning businesses were the fastest responders: 26% said they reply to leads within an hour.\n\nSteps (the prompt is an example):\n1. Paste the customer's message into an AI chat app.\n2. Add this prompt and your own rates: \"Write a short, friendly reply to this cleaning quote request. Use my rates below. Ask one question if anything's missing.\"\n3. Read the draft, fix anything wrong, and send it yourself.\n\nSend this to whoever answers your quote requests.\nNext lesson: the AI receptionist myth. More lessons and free tools for trade owners at proofnotfluff.com\n#cleaningbusiness #homeservicebusiness",
+  "tags": [
+   "how to reply to cleaning quote requests",
+   "cleaning business tips",
+   "ai for cleaning business",
+   "cleaning business owner",
+   "house cleaning business",
+   "home service business",
+   "how to respond to leads cleaning",
+   "ai prompts for cleaning business",
+   "cleaning buisness tips"
+  ],
+  "settings": {
+   "madeForKids": false,
+   "aiUse": true,
+   "category": "Education",
+   "language": "English",
+   "visibility": "Public"
+  }
+ }
+}

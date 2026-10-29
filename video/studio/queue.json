@@ -1,0 +1,45 @@
+{
+ "schema": "pnf.studio.queue.v1",
+ "items": [
+  {
+   "slug": "2026-10-28-first-reply",
+   "readyAt": "2026-10-28T21:06:40-05:00",
+   "commit": "32048bbe277280ef97b35660325f6a0b71cf14c2",
+   "fingerprints": {
+    "script": "f1f4de754d8b",
+    "takes": "dcf74bb2dfa1",
+    "words": "a4beaa15f88f",
+    "cues": "08644b4da1e9",
+    "scene": "a5567b3cc923",
+    "data": "d578d081f53b",
+    "captions": "d893041026dd",
+    "mouth": "c4edd5704a1b",
+    "runtime_kit": "d12df837dc0a",
+    "runtime_player": "a66cf6faac98",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
+  },
+  {
+   "slug": "2026-11-05-book-the-call",
+   "readyAt": "2026-10-28T21:06:40-05:00",
+   "commit": "32048bbe277280ef97b35660325f6a0b71cf14c2",
+   "fingerprints": {
+    "script": "2d915a3f0247",
+    "takes": "2ccfef05ae30",
+    "words": "55a37fa81681",
+    "cues": "db986caed0dd",
+    "scene": "5fe2064e86b1",
+    "data": "7fcf318f0290",
+    "captions": "cf60feba9748",
+    "mouth": "ad9ca686542d",
+    "runtime_kit": "d12df837dc0a",
+    "runtime_player": "a66cf6faac98",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
+  }
+ ]
+}

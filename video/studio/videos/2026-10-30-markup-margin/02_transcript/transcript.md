@@ -1,6 +1,6 @@
 # Transcript: 2026-10-30-markup-margin
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 194 words, 71.7 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 194 words, 71.8 s of voice.
 
 ## Flags
 none
@@ -11,8 +11,8 @@ none
   02     8.1 s  172 wpm  
   03    23.1 s  165 wpm  
   04    36.9 s  175 wpm  
-  05    46.2 s  148 wpm  slow: rewrite it as talk, then speak --take 5
-  06    61.5 s  171 wpm  
+  05    46.2 s  147 wpm  slow: rewrite it as talk, then speak --take 5
+  06    61.6 s  171 wpm  
 ```
 
 ## Words
@@ -59,7 +59,7 @@ none
 
 `00:48.1` Screenshot this one.
 
-`00:49.5` Price equals your cost, divided by one minus the margin you want.
+`00:49.6` Price equals your cost, divided by one minus the margin you want.
 
 `00:54.2` Want forty percent?
 
@@ -67,12 +67,12 @@ none
 
 `00:57.6` A thousand becomes about sixteen hundred sixty-seven dollars.
 
-`01:01.5` Markup is on cost.
+`01:01.6` Markup is on cost.
 
-`01:03.4` Margin is on price.
+`01:03.6` Margin is on price.
 
-`01:05.3` Send this to whoever sets your prices, even if that's you.
+`01:05.5` Send this to whoever sets your prices, even if that's you.
 
-`01:08.8` And your last quote?
+`01:08.9` And your last quote?
 
-`01:09.9` Was the margin half, or a third?
+`01:10.1` Was the margin half, or a third?

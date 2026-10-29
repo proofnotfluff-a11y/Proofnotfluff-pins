@@ -14,6 +14,8 @@ A look changes how things are drawn, never what they say. The facts and frame ru
 ## Motion (arcade; Todd, Oct 28, 1:33 pm: "keep things moving"; rules from research run 2026-10-28-viral)
 The player adds these to every arcade lesson; a scene adds the rest from the kit (`k.slam`, `k.burst`, `k.sweep`, `k.motes`).
 - A hook card in the first 2.4 s: the hook in 5 to 8 words, its number slammed in, the source on screen from the start.
+- The opening cuts (IMPROVE 00a): the picture changes by 1 s and twice in the first 3 s, the host is on by 3 s, the hook
+  words stay up through the cuts (stages/04_scene/CONTEXT.md 3; `anim.py hook`, in `lint`).
 - Every key number counts up or slams in as it is said, and lands with sparks. Highlight what matters (`k.sweep`).
 - A new visual beat every 2 to 4 s (a slide-in, a count, a stamp); each beat steps the camera in a little (the zoom ladder).
 - The camera leads the beat: it starts toward a beat's focus 6 frames before the cue and eases in (most of the way there

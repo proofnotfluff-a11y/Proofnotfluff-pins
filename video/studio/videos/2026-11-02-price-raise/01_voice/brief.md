@@ -5,10 +5,10 @@ Lesson 6, segment Pricing Clinic. Re-made Oct 28, 2026 (evening) from the trades
 Knetsch and Thaler 1986: shovels, lettuce and rent in Toronto and Vancouver). Trade evidence only; every source page re-read
 with WebFetch the same evening.
 
-- **Where:** Instagram Reel, 9:16, about 80 s (221 words; takes 2 and 3 rewritten Oct 29 for pace, expected 78 to 82 s on Todd's voice), then TikTok, Facebook, YouTube Shorts.
+- **Where:** Instagram Reel, 9:16, 75 s at most, end card included (192 words; Oct 29 hook and length rewrite: takes 1, 2, 3, 6 and 7 re-voiced), then TikTok, Facebook, YouTube Shorts.
 - **Audience:** an HVAC, plumbing, electrical or roofing owner whose costs went up this year and who hasn't raised prices, or did it quietly and is nervous about telling customers.
 - **The one idea:** most trades already raised prices for their costs; tell customers why, and keep approved quotes. (17 words)
-- **Shape:** hook (83% of HVAC companies raised prices last year; did you; the note that tells customers) -> stakes (Jobber's survey of 1,050 home service owners: 65% raised; plumbing, electrical, roofing even higher at 74%; cleaning's 55% is caption only since Oct 29, five percentages in 13 s was too many) -> why (72% named inflation, half named labor; BLS: install and repair pay +3.7% in the year to June, all workers +3.2%, so your crew's pay rose faster than average) -> the artifact (the three-line price note, held big) -> the turn (the last line is the promise: raise the next job, never one already approved) -> the honest note (Jobber sells software; the survey shows who raised, not how customers took it; watch your close rate for a month) -> close (your costs went up, most trades already raised; send line; "raise yours with a reason").
+- **Shape:** hook (spoken: most trades raised their prices last year; did you; the note that tells customers. On screen: 83% of HVAC companies raised prices last year) -> stakes (Jobber's survey of home service owners, 1,050 on screen: 83% of HVAC companies; plumbing, electrical, roofing 74%; the 65% for all owners and cleaning's 55% are caption only since the Oct 29 length cut) -> why (72% named inflation, half named labor; BLS: install and repair pay +3.7% in the year to June, so your crew's pay beat the +3.2% for all workers) -> the artifact (the three-line price note, held big) -> the turn (the last line is the promise: raise the next job, never one already approved) -> the honest note (Jobber sells software; its survey doesn't show how customers took it; watch your close rate for a month) -> close (your costs went up, and most trades already raised; send line; "raise yours with a reason").
 - **Voice:** Todd's clone in `_shared/voice.md`.
 - **Real screens:** the Jobber trade-by-trade shares with the survey's size and date; the two reasons; the BLS rows with their names and window; the price note as a card (marked example).
 - **Close:** "Send this to whoever writes your quotes." Brand plate, send line.
@@ -48,8 +48,8 @@ with WebFetch the same evening.
 - BLS ECI: wages and salaries, civilian, 12 months ending June 2026: Installation, maintenance, and repair 3.7%; all
   workers 3.2%. Said "pay for install and repair workers" (the row's occupations) and "all workers". The construction
   row (3.9%) also counts farming, fishing and forestry, so it is caption context only.
-- "So your crew's pay rose faster than average" (take 3, Oct 29): 3.7% for installation, maintenance and repair against
-  3.2% for all civilian workers, the same table and window; "average" is the all-workers row, nothing more. Plumbers and
+- "So your crew's pay beat the three point two for all workers" (take 3, Oct 29 length cut; earlier "rose faster than
+  average"): 3.7% for installation, maintenance and repair against 3.2% for all civilian workers, the same table and window. Plumbers and
   electricians sit in the construction row (3.9%), also above 3.2%, so the line holds for them too.
 - The price note and its date ("the first of next month") are an example (tagged EXAMPLE on screen). No rate is suggested.
 - "Raise the next job, never the one on your calendar" is our advice (keep approved quotes), not a finding.
@@ -57,9 +57,9 @@ with WebFetch the same evening.
 ## Claims and their sources
 | Claim, as said | Source | URL |
 |---|---|---|
-| 83% of HVAC companies raised prices last year; 65% of all; plumbing, electrical, roofing 74% (cleaning 55%, the lowest: caption only) | Jobber, "Blue Collar Strong: The 2026 Home Service Trends Report" (1,050 owners, Dec 2025, Conjointly) | https://www.getjobber.com/home-service-trends-report/ |
+| Most trades raised their prices last year; 83% of HVAC companies did; plumbing, electrical, roofing 74% (65% of all owners and cleaning 55%, the lowest: caption only) | Jobber, "Blue Collar Strong: The 2026 Home Service Trends Report" (1,050 owners, Dec 2025, Conjointly) | https://www.getjobber.com/home-service-trends-report/ |
 | 72% named inflation; half (50%) named labor | same page | same |
-| Install and repair workers' pay rose 3.7% in the year to June; all workers 3.2%; so your crew's pay rose faster than average | BLS, Employment Cost Index, June 2026, released Jul 31, 2026, Table 8 | https://www.bls.gov/news.release/eci.htm |
+| Install and repair pay rose 3.7% in the year to June; so your crew's pay beat the 3.2% for all workers | BLS, Employment Cost Index, June 2026, released Jul 31, 2026, Table 8 | https://www.bls.gov/news.release/eci.htm |
 | Jobber sells software | Jobber is a field service software company (its own site) | https://www.getjobber.com/ |
 | The price note; keep approved quotes; watch your close rate for a month | ours (advice; bank lesson 3 takeaway) | n/a |
 

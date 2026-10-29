@@ -1,20 +1,20 @@
 {
  "schema": "pnf.studio.takes.v1",
- "requestedAt": "2026-10-29T16:57:49-05:00",
+ "requestedAt": "2026-10-29T17:06:43-05:00",
  "voice": "W3pJy9ibur1FKUihVxzY",
  "model": "eleven_v4",
- "scriptSha256": "f94658774e4b4e18ed6f25659302a9ecc040c4fa1920495e7040507a5a85ba86",
- "voiceSha256": "8678083bbef35cc338b3376c9ba7d3c812795c60e311037d1ff91d255162cc4b",
+ "scriptSha256": "0a1428f50bd4f78b68f7186949763ef79cab6f410ac3ac5225b7aef4dbcff33b",
+ "voiceSha256": "2880af30774cfe05af4dc2f097f1d0a87966a2f704977de3aff491322b02e4e5",
  "takes": [
   {
    "n": 1,
    "file": "takes/01.mp3",
-   "sha256": "d614e91e5c7ee9b22e9309b375c540e81d96305d9de7375e736c0c2320b64f95",
-   "seconds": 3.866,
+   "sha256": "e0bd4406d589389e0adbfcad73b78547a090805689d77b20cd736e80b019145b",
+   "seconds": 2.926,
    "chars": 67,
    "start": 0.0,
-   "end": 3.866,
-   "wpm": 140
+   "end": 2.926,
+   "wpm": 185
   },
   {
    "n": 2,
@@ -22,8 +22,8 @@
    "sha256": "6b8d9b8922e0e44fd231479b23ad6cddff38266c2db84cfb7a58629b8cc38503",
    "seconds": 7.158,
    "chars": 141,
-   "start": 4.186,
-   "end": 11.344,
+   "start": 3.246,
+   "end": 10.404,
    "wpm": 201
   },
   {
@@ -32,8 +32,8 @@
    "sha256": "8bc9e36327576ad12443e4fab717877a77a11c92c715837580eb1f3849f30d64",
    "seconds": 14.838,
    "chars": 243,
-   "start": 11.664,
-   "end": 26.502,
+   "start": 10.724,
+   "end": 25.562,
    "wpm": 162
   },
   {
@@ -42,8 +42,8 @@
    "sha256": "7bc2038fa82c9a41c6c325d00a7c14f0795ceb2fb271ab92b3e92e601e9ab2dc",
    "seconds": 7.314,
    "chars": 132,
-   "start": 26.822,
-   "end": 34.136,
+   "start": 25.882,
+   "end": 33.196,
    "wpm": 164
   },
   {
@@ -52,15 +52,15 @@
    "sha256": "11c2f75ac2536ea05b76d018d9eab224b7e0d02538658a0ff8fed4121580c7a8",
    "seconds": 6.113,
    "chars": 119,
-   "start": 34.456,
-   "end": 40.569,
+   "start": 33.516,
+   "end": 39.629,
    "wpm": 177
   }
  ],
  "chars": 702,
- "at": "2026-10-29T17:04:34-05:00",
+ "at": "2026-10-29T17:14:03-05:00",
  "credits": {
-  "used": 23881,
+  "used": 23908,
   "limit": 40000,
   "tier": "starter",
   "resetsAt": 1794774902

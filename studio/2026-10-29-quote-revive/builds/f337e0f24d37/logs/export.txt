@@ -1,0 +1,2 @@
+export: /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-10-29-quote-revive/05_render/2026-10-29-quote-revive-post.mp4 (6.3 MB, the render as is)
+exit 0

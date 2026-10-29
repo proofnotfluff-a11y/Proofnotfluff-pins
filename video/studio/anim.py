@@ -1317,7 +1317,8 @@ def cmd_ready(slug):
         f = vdir(slug, "05_render", "qa.json") if g == "qa" else os.path.join(rev, f"{g}.json")
         if not os.path.exists(f):
             bad.append(f"{g}: no file"); continue
-        if not json.load(open(f)).get("pass"):
+        d = json.load(open(f))
+        if not (d.get("pass") or d.get("override")):   # override: Todd's word in chat on a held gate, quoted with its time
             bad.append(f"{g}: FAIL")
     if not os.path.exists(vdir(slug, "05_render", "captions.json")):
         bad.append("captions.json: missing")

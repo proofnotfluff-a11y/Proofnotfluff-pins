@@ -12,5 +12,11 @@
   "youtube Thumbtack wording (fixed: 'than pros who reply within 3 hours')",
   "round 0 (6 items: Facebook line length and missing reply text, YouTube next-lesson line and full source, Instagram tag mix, 'wins the job') all fixed",
   "second FAIL of this gate: held for Todd's word"
- ]
+ ],
+ "override": {
+  "by": "Todd",
+  "at": "2026-10-28T21:06:00-05:00",
+  "word": "Go lesson one",
+  "note": "held at its second FAIL; both fixes made before the go"
+ }
 }

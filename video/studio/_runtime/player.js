@@ -241,6 +241,7 @@
   // the end card (IMPROVE 000, Oct 29): once the last word has landed, a plum plate drops in on whole low-res pixels and
   // holds the ProofNotFluff lockup and the site, music only, to the end of the tail (anim.py cues gives every lesson 2.9 s
   // after the last word). The host and the dialog box step out under it. SCENE.endCard = false turns it off.
+  // SCENE.sendLine adds the send line under the plate (a v2 lesson's call to action lives here, not in the voice).
   let END_T = 1e9;
   function endCard(k, T) {
     if (T < END_T) return false;
@@ -258,6 +259,14 @@
     const uw = Math.round(k.measure('proofnotfluff.com', {size: 66}) / 3), ux = 178 - Math.round(uw / 2);
     if (f >= 12) P(ux, 216, Math.min(uw, (f - 12) * 8), 2, '#F7C873');   // the site's underline draws on
     k.text('Lessons for trade owners', 534, 690, {size: 39, color: '#E6D3BC', align: 'center', lint: drop === 0});
+    // the send line (Lead Clinic v2, Oct 29): a v2 lesson says no call to action, so the card carries it, word-wrapped
+    // into the space under the plate, cream on plum
+    const send = window.SCENE.sendLine;
+    if (send) {
+      const words = String(send).split(/\s+/), rows = [''];
+      words.forEach((w) => { const s = rows[rows.length - 1] ? rows[rows.length - 1] + ' ' + w : w; if (k.measure(s, {size: 39}) > 840 && rows[rows.length - 1]) rows.push(w); else rows[rows.length - 1] = s; });
+      rows.forEach((s, i) => k.text(s, 534, 870 + i * 51, {size: 39, color: '#FFF7EA', align: 'center', lint: drop === 0 && f >= 12}));
+    }
     // a twinkle walks the plate's corners, one every 8 frames, so the held card is never a still picture
     const pts = [[46, 102], [310, 102], [310, 258], [46, 258]], g = f >= 10 ? Math.floor((f - 10) / 8) % 4 : -1;
     if (g >= 0) { const [x, y] = pts[g], s = [0, 1, 2, 1][Math.floor(f / 2) % 4]; P(x, y, 1, 1, '#FFF7EA'); for (let i = 1; i <= s; i++) { P(x - i, y, 1, 1, '#FFF7EA'); P(x + i, y, 1, 1, '#FFF7EA'); P(x, y - i, 1, 1, '#FFF7EA'); P(x, y + i, 1, 1, '#FFF7EA'); } }

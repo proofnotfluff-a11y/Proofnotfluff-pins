@@ -1,25 +1,29 @@
 {
  "gate": "design",
- "round": 0,
- "at": "2026-10-29T18:20:00-05:00",
- "pass": false,
+ "round": 1,
+ "at": "2026-10-29T18:35:00-05:00",
+ "build": "ad5b9e3",
+ "pass": true,
  "score": {
   "first": 4,
   "hierarchy": 5,
-  "type": 4,
+  "type": 5,
   "color": 5,
-  "spacing": 4,
-  "polish": 3,
-  "trust": 4,
-  "average": 4.14
+  "spacing": 5,
+  "polish": 5,
+  "trust": 5,
+  "average": 4.86
  },
  "reasons": [
-  "40.0 to 42.4 end card, host sprite: his hat and head sit on top of the line 'Send this to whoever runs your estimates.' (frame y 870 to 910) on every frame, so the call to action reads 'Send this to whoev... our estimates.' Move the line above the host (frame y about 830, under the brand card) or drop the host so his hat starts at y 940 or lower, with at least 24 px clear",
-  "10.5 to 12.6 wait.talk, dispatch strip caption: the coffee mug sprite (frame x about 785 to 830, y 860 to 900) is drawn over 'of it.' in 'Or talk themselves out of it.' Move the mug left of the caption start (x under 250) or end the caption by x 760",
-  "0.00 cover (frame 0), kitchen table: the title box (y 262 to 445) covers the top of the estimate clipboard, the Next visit card's header, the clock (a red sliver peeks at x 110 to 180, y 240 to 260) and the window strip. Start the clipboard and Next visit card at y 470 or lower on the cover, or hide the clock and window until the title lifts, so the cover has no cut-off props",
-  "0.00 to 0.9 cover: no host and the lower 45 percent is empty floor; put Snow on the cover in his usual spot (x 36 to 92 low-res, from y 273) so frame 0 matches every other section and gives the hook a face",
-  "24.2 to 33.3 proof, 'Same-visit close rate' tag: the text runs edge to edge of its maroon tag with no padding (frame x 68 to 445). Give it 9 px padding each side and 3 px above and below, or set it one size smaller",
-  "1.0 to 7.5 and 34.0 to 39.9 street: the close reuses the hook's exact street, van and house row, so the street fills three of six sections. Keep it for the bookend but change the button section's beat (for example the van parked with the yard sign landing, the street set's stop move) so the close reads as a new payoff rather than a replay"
+  "34.0 to 39.9 button, street: still the hook's exact street, van and house row (round 0 change 6 not taken), so the street fills three of six sections. Optional: give the close a new beat, such as the street set's stop move with the yard sign landing on 'yes'"
  ],
- "freshness": "Checked against 2026-11-05-book-the-call (versus, calendar, boss, flaps) and 2026-11-06-monthly-first (stub scene, no render): no shared set or signature move, so first impression is not capped. Street was last used in 2026-11-01, outside the two-lesson window."
+ "landed": [
+  "40.0 to 42.4 end card: the send line reads whole on every frame, Snow sits clear under it: PASS",
+  "10.5 to 12.6 dispatch caption ends at x about 690, clear of the mug: PASS",
+  "0.00 cover: the title box sits on the wall, the clipboard, coffee, Next visit card, clock and window all show whole: PASS",
+  "0.00 cover: Snow is on the cover with the dialog box: PASS",
+  "24.2 to 33.3 'Same-visit close rate' tag now has side padding: PASS",
+  "street bookend unchanged: not taken, kept as the one note"
+ ],
+ "freshness": "Checked against 2026-11-05-book-the-call (versus, calendar, boss, flaps) and 2026-11-06-monthly-first (stub scene, no render): no shared set or signature move."
 }

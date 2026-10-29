@@ -1,16 +1,18 @@
 {
   "gate": "buyer",
   "round": 0,
+  "build": "ad5b9e3",
   "pass": true,
   "score": {"stop": "yes", "send": "yes", "save": "yes", "follow_or_link": "yes"},
   "reasons": [
-    "Viewer: plumbing shop owner. 1. When a homeowner says 'let me think about it', don't just say 'no rush' and drive off: before you leave, give the options, offer a schedule slot today, and ask what questions they have, because top shops close 77% of estimates on the same visit vs 62% for everyone else.",
-    "2. Stop: yes. Frame 0.8s puts 'The estimate's done. \"Let me think about it.\"' in big type at the top; every trade owner has heard that line this week. The van, the driveway and the street read as my world in under a second.",
-    "3. Send: yes, to my tech who runs estimates (the caption asks for exactly that and the three lines are short enough to drill). Save: yes, the caption has the three-line script ready to copy. Follow: yes, 'Quote Clinic, Lesson 5' tells me there is a series worth following. Link in bio: probably not tonight, 'Free tools for trade owners' is vague, but it is not a pitch and does not hurt.",
-    "4. Nothing hype, no fake urgency, no product pitch. The caption's 'It's a pattern, not proof ... correlated ... not shown to cause it' line raises trust. Script lines sound like a person talking ('Sure, no rush, and drive off', 'before you open the truck door'). Cannot judge voice delivery from the transcript alone.",
-    "5. Minor, not a scroll-past: transcript 00:31.3 'It says the gap comes down to momentum' has a loose 'It'; a stranger has to back-track to 'ServiceTitan'. Fix: 'ServiceTitan says the gap comes down to momentum.'",
-    "5. Minor: 00:15.8 'Here are your options' assumes I quoted more than one option; a one-price shop may not follow. Fix (caption, no re-render): add 'Give two or three options, then say this:' before the script, or leave as is.",
-    "5. Minor visual: frame 0.8s has a blank speech bubble over the teal house and a 'SNOW' name tag a stranger cannot place. Neither stops me; the dialog box text explains itself.",
-    "6. Trust: yes. Named source with sample and date range in the caption, an honest causation caveat, and a script I could say tomorrow without sounding like a salesman."
+    "Viewer: plumbing shop owner. 1. When a homeowner says 'let me think about it', don't say 'no rush' and drive off: before you leave, give the options, offer a slot on the schedule today, and ask what questions they have, because top shops close 77% of estimates on the same visit vs 62% for everyone else.",
+    "2. Stop: yes. Frame 0.8s puts 'The estimate's done. \"Let me think about it.\"' in big type at the top, with Snow, the van and the street in view; every trade owner has heard that line this week.",
+    "3. Send: yes, to the tech who runs my estimates (the caption asks for exactly that, and the three lines are short enough to drill). Save: yes, the caption holds the three-line script ready to copy. Follow: yes, 'Quote Clinic, Lesson 5' says there is a series. Link in bio: maybe later; 'Free tools for trade owners' is vague but not a pitch.",
+    "4. Nothing hype, no fake urgency, no product pitch. The caption's 'It's a pattern, not proof' caveat raises trust. Script lines sound like a person talking. Voice delivery can't be judged from the transcript alone.",
+    "5. Caption lines 1 and 2 (new): line 1 ends 'plumbing and HVAC owners.' and line 2 repeats 'For plumbing, HVAC and electrical business owners.' The audience is said twice and electricians are left out of the line that shows in the preview, so it reads a bit like a template. Not a scroll-past. Fix: drop line 2, or make line 1 end 'plumbing, HVAC and electrical owners.' and drop line 2.",
+    "5. Minor: transcript 00:31.3 'It says the gap comes down to momentum' has a loose 'It'. Fix: 'ServiceTitan says the gap comes down to momentum.'",
+    "5. Minor: 00:15.8 'Here are your options' assumes more than one option was quoted. Fix (caption only): add 'Give two or three options, then say this:' before the script.",
+    "5. Cosmetic: frame 0.8s still has a blank speech bubble over the teal house. It doesn't stop me.",
+    "6. Trust: yes. Named source with sample and date range, an honest causation caveat, and a script I could say tomorrow without sounding like a salesman."
   ]
 }

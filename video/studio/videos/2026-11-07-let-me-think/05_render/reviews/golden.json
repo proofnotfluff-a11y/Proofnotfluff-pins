@@ -1,15 +1,16 @@
 {
  "gate": "golden",
- "round": 0,
- "pass": false,
- "score": {"post_as_is": "no"},
+ "round": 1,
+ "pass": true,
+ "score": {"post_as_is": "yes"},
  "reasons": [
-  "1. MUST-FIX 40.0-42.5 s (end card): Snow stands in front of the send line, his head and raised arm cover the middle of it, so it reads 'Send this to whoev... ...our estimates.' This is the only send prompt in the video (it is never spoken or put in the bubble), so the share reason is unreadable on every frame of the end card. Move Snow below or beside the line, or lift the line above him.",
-  "2. Polish 23.6-33.8 s: numbers and bars agree (teal bar ends at 77, orange at 62, three hollow blocks for the 15-point gap, '15 points' lands on 'momentum'); every number is on screen as it is said and nothing contradicts facts.json or the captions. The crown marker on bar 1 is tiny and reads as noise on a phone.",
-  "3. Polish 0-3 s: the hook earns the stop ('The estimate's done.' / 'Let me think about it.' is instantly recognisable to an owner, and the cuts at 0.8 s and 2.5 s keep it moving), but on the cover frame the plate covers the top of the estimate clipboard and the next-visit card, and the lower half of the frame is empty floor; the same empty lower half repeats in most scenes (play, wait, fix, proof).",
-  "4. Polish 12.9-23.6 s and 33.8-39.6 s: transcript pace shows take 3 at 214 wpm and take 5 at 206 wpm (target 160-195), the advice to 'give it a landing beat' was not taken. The three script lines type on and hold, so they stay copyable, but the payoff line runs fast. Otherwise it sounds like a person: plain, confident, no hype.",
-  "5. Polish qa.json: all checks PASS, but the frozen check stops at 33.83 s, the start of the button beat, not at the end card (~40 s), so 33.8-40 s is unchecked; the sheets show motion there (typing, check mark, board growth), so no fault seen.",
-  "6. Polish 7.5 s and 33.4 s: transition frames show a dither mid-wipe ('Tho v:alting starts.') and a column wipe; transient, fine at speed.",
-  "Verdict: educational, on-brand, honest ('Pattern, not proof.', 'example day'), with a clear reason to save the three lines. Fix item 1 and it posts."
+  "Round 0 must-fix resolved 40.0-42.5 s: the send line 'Send this to whoever runs your estimates.' reads whole on every end-card frame, Snow at 0.6 scale stands clear below it.",
+  "Cover 0 s now shows the estimate (A, B, C, signature line), mug, pen and blank next-visit card whole with Snow in frame; the plate no longer covers props. Hook earns the stop.",
+  "Numbers 23.6-33.8 s: 77 and 62 land as said, bars match (three hollow blocks for the 15-point gap), 'Pattern, not proof.' and source line on screen; no contradiction with facts.json or captions.",
+  "1. Polish (captions, IG and FB): new line 1 ends 'plumbing and HVAC owners.' and line 2 repeats 'For plumbing, HVAC and electrical business owners.' Reads doubled; drop one.",
+  "2. Polish 12.9-23.6 s and 33.8-39.6 s: takes 3 and 5 run 214 and 206 wpm (target 160-195); the three lines type on and hold, so still copyable.",
+  "3. Polish 23.6-33.8 s: crown marker on bar 1 is tiny on a phone; lower third of most scenes is empty floor.",
+  "4. Polish qa.json: frozen check covers only to 33.83 s (start of the button beat, not the end card); sheets show motion 33.8-40 s, no fault seen.",
+  "5. Polish 7.5 s and 33.4 s: mid-wipe transition frames look rough; transient at speed."
  ]
 }

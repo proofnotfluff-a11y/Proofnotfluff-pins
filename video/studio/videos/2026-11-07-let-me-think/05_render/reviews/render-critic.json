@@ -1,22 +1,15 @@
 {
  "gate": "render-critic",
- "round": 0,
- "pass": false,
- "score": {"faults": 1},
- "faults": [
-  {
-   "kind": "overlap",
-   "at": 40.2,
-   "text": "Send this to whoever runs your estimates.",
-   "scene": "end card (button.alone)",
-   "what": "Once the end card settles (about 40.2 s to the end at 42.47 s), the host stands centered at x 465 to 640 and his hat and raised arm sit on the send line at y about 890, so it reads \"Send this to whoev... ...our estimates.\" The words \"whoever runs y\" are hidden for the whole card. Move the line clear of the host (e.g. above him, under the brand plate) or move the host aside."
-  }
- ],
+ "round": 1,
+ "pass": true,
+ "score": {"faults": 0},
+ "faults": [],
  "reasons": [
-  "1 Hook: PASS. \"The estimate's done.\" / \"Let me think about it.\" plate is up and settled at 0.0 s (frame-0s), still up at 0.8 s and 2.0 s.",
-  "2 Numbers: PASS. \"seventy-seven\" starts 25.64 s, 77% lands 25.70 s; \"sixty-two\" starts 30.10 s, 62% lands 30.13 s (checked frame by frame from the MP4). 10%, 12 months, Jan 2026 and 15 points are screen only and readable.",
-  "3 Layout: FAIL, 1 fault (end card send line under the host, 40.2 to 42.47 s). All other settled frames keep words and numbers inside y 270 to 1250 and left of x 930 (77%, 62%, 15 points and \"Pattern, not proof.\" end near x 928); panel borders and the star past x 930 are decoration. The mug at 11 to 12.5 s touches but does not cover \"it.\" in \"Or talk themselves out of it.\" The pen on \"Thursday\" at 20 to 21.5 s is the writing animation and clears by 22 s.",
-  "4 Audio end: PASS. Last word \"alone.\" ends 39.57 s; video and audio both run to 42.47 s; nothing cut mid-word.",
-  "5 Text size and flashes: PASS. Smallest text (dialog box, plate sublines, \"example day\") is about 22 to 28 px tall at 1080 wide, readable on a phone. Brightness jumps over 20 levels happen only at scene dips (2.43, 4.07, 7.6, 12.9, 39.97 s), each a single dip, never more than 3 a second."
+  "Round 0 fault gone: end card (40.2 to 42.47 s) now reads \"Send this to whoever runs your estimates.\" in full at y about 890; Snow at 0.6 scale stands below it (hat top about y 965), nothing covers the line.",
+  "1 Hook: PASS. \"The estimate's done.\" / \"Let me think about it.\" plate settled at 0.0 s (frame-0s), held at 0.8 s and 2.0 s. New cover props (clipboard, mug, pen, next-visit card, clock, window) are whole and Snow's dialog box sits clear of them.",
+  "2 Numbers: PASS. \"seventy-seven\" starts 25.64 s, 77% lands 25.70 s; \"sixty-two\" starts 30.10 s, 62% lands 30.17 s (frame by frame from the new MP4). 10%, 12 months, Jan 2026 and 15 points are screen only and readable.",
+  "3 Layout: PASS. Settled frames keep words and numbers inside y 270 to 1250 and left of x 930. Dispatch caption \"Or talk themselves out of it.\" now ends well before the mug; \"Same-visit close rate\" tag has padding. The pen over \"Thursday\" at 20 to 21.5 s is the writing animation and clears by 22 s.",
+  "4 Audio end: PASS. Last word \"alone.\" ends 39.57 s; video and audio run to 42.47 s; nothing cut mid-word.",
+  "5 Text size and flashes: PASS. Smallest text about 22 to 28 px tall at 1080 wide. Brightness jumps over 20 levels only at single scene dips (2.43, 4.07, 7.6, 12.9, 39.97 s), never more than 3 a second."
  ]
 }

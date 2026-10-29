@@ -1,0 +1,16 @@
+name: Stage timing probe
+# Aggregate day counts only (tools/stage_timing_probe.py): how close to move-in each Chicago permit milestone is.
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/project-thread-4bg5nr]
+    paths: ["tools/stage_timing_probe.py", ".github/workflows/stage-timing.yml"]
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/stage_timing_probe.py

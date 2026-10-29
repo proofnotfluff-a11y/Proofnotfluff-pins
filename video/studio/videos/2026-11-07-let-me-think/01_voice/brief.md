@@ -7,6 +7,9 @@ Lesson 5 again, rebuilt as the first Lead Clinic v2 test (Todd, Oct 29, 2026, 12
 - **Audience:** a trades or home-service owner (plumber, HVAC, electrician, roofer) who quotes on site, or whose techs do, and then waits for a call back.
 - **The one idea:** ask for the decision before you leave the visit. (9 words)
 - **Shape:** drop-in (the estimate's done; the homeowner says "let me think about it") -> play it out (the tech says "sure, no rush" and drives off; the waiting starts; they call a competitor or talk themselves out of it) -> the fix (back on the porch: the three-line ask, typed on as said, Thursday on the next-visit card) -> proof (ServiceTitan: top 10% by revenue close 77% of estimates on the same visit, everyone else 62%; the gap comes down to momentum; tag "Pattern, not proof.") -> button (the last question pulls the worry out while you're in the driveway; don't let them think about it alone).
+- **Hook pattern:** stuck-moment
+- **Treatment:** story
+- **Example:** servicetitan-same-visit-77
 - **Metaphor:** the driveway. The van in the drive with the quote in hand; the clock running once it pulls away.
 - **Voice:** Todd's clone in `_shared/voice.md`.
 - **Real screens:** the ServiceTitan numbers as two bars with the window, the source tag and "Pattern, not proof."; the three-line ask on a card (marked example); the competitor's van on the dispatch board.

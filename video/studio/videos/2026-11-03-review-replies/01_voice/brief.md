@@ -8,6 +8,9 @@ Zervas, hotels on TripAdvisor). Trade evidence only; the source page re-read wit
 - **Audience:** an HVAC, plumbing or electrical owner with a Google profile full of reviews nobody has answered, who isn't sure what to write, least of all to a one-star.
 - **The one idea:** answer every review, good and bad, with a short calm reply. (13 words)
 - **Shape:** hook ("Got a one-star review? Here's your reply to copy.", then: 43% of contractors in one HVAC survey said they don't answer reviews on third-party sites) -> stakes (ACHR News with Clear Seas: 91% of 400 homeowners say reviews are important when they pick an HVAC contractor; 56% look on Google) -> the gap (if you answer, you're with the 45% who do; the 13% who don't know shown on screen) -> the artifacts (the five-star reply, then the one-star reply, each typed as said) -> the turn (answer the bad ones too: short, calm, details offline, never argue in public) -> the honest note (the survey shows reviews matter; it doesn't prove a reply wins the job; ten minutes every Monday) -> close (don't leave reviews hanging; send line; "so the next one-star gets a reply", the hook's echo). Oct 29 rebuild for the 3 s hook and the 75 s cap: the hook opens on the one-star review, take 3's three shares run as one sentence (second round for pace: the 43% moves into take 1, take 3 says only the 45%), "with Clear Seas Research" leaves the voice (it stays on screen and in the captions).
+- **Hook pattern:** problem-question
+- **Treatment:** copy-this
+- **Example:** one-star-review-reply
 - **Voice:** Todd's clone in `_shared/voice.md`.
 - **Real screens:** the ACHR News figures with the survey's size and year; the contractors' three answers; the two replies as a chat thread (marked example).
 - **Close:** "Send this to whoever runs your Google profile, so the next one-star gets a reply." Brand plate, send line.

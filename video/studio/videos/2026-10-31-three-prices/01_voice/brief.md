@@ -7,6 +7,9 @@ Lesson 4, segment Quote Clinic. Planned Oct 28, 2026 from the script playbook's 
 - **The one idea:** put three prices on every quote: good, better, best. (9 words)
 - **Taught by:** Joe Crisara (premium, mid-range, economy, written down; ServiceTitan Toolbox for the Trades, Nov 3, 2020), Tommy Mello ("options, not ultimatums"; Home Service Expert, May 26, 2026), Danielle Putnam (menu pricing). Their own percentages are coach claims and are not used (research/runs/2026-10-28-trades-insights.md, section 4).
 - **Shape:** hook (you quote one price? top shops usually quote three) -> stakes (ServiceTitan: 57% vs 41% of home jobs) -> why (Housecall Pro: 68% of homeowners get more quotes when a price is higher than expected; with three, a cheaper option is already on your own quote) -> the artifact (the Good / Better / Best card, held big) -> the turn, "Here's the part people skip" (your three is a floor: ACCA, 4+ options closed 52% vs 42% for 1 to 3) -> the caveat (that survey can't show three beats one; start with three) -> close (send line, then: one price is a yes or no; three is a choice).
+- **Hook pattern:** which-pick
+- **Treatment:** steps
+- **Example:** servicetitan-three-options
 - **Worlds (each section its own; none from lesson 9's versus, calendar, flaps or boss):**
   hook = the storefront counter (`k.sets.counter`) in three shots: the cover (the hook on a card hung on the counter front), a cut in to our own close-up of the one-price tag on "one" (the hook on a title plate, Snow big), back out on "Top"; the tag flips from one price to three;
   stakes = the arcade high-score table (`k.sets.scores`): TOP 10% and THE REST rows, NEW RECORD on the habit line;

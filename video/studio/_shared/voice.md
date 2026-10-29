@@ -62,6 +62,11 @@ The script check (`01_voice/script-check.md`, PASS or FAIL with the metric; 12 o
    or comment ask.
 12. Button: the last sentence is the rule and repeats a word from the hook; `SCENE.sendLine` names a role.
 
+## Variety across the queue (Todd, Oct 29, 2026, 3:56 pm: "Go with your recommendations for everything")
+`brief.md` names its hook pattern, treatment and real example (`_templates/brief.md`). `anim.py variety SLUG` (run by `lint`
+and `ready`): the example is the lesson's own; no other unposted lesson has the same hook pattern and treatment; the lessons
+before and after it in line do not open on the same hook pattern. Pick a hook pattern that passes before the voice is made.
+
 ## Pace
 - Target 160 to 195 words a minute per take. Under 150: rewrite the take as talk. Over 200: give it a landing beat.
 - v2 runs 40 to 50 s, end card included (`check` fails under 40 s or over 55 s).

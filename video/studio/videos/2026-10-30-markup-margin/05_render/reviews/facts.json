@@ -1,24 +1,48 @@
 {
  "gate": "facts",
- "round": 0,
- "at": "2026-10-29T11:29:31-05:00",
- "note": "rebuild Oct 29: hook re-cut (IMPROVE 00a), fresh opus reviewer",
+ "round": 1,
+ "at": "2026-10-29T13:08:08-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
  "pass": true,
  "score": {
   "numbers": 14,
   "mismatches": 0
  },
  "reasons": [
-  "01_voice/facts.json: all 11 computed formulas re-run and match (500, 1500, 33.3, 3, 2000, 50, 0.6, 1666.67, 666.67, 40, 66.7). All 14 data.js paths give the same value and shown string. The data.js sha256 matches facts.json (ceb938e7...).",
-  "04_scene/scene.js bench() (new hook close-up): every string comes from k.data. It draws the title plate '50% markup ' + 'is NOT' + '50% margin' (markupPct, doubleMarginPct), 'Example math. Sources: JLC, Xero', the plank labels 'COST $1,000' and '+50%' (markupPct, correct as a percent of cost), the tape label '$1,000' at the cost mark, and the chip 'Run the numbers'. The '?' slam does not draw because hook passes no qAt. The plank widths are to scale ($500 markup = 1/3 of the $1,500 bar, half the cost plank). The tape stops at the cost mark, which matches 'markup is measured on cost'. Rendered frames f03 (1.5 s) and f04 (2.0 s) show exactly these strings. No fix needed.",
-  "04_scene/scene.js hook site shot (cover and cut back): the sign reads '50% markup / is NOT / 50% margin', with the '?' added on 'margin' and the 50% struck on 'Nope'. The tape runs to $1,000 and then to $1,500, with marks at $500, $1,000 and $1,500. The 'A THIRD' stamp and the '1 The math' and '2 The fix' chips match the voice ('It's a third'). Frames f00, f07 and f08 confirm this.",
-  "Rest of scene.js (math, why, double, formula, close) and the longer end card ('ProofNotFluff, proofnotfluff.com, Lessons for trade owners'): every number is from k.data and matches. Voice (script.md, transcript.md) matches: a thousand, fifty percent, five hundred, fifteen hundred, one third, about thirty-three percent (33.3), a hundred percent, two thousand, forty percent, point six, about sixteen hundred sixty-seven (1,666.67). The rounding is fair.",
-  "Claims: the script says 'margin', never 'profit'. 'Margin isn't take-home pay ... cover your overhead and pay yourself' is backed by Xero's gross-margin note. The example is labelled 'Example math'. No clocks or sample texts appear as data.",
-  "Trades first: the core claim (50% markup = 33% margin, 100% markup = 50% margin, double the direct cost) rests on JLC, contractor and remodeler trade press (Sal Alfano, formerly Hanley Wood Remodeling Group). Xero only supplies the general formulas. No caveat is needed.",
-  "No real private person, business or address. No em or en dashes in facts.json, brief.md, script.md, transcript.md, cues.md, data.js, scene.js or captions.json. None of the faults in the earlier review files is back."
+  "01_voice/facts.json: I re-ran all 11 computed formulas and every one matches: 500, 1500, 33.3, 3, 2000, 50, 0.6, 1666.67, 666.67, 40, 66.7 (1000/0.6 = 1666.67; 666.67/1666.67 = 40.0%). facts.json's sha256 (ceb938e7...) matches data.js, and all 14 data.js values and shown strings match their paths. No fix needed.",
+  "04_scene/scene.js answer() (new blueprint shot, cut on 'Nope'): every number comes from k.data. It draws 'Your margin is', 'ONE THIRD' (stamped on 'third'), 'PRICE $1,500', 'COST $1,000', '+$500', '= 33.3% margin', the chip 'Run the numbers' and 'Example math. Sources: JLC, Xero'. The brackets cut the price at 0, 500, 1000 and 1500, so the three thirds are equal, and the gold one lines up with the $500 markup plank. The bar is to scale. Frames f07 (4.66 s) and f08 (6.46 s) show exactly these strings. 'One third' and '33.3%' agree with the voice ('It's a third') and with JLC and Xero. No fix needed.",
+  "04_scene/scene.js hook (cover, bench, cut back): the claim '50% markup / is NOT / 50% margin' and the '+50%' markup label (a percent of cost, which is correct) come from data. tCut = min(4.0, Nope), so the claim is gone by 4.0 s. The source line now sits under the chip. Rest of scene.js (math, why, double, formula, close): every number is from k.data, and the formula card 'Price = Cost / (1 - margin)' is correct. No fix needed.",
+  "Voice: script.md, transcript.md and words.json agree word for word. In the re-voiced take 5, words.json reads 'Price equals your cost, divided by one minus the margin you want. Want forty percent? Divide your cost by point six. A thousand becomes about sixteen hundred sixty-seven dollars', and every number in it is unchanged. The roundings are fair: 'about thirty-three percent' for 33.3, and 'about sixteen hundred sixty-seven' for 1,666.67. Pace is outside this gate.",
+  "Claims: the script says 'margin' and never 'profit'. 'Margin isn't take-home pay ... cover your overhead and pay yourself' is backed by Xero's gross-margin note. The example is labelled 'Example math'. The register's '1/2?' and '1/3?' and the tool belt are story props and do not read as data.",
+  "Trades first: the core claim (a 50% markup is a 33% margin; a 100% markup is a 50% margin; double the direct cost) rests on JLC, which is contractor and remodeler trade press (Sal Alfano). Xero supplies only the general formulas. No caveat is needed.",
+  "No real private person, business or address. No em or en dashes in facts.json, brief.md, script.md, transcript.md, cues.md, data.js, scene.js, captions.json or words.json. None of the faults in the earlier review files is back: the round 0 facts review passed with 14 numbers and 0 mismatches, and the same holds now."
  ],
  "sources_checked": [
-  "https://www.jlconline.com/business/markup-vs-margin_o/: 'If we have $1,000 in direct costs, our markup is set at $500, thus equaling a total selling price of $1,500'; 'a 50% markup is equivalent to a 33% margin'; 'a 100% markup gives a 50% margin'; 'you must double the direct cost amount'; author Sal Alfano (Remodeling Group, Hanley Wood); the page is undated",
-  "https://www.xero.com/us/glossary/margin-vs-markup/ (Published Thursday 23 July 2026): Margin = (Revenue - COGS) / Revenue x 100; Markup = (Revenue - COGS) / COGS x 100; Markup = Margin / (1 - Margin); 'a 50% markup actually gives you a 33.3% margin'; margin is measured on revenue (the selling price), markup on cost; gross margin covers only direct COGS and leaves out rent, salaries, utilities, marketing and other operating expenses"
- ]
+  "https://www.jlconline.com/business/markup-vs-margin_o/: 'If we have $1,000 in direct costs, our markup is set at $500, thus equaling a total selling price of $1,500'; 'a 50% markup is equivalent to a 33% margin'; 'a 100% markup gives a 50% margin'; 'you must double the direct cost amount to achieve it'; author Sal Alfano, written for contractors and remodelers; the page shows no date",
+  "https://www.xero.com/us/glossary/margin-vs-markup/ (Published Thursday 23 July 2026): 'Margin = (Revenue - COGS) / Revenue x 100'; 'Markup = (Revenue - COGS) / COGS x 100'; 'Markup = Margin / (1 - Margin)'; 'a 50% markup actually gives you a 33.3% margin'; margin is a percentage of revenue (the selling price) and markup a percentage of cost; gross margin 'does not include rent, salaries, utilities, marketing, or other operating expenses'"
+ ],
+ "prior": {
+  "gate": "facts",
+  "round": 0,
+  "at": "2026-10-29T11:29:31-05:00",
+  "note": "rebuild Oct 29: hook re-cut (IMPROVE 00a), fresh opus reviewer",
+  "pass": true,
+  "score": {
+   "numbers": 14,
+   "mismatches": 0
+  },
+  "reasons": [
+   "01_voice/facts.json: all 11 computed formulas re-run and match (500, 1500, 33.3, 3, 2000, 50, 0.6, 1666.67, 666.67, 40, 66.7). All 14 data.js paths give the same value and shown string. The data.js sha256 matches facts.json (ceb938e7...).",
+   "04_scene/scene.js bench() (new hook close-up): every string comes from k.data. It draws the title plate '50% markup ' + 'is NOT' + '50% margin' (markupPct, doubleMarginPct), 'Example math. Sources: JLC, Xero', the plank labels 'COST $1,000' and '+50%' (markupPct, correct as a percent of cost), the tape label '$1,000' at the cost mark, and the chip 'Run the numbers'. The '?' slam does not draw because hook passes no qAt. The plank widths are to scale ($500 markup = 1/3 of the $1,500 bar, half the cost plank). The tape stops at the cost mark, which matches 'markup is measured on cost'. Rendered frames f03 (1.5 s) and f04 (2.0 s) show exactly these strings. No fix needed.",
+   "04_scene/scene.js hook site shot (cover and cut back): the sign reads '50% markup / is NOT / 50% margin', with the '?' added on 'margin' and the 50% struck on 'Nope'. The tape runs to $1,000 and then to $1,500, with marks at $500, $1,000 and $1,500. The 'A THIRD' stamp and the '1 The math' and '2 The fix' chips match the voice ('It's a third'). Frames f00, f07 and f08 confirm this.",
+   "Rest of scene.js (math, why, double, formula, close) and the longer end card ('ProofNotFluff, proofnotfluff.com, Lessons for trade owners'): every number is from k.data and matches. Voice (script.md, transcript.md) matches: a thousand, fifty percent, five hundred, fifteen hundred, one third, about thirty-three percent (33.3), a hundred percent, two thousand, forty percent, point six, about sixteen hundred sixty-seven (1,666.67). The rounding is fair.",
+   "Claims: the script says 'margin', never 'profit'. 'Margin isn't take-home pay ... cover your overhead and pay yourself' is backed by Xero's gross-margin note. The example is labelled 'Example math'. No clocks or sample texts appear as data.",
+   "Trades first: the core claim (50% markup = 33% margin, 100% markup = 50% margin, double the direct cost) rests on JLC, contractor and remodeler trade press (Sal Alfano, formerly Hanley Wood Remodeling Group). Xero only supplies the general formulas. No caveat is needed.",
+   "No real private person, business or address. No em or en dashes in facts.json, brief.md, script.md, transcript.md, cues.md, data.js, scene.js or captions.json. None of the faults in the earlier review files is back."
+  ],
+  "sources_checked": [
+   "https://www.jlconline.com/business/markup-vs-margin_o/: 'If we have $1,000 in direct costs, our markup is set at $500, thus equaling a total selling price of $1,500'; 'a 50% markup is equivalent to a 33% margin'; 'a 100% markup gives a 50% margin'; 'you must double the direct cost amount'; author Sal Alfano (Remodeling Group, Hanley Wood); the page is undated",
+   "https://www.xero.com/us/glossary/margin-vs-markup/ (Published Thursday 23 July 2026): Margin = (Revenue - COGS) / Revenue x 100; Markup = (Revenue - COGS) / COGS x 100; Markup = Margin / (1 - Margin); 'a 50% markup actually gives you a 33.3% margin'; margin is measured on revenue (the selling price), markup on cost; gross margin covers only direct COGS and leaves out rent, salaries, utilities, marketing and other operating expenses"
+  ]
+ }
 }

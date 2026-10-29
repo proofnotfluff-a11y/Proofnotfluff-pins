@@ -1,21 +1,114 @@
 {
  "gate": "script",
- "round": 0,
- "at": "2026-10-29T12:33:20-05:00",
- "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+ "round": 1,
+ "at": "2026-10-29T13:08:45-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
  "pass": false,
- "score": "10 of 12",
- "points_condensed": "1 PASS (10 words, ends 3.28 s); 2 FAIL (on-screen hook held to about 8.0 s); 3 to 7 PASS; 8 FAIL (take 5 at 147 wpm; per-take 169, 172, 165, 175, 147, 171; 74.56 s); 9 to 12 PASS (turn 61.8%, send line naming a role, echo ending, LESSON 3 HUD and RUN THE NUMBERS chip)",
+ "score": "11 of 12",
+ "points": [
+  {
+   "n": 1,
+   "name": "Spoken hook",
+   "pass": true,
+   "evidence": "Take 1 opens with whole sentences 'Mark up a job fifty percent. Is that your margin?' = 10 words. It has 'your' and 'job', a concrete stake (fifty percent) and no greeting. The last word 'margin?' ends at 3.28 s on words.json, inside the studio's 3.6 s (past the playbook's own 3.0 s; studio rule governs)."
+  },
+  {
+   "n": 2,
+   "name": "On-screen hook",
+   "pass": true,
+   "evidence": "'50% markup is NOT 50% margin' = 6 words, the same idea as the spoken hook. It is on screen at frame 0 (f00 0.00 s). The bench close-up 1.0 to 2.0 s keeps it on the title plate. The cut on 'Nope' clears it: timeline-1 at 4.0 s shows the blueprint ('Your margin is', PRICE $1,500, COST $1,000 +$500) with no claim, so it holds about 4.0 s, at the top of the 2.5 to 4.0 s band. The text sits at y about 290 to 600 of 1920, below the top 14% (269 px) and above the bottom 35%. The round 0 fault (held about 8.0 s) is not back."
+  },
+  {
+   "n": 3,
+   "name": "One idea",
+   "pass": true,
+   "evidence": "brief.md states the lesson in 14 words: 'a 50% markup is a 33% margin; price from margin, not markup'. All 6 takes serve it: hook, the math, why, double to get 50%, the formula worked at 40%, the rule and send line. There is no second lesson."
+  },
+  {
+   "n": 4,
+   "name": "Stakes early",
+   "pass": true,
+   "evidence": "The concrete consequence 'It's a third' is spoken at 4.78 to 5.28 s, and 'fifty percent' at 0.96 s. Both are well inside 14 s for a 75 s lesson."
+  },
+  {
+   "n": 5,
+   "name": "Facts",
+   "pass": true,
+   "evidence": "Every spoken number maps in facts.json 'spoken' to inputs or computed values with formulas: 1,000; 50%; 500; 1,500; one third; about 33.3%; 100%; 2,000; 50%; 40%; 0.6; about 1,666.67. JLC and Xero are quoted in 'confirms'. On screen, $666.67 / $1,666.67 = 40% traces to targetMarginUsd and targetMarginCheckPct. The script says 'margin', never 'profit'. Caption numbers match. Nothing comes from the do-not-use list."
+  },
+  {
+   "n": 6,
+   "name": "Payoff timing",
+   "pass": true,
+   "evidence": "The core answer 'It's a third' is spoken by 5.28 s, with ONE THIRD stamped on screen. 'I'll show you the math, and the fix' runs 5.86 to 7.5 s. The formula is complete on screen by about 49.0 s (timeline-4, 66% of 74.73 s), under 70%. Spoken, it ends at 53.68 s (72%)."
+  },
+  {
+   "n": 7,
+   "name": "Copyable artifact",
+   "pass": true,
+   "evidence": "'Price = Cost / (1 - margin)' is spoken 49.64 to 53.68 s. On screen it holds big from about 48.5 s to 53.5 s (about 5 s, timeline-4), then stays at half size on the board until 61.5 s."
+  },
+  {
+   "n": 8,
+   "name": "Pace and length",
+   "pass": false,
+   "evidence": "Per-take wpm on transcript.md and takes.json (anim.py, file length) is 169, 172, 165, 175, 147, 171. Take 5 is at 147, under the 150 floor, and transcript.md still flags it 'slow: rewrite it as talk, then speak --take 5'. On words.json spans the takes run 176, 179, 172, 180, 161 and 177; take 5's spoken words alone run 161 wpm, 37 words from 46.16 to 59.92 s. The gap is a 1.39 s silent tail on take 5 (the other takes have 0.25 to 0.58 s). That tail plays in the cut as 1.71 s of dead air between 59.92 s and 61.63 s. Length is 71.83 + 2.9 = 74.73 s, inside 75 s. The longest sentence is 13 words, the average 6.5."
+  },
+  {
+   "n": 9,
+   "name": "Talk test",
+   "pass": true,
+   "evidence": "Each take has a contraction (It's/I'll; Let's; isn't/It's/what's; You'd/That's; Here's; that's) and 'you/your' (2, 3, 3, 2, 3, 3 per take). There are 0 banned words and 0 em or en dashes."
+  },
+  {
+   "n": 10,
+   "name": "Voice markup",
+   "pass": true,
+   "evidence": "Tags per take: 2, 1, 1, 1, 1, 1, all on voice.md's allowed list and all vocal. There is 1 CAPS word (DOUBLE, take 4). The voice text has 0 digits, $, %, / or &, and no SSML."
+  },
+  {
+   "n": 11,
+   "name": "Retention beats",
+   "pass": true,
+   "evidence": "cues.md has 34 cues. Timelines 1 to 5 show a visual change at least every 2 to 4 s: cuts at 1.0, 2.0, 4.0, 8.0, 18.0, 23.0, 37.0, 46.0 and 61.5 s, with builds in between. The longest static stretch is the 60.0 to 61.5 s tail after the check line. The turn line 'Here's the part people skip' comes at 46.16 s of 74.73 s (61.8%), inside 55 to 75%."
+  },
+  {
+   "n": 12,
+   "name": "Ending",
+   "pass": true,
+   "evidence": "There is one CTA, a send line naming a role: 'Send this to whoever sets your prices, even if that's you.' The last sentence 'Was the margin half, or a third?' echoes the hook. There is no like, follow, comment or tag ask. The LESSON 3 HUD shows throughout and the RUN THE NUMBERS chip shows in the hook. The captions carry the sources (Xero; Sal Alfano, JLC; the YouTube description has URLs). There is no AI voice line, per voice.md (Todd, Oct 29); the platform AI labels are set in settings."
+  }
+ ],
  "faults": [
-  "Point 2: the on-screen hook '50% markup is NOT 50% margin' stays on screen from 0.0 s to about 8.0 s (gone only at the wipe into the math room at 8.03 to 8.07 s), and the unmarked claim alone holds about 4.3 s. Both are over the 2.5 to 4.0 s hold. The fix is to retire the sign, or swap it for the ONE THIRD answer, by 4.0 s, for example cutting to a new shot on 'Nope' at 4.08 s.",
-  "Point 8: take 5 runs at 147 wpm on takes.json and transcript.md, under the studio's 150 wpm floor (voice.md: under 150, rewrite the take as talk). The fix is to rewrite take 5 tighter as talk and re-speak take 5 alone."
+  "Point 8: take 5 still runs 147 wpm on transcript.md and takes.json, the studio's per-take measure that voice.md's action line runs on (anim.py, words over file seconds). It is under the 150 floor, transcript.md still carries the 'slow' flag, and it is the same metric and figure that failed round 0. The cause is no longer the wording: take 5's spoken words run 161 wpm, but the file ends in a 1.39 s silent tail, which leaves 1.71 s of dead air in the cut (59.92 to 61.63 s). The fix is to trim take 5's tail to the others' 0.25 to 0.58 s (at 0.5 s the file reads about 156 wpm) or re-roll take 5, then rebuild cues and render. Changing the pace measure to the words.json span would also clear it, but that is a studio rule change for Todd, not this gate."
  ],
  "notes": [
-  "The builder's script-check.md (Oct 28, stand-in timings) scored point 2 as 'held 3.0 s'; the rebuilt render no longer matches that.",
-  "Total words 194 is under the 75 s band (200 to 240) but the lesson runs 74.57 s, inside 45 to 75 s, so it is a note only.",
-  "Spoken hook ends at 3.28 s: inside the studio's 3.6 s, past the playbook's own 3.0 s.",
-  "Spoken, the formula finishes at 53.58 s (72% of runtime); on screen it is complete by 50.08 s (67%).",
-  "Captions: the TikTok question 'Tell me which and why' and the YouTube line 'Free tools for trade owners at proofnotfluff.com' are caption extras, not spoken CTAs. Neither is bait.",
-  "Earlier faults checked and not back: formula board empty, OVERHEAD/YOUR PAY chips, strike through 50%, close plate. The golden reviewer's polish notes stand (the bench close-up reads as a backdrop swap, the cramped tape readouts, the half-orange glint on '50%' at 2.5 to 3.0 s)."
- ]
+  "Take 5 at 161 wpm spoken and take 3 at 165 wpm by file are inside 160 to 195. Every other take is in the target band on both measures.",
+  "Total words: 194, under the 75 s guide band (200 to 240). The lesson runs 74.73 s, inside 45 to 75 s, so this is a note only.",
+  "The on-screen hook holds about 4.0 s, exactly at the band's top edge. The cut is clamped to 4.0 s, before 'Nope' starts at 4.06 s.",
+  "Spoken hook ends at 3.28 s: it passes the studio's 3.6 s rule but is past the playbook's own 3.0 s.",
+  "The YouTube tag list carries 'markup vs margen'; it looks like a deliberate misspelling for search, so worth a quick check.",
+  "Round 0 faults checked: the on-screen hook hold is fixed. The take 5 pace fault remains (above). The builder's script-check.md, read after scoring, also scores 11 of 12 and fails point 8 for the same reason."
+ ],
+ "prior": {
+  "gate": "script",
+  "round": 0,
+  "at": "2026-10-29T12:33:20-05:00",
+  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+  "pass": false,
+  "score": "10 of 12",
+  "points_condensed": "1 PASS (10 words, ends 3.28 s); 2 FAIL (on-screen hook held to about 8.0 s); 3 to 7 PASS; 8 FAIL (take 5 at 147 wpm; per-take 169, 172, 165, 175, 147, 171; 74.56 s); 9 to 12 PASS (turn 61.8%, send line naming a role, echo ending, LESSON 3 HUD and RUN THE NUMBERS chip)",
+  "faults": [
+   "Point 2: the on-screen hook '50% markup is NOT 50% margin' stays on screen from 0.0 s to about 8.0 s (gone only at the wipe into the math room at 8.03 to 8.07 s), and the unmarked claim alone holds about 4.3 s. Both are over the 2.5 to 4.0 s hold. The fix is to retire the sign, or swap it for the ONE THIRD answer, by 4.0 s, for example cutting to a new shot on 'Nope' at 4.08 s.",
+   "Point 8: take 5 runs at 147 wpm on takes.json and transcript.md, under the studio's 150 wpm floor (voice.md: under 150, rewrite the take as talk). The fix is to rewrite take 5 tighter as talk and re-speak take 5 alone."
+  ],
+  "notes": [
+   "The builder's script-check.md (Oct 28, stand-in timings) scored point 2 as 'held 3.0 s'; the rebuilt render no longer matches that.",
+   "Total words 194 is under the 75 s band (200 to 240) but the lesson runs 74.57 s, inside 45 to 75 s, so it is a note only.",
+   "Spoken hook ends at 3.28 s: inside the studio's 3.6 s, past the playbook's own 3.0 s.",
+   "Spoken, the formula finishes at 53.58 s (72% of runtime); on screen it is complete by 50.08 s (67%).",
+   "Captions: the TikTok question 'Tell me which and why' and the YouTube line 'Free tools for trade owners at proofnotfluff.com' are caption extras, not spoken CTAs. Neither is bait.",
+   "Earlier faults checked and not back: formula board empty, OVERHEAD/YOUR PAY chips, strike through 50%, close plate. The golden reviewer's polish notes stand (the bench close-up reads as a backdrop swap, the cramped tape readouts, the half-orange glint on '50%' at 2.5 to 3.0 s)."
+  ]
+ }
 }

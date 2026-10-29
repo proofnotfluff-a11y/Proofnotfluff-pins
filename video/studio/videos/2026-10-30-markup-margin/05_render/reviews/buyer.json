@@ -1,8 +1,8 @@
 {
  "gate": "buyer",
- "round": 0,
- "at": "2026-10-29T11:28:38-05:00",
- "note": "rebuild Oct 29: hook re-cut (IMPROVE 00a), fresh opus reviewer",
+ "round": 1,
+ "at": "2026-10-29T13:06:34-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
  "pass": true,
  "score": {
   "stop": "yes",
@@ -11,15 +11,40 @@
   "follow_or_link": "yes"
  },
  "reasons": [
-  "1 (I run an electrical shop): a 50% markup on cost is only about a 33% margin on price, so to hit the margin you want, price = cost / (1 - margin).",
-  "2 stop yes: frame 0 s is a full-screen job-site sign saying '50% markup is NOT 50% margin'. That's a number I quote every week, and it says I've got it wrong. The picture changes by 1 s (bench close-up of the COST $1,000 / +50% planks, tape measure running to $1,000) and again by 2.5 s (back to the wide shot, Snow saying 'Is that your margin?'). The voice backs it up by 4.7 s ('Nope. It's a third.'). Snow is in the frame from 0.8 s, so I see a person and words on screen inside the first second.",
-  "3 send yes: to my office manager who builds quotes, and the line 'Send this to whoever sets your prices, even if that's you' asks for it with no pushing. Save yes: 'Screenshot this one', the formula, and the worked /0.6 example, also in the caption as Price = Cost / (1 - margin), $1,000 / 0.6 = $1,666.67. Follow yes: 'Lesson 3' and the 'Run the Numbers' tag say it's a series. There's no link pitch in the IG caption, which is fine, so follow is the yes here, not the link.",
-  "4 none: no hype, no fake urgency, no product pitch. The math checks out: $500/$1,500 = 33.3%, 100% markup = 50% margin, $1,000/0.6 = $1,666.67. The AI label is set in the post settings. The lines are short and sound like talk, not robotic.",
-  "5 minor, not blocking (a) 'JLC' on screen ('Sources: JLC, Xero') and in the caption ('Sal Alfano, JLC') means nothing to a stranger. This was flagged last round and is still there. Fix: in the IG caption write 'Journal of Light Construction'; the on-screen card can stay short.",
-  "5 minor, not blocking (b) at 3.0 s a '?' fades in beside 'margin' on the sign that says '50% markup is NOT 50% margin'. Read together it says 'is NOT 50% margin?', which half-undoes the claim for a second. Fix: put the '?' on Snow's line or next to a bare '50% margin', or drop it, since the voice already asks the question.",
-  "5 minor, not blocking (c) in the wide shot (0 to 0.5 s and 2.5 to 3 s), the tape measure and its '$500 / $1,000' labels sit right on the sign's bottom edge and the fence line, so that strip looks crowded. Fix: drop the tape about 20 px or tuck it under the planks.",
-  "5 note: the set (lumber stack, crane, bricks) reads as general contracting, not electrical/plumbing/HVAC as the caption says. It didn't stop me, because 'Mark up a job' is generic and the math applies to me.",
-  "Earlier faults checked: the previous buyer review's points did not get worse. The JLC wording is the only one still there, and it's minor.",
-  "6 trust yes: 'Example math' is labeled, sources are named, and the closing question ('Was the margin half, or a third?') sends me to check my own last quote instead of buying something."
- ]
+  "1 (I run a plumbing shop): a 50% markup on cost is only a one-third margin on price, and if you want a set margin, price = cost / (1 - margin), so for 40% you divide cost by 0.6.",
+  "2 stop yes: at 0.8 s the sign reads '50% markup is NOT 50% margin' above a COST $1,000 / +50% plank, and Snow is already talking ('Mark up a job'). 50% markup is how I quote, so the sign says I'm wrong, and that's what makes me stop. By 4.7 s the voice answers it ('Nope. It's a third.'), and the cut on 'Nope' to the blueprint (PRICE $1,500, +$500, '= 33.3% margin', ONE THIRD stamped) shows me the answer before I'd have scrolled.",
+  "3 send yes: to the person who builds my quotes. 'Send this to whoever sets your prices, even if that's you' asks plainly with no push. Save yes: 'Screenshot this one', the formula card, and $1,000 / 0.6 = $1,666.67, all repeated in the caption. Follow yes: 'Run the Numbers, lesson 3' tells me it's a series. Link no-op: the IG caption has no link pitch, which is fine, so follow is the yes here.",
+  "4 none: no hype, no fake urgency, no product pitch. The math holds: $500/$1,500 = 33.3%, a 100% markup gives a 50% margin, $1,000/0.6 = $1,666.67 (said as 'about sixteen hundred sixty-seven'). Take 5 now reads as talk ('Here's the part people skip. Screenshot this one.'), not robotic. AI label is on in the settings.",
+  "5 minor, not blocking (a), back from the previous review: at about 3.0 s a big '?' still sits right after '50% margin' on the sign, so it briefly reads '50% markup is NOT 50% margin?', which softens the claim. It's on screen for under a second before the 4.0 s cut, so it's less of a problem than before. Fix: put the '?' on Snow's 'Is that your margin?' bubble or drop it, since the voice already asks.",
+  "5 minor, not blocking (b), back from the previous review: 'JLC' (on screen 'Sources: JLC, Xero', and in the caption 'Sal Alfano, JLC') means nothing to a stranger. Fix: in the IG caption write 'Journal of Light Construction'. The on-screen line can stay short.",
+  "5 minor, not blocking (c), back from the previous review: in the 3.0 s wide shot the '$500 / $1,000' tape labels still crowd the sign's bottom edge and the fence. Fix: drop the tape about 20 px.",
+  "5 note: the set (crane, lumber, bricks) reads as general contracting while the caption names electrical, plumbing and HVAC. It didn't lose me, because 'Mark up a job' fits any trade.",
+  "Earlier faults checked: the old hook fault (the sign staying up past the answer) is fixed, since the sign is gone at 4.0 s and the blueprint shows the 33.3% answer. None of the three minor points above got worse.",
+  "6 trust yes: 'Example math' is labeled, sources are named, the numbers check out, and the close ('Was the margin half, or a third?') sends me back to my own last quote, not to a product."
+ ],
+ "prior": {
+  "gate": "buyer",
+  "round": 0,
+  "at": "2026-10-29T11:28:38-05:00",
+  "note": "rebuild Oct 29: hook re-cut (IMPROVE 00a), fresh opus reviewer",
+  "pass": true,
+  "score": {
+   "stop": "yes",
+   "send": "yes",
+   "save": "yes",
+   "follow_or_link": "yes"
+  },
+  "reasons": [
+   "1 (I run an electrical shop): a 50% markup on cost is only about a 33% margin on price, so to hit the margin you want, price = cost / (1 - margin).",
+   "2 stop yes: frame 0 s is a full-screen job-site sign saying '50% markup is NOT 50% margin'. That's a number I quote every week, and it says I've got it wrong. The picture changes by 1 s (bench close-up of the COST $1,000 / +50% planks, tape measure running to $1,000) and again by 2.5 s (back to the wide shot, Snow saying 'Is that your margin?'). The voice backs it up by 4.7 s ('Nope. It's a third.'). Snow is in the frame from 0.8 s, so I see a person and words on screen inside the first second.",
+   "3 send yes: to my office manager who builds quotes, and the line 'Send this to whoever sets your prices, even if that's you' asks for it with no pushing. Save yes: 'Screenshot this one', the formula, and the worked /0.6 example, also in the caption as Price = Cost / (1 - margin), $1,000 / 0.6 = $1,666.67. Follow yes: 'Lesson 3' and the 'Run the Numbers' tag say it's a series. There's no link pitch in the IG caption, which is fine, so follow is the yes here, not the link.",
+   "4 none: no hype, no fake urgency, no product pitch. The math checks out: $500/$1,500 = 33.3%, 100% markup = 50% margin, $1,000/0.6 = $1,666.67. The AI label is set in the post settings. The lines are short and sound like talk, not robotic.",
+   "5 minor, not blocking (a) 'JLC' on screen ('Sources: JLC, Xero') and in the caption ('Sal Alfano, JLC') means nothing to a stranger. This was flagged last round and is still there. Fix: in the IG caption write 'Journal of Light Construction'; the on-screen card can stay short.",
+   "5 minor, not blocking (b) at 3.0 s a '?' fades in beside 'margin' on the sign that says '50% markup is NOT 50% margin'. Read together it says 'is NOT 50% margin?', which half-undoes the claim for a second. Fix: put the '?' on Snow's line or next to a bare '50% margin', or drop it, since the voice already asks the question.",
+   "5 minor, not blocking (c) in the wide shot (0 to 0.5 s and 2.5 to 3 s), the tape measure and its '$500 / $1,000' labels sit right on the sign's bottom edge and the fence line, so that strip looks crowded. Fix: drop the tape about 20 px or tuck it under the planks.",
+   "5 note: the set (lumber stack, crane, bricks) reads as general contracting, not electrical/plumbing/HVAC as the caption says. It didn't stop me, because 'Mark up a job' is generic and the math applies to me.",
+   "Earlier faults checked: the previous buyer review's points did not get worse. The JLC wording is the only one still there, and it's minor.",
+   "6 trust yes: 'Example math' is labeled, sources are named, and the closing question ('Was the margin half, or a third?') sends me to check my own last quote instead of buying something."
+  ]
+ }
 }

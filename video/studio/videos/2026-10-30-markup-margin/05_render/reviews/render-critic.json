@@ -1,20 +1,40 @@
 {
  "gate": "render-critic",
- "round": 0,
- "at": "2026-10-29T11:29:54-05:00",
- "note": "rebuild Oct 29: hook re-cut (IMPROVE 00a), fresh opus reviewer",
+ "round": 1,
+ "at": "2026-10-29T13:07:50-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
  "pass": true,
  "score": {
   "faults": 0
  },
  "faults": [],
  "reasons": [
-  "Earlier-round faults stay fixed: the QUOTE monitor readout ($1,000 in f10, 9.76 s) ends at about x 914, and the tool belt values (MARGIN 40%, DIVIDE BY 0.6, PRICE $1,666.67, 55.5 to 61 s) end left of x 930. Pixel scan of all 41 key frames: no readable text past x 932 inside y 270 to 1250.",
-  "Hook: '50% markup is NOT 50% margin' is full size on the job-site cover from frame 0, stays on the bench close-up at 0.8 s, and is back full size at 2.04 s on 'Is'.",
-  "New opening cut: job site 0 to about 0.76 s, bench close-up from 'job' to 2.04 s, back out on 'Is'; 2 cuts in about 1.3 s, under 3 a second. Snow and the dialog come in at 0.8 s with nothing covering them. Nothing is hidden or cut off in the close-up.",
-  "Spoken numbers on screen at about the moment said, from 50% (0.96 s) through 'Half, or a third?' (70.4 to 71.5 s).",
-  "Layout once settled: nothing hides words or numbers. Note, not a fault: the ruler label '$1,500' ends at x 932, 2 px past the line, fully visible.",
-  "Audio: the last word 'third?' ends at 71.66 s; the video runs to 74.57 s on the end card. Nothing is cut mid-word.",
-  "Text: the smallest settled scene text is about 30 px tall at 1080 wide. No flashing above 3 a second."
- ]
+  "Earlier-round faults are still gone. The QUOTE monitor '$1,000' (f10, 9.83 s) ends at about x 914, and the tool belt values (MARGIN 40%, DIVIDE BY 0.6, f33 58.24 s) end left of x 930. render-critic.json from round 0 listed no faults, and none of the notes in it has come back.",
+  "Hook: '50% markup is NOT 50% margin' is on the job-site sign from frame 0 (frame-0s). It stays on the bench close-up title plate at 0.8 s and 2.0 s, and is back full size on 'Is' with the '?' on 'margin?'. A gold glint sweeps across single letters from 2.6 to 3.9 s, and every letter stays readable.",
+  "New cut: on 'Nope' (word at 4.06 s) the 4.0 s timeline frame already shows the blueprint, so the claim is cleared by 4.0 s. The blueprint shows the plate 'Your margin is', PRICE $1,500, COST $1,000 and +$500, and three brackets. ONE THIRD is on the plate by 5.0 s ('third' at 5.02 s), and '= 33.3% margin' lands under the bar by about 6.0 s. The RUN THE NUMBERS chip and the source line 'Example math. Sources: JLC, Xero' sit at y 810 to 910 with nothing over them, and the 1 THE MATH and 2 THE FIX chips slide in below them at about 6.0 s.",
+  "Spoken numbers are on screen at about the moment each is said. That runs from 50% (0.96 s), $1,000, +$500 and $1,500 through 1/3 and 33.3% (19.5 s), the 50% and 33.3% cards, 100% markup and the $2,000 quote. The re-voiced take 5 matches too: the formula card holds big from about 48.7 to 53.5 s with '1 - margin' ringed on 'one minus', 'Want 40% margin?' and MARGIN 40% show by 54.5 s, '$1,000 / 0.6 =' shows from 55.5 s ('point six' at 56.6 s), and $1,666.67 lands at 59.0 s on 'sixteen hundred sixty-seven'. The close runs through 'Half, or a third?' and 1/3? from 70.5 s.",
+  "Layout once settled: nothing hides words or numbers. On the blueprint the right-hand plank and bracket run to x 1055, but that is bar artwork; the '+$500' text ends at about x 873 and ONE THIRD at about x 770. The formula card covers the tool belt's lower icon row from 48.5 to 53.5 s, which hides icons only, no text. The ruler labels $500 and $1,000 at 3.0 s sit just under the sign and are fully visible.",
+  "Audio: the last word 'third?' ends at 71.83 s, the take file ends at 72.16 s, and the video runs to 74.73 s on the end card. Nothing is cut mid-word.",
+  "Text size: the smallest settled text is the new blueprint 'PRICE $1,500' label at about 25 px tall at 1080 wide, which is still legible, and the source line is about 30 px. Flashing: the plank blink on 'percent' and the gold blink on the markup third change brightness by about 1 percent or less in that region. The opening has 3 cuts in about 3.3 s (about 0.76, 2.04 and 4.0 s), so nothing flashes more than 3 times a second."
+ ],
+ "prior": {
+  "gate": "render-critic",
+  "round": 0,
+  "at": "2026-10-29T11:29:54-05:00",
+  "note": "rebuild Oct 29: hook re-cut (IMPROVE 00a), fresh opus reviewer",
+  "pass": true,
+  "score": {
+   "faults": 0
+  },
+  "faults": [],
+  "reasons": [
+   "Earlier-round faults stay fixed: the QUOTE monitor readout ($1,000 in f10, 9.76 s) ends at about x 914, and the tool belt values (MARGIN 40%, DIVIDE BY 0.6, PRICE $1,666.67, 55.5 to 61 s) end left of x 930. Pixel scan of all 41 key frames: no readable text past x 932 inside y 270 to 1250.",
+   "Hook: '50% markup is NOT 50% margin' is full size on the job-site cover from frame 0, stays on the bench close-up at 0.8 s, and is back full size at 2.04 s on 'Is'.",
+   "New opening cut: job site 0 to about 0.76 s, bench close-up from 'job' to 2.04 s, back out on 'Is'; 2 cuts in about 1.3 s, under 3 a second. Snow and the dialog come in at 0.8 s with nothing covering them. Nothing is hidden or cut off in the close-up.",
+   "Spoken numbers on screen at about the moment said, from 50% (0.96 s) through 'Half, or a third?' (70.4 to 71.5 s).",
+   "Layout once settled: nothing hides words or numbers. Note, not a fault: the ruler label '$1,500' ends at x 932, 2 px past the line, fully visible.",
+   "Audio: the last word 'third?' ends at 71.66 s; the video runs to 74.57 s on the end card. Nothing is cut mid-word.",
+   "Text: the smallest settled scene text is about 30 px tall at 1080 wide. No flashing above 3 a second."
+  ]
+ }
 }

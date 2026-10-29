@@ -1,27 +1,54 @@
 {
  "gate": "design",
- "round": 0,
- "at": "2026-10-29T11:29:54-05:00",
- "note": "rebuild Oct 29: hook re-cut (IMPROVE 00a), fresh opus reviewer",
- "pass": true,
+ "round": 1,
+ "at": "2026-10-29T13:07:42-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
+ "pass": false,
  "score": {
   "first": 5,
   "hierarchy": 5,
-  "type": 5,
+  "type": 4,
   "color": 5,
   "spacing": 4,
   "polish": 4,
   "trust": 5,
-  "average": 4.71
+  "average": 4.57
  },
  "reasons": [
-  "0.0 to 0.8 s and 2.5 to 8.0 s RUN THE NUMBERS plate: 'Example math. Sources: JLC, Xero' runs to x 643, into the plate's right border at about x 640. Widen the plate to x 680 so the text has 24 px of padding on the right, or set the line one size smaller so it ends by x 610",
-  "1.0 to 2.4 s bench close-up: the tape case sits at x 4 (touching the left edge of the frame) and the planks run from x 25 to 1055. Inset the whole bench (tape case, planks and shelf) to x 48 to 1032. Also move the floating RUN THE NUMBERS tag (y 850 to 898, sitting on the wall line) up onto the shelf edge at y 815, or drop it from the close-up because the cover already shows it",
-  "2.5 to 8.0 s wide shot tape labels: '$500', '$1,000' and '$1,500' are squeezed into the 55 px between the billboard base (y 640) and the plank top (y 697), on top of the fence hatching and the billboard legs. Drop the tape and its labels in the wide shot and mark $1,500 as one gold tag on the +50% plank, or lift the billboard 30 px so the labels sit on clear sky-free ground with 12 px above and below",
-  "3.0 s billboard '?': the plank-built question mark is drawn in dark brown on navy and hangs below the billboard frame (y 520 to 645, past the bottom border at about 630). Build it inside the plate (y 505 to 600), in gold from its first frame, so the beat reads as clean as the 4.68 s frame",
-  "2.5 and 3.0 s headline shine: the gold sweep covers only half of the '0' in '50%' (top line at 2.5 s, bottom line at 3.0 s), which reads as a broken glyph. Either sweep the whole word over 3 frames or cut the sweep",
-  "45.0 to 46.6 s gauge (round 1 item, not landed): the settled needle still runs through the dial's '50' label and splits it into '5|)'. Move the 50 label 14 px left of the 12 o'clock tick or above the rim",
-  "46.7 to 48.4 s tool belt (round 1 item, not landed): the detail pane (y 440 to 800) and the 'THE PART PEOPLE SKIP' plate are empty for 1.7 s. Fill the pane with the hammer's stat bars, or bring the formula card in at 46.7 s",
-  "64.0 to 73.6 s close plate (round 1 item, not landed): the plate still runs to y 850 over the register keys and drawer, and at 69.3 s 'Your last quote?' sits above an empty 80 px band before 'Half, or a third?' arrives. Keep the plate between y 597 and 800 (tag to the right of the send line) and type the second line in with the first"
- ]
+  "39.8 to 46.6 s gauge '50' label (round 0 item, third time not landed): the settled needle at 12 o'clock still cuts the label into '5|)' (needle at x 538 to 546, label at x 518 to 558, y 428). Move the 50 label above the rim at y 345 or 24 px left of the tick so the needle never crosses it",
+  "0.0 to 0.8 s and 2.5 to 4.0 s RUN THE NUMBERS plate (round 0 item, not landed): 'Example math. Sources: JLC, Xero' still ends at x 641, on the plate's inner border at x 640. Widen the plate to x 680 (24 px right padding) or set the line one size smaller so it ends by x 610",
+  "46.7 to 48.4 s tool belt (round 0 item, not landed): the detail pane under HAMMER (y 440 to 800) and the THE PART PEOPLE SKIP plate (y 900 to 960) stay empty for 1.7 s. Fill the hammer's stat bars in the pane on 'Here's', and bring the formula card in at 46.7 s instead of 48.4 s",
+  "69.3 to 70.6 s close plate (round 0 item, not landed): 'Your last quote?' sits over an empty 60 px band (y 665 to 735) until 'Half, or a third?' arrives, and the plate still runs to y 850 over the register. Type both lines in together on 'And your last quote?' and keep the plate between y 597 and 800",
+  "2.5 and 3.0 s headline shine (round 0 item, not landed): the gold sweep still covers only the right half of the '0' in '50%' (top line at 2.5 s, bottom line at 3.0 s), so the glyph reads as broken. Sweep the whole word in 3 frames or cut the sweep",
+  "3.0 to 4.0 s billboard '?' (round 0 item, not landed): the plank '?' is still brown on navy and hangs past the billboard's bottom border (y 520 to 630). Draw it in gold from its first frame, inside the plate between y 505 and 600",
+  "4.0 to 6.5 s new blueprint shot: the source line 'Example math. Sources: JLC, Xero' sits bare on the grid with blue lines through the letters, and the chips 1 THE MATH / 2 THE FIX (x 240 to 765) are centered while RUN THE NUMBERS and the source line are left at x 68. Put the chip, source line and the two chips on one dark plate from x 48 to 1032, all left-aligned at x 68",
+  "1.0 to 2.4 s bench close-up and 4.0 to 8.0 s blueprint bar (round 0 item, not landed): the tape case still touches the left edge (x 4) and the planks run x 25 to 1055; the blueprint bar and its gold +$500 outline run to x 1058. Inset both to x 48 to 1032"
+ ],
+ "prior": {
+  "gate": "design",
+  "round": 0,
+  "at": "2026-10-29T11:29:54-05:00",
+  "note": "rebuild Oct 29: hook re-cut (IMPROVE 00a), fresh opus reviewer",
+  "pass": true,
+  "score": {
+   "first": 5,
+   "hierarchy": 5,
+   "type": 5,
+   "color": 5,
+   "spacing": 4,
+   "polish": 4,
+   "trust": 5,
+   "average": 4.71
+  },
+  "reasons": [
+   "0.0 to 0.8 s and 2.5 to 8.0 s RUN THE NUMBERS plate: 'Example math. Sources: JLC, Xero' runs to x 643, into the plate's right border at about x 640. Widen the plate to x 680 so the text has 24 px of padding on the right, or set the line one size smaller so it ends by x 610",
+   "1.0 to 2.4 s bench close-up: the tape case sits at x 4 (touching the left edge of the frame) and the planks run from x 25 to 1055. Inset the whole bench (tape case, planks and shelf) to x 48 to 1032. Also move the floating RUN THE NUMBERS tag (y 850 to 898, sitting on the wall line) up onto the shelf edge at y 815, or drop it from the close-up because the cover already shows it",
+   "2.5 to 8.0 s wide shot tape labels: '$500', '$1,000' and '$1,500' are squeezed into the 55 px between the billboard base (y 640) and the plank top (y 697), on top of the fence hatching and the billboard legs. Drop the tape and its labels in the wide shot and mark $1,500 as one gold tag on the +50% plank, or lift the billboard 30 px so the labels sit on clear sky-free ground with 12 px above and below",
+   "3.0 s billboard '?': the plank-built question mark is drawn in dark brown on navy and hangs below the billboard frame (y 520 to 645, past the bottom border at about 630). Build it inside the plate (y 505 to 600), in gold from its first frame, so the beat reads as clean as the 4.68 s frame",
+   "2.5 and 3.0 s headline shine: the gold sweep covers only half of the '0' in '50%' (top line at 2.5 s, bottom line at 3.0 s), which reads as a broken glyph. Either sweep the whole word over 3 frames or cut the sweep",
+   "45.0 to 46.6 s gauge (round 1 item, not landed): the settled needle still runs through the dial's '50' label and splits it into '5|)'. Move the 50 label 14 px left of the 12 o'clock tick or above the rim",
+   "46.7 to 48.4 s tool belt (round 1 item, not landed): the detail pane (y 440 to 800) and the 'THE PART PEOPLE SKIP' plate are empty for 1.7 s. Fill the pane with the hammer's stat bars, or bring the formula card in at 46.7 s",
+   "64.0 to 73.6 s close plate (round 1 item, not landed): the plate still runs to y 850 over the register keys and drawer, and at 69.3 s 'Your last quote?' sits above an empty 80 px band before 'Half, or a third?' arrives. Keep the plate between y 597 and 800 (tag to the right of the send line) and type the second line in with the first"
+  ]
+ }
 }

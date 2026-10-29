@@ -2,7 +2,7 @@
  "schema": "pnf.studio.worlds.v1",
  "share": {
   "set:register": 0.311,
-  "set:gauge": 0.191,
-  "set:inventory": 0.204
+  "set:gauge": 0.187,
+  "set:inventory": 0.207
  }
 }

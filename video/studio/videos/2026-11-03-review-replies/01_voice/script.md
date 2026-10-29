@@ -2,7 +2,7 @@
 
 [leaning in] Got a one-star review? Here's your reply to copy. Forty-three percent of contractors in one HVAC survey said they don't answer reviews on third-party sites.
 
-[matter-of-fact] That's The ACHR News. Ninety-one percent of four hundred homeowners said reviews are important when they pick an HVAC contractor. Fifty-six percent check reviews like yours on Google.
+[matter-of-fact] That's The ACHR News. Ninety-one percent of the four hundred homeowners said reviews are important to them when they pick an HVAC contractor. And fifty-six percent of them check reviews like yours on Google.
 
 [matter-of-fact] So if you answer reviews on those sites, you're with the forty-five percent who do.
 

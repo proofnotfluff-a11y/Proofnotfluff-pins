@@ -1,0 +1,13 @@
+{
+ "gate": "facts-captions",
+ "round": 1,
+ "at": "2026-10-28T21:00:00-05:00",
+ "pass": true,
+ "score": {
+  "numbers": 32,
+  "mismatches": 0
+ },
+ "reasons": [
+  "round 0 faults fixed"
+ ]
+}

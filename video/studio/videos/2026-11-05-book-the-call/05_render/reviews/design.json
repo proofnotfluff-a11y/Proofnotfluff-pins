@@ -1,0 +1,19 @@
+{
+ "gate": "design",
+ "round": 0,
+ "at": "2026-10-28T21:00:00-05:00",
+ "pass": true,
+ "score": {
+  "first": 5,
+  "hierarchy": 5,
+  "type": 4,
+  "color": 5,
+  "spacing": 5,
+  "polish": 4,
+  "trust": 5,
+  "average": 4.71
+ },
+ "reasons": [
+  "freshness: looks nothing like lessons 7 and 8; polish: Invoca label wrap, boss text cut, -30 dither, flap row timing, hook focus outline, close bulb"
+ ]
+}

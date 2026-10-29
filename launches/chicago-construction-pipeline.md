@@ -1,4 +1,4 @@
-# /chicago-construction-pipeline/ (draft, noindex, waiting on Todd's preview yes)
+# /chicago-construction-pipeline/ (live Oct 29, 2026)
 
 Todd, Oct 29, 2026, 3:56 pm: "Yes, please do. Go with your recommendations for everything." (after the cfongai NYC call list read and Kimi's review). New page type, so Todd sees the preview before it goes live (CONSTITUTION 2).
 
@@ -19,4 +19,5 @@ Todd, Oct 29, 2026, 3:56 pm: "Yes, please do. Go with your recommendations for e
 ## Open
 - For the attorney: City data terms indemnity (same as other City pages); no site-wide Terms of Use; whether area cells of 1 or 2 should be suppressed.
 - Shared tools/geo_map.py: map touches its frame on the east and south edges (already open from the permit wait launch).
-- Go live: flip "draft" to false on Todd's yes, rebuild, verify, push. Confirm state.sealed.json is on main before Monday Nov 2.
+- Live: Todd, Oct 29, 2026, 6:05 pm, "Go with your recommendation". Verify 20 of 20 (this page, both leads pages, the hub), check_repo 0. state.sealed.json is on main, so week to week moves start Nov 2.
+- Same go: the Chicago cleaners leads FAQ "Why are some big projects missing?" now ends with this week's left-out counts (pages.json leftOutCounts, make_site leads_page_html, shown only when the counts add up), and the near-finish line on the leads pages now says the final clean is "close or already under way" (stage timing check: partial occupancy jobs are typically about a year past their permit).

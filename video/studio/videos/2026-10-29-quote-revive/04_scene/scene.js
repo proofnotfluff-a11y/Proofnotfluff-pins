@@ -599,7 +599,8 @@ window.SCENE = {
         [[240, TEAL], [272, GOLD], [304, RED]].forEach(([x, c], i) => { const on = ((d.F >> 4) + i) % 3 === 0; disc(x, 446, 9, INK); disc(x, 445 + (on ? 1 : 0), 8, c); DOT(x - 3, 441 + (on ? 1 : 0), CREAM); });
         P(130, 500, 100, 120, '#2B2033'); P(130, 500, 100, 2, '#5A4A63'); P(130, 618, 100, 2, INK);
         [[150, 530], [194, 530]].forEach(([x, y]) => { P(x, y, 16, 34, INK); P(x + 1, y + 1, 14, 32, (d.F >> 4) % 2 ? ORANGE : '#F2A541'); P(x + 6, y + 6, 4, 22, INK); });
-        P(152, 580, 56, 4, '#5A4A63'); for (let x = 14; x < 360; x += 40) if (x < 120 || x > 240) P(x, 520, 24, 80, '#352840'); }
+        P(152, 580, 56, 4, '#5A4A63');
+        [[20, 506], [250, 506]].forEach(([x, y]) => { P(x - 1, y - 1, 92, 102, INK); P(x, y, 90, 100, '#1B1420'); for (let j = 0; j < 9; j++) P(x + 6, y + 8 + j * 10, 78, 4, '#352840'); }); }   /* the cabinet's two speaker grilles */
       /* the perks: while "The rule:" is up they are big, one line each; once the level ticks over they settle into a small list */
       const big = T < tQ + 0.6, bigW = Math.max(...perks.map(([s]) => k.measure('+ ' + s, {size: 66}))), bigX = Math.round(540 - bigW / 2);
       perks.forEach(([s, at], i) => {

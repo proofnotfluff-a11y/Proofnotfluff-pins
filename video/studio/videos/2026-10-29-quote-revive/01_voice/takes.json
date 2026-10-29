@@ -1,10 +1,10 @@
 {
  "schema": "pnf.studio.takes.v1",
- "requestedAt": "2026-10-29T11:51:34-05:00",
+ "requestedAt": "2026-10-29T12:04:29-05:00",
  "voice": "W3pJy9ibur1FKUihVxzY",
  "model": "eleven_v4",
- "scriptSha256": "6469a300cb2aee2272267ef3994f158f149c94ee2dd38c64725c75ca48a046ef",
- "voiceSha256": "66d488e46442a8f25bb698381dc8388797cf26b456e5d9292f0144329e73d3db",
+ "scriptSha256": "acf2f07a448a89217b1d6caf1225c02939558052af982576fa5160acae67c2bf",
+ "voiceSha256": "3a51ba11101ef136ce682cc40767a39393b32ec07e93ed0d8ed531b78092458e",
  "takes": [
   {
    "n": 1,
@@ -49,12 +49,12 @@
   {
    "n": 5,
    "file": "takes/05.mp3",
-   "sha256": "6b60e615611116ca1478fa8f97abed8d2f31f7a0ed66cbca6720a766316b6981",
-   "seconds": 13.558,
-   "chars": 243,
+   "sha256": "a24164f8e7b847d8b12017e1b43524e61a165b65fd4153344309d1bf36f04bfe",
+   "seconds": 13.871,
+   "chars": 236,
    "start": 46.942,
-   "end": 60.5,
-   "wpm": 155
+   "end": 60.813,
+   "wpm": 151
   },
   {
    "n": 6,
@@ -62,15 +62,15 @@
    "sha256": "64e92acb785f3270a14d781c299909132cb370e6fdbfb021e380ea72b8c23132",
    "seconds": 8.594,
    "chars": 148,
-   "start": 60.82,
-   "end": 69.414,
+   "start": 61.133,
+   "end": 69.727,
    "wpm": 182
   }
  ],
- "chars": 1163,
- "at": "2026-10-29T11:54:42-05:00",
+ "chars": 1156,
+ "at": "2026-10-29T12:07:09-05:00",
  "credits": {
-  "used": 20395,
+  "used": 20730,
   "limit": 40000,
   "tier": "starter",
   "resetsAt": 1794774902

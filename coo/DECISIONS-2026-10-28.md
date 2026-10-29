@@ -80,3 +80,5 @@
 - So: (1) every lesson gets its own world and moves, and a variety check fails reuse; (2) evidence must come from the trades (trade data, trade press, trade associations, trade-business research), no "this isn't the trades" caveats; (3) a research run on what successful trades-business creators teach, each insight backed by a credible trade source. Lessons whose evidence is not from the trades (1 Fiverr, 4 restaurant menu, 6 1986 survey, 7 hotels) are reworked or replaced.
 - 9:06 pm [stated] "rebuild the rest. Go lesson one. The book the call video looks great"
 - So: lesson 1 posts on Todd's go (its captions gate held at a second FAIL; both fixes were made); lesson 9 joins the post queue (all gates PASS, Todd: "looks great"); lessons 2 to 8 are rebuilt under the trades-first and own-worlds rules (6 and 7 replaced from the trades bank).
+- 9:38 pm [stated] "accept tiktok"
+- So: TikTok's "Ready to post?" box (it collects face and voice information) was accepted once, for lesson 1. Lesson 1 is live on all 4 platforms. TikTok lists it as "Only me" while under review; no setting was changed.

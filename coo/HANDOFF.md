@@ -13,5 +13,5 @@
 - Oct 25: credits plan (DECISIONS-2026-10-25): audit Oct 28; bursts Oct 29, Nov 2. Area seats live Oct 26, 6 open.
 - Oct 26 pm: TRAFFIC FIRST; no builder outreach. Kimi R8 kept.
 - Oct 27: trade owners only; free plan waits (DECISIONS-2026-10-27). Trades News (daily 6:32), maps, templates live. R10: 11 free data pages and redesign live (/chicago-data/, site/datahub.json); inspections by area, Quarterly open (W).
-- Oct 28: 8 studio lessons, new pixel art; lesson 1 waits on "go lesson 1", lesson 4 on Todd's go.
+- Oct 28: lesson 1 posted 4/4; lesson 9 queued 7:46 am; 2-8 rebuilding (trades-only, own worlds).
 - Oct 25: Chief of Staff live (DECISIONS-2026-10-25): sweep (PC, sole reply-status writer), brief, Sun review.

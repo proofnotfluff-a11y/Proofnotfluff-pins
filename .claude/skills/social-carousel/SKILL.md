@@ -1,4 +1,4 @@
-# social-carousel (daily 11:40 am Central, Todd's PC; Todd, Oct 25, 2026)
+# social-carousel (daily 11:40 am Central, Todd's PC; Todd, Oct 25, 2026) RETIRED Oct 29, 2026: replaced by video-studio (Todd, live chat: "We don't need to do these carousels anymore now that we are doing video generation."); scheduled task paused, not deleted
 
 One job: build one on-brand carousel from today's real data, gate it, and post it to Instagram (proofnotfluff) and the Proofnotfluff Facebook Page. Organic only; LinkedIn off. Todd, Oct 25, 3:05 pm: "Post when all checks pass" (coo/DECISIONS-2026-10-25.md). Step 6 runs only if coo/CONSTITUTION.md section 2 carries a standing carousel post rule; until then stop after step 5 and send Todd the slides. A second FAIL, a blocked tool or a doubt stops the run and goes to Todd.
 

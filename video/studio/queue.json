@@ -19,7 +19,20 @@
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {
+    "instagram": {
+     "url": "https://www.instagram.com/proofnotfluff/reel/DfD7TAUB7nR/",
+     "at": "2026-10-28T21:25:25-05:00"
+    },
+    "facebook": {
+     "url": "https://www.facebook.com/reel/2459879301206130",
+     "at": "2026-10-28T21:32:12-05:00"
+    },
+    "youtube": {
+     "url": "https://youtube.com/shorts/zAuTOnyDElQ",
+     "at": "2026-10-28T21:34:52-05:00"
+    }
+   }
   },
   {
    "slug": "2026-11-05-book-the-call",

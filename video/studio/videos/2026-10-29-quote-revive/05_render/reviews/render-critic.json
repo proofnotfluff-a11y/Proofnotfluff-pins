@@ -1,53 +1,81 @@
 {
  "gate": "render-critic",
- "round": 1,
- "at": "2026-10-29T12:47:25-05:00",
- "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
- "pass": true,
+ "round": 3,
+ "at": "2026-10-29T14:24:13-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 3",
+ "pass": false,
  "score": {
-  "faults": 0
+  "faults": 1
  },
- "faults": [],
+ "faults": [
+  {
+   "kind": "overlap",
+   "at": 23.29,
+   "text": "Just checking in!",
+   "scene": "homework (fridge, blue phone bubble over the counter, about 18.0 to 27.0 s)",
+   "what": "The text sits too low in the blue bubble. The descenders of the J in 'Just' and the g in 'checking' run over the bubble's black bottom border, at y 636 to 638 between x 69 and 359 in f15-023.29.png, so the line looks like it is spilling out of the box. This is the same kind of fault as the round-0 Sources line. It is still readable. Move the text up about 6 px or make the bubble taller."
+  }
+ ],
  "reasons": [
-  "Prior round: reviews/render-critic.json (round 0) listed 2 overlaps, and both are gone. The hook Sources line now reads 'Sources: ServiceTitan, Jobber, Housecall Pro' at y 672 to 703, clear of the window border, with its right edge at x 914. In the JOBBER'S TIPS window, 'Jobber Academy, 2026' wraps onto two lines inside the panel. The other round-0 items are fixed too: 59% is large and its source arrives with it, the dash close-up has vents and a big Snow, every phone header says Homeowner, no sparks sit on 'this', and the level-up close has a dark console floor with no checkerboard.",
+  "Prior round: reviews/render-critic.json (round 1) listed 0 faults, and round 0's two overlaps are still gone. The hook Sources line sits inside the window at y 672 to 703, and 'Jobber Academy, 2026' wraps inside the JOBBER'S TIPS panel. The fridge bubble fault above was not listed in earlier rounds, but it is the same in this cut.",
   "hook-number: PASS. 'Quote went quiet?' and 'Send this text.' are on screen from frame 0. They stay up through the 0.5 to 1.5 s dash cut-in and are still there at 2.0 s.",
-  "number-readable: PASS. 37% lands at about 8.0 s; 'thirty-seven' is said at 7.94 s. 59% lands at about 56.0 s; 'fifty-nine' is said at 55.72 s. + ONE NAME, ONE JOB and ONE QUESTION land at about 61.0, 62.0 and 63.0 s; they are said at 60.74, 61.78 and 62.68 s.",
-  "layout: PASS. Once each scene settles, no words or numbers are hidden or cut off. Text stays within y 270 to 1250. The lock-screen notification covering the chat and the Dentist note covering the plumber note are both scripted reveals. Two lines run just past the x 930 guide, measured from pixels: 'Groceries' on the fridge note ends at x 938 (y 708, 18 to 33 s), and 'ServiceTitan follow-up webinar, 2026' ends at x 935 (y 940, 51.5 to 55.5 s). Both are fully visible and sit outside where the platform's right-side buttons usually go, so I did not count them as faults. Pulling them in by about 10 px would remove any doubt.",
-  "audio-end: PASS. The last word 'send.' ends at 69.08 s and the video runs 71.97 s. The music and end card play out and fade (-39 dB at 71.6 s), so nothing is cut mid-word.",
-  "small-text / flash: PASS. The smallest text (source lines, '1,040 U.S. homeowners, 2025', 'now' on the notification) is about 28 px tall or more. The only dark dip is a 2-frame transition at about 60.7 s, a single event. The typing dots and rotating rays stay well under 3 flashes a second."
+  "number-readable: PASS. 37% is up at 8.0 s and 'thirty-seven' is said at 7.94 s. 59% is up at 56.0 s and 'fifty-nine' is said at 55.72 s. + ONE NAME, ONE JOB and ONE QUESTION land at about 61.0, 62.0 and 63.0 s, and they are said at 60.74, 61.78 and 62.68 s.",
+  "layout: apart from the bubble fault, nothing is hidden or cut off once each scene settles, and text stays within y 270 to 1250. The Dentist note covering the plumber note and the lock-screen notification are scripted reveals. 'Groceries' (about x 938) and the webinar source line (about x 935) run a few px past x 930 but are fully visible, so I did not count them. The end card text runs x 225 to 835 and y 400 to 725, and nothing is cut off.",
+  "last 4 s, checked frame by frame from the mp4: 'send.' runs 68.84 to 69.08 s, and the LEVEL UP screen with 'Now you know what to send.' stays fully up through 69.20 s. The card starts to drop at about 69.25 s, so it does not cover the last word. It is settled by about 69.6 s and held, steady, to the last frame at 72.17 s. The 69.0 s tile in timeline-5 looks like the drop has already started, but the decoded frames at 69.0 to 69.2 s show the full close screen.",
+  "audio-end: PASS. The voice ends at 69.08 s and the file runs 72.17 s, 3.09 s past the last word. The sting and music then fade from about -27 dB to -53 dB RMS at the end, so nothing is cut mid-word or mid-sound.",
+  "small-text / flash: PASS. The smallest text (source lines, 'Lessons for trade owners') is about 24 to 28 px tall, readable on a phone. The only dark dip is one transition at about 60.5 s. The typing dots, blinking buttons and turning rays stay under 3 flashes a second."
  ],
  "prior": {
   "gate": "render-critic",
-  "round": 0,
-  "at": "2026-10-29T12:26:21-05:00",
-  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
-  "pass": false,
+  "round": 1,
+  "at": "2026-10-29T12:47:25-05:00",
+  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
+  "pass": true,
   "score": {
-   "faults": 2
+   "faults": 0
   },
-  "faults": [
-   {
-    "kind": "overlap",
-    "at": 0.0,
-    "text": "Sources: Jobber, ServiceTitan",
-    "scene": "hook (street cover, frames 0 to about 0.5 s and 1.9 to 3.5 s)",
-    "what": "The new Sources line sits right on the sky window's bottom border at about y 672 to 703. Its baseline touches the inner border line, and the J descender and the comma cross below it into the window's outer frame, so the line looks like it is spilling out of the box. It is still readable. In the 0.5 to 1.5 s dash cut-in the same line has room and is fine. Move it up or make the window taller so the text clears the border."
-   },
-   {
-    "kind": "overlap",
-    "at": 28.07,
-    "text": "Jobber Academy, 2026",
-    "scene": "homework (JOBBER'S TIPS window, 27.5 to 33.4 s)",
-    "what": "The source line runs past the window's right edge. The last digit, the 6 of 2026, crosses the light-blue inner border at x about 430 to 440, and the border line is drawn through it, so part of the number sits under the frame. Shrink or wrap the line, or widen the window."
-   }
-  ],
+  "faults": [],
   "reasons": [
-   "Prior round: reviews/render-critic.json lists 0 faults, so nothing to re-check. Its items are not back: notification and YES/NO stay readable inside x 930, the floor is wood planks, and the voice is not cut.",
-   "hook-number: PASS. 'Quote went quiet?' and 'Send this text.' are on screen from frame 0. The dash cut-in at 0.5 to 1.5 s carries the same title plate, and the cut back at 2.0 s still shows them. That is 2 picture changes before 3 s, not a flash.",
-   "number-readable: PASS. 37% is on screen at 8.0 s (said 7.94 s), 59% at 56.0 s (said 55.72 s), and + ONE NAME / ONE JOB / ONE QUESTION land at 61.5 / 62.0 / 63.0 s (said 60.74 / 61.78 / 62.68 s).",
-   "layout: the dialog box ends at x about 925. Text bubbles, the lock screen and the close text all sit within y 270 to 1250. The Dentist note covering the plumber note is scripted. The 60.5 s near-black frame is a single transition frame. Only the 2 border overlaps above fail.",
-   "audio-end: PASS. The last word 'send.' ends at 69.08 s and the video runs 71.97 s with an end card, so nothing is cut mid-word.",
-   "small-text / flash: PASS. The smallest text (source lines, notes) is about 28 to 30 px tall, readable on a phone. The typing dots blink about 2 times a second, the rays rotate, and nothing flashes more than 3 times a second."
-  ]
+   "Prior round: reviews/render-critic.json (round 0) listed 2 overlaps, and both are gone. The hook Sources line now reads 'Sources: ServiceTitan, Jobber, Housecall Pro' at y 672 to 703, clear of the window border, with its right edge at x 914. In the JOBBER'S TIPS window, 'Jobber Academy, 2026' wraps onto two lines inside the panel. The other round-0 items are fixed too: 59% is large and its source arrives with it, the dash close-up has vents and a big Snow, every phone header says Homeowner, no sparks sit on 'this', and the level-up close has a dark console floor with no checkerboard.",
+   "hook-number: PASS. 'Quote went quiet?' and 'Send this text.' are on screen from frame 0. They stay up through the 0.5 to 1.5 s dash cut-in and are still there at 2.0 s.",
+   "number-readable: PASS. 37% lands at about 8.0 s; 'thirty-seven' is said at 7.94 s. 59% lands at about 56.0 s; 'fifty-nine' is said at 55.72 s. + ONE NAME, ONE JOB and ONE QUESTION land at about 61.0, 62.0 and 63.0 s; they are said at 60.74, 61.78 and 62.68 s.",
+   "layout: PASS. Once each scene settles, no words or numbers are hidden or cut off. Text stays within y 270 to 1250. The lock-screen notification covering the chat and the Dentist note covering the plumber note are both scripted reveals. Two lines run just past the x 930 guide, measured from pixels: 'Groceries' on the fridge note ends at x 938 (y 708, 18 to 33 s), and 'ServiceTitan follow-up webinar, 2026' ends at x 935 (y 940, 51.5 to 55.5 s). Both are fully visible and sit outside where the platform's right-side buttons usually go, so I did not count them as faults. Pulling them in by about 10 px would remove any doubt.",
+   "audio-end: PASS. The last word 'send.' ends at 69.08 s and the video runs 71.97 s. The music and end card play out and fade (-39 dB at 71.6 s), so nothing is cut mid-word.",
+   "small-text / flash: PASS. The smallest text (source lines, '1,040 U.S. homeowners, 2025', 'now' on the notification) is about 28 px tall or more. The only dark dip is a 2-frame transition at about 60.7 s, a single event. The typing dots and rotating rays stay well under 3 flashes a second."
+  ],
+  "prior": {
+   "gate": "render-critic",
+   "round": 0,
+   "at": "2026-10-29T12:26:21-05:00",
+   "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+   "pass": false,
+   "score": {
+    "faults": 2
+   },
+   "faults": [
+    {
+     "kind": "overlap",
+     "at": 0.0,
+     "text": "Sources: Jobber, ServiceTitan",
+     "scene": "hook (street cover, frames 0 to about 0.5 s and 1.9 to 3.5 s)",
+     "what": "The new Sources line sits right on the sky window's bottom border at about y 672 to 703. Its baseline touches the inner border line, and the J descender and the comma cross below it into the window's outer frame, so the line looks like it is spilling out of the box. It is still readable. In the 0.5 to 1.5 s dash cut-in the same line has room and is fine. Move it up or make the window taller so the text clears the border."
+    },
+    {
+     "kind": "overlap",
+     "at": 28.07,
+     "text": "Jobber Academy, 2026",
+     "scene": "homework (JOBBER'S TIPS window, 27.5 to 33.4 s)",
+     "what": "The source line runs past the window's right edge. The last digit, the 6 of 2026, crosses the light-blue inner border at x about 430 to 440, and the border line is drawn through it, so part of the number sits under the frame. Shrink or wrap the line, or widen the window."
+    }
+   ],
+   "reasons": [
+    "Prior round: reviews/render-critic.json lists 0 faults, so nothing to re-check. Its items are not back: notification and YES/NO stay readable inside x 930, the floor is wood planks, and the voice is not cut.",
+    "hook-number: PASS. 'Quote went quiet?' and 'Send this text.' are on screen from frame 0. The dash cut-in at 0.5 to 1.5 s carries the same title plate, and the cut back at 2.0 s still shows them. That is 2 picture changes before 3 s, not a flash.",
+    "number-readable: PASS. 37% is on screen at 8.0 s (said 7.94 s), 59% at 56.0 s (said 55.72 s), and + ONE NAME / ONE JOB / ONE QUESTION land at 61.5 / 62.0 / 63.0 s (said 60.74 / 61.78 / 62.68 s).",
+    "layout: the dialog box ends at x about 925. Text bubbles, the lock screen and the close text all sit within y 270 to 1250. The Dentist note covering the plumber note is scripted. The 60.5 s near-black frame is a single transition frame. Only the 2 border overlaps above fail.",
+    "audio-end: PASS. The last word 'send.' ends at 69.08 s and the video runs 71.97 s with an end card, so nothing is cut mid-word.",
+    "small-text / flash: PASS. The smallest text (source lines, notes) is about 28 to 30 px tall, readable on a phone. The typing dots blink about 2 times a second, the rays rotate, and nothing flashes more than 3 times a second."
+   ]
+  }
  }
 }

@@ -1,22 +1,22 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-02-price-raise",
- "mp4Sha256": "8fcfedcc93c1317054a28a08007f1091783005b9202db52b3e9a9fcb94dc8689",
+ "mp4Sha256": "c310e458cf0af6e183314761a4afc9dff8624b04a1ccfaac48ee4be9229d7828",
  "checks": [
   {
    "name": "length",
-   "value": 74.5,
+   "value": 74.7,
    "pass": true,
-   "detail": "74.50 s (45.0 to 75.0, v1 lesson, end card included)"
+   "detail": "74.70 s (45.0 to 75.0, v1 lesson, end card included)"
   },
   {
    "name": "loudness",
    "value": {
     "lufs": -14.2,
-    "truePeak": -3.0
+    "truePeak": -2.9
    },
    "pass": true,
-   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -3.0 dBTP (at most -1.5)"
+   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -2.9 dBTP (at most -1.5)"
   },
   {
    "name": "black",
@@ -33,8 +33,8 @@
   {
    "name": "file",
    "value": {
-    "sha256": "8fcfedcc93c1317054a28a08007f1091783005b9202db52b3e9a9fcb94dc8689",
-    "bytes": 7315603
+    "sha256": "c310e458cf0af6e183314761a4afc9dff8624b04a1ccfaac48ee4be9229d7828",
+    "bytes": 7315615
    },
    "pass": true,
    "detail": "H.264 1080x1920 30 fps, AAC, 7.3 MB, decodes clean"
@@ -47,5 +47,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-29T13:37:01-05:00"
+ "at": "2026-10-29T14:19:22-05:00"
 }

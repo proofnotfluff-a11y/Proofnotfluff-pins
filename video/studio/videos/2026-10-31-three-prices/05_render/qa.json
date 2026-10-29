@@ -1,13 +1,13 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-10-31-three-prices",
- "mp4Sha256": "1d5e788e3ec92f6cf0d87a0cb5eb95c1c73cfdedb64b8556ed8f6e2692cab46b",
+ "mp4Sha256": "9c75a97d7232d24b42cb4f15c33d578141156331b342907043b377950ede17ea",
  "checks": [
   {
    "name": "length",
-   "value": 74.433,
+   "value": 74.633,
    "pass": true,
-   "detail": "74.43 s (45.0 to 75.0, studio lessons, end card included)"
+   "detail": "74.63 s (45.0 to 75.0, v1 lesson, end card included)"
   },
   {
    "name": "loudness",
@@ -33,8 +33,8 @@
   {
    "name": "file",
    "value": {
-    "sha256": "1d5e788e3ec92f6cf0d87a0cb5eb95c1c73cfdedb64b8556ed8f6e2692cab46b",
-    "bytes": 6783844
+    "sha256": "9c75a97d7232d24b42cb4f15c33d578141156331b342907043b377950ede17ea",
+    "bytes": 6776060
    },
    "pass": true,
    "detail": "H.264 1080x1920 30 fps, AAC, 6.8 MB, decodes clean"
@@ -47,5 +47,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-29T12:47:55-05:00"
+ "at": "2026-10-29T14:20:28-05:00"
 }

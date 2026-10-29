@@ -1,47 +1,66 @@
 {
  "gate": "render-critic",
- "round": 1,
- "at": "2026-10-29T13:42:02-05:00",
- "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
+ "round": 3,
+ "at": "2026-10-29T14:23:39-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 3",
  "pass": true,
  "score": {
   "faults": 0
  },
  "faults": [],
  "reasons": [
-  "Earlier round (render-critic.json, round 0): its one fault is gone. The EXAMPLE: LAST MONTH readout values are now right-aligned and end at x 917 (measured on f22 34.95 s, f23 38.55 s, f24 41.25 s and f25 43.19 s), down from x 941. The other old fixes still hold. The 'Can't close a gap you never measured.' sticker text ends at x 911. The gauge plate 'TOP 25% 70% TO 73%' ends at x 920. The map notes at 47 to 52 s keep both lines inside their plates.",
-  "Hook: PASS. 'Do you know your / close rate?' is on the cover from frame 0, with the 31% and 38% region cards already settled. It stays on the whiteboard close-up from the 0.8 s cut, is back on the plate after the 2.33 s cut out, and gives way to 'Median close rate, by US region / 31% to 38%' at 4.0 s.",
-  "Spoken numbers: PASS. thirty-one (5.22 s) and thirty-eight (6.10 s) are on screen from 0 s. May (10.36 s) and July (11.04 s) are on the source line from 0 s. 'quarter' (12.97 s) has TOP 25% on screen by 13.0 s. 'seventy' (17.33 s) has '70% TO' at 17.5 s, and 'seventy-three' (18.13 s) has '70% TO 73%' at 18.0 s. 'forty' (34.51 s) has GIVEN 40 at 34.5 s. 'fourteen' (36.65 s) has SOLD 14 OF 40 at 36.5 s. 'Fourteen over forty' (37.95 to 39.09 s) has '14 / 40' at 38.0 s. 'thirty-five' (39.43 s) has '= 35%' at 39.5 s. 'two numbers' (57.97 s) is shown by the board's two rows, Estimates given and Jobs sold.",
-  "Layout: PASS. Settled frames show no hidden, clipped or overlapped words or numbers, and lesson content stays between y 270 and y 1250. The new range strip ('Median 31% to 38%  35% sits inside', y about 872) sits clear under the example card. Plate edges and decor reach past x 930, but the text inside them stays left of it. The NUMBERS CLINIC chip plate ends at about x 947 with its text inside. The US WEST card's empty gauge track runs to about x 1015, but its fill ends at about x 876 and '38%' ends at about x 757. The SOLD slips on the cork board are scenery props. One non-settled moment: at 66.4 to 66.73 s (10 frames) the PROOFNOTFLUFF stamp holds over 'ESTIMATES GIVEN' and then drops to its resting spot under the formula by 66.9 s. This is part of its entrance and does not happen while the formula is being spoken, so I did not count it.",
-  "Audio end: PASS. The last word 'rate.' runs 70.12 to 70.38 s and the video runs 73.27 s. The dialog shows 'Then on Friday, you'll know your close rate.' before the end card at about 71.0 s. Only the music bed continues, fading to -41 dB by 73.0 s. Nothing is cut mid-word.",
-  "Text size and flash: PASS. The smallest lines are the source lines, 'Now yours: __ / __', the range strip and the dialog text, all about 28 to 32 px tall at 1080 wide and readable on a phone. Frame-to-frame brightness shows only single events, never more than 3 a second: the cuts at 0.8 and 2.33 s, the transitions at 12.0, 24.2, 33.2, 44.5, 52.5, 56.8 and 63.3 s, and one 2-frame 'screenshot' flash at 25.97 s."
+  "Earlier round (render-critic.json, round 1, previous cut): it listed no faults. Its round 0 fault (EXAMPLE: LAST MONTH readouts past x 930) is still gone. On f23 at 38.55 s, '14 OF 40' ends at about x 918, and the card border sits at x 985. GIVEN 40 and RATE 35% use the same right edge on f22, f24 and f25.",
+  "Hook: PASS. 'Do you know your / close rate?' plus the 31% and 38% region cards are on the cover from frame 0. The hook stays on the whiteboard close-up from the 0.8 s cut and is back on the plate after the cut out at about 2.3 s. 'Median close rate, by US region / 31% to 38%' replaces it at 4.0 s.",
+  "Spoken numbers: PASS. thirty-one (5.22 s) and thirty-eight (6.10 s) are on screen from 0 s. May (10.36 s) and July (11.04 s) are on the source line from 0 s. 'quarter' (12.97 s) has TOP 25% at 13.0 s. 'seventy' (17.33 s) has '70% TO' at 17.5 s. 'seventy-three' (18.13 s) has '70% TO 73%' at 18.0 s. 'forty' (34.51 s) has GIVEN 40 at 34.5 s. 'fourteen' (36.65 s) has 14 OF 40 at 36.5 s. 'Fourteen over forty' has '14 / 40' at 38.0 s. 'thirty-five' (39.43 s) has '= 35%' at 39.5 s. 'two numbers' (about 58 s) is shown by the two whiteboard rows.",
+  "Layout: PASS. In settled frames no words or numbers are hidden, clipped or overlapped. Lesson content stays between y 270 and y 1250, and its text stays left of x 930. Some plate edges and scenery props (NUMBERS CLINIC chip plate, SOLD slips, end-card plate at x 114 to 955) reach past x 930, but the text inside them stays left of it. The end card's text ends at about x 835.",
+  "Last 4 s and audio end: PASS. The last word 'rate.' runs 70.12 to 70.38 s in words.json. Measured voice energy falls to the music-bed level (about -28 to -33 dB RMS) by 70.25 s. The dialog shows the full line 'Then on Friday, you'll know your close rate.' from 70.1 s. The old scene is unchanged at 70.45 s. The end card is mid-drop at 70.5 s and settled by about 70.8 s, so it drops about 0.1 s after the last word, as the runtime change intends. The file runs 73.47 s (3.09 s past the last word), with the card up for about 3.0 s. Only the music bed plays under the card, and it fades out to -62 dB by 73.4 s. Nothing is cut mid-word.",
+  "Text size and flash: PASS. The smallest lines are the source lines, 'Now yours: __ / __', the range strip and the dialog text, at about 28 to 32 px tall at 1080 wide, which reads fine on a phone. The end-card tagline 'Lessons for trade owners' is about 30 px. Only single events change the picture: the cuts at 0.8 s and 2.33 s, the transitions at about 12.0, 24.0, 33.0, 44.5, 52.5, 56.5 and 63.3 s, the brief screenshot flash near 26 s, and the end-card drop at 70.5 s. Nothing flashes more than 3 times a second."
  ],
  "prior": {
   "gate": "render-critic",
-  "round": 0,
-  "at": "2026-10-29T12:47:45-05:00",
-  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
-  "pass": false,
+  "round": 1,
+  "at": "2026-10-29T13:42:02-05:00",
+  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
+  "pass": true,
   "score": {
-   "faults": 1
+   "faults": 0
   },
-  "faults": [
-   {
-    "kind": "cutoff",
-    "at": 34.5,
-    "text": "GIVEN 40 / SOLD 14 OF 40 / RATE 35%",
-    "scene": "example",
-    "what": "The right-aligned readout values in the EXAMPLE: LAST MONTH card run past the x 930 content edge. Their text ends at x 941 (measured on f22 34.95 s, f23 38.55 s, f24 41.25 s and f25 43.19 s) from about 34.5 s to 44.4 s. From 34.5 s to 37.9 s this readout is the only place the spoken 'forty' and 'fourteen' appear, and the last digit sits 11 px into the zone a platform's right rail can cover. Right-align the readouts at x 925 or less."
-   }
-  ],
+  "faults": [],
   "reasons": [
-   "Round 1 file (previous cut, context only): it listed no faults. Its old fixes still hold: the 'Can't close a gap you never measured.' sticker sits below the gauge (text ends at x 912), the gauge source line and the 0 and 100 labels stay clear, and both map notes at 47 to 52 s hold their two lines with margin. Its claim that all text stays left of x 930 does not hold for the example readout above.",
-   "Hook: PASS. 'Do you know your / close rate?' is on screen from frame 0 (cover), on the whiteboard close-up from the 0.8 s cut, and back on the title plate after the cut out at about 2.3 s. It clears to 'Median close rate, by US region / 31% to 38%' at 4.0 s.",
-   "Opening cuts: PASS. Cover until 0.7 s, cut in at 0.8 s, cut back out at about 2.3 s. That is two cuts in 2.5 s, so no flash fault. The NUMBERS CLINIC chip is on the plate by 2.5 s (text ends at x 928).",
-   "Spoken numbers: PASS on timing. 31% to 38% on screen from 4.0 s ('thirty-one' at 5.2 s), with the region cards at 5.0 s and 6.0 s. May to Jul is on the source line from 0 s ('May' at 10.4 s). TOP 25% by 13.0 s ('quarter' at 13.0 s). '70% TO' at 17.5 s and '70% TO 73%' at 18.0 s ('seventy' at 17.3 s, 'seventy-three' at 18.1 s). GIVEN 40 at 34.5 s ('forty' at 34.5 s). 14 OF 40 at 36.5 s ('fourteen' at 36.6 s). '14 / 40' at 38.0 s ('Fourteen over forty' at 37.9 to 38.6 s). 35% at 39.5 s ('thirty-five' at 39.4 s). Median 31% to 38% with 35% inside from 41.0 s.",
-   "Layout: aside from the readout fault, settled frames show no hidden, clipped or overlapped words or numbers. Content stays within y 270 to 1250. Plate edges reach at most about 18 px past x 930 (NUMBERS CLINIC chip, sticker) with their text inside. The SOLD slips on the cork strip (x 940 to 1025) are scenery props, not lesson text. Wipes at 24.0 s, 33.0 s, 52.5 s, 56.5 s, 63.0 s (screen-off collapse) and 70.5 to 71.0 s are single transitions.",
-   "Audio end: PASS. voice.mp3 ends at 70.35 s with a natural decay ('rate.' drops to -62 dB by 70.25 s), the last word is at 70.12 to 70.38 s, and the video runs 73.27 s. Mix level falls to -58 dB at the end, so nothing is cut mid-word. I did not judge the hand-fixed 'jobs sold' at 28.4 s and 63.4 s: wording is outside this gate.",
-   "Text size and flash: PASS. The smallest lines (source lines, 'Now yours: __ / __', 'Median 31% to 38%  35% sits inside', dialog text) are about 28 to 32 px tall at 1080 wide, readable on a phone. Nothing flashes more than 3 times a second."
-  ]
+   "Earlier round (render-critic.json, round 0): its one fault is gone. The EXAMPLE: LAST MONTH readout values are now right-aligned and end at x 917 (measured on f22 34.95 s, f23 38.55 s, f24 41.25 s and f25 43.19 s), down from x 941. The other old fixes still hold. The 'Can't close a gap you never measured.' sticker text ends at x 911. The gauge plate 'TOP 25% 70% TO 73%' ends at x 920. The map notes at 47 to 52 s keep both lines inside their plates.",
+   "Hook: PASS. 'Do you know your / close rate?' is on the cover from frame 0, with the 31% and 38% region cards already settled. It stays on the whiteboard close-up from the 0.8 s cut, is back on the plate after the 2.33 s cut out, and gives way to 'Median close rate, by US region / 31% to 38%' at 4.0 s.",
+   "Spoken numbers: PASS. thirty-one (5.22 s) and thirty-eight (6.10 s) are on screen from 0 s. May (10.36 s) and July (11.04 s) are on the source line from 0 s. 'quarter' (12.97 s) has TOP 25% on screen by 13.0 s. 'seventy' (17.33 s) has '70% TO' at 17.5 s, and 'seventy-three' (18.13 s) has '70% TO 73%' at 18.0 s. 'forty' (34.51 s) has GIVEN 40 at 34.5 s. 'fourteen' (36.65 s) has SOLD 14 OF 40 at 36.5 s. 'Fourteen over forty' (37.95 to 39.09 s) has '14 / 40' at 38.0 s. 'thirty-five' (39.43 s) has '= 35%' at 39.5 s. 'two numbers' (57.97 s) is shown by the board's two rows, Estimates given and Jobs sold.",
+   "Layout: PASS. Settled frames show no hidden, clipped or overlapped words or numbers, and lesson content stays between y 270 and y 1250. The new range strip ('Median 31% to 38%  35% sits inside', y about 872) sits clear under the example card. Plate edges and decor reach past x 930, but the text inside them stays left of it. The NUMBERS CLINIC chip plate ends at about x 947 with its text inside. The US WEST card's empty gauge track runs to about x 1015, but its fill ends at about x 876 and '38%' ends at about x 757. The SOLD slips on the cork board are scenery props. One non-settled moment: at 66.4 to 66.73 s (10 frames) the PROOFNOTFLUFF stamp holds over 'ESTIMATES GIVEN' and then drops to its resting spot under the formula by 66.9 s. This is part of its entrance and does not happen while the formula is being spoken, so I did not count it.",
+   "Audio end: PASS. The last word 'rate.' runs 70.12 to 70.38 s and the video runs 73.27 s. The dialog shows 'Then on Friday, you'll know your close rate.' before the end card at about 71.0 s. Only the music bed continues, fading to -41 dB by 73.0 s. Nothing is cut mid-word.",
+   "Text size and flash: PASS. The smallest lines are the source lines, 'Now yours: __ / __', the range strip and the dialog text, all about 28 to 32 px tall at 1080 wide and readable on a phone. Frame-to-frame brightness shows only single events, never more than 3 a second: the cuts at 0.8 and 2.33 s, the transitions at 12.0, 24.2, 33.2, 44.5, 52.5, 56.8 and 63.3 s, and one 2-frame 'screenshot' flash at 25.97 s."
+  ],
+  "prior": {
+   "gate": "render-critic",
+   "round": 0,
+   "at": "2026-10-29T12:47:45-05:00",
+   "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+   "pass": false,
+   "score": {
+    "faults": 1
+   },
+   "faults": [
+    {
+     "kind": "cutoff",
+     "at": 34.5,
+     "text": "GIVEN 40 / SOLD 14 OF 40 / RATE 35%",
+     "scene": "example",
+     "what": "The right-aligned readout values in the EXAMPLE: LAST MONTH card run past the x 930 content edge. Their text ends at x 941 (measured on f22 34.95 s, f23 38.55 s, f24 41.25 s and f25 43.19 s) from about 34.5 s to 44.4 s. From 34.5 s to 37.9 s this readout is the only place the spoken 'forty' and 'fourteen' appear, and the last digit sits 11 px into the zone a platform's right rail can cover. Right-align the readouts at x 925 or less."
+    }
+   ],
+   "reasons": [
+    "Round 1 file (previous cut, context only): it listed no faults. Its old fixes still hold: the 'Can't close a gap you never measured.' sticker sits below the gauge (text ends at x 912), the gauge source line and the 0 and 100 labels stay clear, and both map notes at 47 to 52 s hold their two lines with margin. Its claim that all text stays left of x 930 does not hold for the example readout above.",
+    "Hook: PASS. 'Do you know your / close rate?' is on screen from frame 0 (cover), on the whiteboard close-up from the 0.8 s cut, and back on the title plate after the cut out at about 2.3 s. It clears to 'Median close rate, by US region / 31% to 38%' at 4.0 s.",
+    "Opening cuts: PASS. Cover until 0.7 s, cut in at 0.8 s, cut back out at about 2.3 s. That is two cuts in 2.5 s, so no flash fault. The NUMBERS CLINIC chip is on the plate by 2.5 s (text ends at x 928).",
+    "Spoken numbers: PASS on timing. 31% to 38% on screen from 4.0 s ('thirty-one' at 5.2 s), with the region cards at 5.0 s and 6.0 s. May to Jul is on the source line from 0 s ('May' at 10.4 s). TOP 25% by 13.0 s ('quarter' at 13.0 s). '70% TO' at 17.5 s and '70% TO 73%' at 18.0 s ('seventy' at 17.3 s, 'seventy-three' at 18.1 s). GIVEN 40 at 34.5 s ('forty' at 34.5 s). 14 OF 40 at 36.5 s ('fourteen' at 36.6 s). '14 / 40' at 38.0 s ('Fourteen over forty' at 37.9 to 38.6 s). 35% at 39.5 s ('thirty-five' at 39.4 s). Median 31% to 38% with 35% inside from 41.0 s.",
+    "Layout: aside from the readout fault, settled frames show no hidden, clipped or overlapped words or numbers. Content stays within y 270 to 1250. Plate edges reach at most about 18 px past x 930 (NUMBERS CLINIC chip, sticker) with their text inside. The SOLD slips on the cork strip (x 940 to 1025) are scenery props, not lesson text. Wipes at 24.0 s, 33.0 s, 52.5 s, 56.5 s, 63.0 s (screen-off collapse) and 70.5 to 71.0 s are single transitions.",
+    "Audio end: PASS. voice.mp3 ends at 70.35 s with a natural decay ('rate.' drops to -62 dB by 70.25 s), the last word is at 70.12 to 70.38 s, and the video runs 73.27 s. Mix level falls to -58 dB at the end, so nothing is cut mid-word. I did not judge the hand-fixed 'jobs sold' at 28.4 s and 63.4 s: wording is outside this gate.",
+    "Text size and flash: PASS. The smallest lines (source lines, 'Now yours: __ / __', 'Median 31% to 38%  35% sits inside', dialog text) are about 28 to 32 px tall at 1080 wide, readable on a phone. Nothing flashes more than 3 times a second."
+   ]
+  }
  }
 }

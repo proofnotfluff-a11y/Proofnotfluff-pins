@@ -1,13 +1,13 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-10-30-markup-margin",
- "mp4Sha256": "66b4a08ec71105b8ab7f9b8f8f5dd003988273c0b6f6e2a75ac044d91934f92b",
+ "mp4Sha256": "7b514620a8cc6e778051fc18451d0ea9196154ba2fe4f9b209c2cd3b560ce619",
  "checks": [
   {
    "name": "length",
-   "value": 74.567,
+   "value": 74.767,
    "pass": true,
-   "detail": "74.57 s (45.0 to 75.0, studio lessons, end card included)"
+   "detail": "74.77 s (45.0 to 75.0, v1 lesson, end card included)"
   },
   {
    "name": "loudness",
@@ -33,8 +33,8 @@
   {
    "name": "file",
    "value": {
-    "sha256": "66b4a08ec71105b8ab7f9b8f8f5dd003988273c0b6f6e2a75ac044d91934f92b",
-    "bytes": 6440940
+    "sha256": "7b514620a8cc6e778051fc18451d0ea9196154ba2fe4f9b209c2cd3b560ce619",
+    "bytes": 6447076
    },
    "pass": true,
    "detail": "H.264 1080x1920 30 fps, AAC, 6.4 MB, decodes clean"
@@ -47,5 +47,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-29T11:26:15-05:00"
+ "at": "2026-10-29T14:21:01-05:00"
 }

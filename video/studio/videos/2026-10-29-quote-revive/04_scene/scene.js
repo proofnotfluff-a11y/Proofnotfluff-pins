@@ -484,7 +484,7 @@ window.SCENE = {
       const cardIn = T >= tFix ? d.ease(tFix, 8, -160) : null;
       if (cardIn == null || cardIn < -120) {
         const s = 'Just checking in!', bw = Math.ceil(d.tw(s, 30)) + 12, f = d.fr(t0 + 0.2), up = f >= 0 && f < 4 ? [4, 2, 1, 0][f] : 0;
-        if (f >= 0) { d.P(16, 196 - 2 + up, bw + 2, 18, INK); d.P(17, 197 - 2 + up, bw, 16, '#3B82C4'); d.P(104, 211 + up, 4, 4, '#3B82C4'); d.tx(s, 23, 199 + up, {size: 30, color: CREAM}); }
+        if (f >= 0) { d.P(16, 196 - 2 + up, bw + 2, 20, INK); d.P(17, 197 - 2 + up, bw, 18, '#3B82C4'); d.P(104, 213 + up, 4, 4, '#3B82C4');   /* 2 px taller: the J and g descenders clear the border */ d.tx(s, 23, 199 + up, {size: 30, color: CREAM}); }
       }
       /* the notes: the plumber's, then the week piles on; Dentist lands right on top of it */
       const A = [166, 152], B = [254, 152], C = [166, 220], D = [254, 220];

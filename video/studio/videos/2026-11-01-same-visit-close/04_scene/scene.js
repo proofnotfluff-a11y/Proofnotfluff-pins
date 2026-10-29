@@ -289,7 +289,7 @@ window.SCENE = {
         k.text('Top shops close', 72, 270, {size: 39, color: CREAM});
         k.text(n.topClose.shown, 72, 324, {size: 132, color: 'accent', drop: INK});
         k.text('of estimates', xr, 342, {size: 39, color: CREAM});
-        k.text('on the same visit.', xr, 390, {size: 39, color: CREAM});
+        k.text('same visit.', xr, 390, {size: 39, color: CREAM});
         k.text(`ServiceTitan customers, ${n.stMonths.shown} months to Jan ${n.stYear.shown}`, 72, 466, {size: 30, color: SAND});
         return {hostPose: k.talking() ? 'talk' : 'stand', hostScale: 0.8, hostX: 170};
       }
@@ -304,12 +304,12 @@ window.SCENE = {
       // the cover plate: the claim and its source, settled on frame 0
       d.win(14, 86, 332, 114, {base: DUSK, hi: '#3D2E45', lo: INK, rule: MAROON});
       k.slam('Top shops close', 540, 274, -1, {size: 66, color: CREAM, align: 'center', drop: INK});
-      const w77 = k.measure(n.topClose.shown, {size: 132}), wR = Math.max(k.measure('of estimates', {size: 39}), k.measure('on the same visit.', {size: 39}));
+      const w77 = k.measure(n.topClose.shown, {size: 132}), wR = Math.max(k.measure('of estimates', {size: 39}), k.measure('same visit.', {size: 39}));
       const x0 = Math.round((540 - (w77 + 36 + wR) / 2) / 3) * 3, xr = x0 + Math.round((w77 + 36) / 3) * 3;
       k.slam(n.topClose.shown, x0, 352, -1, {size: 132, color: 'accent', drop: INK});
       k.text('of estimates', xr, 372, {size: 39, color: CREAM});
-      k.text('on the same visit.', xr, 420, {size: 39, color: T >= tSame ? GOLD : CREAM});
-      if (T >= tSame) k.sweep(xr, 466, k.measure('on the same visit.', {size: 39}), 6, tSame + 0.1, {color: 'accent'});
+      k.text('same visit.', xr, 420, {size: 39, color: T >= tSame ? GOLD : CREAM});
+      if (T >= tSame) k.sweep(xr, 466, k.measure('same visit.', {size: 39}), 6, tSame + 0.1, {color: 'accent'});
       const src = `ServiceTitan customers, ${n.stMonths.shown} months to Jan ${n.stYear.shown}`, wsrc = k.measure(src, {size: 30});
       k.text(src, Math.min(528, Math.floor(924 - wsrc / 2)), 522, {size: 30, color: SAND, align: 'center'});   /* ends by x 924, inside the Reel's edge */
       ping(d, t77, x0 / 3 - 3, 116, w77 / 3 + 6, 46);

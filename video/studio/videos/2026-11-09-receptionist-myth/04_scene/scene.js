@@ -254,6 +254,7 @@ window.SCENE = {
         P(ex + 2, ey + 2, 220, 66, '#5A3A22'); P(ex - 1, ey - 1, 222, 68, INK); P(ex, ey, 220, 66, '#F7F1E6');
         d.line(ex, ey, ex + 110, ey + 18, '#E6D3BC'); d.line(ex + 219, ey, ex + 110, ey + 18, '#E6D3BC');
         d.tx('DRAFT', ex + 6, ey + 4, {size: 30, color: TEAL});
+        { const tg = 'EXAMPLE', tgw = d.tw(tg, 30), tgx = ex + 14 + d.tw('DRAFT', 30); P(tgx, ey + 3, tgw + 8, 15, GOLD); d.tx(tg, tgx + 4, ey + 4, {size: 30, color: INK}); }
         written(k, 1e9, 'Hi, just checking in on the quote I sent for your deep clean. Any questions I can answer?', 0, (ex + 6) * 3, (ey + 17) * 3, (ex + 214) * 3, {size: 30, lh: 45, color: PLUM, lint: fly === 0});
         lockIcon(d, ex + 202, ey + 1, sent);
       }
@@ -278,8 +279,8 @@ window.SCENE = {
       const tSur = W(/^surveyed/i, t0, t0 + 0.7), tTh = W(/^thousand/i, tSur, tSur + 1.2);
       if (T >= tSur && T < t11) {
         const p = clamp((T - tSur) / Math.max(0.3, tTh - tSur));
-        k.text(k.count(n.contractors.value, p, {from: Math.round(n.contractors.value * 0.85), comma: true, suffix: '+'}), 120, 588, {size: 198, color: CREAM, drop: INK, lint: p >= 1});
-        k.text('contractors surveyed', 120, 792, {size: 66, color: SAND});
+        k.text(k.count(n.contractors.value, p, {from: Math.round(n.contractors.value * 0.85), comma: true, suffix: p >= 1 ? '+' : ''}), 120, 588, {size: 198, color: CREAM, drop: INK, lint: p >= 1});
+        k.text('residential service', 120, 792, {size: 66, color: SAND}); k.text('contractors surveyed', 120, 858, {size: 66, color: SAND});
       } else if (T >= t11 && T < t58) {
         k.slam(n.highTrust.shown, 120, 588, t11, {size: 198, color: GOLD, from: 0.3, drop: INK});
         k.text('high or complete trust', 120, 792, {size: 66, color: GOLD});
@@ -288,7 +289,9 @@ window.SCENE = {
         k.text('little or no trust', 120, 792, {size: 66, color: RED});
         k.burst(260, 680, t58 + 0.05, {n: 14, r: 200, colors: ['accent', 'paper']});
       }
-      k.text(`ServiceTitan, ${n.contractors.shown}+ contractors, ${n.reportYear.shown}`, 120, 882, {size: 39, color: SAND});
+      // the sample's scope stays on screen the whole beat (facts): two lines, inside x 930
+      k.text(`ServiceTitan survey, ${n.reportYear.shown}`, 120, 936, {size: 39, color: SAND});
+      k.text(`${n.contractors.shown}+ residential service contractors`, 120, 978, {size: 39, color: SAND});
       return host(k, k.live('proof.low') || k.live('proof.none') ? 'point' : null);
     },
 

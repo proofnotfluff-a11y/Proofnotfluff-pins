@@ -1,5 +1,38 @@
 # Ideas: the video bank
 
+## Trades-first bank (run 2026-10-28-trades-insights; START HERE)
+
+Todd, Oct 28 evening: real lessons from the trades, built on what trade creators teach, backed by trade sources. This
+table outranks the older lists below. Full entries (creators, evidence, hook, takeaway, visual world):
+runs/2026-10-28-trades-insights.md. Re-read each source on the day it is used.
+
+| # | Lesson | Anchor (trade source) | Taught by | Visual world |
+|---|---|---|---|---|
+| 1 | Book the call, don't just answer it | Top shops book 62% of lead calls vs 39% (ServiceTitan, May 2026) | ServiceTitan, Rohr, Mello | Telephone switchboard |
+| 2 | Lead with the monthly payment | Monthly-first: 42% of sales financed vs 21% (ACCA, 1,000+ HVAC contractors, Feb 2026) | Crisara, Mello | Vending machine |
+| 3 | Raise your prices; most trades already did | 65% raised prices last year, HVAC 83% (Jobber 2026); trade wages +3.9% (BLS) | Putnam, Kalfas, Stone | Tool-shop counter, split-flap price board |
+| 4 | Four options, best one first | 4+ options close 52% vs 42%; only 10% offer 4+ (ACCA 2026) | Crisara, Mello, Putnam | RPG item shop |
+| 5 | Answer in 30 minutes, call twice | 25% more likely hired at 30 min vs 3 hrs (Thumbtack); next-day call +45% (Angi) | Thumbtack, Angi | Racing game lap timer |
+| 6 | Know what a normal margin looks like | Remodelers: 29.9% gross, 6.3% net, FY2024 (NAHB) | Stone, Van Dyke, Rohr | Arcade high-score board |
+| 7 | Your next job is in your old invoices | 73% went back to an HVAC contractor they'd used (ACHR / Clear Seas 2024) | Mello | Dungeon treasure room |
+| 8 | Half your competitors ignore their reviews | 91% of homeowners say reviews matter; 43% of HVAC contractors don't answer (ACHR 2024) | trade marketing coaches | Boss fight |
+| 9 | Stop driving out for free | Plumber service call fee $100 to $250 (Angi cost guide) | Reber, Kalfas | Side-scrolling job route with a toll booth |
+| 10 | Sell the membership, make it renew itself | Renewals 29.8% manual vs 49.1% auto plus email (ServiceTitan) | ServiceTitan | Factory conveyor belt |
+| 11 | Subs: price in the wait | Subs paid in 51 days; GCs think 35 (Billd 2026) | Van Dyke, Stone | Mail-route game |
+| 12 | Price the emergency | 72% would pay more for a fix within 24 hours (Housecall Pro 2026) | Putnam, Crisara | Weather map |
+| 13 | Send the after photo | 68% expect photo or video proof (Housecall Pro 2025) | none read | Photo booth strip |
+| 14 | The 5 to 9 pm calls | 14.1% of HVAC calls after hours in June (ServiceTitan) | ServiceTitan | Clock tower at night |
+| 15 | Use the unit's age in repair or replace | Water heater median 11.3 yrs at replacement (ServiceTitan) | Crisara | RPG inventory screen |
+| 16 | Hire before you need to | 349,000 construction workers needed in 2026 (ABC) | Andes, Mello | RPG tavern recruit screen |
+| 17 | Count your cash buffer days | Construction median 20 days (JPMorgan Chase, 2015 data) | Van Dyke, Rohr | Survival hunger meter |
+| 18 | Stock up for your busy month | Water heater installs 24% above average in Jan 2025 (ServiceTitan) | none read | Calendar heat map |
+| 19 | Know your average ticket | HVAC service ticket $422 (ACCA 2026) | Rohr, Mello | Truck dashboard gauges |
+| 20 | Say the range on the first call | 68% get more quotes when the price surprises them (Housecall Pro 2026) | Reber | Game-show price wheel |
+| 21 | Every job sells the street | +0.78 percentage points per nearby solar install (Marketing Science 2012) | Mello | City-builder street |
+
+Made lessons on non-trade evidence (1 first-reply, 4 three-prices, 6 price-raise, 7 review-replies): see section 4 of
+the run file. 1 and 4 can be re-cut with trade numbers; 6 and 7 should be replaced by bank lessons 3 and 8.
+
 Ranked by the research desk; a live session picks what gets made. Made so far: 2026-10-28-first-reply (first reply fast and human); in production Oct 28: 2026-10-29-quote-revive, 2026-10-30-markup-margin, 2026-10-31-three-prices.
 
 ## Ranked ideas (run 2026-10-28-formats)

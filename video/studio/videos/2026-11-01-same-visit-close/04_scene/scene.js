@@ -281,7 +281,7 @@ window.SCENE = {
         /* the close-up: frame point CU_C lands on screen at CU_S, twice the size (whole pixels: 6 frame units each) */
         const c = k.ctx; c.save(); c.translate(CU_S[0], CU_S[1]); c.scale(2, 2); c.translate(-CU_C[0], -CU_C[1]); street(false); c.restore();
         /* the "?" over the door, at its own size and clear of the plate (the door sits at screen x ~120 to 190) */
-        const qx = Math.round((CU_S[0] + 2 * (dx * 3 - CU_C[0])) / 3) - 6, qy = 176;
+        const qx = Math.round((CU_S[0] + 2 * (dx * 3 - CU_C[0])) / 3) - 6, qy = 172;
         if (T >= Math.min(tIn + 0.4, tLeave)) bubble2(k, d, qx, qy, '?', bob);
         /* the title plate: the claim and its source, smaller, held from the cover (the same reading order) */
         d.win(14, 84, 332, 86, {base: DUSK, hi: '#3D2E45', lo: INK, rule: MAROON});

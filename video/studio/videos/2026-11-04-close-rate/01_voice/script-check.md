@@ -17,7 +17,7 @@ included. Scored by the builder (no fresh scorer agent in this session); the scr
 11 retention beats: PASS 32 cues, a visual change every 1.4 to 3.7 s; three shots in the first 3 s (cuts at 0.8 s and 2.33 s on the ab45f989 build, re-measured on the final build); turn line "Here's the part people skip." at 44.49 s = 61% (band 55 to 75%)
 12 ending: PASS one CTA, a send line naming a role ("Send this to whoever writes your estimates"); last words echo the hook ("Then on Friday, you'll know your close rate" / "Do you know your close rate?"); no like/follow/comment asks; LESSON 8 on the HUD, NUMBERS CLINIC chip on the cover plate from 2.33 s to the end of the hook section (12.0 s); captions carry the source and no AI voice line (Todd, Oct 29)
 
-Result: 12 of 12 PASS (8 with the pace note above).
+Result: 12 of 12 PASS.
 
 Notes for the gates
 - "jobs sold" at 28.4 s and 63.4 s is heard by Whisper as "job sold" (the s runs into sold); kept as the script's word by hand, see 02_transcript/transcript.md. Listen to both.

@@ -1,12 +1,12 @@
 name: Construction pipeline data (branch test)
-# Branch-only test pull for tools/dp_pipeline_data.py; prints the counts file to the log, commits nothing.
+# Branch-only test pull for tools/dp_pipeline_data.py; commits the counts file (never the sealed state) to this branch.
 on:
   workflow_dispatch:
   push:
     branches: [claude/project-thread-4bg5nr]
     paths: ["tools/dp_pipeline_data.py", ".github/workflows/dp-pipeline-branch.yml"]
 permissions:
-  contents: read
+  contents: write
 jobs:
   pull:
     runs-on: ubuntu-latest
@@ -21,5 +21,11 @@ jobs:
         run: |
           python3 tools/dp_pipeline_data.py
           test -s site/datapages/dp_pipeline/state.sealed.json && echo "sealed state written ($(wc -c < site/datapages/dp_pipeline/state.sealed.json) bytes)" || echo "no sealed state"
-          grep -c '"' site/datapages/dp_pipeline/state.sealed.json >/dev/null 2>&1; python3 -c "import json;d=json.load(open('site/datapages/dp_pipeline/state.sealed.json'));print('sealed keys',sorted(d)[:6])" || true
-          echo "=== DATA ==="; python3 -c "import json;print(json.dumps(json.load(open('site/datapages/dp_pipeline/data.json')),separators=(',',':')))"; echo "=== END ==="
+      - name: Commit the counts to this branch
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add site/datapages/dp_pipeline/data.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Construction pipeline counts (branch test pull)"
+          git push origin HEAD:claude/project-thread-4bg5nr

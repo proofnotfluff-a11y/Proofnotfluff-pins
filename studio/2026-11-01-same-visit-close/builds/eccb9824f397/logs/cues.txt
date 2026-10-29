@@ -1,0 +1,37 @@
+hook                     0.00   8.52  Still no yes when  [sfx: pop]
+  hook.ask               3.10   4.30  Ask this.  [sfx: blip]
+  hook.top               4.30   7.00  Top shops close seventy-seven
+  hook.same              7.00   8.52  on the same visit.  [sfx: stamp]
+stakes                   8.52  19.21  That's from a year  [sfx: whoosh]
+  stakes.window         11.18  12.74  up to this January.
+  stakes.top            12.74  14.58  Top shops are the  [sfx: tick]
+  stakes.top77          14.58  15.74  by revenue.  [sfx: tick]
+  stakes.rest           15.74  17.84  Everyone else? Sixty-two.  [sfx: tick]
+  stakes.yours          17.84  19.21  Where's yours?  [sfx: pop]
+why                     19.21  32.70  Why a fifteen point  [sfx: whoosh]
+  why.momentum          21.69  24.13  ServiceTitan puts it down  [sfx: pop]
+  why.wait              24.13  26.47  The longer they wait,  [sfx: tick]
+  why.competitor        26.47  27.75  call a competitor, or
+  why.talk              27.75  29.57  talk themselves out of  [sfx: blip]
+  why.fewer             29.57  32.70  Close on the visit  [sfx: pop]
+ask                     32.70  44.09  So ask before you  [sfx: whoosh]
+  ask.three             34.72  36.24  It's three lines.  [sfx: tick]
+  ask.l1                36.24  37.58  Here are your options.  [sfx: tick]
+  ask.l2                37.58  39.06  If you want to  [sfx: tick]
+  ask.sched             39.06  41.46  I can get you
+  ask.l3                41.46  44.09  What questions do you  [sfx: tick]
+skip                    44.09  55.02  Here's the part people  [sfx: whoosh]
+  skip.worry            46.09  48.27  That last question brings  [sfx: pop]
+  skip.there            48.27  49.91  while you're still there  [sfx: tick]
+  skip.st               49.91  52.88  ServiceTitan says same-visit closes  [sfx: blip]
+  skip.obj              52.88  55.02  your tech handles objections.  [sfx: tick]
+caveat                  55.02  64.59  One honest note.  [sfx: whoosh]
+  caveat.pattern        56.56  58.62  It's a pattern, not  [sfx: stamp]
+  caveat.other          58.62  61.58  Top shops might close
+  caveat.cost           61.58  64.59  Asking still costs you  [sfx: pop]
+close                   64.59  73.61  Don't drive off and  [sfx: pop]
+  close.drive           66.97  68.87  Ask for it in
+  close.send            68.87  69.63  Send this to whoever  [sfx: sting]
+  close.next            69.63  73.61  goes out on your
+-> 35 cues, 73.6 s (whisper medium.en int8, re-spelled from script.md)
+exit 0

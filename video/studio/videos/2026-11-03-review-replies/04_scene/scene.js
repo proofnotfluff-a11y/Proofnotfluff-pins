@@ -1,7 +1,8 @@
 // Scene: Answer your reviews; many contractors don't (Lesson 7, Reviews Clinic, arcade). One function per top-level cue in
 // 03_cues/cues.md. Numbers only from k.data (brief.md -> data.js). Every time comes from a cue start (k.S) or a spoken word
 // (wordT), so a re-voiced take moves the picture with it.
-// Worlds (brief.md): hook, replies, caveat = the chat in the truck (the review inbox); stakes, close = the slot machine;
+// Worlds (brief.md): hook, replies, caveat = the chat in the truck (the review inbox; the hook cuts in to a close-up of the
+// one-star review and back out); stakes, close = the slot machine;
 // gap, turn = the arcade high-score table (its rows drawn here in the set's own style, each landing on its own word).
 const INK = '#120D14', CREAM = '#FFF7EA', SAND = '#E6D3BC', GOLD = '#F7C873', ORANGE = '#F2A541', RED = '#E2633B', TEAL = '#6FB7A8', GREY = '#9AA0AD', PLUM = '#2B2033';
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
@@ -83,6 +84,45 @@ const chat = (k, o) => mute(k, (s, x, y, t) => y < 390 && !(x === 408 && y === 3
 // the EXAMPLE tag on the left pillar
 const exampleTag = (k) => { const d = px(k); d.P(8, 196, 60, 17, INK); d.P(9, 197, 58, 15, RED); d.tx('EXAMPLE', 38, 198, {color: CREAM, align: 'center'}); };
 
+// ================================================================================================================
+// the review close-up (hook, "one-star" to "Here's"): the cut in on the phone. Its screen fills the frame; the hook rides on
+// the app's header plate; the example review sits big under it, one star lit of five (pulsing on "review"), tagged EXAMPLE.
+const STAR = ['....#....', '...###...', '...###...', '#########', '.#######.', '..#####..', '..##.##..', '.##...##.', '##.....##'];
+const star = (d, x, y, c, s = 2) => STAR.forEach((r, j) => { for (let i = 0; i < r.length; i++) if (r[i] === '#') d.P(x + i * s, y + j * s, s, s, c); });
+const closeUp = (k, o) => {
+  const d = px(k), {P, T, fr} = d, n = k.data.numbers;
+  // the phone fills the frame top to bottom: its body, its screen, and the keyboard up in the lower third
+  P(0, 0, 360, 640, '#1B1420');
+  P(9, 73, 348, 567, INK); P(4, 66, 352, 574, INK); P(5, 67, 350, 573, '#2B2033'); P(5, 67, 350, 1, '#4A4E5A'); P(5, 67, 1, 573, '#4A4E5A');
+  P(14, 76, 332, 564, '#F4E6D3');
+  for (let y = 136; y < 316; y += 10) for (let x = 16 + ((y / 10) % 2) * 5; x < 346; x += 10) d.P(x, y, 1, 1, '#E6D3BC');
+  // the header plate: the hook, held from the cover
+  P(14, 76, 332, 46, '#2F6F67'); P(14, 122, 332, 1, '#245752');
+  k.text(`Got a ${n.one.shown}-star review?`, 66, 270, {size: 66, color: CREAM, drop: '#245752'});
+  // the review card: five stars, one lit; the example review in big type; the EXAMPLE tag
+  P(27, 139, 308, 112, '#E6D3BC'); P(26, 136, 308, 112, '#FFF7EA'); P(26, 136, 308, 1, '#FFFFFF');
+  const pulse = o.pulseAt != null && fr(o.pulseAt) >= 0 && fr(o.pulseAt) < 18 && Math.floor(fr(o.pulseAt) / 3) % 2 === 0;
+  for (let i = 0; i < 5; i++) star(d, 38 + i * 24, 146, i === 0 ? (pulse ? GOLD : RED) : '#C9CCD3');
+  if (pulse) { P(34, 142, 26, 1, GOLD); P(34, 167, 26, 1, GOLD); P(34, 142, 1, 26, GOLD); P(59, 142, 1, 26, GOLD); }
+  k.text(`${n.one.shown} star`, 486, 444, {size: 39, color: '#6B7080'});
+  k.text('The tech showed', 108, 540, {size: 66, color: PLUM});
+  k.text('up late.', 108, 612, {size: 66, color: PLUM});
+  d.P(250, 226, 74, 17, INK); d.P(251, 227, 72, 15, RED); d.tx('EXAMPLE', 287, 228, {color: CREAM, align: 'center'});
+  // under the card: the promise, and the reply box with its cursor blinking
+  k.text('Copy this reply.', 108, 696, {size: 66, color: 'accent'});
+  P(26, 262, 308, 26, '#FFF7EA'); P(26, 262, 308, 1, '#E6D3BC'); P(32, 268, 250, 14, '#F4E6D3'); d.P(296, 268, 30, 14, '#2F6F67');
+  if (Math.floor(T * 2) % 2 === 0) P(36, 270, 2, 10, '#2F6F67');
+  // the keyboard: four rows of keys on whole pixels, no letters (the speech box sits over its top row)
+  P(14, 296, 332, 344, '#C9CCD3'); P(14, 296, 332, 1, '#9AA0AD');
+  const rows = [[10, 0], [9, 8], [9, 8], [5, 0]];
+  rows.forEach(([nk, off], r) => {
+    const kw = r === 3 ? 0 : 28, gap = 4, y = 420 + r * 50;
+    if (r === 3) { P(30, y, 56, 40, '#9AA0AD'); P(96, y, 168, 40, '#FFF7EA'); P(96, y + 39, 168, 1, '#6B7080'); P(274, y, 56, 40, '#2F6F67'); return; }
+    for (let i = 0; i < nk; i++) { const x = 24 + off + i * (kw + gap); P(x, y, kw, 40, '#FFF7EA'); P(x, y + 39, kw, 1, '#6B7080'); }
+  });
+  return d;
+};
+
 window.SCENE = {
   look: 'arcade',
   images: [],
@@ -91,21 +131,34 @@ window.SCENE = {
   transitions: {stakes: 'levelselect', gap: 'dissolve', replies: 'iris', turn: 'blinds', caveat: 'dissolve', close: 'gameover'},
   trauma: {'turn.never': 0.8},
   sections: {
-    // ---- hook: the phone in the truck, the hook card on its screen, settled on frame 0; no host or dialog yet
+    // ---- hook: three shots (IMPROVE 00a: the picture changes by 1 s and twice by 3 s, Snow on by 3 s). The cover: the phone
+    // in the truck, the hook card on its screen, settled on frame 0, no host or dialog. Cut in on "one-star" to the review
+    // close-up (Snow and the dialog on). Cut back out on "Here's" to the truck; the card turns to the 43% on "In".
     hook: (k, T) => {
-      const n = k.data.numbers, t43 = wordT(k, 'hook.43', /^forty/i), tCopy = k.S('hook.copy');
-      /* frame 0 is the settled cover; the New review banner drops at 1 s and holds past "forty-three" (motion before the number) */
-      k.sets.chat({who: 'REVIEWS', clock: '7:42', msgs: [], notify: {text: 'New review', at: 1.0, dur: Math.max(2.2, t43 + 1.2 - 1.0)}});
+      const n = k.data.numbers, t43 = wordT(k, 'hook.43', /^forty/i, 1.0), tStat = k.S('hook.43');
+      const tIn = Math.min(0.8, Math.max(0.5, wordT(k, 'hook', /^one-star/i, 0.5))), tRev = wordT(k, 'hook', /^review/i, tIn + 0.3);
+      const tOut = Math.min(2.6, k.S('hook.copy'));
+      /* the close-up is a real reframe: the screen fills the frame and Snow steps in, bigger, in front of it */
+      if (T >= tIn && T < tOut) { closeUp(k, {pulseAt: tRev}); return {hostPose: k.talking() ? 'talk' : 'point', hostScale: 0.9, hostX: 190}; }
+      /* the New review banner drops on "In" and holds past "forty-three" (motion before the number) */
+      k.sets.chat({who: 'REVIEWS', clock: '7:42', msgs: [], notify: T >= tStat ? {text: 'New review', at: tStat, dur: Math.max(1.6, t43 + 1.0 - tStat)} : null});
       // the card on the screen (frame x 306..870, y 390..888): light wallpaper, dark words
-      k.text(n.noAnswer.shown, 324, 404, {size: 132, color: 'accent'});
-      k.text('of contractors', 324, 548, {size: 66, color: PLUM});
-      k.text("don't answer", 324, 618, {size: 66, color: PLUM});
-      k.text('reviews.', 324, 688, {size: 66, color: PLUM});
-      k.text(`ACHR News survey, ${n.year.shown}`, 324, 770, {size: 30, color: '#6B7080'});
-      if (T >= tCopy) { k.slam('Two replies to copy.', 324, 816, tCopy, {size: 39, color: 'accent', from: 0.5}); k.sweep(324, 860, 480, 6, tCopy + 0.25, {color: 'accent'}); }
-      k.burst(470, 470, 0.6, {n: 10, r: 160}); k.burst(470, 470, 1.6, {n: 12, r: 180}); k.burst(470, 470, t43, {n: 18, r: 220});
-      if (T < t43) return {host: false, speech: false};
-      if (T < tCopy) return {host: false};
+      if (T < tStat) {
+        k.text('Got a', 324, 404, {size: 66, color: PLUM});
+        k.text(`${n.one.shown}-star`, 324, 474, {size: 132, color: 'accent'});
+        k.text('review?', 324, 618, {size: 66, color: PLUM});
+        k.text('Copy this reply.', 324, 700, {size: 66, color: PLUM});
+        if (T >= tOut) k.sweep(324, 770, k.measure('Copy this reply.', {size: 66}), 6, tOut + 0.1, {color: 'accent'});
+        k.chip('Reviews Clinic', 324, 800, {size: 30});
+      } else {
+        k.slam(n.noAnswer.shown, 324, 404, tStat, {size: 132, color: 'accent', from: 0.6});
+        k.slam('of contractors', 324, 548, tStat + 0.1, {size: 66, color: PLUM, from: 0.4});
+        k.slam("don't answer", 324, 618, tStat + 0.15, {size: 66, color: PLUM, from: 0.4});
+        k.slam('reviews.', 324, 688, tStat + 0.2, {size: 66, color: PLUM, from: 0.4});
+        k.text(`ACHR News survey, ${n.year.shown}`, 324, 770, {size: 30, color: '#6B7080'});
+        k.burst(470, 470, t43, {n: 18, r: 220});
+      }
+      if (T < tIn) return {host: false, speech: false};
       return host(k, k.live('hook.copy') ? 'point' : null);
     },
 
@@ -190,23 +243,22 @@ window.SCENE = {
       return host(k, k.live('caveat.prove') ? 'shrug' : (k.live('caveat.monday') ? 'point' : null));
     },
 
-    // ---- close: a last pull lands Y, E, S; one column over the tray: the line, the send line, the ask
+    // ---- close: a last pull lands Y, E, S; one column over the tray: the line, the send line, the echo of the hook
     close: (k, T) => {
-      const d = px(k), t0 = k.S('close'), dont = k.S('close.dont'), send = k.S('close.send'), ans = k.S('close.answer');
+      const d = px(k), n = k.data.numbers, t0 = k.S('close'), send = k.S('close.send'), ans = k.S('close.answer');
       slotPull(k, [{t0: t0 + 0.15, stops: [t0 + 0.8, t0 + 1.1, t0 + 1.4], symbols: ['Y', 'E', 'S']}], T >= t0 + 1.4 ? 'ANSWER EVERY REVIEW' : 'ONE MORE PULL');
-      /* the column: a game window over the tray, one left edge (x 120), the line and the ask at headline size (lesson 9's 66),
-         the ask the loudest (gold); the window ends by y 960 (shadow included) so the host's wave clears it */
+      /* the column: a game window over the tray, one left edge (x 120), the line and the echo at headline size (lesson 9's 66),
+         the echo the loudest (gold); the window ends by y 960 (shadow included) so the host's wave clears it */
       const open = d.ease(t0 + 0.25, 8, 110);
       d.clip(0, 0, 360, 320, () => d.win(14, 222 + open, 332, 96, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#7A3442'}));
       if (open === 0) {
-        k.slam('Plenty leave reviews hanging.', 120, 688, t0 + 0.3, {size: 66, color: 'accent', from: 0.5, drop: INK});
-        /* "Don't be one." holds its row until the send line comes; then the chip takes the row */
-        if (T >= dont && T < send) k.slam("Don't be one.", 120, 754, dont, {size: 39, color: CREAM, from: 0.4});
+        k.slam("Don't leave reviews hanging.", 120, 688, t0 + 0.3, {size: 66, color: 'accent', from: 0.5, drop: INK});
         if (T >= send) {
           k.chip('ProofNotFluff', 120, 752, {size: 30});
           k.slam('Send this to whoever runs your Google profile.', 120, 802, send + 0.1, {size: 39, color: CREAM, from: 0.4});
         }
-        if (T >= ans) { k.slam('Answer your reviews.', 120, 856, ans, {size: 66, color: GOLD, from: 0.5, drop: INK}); k.sweep(120, 916, 516, 6, ans + 0.3, {color: 'accent'}); }
+        const echo = `The next ${n.one.shown}-star gets a reply.`;
+        if (T >= ans) { k.slam(echo, 120, 856, ans, {size: 66, color: GOLD, from: 0.5, drop: INK}); k.sweep(120, 916, k.measure(echo, {size: 66}), 6, ans + 0.3, {color: 'accent'}); }
       }
       return host(k, k.live('close.answer') ? 'wave' : (k.live('close.send') ? 'point' : null));
     },

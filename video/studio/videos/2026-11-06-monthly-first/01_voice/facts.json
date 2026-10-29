@@ -1,0 +1,34 @@
+{
+ "about": "Every number this video shows or says, with its source. Trades-first bank lesson 2 ('Lead with the monthly payment', video/studio/research/runs/2026-10-28-trades-insights.md). The ACHR News page was re-read with WebFetch on Oct 29, 2026 (America/Chicago), and only what it says is used.",
+ "acca": {
+  "title": "Survey Reveals Strategies to Boost HVAC Close Rates by Double Digits",
+  "publisher": "ACHR News (author Chris Gray), reporting the Air Conditioning Contractors of America (ACCA) and Farmington Consulting Group 'Contractor of the Future' survey",
+  "published": "Feb 10, 2026",
+  "url": "https://www.achrnews.com/articles/165799-survey-reveals-strategies-to-boost-hvac-close-rates-by-double-digits",
+  "read": "Oct 29, 2026",
+  "year": 2026,
+  "contractors": 1000,
+  "method": "A survey conducted by ACCA and Farmington Consulting Group of more than 1,000 contractors nationwide (ACCA's own write-up: more than 1,000 HVACR contractors)",
+  "overallLeadPct": 72,
+  "overallLeadQuote": "most contractors (72%) tend to lead with the overall price of the job.",
+  "monthlyFinancedPct": 42,
+  "overallFinancedPct": 21,
+  "financedQuote": "Contractors leading with a monthly payment option see 42% of their new or replacement system sales financed compared to 21% when using the overall price.",
+  "ratio": 2,
+  "ratioNote": "42 / 21 = 2: 'twice the share financed'.",
+  "monthlyEntryPct": 34,
+  "overallEntryPct": 42,
+  "entryQuote": "(leading with a monthly payment also lowers the entry-level equipment mix) dropping it to 34% versus 42% when leading with the overall price.",
+  "everyJobPct": 37,
+  "everyJobQuote": "However, only 37% are offering it on every job.",
+  "closeNoFinancingPct": 38,
+  "closeFinancingPct": 49,
+  "closeQuote": "The average close rate is 38% when contractors don't offer financing. When they do, that average rises to 49%. (caption context only, not said)",
+  "scope": "A survey of contractors: shares among the surveyed contractors, correlation, not cause. Said 'contractors who lead with', never 'this makes'. The 42% and 21% are shares of new or replacement system sales that were financed (said 'system sales'). The 34% and 42% are the entry-level equipment mix (said 'entry-level systems, percent of sales'). The 37% is said 'in that survey, only thirty-seven percent offer it on every job', with no wider base. The close rates are caption only."
+ },
+ "line": {
+  "source": "OURS: the quote line is the bank's takeaway (advice); X and Y are blanks, no price is suggested",
+  "text": "This system is $X a month, or $Y paid in full. Which way works better for you?",
+  "lines": 2
+ }
+}

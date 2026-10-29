@@ -1,0 +1,3 @@
+hook: {"first_change": 0.53, "changes_by_3s": 2, "changes": [0.53, 1.87], "share": [0.758, 0.705], "host_at": 0.5333333333333333, "hook_words": 9, "hook_said_by": 2.96, "seconds": 74.18}
+ERROR lint  0.50 to  1.75 s: under the host: Copy this reply.
+exit 1

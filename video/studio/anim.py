@@ -1364,11 +1364,13 @@ def cmd_postcopy(slug):
         changed = [k for k, v in it["fingerprints"].items() if fp.get(k) != v]
         if changed:
             raise SystemExit(f"ERROR postcopy: the pinned commit does not match what the gates saw: {', '.join(changed)}")
-        for c in (["fetch", slug], ["render", slug], ["export", slug]):
+        for c in (["fetch", slug], ["render", slug]):   # the pinned commit's own code makes the picture and sound
             r = subprocess.run(cmd + c, capture_output=True, text=True)
             print((r.stdout + r.stderr).strip().splitlines()[-1] if (r.stdout + r.stderr).strip() else c[0])
             if r.returncode:
                 raise SystemExit(f"ERROR postcopy: {c[0]} failed")
+        wr = os.path.join(wt, "video", "studio", "videos", slug, "05_render")   # packaging only: today's export
+        cmd_export(slug, os.path.join(wr, f"{slug}.mp4"), os.path.join(wr, f"{slug}-post.mp4"))
         src = os.path.join(wt, "video", "studio", "videos", slug, "05_render", f"{slug}-post.mp4")
         os.makedirs("/mnt/user-data/outputs", exist_ok=True)
         dst = os.path.join("/mnt/user-data/outputs", f"{slug}.mp4")
@@ -1527,19 +1529,26 @@ def cmd_lint(slug, step=0.25):
         sys.exit(1)
 
 
-def cmd_export(slug):
+def cmd_export(slug, src=None, out=None):
     """Chrome's file upload takes at most 10 MB a call, so the post copy aims at 9.3 MB (two-pass, pixel art tune)."""
-    src = vdir(slug, "05_render", f"{slug}.mp4")
-    out = vdir(slug, "05_render", f"{slug}-post.mp4")
+    src = src or vdir(slug, "05_render", f"{slug}.mp4")
+    out = out or vdir(slug, "05_render", f"{slug}-post.mp4")
+    if os.path.getsize(src) / 1e6 < 9.5:   # the steady pixel look renders small: the render itself is the post copy
+        sh(["ffmpeg", "-y", "-loglevel", "error", "-i", src, "-c", "copy", "-movflags", "+faststart", out])
+        print(f"export: {out} ({os.path.getsize(out) / 1e6:.1f} MB, the render as is)")
+        return
     secs = float(sh(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", src]).stdout.strip())
-    vk = int(9.3 * 8 * 1000 / secs) - 128
-    tmp = tempfile.mkdtemp()
-    base = ["ffmpeg", "-y", "-loglevel", "error", "-i", src, "-c:v", "libx264", "-preset", "slow", "-tune", "animation",
-            "-b:v", f"{vk}k", "-pix_fmt", "yuv420p", "-passlogfile", os.path.join(tmp, "p")]
-    sh(base + ["-pass", "1", "-an", "-f", "mp4", os.devnull])
-    sh(base + ["-pass", "2", "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart", out])
-    shutil.rmtree(tmp, ignore_errors=True)
-    mb = os.path.getsize(out) / 1e6
+    for fit in (1.0, 0.85, 0.7):   # two-pass can overshoot on pixel art: aim lower until it fits
+        vk = int(9.3 * 8 * 1000 * fit / secs) - 128
+        tmp = tempfile.mkdtemp()
+        base = ["ffmpeg", "-y", "-loglevel", "error", "-i", src, "-c:v", "libx264", "-preset", "slow", "-tune", "animation",
+                "-b:v", f"{vk}k", "-pix_fmt", "yuv420p", "-passlogfile", os.path.join(tmp, "p")]
+        sh(base + ["-pass", "1", "-an", "-f", "mp4", os.devnull])
+        sh(base + ["-pass", "2", "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart", out])
+        shutil.rmtree(tmp, ignore_errors=True)
+        mb = os.path.getsize(out) / 1e6
+        if mb < 9.9:
+            break
     if mb >= 9.9:
         raise SystemExit(f"ERROR export: {mb:.1f} MB, over the 10 MB upload cap")
     print(f"export: {out} ({mb:.1f} MB, video {vk} kbps)")

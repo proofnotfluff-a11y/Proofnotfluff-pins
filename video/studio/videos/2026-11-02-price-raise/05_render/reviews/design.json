@@ -1,21 +1,27 @@
 {
-  "gate": "design",
-  "round": 1,
-  "pass": true,
-  "score": {"first": 4, "hierarchy": 5, "type": 5, "color": 5, "spacing": 4, "polish": 5, "trust": 5, "average": 4.71},
-  "freshness": "Fresh against 2026-10-31-three-prices (counter, scores, slots) and 2026-11-01-same-visit-close (street, levelup, dispatch): this lesson uses weather, register, a price-note room and a calendar close, so first impression is not capped. The numbered example card with a 'The part people skip' retitle echoes 11-01's SAY THIS card; it reads as the series' script format, not a repeated set.",
-  "round0_check": [
-    "Close off the weather map: landed (new calendar set, Dec 1 checked, coins gone; calendar is not in the two prior lessons).",
-    "Cover: partly landed. Sentence now sits directly under the map as one read and the sun label holds 'HVAC' until 3.08 s, but 83% is the same size and the map's right two thirds stay empty.",
-    "Receipt sources: landed (JOBBER SURVEY and BLS PAY DATA tagged on the receipt, no '|' cursor).",
-    "hook.note broken sentence: landed ('The note that tells your customers.').",
-    "note.next rule: landed (heading-size gold and white bar, about 18 px clear of the clipboard).",
-    "Close panel: landed (4 lines, 'Raise yours with a reason.' largest, underline 35 px clear of the border).",
-    "Stakes order and source format: landed (65% headline over 'Jobber, 1,050 home service owners, Dec 2025', same as the hook).",
-    "Coins: landed (coins fall into the register drawer only, nothing on labels or the display)."
-  ],
-  "reasons": [
-    "0.00-3.0 s cover, 83%: still about 360 px wide at the left with the lake and empty green filling the right two thirds. Scale 83% to about 540 px wide and center it in the map (or slide the lake right off the open area) so the first frame has one dominant number.",
-    "61.9-72.4 s caveat panel: the first line ('Where the numbers come from', then 'Jobber sells software.') sits about 18 px under the panel's top border with 40+ px empty below the last line. Center the lines vertically, matching the stakes panel's top inset."
-  ]
+ "gate": "design",
+ "round": 0,
+ "at": "2026-10-29T12:18:27-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+ "pass": false,
+ "score": {
+  "first": 3,
+  "hierarchy": 4,
+  "type": 4,
+  "color": 4,
+  "spacing": 3,
+  "polish": 4,
+  "trust": 4,
+  "average": 3.71
+ },
+ "reasons": [
+  "32.5-54.5 s note section (freshness, caps first impression at 3): the cream sheet with a maroon header bar, three numbered rows typed word by word with the gold current word, a wall clock, a wood desk, the host shown with no dialog box, and the retitle to 'The part people skip' is the same set piece and move as 2026-11-01's 'SAY THIS (EXAMPLE)' sheet (34-43 s, retitled 'The part people skip'). 2026-10-31's 'Your quote (example)' clipboard with three ruled rows was the same idea, so this is the third lesson in a row with it. Replace it with the chat set (not used in either earlier lesson): the three note lines go out as bubbles typed on the words that say them, with read ticks. On 'That last line' the third bubble gets the gold sweep. The PROMISE stamp lands beside it and 'Raise the next job. / Never an approved one.' sits in the set's area.",
+  "0.0-1.0 s cover, 83%: the round-1 fault is still there. The 83% is about 360 px wide at the map's left edge (x 70 to 430), while the lake and empty green fill the right two thirds, and y 1000 to 1250 is blank. Scale 83% to about 540 px wide and center it in the map's open area, or move the lake to the far right edge, so the first frame has one dominant number.",
+  "1.0-2.5 s close-up title plate: the source line 'Jobber, 1,050 home service owners, Dec 2025' is drawn over the plate's inner bottom border (the border line runs through the letters at about y 612 to 622). Move the source line up so it sits 24 px clear of the border, or make the plate about 30 px taller. Also line the plate's left edge (x 45) up with the map's left edge (x 245), or run the map out to x 45, so the shot has one left edge.",
+  "55.3-61.0 s caveat panel ('Where the numbers come from', then 'Jobber sells software.' and the two gold lines): the first line sits about 10 px under the panel's inner top border, with about 35 px empty under the last line. This is round 1's fault back, and tighter than before. Center the lines vertically, with the same top inset (about 30 px) as the stakes panel at 9.8 to 16 s.",
+  "1.0-1.5 s close-up warm front: the dark maroon line with small domes on the green reads as a crack, has low contrast, and is gone by 1.5 s, so 1.5 to 2.5 s is a still map. Draw the front in the palette's bright red with domes at least 3x their current size, and keep it sweeping across the map for the whole close-up (1.0 to 2.5 s).",
+  "15.4-16.5 s stakes.74 panel: 74% lands only as small gold text at the end of 'Plumbing, electrical, roofing: 74%', while 83% stays at headline size, so the second stat is buried. On 'seventy-four' slam 74% in at the same size as 83% (for example 83% and 74% side by side, each over its own label), or swap the big number to 74% with the HVAC line under it.",
+  "17.2-31.5 s register wall plate: the source line ('Jobber survey, reasons named' / 'BLS, 12 months to June 2026') is set at the same size and weight as the heading and is just as bright. Make it one size step smaller, in the dimmer cream used for source lines on the map panels, so the heading leads.",
+  "4.7-6.2 s hook.note panel: 'The note that tells / your customers.' and its accent line fill the top half of the panel, leaving about 75 px empty under the line. Center the block vertically in the panel."
+ ]
 }

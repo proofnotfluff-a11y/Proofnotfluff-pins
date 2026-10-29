@@ -1,24 +1,20 @@
 {
  "gate": "facts",
- "round": 1,
- "at": "2026-10-29T00:41:21-05:00",
+ "round": 0,
+ "at": "2026-10-29T12:17:41-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
  "pass": true,
- "score": {"numbers": 13, "mismatches": 0},
- "reasons": [],
- "notes": [
-  "round 0 fault fixed: 04_scene/scene.js why section displayLabel is 'REPAIR PAY' while crew is true (no CREW PAY string left in scene.js); the re-rendered MP4 (Oct 29 00:40) at 36.5 s ('so your crew's') shows the till display REPAIR PAY +3.7%, the receipt line REPAIR PAY +3.7% underlined, ALL PAY +3.2%, plate 'Crew pay: above average' over 'BLS, 12 months to June 2026'. The 3.7% now carries its own row's name; 'above average' holds for install and repair (3.7) and for the construction row (3.9) against all workers (3.2)",
-  "at 34.5 s (before 'three point two') the display reads PAY +3.7% and ALL PAY has not rung yet; it rings on 'three' at 34.68 s: timing fair",
-  "data.js sha256 d2283f60... matches 01_voice/facts.json; all 13 numbers in data.js equal facts.json and the brief's numbers block (83, 65, 74 x3, 1,050, 2025, 72, 50, +3.7, +3.2, 12, 3)",
-  "voice (transcript): 83% HVAC, 1,050 owners, 65% overall, 74% plumbing/electrical/roofing ('even higher than that' true vs 65), 72% inflation, half (50%) labor, 3.7% install and repair, 3.2% all workers, year to June; 'last year' = the survey's 2025 as the page says; cleaning 55% not said or drawn",
-  "screen (timeline sheets 1 and 2, scene.js): hook 83% with 'of HVAC companies raised prices last year.' and 'Jobber, 1,050 home service owners, Dec 2025'; stakes 65% count lands on 65, 'Plumbing, electrical, roofing: 74%', suns HVAC 83%, PLUMB/ELEC/ROOF 74%; register 72%, 50% under JOBBER SURVEY, running total at x 948 suppressed so no sum drawn",
-  "claims: 'backed up by federal data' fair (BLS wage rows support the labor reason, source and window on the plate); 'Jobber sells software' supported; survey limits (who raised, not how customers took it) said; 'watch your close rate' and 'raise the next job' are advice",
-  "story elements (EXAMPLE price note, 'first of next month', NEXT MONTH calendar, wall clock, coins, fronts, PROMISE stamp) do not read as data",
-  "trades first: Jobber survey of US home service owners plus BLS occupational wages; no non-trade study",
-  "no en or em dashes in script.md, transcript.md, scene.js, data.js, facts.json, brief.md; no private person, business or address"
+ "score": {
+  "numbers": 13,
+  "mismatches": 0
+ },
+ "reasons": [
+  "03_cues/cues.md why.crew (non-blocking, docs only): it still says 'The display reads CREW PAY +3.7%', but scene.js and the render show REPAIR PAY +3.7% (MP4 frame at 31.6 s). Fix: change that line to 'The display reads REPAIR PAY +3.7%'. Nothing on screen or in the voice is wrong."
  ],
  "sources_checked": [
-  "https://www.getjobber.com/home-service-trends-report/: 1,050 US home service business owners, Conjointly, December 2025, +/-3 pts at 90% confidence; 65% raised prices last year; HVAC 83%, roofing 74%, plumbing 74%, electrical 74%, cleaning 55% the lowest; 'Inflation (72%) and labor costs (50%) are the most common reasons'; no size of increase or customer reaction given",
-  "https://www.bls.gov/news.release/eci.htm: ECI June 2026, USDL-26-1270, released Jul 31, 2026; Table 8 civilian wages and salaries, 12 months ending June 2026: all workers 3.2%, installation, maintenance, and repair 3.7%, construction, extraction, farming, fishing, and forestry 3.9%",
-  "https://www.getjobber.com/: title 'The Top Home & Commercial Service Software in 2026 | Jobber'; 'Jobber's home & commercial service software' (supports 'Jobber sells software')"
+  "https://www.getjobber.com/home-service-trends-report/: survey of 1,050 US home service business owners, run through Conjointly in December 2025, margin of error +/-3 points at 90% confidence; 65% raised prices last year; HVAC 83%, roofing 74%, plumbing 74%, electrical 74%, general contracting 71.1%, cleaning 55% (the lowest). Every trade with a figure is at 55% or more, so 'most trades raised their prices last year' holds. Reasons: inflation 72% (chart label 'inflation and material costs'), labor costs 50%. The page gives no size of increase, no customer reaction and no future plans, and the video claims none of these.",
+  "https://www.bls.gov/news.release/eci.htm: ECI June 2026, USDL-26-1270, released Jul 31, 2026. Table 8, civilian wages and salaries, 12 months ending June 2026, not seasonally adjusted: all workers 3.2%, installation, maintenance, and repair 3.7%, construction, extraction, farming, fishing, and forestry 3.9%. 'Your crew's pay beat the three point two' holds for HVAC (3.7) and for plumbing, electrical and roofing (construction row 3.9), and the plate gives the source and window. This matches the 'rose faster than average' line round 1 passed.",
+  "https://www.getjobber.com/: title 'The Top Home & Commercial Service Software in 2026 | Jobber', described as 'Quote, schedule, invoice, and get paid', which supports 'Jobber sells software'.",
+  "local checks: 01_voice/facts.json sha256 b9456b8d... matches the hash in data.js. All 13 numbers in data.js match facts.json and the brief (83, 65, 74 x3, 1,050, 2025, 72, 50, +3.7, +3.2, 12, 3). The voice in transcript.md matches script.md: 83% HVAC, 74% for plumbing, electrical and roofing, 72% inflation, half for labor, 3.7 and 3.2 in the year to June. 65% and 55% are no longer said or drawn (caption only). On screen in the sheets and the MP4: 83% with 'of HVAC companies raised prices last year.' and 'Jobber, 1,050 home service owners, Dec 2025' at 0 s, on the 1 to 2.5 s close-up and at 3 s; 74% labels; 72% and 50% under JOBBER SURVEY; at 29 to 31.6 s REPAIR PAY +3.7%, then ALL PAY +3.2%, with 'Crew pay: above average' over 'BLS, 12 months to June 2026'; no sum drawn. The prior fault (a CREW PAY label on the 3.7%) has not come back. The story elements (EXAMPLE note, 'first of next month', NEXT MONTH calendar, YOUR SHOP? and CUSTOMERS? clouds, fronts, clock, PROMISE stamp) do not read as data. The core evidence is trades-only (Jobber home service survey plus BLS occupational wages). No real private person, business or address. No en or em dashes in 01_voice, 02_transcript, 03_cues or 04_scene."
  ]
 }

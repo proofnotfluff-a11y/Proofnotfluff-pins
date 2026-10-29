@@ -3,7 +3,7 @@
 PASS 12 of 12 (anim.py script: PASS)
 
 1. Drop-in: PASS 9 words, said by 3.48 s; a trade noun or you; no percent, source, call-out or greeting
-2. On-screen hook: PASS "The demo says you need an AI receptionist." (8 words), up on frame 0, held through the three cuts to 4.0 s, inside the safe area
+2. On-screen hook: PASS "The demo: an AI receptionist answers every call." (8 words, matching the spoken drop-in), up on frame 0, held through the three cuts to 4.0 s, inside the safe area
 3. One idea: PASS 13 words ("fix follow-up first with drafts you approve, before paying for a voice bot.")
 4. Acted: PASS beat 2 is acted by the scene (see cues.md play)
 5. Facts: PASS every number in voice, screen and caption maps to facts.json (anim.py data: every shown value matches)

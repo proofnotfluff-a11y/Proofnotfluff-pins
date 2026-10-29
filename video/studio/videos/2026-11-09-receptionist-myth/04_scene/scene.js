@@ -132,14 +132,14 @@ const laptop = (k, d, T, o = {}) => {
   const bx = X + 116, by = Y + 22;
   P(bx - 1, by - 1, 94, 74, INK); P(bx, by, 92, 72, CREAM); P(bx - 8, by + 50, 10, 6, CREAM); P(bx - 10, by + 54, 4, 4, CREAM);
   [[bx + 6, by + 8], [bx + 34, by + 8], [bx + 62, by + 8]].forEach(([x, y], i) => ringPhone(d, x, y, o.checks ? o.checks[i] : 1e9, T, 2));
-  P(bx + 8, by + 46, 76, 3, MUTED); P(bx + 8, by + 54, 60, 3, MUTED); P(bx + 8, by + 62, 68, 3, '#C9CCD3');
+  d.tx('EVERY CALL', bx + 46, by + 42, {align: 'center', color: PLUM}); d.tx('ANSWERED', bx + 46, by + 56, {align: 'center', color: '#2F6F67'});
   // the live dot, top left
   if (((d.F >> 4) & 1) === 0) d.disc(X + 10, Y + 10, 3, RED);
 };
 const hookPlate = (k, d) => {
   d.win(14, 86, 332, 62, {base: DUSK, hi: '#3D2E45', lo: INK, rule: MAROON});
-  k.text('The demo says you need', 540, 276, {size: 39, color: GOLD, align: 'center'});
-  k.slam('an AI receptionist.', 540, 336, -1, {size: 66, color: CREAM, align: 'center', drop: INK});
+  k.text('The demo: an AI receptionist', 540, 276, {size: 39, color: GOLD, align: 'center'});
+  k.slam('answers every call.', 540, 336, -1, {size: 66, color: CREAM, align: 'center', drop: INK});
 };
 // the outbox tray: our own set piece. A pin board wall, a desk, an index card with the prompt, a wire tray with the
 // drafted check-in held under a padlock, and the big green send key
@@ -184,7 +184,6 @@ window.SCENE = {
       d.tx('AI RECEPTIONIST', X + 10, Y + 6, {color: CREAM});
       robot(d, X + 50, Y + 92, 3);
       [[X + 104, Y + 44], [X + 140, Y + 44], [X + 176, Y + 44]].forEach(([x, y]) => ringPhone(d, x, y, 0, T, 2));
-      P(X + 104, Y + 84, 100, 4, MUTED); P(X + 104, Y + 96, 84, 4, MUTED); P(X + 104, Y + 108, 92, 4, '#C9CCD3');
       P(0, 330, 360, 87, '#6B4226'); P(0, 330, 360, 2, '#B07A47');
       k.stampIn(cut2 + 0.05, () => {
         const sx = 150, sy = 230; d.P(sx - 4, sy - 4, 132, 58, RED); d.P(sx, sy, 124, 50, '#F7EDE0'); d.P(sx + 3, sy + 3, 118, 44, RED); d.P(sx + 6, sy + 6, 112, 38, '#F7EDE0');
@@ -202,8 +201,14 @@ window.SCENE = {
       const c = k.sets.calendar({month: 'THIS MONTH', start: 0, days: 30,
         fills: [{day: 1, at: tPay, c: GOLD, mark: 'coin'}].concat(Array.from({length: 16}, (_, i) => ({day: 15 + i, at: tSit + i * 0.07, c: '#F2C2A0', mark: 'x'}))),
         run: {from: 2, to: 14, at: tAns, every: 0.06, c: '#BDE6CF', mark: 'check'}});
-      if (T >= tAns && T < tQuotes) k.slam('Calls: answered.', 300, 834, tAns, {size: 39, color: CREAM, from: 0.4, drop: INK});
-      if (T >= tQuotes) k.slam(T < tFol ? 'Quotes: just sitting.' : 'Quotes: no follow-up.', 300, 834, T < tFol ? tQuotes : tFol, {size: 39, color: ORANGE, from: 0.4, drop: INK});
+      if (T >= tAns) { d.P(22, 277, 316, 26, INK); d.P(22, 277, 316, 1, '#3D2E45'); }
+      if (T >= tAns && T < tQuotes) k.slam('Calls: answered.', 120, 834, tAns, {size: 66, color: CREAM, from: 0.4});
+      if (T >= tQuotes) {
+        k.slam('Quotes:', 120, 834, tQuotes, {size: 66, color: CREAM, from: 0.4});
+        const qx = 120 + k.measure('Quotes: ', {size: 66});
+        if (T < tFol) k.slam('just sitting.', qx, 834, tQuotes, {size: 66, color: CREAM, from: 0.4});
+        else k.slam('no follow-up.', qx, 834, tFol, {size: 66, color: ORANGE, from: 0.4});
+      }
       return host(k, T >= tFol ? 'shrug' : null);
     },
 
@@ -229,23 +234,32 @@ window.SCENE = {
       [{text: 'Write a short check-in on this quote, in my voice.', at: tP1}, {text: 'Ask what questions they have.', at: tP2}].forEach((r) => {
         const ln = typed(k, T, r.text, r.at, (cx + 8) * 3, y, (cx + cw - 8) * 3, {size: 39, color: NAVY}); y += ln * 45;
       });
+      // on "Paste": the quote you sent clips onto the card (example), and the padlock drops into the empty tray
+      const tPaste = W(/^Paste/i, t0, t0 + 2.2);
+      if (T >= tPaste) {
+        const pop = d.fr(tPaste) < 4 ? [6, 3, 1, 0][d.fr(tPaste)] : 0, ax = 24, ay = 198 - pop;
+        P(ax + 2, ay + 2, 176, 18, '#5A3A22'); P(ax - 1, ay - 1, 178, 20, INK); P(ax, ay, 176, 18, '#DCE9F7'); P(ax, ay, 4, 18, BLUE);
+        P(ax + 8, ay + 3, 3, 11, GREY); P(ax + 8, ay + 3, 7, 2, GREY); P(ax + 13, ay + 3, 2, 9, GREY);
+        d.tx('Pasted: deep clean quote', ax + 20, ay + 3, {color: NAVY});
+      }
       // the wire tray and the held draft
-      const tx0 = 18, ty = 214, tw0 = 236;
+      const tx0 = 18, ty = 220, tw0 = 236;
       P(tx0, ty + 78, tw0, 6, GREY); P(tx0, ty + 78, tw0, 1, CREAM); P(tx0, ty + 30, 4, 54, GREY); P(tx0 + tw0 - 4, ty + 30, 4, 54, GREY);
       for (let x = tx0 + 12; x < tx0 + tw0 - 6; x += 16) P(x, ty + 48, 2, 30, '#6B7080');
-      d.tx('HELD FOR YOU', tx0 + 4, ty + 86, {size: 30, color: CREAM});
+      const hw = d.tw('HELD FOR YOU') + 12; P(tx0 + 1, ty + 87, hw, 17, INK); P(tx0, ty + 86, hw, 17, MAROON); d.tx('HELD FOR YOU', tx0 + 6, ty + 88, {color: GOLD});
       const tDrop = tHave + 0.1, sent = T >= tSend, fly = sent ? Math.floor(Math.pow(Math.max(0, T - tSend - 0.25) * 9, 2)) : 0;
+      if (T >= tPaste && T < tDrop) { const f = d.fr(tPaste), dy = f < 6 ? [-30, -16, -6, 2, 1, 0][f] : 0; lockIcon(d, tx0 + tw0 / 2 - 7, ty + 52 + dy, false); }
       if (T >= tDrop && tx0 + 8 + fly < 360) {
         const dy = d.fr(tDrop) < 5 ? [-24, -12, -4, 1, 0][d.fr(tDrop)] : 0, ex = tx0 + 8 + fly, ey = ty + 10 + dy;
         P(ex + 2, ey + 2, 220, 66, '#5A3A22'); P(ex - 1, ey - 1, 222, 68, INK); P(ex, ey, 220, 66, '#F7F1E6');
         d.line(ex, ey, ex + 110, ey + 18, '#E6D3BC'); d.line(ex + 219, ey, ex + 110, ey + 18, '#E6D3BC');
         d.tx('DRAFT', ex + 6, ey + 4, {size: 30, color: TEAL});
         written(k, 1e9, 'Hi, just checking in on the quote I sent for your deep clean. Any questions I can answer?', 0, (ex + 6) * 3, (ey + 17) * 3, (ex + 214) * 3, {size: 30, lh: 45, color: PLUM, lint: fly === 0});
-        lockIcon(d, ex + 196, ey + 4, sent);
+        lockIcon(d, ex + 202, ey + 1, sent);
       }
-      if (T >= tRead && T < tSend + 0.3) eye(d, 226, 206, ((d.F >> 3) % 6) !== 0);
+      if (T >= tRead && T < tSend + 0.3) eye(d, 226, 210, ((d.F >> 3) % 6) !== 0);
       // the send key
-      const kx = 262, ky = 250, pr = sent && T < tSend + 0.25 ? 3 : (sent ? 1 : 0);
+      const kx = 262, ky = 256, pr = sent && T < tSend + 0.25 ? 3 : (sent ? 1 : 0);
       P(kx + 3, ky + 3, 60, 48, INK); P(kx - 1, ky + pr - 1, 60, 48, INK); P(kx, ky + pr, 58, 46, sent ? '#2F6F67' : '#3E9A6E'); P(kx, ky + pr, 58, 3, '#6FDC8C');
       d.tx('SEND', kx + 29, ky + pr + 16, {color: CREAM, align: 'center'});
       if (sent) k.burst((kx + 29) * 3, (ky + 20) * 3, tSend + 0.05, {n: 14, r: 160, colors: ['teal', 'paper']});
@@ -260,18 +274,31 @@ window.SCENE = {
         {rank: 'TOP', name: 'HIGH OR COMPLETE', value: n.highTrust.value, suffix: '%', hi: true},
         {rank: 'LOW', name: 'LITTLE OR NONE', value: n.lowTrust.value, suffix: '%'},
       ]});
-      k.text('ServiceTitan survey', 120, 660, {size: 39, color: GOLD});
-      k.text(`${n.contractors.shown}+ residential service`, 120, 714, {size: 30, color: CREAM});
-      k.text(`contractors, ${n.reportYear.shown}`, 120, 756, {size: 30, color: CREAM});
+      // one hero slot under the rows: the sample counts up to its size on "thousand", then each share lands as it is said
+      const tSur = W(/^surveyed/i, t0, t0 + 0.7), tTh = W(/^thousand/i, tSur, tSur + 1.2);
+      if (T >= tSur && T < t11) {
+        const p = clamp((T - tSur) / Math.max(0.3, tTh - tSur));
+        k.text(k.count(n.contractors.value, p, {from: Math.round(n.contractors.value * 0.85), comma: true, suffix: '+'}), 120, 588, {size: 198, color: CREAM, drop: INK, lint: p >= 1});
+        k.text('contractors surveyed', 120, 792, {size: 66, color: SAND});
+      } else if (T >= t11 && T < t58) {
+        k.slam(n.highTrust.shown, 120, 588, t11, {size: 198, color: GOLD, from: 0.3, drop: INK});
+        k.text('high or complete trust', 120, 792, {size: 66, color: GOLD});
+      } else if (T >= t58) {
+        k.slam(n.lowTrust.shown, 120, 588, t58, {size: 198, color: RED, from: 0.3, drop: INK});
+        k.text('little or no trust', 120, 792, {size: 66, color: RED});
+        k.burst(260, 680, t58 + 0.05, {n: 14, r: 200, colors: ['accent', 'paper']});
+      }
+      k.text(`ServiceTitan, ${n.contractors.shown}+ contractors, ${n.reportYear.shown}`, 120, 882, {size: 39, color: SAND});
       return host(k, k.live('proof.low') || k.live('proof.none') ? 'point' : null);
     },
 
     // ---- button: the boss arena. THE MYTH; the moves: you hit send (on "hand"), follow-up first (on "buy"); busted on "fix"
     button: (k, T) => {
       const t0 = k.S('button');
-      const tHand = W(/^hand$/i, t0, t0 + 0.8), tBuy = W(/^buy$/i, k.S('button.fix')), tFix = W(/^fix$/i, k.S('button.end'), tBuy + 1.2), tEnd = W(/^follow/i, tFix, tFix + 0.3);
+      const tHand = W(/^hand$/i, t0, t0 + 0.8), tBuy = W(/^buy$/i, k.S('button.fix')), tRec = W(/^receptionist/i, tBuy, tBuy + 0.6), tBefore = W(/^before$/i, tRec, tRec + 0.8);
+      const tFix = tRec + 0.3, tEnd = tBefore + 0.3;
       quiet(k, () => k.sets.boss({name: 'THE MYTH', hp: 100, t0, menu: 'MOVES', hits: [{at: tHand, dmg: 50, label: 'You hit send'}, {at: tBuy, dmg: 50, label: 'Follow-up first'}], defeatAt: tFix, winText: 'BUSTED!'}));
-      if (T >= tEnd) k.slam('Follow-up first.', 540, 690, tEnd, {size: 66, color: GOLD, align: 'center', from: 0.5, drop: INK});
+      if (T >= tEnd) k.slam('Follow-up first.', 540, 690, tEnd, {size: 132, color: GOLD, align: 'center', from: 0.5, drop: INK});
       return host(k, T >= tFix ? 'wave' : (k.live('button') ? 'point' : null));
     },
   },

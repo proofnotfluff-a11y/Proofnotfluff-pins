@@ -113,7 +113,7 @@ const bedroom = (k, d, o = {}) => {
   P(0, 0, 360, 330, night ? '#1E2238' : '#E8C99A');
   for (let x = 6; x < 360; x += 18) P(x, 0, 2, 330, night ? '#232842' : '#EED6AE');
   // the window
-  const wx = 196, wy = 152, ww = 140, wh = 96;
+  const wx = 196, wy = 164, ww = 140, wh = 92;
   P(wx - 4, wy - 4, ww + 8, wh + 8, INK); P(wx - 2, wy - 2, ww + 4, wh + 4, night ? '#4A4E5A' : '#B07A47');
   if (night) {
     P(wx, wy, ww, wh, '#0E1430'); dith(wx, wy + wh - 20, ww, 20, '#1B2450');
@@ -149,12 +149,17 @@ const flatPhone = (k, d, x, y, lit, o = {}) => {
     d.dith(x - 10, y + 30, 76, 3, '#2F6F67', F & 1);
   }
 };
+// the title plate: the time it came in, small; when it was seen, the hero line in the accent
 const hookPlate = (k, d, n) => {
-  d.win(14, 86, 332, 62, {base: DUSK, hi: '#3D2E45', lo: INK, rule: MAROON});
-  k.text(`Quote request, ${n.nightHour.shown} pm.`, 540, 276, {size: 39, color: GOLD, align: 'center'});
-  k.slam(`Seen at ${n.morningHour.shown} am.`, 540, 336, -1, {size: 66, color: CREAM, align: 'center', drop: INK});
+  d.win(14, 86, 332, 68, {base: DUSK, hi: '#3D2E45', lo: INK, rule: MAROON});
+  k.text(`Quote request, ${n.nightHour.shown} pm.`, 540, 276, {size: 39, color: CREAM, align: 'center'});
+  k.slam(`Seen at ${n.morningHour.shown} am.`, 540, 324, -1, {size: 132, color: GOLD, align: 'center', drop: INK});
 };
 const MSG = (n) => `Hi! Need a move-out clean before Friday. ${n.beds.shown} bed, ${n.baths.shown} bath. How much?`;
+// the gold EXAMPLE tag (the story is ours, not data): x, y low-res; returns its width
+const exampleTag = (d, x, y) => { const tag = 'EXAMPLE', w = d.tw(tag) + 8; d.P(x + 1, y + 1, w, 15, INK); d.P(x, y, w, 15, GOLD); d.tx(tag, x + 4, y + 1, {color: INK}); return w; };
+// a dark label under a clock: centered at (cx, y) low-res
+const clockTag = (k, d, s, cx, y, c) => { const w = d.tw(s) + 12; d.P(cx - w / 2 + 1, y + 1, w, 17, INK); d.P(cx - w / 2, y, w, 17, DUSK); k.text(s, cx * 3, (y + 2) * 3, {size: 39, color: c, align: 'center'}); };
 
 // the AI chat app: our own piece, unbranded. A window with a title bar, the conversation, and a send key
 const appWindow = (k, d, x, y, w, h) => {
@@ -163,123 +168,135 @@ const appWindow = (k, d, x, y, w, h) => {
   P(x, y, w, h, '#F7F1E6'); P(x, y, w, 20, '#2B2033'); P(x, y + 20, w, 1, INK);
   [RED, GOLD, TEAL].forEach((c, i) => { d.disc(x + 9 + i * 9, y + 10, 3, c); });
   d.tx('AI CHAT APP', x + 40, y + 4, {color: CREAM});
-  const tag = 'EXAMPLE', tw = d.tw(tag, 30), tgx = x + 46 + d.tw('AI CHAT APP');
-  P(tgx, y + 3, tw + 8, 15, GOLD); d.tx(tag, tgx + 4, y + 4, {size: 30, color: INK});
+  exampleTag(d, x + 46 + d.tw('AI CHAT APP'), y + 3);
   for (let yy = y + 26; yy < y + h - 4; yy += 8) for (let xx = x + 4 + ((yy >> 3) & 1) * 4; xx < x + w - 4; xx += 16) DOT(xx, yy, '#EDE3D2');
 };
 const bubbleBox = (d, x, y, w, h, c, edge) => { const {P} = d; P(x + 1, y, w - 2, h, c); P(x, y + 1, w, h - 2, c); P(x + 1, y + h - 1, w - 2, 1, edge); };
+// the readout of a set we draw ourselves (the gauge's own small one is kept quiet)
+const quiet = (k, re, fn) => { const t = k.text; k.text = function (s, ...a) { return re.test(String(s)) ? {w: 0, h: 0, lines: []} : t.call(this, s, ...a); }; try { return fn(); } finally { k.text = t; } };
 
 window.SCENE = {
   look: 'arcade',
   images: [],
   host_name: 'Snow',
   hud: 'AI LESSON 1',
-  sendLine: 'Send this to whoever answers your quote requests.',
+  sendLine: 'Send this to whoever answers quote requests.',
   transitions: {play: 'dissolve', fix: 'levelselect', proof: 'dissolve', button: 'levelselect'},
   trauma: {'play.booked': 0.5},
   sections: {
     // ---- hook: four shots under one plate. Cover: the bedroom at night, the phone lit on the stand. Cut by 0.8 s to the
-    // phone close up (the message, example). Cut on "eleven" to the bedside clock at 11, dark. Cut on "You" to the same
-    // clock ringing at 7 in the morning sun.
+    // phone close up (the message, example, with the time it came in). Cut on "eleven" to the bedside clock at 11. Cut on
+    // "You" to the same clock ringing at 7 in the morning sun.
     hook: (k, T) => {
       const d = px(k), {P} = d, n = k.data.numbers;
       const tEleven = W(/^eleven/i, k.S('hook.msg'), 2.2), tYou = W(/^You$/i, k.S('hook.seen'), 3.6);
       const cut1 = 0.8, cut2 = Math.min(2.6, Math.max(1.5, tEleven - 0.05)), cut3 = Math.max(cut2 + 0.6, tYou - 0.05);
       if (T < cut1) {
         bedroom(k, d, {night: true});
-        clock(d, 140, 262, 14, n.nightHour.value, {night: true});
-        flatPhone(k, d, 64, 262, true);
+        clock(d, 140, 268, 14, n.nightHour.value, {night: true});
+        flatPhone(k, d, 64, 268, true);
         hookPlate(k, d, n);
         return host(k);
       }
       if (T < cut2) {
-        // the close up: the phone fills the frame at night, the message in a bubble
+        // the close up: the phone at night, the lead on its lock screen (example), the time it came in, an unread dot
         P(0, 0, 360, 640, '#151827'); for (let y = 160; y < 417; y += 8) for (let x = ((y >> 3) & 1) * 8; x < 360; x += 16) P(x, y, 2, 2, '#1E2238');
-        const X = 70, Y = 154, Wd = 260, H = 178;
-        P(X + 4, Y + 4, Wd, H, INK); P(X - 2, Y, Wd + 4, H, INK); P(X, Y - 2, Wd, H + 4, INK); P(X, Y, Wd, H, '#1B1420');
-        P(X + 6, Y + 6, Wd - 12, H - 12, PAPER); P(X + 6, Y + 6, Wd - 12, 22, '#2F6F67');
-        d.tx('New lead', X + 14, Y + 10, {size: 30, color: CREAM});
-        const pop = d.fr(cut1) < 4 ? [6, 3, 1, 0][d.fr(cut1)] : 0;
-        bubbleBox(d, X + 14, Y + 38 - pop, Wd - 40, 104, CREAM, SAND);
-        written(k, 1e9, MSG(n), 0, (X + 22) * 3, (Y + 44 - pop) * 3, (X + Wd - 32) * 3, {size: 39, lh: 46, color: PLUM});
+        const X = 50, Y = 166, Wd = 260, H = 150, pop = d.fr(cut1) < 4 ? [6, 3, 1, 0][d.fr(cut1)] : 0;
+        P(X + 4, Y + 4, Wd, H, INK); P(X - 3, Y - 1, Wd + 6, H + 2, INK); P(X - 1, Y - 3, Wd + 2, H + 6, INK); P(X, Y, Wd, H, '#1B1420');
+        // the card, then the reply bar and a dim keyboard under it
+        const cy = Y + 6 - pop;
+        P(X + 6, cy, Wd - 12, 76, PAPER); P(X + 6, cy, Wd - 12, 20, '#2F6F67');
+        d.disc(X + 15, cy + 10, 3, GOLD);
+        d.tx('New lead', X + 22, cy + 3, {color: CREAM});
+        exampleTag(d, X + 28 + d.tw('New lead'), cy + 3);
+        k.text(`${n.nightHour.shown} PM`, (X + Wd - 14) * 3, (cy + 3) * 3, {size: 39, color: GOLD, align: 'right'});
+        bubbleBox(d, X + 12, cy + 26, Wd - 24, 44, CREAM, SAND);
+        written(k, 1e9, MSG(n), 0, (X + 20) * 3, (cy + 32) * 3, (X + Wd - 18) * 3, {size: 39, lh: 46, color: PLUM});
+        P(X + 6, Y + 88, Wd - 12, 14, '#2B2033'); P(X + 10, Y + 91, Wd - 44, 8, '#3D2E45'); d.disc(X + Wd - 18, Y + 95, 5, '#2F6F67');
+        for (let r = 0; r < 3; r++) for (let c = 0; c < 10 - r; c++) P(X + 12 + r * 6 + c * 24, Y + 108 + r * 12, 20, 9, '#2B2033');
         hookPlate(k, d, n);
-        k.burst((X + Wd - 20) * 3, (Y + 40) * 3, cut1 + 0.05, {n: 12, r: 160, colors: ['teal', 'paper']});
+        k.burst((X + Wd - 30) * 3, (cy + 10) * 3, cut1 + 0.05, {n: 12, r: 160, colors: ['teal', 'paper']});
         return host(k);
       }
       if (T < cut3) {
+        // the bedside clock at eleven: the cream face in the dark room, the time under it
         bedroom(k, d, {night: true});
-        P(0, 150, 360, 182, '#151827');
-        clock(d, 180, 244, 52, n.nightHour.value, {night: true});
+        P(0, 156, 360, 176, '#151827'); for (let x = 6; x < 360; x += 18) P(x, 156, 2, 176, '#1B1F35');
+        clock(d, 180, 236, 50, n.nightHour.value, {});
+        clockTag(k, d, `${n.nightHour.shown} PM`, 180, 300, SKY);
         hookPlate(k, d, n);
-        k.text(`${n.nightHour.shown} PM`, 930, 864, {size: 39, color: SKY, align: 'right'});
         return host(k, 'shrug');
       }
       bedroom(k, d, {night: false});
-      P(0, 150, 186, 132, '#E8C99A');
-      clock(d, 100, 228, 44, n.morningHour.value, {ring: true});
-      flatPhone(k, d, 120, 296, true);
+      P(0, 156, 186, 126, '#E8C99A'); for (let x = 6; x < 186; x += 18) P(x, 156, 2, 126, '#EED6AE');
+      clock(d, 100, 226, 42, n.morningHour.value, {ring: true});
+      clockTag(k, d, `${n.morningHour.shown} AM`, 100, 300, GOLD);
+      flatPhone(k, d, 128, 296, true);
       hookPlate(k, d, n);
-      k.text(`${n.morningHour.shown} AM`, 930, 864, {size: 39, color: MAROON, align: 'right'});
       k.burst(100 * 3, 180 * 3, cut3 + 0.05, {n: 14, r: 200, colors: ['accent', 'paper']});
       return host(k, 'point');
     },
 
-    // ---- play: the chat set. The message sits at the top; the reply is half typed in the box; three sticky notes stack
-    // (rates, size, what's in); the bar's clock turns to LUNCH; "Still a draft." stamps; they booked elsewhere
+    // ---- play: the chat set. The message sits at the top (example); the reply is half typed in the box; three sticky notes
+    // stack (rates, size, what's in); the bar's clock turns to LUNCH; "Still a draft." stamps; they booked elsewhere
     play: (k, T) => {
       const d = px(k), {P} = d, n = k.data.numbers, t0 = k.S('play');
       const tRates = W(/^Rates/i, k.S('play.rates')), tSize = W(/^size/i, tRates), tIn = W(/^included/i, tSize, tSize + 0.6);
       const tLunch = W(/^lunch/i, k.S('play.lunch')), tDraft = W(/^draft/i, tLunch, tLunch + 0.8), tBooked = W(/^booked/i, k.S('play.booked'));
       k.sets.chat({who: 'New lead', clock: T < tLunch ? `${n.morningHour.shown} AM` : 'LUNCH', msgs: [{me: false, text: MSG(n), at: -5}], notify: {text: 'Booked elsewhere.', at: tBooked, dur: 9}});
+      // the EXAMPLE tag in the app's header, beside the name (the banner covers it when it drops)
+      if (T < tBooked) exampleTag(d, 202, 105);
       // the reply, half typed in the composer, a cursor blinking
       const draft = 'Hi! So for a move-out we', m = T < t0 ? 0 : Math.min(draft.length, Math.floor((T - t0) / 0.07));
       const s = draft.slice(0, m);
       k.text(s, (102 + 5) * 3, 300 * 3, {size: 30, color: PLUM, lint: m === draft.length});
       if (((d.F >> 3) & 1) === 0) P(107 + d.tw(s, 30) + 1, 301, 1, 11, PLUM);
-      // the sticky notes on the dash, left of the phone
+      // the sticky notes on the dash, left of the phone, inside the safe edge
       [['RATES', tRates, GOLD], ['SIZE', tSize, '#F2C2A0'], ["WHAT'S IN", tIn, '#BDE6F5']].forEach(([lbl, at, c], i) => {
         if (T < at) return;
-        const yy = 196 + i * 30 - (d.fr(at) < 3 ? [4, 2, 1][d.fr(at)] : 0), xx = 4 + (i % 2);
-        P(xx + 2, yy + 2, 86, 24, INK); P(xx, yy, 86, 24, c); P(xx, yy, 86, 3, '#FFFFFF');
+        const yy = 196 + i * 30 - (d.fr(at) < 3 ? [4, 2, 1][d.fr(at)] : 0), xx = 21 + (i % 2);
+        P(xx + 2, yy + 2, 66, 24, INK); P(xx, yy, 66, 24, c); P(xx, yy, 66, 3, '#FFFFFF');
         d.tx(lbl, xx + 5, yy + 6, {size: 30, color: INK});
       });
-      if (T >= tDraft) k.slam('Still a draft.', 540, 696, tDraft, {size: 66, color: RED, align: 'center', stamp: true, drop: INK});
+      if (T >= tDraft) k.slam('Still a draft.', 588, 696, tDraft, {size: 66, color: RED, align: 'center', stamp: true, drop: INK});
       return host(k, T >= tBooked ? 'shrug' : null);
     },
 
-    // ---- fix: the AI chat app. Their message pastes in; the prompt types on as said; the draft lands under it; the owner
-    // fills the rate, ticks it and presses send
+    // ---- fix: the AI chat app. Their message slides in from the phone; the prompt box waits with a cursor and types on as
+    // said; the draft lands under it; the owner fills the rate, ticks it and presses send
     fix: (k, T) => {
       const d = px(k), {P} = d, n = k.data.numbers, t0 = k.S('fix');
       const tPaste = W(/^paste/i, t0, t0 + 0.4), tP1 = W(/^Write$/i, k.S('fix.p1')), tP2 = W(/^Use$/i, k.S('fix.p2')), tP3 = W(/^Ask$/i, k.S('fix.p3'));
       const tMiss = WE(/^missing/i, tP3, tP3 + 1.4), tRead = W(/^read$/i, k.S('fix.send')), tFix = W(/^fix$/i, tRead), tSend = W(/^send$/i, tFix);
       // the desk under the window
       P(0, 0, 360, 417, '#2B2033'); for (let y = 0; y < 417; y += 6) d.dith(0, y, 360, 1, '#3D2E45', (y / 6) & 1);
-      P(0, 336, 360, 81, '#6B4226'); P(0, 336, 360, 2, '#B07A47');
+      P(0, 340, 360, 77, '#6B4226'); P(0, 340, 360, 2, '#B07A47');
       for (let y = 417; y < 640; y += 16) for (let x = 0, c = 0; x < 360; x += 16, c++) P(x, y, 16, 16, ((y >> 4) + c) % 2 ? '#5A3A22' : '#4A2E1B');
-      const X = 10, Y = 84, Wd = 340, H = 246, op = d.ease(t0 + 0.05, 8, 40);
+      const X = 20, Y = 84, Wd = 300, H = 252, op = d.ease(t0 + 0.05, 8, 40);
       appWindow(k, d, X, Y + op, Wd, H);
       if (op !== 0) return host(k);
-      // their message, pasted as a grey block
-      if (T >= tPaste) {
-        const pop = d.fr(tPaste) < 3 ? 1 : 0;
-        bubbleBox(d, X + 8, Y + 25 - pop, Wd - 50, 48, '#E2DACB', '#C9BFAE');
-        d.tx('THEIR MESSAGE', X + 14, Y + 27 - pop, {size: 30, color: MAROON});
-        written(k, 1e9, MSG(n), 0, (X + 14) * 3, (Y + 42 - pop) * 3, (X + Wd - 46) * 3, {size: 30, lh: 45, color: PLUM, lint: true});
+      // their message, pasted as a grey block (it slides in from the left as "paste" comes)
+      const tMsg = Math.min(tPaste - 0.3, t0 + 0.3);
+      if (T >= tMsg) {
+        const sl = d.ease(tMsg, 6, 24);
+        bubbleBox(d, X + 8 - sl, Y + 25, Wd - 40, 50, '#E2DACB', '#C9BFAE');
+        d.tx('THEIR MESSAGE', X + 14 - sl, Y + 27, {size: 30, color: MAROON});
+        written(k, 1e9, MSG(n), 0, (X + 14 - sl) * 3, (Y + 42) * 3, (X + Wd - 46) * 3, {size: 30, lh: 45, color: PLUM, lint: sl === 0});
       }
-      // the prompt, typed on as said, in the owner's bubble (right)
-      let y = (Y + 82) * 3;
-      const bx = (X + 34) * 3, bmax = (X + Wd - 10) * 3;
-      if (T >= tP1 - 0.3) {
+      // the prompt box: up on "paste" with a blinking cursor, then typed on as said
+      const bx = (X + 34) * 3, bmax = (X + Wd - 10) * 3, py = Y + 80;
+      if (T >= tPaste) {
+        const pop = d.fr(tPaste) < 3 ? [3, 1, 0][d.fr(tPaste)] : 0;
+        bubbleBox(d, X + 30, py - pop, Wd - 38, 81, '#DCE9F7', '#A9C4E0');
+        d.tx('YOUR PROMPT', X + 36, py + 2 - pop, {size: 30, color: BLUE});
         const rows = [
           {text: 'Write a short, friendly reply to this cleaning quote request.', at: tP1},
           {text: 'Use my rates below.', at: tP2},
           {text: "Ask one question if anything's missing.", at: tP3},
         ];
-        bubbleBox(d, X + 30, Y + 76, Wd - 38, 86, '#DCE9F7', '#A9C4E0');
-        d.tx('YOUR PROMPT', X + 36, Y + 78, {size: 30, color: BLUE});
-        y += 33;
-        rows.forEach((r, i) => {
+        let y = (py + 17) * 3;
+        if (T < tP1 - 0.05) { if (((d.F >> 3) & 1) === 0) P(X + 38, py + 18, 2, 12, NAVY); }
+        else rows.forEach((r, i) => {
           const ln = typed(k, T, r.text, r.at, bx + 12, y, bmax - 12, {size: 39, color: NAVY});
           if (i === 1 && T >= WE(/^below/i, tP2, tP2 + 1)) { const x0 = bx + 12 + k.measure(r.text + ' ', {size: 39}), cw = k.measure('[my rates]', {size: 30}); k.shape(k.rectPts(x0, y - 3, cw + 18, 45, 0), {fill: GOLD, line: false}); k.text('[my rates]', x0 + 9, y, {size: 30, color: INK}); }
           y += ln * 45;
@@ -288,50 +305,58 @@ window.SCENE = {
       // the drafted reply (example), written out fast once the prompt is done
       const tDraft = tMiss + 0.15;
       if (T >= tDraft) {
-        const dy = Y + 166 - 2, pop = d.fr(tDraft) < 3 ? [3, 1, 0][d.fr(tDraft)] : 0;
-        bubbleBox(d, X + 8, dy - pop, Wd - 40, 74, CREAM, SAND);
+        const dy = py + 86, pop = d.fr(tDraft) < 3 ? [3, 1, 0][d.fr(tDraft)] : 0;
+        bubbleBox(d, X + 8, dy - pop, Wd - 16, 80, CREAM, SAND);
         d.tx('DRAFT', X + 14, dy + 2 - pop, {size: 30, color: TEAL});
         const reply = `Thanks for reaching out! A move-out clean for a ${n.beds.shown} bed, ${n.baths.shown} bath is [your rate]. Want the inside of the fridge and oven done too?`;
-        written(k, T, reply, tDraft, (X + 14) * 3, (dy + 15 - pop) * 3, (X + Wd - 40) * 3, {size: 30, lh: 45, cps: 160, color: PLUM, lint: T >= tDraft + 1.2,
+        written(k, T, reply, tDraft, (X + 14) * 3, (dy + 17 - pop) * 3, (X + Wd - 40) * 3, {size: 30, lh: 45, cps: 160, color: PLUM, lint: T >= tDraft + 1.2,
           colorOf: (w) => (/^\[your|^rate\]/.test(w) ? (T >= tFix ? '#2F6F67' : ORANGE) : null)});
         // the pen ticks it on "read"
-        if (T >= tRead) { const nn = Math.min(14, d.fr(tRead) * 3); for (let i = 0; i < nn; i++) { const px2 = X + Wd - 46 + i, py2 = dy + 50 + (i < 5 ? i : 5 - (i - 5)); P(px2, py2, 2, 2, '#2F6F67'); } }
+        if (T >= tRead) { const nn = Math.min(14, d.fr(tRead) * 3); for (let i = 0; i < nn; i++) { const px2 = X + Wd - 58 + i, py2 = dy + 66 + (i < 5 ? i : 5 - (i - 5)); P(px2, py2, 2, 2, '#2F6F67'); } }
         // the send key: pressed on "send"
-        const pressed = T >= tSend, sx = X + Wd - 28, sy = dy + 52;
-        P(sx + 2, sy + 2, 22, 18, INK); P(sx - 1, sy + (pressed ? 2 : 0), 22, 18, INK); P(sx, sy + 1 + (pressed ? 2 : 0), 20, 16, pressed ? '#2F6F67' : TEAL);
-        d.line(sx + 5, sy + 9 + (pressed ? 2 : 0), sx + 14, sy + 9 + (pressed ? 2 : 0), CREAM); d.line(sx + 10, sy + 5 + (pressed ? 2 : 0), sx + 14, sy + 9 + (pressed ? 2 : 0), CREAM); d.line(sx + 10, sy + 13 + (pressed ? 2 : 0), sx + 14, sy + 9 + (pressed ? 2 : 0), CREAM);
+        const pressed = T >= tSend, sx = X + Wd - 34, sy = dy + 58, pd = pressed ? 2 : 0;
+        P(sx + 2, sy + 2, 22, 18, INK); P(sx - 1, sy + pd, 22, 18, INK); P(sx, sy + 1 + pd, 20, 16, pressed ? '#2F6F67' : TEAL);
+        d.line(sx + 5, sy + 9 + pd, sx + 14, sy + 9 + pd, CREAM); d.line(sx + 10, sy + 5 + pd, sx + 14, sy + 9 + pd, CREAM); d.line(sx + 10, sy + 13 + pd, sx + 14, sy + 9 + pd, CREAM);
         if (pressed) { k.burst((sx + 10) * 3, (sy + 10) * 3, tSend + 0.05, {n: 12, r: 140, colors: ['teal', 'paper']}); }
       }
       return host(k, k.live('fix.send') ? 'point' : null);
     },
 
-    // ---- proof: the gauge. Jobber: 26% of cleaning businesses reply within an hour; the fastest trade
+    // ---- proof: the gauge. The source on the hood; the claim inside the dial; 26% as the hero under the hub; "Fastest
+    // trade." on a pill in the opening at the bottom of the dial
     proof: (k, T) => {
-      const d = px(k), n = k.data.numbers, t0 = k.S('proof');
+      const d = px(k), {P} = d, n = k.data.numbers, t0 = k.S('proof');
       const t26 = W(/^twenty/i, k.S('proof.pct'), t0 + 1.4), tFast = W(/^fastest/i, k.S('proof.fast'));
-      k.sets.gauge({value: n.hourPct.value, max: 100, at: t26, dur: 1.0, zones: [[0, 40, RED], [40, 70, ORANGE], [70, 100, TEAL]], suffix: '%'});
-      d.win(14, 86, 332, 40, {base: DUSK, hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
-      k.slam('Jobber: cleaning businesses', 540, 276, t0 + 0.05, {size: 39, color: GOLD, align: 'center', from: 0.4});
-      k.text('that reply to a lead within an hour', 540, 330, {size: 30, color: CREAM, align: 'center'});
-      k.text(`Jobber survey, ${n.owners.shown} owners, Dec ${n.surveyYear.shown}`, 930, 948, {size: 30, color: SAND, align: 'right'});
-      if (T >= tFast) k.slam('Fastest trade.', 540, 810, tFast, {size: 66, color: GOLD, align: 'center', stamp: true, drop: INK});
-      k.burst(540, 700, t26 + 1.0, {n: 14, r: 180, colors: ['accent', 'paper']});
+      quiet(k, /^\d+%$/, () => k.sets.gauge({value: n.hourPct.value, max: 100, at: t26, dur: 1.0, zones: [[0, 40, RED], [40, 70, ORANGE], [70, 100, TEAL]], suffix: '%'}));
+      k.text(`Jobber survey, ${n.owners.shown} owners, Dec ${n.surveyYear.shown}`, 540, 270, {size: 39, color: SAND, align: 'center'});
+      k.slam('Cleaning businesses', 540, 456, t0 + 0.05, {size: 39, color: GOLD, align: 'center', from: 0.4, drop: INK});
+      k.slam('reply within an hour', 540, 501, t0 + 0.25, {size: 39, color: CREAM, align: 'center', from: 0.4, drop: INK});
+      // the hero readout, over the gauge's own box: it counts with the needle
+      P(136, 226, 88, 46, INK); P(137, 227, 86, 44, '#1A332B'); P(138, 228, 84, 42, '#24453A');
+      if (T >= t26) k.slam(cnt(k, n.hourPct, t26, {suffix: '%'}), 540, 681, t26, {size: 132, color: GOLD, align: 'center', from: 0.3, drop: INK});
+      if (T >= tFast) {
+        const pw = d.tw('Fastest trade.', 66) + 16, pop = d.fr(tFast) < 3 ? [2, 1, 0][d.fr(tFast)] : 0;
+        P(180 - pw / 2 + 2, 276 + 2 - pop, pw, 28, INK); P(180 - pw / 2, 276 - pop, pw, 28, MAROON); P(180 - pw / 2, 276 - pop, pw, 2, RED);
+        k.slam('Fastest trade.', 540, (279 - pop) * 3, tFast, {size: 66, color: GOLD, align: 'center', stamp: true, drop: INK});
+      }
+      k.burst(540, 760, t26 + 1.0, {n: 14, r: 180, colors: ['accent', 'paper']});
       return host(k, k.live('proof.pct') ? 'point' : null);
     },
 
-    // ---- button: the departures board, today. Asleep at 11; the night quote sent; the first job next
+    // ---- button: the departures board, today. Asleep at 11; the night quote sent; the first job up (landed well before the
+    // end card); the rule on a plate under it
     button: (k, T) => {
       const d = px(k), n = k.data.numbers, t0 = k.S('button');
-      const tNob = W(/^Nobody/i, t0, t0 + 0.1), tQuote = W(/^quote/i, k.S('button.quote')), tFirst = W(/^first/i, k.S('button.first')), tJob = WE(/^job/i, tFirst, tFirst + 0.6);
+      const tNob = W(/^Nobody/i, t0, t0 + 0.1), tBut = W(/^But$/i, k.S('button.quote'), t0 + 2.2), tHave = W(/^have$/i, tBut, tBut + 1.0), tFirst = W(/^first/i, k.S('button.first')), tJob = WE(/^job/i, tFirst, tFirst + 0.6);
       k.sets.flaps({title: 'TODAY', cols: 12, rows: [
         {label: `${n.nightHour.shown} PM`, value: 'ASLEEP', at: tNob},
-        {label: 'QUOTE', value: 'SENT', at: tQuote, hi: true},
-        {label: 'FIRST JOB', value: 'UP', at: tFirst},
+        {label: 'QUOTE', value: 'SENT', at: tBut, hi: true},
+        {label: 'FIRST JOB', value: 'UP', at: tHave},
       ]});
-      if (T >= tQuote) { const gh = T >= tFirst ? 46 : 30; d.win(34, 280, 292, gh, {base: DUSK, hi: '#3D2E45', lo: INK, rule: MAROON}); }
-      if (T >= tQuote) k.slam('Answer the night quote', 132, 858, tQuote, {size: 39, color: CREAM, from: 0.4, drop: INK});
-      if (T >= tFirst) k.slam('before your first job.', 132, 906, tFirst, {size: 39, color: GOLD, from: 0.4, drop: INK});
-      if (T >= tJob) k.sweep(132, 948, k.measure('before your first job.', {size: 39}), 3, tJob, {color: 'accent'});
+      if (T >= tBut) d.win(30, 284, 300, 54, {base: DUSK, hi: '#3D2E45', lo: INK, rule: MAROON});
+      if (T >= tBut) k.slam('Answer the night quote', 120, 870, tBut, {size: 66, color: CREAM, from: 0.4, drop: INK});
+      if (T >= tFirst) k.slam('before your first job.', 120, 936, tFirst, {size: 66, color: GOLD, from: 0.4, drop: INK});
+      if (T >= tJob) k.sweep(120, 1002, k.measure('before your first job.', {size: 66}), 3, tJob, {color: 'accent'});
       return host(k, T >= tJob ? 'wave' : null);
     },
   },

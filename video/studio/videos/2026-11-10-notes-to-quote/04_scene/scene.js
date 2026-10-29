@@ -101,7 +101,7 @@ const quoteSheet = (k, d, n, X, Y, Wd, H, o = {}) => {
   P(X, Y, Wd, 22, NAVY); d.tx('DEEP CLEAN QUOTE', X + 8, Y + 4, {color: CREAM});
   const tg = 'EXAMPLE', tgw = d.tw(tg); P(X + 6, Y + 25, tgw + 8, 15, GOLD); d.tx(tg, X + 10, Y + 26, {color: INK});
   const ch = o.colHead || 'YOUR RATE', chx = Math.min(X + Wd - 8, 308);
-  d.tx(ch, chx, Y + 27, {color: o.colHot ? ORANGE : MUTED, align: 'right'});
+  if (o.colAt == null || T >= o.colAt) d.tx(ch, chx, Y + 27, {color: o.colHot ? RED : MAROON, align: 'right'});
   P(X + 6, Y + 41, Wd - 12, 1, SAND);
   ITEMS(n).forEach((s, i) => {
     const y = Y + 46 + i * (o.row || 24), at = o.itemAt ? o.itemAt(i) : -1;
@@ -112,12 +112,17 @@ const quoteSheet = (k, d, n, X, Y, Wd, H, o = {}) => {
     if (ok) tick(d, X + 8, y + 3 - pop, '#2F6F67', o.tickAt ? Math.min(9, d.fr(o.tickAt(i)) * 3 + 1) : 99);
     d.tx(s, X + 22, y - pop, {color: PLUM});
     const bw = 24, bx = X + Wd - 8 - bw, filled = o.rateAt ? T >= o.rateAt(i) : true;
-    P(bx, y + 3 - pop, bw, 9, filled ? GOLD : '#EDE3D2'); P(bx + 3, y + 6 - pop, bw - 10, 3, filled ? '#C8A24C' : '#E2DACB');
+    if (o.colAt == null || T >= o.colAt) { P(bx, y + 3 - pop, bw, 9, filled ? GOLD : '#EDE3D2'); P(bx + 3, y + 6 - pop, bw - 10, 3, filled ? '#C8A24C' : '#E2DACB'); }
   });
+  if (o.pendAt != null && T >= o.pendAt && (o.flagAt == null || T < o.flagAt)) {
+    const y = Y + 46 + 5 * (o.row || 24), pop = d.fr(o.pendAt) < 3 ? [3, 1, 0][d.fr(o.pendAt)] : 0;
+    P(X + 6, y + 2 - pop, 11, 11, '#C9BFAE'); P(X + 7, y + 3 - pop, 9, 9, '#FBF6EC');
+    d.tx(NOTES(n)[5], X + 22, y - pop, {color: '#8C7A6B'});
+  }
   if (o.flagAt != null && T >= o.flagAt) {
     const y = Y + 46 + 5 * (o.row || 24), pop = d.fr(o.flagAt) < 3 ? [3, 1, 0][d.fr(o.flagAt)] : 0;
     P(X + 4, y - 2 - pop, Wd - 8, 20, '#FBE1D8'); P(X + 4, y - 2 - pop, 3, 20, RED);
-    d.tx('Blinds: not on your list', X + 12, y + 1 - pop, {color: RED});
+    d.tx('Blinds: not on your price list', X + 12, y + 1 - pop, {color: RED});
   }
 };
 const notesPad = (k, d, n, X, Y, Wd, H, o = {}) => {
@@ -149,7 +154,7 @@ window.SCENE = {
   images: [],
   host_name: 'Snow',
   hud: 'AI LESSON 3',
-  sendLine: 'Send this to whoever writes your quotes.',
+  sendLine: 'Send this to whoever quotes, or save it.',
   transitions: {play: 'dissolve', fix: 'levelselect', proof: 'dissolve', button: 'levelselect'},
   trauma: {'button.prices': 0.5},
   sections: {
@@ -167,13 +172,16 @@ window.SCENE = {
         return host(k);
       }
       if (T < cut2) {
-        P(0, 0, 360, 640, '#FBF6EC'); for (let y = 160; y < 417; y += 34) P(0, y, 360, 1, SAND);
-        const pop = d.fr(cut1) < 4 ? [6, 3, 1, 0][d.fr(cut1)] : 0;
-        ITEMS(n).slice(0, 4).forEach((s, i) => {
-          const y = 166 + i * 40 - pop;
-          P(20, y + 2, 22, 22, INK); P(22, y + 4, 18, 18, '#FBF6EC');
-          if (T >= cut1 + 0.15 * i) { const m = Math.min(9, d.fr(cut1 + 0.15 * i) * 3 + 1); const pts = [[0, 8], [2, 10], [4, 12], [6, 10], [8, 8], [10, 6], [12, 4], [14, 2], [16, 0]]; pts.slice(0, m).forEach(([a, b]) => P(23 + a, y + 5 + b, 3, 3, '#2F6F67')); }
-          k.text(s, 50 * 3, (y + 1) * 3, {size: 66, color: PLUM});
+        // the close up: in on the clipboard (its navy board fills the frame), the checklist on a bordered paper card
+        desk(d, '#253048', '#1E2840');
+        const pop = d.fr(cut1) < 4 ? [6, 3, 1, 0][d.fr(cut1)] : 0, CY = 158 - pop;
+        P(24, CY + 4, 320, 172, INK); P(19, CY - 1, 322, 174, INK); P(20, CY, 320, 172, '#FBF6EC'); P(20, CY, 320, 4, NAVY);
+        ITEMS(n).slice(0, 4).forEach((s2, i) => {
+          const y = CY + 12 + i * 40;
+          if (i < 3) P(26, y + 34, 308, 1, SAND);
+          P(30, y + 1, 22, 22, INK); P(32, y + 3, 18, 18, '#FBF6EC');
+          if (T >= cut1 + 0.15 * i) { const m = Math.min(9, d.fr(cut1 + 0.15 * i) * 3 + 1); const pts = [[0, 8], [2, 10], [4, 12], [6, 10], [8, 8], [10, 6], [12, 4], [14, 2], [16, 0]]; pts.slice(0, m).forEach(([a2, b2]) => P(33 + a2, y + 4 + b2, 3, 3, '#2F6F67')); }
+          k.text(s2, 60 * 3, y * 3, {size: 66, color: PLUM});
         });
         hookPlate(k, d);
         return host(k);
@@ -187,10 +195,10 @@ window.SCENE = {
     },
 
     // ---- play: the street set, the van out all day with the notepad on the dash; then night at the kitchen table, the
-    // quote rebuilt from memory, the oven forgotten
+    // quote rebuilt from memory (each item lands as it is remembered), the oven forgotten: stamped on the memory card
     play: (k, T) => {
       const d = px(k), {P} = d, t0 = k.S('play');
-      const tNight = W(/^At$/i, k.S('play.night'), t0 + 2.6), tMem = W(/^memory/i, tNight, tNight + 1.6), tOven = W(/^oven/i, k.S('play.oven'), tMem + 1.6);
+      const tNight = W(/^At$/i, k.S('play.night'), t0 + 2.6), tReb = W(/^rebuilding/i, tNight, tNight + 0.7), tQ = W(/^quote$/i, tReb, tReb + 0.6), tMem = W(/^memory/i, tQ, tQ + 0.4), tOven = W(/^oven/i, k.S('play.oven'), tMem + 1.6);
       if (T < tNight) {
         const s = k.sets.street({t0, speed: 1, van: true});
         k.slam('Notes: in the car all day.', 150, 300, t0 + 0.1, {size: 39, color: NAVY, from: 0.4});
@@ -198,7 +206,13 @@ window.SCENE = {
       }
       // night: the kitchen table, a blank quote, the thought bubble
       P(0, 0, 360, 417, '#1E2238'); for (let x = 6; x < 360; x += 18) P(x, 0, 2, 280, '#232842');
-      P(220, 100, 110, 70, INK); P(222, 102, 106, 66, '#0E1430'); d.disc(300, 120, 8, '#F4E6D3'); d.disc(304, 117, 7, '#0E1430');
+      // the window: stepped stars, the moon, a streetlight's glow on the far side of the street
+      P(220, 100, 110, 70, INK); P(222, 102, 106, 66, '#0E1430');
+      for (let i = 0; i < 9; i++) { const sx = 226 + Math.floor(hash(i * 2.7) * 98), sy = 105 + Math.floor(hash(i * 4.3) * 34); d.twinkle(sx, sy, (Math.floor(d.F / 8) + i) % 10 < 4 ? (Math.floor(d.F / 8) + i) % 4 : 0, i % 3 ? '#6B7080' : CREAM); }
+      d.disc(300, 120, 8, '#F4E6D3'); d.disc(304, 117, 7, '#0E1430');
+      d.dith(234, 142, 34, 24, '#4A4426', 0); P(248, 132, 2, 34, '#6B7080'); P(244, 130, 10, 3, '#6B7080'); P(246, 133, 6, 2, GOLD);
+      P(222, 160, 106, 6, '#151A33');
+      P(274, 100, 2, 70, INK); P(220, 134, 110, 2, INK);
       P(0, 280, 360, 137, '#4A2E1B'); P(0, 280, 360, 2, '#6B4226');
       for (let y = 417; y < 640; y += 16) for (let x = 0, c = 0; x < 360; x += 16, c++) P(x, y, 16, 16, ((y >> 4) + c) % 2 ? '#1B1420' : '#151020');
       // a lamp pool on the table
@@ -208,61 +222,93 @@ window.SCENE = {
       // the bubble of half-remembered items
       const bx = 40, by = 150, bw = 168, bh = 112;
       P(bx - 1, by - 1, bw + 2, bh + 2, INK); P(bx, by, bw, bh, CREAM); P(bx + 30, by + bh, 8, 6, CREAM); P(bx + 40, by + bh + 8, 5, 5, CREAM);
-      d.tx('From memory:', bx + 8, by + 6, {color: MUTED});
-      [['Deep clean', tMem], ['Fridge', tMem + 0.4], ['Baseboards?', tMem + 0.8]].forEach(([s, at], i) => { if (T >= at) d.tx(s, bx + 8, by + 26 + i * 20, {color: PLUM}); });
+      d.tx('From memory:', bx + 8, by + 6, {color: MAROON});
+      [['Deep clean', tReb], ['Fridge', tQ], ['Baseboards?', tMem]].forEach(([s2, at], i) => { if (T >= at) { const pop = d.fr(at) < 3 ? [3, 1, 0][d.fr(at)] : 0; d.tx(s2, bx + 8, by + 26 + i * 20 - pop, {color: PLUM}); } });
       if (T >= tOven) {
-        ovenIcon(d, bx + 124, by + 50, 2);
-        const f = d.fr(tOven), m = Math.min(20, f * 4); for (let i = 0; i < m; i++) { P(bx + 118 + i * 2, by + 44 + i * 2, 3, 3, RED); P(bx + 156 - i * 2, by + 44 + i * 2, 3, 3, RED); }
-        k.slam('Forgot: the oven.', 540, 864, tOven, {size: 66, color: RED, align: 'center', stamp: true, drop: INK});
+        ovenIcon(d, bx + 124, by + 34, 2);
+        const f = d.fr(tOven), m = Math.min(20, f * 4); for (let i = 0; i < m; i++) { P(bx + 118 + i * 2, by + 28 + i * 2, 3, 3, RED); P(bx + 156 - i * 2, by + 28 + i * 2, 3, 3, RED); }
+        P(bx + 7, by + 84, bw - 14, 25, INK); P(bx + 6, by + 83, bw - 14, 25, DUSK); P(bx + 6, by + 83, bw - 14, 2, RED);
+        k.slam('Forgot: the oven.', (bx + bw / 2 - 1) * 3, (by + 85) * 3, tOven, {size: 66, color: RED, align: 'center', stamp: true});
       }
       return host(k, T >= tOven ? 'shrug' : null);
     },
 
-    // ---- fix: before and after on one page. The prompt types on in the app strip; the notes cross over as clean items;
-    // the price column turns to MY PRICE LIST; the blinds line is flagged; the owner ticks every line against the rates
+    // ---- fix: the notes pad sits on the quote; as the prompt asks for an itemized quote, each note line flies off the pad
+    // and lands as a clean quote row with a spark; the pad leaves, the price column reads MY PRICE LIST; the blinds row is
+    // flagged; each prompt line gets a check when it is said; the owner ticks every line against the rates
     fix: (k, T) => {
       const d = px(k), {P} = d, n = k.data.numbers, t0 = k.S('fix');
       const tP1 = W(/^Turn$/i, k.S('fix.p1')), tP2 = W(/^Use$/i, k.S('fix.p2')), tP3 = W(/^Flag$/i, k.S('fix.p3'));
       const tCheck = W(/^check$/i, k.S('fix.check')), tRates = W(/^rates/i, tCheck, tCheck + 1.6), tItem = WE(/^quote/i, tP1, tP1 + 1.8), tPrice = W(/^price$/i, tP2, tP2 + 0.8), tFlag = WE(/^price/i, tP3, tP3 + 1.4);
+      const ends = [tItem, WE(/^list/i, tP2, tP2 + 1.0), tFlag];
       desk(d, '#2F6F67', '#285F58');
       // the app strip (top)
-      const X = 10, Y = 84, Wd = 340, H = 68;
+      const X = 20, Y = 84, Wd = 290, H = 68;
       P(X + 3, Y + 3, Wd, H, INK); P(X - 1, Y - 1, Wd + 2, H + 2, INK); P(X, Y, Wd, H, '#F7F1E6'); P(X, Y, Wd, 16, '#2B2033');
       [RED, GOLD, TEAL].forEach((c, i) => d.disc(X + 8 + i * 8, Y + 8, 2, c));
       d.tx('AI CHAT APP', X + 34, Y + 2, {color: CREAM});
       const tg = 'EXAMPLE', tgw = d.tw(tg), tgx = X + 42 + d.tw('AI CHAT APP'); P(tgx, Y + 1, tgw + 8, 15, GOLD); d.tx(tg, tgx + 4, Y + 2, {color: INK});
       let y = (Y + 19) * 3;
-      [{text: 'Turn these notes into an itemized quote.', at: tP1}, {text: 'Use only my price list.', at: tP2}, {text: "Flag anything I didn't price.", at: tP3}].forEach((r) => {
-        typed(k, T, r.text, r.at, (X + 8) * 3, y, (X + Wd - 8) * 3, {size: 39, color: NAVY}); y += 45;
+      [{text: 'Turn these notes into an itemized quote.', at: tP1}, {text: 'Use only my price list.', at: tP2}, {text: "Flag anything I didn't price.", at: tP3}].forEach((r, i) => {
+        typed(k, T, r.text, r.at, (X + 8) * 3, y, (X + Wd - 8) * 3, {size: 39, color: NAVY});
+        if (T >= ends[i] + 0.05) {   // a check stamps at the end of the line once it is said
+          const cx = Math.round((X + 8) + k.measure(r.text, {size: 39}) / 3 + 5), cy = y / 3 + 2, m = Math.min(9, d.fr(ends[i] + 0.05) * 3 + 1);
+          tick(d, cx, cy, '#2F6F67', m);
+        }
+        y += 45;
       });
-      // before (left) and after (right)
-      notesPad(k, d, n, 8, 158, 128, 172, {circle: false, goneAt: (i) => tItem + i * 0.25 + 0.2});
-      quoteSheet(k, d, n, 146, 158, 206, 172, {row: 20, itemAt: (i) => tItem + i * 0.25, colHead: T >= tPrice ? 'MY PRICE LIST' : 'PRICE', colHot: T >= tPrice && T < tPrice + 1,
-        tickAt: (i) => (T >= tCheck ? tCheck + 0.2 + i * 0.3 : 1e9), rateAt: (i) => (T >= tRates ? tRates + i * 0.12 : 1e9), flagAt: tFlag + 0.1});
-      // the flying items: a note line moves across as its clean line lands
-      for (let i = 0; i < 5; i++) { const a = tItem + i * 0.25, f = d.fr(a); if (f >= 0 && f < 6) { const x = 30 + f * 22, yy = 176 + i * 22 + Math.round((i * 2) * f / 6); P(x, yy, 18, 6, '#F8E58C'); P(x, yy, 18, 1, INK); } }
+      // the quote (full width) and the notes pad on top of its right side until every line has crossed
+      const step = 0.2, landAt = (i) => tItem + i * step + 0.2, padOff = landAt(5) + 0.15, colAt = Math.max(tPrice, padOff + 0.25);
+      quoteSheet(k, d, n, 20, 158, 290, 172, {row: 20, itemAt: landAt, colHead: 'MY PRICE LIST', colAt, colHot: T >= colAt && T < colAt + 0.8,
+        tickAt: (i) => (T >= tCheck ? tCheck + 0.2 + i * 0.3 : 1e9), rateAt: (i) => (T >= tRates ? tRates + i * 0.12 : 1e9), pendAt: landAt(5), flagAt: tFlag + 0.1});
+      const off = T < padOff ? 0 : Math.round(Math.pow(d.fr(padOff), 2) * 3);
+      if (196 + off < 360) notesPad(k, d, n, 196 + off, 158, 114, 172, {circle: false, goneAt: (i) => tItem + i * step});
+      // each note crosses to its row: a yellow strip with a short trail, then a spark where it lands
+      for (let i = 0; i < 6; i++) {
+        const a = tItem + i * step, f = d.fr(a);
+        if (f >= 0 && f < 6) { const q = f / 6, x = Math.round(220 + (36 - 220) * q), yy = Math.round(174 + i * 22 + (204 + i * 20 - 174 - i * 22) * q); P(x + 8, yy + 2, 30, 4, '#C8A24C'); P(x, yy, 30, 8, '#F8E58C'); P(x, yy, 30, 1, INK); }
+        if (i < 5) k.burst(40 * 3, (210 + i * 20) * 3, landAt(i), {n: 8, r: 90, life: 0.4, colors: ['accent2', 'paper']});
+      }
       return host(k, k.live('fix.check') ? 'point' : null);
     },
 
-    // ---- proof: the tool belt. Jobber: of owners who use AI, 54% use it for quoting
+    // ---- proof: the tool belt. The cursor hops across the jobs AI does (no numbers on them) and lands on quoting as it is
+    // said: 54% of the owners who use AI, the hero in the pane
     proof: (k, T) => {
-      const n = k.data.numbers, t0 = k.S('proof'), t54 = W(/^fifty/i, k.S('proof.pct'), t0 + 2.6);
+      const d = px(k), n = k.data.numbers, t0 = k.S('proof'), t54 = W(/^fifty/i, k.S('proof.pct'), t0 + 2.6);
+      const hops = [1, 2, 3, 1, 2].map((slot, i) => ({slot, at: t0 + 0.4 + i * Math.max(0.6, (t54 - t0 - 0.8) / 5)}));
       k.sets.inventory({title: 'AI USES', hint: 'Which job?', items: [
-        {icon: 'clip', name: 'QUOTING', stats: [{label: 'Of AI users', value: n.quotingPct.value, max: 100, text: n.quotingPct.shown}]},
-        {icon: 'coin'}, {icon: 'mail'}, {icon: 'phone'}], select: [{slot: 0, at: t54}]});
+        {icon: 'clip', name: 'QUOTING', stats: [{label: 'Of AI users', value: n.quotingPct.value, max: 100, text: ' '}]},
+        {icon: 'coin', name: 'INVOICES'}, {icon: 'mail', name: 'EMAILS'}, {icon: 'phone', name: 'FOLLOW-UPS'}], select: hops.concat([{slot: 0, at: t54}])});
       k.text('Jobber survey', 72, 612, {size: 39, color: GOLD});
       k.text(`${n.owners.shown} owners, Dec ${n.surveyYear.shown}`, 72, 660, {size: 39, color: CREAM});
-      k.text('Base: owners who use AI', 72, 708, {size: 39, color: SAND});
+      if (T >= t54) {
+        k.slam(n.quotingPct.shown, 600, 540, t54, {size: 198, color: ORANGE, from: 0.3, drop: INK});
+        k.text('of AI users', 600, 720, {size: 39, color: CREAM});
+        k.text('use it to quote', 600, 762, {size: 39, color: CREAM});
+        k.burst(744, 630, t54 + 0.05, {n: 14, r: 200, colors: ['accent', 'paper']});
+      }
       return host(k, k.live('proof.pct') ? 'point' : null);
     },
 
-    // ---- button: the XP bar fills on "typing"; YOUR PRICES levels up on "prices"; the perks land
+    // ---- button: the bar fills from the first word under AI TYPES IT; YOUR PRICES levels up on "prices" and the bar stays
+    // full in gold; two perks land as cards: your rates, your notes
     button: (k, T) => {
-      const t0 = k.S('button'), tType = W(/^typing/i, t0, t0 + 1.0), tPrices = W(/^prices/i, k.S('button.prices')), tNotes = W(/^notes/i, k.S('button.notes'), tPrices + 1.4);
-      k.slam('The AI does the typing.', 540, 300, t0 + 0.05, {size: 39, color: GOLD, align: 'center', from: 0.4, drop: INK});
-      quiet(k, () => k.sets.levelup({from: 0, to: 100, max: 100, at: tType, dur: Math.max(0.6, tPrices - tType - 0.1), levelAt: tPrices, text: 'YOUR PRICES',
-        stats: [{text: 'Your rates', at: tPrices + 0.5}, {text: 'Your notes', at: tNotes}]}));
-      return host(k, T >= tNotes ? 'wave' : null);
+      const d = px(k), {P} = d, t0 = k.S('button'), tPrices = W(/^prices/i, k.S('button.prices')), tEvery = W(/^every$/i, tPrices, tPrices + 0.9);
+      quiet(k, () => k.sets.levelup({from: 0, to: 100, max: 100, at: t0 + 0.15, dur: Math.max(0.6, tPrices - t0 - 0.35), levelAt: tPrices, text: 'YOUR PRICES'}));
+      k.slam('The AI does the typing.', 540, 276, t0 + 0.05, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK});
+      k.text('AI TYPES IT', 90, 546, {size: 66, color: ORANGE, drop: INK});
+      if (T >= tPrices) for (let i = 0; i < 20; i++) { const x = Math.round(30 + i * 14); P(x + 1, 209, 12, 12, GOLD); P(x + 1, 209, 12, 3, '#FFE39A'); P(x + 1, 218, 12, 3, '#C8A24C'); }
+      [['coin', 'Your rates', tPrices + 0.3, 236], ['clip', 'Your notes', tEvery, 276]].forEach(([icon, s2, at, cy]) => {
+        if (T < at) return;
+        const sl = d.ease(at, 5, 30), cx = 60 + sl;
+        P(cx + 2, cy + 2, 200, 32, INK); P(cx, cy, 200, 32, '#3D2E45'); P(cx, cy, 200, 2, '#7A3442'); P(cx, cy, 4, 32, GOLD);
+        if (icon === 'coin') { d.disc(cx + 18, cy + 16, 9, INK); d.disc(cx + 18, cy + 16, 8, GOLD); d.ring(cx + 18, cy + 16, 6, '#C8A24C'); P(cx + 17, cy + 12, 2, 9, '#C8A24C'); }
+        else { P(cx + 9, cy + 5, 18, 23, INK); P(cx + 10, cy + 6, 16, 21, '#B07A47'); P(cx + 12, cy + 9, 12, 16, CREAM); P(cx + 14, cy + 4, 8, 4, GREY); for (let j = 0; j < 3; j++) P(cx + 14, cy + 13 + j * 4, 8, 1, NAVY); }
+        k.text('+ ' + s2, (cx + 40) * 3, (cy + 5) * 3, {size: 66, color: CREAM, lint: sl === 0});
+        k.burst((cx + 20) * 3, (cy + 16) * 3, at + 0.05, {n: 8, r: 100, life: 0.4, colors: ['accent2', 'paper']});
+      });
+      return host(k, T >= tEvery ? 'wave' : null);
     },
   },
 };

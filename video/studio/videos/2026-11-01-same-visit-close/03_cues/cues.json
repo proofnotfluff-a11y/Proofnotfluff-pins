@@ -5,7 +5,7 @@
   "id": "rooms",
   "level": 0.16
  },
- "duration": 75.148,
+ "duration": 74.991,
  "cues": [
   {
    "id": "hook",
@@ -341,7 +341,7 @@
    "text": "The notebook page comes down on \"honest\". Header on dark tape: \"One honest note.\"",
    "t": 55.752,
    "word": 155,
-   "end": 65.868
+   "end": 65.711
   },
   {
    "id": "caveat.pattern",
@@ -351,9 +351,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The pen writes \"It's a pattern, not proof.\" as said; \"not proof\" gets a red underline; the source line lands: \"ServiceTitan: correlated, / not shown to cause.\"",
-   "t": 57.412,
+   "t": 57.652,
    "word": 158,
-   "end": 59.612
+   "end": 60.012
   },
   {
    "id": "caveat.other",
@@ -363,21 +363,21 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Top shops might close more\" / \"for other reasons.\" written under it.",
-   "t": 59.612,
+   "t": 60.012,
    "word": 163,
-   "end": 62.152
+   "end": 62.732
   },
   {
    "id": "caveat.cost",
    "level": 1,
-   "quote": "but asking still costs",
+   "quote": "but asking only costs",
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "\"But asking still costs you\" / \"just one sentence.\" written in red, double underlined. Snow shrugs.",
-   "t": 62.152,
+   "text": "\"But asking only costs you\" / \"one sentence.\" written in red, double underlined. Snow shrugs.",
+   "t": 62.732,
    "word": 171,
-   "end": 65.868
+   "end": 65.711
   },
   {
    "id": "close",
@@ -387,9 +387,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Room: blackboard. Chalk: \"Don't drive off\" / \"and wait.\" slams in as said.",
-   "t": 65.868,
-   "word": 179,
-   "end": 75.148
+   "t": 65.711,
+   "word": 178,
+   "end": 74.991
   },
   {
    "id": "close.drive",
@@ -399,9 +399,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Ask in the driveway.\" slams in, in the accent.",
-   "t": 67.648,
-   "word": 184,
-   "end": 70.388
+   "t": 67.491,
+   "word": 183,
+   "end": 70.231
   },
   {
    "id": "close.send",
@@ -411,9 +411,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "ProofNotFluff plate slams on; send line: \"Send this to whoever goes out on your estimates.\"",
-   "t": 70.388,
-   "word": 191,
-   "end": 71.128
+   "t": 70.231,
+   "word": 190,
+   "end": 70.971
   },
   {
    "id": "close.next",
@@ -423,9 +423,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "An accent line sweeps under \"Ask in the driveway.\"; sparks; Snow waves.",
-   "t": 71.128,
-   "word": 195,
-   "end": 75.148
+   "t": 70.971,
+   "word": 194,
+   "end": 74.991
   }
  ]
 }

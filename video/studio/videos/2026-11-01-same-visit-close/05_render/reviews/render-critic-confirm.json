@@ -1,0 +1,18 @@
+{
+  "gate": "render-critic",
+  "round": "confirm",
+  "slug": "2026-11-01-same-visit-close",
+  "mp4Sha256": "c81378baa693c4f3041522693a910dcbd46a79a0ce1d8718540863c18effe8e4",
+  "pass": true,
+  "score": {"faults": 0},
+  "faults": [],
+  "reasons": [
+    "Round 1 fault FIXED: 'the worry' label now spans x 756 to x 923 (y 906 to 935), inside the x 930 edge, on every 0.1 s frame from 47.7 to 49.8 s and on key frame f23 at 49.23 s (measured from the current MP4). Bolt lowest pixel y 887 to 889 on all strike frames, still clear of the label top at y 906. At 50.0 to 50.3 s the cloud bursts into confetti and the label leaves with it; that is a scene exit, not a cutoff.",
+    "Round 0 fixes still hold: hook source line ends about x 920 (frame-0s); caveat lines indented clear of the margin line (f30 66.43 s).",
+    "1 hook: PASS, 77% and hook text on screen from 0.0 s.",
+    "2 numbers: PASS, 77% from 0.0 s; 10% by 13.0 s; 77% bar label by 15.0 s; 62% at 18.5 s; '15 points' by 19.5 s and 'Why a 15 point gap?' from 20.0 s; 12 months / Jan 2026 on screen.",
+    "3 layout: PASS, nothing settled hides words or numbers, is cut off, or sits past x 930. Pencil crosses words only while writing them; wipes at 8.0, 19.9, 33.5, 44.5, 59.5, 68.5 s are transitions.",
+    "4 audio end: PASS, last word 'estimates.' ends 74.90 s, video 76.80 s, no word cut.",
+    "5 text size and flash: PASS, smallest labels about 20 px cap height; lightning about once a second, LEVEL UP burst steady, no flashing over 3 times a second."
+  ]
+}

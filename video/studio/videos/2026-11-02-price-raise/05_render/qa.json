@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-02-price-raise",
- "mp4Sha256": "dc5125b58f46f9910a72d4f739f09696bb51fbc0b79663e3963d985e95a0aac5",
+ "mp4Sha256": "ff2582c898d3231d6ccd47476120f8552f8ce73ab9b6af4c31f12521f5fad459",
  "checks": [
   {
    "name": "length",
@@ -26,20 +26,15 @@
   },
   {
    "name": "frozen",
-   "value": [
-    [
-     1.1,
-     2.5
-    ]
-   ],
-   "pass": false,
-   "detail": "1 frozen stretch(es) of 1.0 s or more before the end card at 69.19 s"
+   "value": [],
+   "pass": true,
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 69.19 s"
   },
   {
    "name": "file",
    "value": {
-    "sha256": "dc5125b58f46f9910a72d4f739f09696bb51fbc0b79663e3963d985e95a0aac5",
-    "bytes": 7483754
+    "sha256": "ff2582c898d3231d6ccd47476120f8552f8ce73ab9b6af4c31f12521f5fad459",
+    "bytes": 7510115
    },
    "pass": true,
    "detail": "H.264 1080x1920 30 fps, AAC, 7.5 MB, decodes clean"
@@ -51,6 +46,6 @@
    "detail": "whisper medium.en int8, re-spelled from script.md, 0 flag(s)"
   }
  ],
- "pass": false,
- "at": "2026-10-28T23:33:10-05:00"
+ "pass": true,
+ "at": "2026-10-28T23:51:10-05:00"
 }

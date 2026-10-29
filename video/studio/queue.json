@@ -117,6 +117,26 @@
     "runtime_pixfont": "a8557997756e"
    },
    "posts": {}
+  },
+  {
+   "slug": "2026-10-31-three-prices",
+   "readyAt": "2026-10-28T23:45:42-05:00",
+   "commit": "6774b3100ff834d57c4b9eb4986e7e399e70714e",
+   "fingerprints": {
+    "script": "4a2831489672",
+    "takes": "36debef722d2",
+    "words": "ea73e753cace",
+    "cues": "075ad9232be1",
+    "scene": "1c8e9bb7dc7d",
+    "data": "403be68f89fb",
+    "captions": "2afcd05ae234",
+    "mouth": "e5a75999616d",
+    "runtime_kit": "d12df837dc0a",
+    "runtime_player": "a66cf6faac98",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

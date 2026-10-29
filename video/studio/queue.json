@@ -77,25 +77,23 @@
   },
   {
    "slug": "2026-10-30-markup-margin",
-   "readyAt": "2026-10-28T22:30:29-05:00",
-   "commit": "e56503591ec8e1fe64e42d0305f4516f757b1a0c",
+   "readyAt": "2026-10-29T11:35:46-05:00",
+   "commit": "a51aa48e8d97ed5b43e1a83eb1b8f427ca710e35",
    "fingerprints": {
     "script": "4f291c57245f",
     "takes": "987ddd9b7a90",
     "words": "10db9aee4d7e",
-    "cues": "eb83e5a4f289",
-    "scene": "d6483ce786b1",
+    "cues": "fe0ea5ef77d1",
+    "scene": "3db12cbfb6c4",
     "data": "cac5a48e1520",
     "captions": "2bf70f04cc0e",
     "mouth": "cd6dad0fdb1b",
     "runtime_kit": "d12df837dc0a",
-    "runtime_player": "a66cf6faac98",
+    "runtime_player": "38626b3c2191",
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {},
-   "commit_before_caption_fix": "4fe6a2718032e8f5aabd27767757cf88a8e1810e",
-   "note": "Oct 29: re-pinned to studio-pins/2026-10-30-markup-margin (the gated commit plus captions without the AI voice line; facts-captions delta PASS)."
+   "posts": {}
   },
   {
    "slug": "2026-11-04-close-rate",

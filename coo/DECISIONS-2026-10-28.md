@@ -74,3 +74,4 @@
 - 6:38 pm [stated] Todd shared Paulino's "Claude as an animation studio" video transcript (style references, research, every shot drawn in code, sound, self-checks, MP4) and two guides (popularaitools.ai Remotion article; opus55vid.com guide, not readable from here: the URL is too long for the fetch proxy).
 - So: our studio already runs that loop (voice-first, shots in code, sound, gates). The new idea worth taking: a style reference board per series; noted in IMPROVE.
 - 6:58 pm [stated] Answer in chat on the freeze check: "Retune the check (Recommended)". So: video/config.json qa.freezeNoiseDb -70 (was a fixed -60 in tools/video_qa.py): a truly stuck picture still fails (tested on a still clip and a static crop), steady pixel motion passes. Lesson 1: frozen PASS 0.
+- 7:32 pm [stated] "pause after video 7 so I can see your output quality". So: renders stopped; lesson 7 (all gates PASS) sent for review; nothing goes into the post queue until Todd has seen it.

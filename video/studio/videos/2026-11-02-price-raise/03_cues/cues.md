@@ -1,7 +1,7 @@
 # Cues: Raise your prices; most trades already did (Lesson 6, Pricing Clinic, arcade look)
 
-Worlds (brief.md): weather map (hook, stakes, caveat), register with the HUD's coins (why), the price note sent as text
-messages from the truck (note, the chat set), the calendar (close). No stock room in any section; each top-level cue names its world in a "World:" line.
+Worlds (brief.md): weather map (hook, stakes, caveat), register with the HUD's coins (why), the boss fight, the price note
+as the move list against PRICE PUSHBACK (note), the calendar (close). No stock room in any section; each top-level cue names its world in a "World:" line.
 
 music: rooms
 
@@ -33,21 +33,21 @@ REPAIR PAY +3.7% prints under BLS PAY DATA on "three point seven"; the display l
 The display reads REPAIR PAY +3.7%; the plate: "Crew pay beat all pay". On "three point two" ALL PAY +3.2% prints under it, then a gold line under REPAIR PAY. It holds to the end of the take, coins still landing.
 
 ## note "So send this before" [sfx: whoosh]
-World: the chat (iris), not used in the two lessons before: a phone in the truck's dash mount, the road rushing in the windshield, the thread to "Your customers" empty, a cursor blinking in the composer, an EXAMPLE tag on the dash. The dialog box is off while the note is said (the thread carries it).
+World: the boss fight (iris), not used in the two lessons before or after: a dusk arena, the objection PRICE PUSHBACK as the boss with its HP bar. Over its menu, our move window tagged YOUR PRICE NOTE (EXAMPLE): three numbered rows showing empty, a gold cursor on the next. The dialog box is off while the note is said (the window carries it). No damage numbers, no defeat.
 ## note.l1 "Starting the first of" [sfx: tick]
-Bubble 1 slides up and types word by word as it is said: "Starting the first of next month, our rates go up." Read ticks when it is said.
+Row 1 types word by word as it is said: "Starting the first of next month, our rates go up." As it ends, a hit: flash, slash, the HP bar drops.
 ## note.l2 "Our labor and material" [sfx: tick]
-Bubble 2 types: "Our labor and material costs rose this year." Read ticks.
+Row 2 types: "Our labor and material costs rose this year." Another hit as it ends.
 ## note.l3 "Anything you've already approved" [sfx: tick]
-Bubble 3 types: "Anything you've already approved stays at the price we quoted." Read ticks. The full note holds 3 s or more, unchanged, through the next two beats.
+Row 3 types: "Anything you've already approved stays at the price we quoted." The full note holds 3 s or more, unchanged, through the next two beats.
 ## note.skip "Here's the part people" [sfx: whoosh]
-Only the app header changes: a maroon bar reads THE PART PEOPLE SKIP. The dialog box comes back starting at "Here's".
+Only the window's tag changes: THE PART PEOPLE SKIP in gold. The dialog box comes back starting at "Here's".
 ## note.last "That last line." [sfx: blip]
-Bubble 3 is ringed in gold with a gold sweep under it.
+Row 3 is ringed in gold with a gold sweep under it.
 ## note.promise "is a promise." [sfx: stamp]
-A PROMISE stamp lands on the dash beside bubble 3, clear of the phone.
+The big hit: PROMISE stamps on the boss, beside row 3; the HP bar drops to its last fifth.
 ## note.next "Raise the next job," [sfx: pop]
-The rule lands as a card in the thread (it scrolls up for it): "Raise the next job." in gold and "Never an approved one." under it, inside the phone's screen.
+The rule lands on a card on the arena floor: "Raise the next job." in gold and "Never an approved one." under it, both at heading size, centered.
 
 ## caveat "One honest note." [sfx: whoosh]
 World: the weather map (dissolve), titled ONE HONEST NOTE. A cold front (blue teeth) sweeps in from the east.

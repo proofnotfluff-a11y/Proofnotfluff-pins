@@ -2,7 +2,7 @@
 // 03_cues/cues.md. Numbers only from k.data (brief.md -> data.js). Every time comes from a cue start (k.S) or a spoken word
 // (wordT), so a re-voiced take moves the picture with it.
 /* Worlds (brief.md): hook, stakes, caveat = the weather map (PRICE REPORT, a sun per trade); why = the register with the
-   HUD's coins; note = the chat (k.sets.chat): the note goes out as three text messages from the truck;
+   HUD's coins; note = the boss fight (k.sets.boss): the note is the move list against PRICE PUSHBACK;
    close = the calendar (NEXT MONTH, the note going out). */
 const INK = '#120D14', CREAM = '#FFF7EA', SAND = '#E6D3BC', GOLD = '#F7C873', ORANGE = '#F2A541', RED = '#E2633B', TEAL = '#6FB7A8', GREY = '#9AA0AD';
 const hash = (n) => { const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
@@ -292,82 +292,69 @@ window.SCENE = {
       return host(k, k.live('why.federal') || k.live('why.crew') ? 'point' : (k.live('why') || k.live('why.labor') ? 'clip' : null));
     },
 
-    // ---- note: the price note goes out as three text messages from the truck (k.sets.chat), each typed in its bubble on
-    // the words that say it, read ticks once it is said. On "Here's the part people skip" only the app header changes; on
-    // "That last line" the third bubble is ringed and swept in gold; PROMISE stamps beside it on the dash; on "Raise the
-    // next job" the rule lands as a card in the chat (the thread scrolls up for it).
+    // ---- note: the boss fight (k.sets.boss, not used in the two lessons before or the two after). The objection is
+    // PRICE PUSHBACK; the price note is the move list, a game window that types each line as it is said. Lines 1 and 2
+    // each land a hit as they finish; "That last line" rings line 3 in gold; "is a promise" is the big hit, PROMISE
+    // stamping on the boss beside line 3. No defeat and no damage numbers (the note does not end pushback; the caveat
+    // says the survey doesn't show how customers took it). On "Raise the next job" the rule lands on a card on the arena
+    // floor.
     note: (k, T) => {
-      const d = px(k), tSkip = k.S('note.skip'), tLast = k.S('note.last'), tProm = wordT(k, 'note.promise', /^promise/i), tNext = k.S('note.next');
-      const tThat = wordT(k, 'note.last', /^That/i, 0);
-      const WHO = 'Your customers';
-      mute(k, (s) => T >= tSkip && String(s).toUpperCase() === WHO.toUpperCase(), () => k.sets.chat({who: WHO, clock: '7:42', msgs: []}));
-      const sx = 102, sy = 90, sw2 = 188, cy0 = 130, cy1 = 296, F = d.F;
-      /* the header: from "Here's the part people skip" a maroon bar with the gold line over the contact */
-      if (T >= tSkip) {
-        d.P(sx, sy, sw2, 36, '#7A3442'); d.P(sx, sy + 36, sw2, 1, INK);
-        if (d.fr(tSkip) >= 3) d.tx('THE PART PEOPLE SKIP', sx + 8, sy + 12, {color: GOLD}); else d.dith(sx + 8, sy + 13, 128, 11, '#3D2E45');
-      }
-      /* a blinking cursor in the composer while the note is being written */
-      if (T < tNext && (F >> 3) % 2) d.P(sx + 8, cy1 + 6, 1, 9, '#2B2033');
-      /* the EXAMPLE tag on the dash, under the stamp's spot */
-      k.chip('Example', 36, 880, {size: 30, fill: RED, color: CREAM});
-      // the three bubbles (sent, blue, right side): laid out word by word so each word types on as it is said
-      const sp = k.measure(' ', {size: 39}), WRAP = 492;
+      const d = px(k), t0 = k.S('note'), tSkip = k.S('note.skip'), tLast = k.S('note.last'), tProm = wordT(k, 'note.promise', /^promise/i), tNext = k.S('note.next');
+      const tThat = wordT(k, 'note.last', /^That/i, 0), WRAP = 505, sp = k.measure(' ', {size: 39});
       const rows = [
-        {text: 'Starting the first of next month, our rates go up.', at: k.S('note.l1')},
-        {text: 'Our labor and material costs rose this year.', at: k.S('note.l2')},
-        {text: "Anything you've already approved stays at the price we quoted.", at: k.S('note.l3')},
+        {text: 'Starting the first of next month, our rates go up.', at: k.S('note.l1'), y: 134},
+        {text: 'Our labor and material costs rose this year.', at: k.S('note.l2'), y: 168},
+        {text: "Anything you've already approved stays at the price we quoted.", at: k.S('note.l3'), y: 202},
       ].map((r) => {
-        const times = spoken(r.at, r.text), words = r.text.split(/\s+/), lay = []; let x = 0, line = 0, maxX = 0;
-        words.forEach((wd, j) => { const ww = k.measure(wd, {size: 39}); if (x > 0 && x + ww > WRAP) { x = 0; line++; } lay.push({wd, x, line, ww, t: times[j]}); x += ww + sp; maxX = Math.max(maxX, x - sp); });
-        const w = Math.ceil(maxX / 3) + 10, h = (line + 1) * 15 + 8, tShow = times[0][0] - 0.05, tRead = times[times.length - 1][1] + 0.3;
-        return {lay, w, h, tShow, tRead};
+        const times = spoken(r.at, r.text), lay = []; let x = 0, line = 0;
+        r.text.split(/\s+/).forEach((wd, j) => { const ww = k.measure(wd, {size: 39}); if (x > 0 && x + ww > WRAP) { x = 0; line++; } lay.push({wd, x, line, t: times[j]}); x += ww + sp; });
+        return Object.assign(r, {lay, lines: line + 1, tEnd: times[times.length - 1][1]});
       });
-      const items = rows.filter((r) => T >= r.tShow).map((r) => ({kind: 'msg', r, h: r.h}));
-      if (T >= tNext) items.push({kind: 'card', h: 42});
-      const all = rows.reduce((a, r) => a + r.h + 6, 4) + 48, room = cy1 - cy0 - 8;
-      const scroll = T >= tNext ? Math.round(Math.max(0, all - room) * eo(d.fr(tNext) / 8)) : 0;
-      let y = cy0 + 4 - scroll, y3 = null, x3 = 0, w3 = 0, h3 = 0;
-      d.clip(sx, cy0, sw2, cy1 - cy0, () => {
-        items.forEach((it, i) => {
-          if (it.kind === 'card') {
-            const cy = y + d.ease(tNext, 6, 12), cx = sx + 6, cw = sw2 - 12;
-            d.P(cx + 1, cy + 1, cw, 42, '#2B2033'); d.P(cx, cy, cw, 42, INK); d.P(cx + 1, cy + 1, cw - 2, 40, '#1B1420'); d.P(cx + 2, cy + 2, cw - 4, 1, GOLD); d.P(cx + 2, cy + 39, cw - 4, 1, GOLD);
-            if (cy + 6 >= cy0 - 10) k.slam('Raise the next job.', (sx + sw2 / 2) * 3, (cy + 6) * 3, tNext, {size: 39, color: GOLD, from: 0.4, align: 'center'});
-            if (T >= tNext + 0.4 && cy + 22 >= cy0 - 10) k.slam('Never an approved one.', (sx + sw2 / 2) * 3, (cy + 22) * 3, tNext + 0.4, {size: 39, color: CREAM, from: 0.4, align: 'center'});
-            y += it.h + 6; return;
-          }
-          const {r} = it, w = r.w, h = r.h, bx = sx + sw2 - 8 - w, by = y + d.ease(r.tShow, 4, 8);
-          const base = '#3B82C4', lo = '#253048', hi = '#87CEEB';
-          d.P(bx + 1, by, w - 2, h, base); d.P(bx, by + 1, w, h - 2, base); d.P(bx + 1, by, w - 2, 1, hi); d.P(bx + 1, by + h - 1, w - 2, 1, lo);
-          d.P(bx + w, by + h - 5, 2, 3, base); d.P(bx + w + 2, by + h - 3, 2, 2, base);
-          r.lay.forEach((L) => {
-            const ly = by + 4 + L.line * 15;
-            if (ly < cy0 - 10 || T < L.t[0]) return;   // a line scrolled up under the header is not drawn
-            k.text(L.wd, (bx + 5) * 3 + L.x, ly * 3, {size: 39, color: T < L.t[1] + 0.05 ? GOLD : CREAM});
-          });
-          if (T >= r.tRead) [0, 4].forEach((o) => { d.DOT(bx + w - 12 + o, by + h - 5, hi); d.DOT(bx + w - 11 + o, by + h - 4, hi); d.line(bx + w - 10 + o, by + h - 5, bx + w - 7 + o, by + h - 8, hi); });
-          if (i === 2) { y3 = by; x3 = bx; w3 = w; h3 = h; }
-          y += h + 6;
+      /* the set: its own move labels, menu tag and damage numbers are not drawn (our window carries the note) */
+      mute(k, (s) => /^-\d+$/.test(String(s)) || String(s) === 'MOVES', () => k.sets.boss({name: 'PRICE PUSHBACK', hp: 100, t0: t0 + 0.3, menu: 'MOVES',
+        hits: [{at: rows[0].tEnd, dmg: 20, label: ''}, {at: rows[1].tEnd, dmg: 20, label: ''}, {at: tProm, dmg: 40, label: ''}]}));
+      /* the move window, over the set's menu and clear of the boss's arm */
+      d.win(14, 122, 192, 138, {});
+      const head = T >= tSkip ? 'THE PART PEOPLE SKIP' : 'YOUR PRICE NOTE (EXAMPLE)', tw = d.tw(head);
+      d.P(22, 116, tw + 12, 14, INK); d.P(23, 117, tw + 10, 12, '#7A3442');
+      if (T < tSkip || d.fr(tSkip) >= 3) d.tx(head, 29, 117, {color: T >= tSkip ? GOLD : CREAM}); else d.dith(29, 118, tw, 10, '#3D2E45');
+      const next = rows.findIndex((r) => T < r.tEnd);
+      rows.forEach((r, i) => {
+        const on = T >= r.at;
+        d.tx(String(i + 1), 20, r.y, {color: on ? GOLD : '#6B7080'});
+        if (i === next && T >= t0 + 0.3) { const b = (d.F >> 3) & 1; d.P(15 + b, r.y + 3, 2, 7, GOLD); d.P(17 + b, r.y + 4, 1, 5, GOLD); }
+        r.lay.forEach((L) => {
+          const ly = r.y + L.line * 15;
+          if (T < L.t[0]) { d.P(30 + Math.round(L.x / 3), ly + 11, Math.round(k.measure(L.wd, {size: 39}) / 3), 1, '#3D2E45'); return; }
+          k.text(L.wd, 90 + L.x, ly * 3, {size: 39, color: T < L.t[1] + 0.05 ? GOLD : CREAM});
         });
-        /* the turn: "That last line" rings the third bubble in gold and sweeps a gold bar under it */
-        if (y3 != null && T >= tLast) {
-          const g = ORANGE; d.P(x3 - 3, y3 - 3, w3 + 6, 2, g); d.P(x3 - 3, y3 + h3 + 1, w3 + 6, 2, g); d.P(x3 - 3, y3 - 3, 2, h3 + 6, g); d.P(x3 + w3 + 1, y3 - 3, 2, h3 + 6, g);
-          k.sweep(x3 * 3, (y3 + h3 + 4) * 3, w3 * 3, 6, tLast + 0.1, {color: 'accent'});
-        }
       });
-      /* PROMISE stamps on the dash beside the third bubble (it rides up with the thread) */
-      if (y3 != null && T >= tProm - 0.1) {
+      /* the turn: line 3 ringed and swept in gold */
+      const r3 = rows[2], y3 = r3.y - 3, h3 = r3.lines * 15 + 2;
+      if (T >= tLast) {
+        const g = ORANGE; d.P(27, y3, 172, 1, g); d.P(27, y3 + h3, 172, 1, g); d.P(27, y3, 1, h3 + 1, g); d.P(198, y3, 1, h3 + 1, g);
+        k.sweep(84, (y3 + h3 + 3) * 3, 510, 6, tLast + 0.1, {color: 'accent'});
+      }
+      /* the promise lands as the big hit: PROMISE stamps on the boss, beside line 3 */
+      if (T >= tProm - 0.1) {
         const yy = (y3 + h3 / 2) * 3 - 33;
         k.stampIn(tProm, () => {
-          k.shape(k.rectPts(42, yy - 6, 216, 72, 0), {stroke: RED, lw: 6, line: false});
-          k.text('PROMISE', 150, yy, {size: 66, color: RED, align: 'center'});
-        }, {at: [150, yy + 66]});
-        k.burst(150, yy + 30, tProm + 0.05, {n: 16, r: 200});
+          k.shape(k.rectPts(678, yy - 6, 216, 72, 0), {stroke: RED, lw: 6, line: false});
+          k.text('PROMISE', 786, yy, {size: 66, color: RED, align: 'center', drop: INK});
+        }, {at: [786, yy + 66]});
+      }
+      /* the rule on a card on the arena floor */
+      if (T >= tNext) {
+        const up = d.ease(tNext, 6, 10);
+        d.win(14, 264 + up, 332, 58, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#7A3442'});
+        if (up === 0) {
+          k.slam('Raise the next job.', 540, 808, tNext, {size: 66, color: GOLD, from: 0.4, drop: INK, align: 'center'});
+          if (T >= tNext + 0.4) k.slam('Never an approved one.', 540, 882, tNext + 0.4, {size: 66, color: CREAM, from: 0.4, drop: INK, align: 'center'});
+        }
       }
       const r = host(k, k.live('note.last') || k.live('note.next') ? 'point' : null);
-      /* the thread is the dialog while the note is said; then, until "That last line", our own box carries "Here's the
-         part people skip." (the player's box would open on the note's last word and its closing quote) */
+      /* the move window is the dialog while the note is said; then, until "That last line", our own box carries "Here's
+         the part people skip." (the player's box would open on the note's last word and its closing quote) */
       if (T >= k.S('note.l1') - 0.05 && T < tThat - 0.05) r.speech = false;
       if (T >= tSkip - 0.05 && T < tThat - 0.05) speechOwn(k, T, tSkip - 0.05, tThat - 0.05);
       return r;

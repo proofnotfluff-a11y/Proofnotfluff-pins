@@ -158,7 +158,7 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "World: the chat (iris), not used in the two lessons before: a phone in the truck's dash mount, the road rushing in the windshield, the thread to \"Your customers\" empty, a cursor blinking in the composer, an EXAMPLE tag on the dash. The dialog box is off while the note is said (the thread carries it).",
+   "text": "World: the boss fight (iris), not used in the two lessons before or after: a dusk arena, the objection PRICE PUSHBACK as the boss with its HP bar. Over its menu, our move window tagged YOUR PRICE NOTE (EXAMPLE): three numbered rows showing empty, a gold cursor on the next. The dialog box is off while the note is said (the window carries it). No damage numbers, no defeat.",
    "t": 32.516,
    "word": 82,
    "end": 54.733
@@ -170,7 +170,7 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "Bubble 1 slides up and types word by word as it is said: \"Starting the first of next month, our rates go up.\" Read ticks when it is said.",
+   "text": "Row 1 types word by word as it is said: \"Starting the first of next month, our rates go up.\" As it ends, a hit: flash, slash, the HP bar drops.",
    "t": 34.956,
    "word": 89,
    "end": 37.756
@@ -182,7 +182,7 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "Bubble 2 types: \"Our labor and material costs rose this year.\" Read ticks.",
+   "text": "Row 2 types: \"Our labor and material costs rose this year.\" Another hit as it ends.",
    "t": 37.756,
    "word": 99,
    "end": 40.596
@@ -194,7 +194,7 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "Bubble 3 types: \"Anything you've already approved stays at the price we quoted.\" Read ticks. The full note holds 3 s or more, unchanged, through the next two beats.",
+   "text": "Row 3 types: \"Anything you've already approved stays at the price we quoted.\" The full note holds 3 s or more, unchanged, through the next two beats.",
    "t": 40.596,
    "word": 107,
    "end": 44.304
@@ -206,7 +206,7 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "Only the app header changes: a maroon bar reads THE PART PEOPLE SKIP. The dialog box comes back starting at \"Here's\".",
+   "text": "Only the window's tag changes: THE PART PEOPLE SKIP in gold. The dialog box comes back starting at \"Here's\".",
    "t": 44.304,
    "word": 117,
    "end": 46.244
@@ -218,7 +218,7 @@
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "Bubble 3 is ringed in gold with a gold sweep under it.",
+   "text": "Row 3 is ringed in gold with a gold sweep under it.",
    "t": 46.244,
    "word": 122,
    "end": 49.604
@@ -230,7 +230,7 @@
    "sfx": "stamp",
    "shift": 0.0,
    "pin": null,
-   "text": "A PROMISE stamp lands on the dash beside bubble 3, clear of the phone.",
+   "text": "The big hit: PROMISE stamps on the boss, beside row 3; the HP bar drops to its last fifth.",
    "t": 49.604,
    "word": 132,
    "end": 51.144
@@ -242,7 +242,7 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "The rule lands as a card in the thread (it scrolls up for it): \"Raise the next job.\" in gold and \"Never an approved one.\" under it, inside the phone's screen.",
+   "text": "The rule lands on a card on the arena floor: \"Raise the next job.\" in gold and \"Never an approved one.\" under it, both at heading size, centered.",
    "t": 51.144,
    "word": 135,
    "end": 54.733

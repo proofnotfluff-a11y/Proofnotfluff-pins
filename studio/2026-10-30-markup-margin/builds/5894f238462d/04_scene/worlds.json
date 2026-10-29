@@ -1,0 +1,8 @@
+{
+ "schema": "pnf.studio.worlds.v1",
+ "share": {
+  "set:register": 0.311,
+  "set:gauge": 0.191,
+  "set:inventory": 0.204
+ }
+}

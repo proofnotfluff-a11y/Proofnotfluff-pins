@@ -1,19 +1,24 @@
 {
  "gate": "golden",
  "round": 0,
- "at": "2026-10-29T17:46:43-05:00",
- "build": "e0c1d27",
+ "at": "2026-10-29T18:42:34-05:00",
+ "build": "d576936",
  "pass": true,
  "score": {
   "post_as_is": "yes"
  },
  "reasons": [
-  "1. 42.0 to 42.5 s, polish: third board row (FIRST JOB NEXT) mid-flip at the cut to the end card; hold about 0.5 s longer.",
-  "2. qa.json, polish (doubtful PASS): frozen check puts the end card at 37.12 s but it starts about 42.4 s, so 37.1 to 42.4 s was not checked for frozen frames; timeline shows motion throughout.",
-  "3. 0.0 to 13.5 s, polish: story scenes have no EXAMPLE tag though facts.json says shown with EXAMPLE; reads plainly as a 'you' scenario.",
-  "4. 45.1 s end card, polish: 'requests.' alone on its line, crowded by Snow's hand and hat.",
-  "5. polish: bottom third empty panel (safe zone).",
-  "6. 14.0 to 14.6 s, polish: AI chat window blank for about half a second.",
-  "Checks: message matches facts.json and captions; 26% on the gauge as said (31.1 s), source line readable; prompt on screen about 10 s; voice human; qa no FAIL (45.4 s, -14.2 LUFS); first 3 s earn the stop for cleaning owners."
+  "What it says: a move-out quote request lands at 11 pm, seen at 7 am, still a draft at lunch, booked elsewhere; fix: paste it into an AI chat app with a 3-line prompt plus your rates, read, fix, send it yourself. Jobber: 26% of cleaning businesses reply within an hour, fastest trade. Screen matches voice.",
+  "Numbers match facts.json; 11 pm, 7 am, 2 bed, 1 bath marked EXAMPLE on the lead card from 0.8 s, phone from 5.5 s, AI app from 14 s (round 0 facts gap fixed). 26% on screen at 30.5 s as spoken. Captions match. 0 em or en dashes.",
+  "Voice reads human; 117 words, 156 to 197 wpm; no hype, no product named.",
+  "qa.json all 6 PASS (45.40 s, -14.2 LUFS, -2.9 dBTP). The frozen check's 'end card at 37.12 s' label is wrong; freezedetect rerun shows the only freeze 43.4 to 44.4 s on the end card, PASS holds. Polish: fix the label in anim.py cmd_check.",
+  "First 3 s earn the stop; reason to save (3-line prompt) and send (end card and caption).",
+  "Round 0 design and golden notes fixed.",
+  "Polish 41.96 to 42.4 s: Snow's hat pom-pom touches 'before' on the plate's second line; line up only about 0.45 s.",
+  "Polish 14.0 to 14.6 s: AI CHAT APP window empty for about 0.6 s; 15.4 to 17.9 s nearly still.",
+  "Polish 26.0 to 28.8 s: draft shows '[your rate]' placeholder; Snow's hat overlaps the chat panel's bottom edge.",
+  "Polish: last take 197 wpm; 'FIRST JOB UP' slightly awkward.",
+  "Polish: bottom third backdrop only, consistent with the series.",
+  "No must-fix found."
  ]
 }

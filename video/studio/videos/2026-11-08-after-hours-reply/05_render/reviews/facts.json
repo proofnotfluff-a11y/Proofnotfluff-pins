@@ -1,21 +1,22 @@
 {
  "gate": "facts",
- "round": 0,
- "at": "2026-10-29T17:46:55-05:00",
- "build": "e0c1d27",
- "pass": false,
+ "round": 1,
+ "at": "2026-10-29T18:41:38-05:00",
+ "build": "d576936",
+ "pass": true,
  "score": {
   "numbers": 9,
-  "mismatches": 1
+  "mismatches": 0
  },
  "reasons": [
-  "04_scene/scene.js hook close-up (about 0.8 to 2.2 s) and play section (k.sets.chat, 5.3 to 14.1 s): the customer's message 'Hi! Need a move-out clean before Friday. 2 bed, 1 bath. How much?' is drawn under a 'New lead' header with no EXAMPLE mark, though facts.json story.source and brief.md promise it; only the fix section's appWindow carries it. Fix: draw the gold EXAMPLE chip appWindow uses right after 'New lead' in the hook close-up, and add it in play (e.g. at x 4, y 172) or pass who: 'New lead (example)' to k.sets.chat; rerun stills and confirm legible.",
-  "04_scene/data.js (advisory): its sha256 is the facts.json of commit 06e772e7; facts.json changed in 5871b69d (story.reply text only). Values still match. Fix: rerun anim.py data.",
-  "Numbers PASS: 26%, 1,050 owners, Dec 2025, 11 pm / 7 am, 2 bed / 1 bath, 3 prompt lines, reportYear 2026.",
-  "Claims PASS: 26% of cleaning businesses reply within an hour, fastest trade (Jobber); no causal claim; owner reads, fixes, sends; no AI product named; draft shows '[your rate]'.",
-  "Trades first PASS; no real private person; 0 em or en dashes."
- ],
- "sources_checked": [
-  "https://www.getjobber.com/home-service-trends-report/: cleaning fastest responders, 26% reply within an hour; 1,050 owners, Conjointly, Dec 2025, plus or minus 3 pts at 90%."
+  "01_voice/facts.json + 04_scene/data.js: data.js matches facts.json; all 9 numbers agree in value and path",
+  "transcript 00:29.0 to 00:35.1 matches the Jobber page in substance (cleaning: 26% replying within an hour, fastest responders); same base and window, attributed to Jobber",
+  "scene.js proof: 'Jobber survey, 1,050 owners, Dec 2025', 26% readout, 'Fastest trade.' match the page",
+  "Script and transcript agree (117 words); no overstatement, no promise that an AI draft wins jobs",
+  "Story elements (11 PM, 7 AM clocks, the move-out message, the draft reply) carry EXAMPLE on the phone, chat set and AI app; minor: frame 0 plate and clock shots carry no EXAMPLE tag, acceptable since a time of day does not read as a statistic",
+  "Trades first: Jobber survey of 1,050 US home service owners, cleaning subgroup",
+  "No real private person, business or address; 0 em or en dashes",
+  "Non-blocking: page gives HVAC as 11% and 17% in different sections; video does not use HVAC",
+  "Non-blocking: cues.md says 'FIRST JOB NEXT' and a longer end card line while the render shows 'FIRST JOB UP' and 'whoever answers quote requests'; wording only"
  ]
 }

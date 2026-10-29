@@ -1,8 +1,8 @@
 {
  "gate": "buyer",
  "round": 0,
- "at": "2026-10-29T17:46:06-05:00",
- "build": "e0c1d27",
+ "at": "2026-10-29T18:40:53-05:00",
+ "build": "d576936",
  "pass": true,
  "score": {
   "stop": "yes",
@@ -11,11 +11,13 @@
   "follow_or_link": "yes"
  },
  "reasons": [
-  "1. What it tells me: don't pay for an AI receptionist yet, because the money is in the quotes I already sent that nobody follows up on, and I can have an AI chat app draft that check-in in my voice while I still read it and hit send myself.",
-  "2. Stop in 3 s: yes. As a cleaning business owner I've been pitched these voice bots, and the headline 'The demo says you need an AI receptionist' over a big robot feels like it's about to push back on the pitch. The pixel art stands out from talking heads in the feed.",
-  "3. Send: yes. The caption's 'Send this to whoever handles your follow-ups' fits my office person, and the prompt is short enough to try tomorrow. Save: yes. Follow or link: yes, leaning.",
-  "4. Hype, fake urgency, a pitch, AI slop or robotic: nothing that would make me scroll past.",
-  "5. Unclear to a stranger, minor: (a) speech box labeled 'SNOW' reads like a snow removal trade; drop or replace. (b) headline 'The demo says you need an AI receptionist.' vs voice 'The demo says an AI receptionist answers every call.'; make them match. (c) 00:14.0 to 00:20.3 the spoken prompt runs on from 'and ask'; on-screen quoted text covers it. (d) frame 'AI LESSON 2' vs caption 'AI lead lesson 2'; use one name.",
-  "6. Trust: yes. The jump from 'only 11% trust their AI tools' to 'don't buy a receptionist first' is a little loose, but tied back by 'so your hand stays on the send button'."
+  "Reviewer: cleaning company owner (the trade the lesson and caption use), build d57693685c26, inputs: transcript.md (pace table ignored), captions.json instagram.caption, gates/frame-0.8s.png.",
+  "1. What it tells me: before I pay for an AI receptionist, fix follow-up on quotes I already sent by having an AI chat app draft a short check-in in my voice that I read and send myself.",
+  "2. Stop in 3 s: yes. I get these voice bot pitches, and the frame (big robot, ringing phones, headline 'The demo: an AI receptionist answers every call.') plus the voice 'The demo says...' reads as a setup about to push back on the pitch. Pixel art stands out from talking heads.",
+  "3. Send: yes, 'Send this to whoever handles your follow-ups.' fits my office manager and the two-line prompt is something they can try tomorrow. Save: yes, for the prompt. Follow or link: yes, leaning; 'AI lesson 2' tells me there is a series, the link line is soft.",
+  "4. Hype, fake urgency, pitch, AI slop, robotic: none found. No product is sold or trashed, no countdown, the advice is order (follow-up first) not 'voice bots are bad'. Lines are short and sound like a person.",
+  "5. Unclear to a stranger, minor only: (a) frame-0.8s.png speech box tag 'SNOW' (series host name per _shared/kit.md) can read as a snow-removal trade to a first-time viewer; fix: a one-time 'Snow, PNF' subtitle or leave as series branding. (b) frame-0.8s.png the three maroon tiles beside the robot read as abstract 'n' blocks more than phone handsets at a glance; fix: a clearer handset glyph or a ring line. (c) 00:14.0 to 00:20.3 'Paste the quote into an AI chat app and ask. Write a short check-in...' the spoken prompt runs straight on from 'and ask'; the caption quotes it, and the brief puts it on screen, so it holds.",
+  "6. Trust: yes. Caption numbers match the voice and 01_voice/facts.json (ServiceTitan via PHCP Pros, Sep 29 2026: over 1,000 residential service contractors, 11% high or complete trust, 58% little or no trust); caption names the source and says 'residential service contractors', so it does not pretend the survey is about cleaners. Earlier mismatches (headline vs voice, 'AI lead lesson 2' vs 'AI LESSON 2') are fixed in this build.",
+  "Soft logic note, not a FAIL: the survey backs 'keep your hand on send', not 'follow-up beats a receptionist'; the video only uses it for the first, so it stays honest."
  ]
 }

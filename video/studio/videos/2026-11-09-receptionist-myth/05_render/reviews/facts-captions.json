@@ -1,12 +1,22 @@
 {
  "gate": "facts-captions",
- "round": 0,
- "at": "2026-10-29T17:46:11-05:00",
- "build": "e0c1d27",
+ "round": 1,
+ "at": "2026-10-29T18:43:20-05:00",
+ "build": "d576936",
  "pass": true,
  "score": {
   "numbers": 6,
   "mismatches": 0
  },
- "reasons": []
+ "reasons": [
+  "Source re-fetched Oct 29, 2026 (PHCP Pros, Sep 29, 2026, ServiceTitan 2026 State of AI in the Trades): 11% and 58% from over 1,000 residential service contractors; all four platforms match with the qualifier: PASS",
+  "Numbers 2026, 1,000, 11%, 58%, Sep 29 2026, lesson 2 all in facts.json or the brief; no claim beyond the source: PASS",
+  "Captions match the video (send line, prompt, proof tag): PASS",
+  "Lesson order matches the lane: PASS",
+  "Line 1 79 chars; YouTube title 77 chars, keyword first: PASS",
+  "Hashtags within caps, no generic tags: PASS",
+  "No link on IG or FB, no AI voice line, no em or en dashes, no private person: PASS",
+  "Platform settings per captions.md: PASS",
+  "YouTube tags 9; last tag 'ai recepionist' meets the one-common-misspelling rule, as in the 13 sibling lessons: PASS"
+ ]
 }

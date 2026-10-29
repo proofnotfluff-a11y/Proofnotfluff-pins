@@ -1,20 +1,30 @@
 {
  "gate": "render-critic",
  "round": 0,
- "at": "2026-10-29T17:47:12-05:00",
- "build": "e0c1d27",
- "pass": true,
+ "at": "2026-10-29T18:42:46-05:00",
+ "build": "d576936",
+ "pass": false,
  "score": {
-  "faults": 0
+  "faults": 1
  },
- "faults": [],
+ "faults": [
+  {
+   "kind": "overlap",
+   "at": 41.8,
+   "text": "before your first job.",
+   "scene": "closing split-flap board with the 'Answer the night quote' plate",
+   "what": "From about 41.8 s to 42.4 s the host's hat pom-pom (host at x 110 to 190, head top near y 980) sits on the second plate line and covers most of the 'e' in 'before' (y about 905 to 960, x about 140 to 200). Fix: move the host down or left, or raise the plate or its second line, so the hat clears the text."
+  }
+ ],
  "reasons": [
-  "Hook on screen from 0.0 s.",
-  "Spoken numbers readable as said: 11 pm, 7 am, one question, 26% gauge by 31.0 s, 11 PM ASLEEP, first job at 42.0 s.",
-  "Layout settled: all words inside y 270 to 1250 and left of x 930; only the chat panel frame and send arrow pass x 930.",
-  "Minor, not counted: at 35.7 s the gauge arc tip touches 'Fastest trade.' but text on top and readable; 'Booked elsewhere.' covers LUNCH label from 12.5 s, reads as a deliberate overlay.",
-  "Audio: last word ends 42.3 s, end card to 45.4 s.",
-  "Text size readable; no flashing.",
-  "Round 0."
+  "FAIL: 1 overlap fault, the host's hat covers part of 'before' in the closing line 41.8 to 42.4 s.",
+  "Hook PASS: 'Quote request, 11 pm.' and 'Seen at 7 am.' on screen from 0.0 s.",
+  "Numbers PASS: each lands with its word (11 pm, 7 am, one question, 26% at 30.5 s, board at 37.5 s).",
+  "Earlier minor notes still non-blocking: 'Booked elsewhere.' covers the LUNCH header like a notification after 'lunch' was readable; 'Fastest trade.' over the gauge's lower arc.",
+  "Fix-round claim PASS: the 26% plate clears the '100' label, gap about 2 px.",
+  "Layout otherwise PASS: all words inside y 270 to 1250 and left of x 930.",
+  "Audio end PASS: last word ends 42.3 s, nothing cut.",
+  "Small text and flashes PASS.",
+  "Pack matches the render (mp4 sha256 e724a814 equals qa.json)."
  ]
 }

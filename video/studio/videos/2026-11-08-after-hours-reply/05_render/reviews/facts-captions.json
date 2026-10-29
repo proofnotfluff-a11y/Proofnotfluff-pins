@@ -1,12 +1,19 @@
 {
  "gate": "facts-captions",
  "round": 0,
- "at": "2026-10-29T17:46:11-05:00",
- "build": "e0c1d27",
+ "at": "2026-10-29T18:41:38-05:00",
+ "build": "d576936",
  "pass": true,
  "score": {
-  "numbers": 15,
+  "numbers": 16,
   "mismatches": 0
  },
- "reasons": []
+ "reasons": [
+  "source: Jobber page re-fetched Oct 29, 2026: 'Cleaning businesses are the fastest responders (26% reply within an hour)'; 1,050 US home service business owners, Conjointly, December 2025; every caption number matches facts.json and the page",
+  "all four: 26% given with its population and as self-reported ('said'); 'fastest trade' matches 'fastest responders'; no outcome or booking promise; prompt text matches the transcript word for word",
+  "rules: line 1 83 chars on IG, TikTok, FB, keyword at char 16; YouTube title 77 chars, no hashtags; hashtags IG 4, TikTok 4, FB 2, YT 2; YT tags 9 incl. misspelling; no links on IG or FB; no AI voice line; no em or en dashes; AI labels on; no private person",
+  "consistency: the video never points to the caption; YouTube 'Next lesson: the AI receptionist myth' matches queued lesson 2",
+  "non-blocking nit, tiktok: '1,050 home service owners' could read '1,050 home service business owners'",
+  "non-blocking nit, instagram: #leadfollowup is about follow-up while the lesson is the first reply"
+ ]
 }

@@ -1,41 +1,24 @@
 {
  "gate": "render-critic",
- "round": 0,
- "at": "2026-10-29T17:47:04-05:00",
- "build": "e0c1d27",
- "pass": false,
+ "round": 1,
+ "at": "2026-10-29T18:43:20-05:00",
+ "build": "d576936",
+ "pass": true,
  "score": {
-  "faults": 3
+  "faults": 0
  },
- "faults": [
-  {
-   "kind": "overlap",
-   "at": 9.5,
-   "text": "Forgot: the oven.",
-   "scene": "play.oven",
-   "what": "Orange 'Forgot: the oven.' label (x 337 to 737, y 895) sits on the cream desk card (x 512 to 868, y 870 to 990) from about 9.4 s to the wipe at 10.0 s. Move the label clear of the card, or move the card."
-  },
-  {
-   "kind": "cutoff",
-   "at": 30.6,
-   "text": "54%",
-   "scene": "proof.pct",
-   "what": "54% runs x 873 to 941, the % crosses the x 930 safe edge by about 11 px, 30.5 to 33.0 s. Shift left."
-  },
-  {
-   "kind": "cutoff",
-   "at": 21.5,
-   "text": "Deep clean, 3 bed, 2 bath",
-   "scene": "fix.check",
-   "what": "DEEP CLEAN QUOTE card (x 437 to 1057): row text ends at x 941, past x 930; card body and price cells run to x 1057; about 10.5 to 25.0 s. Narrow the card or move the price column inside x 930."
-  }
- ],
+ "faults": [],
  "reasons": [
-  "Hook PASS from 0.0 s.",
-  "Spoken numbers on timing PASS (1,050 from 25.5 s; 54% at 30.5 s).",
-  "Audio end PASS: last word ends 39.40 s, end card about 39.5 s.",
-  "Flash PASS.",
-  "Small text PASS.",
-  "Round 0."
+  "Round 0 fault 1 (overlap, play.oven, 9.5 s) fixed: 'Forgot: the oven.' sits inside the thought card and clears the desk card (checked 9.6 and 9.9 s).",
+  "Round 0 fault 2 (cutoff, '54%') fixed: settled glyphs x 600 to 878; widest mid fill x 925, inside 930.",
+  "Round 0 fault 3 (cutoff, fix.check card) fixed: cards end at x 929; only border and shadow at 930 to 938.",
+  "Hook PASS: full on screen at 0.0 s.",
+  "Spoken numbers PASS: '1,050 owners' from 25.5 s, 'thousand' at 27.04 s; '54%' from 30.5 s, 'fifty-four' at 30.55 s.",
+  "Layout PASS: nothing hidden, cut off or covered once settled.",
+  "Note: some hook-scene shapes cross x 930 at 0 to 3 s; all text stays inside.",
+  "Audio end PASS: last word ends 39.40 s, no word cut.",
+  "Small text PASS: smallest line about 24 px.",
+  "Flash PASS: only single scene cuts.",
+  "Side note: -post.mp4 differs by 4 bytes, container metadata only."
  ]
 }

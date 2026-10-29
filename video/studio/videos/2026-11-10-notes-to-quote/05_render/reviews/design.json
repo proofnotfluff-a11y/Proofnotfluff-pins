@@ -1,26 +1,28 @@
 {
  "gate": "design",
- "round": 0,
- "at": "2026-10-29T17:47:40-05:00",
- "build": "e0c1d27",
+ "round": 1,
+ "at": "2026-10-29T18:42:56-05:00",
+ "build": "d576936",
  "pass": false,
  "score": {
   "first": 4,
-  "hierarchy": 4,
+  "hierarchy": 5,
   "type": 4,
   "color": 4,
   "spacing": 4,
   "polish": 4,
   "trust": 5,
-  "average": 4.14
+  "average": 4.29
  },
  "reasons": [
-  "33.0-39.5 s button (levelup set): band mostly empty sky; thin bar y 620-670 alone 33.0 to 34.3; after 36.4 s rollover the bar goes back to an empty black track (looks broken). Start the fill at 33.0 with a label 'AI TYPES IT' (accent, 44 px); keep the bar full in gold after LEVEL UP; land '+ Your rates' and '+ Your notes' as two perk cards with clipboard and coin icons (44 px labels) in y 700-960 on their words.",
-  "31.15 s proof.pct: 54% about 30 px teal in a corner; make it the hero: accent #F2A541 at 160 px or more in x 580-950, y 520-780, with 'of AI users use it for quoting' 36 px under it.",
-  "25.5-30.5 s proof inventory: picture still 5 s; hop the cursor across clipboard, coin, mail and phone about once a second and land on QUOTING at 30.5.",
-  "0.8-1.5 s hook.lines: full-bleed cream page wipes the room, ruled lines behind host and dialog read as a glitch; keep the room and put the checklist on a bordered paper card (x 60-1020, y 470-990).",
-  "9.5-10.0 s play.oven: 'Forgot: the oven.' over the desk laptop card; move onto the From memory card as a red #E2633B stamp on a dark #1B1420 plate at y about 700, 44 px or larger.",
-  "6.0-7.5 s play.night: From memory card blank about 1.5 s, window a flat black box; bring 'Deep clean' in on 'rebuilding' (about 6.6 s), add stepped stars or a streetlight glow.",
-  "10.5-25.5 s fix: 'YOUR RATE' / 'MY PRICE LIST' head pale tan on cream (about 1.7:1); set in ink #1B1420 or tag #7A3442. Same prompt-panel-over-a-room as 11-08 and 11-09; make this one its own: each notepad line slides into its quote row with a spark and a check stamp on each prompt line."
+  "Round 0's seven changes landed; not asked to undo any of them.",
+  "10.5 to 25.5 s fix room: the wall is #2F6F67, the host's jacket color (1.04:1); for 15 s his torso and pointing arm vanish. Repaint the wall in a non-teal brick (e.g. #7A3442 with #1B1420 mortar, or bg2 #2B2033).",
+  "All dialog: spoken words render at 39 px (_runtime/player.js arcade fs = 39), under the 44 px floor, which caps type at 4. Raise the arcade dialog fs to 44.",
+  "33.0 to 36.4 s button (levelup): about half the band stays empty for 3.4 s while 'The AI does the typing.' is said; type three quote rows into y 700 to 960 as the bar fills.",
+  "0.8 to 1.6 s hook.lines: close-up backdrop #253048 matches the host's navy trousers; use #1B1420 or #2B2033.",
+  "30.5 to 33.0 s proof.pct: 'Of AI users' appears twice; drop the stat label.",
+  "25.5 to 33.0 s proof inventory: second row of slots empty, y 810 to 990 dead; fill with dim icons and set the source line at 39 px.",
+  "3.5 to 6.0 s play street: the 'Notes: in the car all day.' slam has no notepad in shot.",
+  "6.0 to 10.3 s play.night: reads as 11-08's hook room; three room-and-panel sections where sets.md allows one; restage as a kitchen table at night."
  ]
 }

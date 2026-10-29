@@ -1,21 +1,23 @@
 {
  "gate": "golden",
  "round": 0,
- "at": "2026-10-29T17:46:27-05:00",
- "build": "e0c1d27",
+ "at": "2026-10-29T18:42:06-05:00",
+ "build": "d576936",
  "pass": true,
  "score": {
   "post_as_is": "yes"
  },
  "reasons": [
-  "1. polish, 0.0-3.5s: headline 'The demo says you need an AI receptionist.' vs voice 'The demo says an AI receptionist answers every call.'; matching would land harder.",
-  "2. polish, 25.3-35.3s: trust section voiced at 131 wpm (take 4), a beat slow; numbers read cleanly and match facts.json and source.",
-  "3. polish, 12.0-21.5s: 'HELD FOR YOU' tray empty about 9 s before the draft drops in.",
-  "4. polish, 21.5-25.0s: padlock tight against 'quote I'.",
-  "5. polish: bottom third of scenes empty; consistent with series and safe zone.",
-  "6. polish, 41.5-44.4s: end-card send line small next to the logo card.",
-  "7. polish, captions: YouTube tag 'ai recepionist' misspelled.",
-  "8. qa.json: all checks PASS (44.43 s, -14.2 LUFS, true peak -2.3, frozen only on end card, H.264 1080x1920).",
-  "9. As a trade owner: usable two-line prompt, keeps you on the send button, sounds like a person, clear reason to save and send."
+  "What it says: an AI receptionist gets your phone answered, but quotes already sent sit with no follow-up; fix follow-up first with a two-line prompt, read the draft, send it yourself. Numbers on screen match voice and facts.json (1,000+, 11%, 58%); source tag up for the whole proof scene; no contradiction across voice, screen and captions.",
+  "Polish 2.5 to 4.0 s: the 'MYTH?' stamp sits on 'EVERY CALL ANSWERED' while the voice agrees the phone gets answered; the myth (buy the bot first) is only implied until 38.1 s. Not a FAIL.",
+  "Polish 25.5 to 26.6 s: the count-up shows '916+' with a plus sign before the count lands; drop the '+' until it lands.",
+  "Polish 12.0 to 21.5 s: the HELD FOR YOU tray is empty for about 9.5 s; slowest stretch.",
+  "Polish about 34.0 s: the stamp glint whitens half of the '5' in '58%' for a few frames.",
+  "Polish: bottom third empty pattern in every scene, consistent with the safe area.",
+  "Polish voice: take 4 at 131 wpm and take 1 at 149 wpm, below the 160 to 195 target; numbers read clearly.",
+  "qa.json all PASS against the current mp4 (sha256 79bcb0cb): 44.43 s, -14.2 LUFS, true peak -2.3, 0 black. The frozen detail label 'end card at 35.27 s' is wrong (anim.py uses the last top-level cue); PASS holds.",
+  "Earlier golden polish items fixed: hook text matches the spoken line; 'Follow-up first.' holds about 1.5 s.",
+  "Sounds like a person; 'SNOW' is the series host.",
+  "First 3 s earns the stop; reason to save (two-line prompt) and send (end card and captions)."
  ]
 }

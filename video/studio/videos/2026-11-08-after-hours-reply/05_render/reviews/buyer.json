@@ -1,8 +1,8 @@
 {
  "gate": "buyer",
  "round": 0,
- "at": "2026-10-29T17:45:54-05:00",
- "build": "e0c1d27",
+ "at": "2026-10-29T18:41:06-05:00",
+ "build": "d576936",
  "pass": true,
  "score": {
   "stop": "yes",
@@ -11,11 +11,12 @@
   "follow_or_link": "yes"
  },
  "reasons": [
-  "1. What it tells me: when a quote request lands overnight, paste it into an AI chat app with a three-line prompt and my rates, check the draft and send it before my first job, so I am not still typing at lunch while they book someone else.",
-  "2. Stop: yes. The first frame reads 'Quote request, 11 pm. Seen at 7 am.' over a real-looking lead ('move-out clean before Friday. 2 bed, 1 bath. How much?'). That is my exact morning, and the voice opens on the same line. Minor: the bottom 40 percent of frame 0.8s is empty dark space, so the hook reads small on a phone.",
-  "3. Send: yes, to whoever answers my quote requests; the caption asks for exactly that. Save: yes, the prompt is short, usable tonight and printed word for word in the caption. Follow or link: yes on follow, mild on the link; 'AI lead lesson 1' tells me a series is coming, and 'Free tools for trade owners: link in bio' is low pressure.",
-  "4. Hype, fake urgency, pitch, slop, robotic: none found. The 26 percent figure is sourced in the caption (Jobber, 1,050 owners, Dec 2025), 'You read it, fix it, and send it yourself' keeps me in control, and nothing is sold. The AI label is on.",
-  "5. Unclear to a stranger: (a) transcript 00:21.9 and caption line 'Use my rates below.' never tell me to actually paste my rates under the prompt; a stranger who copies only the quoted prompt gets made-up prices. Fix: add 'then paste your price list under it' after the quoted prompt in the caption, or have the voice say 'Use my rates below, then paste your rates.' (b) Line 00:39.4 'But the night quote should have your answer before your first job' reads awkwardly. Fix: 'But last night's quote should have your answer before your first job.' (c) The speaker tag 'SNOW' on frame 0.8s means nothing to a new viewer; harmless, but a plain label or none would read cleaner.",
-  "6. Trust: yes. The scenario is specific and true to cleaning work, the stat is attributed with sample size and date, and it never promises bookings or revenue."
+  "1. What it tells me: when a cleaning quote request comes in overnight, paste it into any AI chat app with a three-line prompt and my price list, then read, fix and send the draft myself before my first job, so I'm not still typing at lunch while they book someone else.",
+  "2. Stop: yes. frame-0.8s.png gives me 'Quote request, 11 pm.' over a big 'Seen at 7 am.', with a real-looking lead underneath, now tagged EXAMPLE, and the voice opens on the same moment (00:00.0).",
+  "3. Send: yes, to whoever answers our quote requests, and the caption asks for exactly that. Save: yes, the prompt is printed word for word in the caption and the new line 'Then paste your price list under it.' makes it usable tonight. Follow or link: yes, follow for 'AI lesson 1'; the link is low pressure.",
+  "4. Hype, fake urgency, pitch, slop, robotic: nothing. The 26% is credited to Jobber with sample size and date, and the caption keeps 'said' (self-reported). No product is named or sold, and no bookings are promised.",
+  "5. Unclear to a stranger (minor, not blocking): (a) transcript 00:21.9 'Use my rates below.' The voice never says to paste the rates; caption and the on-screen [my rates] chip cover it. (b) 00:39.4 'But the night quote should have your answer before your first job' reads a little stiff. (c) The speaker tag 'SNOW' on frame 0.8s means nothing to a new viewer; harmless.",
+  "6. Trust: yes. Scenario specific and true to cleaning work, stat sourced and checks against 01_voice/facts.json (26%, 1,050 owners, Dec 2025, fastest responders), story and prompt marked EXAMPLE in hook and play frames (sheets f02 to f12).",
+  "Checked: frame-0.8s.png (build d5769368), transcript.md, captions.json, facts.json, sheets 1 and 2. Both mp4 files match qa.json sha256 e724a814. Round 0 buyer issue (pasting the price list) fixed in all four captions."
  ]
 }

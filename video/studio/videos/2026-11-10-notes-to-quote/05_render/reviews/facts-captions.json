@@ -1,12 +1,21 @@
 {
  "gate": "facts-captions",
  "round": 0,
- "at": "2026-10-29T17:46:11-05:00",
- "build": "e0c1d27",
+ "at": "2026-10-29T18:41:26-05:00",
+ "build": "d576936",
  "pass": true,
  "score": {
-  "numbers": 7,
+  "numbers": 6,
   "mismatches": 0
  },
- "reasons": []
+ "reasons": [
+  "All platforms: 54% (quoting, base = owners who use AI), 1,050 US home service owners, Conjointly, Dec 2025 match the Jobber page re-fetched today; population qualifier present in every caption",
+  "YouTube: 52% invoicing and 51% business writing match the source and facts.json; title 81 chars, keyword first, no hashtags; 2 hashtags; 9 tags incl. misspelling; settings per captions.md",
+  "Instagram: line 1 78 chars, 4 hashtags, no link, aiLabel on, shareToFacebook off",
+  "TikTok: keyword at char 15, owner question present, 4 hashtags, aiGenerated on, commercialDisclosure off",
+  "Facebook: 2 hashtags, no link, aiLabel on, Public",
+  "Prompt text matches the transcript word for word and is labeled (example); 'AI lesson 3' matches the HUD",
+  "No AI voice line, no em or en dashes, no private person, no promise beyond the source",
+  "Non-blocking: YouTube description has no 'Next lesson:' line (last lesson of the lane)"
+ ]
 }

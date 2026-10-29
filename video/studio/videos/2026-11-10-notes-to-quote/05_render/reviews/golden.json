@@ -1,18 +1,24 @@
 {
  "gate": "golden",
- "round": 0,
- "at": "2026-10-29T17:47:12-05:00",
- "build": "e0c1d27",
- "pass": false,
+ "round": 1,
+ "at": "2026-10-29T18:43:08-05:00",
+ "build": "d576936",
+ "pass": true,
  "score": {
-  "post_as_is": "no"
+  "post_as_is": "yes"
  },
  "reasons": [
-  "1. Must-fix, 9.4 to 10.3 s (play.oven): 'Forgot: the oven.' slam at y 864 (scene.js line 216) sits on the laptop (starts y 870); its navy strip runs through 'the oven.'. Move the slam up (about y 780 or higher) or the laptop down, re-render, re-check.",
-  "2. Polish, 30.3 to 33.1 s: 54% renders smaller and dimmer than 'QUOTING'; make it the biggest, brightest text in the panel.",
-  "3. Polish, 33.1 to 36.4 s: 'The AI just does the typing.' over an almost empty dark screen with an unlabeled bar; show typed quote lines or label the bar.",
-  "4. Polish, 10.3 s voice and captions: say 'Paste your notes and your price list'.",
-  "5. Polish, 3.2 to 10.3 s: take 02 at 222 wpm not re-taken; listen once before posting.",
-  "6. Passed: numbers, captions, qa (frozen only inside the end card), hook earns the stop, prompt worth saving, send line clear, human voice copy, EXAMPLE and source tags present."
+  "What it says: paste walkthrough notes into an AI chat app with a 3-line prompt, check every line against your own rates, you still own the prices. Screen matches voice; 54% of AI users for quoting lands about 30.5 s with the Jobber source tag. No contradictions.",
+  "Source re-read: getjobber.com/home-service-trends-report, 54% quoting, 52% invoicing, 51% business writing (base: owners who use AI), 1,050 US owners, Dec 2025. Belt labels are in the report; none shows a number.",
+  "Round 0 must-fixes fixed: 'Forgot: the oven.' stamp clear of the laptop; 54% hero inside the safe edge; button scene bar fills and holds, two perk cards; blinds flag lands on 'Flag'.",
+  "qa.json all pass; only freeze 40.6 to 41.6 s inside the end card; -post.mp4 is a stream copy; captions clean.",
+  "Polish 3.2 to 10.0 s: take 02 at 222 wpm, pain beat sounds rushed; re-take if there is time.",
+  "Polish 10.3 s: voice says 'Paste the notes' while the prompt says 'Use only my price list'; captions already cover the price list.",
+  "Polish 10.5 to 25.5 s: host's green sweater on the teal brick wall is low contrast.",
+  "Polish about 27.6 s: belt cursor and label briefly out of step.",
+  "Polish 30.5 to 33.0 s: 'Of AI users' appears twice.",
+  "Polish: 'YOUR RATE' vs 'MY PRICE LIST' wording.",
+  "Polish (tooling): qa frozen detail label points at the button cue, not the end card.",
+  "First 3 s earn the stop; reason to save and send present; sounds like a person; EXAMPLE tags present."
  ]
 }

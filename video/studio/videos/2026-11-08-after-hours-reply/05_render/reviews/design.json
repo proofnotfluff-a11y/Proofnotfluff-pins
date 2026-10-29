@@ -1,27 +1,36 @@
 {
  "gate": "design",
- "round": 0,
- "at": "2026-10-29T17:48:01-05:00",
- "build": "e0c1d27",
+ "round": 1,
+ "at": "2026-10-29T18:43:52-05:00",
+ "build": "d576936",
  "pass": false,
  "score": {
-  "first": 4,
+  "first": 5,
   "hierarchy": 4,
   "type": 4,
   "color": 4,
   "spacing": 4,
-  "polish": 4,
+  "polish": 5,
   "trust": 5,
-  "average": 4.14
+  "average": 4.43
  },
  "reasons": [
-  "29.0 to 37.0 gauge readout: 26% about 38 px in a small green box; make it 160 px or more in accent under the needle hub or in the band under the dial; keep the green box only as the needle tag.",
-  "29.0 to 37.0 gauge collisions: title box (to y 370) hides the ring top; source line (y 950 to 986) over the ring bottom; from 35.4 'Fastest trade.' crosses arc ends and ticks. Shrink the dial about 15%, center between y 400 and 900, source at least 24 px under the ring, 'Fastest trade.' as a pill under the dial.",
-  "41.9 to 42.3 flaps payoff row still flipping at the end card cut; land row by about 41.0 and hold 0.8 s. End card: 'requests.' alone on line 2; balance into two lines.",
-  "0.0 to 42.3 dialog and labels at about 21 px cap height, under the 44 px floor; larger body cut (15 to 16 rows, 45 to 48 px em) or display face for dialog (IMPROVE 00b).",
-  "5.9 to 14.0 chat chips RATES, SIZE, WHAT'S IN start at x 12 inside the left 60 px zone; 14.6 to 28.5 AI CHAT APP panel x 30 to 1050, send arrow x 965 to 1035 under Reel buttons. Move chips to x 60 or more; inset panel to x 60 to 960.",
-  "2.0 to 3.4 night clock: navy face on near-black, thin hands, small teal '11 PM' at x about 930; give it the cream face and dark rim of the 7 AM clock, '11 PM' centered under it. 3.5 to 5.0: lone maroon '7 AM' (x 840, y 885) under the clock the same way; carry wall stripes behind the clock (seam at y 450).",
-  "0.0 to 3.0 hook: quiet two-line card in a dim room; from 0.8 New lead card's lower half (y 680 to 970) blank 2 s. Raise 'Seen at 7 am.' to a hero line (90 px or more, accent); cut the lead card to fit (end about y 720) with an '11:02 PM' stamp and unread dot.",
-  "15.0 to 17.8 AI CHAT APP: panel holds only THEIR MESSAGE with about 400 px empty cream for 2.8 s; on 'paste their message' slide the message from the phone into the app and bring in YOUR PROMPT with a blinking cursor at 15.0."
+  "0.0 to 42.4 dialog words still drawn at 39 px (player.js speechBox fs 39, about 23 px cap), labels and source about 22 to 25 px cap, under the 44 px spoken and 36 px label floor, so type is capped at 4. Fix in the runtime (IMPROVE 00b).",
+  "30.4 to 37.0 gauge hero: '26%' at size 132, under the 160 px hero floor round 0 asked for; use the 198 px slot.",
+  "35.4 to 37.0 'Fastest trade.' stamp sits on the ring bottom over the tick and arc ends; round 0 asked for a pill under the dial.",
+  "25.5 to 29.0 draft card: 'DRAFT' 2.2:1, '[your rate]' 1.9:1; 11.3 to 14.0 'Still a draft.' 2.8:1; all under 4.5:1.",
+  "18.5 to 25.5 YOUR PROMPT box: spoken word in orange on light blue about 1.6:1.",
+  "14.0 to 29.0 and 39.5 to 42.4: Snow's hat crosses the AI CHAT APP panel's bottom edge and the 'Answer the night quote' plate; the plate's right edge runs to x 990."
+ ],
+ "landed": [
+  "Hook hero line, lead card, 0.8 s change: PASS",
+  "Night clock: PASS",
+  "Morning room: PASS",
+  "Chips and AI CHAT APP panel margins: PASS",
+  "YOUR PROMPT box from 15.0: PASS",
+  "Source line above the ring: PASS",
+  "26% readout in accent: partly (132 px)",
+  "'Fastest trade.' pill: partly (still on the ring)",
+  "Flaps payoff row and end card send line: PASS"
  ]
 }

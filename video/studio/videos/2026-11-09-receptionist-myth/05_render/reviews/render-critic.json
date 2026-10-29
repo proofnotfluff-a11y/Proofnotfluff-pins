@@ -1,19 +1,20 @@
 {
  "gate": "render-critic",
  "round": 0,
- "at": "2026-10-29T17:46:21-05:00",
- "build": "e0c1d27",
+ "at": "2026-10-29T18:42:25-05:00",
+ "build": "d576936",
  "pass": true,
  "score": {
   "faults": 0
  },
  "faults": [],
  "reasons": [
-  "Hook text on screen from frame 0s (y 296 to 370); no number in hook.",
-  "Numbers: 'a thousand' at 27.2 s with '1,000+' from 26.0 s; 11% spoken 29.0 to 30.0 s, row at 29.0 s; 58% spoken 31.9 to 32.8 s, row at 32.0 s; all readable.",
-  "Layout settled: nothing hidden or cut. Edge cases, not faults: calendar Saturday marks reach about x 965; 'HP' ends about x 940 at y 285; end-card send line ends about x 935.",
-  "Audio end: voice ends 41.35 s; end card 41.5 to 44.43 s; nothing cut mid-word; 0 s frozen before end card.",
-  "Smallest text about 28 to 30 px, readable; transitions single dissolves or wipes; no flashing over 3 a second.",
-  "Round 0."
+  "Build checked: main and -post mp4 decode to the same streams; qa.json sha 79bcb0cb matches; 44.43 s, 1080x1920.",
+  "Hook card on screen 0.0 to 3.5 s; no number in the hook.",
+  "Numbers land on their words: 1,000+ by 27.0 s, 11% from 29.0 s, 58% from 32.0 s; all large and readable.",
+  "A shine sweep crosses 58% and 11% for about 0.33 s every 1.4 s; readable, not a fault.",
+  "Layout settled: nothing hidden, cut off or covered; edge cases x 937, 965, 935 all inside the frame.",
+  "Audio end: last word 41.35 s, end card 41.5 to 44.43 s, nothing cut mid-word.",
+  "Smallest text about 28 to 30 px; brightness jumps only at single transitions."
  ]
 }

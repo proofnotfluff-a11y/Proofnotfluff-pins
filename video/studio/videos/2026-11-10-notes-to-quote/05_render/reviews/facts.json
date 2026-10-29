@@ -1,18 +1,23 @@
 {
  "gate": "facts",
  "round": 0,
- "at": "2026-10-29T17:46:21-05:00",
- "build": "e0c1d27",
+ "at": "2026-10-29T18:41:51-05:00",
+ "build": "d576936",
  "pass": true,
  "score": {
-  "numbers": 5,
+  "numbers": 7,
   "mismatches": 0
  },
  "reasons": [
-  "04_scene/scene.js NOTES and quoteSheet flag read 'blinds?' and 'Blinds: not on your list' while facts.json story has 'blinds x6?' and 'Blinds: not on your price list'; example story text marked EXAMPLE, not data, so not a mismatch. Optional: align them.",
-  "Base note, no fix needed: Jobber chart alt text says 'among home service businesses' for 54%, body text says among owners who adopted AI; voice and screen follow the body text."
- ],
- "sources_checked": [
-  "https://www.getjobber.com/home-service-trends-report/: '54% use it for quoting' among adopters; 1,050 owners, Conjointly, Dec 2025, plus or minus 3 pts; trade source; story items labeled examples; no real person; no em or en dashes."
+  "No blocking issues. Every number in voice, screen and scene matches facts.json, data.js and the Jobber page, with the same value and base.",
+  "data.js matches facts.json; values 54, 1050, 2025, 2026, 3, 3 bed, 2 bath match the brief.",
+  "Voice 'over a thousand home service owners' for n=1,050 is fair rounding; 'Of the ones who use AI, fifty-four percent use it for quoting' uses the page's base.",
+  "Screen proof 'Jobber survey / 1,050 owners, Dec 2025 / 54% / of AI users use it to quote' matches the method line.",
+  "Tool belt items are AI uses named on the page; only quoting carries a value; no stray numbers.",
+  "Trades first: home service owners survey; said as Jobber's, not cleaning-specific.",
+  "Story elements carry EXAMPLE tags, prices are blank 'YOUR RATE' bars, no AI product named.",
+  "No private person, business or address; no em or en dashes.",
+  "Non-blocking doc drift: facts.json story.notes lists 'blinds x6?' but the scene draws 'blinds?'.",
+  "Non-blocking doc drift: cues.md wording differs from scene.js ('Forgot: inside of the oven.', proof footer)."
  ]
 }

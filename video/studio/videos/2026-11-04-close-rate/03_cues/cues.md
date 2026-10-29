@@ -69,6 +69,6 @@ A gold sticky note stamps on under the rows: "That's all" / "you need." Snow poi
 ## close "Jobs sold, divided by" [sfx: pop]
 World: the levelup set, in on a chalk-wipe sweep. The XP bar fills while the formula is said and the perk line builds word by word: "+ CLOSE RATE = JOBS SOLD / ESTIMATES GIVEN" (JOBS SOLD teal on "Jobs", / on "divided", ESTIMATES GIVEN gold on "estimates"); LEVEL UP! stamps on "given", the rays start turning.
 ## close.send "Send this to whoever" [sfx: sting]
-A gold-edged plate over the rays: "Send this to whoever" / "writes your estimates." slam in, the ProofNotFluff tag beside them.
+A gold-edged plate over the rays: "Send this to whoever writes your estimates." slams in on one line; the ProofNotFluff tag drops into the perk rows on the right.
 ## close.friday "Then on Friday, you'll"
 The last perk line lands: "+ Friday: your close rate."; an accent line sweeps under it on "close"; Snow waves.

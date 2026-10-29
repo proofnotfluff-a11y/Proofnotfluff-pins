@@ -304,11 +304,17 @@ const neonWall = (k, lit) => {
   P(337, 281, 3, 3, lit ? RED : '#7A3442'); if (lit) DOT(337, 281, '#F09A9A');
   /* the sill and the dark band under it */
   P(0, 330, 360, 6, '#4A4E5A'); P(0, 330, 360, 1, '#9AA0AD'); P(0, 336, 360, 81, '#1B1420');
-  /* the wet pavement: slabs, a kerb, and the sign's reflection (dithered streaks that step every 10 frames) */
-  P(0, 417, 360, 223, '#241B2B'); P(0, 417, 360, 3, '#4A4E5A');
-  for (let y = 440; y < 640; y += 26) P(0, y, 360, 1, '#2B2033');
-  for (let x = 0; x < 360; x += 48) P(x, 420, 1, 220, '#2B2033');
-  (lit || []).forEach(([x0, w, c], i) => { const ph = Math.floor(F / 10) + i; for (let j = 0; j < 5; j++) dith(x0 + ((ph + j) % 3) - 1, 428 + i * 8 + j * 2, w - j * 6, 1, c, j & 1); });
+  /* the sidewalk (slabs), a puddle that holds the sign's reflection (dithered streaks that step every 10 frames), the */
+  /* kerb, the street with its lane dashes, a drain grate */
+  P(0, 417, 360, 133, '#3D2E45'); P(0, 417, 360, 3, '#4A4E5A');
+  for (let y = 444; y < 550; y += 27) P(0, y, 360, 1, '#2B2033');
+  for (let r = 0, y = 420; y < 550; r++, y += 27) for (let x = (r & 1) ? 24 : 0; x < 360; x += 48) P(x, y, 1, Math.min(27, 550 - y), '#2B2033');
+  const pw = (y) => Math.round(150 * Math.sqrt(Math.max(0, 1 - Math.pow((y - 474) / 22.5, 2))));   /* the puddle's half width on row y */
+  for (let y = 452; y < 496; y++) P(180 - pw(y), y, 2 * pw(y), 1, '#1B1420');
+  (lit || []).forEach(([x0, w, c], i) => { const ph = Math.floor(F / 10) + i; for (let j = 0; j < 4; j++) { const y = 458 + i * 8 + j * 2, a = Math.max(x0 + 16 + ((ph + j) % 3) - 1, 186 - pw(y)), b = Math.min(x0 + w - 4 - j * 8, 174 + pw(y)); if (b > a) dith(a, y, b - a, 1, c, j & 1); } });
+  P(0, 550, 360, 6, '#9AA0AD'); P(0, 550, 360, 1, '#C9CCD3'); P(0, 556, 360, 84, '#241B2B');
+  for (let x = 8; x < 360; x += 56) P(x, 596, 28, 4, '#6B7080');
+  P(286, 557, 40, 10, INK); for (let i = 0; i < 6; i++) P(289 + i * 6, 559, 3, 6, '#4A4E5A');
   return d;
 };
 /* one neon line: grey glass before its word, then a warm-up frame (the halo only), then lit (a halo in the glow colour, */
@@ -479,7 +485,7 @@ window.SCENE = {
       const bx = 32, by = 194, bw = 136;
       if (T >= tD) { const w = Math.min(bw, Math.round(bw * (d.fr(tD) + 1) / 8)); d.P(bx, by - 1, w, 3, TEAL); d.P(bx, by, w, 1, '#BDE6F5'); }
       else d.P(bx, by, bw, 1, '#4A4E5A');
-      neon(k, 'estimates given', 300, 600, tE, {glow: ORANGE, core: '#FFE2A8', align: 'center'});
+      neon(k, 'estimates given', 300, 600, tE, {glow: '#B07A47', core: '#FFE2A8', align: 'center'});
       if (T >= tE + 0.6) k.burst(300, 630, tE + 0.6, {n: 16, r: 220});
       /* same month for both: the line lights blue, a neon calendar page beside the fraction, its month boxed in gold */
       neon(k, 'Same month for both.', 72, 696, tM + 0.3, {glow: '#3B82C4', core: CREAM});
@@ -544,8 +550,8 @@ window.SCENE = {
         const f = d.fr(rng + 0.35);
         if (f >= 0) d.clip(0, 274, 360, 12, () => { const mx = ax(n.exRate.value), dy = [-8, -5, -2, 1, 0][Math.min(4, f)]; d.P(mx - 1, 276 + dy, 3, 9, INK); d.P(mx, 277 + dy, 1, 7, CREAM); d.P(mx - 2, 275 + dy, 5, 3, RED); });
         if (grow >= w) {
-          k.text(`Median ${n.medLow.shown} to ${n.medHigh.shown}`, 72, 855, {size: 39, color: GOLD});
-          if (T >= rng + 0.5) k.text(`${n.exRate.shown} sits inside`, 72 + k.measure(`Median ${n.medLow.shown} to ${n.medHigh.shown}   `, {size: 39}), 855, {size: 39, color: CREAM});
+          k.text(`Median ${n.medLow.shown} to ${n.medHigh.shown}`, 72, 852, {size: 39, color: GOLD});
+          if (T >= rng + 0.5) k.text(`${n.exRate.shown} sits inside`, 72 + k.measure(`Median ${n.medLow.shown} to ${n.medHigh.shown}   `, {size: 39}), 852, {size: 39, color: CREAM});
         }
       }
       return host(k, k.live('example.own') ? 'point' : (k.live('example.range') ? 'point' : null));
@@ -654,12 +660,12 @@ window.SCENE = {
       perk(0, [['CLOSE RATE = ', t0, CREAM], ['JOBS SOLD', tJ, TEAL], [' / ', tD, CREAM], ['ESTIMATES GIVEN', tE, GOLD]], t0);
       perk(1, [['Friday: your close rate.', fri + 0.1, CREAM]], fri + 0.1);
       if (T >= tF) k.sweep(96, 804, k.measure('Friday: your close rate.', {size: 39}), 3, tF, {color: 'accent'});
-      /* the send line on its own plate over the rays (frame y 252 to 360), the ProofNotFluff tag beside it */
+      /* the send line, one line on its own plate over the rays (frame y 258 to 336); the ProofNotFluff tag lands in the */
+      /* perk rows, right of where the Friday line will be */
       if (T >= send) {
-        plate(d, 12, 84, 336, 36, GOLD);
-        k.slam('Send this to whoever', 60, 268, send + 0.1, {size: 39, color: CREAM, from: 0.4});
-        k.slam('writes your estimates.', 60, 306, send + 0.3, {size: 39, color: CREAM, from: 0.4});
-        k.chip('ProofNotFluff', 600, 280, {size: 30});
+        plate(d, 12, 86, 336, 26, GOLD);
+        k.slam('Send this to whoever writes your estimates.', 60, 279, send + 0.1, {size: 39, color: CREAM, from: 0.1});
+        k.ctx.save(); k.ctx.translate(0, d.ease(send + 0.3, 6, -14) * 3); k.chip('ProofNotFluff', 600, 750, {size: 30}); k.ctx.restore();
       }
       return host(k, k.live('close.friday') ? 'wave' : (k.live('close.send') ? 'point' : null));
     },

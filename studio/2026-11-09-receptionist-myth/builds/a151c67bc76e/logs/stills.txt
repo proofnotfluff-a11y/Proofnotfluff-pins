@@ -1,0 +1,3 @@
+mouth: 1323 frames, 984 talking; closed 17%, slightly open 26%, open 48%, wide open 9.7% (under 10%: PASS), wide threshold 0.88 -> 02_transcript/mouth.js
+stills: 21 frames, 2 sheet(s) in /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-11-09-receptionist-myth/05_render/sheets; contact sheet 05_render/sheet.jpg
+exit 0

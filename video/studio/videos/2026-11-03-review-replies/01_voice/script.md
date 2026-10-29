@@ -4,7 +4,7 @@
 
 [matter-of-fact] That's The ACHR News. They asked four hundred homeowners, and ninety-one percent said reviews are important when they pick an HVAC contractor. Fifty-six percent look on Google.
 
-[curious] And the contractors? Forty-five percent answer reviews on third-party sites, forty-three percent don't, and thirteen percent don't know.
+[curious] And the contractors? [quickly] Forty-five percent answer reviews on third-party sites, forty-three percent don't, and thirteen percent don't know.
 
 [warmly] Here's the five-star reply. "Thanks for trusting us with your furnace. Glad it's running right. We're here when you need us."
 

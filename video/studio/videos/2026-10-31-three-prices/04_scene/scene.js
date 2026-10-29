@@ -411,7 +411,7 @@ window.SCENE = {
       const n = k.data.numbers, d = px(k), t0 = k.S('close'), tOne = k.S('close.one'), tYes = wordT(k, 'close.one', /^yes/i, 0.6), tThree = wordT(k, 'close.choice', /^Three/i);
       const tCh = wordT(k, 'close.choice', /^choice/i, 0.9);
       storefront(k, {tags: [{price: '$', at: -1}, {price: '$ $$ $$$', at: tThree}], threeAt: tThree,
-        chalk: T < tThree ? [[`${n.single.shown} price?`, tOne, CREAM, 450]] : [[`${n.tiers.shown} prices.`, tThree, GOLD, 450], ['Your call.', tThree + 0.3, CREAM, 528]]});
+        chalk: T < tThree ? [[`${n.single.shown} price?`, tOne, CREAM, 450]] : [[`${n.tiers.shown} prices.`, tThree, GOLD, 450]]});
       /* the plate holds four lines at one size (66): the send line on two lines, the line, the payoff */
       const open = d.ease(t0 + 0.05, 8, 120);
       d.clip(0, 227, 360, 190, () => d.win(30, 227 + open, 300, 108, {base: '#1B1420', hi: PLUM, lo: INK, rule: WINE}));
@@ -419,7 +419,7 @@ window.SCENE = {
         k.slam('Send this to whoever', 120, 696, t0 + 0.3, {size: 66, color: GOLD, from: 0.4});
         k.slam('writes your quotes.', 120, 768, t0 + 0.6, {size: 66, color: GOLD, from: 0.4});
         if (T >= tOne) k.slam(`${n.single.shown} price: yes or no.`, 120, 846, Math.min(tOne + 0.2, tYes), {size: 66, color: CREAM, from: 0.5});
-        if (T >= tThree) k.slam(`${n.tiers.shown} prices: a choice.`, 120, 918, tCh - 0.2, {size: 66, color: 'accent', from: 0.5});
+        if (T >= tThree) k.slam(`${n.tiers.shown} prices: a choice.`, 120, 918, tThree + 0.1, {size: 66, color: 'accent', from: 0.5});   /* on "Three", so it holds past the last word */
         if (T >= tCh + 0.3) { const x = 120 + k.measure(`${n.tiers.shown} prices: `, {size: 66}); k.sweep(x, 987, k.measure('a choice.', {size: 66}), 6, tCh + 0.3, {color: 'accent'}); }
       }
       k.chip('ProofNotFluff', 78, 540, {size: 30});

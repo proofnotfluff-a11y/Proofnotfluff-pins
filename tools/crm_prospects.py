@@ -112,12 +112,12 @@ def main():
     today = __import__("datetime").date.today().isoformat()
     # one first email per business, ever (Legal desk, Oct 24, fix 4): with --crm-trade, a domain any CRM record has emailed
     # or closed (any product, inbox or batch) is skipped
+    # (and for a construction role inbox, Todd Oct 29: the same rule, so an info@ never doubles a named owner already emailed)
     touched = set()
-    if a.crm_trade:
-        for _, dd in docs_from(a.listing):
-            if dd.get("firstSentAt") or dd.get("doNotEmail"):
-                touched.add(R.domain_of(dd.get("website") or ""))
-        touched.discard("")
+    for _, dd in docs_from(a.listing):
+        if dd.get("firstSentAt") or dd.get("doNotEmail"):
+            touched.add(R.domain_of(dd.get("website") or ""))
+    touched.discard("")
     for pid, d in docs_from(a.listing):
         if pid in seen or not pid:
             continue
@@ -129,7 +129,7 @@ def main():
             continue
         if a.crm_trade and (d.get("trade") or "").strip().lower() not in {t.strip().lower() for t in a.crm_trade.split(",") if t.strip()}:
             continue
-        if a.crm_trade and p["website_domain"] in touched and not d.get("firstSentAt"):
+        if (a.crm_trade or R.construction_role_inbox(p)) and p["website_domain"] in touched and not d.get("firstSentAt"):
             ineligible.append({"prospect_id": pid, "reasons": ["another record for this business was already emailed or closed"]})
             continue
         named = [w.split(": ", 1)[-1] for w in R.validate_prospect(p)]

@@ -412,6 +412,38 @@ def pest_role_inbox(x):
             and bool(wd) and dom == wd and bool(su) and (su == wd or su.endswith("." + wd)) and x.get("site_notice") == "none")
 
 
+# Construction role inboxes (Todd, Oct 29, 2026, live chat: "go with your rec" on "allow info@ for construction trades",
+# put to him as: like the pest seat, a role inbox the business publishes on its own site counts without a named owner, the
+# email opens "Hi there,"; legal/reviews/2026-10-29-construction-role-inbox.md). Same conditions as pest_role_inbox, for
+# chicago-construction prospects of any trade vertical.
+CONSTRUCTION_ROLE_LOCALS = PEST_ROLE_LOCALS
+CONSTRUCTION_ROLE_PRODUCTS = {"chicago-construction"}
+
+
+def construction_role_inbox(x):
+    """True only when every pest_role_inbox condition holds for a chicago-construction prospect: no named person, an exact
+    CONSTRUCTION_ROLE_LOCALS address on the business's own website domain, email_source site, the page it was read from
+    (email_source_url) on that domain, and site_notice "none"."""
+    e = str(x.get("email") or "").strip().lower()
+    if "@" not in e or x.get("first_name") or x.get("last_name"):
+        return False
+    local, dom = e.split("@", 1)
+    wd = domain_of(x.get("website_domain") or "")
+    su = domain_of(x.get("email_source_url") or "")
+    return (local in CONSTRUCTION_ROLE_LOCALS and x.get("product") in CONSTRUCTION_ROLE_PRODUCTS and x.get("email_source") == "site"
+            and bool(wd) and dom == wd and bool(su) and (su == wd or su.endswith("." + wd)) and x.get("site_notice") == "none")
+
+
+def role_inbox(x):
+    """A role inbox that counts without a named person: the pest seat's or construction's."""
+    return pest_role_inbox(x) or construction_role_inbox(x)
+
+
+def greeting_name(x):
+    """The name a first email opens with: the stored first name, or 'there' for a role inbox ("Hi there,")."""
+    return str(x.get("first_name") or "").strip() or ("there" if role_inbox(x) else "")
+
+
 def inbox_problems(email, website_domain="", first_name="", last_name="", owner_source="", email_source="", pest_ok=False):
     """The Inbox Gate for one address: syntax, no role-based local part (except the owner-read exception above), no free
     mail, on the business's own domain, and, when the person's name is known, a local part built from that name (dana@,
@@ -440,7 +472,7 @@ def validate_prospect(x, pending=False):
     """One prospect. pending=True: the same rules, except the address must be waiting for its Bouncer check
     (email_status unverified) instead of already deliverable."""
     p, pid = [], x.get("prospect_id", "?")
-    role = pest_role_inbox(x)   # the pest seat's role inbox has no named person, so no name or title is required
+    role = role_inbox(x)   # a pest seat or construction role inbox has no named person, so no name or title is required
     for k in PROSPECT_REQUIRED:
         if role and k in ("first_name", "last_name", "title"):
             continue
@@ -615,9 +647,10 @@ def validate_drafts(doc, leads_by_id, prospects_by_id, matches_by_prospect=None)
         if (d.get("to") or "").lower() != pr["email"].lower():
             p.append(f"draft {pid}: to address differs from the prospect's validated email")
         p += [f"draft {pid}: {m}" for m in inbox_problems(d.get("to"), pr.get("website_domain"), pr.get("first_name"), pr.get("last_name"),
-                                                          pr.get("owner_source") or "", pr.get("email_source") or "")]
+                                                          pr.get("owner_source") or "", pr.get("email_source") or "",
+                                                          pest_ok=construction_role_inbox(pr))]
         p += [f"draft {pid}: {m}" for m in trade_problems(pr.get("product"), trade_of(pr), ld)]
-        p += [f"draft {pid}: {m}" for m in copy_problems(d.get("subject"), d.get("body"), pr["first_name"], ld)]
+        p += [f"draft {pid}: {m}" for m in copy_problems(d.get("subject"), d.get("body"), greeting_name(pr), ld)]
     return p
 
 

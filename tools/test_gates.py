@@ -609,11 +609,45 @@ def pest_role_cases():
                          ("a site notice fails", {"site_notice": "no solicitations"}),
                          ("not checked for a notice fails", {"site_notice": ""}),
                          ("another trade fails", {"crm_trade": "hood cleaning"}),
-                         ("another product fails", {"product": "chicago-construction", "prospect_id": "cc-acmepest-com"}),
+                         ("another product fails", {"product": "austin-construction", "city": "austin", "prospect_id": "ca-acmepest-com"}),   # chicago-construction has its own role rule since Oct 29
                          ("support@ fails", {"email": "support@acmepest.com"}),
                          ("a guessed source fails", {"email_source": "pattern"})):
         x = dict(base); x.update(change)
         expect("pest role: " + name, R.validate_prospect(x, pending=True), True)
+
+
+def construction_role_cases():
+    """Construction role inboxes (Todd, Oct 29): the pest seat's conditions on a chicago-construction prospect, each broken
+    once, and the draft must open "Hi there,"."""
+    base = {"prospect_id": "cc-acmeclean-com", "product": "chicago-construction", "business": "Acme Clean", "website_domain": "acmeclean.com",
+            "city": "chicago", "first_name": "", "last_name": "", "title": "", "email": "info@acmeclean.com", "email_source": "site",
+            "email_status": "unverified", "owner_source": "", "crm_trade": "post-construction cleaning",
+            "email_source_url": "https://www.acmeclean.com/contact/", "site_notice": "none", "trade_vertical": "commercial_cleaning"}
+    expect("construction role: info@ on its own site passes", R.validate_prospect(dict(base), pending=True), False)
+    expect("construction role: greeting is there", [] if R.greeting_name(base) == "there" else ["greeting " + R.greeting_name(base)], False)
+    for name, change in (("info.chicago@ fails", {"email": "info.chicago@acmeclean.com"}),
+                         ("another domain fails", {"email": "info@acme-mail.com"}),
+                         ("no source page fails", {"email_source_url": ""}),
+                         ("a source page elsewhere fails", {"email_source_url": "https://directory.example.com/acme"}),
+                         ("a site notice fails", {"site_notice": "no solicitations"}),
+                         ("not checked for a notice fails", {"site_notice": ""}),
+                         ("austin fails", {"product": "austin-construction", "city": "austin"}),
+                         ("support@ fails", {"email": "support@acmeclean.com"}),
+                         ("a guessed source fails", {"email_source": "pattern"})):
+        x = dict(base); x.update(change)
+        expect("construction role: " + name, R.validate_prospect(x, pending=True), True)
+    named = dict(base, first_name="Dana", last_name="Reyes", title="Owner", owner_source="site_about")
+    expect("construction role: a named owner keeps Hi Dana", [] if R.greeting_name(named) == "Dana" else ["greeting " + R.greeting_name(named)], False)
+    lead = {"lead_id": "chi-fixture", "city": "chicago", "stage": "Inspections Under Way", "work_type": "New construction",
+            "valuation": 45_000_000, "gc_company": "Bartlett Cocke", "address": "100 N Hampton Dr", "scope": "new office building"}
+    pr = dict(base, email_status="deliverable")
+    body = ("Hi there,\n\nSaw that Bartlett Cocke has city inspections under way on the $45M office project on N Hampton Dr. "
+            "Jobs at this stage usually line up the final clean soon.\n\nWant me to send you jobs like this free each Monday?")
+    doc = lambda b: {"schema": "pnf.draft.v1", "drafts": [{"prospect_id": pr["prospect_id"], "lead_id": "chi-fixture", "to": pr["email"],
+                                                         "subject": "Final clean on N Hampton Dr", "body": b}]}
+    expect("construction role: a Hi there draft passes", R.validate_drafts(doc(body), {"chi-fixture": lead}, {pr["prospect_id"]: pr}), False)
+    expect("construction role: a Hi Dana draft to info@ fails",
+           R.validate_drafts(doc(body.replace("Hi there,", "Hi Dana,")), {"chi-fixture": lead}, {pr["prospect_id"]: pr}), True)
 
 
 def main():
@@ -628,6 +662,7 @@ def main():
     ladder_cases()
     signal_cases()
     pest_role_cases()
+    construction_role_cases()
     bad =[(n, p) for n, good, p in results if not good]
     for n, p in bad:
         print(f"FAIL {n} {p}")

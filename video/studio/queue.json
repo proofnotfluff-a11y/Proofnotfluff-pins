@@ -157,6 +157,26 @@
     "runtime_pixfont": "a8557997756e"
    },
    "posts": {}
+  },
+  {
+   "slug": "2026-11-02-price-raise",
+   "readyAt": "2026-10-29T00:41:46-05:00",
+   "commit": "7e2760393d479ab6385fd9f5eb4faaa852f26eaa",
+   "fingerprints": {
+    "script": "9df8d709301b",
+    "takes": "392c040f9a29",
+    "words": "393422d1afe6",
+    "cues": "6901899d0463",
+    "scene": "ea52d90595e0",
+    "data": "ed7cee80801f",
+    "captions": "712be51eec4b",
+    "mouth": "e2cb864756d7",
+    "runtime_kit": "d12df837dc0a",
+    "runtime_player": "a66cf6faac98",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

@@ -82,3 +82,4 @@
 - So: lesson 1 posts on Todd's go (its captions gate held at a second FAIL; both fixes were made); lesson 9 joins the post queue (all gates PASS, Todd: "looks great"); lessons 2 to 8 are rebuilt under the trades-first and own-worlds rules (6 and 7 replaced from the trades bank).
 - 9:38 pm [stated] "accept tiktok"
 - So: TikTok's "Ready to post?" box (it collects face and voice information) was accepted once, for lesson 1. Lesson 1 is live on all 4 platforms. TikTok lists it as "Only me" while under review; no setting was changed.
+- Oct 29, after midnight (no new words from Todd): "rebuild the rest" carried out. Lessons 2, 3, 4, 6, 7, 8 rebuilt on trades-only evidence in their own worlds and passed every gate (one fix round each); queued behind lesson 9. Lesson 5 held: its render critic failed a second time on a label 11 px past the edge; fixed and confirmed clean, posting it needs Todd's go.

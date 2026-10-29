@@ -7323,6 +7323,210 @@
    "eyebrow": "Free quarterly report",
    "h1": "Chicago Trades Quarterly",
    "card": "Coming soon"
+  },
+  {
+   "slug": "christmas-lights-charge-by-foot-or-hour",
+   "kind": "question",
+   "city": "Chicago",
+   "product": "chicago-construction-cleaning-leads",
+   "data": "site/pages.json",
+   "stats": "lights_choice",
+   "title": "Hang Christmas Lights: Charge by the Foot or Hour? | ProofNotFluff",
+   "desc": "A window cleaner adding holiday lights asks: charge by the foot or by the time it takes, and lend the lights or have customers buy them? A worked answer with real numbers.",
+   "card": "Charge by the foot or by the hour to hang Christmas lights, and whether to lend the lights, sell them or hang the customer's own.",
+   "eyebrow": "Christmas light pricing",
+   "updated": "Worked example from the free Christmas light installation pricing calculator. Checked Oct 29, 2026.",
+   "h1": "Charge by the foot or by the hour to hang Christmas lights, and who should own the lights?",
+   "answer": [
+    "Quote by the foot, but work the foot price out from your hours. The customer gets one price before you climb the ladder, and the price stays the same whether your crew is quick or slow, so getting faster is yours to keep. In the thread this page answers, the two replies that gave a method both priced by the foot, and Service Autopilot's guide for installers says most businesses do.",
+    "On the lights, lending them (a seasonal rental you store and keep up) pays least in the first season and most after. In the worked example, the same **{feet}-foot** house quoted at **{baseQuote}** every season pays about **{y1Pay}** for each person-hour on the job in the season you buy the lights and about **{y2Pay}** in the seasons after. Hanging a customer's own lights is the easiest way to start and, by the thread's account, the one most installers drop."
+   ],
+   "numbersTitle": "The worked example, in four numbers",
+   "tiles": [
+    [
+     "Quote each season",
+     "{baseQuote}",
+     "{feet} ft of roofline and {shrubs} bushes, your lights lent"
+    ],
+    [
+     "Season you buy the lights",
+     "{y1Pay}",
+     "paid for each person-hour on the job"
+    ],
+    [
+     "Later seasons",
+     "{y2Pay}",
+     "each person-hour, the lights already paid for"
+    ],
+    [
+     "Customer's own lights",
+     "{ownQuote}",
+     "labor only, {ownPay} each person-hour"
+    ]
+   ],
+   "numbers": [
+    "From the free calculator's example inputs: {people} people hanging {pace} feet an hour each, {shrubMin} minutes a bush, {rate} a person-hour, takedown at {takedown} of the install hours, two trips of {tripMin} minutes and {miles} miles each at {perMile} a mile, lights at {matFt} a foot and {shrubMat} a bush expected to last {seasons} seasons, {storage} a year to store them and a {margin} margin.",
+    "\"Paid for each person-hour\" here is the quote less the lights, the storage and the {mileage} of mileage, divided by the {baseHrs} person-hours of hanging, takedown and driving. It is what the job pays your crew and you together, before overhead. The lights for this house cost {matAll} when you buy them."
+   ],
+   "tables": [
+    {
+     "title": "By the foot or by the hour: the same house, three crew speeds",
+     "intro": [
+      "Price by the foot and the quote holds at {baseQuote} whatever your pace, so a faster crew earns more an hour and a slower one less. Price from the hours and the quote moves with your pace while the hourly pay stays near flat: the customer pays for a slow day."
+     ],
+     "head": [
+      "Crew pace",
+      "Person-hours",
+      "Quote by the foot",
+      "Pays an hour",
+      "Quote from the hours",
+      "Pays an hour"
+     ],
+     "rows": "paceRows",
+     "notes": [
+      "Run through the free calculator. \"Quote from the hours\" is the calculator's own quote at that pace; \"by the foot\" keeps the {basePerFt} a foot from the {pace}-foot pace. At {slowPace} feet an hour, the foot price leaves {slowFootProfit} of profit; at {fastPace}, {fastFootProfit}. This table spreads the {matAll} of lights over the {seasons} seasons they last, so its hourly pay is an average over the seasons, not the first season's {y1Pay} or the later seasons' {y2Pay} at the {pace}-foot pace."
+     ]
+    },
+    {
+     "title": "Who owns the lights, over {seasons} seasons",
+     "intro": [
+      "The same house and crew, with the lights lent, sold to the customer, or the customer's own. Profit is after labor, drive, lights and storage."
+     ],
+     "head": [
+      "Lights",
+      "Season 1 quote",
+      "Later season quote",
+      "Customer pays, {seasons} seasons",
+      "Your profit, {seasons} seasons",
+      "Who has the lights"
+     ],
+     "rows": "ownerRows",
+     "notes": [
+      "Lent lights are spread over the {seasons} seasons the example expects them to last, plus {storage} a year of storage. Sold lights are charged in full in season 1 and the quote drops after. On the customer's own lights the quote carries no lights and no storage. The company in the thread mentions one more plan other companies use: the customer buys the lights, pays for labor only, and pays $100 a year for off-season storage."
+     ]
+    }
+   ],
+   "stepsTitle": "How to decide, step by step",
+   "steps": [
+    [
+     "Price from your hours, quote by the foot",
+     "Time your crew on a few houses this season. Turn the hours, drive and lights into a job price in the calculator, then divide by the feet of roofline. That foot price is what you quote; the hours are how you check it still pays."
+    ],
+    [
+     "Keep the hourly price for jobs you cannot measure",
+     "A tall tree, a custom wrap or a repair call on strands you did not hang is hard to price by the foot. A time charge with a written estimate keeps a slow surprise from coming out of your pay."
+    ],
+    [
+     "Pick one light plan to start",
+     "Lending means buying stock and storing it, so the first season pays less. In the example, buying the lights for one {feet}-foot house costs {matAll} up front. If cash is tight, start by selling the lights or hanging the customer's own, and move to lending as the route grows."
+    ],
+    [
+     "Hold the price in later seasons",
+     "The company in the thread keeps its per foot price the same every year so later seasons pay for the first. It said that if it dropped the price after year one, the first-year price would have to be more like $6 a foot."
+    ],
+    [
+     "Write down what the price covers",
+     "Say whether the price includes takedown, storage, swapping dead bulbs and service calls. The company in the thread lists custom fitting, off-season storage, upkeep and free service calls with its rental, and asks for no contract."
+    ]
+   ],
+   "sections": [
+    [
+     "What the thread says",
+     [
+      "The question was posted Nov 1, 2020 on Window Cleaning Resource by a window cleaner whose customers had asked for holiday lights and who had only ever hung lights at their own house. Their customers owned their lights. They asked whether to charge by the length or by the difficulty and time.",
+      "One reply said most providers charge per foot, and that installing customer-supplied lights is common at the start but most stop once they have enough clients, calling it a headache that kills morale. A window cleaning company replied that it charges $4 to $5 a foot depending on how hard the job is, with the lights rented from the company. It said it expects roughly $30 to $50 an hour in year one, when it buys the lights, and $70 to $100 an hour in later years. Later in the thread it said it offers only C9 strands and is moving toward $4 a foot on residential work."
+     ]
+    ],
+    [
+     "Why the first season pays less when you lend",
+     [
+      "When you lend, you pay for the lights in season 1 but the customer pays the same price every season. In the example the {matAll} of lights comes out of the first season's {baseQuote}, so that season pays about {y1Pay} a person-hour; with the lights paid for, {laterSeasons} pay about {y2Pay}. That is the same shape as the company in the thread describes, from different inputs. Selling the lights flips it: the customer pays {boughtQuote} in season 1 (about {boughtY1Pay} a person-hour) and {boughtNext} after (about {boughtY2Pay}).",
+      "Over {seasons} seasons, lending brings in {baseTotal} and {baseProfit3} of profit in the example, against {boughtTotal} and {boughtProfit3} when the customer buys, and you still hold the stock. Lights that last longer than {seasons} seasons, with the price held at {baseQuote}, make lending pay more again."
+     ]
+    ],
+    [
+     "The customer's own lights",
+     [
+      "Hanging lights the customer already owns needs no stock and no storage, which is why it is the usual start. In the example it quotes {ownQuote} and pays about {ownPay} a person-hour. Service Autopilot's guide calls it one of the least reliable choices: the strands may not work, and a customer can blame you for damage. If you take these jobs, test the strands before you hang them and price repairs by the hour."
+     ]
+    ],
+    [
+     "What the guides say about lending and selling",
+     [
+      "Service Autopilot's guide for installers calls renting your own lights one of the most common practices and advises against selling new strands to customers unless you are in a pinch. Nextdoor's guide for businesses describes three plans (lend, sell, or offer both) and says a full service with your lights, setup, takedown and storage can charge more than labor on the customer's own lights. Fixr, a homeowner cost guide, puts hired installation at about $60 to $100 an hour. These are other people's figures, read Oct 29, 2026."
+     ]
+    ]
+   ],
+   "calculator": [
+    "christmas-light-installation-pricing-calculator",
+    "Christmas light installation pricing calculator",
+    "Try your own pace, lights and seasons in"
+   ],
+   "cta": {
+    "title": "Keep the crew busy after the lights come down",
+    "text": "If you also clean windows or buildings in Chicago, the Chicago Construction Cleaning Leads list sends every Monday the open projects of $500,000 or more and the builder on each, with the ones near finish marked. {price} a month, cancel any time."
+   },
+   "faq": [
+    [
+     "Should I charge by the foot or by the hour to hang Christmas lights?",
+     "By the foot for most houses, worked out from your hours. The customer gets a fixed price and a faster crew earns more. In the example the same {baseQuote} pays about {slowFootPay} a person-hour at {slowPace} feet an hour and {fastFootPay} at {fastPace}. Keep a time charge for tall trees, custom work and repairs."
+    ],
+    [
+     "Should I rent my lights to customers or have them buy the lights?",
+     "Lending pays less the first season and more after, and you keep the stock. In the example it pays about {y1Pay} a person-hour in season 1 and {y2Pay} after. Selling pays more up front, {boughtQuote} in season 1, and the customer keeps the lights."
+    ],
+    [
+     "Should I hang lights the customer already owns?",
+     "It is the easy way to start, with no stock to buy or store. One reply in the thread said most stop once they have enough clients. Test the strands first; in the example the labor-only quote is {ownQuote}."
+    ],
+    [
+     "Should the price stay the same after the first year?",
+     "If you lend the lights, yes, by the thread's account: the company that rents its lights keeps the price the same so later years pay for year one. In the example lent lights quote {baseQuote} every season."
+    ]
+   ],
+   "related": [
+    [
+     "christmas-light-installation-price-per-foot",
+     "What installers charge per foot to hang Christmas lights"
+    ],
+    [
+     "christmas-light-installation-pricing-calculator",
+     "Free Christmas light installation pricing calculator"
+    ],
+    [
+     "window-cleaning-price-calculator",
+     "Free window cleaning price calculator"
+    ]
+   ],
+   "sources": [
+    [
+     "Window Cleaning Resource, Christmas light pricing ideas (the question as asked)",
+     "https://community.windowcleaner.com/t/christmas-light-pricing-ideas/52461",
+     "posted Nov 1, 2020, read Oct 29, 2026"
+    ],
+    [
+     "Service Autopilot, Total Guide to Christmas Light Pricing for Your Business",
+     "https://serviceautopilot.com/?p=20498",
+     "published Oct 7, 2021, modified Apr 10, 2025, read Oct 29, 2026"
+    ],
+    [
+     "Nextdoor, A guide to pricing holiday light installation",
+     "https://business.nextdoor.com/en-us/blog/a-guide-to-pricing-holiday-light-installation",
+     "published Oct 19, 2022, read Oct 29, 2026"
+    ],
+    [
+     "Fixr, Christmas light installation cost",
+     "https://www.fixr.com/costs/christmas-light-installation",
+     "updated Jan 31, 2025, read Oct 29, 2026"
+    ],
+    [
+     "ProofNotFluff, Christmas light installation pricing calculator (example inputs)",
+     "../christmas-light-installation-pricing-calculator/",
+     "checked Oct 29, 2026"
+    ]
+   ],
+   "footnote": "The worked example uses the free Christmas light installation pricing calculator's example inputs; the vehicle cost uses the IRS business mileage rate for July 1 to December 31, 2026. Installer prices are quoted from a public forum thread and published guides read Oct 29, 2026.",
+   "published": "2026-10-29"
   }
  ]
 }

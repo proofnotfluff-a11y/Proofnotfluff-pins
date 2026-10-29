@@ -157,6 +157,51 @@ def stats(kind, d):
                          row(f"Small house, {cases['small']['feet']} ft, no bushes", "small"),
                          row(f"Big house, {cases['big']['feet']} ft and {c['shrubs']} bushes", "big")]
         return s
+    if kind == "lights_choice":   # by the foot or by the hour, lend or sell the lights: the same model and cases as "lights"
+        c = next(x for x in d["pages"] if x["slug"] == "christmas-light-installation-pricing-calculator")["defaults"]
+        import subprocess
+        cases = {"base": {}, "bought": {"owner": "1"}, "own": {"owner": "1", "matPerFt": "0", "shrubMat": "0"},
+                 "slow": {"ftPerHour": "25"}, "fast": {"ftPerHour": "60"}}
+        js = ('const P=require(process.argv[1]);const b=JSON.parse(process.argv[2]),c=JSON.parse(process.argv[3]);const o={};'
+              'for(const k in c)o[k]=P.lightsQuote(Object.assign({},b,c[k]));console.log(JSON.stringify(o));')
+        out = json.loads(subprocess.run(["node", "-e", js, os.path.join(ROOT, "docs", "assets", "pnf-calc.js"), json.dumps(c),
+                                         json.dumps(cases)], capture_output=True, text=True, check=True).stdout)
+        s = stats("lights", d)
+        r2 = lambda v: round(v + 1e-9, 2)
+        f = lambda v: f"${r2(v):,.2f}"
+        m = lambda v: "$" + _n(round(v)) if abs(v - round(v)) < 0.005 else f"${r2(v):,.2f}"
+        hr = lambda v: "$" + _n(round(v + 1e-9))
+        people, trips = int(c["people"]), 2 + int(c["serviceCalls"])
+        driveHrs = trips * people * float(c["tripMin"]) / 60
+        mileage = trips * float(c["tripMiles"]) * float(c["perMile"])
+        storage = float(c["storage"])
+        b = out["base"]
+        hrs = lambda r: r["workHrs"] + driveHrs   # person-hours on the job: hanging, bushes, takedown and both drives
+        # what each person-hour is paid: the quote less the lights, storage and mileage, over the person-hours
+        pay = lambda q, r, lights, stor: (q - lights - stor - mileage) / hrs(r)
+        s |= {"driveHrs": f"{r2(driveHrs):.2f}", "mileage": f(mileage), "matAll": m(b["matAll"]),
+              "baseHrs": f"{r2(hrs(b)):.2f}", "basePay": hr(pay(b["quote"], b, b["materials"], storage)),
+              "y1Pay": hr(pay(b["quote"], b, b["matAll"], storage)), "y2Pay": hr(pay(b["quote"], b, 0, storage)),
+              "ownPay": hr(pay(out["own"]["quote"], out["own"], 0, 0)),
+              "boughtY1Pay": hr(pay(out["bought"]["quote"], out["bought"], b["matAll"], 0)),
+              "boughtY2Pay": hr(pay(out["bought"]["quote2"], out["bought"], 0, 0))}
+        for k in ("slow", "fast"):
+            r = out[k]
+            s |= {k + "Hrs": f"{r2(hrs(r)):.2f}", k + "FootPay": hr(pay(b["quote"], r, r["materials"], storage)),
+                  k + "HourPay": hr(pay(r["quote"], r, r["materials"], storage)), k + "FootProfit": f(b["quote"] - r["floor"])}
+        n = int(c["seasons"])
+        tot = {"base": b["quote"] * n, "bought": out["bought"]["quote"] + out["bought"]["quote2"] * (n - 1), "own": out["own"]["quote"] * n}
+        prof = {"base": (b["quote"] - b["floor"]) * n, "bought": out["bought"]["profit"] + out["bought"]["profit2"] * (n - 1),
+                "own": (out["own"]["quote"] - out["own"]["floor"]) * n}
+        s |= {k + "Total": m(v) for k, v in tot.items()} | {k + "Profit3": f(v) for k, v in prof.items()}
+        s["laterSeasons"] = f"seasons 2 and {n}" if n == 3 else f"seasons 2 to {n}"
+        s |= {"baseFootPay": s["basePay"], "baseHourPay": s["basePay"]}
+        s["paceRows"] = [[f"{pace} ft an hour each", s[k + "Hrs"], m(b["quote"]), s[k + "FootPay"], s[k + "Quote"], s[k + "HourPay"]]
+                         for pace, k in ((s["slowPace"], "slow"), (s["pace"], "base"), (s["fastPace"], "fast"))]
+        s["ownerRows"] = [["You lend the lights", s["baseQuote"], s["baseNext"], s["baseTotal"], s["baseProfit3"], "You"],
+                          ["The customer buys them", s["boughtQuote"], s["boughtNext"], s["boughtTotal"], s["boughtProfit3"], "The customer"],
+                          ["The customer's own lights", s["ownQuote"], s["ownNext"], s["ownTotal"], s["ownProfit3"], "The customer"]]
+        return s
     if kind == "rats":   # rat question pages: the free Rat Index's own weekly file (311 counts by community area, no addresses)
         import rodents_site as R
         ix = R.index(d, R.load_json(R.POP), None)

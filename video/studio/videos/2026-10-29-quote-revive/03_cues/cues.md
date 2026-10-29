@@ -9,11 +9,11 @@ re-voiced takes move the picture with them. Oct 29: the hook in three shots and 
 music: rooms
 
 ## hook "Quote went quiet? One text" [sfx: pop]
-Three shots (IMPROVE 00a). World: the street. The cover, frame 0, settled: the van parked at a frame house, a yard sign QUOTE with its arrow bobbing; in the sky a dark game window holds the chip THE TEXT, "Quote went" / "quiet?" (quiet in the accent) and "Send this text." Host and dialog box hidden. On "quiet" cut in to the phone close-up: the hook on a title plate up top ("Quote went quiet?" / "Send this text."), your phone big in the truck's dash mount: the quote you sent, Quote.pdf, Seen, and their typing bubble whose dots blink, stop and never become a reply; the dash and its vents fill the lower frame; Snow steps up big in the cab. On "One" cut back out to the street, Snow on at his usual size; stars wink in the window's corners, the typing bubble over the front door blinks.
+Three shots (IMPROVE 00a). World: the street. The cover, frame 0, settled: the van parked at a frame house, a yard sign QUOTE with its arrow bobbing; in the sky a dark game window holds the chip THE TEXT, "Quote went" / "quiet?" (quiet in the accent) and "Send this text.", with the source line "Sources: ServiceTitan, Jobber, Housecall Pro" under them (the window is tall enough to keep it 15 px inside its rule). Host and dialog box hidden. On "quiet" cut in to the phone close-up in the cab: the A-pillars down the frame edges, the roof liner, the mirror and the swinging air freshener round a dusk windshield; the hook on a title plate up top ("Quote went quiet?" / "Send this text." and the same Sources line); your phone big in the truck's dash mount, with the same chrome and contact as the text section (9:41 status bar, avatar, Homeowner): the quote you sent, Quote.pdf, Seen, and their typing bubble whose dots blink, stop and never become a reply; the dash, its vents, the glovebox, the cup holder with a coffee, the keys and a clipboard of quotes fill the lower frame; Snow steps up big in the cab (about three times his usual size). On "One" cut back out to the street, Snow on at his usual size; stars wink in the window's corners, the typing bubble over the front door blinks.
 ## hook.skip "can bring it back." [sfx: tick]
 Under the card, a speech bubble pops up from the van: "Just checking in!" in grey, struck through 0.4 s after it lands (not that text).
 ## hook.send "Here's what you send." [sfx: blip]
-The window shrinks into the sky (the houses show again); "Send this text." slams in the accent, 'Not "just checking in."' under it; the dialog box comes in; Snow points up at it.
+The window shrinks into the sky (the houses show again); "Send this text." slams in the accent with sparks at the window's two sides (never on the words), 'Not "just checking in."' under it; the dialog box comes in; Snow points up at it.
 ## hook.stakes "Software maker ServiceTitan says its" [sfx: whoosh]
 The sky window turns to the stakes: chip SERVICETITAN'S OWN DATA, the source line "ServiceTitan blog, 2026" under it; "Estimates that close / on the first visit:" while three estimate sheets drop in one by one.
 ## hook.count "thirty-seven percent of estimates close" [sfx: tick]
@@ -43,7 +43,7 @@ Line 2: "Name the job."
 Line 3: "Ask a question." The three checks sparkle once.
 
 ## text "So here's the text." [sfx: whoosh]
-World: the chat set, the phone in the truck's dash mount (road rushing in the windshield, the air freshener swinging). The chat with Homeowner: your quote from before ("Here's your quote for the new water heater."), read. A draft bubble opens, empty, with a blinking cursor.
+World: the chat set, the phone in the truck's dash mount (road rushing in the windshield, the air freshener swinging). The chat with Homeowner (the same header as the hook's close-up): your quote from before ("Here's your quote for the new water heater."), read. A draft bubble opens, empty, with a blinking cursor.
 ## text.name "Their name, then yours," [sfx: tick]
 "Hi [name], it's [you]." types into the draft word by word as it is said.
 ## text.know "so they know it's" [sfx: blip]
@@ -62,11 +62,11 @@ World: the mail desk at night (our own piece): a window with the moon and stars,
 ## turn.st "ServiceTitan's follow-up webinar says" [sfx: tick]
 Line under the desk: "Texts beat email on open rates." Source: ServiceTitan follow-up webinar, 2026.
 ## turn.hcp "And fifty-nine percent of" [sfx: whoosh]
-The laptop slides off to the left; a game window slides in where it was and the 59% counts up from 85% of itself as it is said, landing with sparks. Source line: Housecall Pro survey, 1,040 U.S. homeowners, 2025.
+The laptop slides off to the left; a game window slides in where it was and the 59% counts up from 85% of itself as it is said, at the 37%'s size, with sparks beside it (not on it). Both source lines land inside the window's lower third on the same frame as the 59%: "Housecall Pro survey," / "1,040 U.S. homeowners, 2025".
 ## turn.pct "homeowners in a Housecall Pro survey" [sfx: tick]
-"of homeowners" / "expect text updates." under the 59%; the phone's bubble gets a green check that pops, with sparks.
+"of homeowners" / "expect text updates." under the 59%, above the source lines; the phone's bubble gets a green check that pops, with sparks.
 ## close "One name, one job, one" [sfx: stamp]
-World: the level-up screen. The XP bar fills (LV 2) as the rule is said; a perk lands on each "one": + ONE NAME, + ONE JOB, + ONE QUESTION. On "question" the bar rolls over: LEVEL UP!, rays turning, sparks.
+World: the level-up screen, standing on an arcade cabinet's control deck (stick, three blinking buttons, the coin door) in place of the tiled floor. "The rule:" at headline size; the XP bar fills (LV 2) as the rule is said; a perk lands big under the bar on each "one": + ONE NAME, + ONE JOB, + ONE QUESTION. On "question" the bar rolls over: LEVEL UP!, rays turning, sparks; a beat later the perks settle into a small list under the bar.
 ## close.send "Send this to whoever follows" [sfx: sting]
 One left edge (x 366): ProofNotFluff chip, "Send this to whoever" / "follows up on your quotes." in the accent.
 ## close.quiet "Next time a quote goes" [sfx: pop]

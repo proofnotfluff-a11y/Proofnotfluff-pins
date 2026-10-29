@@ -14,7 +14,7 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "Three shots (IMPROVE 00a). World: the street. The cover, frame 0, settled: the van parked at a frame house, a yard sign QUOTE with its arrow bobbing; in the sky a dark game window holds the chip THE TEXT, \"Quote went\" / \"quiet?\" (quiet in the accent) and \"Send this text.\" Host and dialog box hidden. On \"quiet\" cut in to the phone close-up: the hook on a title plate up top (\"Quote went quiet?\" / \"Send this text.\"), your phone big in the truck's dash mount: the quote you sent, Quote.pdf, Seen, and their typing bubble whose dots blink, stop and never become a reply; the dash and its vents fill the lower frame; Snow steps up big in the cab. On \"One\" cut back out to the street, Snow on at his usual size; stars wink in the window's corners, the typing bubble over the front door blinks.",
+   "text": "Three shots (IMPROVE 00a). World: the street. The cover, frame 0, settled: the van parked at a frame house, a yard sign QUOTE with its arrow bobbing; in the sky a dark game window holds the chip THE TEXT, \"Quote went\" / \"quiet?\" (quiet in the accent) and \"Send this text.\", with the source line \"Sources: ServiceTitan, Jobber, Housecall Pro\" under them (the window is tall enough to keep it 15 px inside its rule). Host and dialog box hidden. On \"quiet\" cut in to the phone close-up in the cab: the A-pillars down the frame edges, the roof liner, the mirror and the swinging air freshener round a dusk windshield; the hook on a title plate up top (\"Quote went quiet?\" / \"Send this text.\" and the same Sources line); your phone big in the truck's dash mount, with the same chrome and contact as the text section (9:41 status bar, avatar, Homeowner): the quote you sent, Quote.pdf, Seen, and their typing bubble whose dots blink, stop and never become a reply; the dash, its vents, the glovebox, the cup holder with a coffee, the keys and a clipboard of quotes fill the lower frame; Snow steps up big in the cab (about three times his usual size). On \"One\" cut back out to the street, Snow on at his usual size; stars wink in the window's corners, the typing bubble over the front door blinks.",
    "t": 0.0,
    "word": 0,
    "end": 17.907
@@ -38,7 +38,7 @@
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "The window shrinks into the sky (the houses show again); \"Send this text.\" slams in the accent, 'Not \"just checking in.\"' under it; the dialog box comes in; Snow points up at it.",
+   "text": "The window shrinks into the sky (the houses show again); \"Send this text.\" slams in the accent with sparks at the window's two sides (never on the words), 'Not \"just checking in.\"' under it; the dialog box comes in; Snow points up at it.",
    "t": 3.6,
    "word": 9,
    "end": 4.839
@@ -206,7 +206,7 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "World: the chat set, the phone in the truck's dash mount (road rushing in the windshield, the air freshener swinging). The chat with Homeowner: your quote from before (\"Here's your quote for the new water heater.\"), read. A draft bubble opens, empty, with a blinking cursor.",
+   "text": "World: the chat set, the phone in the truck's dash mount (road rushing in the windshield, the air freshener swinging). The chat with Homeowner (the same header as the hook's close-up): your quote from before (\"Here's your quote for the new water heater.\"), read. A draft bubble opens, empty, with a blinking cursor.",
    "t": 33.456,
    "word": 93,
    "end": 46.942
@@ -314,7 +314,7 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "The laptop slides off to the left; a game window slides in where it was and the 59% counts up from 85% of itself as it is said, landing with sparks. Source line: Housecall Pro survey, 1,040 U.S. homeowners, 2025.",
+   "text": "The laptop slides off to the left; a game window slides in where it was and the 59% counts up from 85% of itself as it is said, at the 37%'s size, with sparks beside it (not on it). Both source lines land inside the window's lower third on the same frame as the 59%: \"Housecall Pro survey,\" / \"1,040 U.S. homeowners, 2025\".",
    "t": 55.642,
    "word": 152,
    "end": 56.822
@@ -326,7 +326,7 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "\"of homeowners\" / \"expect text updates.\" under the 59%; the phone's bubble gets a green check that pops, with sparks.",
+   "text": "\"of homeowners\" / \"expect text updates.\" under the 59%, above the source lines; the phone's bubble gets a green check that pops, with sparks.",
    "t": 56.822,
    "word": 156,
    "end": 60.741
@@ -338,7 +338,7 @@
    "sfx": "stamp",
    "shift": 0.0,
    "pin": null,
-   "text": "World: the level-up screen. The XP bar fills (LV 2) as the rule is said; a perk lands on each \"one\": + ONE NAME, + ONE JOB, + ONE QUESTION. On \"question\" the bar rolls over: LEVEL UP!, rays turning, sparks.",
+   "text": "World: the level-up screen, standing on an arcade cabinet's control deck (stick, three blinking buttons, the coin door) in place of the tiled floor. \"The rule:\" at headline size; the XP bar fills (LV 2) as the rule is said; a perk lands big under the bar on each \"one\": + ONE NAME, + ONE JOB, + ONE QUESTION. On \"question\" the bar rolls over: LEVEL UP!, rays turning, sparks; a beat later the perks settle into a small list under the bar.",
    "t": 60.741,
    "word": 165,
    "end": 71.981

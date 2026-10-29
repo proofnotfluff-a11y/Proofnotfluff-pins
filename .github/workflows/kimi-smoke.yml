@@ -37,10 +37,7 @@ jobs:
             code=$?
             set -e
             secs=$(( $(date +%s) - start ))
-            text=$(printf '%s' "$out" | python3 -c 'import json,sys
-try:
-    d=json.load(sys.stdin); print(str(d.get("result",""))[:80].replace("\n"," "), "| in", d.get("usage",{}).get("input_tokens"), "out", d.get("usage",{}).get("output_tokens"))
-except Exception as e: print("unparsed")' )
+            text=$(printf '%s' "$out" | python3 -c 'import json,sys; s=sys.stdin.read().strip(); d=json.loads(s) if s.startswith("{") else {}; u=d.get("usage") or {}; print(str(d.get("result",""))[:80].replace(chr(10)," "), "| tokens in", u.get("input_tokens"), "cache", u.get("cache_read_input_tokens"), "out", u.get("output_tokens"))' 2>/dev/null || echo unparsed)
             if printf '%s' "$out" | grep -q PONG; then
               echo "PASS $m ${secs}s: $text"; pass=$((pass+1))
             else

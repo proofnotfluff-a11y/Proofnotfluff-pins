@@ -272,10 +272,10 @@ window.SCENE = {
          the echo the loudest (gold); the window ends by y 960 (shadow included) so the host's wave clears it */
       const open = d.ease(t0 + 0.25, 8, 110);
       /* design, Oct 29: about 14 px headline to chip and 12 px chip to send line; the window starts 9 px higher and is 9 px
-         taller (same bottom), the headline moves up 8, the chip down 6, the send line down 15, the echo stays */
+         taller (same bottom), the headline moves up 11, the chip down 6, the send line down 15, the echo stays */
       d.clip(0, 0, 360, 320, () => d.win(14, 219 + open, 332, 99, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#7A3442'}));
       if (open === 0) {
-        k.slam("Don't leave reviews hanging.", 120, 680, t0 + 0.3, {size: 66, color: 'accent', from: 0.5, drop: INK});
+        k.slam("Don't leave reviews hanging.", 120, 677, t0 + 0.3, {size: 66, color: 'accent', from: 0.5, drop: INK});
         if (T >= send) {
           k.chip('ProofNotFluff', 120, 758, {size: 30});
           k.slam('Send this to whoever runs your Google profile.', 120, 817, send + 0.1, {size: 39, color: CREAM, from: 0.4});

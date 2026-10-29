@@ -328,9 +328,10 @@ window.SCENE = {
         {label: 'QUOTE', value: 'SENT', at: tQuote, hi: true},
         {label: 'FIRST JOB', value: 'UP', at: tFirst},
       ]});
-      if (T >= tQuote) k.slam('Answer the night quote', 120, 858, tQuote, {size: 39, color: CREAM, from: 0.4, drop: INK});
-      if (T >= tFirst) k.slam('before your first job.', 120, 906, tFirst, {size: 39, color: GOLD, from: 0.4, drop: INK});
-      if (T >= tJob) k.sweep(120, 948, k.measure('before your first job.', {size: 39}), 6, tJob, {color: 'accent'});
+      if (T >= tQuote) { const gh = T >= tFirst ? 46 : 30; d.win(34, 280, 292, gh, {base: DUSK, hi: '#3D2E45', lo: INK, rule: MAROON}); }
+      if (T >= tQuote) k.slam('Answer the night quote', 132, 858, tQuote, {size: 39, color: CREAM, from: 0.4, drop: INK});
+      if (T >= tFirst) k.slam('before your first job.', 132, 906, tFirst, {size: 39, color: GOLD, from: 0.4, drop: INK});
+      if (T >= tJob) k.sweep(132, 948, k.measure('before your first job.', {size: 39}), 3, tJob, {color: 'accent'});
       return host(k, T >= tJob ? 'wave' : null);
     },
   },

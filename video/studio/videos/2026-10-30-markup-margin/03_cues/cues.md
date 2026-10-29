@@ -3,11 +3,11 @@
 music: rooms
 
 ## hook "Mark up a job fifty" [sfx: pop]
-Three shots (IMPROVE 00a). Cover, frame one, host and dialog box hidden: the job site, the claim on the sign "50% MARKUP / is NOT / 50% MARGIN", chip RUN THE NUMBERS, source line "Math: JLC and Xero". On "job" cut in to the bench close-up: the claim and source on a title plate up top, the planks big (COST $1,000, +50% in orange), Snow and the dialog box come in. On "fifty" the big tape runs out to the $1,000 mark; on "percent" the markup plank blinks with sparks. On "Is" cut back out to the site: the "?" lands on "margin?".
+Four shots (IMPROVE 00a; the on-screen hook held 4.0 s at most). Cover, frame one, host and dialog box hidden: the job site, the claim on the sign "50% MARKUP / is NOT / 50% MARGIN", chip RUN THE NUMBERS, source line "Example math. Sources: JLC, Xero". On "job" cut in to the bench close-up: the claim and source on a title plate up top, the planks big (COST $1,000, +50% in orange), Snow and the dialog box come in. On "fifty" the big tape runs out to the $1,000 mark; on "percent" the markup plank blinks with sparks. On "Is" cut back out to the site: the "?" lands on "margin?".
 ## hook.nope "Nope. It's a third." [sfx: stamp]
-Stamp ONE THIRD slams across the "Margin 50%?" line. Snow shrugs.
+Cut on "Nope" (4.0 s at the latest) to the blueprint on the site office wall: the claim is gone. Plate "Your margin is"; PRICE $1,500 over the bar (COST $1,000 in wood, +$500 in orange), three brackets build under it, one per third, the markup's in gold. On "third" ONE THIRD stamps onto the plate, the markup third blinks gold, then "= 33.3% margin" lands under the bar. Snow shrugs.
 ## hook.fix "I'll show you the" [sfx: blip]
-Two chips slide in under the card: 1 THE MATH, 2 THE FIX.
+Two chips slide in under the source row: 1 THE MATH, 2 THE FIX.
 
 ## math "Let's say your cost" [sfx: whoosh]
 Room: blackboard. Chalk header: COST + MARKUP = PRICE. An empty bar outline on the right.

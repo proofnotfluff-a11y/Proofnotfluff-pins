@@ -205,6 +205,50 @@ const bench = (k, o) => {
 };
 
 /* ================================================================================================================ */
+/* the answer shot (hook, "Nope" to the math room): a cut to the job's blueprint on the site office wall. The claim is */
+/* gone; the price plank lies across the sheet, notched into three equal parts, and the orange markup is one of them. */
+/* The margin lands on "third": ONE THIRD on the plate, the markup third blinks gold, then the 33.3% under the bar. */
+const answer = (k, o) => {
+  const d = px(k), {P, DOT, fr, tx, T} = d, n = k.data.numbers;
+  /* the sheet: deep blueprint blue, a fine grid, a heavier line every 4 cells; the floor under the caption band */
+  P(0, 0, 360, 417, '#1E3A5F');
+  for (let x = 6; x < 360; x += 12) P(x, 0, 1, 417, x % 48 === 6 ? '#3B6A9E' : '#284C76');
+  for (let y = 6; y < 417; y += 12) P(0, y, 360, 1, y % 48 === 6 ? '#3B6A9E' : '#284C76');
+  P(0, 417, 360, 223, '#8C5A33'); for (let i = 0; i < 160; i++) DOT(Math.floor(hash(i * 7.7) * 360), 420 + Math.floor(hash(i * 3.9) * 216), i % 2 ? '#6B4226' : '#B07A47');
+  /* the title plate: the answer, its headline stamped on "third" */
+  d.win(14, 82, 332, 88, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
+  k.text('Your margin is', 540, 268, {size: 66, color: SAND, align: 'center', drop: INK});
+  if (T >= o.thirdAt) k.slam('ONE THIRD', 540, 352, o.thirdAt, {size: 132, color: GOLD, align: 'center', drop: INK, stamp: true});
+  /* the price over the whole bar: its label and a cream bracket */
+  tx(`PRICE ${n.price.shown}`, 180, 174, {size: 39, color: CREAM, align: 'center', drop: INK});
+  P(XB(0), 188, XB(n.price.value) - XB(0), 2, CREAM); P(XB(0), 188, 2, 6, CREAM); P(XB(n.price.value) - 2, 188, 2, 6, CREAM);
+  /* the bar: cost (raw wood) and the markup (painted orange), the bench's planks */
+  const plank = (x0, x1, base, hi, lo) => { P(x0, 196, x1 - x0, 32, INK); P(x0 + 1, 197, x1 - x0 - 2, 30, base); P(x0 + 1, 197, x1 - x0 - 2, 2, hi); P(x0 + 1, 224, x1 - x0 - 2, 3, lo);
+    for (let x = x0 + 12; x < x1 - 8; x += 31) P(x, 205 + (x % 5), 14, 1, lo); };
+  plank(XB(0), XB(n.cost.value), '#D9A066', '#F7D79B', '#B07A47');
+  plank(XB(n.cost.value), XB(n.price.value), '#F2A541', GOLD, '#B07A47');
+  tx(`COST ${n.cost.shown}`, (XB(0) + XB(n.cost.value)) / 2, 201, {size: 66, color: '#4A2E1B', align: 'center'});
+  tx(`+${n.markupUsd.shown}`, XB(n.cost.value) + 8, 201, {size: 66, color: '#4A2E1B'});
+  /* three brackets under the bar, one per third of the price, built left to right just after the cut; the markup's is gold */
+  const cut = [0, n.price.value / 3, (2 * n.price.value) / 3, n.price.value];
+  for (let i = 0; i < 3; i++) {
+    const at = o.at + 0.12 + i * 0.12; if (T < at) continue;
+    const x0 = XB(cut[i]) + 2, x1 = XB(cut[i + 1]) - 2, w = Math.round((x1 - x0) * clamp(fr(at) / 5)), c = i === 2 ? GOLD : SAND;
+    P(x0, 232, 2, 7, c); P(x0, 237, w, 2, c); if (w >= x1 - x0) P(x1 - 2, 232, 2, 7, c);
+    /* the notch where the cost splits in two: a cream tick on the plank's top and bottom edges */
+    if (i === 1) { P(XB(cut[1]) - 1, 193, 2, 6, CREAM); P(XB(cut[1]) - 1, 226, 2, 5, CREAM); }
+  }
+  /* the markup third blinks gold on "third", then the margin lands under the bar */
+  if (T >= o.thirdAt && (fr(o.thirdAt) >= 30 || Math.floor(fr(o.thirdAt) / 6) % 2 === 0)) {
+    const x0 = XB(n.cost.value) - 1, x1 = XB(n.price.value) + 1; P(x0, 194, x1 - x0, 2, GOLD); P(x0, 227, x1 - x0, 2, GOLD); P(x0, 194, 2, 35, GOLD); P(x1 - 2, 194, 2, 35, GOLD);
+  }
+  if (T >= o.thirdAt + 0.35) k.slam(`= ${n.marginPct.shown} margin`, 540, 732, o.thirdAt + 0.35, {size: 66, color: CREAM, align: 'center', drop: INK, from: 0.5});
+  /* the series chip and the source on one row */
+  k.chip('Run the numbers', 66, 816, {size: 30});
+  k.text('Example math. Sources: JLC, Xero', 426, 827, {size: 30, color: SAND});
+};
+
+/* ================================================================================================================ */
 /* the dial (math, double): the library gauge, with the needle driven here so it can swing from one margin to another */
 /* (the set's needle only rises from zero). The set draws at rest; its resting needle is painted out and the 0 mark put */
 /* back, then our needle goes on in the set's own style. The readout shows `shown`. */
@@ -248,43 +292,45 @@ window.SCENE = {
   transitions: {math: 'door', why: 'dissolve', double: 'blinds', formula: 'levelselect', close: 'gameover'},
   trauma: {'double.x2': 0.8},
   sections: {
-    /* ---- hook: three shots (IMPROVE 00a: the picture changes by 1 s and twice by 3 s, Snow on by 1 s). The cover: the job */
-    /* site, the claim on the sign (frame 0, held still to "job"). Cut in on "job" to the bench close-up: Snow and the dialog */
-    /* box come in, the big tape runs to the cost on "fifty", the markup plank blinks on "percent". Cut back out on "Is" to */
-    /* the site: the "?" lands on "margin?", the tape whips out to the whole price on "Nope" and the markup is a third of it. */
+    /* ---- hook: four shots (IMPROVE 00a: the picture changes by 1 s and twice by 3 s, Snow on by 1 s; the on-screen hook */
+    /* held 2.5 to 4.0 s, then cleared). The cover: the job site, the claim on the sign (frame 0, held still to "job"). Cut */
+    /* in on "job" to the bench close-up: Snow and the dialog box come in, the big tape runs to the cost on "fifty", the */
+    /* markup plank blinks on "percent". Cut back out on "Is" to the site: the "?" lands on "margin?". Cut on "Nope" (never */
+    /* later than 4.0 s) to the blueprint: the claim is gone, the price splits in three, ONE THIRD and 33.3% land on "third". */
     hook: (k, T) => {
       const n = k.data.numbers, d = px(k);
       const tQ = wordT(k, 'hook', /^margin/i, 3), tNope = k.S('hook.nope'), tThird = wordT(k, 'hook.nope', /^third/i, 0.9), fix = k.S('hook.fix');
       const tJob = Math.min(0.8, Math.max(0.5, wordT(k, 'hook', /^job/i, 0.76))), tFifty = wordT(k, 'hook', /^fifty/i, 1), tPct = wordT(k, 'hook', /^percent/i, 1.5);
-      const tOut = Math.min(2.6, wordT(k, 'hook', /^is$/i, 2.04));
+      const tOut = Math.min(2.6, wordT(k, 'hook', /^is$/i, 2.04)), tCut = Math.min(4.0, tNope);
       if (T >= tJob && T < tOut) {
         bench(k, {tapeAt: tFifty, pulseAt: tPct});
         k.burst(((XB(n.cost.value) + XB(n.price.value)) / 2) * 3, 730, tPct, {n: 18, r: 240, colors: ['accent', 'paper']});
         return host(k);
       }
-      site(k, {markupLabel: `+${n.markupPct.shown}`, twitch: 0.3,
-        tape: [{at: Math.min(tFifty, tOut), usd: n.cost.value}, {at: tNope, usd: n.price.value}], glowAt: tNope + 0.3, bracket: {at: tNope + 0.3, from: n.cost.value, to: n.price.value}});
+      if (T >= tCut) {
+        answer(k, {at: tCut, thirdAt: tThird});
+        if (T >= fix) {
+          const c1 = d.ease(fix, 8, 120), c2 = d.ease(fix + 0.2, 8, 120);
+          /* the two chips slide up under the source row */
+          d.clip(0, 296, 360, 36, () => { k.chip('1  The math', 240, 927 + c1 * 3, {size: 30, fill: 'accent', color: INK}); k.chip('2  The fix', 560, 927 + c2 * 3, {size: 30, fill: 'accent', color: INK}); });
+          k.burst(400, 940, fix + 0.1, {n: 12, r: 160});
+        }
+        return host(k, T < fix ? 'shrug' : null);
+      }
+      site(k, {markupLabel: `+${n.markupPct.shown}`, twitch: 0.3, tape: [{at: Math.min(tFifty, tOut), usd: n.cost.value}]});
       /* the claim on the sign, settled from frame 0, centred on the sign (x 42 to 1038) */
       const l3 = `${n.doubleMarginPct.shown} margin`, w3 = k.measure(l3, {size: 132}), x3 = 540 - w3 / 2;
       k.slam(`${n.markupPct.shown} markup`, 540, 268, -1, {size: 132, color: CREAM, align: 'center', drop: INK});
       k.slam('is NOT', 540, 412, -1, {size: 66, color: 'accent', align: 'center', drop: INK, glintAt: 0.5});
       k.slam(l3, 540, 486, -1, {size: 132, color: CREAM, align: 'center', drop: INK, glintAt: 0.9});
       if (T >= tQ) k.slam('?', x3 + w3 + 12, 486, tQ, {size: 132, color: GOLD, from: 0.8, drop: INK});
-      strike(k, x3 - 6, 548, k.measure(n.doubleMarginPct.shown, {size: 132}) + 12, tNope + 0.4);
-      /* the ground: the chip and the source on a plate from frame 0; the stamp lands on the third; the two chips */
+      /* the ground: the chip and the source on a plate from frame 0 */
       plate(d, 14, 256, 200, 44);
       k.chip('Run the numbers', 66, 786, {size: 30});
       k.text('Example math. Sources: JLC, Xero', 66, 856, {size: 30, color: SAND});
-      if (T >= tThird) stampBox(k, 'A THIRD', 798, 786, tThird);
-      if (T >= fix) {
-        const c1 = d.ease(fix, 8, 120), c2 = d.ease(fix + 0.2, 8, 120);
-        /* 15 px clear of the RUN THE NUMBERS plate */
-        d.clip(0, 296, 360, 36, () => { k.chip('1  The math', 240, 927 + c1 * 3, {size: 30, fill: 'accent', color: INK}); k.chip('2  The fix', 560, 927 + c2 * 3, {size: 30, fill: 'accent', color: INK}); });
-        k.burst(400, 940, fix + 0.1, {n: 12, r: 160});
-      }
       /* the cover frame has no host; Snow and the dialog box come in together on "job" and stay */
       if (T < tJob) return {host: false, speech: false};
-      return host(k, T >= tNope && T < fix ? 'shrug' : null);
+      return host(k);
     },
 
     /* ---- math: the register rings the quote up (cost, the markup, the price); the display splits the price in three; */

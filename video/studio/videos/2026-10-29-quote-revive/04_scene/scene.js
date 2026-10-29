@@ -342,7 +342,7 @@ const quietPhone = (k) => {
   const a = 'Quote went ', wa = k.measure(a, {size: 66}), x0 = 540 - (wa + k.measure('quiet?', {size: 66})) / 2;
   k.text(a, x0, 276, {size: 66, color: CREAM, drop: INK}); k.text('quiet?', x0 + wa, 276, {size: 66, color: 'accent', drop: INK});
   k.text('Send this text.', 540, 352, {size: 66, color: CREAM, align: 'center', drop: INK});
-  k.text('The Text, lesson 2', 540, 432, {size: 30, color: SAND, align: 'center'});
+  k.text('Sources: Jobber, ServiceTitan', 540, 432, {size: 30, color: SAND, align: 'center'});
   /* the phone in its mount, big: bezel, header, your quote (a PDF card, Seen), the typing bubble */
   const X = 150, Y = 176, W = 182, H = 268;
   P(X + 50, Y + H, 82, 14, '#4A4E5A'); P(X + 50, Y + H, 82, 2, '#9AA0AD');
@@ -388,27 +388,28 @@ window.SCENE = {
       lawn(d);
       /* the window in the sky: tall for the hook card, shrinks to its two lines on "text instead", grows back for the
          stakes (whole pixels, 8 frames each way) */
-      const hCard = 146, hSend = 66;
+      const hCard = 150, hSend = 66;
       const h = T < tSend ? hCard : (T < tSt ? hSend + Math.round((hCard - hSend) * (1 - eo(d.fr(tSend) / 8))) : hSend + Math.round((hCard - hSend) * eo(d.fr(tSt) / 8)));
       skyWin(d, h);
       if (T < tSend) {   /* the hook card */
         const cw = k.measure('THE TEXT', {size: 30}) + 36;
         k.chip('The Text', 540 - cw / 2, 276, {size: 30, fill: 'accent', color: INK});
-        k.slam('Quote went', 540, 330, -1, {size: 132, color: CREAM, align: 'center', drop: INK});
-        k.slam('quiet?', 540, 466, -1, {size: 132, color: 'accent', align: 'center', drop: INK});
-        k.text('Send this text.', 540, 612, {size: 66, color: CREAM, align: 'center'});
-        k.burst(700, 530, 0.45, {n: 18, r: 260}); k.sweep(390, 600, 300, 6, 1.2, {color: 'accent'});
+        k.slam('Quote went', 540, 320, -1, {size: 132, color: CREAM, align: 'center', drop: INK});
+        k.slam('quiet?', 540, 456, -1, {size: 132, color: 'accent', align: 'center', drop: INK});
+        k.text('Send this text.', 540, 594, {size: 66, color: CREAM, align: 'center'});
+        k.text('Sources: Jobber, ServiceTitan', 540, 666, {size: 30, color: SAND, align: 'center'});
+        k.burst(700, 520, 0.45, {n: 18, r: 260}); k.sweep(390, 590, 300, 6, 1.2, {color: 'accent'});
         /* after frame 0: stars wink in the card's empty corners (never on a line of text), and over the QUOTE house a
            typing bubble blinks its dots and never turns into a reply */
         if (T >= 0.4) {
           [[32, 100], [328, 100], [42, 168], [318, 164], [30, 222], [330, 222]].forEach(([x, y], i) => { const f = Math.floor((T - 0.4) * 6) + i * 2; d.twinkle(x, y, f % 6 < 4 ? f % 4 : 0, i % 2 ? GOLD : CREAM); });
-          const bx = 80, by = 236;
+          const bx = 80, by = 240;
           d.P(bx - 1, by - 1, 30, 16, INK); d.P(bx, by, 28, 14, CREAM); d.P(bx + 20, by + 14, 4, 3, CREAM); d.P(bx + 22, by + 17, 2, 2, CREAM);
           for (let i = 0; i < 3; i++) { const on = (Math.floor((T - 0.4) * 4) % 4) === i; d.P(bx + 5 + i * 7, by + 5 - (on ? 1 : 0), 4, 4, on ? '#6B7080' : '#C9CCD3'); }
         }
         /* "just checking in" from the van, struck once it has been read */
         if (T >= tSkip) {
-          const s = 'Just checking in!', bw = Math.ceil(d.tw(s)) + 12, bx = 310 - bw, by = 238, f = d.fr(tSkip), up = f < 4 ? [4, 2, 1, 0][f] : 0;
+          const s = 'Just checking in!', bw = Math.ceil(d.tw(s)) + 12, bx = 310 - bw, by = 242, f = d.fr(tSkip), up = f < 4 ? [4, 2, 1, 0][f] : 0;
           d.P(bx - 1, by - 1 + up, bw + 2, 21, INK); d.P(bx, by + up, bw, 19, CREAM); d.P(bx, by + up, bw, 1, '#FFFFFF'); d.P(bx + bw - 40, by + 19 + up, 5, 4, CREAM); d.P(bx + bw - 39, by + 23 + up, 3, 2, CREAM);
           d.tx(s, bx + 6, by + 3 + up, {color: '#4A4E5A'});
           if (T >= tSkip + 0.4) d.P(bx + 4, by + 9 + up, Math.round((bw - 8) * eo(d.fr(tSkip + 0.4) / 5)), 2, RED);

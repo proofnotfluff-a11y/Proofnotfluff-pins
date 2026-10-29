@@ -10,7 +10,11 @@ World: the chat in the truck. Three shots (IMPROVE 00a). Frame 0, the cover, set
 ## hook.copy "Here's your reply to" [sfx: whoosh]
 Cut back out (before 2.6 s) to the truck: the card on the screen holds the hook; "Copy this reply." gets an accent sweep and typing dots show under it. Snow points at the phone.
 ## hook.43 "Forty-three percent of contractors" [sfx: tick]
-The card turns to the number: "43%" in the accent, "of contractors don't" / "answer reviews.", source small: ACHR News survey, 2024. A "New review" notification drops in over the phone's top and goes back up; sparks on the 43%.
+The card turns to the number: "43%" in the accent, "of contractors" / "don't answer" / "reviews". A "New review" notification drops in over the phone's top and goes back up; sparks on the 43%.
+## hook.survey "in one HVAC survey" [sfx: tick]
+The source line types in under the card: ACHR News survey, 2024.
+## hook.sites "on third-party sites." [sfx: blip]
+The scope lands in the accent under it: "on third-party sites".
 
 ## stakes "That's The ACHR News." [sfx: whoosh]
 World: the slot machine (level select). The crown reads ACHR NEWS + CLEAR SEAS; the reels idle on ?, ?, ?.

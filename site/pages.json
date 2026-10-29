@@ -7723,7 +7723,7 @@
    "kind": "datapage",
    "module": "dp_pipeline",
    "draft": true,
-   "title": "Chicago Construction Projects in Progress by Neighborhood | ProofNotFluff",
+   "title": "Open Chicago Construction Projects by Neighborhood | ProofNotFluff",
    "desc": "Free weekly count of Chicago building jobs of $500,000 or more still waiting on a certificate of occupancy, by community area and months since the permit. From City records.",
    "eyebrow": "Free weekly tracker",
    "h1": "Chicago's Big Building Jobs, by How Far Along They Are",
@@ -7737,7 +7737,7 @@
     [
      "Inspections, certificate of occupancy required",
      "The City record puts the job in its inspection stage. The job needs a certificate of occupancy before anyone can use the space.",
-     "Most open jobs are here, some with permits only weeks old and some several years old."
+     "Most open jobs are here, some with permits issued in the last 6 months and some more than 2 years ago."
     ],
     [
      "Temporary or partial occupancy approved",
@@ -7763,7 +7763,7 @@
    ],
    "faq": [
     [
-     "How many big construction projects are in progress in Chicago?",
+     "How many big construction projects are still open in Chicago?",
      "This page counts new construction and renovation permits in Chicago with a reported cost of $500,000 or more, issued since January 1, 2021, whose City milestone shows they still need a certificate of occupancy. Permits the City lists as suspended, expired, cancelled or revoked are left out. The count updates every Monday, and the table splits it by all 77 community areas."
     ],
     [

@@ -20,7 +20,7 @@ CSV_NAME = "chicago-construction-pipeline-by-community-area.csv"
 LEADS_SLUG = "chicago-construction-cleaning-leads"
 BUCKET_WORDS = [("b0", "Under 6 months", "under 6 mo."), ("b1", "6 to 12 months", "6 to 12 mo."),
                 ("b2", "1 to 2 years", "1 to 2 yrs"), ("b3", "Over 2 years", "over 2 yrs")]
-SHORT = {"b0": "Under 6 mo", "b2": "1 to 2 yr"}
+SHORT = {"b0": "Under 6 mo", "b2": "1 to 2 yrs"}
 
 META = {"h1": "Chicago's Big Building Jobs, by How Far Along They Are",
         "card": "Open Chicago building jobs of $500,000 or more still waiting on a certificate of occupancy, by neighborhood and by months since the permit. Updated weekly.",
@@ -69,13 +69,15 @@ CSS = ("<style>"
        "@media(max-width:599px){.pp-t{min-width:0}.pp-t th,.pp-t td{padding:9px 6px;font-size:13.5px}"
        ".pp-t .hm{display:none}.pp-co .yr{grid-template-columns:44px 1fr}.ld-tiles .lab{white-space:normal}}"
        ".pp-a{table-layout:fixed;min-width:640px}.pp-a th:first-child{width:28%}.pp-t .sh{display:none}"
-       "#weeks tbody th{white-space:nowrap}"
+       "#weeks tbody th{white-space:nowrap}.pp-one .ld-buybtn{margin-top:16px}.pp-one .cta p{text-wrap:pretty}.pp-more .pp-tw{border-color:transparent}"
+       "@media(min-width:900px){#pmap .gm-side{align-content:space-between}#weeks .pp-tw{max-width:560px}}"
        "#pmap .gm-a path.sel{stroke:var(--ink);stroke-width:3;paint-order:normal}"
        ".gm-info .pp-by{margin:12px 0 0;padding-top:10px;border-top:1px solid var(--line);font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}"
        ".gm-info .pp-by+dl{margin-top:6px}"
        "@media(min-width:860px){#pmap .gm-stage svg{max-height:600px}}"
-       "@media(max-width:599px){.pp-more,.pp-more .pp-tw{min-width:0;max-width:100%}.pp-a{min-width:0}.pp-a th:first-child{width:34%}"
-       ".pp-t th,.pp-t td{padding:9px 5px}.pp-t .lg{display:none}.pp-t .sh{display:inline}"
+       "@media(max-width:599px){.pp-more,.pp-more .pp-tw{min-width:0;max-width:100%}.pp-a{min-width:0}.pp-a th:first-child{width:30%}"
+       ".pp-t th,.pp-t td{padding:9px 5px}.pp-t th:first-child,.pp-t td:first-child{padding-left:12px}.pp-t th:last-child,.pp-t td:last-child{padding-right:12px}"
+       ".pp-t thead th{vertical-align:bottom;text-wrap:balance}.pp-t .lg{display:none}.pp-t .sh{display:inline}"
        "#pmap .gm-seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}"
        "#pmap .gm-seg label{justify-content:center;padding:4px 6px;font-size:13.5px;line-height:1.15;text-align:center}}"
        "@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .pp-co .bar.reno i,:root:not([data-theme=light]) .pp-key span.reno::before{background:color-mix(in srgb,var(--accent) 55%,var(--ink))}}:root[data-theme=dark] .pp-co .bar.reno i,:root[data-theme=dark] .pp-key span.reno::before{background:color-mix(in srgb,var(--accent) 55%,var(--ink))}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) #next .ld-cta{background:#222a3b;border-color:#3a4152;border-top:3px solid var(--accent)}}:root[data-theme=dark] #next .ld-cta{background:#222a3b;border-color:#3a4152;border-top:3px solid var(--accent)}"
@@ -216,7 +218,7 @@ def page_html(p):
     pulled = M.nice_date(d["asOf"])
     co = {r["year"]: r for r in d["cohorts"]}
     y1, y2 = int(d["asOf"][:4]) - 1, int(d["asOf"][:4]) - 2
-    lede = (f'{c["open"]:,} building jobs in Chicago with a reported cost of $500,000 or more are still waiting on their certificate of occupancy, the City\'s final sign-off '
+    lede = (f'{c["open"]:,} building jobs in Chicago permitted since {src["since"][:4]} with a reported cost of $500,000 or more are still waiting on their certificate of occupancy, the City\'s final sign-off '
             f'before a building can be used. {plural(c["partial"], "of them already has", "of them already have")} temporary or partial occupancy approved. '
             "Here is where they are and how long ago each permit was issued.")
     tiles = ('<div class="tiles ld-tiles">'
@@ -286,7 +288,7 @@ def selftest():
     finally:
         os.unlink(tmp.name)
     assert html.count("<h1>") == 1 and "—" not in html and "–" not in html, "one h1, no dashes"
-    assert "3 building jobs in Chicago with a reported cost of $500,000" in html and "1 of them already has temporary or partial occupancy" in html, "lede counts"
+    assert "3 building jobs in Chicago permitted since 2021 with a reported cost of $500,000" in html and "1 of them already has temporary or partial occupancy" in html, "lede counts"
     assert "permitted in 2024, 50%" in html and "permitted in 2025, 50%" in html, "cohort sentence from the counts"
     assert "first weekly snapshot" in html, "first week says moves start next week"
     assert "PLANTED" not in html and "PLANTED" not in json.dumps(d), "no street or address reaches the page"

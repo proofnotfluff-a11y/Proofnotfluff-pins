@@ -680,8 +680,15 @@ def cmd_ci_voice():
         if req["takes"] != "all":   # keep the other takes from the renders branch
             sh(["git", "-C", ROOT, "fetch", "--depth", "1", "origin", f"+refs/heads/{BRANCH}:refs/remotes/origin/{BRANCH}"])
             os.makedirs(old, exist_ok=True)
-            arc = subprocess.run(["git", "-C", ROOT, "archive", f"origin/{BRANCH}", f"studio/{slug}/01_voice/takes"], capture_output=True)
-            subprocess.run(["tar", "-x", "-C", old], input=arc.stdout)
+            prev12 = prev.get("voiceSha256", "")[:12]   # the takes of the voice main has now (its voices/ copy first)
+            arc = subprocess.run(["git", "-C", ROOT, "archive", f"origin/{BRANCH}", f"studio/{slug}/voices/{prev12}/takes"], capture_output=True)
+            if arc.returncode or not prev12:
+                arc = subprocess.run(["git", "-C", ROOT, "archive", f"origin/{BRANCH}", f"studio/{slug}/01_voice/takes"], capture_output=True)
+                subprocess.run(["tar", "-x", "-C", old], input=arc.stdout)
+            else:
+                subprocess.run(["tar", "-x", "-C", old], input=arc.stdout)
+                os.makedirs(os.path.join(old, "studio", slug, "01_voice"), exist_ok=True)
+                shutil.move(os.path.join(old, "studio", slug, "voices", prev12, "takes"), os.path.join(old, "studio", slug, "01_voice", "takes"))
         info = []
         for i, t in enumerate(takes):
             n = i + 1
@@ -744,13 +751,18 @@ def publish_audio(done):
         git("worktree", "add", "-B", BRANCH, wt, f"origin/{BRANCH}")
     else:
         raise SystemExit("ERROR publish: no video-renders branch")
+    queued = {i["slug"] for i in load_queue()["items"]}
     for slug, out in done:
-        dst = os.path.join(wt, "studio", slug, "01_voice")
-        if os.path.exists(dst):
-            shutil.rmtree(dst)
-        os.makedirs(dst)
-        shutil.copytree(os.path.join(out, "takes"), os.path.join(dst, "takes"))
-        shutil.copy(os.path.join(out, "voice.mp3"), os.path.join(dst, "voice.mp3"))
+        # every voice under voices/<sha12>/; 01_voice too unless the lesson is queued (its pinned code reads 01_voice)
+        dsts = [os.path.join(wt, "studio", slug, "voices", sha(os.path.join(out, "voice.mp3"))[:12])]
+        if slug not in queued:
+            dsts.append(os.path.join(wt, "studio", slug, "01_voice"))
+        for dst in dsts:
+            if os.path.exists(dst):
+                shutil.rmtree(dst)
+            os.makedirs(dst)
+            shutil.copytree(os.path.join(out, "takes"), os.path.join(dst, "takes"))
+            shutil.copy(os.path.join(out, "voice.mp3"), os.path.join(dst, "voice.mp3"))
     git("add", "-A", cwd=wt)
     if git("diff", "--cached", "--quiet", cwd=wt, check=False).returncode:
         git("commit", "-m", "Studio voice: " + ", ".join(s for s, _ in done), cwd=wt)
@@ -759,7 +771,7 @@ def publish_audio(done):
         git("add", vdir(slug, "01_voice", "takes.json"), vdir(slug, "02_transcript"))
     if git("diff", "--cached", "--quiet", check=False).returncode:
         git("commit", "-m", "Studio words: " + ", ".join(s for s, _ in done))
-        push_retry(ROOT, "main")
+        push_retry(ROOT, os.environ.get("GITHUB_REF_NAME") or "main")   # a lab branch's voice stays on that branch
 
 
 def cmd_rewords(slug):
@@ -776,12 +788,18 @@ def cmd_fetch(slug):
     git("fetch", "--depth", "1", "origin", f"+refs/heads/{BRANCH}:refs/remotes/origin/{BRANCH}")
     dst = vdir(slug, "01_voice", "audio")
     os.makedirs(dst, exist_ok=True)
-    arc = subprocess.run(["git", "-C", ROOT, "archive", f"origin/{BRANCH}", f"studio/{slug}/01_voice"], capture_output=True)
+    # each voice is kept under voices/<sha12>/ (a re-voice of a queued lesson never overwrites 01_voice, which the queued
+    # version's own code reads, so posting the old cut keeps working while the rebuild is gated); 01_voice is the fallback
+    want = json.load(open(vdir(slug, "01_voice", "takes.json")))["voiceSha256"][:12]
+    for rel in (f"studio/{slug}/voices/{want}", f"studio/{slug}/01_voice"):
+        arc = subprocess.run(["git", "-C", ROOT, "archive", f"origin/{BRANCH}", rel], capture_output=True)
+        if not arc.returncode:
+            break
     if arc.returncode:
         raise SystemExit(f"ERROR fetch: no audio for {slug} on {BRANCH} yet")
     tmp = tempfile.mkdtemp()
     subprocess.run(["tar", "-x", "-C", tmp], input=arc.stdout, check=True)
-    src = os.path.join(tmp, "studio", slug, "01_voice")
+    src = os.path.join(tmp, *rel.split("/"))
     for f in os.listdir(src):
         p = os.path.join(src, f)
         (shutil.copytree(p, os.path.join(dst, f), dirs_exist_ok=True) if os.path.isdir(p) else shutil.copy(p, dst))
@@ -1014,7 +1032,8 @@ def cmd_stills(slug, look=None):
     out = vdir(slug, "05_render", "sheets"); os.makedirs(out, exist_ok=True)
     for f in glob.glob(os.path.join(out, "*")):
         os.remove(f)
-    times = [0.0, 0.5] + [min(c["t"] + 0.6, c["end"] - 0.05) for c in cues["cues"][1:]] + [cues["duration"] - 0.3]
+    # the opening every half second to 3 s (the hook rules, IMPROVE 00a), then one frame a cue
+    times = [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0] + [t for t in (min(c["t"] + 0.6, c["end"] - 0.05) for c in cues["cues"][1:]) if t > 3.2] + [cues["duration"] - 0.3]
     pw, b, pg = open_stage(slug, look)
     paths, labels = [], []
     for i, t in enumerate(times):
@@ -1556,7 +1575,7 @@ def hook_report(slug, pg=None):
     own = pg is None
     if own:
         pw, b, pg = open_stage(slug)
-    events, host_at, anchor, last = [], None, None, -9.0
+    events, peaks, host_at, anchor, last = [], [], None, None, -9.0
     for i in range(int(HOOK["changes_in"] * HOOK_FPS) + 1):
         t = i / HOOK_FPS
         r = pg.evaluate(f"({HOOK_JS})({t:.4f})")
@@ -1568,13 +1587,13 @@ def hook_report(slug, pg=None):
         frac = float((np.abs(f - anchor).max(axis=2) > HOOK_LEVEL).mean())
         if frac >= HOOK_DIFF:
             if t - last >= HOOK_MERGE:
-                events.append(round(t, 2)); last = t
+                events.append(round(t, 2)); peaks.append(round(frac, 3)); last = t
             anchor = f
     if own:
         b.close(); pw.stop()
     words = json.load(open(vdir(slug, "02_transcript", "words.json")))["words"]
     n, said = spoken_hook(words)
-    rep = {"first_change": events[0] if events else None, "changes_by_3s": len(events), "changes": events, "host_at": host_at,
+    rep = {"first_change": events[0] if events else None, "changes_by_3s": len(events), "changes": events, "share": peaks, "host_at": host_at,
            "hook_words": n, "hook_said_by": round(said, 2), "seconds": round(cues["duration"], 2)}
     bad = []
     if rep["first_change"] is None or rep["first_change"] > HOOK["first_change_by"]:

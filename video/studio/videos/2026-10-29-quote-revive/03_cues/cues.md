@@ -61,10 +61,10 @@ World: the mail desk at night (our own piece): a window with the moon and stars,
 "Text it." slams over the phone in the accent; the phone's text bubble lights with read ticks. "Don't email it." lands over the laptop; envelopes keep stacking into the inbox, unopened.
 ## turn.st "ServiceTitan's follow-up webinar says" [sfx: tick]
 Line under the desk: "Texts beat email on open rates." Source: ServiceTitan follow-up webinar, 2026.
-## turn.hcp "in a Housecall Pro survey," [sfx: whoosh]
-The laptop slides off to the left; a game window slides in where it was. Source line: Housecall Pro survey, 1,040 U.S. homeowners, 2025.
-## turn.pct "fifty-nine percent of homeowners" [sfx: tick]
-59% counts up from 85% of itself and lands with sparks; "of homeowners" / "expect text updates." under it; the phone's bubble gets a green check that pops, with sparks.
+## turn.hcp "And fifty-nine percent of" [sfx: whoosh]
+The laptop slides off to the left; a game window slides in where it was and the 59% counts up from 85% of itself as it is said, landing with sparks. Source line: Housecall Pro survey, 1,040 U.S. homeowners, 2025.
+## turn.pct "homeowners in a Housecall Pro survey" [sfx: tick]
+"of homeowners" / "expect text updates." under the 59%; the phone's bubble gets a green check that pops, with sparks.
 ## close "One name, one job, one" [sfx: stamp]
 World: the level-up screen. The XP bar fills (LV 2) as the rule is said; a perk lands on each "one": + ONE NAME, + ONE JOB, + ONE QUESTION. On "question" the bar rolls over: LEVEL UP!, rays turning, sparks.
 ## close.send "Send this to whoever follows" [sfx: sting]

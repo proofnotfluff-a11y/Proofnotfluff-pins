@@ -534,7 +534,7 @@ window.SCENE = {
     /* ---- the turn: the mail desk. Text it, don't email it; then the 59% */
     turn: (k, T) => {
       const n = k.data.numbers, d = px(k), t0 = k.S('turn'), tText = k.S('turn.text'), tDont = wordT(k, 'turn.text', /^Don/i, 0.6);
-      const tSt = k.S('turn.st'), tHcp = k.S('turn.hcp'), tPct = wordT(k, 'turn.pct', /^fifty/i), tFits = wordT(k, 'turn.pct', /^updates/i, 1.4) + 0.3;
+      const tSt = k.S('turn.st'), tHcp = k.S('turn.hcp'), tPct = wordT(k, 'turn.hcp', /^fifty/i, 0.2), tFits = wordT(k, 'turn.pct', /^updates/i, 1.4) + 0.3;
       desk(k, {t0, textAt: tText + 0.2, laptopOut: tHcp, checkAt: tFits});
       d.win(14, 86, 332, 26, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: null});
       k.slam('The part people skip.', 72, 273, t0 + 0.1, {size: 39, color: GOLD, from: 0.5});

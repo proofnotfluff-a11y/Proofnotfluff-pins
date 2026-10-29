@@ -1,19 +1,69 @@
 {
  "about": "Chicago Trades News, our own words with the source of each item linked. Built by the trades-news run; checked by tools/news_site.py.",
- "updated": "2026-10-27",
+ "updated": "2026-10-29",
  "items": [
+  {
+   "id": "fire-stadium-enclosure-permit",
+   "date": "2026-10-26",
+   "effective": null,
+   "checked": "2026-10-29",
+   "stage": "under way",
+   "category": "Jobs and projects",
+   "trades": [
+    "General contractors",
+    "Electrical",
+    "Plumbing",
+    "HVAC",
+    "Roofing",
+    "Painting"
+   ],
+   "headline": "Chicago Fire stadium in The 78 gets its enclosure permit",
+   "what": "The City issued an enclosure permit for McDonald's Park, the privately funded $750 million Chicago Fire FC stadium at 1331 S. Wells in The 78, covering facade and exterior work before interiors start. Pepper Construction, GMA Construction Group and All Construction Group are the joint venture general contractors. Opening is set for the 2028 MLS season.",
+   "why": "Exterior and then interior trade packages follow an enclosure permit. Check with the joint venture general contractors on how they take subcontractor bids and what prequalification they require.",
+   "sources": [
+    {
+     "name": "Urbanize Chicago, enclosure permit",
+     "url": "https://chicago.urbanize.city/post/enclosure-permit-issued-mcdonalds-park"
+    }
+   ]
+  },
+  {
+   "id": "up-top-building-tif",
+   "date": "2026-10-26",
+   "effective": null,
+   "checked": "2026-10-29",
+   "stage": "passed",
+   "category": "Jobs and projects",
+   "trades": [
+    "General contractors",
+    "Electrical",
+    "Plumbing",
+    "HVAC",
+    "Roofing",
+    "Painting"
+   ],
+   "headline": "City Council approves $7.3 million TIF for Altgeld Gardens community center rehab",
+   "what": "The City Council approved $7.3 million in TIF funding and landmark status for the 1945 Up Top Building at 13100 S. Ellis in Altgeld Gardens. By The Hand Club For Kids plans a $25.8 million conversion into a community center. Construction is expected to begin in fall 2026 and finish in fall 2027.",
+   "why": "A City funded landmark rehab on the Far South Side is starting soon. Check who the general contractor will be and whether the TIF carries City hiring or contracting requirements.",
+   "sources": [
+    {
+     "name": "Urbanize Chicago, Up Top Building funding",
+     "url": "https://chicago.urbanize.city/post/city-council-approves-funding-top-building"
+    }
+   ]
+  },
   {
    "id": "chicago-2027-budget-head-tax",
    "date": "2026-10-21",
    "effective": null,
-   "checked": "2026-10-27",
+   "checked": "2026-10-29",
    "stage": "proposed",
    "category": "Tax and pay",
    "trades": [
     "All trades"
    ],
    "headline": "Chicago's 2027 budget plan brings back a per-worker tax on large employers",
-   "what": "Mayor Johnson's proposed 2027 budget includes a tax of $25 a month for each employee at companies with more than 125 workers, which the City expects to raise about $100 million a year. Last year the City Council rejected a version at $33 per worker for companies with more than 500 workers, and the Council still has to vote on this one by the end of the year.",
+   "what": "Mayor Johnson's proposed 2027 budget includes a tax of $25 a month for each employee at companies with more than 125 workers, which the City expects to raise about $100 million a year. Last year the Council rejected a version at $33 per worker. Council budget hearings began October 26, and the budget needs 26 of 50 votes to pass.",
    "why": "The tax only applies above 125 workers, so check your headcount if you are near that line. Larger contractors and cleaning or facility service firms should follow the budget hearings and the vote.",
    "sources": [
     {
@@ -23,6 +73,10 @@
     {
      "name": "WBEZ, head tax returns in the budget plan",
      "url": "https://www.wbez.org/city-hall/2026/10/21/mayor-brandon-johnson-failed-corporate-head-tax-resurrected-proposed-budget"
+    },
+    {
+     "name": "Fox 32, budget hearings begin",
+     "url": "https://www.fox32chicago.com/news/chicago-budget-hearings-begin-questions-over-corporate-head-tax-police-misconduct-costs"
     }
    ]
   },
@@ -30,14 +84,14 @@
    "id": "chicago-lease-tax-20-percent",
    "date": "2026-10-21",
    "effective": null,
-   "checked": "2026-10-27",
+   "checked": "2026-10-29",
    "stage": "proposed",
    "category": "Tax and pay",
    "trades": [
     "All trades"
    ],
    "headline": "Budget plan would raise Chicago's tax on equipment rentals and cloud software to 20%",
-   "what": "Mayor Johnson's proposed 2027 budget raises the City's personal property lease transaction tax from 15% to 20%, worth about $234 million in 2027. That tax covers rented equipment and cloud software; car leasing would stay at 15%.",
+   "what": "Mayor Johnson's proposed 2027 budget raises the City's personal property lease transaction tax from 15% to 20%, worth about $234 million in 2027. That tax covers rented equipment, software and cloud computing; car leasing would stay at 15%. City Council budget hearings began October 26 and the Council has not voted.",
    "why": "If it passes, rented lifts and tools and software subscriptions such as scheduling, invoicing and office apps could cost more. Check which of your bills already carry the Chicago lease tax so you know what would change.",
    "sources": [
     {
@@ -47,6 +101,10 @@
     {
      "name": "WTTW, Johnson's proposed 2027 budget",
      "url": "https://news.wttw.com/2026/10/21/johnson-touts-176b-proposed-budget-2027-let-us-plant-seeds-fair-chicago"
+    },
+    {
+     "name": "Chicago Sun-Times, budget hearings",
+     "url": "https://chicago.suntimes.com/city-hall/2026/10/26/chicago-mayor-brandon-johnson-2027-proposed-budget-defense-hearings"
     }
    ]
   },

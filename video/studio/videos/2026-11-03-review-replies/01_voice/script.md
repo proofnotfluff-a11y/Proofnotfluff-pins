@@ -1,10 +1,10 @@
 # Script: Answer your reviews; many contractors don't (Lesson 7, Reviews Clinic; trades-first bank lesson 8, facts re-read Oct 28; hook and length rebuilt Oct 29)
 
-[leaning in] Got a one-star review? Here's your reply to copy. In one HVAC survey, forty-three percent of contractors don't answer reviews.
+[leaning in] Got a one-star review? Here's your reply to copy. Forty-three percent of contractors in one HVAC survey said they don't answer reviews on third-party sites.
 
-[matter-of-fact] That's The ACHR News. They asked four hundred homeowners, and ninety-one percent said reviews are important when they pick an HVAC contractor. Fifty-six percent look on Google.
+[matter-of-fact] That's The ACHR News. Ninety-one percent of four hundred homeowners said reviews are important when they pick an HVAC contractor. Fifty-six percent check reviews like yours on Google.
 
-[curious] And the contractors? [quickly] Forty-five percent answer reviews on third-party sites, forty-three percent don't, and thirteen percent don't know.
+[matter-of-fact] So if you answer reviews on those sites, you're with the forty-five percent who do.
 
 [warmly] Here's the five-star reply. "Thanks for trusting us with your furnace. Glad it's running right. We're here when you need us."
 

@@ -134,14 +134,14 @@ window.SCENE = {
   sections: {
     // ---- hook: three shots (IMPROVE 00a: the picture changes by 1 s and twice by 3 s, Snow on by 3 s). The cover: the phone
     // in the truck, the hook card on its screen, settled on frame 0, no host or dialog. Cut in on "one-star" to the review
-    // close-up (Snow and the dialog on). Cut back out on "Here's" to the truck; the card turns to the 43% on "In".
+    // close-up (Snow and the dialog on). Cut back out on "Here's" to the truck; the card turns to the 43% on "Forty-three".
     hook: (k, T) => {
       const n = k.data.numbers, t43 = wordT(k, 'hook.43', /^forty/i, 1.0), tStat = k.S('hook.43');
       const tIn = Math.min(0.8, Math.max(0.5, wordT(k, 'hook', /^one-star/i, 0.5))), tRev = wordT(k, 'hook', /^review/i, tIn + 0.3);
       const tOut = Math.min(2.6, k.S('hook.copy'));
       /* the close-up is a real reframe: the screen fills the frame and Snow steps in, bigger (0.75, hat clear of the reply box), in front of the keyboard */
       if (T >= tIn && T < tOut) { closeUp(k, {pulseAt: tRev}); return {hostPose: k.talking() ? 'talk' : 'point', hostScale: 0.75, hostX: 190}; }
-      /* the New review banner drops on "In" and holds past "forty-three" (motion before the number) */
+      /* the New review banner drops on "Forty-three" with the number and holds past it */
       k.sets.chat({who: 'REVIEWS', clock: '7:42', msgs: [], notify: T >= tStat ? {text: 'New review', at: tStat, dur: Math.max(1.6, t43 + 1.0 - tStat)} : null});
       // the card on the screen (frame x 306..870, y 390..888): light wallpaper, dark words
       if (T < tStat) {
@@ -183,10 +183,11 @@ window.SCENE = {
       return host(k, k.live('stakes.pull') || k.live('stakes.google') ? 'point' : (k.live('stakes.asked') ? 'clip' : null));
     },
 
-    // ---- gap: the high-score table; YES, NO (the blinking row), DON'T KNOW, each on its own number
+    // ---- gap: the high-score table; NO (the blinking row, its 43% said in the hook) lands first, YES on "forty-five",
+    // DON'T KNOW (on screen only) on "who do."
     gap: (k, T) => {
       const n = k.data.numbers, t0 = k.S('gap');
-      const tYes = wordT(k, 'gap.yes', /^Forty/i), tNo = wordT(k, 'gap.no', /^Forty/i), tDk = wordT(k, 'gap.dk', /^Thirteen/i);
+      const tNo = t0 + 0.4, tYes = wordT(k, 'gap.yes', /^forty/i, 0.2), tDk = k.S('gap.dk');
       scoreTable(k, 'DO CONTRACTORS ANSWER?', ['RANK', 'ANSWER', 'SHARE'], [
         {rank: '1ST', name: 'YES', at: tYes, count: {value: n.answer.value, suffix: '%'}},
         {rank: '2ND', name: 'NO', at: tNo, hi: true, count: {value: n.noAnswer.value, suffix: '%'}},
@@ -195,7 +196,7 @@ window.SCENE = {
       const d = px(k);
       d.tx('Reviews on third-party sites', 180, 228, {color: CREAM, align: 'center'});
       d.tx(`Contractors, ACHR News survey, ${n.year.shown}`, 180, 252, {color: SAND, align: 'center', size: 30});
-      return host(k, k.live('gap.no') ? 'point' : null);
+      return host(k, k.live('gap.yes') ? 'point' : null);
     },
 
     // ---- replies: the review inbox; the example review arrives, our reply goes out a sentence at a time as it is said

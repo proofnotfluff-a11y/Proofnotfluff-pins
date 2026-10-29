@@ -210,7 +210,7 @@ window.SCENE = {
       P(220, 100, 110, 70, INK); P(222, 102, 106, 66, '#0E1430');
       for (let i = 0; i < 9; i++) { const sx = 226 + Math.floor(hash(i * 2.7) * 98), sy = 105 + Math.floor(hash(i * 4.3) * 34); d.twinkle(sx, sy, (Math.floor(d.F / 8) + i) % 10 < 4 ? (Math.floor(d.F / 8) + i) % 4 : 0, i % 3 ? '#6B7080' : CREAM); }
       d.disc(300, 120, 8, '#F4E6D3'); d.disc(304, 117, 7, '#0E1430');
-      d.dith(234, 142, 34, 24, '#4A4426', 0); P(248, 132, 2, 34, '#6B7080'); P(244, 130, 10, 3, '#6B7080'); P(246, 133, 6, 2, GOLD);
+      for (let j = 0; j < 24; j++) d.dith(249 - Math.floor(j / 2), 136 + j, 3 + j, 1, '#5A4A2A', j & 1); P(248, 132, 2, 34, '#6B7080'); P(244, 130, 10, 3, '#6B7080'); P(246, 133, 6, 2, GOLD);
       P(222, 160, 106, 6, '#151A33');
       P(274, 100, 2, 70, INK); P(220, 134, 110, 2, INK);
       P(0, 280, 360, 137, '#4A2E1B'); P(0, 280, 360, 2, '#6B4226');
@@ -239,7 +239,7 @@ window.SCENE = {
     fix: (k, T) => {
       const d = px(k), {P} = d, n = k.data.numbers, t0 = k.S('fix');
       const tP1 = W(/^Turn$/i, k.S('fix.p1')), tP2 = W(/^Use$/i, k.S('fix.p2')), tP3 = W(/^Flag$/i, k.S('fix.p3'));
-      const tCheck = W(/^check$/i, k.S('fix.check')), tRates = W(/^rates/i, tCheck, tCheck + 1.6), tItem = WE(/^quote/i, tP1, tP1 + 1.8), tPrice = W(/^price$/i, tP2, tP2 + 0.8), tFlag = WE(/^price/i, tP3, tP3 + 1.4);
+      const tCheck = W(/^check$/i, k.S('fix.check')), tRates = W(/^rates/i, tCheck, tCheck + 1.6), tItem = WE(/^quote/i, tP1, tP1 + 1.8), tPrice = W(/^price$/i, tP2, tP2 + 0.8), tFlag = WE(/^price/i, W(/^didn/i, tP3, tP3 + 0.8), tP3 + 1.4);
       const ends = [tItem, WE(/^list/i, tP2, tP2 + 1.0), tFlag];
       desk(d, '#2F6F67', '#285F58');
       // the app strip (top)

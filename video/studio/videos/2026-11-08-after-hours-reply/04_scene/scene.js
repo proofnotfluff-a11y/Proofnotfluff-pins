@@ -332,10 +332,10 @@ window.SCENE = {
       k.slam('Cleaning businesses', 540, 456, t0 + 0.05, {size: 39, color: GOLD, align: 'center', from: 0.4, drop: INK});
       k.slam('reply within an hour', 540, 501, t0 + 0.25, {size: 39, color: CREAM, align: 'center', from: 0.4, drop: INK});
       // the hero readout, over the gauge's own box: it counts with the needle
-      P(136, 226, 88, 46, INK); P(137, 227, 86, 44, '#1A332B'); P(138, 228, 84, 42, '#24453A');
+      P(141, 226, 78, 46, INK); P(142, 227, 76, 44, '#1A332B'); P(143, 228, 74, 42, '#24453A');
       if (T >= t26) k.slam(cnt(k, n.hourPct, t26, {suffix: '%'}), 540, 681, t26, {size: 132, color: GOLD, align: 'center', from: 0.3, drop: INK});
       if (T >= tFast) {
-        const pw = d.tw('Fastest trade.', 66) + 16, pop = d.fr(tFast) < 3 ? [2, 1, 0][d.fr(tFast)] : 0;
+        const pw = d.tw('Fastest trade.', 66) + 28, pop = d.fr(tFast) < 3 ? [2, 1, 0][d.fr(tFast)] : 0;
         P(180 - pw / 2 + 2, 276 + 2 - pop, pw, 28, INK); P(180 - pw / 2, 276 - pop, pw, 28, MAROON); P(180 - pw / 2, 276 - pop, pw, 2, RED);
         k.slam('Fastest trade.', 540, (279 - pop) * 3, tFast, {size: 66, color: GOLD, align: 'center', stamp: true, drop: INK});
       }

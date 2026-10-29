@@ -1,0 +1,51 @@
+{
+ "schema": "pnf.studio.qa.v1",
+ "slug": "2026-11-05-book-the-call",
+ "mp4Sha256": "fa747c73717c2b42c648e4d92df74e47b9aa22930ed336b8edf382aeb29c187c",
+ "checks": [
+  {
+   "name": "length",
+   "value": 76.533,
+   "pass": true,
+   "detail": "76.53 s (45.0 to 90.0, studio lessons)"
+  },
+  {
+   "name": "loudness",
+   "value": {
+    "lufs": -14.3,
+    "truePeak": -3.0
+   },
+   "pass": true,
+   "detail": "-14.3 LUFS (target -14 +/- 1), true peak -3.0 dBTP (at most -1.5)"
+  },
+  {
+   "name": "black",
+   "value": [],
+   "pass": true,
+   "detail": "0 black stretch(es) of 0.5 s or more"
+  },
+  {
+   "name": "frozen",
+   "value": [],
+   "pass": true,
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 69.68 s"
+  },
+  {
+   "name": "file",
+   "value": {
+    "sha256": "fa747c73717c2b42c648e4d92df74e47b9aa22930ed336b8edf382aeb29c187c",
+    "bytes": 6538121
+   },
+   "pass": true,
+   "detail": "H.264 1080x1920 30 fps, AAC, 6.5 MB, decodes clean"
+  },
+  {
+   "name": "voice",
+   "value": "whisper medium.en int8, re-spelled from script.md",
+   "pass": true,
+   "detail": "whisper medium.en int8, re-spelled from script.md, 0 flag(s)"
+  }
+ ],
+ "pass": true,
+ "at": "2026-10-28T20:47:10-05:00"
+}

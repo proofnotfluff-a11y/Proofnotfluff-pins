@@ -267,10 +267,13 @@ window.SCENE = {
       // the pings: a ring that steps out from each score as it is said (never on frame 0)
       const ping = (t0, x, y) => { const f = d.fr(t0); if (f >= 0 && f < 12) { const g = 2 + f * 2; d.P(x - 70 - g, y - g, 140 + 2 * g, 1, CREAM); d.P(x - 70 - g, y + 26 + g, 140 + 2 * g, 1, CREAM); d.P(x - 70 - g, y - g, 1, 26 + 2 * g, CREAM); d.P(x + 70 + g, y - g, 1, 27 + 2 * g, CREAM); } };
       ping(tTop, 90, 212); ping(tVs, 246, 212);
+      if (tTop > 1.6) { ping(0.9, 90, 212); ping(1.7, 246, 212); k.burst(270, 400, 1.2, {n: 12, r: 200}); k.burst(738, 400, 2.0, {n: 10, r: 180, colors: ['paper', 'accent2']}); }   // the cover breathes before the first number is said
       k.burst(270, 400, tTop, {n: 22, r: 260}); k.burst(738, 400, t39, {n: 16, r: 200, colors: ['paper', 'accent2']});
       // under the cards: what the numbers are, and the source, from frame 0 (on a plate, so the split line never runs through them)
       d.win(14, 270, 332, 56, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
-      if (T < tLine) k.text('of lead calls booked', 540, 836, {size: 66, color: CREAM, align: 'center', drop: INK});
+      // steady life on the cover (frame 0 stays clean): sparks off the VS at 0.4 s, then a shine across the line from 1 s
+      k.burst(540, 330, 0.4, {n: 16, r: 240, colors: ['accent', 'paper']});
+      if (T < tLine) k.slam('of lead calls booked', 540, 836, -1, {size: 66, color: CREAM, align: 'center', drop: INK});
       else {
         k.slam('The line that asks for the booking.', 540, 846, tLine, {size: 39, color: 'accent', align: 'center', drop: INK, from: 0.5});
         k.sweep(180, 894, 720, 6, tLine + 0.25, {color: 'accent'});

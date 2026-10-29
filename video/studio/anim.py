@@ -618,7 +618,12 @@ def respell(script_words, heard):
                 out[i1 + k] = (round(span[0] + (span[1] - span[0]) * k / n, 3), round(span[0] + (span[1] - span[0]) * (k + 1) / n, 3))
             same = norm("".join(script_words[i1:i2])) == norm("".join(h["w"] for h in heard[j1:j2]))   # "auto-reply" heard as "auto reply"
             numeric = all(heard[j].get("num") or not norm(heard[j]["w"]) for j in range(j1, j2))   # "a thousand" heard as "$1,000", "twenty-five percent" as "25 %"
-            if not (same or numeric):
+            # a proper name Whisper cannot spell ("ServiceTitan" heard as "service tightens", "Invoca" as "and Voca"):
+            # a capitalized name inside the phrase and a close spelling of the whole phrase count as heard
+            name = any(re.match(r"[A-Z]", w) for w in script_words[i1:i2][1 if i1 == 0 or re.search(r"[.!?]$", script_words[i1 - 1]) else 0:]) or \
+                any(re.search(r"[a-z][A-Z]", w) for w in script_words[i1:i2])
+            close = difflib.SequenceMatcher(a=norm("".join(script_words[i1:i2])), b=norm("".join(h["w"] for h in heard[j1:j2]))).ratio() >= 0.75
+            if not (same or numeric or (name and close)):
                 flags.append(f"{heard[j1]['start']:.1f} s heard '{' '.join(h['w'] for h in heard[j1:j2])}' for '{' '.join(script_words[i1:i2])}'")
         elif tag == "delete":
             flags.append(f"dropped '{' '.join(script_words[i1:i2])}': not heard")

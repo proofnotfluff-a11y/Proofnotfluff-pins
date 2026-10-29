@@ -58,3 +58,6 @@ The studio learns in three loops (Todd, Oct 28, 2026, 3:43 pm: "make this video 
 - 2026-10-28 book-the-call: lint variety saw no set pieces (worlds.json empty): its spy assigned over k.sets, a getter, and
   the assignment was dropped -> the spy redefines the property. Board text hidden under a card still counts for lint, so
   occluded set text is not drawn (a 7-day calendar week, versus stats off in the close).
+- 2026-10-28 book-the-call: Whisper skipped a whole take on the full file -> transcribe take by take. Proper names
+  ("ServiceTitan", "Invoca") misheard -> a close spelling of a capitalized name counts as heard. The hook cover held
+  still 2.8 s -> pings and sparks after frame 0 until the first number is said.

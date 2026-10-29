@@ -3,8 +3,7 @@
 Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 196 words, 74.6 s of voice.
 
 ## Flags
-- 26.2 s heard 'CallTracker and Voca' for 'Call tracker Invoca'
-- 60.7 s heard 'that service tightens' for 'That's ServiceTitan's'
+none
 
 ## Pace per take (target 160 to 195 wpm)
 ```

@@ -3,7 +3,7 @@
 Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 209 words, 79.2 s of voice.
 
 ## Flags
-- 5.8 s heard 'That service tightens' for 'That's ServiceTitan's'
+none
 
 ## Pace per take (target 160 to 195 wpm)
 ```

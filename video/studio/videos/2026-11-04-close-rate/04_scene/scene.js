@@ -1,7 +1,7 @@
 /* Scene: Know your close rate (Lesson 8, Numbers Clinic, arcade). One function per top-level cue in 03_cues/cues.md. */
 /* Numbers only from k.data (brief.md -> data.js). Every time comes from a cue start (k.S) or a spoken word (wordT), so a */
 /* re-voiced take moves the picture with it. */
-/* Worlds, one per section: hook = the region cards drawn here (the claim on frame 0, a US NORTHEAST and a US WEST card */
+/* Worlds, one per section: hook = the region cards drawn here (the hook on the plate on frame 0, a cut in to the Friday board and back out, a US NORTHEAST and a US WEST card */
 /* that drop into their slots as the numbers are said, a plain US silhouette on the floor); stakes = the gauge (the median */
 /* band, the top quarter's band, the gap between them); formula, weekly and close = the Friday board drawn here (a */
 /* whiteboard written in marker beside a cork strip of estimate slips that flip SOLD); example = the inventory (estimates */
@@ -300,42 +300,54 @@ window.SCENE = {
   transitions: {stakes: 'levelselect', formula: 'blinds', example: 'dissolve', turn: 'iris', weekly: 'door', close: 'gameover'},
   trauma: {'turn.yours': 0.8},
   sections: {
-    /* ---- hook: the territory map, settled on frame 0 (both regions, both medians, the claim and its source); pings, */
-    /* a sweep and the van's route bring it to life right after; the dialog and host wait until the range has been said */
+    /* ---- hook: three shots (IMPROVE 00a: the picture changes by 1 s and twice by 3 s, Snow on by 3 s). The cover: the */
+    /* studio, the hook on the title plate (frame 0, held still, no host). Cut in on "close" to the Friday board close-up: */
+    /* the hook written big on the whiteboard, the estimate slips flipping SOLD, Snow and the dialog box on. Cut back out */
+    /* on "Here's" to the studio; the plate turns to the claim on "Median" and the region cards drop as it is said. */
     hook: (k, T) => {
-      const n = k.data.numbers, d = px(k);
-      const t31 = wordT(k, 'hook', /^thirty-one/i, 2.4), t38 = wordT(k, 'hook', /^thirty-eight/i, 3.3), tYours = wordT(k, 'hook.yours', /^yours/i, 0.5);
-      const src = k.S('hook.source'), win = k.S('hook.window'), yours = k.S('hook.yours'), math = k.S('hook.math');
+      const n = k.data.numbers;
+      const t31 = wordT(k, 'hook', /^thirty-one/i, 4.4), t38 = wordT(k, 'hook', /^thirty-eight/i, 5.2);
+      const tIn = Math.min(0.8, Math.max(0.5, wordT(k, 'hook', /^close$/i, 0.7))), tRate = wordT(k, 'hook', /^rate/i, tIn + 0.3);
+      const tOut = Math.min(2.6, k.S('hook.math')), med = k.S('hook.median'), src = k.S('hook.source'), win = k.S('hook.window');
+      if (T >= tIn && T < tOut) {
+        /* the close-up: the slips flip SOLD from "rate" on, a few at a time; the hook in marker, already up */
+        const sold = {}; [1, 5, 9, 3, 7].forEach((i, j) => { sold[i] = tRate + j * 0.18; });
+        board(k, {sold});
+        k.text('Do you know your', 72, 300, {size: 66, color: NAVY});
+        k.text('close rate?', 72, 400, {size: 99, color: RED});
+        k.text('?', 381, 600, {size: 132, color: GOLD, align: 'center', drop: NAVY});
+        /* a real reframe, not a backdrop swap: Snow steps up to the board, bigger and further in */
+        return {hostPose: k.talking() ? 'talk' : 'point', hostScale: 0.9, hostX: 190};
+      }
+      const d = px(k);
       studio(d);
-      /* the claim, settled on frame 0: the range colour-coded to the two cards below it */
+      /* the title plate: the hook from frame 0 to "Median", then the claim, the range colour-coded to the two cards */
       d.win(12, 88, 336, 78, {base: '#1B1420', hi: GOLD, lo: INK, rule: '#3D2E45'});
-      k.text('Median close rate, by US region', 60, 282, {size: 66, color: CREAM, drop: INK});
-      const wA = k.measure(`${n.medLow.shown} `, {size: 132}), wB = k.measure('to ', {size: 132});
-      k.text(n.medLow.shown, 60, 348, {size: 132, color: ORANGE, drop: INK});
-      k.text('to', 60 + wA, 348, {size: 132, color: CREAM, drop: INK});
-      k.text(n.medHigh.shown, 60 + wA + wB, 348, {size: 132, color: TEAL, drop: INK});
-      /* life on the cover before the first number: two pings round the claim, sparks off the range */
-      d.ping(0.6, 12, 88, 336, 78, GOLD); d.ping(1.4, 12, 88, 336, 78, CREAM);
-      k.burst(600, 420, 1.0, {n: 14, r: 160});
+      if (T < med) {
+        k.text('Do you know your', 60, 282, {size: 66, color: CREAM, drop: INK});
+        k.text('close rate?', 60, 348, {size: 132, color: GOLD, drop: INK});
+      } else {
+        k.slam('Median close rate, by US region', 60, 282, med, {size: 66, color: CREAM, drop: INK, from: 0.5});
+        const wA = k.measure(`${n.medLow.shown} `, {size: 132}), wB = k.measure('to ', {size: 132});
+        k.slam(n.medLow.shown, 60, 348, med + 0.1, {size: 132, color: ORANGE, drop: INK, from: 0.6});
+        k.slam('to', 60 + wA, 348, med + 0.15, {size: 132, color: CREAM, drop: INK, from: 0.6});
+        k.slam(n.medHigh.shown, 60 + wA + wB, 348, med + 0.2, {size: 132, color: TEAL, drop: INK, from: 0.6});
+      }
+      /* life on the cover before the cut: one ping round the plate */
+      d.ping(0.3, 12, 88, 336, 78, GOLD);
+      /* the segment chip lands on the plate with the cut back out */
+      if (T >= tOut) { k.ctx.save(); k.ctx.translate(0, d.ease(tOut, 6, 20) * 3); k.chip('Numbers Clinic', 640, 404, {size: 30, fill: 'accent', color: INK}); k.ctx.restore(); }
       /* the region cards drop into their slots as the numbers are said */
       regionCard(k, d, 12, 172, 'US NORTHEAST', n.medLow, ORANGE, '#B07A47', t31);
       regionCard(k, d, 184, 172, 'US WEST', n.medHigh, TEAL, PINE, t38);
       k.burst(330, 640, t31 + 0.12, {n: 16, r: 180}); k.burst(846, 640, t38 + 0.12, {n: 16, r: 180, colors: ['teal', 'paper', 'accent2']});
-      if (T >= math) { k.ctx.save(); k.ctx.translate(0, d.ease(math, 6, 20) * 3); k.chip('Numbers Clinic', 640, 404, {size: 30, fill: 'accent', color: INK}); k.ctx.restore(); }
-      /* the source, on its own plate (text 48 px clear of the inner rule) */
+      /* the source, on its own plate (text 48 px clear of the inner rule), on from frame 0 */
       plate(d, 12, 258, 262, 26);
       const lit = T >= src, wl = T >= win, wS = k.measure('ServiceTitan customers, ', {size: 39});
       k.text('ServiceTitan customers,', 60, 792, {size: 39, color: lit ? GOLD : SAND});
       k.text(`May to Jul ${n.stYear.shown}`, 60 + wS, 792, {size: 39, color: wl ? GOLD : SAND});
       if (lit) k.sweep(60, 834, k.measure('ServiceTitan customers,', {size: 39}), 3, src + 0.1, {color: 'teal'});
       if (wl) k.sweep(60 + wS, 834, k.measure(`May to Jul ${n.stYear.shown}`, {size: 39}), 3, win + 0.1, {color: 'teal'});
-      /* YOURS: a gold card pops in under the source, its ? pinging twice a second */
-      if (T >= tYours) {
-        const f = d.fr(tYours), dy = [-10, -6, -2, 1, 0][Math.min(4, f)];
-        plate(d, 118, 290 + dy, 172, 32, GOLD);
-        k.text('Your close rate: ?', 384, (296 + dy) * 3, {size: 66, color: GOLD, drop: INK});
-        if (Math.floor((T - tYours) * 2) % 2 === 1) d.ping(tYours + Math.floor((T - tYours) * 2) * 0.5, 118, 290, 172, 32, GOLD);
-      }
       /* the floor: a plain US silhouette, a scan line crossing it, a marker on each region as its number is said */
       usMap(d, '#3D2E45', '#6B7080');
       const sx = UX + (Math.floor(d.F / 2) * 2) % 300;
@@ -346,7 +358,9 @@ window.SCENE = {
         d.disc(x, y, 5, INK); d.disc(x, y, 4, f >= 0 ? c : '#6B7080'); d.DOT(x - 1, y - 2, CREAM);
       };
       mark(-72.5, 43, ORANGE, t31); mark(-120.5, 40.5, TEAL, t38);
-      return host(k, k.live('hook.yours') ? 'point' : (k.live('hook.math') ? 'clip' : null));
+      /* the cover frame has no host; Snow and the dialog box come in with the cut and stay */
+      if (T < tIn) return {host: false, speech: false};
+      return host(k, k.live('hook.math') ? 'point' : (k.live('hook.region') ? 'point' : (k.live('hook.window') ? 'clip' : null)));
     },
 
     /* ---- stakes: the gauge. The median band is lit; the top quarter's band lights when it is named; the needle swings */
@@ -527,14 +541,13 @@ window.SCENE = {
       return host(k, k.live('turn.yours') ? 'point' : (k.live('turn.count') ? 'shrug' : null));
     },
 
-    /* ---- weekly: the Friday board. Two rows written up and tallied; slips flip SOLD; the dollars go on the slips; the */
-    /* big quotes stay unsold, and one comes off the cork */
+    /* ---- weekly: the Friday board. Two rows written up and ticked as they are said; slips flip SOLD on "jobs sold"; */
+    /* a sticky note stamps on: that's all you need */
     weekly: (k, T) => {
-      const t0 = k.S('weekly'), two = k.S('weekly.two'), dol = k.S('weekly.dollars'), low = k.S('weekly.lower'), away = k.S('weekly.away');
+      const t0 = k.S('weekly'), all = k.S('weekly.all');
       const tFri = wordT(k, 'weekly', /^Friday/i, 0.8), tEst = wordT(k, 'weekly.two', /^estimates/i, 1.8), tJobs = wordT(k, 'weekly.two', /^jobs/i, 2.9);
-      const tDol = wordT(k, 'weekly.dollars', /^dollars/i, 0.9), tQuoted = wordT(k, 'weekly.dollars', /^quoted/i, 2.6), tBig = wordT(k, 'weekly.away', /^bigger/i, 0.4), tAway = wordT(k, 'weekly.away', /^away/i, 1.8);
       const sold = {}; [0, 4, 2, 6, 10, 8].forEach((i, j) => { sold[i] = tJobs + 0.15 + j * 0.15; });
-      const d = board(k, {sold, dollars: tQuoted - 0.2, fall: {i: 5, wobble: tBig, at: tAway}, inHand: T >= tFri && T < tQuoted + 0.6 ? 1 : null});
+      const d = board(k, {sold, inHand: T >= tFri && T < all ? 1 : null});
       write(k, 'Every Friday', 72, 282, t0 + 0.2, {color: RED});
       if (T >= tFri) k.sweep(72, 352, k.measure('Every Friday', {size: 66}), 6, tFri, {color: RED});
       /* the rows: shown as the board opens (faint), written in marker when they are said */
@@ -545,16 +558,15 @@ window.SCENE = {
       /* a box beside each row, ticked once the row is written (the check draws on, a pixel a frame) */
       const tick = (x, y, at, c) => { d.P(x, y, 18, 18, '#C9CCD3'); d.P(x + 2, y + 2, 14, 14, CREAM); const f = d.fr(at + 0.4); if (f < 0) return; const pts = [[x + 3, y + 9], [x + 7, y + 14], [x + 17, y + 1]]; const n1 = Math.min(5, f + 1), n2 = Math.max(0, Math.min(11, f - 4)); d.line(pts[0][0], pts[0][1], pts[0][0] + Math.round((pts[1][0] - pts[0][0]) * n1 / 5), pts[0][1] + Math.round((pts[1][1] - pts[0][1]) * n1 / 5), c, 2); if (n2 > 0) d.line(pts[1][0], pts[1][1], pts[1][0] + Math.round((pts[2][0] - pts[1][0]) * n2 / 11), pts[1][1] + Math.round((pts[2][1] - pts[1][1]) * n2 / 11), c, 2); };
       tick(204, 132, tEst, NAVY); tick(204, 166, tJobs, PINE);
-      if (T >= dol) row('$ sold / $ quoted', 600, tDol, WINE);
-      /* the sticky note: what a lower dollar rate means */
-      if (T >= low) {
-        k.stampIn(low, () => {
+      /* the sticky note: that's all you need */
+      if (T >= all) {
+        k.stampIn(all, () => {
           d.P(22, 233, 206, 70, '#B07A47'); d.P(20, 231, 206, 70, GOLD); d.P(20, 231, 206, 6, ORANGE);
-          k.text('$ rate lower than the count?', 72, 714, {size: 39, color: INK});
-          if (T >= away) { k.text('Big quotes are', 72, 762, {size: 66, color: RED}); k.text('getting away.', 72, 832, {size: 66, color: RED}); }
+          k.text("That's all", 72, 726, {size: 66, color: INK});
+          k.text('you need.', 72, 802, {size: 66, color: RED});
         }, {at: [330, 903], drop: 0.08});
       }
-      return host(k, k.live('weekly.away') ? 'clip' : (k.live('weekly.two') ? 'point' : null));
+      return host(k, k.live('weekly.all') ? 'point' : (k.live('weekly.two') ? 'point' : null));
     },
 
     /* ---- close: the board wiped clean, one column at x 120: the formula, the send line, Friday */

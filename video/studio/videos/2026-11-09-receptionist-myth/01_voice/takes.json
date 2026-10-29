@@ -1,20 +1,20 @@
 {
  "schema": "pnf.studio.takes.v1",
- "requestedAt": "2026-10-29T16:23:22-05:00",
+ "requestedAt": "2026-10-29T16:49:52-05:00",
  "voice": "W3pJy9ibur1FKUihVxzY",
  "model": "eleven_v4",
- "scriptSha256": "eab17bb8245484e59f723552b39e213cc54b17c34fde37243f608e703b0ab7ed",
- "voiceSha256": "40cae7b190cd3b533388f168ff285bcb15fdd6919c458eae458560f990998e96",
+ "scriptSha256": "16e98dbe1b2673d15eaad972ad9cbc4d130a4e676ee22bdc8e122ac276b139e0",
+ "voiceSha256": "203267e30987e8167ba329a05d25e11441302a20122b63dae0383c1864e08465",
  "takes": [
   {
    "n": 1,
    "file": "takes/01.mp3",
-   "sha256": "a6c2a5f56c8d0bf2dc52b80b300ad93de9f4c55543000838d3bbd552b283c799",
-   "seconds": 4.049,
-   "chars": 74,
+   "sha256": "620be0c02e1ba45a90b8adf81ccaf36fb34f70acac310cb4de33be440d059beb",
+   "seconds": 3.631,
+   "chars": 62,
    "start": 0.0,
-   "end": 4.049,
-   "wpm": 178
+   "end": 3.631,
+   "wpm": 149
   },
   {
    "n": 2,
@@ -22,8 +22,8 @@
    "sha256": "e4db7892fbd7a938479d91b1ef4bdf003918cd32c6268856bc4f765d6461941d",
    "seconds": 7.471,
    "chars": 142,
-   "start": 4.369,
-   "end": 11.84,
+   "start": 3.951,
+   "end": 11.422,
    "wpm": 193
   },
   {
@@ -32,8 +32,8 @@
    "sha256": "efa7c31d5c703662e5f055b8a9814f575e894a98f7baf20cb45e648abae4e969",
    "seconds": 13.244,
    "chars": 222,
-   "start": 12.16,
-   "end": 25.404,
+   "start": 11.742,
+   "end": 24.986,
    "wpm": 172
   },
   {
@@ -42,8 +42,8 @@
    "sha256": "8cd0dbdf1801a28070b79fa2e2c0c70156fc657cbd856ebdf6f80fdfdaff8238",
    "seconds": 9.639,
    "chars": 159,
-   "start": 25.724,
-   "end": 35.363,
+   "start": 25.306,
+   "end": 34.945,
    "wpm": 131
   },
   {
@@ -52,15 +52,15 @@
    "sha256": "c2db87ceb7418cbefefe989372dfc2c1d18257aa8f1d95e522910ca51497e884",
    "seconds": 5.878,
    "chars": 116,
-   "start": 35.683,
-   "end": 41.561,
+   "start": 35.265,
+   "end": 41.143,
    "wpm": 174
   }
  ],
- "chars": 713,
- "at": "2026-10-29T16:31:04-05:00",
+ "chars": 701,
+ "at": "2026-10-29T16:56:41-05:00",
  "credits": {
-  "used": 23005,
+  "used": 23827,
   "limit": 40000,
   "tier": "starter",
   "resetsAt": 1794774902

@@ -1,0 +1,12 @@
+{
+ "gate": "facts-captions",
+ "round": 0,
+ "at": "2026-10-29T17:46:11-05:00",
+ "build": "e0c1d27",
+ "pass": true,
+ "score": {
+  "numbers": 7,
+  "mismatches": 0
+ },
+ "reasons": []
+}

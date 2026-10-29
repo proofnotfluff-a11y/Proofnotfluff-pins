@@ -1,0 +1,15 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "at": "2026-10-29T17:46:21-05:00",
+ "build": "e0c1d27",
+ "pass": true,
+ "score": {
+  "numbers": 5,
+  "mismatches": 0
+ },
+ "reasons": [],
+ "sources_checked": [
+  "https://www.phcppros.com/articles/24198-servicetitan-report-finds-ai-adoption-accelerating-across-the-trades: Sep 29, 2026; 'only 11% of contractors place high or complete trust in the AI tools they use', '58% report little or no trust', over 1,000 residential service contractors; voice and screen 11%, 58%, 1,000+ match page and data.js; prompt line count 2 matches; calendar, demo, prompt card and draft are story elements; trades first PASS; no real person; no em or en dashes; 'fix follow-up first' framed as advice."
+ ]
+}

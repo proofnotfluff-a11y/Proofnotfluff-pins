@@ -1,0 +1,18 @@
+{
+ "gate": "golden",
+ "round": 0,
+ "at": "2026-10-29T17:47:12-05:00",
+ "build": "e0c1d27",
+ "pass": false,
+ "score": {
+  "post_as_is": "no"
+ },
+ "reasons": [
+  "1. Must-fix, 9.4 to 10.3 s (play.oven): 'Forgot: the oven.' slam at y 864 (scene.js line 216) sits on the laptop (starts y 870); its navy strip runs through 'the oven.'. Move the slam up (about y 780 or higher) or the laptop down, re-render, re-check.",
+  "2. Polish, 30.3 to 33.1 s: 54% renders smaller and dimmer than 'QUOTING'; make it the biggest, brightest text in the panel.",
+  "3. Polish, 33.1 to 36.4 s: 'The AI just does the typing.' over an almost empty dark screen with an unlabeled bar; show typed quote lines or label the bar.",
+  "4. Polish, 10.3 s voice and captions: say 'Paste your notes and your price list'.",
+  "5. Polish, 3.2 to 10.3 s: take 02 at 222 wpm not re-taken; listen once before posting.",
+  "6. Passed: numbers, captions, qa (frozen only inside the end card), hook earns the stop, prompt worth saving, send line clear, human voice copy, EXAMPLE and source tags present."
+ ]
+}

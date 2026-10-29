@@ -1,0 +1,21 @@
+{
+ "gate": "golden",
+ "round": 0,
+ "at": "2026-10-29T17:46:27-05:00",
+ "build": "e0c1d27",
+ "pass": true,
+ "score": {
+  "post_as_is": "yes"
+ },
+ "reasons": [
+  "1. polish, 0.0-3.5s: headline 'The demo says you need an AI receptionist.' vs voice 'The demo says an AI receptionist answers every call.'; matching would land harder.",
+  "2. polish, 25.3-35.3s: trust section voiced at 131 wpm (take 4), a beat slow; numbers read cleanly and match facts.json and source.",
+  "3. polish, 12.0-21.5s: 'HELD FOR YOU' tray empty about 9 s before the draft drops in.",
+  "4. polish, 21.5-25.0s: padlock tight against 'quote I'.",
+  "5. polish: bottom third of scenes empty; consistent with series and safe zone.",
+  "6. polish, 41.5-44.4s: end-card send line small next to the logo card.",
+  "7. polish, captions: YouTube tag 'ai recepionist' misspelled.",
+  "8. qa.json: all checks PASS (44.43 s, -14.2 LUFS, true peak -2.3, frozen only on end card, H.264 1080x1920).",
+  "9. As a trade owner: usable two-line prompt, keeps you on the send button, sounds like a person, clear reason to save and send."
+ ]
+}

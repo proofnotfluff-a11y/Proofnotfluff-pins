@@ -1,0 +1,20 @@
+{
+ "gate": "render-critic",
+ "round": 0,
+ "at": "2026-10-29T17:47:12-05:00",
+ "build": "e0c1d27",
+ "pass": true,
+ "score": {
+  "faults": 0
+ },
+ "faults": [],
+ "reasons": [
+  "Hook on screen from 0.0 s.",
+  "Spoken numbers readable as said: 11 pm, 7 am, one question, 26% gauge by 31.0 s, 11 PM ASLEEP, first job at 42.0 s.",
+  "Layout settled: all words inside y 270 to 1250 and left of x 930; only the chat panel frame and send arrow pass x 930.",
+  "Minor, not counted: at 35.7 s the gauge arc tip touches 'Fastest trade.' but text on top and readable; 'Booked elsewhere.' covers LUNCH label from 12.5 s, reads as a deliberate overlay.",
+  "Audio: last word ends 42.3 s, end card to 45.4 s.",
+  "Text size readable; no flashing.",
+  "Round 0."
+ ]
+}

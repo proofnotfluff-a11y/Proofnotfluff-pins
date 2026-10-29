@@ -1,20 +1,20 @@
 {
  "schema": "pnf.studio.takes.v1",
- "requestedAt": "2026-10-28T20:14:23-05:00",
+ "requestedAt": "2026-10-28T20:21:11-05:00",
  "voice": "W3pJy9ibur1FKUihVxzY",
  "model": "eleven_v4",
- "scriptSha256": "6271cd52b65530058052a95055802af585cb8775321559233a08c37a455b11cf",
- "voiceSha256": "7db7478f06bcc88f8652a8a6dc77e92ac2de7eba0bcaa43a6416d86472dba0f9",
+ "scriptSha256": "2d915a3f0247323bfd1a04c61ba90c729fc5cb727fb0d88b4811956ee4066ca8",
+ "voiceSha256": "e46fa9466a08c29d795a36627888d053b3e1fe3005ee94c01405265b2e21c4fb",
  "takes": [
   {
    "n": 1,
    "file": "takes/01.mp3",
-   "sha256": "0ca17ba7eac30a2722b95b2b5d8c4c688b070f66a1816bbe64f4155ee5e98b0a",
-   "seconds": 8.281,
-   "chars": 132,
+   "sha256": "1fcaf5d97dbf2e0cbe5cdfedbceb454e3a1dd3433fb70ff0f8d33537a9394510",
+   "seconds": 8.516,
+   "chars": 137,
    "start": 0.0,
-   "end": 8.281,
-   "wpm": 130
+   "end": 8.516,
+   "wpm": 141
   },
   {
    "n": 2,
@@ -22,19 +22,19 @@
    "sha256": "b758d042ed3e3d5b6f40ea90f5e85970565d1e3c04203eec07b39e602d9731be",
    "seconds": 14.916,
    "chars": 267,
-   "start": 8.601,
-   "end": 23.517,
+   "start": 8.836,
+   "end": 23.752,
    "wpm": 165
   },
   {
    "n": 3,
    "file": "takes/03.mp3",
-   "sha256": "bcf910931a9e748317683a78ee8c3df1aa7d111d9901e2376b28122eeb953f35",
-   "seconds": 9.561,
-   "chars": 159,
-   "start": 23.837,
-   "end": 33.398,
-   "wpm": 163
+   "sha256": "9b2102e10f44a52f3f106c365ea506735767e9cb506ba7ed6eddcd7af6b162ab",
+   "seconds": 9.404,
+   "chars": 151,
+   "start": 24.072,
+   "end": 33.476,
+   "wpm": 160
   },
   {
    "n": 4,
@@ -42,8 +42,8 @@
    "sha256": "842d2ce7376afd62041e2aac188e43d8a661f45a73343c85f61e51e7f2fe71a2",
    "seconds": 10.919,
    "chars": 190,
-   "start": 33.718,
-   "end": 44.637,
+   "start": 33.796,
+   "end": 44.715,
    "wpm": 209
   },
   {
@@ -52,8 +52,8 @@
    "sha256": "db4d7898939e0ad070bf082416e1c06935b09a629086f75684e65c16c4f064c3",
    "seconds": 13.558,
    "chars": 208,
-   "start": 44.957,
-   "end": 58.515,
+   "start": 45.035,
+   "end": 58.593,
    "wpm": 150
   },
   {
@@ -62,8 +62,8 @@
    "sha256": "30bb83e3efe88d61022e9153add8d565694b64c77aa848d844e4086a7d0bffa7",
    "seconds": 10.449,
    "chars": 150,
-   "start": 58.835,
-   "end": 69.284,
+   "start": 58.913,
+   "end": 69.362,
    "wpm": 132
   },
   {
@@ -72,15 +72,15 @@
    "sha256": "f28a91223e97755df8ef0627546ebc633e76b784aab8197f14a6a3d5380e3fbe",
    "seconds": 5.146,
    "chars": 101,
-   "start": 69.604,
-   "end": 74.75,
+   "start": 69.682,
+   "end": 74.828,
    "wpm": 175
   }
  ],
- "chars": 1207,
- "at": "2026-10-28T20:19:12-05:00",
+ "chars": 1204,
+ "at": "2026-10-28T20:25:58-05:00",
  "credits": {
-  "used": 15273,
+  "used": 15577,
   "limit": 40000,
   "tier": "starter",
   "resetsAt": 1794774902

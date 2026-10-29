@@ -7717,6 +7717,68 @@
     ]
    ],
    "footnote": "The worked example uses the free Christmas light installation pricing calculator's example inputs; the vehicle cost uses the IRS business mileage rate for July 1 to December 31, 2026. Timing advice is quoted from a public forum thread and published guides read Oct 29, 2026; search interest from Google Trends read Oct 26, 2026."
+  },
+  {
+   "slug": "chicago-construction-pipeline",
+   "kind": "datapage",
+   "module": "dp_pipeline",
+   "draft": true,
+   "title": "Chicago Construction Projects in Progress by Neighborhood | ProofNotFluff",
+   "desc": "Free weekly count of Chicago building jobs of $500,000 or more still waiting on a certificate of occupancy, by community area and months since the permit. From City records.",
+   "eyebrow": "Free weekly tracker, City permit records",
+   "h1": "Chicago's Big Building Jobs, by How Far Along They Are",
+   "card": "Every open Chicago building job of $500,000 or more still waiting on its certificate of occupancy, by neighborhood and by months since the permit. Updated weekly.",
+   "next": {
+    "title": "Want the addresses and builders?",
+    "text": "Our Chicago construction cleaning leads list names the address, the general contractor and the stage of each big job that needs a construction clean, filtered from these same City records. $29 a month.",
+    "button": "See the cleaning leads list"
+   },
+   "stages": [
+    [
+     "Inspections, certificate of occupancy required",
+     "Work is under way and the City is inspecting it. The job needs a certificate of occupancy before anyone can use the space.",
+     "Most open jobs are here, from a few weeks after the permit to well over a year."
+    ],
+    [
+     "Partial occupancy approved",
+     "The City has let people use part of the building while the rest is finished.",
+     "Late in the job: some floors or units are already in use."
+    ],
+    [
+     "Certificate of occupancy pending",
+     "The City record shows the certificate as pending, with no partial occupancy approved.",
+     "A small group; counted with the open jobs."
+    ],
+    [
+     "Certificate of occupancy issued",
+     "The building can be used. These jobs are done and are not counted as open.",
+     "They appear only in the bars under How long a big job takes."
+    ]
+   ],
+   "method": [
+    "Every Monday we pull the City of Chicago's public Building Permits dataset and keep new construction and renovation permits issued since January 1, 2021 with a reported cost of $500,000 or more. A job counts here when its City milestone puts it on the certificate of occupancy path: inspections with a certificate required, certificate pending, partial occupancy approved, or certificate issued.",
+    "Open jobs are the ones without a certificate yet. Permits the City lists as suspended, expired, cancelled or revoked are left out. Each open job is placed in a community area by the area the City gives for it and grouped by days since the permit was issued: under 6 months, 6 to 12 months, 1 to 2 years and over 2 years.",
+    "How long a big job takes compares permit years: for each year, the share of jobs on the certificate path that have the certificate today. The City's records do not say on what day a certificate was issued, so the page does not give a number of weeks to move-in for any one job.",
+    "Only counts are kept. We never request contact, address, map point or description fields. To count the jobs that change stage from one week to the next, last week's permit numbers and stages are stored encrypted and are never shown, so the page cannot point to any building, block or business."
+   ],
+   "faq": [
+    [
+     "How many big construction projects are in progress in Chicago?",
+     "This page counts every Chicago building job of $500,000 or more with a permit issued since January 1, 2021 that is still waiting on its certificate of occupancy, and updates the count every Monday. The table splits it by all 77 community areas."
+    ],
+    [
+     "How long does it take to get a certificate of occupancy in Chicago?",
+     "It depends on the job. The bars on this page show, for each permit year, how many big new buildings and renovations have their certificate today. Renovations usually get theirs sooner than new buildings."
+    ],
+    [
+     "What does partial occupancy mean?",
+     "The City has approved people using part of a building while the rest of the work is finished. On this page it means a job is late in its schedule, not that it is done."
+    ],
+    [
+     "Can I see the addresses?",
+     "Not on this free page, which shows counts only. Our paid Chicago construction cleaning leads list names the address, the general contractor and the stage for each big job that needs a construction clean."
+    ]
+   ]
   }
  ]
 }

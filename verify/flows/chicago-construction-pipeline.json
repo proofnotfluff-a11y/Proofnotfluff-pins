@@ -1,0 +1,24 @@
+{
+ "about": "Construction pipeline page: map with 77 areas, tap an area, switch metric, pick from the list, open the rest of the table, CSV link and the members' list link (Oct 29, 2026).",
+ "page": "chicago-construction-pipeline/",
+ "steps": [
+  {"scroll": "#timing"},
+  {"expect_count": "#timing .pp-co .yr", "min": 5, "screenshot": true},
+  {"scroll": "#map"},
+  {"expect_count": "#pmap path[data-n]", "eq": 77},
+  {"click": "#pmap path[data-n='28']", "force": true},
+  {"expect_text": "#pmap .gm-info", "contains": "Near West Side", "screenshot": true},
+  {"click": "#pmap .gm-seg label:nth-of-type(3)"},
+  {"expect_text": "#pmap .gm-leg", "contains": "partial occupancy"},
+  {"select": "#pmap select", "value": "24"},
+  {"expect_text": "#pmap .gm-info", "contains": "West Town"},
+  {"scroll": "#areas"},
+  {"expect_count": "#areas .pp-t tbody tr", "eq": 77},
+  {"click": "#areas .pp-more summary"},
+  {"expect_visible": "#areas .pp-more .pp-t", "screenshot": true},
+  {"expect_count": "a[href='chicago-construction-pipeline-by-community-area.csv']", "eq": 1},
+  {"scroll": "#weeks"},
+  {"expect_count": "#weeks .pp-t tbody tr", "min": 1},
+  {"expect_count": "#next .cta a.btn", "min": 1}
+ ]
+}

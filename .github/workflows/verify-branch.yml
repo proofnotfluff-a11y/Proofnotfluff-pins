@@ -1,0 +1,36 @@
+name: Verify site (branch shots)
+# Branch-only: the same checks as verify-site.yml for the construction pipeline page, with the report and shots
+# committed to this branch so the design review can see them (the cloud sandbox cannot download a browser).
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/project-thread-4bg5nr]
+    paths: ["docs/chicago-construction-pipeline/**", "verify/flows/chicago-construction-pipeline.json", ".github/workflows/verify-branch.yml"]
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet playwright pillow cryptography openpyxl
+      - run: python -m playwright install --with-deps chromium
+      - name: Verify the page and its flow
+        run: |
+          git fetch -q origin main
+          python3 tools/verify_site.py chicago-construction-pipeline --flow chicago-construction-pipeline --out data/verify/ci 2>&1 | tee verify.txt || true
+      - name: Commit the report and shots to this branch
+        run: |
+          rm -rf zz-verify && mkdir -p zz-verify && cp verify.txt zz-verify/ && cp -r data/verify/ci/. zz-verify/
+          find zz-verify -name '*.png' -size +900k -delete
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add -f zz-verify
+          git commit -qm "Verify shots for the construction pipeline page (branch only)" || exit 0
+          git push origin HEAD:claude/project-thread-4bg5nr

@@ -26,7 +26,7 @@
   "message": "Hi! Need a move-out clean before Friday. 2 bed, 1 bath. How much?",
   "beds": 2,
   "baths": 1,
-  "reply": "Hi, thanks for reaching out! A move-out clean for a 2 bed, 1 bath is [your rate]. Want the inside of the fridge and oven done too? Friday works."
+  "reply": "Thanks for reaching out! A move-out clean for a 2 bed, 1 bath is [your rate]. Want the inside of the fridge and oven done too?"
  },
  "prompt": {
   "source": "OURS: advice, an example prompt (no AI product named)",

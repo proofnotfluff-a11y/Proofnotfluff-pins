@@ -1,6 +1,6 @@
 # Transcript: 2026-10-29-quote-revive
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 191 words, 69.9 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 191 words, 69.2 s of voice.
 
 ## Flags
 none
@@ -11,8 +11,8 @@ none
   02     4.8 s  174 wpm  
   03    17.9 s  169 wpm  
   04    33.5 s  169 wpm  
-  05    46.9 s  147 wpm  slow: rewrite it as talk, then speak --take 5
-  06    61.6 s  182 wpm  
+  05    46.9 s  155 wpm  
+  06    60.8 s  182 wpm  
 ```
 
 ## Words
@@ -25,7 +25,7 @@ none
 
 `00:04.8` Software maker ServiceTitan says its data shows only thirty-seven percent of estimates close on the first visit.
 
-`00:11.6` So most of your quotes aren't decided when you pull out of the driveway.
+`00:11.7` So most of your quotes aren't decided when you pull out of the driveway.
 
 `00:15.3` The rest depend on your follow-up.
 
@@ -49,12 +49,12 @@ none
 
 `00:46.9` Here's the part people skip.
 
-`00:48.8` You text it, you don't email it.
+`00:48.7` You text it, you don't email it.
 
-`00:51.5` ServiceTitan's follow-up webinar says texts beat email on open rates, and in a Housecall Pro survey, fifty-nine percent of homeowners expect text updates.
+`00:51.4` ServiceTitan's follow-up webinar says texts beat email on open rates, and in a Housecall Pro survey, fifty-nine percent of homeowners expect text updates.
 
-`01:01.6` One name, one job, one question.
+`01:00.8` One name, one job, one question.
 
-`01:04.7` Send this to whoever follows up on your quotes.
+`01:04.0` Send this to whoever follows up on your quotes.
 
-`01:07.5` Next time a quote goes quiet, you'll know what to send.
+`01:06.7` Next time a quote goes quiet, you'll know what to send.

@@ -1,0 +1,3 @@
+mouth: 2251 frames, 1583 talking; closed 20%, slightly open 28%, open 43%, wide open 9.4% (under 10%: PASS), wide threshold 0.88 -> 02_transcript/mouth.js
+stills: 42 frames, 4 sheet(s) in /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-11-01-same-visit-close/05_render/sheets; contact sheet 05_render/sheet.jpg
+exit 0

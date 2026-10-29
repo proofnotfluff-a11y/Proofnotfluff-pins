@@ -1,0 +1,11 @@
+  300/2250 frames, 42 s
+  600/2250 frames, 83 s
+  900/2250 frames, 124 s
+  1200/2250 frames, 165 s
+  1500/2250 frames, 205 s
+  1800/2250 frames, 246 s
+  2100/2250 frames, 287 s
+mix: rooms framing 0.00 s, blackboard 19.21 s
+mix: voice -23.6 LUFS, bed -22.4 LUFS after EQ; bed gain -19.2 dB under speech, -11.2 dB in pauses, 20 phrases
+render: /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-11-01-same-visit-close/05_render/2026-11-01-same-visit-close.mp4 (2250 frames, 75.00 s, voice, 321 s)
+exit 0

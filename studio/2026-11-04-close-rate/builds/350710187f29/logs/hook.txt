@@ -1,0 +1,8 @@
+mouth: 2436 frames, 1807 talking; closed 16%, slightly open 29%, open 45%, wide open 9.2% (under 10%: PASS), wide threshold 0.88 -> 02_transcript/mouth.js
+{"first_change": null, "changes_by_3s": 0, "changes": [], "host_at": 0.0, "hook_words": 12, "hook_said_by": 5.08, "seconds": 81.15}
+ERROR hook: the picture first changes at None s (by 1.0 s)
+ERROR hook: 0 picture change(s) in the first 3 s (at least 2)
+ERROR hook: the spoken hook ends at 5.08 s (by 3.6 s)
+ERROR hook: the lesson runs 81.2 s (75 s at most, end card included)
+hook: FAIL first change None s, 0 changes by 3 s, host 0.0 s, spoken hook 12 words by 5.08 s, 81.15 s long
+exit 1

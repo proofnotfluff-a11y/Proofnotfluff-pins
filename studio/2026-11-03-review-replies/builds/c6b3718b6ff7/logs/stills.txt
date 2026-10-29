@@ -1,0 +1,2 @@
+stills: 38 frames, 4 sheet(s) in /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-11-03-review-replies/05_render/sheets; contact sheet 05_render/sheet.jpg
+exit 0

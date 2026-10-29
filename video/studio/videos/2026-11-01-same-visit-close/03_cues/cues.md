@@ -67,12 +67,12 @@ The notebook page comes down on "honest". Header on dark tape: "One honest note.
 The pen writes "It's a pattern, not proof." as said; "not proof" gets a red underline; the source line lands: "ServiceTitan: correlated, / not shown to cause."
 ## caveat.other "Top shops might close"
 "Top shops might close more" / "for other reasons." written under it.
-## caveat.cost "Asking still costs you" [sfx: pop]
-"Asking still costs you" / "one sentence." written in red, double underlined. Snow shrugs.
+## caveat.cost "but asking still costs" [sfx: pop]
+"But asking still costs you" / "just one sentence." written in red, double underlined. Snow shrugs.
 
 ## close "Don't drive off and" [sfx: pop]
 Room: blackboard. Chalk: "Don't drive off" / "and wait." slams in as said.
-## close.drive "Ask for it in"
+## close.drive "Ask for the yes."
 "Ask in the driveway." slams in, in the accent.
 ## close.send "Send this to whoever" [sfx: sting]
 ProofNotFluff plate slams on; send line: "Send this to whoever goes out on your estimates."

@@ -546,7 +546,7 @@ window.SCENE = {
          this section is a no-op, 'hold') */
       const tPage = W(/^honest/i, t0) + 0.15, u = (T - tPage) * 30 + 0.005 - 6;
       if (u < 0) { const r = window.SCENE.sections.skip(k, T); if (u >= -6) pageOver(k, Math.pow((u + 6) / 6, 2)); return r; }
-      const tThis = W(/^It's$/i, k.S('caveat.pattern')), tProof = W(/^proof/i, tThis), tTopS = W(/^Top$/i, k.S('caveat.other')), tFor = W(/^for$/i, tTopS), tAsk = W(/^Asking$/i, k.S('caveat.cost')), tOne = W(/^one$/i, tAsk);
+      const tThis = W(/^It's$/i, k.S('caveat.pattern')), tProof = W(/^proof/i, tThis), tTopS = W(/^Top$/i, k.S('caveat.other')), tFor = W(/^for$/i, tTopS), tAsk = W(/^but$/i, k.S('caveat.cost')), tOne = W(/^just$/i, tAsk);
       notebook(k);
       // the header on a strip of dark tape, so no rule runs through it
       d.P(58, 96, 250, 26, PLUM); d.P(58, 96, 250, 1, '#3D2E45'); d.dith(58, 96, 4, 26, PAPER); d.dith(304, 96, 4, 26, PAPER, 1);
@@ -555,8 +555,8 @@ window.SCENE = {
         {text: "It's a pattern, not proof.", at: tThis, y: 130, c: NAVY},
         {text: 'Top shops might close more', at: tTopS, y: 184, c: NAVY},
         {text: 'for other reasons.', at: tFor, y: 202, c: NAVY},
-        {text: 'Asking still costs you', at: tAsk, y: 238, c: RED},
-        {text: 'one sentence.', at: tOne, y: 256, c: RED},
+        {text: 'But asking still costs you', at: tAsk, y: 238, c: RED},
+        {text: 'just one sentence.', at: tOne, y: 256, c: RED},
       ];
       let tip = null;
       rows.forEach((r) => {
@@ -575,7 +575,7 @@ window.SCENE = {
         const l = 62 + d.tw("It's a pattern, "), r = 62 + d.tw("It's a pattern, not proof."), q = clamp(d.fr(tProof + 0.2) / 6); d.P(l, 146, Math.round((r - l) * q), 1, RED); for (let x = l; x < l + Math.round((r - l) * q); x += 4) d.DOT(x + 1, 147, RED);
       }
       const tEnd = W(/^sentence/i, tOne);
-      if (T >= tEnd + 0.4) { const q = clamp(d.fr(tEnd + 0.4) / 6), w = d.tw('one sentence.'); d.P(62, 271, Math.round(w * q), 1, RED); if (q >= 1) d.P(64, 273, Math.round(w * clamp(d.fr(tEnd + 0.6) / 6)), 1, RED); }
+      if (T >= tEnd + 0.4) { const q = clamp(d.fr(tEnd + 0.4) / 6), w = d.tw('just one sentence.'); d.P(62, 271, Math.round(w * q), 1, RED); if (q >= 1) d.P(64, 273, Math.round(w * clamp(d.fr(tEnd + 0.6) / 6)), 1, RED); }
       k.burst(62 * 3 + 200, 271 * 3, tEnd + 0.5, {n: 14, r: 180});
       pen(d, ...(tip || [300, 300]));
       if (u < 7) pageOver(k, u < 1 ? 1 : Math.pow(1 - u / 7, 2));

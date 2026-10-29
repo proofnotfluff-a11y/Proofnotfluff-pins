@@ -1,12 +1,14 @@
 {
  "gate": "render-critic",
- "round": 1,
- "at": "2026-10-28T21:08:00-05:00",
+ "round": 0,
+ "at": "2026-10-29T08:55:00-05:00",
+ "rebuild": "2026-10-29 daily run, runtime with the end card",
  "pass": true,
  "score": {
   "faults": 0
  },
+ "faults": [],
  "reasons": [
-  "polished render: all fixes landed, nothing hidden or cut, no flashes"
+  "0 faults; end card holds about 2.9 s after the last word, nothing cut"
  ]
 }

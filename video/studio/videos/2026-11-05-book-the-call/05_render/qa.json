@@ -1,13 +1,13 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-05-book-the-call",
- "mp4Sha256": "f604ceb364ba6886914f909dea82a248222fdfb7a2e19faa43e2fb63c17d644c",
+ "mp4Sha256": "3f3c0fe8c7a0b3b47ef9b8a06319e43d006c73b2284f541eed991d7657207760",
  "checks": [
   {
    "name": "length",
-   "value": 76.533,
+   "value": 77.533,
    "pass": true,
-   "detail": "76.53 s (45.0 to 90.0, studio lessons)"
+   "detail": "77.53 s (45.0 to 90.0, studio lessons)"
   },
   {
    "name": "loudness",
@@ -33,11 +33,11 @@
   {
    "name": "file",
    "value": {
-    "sha256": "f604ceb364ba6886914f909dea82a248222fdfb7a2e19faa43e2fb63c17d644c",
-    "bytes": 6535248
+    "sha256": "3f3c0fe8c7a0b3b47ef9b8a06319e43d006c73b2284f541eed991d7657207760",
+    "bytes": 6633566
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 6.5 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 6.6 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -47,5 +47,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-28T21:01:30-05:00"
+ "at": "2026-10-29T08:27:51-05:00"
 }

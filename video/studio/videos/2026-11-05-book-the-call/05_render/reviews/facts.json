@@ -1,13 +1,19 @@
 {
  "gate": "facts",
- "round": 1,
- "at": "2026-10-28T21:00:00-05:00",
+ "round": 0,
+ "at": "2026-10-29T08:55:00-05:00",
+ "rebuild": "2026-10-29 daily run, runtime with the end card",
  "pass": true,
  "score": {
   "numbers": 13,
   "mismatches": 0
  },
  "reasons": [
-  "round 0 faults fixed; trades-first PASS; advisory: Invoca tag wording"
+  "rebuild re-gate on the Oct 29 runtime (end card); advisory: stakes label 'ServiceTitan, on what to check first' could read 'ServiceTitan, May 2026'"
+ ],
+ "sources_checked": [
+  "servicetitan top-performer-profile: 62%, 39%, 90th percentile, 12 months to Jan 2026, caveat",
+  "invoca 2026 report: 55% don't ask to book",
+  "servicetitan hvac-call-scripts Feb 13 2024: 'Are mornings or afternoons better for you?'"
  ]
 }

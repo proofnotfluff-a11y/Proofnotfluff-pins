@@ -1,12 +1,13 @@
 {
  "gate": "golden",
- "round": 1,
- "at": "2026-10-28T21:08:00-05:00",
+ "round": 0,
+ "at": "2026-10-29T08:55:00-05:00",
+ "rebuild": "2026-10-29 daily run, runtime with the end card",
  "pass": true,
  "score": {
   "post_as_is": "yes"
  },
  "reasons": [
-  "all four polish fixes landed; post as is; remaining polish: -30 dither 0.3 s, focus outline flicker at 1 s"
+  "post as is; polish: no bubble 0 to 3 s, empty lower half until 7 s, boss beat near gimmicky"
  ]
 }

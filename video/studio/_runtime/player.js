@@ -238,6 +238,36 @@
     }
   }
 
+  // the end card (IMPROVE 000, Oct 29): once the last word has landed, a plum plate drops in on whole low-res pixels and
+  // holds the ProofNotFluff lockup and the site, music only, to the end of the tail (anim.py cues gives every lesson 2.9 s
+  // after the last word). The host and the dialog box step out under it. SCENE.endCard = false turns it off.
+  let END_T = 1e9;
+  function endCard(k, T) {
+    if (T < END_T) return false;
+    const ctx = k.ctx, f = Math.floor((T - END_T) * FPS + 0.005);
+    const P = (x, y, w, h, c) => { if (w > 0 && h > 0) { ctx.fillStyle = c; ctx.fillRect(Math.round(x) * 3, Math.round(y) * 3, Math.round(w) * 3, Math.round(h) * 3); } };
+    const drop = Math.round(640 * Math.pow(1 - Math.min(1, f / 9), 3));   // low-res pixels still to fall
+    ctx.save(); ctx.translate(0, -drop * 3);
+    P(0, 0, 360, 640, '#2B2033'); P(0, 636, 360, 4, '#F7C873');
+    for (let y = 8; y < 636; y += 16) P(0, y, 360, 1, '#3D2E45');   // faint scanlines, so the plate reads as a screen
+    P(40, 96, 280, 172, '#120D14'); P(38, 94, 280, 172, '#3D2E45'); P(38, 94, 280, 1, '#7A3442'); P(38, 265, 280, 1, '#120D14');
+    const fit = (s, sizes, maxW) => sizes.find((z) => k.measure(s, {size: z}) <= maxW) || sizes[sizes.length - 1];
+    const z1 = fit('ProofNotFluff', [132, 99, 66], 780);
+    k.text('ProofNotFluff', 534, 380, {size: z1, color: '#FFF7EA', align: 'center', lint: drop === 0});
+    k.text('proofnotfluff.com', 534, 576, {size: 66, color: '#F7C873', align: 'center', lint: drop === 0});
+    const uw = Math.round(k.measure('proofnotfluff.com', {size: 66}) / 3), ux = 178 - Math.round(uw / 2);
+    if (f >= 12) P(ux, 216, Math.min(uw, (f - 12) * 8), 2, '#F7C873');   // the site's underline draws on
+    k.text('Lessons for trade owners', 534, 690, {size: 39, color: '#E6D3BC', align: 'center', lint: drop === 0});
+    // a twinkle walks the plate's corners, one every 8 frames, so the held card is never a still picture
+    const pts = [[46, 102], [310, 102], [310, 258], [46, 258]], g = f >= 10 ? Math.floor((f - 10) / 8) % 4 : -1;
+    if (g >= 0) { const [x, y] = pts[g], s = [0, 1, 2, 1][Math.floor(f / 2) % 4]; P(x, y, 1, 1, '#FFF7EA'); for (let i = 1; i <= s; i++) { P(x - i, y, 1, 1, '#FFF7EA'); P(x + i, y, 1, 1, '#FFF7EA'); P(x, y - i, 1, 1, '#FFF7EA'); P(x, y + i, 1, 1, '#FFF7EA'); } }
+    // Snow waves goodbye on a strip of floor under the plate
+    P(0, 418, 360, 6, '#3D2E45'); P(0, 424, 360, 212, '#1B1420'); for (let x = (f >> 2) % 24 - 24; x < 360; x += 24) P(x, 430, 12, 2, '#2B2033');
+    k.snow(540, 1254, {scale: 0.86, pose: 'wave', face: 1});
+    ctx.restore();
+    return true;
+  }
+
   window.drawAt = function (T) {
     const main = document.getElementById('c'); const mctx = main.getContext('2d');
     const pixel = look.scale !== 1;
@@ -276,6 +306,8 @@
     if (fn) ret = fn(ks, Ts, sec) || {};
     ctx.restore();
     let head = [540, 760];
+    const ending = look.bitmap && window.SCENE.endCard !== false && T >= END_T;
+    if (ending) { ret.host = false; ret.speech = false; }
     if (ret.host !== false && window.SCENE.host !== false) {
       const hp = typeof ret.hostPose === 'string' ? ret.hostPose : (k.talking() ? 'talk' : 'stand');
       const life = idleOf(T, hp);
@@ -306,6 +338,7 @@
       hud(k, T, tops, sec);
       transition(ctx, T, tops, sec, U, head);   // room to room, hiding the cut
     }
+    if (ending) { if (window.__boxes) window.__boxes.length = 0; window.__tag = 'scene'; endCard(k, T); }   // the card covers the scene, so only its own words count for lint
     window.__tag = 'scene';
     if (pixel) {
       quantize(lowCanvas);
@@ -336,7 +369,8 @@
     }
     await document.fonts.ready;
     await Promise.all(['700 40px Poppins', '600 40px Poppins', '600 40px Inter', '700 40px Inter'].map((f) => document.fonts.load(f)));
-    phrases = buildPhrases(words);   // after the fonts load, so the line breaks match what is drawn
+    phrases = buildPhrases(words);
+    if (words.length) END_T = words[words.length - 1].end + 0.35;   // after the fonts load, so the line breaks match what is drawn
     window.DURATION = window.CUES.duration;
     survey = runSurvey();
     window.STUDIO = {env, survey, trauma, look, camera};   // for checks: blinks, pose runs, rooms, the shake

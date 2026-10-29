@@ -1,7 +1,8 @@
 {
  "gate": "buyer",
  "round": 0,
- "at": "2026-10-28T21:00:00-05:00",
+ "at": "2026-10-29T08:55:00-05:00",
+ "rebuild": "2026-10-29 daily run, runtime with the end card",
  "pass": true,
  "score": {
   "stop": "yes",
@@ -10,6 +11,6 @@
   "follow_or_link": "yes"
  },
  "reasons": [
-  "usable three-line script and a weekly metric; trust yes"
+  "plumbing owner: stop, send, save yes; end card reads as a sign-off, follow/link yes"
  ]
 }

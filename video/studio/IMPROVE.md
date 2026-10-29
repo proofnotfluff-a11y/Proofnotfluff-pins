@@ -36,6 +36,11 @@ The lab (Tue, Thu, Sat) ranks this list from its benchmark against _shared/style
 12. Visual: a seasonal touch per week (snow outside the half-built house in winter, leaves in fall).
 
 ## Done (newest first: date, item, what changed, proof)
+- 2026-10-29 (daily run): end card (backlog 000). player.js draws a plum plate that drops in on whole pixels 0.35 s after
+  the last word: ProofNotFluff, proofnotfluff.com (underline draws on), "Lessons for trade owners", Snow waving on a floor
+  strip, a corner twinkle every 8 frames; host and dialog step out, lint counts only the card's words. `cues` tail 1.9 s
+  -> 2.9 s. Proof: stills of lesson 9 (77.2 s) and lesson 1 (88.4 s); lesson 9 rebuilt and re-gated on it, every gate
+  PASS (buyer follow_or_link yes; design 4.71 asks for 3 s or more and the double game frame on the card: next).
 - 2026-10-29: style reference board (backlog 000) in _shared/style-board/ (six of our best frames, keep and push notes,
   the target spec); the lab (.claude/skills/video-lab, Tue Thu Sat) benchmarks against it. Queue rule: `ready` keeps a
   rebuilt lesson's place, `waiting` lists unposted lessons, the daily run rebuilds instead of making when 3 or more wait.

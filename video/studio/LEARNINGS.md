@@ -41,6 +41,11 @@ The studio learns in three loops (Todd, Oct 28, 2026, 3:43 pm: "make this video 
 - Pixel fonts: glyphs trimmed to ink with a 1 px letter gap and a clear word gap; an s that is open.
 
 ## Fault log
+- 2026-10-29 book-the-call rebuild (queue rule, end card runtime): every gate PASS at round 0. Polish named: end card
+  holds 2.5 s (aim 3+), card wants the game frame; boss -30 under the dither (named twice now: fix next rebuild); host
+  arrives at 7.6 s; dialog words 38 to 40 px (lint type floor is IMPROVE 00b).
+- 2026-10-29 monthly-first (lesson 10): voiced before the queue rule landed (7 lessons waiting), parked at words: takes 2
+  and 3 slow (150, 143 wpm), 82.8 s over the 75 s aim; tighten takes 2 and 3 and re-roll before cues when it is made.
 - 2026-10-28 first-reply: design, type 3 (s read as e) -> font recut. Critic, overlaps x3 -> lint built. Facts-captions,
   Fiverr qualifier missing in line 1 -> rule above. Design, cramped build scene -> host can step back (hostScale).
 - 2026-10-28 three-prices: facts and golden, hook overclaim ('Not 1') -> card says 'on 57% of home jobs', voice 'usually'.

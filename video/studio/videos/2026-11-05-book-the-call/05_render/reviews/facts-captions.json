@@ -1,13 +1,14 @@
 {
  "gate": "facts-captions",
- "round": 1,
- "at": "2026-10-28T21:00:00-05:00",
+ "round": 0,
+ "at": "2026-10-29T08:55:00-05:00",
+ "rebuild": "2026-10-29 daily run, runtime with the end card",
  "pass": true,
  "score": {
-  "numbers": 32,
+  "numbers": 11,
   "mismatches": 0
  },
  "reasons": [
-  "round 0 faults fixed"
+  "all four captions pass the rules and sources (re-gate Oct 29)"
  ]
 }

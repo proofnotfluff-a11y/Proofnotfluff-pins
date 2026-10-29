@@ -1,7 +1,8 @@
 {
  "gate": "design",
  "round": 0,
- "at": "2026-10-28T21:00:00-05:00",
+ "at": "2026-10-29T08:55:00-05:00",
+ "rebuild": "2026-10-29 daily run, runtime with the end card",
  "pass": true,
  "score": {
   "first": 5,
@@ -14,6 +15,9 @@
   "average": 4.71
  },
  "reasons": [
-  "freshness: looks nothing like lessons 7 and 8; polish: Invoca label wrap, boss text cut, -30 dither, flap row timing, hook focus outline, close bulb"
+  "end card holds 2.5 s (aim 3+), give it the double game frame",
+  "57.95 boss -30 reads '=38' under the dither",
+  "3.4 to 7.6 host arrives late",
+  "dialog text about 38 to 40 px (44 floor)"
  ]
 }

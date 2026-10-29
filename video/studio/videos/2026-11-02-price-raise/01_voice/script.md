@@ -1,15 +1,15 @@
-# Script: Raise prices with a reason customers accept (Lesson 6, Pricing Clinic; topic bank T1, facts re-read Oct 28)
+# Script: Raise your prices; most trades already did (Lesson 6, Pricing Clinic; trades-first bank lesson 3, facts re-read Oct 28)
 
-[leaning in] Raising your prices? Eighty-two percent called a snowstorm raise unfair. A raise that covers your costs? Most called that acceptable. Here's the line to send.
+[leaning in] Eighty-three percent of HVAC companies raised their prices last year. Did you? Here's the note that tells your customers.
 
-[matter-of-fact] In a classic survey, a hardware store sells snow shovels for fifteen dollars. The morning after a big snowstorm, it charges twenty. Eighty-two percent called that unfair. That's a raise on your bad luck.
+[matter-of-fact] That's Jobber's survey of a thousand and fifty home service owners. Sixty-five percent raised prices. Plumbing, electrical and roofing? Seventy-four percent each. Cleaning was lowest, at fifty-five.
 
-[curious] Now try the reason you've got. A grocer paid thirty cents more a head for lettuce and charged thirty cents more. Seventy-nine percent called that acceptable. A landlord raising rent to cover higher costs? Seventy-five percent said acceptable.
+[curious] Why? Seventy-two percent named inflation. Half named labor. That's backed up by federal data. Pay for install and repair workers rose three point seven percent in the year to June. All workers? Three point two.
 
-[warmly] Here's the line. "Starting next month, our rates are going up. Our labor and material costs went up this year. Anything you've already approved stays at the price we quoted."
+[warmly] So send this before your next quote. "Starting the first of next month, our rates go up. Our labor and material costs rose this year. Anything you've already approved stays at the price we quoted."
 
-[thoughtful] Don't skip that last sentence. A store repriced the peanut butter already on its shelf the moment the wholesale price rose. Seventy-nine percent called that UNFAIR. A job they've approved keeps the price you quoted.
+[short pause] Here's the part people skip. That last line. A price they already said yes to is a promise. Raise the next job, never the one on your calendar.
 
-[calm] Here's the part people skip. It was a phone survey in Toronto and Vancouver, nineteen eighty-four to eighty-five. It measured what people called fair, not what they bought. So it can't promise you'll keep every customer.
+[calm] One honest note. Jobber sells software, and its survey shows who raised prices. It doesn't show how customers took it. So watch your close rate for a month after.
 
-[confident] Your costs went up? Say so. Their bad luck isn't a reason. Send this to whoever sets your prices, before your next raise.
+[confident] Your costs went up. Most of the trades already raised their prices. Send this to whoever writes your quotes, and don't wait. Raise yours with a reason.

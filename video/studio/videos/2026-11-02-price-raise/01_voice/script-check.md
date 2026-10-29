@@ -1,24 +1,25 @@
-# Script check: Raise prices with a reason customers accept (12-point check, research/runs/2026-10-28-script-playbook.md 6b)
+# Script check: Raise your prices; most trades already did (12-point check, research/runs/2026-10-28-script-playbook.md 6b)
 
-Scored Oct 28, 2026 on script.md (221 spoken words, 7 takes) against the stand-in timings (`anim.py estimate`, 93.2 s, which runs slow)
-and the measured pace of earlier lessons (about 170 wpm, so about 78 s of voice). Lines marked "recheck" are re-scored on the real words.json.
+Scored Oct 28, 2026 on script.md (200 words, 7 takes) against the stand-in timings (`anim.py estimate`, 82.7 s, which runs
+slow at about 145 wpm) and the measured pace of earlier lessons on Todd's voice (156 to 173 wpm). Real voice expected 72 to
+79 s (lesson 9: 195 words, 76.5 s). Lines marked "recheck" are re-scored on the real words.json after the voice workflow runs.
 
-1 spoken hook: PASS 10 words ("Raising your prices? Eighty-two percent called a snowstorm raise unfair."), "your", stake = how a raise is judged, no greeting; ends 4.57 s on the slow estimate, about 3.5 s at 170 wpm (recheck on words.json, limit 3.0 s; trim "Raising your prices?" to "Raising prices?" only if it runs long)
-2 on-screen hook: PASS 6 words ("82% called a snowstorm raise unfair."), the same claim as the voice word for word, settled on frame 0, held to min(hook.cost, 4.0 s), y 270 to 860 inside the safe band, source on the card (phone survey, Toronto and Vancouver, 1984 to 1985, American Economic Review 1986)
-3 one idea: PASS 14 words in brief.md ("raise prices for your costs, never their bad luck, and say so"); all 7 takes serve it
-4 stakes early: PASS "Eighty-two percent" spoken at 1.6 s and again at 20.0 s with the full scene
-5 facts: PASS 15 numbers in facts.json, each re-read on the Berkeley PDF Oct 28 (Questions 1, 7, 8, 10; footnote 1 for method and dates); scope words kept ("called", "acceptable", "unfair", "a phone survey in Toronto and Vancouver"); never "customers accept" or "keep buying"; the letter is labeled example
-6 payoff timing: PASS promise "Here's the line to send" at 9.0 s (estimate; about 7 s real, limit 6 s: recheck); the note complete at 52.5 s = 56% of 93.2 s (limit 70%)
-7 copyable artifact: PASS the three-line note spoken and on screen, full card held 52.5 to 53.4 s plus the last line held on the stock section's top band to 67.8 s (about 15 s in view)
-8 pace and length: PASS 221 words (75 s band 200 to 240); longest sentence 16 words; takes 23 to 37 words; per-take wpm recheck on words.json
-9 talk test: PASS every take has a contraction and "you" or "your"; 0 banned words; 0 em or en dashes
-10 voice markup: PASS 1 tag per take (leaning in, matter-of-fact, curious, warmly, thoughtful, calm, confident); 1 CAPS word (UNFAIR, take 5); 0 digits, $, %, /, & in voice text
-11 retention beats: PASS 34 cues, a visual change every 1.3 to 4.2 s (estimate); turn line "Here's the part people skip." at 67.8 s = 73% (band 55 to 75%; recheck)
-12 ending: PASS one CTA, send line naming a role ("Send this to whoever sets your prices"); last words "your next raise" echo the hook "Raising your prices"; no like/follow/comment/tag asks; LESSON 6 HUD and "Pricing Clinic" on screen; captions carry the AI voice line and the full source
+1 spoken hook: PASS 10 words ("Eighty-three percent of HVAC companies raised their prices last year."), trade noun, stake = the 83% and "Did you?", no greeting. Recheck on words.json, limit 3.0 s
+2 on-screen hook: PASS 8 words ("83% of HVAC companies raised prices last year."), the big 83% on the map and the panel lines, settled on frame 0; source on the card (Jobber survey, 1,050 home service owners, 2025)
+3 one idea: PASS brief states it in 17 words; all 7 takes serve it
+4 stakes early: PASS "Eighty-three" at 0.15 s (limit 14 s)
+5 facts: PASS 14 numbers in facts.json, each re-read on its page Oct 28 (Jobber 2026 Home Service Trends Report; BLS ECI June 2026, Table 8); scope words kept ("last year", "inflation", "half named labor", "install and repair workers", "all workers", "in the year to June"); trade evidence only; the 1986 non-trade study is gone
+6 payoff timing: PASS promise "Here's the note that tells your customers" at about 5.3 s on the estimate (limit 6 s, recheck); the full note complete at 116 of 200 words = 58% (limit 70%)
+7 copyable artifact: PASS the three-line price note, spoken and on screen (cues note.l1 to note.l3), held complete through note.skip and note.last (about 4 s on the estimate before the sweep, unchanged words after)
+8 pace and length: PASS 200 words (75 s band 200 to 240); longest sentence 15 words; takes 19 to 35 words; per-take wpm recheck on words.json (target 160 to 195)
+9 talk test: PASS a contraction in every take (Here's, That's, you've, doesn't, don't), you or your in every take but take 3, which is the numbers; 0 banned words; 0 em or en dashes
+10 voice markup: PASS 1 tag per take (leaning in, matter-of-fact, curious, warmly, short pause, calm, confident); 0 CAPS words; 0 digits, $, %, / in voice text
+11 retention beats: PASS 32 cues, a visual change every 1 to 4.4 s on the estimate; turn line "Here's the part people skip." at 116 of 200 words = 58% (band 55 to 75%)
+12 ending: PASS one CTA, a send line naming a role ("Send this to whoever writes your quotes"); last words echo the hook ("raise yours", "raised their prices"); no like/follow/comment asks; captions carry the AI voice line and both sources with URLs
 
-Result: 12 of 12 PASS on the estimate (1, 6, 8 and 11 re-scored on words.json after the voice run).
+Result: 12 of 12 PASS (1, 6 and 8 re-scored on words.json after the voice run).
 
 Notes for the gates
-- The 1986 study rated hypothetical actions in phone surveys (May 1984 to July 1985). It measured fairness judgments, not buying; take 6 says so and the caveat stays on screen.
-- "Most called that acceptable" (take 1) stands on the two cost questions: 79% (lettuce, N = 101) and 75% (rent, N = 151).
-- The peanut butter question (79% unfair, N = 147) is shown as its own scene; "a job they've approved keeps the price you quoted" is our advice drawn from it, not a finding about quotes.
+- Jobber's shares are per trade among 1,050 surveyed owners (Dec 2025, Conjointly); "last year" is the page's word. The 72% is said "inflation" (the page text); the chart's "inflation and material costs" label is not relied on.
+- BLS: "Installation, maintenance, and repair" 3.7% and "All workers" 3.2% (civilian wages and salaries, 12 months ending June 2026). The construction row (3.9%) includes farming, fishing and forestry, so it is not said.
+- "Jobber sells software" checked on getjobber.com ("home & commercial service software"). The note, "the first of next month", and "raise the next job, never the one on your calendar" are examples and advice, tagged EXAMPLE on screen.

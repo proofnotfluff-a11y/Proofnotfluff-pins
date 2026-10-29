@@ -1,40 +1,41 @@
 {
- "about": "Every number this video shows or says, with its source. From video/studio/research/runs/2026-10-28-topic-bank.md (T3), every number re-read on its source page on Oct 28, 2026 (the INFORMS release and the paper's abstract on two indexes; the journal page itself could not be opened from here).",
- "study": {
-  "title": "Online Reputation Management: Estimating the Impact of Management Responses on Consumer Reviews",
-  "authors": "Davide Proserpio, Georgios Zervas",
-  "journal": "Marketing Science",
-  "volume": 36,
-  "issue": 5,
-  "year": 2017,
-  "pages": "645 to 665",
-  "doi": "10.1287/mksc.2017.1043",
-  "release": {
-   "publisher": "INFORMS",
-   "date": "September 8, 2017",
-   "url": "https://www.informs.org/News-Room/INFORMS-Releases/News-Releases/Want-to-improve-your-business-s-online-ratings-Make-sure-to-respond-to-reviews"
-  },
-  "abstractUrls": [
-   "https://open.bu.edu/handle/2144/40312",
-   "https://econpapers.repec.org/RePEc:inm:ormksc:v:36:y:2017:i:5:p:645-665"
-  ],
-  "population": "hotels; the release says the authors examined tens of thousands of hotel reviews and responses from TripAdvisor (the abstract adds variation across review platforms)",
-  "moreReviewsPct": 12,
-  "ratingGainStars": 0.12,
-  "quoteRelease": "they receive 12 percent more reviews, and their ratings increase by an average of 0.12 stars",
-  "quoteAbstract": "we find a 0.12-star increase in ratings and a 12% increase in review volume for responding hotels.",
-  "smallButReal": "While this gain appears modest, ratings tend to vary little over time. (release)",
-  "why": "signaling to consumers that managers care about their feedback is a good strategy; when managers read and respond to reviews, unsatisfied consumers become more hesitant to leave unsubstantiated complaints (release)",
-  "negative": "when hotels start responding, they receive fewer but longer negative reviews (abstract); fewer negative ratings at the cost of longer and more detailed negative feedback (abstract); a valuable source of feedback that businesses can act upon (release)",
-  "caveat": "Hotels, not trades: no trade business was studied. The script says so out loud and the screen shows it."
+ "about": "Every number this video shows or says, with its source. Trades-first bank lesson 8 ('Half your competitors ignore their reviews', research/runs/2026-10-28-trades-insights.md); replaces the old review-replies lesson (Proserpio and Zervas, hotels on TripAdvisor, a non-trade study). The page below re-read with WebFetch on Oct 28, 2026 (America/Chicago), and only what it says is used.",
+ "achr": {
+  "title": "91% of Homeowners Rely on Online Reviews Before Picking Contractors",
+  "publisher": "The ACHR News (HVACR trade paper), study by Clear Seas Research (BNP Media's research unit) with The ACHR News",
+  "author": "Dylan Kurt",
+  "published": "Sep 17, 2024",
+  "year": 2024,
+  "url": "https://www.achrnews.com/articles/155206-91-of-homeowners-rely-on-online-reviews-before-picking-contractor",
+  "read": "Oct 28, 2026",
+  "homeowners": 400,
+  "importantPct": 91,
+  "importantQuote": "a whopping 91% of respondents rate online reviews as an important factor for them when choosing an HVAC contractor (26% extremely, 35% very, 30% important)",
+  "googlePct": 56,
+  "googleQuote": "56% of respondents saying they use Google to seek out reviews of contractors",
+  "answerPct": 45,
+  "noAnswerPct": 43,
+  "dontKnowPct": 13,
+  "contractorQuote": "Among the contractors surveyed, 45% reported they do answer reviews on third-party sites, with 43% saying they don't, and 13% saying they \"don't know.\"",
+  "contractorScope": "The article does not give the number of contractors surveyed or say in so many words that they are HVAC contractors; the study is the HVAC trade paper's and is framed around choosing an HVAC contractor. Said 'in one HVAC survey, forty-three percent of contractors don't answer reviews' and 'on third-party sites'; never 'HVAC contractors' as a fixed population, never 'half'. The three shares sum to 101 (rounding on the page).",
+  "smallShops": "Contractors with 1 to 10 employees were the least likely to answer reviews on third-party sites (caption context only).",
+  "notUsed": "'88% of people prefer businesses that respond to all reviews' is a quote from a vendor inside the article, about general consumers, source not given: not used (bank do-not-use list)."
  },
- "lesson": {
-  "source": "OURS: advice, not a finding",
+ "replies": {
+  "source": "OURS: advice, not a finding (the bank's two-reply takeaway, reworded; the reviews, the furnace, the late tech and the shop are examples)",
+  "fiveStarReview": "5 stars. Fixed our furnace fast.",
+  "five1": "Thanks for trusting us with your furnace.",
+  "five2": "Glad it's running right.",
+  "five3": "We're here when you need us.",
+  "oneStarReview": "1 star. The tech showed up late.",
+  "one1": "Sorry we were late. That's on us.",
+  "one2": "I want to make it right.",
+  "one3": "Call me directly at the shop.",
   "replies": 2,
-  "stars": 5,
-  "badStars": 2,
-  "good": "Thanks, [first name]. Glad the [job] went well. We're here when you need us. [Your name]",
-  "bad": "Sorry we fell short on [issue]. I want to make it right. Call me directly at [number]. [Your name]",
-  "note": "replies is the lesson itself (one reply for a good review, one for a bad one); stars and badStars are the example reviews on screen (a 5-star and a 2-star review, labeled example), not findings"
+  "fiveStars": 5,
+  "oneStar": 1,
+  "minutes": 10,
+  "day": "Monday",
+  "note": "replies is the count of sample replies; fiveStars and oneStar are the example reviews' ratings; minutes is our suggested weekly block (advice, not data)"
  }
 }

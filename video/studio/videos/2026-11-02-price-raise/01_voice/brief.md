@@ -1,45 +1,77 @@
-# Brief: Raise prices with a reason customers accept
+# Brief: Raise your prices; most trades already did
 
-Lesson 6, segment Pricing Clinic. Planned Oct 28, 2026 from the topic bank's T1 and Brief 1 (research/runs/2026-10-28-topic-bank.md), every fact re-read on its source page the same day (WebFetch of the Berkeley PDF, twice).
+Lesson 6, segment Pricing Clinic. Re-made Oct 28, 2026 (evening) from the trades-first bank's lesson 3
+(research/runs/2026-10-28-trades-insights.md), replacing the first cut, which rested on a non-trade study (Kahneman,
+Knetsch and Thaler 1986: shovels, lettuce and rent in Toronto and Vancouver). Trade evidence only; every source page re-read
+with WebFetch the same evening.
 
-- **Where:** Instagram Reel, 9:16, about 75 s, then TikTok, Facebook, YouTube Shorts.
-- **Audience:** a trades or home-service owner (plumber, electrician, HVAC, roofer) who has to raise prices and dreads telling customers.
-- **The one idea:** raise prices for your costs, never their bad luck, and say so. (14 words)
-- **Shape:** hook (82% called a snowstorm raise unfair; a raise that covers costs, most called acceptable) -> the shovel story (15 to 20 dollars the morning after a snowstorm: 82% unfair) -> the cost reason (lettuce up 30 cents a head, passed on: 79% acceptable; rent raised at renewal to cover costs: 75% acceptable) -> the artifact (the three-line letter, held big) -> why the last line (peanut butter already on the shelf repriced: 79% unfair; approved jobs keep the quoted price) -> the turn (a phone survey in Toronto and Vancouver, 1984 to 1985; fairness ratings, not buying) -> close (costs are a reason, their bad luck isn't; send line).
-- **Metaphor:** none beyond the study's own scenes (a snow shovel, a head of lettuce, a rent notice, a jar on a shelf).
+- **Where:** Instagram Reel, 9:16, about 75 s (200 words; expected 72 to 79 s on Todd's voice), then TikTok, Facebook, YouTube Shorts.
+- **Audience:** an HVAC, plumbing, electrical or roofing owner whose costs went up this year and who hasn't raised prices, or did it quietly and is nervous about telling customers.
+- **The one idea:** most trades already raised prices for their costs; tell customers why, and keep approved quotes. (17 words)
+- **Shape:** hook (83% of HVAC companies raised prices last year; did you; the note that tells customers) -> stakes (Jobber's survey of 1,050 home service owners: 65% raised; plumbing, electrical, roofing 74%; cleaning lowest at 55%) -> why (72% named inflation, half named labor; BLS: install and repair pay +3.7% in the year to June, all workers +3.2%) -> the artifact (the three-line price note, held big) -> the turn (the last line is the promise: raise the next job, never one already approved) -> the honest note (Jobber sells software; the survey shows who raised, not how customers took it; watch your close rate for a month) -> close (your costs went up, most trades already raised; send line; "raise yours with a reason").
 - **Voice:** Todd's clone in `_shared/voice.md`.
-- **Real screens:** the study's scenes as simple props with their verdicts (unfair in red, acceptable in teal), each source on screen while its number is; the letter as a note card, the copyable artifact; the caveat card.
-- **Close:** "Send this to whoever sets your prices, before your next raise." Brand plate, send line.
-- **Trust notes:** the study rated hypothetical actions in phone surveys of residents of Toronto and Vancouver (May 1984 to July 1985); it measured judgments of fairness, not purchases, so the script never says customers "will accept" or "keep buying"; take 6 says so out loud and the caveat sits on screen. "Acceptable" and "unfair" are the paper's grouped categories (Completely Fair + Acceptable; Unfair + Very Unfair), said and shown with those words. The hook's 82% is the snowstorm question exactly ("a snowstorm raise unfair"), and "most called that acceptable" stands on the two cost questions (79%, 75%). Not a study of home service customers: the scenes are a hardware store, a grocer, a landlord and a grocery store, shown as such. The letter and "approved jobs keep the quoted price" are our advice, labeled "example"; the peanut butter result is the closest scene (stock bought before the cost went up), shown as that scene, never as a study of quotes. No storm or emergency reason in the letter (that is the framing rated unfair).
+- **Real screens:** the Jobber trade-by-trade shares with the survey's size and date; the two reasons; the BLS rows with their names and window; the price note as a card (marked example).
+- **Close:** "Send this to whoever writes your quotes." Brand plate, send line.
+
+## Who teaches it (creators, from the bank entry; read Oct 28, 2026)
+- **Danielle Putnam** (HVAC pricing coach): reset prices from real billable hours ([HVAC Chats, Feb 25, 2026](https://hvachats.podbean.com/e/the-hvac-pricing-mindset-and-strategies-to-drive-growth-in-2026/)).
+- **Keith Kalfas** (landscaping): a job minimum that covers the real cost of showing up ([Jun 24, 2025](https://thelandscapingemployeetrap.libsyn.com/why-we-have-a-700-minimum-to-do-any-landscaping-job)).
+- **Michael Stone** (construction pricing): price to cover overhead and profit, not to match the other bid.
+- None of their own figures is used; the lesson's numbers are Jobber's and the BLS's.
+
+## Worlds (no stock room; none of lesson 5's or the versus, calendar, flaps, boss set pieces of lesson 9)
+1. **hook, stakes, caveat, close: the weather map** (`k.sets.weather`). A TV weather map titled PRICE FORECAST: each
+   trade is a sun icon with its share (HVAC 83% on the cover; plumbing, electrical, roofing 74% pop in as said; cleaning
+   55% is a cloud, the lowest). Warm fronts sweep the map: prices rising. The season strip is covered by our own panel
+   (the brief has no monthly series, so no month bars are drawn). Caveat: ONE HONEST NOTE, a cold front and a "?" cloud
+   for how customers took it. Close: every sun up, coins (hud) rain over the map, the send column.
+2. **why: the register** (`k.sets.register`). The till rings up the reasons on its receipt: INFLATION 72%, LABOR 50%; then
+   the drawer opens on "federal data" and the receipt prints the BLS pay lines (REPAIR PAY +3.7%, ALL PAY +3.2%). The
+   display shows the line just rung (never a sum: the set's own total is painted over, the brief has no total).
+3. **why and close: the HUD** (`k.sets.hud`): coins rain into the open drawer while the wage lines print; coins rain over the close.
+4. **note: the price note on the desk** (drawn in scene.js): an office wall with a ticking clock, a desk, a mug that steams,
+   a letterhead sheet where the three lines type as they are said (EXAMPLE tag); on the turn, the third line gets a gold
+   sweep and a PROMISE stamp; a calendar-free "next job" tag lands under it.
+
+## Trust notes
+- Jobber: 1,050 US home service business owners, through Conjointly, December 2025; the page's "last year" is said as
+  "last year" (the survey's year, 2025). Shares are per trade among surveyed owners ("83% of HVAC companies" in the survey):
+  the caption names the survey every time. The 72% is said "inflation" (the page text: "Inflation (72%)"); the chart's
+  label "inflation and material costs" is not relied on. Labor 50% is said "half".
+- The page gives no size of increase, no customer reaction and no future plans: the video says none. The honest note says
+  the survey shows who raised prices, not how customers took it; "watch your close rate for a month" is our advice.
+- BLS ECI: wages and salaries, civilian, 12 months ending June 2026: Installation, maintenance, and repair 3.7%; all
+  workers 3.2%. Said "pay for install and repair workers" (the row's occupations) and "all workers". The construction
+  row (3.9%) also counts farming, fishing and forestry, so it is caption context only.
+- The price note and its date ("the first of next month") are an example (tagged EXAMPLE on screen). No rate is suggested.
+- "Raise the next job, never the one on your calendar" is our advice (keep approved quotes), not a finding.
 
 ## Claims and their sources
 | Claim, as said | Source | URL |
 |---|---|---|
-| Snow shovels $15 raised to $20 the morning after a large snowstorm: 82% of respondents (N = 107) unfair | Kahneman, Knetsch, Thaler, "Fairness as a Constraint on Profit Seeking: Entitlements in the Market," American Economic Review 76(4), Sept 1986, 728 to 741, Question 1 | https://eml.berkeley.edu/~saez/course131/Kahneman-FairnessConstraintProfit-1986.pdf |
-| Grocer paid 30 cents a head more for lettuce (wholesale price up), raised the price 30 cents: 79% acceptable (N = 101) | same, Question 7 | same |
-| Landlord's costs up substantially, rent raised at renewal to cover them: 75% acceptable (N = 151) | same, Question 8 | same |
-| Store raises the price on peanut butter already in stock the moment the wholesale price rises: 79% unfair (N = 147) | same, Question 10 | same |
-| Telephone surveys of randomly selected residents of Toronto and Vancouver, May 1984 to July 1985; judgments of fairness, not purchases | same, section I and footnote 1 | same |
-| The letter: "Starting next month, our rates are going up. Our labor and material costs went up this year. Anything you've already approved stays at the price we quoted." | ours (advice), from the topic bank T1 takeaway | n/a |
+| 83% of HVAC companies raised prices last year; 65% of all; plumbing, electrical, roofing 74%; cleaning 55%, the lowest | Jobber, "Blue Collar Strong: The 2026 Home Service Trends Report" (1,050 owners, Dec 2025, Conjointly) | https://www.getjobber.com/home-service-trends-report/ |
+| 72% named inflation; half (50%) named labor | same page | same |
+| Install and repair workers' pay rose 3.7% in the year to June; all workers 3.2% | BLS, Employment Cost Index, June 2026, released Jul 31, 2026, Table 8 | https://www.bls.gov/news.release/eci.htm |
+| Jobber sells software | Jobber is a field service software company (its own site) | https://www.getjobber.com/ |
+| The price note; keep approved quotes; watch your close rate for a month | ours (advice; bank lesson 3 takeaway) | n/a |
 
 ## Numbers on screen
 
 ```json numbers
 {"file": "video/studio/videos/2026-11-02-price-raise/01_voice/facts.json", "numbers": {
- "shovelUnfair": {"path": "kkt.shovel.unfairPct", "shown": "82%"},
- "shovelN": {"path": "kkt.shovel.n", "shown": "107"},
- "shovelFrom": {"path": "kkt.shovel.fromDollars", "shown": "$15"},
- "shovelTo": {"path": "kkt.shovel.toDollars", "shown": "$20"},
- "lettuceCents": {"path": "kkt.lettuce.centsPerHead", "shown": "30"},
- "lettuceOk": {"path": "kkt.lettuce.acceptablePct", "shown": "79%"},
- "lettuceN": {"path": "kkt.lettuce.n", "shown": "101"},
- "rentOk": {"path": "kkt.rent.acceptablePct", "shown": "75%"},
- "rentN": {"path": "kkt.rent.n", "shown": "151"},
- "stockUnfair": {"path": "kkt.stock.unfairPct", "shown": "79%"},
- "stockN": {"path": "kkt.stock.n", "shown": "147"},
- "year": {"path": "kkt.year", "shown": "1986"},
- "volume": {"path": "kkt.volume", "shown": "76"},
- "fieldStart": {"path": "kkt.fieldStartYear", "shown": "1984"},
- "fieldEnd": {"path": "kkt.fieldEndYear", "shown": "1985"}
+ "hvac": {"path": "jobber.hvacPct", "shown": "83%"},
+ "all": {"path": "jobber.raisedPct", "shown": "65%"},
+ "plumb": {"path": "jobber.plumbingPct", "shown": "74%"},
+ "elec": {"path": "jobber.electricalPct", "shown": "74%"},
+ "roof": {"path": "jobber.roofingPct", "shown": "74%"},
+ "clean": {"path": "jobber.cleaningPct", "shown": "55%"},
+ "owners": {"path": "jobber.owners", "shown": "1,050"},
+ "field": {"path": "jobber.fieldYear", "shown": "2025"},
+ "inflation": {"path": "jobber.inflationPct", "shown": "72%"},
+ "labor": {"path": "jobber.laborPct", "shown": "50%"},
+ "repair": {"path": "bls.repairPct", "shown": "+3.7%"},
+ "allPay": {"path": "bls.allPct", "shown": "+3.2%"},
+ "months": {"path": "bls.windowMonths", "shown": "12"},
+ "lines": {"path": "note.lines", "shown": "3"}
 }}
 ```

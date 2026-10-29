@@ -1,78 +1,76 @@
-# Cues: Raise prices with a reason customers accept (Lesson 6, Pricing Clinic, arcade)
+# Cues: Raise your prices; most trades already did (Lesson 6, Pricing Clinic, arcade look)
+
+Worlds (brief.md): weather map (hook, stakes, caveat, close), register with the HUD's coins (why), the price note on the
+desk (note). No stock room in any section; each top-level cue names its world in a "World:" line.
 
 music: rooms
 
-## hook "Raising your prices? Eighty-two" [sfx: pop]
-Frame 0: the hook card, fully settled. "82% called a" / "snowstorm raise" / "unfair." The 82% in red, sparks. Source small: phone survey, Toronto and Vancouver, 1984 to 1985; American Economic Review, 1986. "Pricing Clinic" under it. Host and dialog hidden.
-## hook.cost "A raise that covers your" [sfx: whoosh]
-Room: framing. Two verdict cards: left (red) "Snowstorm raise: 82% unfair", right slides in (teal) "Covers your costs:" with an empty slot. Chip PRICING CLINIC.
-## hook.most "Most called that acceptable." [sfx: stamp]
-"Most: acceptable" stamps into the teal card. Snow points at it.
-## hook.line "Here's the line to" [sfx: pop]
-A note card peeks up from the bottom of the board: "Your price note" with three grey lines, a promise of the artifact.
+## hook "Eighty-three percent of HVAC" [sfx: pop]
+World: the weather map, PRICE FORECAST. Frame 0: the cover, fully settled: the map with one sun over the west, labeled HVAC 83%, and a big 83% in the middle of the map; under the map our own panel: "of HVAC companies raised" / "prices last year." The 83% in the accent. Source small: Jobber survey, 1,050 owners, 2025. Host and dialog hidden. Sparks wait until 1 s.
+## hook.raised "raised their prices last" [sfx: tick]
+A warm front (red domes) sweeps west to east across the map; the HVAC sun pings.
+## hook.you "Did you?" [sfx: blip]
+A "?" cloud pops over the lake side: YOUR SHOP ?
+## hook.note "Here's the note that" [sfx: pop]
+The HUD reads LESSON 6; the panel line becomes "The note that tells your customers." Snow steps in small and points.
 
-## shovel "In a classic survey," [sfx: whoosh]
-Room: garage. Panel QUESTION 1: "A hardware store". Source chip: American Economic Review, 1986.
-## shovel.price "sells snow shovels for" [sfx: tick]
-A pixel snow shovel slides in with a price tag: $15.
-## shovel.storm "The morning after a" [sfx: blip]
-Snow starts falling over the panel; "The morning after a big snowstorm" in chalk.
-## shovel.twenty "it charges twenty."
-The tag flips: $15 crossed out, $20 slams in red.
-## shovel.82 "Eighty-two percent called that"
-The verdict row: a red bar fills to 82% "unfair" as it is said, sparks; "N = 107" small.
-## shovel.luck "That's a raise on" [sfx: pop]
-A sticker on the panel's top corner: "A raise on bad luck." Clear of the bar and the tag.
+## stakes "That's Jobber's survey of" [sfx: whoosh]
+World: the weather map again (dissolve). The panel: "Jobber survey: 1,050 home service owners, Dec 2025".
+## stakes.all "Sixty-five percent raised prices." [sfx: tick]
+"65%" slams into the panel (count from 85%): "of them raised prices." A second warm front starts.
+## stakes.trades "Plumbing, electrical and roofing?" [sfx: tick]
+Suns pop on each word: PLUMB, ELEC, ROOF.
+## stakes.74 "Seventy-four percent each." [sfx: pop]
+Their labels land: 74% each, with a burst; the panel: "Plumbing, electrical, roofing: 74%".
+## stakes.clean "Cleaning was lowest, at" [sfx: blip]
+A cloud (no sun) pops: CLEAN, then 55% on "fifty-five"; the panel: "Cleaning, the lowest: 55%".
 
-## costs "Now try the reason" [sfx: whoosh]
-Room: blackboard. Header on a dark band: "The reason: costs". Two rows ready (labels and empty tracks): lettuce, rent.
-## costs.lettuce "A grocer paid thirty" [sfx: tick]
-Row 1 lights: a head of lettuce, "Wholesale +30¢ a head".
-## costs.charged "and charged thirty cents"
-"Price +30¢" slides in beside it, an arrow from cost to price.
-## costs.79 "Seventy-nine percent called that"
-Row 1 bar fills to 79% in teal, "acceptable" (N = 101), sparks.
-## costs.rent "A landlord raising rent" [sfx: tick]
-Row 2 lights: a rent notice, "Rent up at renewal to cover costs".
-## costs.75 "Seventy-five percent said acceptable."
-Row 2 bar fills to 75% in teal, "acceptable" (N = 151), sparks.
+## why "Why? Seventy-two percent named" [sfx: whoosh]
+World: the register (level select). A shop counter with a brass till. The display reads REASON.
+## why.inflation "named inflation." [sfx: tick]
+The till rings INFLATION 72% onto the receipt; the $ flag pops; the display shows 72%.
+## why.labor "Half named labor." [sfx: tick]
+LABOR 50% prints; the display shows 50%. The plate on the wall: "Why they raised prices" / "Jobber survey, reasons named".
+## why.federal "That's backed up by" [sfx: pop]
+The drawer slides out; coins drip into it (HUD) to the end of the take. The plate: "Federal pay data" / "BLS, 12 months to June 2026".
+## why.repair "Pay for install and" [sfx: tick]
+REPAIR PAY +3.7% prints on the receipt on "three point seven"; the display label flips to PAY and shows +3.7%.
+## why.all "All workers? Three point" [sfx: tick]
+ALL PAY +3.2% prints; the display shows +3.2%. It holds to the end of the take, coins still landing.
 
-## line "Here's the line." [sfx: whoosh]
-Room: workshop. The big note card (example), the copyable artifact: "Your price note (example)". Snow steps back (small) so nothing covers it.
-## line.l1 "Starting next month, our" [sfx: tick]
-Line 1 lands: "Starting next month, our rates are going up."
-## line.l2 "Our labor and material" [sfx: tick]
-Line 2 lands: "Our labor and material costs went up this year."
-## line.l3 "Anything you've already approved" [sfx: tick]
-Line 3 lands, highlighted: "Anything you've already approved stays at the price we quoted." The full card holds to the end of the take.
+## note "So send this before" [sfx: whoosh]
+World: the price note on the desk (iris). An office wall with a clock that ticks, a desk, a steaming mug, a letterhead sheet tagged EXAMPLE, three numbered rows showing empty. Header: "Send this before your next quote."
+## note.l1 "Starting the first of" [sfx: tick]
+Row 1 types word by word as it is said: "Starting the first of next month, our rates go up."
+## note.l2 "Our labor and material" [sfx: tick]
+Row 2 types: "Our labor and material costs rose this year."
+## note.l3 "Anything you've already approved" [sfx: tick]
+Row 3 types: "Anything you've already approved stays at the price we quoted." The full note holds 3 s or more, unchanged, through the next two beats.
+## note.skip "Here's the part people" [sfx: whoosh]
+Only the header changes: "The part people skip."
+## note.last "That last line." [sfx: blip]
+Row 3 gets a gold sweep under it; the numbers 1 and 2 dim a shade.
+## note.promise "is a promise." [sfx: stamp]
+A PROMISE stamp lands at the sheet's right edge, clear of the words.
+## note.next "Raise the next job," [sfx: pop]
+Under the sheet: "Raise the next job. Never an approved one."
 
-## stock "Don't skip that last" [sfx: whoosh]
-Room: garage. The note's last line rides small at the top on a dark band, underlined. Panel QUESTION 10 below it: "A grocery store".
-## stock.shelf "A store repriced the" [sfx: pop]
-A shelf of peanut butter jars slides in, each with a tag: "Already on the shelf".
-## stock.rise "the moment the wholesale" [sfx: blip]
-"Wholesale price up" arrow; the jar tags get new stickers.
-## stock.79 "Seventy-nine percent called that"
-A red bar fills to 79% "unfair" (N = 147), sparks.
-## stock.keep "A job they've approved" [sfx: stamp]
-Stamp under the bar: "Approved jobs keep your quoted price." Snow points at it.
+## caveat "One honest note." [sfx: whoosh]
+World: the weather map (dissolve), titled ONE HONEST NOTE. A cold front (blue teeth) sweeps in from the east.
+## caveat.sells "Jobber sells software," [sfx: tick]
+Panel: "Jobber sells software."
+## caveat.shows "survey shows who raised" [sfx: tick]
+Panel line 2: "Its survey: who raised prices."
+## caveat.took "doesn't show how customers" [sfx: blip]
+A "?" cloud pops over the lake: CUSTOMERS ?. Panel line 3: "Not how customers took it."
+## caveat.watch "So watch your close" [sfx: pop]
+The panel clears to: "Watch your close rate for a month after." It holds to the end of the take.
 
-## caveat "Here's the part people" [sfx: whoosh]
-Room: blackboard. Header on a dark band: "The fine print".
-## caveat.phone "It was a phone" [sfx: tick]
-A pixel phone and "Phone survey: Toronto and Vancouver".
-## caveat.years "nineteen eighty-four to eighty-five."
-"1984 to 1985" slams in beside it.
-## caveat.fair "It measured what people" [sfx: blip]
-Two rows: "Measured: what people called fair" (check) and "Not measured: what they bought" (cross).
-## caveat.promise "So it can't promise" [sfx: pop]
-Caveat box stamps under the rows: "No promise you keep every customer."
-
-## close "Your costs went up?" [sfx: pop]
-Room: framing. "Your costs:" / "a reason." slams in, in teal.
-## close.luck "Their bad luck isn't"
-"Their bad luck:" / "not a reason." slams in, in red.
+## close "Your costs went up." [sfx: pop]
+World: the weather map, PRICE FORECAST, every sun up, coins raining across it (HUD). A game window opens under the map: "Your costs went up." in the accent.
+## close.most "Most of the trades" [sfx: tick]
+"Most trades already raised prices." lands under it.
 ## close.send "Send this to whoever" [sfx: sting]
-ProofNotFluff plate slams on; send line: "Send this to whoever sets your prices."
-## close.raise "before your next raise."
-An accent line sweeps under the send line; sparks; Snow waves.
+ProofNotFluff chip and the send line: "Send this to whoever writes your quotes." One column, one left edge, host small at the side.
+## close.reason "Raise yours with a" [sfx: pop]
+"Raise yours with a reason." lands in gold with an accent line sweeping under it; Snow waves.

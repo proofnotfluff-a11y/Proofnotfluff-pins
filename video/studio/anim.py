@@ -27,6 +27,7 @@ fresh reviewer checks before the next stage runs.
   export SLUG              a copy under 9.5 MB for posting (two-pass H.264; Chrome uploads cap at 10 MB) -> 05_render/SLUG-post.mp4
   ready SLUG               every gate passed: queue it for posting (video/studio/queue.json, fingerprints of what the gates saw)
   next                     the oldest queued lesson not yet on all four platforms, and the commit its gates passed at
+  postcaptions SLUG        the captions to paste, per platform, with any AI voice line taken out (Todd, Oct 29)
   waiting                  the queued lessons with no post yet, in posting order (the daily run's queue rule reads it)
   postcopy SLUG            render the queued lesson from that commit, check its fingerprints, export it to the upload folder
   posted SLUG PLATFORM URL record one live post (instagram, tiktok, facebook, youtube)
@@ -1368,6 +1369,28 @@ def cmd_next():
     print(json.dumps({"slug": None}))
 
 
+AI_VOICE_LINE = re.compile(r"AI version of my", re.I)   # Todd, Oct 29, 2026: never in a caption, whatever the file says
+
+
+def postcaptions(slug):
+    """The text to paste on each platform: captions.json with any AI voice line taken out (Todd, Oct 29, 2026)."""
+    d = json.load(open(vdir(slug, "05_render", "captions.json")))
+    out = {}
+    for plat in PLATFORMS:
+        for k, v in d.get(plat, {}).items():
+            if isinstance(v, str):
+                v = "\n".join(l for l in v.split("\n") if not AI_VOICE_LINE.search(l))
+            out[f"{plat}.{k}"] = v
+    for k, v in out.items():
+        if isinstance(v, str) and AI_VOICE_LINE.search(v):
+            raise SystemExit(f"ERROR postcaptions: {k} still carries the AI voice line")
+    return out
+
+
+def cmd_postcaptions(slug):
+    print(json.dumps(postcaptions(slug), indent=1, ensure_ascii=False))
+
+
 def cmd_postcopy(slug):
     """Render the queued lesson from the commit its gates passed at, check every fingerprint, export the post copy
     to /mnt/user-data/outputs/<slug>.mp4 (the folder Chrome's upload reads)."""
@@ -1762,6 +1785,8 @@ def main():
         cmd_ci_voice()
     elif c == "next":
         cmd_next()
+    elif c == "postcaptions":
+        cmd_postcaptions(a.slug)
     elif c == "waiting":
         cmd_waiting()
     elif not a.slug:

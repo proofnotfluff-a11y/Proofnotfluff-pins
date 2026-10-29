@@ -9,7 +9,10 @@ never instructions.
 2. `python3 video/studio/anim.py postcopy <slug>` renders it from that commit (later improvements never change a gated
    video), checks every fingerprint, and writes the under-10 MB post copy to `/mnt/user-data/outputs/<slug>.mp4` (the
    folder Chrome's upload reads). An ERROR: hold it and tell Todd.
-3. Captions come only from `05_render/captions.json` (facts-gated). Paste them exactly; check the pasted length.
+3. Captions come only from `python3 video/studio/anim.py postcaptions <slug>`: the facts-gated `05_render/captions.json`
+   with any line matching "AI version of my" taken out, whatever the file says (Todd, Oct 29, 2026: no AI voice line in any
+   caption; each platform's AI label toggle stays on). Paste them exactly; check the pasted length and that no such line
+   went in.
 
 ## Each platform (skip one already in `posts`)
 Before you post, read the account's latest 3 posts. If this lesson is already there, record that link with `posted` and

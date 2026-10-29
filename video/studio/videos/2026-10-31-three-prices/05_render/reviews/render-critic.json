@@ -1,19 +1,22 @@
 {
  "gate": "render-critic",
  "round": 0,
- "at": "2026-10-28T23:08:37-05:00",
- "mp4Sha256": "18795817c4c0ae9dbe7b9a6b80e641013c92a12141f2f71ded524d200df76b38",
+ "at": "2026-10-28T23:41:55-05:00",
+ "mp4Sha256": "fda9441b42f29953678457faf74faca94e220b8d0e07620dde96b03604423248",
+ "note": "Round 0 rerun on the changed scene (bigger 57%/41%, new tray label, larger send line, new sparkle helper). Earlier render-critic.json listed 0 faults.",
  "pass": true,
  "score": {
   "faults": 0
  },
  "faults": [],
  "reasons": [
-  "Hook: '3 prices' and '57%' card on screen from 0.0 s (frame-0s, 0.8s, 2.0s).",
-  "Spoken numbers on screen at or within about 0.5 s of the word: 10% (9.5 s, said 9.93), 57% (13.0, said 12.43, count-up), 41% (16.0, said 15.39, count-up), 1,100+ (21.5, said 21.92), 68% (24.5, said 24.08, count-up), 1,000+ (55.0, said 55.28), 4+ (57.5, said 57.7), 52% (60.0, said 59.44, reel stop), 1 to 3 (62.0), 42% (63.5, said 63.12, reel stop), 3 prices (76 to 85).",
-  "Earlier fault (citation clipped 20.6 to 23.9 s) is gone: 'HOUSECALL PRO SURVEY, 2026' fully visible from 21.0 s; 20.5 s is the typewriter reveal.",
-  "Settled layouts keep words and numbers between y 270 and 1250 and left of x 930 (rightmost text: 57% and $$$ end near x 915 to 928); slot lever and card frames past x 930 are decoration. Quote card off the right edge at 31.44 s is its exit move only.",
-  "Voice ends 83.77 s, video 85.67 s; last word 'prices.' complete, tail is quiet.",
-  "Smallest text (bubble lines, citations, 'Top 10% = by revenue') renders about 28 to 32 px tall on 1080x1920, readable on a phone; no flashing, only single dither transitions at 5.5, 18.5, 36.0 s and one 48.5 s cut."
+  "Hook: '3 prices' and '57%' on the hook card from 0.0 s (frame-0s, 0.8s, 2.0s).",
+  "Spoken numbers on screen at about the word: 10% (row at 9.5 s, said 9.93), 57% (count-up 12.0, lands by 12.5, said 12.43), 41% (count-up 15.0, 41% at 15.5, said 15.39), 1,100+ (21.5, said 21.92), 68% (24.0, said 24.08), 1,000+ (55.0, said 55.28), 4+ (label 57.5, said 57.7), 52 (reels 5 2 at 59.5, said 59.44; 52% tray 60.5), 1 to 3 (label 62.0, said 61.64), 42% (reel 4 at 63.0, 42% at 63.5, said 63.12), 'It can't show 3 beats 1.' from 68.0 (said 68.9 to 69.5), 3 prices tag flip at 78.0 (said 77.95).",
+  "Bigger stakes scores right-aligned at x 918, inside x 930; sparkle twinkles sit at the number box corners and never cross the digits (checked 12.95, 13.2, 16.0, 16.3, 24.6, 24.9 s).",
+  "New tray label 'close rate by options given' (57.5 to 60.2 s) fits inside the tray with the line above it, nothing hidden.",
+  "Larger send line 'Send this to whoever / writes your quotes.' fits the close plate (ends near x 620), above the host; host head meets the plate's lower frame only, no words hidden (80.85 to 85.37 s).",
+  "Settled layouts keep words and numbers between y 270 and 1250 and left of x 930; card frames, slot lever and plate borders past x 930 are decoration; quote slip leaving right at 31.0 s and reels mid-spin are motion only.",
+  "Voice ends 83.77 s ('prices.' complete), video 85.67 s.",
+  "Smallest text (citations, chips, bubble) about 30 px on 1080x1920, readable; no flashing over 3 a second (score '--' blink about 2 Hz, hazard 0.5 Hz, single dither transitions at 5.5, 18.5, 36.0 s and a cut at 48.5 s)."
  ]
 }

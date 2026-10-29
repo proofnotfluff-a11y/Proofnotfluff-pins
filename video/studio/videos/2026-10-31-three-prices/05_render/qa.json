@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-10-31-three-prices",
- "mp4Sha256": "18795817c4c0ae9dbe7b9a6b80e641013c92a12141f2f71ded524d200df76b38",
+ "mp4Sha256": "fda9441b42f29953678457faf74faca94e220b8d0e07620dde96b03604423248",
  "checks": [
   {
    "name": "length",
@@ -26,23 +26,18 @@
   },
   {
    "name": "frozen",
-   "value": [
-    [
-     84.4,
-     85.4
-    ]
-   ],
+   "value": [],
    "pass": true,
    "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 75.43 s"
   },
   {
    "name": "file",
    "value": {
-    "sha256": "18795817c4c0ae9dbe7b9a6b80e641013c92a12141f2f71ded524d200df76b38",
-    "bytes": 7196202
+    "sha256": "fda9441b42f29953678457faf74faca94e220b8d0e07620dde96b03604423248",
+    "bytes": 7090552
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 7.2 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 7.1 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -52,5 +47,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-28T23:02:27-05:00"
+ "at": "2026-10-28T23:39:32-05:00"
 }

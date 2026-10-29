@@ -117,7 +117,7 @@ window.SCENE = {
       });
       // the cover breathes after frame 0: sparks off the HVAC sun at 0.45 s (the freeze check), a ping as "raised" is said
       const [sx, sy] = [(14 + ICONS.hvac[0] * 332) * 3, (82 + ICONS.hvac[1] * 150) * 3];
-      k.burst(sx, sy, 0.45, {n: 14, r: 180}); k.burst(sx, sy, tRaised, {n: 18, r: 220});
+      [0.45, 1.15, 1.85].forEach((at) => { if (at < tRaised - 0.3) k.burst(sx, sy, at, {n: 12, r: 170}); }); k.burst(sx, sy, tRaised, {n: 18, r: 220});
       const pf = d.fr(tRaised); if (pf >= 0 && pf < 12) { const g = 8 + pf * 2, cx = sx / 3, cy = sy / 3; d.P(cx - g, cy - g, 2 * g + 1, 1, CREAM); d.P(cx - g, cy + g, 2 * g + 1, 1, CREAM); d.P(cx - g, cy - g, 1, 2 * g + 1, CREAM); d.P(cx + g, cy - g, 1, 2 * g + 1, CREAM); }
       // the hook card in the panel: settled on frame 0
       k.text(n.hvac.shown, 384, 426, {size: 132, color: 'accent', align: 'center', drop: INK});

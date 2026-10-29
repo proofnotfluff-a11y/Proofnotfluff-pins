@@ -1,24 +1,27 @@
 {
  "gate": "design",
- "round": 0,
- "at": "2026-10-28T23:08:44-05:00",
- "pass": false,
+ "round": 1,
+ "at": "2026-10-28T23:40:47-05:00",
+ "pass": true,
  "score": {
   "first": 5,
-  "hierarchy": 4,
+  "hierarchy": 5,
   "type": 5,
   "color": 5,
   "spacing": 4,
-  "polish": 4,
+  "polish": 5,
   "trust": 5,
-  "average": 4.57
+  "average": 4.86
  },
  "reasons": [
-  "0.5 to 5.0 s hook card: the counter sparks fly over 'Top shops quote' and '3 prices' and blank out letters ('pric es' at 5.0 s, 'Top' at 5.0 s); keep the sparks above the tag and off the cream card",
-  "6.4 to 19 s stakes scores table: 57% and 41% sit at the same size as the footnote lines; render the two values (or a '57% vs 41%' line in the empty band under the rows) at headline size in gold and teal",
-  "74.0 to 75.4 s slots START WITH 3: the label box under the reels is empty while the jackpot lands; put 'Start with 3 prices.' in it",
-  "79.5 to 85.4 s close board: 'Send this to whoever writes your quotes.' is the smallest line on screen; set it at the size of '1 price: yes or no.'",
-  "13.0 s stakes 57% cell: sparks cover the 57% as it lands; start them after the number is readable or put them at the row's left end"
+  "76.0 to 79.0 s close board: one line ('1 price: yes or no.') sits in a dark box sized for four, leaving a large empty block for 3 s; start the box at one line's height and grow it a line at a time as '3 prices: a choice.' and the send lines land"
  ],
- "freshness": "counter, scores and slots repeat none of street/chat/levelup (10-29) or register/gauge/inventory (10-30); storefront bookend reads as intentional"
+ "round0_check": [
+  "hook sparks off the cream card: landed (0.5 to 5.0 s card clean)",
+  "57% and 41% enlarged in gold and teal above the footnote size: landed (17.07 s)",
+  "START WITH 3 label 'Start with 3 prices.': landed (74.6 s)",
+  "close send line at the size of '1 price: yes or no.': landed (80.85 s)",
+  "13.0 s sparks clear of 57%: landed"
+ ],
+ "freshness": "hook storefront, scores table, homeowner crowd, quote card and slot machine repeat none of street/chat/levelup (10-29) or register/gauge/inventory (10-30); storefront window shelves echo the 10-30 register shelves only faintly; holds against lesson 9's split-screen hook bar"
 }

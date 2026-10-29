@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-02-price-raise",
- "mp4Sha256": "1372c850f19797c24e03ab36ced16898ce7eec0c41b61e1ece37d66b5eb40301",
+ "mp4Sha256": "dc5125b58f46f9910a72d4f739f09696bb51fbc0b79663e3963d985e95a0aac5",
  "checks": [
   {
    "name": "length",
@@ -28,8 +28,8 @@
    "name": "frozen",
    "value": [
     [
-     0.0,
-     1.03333
+     1.1,
+     2.5
     ]
    ],
    "pass": false,
@@ -38,8 +38,8 @@
   {
    "name": "file",
    "value": {
-    "sha256": "1372c850f19797c24e03ab36ced16898ce7eec0c41b61e1ece37d66b5eb40301",
-    "bytes": 7490977
+    "sha256": "dc5125b58f46f9910a72d4f739f09696bb51fbc0b79663e3963d985e95a0aac5",
+    "bytes": 7483754
    },
    "pass": true,
    "detail": "H.264 1080x1920 30 fps, AAC, 7.5 MB, decodes clean"
@@ -52,5 +52,5 @@
   }
  ],
  "pass": false,
- "at": "2026-10-28T23:08:42-05:00"
+ "at": "2026-10-28T23:33:10-05:00"
 }

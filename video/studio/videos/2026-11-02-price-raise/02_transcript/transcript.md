@@ -18,7 +18,7 @@ none
 
 ## Words
 
-`00:00.0` Eighty-three percent of hvac companies raised their prices last year.
+`00:00.0` Eighty-three percent of HVAC companies raised their prices last year.
 
 `00:04.6` Did you?
 

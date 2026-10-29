@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-01-same-visit-close",
- "mp4Sha256": "c3be67c6e0b1439514980341a653718c92a11a278b69fa159f63794254ad82a9",
+ "mp4Sha256": "c81378baa693c4f3041522693a910dcbd46a79a0ce1d8718540863c18effe8e4",
  "checks": [
   {
    "name": "length",
@@ -33,8 +33,8 @@
   {
    "name": "file",
    "value": {
-    "sha256": "c3be67c6e0b1439514980341a653718c92a11a278b69fa159f63794254ad82a9",
-    "bytes": 6043283
+    "sha256": "c81378baa693c4f3041522693a910dcbd46a79a0ce1d8718540863c18effe8e4",
+    "bytes": 6043421
    },
    "pass": true,
    "detail": "H.264 1080x1920 30 fps, AAC, 6.0 MB, decodes clean"
@@ -47,5 +47,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-28T23:14:28-05:00"
+ "at": "2026-10-28T23:45:13-05:00"
 }

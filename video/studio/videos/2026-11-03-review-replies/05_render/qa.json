@@ -7,7 +7,7 @@
    "name": "length",
    "value": 74.767,
    "pass": true,
-   "detail": "74.77 s (45.0 to 75.0, studio lessons, end card included)"
+   "detail": "74.77 s (45.0 to 75.0, v1 lesson, end card included)"
   },
   {
    "name": "loudness",
@@ -47,5 +47,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-29T13:12:34-05:00"
+ "at": "2026-10-29T13:36:42-05:00"
 }

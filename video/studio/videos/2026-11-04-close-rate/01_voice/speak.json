@@ -4,8 +4,7 @@
  "model": "eleven_v4",
  "takes": [
   1,
-  3,
-  5
+  3
  ],
  "settings": {
   "stability": 0.6,
@@ -14,5 +13,5 @@
   "use_speaker_boost": true
  },
  "scriptSha256": "2f228a698cbb6eb81b8afa75a02c571b58a59f4ebd076be2fccacb99a55116b6",
- "requestedAt": "2026-10-28T18:18:00-05:00"
+ "requestedAt": "2026-10-28T19:30:33-05:00"
 }

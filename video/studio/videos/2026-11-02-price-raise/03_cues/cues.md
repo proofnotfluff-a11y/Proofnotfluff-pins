@@ -16,26 +16,26 @@ The panel clears to the one headline: "The note that tells" / "your customers." 
 
 ## stakes "That's from Jobber's survey" [sfx: whoosh]
 World: the weather map again (dissolve), titled PRICE REPORT. The panel: "Who raised prices last year?" with the source under it (Jobber, 1,050 home service owners, Dec 2025).
-## stakes.all "and sixty-five percent of" [sfx: tick]
+## stakes.all "and sixty-five percent raised" [sfx: tick]
 "65%" slams into the panel (count from 85%): "of them raised prices." A second warm front starts.
 ## stakes.trades "In plumbing, electrical and" [sfx: tick]
 Suns pop on each word: PLUMB, ELEC, ROOF; the panel line: "Plumbing, electrical, roofing".
 ## stakes.74 "at seventy-four percent each." [sfx: pop]
 Their labels land: 74% each, with a burst; the panel: "Plumbing, electrical, roofing: 74%".
 
-## why "They said why, too." [sfx: whoosh]
+## why "As for why," [sfx: whoosh]
 World: the register (level select). A shop counter with a brass till on a plank floor. The receipt prints its source line, JOBBER SURVEY. The display reads REASON. The plate on the wall: "Why they raised prices" / "Jobber survey, reasons named".
-## why.inflation "Seventy-two percent named inflation," [sfx: tick]
-On "Seventy-two" the till rings INFLATION 72% onto the receipt; the $ flag pops; the display shows 72%.
+## why.inflation "seventy-two percent named inflation," [sfx: tick]
+On "seventy-two" the till rings INFLATION 72% onto the receipt; the $ flag pops; the display shows 72%.
 ## why.labor "and half named labor." [sfx: tick]
 LABOR 50% prints; the display shows 50%.
 ## why.federal "That's backed up by" [sfx: pop]
 The receipt prints its second source line, BLS PAY DATA. The drawer slides out; coins drop into it (only between the till and the drawer) to the end of the take. The plate: "Federal pay data" / "BLS, 12 months to June 2026".
 ## why.repair "pay for install and" [sfx: tick]
 REPAIR PAY +3.7% prints under BLS PAY DATA on "three point seven"; the display label flips to PAY and shows +3.7%.
-## why.all "and three point two" [sfx: tick]
+## why.all "For all workers, it" [sfx: tick]
 ALL PAY +3.2% prints; the display shows +3.2%.
-## why.crew "So your crew's pay" [sfx: blip]
+## why.crew "so your crew's pay" [sfx: blip]
 A gold line under REPAIR PAY; the display reads CREW PAY +3.7%; the plate: "Crew pay: above average". It holds to the end of the take, coins still landing.
 
 ## note "So send this before" [sfx: whoosh]

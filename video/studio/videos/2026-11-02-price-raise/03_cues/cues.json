@@ -70,14 +70,14 @@
   {
    "id": "stakes.all",
    "level": 1,
-   "quote": "and sixty-five percent of",
+   "quote": "and sixty-five percent raised",
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
    "text": "\"65%\" slams into the panel (count from 85%): \"of them raised prices.\" A second warm front starts.",
-   "t": 11.409,
+   "t": 11.347,
    "word": 30,
-   "end": 14.859
+   "end": 14.257
   },
   {
    "id": "stakes.trades",
@@ -87,9 +87,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Suns pop on each word: PLUMB, ELEC, ROOF; the panel line: \"Plumbing, electrical, roofing\".",
-   "t": 14.859,
-   "word": 40,
-   "end": 17.974
+   "t": 14.257,
+   "word": 38,
+   "end": 17.997
   },
   {
    "id": "stakes.74",
@@ -99,14 +99,14 @@
    "shift": 0.0,
    "pin": null,
    "text": "Their labels land: 74% each, with a burst; the panel: \"Plumbing, electrical, roofing: 74%\".",
-   "t": 17.974,
+   "t": 17.997,
    "word": 49,
    "end": 20.243
   },
   {
    "id": "why",
    "level": 0,
-   "quote": "They said why, too.",
+   "quote": "As for why,",
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
@@ -118,14 +118,14 @@
   {
    "id": "why.inflation",
    "level": 1,
-   "quote": "Seventy-two percent named inflation,",
+   "quote": "seventy-two percent named inflation,",
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "On \"Seventy-two\" the till rings INFLATION 72% onto the receipt; the $ flag pops; the display shows 72%.",
-   "t": 21.704,
-   "word": 57,
-   "end": 23.608
+   "text": "On \"seventy-two\" the till rings INFLATION 72% onto the receipt; the $ flag pops; the display shows 72%.",
+   "t": 21.114,
+   "word": 56,
+   "end": 23.048
   },
   {
    "id": "why.labor",
@@ -135,9 +135,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "LABOR 50% prints; the display shows 50%.",
-   "t": 23.608,
-   "word": 61,
-   "end": 25.055
+   "t": 23.048,
+   "word": 60,
+   "end": 24.517
   },
   {
    "id": "why.federal",
@@ -147,9 +147,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The receipt prints its second source line, BLS PAY DATA. The drawer slides out; coins drop into it (only between the till and the drawer) to the end of the take. The plate: \"Federal pay data\" / \"BLS, 12 months to June 2026\".",
-   "t": 25.055,
-   "word": 65,
-   "end": 27.165
+   "t": 24.517,
+   "word": 64,
+   "end": 26.66
   },
   {
    "id": "why.repair",
@@ -159,31 +159,31 @@
    "shift": 0.0,
    "pin": null,
    "text": "REPAIR PAY +3.7% prints under BLS PAY DATA on \"three point seven\"; the display label flips to PAY and shows +3.7%.",
-   "t": 27.165,
-   "word": 71,
-   "end": 32.216
+   "t": 26.66,
+   "word": 70,
+   "end": 31.899
   },
   {
    "id": "why.all",
    "level": 1,
-   "quote": "and three point two",
+   "quote": "For all workers, it",
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
    "text": "ALL PAY +3.2% prints; the display shows +3.2%.",
-   "t": 32.216,
-   "word": 87,
-   "end": 34.544
+   "t": 31.899,
+   "word": 86,
+   "end": 34.506
   },
   {
    "id": "why.crew",
    "level": 1,
-   "quote": "So your crew's pay",
+   "quote": "so your crew's pay",
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
    "text": "A gold line under REPAIR PAY; the display reads CREW PAY +3.7%; the plate: \"Crew pay: above average\". It holds to the end of the take, coins still landing.",
-   "t": 34.544,
+   "t": 34.506,
    "word": 94,
    "end": 37.857
   },

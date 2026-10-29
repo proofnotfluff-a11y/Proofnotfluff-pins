@@ -295,17 +295,19 @@ window.SCENE = {
       const tMark = t0 + 0.3, tFly = send + 0.3, FLY = 12, tLand = tFly + FLY / 30;
       const fills = [{day: 1, at: tMark, c: GOLD, mark: 'coin'}];
       if (T >= tLand) fills.push({day: 1, at: tLand, c: GOLD, mark: 'check'});
-      const cal = k.sets.calendar({month: 'NEXT MONTH', start: 2, days: 30, fills, weeks: [{row: 0, at: tMark}]});
-      const [cx, cy, cw, ch] = cal.cell(1).map((v) => v / 3);
-      /* the note window: rises from the desk over rows 2 to 4 (rows 0 and 1, with day 1, stay in view) */
+      /* the note window rises from the desk over rows 2 to 4 (rows 0 and 1, with day 1, stay in view); the day numbers
+         it covers are not drawn (hidden text still counts for lint) */
       const open = d.ease(t0 + 0.25, 8, 120), WY = 182;
+      const cal = mute(k, (s, x, y) => /^\d+$/.test(String(s)) && y >= (WY + open) * 3,
+        () => k.sets.calendar({month: 'NEXT MONTH', start: 2, days: 30, fills, weeks: [{row: 0, at: tMark}]}));
+      const [cx, cy, cw, ch] = cal.cell(1).map((v) => v / 3);
       d.clip(0, 0, 360, 334, () => d.win(14, WY + open, 332, 118, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#7A3442'}));
       if (open === 0) {
         if (T >= send) k.chip('ProofNotFluff', 120, WY * 3 - 22, {size: 30});
-        k.slam('Your costs went up.', 120, 576, t0 + 0.3, {size: 39, color: CREAM, from: 0.4});
-        if (T >= most) k.slam('Most trades already raised prices.', 120, 628, most, {size: 39, color: CREAM, from: 0.4});
-        if (T >= send) k.slam('Send this to whoever writes your quotes.', 120, 680, send + 0.1, {size: 39, color: CREAM, from: 0.4});
-        if (T >= rs) { k.slam('Raise yours with a reason.', 120, 744, rs, {size: 66, color: GOLD, from: 0.5, drop: INK}); k.sweep(120, 828, 621, 6, rs + 0.3, {color: 'accent'}); }
+        k.slam('Your costs went up.', 120, 600, t0 + 0.3, {size: 39, color: CREAM, from: 0.4});
+        if (T >= most) k.slam('Most trades already raised prices.', 120, 652, most, {size: 39, color: CREAM, from: 0.4});
+        if (T >= send) k.slam('Send this to whoever writes your quotes.', 120, 704, send + 0.1, {size: 39, color: CREAM, from: 0.4});
+        if (T >= rs) { k.slam('Raise yours with a reason.', 120, 768, rs, {size: 66, color: GOLD, from: 0.5, drop: INK}); k.sweep(120, 848, 621, 6, rs + 0.3, {color: 'accent'}); }
       }
       /* the envelope: out of the window's top right, an arc on whole pixels, into day 1 */
       const f = d.fr(tFly);

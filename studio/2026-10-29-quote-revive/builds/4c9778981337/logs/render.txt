@@ -1,0 +1,11 @@
+  300/2165 frames, 42 s
+  600/2165 frames, 83 s
+  900/2165 frames, 123 s
+  1200/2165 frames, 163 s
+  1500/2165 frames, 203 s
+  1800/2165 frames, 243 s
+  2100/2165 frames, 284 s
+mix: rooms framing 0.00 s
+mix: voice -23.0 LUFS, bed -21.7 LUFS after EQ; bed gain -19.3 dB under speech, -11.3 dB in pauses, 11 phrases
+render: /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-10-29-quote-revive/05_render/2026-10-29-quote-revive.mp4 (2165 frames, 72.17 s, voice, 305 s)
+exit 0

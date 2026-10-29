@@ -31,7 +31,7 @@ runs/2026-10-28-trades-insights.md. Re-read each source on the day it is used.
 | 21 | Every job sells the street | +0.78 percentage points per nearby solar install (Marketing Science 2012) | Mello | City-builder street |
 
 Made lessons on non-trade evidence (1 first-reply, 4 three-prices, 6 price-raise, 7 review-replies): see section 4 of
-the run file. 1 and 4 can be re-cut with trade numbers; 6 and 7 should be replaced by bank lessons 3 and 8.
+the run file. 1 and 4 can be re-cut with trade numbers; 6 and 7 should be replaced by bank lessons 3 and 8. Done Oct 28 (evening): 2026-11-02-price-raise is now bank lesson 3 and 2026-11-03-review-replies bank lesson 8, in their old slugs (voice and gates to run).
 
 Ranked by the research desk; a live session picks what gets made. Made so far: 2026-10-28-first-reply (first reply fast and human); in production Oct 28: 2026-10-29-quote-revive, 2026-10-30-markup-margin, 2026-10-31-three-prices.
 

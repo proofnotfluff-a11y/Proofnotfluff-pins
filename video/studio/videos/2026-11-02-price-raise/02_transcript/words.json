@@ -1,2530 +1,1245 @@
 {
  "schema": "pnf.studio.words.v1",
- "source": "whisper medium.en int8, re-spelled from script.md",
- "voice": "W3pJy9ibur1FKUihVxzY",
- "model": "eleven_v4",
+ "source": "estimate",
+ "about": "Stand-in timings from script.md; never rendered for posting.",
  "words": [
   {
-   "w": "Raising",
-   "start": 0.0,
-   "end": 0.46,
-   "take": 1
-  },
-  {
-   "w": "your",
-   "start": 0.46,
-   "end": 0.72,
-   "take": 1
-  },
-  {
-   "w": "prices?",
-   "start": 0.72,
-   "end": 1.16,
-   "take": 1
-  },
-  {
-   "w": "Eighty-two",
-   "start": 2.0,
-   "end": 2.47,
+   "w": "Eighty-three",
+   "start": 0.15,
+   "end": 0.764,
    "take": 1
   },
   {
    "w": "percent",
-   "start": 2.47,
-   "end": 2.94,
+   "start": 0.814,
+   "end": 1.218,
    "take": 1
   },
   {
-   "w": "called",
-   "start": 2.94,
-   "end": 3.16,
+   "w": "of",
+   "start": 1.268,
+   "end": 1.462,
    "take": 1
   },
   {
-   "w": "a",
+   "w": "hvac",
+   "start": 1.512,
+   "end": 1.79,
+   "take": 1
+  },
+  {
+   "w": "companies",
+   "start": 1.84,
+   "end": 2.328,
+   "take": 1
+  },
+  {
+   "w": "raised",
+   "start": 2.378,
+   "end": 2.74,
+   "take": 1
+  },
+  {
+   "w": "their",
+   "start": 2.79,
+   "end": 3.11,
+   "take": 1
+  },
+  {
+   "w": "prices",
    "start": 3.16,
-   "end": 3.4,
+   "end": 3.522,
    "take": 1
   },
   {
-   "w": "snowstorm",
-   "start": 3.4,
-   "end": 3.88,
+   "w": "last",
+   "start": 3.572,
+   "end": 3.85,
    "take": 1
   },
   {
-   "w": "raise",
-   "start": 3.88,
-   "end": 4.14,
+   "w": "year.",
+   "start": 3.9,
+   "end": 4.22,
    "take": 1
   },
   {
-   "w": "unfair.",
-   "start": 4.14,
-   "end": 4.76,
+   "w": "Did",
+   "start": 4.49,
+   "end": 4.726,
    "take": 1
   },
   {
-   "w": "A",
-   "start": 5.48,
-   "end": 5.62,
-   "take": 1
-  },
-  {
-   "w": "raise",
-   "start": 5.62,
-   "end": 5.8,
-   "take": 1
-  },
-  {
-   "w": "that",
-   "start": 5.8,
-   "end": 5.98,
-   "take": 1
-  },
-  {
-   "w": "covers",
-   "start": 5.98,
-   "end": 6.24,
-   "take": 1
-  },
-  {
-   "w": "your",
-   "start": 6.24,
-   "end": 6.46,
-   "take": 1
-  },
-  {
-   "w": "costs?",
-   "start": 6.46,
-   "end": 6.9,
-   "take": 1
-  },
-  {
-   "w": "Most",
-   "start": 7.34,
-   "end": 7.62,
-   "take": 1
-  },
-  {
-   "w": "called",
-   "start": 7.62,
-   "end": 7.84,
-   "take": 1
-  },
-  {
-   "w": "that",
-   "start": 7.84,
-   "end": 8.04,
-   "take": 1
-  },
-  {
-   "w": "acceptable.",
-   "start": 8.04,
-   "end": 8.5,
+   "w": "you?",
+   "start": 4.776,
+   "end": 5.054,
    "take": 1
   },
   {
    "w": "Here's",
-   "start": 9.12,
-   "end": 9.28,
+   "start": 5.324,
+   "end": 5.686,
    "take": 1
   },
   {
    "w": "the",
-   "start": 9.28,
-   "end": 9.42,
+   "start": 5.736,
+   "end": 5.972,
    "take": 1
   },
   {
-   "w": "line",
-   "start": 9.42,
-   "end": 9.56,
+   "w": "note",
+   "start": 6.022,
+   "end": 6.3,
    "take": 1
   },
   {
-   "w": "to",
-   "start": 9.56,
-   "end": 9.72,
+   "w": "that",
+   "start": 6.35,
+   "end": 6.628,
    "take": 1
   },
   {
-   "w": "send.",
-   "start": 9.72,
-   "end": 9.98,
+   "w": "tells",
+   "start": 6.678,
+   "end": 6.998,
    "take": 1
   },
   {
-   "w": "In",
-   "start": 10.52,
-   "end": 10.6,
+   "w": "your",
+   "start": 7.048,
+   "end": 7.326,
+   "take": 1
+  },
+  {
+   "w": "customers.",
+   "start": 7.376,
+   "end": 7.906,
+   "take": 1
+  },
+  {
+   "w": "That's",
+   "start": 8.526,
+   "end": 8.888,
+   "take": 2
+  },
+  {
+   "w": "Jobber's",
+   "start": 8.938,
+   "end": 9.384,
+   "take": 2
+  },
+  {
+   "w": "survey",
+   "start": 9.434,
+   "end": 9.796,
+   "take": 2
+  },
+  {
+   "w": "of",
+   "start": 9.846,
+   "end": 10.04,
    "take": 2
   },
   {
    "w": "a",
-   "start": 10.6,
-   "end": 10.82,
+   "start": 10.09,
+   "end": 10.242,
    "take": 2
   },
   {
-   "w": "classic",
-   "start": 10.82,
-   "end": 11.1,
+   "w": "thousand",
+   "start": 10.292,
+   "end": 10.738,
    "take": 2
   },
   {
-   "w": "survey,",
-   "start": 11.1,
-   "end": 11.6,
+   "w": "and",
+   "start": 10.788,
+   "end": 11.024,
    "take": 2
   },
   {
-   "w": "a",
-   "start": 11.98,
-   "end": 12.12,
+   "w": "fifty",
+   "start": 11.074,
+   "end": 11.394,
    "take": 2
   },
   {
-   "w": "hardware",
-   "start": 12.12,
-   "end": 12.4,
+   "w": "home",
+   "start": 11.444,
+   "end": 11.722,
    "take": 2
   },
   {
-   "w": "store",
-   "start": 12.4,
-   "end": 12.74,
+   "w": "service",
+   "start": 11.772,
+   "end": 12.176,
    "take": 2
   },
   {
-   "w": "sells",
-   "start": 12.74,
-   "end": 13.08,
+   "w": "owners.",
+   "start": 12.226,
+   "end": 12.63,
    "take": 2
   },
   {
-   "w": "snow",
-   "start": 13.08,
-   "end": 13.4,
-   "take": 2
-  },
-  {
-   "w": "shovels",
-   "start": 13.4,
-   "end": 13.86,
-   "take": 2
-  },
-  {
-   "w": "for",
-   "start": 13.86,
-   "end": 14.04,
-   "take": 2
-  },
-  {
-   "w": "fifteen",
-   "start": 14.04,
-   "end": 14.29,
-   "take": 2
-  },
-  {
-   "w": "dollars.",
-   "start": 14.29,
-   "end": 14.54,
-   "take": 2
-  },
-  {
-   "w": "The",
-   "start": 15.34,
-   "end": 15.6,
-   "take": 2
-  },
-  {
-   "w": "morning",
-   "start": 15.6,
-   "end": 15.82,
-   "take": 2
-  },
-  {
-   "w": "after",
-   "start": 15.82,
-   "end": 16.12,
-   "take": 2
-  },
-  {
-   "w": "a",
-   "start": 16.12,
-   "end": 16.3,
-   "take": 2
-  },
-  {
-   "w": "big",
-   "start": 16.3,
-   "end": 16.46,
-   "take": 2
-  },
-  {
-   "w": "snowstorm,",
-   "start": 16.46,
-   "end": 17.08,
-   "take": 2
-  },
-  {
-   "w": "it",
-   "start": 17.38,
-   "end": 17.54,
-   "take": 2
-  },
-  {
-   "w": "charges",
-   "start": 17.54,
-   "end": 17.78,
-   "take": 2
-  },
-  {
-   "w": "twenty.",
-   "start": 17.78,
-   "end": 18.03,
-   "take": 2
-  },
-  {
-   "w": "Eighty-two",
-   "start": 18.03,
-   "end": 18.945,
+   "w": "Sixty-five",
+   "start": 12.9,
+   "end": 13.43,
    "take": 2
   },
   {
    "w": "percent",
-   "start": 18.945,
-   "end": 19.86,
+   "start": 13.48,
+   "end": 13.884,
    "take": 2
   },
   {
-   "w": "called",
-   "start": 19.86,
-   "end": 20.12,
+   "w": "raised",
+   "start": 13.934,
+   "end": 14.296,
    "take": 2
   },
   {
-   "w": "that",
-   "start": 20.12,
-   "end": 20.34,
+   "w": "prices.",
+   "start": 14.346,
+   "end": 14.75,
    "take": 2
   },
   {
-   "w": "unfair.",
-   "start": 20.34,
-   "end": 20.84,
+   "w": "Plumbing,",
+   "start": 15.02,
+   "end": 15.508,
    "take": 2
+  },
+  {
+   "w": "electrical",
+   "start": 15.658,
+   "end": 16.188,
+   "take": 2
+  },
+  {
+   "w": "and",
+   "start": 16.238,
+   "end": 16.474,
+   "take": 2
+  },
+  {
+   "w": "roofing?",
+   "start": 16.524,
+   "end": 16.97,
+   "take": 2
+  },
+  {
+   "w": "Seventy-four",
+   "start": 17.24,
+   "end": 17.854,
+   "take": 2
+  },
+  {
+   "w": "percent",
+   "start": 17.904,
+   "end": 18.308,
+   "take": 2
+  },
+  {
+   "w": "each.",
+   "start": 18.358,
+   "end": 18.678,
+   "take": 2
+  },
+  {
+   "w": "Cleaning",
+   "start": 18.948,
+   "end": 19.394,
+   "take": 2
+  },
+  {
+   "w": "was",
+   "start": 19.444,
+   "end": 19.68,
+   "take": 2
+  },
+  {
+   "w": "lowest,",
+   "start": 19.73,
+   "end": 20.134,
+   "take": 2
+  },
+  {
+   "w": "at",
+   "start": 20.284,
+   "end": 20.478,
+   "take": 2
+  },
+  {
+   "w": "fifty-five.",
+   "start": 20.528,
+   "end": 21.1,
+   "take": 2
+  },
+  {
+   "w": "Why?",
+   "start": 21.72,
+   "end": 21.998,
+   "take": 3
+  },
+  {
+   "w": "Seventy-two",
+   "start": 22.268,
+   "end": 22.84,
+   "take": 3
+  },
+  {
+   "w": "percent",
+   "start": 22.89,
+   "end": 23.294,
+   "take": 3
+  },
+  {
+   "w": "named",
+   "start": 23.344,
+   "end": 23.664,
+   "take": 3
+  },
+  {
+   "w": "inflation.",
+   "start": 23.714,
+   "end": 24.244,
+   "take": 3
+  },
+  {
+   "w": "Half",
+   "start": 24.514,
+   "end": 24.792,
+   "take": 3
+  },
+  {
+   "w": "named",
+   "start": 24.842,
+   "end": 25.162,
+   "take": 3
+  },
+  {
+   "w": "labor.",
+   "start": 25.212,
+   "end": 25.574,
+   "take": 3
   },
   {
    "w": "That's",
-   "start": 21.42,
-   "end": 21.68,
-   "take": 2
-  },
-  {
-   "w": "a",
-   "start": 21.68,
-   "end": 21.86,
-   "take": 2
-  },
-  {
-   "w": "raise",
-   "start": 21.86,
-   "end": 22.04,
-   "take": 2
-  },
-  {
-   "w": "on",
-   "start": 22.04,
-   "end": 22.28,
-   "take": 2
-  },
-  {
-   "w": "your",
-   "start": 22.28,
-   "end": 22.5,
-   "take": 2
-  },
-  {
-   "w": "bad",
-   "start": 22.5,
-   "end": 22.76,
-   "take": 2
-  },
-  {
-   "w": "luck.",
-   "start": 22.76,
-   "end": 23.16,
-   "take": 2
-  },
-  {
-   "w": "Now",
-   "start": 23.72,
-   "end": 23.9,
+   "start": 25.844,
+   "end": 26.206,
    "take": 3
   },
   {
-   "w": "try",
-   "start": 23.9,
-   "end": 24.12,
+   "w": "backed",
+   "start": 26.256,
+   "end": 26.618,
    "take": 3
   },
   {
-   "w": "the",
-   "start": 24.12,
-   "end": 24.32,
+   "w": "up",
+   "start": 26.668,
+   "end": 26.862,
    "take": 3
   },
   {
-   "w": "reason",
-   "start": 24.32,
-   "end": 24.54,
+   "w": "by",
+   "start": 26.912,
+   "end": 27.106,
    "take": 3
   },
   {
-   "w": "you've",
-   "start": 24.54,
-   "end": 24.92,
+   "w": "federal",
+   "start": 27.156,
+   "end": 27.56,
    "take": 3
   },
   {
-   "w": "got.",
-   "start": 24.92,
-   "end": 25.08,
+   "w": "data.",
+   "start": 27.61,
+   "end": 27.93,
    "take": 3
   },
   {
-   "w": "A",
-   "start": 25.08,
-   "end": 25.8,
-   "take": 3
-  },
-  {
-   "w": "grocer",
-   "start": 25.8,
-   "end": 26.14,
-   "take": 3
-  },
-  {
-   "w": "paid",
-   "start": 26.14,
-   "end": 26.5,
-   "take": 3
-  },
-  {
-   "w": "thirty",
-   "start": 26.5,
-   "end": 26.9,
-   "take": 3
-  },
-  {
-   "w": "cents",
-   "start": 26.9,
-   "end": 27.16,
-   "take": 3
-  },
-  {
-   "w": "more",
-   "start": 27.16,
-   "end": 27.42,
-   "take": 3
-  },
-  {
-   "w": "a",
-   "start": 27.42,
-   "end": 27.57,
-   "take": 3
-  },
-  {
-   "w": "head",
-   "start": 27.57,
-   "end": 27.72,
+   "w": "Pay",
+   "start": 28.2,
+   "end": 28.436,
    "take": 3
   },
   {
    "w": "for",
-   "start": 27.72,
-   "end": 27.98,
+   "start": 28.486,
+   "end": 28.722,
    "take": 3
   },
   {
-   "w": "lettuce",
-   "start": 27.98,
-   "end": 28.34,
+   "w": "install",
+   "start": 28.772,
+   "end": 29.176,
    "take": 3
   },
   {
    "w": "and",
-   "start": 28.34,
-   "end": 28.8,
+   "start": 29.226,
+   "end": 29.462,
    "take": 3
   },
   {
-   "w": "charged",
-   "start": 28.8,
-   "end": 29.14,
+   "w": "repair",
+   "start": 29.512,
+   "end": 29.874,
    "take": 3
   },
   {
-   "w": "thirty",
-   "start": 29.14,
-   "end": 29.5,
+   "w": "workers",
+   "start": 29.924,
+   "end": 30.328,
    "take": 3
   },
   {
-   "w": "cents",
-   "start": 29.5,
-   "end": 29.76,
+   "w": "rose",
+   "start": 30.378,
+   "end": 30.656,
    "take": 3
   },
   {
-   "w": "more.",
-   "start": 29.76,
-   "end": 30.14,
+   "w": "three",
+   "start": 30.706,
+   "end": 31.026,
    "take": 3
   },
   {
-   "w": "Seventy-nine",
-   "start": 30.68,
-   "end": 31.2,
+   "w": "point",
+   "start": 31.076,
+   "end": 31.396,
+   "take": 3
+  },
+  {
+   "w": "seven",
+   "start": 31.446,
+   "end": 31.766,
    "take": 3
   },
   {
    "w": "percent",
-   "start": 31.2,
-   "end": 31.72,
+   "start": 31.816,
+   "end": 32.22,
    "take": 3
   },
   {
-   "w": "called",
-   "start": 31.72,
-   "end": 32.0,
+   "w": "in",
+   "start": 32.27,
+   "end": 32.464,
    "take": 3
   },
   {
-   "w": "that",
-   "start": 32.0,
-   "end": 32.2,
+   "w": "the",
+   "start": 32.514,
+   "end": 32.75,
    "take": 3
   },
   {
-   "w": "acceptable.",
-   "start": 32.2,
-   "end": 32.72,
-   "take": 3
-  },
-  {
-   "w": "A",
-   "start": 33.42,
-   "end": 33.5,
-   "take": 3
-  },
-  {
-   "w": "landlord",
-   "start": 33.5,
-   "end": 33.9,
-   "take": 3
-  },
-  {
-   "w": "raising",
-   "start": 33.9,
-   "end": 34.3,
-   "take": 3
-  },
-  {
-   "w": "rent",
-   "start": 34.3,
-   "end": 34.6,
+   "w": "year",
+   "start": 32.8,
+   "end": 33.078,
    "take": 3
   },
   {
    "w": "to",
-   "start": 34.6,
-   "end": 34.8,
+   "start": 33.128,
+   "end": 33.322,
    "take": 3
   },
   {
-   "w": "cover",
-   "start": 34.8,
-   "end": 35.0,
+   "w": "June.",
+   "start": 33.372,
+   "end": 33.692,
    "take": 3
   },
   {
-   "w": "higher",
-   "start": 35.0,
-   "end": 35.28,
+   "w": "All",
+   "start": 33.962,
+   "end": 34.198,
    "take": 3
   },
   {
-   "w": "costs?",
-   "start": 35.28,
-   "end": 35.82,
+   "w": "workers?",
+   "start": 34.248,
+   "end": 34.694,
    "take": 3
   },
   {
-   "w": "Seventy-five",
-   "start": 36.34,
-   "end": 36.95,
+   "w": "Three",
+   "start": 34.964,
+   "end": 35.284,
    "take": 3
   },
   {
-   "w": "percent",
-   "start": 36.95,
-   "end": 37.56,
+   "w": "point",
+   "start": 35.334,
+   "end": 35.654,
    "take": 3
   },
   {
-   "w": "said",
-   "start": 37.56,
-   "end": 37.78,
+   "w": "two.",
+   "start": 35.704,
+   "end": 35.982,
    "take": 3
   },
   {
-   "w": "acceptable.",
-   "start": 37.78,
-   "end": 38.3,
-   "take": 3
-  },
-  {
-   "w": "Here's",
-   "start": 39.3,
-   "end": 39.54,
+   "w": "So",
+   "start": 36.602,
+   "end": 36.796,
    "take": 4
   },
   {
-   "w": "the",
-   "start": 39.54,
-   "end": 39.7,
+   "w": "send",
+   "start": 36.846,
+   "end": 37.124,
    "take": 4
   },
   {
-   "w": "line.",
-   "start": 39.7,
-   "end": 39.96,
+   "w": "this",
+   "start": 37.174,
+   "end": 37.452,
+   "take": 4
+  },
+  {
+   "w": "before",
+   "start": 37.502,
+   "end": 37.864,
+   "take": 4
+  },
+  {
+   "w": "your",
+   "start": 37.914,
+   "end": 38.192,
+   "take": 4
+  },
+  {
+   "w": "next",
+   "start": 38.242,
+   "end": 38.52,
+   "take": 4
+  },
+  {
+   "w": "quote.",
+   "start": 38.57,
+   "end": 38.932,
    "take": 4
   },
   {
    "w": "\"Starting",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 39.202,
+   "end": 39.69,
+   "take": 4
+  },
+  {
+   "w": "the",
+   "start": 39.74,
+   "end": 39.976,
+   "take": 4
+  },
+  {
+   "w": "first",
+   "start": 40.026,
+   "end": 40.346,
+   "take": 4
+  },
+  {
+   "w": "of",
+   "start": 40.396,
+   "end": 40.59,
    "take": 4
   },
   {
    "w": "next",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 40.64,
+   "end": 40.918,
    "take": 4
   },
   {
    "w": "month,",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 40.968,
+   "end": 41.33,
    "take": 4
   },
   {
    "w": "our",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 41.48,
+   "end": 41.716,
    "take": 4
   },
   {
    "w": "rates",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 41.766,
+   "end": 42.086,
    "take": 4
   },
   {
-   "w": "are",
-   "start": 39.96,
-   "end": 39.96,
-   "take": 4
-  },
-  {
-   "w": "going",
-   "start": 39.96,
-   "end": 39.96,
+   "w": "go",
+   "start": 42.136,
+   "end": 42.33,
    "take": 4
   },
   {
    "w": "up.",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 42.38,
+   "end": 42.616,
    "take": 4
   },
   {
    "w": "Our",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 42.886,
+   "end": 43.122,
    "take": 4
   },
   {
    "w": "labor",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 43.172,
+   "end": 43.492,
    "take": 4
   },
   {
    "w": "and",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 43.542,
+   "end": 43.778,
    "take": 4
   },
   {
    "w": "material",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 43.828,
+   "end": 44.274,
    "take": 4
   },
   {
    "w": "costs",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 44.324,
+   "end": 44.644,
    "take": 4
   },
   {
-   "w": "went",
-   "start": 39.96,
-   "end": 39.96,
-   "take": 4
-  },
-  {
-   "w": "up",
-   "start": 39.96,
-   "end": 39.96,
+   "w": "rose",
+   "start": 44.694,
+   "end": 44.972,
    "take": 4
   },
   {
    "w": "this",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 45.022,
+   "end": 45.3,
    "take": 4
   },
   {
    "w": "year.",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 45.35,
+   "end": 45.67,
    "take": 4
   },
   {
    "w": "Anything",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 45.94,
+   "end": 46.386,
    "take": 4
   },
   {
    "w": "you've",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 46.436,
+   "end": 46.798,
    "take": 4
   },
   {
    "w": "already",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 46.848,
+   "end": 47.252,
    "take": 4
   },
   {
    "w": "approved",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 47.302,
+   "end": 47.748,
    "take": 4
   },
   {
    "w": "stays",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 47.798,
+   "end": 48.118,
    "take": 4
   },
   {
    "w": "at",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 48.168,
+   "end": 48.362,
    "take": 4
   },
   {
    "w": "the",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 48.412,
+   "end": 48.648,
    "take": 4
   },
   {
    "w": "price",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 48.698,
+   "end": 49.018,
    "take": 4
   },
   {
    "w": "we",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 49.068,
+   "end": 49.262,
    "take": 4
   },
   {
    "w": "quoted.\"",
-   "start": 39.96,
-   "end": 39.96,
+   "start": 49.312,
+   "end": 49.758,
    "take": 4
   },
   {
-   "w": "Don't",
-   "start": 49.66,
-   "end": 50.34,
+   "w": "Here's",
+   "start": 50.158,
+   "end": 50.52,
    "take": 5
   },
   {
-   "w": "skip",
-   "start": 50.34,
-   "end": 50.54,
+   "w": "the",
+   "start": 50.57,
+   "end": 50.806,
    "take": 5
   },
   {
-   "w": "that",
-   "start": 50.54,
-   "end": 50.8,
+   "w": "part",
+   "start": 50.856,
+   "end": 51.134,
+   "take": 5
+  },
+  {
+   "w": "people",
+   "start": 51.184,
+   "end": 51.546,
+   "take": 5
+  },
+  {
+   "w": "skip.",
+   "start": 51.596,
+   "end": 51.916,
+   "take": 5
+  },
+  {
+   "w": "That",
+   "start": 52.186,
+   "end": 52.464,
    "take": 5
   },
   {
    "w": "last",
-   "start": 50.8,
-   "end": 51.08,
+   "start": 52.514,
+   "end": 52.792,
    "take": 5
   },
   {
-   "w": "sentence.",
-   "start": 51.08,
-   "end": 51.5,
+   "w": "line.",
+   "start": 52.842,
+   "end": 53.162,
    "take": 5
   },
   {
    "w": "A",
-   "start": 52.1,
-   "end": 52.26,
+   "start": 53.432,
+   "end": 53.584,
    "take": 5
   },
   {
-   "w": "store",
-   "start": 52.26,
-   "end": 52.52,
+   "w": "price",
+   "start": 53.634,
+   "end": 53.954,
    "take": 5
   },
   {
-   "w": "repriced",
-   "start": 52.52,
-   "end": 53.0,
-   "take": 5
-  },
-  {
-   "w": "the",
-   "start": 53.0,
-   "end": 53.24,
-   "take": 5
-  },
-  {
-   "w": "peanut",
-   "start": 53.24,
-   "end": 53.46,
-   "take": 5
-  },
-  {
-   "w": "butter",
-   "start": 53.46,
-   "end": 53.7,
+   "w": "they",
+   "start": 54.004,
+   "end": 54.282,
    "take": 5
   },
   {
    "w": "already",
-   "start": 53.7,
-   "end": 54.18,
+   "start": 54.332,
+   "end": 54.736,
+   "take": 5
+  },
+  {
+   "w": "said",
+   "start": 54.786,
+   "end": 55.064,
+   "take": 5
+  },
+  {
+   "w": "yes",
+   "start": 55.114,
+   "end": 55.35,
+   "take": 5
+  },
+  {
+   "w": "to",
+   "start": 55.4,
+   "end": 55.594,
+   "take": 5
+  },
+  {
+   "w": "is",
+   "start": 55.644,
+   "end": 55.838,
+   "take": 5
+  },
+  {
+   "w": "a",
+   "start": 55.888,
+   "end": 56.04,
+   "take": 5
+  },
+  {
+   "w": "promise.",
+   "start": 56.09,
+   "end": 56.536,
+   "take": 5
+  },
+  {
+   "w": "Raise",
+   "start": 56.806,
+   "end": 57.126,
+   "take": 5
+  },
+  {
+   "w": "the",
+   "start": 57.176,
+   "end": 57.412,
+   "take": 5
+  },
+  {
+   "w": "next",
+   "start": 57.462,
+   "end": 57.74,
+   "take": 5
+  },
+  {
+   "w": "job,",
+   "start": 57.79,
+   "end": 58.068,
+   "take": 5
+  },
+  {
+   "w": "never",
+   "start": 58.218,
+   "end": 58.538,
+   "take": 5
+  },
+  {
+   "w": "the",
+   "start": 58.588,
+   "end": 58.824,
+   "take": 5
+  },
+  {
+   "w": "one",
+   "start": 58.874,
+   "end": 59.11,
    "take": 5
   },
   {
    "w": "on",
-   "start": 54.18,
-   "end": 54.4,
+   "start": 59.16,
+   "end": 59.354,
    "take": 5
   },
   {
-   "w": "its",
-   "start": 54.4,
-   "end": 54.56,
+   "w": "your",
+   "start": 59.404,
+   "end": 59.682,
    "take": 5
   },
   {
-   "w": "shelf",
-   "start": 54.56,
-   "end": 54.92,
+   "w": "calendar.",
+   "start": 59.732,
+   "end": 60.22,
    "take": 5
   },
   {
-   "w": "the",
-   "start": 54.92,
-   "end": 55.14,
-   "take": 5
-  },
-  {
-   "w": "moment",
-   "start": 55.14,
-   "end": 55.52,
-   "take": 5
-  },
-  {
-   "w": "the",
-   "start": 55.52,
-   "end": 55.76,
-   "take": 5
-  },
-  {
-   "w": "wholesale",
-   "start": 55.76,
-   "end": 56.12,
-   "take": 5
-  },
-  {
-   "w": "price",
-   "start": 56.12,
-   "end": 56.42,
-   "take": 5
-  },
-  {
-   "w": "rose.",
-   "start": 56.42,
-   "end": 56.86,
-   "take": 5
-  },
-  {
-   "w": "Seventy-nine",
-   "start": 57.5,
-   "end": 57.98,
-   "take": 5
-  },
-  {
-   "w": "percent",
-   "start": 57.98,
-   "end": 58.46,
-   "take": 5
-  },
-  {
-   "w": "called",
-   "start": 58.46,
-   "end": 58.82,
-   "take": 5
-  },
-  {
-   "w": "that",
-   "start": 58.82,
-   "end": 59.06,
-   "take": 5
-  },
-  {
-   "w": "UNFAIR.",
-   "start": 59.06,
-   "end": 59.54,
-   "take": 5
-  },
-  {
-   "w": "A",
-   "start": 60.26,
-   "end": 60.4,
-   "take": 5
-  },
-  {
-   "w": "job",
-   "start": 60.4,
-   "end": 60.64,
-   "take": 5
-  },
-  {
-   "w": "they've",
-   "start": 60.64,
-   "end": 60.9,
-   "take": 5
-  },
-  {
-   "w": "approved",
-   "start": 60.9,
-   "end": 61.34,
-   "take": 5
-  },
-  {
-   "w": "keeps",
-   "start": 61.34,
-   "end": 61.76,
-   "take": 5
-  },
-  {
-   "w": "the",
-   "start": 61.76,
-   "end": 62.06,
-   "take": 5
-  },
-  {
-   "w": "price",
-   "start": 62.06,
-   "end": 62.28,
-   "take": 5
-  },
-  {
-   "w": "you",
-   "start": 62.28,
-   "end": 62.48,
-   "take": 5
-  },
-  {
-   "w": "quoted.",
-   "start": 62.48,
-   "end": 62.82,
-   "take": 5
-  },
-  {
-   "w": "Here's",
-   "start": 63.7,
-   "end": 63.96,
+   "w": "One",
+   "start": 60.84,
+   "end": 61.076,
    "take": 6
   },
   {
-   "w": "the",
-   "start": 63.96,
-   "end": 64.08,
+   "w": "honest",
+   "start": 61.126,
+   "end": 61.488,
    "take": 6
   },
   {
-   "w": "part",
-   "start": 64.08,
-   "end": 64.28,
+   "w": "note.",
+   "start": 61.538,
+   "end": 61.858,
    "take": 6
   },
   {
-   "w": "people",
-   "start": 64.28,
-   "end": 64.58,
+   "w": "Jobber",
+   "start": 62.128,
+   "end": 62.49,
    "take": 6
   },
   {
-   "w": "skip.",
-   "start": 64.58,
-   "end": 64.98,
+   "w": "sells",
+   "start": 62.54,
+   "end": 62.86,
    "take": 6
   },
   {
-   "w": "It",
-   "start": 65.56,
-   "end": 65.64,
-   "take": 6
-  },
-  {
-   "w": "was",
-   "start": 65.64,
-   "end": 65.76,
-   "take": 6
-  },
-  {
-   "w": "a",
-   "start": 65.76,
-   "end": 65.98,
-   "take": 6
-  },
-  {
-   "w": "phone",
-   "start": 65.98,
-   "end": 66.18,
-   "take": 6
-  },
-  {
-   "w": "survey",
-   "start": 66.18,
-   "end": 66.54,
-   "take": 6
-  },
-  {
-   "w": "in",
-   "start": 66.54,
-   "end": 66.8,
-   "take": 6
-  },
-  {
-   "w": "Toronto",
-   "start": 66.8,
-   "end": 67.2,
+   "w": "software,",
+   "start": 62.91,
+   "end": 63.398,
    "take": 6
   },
   {
    "w": "and",
-   "start": 67.2,
-   "end": 67.48,
+   "start": 63.548,
+   "end": 63.784,
    "take": 6
   },
   {
-   "w": "Vancouver,",
-   "start": 67.48,
-   "end": 68.02,
+   "w": "its",
+   "start": 63.834,
+   "end": 64.07,
    "take": 6
   },
   {
-   "w": "nineteen",
-   "start": 68.5,
-   "end": 68.84,
+   "w": "survey",
+   "start": 64.12,
+   "end": 64.482,
    "take": 6
   },
   {
-   "w": "eighty-four",
-   "start": 68.84,
-   "end": 69.18,
+   "w": "shows",
+   "start": 64.532,
+   "end": 64.852,
    "take": 6
   },
   {
-   "w": "to",
-   "start": 69.18,
-   "end": 69.48,
+   "w": "who",
+   "start": 64.902,
+   "end": 65.138,
    "take": 6
   },
   {
-   "w": "eighty-five.",
-   "start": 69.48,
-   "end": 69.98,
+   "w": "raised",
+   "start": 65.188,
+   "end": 65.55,
+   "take": 6
+  },
+  {
+   "w": "prices.",
+   "start": 65.6,
+   "end": 66.004,
    "take": 6
   },
   {
    "w": "It",
-   "start": 70.62,
-   "end": 70.82,
+   "start": 66.274,
+   "end": 66.468,
    "take": 6
   },
   {
-   "w": "measured",
-   "start": 70.82,
-   "end": 71.16,
+   "w": "doesn't",
+   "start": 66.518,
+   "end": 66.922,
    "take": 6
   },
   {
-   "w": "what",
-   "start": 71.16,
-   "end": 71.36,
+   "w": "show",
+   "start": 66.972,
+   "end": 67.25,
    "take": 6
   },
   {
-   "w": "people",
-   "start": 71.36,
-   "end": 71.66,
+   "w": "how",
+   "start": 67.3,
+   "end": 67.536,
    "take": 6
   },
   {
-   "w": "called",
-   "start": 71.66,
-   "end": 72.22,
+   "w": "customers",
+   "start": 67.586,
+   "end": 68.074,
    "take": 6
   },
   {
-   "w": "fair,",
-   "start": 72.22,
-   "end": 72.54,
+   "w": "took",
+   "start": 68.124,
+   "end": 68.402,
    "take": 6
   },
   {
-   "w": "not",
-   "start": 72.84,
-   "end": 73.1,
-   "take": 6
-  },
-  {
-   "w": "what",
-   "start": 73.1,
-   "end": 73.26,
-   "take": 6
-  },
-  {
-   "w": "they",
-   "start": 73.26,
-   "end": 73.42,
-   "take": 6
-  },
-  {
-   "w": "bought.",
-   "start": 73.42,
-   "end": 73.74,
+   "w": "it.",
+   "start": 68.452,
+   "end": 68.688,
    "take": 6
   },
   {
    "w": "So",
-   "start": 74.18,
-   "end": 74.46,
+   "start": 68.958,
+   "end": 69.152,
    "take": 6
   },
   {
-   "w": "it",
-   "start": 74.46,
-   "end": 74.72,
+   "w": "watch",
+   "start": 69.202,
+   "end": 69.522,
    "take": 6
   },
   {
-   "w": "can't",
-   "start": 74.72,
-   "end": 75.12,
+   "w": "your",
+   "start": 69.572,
+   "end": 69.85,
    "take": 6
   },
   {
-   "w": "promise",
-   "start": 75.12,
-   "end": 75.42,
+   "w": "close",
+   "start": 69.9,
+   "end": 70.22,
    "take": 6
   },
   {
-   "w": "you'll",
-   "start": 75.42,
-   "end": 75.68,
+   "w": "rate",
+   "start": 70.27,
+   "end": 70.548,
    "take": 6
   },
   {
-   "w": "keep",
-   "start": 75.68,
-   "end": 75.78,
+   "w": "for",
+   "start": 70.598,
+   "end": 70.834,
    "take": 6
   },
   {
-   "w": "every",
-   "start": 75.78,
-   "end": 76.08,
+   "w": "a",
+   "start": 70.884,
+   "end": 71.036,
    "take": 6
   },
   {
-   "w": "customer.",
-   "start": 76.08,
-   "end": 76.58,
+   "w": "month",
+   "start": 71.086,
+   "end": 71.406,
+   "take": 6
+  },
+  {
+   "w": "after.",
+   "start": 71.456,
+   "end": 71.818,
    "take": 6
   },
   {
    "w": "Your",
-   "start": 77.5,
-   "end": 77.6,
+   "start": 72.438,
+   "end": 72.716,
    "take": 7
   },
   {
    "w": "costs",
-   "start": 77.6,
-   "end": 77.88,
+   "start": 72.766,
+   "end": 73.086,
    "take": 7
   },
   {
    "w": "went",
-   "start": 77.88,
-   "end": 78.08,
+   "start": 73.136,
+   "end": 73.414,
    "take": 7
   },
   {
-   "w": "up?",
-   "start": 78.08,
-   "end": 78.4,
+   "w": "up.",
+   "start": 73.464,
+   "end": 73.7,
    "take": 7
   },
   {
-   "w": "Say",
-   "start": 78.58,
-   "end": 78.88,
+   "w": "Most",
+   "start": 73.97,
+   "end": 74.248,
    "take": 7
   },
   {
-   "w": "so.",
-   "start": 78.88,
-   "end": 79.22,
+   "w": "of",
+   "start": 74.298,
+   "end": 74.492,
    "take": 7
   },
   {
-   "w": "Their",
-   "start": 79.64,
-   "end": 79.88,
+   "w": "the",
+   "start": 74.542,
+   "end": 74.778,
    "take": 7
   },
   {
-   "w": "bad",
-   "start": 79.88,
-   "end": 80.12,
+   "w": "trades",
+   "start": 74.828,
+   "end": 75.19,
    "take": 7
   },
   {
-   "w": "luck",
-   "start": 80.12,
-   "end": 80.38,
+   "w": "already",
+   "start": 75.24,
+   "end": 75.644,
    "take": 7
   },
   {
-   "w": "isn't",
-   "start": 80.38,
-   "end": 80.88,
+   "w": "raised",
+   "start": 75.694,
+   "end": 76.056,
    "take": 7
   },
   {
-   "w": "a",
-   "start": 80.88,
-   "end": 81.08,
+   "w": "their",
+   "start": 76.106,
+   "end": 76.426,
    "take": 7
   },
   {
-   "w": "reason.",
-   "start": 81.08,
-   "end": 81.38,
+   "w": "prices.",
+   "start": 76.476,
+   "end": 76.88,
    "take": 7
   },
   {
    "w": "Send",
-   "start": 81.38,
-   "end": 82.08,
+   "start": 77.15,
+   "end": 77.428,
    "take": 7
   },
   {
    "w": "this",
-   "start": 82.08,
-   "end": 82.24,
+   "start": 77.478,
+   "end": 77.756,
    "take": 7
   },
   {
    "w": "to",
-   "start": 82.24,
-   "end": 82.42,
+   "start": 77.806,
+   "end": 78.0,
    "take": 7
   },
   {
    "w": "whoever",
-   "start": 82.42,
-   "end": 82.74,
+   "start": 78.05,
+   "end": 78.454,
    "take": 7
   },
   {
-   "w": "sets",
-   "start": 82.74,
-   "end": 83.06,
-   "take": 7
-  },
-  {
-   "w": "your",
-   "start": 83.06,
-   "end": 83.22,
-   "take": 7
-  },
-  {
-   "w": "prices,",
-   "start": 83.22,
-   "end": 83.7,
-   "take": 7
-  },
-  {
-   "w": "before",
-   "start": 83.7,
-   "end": 84.26,
+   "w": "writes",
+   "start": 78.504,
+   "end": 78.866,
    "take": 7
   },
   {
    "w": "your",
-   "start": 84.26,
-   "end": 84.5,
+   "start": 78.916,
+   "end": 79.194,
    "take": 7
   },
   {
-   "w": "next",
-   "start": 84.5,
-   "end": 84.66,
+   "w": "quotes,",
+   "start": 79.244,
+   "end": 79.648,
    "take": 7
   },
   {
-   "w": "raise.",
-   "start": 84.66,
-   "end": 85.0,
+   "w": "and",
+   "start": 79.798,
+   "end": 80.034,
+   "take": 7
+  },
+  {
+   "w": "don't",
+   "start": 80.084,
+   "end": 80.404,
+   "take": 7
+  },
+  {
+   "w": "wait.",
+   "start": 80.454,
+   "end": 80.774,
+   "take": 7
+  },
+  {
+   "w": "Raise",
+   "start": 81.044,
+   "end": 81.364,
+   "take": 7
+  },
+  {
+   "w": "yours",
+   "start": 81.414,
+   "end": 81.734,
+   "take": 7
+  },
+  {
+   "w": "with",
+   "start": 81.784,
+   "end": 82.062,
+   "take": 7
+  },
+  {
+   "w": "a",
+   "start": 82.112,
+   "end": 82.264,
+   "take": 7
+  },
+  {
+   "w": "reason.",
+   "start": 82.314,
+   "end": 82.718,
    "take": 7
   }
  ],
  "takes": [
   {
    "n": 1,
-   "start": 0.0,
-   "end": 10.188,
-   "wpm": 147
+   "start": 0.15,
+   "end": 8.176
   },
   {
    "n": 2,
-   "start": 10.508,
-   "end": 23.439,
-   "wpm": 158
+   "start": 8.526,
+   "end": 21.37
   },
   {
    "n": 3,
-   "start": 23.759,
-   "end": 38.988,
-   "wpm": 150
+   "start": 21.72,
+   "end": 36.252
   },
   {
    "n": 4,
-   "start": 39.308,
-   "end": 49.757,
-   "wpm": 172
+   "start": 36.602,
+   "end": 49.808
   },
   {
    "n": 5,
-   "start": 50.077,
-   "end": 63.478,
-   "wpm": 157
+   "start": 50.158,
+   "end": 60.49
   },
   {
    "n": 6,
-   "start": 63.798,
-   "end": 77.356,
-   "wpm": 159
+   "start": 60.84,
+   "end": 72.088
   },
   {
    "n": 7,
-   "start": 77.676,
-   "end": 85.565,
-   "wpm": 175
+   "start": 72.438,
+   "end": 82.988
   }
  ],
- "flags": [
-  "dropped '\"Starting next month, our rates are going up. Our labor and material costs went up this year. Anything you've already approved stays at the price we quoted.\"': not heard"
- ],
- "end": 85.0,
- "heard": [
-  {
-   "w": "Raising",
-   "start": 0.0,
-   "end": 0.46,
-   "p": 0.953
-  },
-  {
-   "w": "your",
-   "start": 0.46,
-   "end": 0.72,
-   "p": 0.975
-  },
-  {
-   "w": "prices?",
-   "start": 0.72,
-   "end": 1.16,
-   "p": 0.987
-  },
-  {
-   "w": "82",
-   "start": 2.0,
-   "end": 2.38,
-   "p": 0.842
-  },
-  {
-   "w": "%",
-   "start": 2.38,
-   "end": 2.94,
-   "p": 0.909
-  },
-  {
-   "w": "called",
-   "start": 2.94,
-   "end": 3.16,
-   "p": 0.934
-  },
-  {
-   "w": "a",
-   "start": 3.16,
-   "end": 3.4,
-   "p": 0.978
-  },
-  {
-   "w": "snowstorm",
-   "start": 3.4,
-   "end": 3.88,
-   "p": 0.934
-  },
-  {
-   "w": "raise",
-   "start": 3.88,
-   "end": 4.14,
-   "p": 0.971
-  },
-  {
-   "w": "unfair.",
-   "start": 4.14,
-   "end": 4.76,
-   "p": 0.922
-  },
-  {
-   "w": "A",
-   "start": 5.48,
-   "end": 5.62,
-   "p": 0.959
-  },
-  {
-   "w": "raise",
-   "start": 5.62,
-   "end": 5.8,
-   "p": 0.998
-  },
-  {
-   "w": "that",
-   "start": 5.8,
-   "end": 5.98,
-   "p": 0.996
-  },
-  {
-   "w": "covers",
-   "start": 5.98,
-   "end": 6.24,
-   "p": 0.998
-  },
-  {
-   "w": "your",
-   "start": 6.24,
-   "end": 6.46,
-   "p": 0.995
-  },
-  {
-   "w": "costs?",
-   "start": 6.46,
-   "end": 6.9,
-   "p": 0.995
-  },
-  {
-   "w": "Most",
-   "start": 7.34,
-   "end": 7.62,
-   "p": 0.984
-  },
-  {
-   "w": "called",
-   "start": 7.62,
-   "end": 7.84,
-   "p": 0.973
-  },
-  {
-   "w": "that",
-   "start": 7.84,
-   "end": 8.04,
-   "p": 0.995
-  },
-  {
-   "w": "acceptable.",
-   "start": 8.04,
-   "end": 8.5,
-   "p": 0.997
-  },
-  {
-   "w": "Here's",
-   "start": 9.12,
-   "end": 9.28,
-   "p": 0.988
-  },
-  {
-   "w": "the",
-   "start": 9.28,
-   "end": 9.42,
-   "p": 0.995
-  },
-  {
-   "w": "line",
-   "start": 9.42,
-   "end": 9.56,
-   "p": 0.999
-  },
-  {
-   "w": "to",
-   "start": 9.56,
-   "end": 9.72,
-   "p": 0.998
-  },
-  {
-   "w": "send.",
-   "start": 9.72,
-   "end": 9.98,
-   "p": 0.998
-  },
-  {
-   "w": "In",
-   "start": 10.52,
-   "end": 10.6,
-   "p": 0.825
-  },
-  {
-   "w": "a",
-   "start": 10.6,
-   "end": 10.82,
-   "p": 0.998
-  },
-  {
-   "w": "classic",
-   "start": 10.82,
-   "end": 11.1,
-   "p": 0.992
-  },
-  {
-   "w": "survey,",
-   "start": 11.1,
-   "end": 11.6,
-   "p": 0.998
-  },
-  {
-   "w": "a",
-   "start": 11.98,
-   "end": 12.12,
-   "p": 0.985
-  },
-  {
-   "w": "hardware",
-   "start": 12.12,
-   "end": 12.4,
-   "p": 0.999
-  },
-  {
-   "w": "store",
-   "start": 12.4,
-   "end": 12.74,
-   "p": 0.998
-  },
-  {
-   "w": "sells",
-   "start": 12.74,
-   "end": 13.08,
-   "p": 0.995
-  },
-  {
-   "w": "snow",
-   "start": 13.08,
-   "end": 13.4,
-   "p": 0.999
-  },
-  {
-   "w": "shovels",
-   "start": 13.4,
-   "end": 13.86,
-   "p": 0.997
-  },
-  {
-   "w": "for",
-   "start": 13.86,
-   "end": 14.04,
-   "p": 0.998
-  },
-  {
-   "w": "$15.",
-   "start": 14.04,
-   "end": 14.54,
-   "p": 0.963
-  },
-  {
-   "w": "The",
-   "start": 15.34,
-   "end": 15.6,
-   "p": 0.988
-  },
-  {
-   "w": "morning",
-   "start": 15.6,
-   "end": 15.82,
-   "p": 1.0
-  },
-  {
-   "w": "after",
-   "start": 15.82,
-   "end": 16.12,
-   "p": 0.998
-  },
-  {
-   "w": "a",
-   "start": 16.12,
-   "end": 16.3,
-   "p": 0.998
-  },
-  {
-   "w": "big",
-   "start": 16.3,
-   "end": 16.46,
-   "p": 0.997
-  },
-  {
-   "w": "snowstorm,",
-   "start": 16.46,
-   "end": 17.08,
-   "p": 0.964
-  },
-  {
-   "w": "it",
-   "start": 17.38,
-   "end": 17.54,
-   "p": 0.996
-  },
-  {
-   "w": "charges",
-   "start": 17.54,
-   "end": 17.78,
-   "p": 0.996
-  },
-  {
-   "w": "$20.",
-   "start": 17.78,
-   "end": 18.28,
-   "p": 0.781
-  },
-  {
-   "w": "82",
-   "start": 18.88,
-   "end": 19.4,
-   "p": 0.93
-  },
-  {
-   "w": "%",
-   "start": 19.4,
-   "end": 19.86,
-   "p": 0.99
-  },
-  {
-   "w": "called",
-   "start": 19.86,
-   "end": 20.12,
-   "p": 0.992
-  },
-  {
-   "w": "that",
-   "start": 20.12,
-   "end": 20.34,
-   "p": 0.996
-  },
-  {
-   "w": "unfair.",
-   "start": 20.34,
-   "end": 20.84,
-   "p": 0.996
-  },
-  {
-   "w": "That's",
-   "start": 21.42,
-   "end": 21.68,
-   "p": 0.993
-  },
-  {
-   "w": "a",
-   "start": 21.68,
-   "end": 21.86,
-   "p": 0.999
-  },
-  {
-   "w": "raise",
-   "start": 21.86,
-   "end": 22.04,
-   "p": 0.997
-  },
-  {
-   "w": "on",
-   "start": 22.04,
-   "end": 22.28,
-   "p": 0.999
-  },
-  {
-   "w": "your",
-   "start": 22.28,
-   "end": 22.5,
-   "p": 0.993
-  },
-  {
-   "w": "bad",
-   "start": 22.5,
-   "end": 22.76,
-   "p": 0.999
-  },
-  {
-   "w": "luck.",
-   "start": 22.76,
-   "end": 23.16,
-   "p": 1.0
-  },
-  {
-   "w": "Now",
-   "start": 23.72,
-   "end": 23.9,
-   "p": 0.996
-  },
-  {
-   "w": "try",
-   "start": 23.9,
-   "end": 24.12,
-   "p": 0.905
-  },
-  {
-   "w": "the",
-   "start": 24.12,
-   "end": 24.32,
-   "p": 0.997
-  },
-  {
-   "w": "reason",
-   "start": 24.32,
-   "end": 24.54,
-   "p": 0.997
-  },
-  {
-   "w": "you've",
-   "start": 24.54,
-   "end": 24.92,
-   "p": 0.995
-  },
-  {
-   "w": "got.",
-   "start": 24.92,
-   "end": 25.08,
-   "p": 0.996
-  },
-  {
-   "w": "A",
-   "start": 25.08,
-   "end": 25.8,
-   "p": 0.265
-  },
-  {
-   "w": "grocer",
-   "start": 25.8,
-   "end": 26.14,
-   "p": 0.968
-  },
-  {
-   "w": "paid",
-   "start": 26.14,
-   "end": 26.5,
-   "p": 0.989
-  },
-  {
-   "w": "30",
-   "start": 26.5,
-   "end": 26.9,
-   "p": 0.802
-  },
-  {
-   "w": "cents",
-   "start": 26.9,
-   "end": 27.16,
-   "p": 0.955
-  },
-  {
-   "w": "more",
-   "start": 27.16,
-   "end": 27.42,
-   "p": 0.994
-  },
-  {
-   "w": "ahead",
-   "start": 27.42,
-   "end": 27.72,
-   "p": 0.541
-  },
-  {
-   "w": "for",
-   "start": 27.72,
-   "end": 27.98,
-   "p": 0.992
-  },
-  {
-   "w": "lettuce",
-   "start": 27.98,
-   "end": 28.34,
-   "p": 0.996
-  },
-  {
-   "w": "and",
-   "start": 28.34,
-   "end": 28.8,
-   "p": 0.821
-  },
-  {
-   "w": "charged",
-   "start": 28.8,
-   "end": 29.14,
-   "p": 0.987
-  },
-  {
-   "w": "30",
-   "start": 29.14,
-   "end": 29.5,
-   "p": 0.973
-  },
-  {
-   "w": "cents",
-   "start": 29.5,
-   "end": 29.76,
-   "p": 0.992
-  },
-  {
-   "w": "more.",
-   "start": 29.76,
-   "end": 30.14,
-   "p": 0.998
-  },
-  {
-   "w": "79",
-   "start": 30.68,
-   "end": 31.18,
-   "p": 0.923
-  },
-  {
-   "w": "%",
-   "start": 31.18,
-   "end": 31.72,
-   "p": 0.86
-  },
-  {
-   "w": "called",
-   "start": 31.72,
-   "end": 32.0,
-   "p": 0.986
-  },
-  {
-   "w": "that",
-   "start": 32.0,
-   "end": 32.2,
-   "p": 0.996
-  },
-  {
-   "w": "acceptable.",
-   "start": 32.2,
-   "end": 32.72,
-   "p": 0.993
-  },
-  {
-   "w": "A",
-   "start": 33.42,
-   "end": 33.5,
-   "p": 0.972
-  },
-  {
-   "w": "landlord",
-   "start": 33.5,
-   "end": 33.9,
-   "p": 0.997
-  },
-  {
-   "w": "raising",
-   "start": 33.9,
-   "end": 34.3,
-   "p": 0.986
-  },
-  {
-   "w": "rent",
-   "start": 34.3,
-   "end": 34.6,
-   "p": 0.997
-  },
-  {
-   "w": "to",
-   "start": 34.6,
-   "end": 34.8,
-   "p": 0.998
-  },
-  {
-   "w": "cover",
-   "start": 34.8,
-   "end": 35.0,
-   "p": 0.998
-  },
-  {
-   "w": "higher",
-   "start": 35.0,
-   "end": 35.28,
-   "p": 0.998
-  },
-  {
-   "w": "costs?",
-   "start": 35.28,
-   "end": 35.82,
-   "p": 0.996
-  },
-  {
-   "w": "75",
-   "start": 36.34,
-   "end": 36.96,
-   "p": 0.978
-  },
-  {
-   "w": "%",
-   "start": 36.96,
-   "end": 37.56,
-   "p": 0.99
-  },
-  {
-   "w": "said",
-   "start": 37.56,
-   "end": 37.78,
-   "p": 0.983
-  },
-  {
-   "w": "acceptable.",
-   "start": 37.78,
-   "end": 38.3,
-   "p": 0.991
-  },
-  {
-   "w": "Here's",
-   "start": 39.3,
-   "end": 39.54,
-   "p": 0.9
-  },
-  {
-   "w": "the",
-   "start": 39.54,
-   "end": 39.7,
-   "p": 0.999
-  },
-  {
-   "w": "line.",
-   "start": 39.7,
-   "end": 39.96,
-   "p": 0.999
-  },
-  {
-   "w": "Don't",
-   "start": 49.66,
-   "end": 50.34,
-   "p": 0.74
-  },
-  {
-   "w": "skip",
-   "start": 50.34,
-   "end": 50.54,
-   "p": 0.999
-  },
-  {
-   "w": "that",
-   "start": 50.54,
-   "end": 50.8,
-   "p": 0.992
-  },
-  {
-   "w": "last",
-   "start": 50.8,
-   "end": 51.08,
-   "p": 0.999
-  },
-  {
-   "w": "sentence.",
-   "start": 51.08,
-   "end": 51.5,
-   "p": 1.0
-  },
-  {
-   "w": "A",
-   "start": 52.1,
-   "end": 52.26,
-   "p": 0.958
-  },
-  {
-   "w": "store",
-   "start": 52.26,
-   "end": 52.52,
-   "p": 0.998
-  },
-  {
-   "w": "repriced",
-   "start": 52.52,
-   "end": 53.0,
-   "p": 0.814
-  },
-  {
-   "w": "the",
-   "start": 53.0,
-   "end": 53.24,
-   "p": 0.987
-  },
-  {
-   "w": "peanut",
-   "start": 53.24,
-   "end": 53.46,
-   "p": 0.996
-  },
-  {
-   "w": "butter",
-   "start": 53.46,
-   "end": 53.7,
-   "p": 0.996
-  },
-  {
-   "w": "already",
-   "start": 53.7,
-   "end": 54.18,
-   "p": 0.979
-  },
-  {
-   "w": "on",
-   "start": 54.18,
-   "end": 54.4,
-   "p": 0.998
-  },
-  {
-   "w": "its",
-   "start": 54.4,
-   "end": 54.56,
-   "p": 0.971
-  },
-  {
-   "w": "shelf",
-   "start": 54.56,
-   "end": 54.92,
-   "p": 0.998
-  },
-  {
-   "w": "the",
-   "start": 54.92,
-   "end": 55.14,
-   "p": 0.659
-  },
-  {
-   "w": "moment",
-   "start": 55.14,
-   "end": 55.52,
-   "p": 0.988
-  },
-  {
-   "w": "the",
-   "start": 55.52,
-   "end": 55.76,
-   "p": 0.988
-  },
-  {
-   "w": "wholesale",
-   "start": 55.76,
-   "end": 56.12,
-   "p": 0.988
-  },
-  {
-   "w": "price",
-   "start": 56.12,
-   "end": 56.42,
-   "p": 0.998
-  },
-  {
-   "w": "rose.",
-   "start": 56.42,
-   "end": 56.86,
-   "p": 0.995
-  },
-  {
-   "w": "79",
-   "start": 57.5,
-   "end": 57.94,
-   "p": 0.952
-  },
-  {
-   "w": "%",
-   "start": 57.94,
-   "end": 58.46,
-   "p": 0.952
-  },
-  {
-   "w": "called",
-   "start": 58.46,
-   "end": 58.82,
-   "p": 0.971
-  },
-  {
-   "w": "that",
-   "start": 58.82,
-   "end": 59.06,
-   "p": 0.985
-  },
-  {
-   "w": "unfair.",
-   "start": 59.06,
-   "end": 59.54,
-   "p": 0.89
-  },
-  {
-   "w": "A",
-   "start": 60.26,
-   "end": 60.4,
-   "p": 0.957
-  },
-  {
-   "w": "job",
-   "start": 60.4,
-   "end": 60.64,
-   "p": 0.999
-  },
-  {
-   "w": "they've",
-   "start": 60.64,
-   "end": 60.9,
-   "p": 0.981
-  },
-  {
-   "w": "approved",
-   "start": 60.9,
-   "end": 61.34,
-   "p": 0.997
-  },
-  {
-   "w": "keeps",
-   "start": 61.34,
-   "end": 61.76,
-   "p": 0.978
-  },
-  {
-   "w": "the",
-   "start": 61.76,
-   "end": 62.06,
-   "p": 0.997
-  },
-  {
-   "w": "price",
-   "start": 62.06,
-   "end": 62.28,
-   "p": 0.999
-  },
-  {
-   "w": "you",
-   "start": 62.28,
-   "end": 62.48,
-   "p": 0.994
-  },
-  {
-   "w": "quoted.",
-   "start": 62.48,
-   "end": 62.82,
-   "p": 0.995
-  },
-  {
-   "w": "Here's",
-   "start": 63.7,
-   "end": 63.96,
-   "p": 0.99
-  },
-  {
-   "w": "the",
-   "start": 63.96,
-   "end": 64.08,
-   "p": 0.998
-  },
-  {
-   "w": "part",
-   "start": 64.08,
-   "end": 64.28,
-   "p": 0.999
-  },
-  {
-   "w": "people",
-   "start": 64.28,
-   "end": 64.58,
-   "p": 0.99
-  },
-  {
-   "w": "skip.",
-   "start": 64.58,
-   "end": 64.98,
-   "p": 0.995
-  },
-  {
-   "w": "It",
-   "start": 65.56,
-   "end": 65.64,
-   "p": 0.961
-  },
-  {
-   "w": "was",
-   "start": 65.64,
-   "end": 65.76,
-   "p": 0.999
-  },
-  {
-   "w": "a",
-   "start": 65.76,
-   "end": 65.98,
-   "p": 0.996
-  },
-  {
-   "w": "phone",
-   "start": 65.98,
-   "end": 66.18,
-   "p": 0.997
-  },
-  {
-   "w": "survey",
-   "start": 66.18,
-   "end": 66.54,
-   "p": 0.999
-  },
-  {
-   "w": "in",
-   "start": 66.54,
-   "end": 66.8,
-   "p": 0.996
-  },
-  {
-   "w": "Toronto",
-   "start": 66.8,
-   "end": 67.2,
-   "p": 0.998
-  },
-  {
-   "w": "and",
-   "start": 67.2,
-   "end": 67.48,
-   "p": 0.973
-  },
-  {
-   "w": "Vancouver,",
-   "start": 67.48,
-   "end": 68.02,
-   "p": 0.999
-  },
-  {
-   "w": "1984",
-   "start": 68.5,
-   "end": 69.18,
-   "p": 0.994
-  },
-  {
-   "w": "to",
-   "start": 69.18,
-   "end": 69.48,
-   "p": 0.626
-  },
-  {
-   "w": "85.",
-   "start": 69.48,
-   "end": 69.98,
-   "p": 0.455
-  },
-  {
-   "w": "It",
-   "start": 70.62,
-   "end": 70.82,
-   "p": 0.996
-  },
-  {
-   "w": "measured",
-   "start": 70.82,
-   "end": 71.16,
-   "p": 0.997
-  },
-  {
-   "w": "what",
-   "start": 71.16,
-   "end": 71.36,
-   "p": 0.998
-  },
-  {
-   "w": "people",
-   "start": 71.36,
-   "end": 71.66,
-   "p": 0.999
-  },
-  {
-   "w": "called",
-   "start": 71.66,
-   "end": 72.22,
-   "p": 0.942
-  },
-  {
-   "w": "fair,",
-   "start": 72.22,
-   "end": 72.54,
-   "p": 0.846
-  },
-  {
-   "w": "not",
-   "start": 72.84,
-   "end": 73.1,
-   "p": 0.998
-  },
-  {
-   "w": "what",
-   "start": 73.1,
-   "end": 73.26,
-   "p": 0.999
-  },
-  {
-   "w": "they",
-   "start": 73.26,
-   "end": 73.42,
-   "p": 0.999
-  },
-  {
-   "w": "bought.",
-   "start": 73.42,
-   "end": 73.74,
-   "p": 0.997
-  },
-  {
-   "w": "So",
-   "start": 74.18,
-   "end": 74.46,
-   "p": 0.985
-  },
-  {
-   "w": "it",
-   "start": 74.46,
-   "end": 74.72,
-   "p": 0.835
-  },
-  {
-   "w": "can't",
-   "start": 74.72,
-   "end": 75.12,
-   "p": 0.999
-  },
-  {
-   "w": "promise",
-   "start": 75.12,
-   "end": 75.42,
-   "p": 0.999
-  },
-  {
-   "w": "you'll",
-   "start": 75.42,
-   "end": 75.68,
-   "p": 0.992
-  },
-  {
-   "w": "keep",
-   "start": 75.68,
-   "end": 75.78,
-   "p": 0.999
-  },
-  {
-   "w": "every",
-   "start": 75.78,
-   "end": 76.08,
-   "p": 0.996
-  },
-  {
-   "w": "customer.",
-   "start": 76.08,
-   "end": 76.58,
-   "p": 0.999
-  },
-  {
-   "w": "Your",
-   "start": 77.5,
-   "end": 77.6,
-   "p": 0.884
-  },
-  {
-   "w": "costs",
-   "start": 77.6,
-   "end": 77.88,
-   "p": 0.546
-  },
-  {
-   "w": "went",
-   "start": 77.88,
-   "end": 78.08,
-   "p": 0.998
-  },
-  {
-   "w": "up?",
-   "start": 78.08,
-   "end": 78.4,
-   "p": 0.999
-  },
-  {
-   "w": "Say",
-   "start": 78.58,
-   "end": 78.88,
-   "p": 0.993
-  },
-  {
-   "w": "so.",
-   "start": 78.88,
-   "end": 79.22,
-   "p": 0.997
-  },
-  {
-   "w": "Their",
-   "start": 79.64,
-   "end": 79.88,
-   "p": 0.95
-  },
-  {
-   "w": "bad",
-   "start": 79.88,
-   "end": 80.12,
-   "p": 0.998
-  },
-  {
-   "w": "luck",
-   "start": 80.12,
-   "end": 80.38,
-   "p": 0.999
-  },
-  {
-   "w": "isn't",
-   "start": 80.38,
-   "end": 80.88,
-   "p": 0.995
-  },
-  {
-   "w": "a",
-   "start": 80.88,
-   "end": 81.08,
-   "p": 0.996
-  },
-  {
-   "w": "reason.",
-   "start": 81.08,
-   "end": 81.38,
-   "p": 1.0
-  },
-  {
-   "w": "Send",
-   "start": 81.38,
-   "end": 82.08,
-   "p": 0.839
-  },
-  {
-   "w": "this",
-   "start": 82.08,
-   "end": 82.24,
-   "p": 0.988
-  },
-  {
-   "w": "to",
-   "start": 82.24,
-   "end": 82.42,
-   "p": 0.996
-  },
-  {
-   "w": "whoever",
-   "start": 82.42,
-   "end": 82.74,
-   "p": 0.992
-  },
-  {
-   "w": "sets",
-   "start": 82.74,
-   "end": 83.06,
-   "p": 0.974
-  },
-  {
-   "w": "your",
-   "start": 83.06,
-   "end": 83.22,
-   "p": 0.992
-  },
-  {
-   "w": "prices",
-   "start": 83.22,
-   "end": 83.7,
-   "p": 0.994
-  },
-  {
-   "w": "before",
-   "start": 83.7,
-   "end": 84.26,
-   "p": 0.788
-  },
-  {
-   "w": "your",
-   "start": 84.26,
-   "end": 84.5,
-   "p": 0.993
-  },
-  {
-   "w": "next",
-   "start": 84.5,
-   "end": 84.66,
-   "p": 0.999
-  },
-  {
-   "w": "raise.",
-   "start": 84.66,
-   "end": 85.0,
-   "p": 0.988
-  }
- ]
+ "end": 82.718
 }

@@ -1,307 +1,205 @@
-// Scene: Reply to every review (Lesson 7, Reviews Clinic, arcade). One function per top-level cue in 03_cues/cues.md.
-// Numbers only from k.data (brief.md -> data.js). Rooms: framing, workshop, blackboard, framing, garage, workshop, blackboard.
-// Modeled on lesson 4 (hook card settled on frame 0, slams, sparks, count-ups from 85%) and lesson 1 (the phone, a reply
-// that types as it is said, keeping its final width and growing down).
-const CHALK = '#FFF7EA', CHALK2 = '#F7C873', INK = '#1B1420', DARK = '#2B2033', GREY = '#9AA0AD', HOOK_END = 3.4;
-const GOOD_REVIEW = 'Great work. On time, and they cleaned up after.';
-const BAD_REVIEW = 'Late, and left a mess.';
-// each reply is typed in pieces, each piece as its words are said: [cue, text, the first word it waits for, step chip]
-const GOOD = [
-  ['good.thanks', 'Thanks, [first name].', /^"?thanks/i, '1. Their name'],
-  ['good.glad', 'Glad the [job] went well.', /^glad/i, '2. The job'],
-  ['good.here', "We're here when you need us.", /^we/i, '3. Door open'],
-  ['good.sign', '[Your name]', /^name/i, '4. Your name'],
-];
-const BAD = [
-  ['bad.sorry', 'Sorry we fell short on [issue].', /^"?sorry/i],
-  ['bad.right', 'I want to make it right.', /^i$/i],
-  ['bad.call', 'Call me directly at [number]. [Your name]', /^call/i],
-];
-// everything written on the board stays inside the board, even while it slides in
-const boardClip = (k) => { k.ctx.save(); k.ctx.beginPath(); k.ctx.rect(60, 246, 960, 752); k.ctx.clip(); };
-const slideIn = (k, t0, dx = 0, dy = 0) => { const q = k.easeOut((k.T - t0) / 0.35); k.ctx.translate(dx * 0.4 * (1 - q), dy * 0.4 * (1 - q)); k.ctx.globalAlpha *= k.clamp(q * 1.6); return q; };
-const popAt = (k, t0, cx, cy, max = 1.15) => { const q = k.clamp(k.pop(t0), 0, max); k.ctx.translate(cx, cy); k.ctx.scale(q, q); k.ctx.translate(-cx, -cy); };
-// the time a word is said (from words.json), at or after a cue; falls back to the cue's start
+// Scene: Answer your reviews; many contractors don't (Lesson 7, Reviews Clinic, arcade). One function per top-level cue in
+// 03_cues/cues.md. Numbers only from k.data (brief.md -> data.js). Every time comes from a cue start (k.S) or a spoken word
+// (wordT), so a re-voiced take moves the picture with it.
+// Worlds (brief.md): hook, replies, caveat = the chat in the truck (the review inbox); stakes, close = the slot machine;
+// gap, turn = the arcade high-score table (its rows drawn here in the set's own style, each landing on its own word).
+const INK = '#120D14', CREAM = '#FFF7EA', SAND = '#E6D3BC', GOLD = '#F7C873', ORANGE = '#F2A541', RED = '#E2633B', TEAL = '#6FB7A8', GREY = '#9AA0AD', PLUM = '#2B2033';
+const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const eo = (x) => 1 - Math.pow(1 - clamp(x), 3);
+
+// ---- the pixel kit (low-res units: 360 x 640, one pixel = 3 frame units), the same primitives the sets use ----
+const px = (k) => {
+  const ctx = k.ctx, T = k.T, F = Math.floor(T * 30 + 0.005);
+  const P = (x, y, w, h, c) => { x = Math.round(x); y = Math.round(y); w = Math.round(w); h = Math.round(h); if (w > 0 && h > 0 && c) { ctx.fillStyle = c; ctx.fillRect(x * 3, y * 3, w * 3, h * 3); } };
+  const win = (x, y, w, h, o = {}) => {
+    const base = o.base || '#253048', hi = o.hi || '#3B82C4', lo = o.lo || '#1B1420', rule = o.rule === undefined ? '#87CEEB' : o.rule;
+    if (o.shadow !== false) P(x + 2, y + 2, w, h, INK);
+    P(x + 1, y, w - 2, h, INK); P(x, y + 1, w, h - 2, INK);
+    P(x + 1, y + 1, w - 2, h - 2, base); P(x + 2, y + 1, w - 4, 1, hi); P(x + 1, y + 2, 1, h - 4, hi); P(x + 2, y + h - 2, w - 4, 1, lo); P(x + w - 2, y + 2, 1, h - 4, lo);
+    if (rule) { P(x + 3, y + 3, w - 6, 1, rule); P(x + 3, y + h - 4, w - 6, 1, rule); P(x + 3, y + 3, 1, h - 6, rule); P(x + w - 4, y + 3, 1, h - 6, rule); }
+  };
+  const fr = (t0) => Math.floor((T - t0) * 30 + 0.005);
+  const ease = (t0, frames, dist) => Math.round(dist * (1 - eo(fr(t0) / frames)));
+  const tx = (s, x, y, o = {}) => k.text(s, x * 3, y * 3, Object.assign({size: 39}, o));
+  const clip = (x, y, w, h, fn) => { ctx.save(); ctx.beginPath(); ctx.rect(x * 3, y * 3, w * 3, h * 3); ctx.clip(); fn(); ctx.restore(); };
+  return {P, win, fr, ease, tx, clip, F, T};
+};
+
+// ---- the words: every beat lands on a spoken word, so a re-voiced take moves everything with it ----
+const WS = () => (window.WORDS && window.WORDS.words) || [];
+// the time a word is said (words.json), at or after a cue (or a time); falls back to the cue's start plus dflt
 const wordT = (k, id, re, dflt = 0) => {
-  const ws = (window.WORDS && window.WORDS.words) || [];
-  const w = ws.find((x) => x.start >= k.S(id) - 0.05 && re.test(x.w));
-  return w ? w.start : k.S(id) + dflt;
+  const t0 = typeof id === 'number' ? id : k.S(id);
+  const w = WS().find((x) => x.start >= t0 - 0.05 && re.test(x.w));
+  return w ? w.start : t0 + dflt;
 };
-// a five-point star in pixels; filled, or an outline for an empty one
-const star = (k, cx, cy, r, fill) => {
-  const pts = []; for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * 0.45 : r; pts.push([cx + Math.cos(a) * rr, cy + Math.sin(a) * rr]); }
-  if (fill) k.shape(pts, {fill, line: false}); else k.shape(pts, {stroke: GREY, lw: 5, line: false});
-};
-const starRow = (k, x, cy, r, step, lit, total, t0, color = 'accent') => {
-  for (let i = 0; i < total; i++) {
-    const ti = t0 + i * 0.08; if (k.T < ti) return;
-    k.ctx.save(); popAt(k, ti, x + i * step, cy, 1.2); star(k, x + i * step, cy, r, i < lit ? color : null); k.ctx.restore();
-  }
-};
-// a reply typed piece by piece: whole earlier pieces plus part of the one being said; the bubble is laid out for the full reply
-const typed = (k, pieces) => {
-  const startOf = ([id, , re]) => wordT(k, id, re, 0.1) - 0.05;
-  let cur = -1, reveal = 0, typingTo = 0;
-  pieces.forEach((pc, i) => {
-    if (k.T < k.S(pc[0])) return; cur = i;
-    const t0 = startOf(pc), p = k.lin(t0, t0 + pc[1].length * 0.035);
-    reveal = pieces.slice(0, i).reduce((a, r) => a + r[1].length + 1, 0) + Math.floor(pc[1].length * p);
-    typingTo = t0 + pc[1].length * 0.035;
+// a count that starts at 85% of its value and lands exactly on it
+const cnt = (k, value, t0, o = {}) => k.count(value, k.lin(t0, t0 + 0.7) >= 1 ? 1 : 0.85 + 0.15 * k.lin(t0, t0 + 0.7), Object.assign({from: 0}, o));
+const host = (k, pose) => ({hostPose: pose || (k.talking() ? 'talk' : 'stand'), hostScale: 0.55, hostX: 150});
+// a set's own text that we redraw or cover is not drawn at all (hidden text still counts for the layout lint)
+const mute = (k, drop, fn) => { const real = k.text; k.text = function (s, x, y, o) { if (drop(s, x, y, o)) return; return real.call(this, s, x, y, o); }; try { return fn(); } finally { k.text = real; } };
+
+// ================================================================================================================
+// the high-score table (gap, turn): k.sets.scores draws the cabinet, marquee and screen; the rows are drawn here in the
+// set's own style so each one lands on the word that says it (the set spaces rows evenly). rows: [{rank, name, value, at,
+// hi, count: {value, suffix}}]; heads: three column headers.
+const COLS = ['#F2A541', '#E2633B', '#6FB7A8', '#87CEEB', '#FFF7EA', '#F7C873'];
+const scoreTable = (k, title, heads, rows) => {
+  const d = px(k), T = k.T;
+  mute(k, (s, x, y) => y === 378 && ['RANK', 'NAME', 'SCORE'].includes(s), () => k.sets.scores({title, rows: []}));
+  d.tx(heads[0], 40, 126, {color: TEAL}); d.tx(heads[1], 110, 126, {color: TEAL}); d.tx(heads[2], 306, 126, {color: TEAL, align: 'right'});
+  rows.forEach((r, i) => { if (T < r.at) for (let x = 46; x < 306; x += 8) d.P(x, 156 + i * 24, 4, 1, '#3D2E45'); });
+  rows.forEach((r, i) => {
+    if (T < r.at) return;
+    const y = 150 + i * 24, c = r.hi ? GOLD : COLS[i % COLS.length], slide = d.ease(r.at, 5, 40);
+    if (r.hi) { d.P(32, y - 4, 280, 21, '#3D2E45'); if (Math.floor((T - r.at) * 4) % 2 === 0) d.tx('>', 32 + slide, y, {color: ORANGE}); }
+    d.tx(r.rank, 46 + slide, y, {color: c});
+    const off = r.hi && T >= r.at + 0.7 && Math.floor((T - r.at) * 4) % 2 === 1;
+    d.tx(r.name, 110 + slide, y, {color: off ? RED : c});
+    d.tx(r.count ? cnt(k, r.count.value, r.at, {suffix: r.count.suffix}) : r.value, 306 + slide, y, {color: c, align: 'right'});
   });
-  return {cur, reveal, typingTo, full: pieces.map((r) => r[1]).join(' ')};
 };
+
+// ================================================================================================================
+// the slot machine (stakes, close): one pull per entry, the latest pull drawn; plate: a line between the reels and the tray
+const slotPull = (k, pulls, label) => {
+  const T = k.T, cur = pulls.filter((p) => T >= p.t0).pop();
+  if (!cur) k.sets.slots({t0: 1e6, stops: [1e6, 1e6, 1e6], idle: ['?', '?', '?'], label, win: false});
+  else k.sets.slots({t0: cur.t0, stops: cur.stops, symbols: cur.symbols, label, win: true});
+};
+const plate = (k, s, at, o = {}) => {
+  const d = px(k); d.P(58, 229, 244, 15, INK); d.P(59, 230, 242, 13, '#2B2033');
+  if (s) { const shown = s.slice(0, Math.max(0, Math.floor((k.T - at) * 60))); d.clip(59, 229, 242, 15, () => d.tx(shown, 180, 230, {color: o.color || GOLD, align: 'center', lint: shown.length === s.length})); }
+};
+
+// ================================================================================================================
+// the chat (hook, replies, caveat): lines of a bubble scrolled up under the app header are clipped, so they are not drawn
+const chat = (k, o) => mute(k, (s, x, y, t) => y < 390 && !(x === 408 && y === 318) && !(t && t.lint === false), () => k.sets.chat(o));
+// the EXAMPLE tag on the left pillar
+const exampleTag = (k) => { const d = px(k); d.P(8, 196, 60, 17, INK); d.P(9, 197, 58, 15, RED); d.tx('EXAMPLE', 38, 198, {color: CREAM, align: 'center'}); };
 
 window.SCENE = {
   look: 'arcade',
   images: [],
   host_name: 'Snow',
   hud: 'LESSON 7',
-  focus: {'hook.copy': [300, 600], 'stakes.stars': [500, 680], 'stakes.small': [700, 820], 'why.backup': [400, 800],
-          'good.here': [500, 760], 'bad.call': [500, 820], 'turn.longer': [500, 640], 'turn.guide': [400, 360], 'close.send': [540, 860]},
+  transitions: {stakes: 'levelselect', gap: 'dissolve', replies: 'iris', turn: 'blinds', caveat: 'dissolve', close: 'gameover'},
+  trauma: {'turn.never': 0.8},
   sections: {
+    // ---- hook: the phone in the truck, the hook card on its screen, settled on frame 0; no host or dialog yet
     hook: (k, T) => {
-      const n = k.data.numbers;
-      k.room('framing');
-      if (T < HOOK_END) {   // the hook card: settled on frame 0, no host, no dialog (nothing covers the claim or its source)
-        k.shape(k.rectPts(0, 230, 1080, 860, 0), {fill: INK, line: false});
-        k.slam('Hotels that started', 540, 290, -1, {size: 60, color: CHALK, align: 'center'});
-        k.slam('replying got', 540, 370, -1, {size: 60, color: CHALK, align: 'center'});
-        k.slam(n.morePct.shown, 540, 456, -1, {size: 330, color: 'accent', align: 'center'});
-        k.slam('more reviews.', 540, 780, -1, {size: 120, color: CHALK, align: 'center'});
-        k.burst(120, 1040, 0.15, {n: 14, r: 200}); k.burst(960, 1040, 0.3, {n: 14, r: 200});   // sparks from the card's corners, never on the words
-        k.burst(540, 600, 1.5, {n: 14, r: 320, colors: ['accent2', 'paper']});
-        k.sweep(300, 930, 480, 10, 0.6, {color: 'accent'});
-        k.text(`Hotel study, Marketing Science ${n.year.shown}`, 540, 966, {size: 39, color: '#E6D3BC', align: 'center'});
-        k.text('Reviews Clinic', 540, 1026, {size: 39, color: CHALK2, align: 'center'});
-        return {host: false, speech: false};
-      }
-      k.ctx.save(); slideIn(k, HOOK_END, -500, 0); k.chip('Reviews Clinic', 96, 280, {size: 30}); k.ctx.restore();
-      // a dark card behind the stars and the promise, so nothing sits on the bright sky and studs
-      k.ctx.save(); slideIn(k, HOOK_END + 0.05, -500, 0); k.panel2(72, 370, 380, 420); k.ctx.restore();
-      starRow(k, 124, 430, 26, 64, n.five.value, n.five.value, HOOK_END + 0.15);
-      k.ctx.save(); slideIn(k, HOOK_END + 0.1, 600, 0);
-      k.phone(480, 300, 450, 490, [{text: GOOD_REVIEW, at: HOOK_END + 0.4}], {who: 'Example review', size: 39});
-      k.ctx.restore();
-      k.burst(705, 520, HOOK_END + 0.45, {n: 10, r: 160, colors: ['accent2', 'paper']});
-      const tc = k.S('hook.copy');
-      if (T >= tc) {   // the promise: two replies to copy
-        k.stampIn(tc, () => k.text(n.replies.shown, 104, 500, {size: 200, color: 'accent'}), {at: [160, 700]});
-        k.ctx.save(); slideIn(k, tc + 0.15, -400, 0);
-        k.text('replies', 220, 560, {size: 60, color: CHALK});
-        k.text('to copy', 220, 630, {size: 60, color: CHALK});
-        k.ctx.restore();
-        k.burst(170, 620, tc + 0.1, {n: 18});
-      }
-      return {hostPose: T >= tc ? 'point' : (k.talking() ? 'talk' : 'stand'), hostAt: [300, 600], hostScale: 0.55, hostX: 150};
+      const n = k.data.numbers, t43 = wordT(k, 'hook.43', /^forty/i), tCopy = k.S('hook.copy');
+      k.sets.chat({who: 'REVIEWS', clock: '7:42', msgs: [], notify: {text: 'New review', at: Math.max(1.0, t43), dur: 2.2}});
+      // the card on the screen (frame x 306..870, y 390..888): light wallpaper, dark words
+      k.text(n.noAnswer.shown, 324, 404, {size: 132, color: 'accent'});
+      k.text('of contractors', 324, 548, {size: 66, color: PLUM});
+      k.text("don't answer", 324, 618, {size: 66, color: PLUM});
+      k.text('reviews.', 324, 688, {size: 66, color: PLUM});
+      k.text(`ACHR News survey, ${n.year.shown}`, 324, 770, {size: 30, color: '#6B7080'});
+      if (T >= tCopy) { k.slam('Two replies to copy.', 324, 816, tCopy, {size: 39, color: 'accent', from: 0.5}); k.sweep(324, 860, 480, 6, tCopy + 0.25, {color: 'accent'}); }
+      k.burst(470, 470, 1.2, {n: 12, r: 180}); k.burst(470, 470, t43, {n: 18, r: 220});
+      if (T < t43) return {host: false, speech: false};
+      if (T < tCopy) return {host: false};
+      return host(k, k.live('hook.copy') ? 'point' : null);
     },
 
+    // ---- stakes: the slot machine; 9, 1, % as it is said; a second pull for Google
     stakes: (k, T) => {
-      const n = k.data.numbers;
-      k.room('workshop');
-      const t0 = k.S('stakes');
-      k.ctx.save(); slideIn(k, t0, 0, 700);
-      k.panel2(60, 300, 870, 520, {title: `Marketing Science, ${n.year.shown}`});
-      k.text('Hotels that started replying', 96, 336, {size: 39, color: CHALK});
-      k.ctx.restore();
-      if (T >= k.S('stakes.trip')) {
-        k.ctx.save(); slideIn(k, k.S('stakes.trip'), 500, 0);
-        k.text('Tens of thousands of', 96, 386, {size: 39, color: CHALK2});
-        k.text('TripAdvisor hotel reviews', 96, 430, {size: 39, color: CHALK2});
-        k.ctx.restore();
-      }
-      // both rows show as the panel opens (no empty box); the reviews row is already in, the rating row fills when said
-      if (T >= t0 + 0.3) {
-        k.ctx.save(); slideIn(k, t0 + 0.3, -500, 0);
-        k.text('Reviews', 96, 524, {size: 60, color: CHALK});
-        k.slam(k.count(n.morePct.value, 0.85 + 0.15 * k.lin(t0 + 0.4, t0 + 1.0), {prefix: '+', suffix: '%'}), 400, 494, t0 + 0.4, {size: 120, color: 'accent', from: 0.5});
-        const lit = T >= k.S('stakes.up');
-        k.text('Rating', 96, 654, {size: 60, color: lit ? 'accent' : 'muted'});
-        k.text('on average', 96, 720, {size: 39, color: lit ? CHALK2 : 'muted'});
-        const ts = wordT(k, 'stakes.stars', /^point/i);
-        if (T < ts) k.shape(k.rectPts(400, 630, 420, 110, 0), {stroke: GREY, lw: 6, line: false});   // the empty slot the rating lands in
-        else {
-          const s = k.count(n.stars.value, 0.85 + 0.15 * k.lin(ts, ts + 0.8), {prefix: '+', dec: 2});
-          k.slam(s, 400, 624, ts, {size: 120, color: 'accent', from: 0.5});
-          const w = k.measure(`+${n.stars.shown}`, {size: 120});
-          k.ctx.save(); popAt(k, ts + 0.5, 400 + w + 60, 680, 1.2); star(k, 400 + w + 60, 680, 44, 'accent'); k.ctx.restore();
-          k.burst(400 + w + 60, 680, ts + 0.6, {n: 16, r: 200});
-        }
-        k.ctx.restore();
-        if (k.live('stakes.up')) k.sweep(96, 712, 210, 4, k.S('stakes.up') + 0.2, {color: 'accent'});
-      }
-      if (T >= k.S('stakes.small')) {   // a sticker below the rows, clear of every number
-        const ty = k.S('stakes.small');
-        k.ctx.save(); k.ctx.translate(735, 830); k.ctx.rotate(-0.03); k.ctx.translate(-735, -830); popAt(k, ty, 735, 830);
-        k.panel2(540, 776, 390, 110, {fill: 'accent', border: INK});
-        k.text('Small? Ratings', 735, 790, {size: 39, color: INK, align: 'center'});
-        k.text('barely move.', 735, 834, {size: 39, color: INK, align: 'center'});
-        k.ctx.restore();
-        k.burst(735, 830, ty + 0.05, {n: 18});
-      }
-      const pose = k.live('stakes.small') ? 'shrug' : (k.live('stakes.stars') ? 'point' : (k.talking() ? 'talk' : 'stand'));
-      return {hostPose: pose, hostAt: [500, 680], hostScale: 0.55, hostX: 150};
+      const n = k.data.numbers, t0 = k.S('stakes'), tAsk = k.S('stakes.asked'), tPull = k.S('stakes.pull'), tG = k.S('stakes.google');
+      const t91 = wordT(k, 'stakes.pull', /^ninety/i, 0.2), tPct = wordT(k, 'stakes.pull', /^percent/i, 0.8);
+      const t56 = wordT(k, 'stakes.google', /^Fifty/i), tPct2 = wordT(k, 'stakes.google', /^percent/i, 0.8);
+      const pulls = [
+        {t0: tPull - 0.1, stops: [Math.max(tPull + 0.4, t91 + 0.1), Math.max(tPull + 0.7, t91 + 0.4), Math.max(tPull + 1.0, tPct)], symbols: [...String(n.important.value), '%']},
+        {t0: tG - 0.1, stops: [Math.max(tG + 0.4, t56 + 0.1), Math.max(tG + 0.7, t56 + 0.4), Math.max(tG + 1.0, tPct2)], symbols: [...String(n.google.value), '%']},
+      ];
+      const label = T >= tG + 0.5 ? 'LOOK ON GOOGLE' : (T >= pulls[0].stops[2] ? 'SAY REVIEWS MATTER' : 'ACHR NEWS + CLEAR SEAS');
+      slotPull(k, pulls, label);
+      if (T >= tG) plate(k, `${n.google.shown} look on Google`, tPct2);
+      else if (T >= k.S('stakes.hvac')) plate(k, `${n.important.shown}: picking an HVAC contractor`, k.S('stakes.hvac'));
+      else if (T >= tAsk) plate(k, `${n.homeowners.shown} homeowners, ${n.year.shown}`, tAsk, {color: CREAM});
+      else plate(k, 'Homeowners: do reviews matter?', t0 + 0.3, {color: SAND});
+      return host(k, k.live('stakes.pull') || k.live('stakes.google') ? 'point' : (k.live('stakes.asked') ? 'clip' : null));
     },
 
-    why: (k, T) => {
-      k.room('blackboard'); boardClip(k);
-      k.slam('Why a reply helps', 96, 280, k.S('why'), {size: 60, color: CHALK2, from: 0.5});
-      if (T < k.S('why.care')) {   // a review card with a reply arrow, chalked in while the voice asks why (the board is never empty)
-        const t0 = k.S('why') + 0.4, q = k.clamp(k.pop(t0, 0.4), 0, 1.1);
-        k.ctx.save(); k.ctx.translate(540, 650); k.ctx.rotate(-0.03); k.ctx.scale(q * 1.2, q * 1.2);
-        k.shape(k.rectPts(-200, -130, 400, 200, 0), {fill: CHALK, line: false});
-        for (let i = 0; i < 5; i++) star(k, -150 + i * 56, -84, 22, i < 4 ? '#E2633B' : null);
-        for (let i = 0; i < 2; i++) k.shape(k.rectPts(-170, -30 + i * 40, i ? 220 : 340, 14, 0), {fill: GREY, line: false});
-        k.shape(k.rectPts(-120, 110, 320, 100, 0), {fill: '#2F6F67', line: false});
-        k.shape(k.rectPts(-90, 140, 230, 14, 0), {fill: CHALK, line: false}); k.shape(k.rectPts(-90, 172, 150, 14, 0), {fill: CHALK, line: false});
-        k.ctx.restore();
-        k.burst(540, 650, t0 + 0.05, {n: 14, colors: ['paper', 'accent2']});
-      }
-      if (T >= k.S('why.care')) {
-        const t0 = k.S('why.care');
-        k.ctx.save(); slideIn(k, t0, -600, 0);
-        k.text('It shows you care', 96, 400, {size: 60, color: CHALK});
-        k.text('what customers think.', 96, 470, {size: 60, color: CHALK});
-        k.ctx.restore();
-      }
-      if (T >= k.S('why.unhappy')) {
-        const t0 = k.S('why.unhappy');
-        k.slam('Unhappy customers', 96, 600, t0, {size: 60, color: 'accent', from: 0.5});
-        k.ctx.save(); slideIn(k, t0 + 0.3, -600, 0); k.text('think twice', 96, 670, {size: 60, color: CHALK}); k.ctx.restore();
-      }
-      if (T >= k.S('why.backup')) {
-        const t0 = k.S('why.backup');
-        k.ctx.save(); slideIn(k, t0, 600, 0);
-        k.text('before a complaint', 96, 760, {size: 60, color: CHALK});
-        k.text("they can't back up.", 96, 830, {size: 60, color: CHALK2});
-        k.ctx.restore();
-        k.sweep(96, 902, 700, 8, t0 + 0.6, {color: 'accent'});
-      }
-      k.ctx.restore();
-      return {hostPose: k.talking() ? 'talk' : 'stand', hostScale: 0.55, hostX: 150};
+    // ---- gap: the high-score table; YES, NO (the blinking row), DON'T KNOW, each on its own number
+    gap: (k, T) => {
+      const n = k.data.numbers, t0 = k.S('gap');
+      const tYes = wordT(k, 'gap.yes', /^Forty/i), tNo = wordT(k, 'gap.no', /^Forty/i), tDk = wordT(k, 'gap.dk', /^Thirteen/i);
+      scoreTable(k, 'DO CONTRACTORS ANSWER?', ['RANK', 'ANSWER', 'SHARE'], [
+        {rank: '1ST', name: 'YES', at: tYes, count: {value: n.answer.value, suffix: '%'}},
+        {rank: '2ND', name: 'NO', at: tNo, hi: true, count: {value: n.noAnswer.value, suffix: '%'}},
+        {rank: '3RD', name: "DON'T KNOW", at: tDk, count: {value: n.dontKnow.value, suffix: '%'}},
+      ]);
+      const d = px(k);
+      d.tx('Reviews on third-party sites', 180, 228, {color: CREAM, align: 'center'});
+      d.tx(`Contractors, ACHR News survey, ${n.year.shown}`, 180, 252, {color: SAND, align: 'center', size: 30});
+      return host(k, k.live('gap.no') ? 'point' : null);
     },
 
-    good: (k, T) => {
-      const n = k.data.numbers;
-      k.room('framing');
-      const r = typed(k, GOOD);
-      k.ctx.save();
-      if (r.cur >= 0) { const q = k.clamp(k.pop(k.S(GOOD[r.cur][0]), 0.3), 0, 1.2); k.ctx.translate(96, 290); k.ctx.scale(q, q); k.ctx.translate(-96, -290); }
-      else slideIn(k, k.S('good'), -500, 0);
-      k.chip(r.cur >= 0 ? GOOD[r.cur][3] : 'Good review: copy this', 96, 280, {size: 30, fill: r.cur >= 0 ? 'accent' : 'tag', color: r.cur >= 0 ? INK : 'tagText'});
-      k.ctx.restore();
-      starRow(k, 672, 306, 26, 62, n.five.value, n.five.value, k.S('good') + 0.2);
-      k.ctx.save(); slideIn(k, k.S('good') + 0.1, 0, 800);
-      k.phone(100, 360, 800, 630, [
-        {text: GOOD_REVIEW, at: -1},
-        ...(r.cur >= 0 ? [{text: r.full, reveal: r.reveal, me: true, at: k.S(GOOD[0][0]), typing: r.typingTo}] : []),
-      ], {who: 'Example review', size: 39});
-      k.ctx.restore();
-      if (r.cur >= 0) k.burst(240, 300, k.S(GOOD[r.cur][0]) + 0.05, {n: 12, r: 180});
-      // the host steps back (smaller) so nothing covers the reply being typed
-      return {hostPose: k.talking() ? 'talk' : 'stand', hostScale: 0.55, hostX: 150};
+    // ---- replies: the review inbox; the example review arrives, our reply goes out a sentence at a time as it is said
+    replies: (k, T) => {
+      const n = k.data.numbers, t0 = k.S('replies'), tOne = k.S('replies.one');
+      const five = T < tOne;
+      const msgs = five ? [
+        {me: false, text: `${n.five.shown} stars. Fixed our furnace fast.`, at: t0 + 0.6, typing: 0.5},
+        {me: true, text: 'Thanks for trusting us with your furnace.', at: k.S('replies.f1')},
+        {me: true, text: "Glad it's running right.", at: k.S('replies.f2')},
+        {me: true, text: "We're here when you need us.", at: k.S('replies.f3'), read: k.S('replies.f3') + 0.9},
+      ] : [
+        {me: false, text: `${n.one.shown} star. The tech showed up late.`, at: tOne + 0.6, typing: 0.5},
+        {me: true, text: "Sorry we were late. That's on us.", at: k.S('replies.o1')},
+        {me: true, text: 'I want to make it right.', at: k.S('replies.o2')},
+        {me: true, text: 'Call me directly at the shop.', at: k.S('replies.o3'), read: k.S('replies.o3') + 0.9},
+      ];
+      chat(k, {who: five ? 'FIVE-STAR REPLY' : 'ONE-STAR REPLY', clock: '7:42', msgs, notify: five ? null : {text: `New review: ${n.one.shown} star`, at: tOne, dur: 1.6}});
+      exampleTag(k);
+      const r = host(k, k.live('replies.f1') || k.live('replies.o1') ? 'point' : null);
+      return r;
     },
 
-    bad: (k, T) => {
-      const n = k.data.numbers;
-      k.room('garage');
-      const tn = k.S('bad.name'), ta = k.S('bad.argue');
-      k.shape(k.rectPts(72, 262, 840, 150, 0), {fill: INK, line: false});   // a dark band: no ruled lines through the header
-      if (T < tn) {
-        k.slam('Bad review:', 96, 280, k.S('bad') + 0.1, {size: 60, color: 'accent', from: 0.8});
-        k.ctx.save(); slideIn(k, k.S('bad') + 0.3, -600, 0); k.text('a different reply.', 96, 346, {size: 60, color: CHALK}); k.ctx.restore();
-        starRow(k, 600, 306, 26, 62, n.two.value, n.five.value, k.S('bad') + 0.3);
-      } else {
-        k.burst(300, 312, tn + 0.1, {n: 18});
-        k.slam('Name the real problem.', 96, 280, tn, {size: 60, color: 'accent', from: 0.6});
-        if (T >= ta) k.slam("Don't argue in public.", 96, 346, ta, {size: 60, color: CHALK, stamp: true});
-      }
-      const r = typed(k, BAD);
-      k.ctx.save(); slideIn(k, k.S('bad') + 0.1, 0, 800);
-      k.phone(100, 440, 800, 580, [
-        {text: BAD_REVIEW, at: -1},
-        ...(r.cur >= 0 ? [{text: r.full, reveal: r.reveal, me: true, at: k.S(BAD[0][0]), typing: r.typingTo}] : []),
-      ], {who: 'Example review', size: 39});
-      k.ctx.restore();
-      if (r.cur >= 0) k.burst(820, 740, k.S(BAD[r.cur][0]) + 0.05, {n: 10, r: 160});
-      return {hostPose: T >= ta ? 'clip' : (k.talking() ? 'talk' : 'stand'), hostScale: 0.55, hostX: 150};
-    },
-
+    // ---- turn: THE PART PEOPLE SKIP as a rules table, each rule landing as it is said
     turn: (k, T) => {
-      k.room('workshop');
-      const th = k.S('turn.honest'), tg = k.S('turn.guide');
-      k.shape(k.rectPts(60, 262, 870, 150, 0), {fill: INK, line: false});   // a dark band for the header
-      if (T < th) k.slam('The part people skip', 96, 280, k.S('turn') + 0.1, {size: 60, color: 'accent', from: 0.8, shake: 6});
-      else {
-        k.burst(300, 312, th + 0.1, {n: 18});
-        k.slam('Hotels, not trades.', 96, 280, th, {size: 60, color: 'accent', from: 0.6});
-        if (T >= tg) k.slam('Treat the numbers as a guide.', 96, 354, tg, {size: 39, color: CHALK, stamp: true});
-      }
-      // the card: bad reviews once hotels replied. Both rows show as it opens, each lights when it is said
-      const t0 = k.S('turn') + 0.3, tr = k.S('turn.rarer'), tl = k.S('turn.longer');
-      k.ctx.save(); slideIn(k, t0, 0, 700);
-      k.panel2(60, 456, 870, 330, {title: 'Bad reviews, once hotels replied'});
-      k.text('Fewer', 96, 500, {size: 60, color: T >= tr ? 'accent' : 'muted'});
-      k.text('but', 96, 600, {size: 39, color: T >= tl ? CHALK : 'muted'});
-      k.text('longer', 96, 644, {size: 60, color: T >= tl ? 'accent' : 'muted'});
-      // four short review cards; at "rarer" one drops away, at "longer" the three left grow a little, with more lines.
-      // The study gives no sizes: this is a picture of the idea, labeled so on the card.
-      const grow = k.easeOut((T - tl) / 0.5), drop = k.easeOut((T - tr) / 0.45);
-      [0, 1, 2, 3].forEach((i) => {
-        const keep = i !== 3, x = 320 + i * 140;
-        if (!keep && drop >= 1) return;
-        const h = keep && T >= tl ? 70 + 70 * grow : 70, w = keep && T >= tl ? 120 + 40 * grow : 120;
-        const xx = keep && T >= tl ? 320 + i * (140 + 60 * grow) : x;
-        k.ctx.save();
-        if (!keep && T >= tr) { k.ctx.globalAlpha *= 1 - drop; k.ctx.translate(0, 120 * drop); }
-        k.shape(k.rectPts(xx, 500, w, h, 0), {fill: CHALK, line: false});
-        const lines = Math.max(2, Math.floor((h - 20) / 30));
-        for (let j = 0; j < lines; j++) k.shape(k.rectPts(xx + 16, 516 + j * 30, j === lines - 1 ? w * 0.4 : w - 32, 10, 0), {fill: GREY, line: false});
-        k.ctx.restore();
-      });
-      k.text('Illustration, not to scale', 320, 724, {size: 30, color: GREY});
-      if (T >= tr && T < tr + 0.6) k.burst(530, 560, tr + 0.1, {n: 12, r: 160, colors: [GREY, 'paper']});
-      if (T >= tl) k.burst(700, 620, tl + 0.4, {n: 16, r: 200});
-      k.ctx.restore();
-      if (T >= k.S('turn.detail')) {   // a sticker under the card, clear of the cards and the labels
-        const td = k.S('turn.detail');
-        k.ctx.save(); k.ctx.translate(735, 836); k.ctx.rotate(-0.03); k.ctx.translate(-735, -836); popAt(k, td, 735, 836);
-        k.panel2(520, 790, 410, 110, {fill: 'accent', border: INK});
-        k.text('More detail', 725, 804, {size: 39, color: INK, align: 'center'});
-        k.text('you can act on.', 725, 848, {size: 39, color: INK, align: 'center'});
-        k.ctx.restore();
-        k.burst(735, 836, td + 0.05, {n: 18});
-      }
-      return {hostPose: T >= th ? 'shrug' : (k.talking() ? 'talk' : 'stand'), hostScale: 0.55, hostX: 150};
+      const t0 = k.S('turn');
+      scoreTable(k, 'THE PART PEOPLE SKIP', ['NO.', 'RULE', 'DO'], [
+        {rank: '01', name: 'BAD ONES', value: 'ANSWER', at: wordT(k, 'turn.bad', /^bad/i)},
+        {rank: '02', name: 'LENGTH', value: 'SHORT', at: wordT(k, 'turn.short', /^short/i)},
+        {rank: '03', name: 'TONE', value: 'CALM', at: wordT(k, 'turn.short', /^calm/i, 0.8)},
+        {rank: '04', name: 'DETAILS', value: 'OFFLINE', at: wordT(k, 'turn.offline', /^offline/i, 0.6)},
+        {rank: '05', name: 'ARGUING', value: 'NEVER', at: wordT(k, 'turn.never', /^Never/i), hi: true},
+      ]);
+      if (T < k.S('turn.bad')) px(k).tx('Rules for every reply', 180, 284, {color: SAND, align: 'center'});
+      else if (T >= k.S('turn.never')) k.slam('Never argue in public.', 540, 846, k.S('turn.never') + 0.2, {size: 39, color: RED, align: 'center', stamp: true, glint: false});
+      return host(k, k.live('turn.never') ? 'point' : (k.live('turn.bad') ? 'clip' : null));
     },
 
+    // ---- caveat: the chat again, ONE HONEST NOTE; a Monday reminder and our reply
+    caveat: (k, T) => {
+      const n = k.data.numbers, t0 = k.S('caveat'), tMon = k.S('caveat.monday');
+      chat(k, {who: 'ONE HONEST NOTE', clock: '7:42', msgs: [
+        {me: false, text: 'The survey: reviews matter to homeowners.', at: k.S('caveat.survey') + 0.2, typing: Math.min(1.2, k.S('caveat.survey') - t0)},
+        {me: false, text: "It doesn't prove a reply wins the job.", at: k.S('caveat.prove') + 0.2, typing: 0.6},
+        {me: true, text: `Every Monday. ${n.minutes.shown} minutes. Answer every new one.`, at: tMon + 0.6, read: tMon + 1.6},
+      ], notify: {text: `MON: reviews, ${n.minutes.shown} min`, at: tMon, dur: 2.0}});
+      return host(k, k.live('caveat.prove') ? 'shrug' : (k.live('caveat.monday') ? 'point' : null));
+    },
+
+    // ---- close: a last pull lands Y, E, S; one column over the tray: the line, the send line, the ask
     close: (k, T) => {
-      k.room('blackboard'); boardClip(k);
-      const t1 = k.S('close'), ta = wordT(k, 'close', /^answer/i, 0.6), tr = wordT(k, 'close', /^review/i, 1.2);
-      // centered, so the board reads as one card; the send line is a full-width box, the biggest call on screen
-      k.slam('Good or bad,', 540, 270, t1, {size: 120, color: CHALK, from: 0.7, align: 'center'});
-      k.burst(540, 330, t1 + 0.1, {n: 10, r: 150, colors: ['paper', '#2F5A4A']});
-      if (T >= ta) k.slam('answer every', 540, 390, ta, {size: 120, color: 'accent', from: 0.7, align: 'center'});
-      if (T >= tr) { k.slam('review.', 540, 510, tr, {size: 120, color: 'accent', from: 0.7, align: 'center'}); k.burst(540, 560, tr + 0.1, {n: 16, r: 200}); }
-      if (T >= k.S('close.send')) {
-        const t0 = k.S('close.send');
-        k.ctx.save(); popAt(k, t0 - 0.2, 540, 676);
-        k.panel2(340, 640, 400, 80, {fill: '#24453A', border: 'accent'}); k.text('ProofNotFluff', 540, 650, {size: 60, color: 'accent', align: 'center'});
-        k.ctx.restore();
-        k.burst(540, 680, t0 - 0.1, {n: 16});
-        k.ctx.save(); slideIn(k, t0 + 0.2, 0, 200);
-        k.panel2(84, 740, 900, 236, {fill: INK, border: 'accent'});
-        k.text('Send this to whoever', 534, 760, {size: 60, color: CHALK, align: 'center'});
-        k.text('runs your', 534, 830, {size: 60, color: CHALK, align: 'center'});
-        k.text('Google profile.', 534, 900, {size: 60, color: CHALK2, align: 'center'});
-        k.ctx.restore();
+      const d = px(k), t0 = k.S('close'), dont = k.S('close.dont'), send = k.S('close.send'), ans = k.S('close.answer');
+      slotPull(k, [{t0: t0 + 0.15, stops: [t0 + 0.8, t0 + 1.1, t0 + 1.4], symbols: ['Y', 'E', 'S']}], T >= t0 + 1.4 ? 'ANSWER EVERY REVIEW' : 'ONE MORE PULL');
+      const open = d.ease(t0 + 0.25, 8, 110);
+      d.clip(0, 0, 360, 336, () => d.win(14, 229 + open, 332, 105, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#7A3442'}));
+      if (open === 0) {
+        k.slam('Plenty leave reviews hanging.', 120, 702, t0 + 0.3, {size: 39, color: 'accent', from: 0.5, drop: INK});
+        if (T >= dont) k.slam("Don't be one.", 120, 746, dont, {size: 39, color: CREAM, from: 0.4});
+        if (T >= send) {
+          k.chip('ProofNotFluff', 120, 794, {size: 30});
+          k.slam('Send this to whoever runs your', 120, 854, send + 0.1, {size: 39, color: CREAM, from: 0.4});
+          k.slam('Google profile.', 120, 896, send + 0.2, {size: 39, color: CREAM, from: 0.4});
+        }
+        if (T >= ans) { k.slam('Answer your reviews.', 120, 940, ans, {size: 39, color: GOLD, from: 0.5, drop: INK}); k.sweep(120, 982, 520, 6, ans + 0.3, {color: 'accent'}); }
       }
-      if (T >= k.S('close.next')) {   // the rule underlined as the last words echo the hook
-        const t0 = k.S('close.next'), w = k.measure('answer every', {size: 120});
-        k.sweep(540 - w / 2, 622, w, 10, t0, {color: 'accent'});
-        k.burst(540 + w / 2, 626, t0 + 0.3, {n: 16});
-      }
-      k.ctx.restore();
-      return {hostPose: T >= k.S('close.send') + 1.5 ? 'wave' : 'talk', hostScale: 0.55, hostX: 150};
+      return host(k, k.live('close.answer') ? 'wave' : (k.live('close.send') ? 'point' : null));
     },
   },
 };

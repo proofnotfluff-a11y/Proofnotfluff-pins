@@ -1,72 +1,79 @@
-# Cues: Reply to every review (Lesson 7, Reviews Clinic, arcade)
+# Cues: Answer your reviews; many contractors don't (Lesson 7, Reviews Clinic, arcade look)
+
+Worlds (brief.md): the chat in the truck (hook, replies, caveat), the slot machine (stakes, close), the arcade high-score
+table (gap, turn). No stock room in any section; each top-level cue names its world in a "World:" line.
 
 music: rooms
 
-## hook "Trade owners: hotels that started" [sfx: pop]
-Frame 0: the hook card, fully settled. "Hotels that started" / "replying got" / "12%" (slammed, accent, sparks) / "more reviews." (8 words) Source small: hotel study, Marketing Science 2017. "Reviews Clinic" under it. Host and dialog hidden. At 3.4 s the card gives way: Room: framing. A phone slides in with an example 5-star review; chip REVIEWS CLINIC.
-## hook.copy "Here are two replies" [sfx: stamp]
-"2 replies to copy" stamps in beside the phone. Snow points at it.
+## hook "In one HVAC survey," [sfx: pop]
+World: the chat in the truck. Frame 0: the cover, fully settled: the phone in its dash mount, header REVIEWS, and on its screen the hook card: "43%" in the accent, "of contractors don't" / "answer reviews." Source small: ACHR News survey, 2024. The road rushes in the windshield, the air freshener swings. Host and dialog hidden.
+## hook.43 "forty-three percent of contractors" [sfx: tick]
+A "New review" notification drops in over the phone's top and goes back up; sparks on the 43%.
+## hook.copy "Here are two replies" [sfx: pop]
+The card's last line becomes "Two replies to copy." with an accent sweep. Snow steps in small and points.
 
-## stakes "That's from a study" [sfx: whoosh]
-Room: workshop. Panel MARKETING SCIENCE, 2017 opens with both rows showing: "Reviews" with +12% already in (said in the hook), "Rating" with an empty value. Header: "Hotels that started replying".
-## stakes.trip "tens of thousands of" [sfx: tick]
-"Tens of thousands of TripAdvisor hotel reviews" slides in under the header.
-## stakes.up "The hotels' ratings went" [sfx: blip]
-The Rating row lights; five empty stars draw in beside it.
-## stakes.stars "point one two stars"
-+0.12 counts up (from 85%) as it is said; a thin sliver of the next star fills; sparks. "on average" lands under it.
-## stakes.small "If you think that's" [sfx: pop]
-Sticker on the panel corner, clear of both numbers: "Small? Ratings barely move." Snow shrugs.
+## stakes "That's The ACHR News," [sfx: whoosh]
+World: the slot machine (level select). The crown reads ACHR NEWS + CLEAR SEAS; the reels idle on ?, ?, ?.
+## stakes.asked "They asked four hundred" [sfx: tick]
+The plate under the reels types: "400 homeowners, 2024"; the bulbs chase faster.
+## stakes.pull "and ninety-one percent said" [sfx: tick]
+The lever pulls in 3 steps; the reels spin and stop left to right on 9, 1, % as "ninety-one percent" is said. The crown flips to SAY REVIEWS MATTER; bulbs chase, coins jump in the tray.
+## stakes.hvac "when they pick an" [sfx: blip]
+The plate: "when they pick an HVAC contractor".
+## stakes.google "Fifty-six percent look on" [sfx: tick]
+A second pull: the reels stop on 5, 6, %; the crown: LOOK ON GOOGLE.
 
-## why "Why would a reply" [sfx: whoosh]
-Room: blackboard. Chalk header: WHY A REPLY HELPS.
-## why.care "It shows you care" [sfx: tick]
-Line 1 chalks in: "It shows you care what customers think."
-## why.unhappy "And when owners answer," [sfx: pop]
-Line 2: "Unhappy customers think twice" slides in.
-## why.backup "before posting a complaint"
-"before a complaint they can't back up." lands; an accent sweep under it.
+## gap "And the contractors?" [sfx: whoosh]
+World: the arcade high-score table (dissolve). Title DO CONTRACTORS ANSWER? Empty rows dashed. The line under the rows: "Reviews on third-party sites".
+## gap.yes "Forty-five percent answer reviews" [sfx: tick]
+Row YES slides in, counting to 45%.
+## gap.no "Forty-three percent don't." [sfx: tick]
+Row NO slides in, 43%, the blinking row with the cursor.
+## gap.dk "Thirteen percent don't know." [sfx: blip]
+Row DON'T KNOW, 13%. The source line: ACHR News survey, 2024.
 
-## good "So here's the reply" [sfx: whoosh]
-Room: framing. Chip GOOD REVIEW: COPY THIS. Five accent stars over the phone; the phone shows the example 5-star review ("Example review").
-## good.thanks "Thanks, first name. Glad" [sfx: tick]
-The reply bubble types "Thanks, [first name]." as it is said; the bubble keeps its final width and grows down.
-## good.glad "Glad the job went"
-"Glad the [job] went well." types.
-## good.here "We're here when you"
-"We're here when you need us." types.
-## good.sign "Then sign it with" [sfx: pop]
-"[Your name]" types last; a "Sign it" tag pops beside the stars, never on the reply. The full reply holds.
-
-## bad "A bad review gets" [sfx: whoosh]
-Room: garage. Header on a dark band: "Bad review: a different reply". Two accent stars of five over the phone; the phone shows the example 2-star review.
-## bad.sorry "Sorry we fell short" [sfx: tick]
-The reply types "Sorry we fell short on [issue]."
-## bad.right "I want to make"
-"I want to make it right." types.
-## bad.call "Call me directly at"
-"Call me directly at [number]. [Your name]" types. The full reply holds.
-## bad.name "Name the real problem." [sfx: pop]
-The header band swaps to "Name the real problem." Nothing covers the reply.
-## bad.argue "Don't argue in public."
-"Don't argue in public." stamps in under it on the band. Snow checks his clipboard.
+## replies "Here's the five-star reply." [sfx: whoosh]
+World: the chat in the truck (iris). Header FIVE-STAR REPLY; an EXAMPLE tag on the pillar. The example review arrives: "5 stars. Fixed our furnace fast."
+## replies.f1 "Thanks for trusting us" [sfx: tick]
+Our reply goes out a sentence at a time, each bubble on its first word: "Thanks for trusting us with your furnace."
+## replies.f2 "Glad it's running right." [sfx: tick]
+"Glad it's running right."
+## replies.f3 "We're here when you" [sfx: tick]
+"We're here when you need us." Read ticks light.
+## replies.one "And the one-star reply." [sfx: blip]
+A notification drops: "New review: 1 star". The header flips to ONE-STAR REPLY; the example review slides up: "1 star. The tech showed up late."
+## replies.o1 "Sorry we were late." [sfx: tick]
+"Sorry we were late. That's on us."
+## replies.o2 "I want to make" [sfx: tick]
+"I want to make it right."
+## replies.o3 "Call me directly at" [sfx: tick]
+"Call me directly at the shop." Read ticks light; the thread holds 3 s or more.
 
 ## turn "Here's the part people" [sfx: whoosh]
-Room: workshop. Header on a dark band: "The part people skip". A card BAD REVIEWS, BEFORE AND AFTER REPLYING opens with both rows (labels, empty).
-## turn.rarer "bad reviews got rarer," [sfx: tick]
-Row "Fewer": four review blocks become three (labeled: illustration, not to scale).
-## turn.longer "but longer." [sfx: pop]
-Row "But longer": the three remaining blocks grow longer, with more lines.
-## turn.detail "That's more detail you"
-Sticker: "More detail you can act on."
-## turn.honest "And to be honest," [sfx: blip]
-The header band swaps to the caveat: "Hotel study, not trades." in the accent.
-## turn.guide "Treat the numbers as"
-"Treat the numbers as a guide." stamps under it.
+World: the high-score table again (blinds), title THE PART PEOPLE SKIP, every row dashed; under them "Rules for every reply".
+## turn.bad "Answer the bad ones" [sfx: tick]
+Row BAD ONES: ANSWER.
+## turn.short "Keep it short and" [sfx: tick]
+Rows LENGTH: SHORT and TONE: CALM land on "short" and "calm".
+## turn.offline "take the details offline." [sfx: tick]
+Row DETAILS: OFFLINE.
+## turn.never "Never argue in public." [sfx: stamp]
+Row ARGUING: NEVER, the blinking row; "Never argue in public." stamps in under the rows.
 
-## close "Good or bad, answer" [sfx: pop]
-Room: blackboard. "Good or bad:" then "answer every review." slam in, centered, as said.
+## caveat "One honest note." [sfx: whoosh]
+World: the chat in the truck (dissolve). Header ONE HONEST NOTE; typing dots.
+## caveat.survey "The survey shows reviews" [sfx: tick]
+Incoming: "The survey: reviews matter to homeowners."
+## caveat.prove "It doesn't prove a" [sfx: blip]
+Incoming: "It doesn't prove a reply wins the job."
+## caveat.monday "So block ten minutes" [sfx: pop]
+A reminder banner drops: "Monday: reviews, 10 min". Our reply: "Every Monday. 10 minutes. Answer every new one." It holds to the end of the take.
+
+## close "Plenty of contractors leave" [sfx: pop]
+World: the slot machine, a last pull (crown: ONE MORE PULL): the reels stop on Y, E, S; the crown: ANSWER EVERY REVIEW; the bulbs chase. A game window opens over the tray: "Plenty leave reviews hanging." in the accent.
+## close.dont "Don't be one." [sfx: tick]
+The window's first line gets a second: "Don't be one."
 ## close.send "Send this to whoever" [sfx: sting]
-ProofNotFluff plate slams on; send line: "Send this to whoever runs your Google profile."
-## close.next "so your next review"
-An accent line sweeps under "answer every review."; sparks; Snow waves.
+ProofNotFluff chip and the send line: "Send this to whoever runs your Google profile." One column, one left edge, host small at the side.
+## close.answer "and answer your reviews." [sfx: pop]
+"Answer your reviews." lands in gold with an accent line sweeping under it; Snow waves.

@@ -1,67 +1,67 @@
 # Transcript: 2026-11-02-price-raise
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 221 words, 81.2 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 192 words, 71.6 s of voice.
 
 ## Flags
 none
 
 ## Pace per take (target 160 to 195 wpm)
 ```
-  01     0.0 s  156 wpm  
-  02     7.6 s  159 wpm  
-  03    20.8 s  164 wpm  
-  04    39.0 s  183 wpm  
-  05    50.8 s  166 wpm  
-  06    61.3 s  161 wpm  
-  07    72.4 s  178 wpm  
+  01     0.0 s  161 wpm  
+  02     6.3 s  150 wpm  
+  03    16.6 s  158 wpm  
+  04    32.5 s  183 wpm  
+  05    44.3 s  166 wpm  
+  06    54.7 s  159 wpm  
+  07    63.7 s  176 wpm  
 ```
 
 ## Words
 
-`00:00.0` Eighty-three percent of HVAC companies raised their prices last year.
+`00:00.0` Most trades raised their prices last year.
 
-`00:04.6` Did you?
+`00:03.2` Did you?
 
-`00:05.5` Here's the note that tells your customers.
+`00:04.1` Here's the note that tells your customers.
 
-`00:07.6` That's from Jobber's survey of one thousand fifty home service owners, and sixty-five percent raised their prices last year.
+`00:06.3` That's from Jobber's survey of home service owners.
 
-`00:14.8` In plumbing, electrical and roofing, it was even higher than that, at seventy-four percent each.
+`00:09.2` Eighty-three percent of HVAC companies did.
 
-`00:20.8` As for why, seventy-two percent named inflation, and half named labor.
+`00:12.1` If you're in plumbing, electrical or roofing, it was seventy-four percent.
 
-`00:26.2` That's backed up by federal data.
+`00:16.6` Why?
 
-`00:28.3` Pay for install and repair workers rose three point seven percent in the year to June.
+`00:17.8` Seventy-two percent named inflation, and half named labor.
 
-`00:33.5` For all workers, it was three point two, so your crew's pay rose faster than average.
+`00:21.9` That's backed up by federal data.
 
-`00:39.0` So send this before your next quote.
+`00:23.8` Install and repair pay rose three point seven percent in the year to June.
 
-`00:41.5` "Starting the first of next month, our rates go up.
+`00:28.4` So your crew's pay beat the three point two for all workers.
 
-`00:44.3` Our labor and material costs rose this year.
+`00:32.5` So send this before your next quote.
 
-`00:47.1` Anything you've already approved stays at the price we quoted." Here's the part people skip.
+`00:35.0` "Starting the first of next month, our rates go up.
 
-`00:52.8` That last line.
+`00:37.8` Our labor and material costs rose this year.
 
-`00:54.3` A price they already said yes to is a promise.
+`00:40.6` Anything you've already approved stays at the price we quoted." Here's the part people skip.
 
-`00:57.7` Raise the next job, never the one on your calendar.
+`00:46.2` That last line.
 
-`01:01.3` One honest note.
+`00:47.8` A price they already said yes to is a promise.
 
-`01:03.0` Jobber sells software, and its survey shows who raised prices.
+`00:51.1` Raise the next job, never the one on your calendar.
 
-`01:07.2` It doesn't show how customers took it.
+`00:54.7` One honest note.
 
-`01:09.6` So watch your close rate for a month after.
+`00:56.5` Jobber sells software.
 
-`01:12.4` Your costs went up.
+`00:58.2` Its survey doesn't show how customers took it, so watch your close rate for a month after.
 
-`01:14.1` Most of the trades already raised their prices.
+`01:03.7` Your costs went up, and most trades already raised.
 
-`01:16.8` Send this to whoever writes your quotes, and don't wait.
+`01:07.1` Send this to whoever writes your quotes, and don't wait.
 
-`01:19.9` Raise yours with a reason.
+`01:10.3` Raise yours with a reason.

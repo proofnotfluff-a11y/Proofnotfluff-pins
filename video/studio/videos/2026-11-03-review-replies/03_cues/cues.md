@@ -41,20 +41,20 @@ Our reply goes out a sentence at a time, each bubble on its first word: "Thanks 
 ## replies.f2 "Glad it's running right." [sfx: tick]
 "Glad it's running right."
 ## replies.f3 "We're here when you" [sfx: tick]
-"We're here when you need us." Read ticks light.
-## replies.one "And the one-star reply." [sfx: blip]
-A notification drops: "New review: 1 star". The header flips to ONE-STAR REPLY; the example review slides up: "1 star. The tech showed up late."
+"We're here when you need us." Read ticks light; the whole five-star thread holds 3 s or more, into the next take.
+## replies.one "And here's your one-star" [sfx: blip]
+The five-star thread holds whole. A notification drops over it on "one-star": "New review: 1 star". On "reply" the header flips to ONE-STAR REPLY; the example review slides up: "1 star. The tech showed up late."
 ## replies.o1 "Sorry we were late." [sfx: tick]
 "Sorry we were late. That's on us."
 ## replies.o2 "I want to make" [sfx: tick]
 "I want to make it right."
 ## replies.o3 "Call me directly at" [sfx: tick]
-"Call me directly at the shop." Read ticks light; the thread holds 3 s or more.
+"Call me directly at the shop." Read ticks light. The whole one-star thread stays on screen from "Call" through the turn line, into "Answer your bad ones" (about 3.8 s).
+## replies.skip "Here's the part people" [sfx: whoosh]
+The turn line, said over the finished one-star thread: a banner drops over the phone's top, "The part people skip", and holds; the thread stays whole under it.
 
-## turn "Here's the part people" [sfx: whoosh]
-World: the high-score table again (blinds), title THE PART PEOPLE SKIP, every row dashed; under them "Rules for every reply".
-## turn.bad "Answer the bad ones" [sfx: tick]
-Row BAD ONES: ANSWER.
+## turn "Answer your bad ones" [sfx: tick]
+World: the high-score table again (blinds), title THE PART PEOPLE SKIP, every row dashed; under them "Rules for every reply" until row BAD ONES: ANSWER lands on "bad".
 ## turn.short "Keep it short and" [sfx: tick]
 Rows LENGTH: SHORT and TONE: CALM land on "short" and "calm".
 ## turn.offline "take the details offline." [sfx: tick]

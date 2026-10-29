@@ -37,7 +37,7 @@ The formula card writes in: "Close rate =" then "jobs sold" over a line.
 ## formula.month "over the same month." [sfx: pop]
 "Same month for both." stamps under the card.
 
-## example "Here's an example. Say" [sfx: whoosh]
+## example "Here's an example where" [sfx: whoosh]
 Room: garage. Header EXAMPLE on a dark band. A card with three rows shown as it opens: Estimates given, Jobs sold, Close rate, each value empty.
 ## example.forty "gave forty estimates last"
 40 counts in on "forty"; 14 counts in on "fourteen".

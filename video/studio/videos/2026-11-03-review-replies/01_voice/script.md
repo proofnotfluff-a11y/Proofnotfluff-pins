@@ -8,10 +8,10 @@
 
 [warmly] Here's the five-star reply. "Thanks for trusting us with your furnace. Glad it's running right. We're here when you need us."
 
-[calm] And the one-star reply. "Sorry we were late. That's on us. I want to make it right. Call me directly at the shop."
+[calm] And here's your one-star reply. "Sorry we were late. That's on us. I want to make it right. Call me directly at the shop."
 
-[short pause] Here's the part people skip. Answer the bad ones too. Keep it short and calm, and take the details offline. Never argue in public.
+[short pause] Here's the part people skip. Answer your bad ones too. Keep it short and calm, and take the details offline. Never argue in public.
 
-[matter-of-fact] One honest note. The survey shows reviews matter to homeowners. It doesn't prove a reply wins the job. So block ten minutes every Monday, and answer every new one.
+[matter-of-fact] One honest note. The survey shows reviews matter to homeowners. It doesn't prove a reply wins the job. So block ten minutes every Monday, and answer every new one you get.
 
 [confident] Don't leave reviews hanging. Send this to whoever runs your Google profile, so the next one-star gets a reply.

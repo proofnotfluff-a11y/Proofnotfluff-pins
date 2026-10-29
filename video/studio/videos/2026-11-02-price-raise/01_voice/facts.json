@@ -20,7 +20,7 @@
   "inflationPct": 72,
   "laborPct": 50,
   "reasonsQuote": "Inflation (72%) and labor costs (50%) are the most common reasons; the chart labels the 72% 'inflation and material costs'",
-  "scope": "Shares are of the surveyed owners in each trade (HVAC 83% = HVAC businesses in the survey). 'Last year' is the page's word: the survey ran in December 2025. The page gives no size of the increases, no customer reaction and no plans for next year: none are said. Jobber sells field service software: said 'Jobber sells software'. Voice says 'inflation' for the 72% (the page's text), the chart's 'material costs' wording is not relied on."
+  "scope": "Shares are of the surveyed owners in each trade (HVAC 83% = HVAC businesses in the survey). 'Last year' is the page's word: the survey ran in December 2025. The page gives no size of the increases, no customer reaction and no plans for next year: none are said. Jobber sells field service software: said 'Jobber sells software'. Voice says 'inflation' for the 72% (the page's text), the chart's 'material costs' wording is not relied on. Cleaning's 55% is caption only since Oct 29 (dropped from the voice and the screen for pace); the number stays here for the captions."
  },
  "bls": {
   "title": "Employment Cost Index, June 2026 (news release USDL-26-1270)",
@@ -36,7 +36,7 @@
   "allRow": "All workers, civilian, wages and salaries, 12 months ending June 2026",
   "constructionPct": 3.9,
   "constructionRow": "Construction, extraction, farming, fishing, and forestry occupations (Table 8); context for the caption only, not said (the group includes farming, fishing and forestry)",
-  "scope": "Said 'pay for install and repair workers rose three point seven percent in the year to June; all workers, three point two'. Wages and salaries only (not benefits)."
+  "scope": "Said 'pay for install and repair workers rose three point seven percent in the year to June, and three point two for all workers. So your crew's pay rose faster than average' (Oct 29 rewrite: 3.7 > 3.2, same table and window; 'average' = the all-workers row). Wages and salaries only (not benefits)."
  },
  "note": {
   "source": "OURS: the letter is advice, the bank's takeaway reworded without a number (no rate is recommended)",

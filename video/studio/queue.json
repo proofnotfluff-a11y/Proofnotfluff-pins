@@ -137,6 +137,26 @@
     "runtime_pixfont": "a8557997756e"
    },
    "posts": {}
+  },
+  {
+   "slug": "2026-10-29-quote-revive",
+   "readyAt": "2026-10-29T00:00:32-05:00",
+   "commit": "3b15048b4ecdfa9e5a54c3af637ab136b98d961f",
+   "fingerprints": {
+    "script": "548404bececa",
+    "takes": "324103710f81",
+    "words": "ba3074c0dca1",
+    "cues": "0fdd763842d9",
+    "scene": "316e66cac37b",
+    "data": "945dc2c4e5fa",
+    "captions": "5ee99f396dd3",
+    "mouth": "85bfd5e28cf5",
+    "runtime_kit": "d12df837dc0a",
+    "runtime_player": "a66cf6faac98",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

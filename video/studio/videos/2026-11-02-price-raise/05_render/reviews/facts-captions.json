@@ -1,0 +1,15 @@
+{
+ "gate": "facts-captions",
+ "round": 0,
+ "at": "2026-10-28T23:52:56-05:00",
+ "pass": true,
+ "score": {"numbers": 50, "mismatches": 0},
+ "reasons": [],
+ "notes": [
+  "every number on all four platforms matches facts.json and both pages (1,050, Dec 2025, 65%, 83%, 74% x3, 55%, 72%, 50%, 3.7%, 3.2%, 12 months to June 2026); every survey figure carries 'Jobber survey of 1,050 US home service business owners'",
+  "no promise the sources do not test: no increase size, no customer reaction claimed; IG, FB and YT carry the 'who raised, not how customers took it' note; TikTok omits it but claims nothing about customer reaction",
+  "video says nothing is 'in the caption'; the note in captions uses '[date]' for the on-screen example date, fair",
+  "rules: line 1 IG 99, TikTok 67 (keyword in first 70, owner question present), FB 75; YouTube title 77, keyword first, no hashtags; hashtags IG 4 (umbrella, 2 trade, 1 topic), TikTok 5, FB 2, YT 2; YT tags 9 with misspelling, next-lesson line, full sources; no link in IG or FB ('link in bio' only); AI voice line on all four; no em or en dashes; no private person, business or address",
+  "optional, not required: YT tags 'price increase letter to customers' and 'how to rasie prices' carry no trade word (same pattern as passed peers such as 'markup vs margin'); could read 'hvac price increase letter' and 'how to rasie prices hvac'"
+ ]
+}

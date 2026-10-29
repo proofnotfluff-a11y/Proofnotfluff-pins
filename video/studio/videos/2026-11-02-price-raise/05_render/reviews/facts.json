@@ -1,0 +1,19 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "at": "2026-10-28T23:52:56-05:00",
+ "pass": true,
+ "score": {"numbers": 14, "mismatches": 0},
+ "reasons": [],
+ "notes": [
+  "transcript 00:26.1 'That's backed up by federal data.': judged fair. BLS shows install and repair pay up 3.7% vs 3.2% for all workers, which supports labor cost pressure; the window (12 months to June 2026) is said and shown, not passed off as the survey's year",
+  "scene.js why register: till amounts 72.0/50.0/3.7/3.2 are swapped for 72%/50%/+3.7%/+3.2% and the running total at x 948 is suppressed, so no sum is drawn",
+  "story elements (note card tagged EXAMPLE, 'the first of next month', wall clock, coins, weather fronts) do not read as data",
+  "trades first: core evidence is Jobber's survey of US home service owners and BLS occupational wage data; no non-trade study, no caveat needed",
+  "no em or en dashes in script, transcript, facts.json, brief, data.js or scene.js; no private person, business or address"
+ ],
+ "sources_checked": [
+  "https://www.getjobber.com/home-service-trends-report/: title 'Blue Collar Strong: The 2026 Home Service Trends Report'; 1,050 US home service business owners, Conjointly, December 2025, +/-3 pts at 90%; 65% raised prices last year; HVAC 83%, plumbing 74%, electrical 74%, roofing 74%, cleaning 55% lowest of any trade; inflation 72% and labor costs 50% most common reasons; page gives no size of increase, customer reaction or future plans",
+  "https://www.bls.gov/news.release/eci.htm: ECI June 2026, USDL-26-1270, released Jul 31, 2026; Table 8 civilian wages and salaries, 12 months ending June 2026, not seasonally adjusted: all workers 3.2%, installation, maintenance, and repair 3.7%, construction, extraction, farming, fishing, and forestry 3.9%"
+ ]
+}

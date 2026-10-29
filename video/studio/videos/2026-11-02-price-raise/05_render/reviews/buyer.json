@@ -1,0 +1,15 @@
+{
+  "gate": "buyer",
+  "round": 0,
+  "pass": true,
+  "score": {"stop": "yes", "send": "yes", "save": "yes", "follow_or_link": "yes"},
+  "reasons": [
+    "1. As an HVAC owner: most trades raised prices last year for real cost reasons, here is a three line note to tell customers, and never reprice a job they already approved.",
+    "2. Stop: yes. '83% of HVAC companies raised their prices last year. Did you?' hits me by trade in the first 4 s, and the big 83% plus 'HVAC 83%' on the first frame matches the voice.",
+    "3. Send: yes, to my office manager, the video literally tells me to and the note is ready to use. Save: yes, it is a template I would copy before my next quote. Follow or link: yes, it gave me something usable for free and was straight with me about its source.",
+    "4. Hype, urgency, pitch, slop: nothing that makes me scroll or distrust. The 'Jobber sells software... doesn't show how customers took it' line raises trust. 'and don't wait' (01:13.5) is mild but tied to a real reason (before your next quote). AI voice is disclosed in the caption.",
+    "5. Unclear to a stranger: (a) 00:28.1 to 00:34.4 the wage numbers (3.7% vs 3.2%) never say the point; fix: add 'so your crew's pay rose faster than most' after 'Three point two.' (b) 00:07.6 to 00:21.0 is five percentages in 13 s; fix: drop the cleaning 55% line from the voice (it stays in the caption). (c) First frame tag 'PRICE FORECAST' labels last year's actuals; fix: 'PRICE REPORT' or 'LAST YEAR'.",
+    "6. Trust: yes. Sources are named on screen and in the caption, the note is honest and the 'stays at the price we quoted' line is the kind of advice a real owner gives.",
+    "Not blocking, for design: on frame-0.8s the lower half of the 9:16 frame (below y about 1000) is empty floor, so the thumbnail looks half built; fix: have the cast or the note card in frame by 0.8 s."
+  ]
+}

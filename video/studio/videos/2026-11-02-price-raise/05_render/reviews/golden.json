@@ -1,0 +1,15 @@
+{
+ "gate": "golden",
+ "round": 0,
+ "pass": false,
+ "score": {"post_as_is": "no"},
+ "reasons": [
+  "1. must-fix, 7.6 to 35.8 s: takes 02 (119 wpm) and 03 (145 wpm) are under the 150 wpm floor; transcript.md still says 'slow: rewrite it as talk, then speak --take 2/3', so the stage 02 check (pace in range) was never met. The whole stats stretch right after the hook drags; rewrite both takes as talk and re-speak.",
+  "2. must-fix, 21.0 to 35.5 s: the register scene's bottom third (y 1250 to 1920) is a flat beige and taupe checkerboard that reads as an image-editor transparency grid, not a floor. On a phone it looks like a missing texture: replace with a real floor or the shop's own fill.",
+  "3. polish, 0 to 79.9 s: the PRICE FORECAST weather-map label frames a past survey (Dec 2025, 'last year') as a forecast; facts.json says the page gives no plans for next year. Consider PRICE REPORT or similar. The map's Chicago lakeshore shape also means nothing for a national survey.",
+  "4. polish, 7.5 s and 69.0 s: the dissolves show one frame of dithered noise (7.5 s) and a near-black frame with a stray orange bar (69.0 s); clean transitions would read less cheap.",
+  "5. polish, 0 to 79.9 s: the bottom 35% of every map and desk scene is empty dark space; fine as platform UI safe area, but the cast and dialog could sit lower to use it.",
+  "6. polish, captions.json youtube.tags: 'how to rasie prices' is a misspelling; keep only if the typo tag is deliberate.",
+  "Checked and fine: every number on screen matches the voice and facts.json at the moment it is said (83, 65, 74, 55, 72, 50, 3.7, 3.2); no contradiction; qa.json all PASS (79.9 s, -14.2 LUFS, -2.8 dBTP, 0 black, 0 frozen); first 3 s show 83% with the line and source; clear send reason ('send this to whoever writes your quotes') and a saveable 3-line note; the honest caveat about Jobber builds trust."
+ ]
+}

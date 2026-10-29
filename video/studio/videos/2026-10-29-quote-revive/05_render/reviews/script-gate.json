@@ -1,0 +1,92 @@
+{
+ "gate": "script",
+ "round": 0,
+ "at": "2026-10-29T12:27:07-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+ "pass": true,
+ "score": "12 of 12",
+ "points": [
+  {
+   "n": 1,
+   "name": "Spoken hook",
+   "pass": true,
+   "evidence": "PASS 9 words in whole sentences ('Quote went quiet?' + 'One text can bring it back.'), 'back.' ends 3.10 s on words.json (studio limit 3.6 s); trade noun 'quote', stake = a quote gone quiet, promise = one text; 'you' in the same take ('Here's what you send.' 3.60 to 4.26 s); no greeting"
+  },
+  {
+   "n": 2,
+   "name": "On-screen hook",
+   "pass": true,
+   "evidence": "PASS 6 words 'Quote went quiet? Send this text.' on frame 0 (frame-0s.png), kept on the dash close-up's title plate (frame-0.8s.png) and back on the cover at 2.0 s; big hook card held 0 to 3.6 s (hook.send), 3.6 s inside 2.5 to 4.0; text sits about y 280 to 700 of 1920, clear of the top 14% (269 px) and bottom 35% (1248 px)"
+  },
+  {
+   "n": 3,
+   "name": "One idea",
+   "pass": true,
+   "evidence": "PASS brief.md one idea is 12 words ('When a quote goes quiet, text one yes-or-no question about the job.'); takes 2 to 6 are stakes, why 'just checking in' fails, the text, text not email, close: all serve it, no second lesson"
+  },
+  {
+   "n": 4,
+   "name": "Stakes early",
+   "pass": true,
+   "evidence": "PASS 'thirty-seven percent' spoken 7.94 s (limit 14 s for the 75 s slot)"
+  },
+  {
+   "n": 5,
+   "name": "Facts",
+   "pass": true,
+   "evidence": "PASS spoken 37% = firstVisit.closeFirstVisitPct with 'ServiceTitan says its data shows' and 'estimates ... first visit' scope; 'texting beats email on open rates' = firstVisit.textVsEmail (no number, credited to the webinar); 59% = homeowners.expectTextUpdatesPct with 'homeowners in a Housecall Pro survey expect text updates' (scope kept, not 'follow-up texts'); Jobber tips = cadence.personalNote; screen 2026, 1,040, 2025 in the brief numbers block; caption cadence numbers match cadence.*; no 64/72/87% do-not-use figures; sources re-read by the facts gate 2026-10-29T00:00 (reviews/facts.json)"
+  },
+  {
+   "n": 6,
+   "name": "Payoff timing",
+   "pass": true,
+   "evidence": "PASS 'Here's what you send.' at 3.60 s (limit 6 s); artifact line complete at 'winter?' about 42 s and sent 42.6 s of 71.98 s (59%, limit 70% = 50.4 s)"
+  },
+  {
+   "n": 7,
+   "name": "Copyable artifact",
+   "pass": true,
+   "evidence": "PASS 'Still want that water heater swapped before winter?' spoken 39.8 to 42 s and on screen (typed as said, then lock-screen notification with YES/NO, f26-045.66.png) from about 42.6 s to the cut at 46.9 s, 4.3 s held; 'Hi [name], it's [you].' bubble on screen (f24-038.78.png)"
+  },
+  {
+   "n": 8,
+   "name": "Pace and length",
+   "pass": true,
+   "evidence": "PASS takes 173/174/169/169/156/182 wpm (transcript.md), all inside 150 to 200; length 69.08 + 2.9 = 71.98 s (cap 75 s, floor 45 s; qa.json 71.97 s); 24 sentences, longest 17 words, average 8.0"
+  },
+  {
+   "n": 9,
+   "name": "Talk test",
+   "pass": true,
+   "evidence": "PASS every take has a contraction (Here's, aren't, Here's, it's/That's, don't, you'll) and 'you' (you send, you pull out, write you, it's you, You text it, you'll know); 0 banned words; 0 em or en dashes in script.md"
+  },
+  {
+   "n": 10,
+   "name": "Voice markup",
+   "pass": true,
+   "evidence": "PASS tags per take 1/1/1/1/2/1, all on voice.md's allowed list ([leaning in], [matter-of-fact], [curious], [warmly], [quickly] x2, [confident]); 0 CAPS words; 0 digits, $, %, / or & in voice text; no SSML"
+  },
+  {
+   "n": 11,
+   "name": "Retention beats",
+   "pass": true,
+   "evidence": "PASS 31 cues plus the hook's cuts at 'quiet' (0.64 s) and 'One' (1.82 s); cue gaps all 4.0 s or less except text.line to text.hold 4.40 s (filled by LINE_B typing word by word as said, scene.js 516 to 523) and turn.st to turn.hcp 4.08 s (inbox lands a new envelope row every 0.5 s, scene.js 288); turn line 'Here's the part people skip.' at 46.94 s = 65% of 71.98 s (band 39.6 to 54.0 s)"
+  },
+  {
+   "n": 12,
+   "name": "Ending",
+   "pass": true,
+   "evidence": "PASS one CTA, send line naming a role ('Send this to whoever follows up on your quotes.' 63.9 s); last sentence 'Next time a quote goes quiet, you'll know what to send.' echoes the hook; no like/follow/comment/tag asks; LESSON 2 HUD and THE TEXT chip on screen from frame 0; captions carry sources (ServiceTitan blog 2026, Housecall Pro 1,040 homeowners 2025, Jobber) and, per Todd's Oct 29 rule in voice.md and captions.md, no AI voice line with platform AI labels on (aiLabel/aiGenerated/aiUse true)"
+  }
+ ],
+ "faults": [],
+ "notes": [
+  "Take 5 (the turn) runs 156 wpm on transcript.md: inside 150 to 200, under the 160 to 195 target.",
+  "Total 191 words is under the playbook's 200 to 240 band for 75 s; length 71.98 s is inside 45 to 75 s, so it's a note only.",
+  "Playbook point 1 says the hook ends by 3.0 s; 'back.' ends 3.10 s. It passes under the studio's 3.6 s rule.",
+  "Two cue gaps are just over 4 s (4.40 s at text.line, 4.08 s at turn.st). Both are covered by motion inside the cue (typing, envelopes stacking), so they're not counted as dead air.",
+  "The cover's source line reads 'Sources: Jobber, ServiceTitan' and leaves out Housecall Pro, which only shows on screen at the 59% beat (55.6 s). It's accurate for the hook card but not the full list.",
+  "cues.md says Snow 'steps up big in the cab' on the dash close-up, but frame-0.8s.png shows Snow at normal size. Cosmetic, not a script fault.",
+  "Earlier review faults checked and not back: no 64/72/87% figures, no non-trade study, the end-card floor and empty-frame polish notes belong to the old 86 s cut, and the old 139/141 wpm takes were re-voiced."
+ ]
+}

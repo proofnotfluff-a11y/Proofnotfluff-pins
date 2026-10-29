@@ -1,20 +1,24 @@
 {
  "gate": "design",
- "round": 1,
- "at": "2026-10-28T19:20:00-05:00",
+ "round": 0,
+ "at": "2026-10-28T23:08:44-05:00",
  "pass": false,
  "score": {
   "first": 5,
   "hierarchy": 4,
-  "type": 4,
+  "type": 5,
   "color": 5,
   "spacing": 4,
   "polish": 4,
   "trust": 5,
-  "average": 4.43
+  "average": 4.57
  },
  "reasons": [
-  "menu card over the citation, hook period, sparks over the payoff line, CTA box past x 930 (all fixed)"
+  "0.5 to 5.0 s hook card: the counter sparks fly over 'Top shops quote' and '3 prices' and blank out letters ('pric es' at 5.0 s, 'Top' at 5.0 s); keep the sparks above the tag and off the cream card",
+  "6.4 to 19 s stakes scores table: 57% and 41% sit at the same size as the footnote lines; render the two values (or a '57% vs 41%' line in the empty band under the rows) at headline size in gold and teal",
+  "74.0 to 75.4 s slots START WITH 3: the label box under the reels is empty while the jackpot lands; put 'Start with 3 prices.' in it",
+  "79.5 to 85.4 s close board: 'Send this to whoever writes your quotes.' is the smallest line on screen; set it at the size of '1 price: yes or no.'",
+  "13.0 s stakes 57% cell: sparks cover the 57% as it lands; start them after the number is readable or put them at the row's left end"
  ],
- "stop": "second FAIL of this gate: held for Todd's word"
+ "freshness": "counter, scores and slots repeat none of street/chat/levelup (10-29) or register/gauge/inventory (10-30); storefront bookend reads as intentional"
 }

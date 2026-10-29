@@ -444,7 +444,13 @@ def norm(w):
     return re.sub(r"[^a-z0-9]", "", w.lower())
 
 
+ACRONYMS = {"HVAC", "ACHR", "BLS", "ACCA", "AI", "CRM", "ROI", "FAQ", "DIY", "LLC", "IRS", "CPA", "HOA", "GC"}   # stay in caps on screen (Oct 28: "achr" in a bubble)
+
+
 def display(w):
+    core = re.sub(r"[^A-Za-z]", "", w)
+    if core in ACRONYMS:
+        return w
     return w.lower() if len(w) > 1 and w.isupper() and w.isalpha() else w   # a stressed word in caps reads normally on screen
 
 

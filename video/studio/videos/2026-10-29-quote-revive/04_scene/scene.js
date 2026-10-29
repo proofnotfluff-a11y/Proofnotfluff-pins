@@ -260,7 +260,7 @@ window.SCENE = {
         k.slam('Quote went', 540, 330, -1, {size: 132, color: CREAM, align: 'center', drop: INK});
         k.slam('quiet?', 540, 466, -1, {size: 132, color: 'accent', align: 'center', drop: INK});
         k.text('Send this text.', 540, 612, {size: 66, color: CREAM, align: 'center'});
-        k.burst(700, 530, 1.0, {n: 18, r: 260}); k.sweep(390, 600, 300, 6, 1.6, {color: 'accent'});
+        k.burst(700, 530, 0.45, {n: 18, r: 260}); k.sweep(390, 600, 300, 6, 1.2, {color: 'accent'});
         // "just checking in" from the van, struck once it has been read
         if (T >= tSkip) {
           const s = 'Just checking in!', bw = Math.ceil(d.tw(s)) + 12, bx = 310 - bw, by = 238, f = d.fr(tSkip), up = f < 4 ? [4, 2, 1, 0][f] : 0;

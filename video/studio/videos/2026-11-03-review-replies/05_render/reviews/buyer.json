@@ -1,0 +1,16 @@
+{
+  "gate": "buyer",
+  "round": 0,
+  "pass": true,
+  "score": {"stop": "yes", "send": "yes", "save": "yes", "follow_or_link": "yes"},
+  "reasons": [
+    "1. As an HVAC owner: a lot of contractors ignore reviews, homeowners care about them, so here are two short replies to copy (five-star and one-star), answer the bad ones calmly, take it offline, and spend ten minutes every Monday on it.",
+    "2. Stop: yes. The first frame is one big orange 43% with 'of contractors don't answer reviews' and a named source, and by 0:06 the voice promises 'two replies to copy'. That is a concrete payoff, not a tease.",
+    "3. Save: yes, the two replies are short enough to copy straight into Google. Send: yes, the close says who to send it to (whoever runs your Google profile) and that is a real person in my shop. Follow or link: yes, a soft check. 'Free tools for trade owners: link in bio' with no pitch in the video itself.",
+    "4. No hype, no fake urgency, no pitch. The 'one honest note' line (the survey doesn't prove a reply wins the job) is the reason I trust it. The AI voice is disclosed in the caption. 'Plenty of contractors leave reviews hanging. Don't be one.' (1:06.7) leans a little preachy but does not make me scroll.",
+    "5. Minor, not blocking: caption line 'Among the contractors surveyed: 45% answer reviews on third-party sites, 43% don't, 13% don't know.' adds to 101%; a sharp viewer may notice. Fix: append '(rounded)' after 'don't know'.",
+    "5b. Minor, not blocking: the hook says '43% of contractors don't answer reviews' while the stat is about third-party sites. Fine for a viewer; the caption states it precisely.",
+    "5c. Minor, not blocking: 'Reviews Clinic, Lesson 7' and 'ACHR News' mean nothing to a stranger; the caption already explains ACHR as an HVAC trade paper, so no change needed.",
+    "6. Trust: yes. Named source, sample size, date, an admitted limit, and plain replies a real owner would say."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+ "gate": "golden",
+ "round": 1,
+ "at": "2026-10-28T23:15:42-05:00",
+ "pass": true,
+ "score": {
+  "post_as_is": "yes"
+ },
+ "reasons": [
+  "Round 0 must-fix resolved: 60.0 to 68.5 s 'One honest note' card now has every line, including 'ServiceTitan: correlated, / not shown to cause.', indented past the red margin; reads clean on the trust beat.",
+  "Round 0 polish 2 and 3 resolved: the 'Same-visit close rate' tab now sits above the panel border (8.8 to 19.5 s), and 'Why a 15 point gap?' shows the 15 from the first frame (20.0 s).",
+  "1. polish 8.8 to 19.5 s: the 'Same-visit close rate' tab text sits tight to the tab's bottom edge; a pixel or two more padding would look finished.",
+  "2. polish 57.5 to 59.5 s: 'LEVEL UP! Unlocked: the 3-line ask' still leans a little gimmicky against the owner's bar; acceptable as a short brand beat.",
+  "3. polish whole video: lower 35 to 40% of frame is empty floor; safe for platform UI, cast and cards could sit lower.",
+  "4. polish (qa doubtful): transcript pace has take 4 at 211 wpm and take 7 at 215 wpm, over the 195 target, while Flags says none; the lines are on screen so it still reads.",
+  "5. polish captions: YouTube tag 'how to close more estimats' is misspelled; keep only if deliberate.",
+  "Checks: says top 10% by revenue close 77% of estimates on the same visit vs 62% for everyone else, a 15-point gap, then gives a 3-line ask; screen numbers (77%, 62%, 15 points, Top 10% by revenue, 12 months to Jan 2026) match voice and facts.json, each readable while said. No contradiction. Sounds like a person; honest caveat present. Transitions at 8.0 s (pixel dissolve), 33.5 s (iris) and 68.5 s (road wipe) are deliberate, not black or broken. qa.json all PASS. First 3 s: driveway question plus the 77% card earn the stop; clear send reason ('Send this to whoever goes out on your estimates'). Would post as is."
+ ]
+}

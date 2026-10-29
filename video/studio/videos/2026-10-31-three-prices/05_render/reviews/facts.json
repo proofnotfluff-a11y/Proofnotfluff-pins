@@ -1,14 +1,28 @@
 {
  "gate": "facts",
- "round": 1,
- "at": "2026-10-28T19:15:00-05:00",
- "pass": false,
+ "round": 0,
+ "at": "2026-10-28T23:07:51-05:00",
+ "note": "Round 0 of a new review: lesson rebuilt Oct 28 evening on trade evidence only (restaurant study removed). Earlier facts reviews were of the previous version.",
+ "pass": true,
  "score": {
   "numbers": 17,
-  "mismatches": 1
+  "mismatches": 0
  },
- "reasons": [
-  "'five more points of all orders' changes the base (fixed: 'five points of share', take 3 re-voiced)"
+ "reasons": [],
+ "observations": [
+  "All 17 data.js numbers match facts.json by path (data.js sha256 d0af96c6... equals facts.json on disk).",
+  "Hook 'The top shops usually quote three': 57% of residential jobs is a majority, so 'usually' is fair; hook card states the exact figure and window.",
+  "stakes caption 'Top 10% = by revenue in their trade' drops 'and market segment' from the source definition; fair shorthand, not a mismatch.",
+  "'1,000+ HVAC contractors' and 'a heating and cooling trade group': the article says 'more than 1,000 contractors nationwide' from an ACCA and Farmington Consulting Group survey and reports survey stats as 'HVAC contractors'; fair.",
+  "'One price that surprises them can send them shopping' restates the Housecall Pro finding with 'can'; 'the cheaper option is already on your quote' describes the three-price quote, not a tested outcome. No promise that three prices stop shopping.",
+  "ACCA grouping caveat is said out loud ('can't tell you three beats one') and shown on screen ('It can't show 3 beats 1.'); 'heard yes more often' and 'MORE CHOICES, MORE YESES' stay correlational.",
+  "Story elements (100-house street with 68 lit, slot reels, $/$$/$$$ tiers, 'YOUR QUOTE (EXAMPLE)') read as illustration, not data.",
+  "Trades first: all three sources are trades or home services (ServiceTitan contractor data, Housecall Pro homeowner survey on home service spending, ACCA HVAC contractor survey). No non-trade study, no caveat needed.",
+  "No real private person, business or address. No em or en dashes in facts.json, brief.md, script.md, transcript.md, scene.js, data.js."
  ],
- "stop": "second FAIL of this gate: held for Todd's word"
+ "sources_checked": [
+  "https://www.servicetitan.com/toolbox/state-of-the-trades/trends/top-performer-profile: top performers = 90th percentile of revenue within trade and market segment; 'On 57% of residential jobs, top performers present good-better-best proposals ... The rest do this on 41%'; trailing 12 months through January 2026; correlational, participating ServiceTitan customers; published May 19, 2026",
+  "https://www.housecallpro.com/resources/home-service-spending-report-2026-release/: survey of more than 1,100 U.S. homeowners; '68% of homeowners seek additional quotes when pricing comes in higher than expected'; May 13, 2026; fieldwork dates not stated",
+  "https://www.achrnews.com/articles/165799-survey-reveals-strategies-to-boost-hvac-close-rates-by-double-digits: ACCA and Farmington Consulting Group, more than 1,000 contractors nationwide; 4+ options close rate 52% (up 10 points); 42% for one, two or three options; only 10% provide 4+ options; February 10, 2026"
+ ]
 }

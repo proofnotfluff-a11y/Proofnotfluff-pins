@@ -1,0 +1,18 @@
+{
+ "gate": "golden",
+ "slug": "2026-11-03-review-replies",
+ "round": 1,
+ "pass": true,
+ "score": {"post_as_is": "yes"},
+ "reasons": [
+  "Round 0 must-fix resolved: Snow's bubble now reads 'That's The ACHR News' (9.6 s) and 'they pick an HVAC contractor.' (16.5 to 18.0 s); the reel label reads '91%: picking an HVAC contractor'. No lowercase acronym seen anywhere on screen. Checked on mp4 sha256 b81bdda4...ef1b.",
+  "1. polish 2.5 to 6.0 s: the SNOW bubble is up with its tail pointing at empty floor; Snow himself only walks in at 6.0 s. The bubble also skips the first spoken words 'In one HVAC survey,' (0.0 to 2.0 s), which is fine since the card says 'ACHR News survey, 2024', but bringing Snow in with the bubble would read cleaner.",
+  "2. polish 0 to 76 s: the bottom third (about y 1160 to 1920) is empty pattern the whole video. Works as a platform UI safe zone but reads as dead space on a phone.",
+  "3. polish 0 to 30 s pace: takes 1 to 3 are slow (131, 147, 117 wpm, gaps of 0.6 to 0.9 s). Still sounds like a person; the stats section drags slightly.",
+  "4. polish 67.0 to 76 s: the end slot machine spins through '$' and lands on YES with an orange S that reads close to a payout, right after the 'doesn't prove a reply wins the job' note. Mildly gimmicky. Snow's raised hand at 75 s now clears the end panel.",
+  "5. polish 13.0 and 18.3 s: mid-spin reels flash '2 6 $' before landing on 91% and 56%. Landed numbers are readable and hold several seconds.",
+  "Numbers: 43%, 91%, 400 homeowners 2024, 56% on Google, 45 / 43 / 13 on third-party sites, 10 minutes every Monday. All match the voice, facts.json and captions.json; no contradiction. qa.json all PASS with no doubtful values (76.07 s, -14.2 LUFS, true peak -3.2, 0 black, 0 frozen; the 66.5 s TV-off wipe is about 0.2 s, not a black stretch).",
+  "Trade-owner read: answer every review, good or bad, with two short replies you can copy, and block 10 minutes every Monday. Hook card (43%) earns the stop from frame 0 with the 'New review' banner moving by 1 s; honest note builds trust; 'Send this to whoever runs your Google profile' gives a clear reason to share. I would post it as is."
+ ],
+ "at": "2026-10-28"
+}

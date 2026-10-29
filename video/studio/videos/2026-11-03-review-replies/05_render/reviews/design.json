@@ -1,0 +1,21 @@
+{
+ "gate": "design",
+ "round": 1,
+ "at": "2026-10-28T23:21:34-05:00",
+ "pass": true,
+ "score": {
+  "first": 5,
+  "hierarchy": 5,
+  "type": 5,
+  "color": 5,
+  "spacing": 4,
+  "polish": 5,
+  "trust": 5,
+  "average": 4.86
+ },
+ "reasons": [
+  "round 0 checks: close panel headline and 'Answer your reviews.' now at headline size (landed); panel ends about y 950 and the host's raised hand clears it from 73.0 on (landed); dialog reads 'ACHR' at 8.7 and 'HVAC' at 16.5-18.0 (landed; 'The ACHR News' is the publication's name, so the capital T is correct)",
+  "71.0-end close panel: the PROOFNOTFLUFF tag sits about 8 px under the headline's descenders; add about 12 px of space between 'Plenty leave reviews hanging.' and the tag so the three lines breathe as in lesson 9",
+  "freshness: phone chat, slot machine and survey board share nothing with lesson 5 (street, levelup, dispatch) or lesson 6 (weather, register, hud); no scene to replace"
+ ]
+}

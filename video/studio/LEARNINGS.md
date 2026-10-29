@@ -8,6 +8,7 @@ The studio learns in three loops (Todd, Oct 28, 2026, 3:43 pm: "make this video 
    hook formulas in research/runs/2026-10-28-script-playbook.md; what wins gets written into _shared/voice.md.
 
 ## Rules learned (newest first)
+- Oct 28: Voice take numbers start at 1 ("--take 0" only re-transcribes). Whisper hears an s across a word boundary ("Quote still" as "quotes", "texts beat" as "text beat"): reword the line rather than re-roll. anim.py display() lowercases all-caps stress words, so trade acronyms go in its ACRONYMS set (ACHR, HVAC showed lowercase in a bubble). Hook cards need motion before 1.0 s or the freeze check fails at 0.0 to 1.03 s.
 - Oct 28: Posting via Chrome: upload the copy at videos/<slug>/05_render/<slug>-post.mp4 (the session can read the repo path; /mnt/user-data/outputs is refused). Export keeps a render under 9.5 MB as is and two-passes anything bigger to under 9.9 MB. TikTok's first post asks "Ready to post?" to collect face and voice information: that is consent, so it holds for Todd's word (he said "accept tiktok" for lesson 1). After posting, TikTok shows Only me while the video is under review.
 - Each lesson its own world (Todd, Oct 28): `lint` fails a lesson whose stock rooms fill over 40% of the runtime, that
   reuses the last lesson's set pieces, or that has fewer than 3 set pieces new against the two before (04_scene/worlds.json).

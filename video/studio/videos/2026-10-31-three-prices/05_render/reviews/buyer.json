@@ -1,7 +1,7 @@
 {
  "gate": "buyer",
  "round": 0,
- "at": "2026-10-28T19:20:00-05:00",
+ "at": "2026-10-28T23:07:08-05:00",
  "pass": true,
  "score": {
   "stop": "yes",
@@ -10,6 +10,11 @@
   "follow_or_link": "yes"
  },
  "reasons": [
-  "notes: stray period on the hook card (fixed)"
+  "1 what: put three prices (good, better, best) on every quote, because the top shops do it on 57% of home jobs and one surprising price sends homeowners shopping.",
+  "2 stop: yes. As an HVAC owner who quotes one number, 'One price on your quotes?' hits me directly, and the 0.8 s frame already shows the payoff (3 prices, 57%, ServiceTitan source) in big readable type.",
+  "3 send: yes, the close names who to send it to (whoever writes my quotes) and the good/better/best recipe is something my office person can use tomorrow. save: yes, the three-tier build (job done right / what you'd pick for your own house / upgrades like longer warranty or faster start) is a template I'd come back to. follow or link: yes, practical lesson 4 of a series, sourced, no pitch; 'free tools' makes the bio link worth a tap.",
+  "4 hype/slop: none found. No urgency, no guarantee, no sales pitch; every number has a named source and the AI voice is disclosed. The voice admitting the ACCA survey 'can't tell you three beats one' raises trust.",
+  "5 unclear: minor only. At 'Start with three' (01:14.0) right after hearing 4+ options closed 52%, a stranger may wonder why not four; optional fix: 'Start with three, then try a fourth.' Not a scroll-past problem.",
+  "6 trust: yes. Named data sources with dates on screen and in the caption, a stated limit of the data, and real-sounding advice."
  ]
 }

@@ -1,0 +1,11 @@
+{
+  "gate": "facts-captions",
+  "round": 0,
+  "pass": true,
+  "score": {"numbers": 32, "mismatches": 0},
+  "reasons": [
+    "All numbers (91, 400, 56, 45, 43, 13, Sept/Sep 17 2024, 1 to 10 employees, 10 minutes) match the source page and facts.json; 'the contractors surveyed' qualifier present wherever contractor shares appear.",
+    "'(rounded)' on Instagram and YouTube is fair: the page's 45/43/13 sum to 101.",
+    "Rules: line 1 under 100 (IG 97, TT 70, FB 73); hashtags IG 4, TT 4, FB 2, YT 2; YT title 70 chars, no hashtags, 8 tags incl. misspelling; no link on IG or FB; AI voice line on all four; no em or en dashes; no private person, business or address."
+  ]
+}

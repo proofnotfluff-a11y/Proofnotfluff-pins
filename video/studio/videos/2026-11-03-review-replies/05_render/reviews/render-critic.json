@@ -1,0 +1,15 @@
+{
+  "gate": "render-critic",
+  "round": 1,
+  "pass": true,
+  "score": {"faults": 0},
+  "faults": [],
+  "reasons": [
+    "Round 0 faults: both gone. 36.0 to 38.0 s five-star chat: review '5 stars. Fixed our furnace fast.' stays fully visible at y 405 to 510 with both reply bubbles below it, no scroll (f16 at 36.45, timeline 36.0 to 37.5). 44.0 to 45.5 s one-star chat: '1 star. The tech showed up late.' fully visible at y 405 to 510 with both reply bubbles below, no scroll (f20 at 44.34, timeline 44.0 to 45.0).",
+    "Hook: PASS, '43%' and 'of contractors don't answer reviews.' on screen from 0.0 s (frame-0s, frame-0.8s, frame-2.0s).",
+    "Numbers: PASS, 400 label at 12.0 (said 12.05), 91% reels settle 14.0 (said 13.65), 56% reels 18.5 to 19.0 with '56% look on Google' (said 18.59), 45% row 22.5 (said 22.66), 43% row 26.5 (said 26.26), 13% row 28.0 (said 28.06), '10 min' banner 62.5 and '10 minutes' bubble 63.0 (said 63.10).",
+    "Layout: PASS, settled scenes keep words inside y 270 to 1250 and left of x 930 (end card longest line ends at x 929, measured); nothing hidden under the host or the speech bubble. Minor, not a fault: the 'Every Monday. 10 minutes.' bubble (63 to 66.5 s) sits flush on the chat input bar with no bottom gap, but all its words are visible.",
+    "Audio end: PASS, last word 'reviews.' ends 74.18 s, video 76.07 s, tail after 75.5 s peaks at -27.9 dB (music only), nothing cut mid-word.",
+    "Small text and flash: PASS, smallest text (source lines and table rows, about 26 px caps) readable on a phone; transitions at 8.0, 21.0, 30.0, 45.5, 55.0, 66.5 are single events, no flashing above 3 per second."
+  ]
+}

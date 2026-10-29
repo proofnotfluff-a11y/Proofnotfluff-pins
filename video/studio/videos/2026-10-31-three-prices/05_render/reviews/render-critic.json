@@ -1,12 +1,19 @@
 {
  "gate": "render-critic",
  "round": 0,
- "at": "2026-10-28T19:20:00-05:00",
- "pass": false,
+ "at": "2026-10-28T23:08:37-05:00",
+ "mp4Sha256": "18795817c4c0ae9dbe7b9a6b80e641013c92a12141f2f71ded524d200df76b38",
+ "pass": true,
  "score": {
-  "faults": 1
+  "faults": 0
  },
+ "faults": [],
  "reasons": [
-  "menu card clipped the citation 20.6 to 23.9 s (fixed: card moved down)"
+  "Hook: '3 prices' and '57%' card on screen from 0.0 s (frame-0s, 0.8s, 2.0s).",
+  "Spoken numbers on screen at or within about 0.5 s of the word: 10% (9.5 s, said 9.93), 57% (13.0, said 12.43, count-up), 41% (16.0, said 15.39, count-up), 1,100+ (21.5, said 21.92), 68% (24.5, said 24.08, count-up), 1,000+ (55.0, said 55.28), 4+ (57.5, said 57.7), 52% (60.0, said 59.44, reel stop), 1 to 3 (62.0), 42% (63.5, said 63.12, reel stop), 3 prices (76 to 85).",
+  "Earlier fault (citation clipped 20.6 to 23.9 s) is gone: 'HOUSECALL PRO SURVEY, 2026' fully visible from 21.0 s; 20.5 s is the typewriter reveal.",
+  "Settled layouts keep words and numbers between y 270 and 1250 and left of x 930 (rightmost text: 57% and $$$ end near x 915 to 928); slot lever and card frames past x 930 are decoration. Quote card off the right edge at 31.44 s is its exit move only.",
+  "Voice ends 83.77 s, video 85.67 s; last word 'prices.' complete, tail is quiet.",
+  "Smallest text (bubble lines, citations, 'Top 10% = by revenue') renders about 28 to 32 px tall on 1080x1920, readable on a phone; no flashing, only single dither transitions at 5.5, 18.5, 36.0 s and one 48.5 s cut."
  ]
 }

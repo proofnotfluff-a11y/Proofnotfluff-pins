@@ -1,0 +1,14 @@
+{
+  "gate": "buyer",
+  "round": 0,
+  "pass": true,
+  "score": {"stop": "yes", "send": "yes", "save": "yes", "follow_or_link": "yes"},
+  "reasons": [
+    "1. Plumbing shop owner: ask for the job before you leave the driveway, because top shops close 77% of estimates on the same visit versus 62% for everyone else, and here are the three lines to say.",
+    "2. Stop: yes. 'Still no yes when you leave the driveway?' is my exact 9 pm worry, and the first frame shows a big 77% with a dated source line (ServiceTitan customers, 12 months to Jan 2026) over a work van on a street that looks like my route.",
+    "3. Send: yes, the voice tells me to send it to whoever runs my estimates and the three lines are something my tech can use tomorrow. Save: yes, the script is worth keeping (and it is written out in the caption). Follow or link: yes, a follow; the 'free tools' link is low key, not a pitch.",
+    "4. No hype, no fake urgency, no sales pitch. 'One honest note. This is a pattern, not proof' raises trust. Nothing reads as AI slop or robotic. Minor: ServiceTitan is named four times in the voice, which brushes toward sounding like their ad; optional fix, change 'ServiceTitan puts it down to momentum' to 'Their read: momentum.'",
+    "5. Small unclear spot at 00:24.9 'The longer they wait': right after 'top shops', 'they' could read as the shop, not the homeowner. Optional fix: 'The longer the homeowner waits.' Caption 'Quote Clinic, Lesson 5' means nothing to a stranger but does no harm.",
+    "6. Trust: yes. Named source, date range, top 10% by revenue defined, the honest caveat, and the AI voice disclosed in the caption. Nothing here makes me scroll past or distrust it."
+  ]
+}

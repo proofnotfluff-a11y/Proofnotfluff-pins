@@ -1,13 +1,17 @@
 {
  "gate": "golden",
- "round": 1,
- "at": "2026-10-28T19:20:00-05:00",
+ "round": 0,
+ "at": "2026-10-28T23:08:52-05:00",
  "pass": false,
  "score": {
   "post_as_is": "no"
  },
  "reasons": [
-  "MUST-FIX menu card clipped the citation (fixed); polish items fixed"
- ],
- "stop": "second FAIL of this gate: held for Todd's word"
+  "1 MUST-FIX 0.3 to 5.0 s: cream dust particles drift over the cream hook card and punch holes in the letters ('To_ shops', 'j_bs' 2.5 s, '3 p/ices' 3.5 s, 'sh_ps' 4.0 s, 'pric_es' 5.0 s). In the first seconds it reads as broken text; keep particles off the card or draw them behind it.",
+  "2 polish 12.4 to 16.0 s and 24.0 s: count-ups land about 0.5 s after the number is said (55% under 'fifty-seven', 40% under 'forty-one', 63% under 'sixty-eight'); start each count earlier so the final figure is on screen as it is spoken.",
+  "3 polish 6.0 to 18.5 s: the leaderboard label runs 'Home jobs offered good, better, best' straight into 'ServiceTitan customers,' with no break, so it can read as 'best ServiceTitan customers'; add a period after 'best'.",
+  "4 polish 0 to 3.5 s: the opening is mostly still (card already up, only the progress bar and dust move) until the sign flips at 3.5 s; a small move on '1 price?' would help the stop.",
+  "5 polish whole video: the bottom third (about y 1250 to 1920) is empty floor or backdrop in every scene; fine as a platform safe zone, but nothing lives there.",
+  "Answers: 1 says top shops put good, better, best on 57% of home jobs vs 41%, a surprising single price sends 68% of homeowners shopping, how to build the three, and the ACCA 52% vs 42% with its limit stated; screen numbers match voice and facts.json. 3 no contradictions. 4 sounds like a person, pace 158 to 187 wpm. 5 qa.json all PASS (frozen 84.4 to 85.4 s is the end card). 6 the hook question earns the stop; clear send line at 80.2 s and a saveable good/better/best template."
+ ]
 }

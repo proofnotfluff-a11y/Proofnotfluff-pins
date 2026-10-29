@@ -26,6 +26,11 @@ const px = (k) => {
 };
 
 // ---- the words: every beat lands on a spoken word, so a re-voiced take moves everything with it ----
+/* The speech bubble prints words.js as is, and anim.py display() lowercases every all-caps word (meant for a stressed
+   word), so the acronyms came out "achr" and "hvac". Put back script.md's casing before the player reads the words
+   (words.js loads before this file; the player builds its phrases after every script has loaded). */
+const ACRONYMS = {achr: 'ACHR', hvac: 'HVAC'};
+((window.WORDS && window.WORDS.words) || []).forEach((w) => { w.w = w.w.replace(/^([^A-Za-z]*)([A-Za-z]+)/, (m, pre, core) => pre + (ACRONYMS[core.toLowerCase()] || core)); });
 const WS = () => (window.WORDS && window.WORDS.words) || [];
 // the time a word is said (words.json), at or after a cue (or a time); falls back to the cue's start plus dflt
 const wordT = (k, id, re, dflt = 0) => {
@@ -89,7 +94,8 @@ window.SCENE = {
     // ---- hook: the phone in the truck, the hook card on its screen, settled on frame 0; no host or dialog yet
     hook: (k, T) => {
       const n = k.data.numbers, t43 = wordT(k, 'hook.43', /^forty/i), tCopy = k.S('hook.copy');
-      k.sets.chat({who: 'REVIEWS', clock: '7:42', msgs: [], notify: {text: 'New review', at: Math.max(1.0, t43), dur: 2.2}});
+      /* frame 0 is the settled cover; the New review banner drops at 1 s and holds past "forty-three" (motion before the number) */
+      k.sets.chat({who: 'REVIEWS', clock: '7:42', msgs: [], notify: {text: 'New review', at: 1.0, dur: Math.max(2.2, t43 + 1.2 - 1.0)}});
       // the card on the screen (frame x 306..870, y 390..888): light wallpaper, dark words
       k.text(n.noAnswer.shown, 324, 404, {size: 132, color: 'accent'});
       k.text('of contractors', 324, 548, {size: 66, color: PLUM});
@@ -97,7 +103,7 @@ window.SCENE = {
       k.text('reviews.', 324, 688, {size: 66, color: PLUM});
       k.text(`ACHR News survey, ${n.year.shown}`, 324, 770, {size: 30, color: '#6B7080'});
       if (T >= tCopy) { k.slam('Two replies to copy.', 324, 816, tCopy, {size: 39, color: 'accent', from: 0.5}); k.sweep(324, 860, 480, 6, tCopy + 0.25, {color: 'accent'}); }
-      k.burst(470, 470, 1.2, {n: 12, r: 180}); k.burst(470, 470, t43, {n: 18, r: 220});
+      k.burst(470, 470, 0.6, {n: 10, r: 160}); k.burst(470, 470, 1.6, {n: 12, r: 180}); k.burst(470, 470, t43, {n: 18, r: 220});
       if (T < t43) return {host: false, speech: false};
       if (T < tCopy) return {host: false};
       return host(k, k.live('hook.copy') ? 'point' : null);
@@ -108,11 +114,13 @@ window.SCENE = {
       const n = k.data.numbers, t0 = k.S('stakes'), tAsk = k.S('stakes.asked'), tPull = k.S('stakes.pull'), tG = k.S('stakes.google');
       const t91 = wordT(k, 'stakes.pull', /^ninety/i, 0.2), tPct = wordT(k, 'stakes.pull', /^percent/i, 0.8);
       const t56 = wordT(k, 'stakes.google', /^Fifty/i), tPct2 = wordT(k, 'stakes.google', /^percent/i, 0.8);
+      /* the lever goes 0.7 s before the number, so the first reel stops on its word and the % on "percent" */
+      const pull = (tNum, tP) => { const s0 = Math.min(tNum - 0.7, tP - 1.0); return {t0: s0, stops: [Math.max(s0 + 0.4, tNum), Math.max(s0 + 0.55, tNum + 0.25), Math.max(s0 + 0.7, tP)]}; };
       const pulls = [
-        {t0: tPull - 0.1, stops: [Math.max(tPull + 0.4, t91 + 0.1), Math.max(tPull + 0.7, t91 + 0.4), Math.max(tPull + 1.0, tPct)], symbols: [...String(n.important.value), '%']},
-        {t0: tG - 0.1, stops: [Math.max(tG + 0.4, t56 + 0.1), Math.max(tG + 0.7, t56 + 0.4), Math.max(tG + 1.0, tPct2)], symbols: [...String(n.google.value), '%']},
+        Object.assign(pull(t91, tPct), {symbols: [...String(n.important.value), '%']}),
+        Object.assign(pull(t56, tPct2), {symbols: [...String(n.google.value), '%']}),
       ];
-      const label = T >= tG + 0.5 ? 'LOOK ON GOOGLE' : (T >= pulls[0].stops[2] ? 'SAY REVIEWS MATTER' : 'ACHR NEWS + CLEAR SEAS');
+      const label = T >= pulls[1].stops[2] ? 'LOOK ON GOOGLE' : (T >= pulls[0].stops[2] ? 'SAY REVIEWS MATTER' : 'ACHR NEWS + CLEAR SEAS');
       slotPull(k, pulls, label);
       if (T >= tG) plate(k, `${n.google.shown} look on Google`, tPct2);
       else if (T >= k.S('stakes.hvac')) plate(k, `${n.important.shown}: picking an HVAC contractor`, k.S('stakes.hvac'));
@@ -142,13 +150,12 @@ window.SCENE = {
       const five = T < tOne;
       const msgs = five ? [
         {me: false, text: `${n.five.shown} stars. Fixed our furnace fast.`, at: t0 + 0.6, typing: 0.5},
-        {me: true, text: 'Thanks for trusting us with your furnace.', at: k.S('replies.f1')},
-        {me: true, text: "Glad it's running right.", at: k.S('replies.f2')},
+        /* two reply bubbles, not three, so the review stays whole at the top (no scroll); the first grows down a sentence at a time */
+        {me: true, text: T >= k.S('replies.f2') ? "Thanks for trusting us with your furnace. Glad it's running right." : 'Thanks for trusting us with your furnace.', at: k.S('replies.f1')},
         {me: true, text: "We're here when you need us.", at: k.S('replies.f3'), read: k.S('replies.f3') + 0.9},
       ] : [
         {me: false, text: `${n.one.shown} star. The tech showed up late.`, at: tOne + 0.6, typing: 0.5},
-        {me: true, text: "Sorry we were late. That's on us.", at: k.S('replies.o1')},
-        {me: true, text: 'I want to make it right.', at: k.S('replies.o2')},
+        {me: true, text: T >= k.S('replies.o2') ? "Sorry we were late. That's on us. I want to make it right." : "Sorry we were late. That's on us.", at: k.S('replies.o1')},
         {me: true, text: 'Call me directly at the shop.', at: k.S('replies.o3'), read: k.S('replies.o3') + 0.9},
       ];
       chat(k, {who: five ? 'FIVE-STAR REPLY' : 'ONE-STAR REPLY', clock: '7:42', msgs, notify: five ? null : {text: `New review: ${n.one.shown} star`, at: tOne, dur: 1.6}});
@@ -187,17 +194,19 @@ window.SCENE = {
     close: (k, T) => {
       const d = px(k), t0 = k.S('close'), dont = k.S('close.dont'), send = k.S('close.send'), ans = k.S('close.answer');
       slotPull(k, [{t0: t0 + 0.15, stops: [t0 + 0.8, t0 + 1.1, t0 + 1.4], symbols: ['Y', 'E', 'S']}], T >= t0 + 1.4 ? 'ANSWER EVERY REVIEW' : 'ONE MORE PULL');
+      /* the column: a game window over the tray, one left edge (x 120), the line and the ask at headline size (lesson 9's 66),
+         the ask the loudest (gold); the window ends by y 960 (shadow included) so the host's wave clears it */
       const open = d.ease(t0 + 0.25, 8, 110);
-      d.clip(0, 0, 360, 336, () => d.win(14, 229 + open, 332, 105, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#7A3442'}));
+      d.clip(0, 0, 360, 320, () => d.win(14, 222 + open, 332, 96, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#7A3442'}));
       if (open === 0) {
-        k.slam('Plenty leave reviews hanging.', 120, 702, t0 + 0.3, {size: 39, color: 'accent', from: 0.5, drop: INK});
-        if (T >= dont) k.slam("Don't be one.", 120, 746, dont, {size: 39, color: CREAM, from: 0.4});
+        k.slam('Plenty leave reviews hanging.', 120, 688, t0 + 0.3, {size: 66, color: 'accent', from: 0.5, drop: INK});
+        /* "Don't be one." holds its row until the send line comes; then the chip takes the row */
+        if (T >= dont && T < send) k.slam("Don't be one.", 120, 754, dont, {size: 39, color: CREAM, from: 0.4});
         if (T >= send) {
-          k.chip('ProofNotFluff', 120, 794, {size: 30});
-          k.slam('Send this to whoever runs your', 120, 854, send + 0.1, {size: 39, color: CREAM, from: 0.4});
-          k.slam('Google profile.', 120, 896, send + 0.2, {size: 39, color: CREAM, from: 0.4});
+          k.chip('ProofNotFluff', 120, 752, {size: 30});
+          k.slam('Send this to whoever runs your Google profile.', 120, 802, send + 0.1, {size: 39, color: CREAM, from: 0.4});
         }
-        if (T >= ans) { k.slam('Answer your reviews.', 120, 940, ans, {size: 39, color: GOLD, from: 0.5, drop: INK}); k.sweep(120, 982, 520, 6, ans + 0.3, {color: 'accent'}); }
+        if (T >= ans) { k.slam('Answer your reviews.', 120, 856, ans, {size: 66, color: GOLD, from: 0.5, drop: INK}); k.sweep(120, 916, 516, 6, ans + 0.3, {color: 'accent'}); }
       }
       return host(k, k.live('close.answer') ? 'wave' : (k.live('close.send') ? 'point' : null));
     },

@@ -1,13 +1,23 @@
 {
  "gate": "facts",
  "round": 0,
- "at": "2026-10-28T18:35:00-05:00",
+ "at": "2026-10-28T23:15:44-05:00",
  "pass": true,
  "score": {
   "numbers": 7,
   "mismatches": 0
  },
  "reasons": [
-  "all 7 match the ServiceTitan page; advisories only"
+  "all 7 data.js numbers (10%, 77%, 62%, 15, 12, 2026, 3) match facts.json and the ServiceTitan page in script, transcript and scene.js; 77 minus 62 = 15",
+  "new stakes gap row: 'The gap' then '15 points' (n.gap.shown) lands 0.8 s after 'Sixty-two', just before 'Why a fifteen point gap?'; matches the page's '15-point gap'; the blinking segments span 3 of 20 (15 points), drawn on the same 20-segment scale as both bars",
+  "window shown 'ServiceTitan customers' / 'Its customers, 12 months to Jan 2026' and said 'a year of data from its customers, up to this January': fair for a Nov 1, 2026 post",
+  "claims match page wording: top ten percent by revenue (90th revenue percentile), everyone else, estimates closed on the same visit, momentum, call a competitor or talk themselves out of it, fewer follow-ups, objections / financing / asks for the sale; caveat said and shown ('correlated, not shown to cause')",
+  "story elements read as story: van replay, dispatch board, estimate with no figures, 'example day', 'SAY THIS (EXAMPLE)', LEVEL UP bar with LV/XP labels suppressed, 'the worry' cloud",
+  "trades first: core evidence is ServiceTitan contractor data across HVAC, plumbing, electrical, garage door, water treatment and specialty trades",
+  "no real private person, business or address; host 'Snow' is the cast; 0 em or en dashes in script, transcript, scene.js, brief.md, facts.json, data.js",
+  "advisory (carried, not a mismatch): 'Asking still costs you one sentence.' after 'Unlocked: the 3-line ask'; 'one line' would remove the apparent clash on a re-voice"
+ ],
+ "sources_checked": [
+  "https://www.servicetitan.com/toolbox/state-of-the-trades/trends/top-performer-profile: title, May 19, 2026; 'Top performers close 77% of their estimates during the same visit. For the rest, that number is 62%.'; 'The 15-point gap comes down to momentum.'; call a competitor, get distracted, or talk themselves out of the project; 'Fewer follow-ups. Fewer return trips.'; handles objections, frames financing and asks for the sale; 90th percentile of revenue within trade and market segment, 'top 10% ... compared to everyone else'; participating ServiceTitan customers, trailing 12 months through January 2026; HVAC, plumbing, electrical, garage door, water treatment, other specialty trades; 'Certain metrics apply to residential jobs only'; correlated, not causal footnote"
  ]
 }

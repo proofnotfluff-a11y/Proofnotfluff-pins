@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-03-review-replies",
- "mp4Sha256": "70d5c64c57a4b5e686987bc285996ade1da1c3699624aeed61abaf98fd4f80fd",
+ "mp4Sha256": "b81bdda4d09816e6eb1218c7b435de5980f730f63119cb5f188ed158db41ef1b",
  "checks": [
   {
    "name": "length",
@@ -33,8 +33,8 @@
   {
    "name": "file",
    "value": {
-    "sha256": "70d5c64c57a4b5e686987bc285996ade1da1c3699624aeed61abaf98fd4f80fd",
-    "bytes": 5259369
+    "sha256": "b81bdda4d09816e6eb1218c7b435de5980f730f63119cb5f188ed158db41ef1b",
+    "bytes": 5325581
    },
    "pass": true,
    "detail": "H.264 1080x1920 30 fps, AAC, 5.3 MB, decodes clean"
@@ -47,5 +47,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-28T22:48:27-05:00"
+ "at": "2026-10-28T23:20:00-05:00"
 }

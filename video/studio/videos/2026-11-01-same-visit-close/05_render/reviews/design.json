@@ -1,0 +1,14 @@
+{
+ "gate": "design",
+ "round": 1,
+ "at": "2026-10-28T23:16:06-05:00",
+ "pass": true,
+ "score": {"first": 5, "hierarchy": 5, "type": 5, "color": 5, "spacing": 4, "polish": 4, "trust": 5, "average": 4.71},
+ "freshness": "pass: street hook and close, ServiceTitan bar panel, dispatch map, kitchen table, levelup, notebook; no world or set piece shared with lesson 3 (job-site billboard, register counter, gauge, tool belt) or lesson 4 (storefront counter, scores cabinet, house crowd, slots)",
+ "round0_landed": "7 of 7 layout asks landed or close: skip has rays, the 'Your tech, on the visit' bar fills from 'ServiceTitan says' (51 s), perk slots fill, worry cloud pops at 50 s; LEVEL UP lands 57.5 s and holds to 59.5 s with the 3-line-ask perk; stakes tab clears the border and '15 points' fills the gap row at 19.5 s; ask clock and window clear the level bar; caveat lines all start at the margin; 'Or talk themselves out of it.' sits in the strip under the map; close billboard is now one line tall on 'Don't drive off.' and grows (still full width, see below)",
+ "reasons": [
+  "69.0-76.5 s close billboard: the box stays full frame width while the text ends near x 640, leaving the right half an empty dark slab, and its bottom edge at about y 540 cuts the van's check bubble in half; size the box to the widest line (about x 40 to 700) so the houses and the check bubble at the right stay whole",
+  "57.5-59.5 s skip.sale LEVEL UP: spark pixels land on the perk text ('fin+ancing' at 57.95 s); keep the sparks above the bar and off the perk lines",
+  "34.0-44.0 s ask: the 'ASK BEFORE YOU WALK OUT' card covers the bottom of the ESTIMATE clipboard (the X line is cut at y 445); lift the clipboard 8 px or drop the card's top so the X line shows whole"
+ ]
+}

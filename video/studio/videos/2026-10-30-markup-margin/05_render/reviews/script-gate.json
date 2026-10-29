@@ -1,0 +1,21 @@
+{
+ "gate": "script",
+ "round": 0,
+ "at": "2026-10-29T12:33:20-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+ "pass": false,
+ "score": "10 of 12",
+ "points_condensed": "1 PASS (10 words, ends 3.28 s); 2 FAIL (on-screen hook held to about 8.0 s); 3 to 7 PASS; 8 FAIL (take 5 at 147 wpm; per-take 169, 172, 165, 175, 147, 171; 74.56 s); 9 to 12 PASS (turn 61.8%, send line naming a role, echo ending, LESSON 3 HUD and RUN THE NUMBERS chip)",
+ "faults": [
+  "Point 2: the on-screen hook '50% markup is NOT 50% margin' stays on screen from 0.0 s to about 8.0 s (gone only at the wipe into the math room at 8.03 to 8.07 s), and the unmarked claim alone holds about 4.3 s. Both are over the 2.5 to 4.0 s hold. The fix is to retire the sign, or swap it for the ONE THIRD answer, by 4.0 s, for example cutting to a new shot on 'Nope' at 4.08 s.",
+  "Point 8: take 5 runs at 147 wpm on takes.json and transcript.md, under the studio's 150 wpm floor (voice.md: under 150, rewrite the take as talk). The fix is to rewrite take 5 tighter as talk and re-speak take 5 alone."
+ ],
+ "notes": [
+  "The builder's script-check.md (Oct 28, stand-in timings) scored point 2 as 'held 3.0 s'; the rebuilt render no longer matches that.",
+  "Total words 194 is under the 75 s band (200 to 240) but the lesson runs 74.57 s, inside 45 to 75 s, so it is a note only.",
+  "Spoken hook ends at 3.28 s: inside the studio's 3.6 s, past the playbook's own 3.0 s.",
+  "Spoken, the formula finishes at 53.58 s (72% of runtime); on screen it is complete by 50.08 s (67%).",
+  "Captions: the TikTok question 'Tell me which and why' and the YouTube line 'Free tools for trade owners at proofnotfluff.com' are caption extras, not spoken CTAs. Neither is bait.",
+  "Earlier faults checked and not back: formula board empty, OVERHEAD/YOUR PAY chips, strike through 50%, close plate. The golden reviewer's polish notes stand (the bench close-up reads as a backdrop swap, the cramped tape readouts, the half-orange glint on '50%' at 2.5 to 3.0 s)."
+ ]
+}

@@ -1171,10 +1171,7 @@
    "wpm": 174
   }
  ],
- "flags": [
-  "28.4 s heard 'job' for 'jobs'",
-  "63.7 s heard 'Job' for 'Jobs'"
- ],
+ "flags": [],
  "end": 70.693,
  "heard": [
   {

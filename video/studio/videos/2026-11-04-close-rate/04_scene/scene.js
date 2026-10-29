@@ -308,7 +308,7 @@ window.SCENE = {
       const n = k.data.numbers;
       const t31 = wordT(k, 'hook', /^thirty-one/i, 4.4), t38 = wordT(k, 'hook', /^thirty-eight/i, 5.2);
       const tIn = Math.min(0.8, Math.max(0.5, wordT(k, 'hook', /^close$/i, 0.7))), tRate = wordT(k, 'hook', /^rate/i, tIn + 0.3);
-      const tOut = Math.min(2.6, k.S('hook.math')), med = k.S('hook.median'), src = k.S('hook.source'), win = k.S('hook.window');
+      const tOut = Math.min(2.6, k.S('hook.math')), med = Math.min(4.0, k.S('hook.median')) /* clamp: the on-screen hook holds 4.0 s at most */, src = k.S('hook.source'), win = k.S('hook.window');
       if (T >= tIn && T < tOut) {
         /* the close-up: the slips flip SOLD from "rate" on, a few at a time; the hook in marker, already up */
         const sold = {}; [1, 5, 9, 3, 7].forEach((i, j) => { sold[i] = tRate + j * 0.18; });

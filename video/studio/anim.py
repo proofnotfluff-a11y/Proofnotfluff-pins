@@ -24,6 +24,7 @@ fresh reviewer checks before the next stage runs.
   export SLUG              a copy under 9.5 MB for posting (two-pass H.264; Chrome uploads cap at 10 MB) -> 05_render/SLUG-post.mp4
   ready SLUG               every gate passed: queue it for posting (video/studio/queue.json, fingerprints of what the gates saw)
   next                     the oldest queued lesson not yet on all four platforms, and the commit its gates passed at
+  waiting                  the queued lessons with no post yet, in posting order (the daily run's queue rule reads it)
   postcopy SLUG            render the queued lesson from that commit, check its fingerprints, export it to the upload folder
   posted SLUG PLATFORM URL record one live post (instagram, tiktok, facebook, youtube)
   status SLUG              what exists
@@ -1339,10 +1340,20 @@ def cmd_ready(slug):
         raise SystemExit("ERROR ready: commit the lesson and the runtime first: " + "; ".join(d.strip() for d in dirty[:6]))
     head = sh(["git", "-C", ROOT, "rev-parse", "HEAD"]).stdout.strip()
     q = load_queue()
-    q["items"] = [i for i in q["items"] if i["slug"] != slug]
-    q["items"].append({"slug": slug, "readyAt": now(), "commit": head, "fingerprints": fingerprints(slug), "posts": {}})
+    item = {"slug": slug, "readyAt": now(), "commit": head, "fingerprints": fingerprints(slug), "posts": {}}
+    pos = next((n for n, i in enumerate(q["items"]) if i["slug"] == slug), None)
+    if pos is None:
+        q["items"].append(item)
+    elif q["items"][pos]["posts"]:   # a lesson already live anywhere keeps its pin: every platform shows the same cut
+        raise SystemExit(f"ERROR ready: {slug} is already posted on {', '.join(q['items'][pos]['posts'])}")
+    else:   # a rebuild on the newest runtime (queue rule) keeps its place in line
+        q["items"][pos] = item
     save_queue(q)
-    print(f"ready: {slug} queued ({len(q['items'])} in the queue)")
+    print(f"ready: {slug} {'queued' if pos is None else 're-pinned at place ' + str(pos + 1)} ({len(q['items'])} in the queue)")
+
+
+def cmd_waiting():
+    print(json.dumps([i["slug"] for i in load_queue()["items"] if not i["posts"]]))
 
 
 def cmd_next():
@@ -1664,6 +1675,8 @@ def main():
         cmd_ci_voice()
     elif c == "next":
         cmd_next()
+    elif c == "waiting":
+        cmd_waiting()
     elif not a.slug:
         raise SystemExit(f"{c} needs a slug")
     elif c == "new":

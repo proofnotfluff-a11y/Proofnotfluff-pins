@@ -9,28 +9,26 @@ music: rooms
 World: the chat in the truck. Three shots (IMPROVE 00a). Frame 0, the cover, settled: the phone in its dash mount, header REVIEWS, and on its screen the hook card: "Got a 1-star review?" / "Copy this reply." (the on-screen hook, 7 words), the REVIEWS CLINIC chip under it. The road rushes in the windshield, the air freshener swings. Host and dialog hidden. Cut in on "one-star" (by 0.8 s) to the close-up: the phone's screen fills the frame, the hook on the app's header plate, and the example review big: one star lit of five, "The tech showed up late.", tagged EXAMPLE; the lit star pulses as "review" is said. Snow and the dialog box come on with the cut and stay.
 ## hook.copy "Here's your reply to" [sfx: whoosh]
 Cut back out (before 2.6 s) to the truck: the card on the screen holds the hook; "Copy this reply." gets an accent sweep and typing dots show under it. Snow points at the phone.
-## hook.43 "In one HVAC survey," [sfx: tick]
+## hook.43 "Forty-three percent of contractors" [sfx: tick]
 The card turns to the number: "43%" in the accent, "of contractors don't" / "answer reviews.", source small: ACHR News survey, 2024. A "New review" notification drops in over the phone's top and goes back up; sparks on the 43%.
 
 ## stakes "That's The ACHR News." [sfx: whoosh]
 World: the slot machine (level select). The crown reads ACHR NEWS + CLEAR SEAS; the reels idle on ?, ?, ?.
-## stakes.asked "They asked four hundred" [sfx: tick]
-The plate under the reels types: "400 homeowners, 2024"; the bulbs chase faster.
-## stakes.pull "and ninety-one percent said" [sfx: tick]
+## stakes.pull "Ninety-one percent of" [sfx: tick]
 The lever pulls in 3 steps; the reels spin and stop left to right on 9, 1, % as "ninety-one percent" is said. The crown flips to SAY REVIEWS MATTER; bulbs chase, coins jump in the tray.
+## stakes.asked "four hundred homeowners said" [sfx: tick]
+The plate under the reels types: "400 homeowners, 2024"; the bulbs chase faster.
 ## stakes.hvac "when they pick an" [sfx: blip]
 The plate: "when they pick an HVAC contractor".
-## stakes.google "Fifty-six percent look on" [sfx: tick]
+## stakes.google "Fifty-six percent check reviews" [sfx: tick]
 A second pull: the reels stop on 5, 6, %; the crown: LOOK ON GOOGLE.
 
-## gap "And the contractors?" [sfx: whoosh]
-World: the arcade high-score table (dissolve). Title DO CONTRACTORS ANSWER? Empty rows dashed. The line under the rows: "Reviews on third-party sites".
-## gap.yes "Forty-five percent answer reviews" [sfx: tick]
-Row YES slides in, counting to 45%.
-## gap.no "forty-three percent don't," [sfx: tick]
-Row NO slides in, 43%, the blinking row with the cursor.
-## gap.dk "and thirteen percent don't" [sfx: blip]
-Row DON'T KNOW, 13%. The source line: ACHR News survey, 2024.
+## gap "So if you answer" [sfx: whoosh]
+World: the arcade high-score table (dissolve). Title DO CONTRACTORS ANSWER? The line under the rows: "Reviews on third-party sites". Row NO slides in first, 43% (said in the hook), the blinking row with the cursor.
+## gap.yes "the forty-five percent" [sfx: tick]
+Row YES slides in, counting to 45%; Snow points at it.
+## gap.dk "who do." [sfx: blip]
+Row DON'T KNOW, 13% (on screen only). The source line: ACHR News survey, 2024.
 
 ## replies "Here's the five-star reply." [sfx: whoosh]
 World: the chat in the truck (iris). Header FIVE-STAR REPLY; an EXAMPLE tag on the pillar. The example review arrives: "5 stars. Fixed our furnace fast."

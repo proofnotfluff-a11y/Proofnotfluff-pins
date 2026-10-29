@@ -136,7 +136,7 @@ window.SCENE = {
     // in the truck, the hook card on its screen, settled on frame 0, no host or dialog. Cut in on "one-star" to the review
     // close-up (Snow and the dialog on). Cut back out on "Here's" to the truck; the card turns to the 43% on "Forty-three".
     hook: (k, T) => {
-      const n = k.data.numbers, t43 = wordT(k, 'hook.43', /^forty/i, 1.0), tStat = k.S('hook.43');
+      const n = k.data.numbers, t43 = wordT(k, 'hook.43', /^forty/i, 1.0), tStat = Math.min(4.0, k.S('hook.43')); /* clamp: the on-screen hook holds 2.5 to 4.0 s, then clears */
       const tIn = Math.min(0.8, Math.max(0.5, wordT(k, 'hook', /^one-star/i, 0.5))), tRev = wordT(k, 'hook', /^review/i, tIn + 0.3);
       const tOut = Math.min(2.6, k.S('hook.copy'));
       /* the close-up is a real reframe: the screen fills the frame and Snow steps in, bigger (0.75, hat clear of the reply box), in front of the keyboard */
@@ -155,8 +155,10 @@ window.SCENE = {
         k.slam(n.noAnswer.shown, 324, 404, tStat, {size: 132, color: 'accent', from: 0.6});
         k.slam('of contractors', 324, 548, tStat + 0.1, {size: 66, color: PLUM, from: 0.4});
         k.slam("don't answer", 324, 618, tStat + 0.15, {size: 66, color: PLUM, from: 0.4});
-        k.slam('reviews.', 324, 688, tStat + 0.2, {size: 66, color: PLUM, from: 0.4});
-        k.text(`ACHR News survey, ${n.year.shown}`, 324, 770, {size: 30, color: '#6B7080'});
+        k.slam('reviews', 324, 688, tStat + 0.2, {size: 66, color: PLUM, from: 0.4});
+        /* the scope as it is said: the survey on "in one HVAC survey", the sites on "on third-party sites" */
+        k.slam(`ACHR News survey, ${n.year.shown}`, 324, 770, k.S('hook.survey'), {size: 30, color: '#6B7080', from: 0.4});
+        k.slam('on third-party sites', 324, 816, k.S('hook.sites'), {size: 30, color: 'accent', from: 0.5});
         k.burst(470, 470, t43, {n: 18, r: 220});
       }
       if (T < tIn) return {host: false, speech: false};

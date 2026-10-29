@@ -260,19 +260,19 @@
     if (f >= 12) P(ux, 216, Math.min(uw, (f - 12) * 8), 2, '#F7C873');   // the site's underline draws on
     k.text('Lessons for trade owners', 534, 690, {size: 39, color: '#E6D3BC', align: 'center', lint: drop === 0});
     // the send line (Lead Clinic v2, Oct 29): a v2 lesson says no call to action, so the card carries it, word-wrapped
-    // onto the dark floor under Snow's feet (above the apps' caption band), where nothing stands in front of it
+    // into the space under the plate; on a card with a send line Snow stands smaller, so his hat stays under it
     const send = window.SCENE.sendLine;
     if (send) {
       const words = String(send).split(/\s+/), rows = [''];
-      words.forEach((w) => { const s = rows[rows.length - 1] ? rows[rows.length - 1] + ' ' + w : w; if (k.measure(s, {size: 45}) > 900 && rows[rows.length - 1]) rows.push(w); else rows[rows.length - 1] = s; });
-      rows.forEach((s, i) => k.text(s, 534, 1380 + i * 57, {size: 45, color: '#FFF7EA', align: 'center', lint: drop === 0 && f >= 12}));
+      words.forEach((w) => { const s = rows[rows.length - 1] ? rows[rows.length - 1] + ' ' + w : w; if (k.measure(s, {size: 39}) > 840 && rows[rows.length - 1]) rows.push(w); else rows[rows.length - 1] = s; });
+      rows.forEach((s, i) => k.text(s, 534, 870 + i * 51, {size: 39, color: '#FFF7EA', align: 'center', lint: drop === 0 && f >= 12}));
     }
     // a twinkle walks the plate's corners, one every 8 frames, so the held card is never a still picture
     const pts = [[46, 102], [310, 102], [310, 258], [46, 258]], g = f >= 10 ? Math.floor((f - 10) / 8) % 4 : -1;
     if (g >= 0) { const [x, y] = pts[g], s = [0, 1, 2, 1][Math.floor(f / 2) % 4]; P(x, y, 1, 1, '#FFF7EA'); for (let i = 1; i <= s; i++) { P(x - i, y, 1, 1, '#FFF7EA'); P(x + i, y, 1, 1, '#FFF7EA'); P(x, y - i, 1, 1, '#FFF7EA'); P(x, y + i, 1, 1, '#FFF7EA'); } }
     // Snow waves goodbye on a strip of floor under the plate
     P(0, 418, 360, 6, '#3D2E45'); P(0, 424, 360, 212, '#1B1420'); for (let x = (f >> 2) % 24 - 24; x < 360; x += 24) P(x, 430, 12, 2, '#2B2033');
-    k.snow(540, 1254, {scale: 0.86, pose: 'wave', face: 1});
+    k.snow(540, 1254, {scale: window.SCENE.sendLine ? 0.6 : 0.86, pose: 'wave', face: 1});
     ctx.restore();
     return true;
   }

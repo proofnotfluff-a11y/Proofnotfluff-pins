@@ -1,10 +1,10 @@
-# Script: Three prices on every quote (Lesson 4, Quote Clinic; playbook example 3, facts re-read Oct 28)
+# Script: Three prices on every quote (Lesson 4, Quote Clinic; trade evidence only, facts re-read Oct 28)
 
 [leaning in] One price on your quotes? The top shops usually quote three. Here's how you build them.
 
 [matter-of-fact] ServiceTitan pulled a year of home jobs, up to this January. The top ten percent offered good, better, best on fifty-seven percent of them. Everyone else? Forty-one. That's a habit you can copy.
 
-[curious] Why does that work? Researchers tracked seven years of orders at a German restaurant. When the menu changed, a dish that landed in the middle gained about five points of share, on average. It worked even better when the new dish was the pricey one. So put a price above the one you want them to pick.
+[curious] Why give them a choice? Housecall Pro surveyed over eleven hundred homeowners. Sixty-eight percent said they go get more quotes when a price comes in higher than they expected. [matter-of-fact] One price that surprises them can send them shopping. With three, the cheaper option is ALREADY on your quote.
 
 [warmly] Build your three like this. Good is the job done right, nothing extra. Better is the one you'd pick for your own house. Best adds upgrades, like a longer warranty or a faster start date.
 

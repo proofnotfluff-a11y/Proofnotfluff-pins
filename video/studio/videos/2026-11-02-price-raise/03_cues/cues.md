@@ -5,38 +5,32 @@ Worlds (brief.md): weather map (hook, stakes, caveat), register with the HUD's c
 
 music: rooms
 
-## hook "Eighty-three percent of HVAC" [sfx: pop]
-World: the weather map. Frame 0: the cover, fully settled: one sun over the west labeled HVAC, the 83% at four times body size in the map's open lower left, and directly under it in our panel (moved up over the map's title strip): "of HVAC companies raised" / "prices last year." on the same left edge, the source small under them (Jobber, 1,050 home service owners, Dec 2025). Host and dialog hidden. Sparks after frame 0.
-## hook.raised "raised their prices last" [sfx: tick]
-A warm front (red domes) sweeps west to east across the map; the HVAC sun pings and its label becomes HVAC 83%.
+## hook "Most trades raised their" [sfx: pop]
+World: the weather map. Three shots (IMPROVE 00a). Frame 0, the cover, fully settled: one sun over the west labeled HVAC, the 83% at four times body size in the map's open lower left, and directly under it in our panel: "of HVAC companies raised" / "prices last year." on the same left edge, the source small under them (Jobber, 1,050 home service owners, Dec 2025). Host and dialog hidden. On "raised" cut in to the close-up: the map at three times, the HVAC sun big in the middle with HVAC under it, a warm front of big red domes sweeping across the land; the claim and the source on a title plate up top; Snow comes in big at the lower left with the dialog box. On "Did" cut back out to the whole map; the warm front finishes its sweep and the sun's label reads HVAC 83%.
 ## hook.you "Did you?" [sfx: blip]
-A "?" cloud pops in the map's lower right: YOUR SHOP?
+A "?" cloud pops in the map's lower right: YOUR SHOP? Snow drops back to his small spot.
 ## hook.note "Here's the note that" [sfx: pop]
-The panel clears to the one headline: "The note that tells" / "your customers." with an accent line under it. Snow steps in small and points.
+The panel clears to the one headline: "The note that tells" / "your customers." with an accent line under it. Snow points.
 
 ## stakes "That's from Jobber's survey" [sfx: whoosh]
 World: the weather map again (dissolve), titled PRICE REPORT. The panel: "Who raised prices last year?" with the source under it (Jobber, 1,050 home service owners, Dec 2025).
-## stakes.all "and sixty-five percent raised" [sfx: tick]
-"65%" slams into the panel (count from 85%): "of them raised prices." A second warm front starts.
-## stakes.trades "In plumbing, electrical and" [sfx: tick]
+## stakes.hvac "Eighty-three percent of HVAC" [sfx: tick]
+"83%" slams into the panel (count from 85% of it): "of HVAC companies did." A second warm front starts; the HVAC sun pings.
+## stakes.trades "If you're in plumbing," [sfx: tick]
 Suns pop on each word: PLUMB, ELEC, ROOF; the panel line: "Plumbing, electrical, roofing".
-## stakes.74 "at seventy-four percent each." [sfx: pop]
+## stakes.74 "it was seventy-four percent." [sfx: pop]
 Their labels land: 74% each, with a burst; the panel: "Plumbing, electrical, roofing: 74%".
 
-## why "As for why," [sfx: whoosh]
-World: the register (level select). A shop counter with a brass till on a plank floor. The receipt prints its source line, JOBBER SURVEY. The display reads REASON. The plate on the wall: "Why they raised prices" / "Jobber survey, reasons named".
-## why.inflation "seventy-two percent named inflation," [sfx: tick]
-On "seventy-two" the till rings INFLATION 72% onto the receipt; the $ flag pops; the display shows 72%.
+## why "Why? Seventy-two percent" [sfx: whoosh]
+World: the register (level select). A shop counter with a brass till on a plank floor. The receipt prints its source line, JOBBER SURVEY. The display reads REASON. The plate on the wall: "Why they raised prices" / "Jobber survey, reasons named". On "Seventy-two" the till rings INFLATION 72% onto the receipt; the $ flag pops; the display shows 72%.
 ## why.labor "and half named labor." [sfx: tick]
 LABOR 50% prints; the display shows 50%.
 ## why.federal "That's backed up by" [sfx: pop]
 The receipt prints its second source line, BLS PAY DATA. The drawer slides out; coins drop into it (only between the till and the drawer) to the end of the take. The plate: "Federal pay data" / "BLS, 12 months to June 2026".
-## why.repair "pay for install and" [sfx: tick]
+## why.repair "Install and repair pay" [sfx: tick]
 REPAIR PAY +3.7% prints under BLS PAY DATA on "three point seven"; the display label flips to PAY and shows +3.7%.
-## why.all "For all workers, it" [sfx: tick]
-ALL PAY +3.2% prints; the display shows +3.2%.
-## why.crew "so your crew's pay" [sfx: blip]
-A gold line under REPAIR PAY; the display reads CREW PAY +3.7%; the plate: "Crew pay: above average". It holds to the end of the take, coins still landing.
+## why.crew "So your crew's pay" [sfx: blip]
+The display reads CREW PAY +3.7%; the plate: "Crew pay: above average". On "three point two" ALL PAY +3.2% prints under it, then a gold line under REPAIR PAY. It holds to the end of the take, coins still landing.
 
 ## note "So send this before" [sfx: whoosh]
 World: the price note on the desk (iris). An office wall with a clock that ticks, a desk, a steaming mug, a letterhead sheet tagged EXAMPLE, three numbered rows showing empty. Header: "Send this before your next quote."
@@ -57,18 +51,16 @@ Under the sheet, a full-width bar: "Raise the next job." in gold and "Never an a
 
 ## caveat "One honest note." [sfx: whoosh]
 World: the weather map (dissolve), titled ONE HONEST NOTE. A cold front (blue teeth) sweeps in from the east.
-## caveat.sells "Jobber sells software," [sfx: tick]
+## caveat.sells "Jobber sells software." [sfx: tick]
 Panel: "Jobber sells software."
-## caveat.shows "survey shows who raised" [sfx: tick]
-Panel line 2: "Its survey: who raised prices."
 ## caveat.took "doesn't show how customers" [sfx: blip]
-A "?" cloud pops over the lake: CUSTOMERS ?. Panel line 3: "Not how customers took it."
-## caveat.watch "So watch your close" [sfx: pop]
+A "?" cloud pops over the lake: CUSTOMERS ?. Panel lines 2 and 3: "Its survey doesn't show" / "how customers took it."
+## caveat.watch "so watch your close" [sfx: pop]
 The panel clears to: "Watch your close rate for a month after." It holds to the end of the take.
 
-## close "Your costs went up." [sfx: pop]
+## close "Your costs went up," [sfx: pop]
 World: the calendar (game over), titled NEXT MONTH: day 1 fills gold with a coin, the week frame lands on the first row. The note window rises over the lower rows: "Your costs went up."
-## close.most "Most of the trades" [sfx: tick]
+## close.most "and most trades already" [sfx: tick]
 "Most trades already raised prices." lands under it.
 ## close.send "Send this to whoever" [sfx: sting]
 "Send this to whoever writes your quotes." The note goes out: an envelope flies from the window to day 1, which takes a check. ProofNotFluff chip on the window's top edge. One column, one left edge, host small at the side.

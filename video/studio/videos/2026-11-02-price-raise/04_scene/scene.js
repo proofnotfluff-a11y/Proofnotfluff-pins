@@ -104,6 +104,27 @@ const desk = (k) => {
   P(0, 417, 360, 223, '#4A2E1B'); for (let y = 417, r = 0; y < 640; y += 10, r++) { P(0, y, 360, 1, '#6B4226'); for (let x = (r * 37) % 60; x < 360; x += 60) P(x, y + 1, 1, 9, '#2B2033'); }
 };
 
+// ================================================================================================================
+// the close-up (hook, from "raised" to "Did"): the weather map drawn at three times, the HVAC sun big in the middle of
+// the frame (whole pixels: one low-res pixel = 9 frame units), a warm front of big red domes sweeping the land; the
+// sun's own label is not drawn at that size (it would run off the frame): ours sits beside the sun at heading size. The
+// claim and its source ride on a title plate up top, held from the cover.
+const SUN_AT = [470, 860];   /* where the HVAC sun lands on screen in the close-up */
+const sunClose = (k, t0) => {
+  const n = k.data.numbers, d = px(k), c = k.ctx, sx = (14 + ICONS.hvac[0] * 332) * 3, sy = (82 + ICONS.hvac[1] * 150) * 3;
+  c.save(); c.translate(SUN_AT[0], SUN_AT[1]); c.scale(3, 3); c.translate(-Math.round(sx / 3) * 3, -Math.round(sy / 3) * 3);
+  mute(k, () => true, () => k.sets.weather({title: 'PRICE REPORT', fronts: [{kind: 'warm', at: t0 + 0.05, dur: 1.6, x0: -0.02, x1: 0.42}],
+    icons: [{kind: 'sun', x: ICONS.hvac[0], y: ICONS.hvac[1], at: -1}], months: []}));
+  c.restore();
+  k.text('HVAC', SUN_AT[0] + 120, SUN_AT[1] - 36, {size: 66, color: CREAM, drop: INK});
+  /* the title plate: the claim and its source */
+  d.win(14, 84, 332, 126, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
+  k.text(n.hvac.shown, 72, 276, {size: 132, color: 'accent', drop: INK});
+  k.text('of HVAC companies raised', 72, 432, {size: 66, color: CREAM, drop: INK});
+  k.text('prices last year.', 72, 506, {size: 66, color: CREAM, drop: INK});
+  k.text(SRC(n), 72, 590, {size: 30, color: SAND});
+};
+
 window.SCENE = {
   look: 'arcade',
   images: [],
@@ -112,18 +133,25 @@ window.SCENE = {
   transitions: {stakes: 'dissolve', why: 'levelselect', note: 'iris', caveat: 'dissolve', close: 'gameover'},
   trauma: {'note.promise': 0.8},
   sections: {
-    // ---- hook: the weather map, settled on frame 0 (the HVAC sun, the hook card, the source); no host or dialog yet
+    // ---- hook: three shots (IMPROVE 00a: the picture changes by 1 s and twice by 3 s, Snow on by 1 s). The cover: the
+    // weather map, the 83% and its sentence, the source (frame 0, held still to "raised"); no host or dialog. Cut in on
+    // "raised" to the close-up: the map at three times on the HVAC sun, a warm front of big red domes sweeping the land, the
+    // claim on a title plate up top, Snow big at the lower left. Cut back out on "Did" to the whole map: the front finishes,
+    // the sun's label reads HVAC 83%, the "?" cloud asks about your shop, and on "Here's the note" the panel clears.
     hook: (k, T) => {
-      const n = k.data.numbers, d = px(k), tRaised = k.S('hook.raised'), tYou = k.S('hook.you'), tNote = k.S('hook.note');
-      /* the sun's own label waits for "raised" (the big 83% says it on the cover) */
+      const n = k.data.numbers, d = px(k), tYou = k.S('hook.you'), tNote = k.S('hook.note');
+      const tIn = Math.min(0.8, Math.max(0.45, wordT(k, 'hook', /^raised/i, 0.65))), tOut = Math.min(2.6, wordT(k, 'hook.you', /^Did/i, 2.5));
+      if (T >= tIn && T < tOut) {
+        sunClose(k, tIn);
+        return {hostPose: k.talking() ? 'talk' : 'point', hostScale: 0.8, hostX: 170};
+      }
       weatherMap(k, {noTitle: true, panelY: 236,
-        fronts: [{kind: 'warm', at: tRaised, dur: 2, x0: -0.05, x1: 1.05}],
-        icons: [['hvac', 'sun', -1, T >= tRaised ? `HVAC ${n.hvac.shown}` : 'HVAC'], ['shop', 'cloud', tYou, 'YOUR SHOP?']],
+        fronts: [{kind: 'warm', at: tIn + 0.1, dur: 2.2, x0: -0.05, x1: 1.05}],
+        icons: [['hvac', 'sun', -1, T >= tOut ? `HVAC ${n.hvac.shown}` : 'HVAC'], ['shop', 'cloud', tYou, 'YOUR SHOP?']],
       });
-      // the cover breathes after frame 0: sparks off the HVAC sun at 0.45 s (the freeze check), a ping as "raised" is said
       const [sx, sy] = [(14 + ICONS.hvac[0] * 332) * 3, (82 + ICONS.hvac[1] * 150) * 3];
-      [0.45, 1.15, 1.85].forEach((at) => { if (at < tRaised - 0.3) k.burst(sx, sy, at, {n: 12, r: 170}); }); k.burst(sx, sy, tRaised, {n: 18, r: 220});
-      const pf = d.fr(tRaised); if (pf >= 0 && pf < 12) { const g = 8 + pf * 2, cx = sx / 3, cy = sy / 3; d.P(cx - g, cy - g, 2 * g + 1, 1, CREAM); d.P(cx - g, cy + g, 2 * g + 1, 1, CREAM); d.P(cx - g, cy - g, 1, 2 * g + 1, CREAM); d.P(cx + g, cy - g, 1, 2 * g + 1, CREAM); }
+      k.burst(sx, sy, tOut, {n: 18, r: 220});
+      const pf = d.fr(tOut); if (pf >= 0 && pf < 12) { const g = 8 + pf * 2, cx = sx / 3, cy = sy / 3; d.P(cx - g, cy - g, 2 * g + 1, 1, CREAM); d.P(cx - g, cy + g, 2 * g + 1, 1, CREAM); d.P(cx - g, cy - g, 1, 2 * g + 1, CREAM); d.P(cx + g, cy - g, 1, 2 * g + 1, CREAM); }
       /* the cover, settled on frame 0: the 83% big in the map's open lower left, its sentence directly under it on the
          same left edge (one read); on "Here's the note" the panel clears to the one headline */
       k.text(n.hvac.shown, 72, 424, {size: 264, color: 'accent', drop: INK});
@@ -136,14 +164,14 @@ window.SCENE = {
         k.slam('your customers.', 72, 818, tNote + 0.15, {size: 66, color: CREAM, from: 0.5, drop: INK});
         k.sweep(72, 900, 420, 6, tNote + 0.35, {color: 'accent'});
       }
-      if (T < tRaised) return {host: false, speech: false};
-      if (T < tNote) return {host: false};
+      /* the cover frame has no host; Snow and the dialog box come in on the cut and stay */
+      if (T < tIn) return {host: false, speech: false};
       return host(k, k.live('hook.note') ? 'point' : null);
     },
 
     /* ---- stakes: the same map; the 65% and the survey under it, then a sun per trade as it is named */
     stakes: (k, T) => {
-      const n = k.data.numbers, t0 = k.S('stakes'), tAll = wordT(k, 'stakes.all', /^Sixty/i), t74 = wordT(k, 'stakes.74', /^Seventy/i);
+      const n = k.data.numbers, t0 = k.S('stakes'), tAll = wordT(k, 'stakes.hvac', /^Eighty/i), t74 = wordT(k, 'stakes.74', /^seventy/i);
       const tPl = wordT(k, 'stakes.trades', /^Plumbing/i), tEl = wordT(k, 'stakes.trades', /^electrical/i), tRf = wordT(k, 'stakes.trades', /^roofing/i);
       weatherMap(k, {
         fronts: [{kind: 'warm', at: tAll, dur: 2.2, x0: -0.05, x1: 1.05}],
@@ -151,10 +179,12 @@ window.SCENE = {
           ['elec', 'sun', tEl, T >= t74 ? `ELEC ${n.elec.shown}` : 'ELEC'], ['roof', 'sun', tRf, T >= t74 ? `ROOF ${n.roof.shown}` : 'ROOF']],
       });
       [['plumb', t74], ['elec', t74 + 0.1], ['roof', t74 + 0.2]].forEach(([key, at]) => k.burst((14 + ICONS[key][0] * 332 + 30) * 3, (82 + ICONS[key][1] * 150) * 3, at, {n: 10, r: 140}));
-      /* the panel: the headline first (the question, then the 65% and the trades), the source under it */
+      /* the panel: the headline first (the question, then the HVAC 83% and the trades), the source under it */
+      const [hx, hy] = [(14 + ICONS.hvac[0] * 332 + 30) * 3, (82 + ICONS.hvac[1] * 150) * 3];
+      k.burst(hx, hy, tAll + 0.1, {n: 12, r: 160});
       if (T >= tAll) {
-        k.slam(cnt(k, n.all, tAll, {suffix: '%'}), 72, 798, tAll, {size: 132, color: 'accent', from: 0.5, drop: INK});
-        k.slam('of them raised prices.', 300, 812, tAll + 0.3, {size: 39, color: CREAM, from: 0.4});
+        k.slam(cnt(k, n.hvac, tAll, {suffix: '%'}), 72, 798, tAll, {size: 132, color: 'accent', from: 0.5, drop: INK});
+        k.slam('of HVAC companies did.', 300, 812, tAll + 0.3, {size: 39, color: CREAM, from: 0.4});
         if (T >= t74) k.slam(`Plumbing, electrical, roofing: ${n.plumb.shown}`, 300, 862, t74, {size: 39, color: GOLD, from: 0.4});
         else if (T >= tPl) k.slam('Plumbing, electrical, roofing', 300, 862, tPl, {size: 39, color: GOLD, from: 0.4});
       } else k.slam('Who raised prices last year?', 72, 806, t0 + 0.4, {size: 66, color: CREAM, from: 0.5, drop: INK});
@@ -167,8 +197,8 @@ window.SCENE = {
     why: (k, T) => {
       const n = k.data.numbers, d = px(k), t0 = k.S('why');
       /* the 72% rings on "Seventy-two" (the number), not on "inflation" */
-      const tInf = wordT(k, 'why.inflation', /^Seventy/i), tLab = wordT(k, 'why.labor', /^half/i), tFed = k.S('why.federal');
-      const tRep = wordT(k, 'why.repair', /^three/i, 3.0), tAll = wordT(k, 'why.all', /^three/i, 0.2), tCrew = k.S('why.crew'), crew = T >= tCrew;
+      const tInf = wordT(k, 'why', /^Seventy/i), tLab = wordT(k, 'why.labor', /^half/i), tFed = k.S('why.federal');
+      const tRep = wordT(k, 'why.repair', /^three/i, 3.0), tCrew = k.S('why.crew'), tAll = wordT(k, 'why.crew', /^three/i, 1.2), crew = T >= tCrew;
       /* the receipt is tagged by source: a JOBBER SURVEY line over its two reasons, a BLS PAY DATA line over the pay lines */
       const SJ = 'JOBBER SURVEY', SB = 'BLS PAY DATA';
       const items = [{label: SJ, amount: 0, at: t0 + 0.3, src: true}, {label: 'INFLATION', amount: 72, at: tInf, show: n.inflation.shown},
@@ -191,8 +221,10 @@ window.SCENE = {
       /* the display: right edge at x 918 (inside the 930 safe edge), no cursor */
       const val = crew ? n.repair.shown : (cur ? cur.show : '--'), size = d.tw(val, 66) <= 76 ? 66 : 39;
       d.tx(val, 306, 152 - (size >= 52 ? 11 : 6), {size, color: TEAL, align: 'right'});
-      /* on "your crew's pay": a gold line under REPAIR PAY (the receipt holds 6 lines by then, top at y 136) */
-      if (crew) d.P(56, 136 + 6 + 4 * 18 + 15, Math.min(128, Math.round(128 * eo(d.fr(tCrew) / 8))), 2, ORANGE);
+      /* once ALL PAY has printed (after "your crew's pay"): a gold line under REPAIR PAY (the receipt holds 6 lines by
+         then, top at y 136) */
+      const tLine = tAll + 0.3;
+      if (T >= tLine) d.P(56, 136 + 6 + 4 * 18 + 15, Math.min(128, Math.round(128 * eo(d.fr(tLine) / 8))), 2, ORANGE);
       /* the shop floor: dark planks, staggered seams, a baseboard (the set's checker tiles read as a transparency grid) */
       d.P(0, 417, 360, 223, '#3D2E45'); d.P(0, 417, 360, 3, '#1B1420');
       for (let y = 420, r = 0; y < 640; y += 12, r++) { d.P(0, y + 11, 360, 1, '#2B2033'); for (let x = (r * 53) % 96; x < 360; x += 96) d.P(x, y, 1, 11, '#2B2033'); }
@@ -213,7 +245,7 @@ window.SCENE = {
         else k.slam('Federal pay data', 66, 264, tFed, {size: 39, color: GOLD, from: 0.4});
         k.text(`BLS, ${n.months.shown} months to June 2026`, 66, 318, {size: 30, color: SAND});
       }
-      return host(k, k.live('why.federal') || k.live('why.crew') ? 'point' : (k.live('why.inflation') || k.live('why.labor') ? 'clip' : null));
+      return host(k, k.live('why.federal') || k.live('why.crew') ? 'point' : (k.live('why') || k.live('why.labor') ? 'clip' : null));
     },
 
     // ---- note: the price note types on a letterhead as it is said; the turn lights the last line and stamps it
@@ -272,14 +304,14 @@ window.SCENE = {
 
     // ---- caveat: the map again, ONE HONEST NOTE; a cold front, a "?" cloud for how customers took it
     caveat: (k, T) => {
-      const n = k.data.numbers, t0 = k.S('caveat'), tSell = k.S('caveat.sells'), tShow = k.S('caveat.shows'), tTook = k.S('caveat.took'), tWatch = k.S('caveat.watch');
+      const n = k.data.numbers, t0 = k.S('caveat'), tSell = k.S('caveat.sells'), tTook = k.S('caveat.took'), tWatch = k.S('caveat.watch');
       weatherMap(k, {title: 'ONE HONEST NOTE', fronts: [{kind: 'cold', at: t0 + 0.2, dur: 2.4, x0: 1.05, x1: -0.05}],
         icons: allTrades(n).concat([['q', 'cloud', tTook, 'CUSTOMERS?']])});
       if (T < tWatch) {
         if (T >= tSell) k.slam('Jobber sells software.', 72, 796, tSell, {size: 39, color: CREAM, from: 0.4});
         else k.slam('Where the numbers come from', 72, 796, t0 + 0.3, {size: 39, color: SAND, from: 0.4});
-        if (T >= tShow) k.slam('Its survey: who raised prices.', 72, 852, tShow, {size: 39, color: GOLD, from: 0.4});
-        if (T >= tTook) k.slam('Not how customers took it.', 72, 908, tTook, {size: 39, color: 'accent', from: 0.4});
+        if (T >= tTook) k.slam("Its survey doesn't show", 72, 852, tTook, {size: 39, color: GOLD, from: 0.4});
+        if (T >= tTook) k.slam('how customers took it.', 72, 908, tTook + 0.3, {size: 39, color: 'accent', from: 0.4});
       } else {
         k.slam('Watch your close rate', 72, 800, tWatch, {size: 66, color: CREAM, from: 0.5, drop: INK});
         k.slam('for a month after.', 72, 874, tWatch + 0.3, {size: 66, color: 'accent', from: 0.5, drop: INK});

@@ -164,6 +164,47 @@ const site = (k, o) => {
 };
 
 /* ================================================================================================================ */
+/* the bench close-up (hook, 0.76 s to "Is"): the cut in on the quote. The claim rides on a title plate up top with its */
+/* source; below it the same tape measure and planks drawn big on the workbench (one low-res pixel per 3 frame units, */
+/* nothing scaled): the blade runs out to the cost mark on "fifty" and the orange markup plank blinks on "percent". */
+const XB = (usd) => Math.round(8 + usd * 344 / 1500);   /* big plank pixels per dollar: $1,500 = 344 px */
+const bench = (k, o) => {
+  const d = px(k), {P, DOT, dith, disc, fr, tx, T} = d, n = k.data.numbers;
+  /* the OSB wall, the bench edge, the bench top, the floor under the caption band */
+  P(0, 0, 360, 300, '#C99A5B'); for (let i = 0; i < 260; i++) { const x = Math.floor(hash(i * 1.37) * 358), y = Math.floor(hash(i * 4.11) * 298); P(x, y, 2 + (i % 3), 1, i % 4 ? '#B07A47' : '#E6C08A'); }
+  P(0, 300, 360, 4, '#4A2E1B'); P(0, 304, 360, 113, '#6B4226'); for (let y = 310; y < 417; y += 9) P(0, y + (y % 2), 360, 1, '#5A3720');
+  P(0, 417, 360, 223, '#8C5A33'); for (let i = 0; i < 160; i++) DOT(Math.floor(hash(i * 7.7) * 360), 420 + Math.floor(hash(i * 3.9) * 216), i % 2 ? '#6B4226' : '#B07A47');
+  /* the title plate: the claim and its source, held from the cover */
+  d.win(14, 82, 332, 78, {base: '#253048', hi: '#3B82C4', lo: '#1B1420', rule: '#3B82C4'});
+  const a = `${n.markupPct.shown} markup `, b = 'is NOT', wa = k.measure(a, {size: 66}), wb = k.measure(b, {size: 66}), x0 = 540 - (wa + wb) / 2;
+  k.text(a, x0, 268, {size: 66, color: CREAM, drop: INK}); k.text(b, x0 + wa, 268, {size: 66, color: 'accent', drop: INK});
+  const c = `${n.doubleMarginPct.shown} margin`, wc = k.measure(c, {size: 66});
+  k.text(c, 540, 344, {size: 66, color: CREAM, align: 'center', drop: INK});
+  if (o.qAt != null && T >= o.qAt) k.slam('?', 540 + wc / 2 + 8, 344, o.qAt, {size: 66, color: GOLD, from: 0.8, drop: INK});
+  k.text('Example math. Sources: JLC, Xero', 540, 424, {size: 30, color: SAND, align: 'center'});
+  /* the planks, big, on the bench: cost (raw wood) and the markup (painted orange) */
+  const plank = (x0, x1, base, hi, lo) => { P(x0, 222, x1 - x0, 44, INK); P(x0 + 1, 223, x1 - x0 - 2, 42, base); P(x0 + 1, 223, x1 - x0 - 2, 2, hi); P(x0 + 1, 261, x1 - x0 - 2, 4, lo);
+    for (let x = x0 + 12; x < x1 - 8; x += 31) { P(x, 233 + (x % 5), 14, 1, lo); P(x + 5, 247 - (x % 3), 10, 1, lo); } };
+  P(4, 266, 352, 6, '#4A2E1B');
+  plank(XB(0), XB(n.cost.value), '#D9A066', '#F7D79B', '#B07A47');
+  plank(XB(n.cost.value), XB(n.price.value), '#F2A541', GOLD, '#B07A47');
+  tx(`COST ${n.cost.shown}`, (XB(0) + XB(n.cost.value)) / 2, 233, {size: 66, color: '#4A2E1B', align: 'center'});
+  tx(`+${n.markupPct.shown}`, XB(n.cost.value) + 8, 233, {size: 66, color: '#4A2E1B'});
+  if (o.pulseAt != null && fr(o.pulseAt) >= 0 && fr(o.pulseAt) < 24 && Math.floor(fr(o.pulseAt) / 4) % 2 === 0) {
+    const x0 = XB(n.cost.value) - 1, x1 = XB(n.price.value) + 1; P(x0, 220, x1 - x0, 3, GOLD); P(x0, 265, x1 - x0, 3, GOLD); P(x0, 220, 3, 48, GOLD); P(x1 - 3, 220, 3, 48, GOLD);
+  }
+  /* the tape: a big case at the left, the blade along the top of the planks, marks every hundred dollars */
+  let L = 4;
+  if (o.tapeAt != null && T >= o.tapeAt) { const to = XB(n.cost.value) - 30, q = clamp(fr(o.tapeAt) / 8), back = q >= 1 ? 1 : 1 + 2.2 * Math.pow(q - 1, 3) + 1.2 * Math.pow(q - 1, 2); L = Math.round(4 + (to - 4) * back); }
+  P(30, 204, L, 10, INK); P(30, 205, L, 8, GOLD); P(30, 205, L, 2, '#FFF2B8');
+  for (let usd = 100; XB(usd) - 30 <= L; usd += 100) P(XB(usd), 205, 2, usd % 500 ? 4 : 7, INK);
+  if (L >= XB(n.cost.value) - 30) { P(XB(n.cost.value) - 1, 200, 3, 16, INK); tx(n.cost.shown, XB(n.cost.value) - 4, 180, {size: 39, color: CREAM, align: 'right', drop: INK}); }
+  P(30 + L - 2, 200, 4, 18, INK); P(30 + L - 1, 201, 2, 16, GREY);
+  d.bevel(2, 192, 34, 34, GOLD, '#FFF2B8', '#B07A47', INK); P(6, 210, 26, 10, '#2B2033'); P(6, 210, 26, 2, '#4A4E5A'); disc(19, 201, 5, '#B07A47'); DOT(17, 199, CREAM); P(33, 197, 4, 6, '#E2633B');
+  k.chip('Run the numbers', 66, 846, {size: 30});
+};
+
+/* ================================================================================================================ */
 /* the dial (math, double): the library gauge, with the needle driven here so it can swing from one margin to another */
 /* (the set's needle only rises from zero). The set draws at rest; its resting needle is painted out and the 0 mark put */
 /* back, then our needle goes on in the set's own style. The readout shows `shown`. */
@@ -207,16 +248,22 @@ window.SCENE = {
   transitions: {math: 'door', why: 'dissolve', double: 'blinds', formula: 'levelselect', close: 'gameover'},
   trauma: {'double.x2': 0.8},
   sections: {
-    /* ---- hook: the job site, settled on frame 0 (the claim on the sign, the priced planks, the source); the tape whips */
-    /* out to the whole price on "Nope" and the markup plank is a third of it */
+    /* ---- hook: three shots (IMPROVE 00a: the picture changes by 1 s and twice by 3 s, Snow on by 1 s). The cover: the job */
+    /* site, the claim on the sign (frame 0, held still to "job"). Cut in on "job" to the bench close-up: Snow and the dialog */
+    /* box come in, the big tape runs to the cost on "fifty", the markup plank blinks on "percent". Cut back out on "Is" to */
+    /* the site: the "?" lands on "margin?", the tape whips out to the whole price on "Nope" and the markup is a third of it. */
     hook: (k, T) => {
       const n = k.data.numbers, d = px(k);
       const tQ = wordT(k, 'hook', /^margin/i, 3), tNope = k.S('hook.nope'), tThird = wordT(k, 'hook.nope', /^third/i, 0.9), fix = k.S('hook.fix');
-      /* the cover holds still for 1 s; then the tape runs out to the cost on "fifty" (markup is measured on cost) and the
-         markup plank blinks with a pop of sparks on "percent" */
-      const tFifty = Math.max(1.0, wordT(k, 'hook', /^fifty/i, 1)), tPct = Math.max(tFifty + 0.4, wordT(k, 'hook', /^percent/i, 1.5));
-      site(k, {markupLabel: `+${n.markupPct.shown}`, twitch: 0.6, pulseAt: tPct,
-        tape: [{at: tFifty, usd: n.cost.value}, {at: tNope, usd: n.price.value}], glowAt: tNope + 0.3, bracket: {at: tNope + 0.3, from: n.cost.value, to: n.price.value}});
+      const tJob = Math.min(0.8, Math.max(0.5, wordT(k, 'hook', /^job/i, 0.76))), tFifty = wordT(k, 'hook', /^fifty/i, 1), tPct = wordT(k, 'hook', /^percent/i, 1.5);
+      const tOut = Math.min(2.6, wordT(k, 'hook', /^is$/i, 2.04));
+      if (T >= tJob && T < tOut) {
+        bench(k, {tapeAt: tFifty, pulseAt: tPct});
+        k.burst(((XB(n.cost.value) + XB(n.price.value)) / 2) * 3, 730, tPct, {n: 18, r: 240, colors: ['accent', 'paper']});
+        return host(k);
+      }
+      site(k, {markupLabel: `+${n.markupPct.shown}`, twitch: 0.3,
+        tape: [{at: Math.min(tFifty, tOut), usd: n.cost.value}, {at: tNope, usd: n.price.value}], glowAt: tNope + 0.3, bracket: {at: tNope + 0.3, from: n.cost.value, to: n.price.value}});
       /* the claim on the sign, settled from frame 0, centred on the sign (x 42 to 1038) */
       const l3 = `${n.doubleMarginPct.shown} margin`, w3 = k.measure(l3, {size: 132}), x3 = 540 - w3 / 2;
       k.slam(`${n.markupPct.shown} markup`, 540, 268, -1, {size: 132, color: CREAM, align: 'center', drop: INK});
@@ -224,7 +271,6 @@ window.SCENE = {
       k.slam(l3, 540, 486, -1, {size: 132, color: CREAM, align: 'center', drop: INK, glintAt: 0.9});
       if (T >= tQ) k.slam('?', x3 + w3 + 12, 486, tQ, {size: 132, color: GOLD, from: 0.8, drop: INK});
       strike(k, x3 - 6, 548, k.measure(n.doubleMarginPct.shown, {size: 132}) + 12, tNope + 0.4);
-      k.burst((XC(n.cost.value) + XC(n.price.value)) * 1.5, 724, tPct, {n: 16, r: 200, colors: ['accent', 'paper']});
       /* the ground: the chip and the source on a plate from frame 0; the stamp lands on the third; the two chips */
       plate(d, 14, 256, 200, 44);
       k.chip('Run the numbers', 66, 786, {size: 30});
@@ -236,8 +282,8 @@ window.SCENE = {
         d.clip(0, 296, 360, 36, () => { k.chip('1  The math', 240, 927 + c1 * 3, {size: 30, fill: 'accent', color: INK}); k.chip('2  The fix', 560, 927 + c2 * 3, {size: 30, fill: 'accent', color: INK}); });
         k.burst(400, 940, fix + 0.1, {n: 12, r: 160});
       }
-      /* the host and the dialog box come in together on "margin?", so the box's tail always points at Snow */
-      if (T < tQ) return {host: false, speech: false};
+      /* the cover frame has no host; Snow and the dialog box come in together on "job" and stay */
+      if (T < tJob) return {host: false, speech: false};
       return host(k, T >= tNope && T < fix ? 'shrug' : null);
     },
 

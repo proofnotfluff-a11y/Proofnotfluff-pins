@@ -3,7 +3,7 @@
 music: rooms
 
 ## hook "Mark up a job fifty" [sfx: pop]
-Hook card, settled on frame one, host and dialog box hidden: "50% MARKUP / is NOT / 50% MARGIN", the second 50% in the accent, chip RUN THE NUMBERS, source line "Math: JLC and Xero". At 3.0 s the room opens: framing. A quote card on the wall: Cost $1,000, Markup 50%, Margin 50%? Snow checks his clipboard.
+Three shots (IMPROVE 00a). Cover, frame one, host and dialog box hidden: the job site, the claim on the sign "50% MARKUP / is NOT / 50% MARGIN", chip RUN THE NUMBERS, source line "Math: JLC and Xero". On "job" cut in to the bench close-up: the claim and source on a title plate up top, the planks big (COST $1,000, +50% in orange), Snow and the dialog box come in. On "fifty" the big tape runs out to the $1,000 mark; on "percent" the markup plank blinks with sparks. On "Is" cut back out to the site: the "?" lands on "margin?".
 ## hook.nope "Nope. It's a third." [sfx: stamp]
 Stamp ONE THIRD slams across the "Margin 50%?" line. Snow shrugs.
 ## hook.fix "I'll show you the" [sfx: blip]

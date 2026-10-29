@@ -2,36 +2,36 @@
  "source": {
   "name": "City of Chicago Data Portal, Building Permits",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
-  "rowsUpdatedAt": "2026-10-26T12:05:50+00:00",
-  "fetchedAt": "2026-10-26T16:59:20+00:00",
+  "rowsUpdatedAt": "2026-10-29T12:07:54+00:00",
+  "fetchedAt": "2026-10-29T21:55:58+00:00",
   "modified": "Filtered by ProofNotFluff: permits issued in the last 24 months, new construction or renovation, reported cost $500,000 or more, still open (City status Active or Phased Permitting; complete, suspended, cancelled, revoked and expired permits left out), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs a construction clean under its permit (foundation, superstructure, caisson, demolition, roof, facade, mechanical, equipment or site work only) left out; cleaning companies listed as contractor left out; a revision of a permit already on the list counted once; only project-level and business fields kept.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
  "window": {
-  "from": "2024-10-26",
-  "to": "2026-10-26"
+  "from": "2024-10-29",
+  "to": "2026-10-29"
  },
  "counts": {
-  "fetched": 3069,
-  "kept": 1129,
+  "fetched": 3087,
+  "kept": 1137,
   "excluded": {
-   "house or 2 to 3 flat": 593,
-   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 248,
-   "no commercial or apartment wording": 84,
-   "no interior finish work or new building named": 38,
-   "one home inside a larger building": 41,
+   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 249,
+   "house or 2 to 3 flat": 599,
+   "no interior finish work or new building named": 39,
+   "no commercial or apartment wording": 83,
+   "one home inside a larger building": 40,
    "common areas only, no homes worked on": 7,
    "apartment building with no unit count (could be a 2 or 3 flat)": 8,
    "no business listed as general contractor": 5,
-   "closed, complete or suspended": 901,
+   "closed, complete or suspended": 905,
    "revision or second listing of a permit already listed": 15
   },
   "keptByType": {
-   "New construction": 333,
-   "Renovation": 796
+   "New construction": 337,
+   "Renovation": 800
   },
-  "keptCost": 8813039338,
-  "keptUnits": 5837,
+  "keptCost": 9108692744,
+  "keptUnits": 6231,
   "topAreas": [
    [
     "Loop",
@@ -43,11 +43,11 @@
    ],
    [
     "Near West Side",
-    104
+    106
    ],
    [
     "West Town",
-    69
+    71
    ],
    [
     "Lincoln Park",
@@ -59,7 +59,7 @@
    ],
    [
     "Logan Square",
-    29
+    30
    ],
    [
     "Uptown",
@@ -69,8 +69,8 @@
   "topGCs": [
    {
     "name": "Skender Construction LLC",
-    "projects": 23,
-    "cost": 542640133
+    "projects": 25,
+    "cost": 664540133
    },
    {
     "name": "Executive Construction, Inc.",
@@ -103,11 +103,6 @@
     "cost": 25799000
    },
    {
-    "name": "Clune Construction Company, L.P.",
-    "projects": 15,
-    "cost": 61802408
-   },
-   {
     "name": "Development Solutions, Inc",
     "projects": 15,
     "cost": 48036520
@@ -118,17 +113,22 @@
     "cost": 71125690
    },
    {
+    "name": "Clune Construction Company, L.P.",
+    "projects": 14,
+    "cost": 49802408
+   },
+   {
     "name": "Reed Construction LLC",
     "projects": 14,
     "cost": 16316746
    },
    {
-    "name": "F.H. Paschen, S.N. Nielsen & Associates, LLC.",
+    "name": "Pintauro Construction Company LLC",
     "projects": 13,
-    "cost": 660489247
+    "cost": 59609486
    }
   ],
-  "nearFinish": 17
+  "nearFinish": 18
  },
  "projects": [
   {
@@ -276,6 +276,24 @@
    "lon": -87.647763
   },
   {
+   "permit": "101084976",
+   "issued": "2026-10-28",
+   "type": "New construction",
+   "scope": "New construction, full building permit for a 2 story building with a mezzanine and no basement...",
+   "units": null,
+   "sleeping": null,
+   "cost": 177300000,
+   "address": "1904 W Adams St",
+   "communityArea": "Near West Side",
+   "status": "Active",
+   "milestone": "Permit Issued (Fee Due)",
+   "gc": [
+    "James McHugh Construction Co"
+   ],
+   "lat": 41.878887,
+   "lon": -87.674364
+  },
+  {
    "permit": "101077810",
    "issued": "2026-07-24",
    "type": "New construction",
@@ -328,6 +346,24 @@
    ],
    "lat": 41.876808,
    "lon": -87.631916
+  },
+  {
+   "permit": "101082881",
+   "issued": "2026-10-27",
+   "type": "New construction",
+   "scope": "New construction of a 25-story mixed use building to include ground floor retail, parking on levels 2 & 3...",
+   "units": 380,
+   "sleeping": null,
+   "cost": 112000000,
+   "address": "1022 W Jackson Blvd",
+   "communityArea": "Near West Side",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "Skender Construction LLC"
+   ],
+   "lat": 41.877965,
+   "lon": -87.652867
   },
   {
    "permit": "101063081",
@@ -544,42 +580,6 @@
    ],
    "lat": 41.722481,
    "lon": -87.583076
-  },
-  {
-   "permit": "101067603",
-   "issued": "2025-09-11",
-   "type": "Renovation",
-   "scope": "Interior alterations to existing 24-story office building to convert floors 4-24 to residential apartments (252 dwelling units) to include window...",
-   "units": 252,
-   "sleeping": null,
-   "cost": 51000000,
-   "address": "65 E Wacker Pl",
-   "communityArea": "Loop",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "James McHugh Construction Co"
-   ],
-   "lat": 41.886704,
-   "lon": -87.625496
-  },
-  {
-   "permit": "101077075",
-   "issued": "2026-03-16",
-   "type": "Renovation",
-   "scope": "Interior alterations to levels b2, b1, l1, and l2 for building shared amenity space...",
-   "units": null,
-   "sleeping": null,
-   "cost": 50118593,
-   "address": "100 W Randolph St",
-   "communityArea": "Loop",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "Skender Construction LLC"
-   ],
-   "lat": 41.884586,
-   "lon": -87.63101
   }
  ],
  "nearFinish": [
@@ -602,6 +602,24 @@
    "lon": -87.620773
   },
   {
+   "permit": "101076229",
+   "issued": "2026-03-09",
+   "type": "Renovation",
+   "scope": "Existing office tenant alterations on floors 43, 45 and expansion to the entire 44th floor to include new conveniance stair from the 43rd floor thru...",
+   "units": null,
+   "sleeping": null,
+   "cost": 5500000,
+   "address": "181 W Madison St",
+   "communityArea": "Loop",
+   "status": "Active",
+   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
+   "gc": [
+    "Skender Construction LLC"
+   ],
+   "lat": 41.881841,
+   "lon": -87.633255
+  },
+  {
    "permit": "101053170",
    "issued": "2025-02-11",
    "type": "New construction",
@@ -618,24 +636,6 @@
    ],
    "lat": 41.811829,
    "lon": -87.626299
-  },
-  {
-   "permit": "101079788",
-   "issued": "2026-03-18",
-   "type": "Renovation",
-   "scope": "Interior alterations to existing 8th floor office space. No change to existing use",
-   "units": null,
-   "sleeping": null,
-   "cost": 3700000,
-   "address": "360 N Green St",
-   "communityArea": "Near West Side",
-   "status": "Active",
-   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
-   "gc": [
-    "Big Construction LLC"
-   ],
-   "lat": 41.888632,
-   "lon": -87.648847
   },
   {
    "permit": "101070208",

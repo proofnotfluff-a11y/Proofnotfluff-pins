@@ -37,7 +37,8 @@ professional dashboard.
   disclosure does not limit reach). Category: Education. Language: English. Visibility: Public. Publish.
   Record the youtube.com/shorts/<id> link.
 
-After each: `python3 video/studio/anim.py posted <slug> <platform> <url>`, commit, push.
+After each: `python3 video/studio/anim.py posted <slug> <platform> <url>`, commit, push. A trial reel is the lesson's Instagram link
+(`instagram-trial` records it under `instagram`), so it counts toward the four; never post Instagram again for it.
 
 ## Trial reels to the feed, and the 90-day re-cut (Todd, Oct 29, 2026, 3:59 pm: "Fold it in")
 - Each run: `python3 video/studio/anim.py trials`. For each one marked due (72 hours old), open its link as proofnotfluff,

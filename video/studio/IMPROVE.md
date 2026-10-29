@@ -7,10 +7,17 @@ and logs it. One change a day keeps a bad change easy to find. Gates judge the r
 
 Order of pick: a fault a gate named twice in the last week, then the item most likely to raise watch time or sends (the
 weekly numbers), then the top of the backlog. Research runs (Mondays) add items with their source.
+The lab (Tue, Thu, Sat) ranks this list from its benchmark against _shared/style-board/ and builds the bigger items.
 
 ## Backlog (most promising first)
-000. Style reference board per series (Paulino's animation-studio method, Todd Oct 28): 3 to 6 saved frames the art
-   follows (palette, shading, UI finish), read by the scene author and the design gate.
+000. End card: the last 3 to 5 s show the ProofNotFluff lockup and proofnotfluff.com, music only (Jake Van Clief's
+   voice-driven-animation end card; the buyer gate answered follow_or_link "no" on lessons 1 and 8).
+00a. Hook motion: the picture changes within 1 s and twice in the first 3 s, host on screen by 3 s (lesson 9 holds one
+   card 0 to 7.6 s; style board 01).
+00b. Type floor in `lint`: spoken words 44 px, labels 36 px at 1080 wide (lesson 9 runs about 20 to 27 px).
+00c. Length in `lint`: fail a lesson over 75 s (6 of 9 lessons run 76 to 87 s).
+00d. Fill the frame: y 1250 to 1600 is bare floor in most rooms (style board 04 to 06); set dressing or a lower band
+   edge there, and a bigger host.
 00. Motion: 60 fps renders (double render time) for smoother slides; Snow walk-ins, a point-at-board pose and a reaction
    pose on big numbers; squash and stretch on landings and 1-frame smears on fast moves (Todd, Oct 28: "better animation").
 0. Captions lint in code: line 1 under 100 characters on all four, a send line on all four, hashtag counts per platform,
@@ -29,6 +36,9 @@ weekly numbers), then the top of the backlog. Research runs (Mondays) add items 
 12. Visual: a seasonal touch per week (snow outside the half-built house in winter, leaves in fall).
 
 ## Done (newest first: date, item, what changed, proof)
+- 2026-10-29: style reference board (backlog 000) in _shared/style-board/ (six of our best frames, keep and push notes,
+  the target spec); the lab (.claude/skills/video-lab, Tue Thu Sat) benchmarks against it. Queue rule: `ready` keeps a
+  rebuilt lesson's place, `waiting` lists unposted lessons, the daily run rebuilds instead of making when 3 or more wait.
 - 2026-10-28 (evening): steady pixel camera (no fractional zoom), shapes, text and rooms on whole low-res pixels. Proof:
   lesson 1 floor moved in 17 of 150 frames (4 to 9 s), now 0; lint PASS.
 - 2026-10-28 (overdrive): room music loops ducked under the voice and a sting on the send line (backlog 1, 11); lip

@@ -28,5 +28,6 @@ from the data file and checked by the facts gate. Nothing posts without Todd's "
 | `_runtime/` | `player.js` clock, cues and preview; `kit.js` the cast, props, rooms and real screens; `looks.js` the looks; `map.json` the 77 community areas |
 | `_shared/` | `voice.md` script and voice rules, `kit.md` what can be drawn, `desk.md` real screens, `looks.md` the looks, `sound.md` sound rules |
 | `_templates/` | what `anim.py new` copies |
+| `_shared/style-board/` | the frames and target spec the lab and the art aim at; `research/LAB.md` the lab's scorecard |
 
 Heavy files (voice takes, voice.mp3, MP4s, sheets) live on the `video-renders` branch under `studio/<slug>/`; text and JSON live on main.

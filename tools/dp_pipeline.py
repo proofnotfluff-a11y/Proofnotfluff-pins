@@ -66,7 +66,7 @@ CSS = ("<style>"
        "@media(min-width:900px){.pp-dl{grid-template-columns:1fr 1fr}}"
        ".pp-one .cta{grid-template-columns:1fr}.ld-page .ld-tiles{margin-top:22px}.ld-page .ld-heroact .st-btn2{min-height:50px}"
        "@media(max-width:599px){.pp-t{min-width:0}.pp-t th,.pp-t td{padding:9px 6px;font-size:13.5px}"
-       ".pp-t .hm{display:none}.pp-co .yr{grid-template-columns:44px 1fr}}"
+       ".pp-t .hm{display:none}.pp-co .yr{grid-template-columns:44px 1fr}.ld-tiles .lab{white-space:normal}}"
        "</style>")
 
 

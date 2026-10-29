@@ -190,7 +190,7 @@ window.SCENE = {
     // quote rebuilt from memory, the oven forgotten
     play: (k, T) => {
       const d = px(k), {P} = d, t0 = k.S('play');
-      const tNight = W(/^You$/i, k.S('play.night'), t0 + 2.6), tMem = W(/^memory/i, tNight, tNight + 1.6), tOven = W(/^oven/i, k.S('play.oven'), tMem + 1.6);
+      const tNight = W(/^At$/i, k.S('play.night'), t0 + 2.6), tMem = W(/^memory/i, tNight, tNight + 1.6), tOven = W(/^oven/i, k.S('play.oven'), tMem + 1.6);
       if (T < tNight) {
         const s = k.sets.street({t0, speed: 1, van: true});
         k.slam('Notes: in the car all day.', 150, 300, t0 + 0.1, {size: 39, color: NAVY, from: 0.4});

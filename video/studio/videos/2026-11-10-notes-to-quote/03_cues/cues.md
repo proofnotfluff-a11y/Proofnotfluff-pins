@@ -11,9 +11,9 @@ Cut: the messy walkthrough notes, close: scribbles, a coffee ring, arrows, "ovn 
 
 ## play "Usually those notes sit" [sfx: whoosh]
 The street set: the van drives past the houses all day; the notepad rides on the dash. Sky line: "Notes: in the car all day."
-## play.night "You rebuild the quote" [sfx: tick]
+## play.night "At night you're rebuilding" [sfx: tick]
 Night at the kitchen table: a blank quote, a thought bubble of half-remembered items.
-## play.oven "and forget the inside" [sfx: blip]
+## play.oven "you forget the inside" [sfx: blip]
 An oven icon in the bubble gets a red X: "Forgot: inside of the oven."
 
 ## fix "Paste the notes into" [sfx: whoosh]
@@ -34,7 +34,7 @@ The cursor jumps to the clipboard: QUOTING, the stat bar fills to 54%.
 
 ## button "The AI just does" [sfx: whoosh]
 The XP bar: it fills on "typing".
-## button.prices "You own the prices," [sfx: stamp]
+## button.prices "owns the prices, so" [sfx: stamp]
 LEVEL UP stamps as "YOUR PRICES"; perks land: "+ Your notes", "+ Your rates".
 ## button.notes "starts with your notes." [sfx: sting]
 Then the end card with the send line: "Send this to whoever writes your quotes."

@@ -7,7 +7,7 @@ coo/DECISIONS-2026-10-29.md). Cleaning owners first. Segment Quote Clinic.
 - **Where:** Instagram Reel, 9:16, then TikTok, Facebook, YouTube Shorts.
 - **Audience:** the owner of a residential cleaning company (5 to 25 staff) who walks a home before quoting a deep clean.
 - **The one idea:** an AI chat app turns walkthrough notes into a quote; you check every price.
-- **Shape:** drop-in (the finished deep clean quote on screen first: it started as messy walkthrough notes) -> play it out (the notes sit in your car all day; you rebuild the quote at night from memory and forget the inside of the oven) -> the fix (paste the notes into an AI chat app with a three-line prompt, on screen as said; the notes turn into itemized lines; you check every line against your own rates before it goes anywhere) -> proof (Jobber's survey of 1,050 home service owners: of those who use AI, 54% use it for quoting) -> button (the AI just does the typing; you own the prices, so every quote still starts with your notes).
+- **Shape:** drop-in (the finished deep clean quote on screen first: it started as messy walkthrough notes) -> play it out (the notes sit in your car all day; at night you're rebuilding the quote from memory and you forget the inside of the oven) -> the fix (paste the notes into an AI chat app with a three-line prompt, on screen as said; the notes turn into itemized lines; you check every line against your own rates before it goes anywhere) -> proof (Jobber's survey of 1,050 home service owners: of those who use AI, 54% use it for quoting) -> button (the AI just does the typing; you're the one who owns the prices, so every quote still starts with your notes).
 - **Hook pattern:** result-first
 - **Treatment:** before-after
 - **Example:** ai-notes-to-quote

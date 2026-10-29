@@ -266,13 +266,13 @@ window.SCENE = {
       return host(k, k.live('proof.low') || k.live('proof.none') ? 'point' : null);
     },
 
-    // ---- button: the boss arena. THE MYTH; the moves: you hit send (on "hand"), follow-up first (on "Fix"); busted on "buy"
+    // ---- button: the boss arena. THE MYTH; the moves: you hit send (on "hand"), follow-up first (on "buy"); busted on "fix"
     button: (k, T) => {
       const t0 = k.S('button');
-      const tHand = W(/^hand$/i, t0, t0 + 0.8), tFix = W(/^Fix$/i, k.S('button.fix')), tBuy = W(/^buy$/i, tFix, tFix + 1.0), tEnd = W(/^receptionist/i, k.S('button.end'), tBuy + 0.8);
-      quiet(k, () => k.sets.boss({name: 'THE MYTH', hp: 100, t0, menu: 'MOVES', hits: [{at: tHand, dmg: 50, label: 'You hit send'}, {at: tFix, dmg: 50, label: 'Follow-up first'}], defeatAt: tBuy, winText: 'BUSTED!'}));
+      const tHand = W(/^hand$/i, t0, t0 + 0.8), tBuy = W(/^buy$/i, k.S('button.fix')), tFix = W(/^fix$/i, k.S('button.end'), tBuy + 1.2), tEnd = W(/^follow/i, tFix, tFix + 0.3);
+      quiet(k, () => k.sets.boss({name: 'THE MYTH', hp: 100, t0, menu: 'MOVES', hits: [{at: tHand, dmg: 50, label: 'You hit send'}, {at: tBuy, dmg: 50, label: 'Follow-up first'}], defeatAt: tFix, winText: 'BUSTED!'}));
       if (T >= tEnd) k.slam('Follow-up first.', 540, 690, tEnd, {size: 66, color: GOLD, align: 'center', from: 0.5, drop: INK});
-      return host(k, T >= tBuy ? 'wave' : (k.live('button') ? 'point' : null));
+      return host(k, T >= tFix ? 'wave' : (k.live('button') ? 'point' : null));
     },
   },
 };

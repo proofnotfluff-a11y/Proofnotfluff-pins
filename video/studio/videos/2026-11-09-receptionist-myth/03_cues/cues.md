@@ -32,9 +32,9 @@ Row 1 slides in: "HIGH OR COMPLETE 11%", gold.
 ## proof.none "Fifty-eight percent, little or" [sfx: tick]
 Row 2: "LITTLE OR NONE 58%".
 
-## button "So keep your hand" [sfx: whoosh]
+## button "So your hand stays" [sfx: whoosh]
 The boss arena: THE MYTH. The moves menu: "You hit send", "Follow-up first". On "hand" the first move hits.
-## button.fix "Fix the follow-up before" [sfx: stamp]
-The second move hits on "Fix"; on "buy" the myth breaks into pixels and "BUSTED!" stamps in. [sfx: sting]
-## button.end "an AI receptionist." [sfx: sting]
+## button.fix "buy an AI receptionist" [sfx: stamp]
+The second move hits on "buy"; on "fix" the myth breaks into pixels and "BUSTED!" stamps in.
+## button.end "you fix the follow-up." [sfx: sting]
 "Follow-up first." lands under it, gold. Then the end card with the send line: "Send this to whoever handles your follow-ups."

@@ -1,10 +1,10 @@
 {
  "schema": "pnf.studio.takes.v1",
- "requestedAt": "2026-10-28T17:12:42-05:00",
+ "requestedAt": "2026-10-28T19:07:13-05:00",
  "voice": "W3pJy9ibur1FKUihVxzY",
  "model": "eleven_v4",
- "scriptSha256": "228c4131df0b9be2cca024f0c65657f3f88a9bd24a61051643c06f4220e3b958",
- "voiceSha256": "000f1fb78b94156416fbd358109f5479be14ab78b2ac0c2c43de2dbf522389ec",
+ "scriptSha256": "54bc8e72166e48b68fffee847633ebba6cca9a3072fb348b9d5529a68821fc14",
+ "voiceSha256": "4d4c38e14e09a4eb7a32396bb42db99ba59ca9ed202ee76c55f1314782897526",
  "takes": [
   {
    "n": 1,
@@ -29,12 +29,12 @@
   {
    "n": 3,
    "file": "takes/03.mp3",
-   "sha256": "5d5f67b281cb97ae08306d8d5586bf7d90d194b4483adccc130f307ed1a76444",
-   "seconds": 18.129,
-   "chars": 318,
+   "sha256": "b8e01dc3aa5c6330ab9a00bdd1fd849988994f635db8c200b47e07cb3638e4fc",
+   "seconds": 17.398,
+   "chars": 310,
    "start": 18.639,
-   "end": 36.768,
-   "wpm": 195
+   "end": 36.037,
+   "wpm": 197
   },
   {
    "n": 4,
@@ -42,8 +42,8 @@
    "sha256": "0b1be8e4643adf9c2c8c7764f8462d1d9d2f2034c5a2ba36bfe18ce12e9f77ab",
    "seconds": 12.278,
    "chars": 195,
-   "start": 37.088,
-   "end": 49.366,
+   "start": 36.357,
+   "end": 48.635,
    "wpm": 171
   },
   {
@@ -52,8 +52,8 @@
    "sha256": "47f7a57663e7ee0dc7223dfe4fccb71dfc5fae71d4400b24f40bf87ddd628399",
    "seconds": 15.386,
    "chars": 260,
-   "start": 49.686,
-   "end": 65.072,
+   "start": 48.955,
+   "end": 64.341,
    "wpm": 160
   },
   {
@@ -62,8 +62,8 @@
    "sha256": "5f782173566e6f24b52e1f301bbfffe0ae154e0778a7f9886d5b8a61ec6e3c91",
    "seconds": 10.684,
    "chars": 172,
-   "start": 65.392,
-   "end": 76.076,
+   "start": 64.661,
+   "end": 75.345,
    "wpm": 168
   },
   {
@@ -72,15 +72,15 @@
    "sha256": "a016d2425b116706bc648f720f8e8c8f7f208cffee21ef6f2840fc421d32146d",
    "seconds": 8.673,
    "chars": 145,
-   "start": 76.396,
-   "end": 85.069,
+   "start": 75.665,
+   "end": 84.338,
    "wpm": 187
   }
  ],
- "chars": 1401,
- "at": "2026-10-28T17:20:53-05:00",
+ "chars": 1393,
+ "at": "2026-10-28T19:13:14-05:00",
  "credits": {
-  "used": 11768,
+  "used": 14395,
   "limit": 40000,
   "tier": "starter",
   "resetsAt": 1794774902

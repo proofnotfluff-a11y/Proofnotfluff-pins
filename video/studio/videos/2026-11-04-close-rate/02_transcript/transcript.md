@@ -1,19 +1,20 @@
 # Transcript: 2026-11-04-close-rate
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 187 words, 70.7 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 187 words, 70.4 s of voice.
 
 ## Flags
-none
+- 28.4 s heard 'job' for 'jobs'
+- 63.4 s heard 'Job' for 'Jobs'
 
 ## Pace per take (target 160 to 195 wpm)
 ```
   01     0.0 s  153 wpm  
   02    12.0 s  172 wpm  
   03    24.3 s  154 wpm  
-  04    33.2 s  149 wpm  slow: rewrite it as talk, then speak --take 4
-  05    44.8 s  176 wpm  
-  06    57.1 s  163 wpm  
-  07    63.7 s  174 wpm  
+  04    33.2 s  153 wpm  
+  05    44.5 s  176 wpm  
+  06    56.8 s  163 wpm  
+  07    63.4 s  174 wpm  
 ```
 
 ## Words
@@ -38,27 +39,22 @@ none
 
 `00:27.4` Close rate equals jobs sold, divided by estimates given, over the same month.
 
-`00:33.2` Here's an example.
+`00:33.2` Here's an example where you gave forty estimates last month and sold fourteen.
 
-`00:34.5` Say you gave forty estimates last month and sold fourteen.
+`00:37.9` Fourteen over forty is thirty-five percent, right inside the median range, so plug in yours.
 
-`00:38.3` Fourteen over forty is thirty-five percent, right inside the median range, so plug in yours.
+`00:44.5` Here's the part people skip.
 
-`00:44.8` Here's the part people skip.
+`00:46.7` ServiceTitan doesn't say how it counts a close, and its customers aren't every shop out there.
 
-`00:47.0` ServiceTitan doesn't say how it counts a close, and its customers aren't every shop out there.
+`00:52.5` So the first number you need to beat is your OWN, from last month.
 
-`00:52.9` So the first number you need to beat is your OWN, from last month.
+`00:56.8` Every Friday, put two numbers on the whiteboard, estimates given and jobs sold.
 
-`00:57.1` Every Friday, put two numbers on the whiteboard, estimates given and jobs sold.
+`01:02.0` That's all you need.
 
-`01:02.3` That's all you need.
+`01:03.4` Jobs sold, divided by estimates given.
 
-`01:03.7` Jobs sold, divided by estimates given.
+`01:06.4` Send this to whoever writes your estimates.
 
-`01:06.7` Send this to whoever writes your estimates.
-
-`01:08.7` Then on Friday, you'll know your close rate.
-
-## Hand fixes
-- 28.4 s (take 3) and 63.7 s (take 7): Whisper heard 'job sold' for 'jobs sold'. The s of jobs runs into sold: one 120 to 130 ms hiss in both takes, the same shape. Take 7 is the same audio (sha ba2efdc0) that an earlier run heard as 'Jobs', so both keep the script's word.
+`01:08.4` Then on Friday, you'll know your close rate.

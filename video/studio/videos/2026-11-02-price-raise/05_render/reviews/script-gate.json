@@ -1,20 +1,112 @@
 {
  "gate": "script",
- "round": 0,
- "at": "2026-10-29T12:20:58-05:00",
- "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
- "pass": false,
- "score": "10 of 12",
- "faults": [
-  "Point 2: the on-screen hook stays up 4.10 s (frames 0 to 122), over the 4.0 s ceiling. Fix: clear the hook panel to 'The note that tells / your customers.' by 3.95 s (start the hook.note panel change about 0.15 s before 'Here's' at 4.08 s), leaving the 83% on the map.",
-  "Point 12: the segment name 'Pricing Clinic' is never on screen. Fix: add it to the HUD tag ('LESSON 6 \u00b7 PRICING CLINIC' style, no dash characters) or to the cover and end card, then re-check that the safe area and HUD fit."
+ "round": 1,
+ "at": "2026-10-29T13:41:49-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
+ "pass": true,
+ "score": "12 of 12",
+ "points": [
+  {
+   "n": 1,
+   "name": "Spoken hook",
+   "pass": true,
+   "evidence": "PASS 9 words in whole sentences ('Most trades raised their prices last year. Did you?'), 'you' plus trade noun 'trades', concrete stake (most trades already raised), no greeting; last hook word 'you?' ends 3.52 s on words.json (studio limit 3.6 s)"
+  },
+  {
+   "n": 2,
+   "name": "On-screen hook",
+   "pass": true,
+   "evidence": "PASS 7 words ('83% of HVAC companies raised prices last year.'), same idea as the spoken hook, on screen from frame 0; hook text last visible frame 117, gone at frame 118 = held 3.93 s (2.5 to 4.0); text sits about y 300 to 980 of 1920, clear of top 14% (269 px) and bottom 35% (1248 px), x 70 or more. Round 0 fault (4.10 s) is not back"
+  },
+  {
+   "n": 3,
+   "name": "One idea",
+   "pass": true,
+   "evidence": "PASS brief states it in 13 words ('most trades raised prices for their costs; tell customers why, keep approved quotes'); all 7 takes serve it (stakes, why, note, turn on the keep line, caveat, close), no second lesson"
+  },
+  {
+   "n": 4,
+   "name": "Stakes early",
+   "pass": true,
+   "evidence": "PASS sourced 'Eighty-three percent of HVAC companies' spoken at 9.22 s (limit 14 s for a 75 s lesson)"
+  },
+  {
+   "n": 5,
+   "name": "Facts",
+   "pass": true,
+   "evidence": "PASS every spoken number traces to facts.json with scope words: 83% HVAC, 74% plumbing/electrical/roofing ('Jobber's survey of home service owners', 'last year'), 72% inflation, half = 50% labor, 3.7% 'install and repair pay' 'in the year to June', 3.2% 'for all workers' (BLS ECI civilian wages, 12 months to June 2026). Screen numbers (83%, 74%, 72%, 50%, +3.7%, +3.2%, 1,050, Dec 2025, 12 months to June 2026) and caption extras (65%, 55%) all in facts.json; nothing from the do-not-use list; note and date tagged EXAMPLE"
+  },
+  {
+   "n": 6,
+   "name": "Payoff timing",
+   "pass": true,
+   "evidence": "PASS promise 'Here's the note that tells your customers' starts 4.08 s (limit 6 s); three-line note complete at 'quoted' 43.38 s of 74.51 s = 58.2% (limit 70%)"
+  },
+  {
+   "n": 7,
+   "name": "Copyable artifact",
+   "pass": true,
+   "evidence": "PASS the three-line price note is spoken and typed row by row in the YOUR PRICE NOTE (EXAMPLE) window; complete at 43.38 s and held unchanged through note.skip, note.last, note.promise and note.next to the caveat dissolve at 54.7 s, about 11.3 s"
+  },
+  {
+   "n": 8,
+   "name": "Pace and length",
+   "pass": true,
+   "evidence": "PASS takes 161, 150, 158, 183, 166, 159, 176 wpm (all inside 150 to 200); duration 71.61 + 2.9 = 74.51 s (75 s cap; mp4 74.50 s); longest sentence 17 words, average 7.7 over 25 sentences; 192 words (guide band noted)"
+  },
+  {
+   "n": 9,
+   "name": "Talk test",
+   "pass": true,
+   "evidence": "PASS a contraction in every take (Here's; That's/you're; That's; you've; Here's; doesn't; don't) and you/your in every take; 0 banned words; 0 em or en dashes"
+  },
+  {
+   "n": 10,
+   "name": "Voice markup",
+   "pass": true,
+   "evidence": "PASS 1 tag per take, all on the allowed list (leaning in, matter-of-fact, curious, warmly, short pause, calm, confident), none non-vocal; no emphasis CAPS (only the acronym HVAC); 0 digits, $, %, / or & in voice text; no SSML"
+  },
+  {
+   "n": 11,
+   "name": "Retention beats",
+   "pass": true,
+   "evidence": "PASS 28 cues, gaps mostly 1.3 to 3.7 s; the longer cue gaps (why.repair to why.crew 4.62 s, why.crew to note 4.09 s, close.reason to end 4.23 s) carry in-scene changes (REPAIR PAY print at 'three point seven', ALL PAY +3.2% print at 30.42 s, end card at 71.6 s); turn line 'Here's the part people skip.' at 44.30 s = 59.5% (55 to 75%)"
+  },
+  {
+   "n": 12,
+   "name": "Ending",
+   "pass": true,
+   "evidence": "PASS one CTA, send line naming a role ('Send this to whoever writes your quotes'); last sentence 'Raise yours with a reason.' echoes the hook's 'raised their prices'; no like/follow/comment YES/tag asks; LESSON 6 in the HUD throughout and PRICING CLINIC tag on screen 0 to about 4.7 s (round 0 fault not back); captions carry Jobber and BLS sources, AI label set per platform (aiLabel/aiGenerated true) per voice.md's Oct 29 rule of no AI voice line in the caption"
+  }
  ],
- "passed": "1 spoken hook (9 words by 3.52 s), 3 one idea, 4 stakes early (83% at 9.22 s), 5 facts 13 of 13, 6 payoff (note complete at 58.2%), 7 artifact held 11.4 s, 8 pace (161, 150, 158, 183, 166, 159, 176 wpm; 74.51 s), 9 talk test, 10 voice markup, 11 retention beats (turn at 59.5%)",
+ "faults": [],
  "notes": [
-  "Takes 2, 3 and 6 under the 160 target but inside 150 to 200; 192 words under the playbook band.",
-  "Spoken hook carries no number; passes but weaker than a number-led hook.",
-  "Stray closing quote in the bubble at 44.90 s (golden polish).",
-  "Consecutive lines start with 'So' (28.43 s and 32.52 s).",
-  "cues.md why.crew says CREW PAY; render shows REPAIR PAY (docs only)."
- ]
+  "Takes 2 (150 wpm), 3 (158) and 6 (159) sit under the 160 target but inside 150 to 200; take 2 is right at the floor.",
+  "192 words, under the playbook's 200 to 240 guide band for 75 s; length is fine at 74.51 s.",
+  "facts.json pages were re-read Oct 28, not today (Oct 29); point 5 passed on the studio's spoken-number trace rule.",
+  "Spoken hook carries no number and ends 3.52 s, inside the studio's 3.6 s rule but over the playbook's older 3.0 s.",
+  "Caveat panel at 55.33 s reads 'Where the numbers come from' before 'Jobber sells software.'; cues.md does not list it (docs only).",
+  "Two lines back to back open with 'So' (28.43 s and 32.52 s).",
+  "The builder's script-check.md cites artifact hold 44.30 to 49.60 s; measured complete hold is 43.38 to about 54.7 s."
+ ],
+ "prior": {
+  "gate": "script",
+  "round": 0,
+  "at": "2026-10-29T12:20:58-05:00",
+  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+  "pass": false,
+  "score": "10 of 12",
+  "faults": [
+   "Point 2: the on-screen hook stays up 4.10 s (frames 0 to 122), over the 4.0 s ceiling. Fix: clear the hook panel to 'The note that tells / your customers.' by 3.95 s (start the hook.note panel change about 0.15 s before 'Here's' at 4.08 s), leaving the 83% on the map.",
+   "Point 12: the segment name 'Pricing Clinic' is never on screen. Fix: add it to the HUD tag ('LESSON 6 \u00b7 PRICING CLINIC' style, no dash characters) or to the cover and end card, then re-check that the safe area and HUD fit."
+  ],
+  "passed": "1 spoken hook (9 words by 3.52 s), 3 one idea, 4 stakes early (83% at 9.22 s), 5 facts 13 of 13, 6 payoff (note complete at 58.2%), 7 artifact held 11.4 s, 8 pace (161, 150, 158, 183, 166, 159, 176 wpm; 74.51 s), 9 talk test, 10 voice markup, 11 retention beats (turn at 59.5%)",
+  "notes": [
+   "Takes 2, 3 and 6 under the 160 target but inside 150 to 200; 192 words under the playbook band.",
+   "Spoken hook carries no number; passes but weaker than a number-led hook.",
+   "Stray closing quote in the bubble at 44.90 s (golden polish).",
+   "Consecutive lines start with 'So' (28.43 s and 32.52 s).",
+   "cues.md why.crew says CREW PAY; render shows REPAIR PAY (docs only)."
+  ]
+ }
 }

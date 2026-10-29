@@ -1,13 +1,13 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-02-price-raise",
- "mp4Sha256": "47336e3cfaac9ecab7d110b64cc6d552c40c4c9d7e9db66023c2ebc20ff41ffa",
+ "mp4Sha256": "8fcfedcc93c1317054a28a08007f1091783005b9202db52b3e9a9fcb94dc8689",
  "checks": [
   {
    "name": "length",
    "value": 74.5,
    "pass": true,
-   "detail": "74.50 s (45.0 to 75.0, studio lessons, end card included)"
+   "detail": "74.50 s (45.0 to 75.0, v1 lesson, end card included)"
   },
   {
    "name": "loudness",
@@ -33,11 +33,11 @@
   {
    "name": "file",
    "value": {
-    "sha256": "47336e3cfaac9ecab7d110b64cc6d552c40c4c9d7e9db66023c2ebc20ff41ffa",
-    "bytes": 7008559
+    "sha256": "8fcfedcc93c1317054a28a08007f1091783005b9202db52b3e9a9fcb94dc8689",
+    "bytes": 7315603
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 7.0 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 7.3 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -47,5 +47,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-29T12:12:34-05:00"
+ "at": "2026-10-29T13:37:01-05:00"
 }

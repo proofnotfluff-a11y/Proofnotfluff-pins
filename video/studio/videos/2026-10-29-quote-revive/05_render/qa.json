@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-10-29-quote-revive",
- "mp4Sha256": "5882fc4dad19e559a36f05cf97bfae391e6ce2decbe2ca7640948fd391f71ebe",
+ "mp4Sha256": "fe808c48f0f25c16f9f2ba995be39e2413e46274b24c4907062526b019b52fd9",
  "checks": [
   {
    "name": "length",
@@ -33,8 +33,8 @@
   {
    "name": "file",
    "value": {
-    "sha256": "5882fc4dad19e559a36f05cf97bfae391e6ce2decbe2ca7640948fd391f71ebe",
-    "bytes": 8457026
+    "sha256": "fe808c48f0f25c16f9f2ba995be39e2413e46274b24c4907062526b019b52fd9",
+    "bytes": 8522019
    },
    "pass": true,
    "detail": "H.264 1080x1920 30 fps, AAC, 8.5 MB, decodes clean"
@@ -47,5 +47,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-28T23:26:15-05:00"
+ "at": "2026-10-28T23:57:48-05:00"
 }

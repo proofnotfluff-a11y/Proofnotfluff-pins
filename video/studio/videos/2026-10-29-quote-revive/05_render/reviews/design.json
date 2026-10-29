@@ -1,15 +1,11 @@
 {
   "gate": "design",
-  "round": 0,
-  "pass": false,
-  "score": {"first": 3, "hierarchy": 4, "type": 4, "color": 4, "spacing": 4, "polish": 4, "trust": 4, "average": 3.86},
+  "round": 1,
+  "pass": true,
+  "score": {"first": 5, "hierarchy": 4, "type": 5, "color": 5, "spacing": 4, "polish": 5, "trust": 5, "average": 4.71},
   "reasons": [
-    "34.29-47.0 text (chat set): repeats lesson 1's signature build (Homeowner header, the water-heater quote above, blue bubble filling in 'Hi [name],'), so first impression is capped at 3. Make it this lesson's own: type each line in the input bar with the keyboard up and send on the word, and at 43.41 show the sent question landing on the homeowner's lock screen as the set's notification drop, with YES and NO as its quick-reply buttons (replacing the loose YES/NO tags at 45.89); keep the gold frame on the question.",
-    "18.74-34.0 homework floor: the grey and white checker below y 1250 reads as a transparency grid (a broken render). Change it to a kitchen floor in the palette (cabinet brown and cream tiles) or carry the wood floor down.",
-    "5.67-16.17 stakes window: 37% is about 80 px for the lesson's headline stat and the window's lower half sits empty until 12.49. Set 37% at about 2x (near lesson 9's 62%), put the bar right under it from 8.77, and give the SERVICETITAN'S OWN DATA chip 12 px clearance above 'ServiceTitan blog, 2026' (they touch now).",
-    "4.40 hook.send: 'Send this text.' is small inside a full-size empty window; the cue says the window shrinks and the line slams in. Shrink the window to its two lines and set 'Send this text.' at the cover headline size in the accent.",
-    "56.88-58.5 turn.hcp: the left window shows only 'Homeowners:' in an empty box for over a second; count 59% in on the slide-in at 56.88 so the box is never empty. At 49.78-56.5, 'Don't email it.' is about half the size of 'Text it.'; match the two sizes (Don't email it. in grey) so the contrast reads.",
-    "74.0-74.7 cadence.close: the folder first lands as a plain orange block over the end of 'before expiry' and 'After 3, close the file.' shows dim brown; place the folder right of that line with 12 px clearance below the timeline, show CLOSED on it from its first frame, and reveal the line in gold on whole frames.",
-    "76.81-78.4 close 'The rule:': small title and one perk line in a mostly empty screen; set 'The rule:' at about 70 px and center the perk block under the bar. 79.5-86.17: the LV 3 XP bar sits empty under LEVEL UP!; fill its first 2 or 3 segments so the payoff doesn't read as zero."
+    "Round 0 changes checked, all landed: chat set now types each line in the input bar with the keyboard up and drops the question as a lock-screen notification with YES/NO quick replies in a gold frame (34.3-46); homework floor is wood (18.74-34); 37% at about 2x with the bar under it from 8.77 and the chip clear of the source line; 4.40 window shrunk to two lines with 'Send this text.' at headline size in the accent; 59% present from the slide-in at 56.88 and 'Don't email it.' matches 'Text it.' in grey; CLOSED tag shows from its first frame right of 'After 3, close the file.'; 'The rule:' at about 80 px; LV 3 XP bar starts with 3 segments filled. Freshness vs 2026-10-28-first-reply: street, fridge, dash-mount chat with lock screen, dark room, levelup sets read as this lesson's own; no cap.",
+    "56.88-63.0 turn 59% window: 59% is about 80 px and the window's lower third sits empty under 'expect text updates.' Set 59% at about 2x (match the 37% treatment in the hook) and tighten the window to its content, or move the Housecall Pro source line into the window's lower third.",
+    "28.30-33.0 homework Jobber's tips panel: 'Jobber Academy, 2026' runs into the panel's right border (about 0 px clearance at x 436). Drop it one size or wrap to two lines so it keeps 12 px inside the frame."
   ]
 }

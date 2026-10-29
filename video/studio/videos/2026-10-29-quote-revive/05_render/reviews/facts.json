@@ -1,21 +1,20 @@
 {
  "gate": "facts",
  "round": 0,
- "at": "2026-10-28T23:28:38-05:00",
+ "at": "2026-10-29T00:00:19-05:00",
  "pass": true,
  "score": {
   "numbers": 11,
   "mismatches": 0
  },
  "reasons": [
-  "all 11 numbers in voice, screen and data.js match facts.json and the source pages (37%, 2026, 59%, 1,040, 2025, 2026, 2 days, Day 7, 1 to 2 days, 3); trades-first met (ServiceTitan, Housecall Pro, Jobber are all home-service sources); no em or en dashes; no real private person or business",
-  "Jobber email question, judged fair: Jobber's key takeaway states the cadence without naming a channel (\"first 1-2 days after sending a quote, again after one week, and once more 24-48 hours before the quote expires\"), the lesson credits Jobber only with timing and content tips, the text-over-email call is credited separately to ServiceTitan's webinar and Housecall Pro, and the one email-only tip (6 to 10 AM send time) is not used. No fix required",
-  "advisory, not a FAIL: if take 6 is ever re-voiced, \"Jobber's timing for quote follow-ups: within two days of the quote\" would make the channel-neutral attribution explicit",
-  "advisory: script \"Then a week after you sent it\" means a week after the quote (Jobber: one week after the initial quote); screen \"Day 7 / a week after\" keeps it clear"
+  "rerun after the scene change: all 11 numbers in voice, screen and data.js match facts.json and the pages (37%, 2026, 59%, 1,040, 2025, 2026, Within 2 days, Day 7, 1 to 2 days, After 3); 37% now at size 264 with bar fill 0.37 from data.js; trades-first met (ServiceTitan, Housecall Pro, Jobber); no em or en dashes in scene.js, script, transcript, data.js",
+  "new text build checked: keyboard, composer 'Text message' placeholder, sent bubbles carry the exact LINE_A/LINE_B placeholders; lock screen shows 'Messages', 'now', the question and YES/NO buttons: story elements, no clock or number that reads as data (chat '9:41' is the set's status bar); 'Quote.pdf Seen' is story, not a claim; no real private person or business",
+  "Jobber email question unchanged and fair: Jobber credited only for timing and the name/job/question tips; text over email credited to ServiceTitan's webinar and Housecall Pro's 'expect text updates'"
  ],
  "sources_checked": [
-  "https://www.servicetitan.com/blog/webinar-recap-follow-ups-101-back-2-basics: \"Only 37% of estimates close on the first visit\"; \"only 37% convert immediately, which leaves the majority of opportunities dependent on follow-up\"; Burgess: texts \"consistently outperform email, with significantly higher open rates\"; Apr 17, 2026; home-service audience; 64/72/87% not used",
-  "https://www.housecallpro.com/resources/home-service-customer-service-report-trends-statistics/: \"59% expect text updates\"; \"anticipate text updates as the job progresses\"; 1,040 U.S. homeowners, SurveyMonkey Audience, Oct 23, 2025; posted Dec 10, 2025; scope is job updates, matched by \"expect text updates\"",
-  "https://getjobber.com/academy/quote-follow-up-email-templates/: within two days, one week after the initial quote, 24-48 hours before expiry, close the file after the third; client name and project details; ask if they have questions; updated May 28, 2026; page is email templates with no SMS mention"
+  "https://www.servicetitan.com/blog/webinar-recap-follow-ups-101-back-2-basics: \"Only 37% of estimates close on the first visit\"; \"only 37% convert immediately, which leaves the majority of opportunities dependent on follow-up\"; Burgess: texts \"consistently outperform email, with significantly higher open rates\"; Apr 17, 2026",
+  "https://www.housecallpro.com/resources/home-service-customer-service-report-trends-statistics/: \"59% expect text updates\"; 1,040 U.S. homeowners, SurveyMonkey Audience, Oct 23, 2025; posted Dec 10, 2025",
+  "https://getjobber.com/academy/quote-follow-up-email-templates/: within two days; one week after the initial quote; 24-48 hours before expiry; close the file after the third; client name and project details; ask if they have questions; updated May 28, 2026; email only"
  ]
 }

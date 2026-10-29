@@ -1,16 +1,17 @@
 {
  "gate": "golden",
- "round": 0,
- "at": "2026-10-28T23:27:54-05:00",
- "pass": false,
+ "round": 1,
+ "at": "2026-10-28T23:59:16-05:00",
+ "pass": true,
  "score": {
-  "post_as_is": "no"
+  "post_as_is": "yes"
  },
  "reasons": [
-  "1. must-fix, 18.5 to 33.5 s (kitchen/fridge scene): the floor is a light gray and white checkerboard (scene.js line 111, #C9CCD3/#9AA0AD, 16 px squares) filling the bottom 35 to 40 percent of the frame. On a phone it reads exactly like an image editor's transparency grid, so a trade owner sees a broken, missing background for 15 seconds mid-lesson. Fix: give the floor real color and texture (wood planks or warm vinyl tiles with a grout line) or a contrast no one mistakes for a transparency grid.",
-  "2. polish, 0.0 to 3.5 s: the hook card is mostly static (sparkles only; the 'just checking in' tag appears near 2.5 s). It still earns the stop with 'Quote went quiet? Send this text.', but a bubble typing in or the van pulling away would add motion.",
-  "3. polish, throughout: the bottom 35 to 40 percent of most scenes is empty grass or floor (0 to 18 s, 34 to 47 s, 64 to 76 s). It works as a safe zone under the platform UI but makes the frame feel top-heavy.",
-  "4. polish, 05.1 s: 'Software maker ServiceTitan says its data shows only thirty-seven percent...' is a mouthful in the opening seconds; takes 1 and 5 are flagged slow (139 and 141 wpm).",
-  "Checked and fine: every number shows on screen as it is said (37% at 8.0 s, 59% at 58.0 s, Within 2 days, Day 7, 1 to 2 days before expiry 66 to 71 s) and matches facts.json and the captions; no contradictions; sources named on screen; qa.json all PASS (86.47 s, -14.2 LUFS, 0 black, 0 frozen); the closing 'Send this to whoever follows up on your quotes' gives a clear send reason and the water heater text is worth saving."
+  "1. Round 0 must-fix resolved, 18.0 to 33.5 s: the kitchen floor is now warm wood planks with a striped rug; nothing reads as a transparency grid. No must-fix remains.",
+  "2. polish, 76.5 to 86.5 s (end card): the floor under Snow is a dark purple checkerboard. Low contrast and clearly a stage floor, so it does not read as a missing background, but a solid or plank floor would match the rest.",
+  "3. polish, 0.0 to 3.5 s: the hook card is still mostly static (sparkles, an underline, the 'just checking in' tag near 2.5 s). It earns the stop with 'Quote went quiet? Send this text.' and the van and houses read instantly; a bubble typing in would add motion.",
+  "4. polish, throughout: the bottom 35 to 40 percent of the grass and dark-room scenes (0 to 18 s, 34 to 47 s, 47 to 63 s, 64 to 76 s) is empty. Works as a safe zone under platform UI, slightly top-heavy.",
+  "5. polish, 05.1 s: 'Software maker ServiceTitan says its data shows only thirty-seven percent...' is a mouthful early; takes 1 and 5 are flagged slow (139 and 141 wpm). It still sounds like a person, plain and confident.",
+  "Checked and fine: every number shows as it is said (37% at 8.0 s, 59% at 57.0 s with 'Housecall Pro survey, 1,040 U.S. homeowners, 2025', Within 2 days 65.5 s, Day 7 68.0 s, 1 to 2 days before expiry 71.0 s, 'After 3, close the file.' 74.5 s) and matches facts.json and captions.json; no contradictions; sources named on screen. Scene changes at 18.0, 33.5, 47.0, 63.5 and 76.0 s are deliberate pixel-dissolve, shutter and tile wipes, not glitches. qa.json all PASS (86.47 s, -14.2 LUFS, -3.1 dBTP, 0 black, 0 frozen, 0 voice flags). Clear send and save reasons: 'Send this to whoever follows up on your quotes' and 'Exact text in the caption' on the end card, with the copyable text in every caption."
  ]
 }

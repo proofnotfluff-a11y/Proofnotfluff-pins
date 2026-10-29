@@ -1,15 +1,15 @@
 {
  "gate": "facts-captions",
- "round": 0,
- "at": "2026-10-28T23:28:38-05:00",
- "pass": false,
+ "round": 1,
+ "at": "2026-10-29T00:00:19-05:00",
+ "pass": true,
  "score": {
   "numbers": 11,
-  "mismatches": 1
+  "mismatches": 0
  },
  "reasons": [
-  "youtube: description line \"Next lesson: why a 50% markup is not 50% profit.\" puts a number (50%) that is not in this lesson's facts.json, which captions.md forbids. Fix: \"Next lesson: why your markup is not your profit.\"",
-  "all platforms otherwise PASS: every number matches facts.json and the pages, ServiceTitan 37% carries \"ServiceTitan's own data\", 59% carries \"Housecall Pro survey of 1,040 U.S. homeowners (2025)\" and \"expect text updates\"; the exact text is in all four (video says \"Exact text in the caption\"); line 1 is 97/88/88 chars, YouTube title 78 with no hashtags; hashtags IG 4, TikTok 5, FB 2, YT 3, no generic or homeowner tags; no link in IG or FB; AI voice line on all four; no dashes",
-  "Jobber email question, judged fair in captions too: timing is credited to Jobber only as timing (IG \"(Jobber)\", YT \"Jobber Academy, quote follow-up templates\"), Jobber's key takeaway gives it without naming a channel, and the text-over-email point is credited to ServiceTitan and Housecall Pro. Optional, not required: YT could read \"Jobber Academy, quote follow-up email templates\" to name the page exactly"
+  "round 0 fault gone: YouTube next-lesson line now 'Next lesson: why your markup is not your profit.' with no number; 'Previous lesson: how to respond to leads fast' matches lesson 1's caption",
+  "every number on all four matches facts.json and the pages (37%, 2026, 1,040, 2025, 59%, 2 days, a week, 1 to 2 days, 3); 37% carries \"ServiceTitan's own data\" everywhere; 59% carries \"Housecall Pro survey of 1,040 U.S. homeowners (2025)\" and \"expect text updates\" (IG, YT; TikTok and FB omit it); timing credited to Jobber only",
+  "rules: line 1 IG 97, TikTok 88, FB 88 chars; YouTube title 78, no hashtags, keyword first; hashtags IG 4, TikTok 5, FB 2, YT 3, no generic or homeowner tags; YT tags 10 with one misspelling; TikTok owner question present; no link in IG or FB; AI voice line on all four; exact text 'Hi [name], it's [you]. Still want that water heater swapped before winter?' in all four as the video promises; no em or en dashes; no private person or business"
  ]
 }

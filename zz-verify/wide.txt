@@ -1,7 +1,12 @@
-127.0.0.1 - - [29/Oct/2026 21:21:12] "GET /chicago-construction-pipeline/ HTTP/1.1" 200 -
-127.0.0.1 - - [29/Oct/2026 21:21:12] "GET /assets/pnf.css HTTP/1.1" 200 -
-127.0.0.1 - - [29/Oct/2026 21:21:12] "GET /assets/fonts/poppins-700.woff2 HTTP/1.1" 200 -
-127.0.0.1 - - [29/Oct/2026 21:21:12] "GET /assets/pnf-ui.js HTTP/1.1" 200 -
-127.0.0.1 - - [29/Oct/2026 21:21:12] "GET /assets/fonts/poppins-600.woff2 HTTP/1.1" 200 -
-clientWidth=390 scrollWidth=403 body=clip html=visible
-
+127.0.0.1 - - [29/Oct/2026 21:23:08] "GET /chicago-construction-pipeline/ HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2026 21:23:08] "GET /assets/fonts/poppins-700.woff2 HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2026 21:23:08] "GET /assets/pnf.css HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2026 21:23:08] "GET /assets/pnf-ui.js HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2026 21:23:08] "GET /assets/fonts/poppins-600.woff2 HTTP/1.1" 200 -
+clientWidth=390 scrollWidth=403 bodySW=403
+MAIN.wrap#main pos=static L=0 R=390 w=390 sw=403 cw=390 ovx=visible :: HomeFree Chicago dataChicago's Big Build
+DIV.tiles ld-tiles# pos=static L=16 R=374 w=358 sw=387 cw=358 ovx=visible :: Open big jobs768waiting on a certificate
+DIV.tile# pos=static L=201 R=374 w=173 sw=201 cw=171 ovx=visible :: Permit under 6 months256permit issued in
+DIV.lab# pos=static L=216 R=359 w=143 sw=187 cw=143 ovx=visible :: Permit under 6 months
+DIV.lab# pos=static L=31 R=174 w=143 sw=156 cw=143 ovx=visible :: Permit 1 to 2 years
+DIV.lab# pos=static L=216 R=359 w=143 sw=149 cw=143 ovx=visible :: Partial occupancy

@@ -3,24 +3,26 @@
 music: rooms
 
 ## hook "Still no yes when" [sfx: pop]
-Frame 0: the hook card, fully settled. "Top shops close" / "77%" / "of estimates" / "on the same visit." The 77% in the accent, sparks. Source small: ServiceTitan, 12 months to Jan 2026. Host and dialog hidden.
+The street. Three shots (IMPROVE 00a). Frame 0, the cover, fully settled: the claim on a plate in the sky, "Top shops close" / "77%" / "of estimates" / "on the same visit." The 77% in the accent. Source small: ServiceTitan customers, 12 months to Jan 2026. The van parked in the driveway; host and dialog hidden. On "yes" cut in to the close-up: the street at twice the size on the driveway, the van big at the curb, the customer's door with a "?" bubble, the fence and lawn filling the lower frame; Snow comes in big at the lower left with the dialog box; the plate holds up top. On "backing" the van rolls off out of the close-up. On "Ask" cut back out to the whole street: the van gone down the road, the "?" still at the door.
+## hook.ask "Ask this." [sfx: blip]
+Snow drops back to his small spot and points at the plate.
 ## hook.top "Top shops close seventy-seven"
-Room: framing. A work van sits in the driveway; an estimate slip slides in beside it (lines, "Estimate", "Total: $"). Chip QUOTE CLINIC.
+The van backs in again (REPLAY on the road); the customer thinks it over (dots) with the tech still there.
 ## hook.same "on the same visit." [sfx: stamp]
-A stamp hits the slip: "SIGNED. Same visit." Snow points at it.
-## hook.ask "Here's how to ask." [sfx: pop]
-A speech tag pops over the van: "Ask before you leave." Sparks.
+The bubble turns to a check; "on the same visit." turns gold with an accent line under it. Snow points at it.
 
-## stakes "ServiceTitan looked at a" [sfx: whoosh]
-Room: workshop. Panel SERVICETITAN: "Estimates closed" / "on the same visit". Both rows (labels and empty tracks) show as it opens.
+## stakes "That's from a year" [sfx: whoosh]
+XP bars (level select). Header plate: ServiceTitan, "Estimates closed on the same visit", "A year of its customers' data". Both bars show empty.
 ## stakes.window "up to this January."
-The window slides onto the panel: "12 months to Jan 2026".
-## stakes.top "The top ten percent" [sfx: tick]
-Row 1 label lights: "Top 10% by revenue". Track glows.
-## stakes.top77 "closed seventy-seven percent on"
-Bar 1 grows to 77% as it is said (count starts at 85%); 77% slams in at its end, sparks.
+The window types onto the plate: "Its customers, 12 months to Jan 2026".
+## stakes.top "Top shops are the" [sfx: tick]
+Row 1 label lights: "Top 10% by revenue".
+## stakes.top77 "by revenue." [sfx: tick]
+Bar 1 fills to 77; 77% slams in at its end, a crown lands.
 ## stakes.rest "Everyone else? Sixty-two." [sfx: tick]
-Bar 2 "Everyone else" grows to 62%, in grey; 62% lands.
+Bar 2 "Everyone else" grows to 62%; 62% lands; the 15 point gap blinks between the two bar ends and "15 points" lands.
+## stakes.yours "Where's yours?" [sfx: pop]
+A gold "Yours?" tag pops at the end of the gap row.
 
 ## why "Why a fifteen point" [sfx: whoosh]
 Room: blackboard. Chalk header: "Why a 15 point gap?" The 15 slams in, in the accent.
@@ -36,7 +38,9 @@ Under the line: "Call a competitor." chalks in, with a ringing phone.
 The line snaps short (QUOTE and DECISION side by side); "Fewer follow-ups." slams in, in the accent.
 
 ## ask "So ask before you" [sfx: whoosh]
-Room: garage. Header on a dark band: "Ask before you walk out." The big card "Say this (example)" opens with its three numbered rows showing, empty.
+The kitchen table (iris), seen from above: the estimate on its clipboard, a coffee, the next-visit card. The script card slides up with the header "ASK BEFORE YOU WALK OUT." and three numbered rows showing, empty.
+## ask.three "It's three lines." [sfx: tick]
+The header turns to "SAY THIS (EXAMPLE)" with a gold line drawing under it.
 ## ask.l1 "Here are your options." [sfx: tick]
 Row 1: "Here are your options."
 ## ask.l2 "If you want to" [sfx: tick]
@@ -47,26 +51,24 @@ Row 2: "If you want to go ahead today, I can get you on the schedule for Thursda
 Row 3: "What questions do you have before you pick one?" The full card holds to the end of the take. Snow steps back, small.
 
 ## skip "Here's the part people" [sfx: whoosh]
-Room: workshop. Header on a dark band: "The part people skip." Row 3's line sits big in a quote box.
+LEVEL UP from the first frame (xp). Plate: "The part people skip:" with row 3's line in quotes.
 ## skip.worry "That last question brings" [sfx: pop]
-Under the quote box (never on it): "It brings the worry out".
+Under it: "It brings the worry out"; a storm cloud labeled "the worry" drops over the locked perks.
 ## skip.there "while you're still there" [sfx: tick]
-"while you're still there to answer it." lands under it; Snow points at it.
+"while you're still there." lands in the accent; the cloud is struck and pops in confetti; Snow points.
 ## skip.st "ServiceTitan says same-visit closes" [sfx: blip]
-Panel SERVICETITAN: "Same-visit closes show how well your tech:" with three rows showing, unticked.
-## skip.obj "handles objections, frames financing" [sfx: tick]
-Rows 1 and 2 tick as said: handles objections, frames financing.
-## skip.sale "asks for the sale." [sfx: tick]
-The last row ticks; "asks for the sale" highlights in the accent.
+The plate: "ServiceTitan says" / "Same-visit closes show" / "how well your tech:". The XP bar fills.
+## skip.obj "your tech handles objections." [sfx: tick]
+The perks land as the bar fills: Handles objections, on the word, then the two the page lists with it (Frames financing, Asks for the sale); LEVEL UP on "objections", and the three-line ask unlocks.
 
 ## caveat "One honest note." [sfx: whoosh]
-Room: framing. Header on a dark band: "One honest note."
-## caveat.pattern "This is a pattern," [sfx: stamp]
-Stamp: "A pattern, not proof." Source line: ServiceTitan says the numbers are correlated, not a cause.
+The notebook page comes down on "honest". Header on dark tape: "One honest note."
+## caveat.pattern "It's a pattern, not" [sfx: stamp]
+The pen writes "It's a pattern, not proof." as said; "not proof" gets a red underline; the source line lands: "ServiceTitan: correlated, / not shown to cause."
 ## caveat.other "Top shops might close"
-"Top shops may close more for other reasons." slides in.
+"Top shops might close more" / "for other reasons." written under it.
 ## caveat.cost "Asking still costs you" [sfx: pop]
-"Asking costs one sentence." slams in, in the accent. Snow shrugs.
+"Asking still costs you" / "one sentence." written in red, double underlined. Snow shrugs.
 
 ## close "Don't drive off and" [sfx: pop]
 Room: blackboard. Chalk: "Don't drive off" / "and wait." slams in as said.

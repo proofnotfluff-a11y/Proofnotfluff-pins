@@ -6,10 +6,10 @@
 
 [thoughtful] Why a fifteen point gap? ServiceTitan puts it down to momentum. The longer they wait, the more time they have to call a competitor, or talk themselves out of it. Close on the visit and you'll get fewer follow-ups.
 
-[warmly] So ask before you walk out. It's three lines. [short pause] Here are your options. If you want to go ahead today, I can get you on the schedule for Thursday. What questions do you have before you pick one?
+[calm] So ask before you walk out. It's three lines. [short pause] Here are your options. If you want to go ahead today, I can get you on the schedule for Thursday. What questions do you have before you pick one?
 
 [short pause] Here's the part people skip. That last question brings the worry out while you're still there. ServiceTitan says same-visit closes show how well your tech handles objections.
 
-[calm] One honest note. It's a pattern, not proof. Asking still costs you one sentence.
+[matter-of-fact] One honest note. It's a pattern, not proof. Top shops might close more for other reasons. Asking still costs you one sentence.
 
 [confident] Don't drive off and wait for a yes. Ask for it in the driveway. [short pause] Send this to whoever goes out on your estimates.

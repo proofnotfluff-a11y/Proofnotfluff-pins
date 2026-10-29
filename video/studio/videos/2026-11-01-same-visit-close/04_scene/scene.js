@@ -238,6 +238,9 @@ if (window.SETS && window.SETS.transitions) {
   };
 }
 
+/* the hook's close-up: frame point CU_C (the driveway between the door and the van) lands on screen at CU_S, at 2x */
+const CU_C = [640, 835], CU_S = [600, 630];
+
 window.SCENE = {
   look: 'arcade',
   images: [],
@@ -246,35 +249,58 @@ window.SCENE = {
   transitions: {stakes: 'levelselect', why: 'dissolve', ask: 'iris', skip: 'xp', caveat: 'hold', close: 'drive'},
   trauma: {'hook.same': 0.6},
   sections: {
-    // ---- hook: the street. Frame 0 is the cover: the claim on a plate in the sky, the van parked, no host, no dialog.
-    // On "leave" the van rolls off and the customer is left with a question; on "Top shops" it backs in again (REPLAY),
-    // the customer thinks it over with the tech still there, and on "same visit" the bubble turns to a check.
+    // ---- hook: three shots on the street (IMPROVE 00a: the picture changes by 1 s and twice by 3 s, Snow on by 1 s).
+    // Frame 0 is the cover: the claim on a plate in the sky, the van parked, no host, no dialog. Cut in on "yes" to the
+    // close-up: the street at twice the size on the driveway (the van big at the curb, the customer's door with a "?",
+    // the fence and lawn filling the lower frame), the claim on a smaller title plate up top, Snow big at the lower left;
+    // on "backing" the van rolls off out of the shot. Cut back out on "Ask" to the whole street: the van is down the road,
+    // the "?" still at the door; on "Top shops" it backs in again (REPLAY) and on "same visit" the bubble turns to a check.
     hook: (k, T) => {
       const n = k.data.numbers, d = px(k), {P} = d;
-      const tLeave = W(/^leave$/i, 0.6, 1.38), tTop = W(/^Top$/i, k.S('hook.top')), t77 = W(/^seventy/i, tTop), tSame = W(/^same$/i, k.S('hook.same')), tAsk = W(/^Here's$/i, k.S('hook.ask'));
-      k.sets.street({t0: 1e6, van: false});
+      const tIn = Math.min(0.8, Math.max(0.45, W(/^yes$/i, 0.5, 0.7))), tLeave = W(/^backing$/i, 1.2, 1.4);
+      const tOut = Math.min(2.6, W(/^Ask$/i, k.S('hook.ask'), 2.5)), tTop = W(/^Top$/i, k.S('hook.top')), t77 = W(/^seventy/i, tTop), tSame = W(/^same$/i, k.S('hook.same'));
       // the van: parked; rolls off with the quote open; backs in on the replay
       let vx = 194, moving = false;
       if (T >= tLeave && T < tTop) { const t = T - tLeave; vx = 194 + Math.floor(70 * t * t + 8 * t); moving = true; }
       else if (T >= tTop) { vx = 194 + d.ease(tTop, 20, 176); moving = d.fr(tTop) < 20; }
-      if (vx < 366) {
-        const vy = 284 + (moving ? (d.F >> 2) & 1 : 0);
-        van2(k, vx, vy, moving ? (d.F >> 1) & 1 : 0);
-        if (T >= tLeave - 0.5 && T < tTop) exhaust(d, vx, vy, moving); else if (T >= tTop) exhaust(d, vx, vy, false);
+      const [dx, dy] = doorOf(1), bx = dx - 12, by = dy - 36, bob = (d.F >> 4) & 1;
+      const street = (bubbles) => {
+        k.sets.street({t0: 1e6, van: false});
+        if (vx < 366) {
+          const vy = 284 + (moving ? (d.F >> 2) & 1 : 0);
+          van2(k, vx, vy, moving ? (d.F >> 1) & 1 : 0);
+          if (T >= tLeave - 0.5 && T < tTop) exhaust(d, vx, vy, moving); else if (T >= tTop) exhaust(d, vx, vy, false);
+        }
+        if (!bubbles) return;
+        // the customer at the door: left with a question; thinking it over on the replay; then a yes on the visit
+        if (T >= tLeave + 0.5 && T < tTop) bubble2(k, d, bx, by, '?', bob);
+        else if (T >= tTop + 0.7 && T < tSame) bubble2(k, d, bx, by, 'dots');
+        else if (T >= tSame) { bubble2(k, d, bx, by, 'check', d.fr(tSame) < 3 ? 1 : 0); d.twinkle(bx + 46, by - 2, d.fr(tSame) >> 1); }
+      };
+      if (T >= tIn && T < tOut) {
+        /* the close-up: frame point CU_C lands on screen at CU_S, twice the size (whole pixels: 6 frame units each) */
+        const c = k.ctx; c.save(); c.translate(CU_S[0], CU_S[1]); c.scale(2, 2); c.translate(-CU_C[0], -CU_C[1]); street(false); c.restore();
+        /* the "?" over the door, at its own size and clear of the plate (the door sits at screen x ~120 to 190) */
+        const qx = Math.round((CU_S[0] + 2 * (dx * 3 - CU_C[0])) / 3) - 6, qy = 176;
+        if (T >= Math.min(tIn + 0.4, tLeave)) bubble2(k, d, qx, qy, '?', bob);
+        /* the title plate: the claim and its source, smaller, held from the cover (the same reading order) */
+        d.win(14, 84, 332, 86, {base: DUSK, hi: '#3D2E45', lo: INK, rule: MAROON});
+        const w77 = k.measure(n.topClose.shown, {size: 132}), xr = 72 + Math.round((w77 + 30) / 3) * 3;
+        k.text('Top shops close', 72, 270, {size: 39, color: CREAM});
+        k.text(n.topClose.shown, 72, 324, {size: 132, color: 'accent', drop: INK});
+        k.text('of estimates', xr, 342, {size: 39, color: CREAM});
+        k.text('on the same visit.', xr, 390, {size: 39, color: CREAM});
+        k.text(`ServiceTitan customers, ${n.stMonths.shown} months to Jan ${n.stYear.shown}`, 72, 466, {size: 30, color: SAND});
+        return {hostPose: k.talking() ? 'talk' : 'stand', hostScale: 0.8, hostX: 170};
       }
+      street(true);
       // the replay tag on the road, while the van backs in
       if (T >= tTop && T < tTop + 1.6) {
         const on = Math.floor((T - tTop) * 2) % 2 === 0;
         for (let j = 0; j < 2; j++) for (let r = 0; r < 9; r++) { const h = 4 - Math.abs(r - 4); P(22 + j * 7 + (4 - h), 314 + r, h + 1, 1, on ? CREAM : GREY); }
         d.tx('REPLAY', 42, 312, {color: on ? CREAM : GREY});
       }
-      // the customer at the door: left with a question; thinking it over on the replay; then a yes on the visit
-      const [dx, dy] = doorOf(1), bx = dx - 12, by = dy - 36, bob = (d.F >> 4) & 1;
-      if (T >= tLeave + 0.5 && T < tTop) bubble2(k, d, bx, by, '?', bob);
-      else if (T >= tTop + 0.7 && T < tSame) bubble2(k, d, bx, by, 'dots');
-      else if (T >= tSame) { bubble2(k, d, bx, by, 'check', d.fr(tSame) < 3 ? 1 : 0); d.twinkle(bx + 46, by - 2, d.fr(tSame) >> 1); }
       k.burst((bx + 20) * 3, (by + 12) * 3, tSame + 0.05, {n: 18, r: 200});
-      if (T >= tLeave + 0.5 && T < tLeave + 0.9) ping(d, tLeave + 0.5, bx - 1, by - 1, 42, 28, GOLD);
       // the cover plate: the claim and its source, settled on frame 0
       d.win(14, 86, 332, 114, {base: DUSK, hi: '#3D2E45', lo: INK, rule: MAROON});
       k.slam('Top shops close', 540, 274, -1, {size: 66, color: CREAM, align: 'center', drop: INK});
@@ -287,17 +313,17 @@ window.SCENE = {
       const src = `ServiceTitan customers, ${n.stMonths.shown} months to Jan ${n.stYear.shown}`, wsrc = k.measure(src, {size: 30});
       k.text(src, Math.min(528, Math.floor(924 - wsrc / 2)), 522, {size: 30, color: SAND, align: 'center'});   /* ends by x 924, inside the Reel's edge */
       ping(d, t77, x0 / 3 - 3, 116, w77 / 3 + 6, 46);
-      k.burst(x0 + w77 / 2, 420, 0.4, {n: 16, r: 240, colors: ['accent', 'paper']});   // life right after the cover
+      k.burst(x0 + w77 / 2, 420, 0.3, {n: 16, r: 240, colors: ['accent', 'paper']});   // life right after the cover
       k.burst(x0 + w77 / 2, 420, t77 + 0.3, {n: 22, r: 260});
-      if (T < tLeave) return {host: false, speech: false};
-      if (T < tAsk) return {host: false};
-      return host(k, k.live('hook.ask') ? 'point' : null);
+      /* the cover frame has no host; Snow and the dialog box come in on the cut and stay */
+      if (T < tIn) return {host: false, speech: false};
+      return host(k, k.live('hook.ask') ? 'point' : (k.live('hook.same') ? 'point' : null));
     },
 
     // ---- stakes: XP bars. ServiceTitan's top 10% fill to 77; everyone else to 62; the 3 segments between blink as the gap
     stakes: (k, T) => {
       const n = k.data.numbers, d = px(k), {P} = d, t0 = k.S('stakes');
-      const tWin = W(/^up$/i, k.S('stakes.window')), tTopW = W(/^top$/i, k.S('stakes.top')), t77 = W(/^seventy/i, k.S('stakes.top77')), tElse = W(/^Everyone$/i, k.S('stakes.rest')), t62 = W(/^Sixty/i, tElse), tGap = t62 + 0.8;
+      const tWin = W(/^up$/i, k.S('stakes.window')), tTopW = W(/^top$/i, k.S('stakes.top')), t77 = W(/^revenue/i, k.S('stakes.top77')) + 0.1, tElse = W(/^Everyone$/i, k.S('stakes.rest')), t62 = W(/^Sixty/i, tElse), tGap = t62 + 0.8;
       quiet(k, () => k.sets.levelup({from: 0, to: n.topClose.value, max: 100, at: t77, dur: 0.8}));
       // the status frame round both bars (an outline, so the set's own bar shows through), its tab and gold corners
       /* the frame starts at y 174 so its tab sits fully above the top border, 2 px clear */
@@ -343,6 +369,9 @@ window.SCENE = {
       k.text('The gap', 90, 834, {size: 39, color: T >= tGap ? GOLD : MUTED});
       if (T >= tGap) k.slam(`${n.gap.shown} points`, 930, 810, tGap, {size: 66, color: GOLD, align: 'right', from: 0.5, drop: INK});
       else { P(250, 284, 60, 2, '#3D2E45'); for (let x = 250; x < 310; x += 8) P(x, 284, 4, 2, '#6B7080'); }
+      /* "Where's yours?": a gold line under the frame, right of the host */
+      const tYours = k.S('stakes.yours');
+      if (T >= tYours) { k.slam("Where's yours?", 930, 924, tYours, {size: 39, color: GOLD, align: 'right', from: 0.5, drop: INK}); k.burst(780, 944, tYours + 0.05, {n: 12, r: 150}); }
       return host(k, k.live('stakes.top77') || k.live('stakes.rest') ? 'point' : (k.live('stakes.window') ? 'clip' : null));
     },
 
@@ -406,7 +435,7 @@ window.SCENE = {
     // writes Thursday on the next-visit card and circles it; on "pick one" it ticks B and signs
     ask: (k, T) => {
       const t0 = k.S('ask'), d = px(k);
-      const tSay = W(/^Say$/i, t0 + 1), tL1 = W(/^Here$/i, k.S('ask.l1')), tOpt = W(/^options/i, tL1), tL2 = W(/^If$/i, k.S('ask.l2')), tL3 = W(/^What$/i, k.S('ask.l3'));
+      const tSay = W(/^three$/i, k.S('ask.three')), tL1 = W(/^Here$/i, k.S('ask.l1')), tOpt = W(/^options/i, tL1), tL2 = W(/^If$/i, k.S('ask.l2')), tL3 = W(/^What$/i, k.S('ask.l3'));
       const tThu = W(/^Thursday/i, tL2), tPick = W(/^pick$/i, tL3), tOne = W(/^one/i, tPick);
       kitchen(k, {optAt: tOpt, day: {at: tThu, circleAt: tThu + 0.6, tag: tThu + 0.4, text: 'Thursday'}, checkAt: tPick, signAt: tOne + 0.1});
       k.burst(84 * 3, 174 * 3, tPick + 0.1, {n: 10, r: 120});
@@ -460,7 +489,7 @@ window.SCENE = {
     skip: (k, T) => {
       const n = k.data.numbers, d = px(k), t0 = k.S('skip');
       const tLast = W(/^last$/i, k.S('skip.worry')), tBr = W(/^brings$/i, tLast), tWhile = W(/^while$/i, k.S('skip.there')), tST = W(/^ServiceTitan/i, k.S('skip.st'));
-      const tObj = W(/^objections/i, k.S('skip.obj')), tFin = W(/^financing/i, tObj), tAsks = W(/^asks$/i, k.S('skip.sale')), tSale = W(/^sale/i, tAsks), lv = tAsks;
+      const tObj = W(/^handles$/i, k.S('skip.obj')), tFin = tObj + 0.35, tAsks = tObj + 0.7, tSale = tAsks + 0.2, lv = W(/^objections/i, k.S('skip.obj')) + 0.6;
       const perks = [{text: 'Handles objections', at: tObj}, {text: 'Frames financing', at: tFin}, {text: 'Asks for the sale', at: tAsks}];
       /* the backdrop under the set: plum, slow rays (a step every 8 frames) and the perk panel */
       d.P(0, 0, 360, 417, PLUM);
@@ -473,7 +502,6 @@ window.SCENE = {
       /* the bar's own label, and the locked perk slots (their rows show from the first frame) */
       if (T < lv) k.text(T >= tST ? 'Your tech, on the visit' : 'Your tech', 90, 570, {size: 39, color: T >= tST ? CREAM : MUTED});
       perks.forEach((p, i) => { if (T >= p.at) return; const y = 236 + i * 18; d.tx('+', 110, y, {color: '#6B7080'}); d.P(122, y + 6, 100, 2, '#3D2E45'); d.P(230, y + 2, 7, 9, '#6B7080'); d.P(231, y, 5, 3, '#6B7080'); d.P(232, y + 1, 3, 2, DUSK); });
-      if (T >= tSale) k.sweep(366, 816 + 42, k.measure('Asks for the sale', {size: 39}), 6, tSale + 0.1, {color: 'accent'});
       /* the worry: a storm cloud the last question brings out over the locked perks; answered while you're there, it pops.
          Its label sits under the bolt's reach */
       const tAns = W(/^answer$/i, tWhile), popT = tAns + 0.15, cx = 286;
@@ -508,7 +536,7 @@ window.SCENE = {
         d.tx('+', 110, 290, {color: GOLD});
         k.slam(`Unlocked: the ${n.askLines.shown}-line ask`, 366, 870, lv + 0.3, {size: 39, color: GOLD, from: 0.5});
       }
-      return host(k, k.live('skip.there') || k.live('skip.sale') ? 'point' : null);
+      return host(k, k.live('skip.there') || k.live('skip.obj') ? 'point' : null);
     },
 
     // ---- caveat: the notebook. The pen writes the honest note as it is said; "not proof" gets underlined
@@ -518,13 +546,13 @@ window.SCENE = {
          this section is a no-op, 'hold') */
       const tPage = W(/^honest/i, t0) + 0.15, u = (T - tPage) * 30 + 0.005 - 6;
       if (u < 0) { const r = window.SCENE.sections.skip(k, T); if (u >= -6) pageOver(k, Math.pow((u + 6) / 6, 2)); return r; }
-      const tThis = W(/^This$/i, k.S('caveat.pattern')), tProof = W(/^proof/i, tThis), tTopS = W(/^Top$/i, k.S('caveat.other')), tFor = W(/^for$/i, tTopS), tAsk = W(/^Asking$/i, k.S('caveat.cost')), tOne = W(/^one$/i, tAsk);
+      const tThis = W(/^It's$/i, k.S('caveat.pattern')), tProof = W(/^proof/i, tThis), tTopS = W(/^Top$/i, k.S('caveat.other')), tFor = W(/^for$/i, tTopS), tAsk = W(/^Asking$/i, k.S('caveat.cost')), tOne = W(/^one$/i, tAsk);
       notebook(k);
       // the header on a strip of dark tape, so no rule runs through it
       d.P(58, 96, 250, 26, PLUM); d.P(58, 96, 250, 1, '#3D2E45'); d.dith(58, 96, 4, 26, PAPER); d.dith(304, 96, 4, 26, PAPER, 1);
       k.slam('One honest note.', 192, 291, tPage + 0.25, {size: 66, color: CREAM, from: 0.5});
       const rows = [
-        {text: 'This is a pattern, not proof.', at: tThis, y: 130, c: NAVY},
+        {text: "It's a pattern, not proof.", at: tThis, y: 130, c: NAVY},
         {text: 'Top shops might close more', at: tTopS, y: 184, c: NAVY},
         {text: 'for other reasons.', at: tFor, y: 202, c: NAVY},
         {text: 'Asking still costs you', at: tAsk, y: 238, c: RED},
@@ -544,7 +572,7 @@ window.SCENE = {
         k.slam('not shown to cause.', 186, 502, tProof + 0.6, {size: 27, color: MAROON, from: 0.3});
       }
       if (T >= tProof + 0.2) {
-        const l = 62 + d.tw('This is a pattern, '), r = 62 + d.tw('This is a pattern, not proof.'), q = clamp(d.fr(tProof + 0.2) / 6); d.P(l, 146, Math.round((r - l) * q), 1, RED); for (let x = l; x < l + Math.round((r - l) * q); x += 4) d.DOT(x + 1, 147, RED);
+        const l = 62 + d.tw("It's a pattern, "), r = 62 + d.tw("It's a pattern, not proof."), q = clamp(d.fr(tProof + 0.2) / 6); d.P(l, 146, Math.round((r - l) * q), 1, RED); for (let x = l; x < l + Math.round((r - l) * q); x += 4) d.DOT(x + 1, 147, RED);
       }
       const tEnd = W(/^sentence/i, tOne);
       if (T >= tEnd + 0.4) { const q = clamp(d.fr(tEnd + 0.4) / 6), w = d.tw('one sentence.'); d.P(62, 271, Math.round(w * q), 1, RED); if (q >= 1) d.P(64, 273, Math.round(w * clamp(d.fr(tEnd + 0.6) / 6)), 1, RED); }

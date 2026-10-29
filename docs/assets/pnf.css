@@ -526,8 +526,8 @@ nav.top a:not(.navcta):hover{text-decoration:underline;text-decoration-thickness
 @media(prefers-color-scheme:dark){:root{--glass:rgba(18,22,31,.78);--glass-line:rgba(255,255,255,.08)}}
 @media(min-width:760px){header.top{position:sticky;top:0;z-index:30;background:var(--glass);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid transparent;padding:14px 0 10px}
 header.top.scrolled{border-bottom-color:var(--glass-line);box-shadow:0 6px 24px rgba(20,24,36,.06);padding:8px 0}
-header.top .bars{transition:opacity .2s}header.top.scrolled .bars{opacity:0;height:0;margin:0}}
-@media(prefers-reduced-motion:no-preference){header.top{transition:box-shadow .2s ease,border-color .2s ease}}
+header.top .bars{transition:opacity .2s,height .2s,margin .2s}header.top.scrolled .bars{opacity:0;height:0;margin:0}}
+@media(prefers-reduced-motion:no-preference){header.top{transition:padding .2s ease,box-shadow .2s ease,border-color .2s ease}}
 .qf-btn{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 10px 0 12px;margin-left:4px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink2);font:inherit;font-size:14.5px;cursor:pointer}
 .qf-btn:hover{border-color:var(--ink);color:var(--ink)}
 .qf-btn kbd,.cx-search kbd,.qf kbd{font:600 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;padding:3px 6px;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;color:var(--muted);background:var(--canvas2)}

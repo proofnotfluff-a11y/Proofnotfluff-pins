@@ -7740,9 +7740,9 @@
      "Most open jobs are here, some with permits only weeks old and some several years old."
     ],
     [
-     "Partial occupancy approved",
-     "The City has let people use part of the building while the rest is finished.",
-     "Late in the job: some floors or units may already be in use."
+     "Temporary or partial occupancy approved",
+     "The City has approved temporary or partial use of the building while the certificate is still pending.",
+     "Usually late in the job."
     ],
     [
      "Certificate of occupancy pending",
@@ -7757,22 +7757,22 @@
    ],
    "method": [
     "Every Monday we pull the City of Chicago's public Building Permits dataset and keep new construction and renovation permits issued since January 1, 2021 with a reported cost of $500,000 or more. A job counts here when its City milestone puts it on the certificate of occupancy path: inspections with a certificate required, certificate pending, partial occupancy approved, or certificate issued.",
-    "Open jobs are the ones without a certificate yet. Permits the City lists as suspended, expired, cancelled or revoked are left out. Each open job is placed in a community area by the area the City gives for it and grouped by days since the permit was issued: under 6 months, 6 to 12 months, 1 to 2 years and over 2 years.",
+    "Open jobs are the ones without a certificate yet. Permits the City lists as suspended, expired, cancelled or revoked are left out of the open counts. Each permit counts once, so a large project with phased permits can count more than once. Each open job is placed in a community area by the area the City gives for it and grouped by days since the permit was issued: under 6 months, 6 to 12 months, 1 to 2 years and over 2 years.",
     "How long a big job takes compares permit years: for each year, the share of jobs on the certificate path that have the certificate today. The City's records do not say on what day a certificate was issued, so the page does not give a number of weeks to move-in for any one job.",
     "Only counts are published. We never request contact, address, map point or description fields. To count the jobs that change stage from one week to the next, last week's permit numbers and stages are stored encrypted and are never shown, so the page names no building, address or business."
    ],
    "faq": [
     [
      "How many big construction projects are in progress in Chicago?",
-     "This page counts the Chicago new construction and renovation jobs of $500,000 or more, with a permit issued since January 1, 2021, that the City's records show as still waiting on a certificate of occupancy, and updates the count every Monday. The table splits it by all 77 community areas."
+     "This page counts new construction and renovation permits in Chicago with a reported cost of $500,000 or more, issued since January 1, 2021, whose City milestone shows they still need a certificate of occupancy. Permits the City lists as suspended, expired, cancelled or revoked are left out. The count updates every Monday, and the table splits it by all 77 community areas."
     ],
     [
      "How long does it take to get a certificate of occupancy in Chicago?",
-     "It depends on the job. The bars on this page show, for each permit year, how many big new buildings and renovations have their certificate today. Renovations usually get theirs sooner than new buildings."
+     "It depends on the job. The bars on this page show, for each permit year, how many big new buildings and renovations have their certificate today. Recent renovations usually get theirs sooner than new buildings."
     ],
     [
      "What does partial occupancy mean?",
-     "The City has approved people using part of a building while the rest of the work is finished. On this page it means a job is late in its schedule, not that it is done."
+     "The City has approved temporary or partial use of the building while the certificate of occupancy is still pending. On this page it means a job is late in its schedule, not that it is done."
     ],
     [
      "Can I see the addresses?",

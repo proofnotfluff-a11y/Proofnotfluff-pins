@@ -203,19 +203,19 @@ def page_html(p):
     pulled = M.nice_date(d["asOf"])
     co = {r["year"]: r for r in d["cohorts"]}
     y1, y2 = int(d["asOf"][:4]) - 1, int(d["asOf"][:4]) - 2
-    lede = (f'{c["open"]:,} building jobs of $500,000 or more in Chicago are still waiting on their certificate of occupancy, the City\'s final sign-off '
-            f'before a building can be used. {plural(c["partial"], "of them already has", "of them already have")} partial occupancy approved. '
+    lede = (f'{c["open"]:,} building jobs in Chicago with a reported cost of $500,000 or more are still waiting on their certificate of occupancy, the City\'s final sign-off '
+            f'before a building can be used. {plural(c["partial"], "of them already has", "of them already have")} temporary or partial occupancy approved. '
             "Here is where they are and how long ago each permit was issued.")
     tiles = ('<div class="tiles ld-tiles">'
              f'<div class="tile key"><div class="lab">Open big jobs</div><div class="val">{c["open"]:,}</div><div class="sub">waiting on a certificate of occupancy</div></div>'
-             f'<div class="tile"><div class="lab">Permit under 6 months</div><div class="val">{c["b0"]:,}</div><div class="sub">early, work just started</div></div>'
-             f'<div class="tile"><div class="lab">Permit 1 to 2 years</div><div class="val">{c["b2"]:,}</div><div class="sub">when many new buildings finish</div></div>'
-             f'<div class="tile"><div class="lab">Partial occupancy</div><div class="val">{c["partial"]:,}</div><div class="sub">part of the building approved for use</div></div>'
+             f'<div class="tile"><div class="lab">Permit under 6 months</div><div class="val">{c["b0"]:,}</div><div class="sub">permit issued in the last 6 months</div></div>'
+             f'<div class="tile"><div class="lab">Permit 1 to 2 years</div><div class="val">{c["b2"]:,}</div><div class="sub">permit issued 1 to 2 years ago</div></div>'
+             f'<div class="tile"><div class="lab">Partial occupancy</div><div class="val">{c["partial"]:,}</div><div class="sub">temporary or part use approved</div></div>'
              f'</div><p class="asof">Week of {E(M.nice_date(d["week"]))}. Counts from City of Chicago permit records, checked {E(pulled)}. Updated every Monday.</p>')
     finish = (f'<p>Big jobs take a long time. Of the new buildings permitted in {y2}, {co[y2]["new"]["share"]}% have their certificate of occupancy today; '
-              f'of those permitted in {y1}, {co[y1]["new"]["share"]}%. Renovations finish sooner: {co[y1]["reno"]["share"]}% of the {y1} renovations have theirs. '
-              "So a new building with a permit under a year old is usually many months from its certificate, and one with a permit one to two years old may "
-              "still be months away. The City records cannot say how close any one job is.</p>") if y1 in co and y2 in co else ""
+              f'of those permitted in {y1}, {co[y1]["new"]["share"]}%. Recent renovations get theirs sooner: {co[y1]["reno"]["share"]}% of the {y1} renovations have theirs. '
+              "So most new buildings permitted in the last year are still a long way from their certificate. "
+              "The City records cannot say how close any one job is.</p>") if y1 in co and y2 in co else ""
     nxt = p["next"]
     leads_live = any(x.get("slug") == LEADS_SLUG for x in M.PAGES_LIVE)
     nxt_panel = (f'<section class="block" id="next"><div class="pp-one"><div class="cta ld-cta"><div><h2>{E(nxt["title"])}</h2><p>{E(nxt["text"])}</p>'
@@ -229,7 +229,7 @@ def page_html(p):
             + tiles
             + f'<section class="block" id="timing"><h2>How long a big job takes</h2>{finish}{cohort_block(d, E)}'
             '<p class="asof">Each bar is the share of big jobs from that permit year, on the certificate of occupancy path, that have the certificate today. '
-            "Some older jobs still show no certificate: they may have stalled, closed without one, or the City record was not updated, so the oldest years do not reach 100%.</p></section>"
+            "The bars also count permits the City now lists as suspended, expired, cancelled or revoked, and some City records are never updated, so older years stay below 100%.</p></section>"
             + (f'<section class="block" id="map"><h2>Open jobs on the map</h2>{mapb}</section>' if mapb else "")
             + f'<section class="block" id="areas"><h2>Every community area</h2>{area_table(d, E)}</section>'
             f'<section class="block" id="stages"><h2>What the stages mean</h2>{stages}</section>'
@@ -269,7 +269,7 @@ def selftest():
     finally:
         os.unlink(tmp.name)
     assert html.count("<h1>") == 1 and "—" not in html and "–" not in html, "one h1, no dashes"
-    assert "3 building jobs of $500,000" in html and "1 of them already has partial occupancy" in html, "lede counts"
+    assert "3 building jobs in Chicago with a reported cost of $500,000" in html and "1 of them already has temporary or partial occupancy" in html, "lede counts"
     assert "permitted in 2024, 50%" in html and "permitted in 2025, 50%" in html, "cohort sentence from the counts"
     assert "first weekly snapshot" in html, "first week says moves start next week"
     assert "PLANTED" not in html and "PLANTED" not in json.dumps(d), "no street or address reaches the page"

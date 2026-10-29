@@ -40,7 +40,7 @@ jobs:
                   if (r.right > W + 0.5 && r.width > 0) { let p = el.parentElement, clipped = false;
                     while (p) { const o = getComputedStyle(p).overflowX; if (o === 'auto' || o === 'hidden' || o === 'scroll') { clipped = true; break; } p = p.parentElement; }
                     if (!clipped) out.push(el.tagName + '.' + (el.className && el.className.baseVal === undefined ? el.className : '') + '#' + el.id + ' right=' + Math.round(r.right) + ' w=' + Math.round(r.width) + ' :: ' + (el.textContent || '').trim().slice(0, 60)); } }
-                return 'clientWidth=' + W + ' scrollWidth=' + document.documentElement.scrollWidth + '\n' + out.slice(0, 40).join('\n'); }"""))
+                return 'clientWidth=' + W + ' scrollWidth=' + document.documentElement.scrollWidth + ' || ' + out.slice(0, 40).join(' || '); }"""))
               b.close()
           PY
           python3 /tmp/wide.py 2>&1 | tee wide.txt || true

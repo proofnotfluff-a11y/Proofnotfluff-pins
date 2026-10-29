@@ -3,6 +3,8 @@
  "share": {
   "set:gauge": 0.167,
   "set:inventory": 0.153,
-  "set:dispatch": 0.116
+  "set:icon": 0.153,
+  "set:dispatch": 0.116,
+  "set:levelup": 0.136
  }
 }

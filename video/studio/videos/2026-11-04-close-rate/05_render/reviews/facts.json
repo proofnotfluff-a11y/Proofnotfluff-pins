@@ -1,25 +1,51 @@
 {
  "gate": "facts",
- "round": 0,
- "at": "2026-10-29T12:46:45-05:00",
- "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+ "round": 1,
+ "at": "2026-10-29T13:41:06-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
  "pass": true,
  "score": {
   "numbers": 9,
   "mismatches": 0
  },
  "reasons": [
-  "round 0 on the Oct 29 rebuild: all 9 data.js numbers (31%, 38%, 25%, 70%, 73%, 2026, 40, 14, 35%) match facts.json and the source page, and they say and show the same thing in script.md, transcript.md (word for word the same as the script, 'jobs sold' kept at 28.4 s and 63.4 s per the hand fix), scene.js and the rendered sheets (f00 to f37)",
-  "hook (new): the cover and the Friday whiteboard close-up show 'Do you know your / close rate?' with no numbers. The slips flipping SOLD are story props with no figures, so they do not read as data. From 4.62 s the plate reads 'Median close rate, by US region' / '31% to 38%'. The US NORTHEAST 31% and US WEST 38% cards match the page's 'from 31% in the Northeast to 38% in the West'. The source plate 'ServiceTitan customers, May to Jul 2026' matches the latest quarter. The NUMBERS CLINIC chip is a label, not a claim",
-  "stakes: 'MEDIAN SHOP 31% TO 38%', 'TOP 25% / BY CLOSE RATE', '70% TO 73%' and the LCD '70 TO 73' match 'Among the top 25% of businesses by close rate in each region, medians range from 70% to 73%'. The voice's 'top quarter of shops, ranked by close rate in each region' matches the same sentence. The count-up runs from 85% of each value and settles on the sourced number within 0.7 s (a transition, unchanged from the passed cut). 'THE GAP' between 38 and 70 compares the two sourced ranges fairly, and no cause or tactic is credited",
-  "formula and example: the formula is presented as the lesson's own and never as ServiceTitan's, and 'Same month for both.' is on screen. 14 / 40 = 35% checks out, and 35% sits inside 31% to 38%. It is labeled 'EXAMPLE: LAST MONTH' on screen and 'Here's an example' in the voice",
-  "turn: 'ServiceTitan doesn't say how it counts a close' and 'How it counts a close: not on the page.' match the page, which does not define close rate. 'its customers aren't every shop out there' and 'ServiceTitan customers. Not every shop.' match the page's 'should not be interpreted as representative of the entire trades industry'. The ghost lap board and the Friday board show no numbers",
-  "dollar close rate: cut from the voice, script, cues and every rendered frame. scene.js keeps only an unused slip option (o.dollars is never passed to board()), so nothing about dollars is drawn. Prior review faults are not back",
-  "trades first: the core evidence is ServiceTitan platform data on trades businesses, so no non-trade study is used and no caveat is needed",
-  "no real private person, business or address: Snow is the house character, and the only sources are ServiceTitan and proofnotfluff.com. No em or en dashes in facts.json, brief.md, script.md, transcript.md, cues.md, scene.js or captions.json",
-  "advisory, outside this gate's files (for the facts-captions gate): 05_render/captions.json still has the cut dollar step in the instagram ('Then run it in dollars: $ sold / $ quoted. If the dollar rate is lower, your bigger quotes are the ones getting away.'), tiktok and facebook captions, plus 'Do you track your close rate by count or by dollars?'. The video no longer says this. Fix: drop the dollar lines, or have that gate confirm they are fine as caption-only extras"
+  "round 1 on the Oct 29 rebuild: all 9 data.js numbers (31%, 38%, 25%, 70%, 73%, 2026, 40, 14, 35%) match facts.json (sha256 603d5352... matches data.js) and the source page. The voice (words.json and transcript.md, word for word the same as script.md) and every rendered sheet f00 to f37 say and show the same values, comparisons, base and period",
+  "hook (changed: cover cards settled from frame 0): from 0.00 s the cover shows US NORTHEAST 31% and US WEST 38% under 'Do you know your / close rate?', with the source plate 'ServiceTitan customers, May to Jul 2026' on screen from frame 0, so the source is up whenever those numbers are. That matches 'from 31% in the Northeast to 38% in the West' for the latest quarter. From 4.62 s the plate reads 'Median close rate, by US region' / '31% to 38%'. Advisory, not a fault: for the first 4.6 s the cards do not say 'median'. Each card is the region's median, a fair one-number summary for a region, and the label lands while the voice says 'Median'. Optional fix: add a small 'MEDIAN' tag to each region card in regionCard() in scene.js",
+  "stakes (changed: one-line gauge plates with %): the plates 'MEDIAN 31% TO 38%' and 'TOP 25% 70% TO 73%', the readouts '31% TO 38%' and '70% TO 73%', and the voice's 'top quarter of shops, ranked by close rate in each region. Their median runs seventy to seventy-three percent' all match 'Among the top 25% of businesses by close rate in each region, medians range from 70% to 73%'. The count-up from 85% settles on the sourced value and is a transition. 'THE GAP' between the bands credits no cause or tactic. The 0, 50 and 100 dial marks are scale labels. 'YOURS: ?' is not data",
+  "formula (moved to the neon-sign set): 'Close rate = jobs sold / estimates given' and 'Same month for both.' are the lesson's own formula and are never credited to ServiceTitan",
+  "example: 'EXAMPLE: LAST MONTH', GIVEN 40, SOLD 14 OF 40, 14 / 40 = 35%, and the voice's 'Here's an example'. 14/40 = 0.35. The moved range strip reads 'Median 31% to 38%   35% sits inside', and 35% is inside 31% to 38%",
+  "turn (plain town grid): 'How it counts a close: not on the page.' matches the page, which does not define close rate. 'ServiceTitan customers. Not every shop.' and 'its customers aren't every shop out there' match the page's 'should not be interpreted as representative of the entire trades industry'. The town grid is generic, with no real place. The ghost lap board shows no numbers and does not read as data",
+  "weekly and close (levelup set): no figures beyond the formula. The LV 1, LV 2, XP bar and LEVEL UP! are game props and do not read as data. The SOLD slips carry no figures. The scene.js dollar option (o.dollars) is never passed to board() (calls at lines 359 and 622), so no $ is drawn",
+  "earlier faults not back: the dollar step is gone from script.md, transcript.md, cues.md, the rendered frames and all four captions in 05_render/captions.json (the instagram, tiktok, facebook and youtube texts now carry the facts-captions fixes)",
+  "trades first: the core evidence is ServiceTitan platform data on trades businesses (an aggregated sample of ServiceTitan customer accounts), with no non-trade study and no 'not the trades' caveat needed",
+  "no real private person, business or address: Snow is the house character, and the only names are ServiceTitan (the source) and ProofNotFluff/proofnotfluff.com. 0 em or en dashes in facts.json, brief.md, script.md, transcript.md, cues.md, scene.js, data.js and captions.json"
  ],
  "sources_checked": [
-  "https://www.servicetitan.com/toolbox/state-of-the-trades/trends/quarterly-industry-trends: page dated Oct 22, 2026. Confirmed 'Regional median close rates range from 31% in the Northeast to 38% in the West.' and 'Among the top 25% of businesses by close rate in each region, medians range from 70% to 73%.' The latest quarter is May through July 2026, drawn from five quarters (May 2025 to July 2026). The sample is an aggregated, de-identified sample of ServiceTitan customer accounts. Medians are taken of the sample and of its top 25%. Close rate is not defined. The page says the data is not representative of the entire trades industry, specific trades or broader populations, and that the comparisons do not establish causation or guarantee results"
- ]
+  "https://www.servicetitan.com/toolbox/state-of-the-trades/trends/quarterly-industry-trends: re-read Oct 29, 2026. Page dated October 22nd, 2026. Confirmed 'Regional median close rates range from 31% in the Northeast to 38% in the West.' and 'Among the top 25% of businesses by close rate in each region, medians range from 70% to 73%.' Confirmed the data covers five quarters (May 1, 2025 to July 31, 2026), the latest May through July 2026 (the West at 38% and the Northeast at 31% for May to July 2026). Confirmed it is 'an aggregated, de-identified sample of ServiceTitan customer accounts' and that rates are medians of the sample and of its top 25%. Close rate is not defined. The page says the data 'should not be interpreted as representative of the entire trades industry' and that the comparisons are not a guarantee of results and do not establish causation"
+ ],
+ "prior": {
+  "gate": "facts",
+  "round": 0,
+  "at": "2026-10-29T12:46:45-05:00",
+  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+  "pass": true,
+  "score": {
+   "numbers": 9,
+   "mismatches": 0
+  },
+  "reasons": [
+   "round 0 on the Oct 29 rebuild: all 9 data.js numbers (31%, 38%, 25%, 70%, 73%, 2026, 40, 14, 35%) match facts.json and the source page, and they say and show the same thing in script.md, transcript.md (word for word the same as the script, 'jobs sold' kept at 28.4 s and 63.4 s per the hand fix), scene.js and the rendered sheets (f00 to f37)",
+   "hook (new): the cover and the Friday whiteboard close-up show 'Do you know your / close rate?' with no numbers. The slips flipping SOLD are story props with no figures, so they do not read as data. From 4.62 s the plate reads 'Median close rate, by US region' / '31% to 38%'. The US NORTHEAST 31% and US WEST 38% cards match the page's 'from 31% in the Northeast to 38% in the West'. The source plate 'ServiceTitan customers, May to Jul 2026' matches the latest quarter. The NUMBERS CLINIC chip is a label, not a claim",
+   "stakes: 'MEDIAN SHOP 31% TO 38%', 'TOP 25% / BY CLOSE RATE', '70% TO 73%' and the LCD '70 TO 73' match 'Among the top 25% of businesses by close rate in each region, medians range from 70% to 73%'. The voice's 'top quarter of shops, ranked by close rate in each region' matches the same sentence. The count-up runs from 85% of each value and settles on the sourced number within 0.7 s (a transition, unchanged from the passed cut). 'THE GAP' between 38 and 70 compares the two sourced ranges fairly, and no cause or tactic is credited",
+   "formula and example: the formula is presented as the lesson's own and never as ServiceTitan's, and 'Same month for both.' is on screen. 14 / 40 = 35% checks out, and 35% sits inside 31% to 38%. It is labeled 'EXAMPLE: LAST MONTH' on screen and 'Here's an example' in the voice",
+   "turn: 'ServiceTitan doesn't say how it counts a close' and 'How it counts a close: not on the page.' match the page, which does not define close rate. 'its customers aren't every shop out there' and 'ServiceTitan customers. Not every shop.' match the page's 'should not be interpreted as representative of the entire trades industry'. The ghost lap board and the Friday board show no numbers",
+   "dollar close rate: cut from the voice, script, cues and every rendered frame. scene.js keeps only an unused slip option (o.dollars is never passed to board()), so nothing about dollars is drawn. Prior review faults are not back",
+   "trades first: the core evidence is ServiceTitan platform data on trades businesses, so no non-trade study is used and no caveat is needed",
+   "no real private person, business or address: Snow is the house character, and the only sources are ServiceTitan and proofnotfluff.com. No em or en dashes in facts.json, brief.md, script.md, transcript.md, cues.md, scene.js or captions.json",
+   "advisory, outside this gate's files (for the facts-captions gate): 05_render/captions.json still has the cut dollar step in the instagram ('Then run it in dollars: $ sold / $ quoted. If the dollar rate is lower, your bigger quotes are the ones getting away.'), tiktok and facebook captions, plus 'Do you track your close rate by count or by dollars?'. The video no longer says this. Fix: drop the dollar lines, or have that gate confirm they are fine as caption-only extras"
+  ],
+  "sources_checked": [
+   "https://www.servicetitan.com/toolbox/state-of-the-trades/trends/quarterly-industry-trends: page dated Oct 22, 2026. Confirmed 'Regional median close rates range from 31% in the Northeast to 38% in the West.' and 'Among the top 25% of businesses by close rate in each region, medians range from 70% to 73%.' The latest quarter is May through July 2026, drawn from five quarters (May 2025 to July 2026). The sample is an aggregated, de-identified sample of ServiceTitan customer accounts. Medians are taken of the sample and of its top 25%. Close rate is not defined. The page says the data is not representative of the entire trades industry, specific trades or broader populations, and that the comparisons do not establish causation or guarantee results"
+  ]
+ }
 }

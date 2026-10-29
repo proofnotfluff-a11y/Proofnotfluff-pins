@@ -52,6 +52,7 @@ def main():
     rows = fetch()
     by_ms = {}
     upd_days = Counter()
+    cohort = {}   # issue year x type -> milestone counts: how many big jobs from each year have reached a CO today
     for r in rows:
         iss, upd = day(r.get("issue_date")), day(r.get(":updated_at"))
         if not iss:
@@ -60,12 +61,14 @@ def main():
         typ = "new" if "NEW" in (r.get("permit_type") or "") else "reno"
         b = by_ms.setdefault(ms, {"new": {"age": [], "finish": []}, "reno": {"age": [], "finish": []}})
         b[typ]["age"].append((TODAY - iss).days)
+        cohort.setdefault(f"{iss.year}-{typ}", Counter())[ms] += 1
         if upd:
             b[typ]["finish"].append((upd - iss).days)
             upd_days[upd.isoformat()] += 1
-    out = {"probe": "stage-timing", "ranAt": dt.datetime.utcnow().isoformat(timespec="seconds") + "Z", "dataset": "ydr8-5enu",
+    out = {"probe": "stage-timing", "ranAt": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "dataset": "ydr8-5enu",
            "where": WHERE, "rows": len(rows),
            "updateDaysTop": upd_days.most_common(8), "distinctUpdateDays": len(upd_days),
+           "cohorts": {k: dict(v) for k, v in sorted(cohort.items())},
            "milestones": {ms: {t: {"ageDays": pct(v["age"]), "issueToLastUpdateDays": pct(v["finish"])} for t, v in d.items()}
                           for ms, d in sorted(by_ms.items())}}
     os.makedirs("probes", exist_ok=True)

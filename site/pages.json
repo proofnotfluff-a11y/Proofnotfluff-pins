@@ -6429,7 +6429,7 @@
    "method": [
     "Every Monday we count the City of Chicago's 311 service requests of type Rodent Baiting/Rat Complaint from its public 311 Service Requests dataset, by the community area on each request.",
     "Counts cover whole days in Chicago time and end the day before the pull. The year-ago figures are for the same 30 calendar days one year earlier. Requests the City marks as duplicates are left out.",
-    "Only counts are published. No address, location, request number or anything a resident wrote is stored or shown, so the page names no building, address or business.",
+    "Only counts are kept. No address, location, request number or anything a resident wrote is stored or shown, so the page cannot point to any building, block or business.",
     "The Rat Index divides each community area's complaints by its residents, from the City of Chicago's ACS 5 Year Data by Community Area (U.S. Census Bureau estimates the City allocates to community areas), and ranks all 77 areas. The same residents are used for every period, so a rank change comes from the complaints alone. Areas with few residents, like Fuller Park or Burnside, can move a lot on a few complaints.",
     "Median days to close uses only the created and closed dates on the requests the City closed in the last 30 days. The yearly list covers October 1 to September 30 and comes out each October.",
     "Restaurant pest and hood citations come from the City's Food Inspections dataset: inspections of places whose facility type names a restaurant, counted by the community area their location falls in. We count whether an inspection cited violation 38, and violation 56 with an inspector note naming a hood, filter, exhaust, ventilation, vent or fan. Names, addresses and notes are never kept or shown."
@@ -7135,7 +7135,7 @@
    "method": [
     "Every morning we pull the City of Chicago's public Transportation Department Permits dataset and keep the permits of type DOT_DMPSTR, the City's code for a dumpster permit, that have an issue date. The City lists a permit with several locations as several rows; we count each permit once in the city total.",
     "Each permit is placed in one of the 77 community areas by the latitude and longitude the City gives for the start of its address range, matched against the City's community area outlines. Each permit counts on the day CDOT issued it, and every count runs through the day before that morning's pull. The year-ago column is the same 90 calendar days one year earlier.",
-    "Only counts are published. We never request the applicant name, contact or street address fields. The City's map point is used only to place a permit in a community area and is not kept, and no permit number or address is stored or shown, so the page names no building, address or business."
+    "Only counts are kept. We never request the applicant name, contact or street address fields. The City's map point is used only to place a permit in a community area and is not kept, and no permit number or address is stored or shown, so the page cannot point to any building, block or business."
    ],
    "faq": [
     [
@@ -7203,7 +7203,7 @@
     "Every day we count two types of Chicago 311 service request from the City's public 311 Service Requests dataset: Water in Basement Complaint, the Department of Water Management's request for water that has backed up into a home or business, and Sewer Cleaning Inspection Request, for a sewer structure such as a catch basin that is full of dirt or debris or not draining.",
     "We count each request by the day it was made and the community area on it, and keep only those counts. Requests the City marks as duplicates are left out.",
     "12 months means the last 12 whole months, and the change compares them with the 12 months before. Days run on Chicago time, and each daily update counts through the day before. The downloads also include the current month so far.",
-    "Only counts are published. No address, location, request number or anything a resident wrote is stored or shown, so the page cannot point to any home, building or block."
+    "Only counts are kept. No address, location, request number or anything a resident wrote is stored or shown, so the page cannot point to any home, building or block."
    ],
    "faq": [
     [
@@ -7264,7 +7264,7 @@
     "Each violation is sorted into a trade by its violation code with our own published mapping: a code we list goes to its trade, any other code in the City's elevator, boiler, ventilation, refrigeration, plumbing or electrical code series goes to the matching trade, and everything else is not counted by trade. Codes for paperwork, permits, plans, records and arranging inspections are left out on purpose.",
     "The dataset has no named community area column, so each violation's map point is placed inside the City's own community area outlines. Addresses and map points are used only for this step and are never stored or shown.",
     "12 months means the last 12 whole months, and the change compares them with the 12 months before. One inspection can cite several violations, and a violation counts in the month it was cited whether or not it has since been fixed.",
-    "Only counts are published. No address, location, property, owner, inspector or comment is stored or shown, so the page cannot point to any building."
+    "Only counts are kept. No address, location, property, owner, inspector or comment is stored or shown, so the page cannot point to any building."
    ],
    "faq": [
     [

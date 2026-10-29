@@ -1,0 +1,2 @@
+gatepack: /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-11-04-close-rate/05_render/gates (5 timeline sheets, 3 first frames)
+exit 0

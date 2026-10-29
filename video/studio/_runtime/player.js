@@ -185,6 +185,7 @@
   // room to room: 12 frames, 5 closing over the old room, the cut, 1 held shut, 6 opening on the new one. The new room
   // picks the move: blinds (workshop), a chalk wipe (blackboard), a garage door (garage), an iris (framing); blinds otherwise.
   // A section names its room with SCENE.rooms = {sectionId: 'garage'}, or the player reads its k.room call.
+  // SCENE.transitions = {sectionId: 'levelselect' | 'dissolve' | 'gameover'} picks a set piece's move (sets.js) instead.
   const STYLE = {workshop: 'blinds', blackboard: 'chalk', garage: 'door', framing: 'iris'};
   function transition(ctx, T, tops, sec, U, head) {
     const i = tops.indexOf(sec), nx = tops[i + 1];
@@ -196,9 +197,11 @@
     const q = u < 0 ? Math.pow(Math.max(0, (u + 6) / 6), 2) : (u < 1 ? 1 : Math.pow(1 - u / 7, 2));   // how shut: eases in, eases out
     if (q <= 0) return;
     const room = (window.SCENE.rooms || {})[to.id] || (survey && survey.rooms[to.id]);
-    const style = STYLE[room] || 'blinds', closing = u < 0;
+    const style = (window.SCENE.transitions || {})[to.id] || STYLE[room] || 'blinds', closing = u < 0;
     const cell = Math.max(U, 3), sn = (v) => Math.round(v / cell) * cell;
     const fill = (c, x, y, w, h) => { if (w > 0 && h > 0) { ctx.fillStyle = c; ctx.fillRect(x, y, w, h); } };
+    const ext = window.SETS && window.SETS.transitions[style];   // the set pieces' moves (sets.js): levelselect, dissolve, gameover
+    if (ext) { ext(ctx, q, {closing, u, cell, W, H, fill, hash, head}); return; }
     if (style === 'blinds') {   // slats slide in from alternate sides over the old room, then back out
       for (let s = 0; s < 16; s++) {
         const qs = Math.max(0, Math.min(1, q * 1.3 - s * 0.02)), w = sn(W * qs);

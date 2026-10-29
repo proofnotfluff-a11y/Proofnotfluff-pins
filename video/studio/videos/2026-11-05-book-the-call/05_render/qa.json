@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-05-book-the-call",
- "mp4Sha256": "fa747c73717c2b42c648e4d92df74e47b9aa22930ed336b8edf382aeb29c187c",
+ "mp4Sha256": "f604ceb364ba6886914f909dea82a248222fdfb7a2e19faa43e2fb63c17d644c",
  "checks": [
   {
    "name": "length",
@@ -33,8 +33,8 @@
   {
    "name": "file",
    "value": {
-    "sha256": "fa747c73717c2b42c648e4d92df74e47b9aa22930ed336b8edf382aeb29c187c",
-    "bytes": 6538121
+    "sha256": "f604ceb364ba6886914f909dea82a248222fdfb7a2e19faa43e2fb63c17d644c",
+    "bytes": 6535248
    },
    "pass": true,
    "detail": "H.264 1080x1920 30 fps, AAC, 6.5 MB, decodes clean"
@@ -47,5 +47,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-28T20:47:10-05:00"
+ "at": "2026-10-28T21:01:30-05:00"
 }

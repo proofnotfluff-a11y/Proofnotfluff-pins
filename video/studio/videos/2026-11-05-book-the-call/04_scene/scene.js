@@ -340,7 +340,7 @@ window.SCENE = {
         k.burst(200, 760, tp + 0.7, {n: 18, r: 220});
         k.slam('of home service', 400, 724, tp + 0.4, {size: 39, color: CREAM, from: 0.4});
         k.slam('businesses', 400, 768, tp + 0.6, {size: 39, color: CREAM, from: 0.4});
-        if (T >= tp + 0.9) k.text('(calls on its platform)', 400, 812, {size: 30, color: SAND});
+        if (T >= tp + 0.9) k.text('(Invoca customers)', 400, 812, {size: 30, color: SAND});
         if (T >= noask) {
           k.slam("don't ask leads to", 72, 862, noask, {size: 39, color: CREAM, from: 0.4});
           k.slam('buy or book the job.', 72, 910, wordT(k, 'why.noask', /^buy/i), {size: 39, color: CREAM, from: 0.4});
@@ -431,7 +431,7 @@ window.SCENE = {
       // before the menu opens: the battle log in the menu window
       if (T < tPick) {
         const log = [['A wild boss appears!', t0 + 0.1, CREAM], ['It throws HOMEWORK!', tHw, GOLD], ["It's super effective.", tHw + 0.7, RED]];
-        log.forEach(([s, at, c], i) => { if (T >= at) { const m = s.slice(0, Math.max(1, d.fr(at) + 1)); d.tx(m, 28, 138 + i * 22, {color: c, lint: m.length === s.length}); } });
+        log.forEach(([s, at, c], i) => { if (T >= at) { const m = s.slice(0, Math.max(1, (d.fr(at) + 1) * 3)); /* 3 letters a frame */ d.tx(m, 28, 138 + i * 22, {color: c, lint: m.length === s.length}); } });
         if ((d.F >> 3) & 1) d.P(160, 240, 5, 3, CREAM);
       }
       // the caller: a small tech between the menu and the boss; the homework sheet flies and knocks him back a step
@@ -472,7 +472,7 @@ window.SCENE = {
         {label: '', value: 'EVERY FRIDAY', at: wordT(k, 'caveat.friday', /^Friday/i, 1.2), hi: true},
         {label: 'BOOKED CALLS', value: '', at: wordT(k, 'caveat.formula', /^Booked/i)},
         {label: '/ LEAD CALLS', value: '', at: wordT(k, 'caveat.formula', /^divided/i, 0.6)},
-        {label: '', value: '= BOOK RATE', at: wordT(k, 'caveat.formula', /^calls\./i, 1.7) + 0.15, hi: true},
+        {label: '', value: '= BOOK RATE', at: wordT(k, 'caveat.formula', /^divided/i, 0.6) + 0.5, hi: true},   // settles a second before the cut
       ];
       const rows = one.map((r, i) => (T >= two[i].at ? two[i] : r));
       k.sets.flaps({title: T >= k.S('caveat.friday') ? 'YOUR FRIDAY CHECK' : 'ONE HONEST NOTE', cols: 12, rows});
@@ -495,10 +495,10 @@ window.SCENE = {
       const n = k.data.numbers, d = px(k), t0 = k.S('close'), send = k.S('close.send'), nx = k.S('close.next');
       vsScreen(k, {at: t0 - 0.1, vsAt: t0 + 0.15, aBig: n.topBook.shown,
         bBig: (cx) => {
-          if (T < nx) k.text('?', cx * 3, 330, {size: 132, color: Math.floor((T - t0) * 2) % 2 ? GOLD : CREAM, align: 'center', drop: INK});
-          else {   // the ? turns into a lit lamp: the next call, booked
-            const f = d.fr(nx), cy = 131, r = f < 3 ? 6 + f * 5 : 20;
-            d.disc(cx, cy, r + 2, INK); d.disc(cx, cy, r, GOLD); d.disc(cx - 3, cy - 3, Math.max(2, r - 8), '#F7D79B'); d.P(cx - 6, cy + r, 13, 6, GREY); d.P(cx - 6, cy + r + 2, 13, 1, '#6B7080');
+          // the ? stays: the close asks the hook's question back (your number), it lights gold with rays on the last line
+          k.text('?', cx * 3, 330, {size: 132, color: T >= nx ? GOLD : (Math.floor((T - t0) * 2) % 2 ? GOLD : CREAM), align: 'center', drop: INK});
+          if (T >= nx) {
+            const f = d.fr(nx), cy = 131;
             if (f >= 3) for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4 + ((d.F >> 2) & 1) * Math.PI / 8; d.P(cx + Math.round(Math.cos(a) * 30) - 1, cy + Math.round(Math.sin(a) * 30) - 1, 3, 3, CREAM); }
           }
         },

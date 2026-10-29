@@ -108,10 +108,11 @@ const closeUp = (k, o) => {
   k.text('The tech showed', 108, 540, {size: 66, color: PLUM});
   k.text('up late.', 108, 612, {size: 66, color: PLUM});
   d.P(250, 226, 74, 17, INK); d.P(251, 227, 72, 15, RED); d.tx('EXAMPLE', 287, 228, {color: CREAM, align: 'center'});
-  // under the card: the promise, and the reply box with its cursor blinking
-  k.text('Copy this reply.', 108, 696, {size: 66, color: 'accent'});
-  P(26, 262, 308, 26, '#FFF7EA'); P(26, 262, 308, 1, '#E6D3BC'); P(32, 268, 250, 14, '#F4E6D3'); d.P(296, 268, 30, 14, '#2F6F67');
-  if (Math.floor(T * 2) % 2 === 0) P(36, 270, 2, 10, '#2F6F67');
+  // under the card: the reply box, the promise typed in it as its placeholder, the cursor blinking
+  P(26, 254, 308, 36, '#FFF7EA'); P(26, 254, 308, 1, '#E6D3BC'); P(30, 258, 260, 28, '#F4E6D3'); d.P(296, 258, 30, 28, '#2F6F67');
+  d.P(306, 268, 10, 2, CREAM); d.P(312, 265, 2, 8, CREAM);
+  if (Math.floor(T * 2) % 2 === 0) P(34, 261, 2, 22, '#2F6F67');
+  k.text('Copy this reply.', 120, 780, {size: 66, color: 'accent'});
   // the keyboard: four rows of keys on whole pixels, no letters (the speech box sits over its top row)
   P(14, 296, 332, 344, '#C9CCD3'); P(14, 296, 332, 1, '#9AA0AD');
   const rows = [[10, 0], [9, 8], [9, 8], [5, 0]];

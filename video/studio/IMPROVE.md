@@ -9,6 +9,8 @@ Order of pick: a fault a gate named twice in the last week, then the item most l
 weekly numbers), then the top of the backlog. Research runs (Mondays) add items with their source.
 
 ## Backlog (most promising first)
+000. Style reference board per series (Paulino's animation-studio method, Todd Oct 28): 3 to 6 saved frames the art
+   follows (palette, shading, UI finish), read by the scene author and the design gate.
 00. Motion: 60 fps renders (double render time) for smoother slides; Snow walk-ins, a point-at-board pose and a reaction
    pose on big numbers; squash and stretch on landings and 1-frame smears on fast moves (Todd, Oct 28: "better animation").
 0. Captions lint in code: line 1 under 100 characters on all four, a send line on all four, hashtag counts per platform,

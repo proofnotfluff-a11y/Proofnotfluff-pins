@@ -70,6 +70,7 @@
     "truePeakMax": -1.5,
     "blackMaxSeconds": 0.5,
     "freezeMaxSeconds": 1.0,
+    "freezeNoiseDb": -70,
     "hookEndsBy": 3.0,
     "safeTop": 270,
     "safeBottom": 1250,

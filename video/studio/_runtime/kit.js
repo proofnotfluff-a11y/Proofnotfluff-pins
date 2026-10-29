@@ -772,7 +772,7 @@
       disc(cx, cy, 11, '#120D14'); disc(cx, cy, 10, '#E6D3BC'); disc(cx + 1, cy + 1, 9, '#FFF7EA');
       for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6, r = i % 3 ? 8 : 7; const x = cx + Math.round(Math.sin(a) * 8.6), y = cy - Math.round(Math.cos(a) * 8.6); DOT(x, y, i % 3 ? '#9AA0AD' : '#120D14'); if (!(i % 3)) DOT(cx + Math.round(Math.sin(a) * r), cy - Math.round(Math.cos(a) * r), '#120D14'); }
       line(cx, cy, cx - 4, cy - 3, '#120D14'); line(cx, cy, cx + 5, cy - 5, '#120D14');   // ten past ten
-      const sa = ((t ? Math.floor(T) : 0) + 20) % 60 * Math.PI / 30;
+      const sa = ((t ? Math.floor(T * 2) : 0) + 40) % 120 * Math.PI / 60;   // a sweep-second clock: a step every half second keeps the room alive
       line(cx, cy, cx + Math.round(Math.sin(sa) * 8), cy - Math.round(Math.cos(sa) * 8), '#E2633B'); DOT(cx, cy, '#7A3442');
       // the board: a drop shadow, an outline, then the mitred frame ring by ring (top and left lit, bottom and right in shade)
       const X0 = 12, Y0 = 74, X1 = 348, Y1 = 341;

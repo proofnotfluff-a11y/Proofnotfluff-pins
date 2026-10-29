@@ -109,7 +109,7 @@ def c_black(mp4):
 
 def c_frozen(mp4, end_card_from):
     q = cfg()
-    r = sh(["ffmpeg", "-hide_banner", "-nostats", "-i", mp4, "-vf", f"freezedetect=n=-60dB:d={q['freezeMaxSeconds']}", "-an", "-f", "null", "-"])
+    r = sh(["ffmpeg", "-hide_banner", "-nostats", "-i", mp4, "-vf", f"freezedetect=n={q.get('freezeNoiseDb', -60)}dB:d={q['freezeMaxSeconds']}", "-an", "-f", "null", "-"])
     starts = [float(x) for x in re.findall(r"freeze_start: ([\d.]+)", r.stderr)]
     ends = [float(x) for x in re.findall(r"freeze_end: ([\d.]+)", r.stderr)]
     dur = float(probe(mp4)["format"]["duration"])

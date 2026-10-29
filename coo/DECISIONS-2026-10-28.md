@@ -71,3 +71,6 @@
 - 5:58 pm [stated] Answer in chat on steady motion: "Add steady motion (Recommended)" (the 1-second freeze rule stays).
 - 6:09 pm [stated] "Also increase your objects animation skill so it truly looks like a retro video game. The objects like the black board for example should be well designed. Ensure everything is of the highest quality and it looks like a professional animation studio created it."
 - So: a pixel-art pass on the shared runtime (rooms, props, panels, ambient loops), graded by a design reviewer, before lessons re-render.
+- 6:38 pm [stated] Todd shared Paulino's "Claude as an animation studio" video transcript (style references, research, every shot drawn in code, sound, self-checks, MP4) and two guides (popularaitools.ai Remotion article; opus55vid.com guide, not readable from here: the URL is too long for the fetch proxy).
+- So: our studio already runs that loop (voice-first, shots in code, sound, gates). The new idea worth taking: a style reference board per series; noted in IMPROVE.
+- 6:58 pm [stated] Answer in chat on the freeze check: "Retune the check (Recommended)". So: video/config.json qa.freezeNoiseDb -70 (was a fixed -60 in tools/video_qa.py): a truly stuck picture still fails (tested on a still clip and a static crop), steady pixel motion passes. Lesson 1: frozen PASS 0.

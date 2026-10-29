@@ -1,17 +1,53 @@
 {
  "gate": "render-critic",
- "round": 0,
- "at": "2026-10-29T00:00:19-05:00",
+ "round": 1,
+ "at": "2026-10-29T12:47:25-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
  "pass": true,
  "score": {
   "faults": 0
  },
  "faults": [],
  "reasons": [
-  "hook: 'Quote went quiet?' and 'Send this text.' on screen from frame 0",
-  "numbers: 37% at 8.0 s (said 8.17) at 264 px with the bar right under it, 59% at 57.0 to 58.0 s (said 58.10), 'Within 2 days' 66.0 (said 66.01), 'Day 7 a week after' 68.0 (said 68.17), '1 to 2 days before expiry' 71.0 (said 71.05), 'After 3, close the file.' wipes in from 74.7 (said 74.69), full by 75.0",
-  "new text build: keyboard and composer type each line as said, bubbles go up on 'know' (37.3) and 'That's' (43.4); when the chat scrolls only the Quote.pdf bubble slides off the top (no words cut mid-read); lock screen lands on 'question' 44.0 and covers the truck phone with no words beneath it; notification text and YES/NO fully readable inside x 930 and y 1250; YES/NO pressed on 45.4/46.2",
-  "homework floor now wood planks (no transparency look); the 18.0, 47.0, 63.5, 76.0 frames are single transition frames",
-  "audio: last word 'send.' ends 84.57 s, video 86.47 s, nothing cut; text phone-readable; blinks at 2 per second only, no flash over 3 per second"
- ]
+  "Prior round: reviews/render-critic.json (round 0) listed 2 overlaps, and both are gone. The hook Sources line now reads 'Sources: ServiceTitan, Jobber, Housecall Pro' at y 672 to 703, clear of the window border, with its right edge at x 914. In the JOBBER'S TIPS window, 'Jobber Academy, 2026' wraps onto two lines inside the panel. The other round-0 items are fixed too: 59% is large and its source arrives with it, the dash close-up has vents and a big Snow, every phone header says Homeowner, no sparks sit on 'this', and the level-up close has a dark console floor with no checkerboard.",
+  "hook-number: PASS. 'Quote went quiet?' and 'Send this text.' are on screen from frame 0. They stay up through the 0.5 to 1.5 s dash cut-in and are still there at 2.0 s.",
+  "number-readable: PASS. 37% lands at about 8.0 s; 'thirty-seven' is said at 7.94 s. 59% lands at about 56.0 s; 'fifty-nine' is said at 55.72 s. + ONE NAME, ONE JOB and ONE QUESTION land at about 61.0, 62.0 and 63.0 s; they are said at 60.74, 61.78 and 62.68 s.",
+  "layout: PASS. Once each scene settles, no words or numbers are hidden or cut off. Text stays within y 270 to 1250. The lock-screen notification covering the chat and the Dentist note covering the plumber note are both scripted reveals. Two lines run just past the x 930 guide, measured from pixels: 'Groceries' on the fridge note ends at x 938 (y 708, 18 to 33 s), and 'ServiceTitan follow-up webinar, 2026' ends at x 935 (y 940, 51.5 to 55.5 s). Both are fully visible and sit outside where the platform's right-side buttons usually go, so I did not count them as faults. Pulling them in by about 10 px would remove any doubt.",
+  "audio-end: PASS. The last word 'send.' ends at 69.08 s and the video runs 71.97 s. The music and end card play out and fade (-39 dB at 71.6 s), so nothing is cut mid-word.",
+  "small-text / flash: PASS. The smallest text (source lines, '1,040 U.S. homeowners, 2025', 'now' on the notification) is about 28 px tall or more. The only dark dip is a 2-frame transition at about 60.7 s, a single event. The typing dots and rotating rays stay well under 3 flashes a second."
+ ],
+ "prior": {
+  "gate": "render-critic",
+  "round": 0,
+  "at": "2026-10-29T12:26:21-05:00",
+  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+  "pass": false,
+  "score": {
+   "faults": 2
+  },
+  "faults": [
+   {
+    "kind": "overlap",
+    "at": 0.0,
+    "text": "Sources: Jobber, ServiceTitan",
+    "scene": "hook (street cover, frames 0 to about 0.5 s and 1.9 to 3.5 s)",
+    "what": "The new Sources line sits right on the sky window's bottom border at about y 672 to 703. Its baseline touches the inner border line, and the J descender and the comma cross below it into the window's outer frame, so the line looks like it is spilling out of the box. It is still readable. In the 0.5 to 1.5 s dash cut-in the same line has room and is fine. Move it up or make the window taller so the text clears the border."
+   },
+   {
+    "kind": "overlap",
+    "at": 28.07,
+    "text": "Jobber Academy, 2026",
+    "scene": "homework (JOBBER'S TIPS window, 27.5 to 33.4 s)",
+    "what": "The source line runs past the window's right edge. The last digit, the 6 of 2026, crosses the light-blue inner border at x about 430 to 440, and the border line is drawn through it, so part of the number sits under the frame. Shrink or wrap the line, or widen the window."
+   }
+  ],
+  "reasons": [
+   "Prior round: reviews/render-critic.json lists 0 faults, so nothing to re-check. Its items are not back: notification and YES/NO stay readable inside x 930, the floor is wood planks, and the voice is not cut.",
+   "hook-number: PASS. 'Quote went quiet?' and 'Send this text.' are on screen from frame 0. The dash cut-in at 0.5 to 1.5 s carries the same title plate, and the cut back at 2.0 s still shows them. That is 2 picture changes before 3 s, not a flash.",
+   "number-readable: PASS. 37% is on screen at 8.0 s (said 7.94 s), 59% at 56.0 s (said 55.72 s), and + ONE NAME / ONE JOB / ONE QUESTION land at 61.5 / 62.0 / 63.0 s (said 60.74 / 61.78 / 62.68 s).",
+   "layout: the dialog box ends at x about 925. Text bubbles, the lock screen and the close text all sit within y 270 to 1250. The Dentist note covering the plumber note is scripted. The 60.5 s near-black frame is a single transition frame. Only the 2 border overlaps above fail.",
+   "audio-end: PASS. The last word 'send.' ends at 69.08 s and the video runs 71.97 s with an end card, so nothing is cut mid-word.",
+   "small-text / flash: PASS. The smallest text (source lines, notes) is about 28 to 30 px tall, readable on a phone. The typing dots blink about 2 times a second, the rays rotate, and nothing flashes more than 3 times a second."
+  ]
+ }
 }

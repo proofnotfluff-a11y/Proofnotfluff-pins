@@ -1,9 +1,9 @@
 /* Scene: The text that revives a quote that went quiet (lesson 2, The Text, arcade). One function per top-level cue in */
 /* 03_cues/cues.md. Numbers only from k.data (brief.md -> data.js). Every time comes from a cue start (k.S) or a spoken */
 /* word (wordT, spoken), never a typed number, so the re-voiced takes move the picture with them. */
-/* Worlds (brief.md): hook and stakes = the street (one section: the van parked at the job, then it pulls away); homework = */
+/* Worlds (brief.md): hook and stakes = the street (one section: the van parked at the job, a cut in to your phone, then it pulls away); homework = */
 /* the homeowner's fridge (our own piece); text = the chat set in the truck with our own keyboard and composer, then the */
-/* homeowner's lock screen (our own piece); turn = the mail desk (our own piece); cadence = the street again, three trips; */
+/* homeowner's lock screen (our own piece); turn = the mail desk (our own piece); */
 /* close = the level-up screen. No stock room. The camera holds still (pixel art never scales). */
 const INK = '#120D14', CREAM = '#FFF7EA', SAND = '#E6D3BC', GOLD = '#F7C873', ORANGE = '#F2A541', RED = '#E2633B', TEAL = '#6FB7A8', GREY = '#9AA0AD';
 const LINE_A = "Hi [name], it's [you].";
@@ -322,54 +322,125 @@ const desk = (k, o) => {
   return {phone: [PX, PY]};
 };
 
+/* ================================================================================================================ */
+/* the phone close-up (hook, "quiet" to "One"): the cut in on the quiet quote (IMPROVE 00a). The hook rides on a title */
+/* plate up top; below it your phone, big in its dash mount: the quote you sent, Seen, and a typing bubble whose dots */
+/* blink, stop and start again and never turn into a reply. The dash and its vents fill the lower frame; Snow steps up */
+/* big in the cab (a reframe, not a backdrop swap). One low-res pixel per 3 frame units, nothing scaled. */
+const quietPhone = (k) => {
+  const d = px(k), {P, DOT, disc, line, F, T} = d;
+  /* the windshield: dusk over the street; the cab around it, as in the chat set: roof liner, mirror, air freshener and
+     the two A-pillars down the frame edges (no bare slabs beside the title plate) */
+  P(0, 0, 360, 168, '#5A3042'); P(0, 0, 360, 52, '#3D2E45'); d.dith(0, 50, 360, 3, '#3D2E45', 1);
+  for (let i = 0; i < 6; i++) { const x = 20 + i * 62, h = 30 + Math.floor(hash(i * 2.7) * 26); P(x, 168 - h, 46, h, '#2B2033'); P(x + 8, 168 - h + 8, 6, 5, (i + (F >> 4)) % 3 ? GOLD : '#1B1420'); }
+  for (let y = 0; y < 170; y++) { const w = 30 - Math.floor(y / 12); P(0, y, w, 1, '#1B1420'); P(w, y, 1, 1, '#3D2E45'); P(360 - w, y, w, 1, '#1B1420'); P(359 - w, y, 1, 1, '#3D2E45'); }
+  [[4, 104], [348, 104]].forEach(([x, y]) => { P(x, y, 8, 26, '#2B2033'); P(x, y, 8, 1, '#4A4E5A'); P(x + 3, y + 4, 2, 18, INK); });
+  P(0, 0, 360, 12, '#1B1420'); P(150, 12, 60, 14, INK); P(152, 13, 56, 11, '#4A4E5A'); P(153, 14, 54, 4, '#87CEEB'); P(178, 0, 4, 13, INK);
+  { const sw = [0, 1, 0, -1][(F >> 3) % 4]; line(196, 24, 196 + sw, 36, '#C9CCD3'); P(192 + sw, 36, 9, 10, '#3E7A62'); P(194 + sw, 34, 5, 2, '#3E7A62'); DOT(193 + sw, 37, '#6FB7A8'); }
+  P(0, 160, 360, 8, '#1B1420');
+  /* the dash: a dark shelf that runs to the bottom of the frame, two big vents with slats; under them the lower dash:
+     a glovebox, the cup holder with your coffee, the keys on their ring, a clipboard of quotes on the console */
+  P(0, 168, 360, 472, '#2B2033'); P(0, 168, 360, 3, '#4A4E5A'); P(0, 171, 360, 2, INK);
+  [[14, 470], [222, 470]].forEach(([x, y]) => { P(x - 1, y - 1, 126, 62, INK); P(x, y, 124, 60, '#1B1420'); for (let j = 0; j < 6; j++) P(x + 4, y + 6 + j * 9, 116, 3, '#3D2E45'); });
+  P(0, 548, 360, 92, '#241B2B'); P(0, 548, 360, 2, '#4A4E5A'); P(0, 550, 360, 1, INK);
+  P(222, 560, 124, 56, '#2B2033'); P(222, 560, 124, 1, '#4A4E5A'); P(222, 615, 124, 1, INK); P(272, 584, 24, 6, '#4A4E5A'); P(273, 585, 22, 2, '#9AA0AD');
+  P(150, 566, 56, 30, INK); P(152, 568, 52, 26, '#1B1420'); disc(178, 581, 11, '#3D2E45');
+  P(168, 552, 20, 30, CREAM); P(168, 552, 20, 4, '#E6D3BC'); P(166, 550, 24, 4, '#9AA0AD'); P(171, 562, 14, 8, ORANGE); P(188, 558, 4, 12, CREAM);
+  { const sk = [0, 1, 1, 0, -1, -1][(F >> 3) % 6]; line(134 , 520, 136 + sk, 532, '#C9CCD3'); disc(136 + sk, 536, 4, GOLD); P(132 + sk, 540, 4, 10, '#9AA0AD'); P(138 + sk, 538, 3, 8, '#6B7080'); }
+  P(20, 566, 110, 64, '#5A3A22'); P(20, 566, 110, 1, '#7A5232'); P(58, 562, 34, 8, '#9AA0AD'); P(60, 563, 30, 3, '#C9CCD3');
+  P(28, 574, 94, 52, CREAM); for (let j = 0; j < 6; j++) P(36, 584 + j * 7, 78 - (j % 3) * 14, 2, GREY); P(28, 574, 94, 6, '#E6D3BC');
+  for (let x = 0; x < 360; x += 30) P(x + 6, 632, 18, 2, '#3D2E45');
+  /* the title plate: the hook, held from the cover (frame y 258 to 486) */
+  d.win(14, 86, 332, 80, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
+  const a = 'Quote went ', wa = k.measure(a, {size: 66}), x0 = 540 - (wa + k.measure('quiet?', {size: 66})) / 2;
+  k.text(a, x0, 276, {size: 66, color: CREAM, drop: INK}); k.text('quiet?', x0 + wa, 276, {size: 66, color: 'accent', drop: INK});
+  k.text('Send this text.', 540, 352, {size: 66, color: CREAM, align: 'center', drop: INK});
+  k.text('Sources: ServiceTitan, Jobber, Housecall Pro', 540, 432, {size: 30, color: SAND, align: 'center'});
+  /* the phone in its mount, big: bezel, header, your quote (a PDF card, Seen), the typing bubble */
+  const X = 150, Y = 176, W = 182, H = 268;
+  P(X + 50, Y + H, 82, 14, '#4A4E5A'); P(X + 50, Y + H, 82, 2, '#9AA0AD');
+  P(X - 1, Y - 1, W + 2, H + 2, INK); P(X, Y, W, H, '#1B1420'); P(X + 1, Y, W - 2, 1, '#4A4E5A');
+  const sx = X + 7, sy = Y + 8, sw = W - 14, sh = H - 16;
+  P(sx, sy, sw, sh, '#F4E6D3');
+  /* the header, the same chrome as the chat set's phone: status bar, back arrow, avatar, name, a live dot */
+  P(sx, sy, sw, 36, '#2F6F67'); P(sx, sy + 36, sw, 1, '#245752');
+  d.tx('9:41', sx + 4, sy + 2, {color: CREAM, lint: false});
+  for (let i = 0; i < 4; i++) P(sx + sw - 30 + i * 3, sy + 9 - i * 2, 2, 2 + i * 2, CREAM);
+  P(sx + sw - 15, sy + 4, 11, 7, CREAM); P(sx + sw - 14, sy + 5, 6, 5, TEAL); P(sx + sw - 4, sy + 6, 1, 3, CREAM);
+  line(sx + 9, sy + 26, sx + 5, sy + 22, CREAM); line(sx + 9, sy + 18, sx + 5, sy + 22, CREAM);
+  disc(sx + 22, sy + 22, 7, '#F0B98D'); P(sx + 15, sy + 15, 14, 4, RED); DOT(sx + 19, sy + 22, INK); DOT(sx + 25, sy + 22, INK); P(sx + 20, sy + 26, 5, 1, '#C98B63');
+  d.tx('Homeowner', sx + 34, sy + 16, {color: CREAM}); disc(sx + 36 + Math.ceil(d.tw('Homeowner')) + 5, sy + 22, 2, GOLD);
+  /* the quote you sent */
+  const bw = 132, bh = 52, bx = sx + sw - 8 - bw, by = sy + 50;
+  P(bx + 1, by, bw - 2, bh, '#3B82C4'); P(bx, by + 1, bw, bh - 2, '#3B82C4'); P(bx + 1, by, bw - 2, 1, '#87CEEB'); P(bx + bw, by + bh - 6, 3, 4, '#3B82C4');
+  P(bx + 7, by + 7, 26, 38, CREAM); P(bx + 7, by + 7, 26, 7, ORANGE); for (let j = 0; j < 5; j++) P(bx + 11, by + 19 + j * 5, 18 - (j % 2) * 6, 1, GREY);
+  d.tx('Quote.pdf', bx + 40, by + 9, {color: CREAM});
+  d.tx('Seen', bx + 40, by + 29, {color: '#BDE6F5'});
+  [0, 4].forEach((dx) => { DOT(bx + 72 + dx, by + 36, '#BDE6F5'); DOT(bx + 73 + dx, by + 37, '#BDE6F5'); line(bx + 74 + dx, by + 36, bx + 77 + dx, by + 33, '#BDE6F5'); });
+  /* their typing bubble: the dots step for a while, stop, start again; nothing ever arrives */
+  const tx0 = sx + 8, ty0 = by + bh + 22, ph = Math.floor(T * 5) % 10;
+  P(tx0 + 1, ty0, 58, 26, '#C9CCD3'); P(tx0, ty0 + 1, 60, 24, '#C9CCD3'); P(tx0 - 3, ty0 + 20, 4, 4, '#C9CCD3');
+  for (let i = 0; i < 3; i++) { const on = ph < 6 && ph % 3 === i; P(tx0 + 11 + i * 15, ty0 + 9 - (on ? 2 : 0), 8, 8, on ? '#4A4E5A' : '#9AA0AD'); }
+  /* the empty composer at the screen's foot */
+  P(sx, sy + sh - 30, sw, 30, CREAM); P(sx, sy + sh - 30, sw, 1, SAND); P(sx + 6, sy + sh - 24, sw - 40, 18, '#F4E6D3');
+  d.tx('Text message', sx + 11, sy + sh - 22, {color: '#B39A88', lint: false});
+  disc(sx + sw - 16, sy + sh - 15, 8, '#9AA0AD');
+};
+
 window.SCENE = {
   look: 'arcade',
   images: [],
   host_name: 'Snow',
   hud: 'LESSON 2',
-  transitions: {homework: 'dissolve', text: 'door', turn: 'blinds', cadence: 'dissolve', close: 'levelselect'},
+  transitions: {homework: 'dissolve', text: 'door', turn: 'blinds', close: 'levelselect'},
   sections: {
     /* ---- hook and stakes: the street. The cover is settled on frame 0 (the van parked at the job, the QUOTE sign, */
-    /* the hook in a window in the sky); on "driveway" the van pulls away and the sign slides off behind it. */
+    /* the hook in a window in the sky); a cut in to the phone close-up and back out; on "driveway" the van pulls away. */
     hook: (k, T) => {
       const n = k.data.numbers, d = px(k);
-      const tSkip = wordT(k, 'hook.skip', /^checking/i), tSend = k.S('hook.send'), tSt = k.S('hook.stakes');
+      const tSkip = wordT(k, 'hook.skip', /^bring/i), tSend = k.S('hook.send'), tSt = k.S('hook.stakes');
+      /* three shots (IMPROVE 00a): the cover (frame 0) holds to "quiet"; cut in to the phone close-up, Snow comes in big;
+         cut back out on "One" to the street, Snow on at his usual size. The dialog box waits for "Here's what you send". */
+      const tIn = Math.min(0.8, Math.max(0.5, wordT(k, 'hook', /^quiet/i, 0.7))), tOut = Math.min(2.6, Math.max(tIn + 0.6, wordT(k, 'hook', /^one$/i, 1.7)));
+      if (T >= tIn && T < tOut) { quietPhone(k); return Object.assign(host(k), {hostScale: 1.5, hostX: 200, speech: false}); }
       const tCount = wordT(k, 'hook.count', /^thirty/i), tBar = k.S('hook.bar'), tDrive = wordT(k, 'hook.drive', /^pull/i), tRest = k.S('hook.rest');
       route(k, {t0: -3, stopAt: -1.6, sign: 'QUOTE'}, [{at: tDrive, drive: null, speed: 2}]);
       lawn(d);
       /* the window in the sky: tall for the hook card, shrinks to its two lines on "text instead", grows back for the
          stakes (whole pixels, 8 frames each way) */
-      const hCard = 146, hSend = 66;
+      const hCard = 158, hSend = 66;   /* 158: the Sources line keeps 15 px inside the inner rule */
       const h = T < tSend ? hCard : (T < tSt ? hSend + Math.round((hCard - hSend) * (1 - eo(d.fr(tSend) / 8))) : hSend + Math.round((hCard - hSend) * eo(d.fr(tSt) / 8)));
       skyWin(d, h);
       if (T < tSend) {   /* the hook card */
         const cw = k.measure('THE TEXT', {size: 30}) + 36;
         k.chip('The Text', 540 - cw / 2, 276, {size: 30, fill: 'accent', color: INK});
-        k.slam('Quote went', 540, 330, -1, {size: 132, color: CREAM, align: 'center', drop: INK});
-        k.slam('quiet?', 540, 466, -1, {size: 132, color: 'accent', align: 'center', drop: INK});
-        k.text('Send this text.', 540, 612, {size: 66, color: CREAM, align: 'center'});
-        k.burst(700, 530, 0.45, {n: 18, r: 260}); k.sweep(390, 600, 300, 6, 1.2, {color: 'accent'});
+        k.slam('Quote went', 540, 320, -1, {size: 132, color: CREAM, align: 'center', drop: INK});
+        k.slam('quiet?', 540, 456, -1, {size: 132, color: 'accent', align: 'center', drop: INK});
+        k.text('Send this text.', 540, 594, {size: 66, color: CREAM, align: 'center'});
+        k.text('Sources: ServiceTitan, Jobber, Housecall Pro', 540, 666, {size: 30, color: SAND, align: 'center'});
+        k.burst(700, 520, 0.45, {n: 18, r: 260}); k.sweep(390, 590, 300, 6, 1.2, {color: 'accent'});
         /* after frame 0: stars wink in the card's empty corners (never on a line of text), and over the QUOTE house a
            typing bubble blinks its dots and never turns into a reply */
         if (T >= 0.4) {
           [[32, 100], [328, 100], [42, 168], [318, 164], [30, 222], [330, 222]].forEach(([x, y], i) => { const f = Math.floor((T - 0.4) * 6) + i * 2; d.twinkle(x, y, f % 6 < 4 ? f % 4 : 0, i % 2 ? GOLD : CREAM); });
-          const bx = 80, by = 236;
+          const bx = 80, by = 250;
           d.P(bx - 1, by - 1, 30, 16, INK); d.P(bx, by, 28, 14, CREAM); d.P(bx + 20, by + 14, 4, 3, CREAM); d.P(bx + 22, by + 17, 2, 2, CREAM);
           for (let i = 0; i < 3; i++) { const on = (Math.floor((T - 0.4) * 4) % 4) === i; d.P(bx + 5 + i * 7, by + 5 - (on ? 1 : 0), 4, 4, on ? '#6B7080' : '#C9CCD3'); }
         }
         /* "just checking in" from the van, struck once it has been read */
         if (T >= tSkip) {
-          const s = 'Just checking in!', bw = Math.ceil(d.tw(s)) + 12, bx = 310 - bw, by = 238, f = d.fr(tSkip), up = f < 4 ? [4, 2, 1, 0][f] : 0;
+          const s = 'Just checking in!', bw = Math.ceil(d.tw(s)) + 12, bx = 310 - bw, by = 252, f = d.fr(tSkip), up = f < 4 ? [4, 2, 1, 0][f] : 0;
           d.P(bx - 1, by - 1 + up, bw + 2, 21, INK); d.P(bx, by + up, bw, 19, CREAM); d.P(bx, by + up, bw, 1, '#FFFFFF'); d.P(bx + bw - 40, by + 19 + up, 5, 4, CREAM); d.P(bx + bw - 39, by + 23 + up, 3, 2, CREAM);
           d.tx(s, bx + 6, by + 3 + up, {color: '#4A4E5A'});
           if (T >= tSkip + 0.4) d.P(bx + 4, by + 9 + up, Math.round((bw - 8) * eo(d.fr(tSkip + 0.4) / 5)), 2, RED);
         }
-        return {host: false, speech: false};
+        if (T < tIn) return {host: false, speech: false};
+        return Object.assign(host(k), {speech: false});
       }
       if (T < tSt) {   /* "Send this text." at the cover's headline size, the window hugging its two lines */
         k.slam('Send this text.', 540, 282, tSend, {size: 132, color: 'accent', align: 'center', from: 0.5, drop: INK});
         k.slam('Not "just checking in."', 540, 402, tSend + 0.25, {size: 39, color: SAND, align: 'center', from: 0.4});
-        k.burst(540, 340, tSend + 0.1, {n: 16, r: 260});
+        k.burst(130, 340, tSend + 0.1, {n: 8, r: 60}); k.burst(950, 340, tSend + 0.1, {n: 8, r: 60});   /* beside the line, never on its glyphs */
         return host(k, 'point');
       }
       /* the stakes: the chip, the source line 12 px under it, then the 37% at twice the size with its bar right under it
@@ -449,7 +520,7 @@ window.SCENE = {
             if (T >= at) { const f = d.fr(at); d.line(X + 10, y + 6, X + 13, y + 9, TEAL, 2); d.line(X + 13, y + 9, X + 19, y + 1 - (f < 2 ? 1 : 0), TEAL, 2); if (f >= 0 && f < 8) d.twinkle(X + 20, y, f >> 1, GOLD); }
             if (T >= at) k.slam(s, (X + 28) * 3, y * 3, at, {size: 39, color: CREAM, from: 0.4}); else d.P(X + 28, y + 11, 90, 1, '#3B82C4');
           });
-          d.tx(`Jobber Academy, ${k.data.numbers.jbYear.shown}`, X + 8, 240, {size: 30, color: SAND});
+          d.tx('Jobber Academy,', X + 8, 222, {size: 30, color: SAND}); d.tx(k.data.numbers.jbYear.shown, X + 8, 235, {size: 30, color: SAND});   /* two lines: 12 px clear of the inner rule */
         }
       }
       return host(k, k.live('homework.off') ? 'shrug' : (k.live('homework.sheet') ? 'point' : null));
@@ -465,7 +536,7 @@ window.SCENE = {
       const tB = spoken(wordT(k, 'text.line', /^Still/i, 1.6), LINE_B);
       const tHold = wordT(k, 'text.hold', /^That/i), tQ = wordT(k, 'text.hold', /^question/i, 0.6);
       const tYes = wordT(k, 'text.yesno', /^yes/i), tNo = wordT(k, 'text.yesno', /^no/i);
-      k.sets.chat({who: 'Customer', msgs: []});
+      k.sets.chat({who: 'Homeowner', msgs: []});
       const settled = T >= tQ + 8 / 30;   /* once their phone covers ours, ours is not drawn under it */
       if (!settled) {
         const draft = T < tSendA ? typed(k, LINE_A, tA, 148) : (T >= tB[0] - 0.3 && T < tHold ? typed(k, LINE_B, tB, 148) : null);
@@ -483,7 +554,7 @@ window.SCENE = {
     /* ---- the turn: the mail desk. Text it, don't email it; then the 59% */
     turn: (k, T) => {
       const n = k.data.numbers, d = px(k), t0 = k.S('turn'), tText = k.S('turn.text'), tDont = wordT(k, 'turn.text', /^Don/i, 0.6);
-      const tSt = k.S('turn.st'), tHcp = k.S('turn.hcp'), tPct = wordT(k, 'turn.pct', /^fifty/i), tFits = wordT(k, 'turn.fits', /^fits/i);
+      const tSt = k.S('turn.st'), tHcp = k.S('turn.hcp'), tPct = wordT(k, 'turn.hcp', /^fifty/i, 0.2), tFits = wordT(k, 'turn.pct', /^updates/i, 1.4) + 0.3;
       desk(k, {t0, textAt: tText + 0.2, laptopOut: tHcp, checkAt: tFits});
       d.win(14, 86, 332, 26, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: null});
       k.slam('The part people skip.', 72, 273, t0 + 0.1, {size: 39, color: GOLD, from: 0.5});
@@ -497,66 +568,18 @@ window.SCENE = {
       }
       if (T >= tHcp) {   /* the laptop is gone; the survey's window slides in where it was */
         const sl = d.ease(tHcp + 0.15, 10, -230);
-        d.win(14 + sl, 130, 196, 128, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#7A3442'});
-        if (sl === 0) {   /* the 59% counts in the moment the box lands, so it is never an empty box */
-          const tBox = tHcp + 0.15 + 10 / 30;
-          k.slam(cnt(k, n.textPct, tBox, {suffix: '%'}), 84, 408, tBox, {size: 132, color: 'accent', from: 0.6, drop: INK}); k.burst(250, 470, tBox + 0.7, {n: 18, r: 220});
-          if (T >= tPct) k.burst(250, 470, tPct, {n: 12, r: 180});
-          if (T >= tPct + 0.3) { k.slam('of homeowners', 84, 572, tPct + 0.3, {size: 39, color: CREAM, from: 0.4}); k.slam('expect text updates.', 84, 618, tPct + 0.5, {size: 39, color: CREAM, from: 0.4}); }
+        /* the window holds the 59% at the 37%'s size, its two lines, and both source lines (all inside 12 px of the rule) */
+        d.win(14 + sl, 130, 196, 166, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#7A3442'});
+        if (sl === 0) {   /* the 59% counts in the moment the box lands, so it is never an empty box; the sources land with it */
+          const tBox = tHcp + 0.15 + 10 / 30, tLab = Math.max(tPct + 0.3, tBox + 0.2);
+          k.slam(cnt(k, n.textPct, tBox, {suffix: '%'}), 72, 402, tBox, {size: 264, color: 'accent', from: 0.6, drop: INK}); k.burst(530, 520, tBox + 0.7, {n: 10, r: 60});
+          if (T >= tLab) { k.slam('of homeowners', 72, 678, tLab, {size: 39, color: CREAM, from: 0.4}); k.slam('expect text updates.', 72, 720, tLab + 0.2, {size: 39, color: CREAM, from: 0.4}); }
+          k.text('Housecall Pro survey,', 72, 776, {size: 30, color: SAND});
+          k.text(`${n.hcpSample.shown} U.S. homeowners, ${n.hcpYear.shown}`, 72, 815, {size: 30, color: SAND});
         }
-        k.slam('Housecall Pro survey,', 300, 810, tHcp + 0.3, {size: 39, color: CREAM, from: 0.4});
-        k.text(`${n.hcpSample.shown} U.S. homeowners, ${n.hcpYear.shown}`, 300, 860, {size: 30, color: SAND});
-        if (T >= tFits) { k.slam('Your text fits right in.', 300, 908, tFits, {size: 39, color: GOLD, from: 0.4}); k.burst(820, 690, tFits + 0.05, {n: 16, r: 200, colors: ['teal', 'paper']}); }
+        if (T >= tFits) k.burst(820, 690, tFits + 0.05, {n: 16, r: 200, colors: ['teal', 'paper']});
       }
       return host(k, k.live('turn.text') || k.live('turn.pct') ? 'point' : null);
-    },
-
-    /* ---- cadence: the street again. Three trips, one sign each; then close the file */
-    cadence: (k, T) => {
-      const n = k.data.numbers, d = px(k), t0 = k.S('cadence');
-      const tFirst = wordT(k, 'cadence.first', /^within/i), tWeek = wordT(k, 'cadence.week', /^week/i, 0.4), tFinal = wordT(k, 'cadence.final', /^day/i, 0.2);
-      const tStill = k.S('cadence.still'), tClose = wordT(k, 'cadence.close', /^close/i, 0.6);
-      const gap = (a, b) => Math.max(0.6, Math.min(1.1, b - a - SD - 0.1));
-      route(k, {t0: -20, stopAt: -1.6, sign: false}, [
-        {at: tFirst, drive: gap(tFirst, tWeek), sign: 'TEXT 1', speed: 4},
-        {at: tWeek, drive: gap(tWeek, tFinal), sign: 'TEXT 2', speed: 4},
-        {at: tFinal, drive: 1.1, sign: 'TEXT 3', speed: 4},
-      ]);
-      skyWin(d, 114);
-      k.slam("Jobber's timing", 72, 274, t0 + 0.1, {size: 39, color: GOLD, from: 0.5});
-      k.text(`Jobber Academy, ${n.jbYear.shown}`, 72, 318, {size: 30, color: SAND});
-      /* the timeline: a line, three dots that light as each is said, two lines under each */
-      const xs = [200, 510, 800], ts = [tFirst, tWeek, tFinal];
-      const labels = [['Within', n.firstDays.shown], [n.secondDays.shown, 'a week after'], [`${n.finalMin.shown} to ${n.finalMax.shown}`, 'before expiry']];
-      const lineP = eo((T - t0 - 0.2) / 0.6);
-      d.P(50, 128, Math.round(260 * lineP), 2, '#6B7080');
-      xs.forEach((x, i) => {
-        const cx = Math.round(x / 3), on = T >= ts[i];
-        if (lineP < 1 && cx > 50 + 260 * lineP) return;
-        d.disc(cx, 129, 6, INK); d.disc(cx, 129, 5, on ? ORANGE : '#3D2E45'); if (on) d.DOT(cx - 2, 127, CREAM);
-        if (on) { const f = d.fr(ts[i]); if (f >= 0 && f < 10) d.ring(cx, 129, 7 + (f >> 1), GOLD); k.slam(labels[i][0], x, 420, ts[i], {size: 39, color: CREAM, align: 'center', from: 0.4}); k.slam(labels[i][1], x, 466, ts[i] + 0.15, {size: 39, color: SAND, align: 'center', from: 0.4}); }
-        else {
-          k.text(String(i + 1), x, 420, {size: 39, color: '#6B7080', align: 'center'});
-          if (ts.findIndex((t) => T < t) === i && lineP >= 1 && Math.floor(T * 2) % 2 === 0) d.ring(cx, 129, 8, GOLD);   /* the next stop blinks, twice a second */
-        }
-      });
-      if (T >= tStill) {   /* a question mark pops over the house and bobs */
-        const f = d.fr(tStill), up = f < 4 ? [6, 3, 1, 0][f] : ((d.F >> 3) & 1);
-        k.text('?', 300, 618 - up * 3, {size: 66, color: GOLD, align: 'center', drop: INK});
-      }
-      if (T >= tClose) {
-        /* the line wipes in left to right in gold on whole low-res pixels (8 frames); the folder drops in right of it, 12 px
-           clear of the timeline's labels, CLOSED on it from its first frame */
-        const s = `After ${n.followUps.shown}, close the file.`, lw = Math.ceil(k.measure(s, {size: 39}) / 3), f = d.fr(tClose);
-        d.clip(24, 176, Math.round((lw + 2) * Math.min(1, (f + 1) / 8)), 18, () => k.text(s, 72, 534, {size: 39, color: GOLD, drop: INK}));
-        const fx = 24 + lw + 12, fy = 177 - (f < 4 ? [4, 2, 1, 0][f] : 0);
-        d.P(fx - 1, fy - 5, 20, 6, INK); d.P(fx, fy - 4, 18, 5, ORANGE);
-        d.P(fx - 1, fy - 1, 52, 19, INK); d.P(fx, fy, 50, 17, ORANGE); d.P(fx, fy, 50, 2, GOLD);
-        d.P(fx + 4, fy + 3, 42, 12, RED); d.P(fx + 4, fy + 3, 42, 1, ORANGE);
-        k.text('CLOSED', (fx + 25) * 3, (fy + 2) * 3, {size: 30, color: CREAM, align: 'center'});
-        if (f >= 0 && f < 10) d.twinkle(fx + 50, fy - 2, f >> 1, GOLD);
-      }
-      return host(k, k.live('cadence.close') ? 'point' : null);
     },
 
     /* ---- close: the level-up screen. A perk on each "one"; LEVEL UP on "question"; the send line in one column */
@@ -568,7 +591,23 @@ window.SCENE = {
       /* the perks as one block centered under the bar (one left edge), each sliding in on its "one" */
       const perks = [['ONE NAME', tName], ['ONE JOB', tJob], ['ONE QUESTION', tQ]], bw = Math.max(...perks.map(([s]) => d.tw(s))) + 12;
       const bx = Math.round(r.bar.x / 3 + r.bar.w / 6 - bw / 2);
-      perks.forEach(([s, at], i) => { if (T < at) return; const sl = d.ease(at, 5, 30); d.tx('+', bx + sl, 236 + i * 18, {color: TEAL}); d.tx(s, bx + 12 + sl, 236 + i * 18, {color: CREAM}); });
+      /* the floor: an arcade cabinet's control deck in place of the set's tiled stage (stick, three buttons, coin door) */
+      { const {P, disc, DOT} = d;
+        P(0, 417, 360, 223, '#3D2E45'); P(0, 417, 360, 3, '#5A4A63'); P(0, 420, 360, 2, INK); P(0, 470, 360, 2, '#2B2033');
+        P(0, 422, 360, 48, '#4A3A55'); for (let x = 6; x < 360; x += 24) DOT(x, 446, '#2B2033');
+        P(176, 430, 8, 24, '#9AA0AD'); disc(180, 428, 9, RED); DOT(177, 424, '#F2A541'); P(166, 452, 28, 6, INK);
+        [[240, TEAL], [272, GOLD], [304, RED]].forEach(([x, c], i) => { const on = ((d.F >> 4) + i) % 3 === 0; disc(x, 446, 9, INK); disc(x, 445 + (on ? 1 : 0), 8, c); DOT(x - 3, 441 + (on ? 1 : 0), CREAM); });
+        P(130, 500, 100, 120, '#2B2033'); P(130, 500, 100, 2, '#5A4A63'); P(130, 618, 100, 2, INK);
+        [[150, 530], [194, 530]].forEach(([x, y]) => { P(x, y, 16, 34, INK); P(x + 1, y + 1, 14, 32, (d.F >> 4) % 2 ? ORANGE : '#F2A541'); P(x + 6, y + 6, 4, 22, INK); });
+        P(152, 580, 56, 4, '#5A4A63');
+        [[20, 506], [250, 506]].forEach(([x, y]) => { P(x - 1, y - 1, 92, 102, INK); P(x, y, 90, 100, '#1B1420'); for (let j = 0; j < 9; j++) P(x + 6, y + 8 + j * 10, 78, 4, '#352840'); }); }   /* the cabinet's two speaker grilles */
+      /* the perks: while "The rule:" is up they are big, one line each; once the level ticks over they settle into a small list */
+      const big = T < tQ + 0.6, bigW = Math.max(...perks.map(([s]) => k.measure('+ ' + s, {size: 66}))), bigX = Math.round(540 - bigW / 2);
+      perks.forEach(([s, at], i) => {
+        if (T < at) return;
+        if (big) { k.slam('+ ' + s, bigX, 708 + i * 78, at, {size: 66, color: CREAM, from: 0.4, drop: INK}); return; }
+        const sl = d.ease(at, 5, 30); d.tx('+', bx + sl, 236 + i * 18, {color: TEAL}); d.tx(s, bx + 12 + sl, 236 + i * 18, {color: CREAM});
+      });
       /* LV 3 starts earning: from "Send this" the first 3 segments fill one by one, each blinking while it fills */
       if (T >= tQ) for (let i = 0; i < 3; i++) {
         const at = send + 0.15 + i * 0.25; if (T < at) break;

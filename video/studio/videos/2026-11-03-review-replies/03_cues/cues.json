@@ -5,7 +5,7 @@
   "id": "rooms",
   "level": 0.16
  },
- "duration": 74.759,
+ "duration": 74.959,
  "cues": [
   {
    "id": "hook",
@@ -377,7 +377,7 @@
    "text": "World: the slot machine, a last pull (crown: ONE MORE PULL): the reels stop on Y, E, S; the crown: ANSWER EVERY REVIEW; the bulbs chase. A game window opens over the tray: \"Don't leave reviews hanging.\" in the accent.",
    "t": 65.639,
    "word": 174,
-   "end": 74.759
+   "end": 74.959
   },
   {
    "id": "close.send",
@@ -401,7 +401,7 @@
    "text": "\"The next 1-star gets a reply.\" lands in gold with an accent line sweeping under it; Snow waves.",
    "t": 69.819,
    "word": 186,
-   "end": 74.759
+   "end": 74.959
   }
  ]
 }

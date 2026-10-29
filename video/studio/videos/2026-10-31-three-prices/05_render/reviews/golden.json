@@ -1,19 +1,41 @@
 {
  "gate": "golden",
  "round": 1,
- "at": "2026-10-28T23:40:50-05:00",
- "mp4Sha256": "fda9441b42f29953678457faf74faca94e220b8d0e07620dde96b03604423248",
+ "at": "2026-10-29T12:53:41-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
  "pass": true,
  "score": {
   "post_as_is": "yes"
  },
  "reasons": [
-  "Round 0 must-fix fixed: hook card read straight from the MP4 at 0.3, 1.2, 2.5, 3.5, 4.0 and 4.6 s is clean, no particles over 'Top shops quote', '3 prices', '57%' or the source line; sparks stay up by the shelf and sign.",
-  "Round 0 polish fixed: count-ups now land on the word (57% at 12.5 s under 'fifty-seven', 41% at 15.5 s under 'forty-one', 68% at 24.1 s under 'sixty-eight'); leaderboard label reads 'good, better, best.' then 'ServiceTitan customers,'; close board 'Send this to whoever writes your quotes.' is now the same size as the lines above it.",
-  "1 polish 59.4 to 60.0 s and 63.1 to 63.5 s: the slot reels are still spinning when 'fifty-two' and 'forty-two' are said and settle about 0.4 s later; the reel stop is the payoff so it reads as intended, but a slightly earlier stop would match the voice.",
-  "2 polish 62.0 to 62.9 s: header already reads '1 TO 3 OPTIONS: CLOSE RATE' while the box under the reels still says 'Only 10% offer 4+.'; brief, not confusing.",
-  "3 polish 0 to 3.5 s: opening is still mostly still until the sign flips to '$ $$ $$$' at 3.5 s; the card carries the stop on its own.",
-  "4 polish whole video: bottom third (about y 1250 to 1920) is backdrop only; fine as a safe zone.",
-  "Answers: 1 top shops put good, better, best on 57% of home jobs vs 41%; 68% of 1,100+ homeowners get more quotes when a price surprises them; how to build Good, Better, Best; ACCA 52% vs 42% with its 1-to-3 grouping limit said and shown. Screen numbers match voice and facts.json. 2 glad to post it, nothing broken or cheap. 3 every number readable when said, no contradictions. 4 sounds like a person, 158 to 187 wpm. 5 qa.json all PASS (length 85.67 s, -14.2 LUFS, 0 black, 0 frozen). 6 '1 price?' against '3 prices on 57% of home jobs' earns the stop; clear send line at 80.2 s and a saveable template."
- ]
+  "Answers: 1 It teaches you to put three prices on every quote. ServiceTitan's top 10% offered good, better, best on 57% of home jobs, everyone else on 41%. 68% of 1,100+ homeowners get more quotes when a price is higher than expected. It shows how to build Good/Better/Best, then gives the ACCA figures (4+ options 52%, 1 to 3 options 42%) and says and shows the grouping limit ('It can't show 3 beats 1.'). Every number on screen matches the voice, facts.json and all four captions. 2 Glad to put my name on it: nothing broken, cheap or off-brand. 3 Every number is readable as it is said: 57% at 11.0 s (said 11.21), 41% at 14.5 s (14.41), 1,100+ at 19.5 s (20.19), 68% at 22.5 s (22.31), 1,000+ at 49.5 s (49.86), 52% on the reels at 54.5 s (53.98, 5 and 2 already up at 54.0), 42% in the tray at 57.0 s (57.16), 3 3 3 at 64.5 s. No contradictions. 4 It sounds like a person: 150 to 174 wpm, 0 voice flags. 5 qa.json: all 6 checks PASS (74.43 s, -14.2 LUFS, -3.2 dBTP, 0 black, file decodes clean, mp4 sha matches). The 'frozen' check is a doubtful PASS, see item 5. 6 The first 3 s earn the stop: a cover card with '3 prices' and 57% at frame 0, a cut in to the storefront close-up at 0.5 s and back out at 2.0 s, and the tag flips to '$ $$ $$$' by 3.0 s (said 3.04). The send line at 65.0 s and the Good/Better/Best card at 33 to 43 s give a reason to send or save.",
+  "Round-1 fixes confirmed: the hook close-up is a storefront exterior (awning, brick, shop window with the tag, teal door with OPEN, sidewalk, sandwich board), with no drawer cabinets. The cover card is gone by 4.0 s. The close plate hangs on the brick, opens at one line and grows a line at a time, with 'a choice.' landing by 71.5 s. The toolbox sliver is gone. 'A HABIT YOU CAN COPY' is gold on a plum bar at row-name size at 16.07 s. At 56.5 s the tray clears its 4+ lines when the crown flips, then shows '1 to 3 options: 42%' over '4+ options: 52%' at 57.5 s. The gold ONE GROUP clamp shows 59.5 to 63.5 s. The slot machine has no still run of 0.7 s or more from 43.5 to 55.1 s. Earlier faults are not back: no 'Not 1', no sticker on 57%, count-ups don't pass through the other group's figure, no silence at -45 dB, and no spark crosses the plate (nothing cream between y 660 and 760 except item 1).",
+  "1 polish 65.9 to 72.0 s: a cream glint sweeps 'Send this to whoever' one letter at a time, about 0.45 s every 1.4 s, and covers each letter as it passes. The 70.31 s sheet freezes it on the 's' of 'this', which looks like the old spark fault in a still. In motion it reads as a shine. A thinner diagonal glint, or a lighter gold instead of cream, would keep each letter readable.",
+  "2 polish 19.5 to 20.9 s and 11.23 to 12.57 s: near-still runs of 1.37 s (dark houses) and 1.33 s (score table after 57% lands). Against the 'lots of motion' bar, a window flicker or a cursor blink would help.",
+  "3 polish 57.0 to 57.5 s: the reels are still spinning when 'Forty-two' is said (57.16 s) and briefly read '4 6 %' before landing 4 2 % at about 57.5 s. The tray shows 42% on time, so it isn't confusing.",
+  "4 polish 2.0 to 3.5 s: Snow stands against the hook card's left edge, his hand just short of 'ServiceTitan' on the source line. No text is hidden, but it's tight.",
+  "5 polish (doubtful PASS, qa.json 'frozen'): the detail puts the end card at 65.01 s, but the end card starts at about 72.0 s, so the close sat outside that check. My freezedetect over the full file (n 0.001, 0.7 s) finds nothing over 0.9 s in 65 to 72 s, so it passes, but the qa window should be corrected.",
+  "6 polish 19.0 to 19.4 s: the homeowner count-up passes '1,085+' and '1,091+' with the plus sign attached before it settles on 1,100+, before 'eleven hundred' is said. Brief, but dropping the '+' until it lands would be cleaner."
+ ],
+ "prior": {
+  "gate": "golden",
+  "round": 0,
+  "at": "2026-10-29T12:27:32-05:00",
+  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+  "pass": true,
+  "score": {
+   "post_as_is": "yes"
+  },
+  "reasons": [
+   "Answers: 1 The lesson: put three prices on every quote. Top 10% of ServiceTitan shops offered good, better, best on 57% of home jobs and everyone else on 41%. 68% of 1,100+ homeowners get more quotes when a price is higher than expected. It then shows how to build Good, Better and Best, and gives the ACCA figures (4+ options 52%, 1 to 3 options 42%) with the grouping limit said out loud and shown ('It can't show 3 beats 1.'). Every on-screen number matches the voice and facts.json. 2 I'd be glad to put my name on it: nothing broken, cheap or off-brand. 3 Every number is on screen and readable by the time it's said: 57% by 11.5 s (said 11.21), 41% at 14.5 s (said 14.41), 1,100+ at 19.5 s (said 20.19), 68% at 22.5 s (said 22.31), 1,000+ at 49.5 s (said 49.86), 4+ header at 52.5 s (said 52.24), reels 5 2 % at 54.5 s (said 53.98), reels 4 2 % at 57.5 s (said 57.16), 3 3 3 at 64.5 s (said 64.12). No contradictions. 4 It sounds like a person: 150 to 174 wpm, tone tags fit. 5 qa.json: all six checks PASS (74.43 s, -14.2 LUFS, -3.2 dBTP, 0 black, file decodes clean, 0 voice flags). One doubtful PASS, see item 6. 6 The first 3 s earn the stop. There's a cut in at 0.5 s and a cut back out at about 2.0 s on 'Top', and the card shows '3 prices' and '57%' from frame 0. The send line comes at 65.0 s, and the Good/Better/Best card at 33 to 43 s is worth saving.",
+   "Round 0 and round 1 faults are not back: the hook isn't static, the hook doesn't contain 'Not 1', no sticker or sparks sit on 57%, count-ups don't pass through the other group's figure (41% climbs from '--' through 39%), the close is no longer mostly static, and there's no silent tail (music runs under the 72.0 to 74.4 s end card, no silence at -45 dB).",
+   "1 polish 3.04 to 3.5 s: the tag flips to '$ $$ $$$' about 0.4 s after 'three.' is said. A slightly earlier flip would land on the word.",
+   "2 polish 44.2 to 47.6 s (slot machine, 'Here's the part people skip' / 'Your three is a floor'): about 3.4 s with only the crown flip and one tray line changing. freezedetect finds near-still runs of 1.27, 1.13 and 1.0 s back to back. Same feel, shorter, at 19.5 to 20.9 s (dark houses, 1.37 s still). Against the 'lots of motion' bar, a bulb chase or a reel nudge would help.",
+   "3 polish 56.5 to 57.0 s: the crown already reads '1 TO 3 OPTIONS: CLOSE RATE' while the tray still says 'Only 10% offer 4+.' Brief, not confusing.",
+   "4 polish 30.5 to 30.7 s and 64.9 to 65.1 s: the dither and slide transitions each pass through one or two nearly black or half-dithered frames. They read as a fast wipe, not a glitch, and stay under qa's 0.5 s black limit.",
+   "5 polish 2.0 to 4.6 s: Snow stands in front of the hook card's left edge. His hand stops just short of 'ServiceTitan' on the source line. No text is hidden, but it's tight.",
+   "6 polish (doubtful PASS, qa.json 'frozen'): the detail puts the end card at 65.01 s, but the end card actually starts at about 72.0 s, so the 65 to 72 s close was outside that check. My own freezedetect over the full file (noise 0.001, 0.7 s) found nothing over 1.1 s in the close (68.63 to 69.73 s, only bubble words typing). It passes, but the qa window should be corrected.",
+   "7 polish whole video: the bottom third (about y 1250 to 1920) is backdrop only. That's fine as a safe zone for platform UI. The post MP4 and the main MP4 decode to identical streams (same stream MD5); only the container bytes differ."
+  ]
+ }
 }

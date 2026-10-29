@@ -1,17 +1,37 @@
 {
  "gate": "golden",
  "round": 1,
- "at": "2026-10-28T23:59:16-05:00",
+ "at": "2026-10-29T12:46:45-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
  "pass": true,
  "score": {
   "post_as_is": "yes"
  },
  "reasons": [
-  "1. Round 0 must-fix resolved, 18.0 to 33.5 s: the kitchen floor is now warm wood planks with a striped rug; nothing reads as a transparency grid. No must-fix remains.",
-  "2. polish, 76.5 to 86.5 s (end card): the floor under Snow is a dark purple checkerboard. Low contrast and clearly a stage floor, so it does not read as a missing background, but a solid or plank floor would match the rest.",
-  "3. polish, 0.0 to 3.5 s: the hook card is still mostly static (sparkles, an underline, the 'just checking in' tag near 2.5 s). It earns the stop with 'Quote went quiet? Send this text.' and the van and houses read instantly; a bubble typing in would add motion.",
-  "4. polish, throughout: the bottom 35 to 40 percent of the grass and dark-room scenes (0 to 18 s, 34 to 47 s, 47 to 63 s, 64 to 76 s) is empty. Works as a safe zone under platform UI, slightly top-heavy.",
-  "5. polish, 05.1 s: 'Software maker ServiceTitan says its data shows only thirty-seven percent...' is a mouthful early; takes 1 and 5 are flagged slow (139 and 141 wpm). It still sounds like a person, plain and confident.",
-  "Checked and fine: every number shows as it is said (37% at 8.0 s, 59% at 57.0 s with 'Housecall Pro survey, 1,040 U.S. homeowners, 2025', Within 2 days 65.5 s, Day 7 68.0 s, 1 to 2 days before expiry 71.0 s, 'After 3, close the file.' 74.5 s) and matches facts.json and captions.json; no contradictions; sources named on screen. Scene changes at 18.0, 33.5, 47.0, 63.5 and 76.0 s are deliberate pixel-dissolve, shutter and tile wipes, not glitches. qa.json all PASS (86.47 s, -14.2 LUFS, -3.1 dBTP, 0 black, 0 frozen, 0 voice flags). Clear send and save reasons: 'Send this to whoever follows up on your quotes' and 'Exact text in the caption' on the end card, with the copyable text in every caption."
- ]
+  "1. polish, 0.0 to 2.0 s: frame 0 (the thumbnail) has no Snow and the bottom 40% (y 1160 to 1920) is flat grass. It reads, and the bottom band is the platform UI zone anyway, but having Snow already standing on the cover at frame 0, as he is at 2.0 s, would make the stop stronger.",
+  "2. polish, 0.5 to 1.9 s and 2.0 to 3.5 s: the grey three-dot typing bubble on the homeowner side (dash phone, and the small bubble by the house) still reads as 'they're typing', which works against 'went quiet'. This is the buyer's earlier note, still open. Drop the dots or show a 'Seen 3 days ago' stamp.",
+  "3. polish, 61.0 to 63.5 s: 'The rule:' card is better than before (+ ONE NAME is now about 40 px, the checkerboard floor is gone and replaced by the arcade console), but y 780 to 990 is empty while the lines build. The list also visibly shrinks between 63.0 and 63.5 s when LEVEL UP lands. Keep one size for the list.",
+  "4. polish, 27.5 s voice: 'Try Jobber's follow-up tips instead.' still sounds a little like sending me off to read Jobber, and 4.8 s 'Software maker ServiceTitan says its data shows...' is a mouthful. Voice is locked this round, so this is a note for the next script.",
+  "5. polish, file: 2026-10-29-quote-revive-post.mp4 is the same size and duration as the qa'd render (71.967 s, 1080x1920, H.264/AAC), but its sha256 differs (5bc80ae7... vs qa.json's 2ae6b181...). The difference is 9 bytes in the moov edit-list and mdhd header, not in the picture. Stamp the post copy's sha in qa.json so the file that gets uploaded is the one that was checked.",
+  "Checked and fine. (1) The message is clear: don't send 'just checking in', text their name, the job and one yes/no question, and text it instead of emailing it. 37% (ServiceTitan's own data, blog 2026) is on screen at 8.0 s, said at 7.94 s, with a 0.37 bar and closed/still open labels. Texts beat email on open rates (ServiceTitan follow-up webinar, 2026) shows at 51.5 s, with no number added. 59% (Housecall Pro survey, 1,040 U.S. homeowners, 2025) shows at 56.0 s at headline size, with its source lines in the same window on the same frame, said at about 55.7 s. Screen, voice, captions and facts.json agree, there are no do-not-use figures and no contradictions. (2) All round-0 faults are fixed: the Sources line now reads 'ServiceTitan, Jobber, Housecall Pro' and clears the cover window border by about 30 px. 'Jobber Academy, / 2026' wraps inside its panel. 59% is about 150 px with the source inside the window. The dash close-up has a big Snow and real cab detail instead of bare slabs. Both phones say 'Homeowner' with the same 9:41 chrome. The sparks sit at the ends of 'Send this text.', not on 'this'. The level-up has no checkerboard. Nothing is broken, cramped or off-brand at any time. (3) Every number is readable at phone size when it is said. The smallest source text is about 28 to 30 px. (4) It sounds like a person: plain and confident, 156 to 182 wpm, 0 voice flags, contractions throughout. (5) qa.json is all PASS: 71.97 s (cap 75), -14.2 LUFS, -3.1 dBTP, 0 black, 0 frozen, decodes clean, sha matches the main mp4. The dark tile at 60.5 s is a one-frame wipe. (6) The first 3 s earn the stop: 'Quote went quiet? Send this text.' is on frame 0, cuts to the Seen Quote.pdf at 0.5 s and back at 2.0 s, and 'just checking in' is struck through at 2.5 to 3.5 s. There is a clear reason to send ('Send this to whoever follows up on your quotes', 63.9 s) and to save (the copyable text at 39.8 to 46.9 s on the lock screen with YES/NO, plus 'Exact text in the caption', with the full template and timing in every caption)."
+ ],
+ "prior": {
+  "gate": "golden",
+  "round": 0,
+  "at": "2026-10-29T12:26:39-05:00",
+  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+  "pass": false,
+  "score": {
+   "post_as_is": "no"
+  },
+  "reasons": [
+   "1. must-fix, 0.0 to 3.6 s (cover and thumbnail, and the same plate at 1.75 s): the new 'Sources: Jobber, ServiceTitan' line sits on the sky window's inner bottom border. The border rule runs through the bottom of the letters, and the 'J' and the comma drop below it (zoomed frame 0, y about 686 to 700). Every viewer sees this cramped, broken-looking spot on the first frame. Fix: move the line up about 14 px or grow the window so it keeps at least 12 px clear of the border.",
+   "2. polish, 0.0 to 3.6 s cover: the Sources line names Jobber and ServiceTitan, but the 59% at 55.6 s comes from Housecall Pro. Either add Housecall Pro or word it so it doesn't read as the full list.",
+   "3. polish, 3.8 to 3.9 s: when 'Send this text.' lands, sparks sit on the glyphs of 'this'. This is the old design fault 'sparks on glyphs' coming back briefly. Fix: move the burst off the word.",
+   "4. polish, 28.0 to 33.5 s: 'Jobber Academy, 2026' still runs into the right border of the Jobber's tips panel. This was the open polish from the earlier design round.",
+   "5. polish, 0.5 to 1.75 s vs 33.5 to 47 s: the chat header reads 'Homeowner' in the cut-in and 'Customer' in the text section. Pick one.",
+   "6. polish, 61.0 to 69.5 s: the level-up screen still has the purple checkerboard stage floor in its lower 35%, and 'The rule:' card is sparse (tiny '+ ONE NAME' lines). It reads, but it is the weakest-looking stretch.",
+   "Checked and fine: 1) The message is to stop sending 'just checking in' and text their name, the job and one yes/no question. Only 37% of estimates close on the first visit (ServiceTitan's own data, 8.0 s, shown 37% with the bar, said 8.2 s), texts beat email on open rates (ServiceTitan webinar, 51.6 s), and 59% of homeowners expect text updates (Housecall Pro, 1,040 U.S. homeowners, 2025, shown at 56.0 s as it is said). Voice, screen, captions and facts.json all match, and there are no contradictions. The cadence was cut from the voice but stays in the captions, which the end card points to ('Exact text in the caption'). 4) It sounds like a person: plain and confident, pace 156 to 182 wpm, 0 voice flags. 5) qa.json is all PASS (71.97 s within the 75 s cap, -14.2 LUFS, -3.1 dBTP, 0 black, 0 frozen, sha matches the mp4). The dark frame at 60.5 s is a tile wipe, not black. 6) The opening changes picture at 0.5 s (cut in to the dash phone with Seen and the dead typing bubble) and again at 1.85 s (back out to the street). The 'just checking in' bubble struck through at 2.0 to 3.5 s and 'Send this text.' at 3.7 s earn the stop. The close has clear send and save reasons ('Send this to whoever follows up on your quotes', 'Exact text in the caption'). Earlier faults are not back: the kitchen floor is wood, 37% is at headline size, and the 59% window is tight."
+  ]
+ }
 }

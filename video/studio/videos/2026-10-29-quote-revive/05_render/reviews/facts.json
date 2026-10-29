@@ -1,20 +1,46 @@
 {
  "gate": "facts",
- "round": 0,
- "at": "2026-10-29T00:00:19-05:00",
+ "round": 1,
+ "at": "2026-10-29T12:46:37-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
  "pass": true,
  "score": {
-  "numbers": 11,
+  "numbers": 9,
   "mismatches": 0
  },
  "reasons": [
-  "rerun after the scene change: all 11 numbers in voice, screen and data.js match facts.json and the pages (37%, 2026, 59%, 1,040, 2025, 2026, Within 2 days, Day 7, 1 to 2 days, After 3); 37% now at size 264 with bar fill 0.37 from data.js; trades-first met (ServiceTitan, Housecall Pro, Jobber); no em or en dashes in scene.js, script, transcript, data.js",
-  "new text build checked: keyboard, composer 'Text message' placeholder, sent bubbles carry the exact LINE_A/LINE_B placeholders; lock screen shows 'Messages', 'now', the question and YES/NO buttons: story elements, no clock or number that reads as data (chat '9:41' is the set's status bar); 'Quote.pdf Seen' is story, not a claim; no real private person or business",
-  "Jobber email question unchanged and fair: Jobber credited only for timing and the name/job/question tips; text over email credited to ServiceTitan's webinar and Housecall Pro's 'expect text updates'"
+  "Round 0 fault fixed: 04_scene/scene.js lines 358 and 420 now read 'Sources: ServiceTitan, Jobber, Housecall Pro' on both the cover and the phone close-up, and the render shows it at 0.0 to 3.0 s (sheet-1). No fix needed.",
+  "Numbers PASS. 37%: voice 'thirty-seven percent' at 4.8 s, the 264 px count, and the bar fill (frac = closePct.value/100) all match data.js and ServiceTitan. 59%: voice at 55.6 s and the screen count match data.js and Housecall Pro. '1,040 U.S. homeowners, 2025' matches the survey method and posted date. 'ServiceTitan blog, 2026', 'ServiceTitan follow-up webinar, 2026' and 'Jobber Academy, 2026' match the page dates (Apr 17, 2026 and updated May 28, 2026). The 64/72/87% do-not-use figures do not appear in voice, scene.js or the render. The cadence numbers are not in voice or on screen.",
+  "Claims PASS. 'Most of your quotes aren't decided... The rest depend on your follow-up' matches 'leaves the majority of opportunities dependent on follow-up'. 'Texting beats email on open rates' (voice) and 'Texts beat email on open rates.' (screen) match Burgess's point, with no figure added. 'Expect text updates' stays within the survey's scope and does not claim people want follow-up texts. 'Use their name, name the job, and ask a question' / 'Their name. The job. A question.' match Jobber's personalization checklist and its 'Asking if the customer has any questions' advice. 'One text can bring it back' is worded as 'can', so it reads as advice, not a promise backed by a source. The 'still open' label on the remaining 63% of the bar fits 'not closed on the first visit'.",
+  "Story elements PASS. '9:41', 'now', 'Quote.pdf / Seen', the typing dots, the sticky notes, YES/NO and LV 2/LV 3 read as story or game UI, not data. The artifact uses only the placeholders [name] and [you].",
+  "Trades first PASS. All three sources are home-service sources (ServiceTitan, Housecall Pro, Jobber). There is no non-trade study and no caveat.",
+  "Hygiene PASS. No real private person, business or address appears. There are 0 em and 0 en dashes in script.md, transcript.md, scene.js, cues.md, brief.md, facts.json and captions.json."
  ],
  "sources_checked": [
-  "https://www.servicetitan.com/blog/webinar-recap-follow-ups-101-back-2-basics: \"Only 37% of estimates close on the first visit\"; \"only 37% convert immediately, which leaves the majority of opportunities dependent on follow-up\"; Burgess: texts \"consistently outperform email, with significantly higher open rates\"; Apr 17, 2026",
-  "https://www.housecallpro.com/resources/home-service-customer-service-report-trends-statistics/: \"59% expect text updates\"; 1,040 U.S. homeowners, SurveyMonkey Audience, Oct 23, 2025; posted Dec 10, 2025",
-  "https://getjobber.com/academy/quote-follow-up-email-templates/: within two days; one week after the initial quote; 24-48 hours before expiry; close the file after the third; client name and project details; ask if they have questions; updated May 28, 2026; email only"
- ]
+  "https://www.servicetitan.com/blog/webinar-recap-follow-ups-101-back-2-basics: description 'Only 37% of estimates close on the first visit'; body 'ServiceTitan data shows only 37% convert immediately, which leaves the majority of opportunities dependent on follow-up'; 'Burgess notes how text messages consistently outperform email, with significantly higher open rates' (Brittany Burgess, Sr. Customer Advocacy Specialist); dated April 17, 2026",
+  "https://www.housecallpro.com/resources/home-service-customer-service-report-trends-statistics/: chart '59% expect text updates'; 'many now anticipate text updates as the job progresses'; 'conducted online on October 23, 2025, with 1,040 U.S. homeowners via SurveyMonkey Audience'; posted December 10, 2025",
+  "https://getjobber.com/academy/quote-follow-up-email-templates/: 'personalized elements, like the client name and project details'; sample 'Do you have any questions about the quote we sent on [date]?'; FAQ 'Asking if the customer has any questions'; timing advice (1 to 2 days, one week, 24 to 48 hours before expiry, close the file after the third), which is now caption only; last updated May 28, 2026"
+ ],
+ "prior": {
+  "gate": "facts",
+  "round": 0,
+  "at": "2026-10-29T12:25:54-05:00",
+  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+  "pass": false,
+  "score": {
+   "numbers": 9,
+   "mismatches": 0
+  },
+  "reasons": [
+   "04_scene/scene.js lines 345 and 400 (cover and phone close-up, frames 0.0 to 3.0 s): the new Sources line reads 'Sources: Jobber, ServiceTitan' but leaves out Housecall Pro, whose 59% is one of the lesson's two numbers (turn section, voice at 55.6 s). A Sources line that drops one of three sources is an incomplete attribution. Fix: change both strings to 'Sources: ServiceTitan, Jobber, Housecall Pro' (or 'Sources: ServiceTitan, Housecall Pro, Jobber'), then re-render and re-check that it fits at size 30 in the sky window and the title plate.",
+   "Everything else PASS: 37% (voice 'thirty-seven percent', screen 264 px, bar fill 0.37 from data.js) matches ServiceTitan's data. 'ServiceTitan blog, 2026' and 'ServiceTitan follow-up webinar, 2026' match the Apr 17, 2026 webinar recap. 'Most of your quotes aren't decided... The rest depend on your follow-up' matches 'leaves the majority of opportunities dependent on follow-up'. 'Texting beats email on open rates' / 'Texts beat email on open rates.' matches Burgess's point, with no figure added. 59%, 1,040 U.S. homeowners and 2025 match Housecall Pro. 'Expect text updates' keeps the survey's scope (updates on a job, not quote follow-ups). 'Their name. The job. A question.' and 'Jobber Academy, 2026' match Jobber's tips. The 64/72/87% do-not-use figures are absent. The cadence beat is cut from voice and screen.",
+   "Trades first PASS: the core evidence is ServiceTitan, Housecall Pro and Jobber, all home-service sources. There is no non-trade study and no caveat. 'One text can bring it back' is worded as 'can', which is advice and not a finding.",
+   "Story elements PASS: '9:41', 'now', 'Quote.pdf Seen', the typing bubble, the sticky notes (Soccer 4pm, Dentist, Pay bills, Groceries) and LV 2/LV 3 read as story or game UI, not data. The artifact uses placeholders [name]/[you]. No real private person, business or address appears. There are no em or en dashes in scene.js, script.md, transcript.md, brief.md, cues.md or captions.json. The previous round's faults (YouTube next-lesson number) have not come back on screen or in voice."
+  ],
+  "sources_checked": [
+   "https://www.servicetitan.com/blog/webinar-recap-follow-ups-101-back-2-basics: 'Only 37% of estimates close on the first visit'; 'ServiceTitan data shows only 37% convert immediately, which leaves the majority of opportunities dependent on follow-up'; 'Burgess notes how text messages consistently outperform email, with significantly higher open rates' (Brittany Burgess, ServiceTitan); Webinar Recap dated April 17, 2026",
+   "https://www.housecallpro.com/resources/home-service-customer-service-report-trends-statistics/: '59% expect text updates'; 'conducted online on October 23, 2025, with 1,040 U.S. homeowners via SurveyMonkey Audience'; posted December 10, 2025",
+   "https://getjobber.com/academy/quote-follow-up-email-templates/: 'personalized elements, like the client name and project details'; 'Asking if the customer has any questions'; timing within two days, one week, 24 to 48 hours before expiry, close the file after the third (now caption only); last updated May 28, 2026"
+  ]
+ }
 }

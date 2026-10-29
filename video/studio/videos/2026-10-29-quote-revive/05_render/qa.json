@@ -1,13 +1,13 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-10-29-quote-revive",
- "mp4Sha256": "fe808c48f0f25c16f9f2ba995be39e2413e46274b24c4907062526b019b52fd9",
+ "mp4Sha256": "2ae6b181f2c9a59a4785669f1cc5787aef7d1ebab97cf5a46ecc9af2a656a7f1",
  "checks": [
   {
    "name": "length",
-   "value": 86.467,
+   "value": 71.967,
    "pass": true,
-   "detail": "86.47 s (45.0 to 90.0, studio lessons)"
+   "detail": "71.97 s (45.0 to 75.0, studio lessons, end card included)"
   },
   {
    "name": "loudness",
@@ -28,16 +28,16 @@
    "name": "frozen",
    "value": [],
    "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 76.21 s"
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 60.74 s"
   },
   {
    "name": "file",
    "value": {
-    "sha256": "fe808c48f0f25c16f9f2ba995be39e2413e46274b24c4907062526b019b52fd9",
-    "bytes": 8522019
+    "sha256": "2ae6b181f2c9a59a4785669f1cc5787aef7d1ebab97cf5a46ecc9af2a656a7f1",
+    "bytes": 6371686
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 8.5 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 6.4 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -47,5 +47,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-28T23:57:48-05:00"
+ "at": "2026-10-29T12:43:02-05:00"
 }

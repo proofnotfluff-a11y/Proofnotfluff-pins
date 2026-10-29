@@ -1,23 +1,35 @@
 {
  "gate": "facts-captions",
- "round": "delta-ai-line",
- "at": "2026-10-29T10:57:13-05:00",
+ "round": 1,
+ "at": "2026-10-29T13:39:55-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
  "pass": true,
+ "score": {
+  "numbers": 10,
+  "mismatches": 0
+ },
  "reasons": [
-  "Diff: the removal of that one line plus one newline in each of the 4 platform texts is the only change (the file already ended with a newline). All other leaves are identical, and the working tree matches the commit",
-  "AI settings all true and unchanged",
-  "Line 1: IG 93, TT 84, FB 93, YT 93. Hashtags: IG 4, TT 5, FB 3, YT 3, all last on their own line. A send line is present on all 4. No dashes, no spacing damage, no AI voice text"
+  "all platforms: PASS. 31% Northeast to 38% West, the top 25% by close rate in each region at 70% to 73%, May to Jul 2026, the aggregated ServiceTitan customer-account sample, the not-representative caveat and the missing close-rate definition all match the ServiceTitan page (re-read Oct 29, published Oct 22, 2026). The 40 / 14 / 35% example is labeled and the math checks out.",
+  "round 0 fault not back: no dollar close rate, no $ and no 'bigger quotes' claim in any of the four texts. The IG and TikTok questions now ask about last month's close rate, and YouTube step 4 reads 'Every Friday, write both numbers down.'",
+  "rules: line 1 is IG 93, TT 84 (keyword inside the first 70), FB 93, YT description 93. YouTube title is 70 characters, keyword at character 11, no hashtags. Hashtags: IG 4 (1 umbrella, 2 trade, 1 topic), TT 5, FB 3, YT 3. 10 YouTube tags, one of them a misspelling. No generic, homeowner, #fyp or #viral tags. No link in IG or FB ('link in bio' only). No AI voice line. No em or en dashes. TikTok has an owner question. No real private person, business or address.",
+  "video consistency: the voice never says 'in the caption'. The captions carry the formula, the example, the Friday habit and the 'beat last month first' turn, and all of it matches the transcript. Nothing a trade owner would read as misleading."
  ],
- "scope": "captions.json only: the AI voice line removed (Todd, Oct 29, 10:28 am)",
  "prior": {
   "gate": "facts-captions",
   "round": 0,
-  "at": "2026-10-28T22:09:31-05:00",
-  "pass": true,
+  "at": "2026-10-29T12:48:35-05:00",
+  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+  "pass": false,
   "score": {
    "numbers": 10,
-   "mismatches": 0
+   "mismatches": 4
   },
-  "reasons": []
+  "reasons": [
+   "instagram: the Oct 29 rebuild cut the dollar close rate from the lesson (brief.md calls it a second idea the lesson didn't need), and nothing about dollars appears in the voice or on screen. The video also says the two Friday numbers are 'all you need'. The caption still teaches it, which adds two more numbers and an untested claim ('If the dollar rate is lower, your bigger quotes are the ones getting away', with no 'lower than what'). Fix: delete the line 'Then run it in dollars: $ sold / $ quoted. If the dollar rate is lower, your bigger quotes are the ones getting away.' and change the question 'Do you track your close rate by count or by dollars? Tell me which and why.' to 'Do you know your close rate from last month? Tell me the number.'",
+   "tiktok: same dollar step, which is not in the video. Fix: change 'Every Friday: write down estimates given and jobs sold. Then $ sold / $ quoted.' to 'Every Friday: write down estimates given and jobs sold. Beat last month first.' and change the question 'Do you track yours by count or by dollars?' to 'Do you know yours from last month?'",
+   "facebook: same dollar step, which is not in the video. Fix: change 'Every Friday, write down estimates given and jobs sold. Then run it in dollars: $ sold / $ quoted.' to 'Every Friday, write down estimates given and jobs sold. The first number to beat is your own, from last month.'",
+   "youtube: description step 4 teaches the dollar rate, which the video cut, and makes the untested 'bigger quotes are the ones getting away' claim. Fix: change step 4 to '4. Every Friday, write both numbers down.' and leave step 5 as it is. Everything else checks out: title 70 characters with no hashtags, 10 tags, 3 hashtags, source and date match the page.",
+   "all platforms, checked and passing: 31% Northeast to 38% West, top 25% by close rate in each region at 70% to 73%, May to Jul 2026, the aggregated ServiceTitan customer-account sample, the page's not-representative caveat and the missing close-rate definition all match the ServiceTitan page (re-read Oct 29, published Oct 22, 2026). The 40 / 14 / 35% example is labeled. Line 1 lengths: IG 93, TT 84, FB 93, YT 93. Hashtags: IG 4, TT 5, FB 3, YT 3, no generic or homeowner tags. No link in IG or FB. No AI voice line, so the earlier fault is not back. No em or en dashes. No private person, business or address. None of the 4 numeric mismatches are numbers: each one is a platform text that still carries the cut dollar step."
+  ]
  }
 }

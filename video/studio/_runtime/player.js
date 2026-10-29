@@ -239,8 +239,8 @@
   }
 
   // the end card (IMPROVE 000, Oct 29): once the last word has landed, a plum plate drops in on whole low-res pixels and
-  // holds the ProofNotFluff lockup and the site, music only, to the end of the tail (anim.py cues gives every lesson 2.9 s
-  // after the last word). The host and the dialog box step out under it. SCENE.endCard = false turns it off.
+  // holds the ProofNotFluff lockup and the site, music only, to the end of the tail (anim.py cues gives every lesson 3.1 s
+  // after the last word; the card drops 0.1 s after it, so it is up for the last 3.0 s). The host and the dialog box step out under it. SCENE.endCard = false turns it off.
   // SCENE.sendLine adds the send line under the plate (a v2 lesson's call to action lives here, not in the voice).
   let END_T = 1e9;
   function endCard(k, T) {
@@ -379,7 +379,7 @@
     await document.fonts.ready;
     await Promise.all(['700 40px Poppins', '600 40px Poppins', '600 40px Inter', '700 40px Inter'].map((f) => document.fonts.load(f)));
     phrases = buildPhrases(words);
-    if (words.length) END_T = words[words.length - 1].end + 0.35;   // after the fonts load, so the line breaks match what is drawn
+    if (words.length) END_T = words[words.length - 1].end + 0.1;   // after the fonts load, so the line breaks match what is drawn; 0.1 s after the last word, so the card is up for the last 3 s (style board, Oct 29)
     window.DURATION = window.CUES.duration;
     survey = runSurvey();
     window.STUDIO = {env, survey, trauma, look, camera};   // for checks: blinks, pose runs, rooms, the shake

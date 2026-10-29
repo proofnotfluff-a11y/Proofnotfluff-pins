@@ -17,8 +17,6 @@ The lab (Tue, Thu, Sat) ranks this list from its benchmark against _shared/style
 00e. Trim each voice take's silent tail to about 0.3 to 0.5 s in the voice pipeline: lesson 3's take 5 left a 1.39 s
    tail (1.71 s of dead air at 59.9 s) and read 147 wpm on file length though it was spoken at 161; lesson 5's take 6
    reads 148 on the file and 155 spoken. The pace check measures the file, so a long tail is a false slow flag.
-00f. End card holds 3 s: `cues` adds 2.9 s after the last word but the card drops 0.4 s after it, so it holds 2.3 to 2.5 s.
-   The style-board design gate caps polish at 4 for that on every lesson (lessons 6, 7, 8 on Oct 29).
 00g. Lint the on-screen hook hold (2.5 to 4.0 s) and the segment name on screen: two lessons failed the script gate on
    these on Oct 29; lint does not check them.
 00h. Variety lint looks back two lessons only; the design gate caught set repeats three to four lessons back (shared
@@ -45,6 +43,8 @@ The lab (Tue, Thu, Sat) ranks this list from its benchmark against _shared/style
 12. Visual: a seasonal touch per week (snow outside the half-built house in winter, leaves in fall).
 
 ## Done (newest first: date, item, what changed, proof)
+- 2026-10-29 (Todd: yes): end card up for the last 3.0 s. `cues` tail 2.9 s -> 3.1 s and the card drops 0.1 s after the
+  last word (was 0.35 s), so it held 2.3 to 2.5 s before. Proof: the six waiting lessons rebuilt on it (lint, check).
 - 2026-10-29 (Todd: "get this fixed today"): hook motion (00a) and the 75 s cap (00c). anim.py `hook` measures the
   first 3 s (a change = 8% or more of the frame, first change by 1.0 s, two by 3 s, host by 3 s) and the spoken hook
   (9 to 12 words, said by 3.6 s); `lint` runs it and `check` fails over 75 s; scene contract, looks and template carry

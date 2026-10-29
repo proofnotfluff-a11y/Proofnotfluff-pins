@@ -2,54 +2,54 @@
 
 music: rooms
 
-## hook "Trade owners, median close rates" [sfx: pop]
-Frame 0: the hook card, fully settled: "Median close rate, by US region" / "31% to 38%" (31% orange, 38% teal), two empty card slots labeled US NORTHEAST and US WEST, the source plate "ServiceTitan customers, May to Jul 2026", a plain US silhouette on the floor. Snow and the dialog box on from 0.0. Pings round the claim at 0.6 and 1.4 s, sparks at 1.0 s.
+## hook "Do you know your" [sfx: pop]
+Three shots (IMPROVE 00a). Frame 0, the cover, settled: the studio wall, the title plate "Do you know your" / "close rate?" (the on-screen hook, 6 words), the two region cards settled in their slots (US NORTHEAST 31% with its orange meter, US WEST 38% with its teal meter), the source plate "ServiceTitan customers, May to Jul 2026", a plain US silhouette on the floor. No host, no dialog box. Cut in on "close" (by 0.8 s) to the close-up: the Friday board in the shop, the hook written big on the whiteboard in marker ("Do you know your" / "close rate?" and a red "?"), the cork strip of estimate slips beside it flipping to SOLD one after another. Snow and the dialog box come on with the cut and stay.
+## hook.math "Here's the one-line math." [sfx: whoosh]
+Cut back out (before 2.6 s) to the studio: the title plate still carries the hook; the NUMBERS CLINIC chip drops onto the plate. Snow points at the plate.
+## hook.median "Median close rates run" [sfx: blip]
+The title plate turns to the claim: "Median close rate, by US region" / "31% to 38%" (31% orange, 38% teal); the 38% slams from a smaller peak so it stays left of the NUMBERS CLINIC chip.
 ## hook.region "percent by region."
-The US NORTHEAST card (31%) drops into its slot on "thirty-one", the US WEST card (38%) on "thirty-eight"; each meter fills to its median and a marker lights on the floor map (Northeast, West).
+The US NORTHEAST card (31%) re-pops on "thirty-one" (lifts out of its slot, drops back in, its meter refills from empty), the US WEST card (38%) on "thirty-eight"; a marker lights on the floor map for each (Northeast, West).
 ## hook.source "That's ServiceTitan's data on" [sfx: blip]
 The source plate's first half lights gold and is underlined.
 ## hook.window "May through July."
-"May to Jul 2026" lights gold and is underlined.
-## hook.yours "Do you know yours?" [sfx: pop]
-A gold card "Your close rate: ?" pops in under the source; it pings twice a second. Snow points at it.
-## hook.math "I'll show you the"
-Chip NUMBERS CLINIC slides in beside the range; Snow checks his clipboard.
+"May to Jul 2026" lights gold and is underlined. Snow checks his clipboard.
 
 ## stakes "Now take the top" [sfx: whoosh]
-Room: workshop. Panel SERVICETITAN, MAY TO JUL 2026, both rows shown as it opens: "Median shop" with its 31% to 38% segment, "Top 25%" with an empty track.
+World: the gauge (set). The needle swings into the gold median band on the rim; one-line plate top left "MEDIAN 31% TO 38%" (gold), clear above the rim; the readout says 31% TO 38%; source line ServiceTitan, May to Jul 2026 under the hub.
 ## stakes.ranked "ranked by close rate in" [sfx: tick]
-Row 2's label lights: "Top 25% by close rate, each region".
+The plate top right "TOP 25%" slides in on "top" and lights teal on "ranked"; the top quarter's band lights teal on the rim.
 ## stakes.top "Their median runs seventy"
-Row 2's segment grows to 70% to 73% as it is said; the numbers count up from 85% and land with sparks.
+The plate reads "TOP 25% 70% TO 73%" as it is said (the numbers count up from 85%); the needle swings out to the band; the readout turns teal, 70% TO 73%, with sparks.
 ## stakes.gap "That's a big gap." [sfx: pop]
-A bracket spans from 38% to 70% across the two rows: "the gap".
+The rim between the two bands fills red; THE GAP stamps at the top of the dial.
 ## stakes.measure "And you can't close" [sfx: stamp]
-A one-line red sticker stamps under the gauge: "Can't close a gap you never measured." The source line stays on. Snow points.
+A one-line red sticker stamps under the gauge: "Can't close a gap you never measured." On "never" the needle drops to zero and the readout reads "YOURS: ?" (blinking red and gold). The source line stays on. Snow points.
 
-## formula "So here's your math." [sfx: whoosh]
-Room: blackboard. Chalk header: THE MATH.
-## formula.shot "Screenshot this one."
-Chip SCREENSHOT THIS pops beside the header.
+## formula "So here's how you" [sfx: whoosh]
+World: the neon sign (our own set piece). A brick wall at night, a black sign board bolted to it, the whole formula already there in grey unlit tubes; a conduit to a transformer, wet pavement below. "THE MATH" lights gold.
+## formula.shot "Screenshot this."
+The board flashes white for 2 frames (a camera); chip SCREENSHOT THIS drops in beside the header.
 ## formula.eq "Close rate equals jobs" [sfx: tick]
-The formula card writes in: "Close rate =" then "jobs sold" over a line.
+"Close rate =" switches on in white and red on "Close"; "jobs sold" in teal on "jobs". Each lit tube throws a streak on the pavement.
 ## formula.div "divided by estimates given."
-"estimates given" lands under the line; the card glows.
-## formula.month "Count both over the" [sfx: pop]
-"Same month for both." stamps under the card.
+The teal line tube lights on "divided"; "estimates given" lights amber under it on "estimates", sparks.
+## formula.month "over the same month." [sfx: pop]
+"Same month for both." lights blue under the fraction; a neon calendar page beside it lights pink and a gold box draws round the whole month.
 
-## example "Here's an example." [sfx: whoosh]
-Room: garage. Header EXAMPLE on a dark band. A card with three rows shown as it opens: Estimates given, Jobs sold, Close rate, each value empty.
-## example.forty "Say you gave forty"
-40 counts in on "forty"; 14 counts in on "fourteen".
-## example.div "Fourteen divided by forty" [sfx: tick]
-"14 / 40" writes in on the Close rate row; 35% slams in as it is said, sparks.
-## example.range "That's right inside the" [sfx: blip]
-A small range strip under the card: 31% to 38% lit, a marker drops at 35%.
-## example.own "Now plug in your" [sfx: pop]
-"Your turn: __ / __" chip stamps under the strip.
+## example "Here's an example where" [sfx: whoosh]
+World: the inventory (set). Panel EXAMPLE: LAST MONTH: the belt holds ESTIMATES (clipboard) and JOBS SOLD (hammer); slot 3 is empty for the craft; the other slots hold dimmed tools (clock, coin, phone, wrench, mail). Under the belt "__ / __ = __".
+## example.forty "gave forty estimates last"
+The cursor lands on ESTIMATES on "forty" (GIVEN 40), on JOBS SOLD on "fourteen" (SOLD 14 OF 40); readout values end by x 921.
+## example.div "Fourteen over forty is" [sfx: tick]
+"14 / 40" slams in under the belt; "= 35%" slams on "thirty-five" and CLOSE RATE (star) is crafted into slot 3 with sparks.
+## example.range "right inside the median" [sfx: blip]
+A thin range strip grows under the panel on the dark gap above the band: 31% to 38% lit gold, a marker drops at 35%; under it "Median 31% to 38%   35% sits inside".
+## example.own "so plug in yours." [sfx: pop]
+The cursor jumps to slot 4, YOURS (? instead of an icon); "Now yours: __ / __" slams in under the sum.
 
 ## turn "Here's the part people" [sfx: whoosh]
-The dispatch map (its one appearance): a map of shops. Plate under it: THE PART PEOPLE SKIP with "ServiceTitan's medians, May to Jul 2026" on until turn.own.
+World: the dispatch board (set), its one appearance, the map redrawn as a plain town grid (blocks, a park, no river or lakefront): a map of shops. Plate under it: THE PART PEOPLE SKIP with "ServiceTitan's medians, May to Jul 2026" on until turn.own.
 ## turn.count "ServiceTitan doesn't say how" [sfx: blip]
 Note 1 slides in: "How it counts a close: not on the page."
 ## turn.cust "and its customers aren't" [sfx: blip]
@@ -59,20 +59,16 @@ The ghost lap board closes over the map in blinds: "Beat your ghost", lane GHOST
 ## turn.yours "is your OWN, from" [sfx: stamp]
 "Your own, last month." stamps in big in the accent; the gold bar closes on the ghost's flag. Snow points at it.
 
-## weekly "Track it every Friday." [sfx: whoosh]
-Room: workshop. A whiteboard panel FRIDAY with both rows shown as it opens: Estimates given, Jobs sold.
-## weekly.two "Two numbers on the"
-Both rows light up in turn; a marker ticks a tally on each.
-## weekly.dollars "Then run it in" [sfx: tick]
-A third row slides in: "$ sold / $ quoted".
-## weekly.lower "If the dollar rate's" [sfx: blip]
-A note under the board: "$ rate lower than count?"
-## weekly.away "your bigger quotes are"
-"Big quotes are getting away." stamps under it. Snow checks his clipboard.
+## weekly "Every Friday, put two" [sfx: whoosh]
+Room: workshop (the lesson's one room-and-panel section). The Friday board: "Every Friday" in red marker, underlined on "Friday"; both rows shown faint as it opens: Estimates given, Jobs sold.
+## weekly.two "numbers on the whiteboard,"
+Each row is written in marker as it is said and its box ticks; slips on the cork flip to SOLD as "jobs sold" is said.
+## weekly.all "That's all you need." [sfx: pop]
+A gold sticky note stamps on under the rows: "That's all" / "you need." Snow points at the board.
 
 ## close "Jobs sold, divided by" [sfx: pop]
-The Friday board wiped clean: "Close rate =" (132) / "jobs sold" over "estimates given" (size 99, the 2x glyphs), a divider as long as the wider line. Shop floor props below.
+World: the levelup set, in on a chalk-wipe sweep. The XP bar fills while the formula is said and the perk line builds word by word: "+ CLOSE RATE = JOBS SOLD / ESTIMATES GIVEN" (JOBS SOLD teal on "Jobs", / on "divided", ESTIMATES GIVEN gold on "estimates"); LEVEL UP! stamps on "given", the rays start turning.
 ## close.send "Send this to whoever" [sfx: sting]
-ProofNotFluff plate slams on; send line: "Send this to whoever writes your estimates."
+A gold-edged plate over the rays: "Send this to whoever writes your estimates." slams in on one line; the ProofNotFluff tag drops into the perk rows on the right.
 ## close.friday "Then on Friday, you'll"
-An accent line sweeps under "Close rate"; sparks; Snow waves.
+The last perk line lands: "+ Friday: your close rate."; an accent line sweeps under it on "close"; Snow waves.

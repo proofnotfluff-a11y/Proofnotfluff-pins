@@ -5,19 +5,43 @@
   "id": "rooms",
   "level": 0.16
  },
- "duration": 81.15,
+ "duration": 73.48,
  "cues": [
   {
    "id": "hook",
    "level": 0,
-   "quote": "Trade owners, median close rates",
+   "quote": "Do you know your",
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "Frame 0: the hook card, fully settled: \"Median close rate, by US region\" / \"31% to 38%\" (31% orange, 38% teal), two empty card slots labeled US NORTHEAST and US WEST, the source plate \"ServiceTitan customers, May to Jul 2026\", a plain US silhouette on the floor. Snow and the dialog box on from 0.0. Pings round the claim at 0.6 and 1.4 s, sparks at 1.0 s.",
+   "text": "Three shots (IMPROVE 00a). Frame 0, the cover, settled: the studio wall, the title plate \"Do you know your\" / \"close rate?\" (the on-screen hook, 6 words), the two region cards settled in their slots (US NORTHEAST 31% with its orange meter, US WEST 38% with its teal meter), the source plate \"ServiceTitan customers, May to Jul 2026\", a plain US silhouette on the floor. No host, no dialog box. Cut in on \"close\" (by 0.8 s) to the close-up: the Friday board in the shop, the hook written big on the whiteboard in marker (\"Do you know your\" / \"close rate?\" and a red \"?\"), the cork strip of estimate slips beside it flipping to SOLD one after another. Snow and the dialog box come on with the cut and stay.",
    "t": 0.0,
    "word": 0,
-   "end": 12.14
+   "end": 12.049
+  },
+  {
+   "id": "hook.math",
+   "level": 1,
+   "quote": "Here's the one-line math.",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Cut back out (before 2.6 s) to the studio: the title plate still carries the hook; the NUMBERS CLINIC chip drops onto the plate. Snow points at the plate.",
+   "t": 2.32,
+   "word": 6,
+   "end": 4.02
+  },
+  {
+   "id": "hook.median",
+   "level": 1,
+   "quote": "Median close rates run",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The title plate turns to the claim: \"Median close rate, by US region\" / \"31% to 38%\" (31% orange, 38% teal); the 38% slams from a smaller peak so it stays left of the NUMBERS CLINIC chip.",
+   "t": 4.02,
+   "word": 10,
+   "end": 6.53
   },
   {
    "id": "hook.region",
@@ -26,10 +50,10 @@
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "The US NORTHEAST card (31%) drops into its slot on \"thirty-one\", the US WEST card (38%) on \"thirty-eight\"; each meter fills to its median and a marker lights on the floor map (Northeast, West).",
-   "t": 4.04,
-   "word": 9,
-   "end": 5.76
+   "text": "The US NORTHEAST card (31%) re-pops on \"thirty-one\" (lifts out of its slot, drops back in, its meter refills from empty), the US WEST card (38%) on \"thirty-eight\"; a marker lights on the floor map for each (Northeast, West).",
+   "t": 6.53,
+   "word": 17,
+   "end": 8.08
   },
   {
    "id": "hook.source",
@@ -39,9 +63,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The source plate's first half lights gold and is underlined.",
-   "t": 5.76,
-   "word": 12,
-   "end": 8.26
+   "t": 8.08,
+   "word": 20,
+   "end": 10.36
   },
   {
    "id": "hook.window",
@@ -50,34 +74,10 @@
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "\"May to Jul 2026\" lights gold and is underlined.",
-   "t": 8.26,
-   "word": 19,
-   "end": 9.5
-  },
-  {
-   "id": "hook.yours",
-   "level": 1,
-   "quote": "Do you know yours?",
-   "sfx": "pop",
-   "shift": 0.0,
-   "pin": null,
-   "text": "A gold card \"Your close rate: ?\" pops in under the source; it pings twice a second. Snow points at it.",
-   "t": 9.5,
-   "word": 22,
-   "end": 10.62
-  },
-  {
-   "id": "hook.math",
-   "level": 1,
-   "quote": "I'll show you the",
-   "sfx": null,
-   "shift": 0.0,
-   "pin": null,
-   "text": "Chip NUMBERS CLINIC slides in beside the range; Snow checks his clipboard.",
-   "t": 10.62,
-   "word": 26,
-   "end": 12.14
+   "text": "\"May to Jul 2026\" lights gold and is underlined. Snow checks his clipboard.",
+   "t": 10.36,
+   "word": 27,
+   "end": 12.049
   },
   {
    "id": "stakes",
@@ -86,10 +86,10 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "Room: workshop. Panel SERVICETITAN, MAY TO JUL 2026, both rows shown as it opens: \"Median shop\" with its 31% to 38% segment, \"Top 25%\" with an empty track.",
-   "t": 12.14,
-   "word": 31,
-   "end": 24.26
+   "text": "World: the gauge (set). The needle swings into the gold median band on the rim; one-line plate top left \"MEDIAN 31% TO 38%\" (gold), clear above the rim; the readout says 31% TO 38%; source line ServiceTitan, May to Jul 2026 under the hub.",
+   "t": 12.049,
+   "word": 30,
+   "end": 24.255
   },
   {
    "id": "stakes.ranked",
@@ -98,10 +98,10 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "Row 2's label lights: \"Top 25% by close rate, each region\".",
-   "t": 14.04,
-   "word": 38,
-   "end": 16.44
+   "text": "The plate top right \"TOP 25%\" slides in on \"top\" and lights teal on \"ranked\"; the top quarter's band lights teal on the rim.",
+   "t": 14.129,
+   "word": 37,
+   "end": 16.549
   },
   {
    "id": "stakes.top",
@@ -110,10 +110,10 @@
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "Row 2's segment grows to 70% to 73% as it is said; the numbers count up from 85% and land with sparks.",
-   "t": 16.44,
-   "word": 45,
-   "end": 19.8
+   "text": "The plate reads \"TOP 25% 70% TO 73%\" as it is said (the numbers count up from 85%); the needle swings out to the band; the readout turns teal, 70% TO 73%, with sparks.",
+   "t": 16.549,
+   "word": 44,
+   "end": 19.929
   },
   {
    "id": "stakes.gap",
@@ -122,10 +122,10 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "A bracket spans from 38% to 70% across the two rows: \"the gap\".",
-   "t": 19.8,
-   "word": 52,
-   "end": 21.1
+   "text": "The rim between the two bands fills red; THE GAP stamps at the top of the dial.",
+   "t": 19.929,
+   "word": 51,
+   "end": 21.449
   },
   {
    "id": "stakes.measure",
@@ -134,34 +134,34 @@
    "sfx": "stamp",
    "shift": 0.0,
    "pin": null,
-   "text": "A one-line red sticker stamps under the gauge: \"Can't close a gap you never measured.\" The source line stays on. Snow points.",
-   "t": 21.1,
-   "word": 56,
-   "end": 24.26
+   "text": "A one-line red sticker stamps under the gauge: \"Can't close a gap you never measured.\" On \"never\" the needle drops to zero and the readout reads \"YOURS: ?\" (blinking red and gold). The source line stays on. Snow points.",
+   "t": 21.449,
+   "word": 55,
+   "end": 24.255
   },
   {
    "id": "formula",
    "level": 0,
-   "quote": "So here's your math.",
+   "quote": "So here's how you",
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "Room: blackboard. Chalk header: THE MATH.",
-   "t": 24.26,
-   "word": 65,
-   "end": 33.82
+   "text": "World: the neon sign (our own set piece). A brick wall at night, a black sign board bolted to it, the whole formula already there in grey unlit tubes; a conduit to a transformer, wet pavement below. \"THE MATH\" lights gold.",
+   "t": 24.255,
+   "word": 64,
+   "end": 33.169
   },
   {
    "id": "formula.shot",
    "level": 1,
-   "quote": "Screenshot this one.",
+   "quote": "Screenshot this.",
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "Chip SCREENSHOT THIS pops beside the header.",
-   "t": 25.66,
-   "word": 69,
-   "end": 27.18
+   "text": "The board flashes white for 2 frames (a camera); chip SCREENSHOT THIS drops in beside the header.",
+   "t": 25.935,
+   "word": 71,
+   "end": 27.435
   },
   {
    "id": "formula.eq",
@@ -170,10 +170,10 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "The formula card writes in: \"Close rate =\" then \"jobs sold\" over a line.",
-   "t": 27.18,
-   "word": 72,
-   "end": 29.08
+   "text": "\"Close rate =\" switches on in white and red on \"Close\"; \"jobs sold\" in teal on \"jobs\". Each lit tube throws a streak on the pavement.",
+   "t": 27.435,
+   "word": 73,
+   "end": 29.295
   },
   {
    "id": "formula.div",
@@ -182,82 +182,82 @@
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "\"estimates given\" lands under the line; the card glows.",
-   "t": 29.08,
-   "word": 77,
-   "end": 31.42
+   "text": "The teal line tube lights on \"divided\"; \"estimates given\" lights amber under it on \"estimates\", sparks.",
+   "t": 29.295,
+   "word": 78,
+   "end": 31.015
   },
   {
    "id": "formula.month",
    "level": 1,
-   "quote": "Count both over the",
+   "quote": "over the same month.",
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "\"Same month for both.\" stamps under the card.",
-   "t": 31.42,
-   "word": 81,
-   "end": 33.82
+   "text": "\"Same month for both.\" lights blue under the fraction; a neon calendar page beside it lights pink and a gold box draws round the whole month.",
+   "t": 31.015,
+   "word": 82,
+   "end": 33.169
   },
   {
    "id": "example",
    "level": 0,
-   "quote": "Here's an example.",
+   "quote": "Here's an example where",
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "Room: garage. Header EXAMPLE on a dark band. A card with three rows shown as it opens: Estimates given, Jobs sold, Close rate, each value empty.",
-   "t": 33.82,
-   "word": 87,
-   "end": 46.24
+   "text": "World: the inventory (set). Panel EXAMPLE: LAST MONTH: the belt holds ESTIMATES (clipboard) and JOBS SOLD (hammer); slot 3 is empty for the craft; the other slots hold dimmed tools (clock, coin, phone, wrench, mail). Under the belt \"__ / __ = __\".",
+   "t": 33.169,
+   "word": 86,
+   "end": 44.487
   },
   {
    "id": "example.forty",
    "level": 1,
-   "quote": "Say you gave forty",
+   "quote": "gave forty estimates last",
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "40 counts in on \"forty\"; 14 counts in on \"fourteen\".",
-   "t": 35.0,
-   "word": 90,
-   "end": 38.92
+   "text": "The cursor lands on ESTIMATES on \"forty\" (GIVEN 40), on JOBS SOLD on \"fourteen\" (SOLD 14 OF 40); readout values end by x 921.",
+   "t": 34.349,
+   "word": 91,
+   "end": 37.949
   },
   {
    "id": "example.div",
    "level": 1,
-   "quote": "Fourteen divided by forty",
+   "quote": "Fourteen over forty is",
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "\"14 / 40\" writes in on the Close rate row; 35% slams in as it is said, sparks.",
-   "t": 38.92,
-   "word": 100,
-   "end": 42.18
+   "text": "\"14 / 40\" slams in under the belt; \"= 35%\" slams on \"thirty-five\" and CLOSE RATE (star) is crafted into slot 3 with sparks.",
+   "t": 37.949,
+   "word": 99,
+   "end": 40.649
   },
   {
    "id": "example.range",
    "level": 1,
-   "quote": "That's right inside the",
+   "quote": "right inside the median",
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "A small range strip under the card: 31% to 38% lit, a marker drops at 35%.",
-   "t": 42.18,
-   "word": 107,
-   "end": 44.58
+   "text": "A thin range strip grows under the panel on the dark gap above the band: 31% to 38% lit gold, a marker drops at 35%; under it \"Median 31% to 38%   35% sits inside\".",
+   "t": 40.649,
+   "word": 105,
+   "end": 42.589
   },
   {
    "id": "example.own",
    "level": 1,
-   "quote": "Now plug in your",
+   "quote": "so plug in yours.",
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "\"Your turn: __ / __\" chip stamps under the strip.",
-   "t": 44.58,
-   "word": 113,
-   "end": 46.24
+   "text": "The cursor jumps to slot 4, YOURS (? instead of an icon); \"Now yours: __ / __\" slams in under the sum.",
+   "t": 42.589,
+   "word": 110,
+   "end": 44.487
   },
   {
    "id": "turn",
@@ -266,10 +266,10 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "The dispatch map (its one appearance): a map of shops. Plate under it: THE PART PEOPLE SKIP with \"ServiceTitan's medians, May to Jul 2026\" on until turn.own.",
-   "t": 46.24,
-   "word": 118,
-   "end": 58.65
+   "text": "World: the dispatch board (set), its one appearance, the map redrawn as a plain town grid (blocks, a park, no river or lakefront): a map of shops. Plate under it: THE PART PEOPLE SKIP with \"ServiceTitan's medians, May to Jul 2026\" on until turn.own.",
+   "t": 44.487,
+   "word": 114,
+   "end": 56.771
   },
   {
    "id": "turn.count",
@@ -279,9 +279,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Note 1 slides in: \"How it counts a close: not on the page.\"",
-   "t": 48.4,
-   "word": 123,
-   "end": 51.26
+   "t": 46.687,
+   "word": 119,
+   "end": 49.507
   },
   {
    "id": "turn.cust",
@@ -291,9 +291,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Note 2 slides in: \"ServiceTitan customers. Not every shop.\"; teal pins mark the customers.",
-   "t": 51.26,
-   "word": 131,
-   "end": 54.06
+   "t": 49.507,
+   "word": 127,
+   "end": 52.547
   },
   {
    "id": "turn.own",
@@ -303,9 +303,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The ghost lap board closes over the map in blinds: \"Beat your ghost\", lane GHOST: LAST MONTH (a dashed ghost bar to a checkered flag), lane YOU: THIS MONTH (a gold bar racing it); on the floor the ghost car and the gold car run the track. \"First number to beat:\" lands on the plate under the board. No numbers.",
-   "t": 54.06,
-   "word": 139,
-   "end": 55.82
+   "t": 52.547,
+   "word": 135,
+   "end": 54.067
   },
   {
    "id": "turn.yours",
@@ -315,69 +315,45 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Your own, last month.\" stamps in big in the accent; the gold bar closes on the ghost's flag. Snow points at it.",
-   "t": 55.82,
-   "word": 147,
-   "end": 58.65
+   "t": 54.067,
+   "word": 143,
+   "end": 56.771
   },
   {
    "id": "weekly",
    "level": 0,
-   "quote": "Track it every Friday.",
+   "quote": "Every Friday, put two",
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "Room: workshop. A whiteboard panel FRIDAY with both rows shown as it opens: Estimates given, Jobs sold.",
-   "t": 58.65,
-   "word": 153,
-   "end": 72.43
+   "text": "Room: workshop (the lesson's one room-and-panel section). The Friday board: \"Every Friday\" in red marker, underlined on \"Friday\"; both rows shown faint as it opens: Estimates given, Jobs sold.",
+   "t": 56.771,
+   "word": 149,
+   "end": 63.36
   },
   {
    "id": "weekly.two",
    "level": 1,
-   "quote": "Two numbers on the",
+   "quote": "numbers on the whiteboard,",
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "Both rows light up in turn; a marker ticks a tally on each.",
-   "t": 60.39,
-   "word": 157,
-   "end": 64.61
+   "text": "Each row is written in marker as it is said and its box ticks; slips on the cork flip to SOLD as \"jobs sold\" is said.",
+   "t": 58.251,
+   "word": 153,
+   "end": 61.991
   },
   {
-   "id": "weekly.dollars",
+   "id": "weekly.all",
    "level": 1,
-   "quote": "Then run it in",
-   "sfx": "tick",
+   "quote": "That's all you need.",
+   "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "A third row slides in: \"$ sold / $ quoted\".",
-   "t": 64.61,
-   "word": 166,
-   "end": 67.99
-  },
-  {
-   "id": "weekly.lower",
-   "level": 1,
-   "quote": "If the dollar rate's",
-   "sfx": "blip",
-   "shift": 0.0,
-   "pin": null,
-   "text": "A note under the board: \"$ rate lower than count?\"",
-   "t": 67.99,
-   "word": 175,
-   "end": 69.59
-  },
-  {
-   "id": "weekly.away",
-   "level": 1,
-   "quote": "your bigger quotes are",
-   "sfx": null,
-   "shift": 0.0,
-   "pin": null,
-   "text": "\"Big quotes are getting away.\" stamps under it. Snow checks his clipboard.",
-   "t": 69.59,
-   "word": 180,
-   "end": 72.43
+   "text": "A gold sticky note stamps on under the rows: \"That's all\" / \"you need.\" Snow points at the board.",
+   "t": 61.991,
+   "word": 162,
+   "end": 63.36
   },
   {
    "id": "close",
@@ -386,10 +362,10 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "The Friday board wiped clean: \"Close rate =\" (132) / \"jobs sold\" over \"estimates given\" (size 99, the 2x glyphs), a divider as long as the wider line. Shop floor props below.",
-   "t": 72.43,
-   "word": 188,
-   "end": 81.15
+   "text": "World: the levelup set, in on a chalk-wipe sweep. The XP bar fills while the formula is said and the perk line builds word by word: \"+ CLOSE RATE = JOBS SOLD / ESTIMATES GIVEN\" (JOBS SOLD teal on \"Jobs\", / on \"divided\", ESTIMATES GIVEN gold on \"estimates\"); LEVEL UP! stamps on \"given\", the rays start turning.",
+   "t": 63.36,
+   "word": 166,
+   "end": 73.48
   },
   {
    "id": "close.send",
@@ -398,10 +374,10 @@
    "sfx": "sting",
    "shift": 0.0,
    "pin": null,
-   "text": "ProofNotFluff plate slams on; send line: \"Send this to whoever writes your estimates.\"",
-   "t": 75.23,
-   "word": 194,
-   "end": 77.27
+   "text": "A gold-edged plate over the rays: \"Send this to whoever writes your estimates.\" slams in on one line; the ProofNotFluff tag drops into the perk rows on the right.",
+   "t": 66.38,
+   "word": 172,
+   "end": 68.42
   },
   {
    "id": "close.friday",
@@ -410,10 +386,10 @@
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "An accent line sweeps under \"Close rate\"; sparks; Snow waves.",
-   "t": 77.27,
-   "word": 201,
-   "end": 81.15
+   "text": "The last perk line lands: \"+ Friday: your close rate.\"; an accent line sweeps under it on \"close\"; Snow waves.",
+   "t": 68.42,
+   "word": 179,
+   "end": 73.48
   }
  ]
 }

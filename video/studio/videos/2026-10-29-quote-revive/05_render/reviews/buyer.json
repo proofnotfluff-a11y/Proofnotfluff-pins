@@ -1,7 +1,8 @@
 {
  "gate": "buyer",
  "round": 0,
- "at": "2026-10-28T23:27:13-05:00",
+ "at": "2026-10-29T12:25:21-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
  "pass": true,
  "score": {
   "stop": "yes",
@@ -10,13 +11,14 @@
   "follow_or_link": "yes"
  },
  "reasons": [
-  "1. Stop sending 'just checking in' after a quote; text the customer their name, the job and one yes-or-no question, within 2 days, again at a week, and once before it expires.",
-  "2. Stop: yes. 'Quote went quiet? Send this text.' names a pain every plumber has at 9 pm, and it promises something I can copy right away.",
-  "3. Send: yes, to whoever does my follow-ups (the video asks for exactly that). Save: yes, the water heater text and the 3-step timing are a template I would come back to. Follow: yes, 'Lesson 2' says there is a series of usable tips. Link in bio: no, nothing points there and nothing needs to.",
-  "4. No hype, no fake urgency, no pitch. The AI voice is disclosed in the caption, which reads honest. Naming three software brands (ServiceTitan, Jobber, Housecall Pro) is sourcing, not selling, so it did not read as an ad to me.",
-  "5. Clear to a stranger. 'Lesson 2' with no lesson 1 in view is a small question mark but does not hurt.",
-  "6. Trust: yes. Every number has a named source and the advice matches what works.",
-  "Polish, not a fail: transcript 00:05.1 'Software maker ServiceTitan says its data shows only thirty-seven percent...' is a mouthful in the seconds that decide whether I keep watching. Fix: 'ServiceTitan's data: only thirty-seven percent of estimates close on the first visit.'",
-  "Polish, not a fail: frame-0.8s the bottom 40 percent of the frame is empty grass. Fix: move the street scene down or put the example text bubble there so the first frame looks full."
+  "1. What it tells me: when a quote goes quiet, don't send 'just checking in'. Text the homeowner their name, your name, the job and one yes-or-no question (the water heater line), and send it as a text, not an email.",
+  "2. Stop: yes. 'Quote went quiet? One text can bring it back. Here's what you send.' names a pain I have every week and promises a line I can copy. The frame-0.8s cover (Quote.pdf marked Seen, no reply) shows the problem without any sound, and the headline 'Quote went quiet? Send this text.' matches the voice.",
+  "3. Send: yes, to whoever does my follow-ups, which is exactly what 00:01:03.9 asks for. Save: yes, the caption gives the full template ('Hi [name], it's [you]. Still want that water heater swapped before winter?') plus the 2-days / 1-week / before-expiry timing, so it's a reference I'd come back to. Follow: yes, 'Lesson 2' tells me there's a series of usable tips. Link in bio: no, nothing points there and nothing needs to.",
+  "4. No hype, no fake urgency, no pitch, no AI slop. The voice reads plain and the AI label is on in settings. Naming ServiceTitan, Jobber and Housecall Pro reads as sourcing, not selling.",
+  "5. Mostly clear to a stranger. Small problem at 00:27.5 'Try Jobber's follow-up tips instead.' It sounds like I'm being sent off to read Jobber's tips, not hearing them now, and it's the one line that brushes against reading like an ad. Fix: 'Jobber's advice: use their name, name the job, and ask a question.'",
+  "6. Trust: yes. Each number has a named source (ServiceTitan's 37% first-visit close rate, the Housecall Pro survey's 59%), and the advice matches what works on real jobs. None of the earlier cut's faults are back: the hook reads clean and the bottom of the first frame is no longer empty grass.",
+  "Polish, not a fail: 00:04.8 'Software maker ServiceTitan says its data shows only thirty-seven percent of estimates close on the first visit' is still a mouthful right after the hook (the last review flagged the same line). Fix: 'ServiceTitan's data: only thirty-seven percent of estimates close on the first visit.'",
+  "Polish, not a fail: frame-0.8s cover reads 'Sources: Jobber, ServiceTitan', but the voice also cites Housecall Pro at 00:55.6. Fix: add Housecall Pro to the Sources line, or keep the line limited to the cover's own claims if that's the rule.",
+  "Polish, not a fail: frame-0.8s shows a grey three-dot bubble on the homeowner's side, which a stranger could read as 'they're typing a reply' and that undercuts 'went quiet'. Fix: drop the dots, or show a timestamp like '3 days ago' under Seen."
  ]
 }

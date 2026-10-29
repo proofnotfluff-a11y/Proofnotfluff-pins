@@ -1,13 +1,54 @@
 {
  "gate": "design",
  "round": 1,
- "pass": true,
- "score": {"first": 4, "hierarchy": 5, "type": 5, "color": 5, "spacing": 5, "polish": 4, "trust": 5, "average": 4.71},
+ "at": "2026-10-29T13:42:48-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
+ "pass": false,
+ "score": {
+  "first": 5,
+  "hierarchy": 5,
+  "type": 4,
+  "color": 5,
+  "spacing": 4,
+  "polish": 4,
+  "trust": 5,
+  "average": 4.57
+ },
  "reasons": [
-  "Round 0 check: all 8 changes landed. The turn plates hold both lines inside, the stakes sticker is one wide line clear of the 0 and 100 labels, the turn source line stays on to the end, the dimmed map is gone and the 'Beat your ghost' lap board replaces it, the dispatch board shows once (turn only; the hook is a new US region map), the cover source plate has room around 2026, and the close formula is now full size (jobs sold / estimates given at 99 with a long divider). Freshness: nothing repeats from 2026-11-02 (weather, register, hud) or 2026-11-03 (chat, scores, slots). The dispatch board last appeared in 2026-11-01, which the 'no repeat in two lessons in a row' rule allows.",
-  "0.00 cover, US NORTHEAST and US WEST cards: both are empty boxes until 2.5 s, so frame 0 shows two blank panels under the headline. Draw them settled on frame 0 (31% with its bar, 38% with its bar) and keep the count-up and sparkle for the 2.5 s and 3.5 s cues as a re-pop, so the cover has no empty boxes.",
-  "58.90-81.00 weekly and close: these use the same workshop room as formula (24.86-34.40), with the same whiteboard, fan, bucket and drawers, so the room fills about 40% of the runtime across 3 sections. sets.md allows 1 room-and-panel section per lesson. Move close (73.03 on) onto a set no lesson from 6 to 9 has used, e.g. levelup with 'CLOSE RATE = JOBS SOLD / ESTIMATES GIVEN' as the perk and 'Friday: your close rate.' as the last perk line.",
-  "12.74-24.70 stakes gauge: the MEDIAN SHOP and TOP 25% plates sit on top of the dial's outer rim and cut off both ends of the red gap arc. Make each plate one line ('MEDIAN 31-38%' / 'TOP 25% 70-73%', h about 26) so they end above the rim. Also add the '%' suffix to the readout so it reads '70% TO 73%' like the plates, and move the '100' label 6 px right so it clears the readout box.",
-  "56.00-57.00 turn.yours, 'Beat your ghost' title: a white spark pixel lands on the 'h' of 'ghost'. Spawn the finish sparks below the title band (y 360 and lower)."
- ]
+  "Context (not a change): all round-0 changes landed. Close is on levelup, formula is on the neon sign, and the workshop is used only for weekly plus the 0.8 to 2.5 s hook close-up. Cover cards are settled at frame 0. Gauge plates are one line with % and there is no gold stub. The readout reads '31% TO 38%' and clears the 100 label. The 38% slam stays left of the NUMBERS CLINIC chip (checked at 4.0, 4.15 and 4.3 s). The belt slots hold dimmed icons. The range strip and its label sit on the dark band at 41.25 s. Example readouts end by x 917. Freshness passes: gauge, neon sign, inventory, town-grid dispatch, ghost race and levelup share nothing with 2026-11-02 (weather, shop register, calendar) or 2026-11-03 (phone chat, slots, score table). First-impression caps clear: the picture cuts at 0.8 s and again at 2.5 s, and the host is on screen from 0.8 s.",
+  "0.8-70.4 s dialog box text (type cap, style board target 44 px): the spoken words measure 24 px cap height, 30 px with descenders, at 1080 wide (frame-2.0s, 'Do you know your close rate?'). Raise the dialog font so the words run at least 44 px, two lines per page.",
+  "Whole lesson, labels and sources (type cap, target 36 px): the cover's 'US NORTHEAST' / 'US WEST' (21 px cap), the source plate 'ServiceTitan customers, May to Jul 2026' (24 px cap, 30 px with descenders), the gauge source 'ServiceTitan, May to Jul 2026', 'Median 31% to 38%  35% sits inside' at 41.25 s and the close perk lines at 69.02 s (24 px) all fall under 36 px. Set every label and source to at least 36 px. On the close, give the formula perk line most of the room, because it is the lesson's takeaway.",
+  "63.4-65.7 s close opening (levelup set): for 2.3 s after the chalk wipe the band holds only the LV 1 XP bar and one perk line over an empty starry sky (y 270 to 570 and 740 to 900 empty, about half the band). Stamp the 'Send this to whoever writes your estimates.' plate and a set header in at 63.4 s, or start the rays and LEVEL UP on 'divided' (about 64.3 s), so no more than a third of the band sits empty past 2 s.",
+  "66.4-66.9 s close.send, PROOFNOTFLUFF tag: as it drops in, it lands on the perk line and covers 'ESTIMATES GIVEN' (only 'ES' shows) for about half a second before it settles below. Drop it straight into its final slot to the right of the second perk row (y about 735), clear of the formula line, from its first frame.",
+  "70.8-73.27 s end card: the ProofNotFluff / proofnotfluff.com card holds about 2.5 s (it arrives at 70.8 s after the last word at 70.38 s). The style board target is 3 to 5 s. Extend the music tail by at least 0.6 s, or bring the card in on the last word, so it holds 3 s or more.",
+  "65.7-70.8 s close, LV 2 XP bar: after the rollover the bar is an empty dark box across the frame, which reads as a missing element under LEVEL UP. Give it a first segment or two filling in gold, or swap it for 'LV 2' with a small full-bar flash, so no empty frame sits at the peak.",
+  "12.0-17.5 s stakes, TOP 25% plate: the teal plate opens at its full width (x about 1240 to 1555 in the sheet grid, about 410 px) holding only 'TOP 25%', so it shows a long empty box for 5 s. Size the plate to its text and let it grow when '70% TO 73%' arrives at 17.5 s."
+ ],
+ "prior": {
+  "gate": "design",
+  "round": 0,
+  "at": "2026-10-29T12:46:45-05:00",
+  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+  "pass": false,
+  "score": {
+   "first": 4,
+   "hierarchy": 5,
+   "type": 5,
+   "color": 5,
+   "spacing": 4,
+   "polish": 4,
+   "trust": 5,
+   "average": 4.57
+  },
+  "reasons": [
+   "Context: the new opening works. Frame 0 is the cover, it cuts in to the Friday whiteboard close-up with Snow by 1.0 s, cuts back out at 2.5 s, the NUMBERS CLINIC chip is on at 2.5 s and the hook clears to the claim by 4.62 s. Freshness passes: gauge, inventory, dispatch map, US map cover and ghost race share nothing with 2026-11-02 (weather, register, hud, calendar) or 2026-11-03 (chat, slots, scores). Earlier round check: none of the 4 round-1 changes in reviews/design.json landed (empty cover cards, the shared workshop room, the two-line gauge plates with readout and 100 label, the 'Beat your ghost' sparks). The ghost sparks look clear at 54.67 s, and the other three are listed below.",
+   "24.3-33.2, 56.8-63.4 and 63.4-71.0 workshop room, plus the 1.0-2.5 hook close-up: formula, weekly and close all use the same whiteboard, cork strip, fan, bucket and drawers, about 24 s of 73 s across 3 sections, and sets.md allows 1 room-and-panel section. Keep weekly as the Friday board (the hook close-up sets it up). Move close (63.4 on) onto levelup with 'CLOSE RATE = JOBS SOLD / ESTIMATES GIVEN' as the perk and 'Friday: your close rate.' as the last perk line. Move formula (24.3-33.2) off the room onto a set no lesson from 6 to 9 uses, e.g. flaps rows 'CLOSE RATE =' / 'JOBS SOLD' / 'ESTIMATES' / 'SAME MONTH'.",
+   "0.00-4.62 cover, US NORTHEAST and US WEST cards: both are still empty boxes until about 5.5 s and 6.5 s, so the cover and the whole hook show two blank panels. Draw them settled from frame 0 (31% with its orange bar, 38% with its teal bar). Keep the drop and meter fill on 'thirty-one' and 'thirty-eight' as a re-pop.",
+   "12.0-24.3 stakes gauge, MEDIAN SHOP and TOP 25% plates: they are still two lines (h about 120 px) and sit over both ends of the dial's outer rim and the red gap arc. Make each one line ('MEDIAN 31% TO 38%' / 'TOP 25% 70% TO 73%', h about 60 px) so they end above the rim at y about 330. Also remove the stray gold underline stub under the MEDIAN plate (x 220-310, y 395).",
+   "12.0-23.0 gauge readout: it reads '31 TO 38' and '70 TO 73' with no % while the plates say '70% TO 73%'. Set the suffix so it reads '70% TO 73%'. Move the '100' label about 10 px right; at 22.05 s it touches the readout box's right edge (box ends x 650, label starts x 652).",
+   "4.0-4.4 hook.median, '38%' slam: at full slam scale the 38% runs over the NUMBERS CLINIC chip. Keep the slam's peak size inside the space left of the chip, or slide the chip right by the overshoot for those frames.",
+   "33.2-44.5 example inventory: 5 of the 8 slots stay empty for the whole section, so the belt looks unfinished. Fill them with quiet icons (clock, coin, phone, wrench, clip) dimmed, or cut the belt to 4 slots in one row so the 14 / 40 = 35% line gets the room.",
+   "41.0-44.5 example.range strip label: 'Median 31% to 38%  35% sits inside' straddles the panel-band edge at y about 885. Move the strip and its label up 30 px so both sit fully on the dark band above the dialog area."
+  ]
+ }
 }

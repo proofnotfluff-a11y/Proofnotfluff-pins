@@ -858,7 +858,7 @@ def cmd_cues(slug):
     if bad:
         raise SystemExit("ERROR cues: " + "; ".join(bad))
     cues[0]["t"] = 0.0
-    duration = round(wd["end"] + 2.9, 3)   # 2.9 s tail: the end card (player.js, IMPROVE 000)
+    duration = round(wd["end"] + 3.1, 3)   # 3.1 s tail: the end card, up for the last 3.0 s (player.js, IMPROVE 000; style board, Oct 29)
     for i, c in enumerate(cues):
         nxt = next((d for d in cues[i + 1:] if d["level"] <= c["level"]), None)
         c["end"] = nxt["t"] if nxt else duration

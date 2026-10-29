@@ -5,19 +5,19 @@
   "id": "rooms",
   "level": 0.16
  },
- "duration": 85.669,
+ "duration": 74.646,
  "cues": [
   {
    "id": "hook",
    "level": 0,
-   "quote": "One price on your quotes?",
+   "quote": "You quote one price?",
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "World: the storefront counter. Frame 0: the cover, fully settled. Shop sign QUOTE CLINIC; a toolbox on the counter with one price tag (\"$\"); a cream card hung on the counter front: \"Top shops quote\" / \"3 prices\" (big) / \"on 57% of home jobs.\" with the 3 and the 57% in red; source small: ServiceTitan data, 12 months to Jan 2026. Host and dialog hidden through the hook. After frame 0: sparks at 0.4 s and every 0.6 s, the card swings a pixel on its strings, shines cross the lines from 1 s, the OPEN sign blinks.",
+   "text": "Three shots (IMPROVE 00a). The cover, frame 0, fully settled, host and dialog hidden: World: the storefront counter. Shop sign QUOTE CLINIC; a toolbox on the counter with one price tag (\"$\"); a cream card hung on the counter front: \"Top shops usually quote\" / \"3 prices\" (big, the 3 in red); under it \"Top 10%: 57% of home jobs\" and the source small: ServiceTitan data, 12 months to Jan 2026. On \"one\" cut in to the tag close-up, outside the shop, drawn big: the striped awning, the brick facade, the shop window with the one-price tag hanging in the glass over the toolbox on the display ledge (a light crosses the glass), the teal door with its OPEN sign, the sidewalk in the awning's shade; the hook on a title plate over the glass (\"Top shops usually\" / \"quote 3 prices\", source under it); Snow steps up big on the sidewalk. On \"Top\" cut back out to the storefront, Snow on; the card swings a pixel on its strings, sparks off the tag.",
    "t": 0.0,
    "word": 0,
-   "end": 5.806
+   "end": 5.466
   },
   {
    "id": "hook.three",
@@ -26,22 +26,22 @@
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "On \"three\" the tag narrows to its edge, shows its barcode back and turns to \"$ $$ $$$\", sways to rest with sparks.",
-   "t": 2.74,
-   "word": 8,
-   "end": 4.4
+   "text": "The tag narrows to its edge, shows its barcode back and shows \"$ $$ $$$\" on the word \"three\", sways to rest with sparks.",
+   "t": 2.36,
+   "word": 6,
+   "end": 4.0
   },
   {
    "id": "hook.build",
    "level": 1,
-   "quote": "Here's how you build",
+   "quote": "Here's how to build",
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "The chalk board on the wall writes \"3 prices.\" / \"1 quote.\" line by line; the card's 3 pulses gold once.",
-   "t": 4.4,
-   "word": 11,
-   "end": 5.806
+   "text": "The hook card rolls up onto its strings and is gone by 4.0 s (the on-screen hook's hold ends); the chalk board on the wall writes \"3 prices,\" / \"1 quote.\" line by line and carries the rest of the take.",
+   "t": 4.0,
+   "word": 9,
+   "end": 5.466
   },
   {
    "id": "stakes",
@@ -51,21 +51,21 @@
    "shift": 0.0,
    "pin": null,
    "text": "World: the arcade high-score table. Marquee GOOD BETTER BEST, bulbs chasing; empty dashed rows; the source types on at the bottom of the screen: \"ServiceTitan customers\".",
-   "t": 5.806,
-   "word": 16,
-   "end": 18.639
+   "t": 5.466,
+   "word": 14,
+   "end": 17.254
   },
   {
    "id": "stakes.window",
    "level": 1,
-   "quote": "up to this January.",
+   "quote": "a year of home jobs.",
    "sfx": null,
    "shift": 0.0,
    "pin": null,
    "text": "\"12 months to Jan 2026\" types under it.",
-   "t": 8.206,
-   "word": 23,
-   "end": 9.626
+   "t": 6.466,
+   "word": 16,
+   "end": 8.226
   },
   {
    "id": "stakes.top",
@@ -75,9 +75,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 1 slides in: 1ST TOP 10% with the cursor, score \"--\" blinking. \"Top 10% = by revenue\" small under the table.",
-   "t": 9.626,
-   "word": 27,
-   "end": 12.426
+   "t": 8.226,
+   "word": 21,
+   "end": 11.206
   },
   {
    "id": "stakes.top57",
@@ -87,9 +87,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The row's score counts to 57% as it is said (from 85%); sparks off the score.",
-   "t": 12.426,
-   "word": 36,
-   "end": 14.326
+   "t": 11.206,
+   "word": 30,
+   "end": 13.306
   },
   {
    "id": "stakes.rest",
@@ -99,9 +99,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 2 slides in: 2ND THE REST; its score lands 41% on \"Forty-one\".",
-   "t": 14.326,
-   "word": 40,
-   "end": 16.466
+   "t": 13.306,
+   "word": 34,
+   "end": 15.466
   },
   {
    "id": "stakes.habit",
@@ -110,22 +110,22 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "The NEW RECORD line blinks in as \"A HABIT YOU CAN COPY\" (2 a second). Snow points at it.",
-   "t": 16.466,
-   "word": 43,
-   "end": 18.639
+   "text": "A plum bar opens in the band between the rows and the footnote; \"A HABIT YOU CAN COPY\" lands on it on \"habit\", gold, at the row names' size, a twinkle at each end. The footnote (what the score is, the source, Top 10% = by revenue) sits under it. Snow points at it.",
+   "t": 15.466,
+   "word": 37,
+   "end": 17.254
   },
   {
    "id": "why",
    "level": 0,
-   "quote": "Why give them a choice?",
+   "quote": "Why three? Housecall Pro",
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "World: a street of 100 houses at dusk (10 by 10), windows dark, a quote envelope flies in across the rooftops and lands on the first house.",
-   "t": 18.639,
-   "word": 49,
-   "end": 36.121
+   "text": "World: a street of 100 houses at dusk (10 by 10), windows dark, a quote envelope flies in across the rooftops and lands on the first house; the plate asks \"Why 3?\".",
+   "t": 17.254,
+   "word": 43,
+   "end": 30.818
   },
   {
    "id": "why.hcp",
@@ -135,21 +135,21 @@
    "shift": 0.0,
    "pin": null,
    "text": "The street sign plate: \"Housecall Pro survey, 2026\" and \"1,100+ homeowners\" counting up.",
-   "t": 20.479,
-   "word": 54,
-   "end": 24.079
+   "t": 18.694,
+   "word": 45,
+   "end": 22.314
   },
   {
    "id": "why.68",
    "level": 1,
-   "quote": "sixty-eight percent said",
+   "quote": "Sixty-eight percent go get",
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
    "text": "68 of the 100 houses light up in a fast run, row by row; \"68%\" slams on the plate as it is said.",
-   "t": 24.079,
-   "word": 61,
-   "end": 25.419
+   "t": 22.314,
+   "word": 52,
+   "end": 23.134
   },
   {
    "id": "why.quotes",
@@ -158,46 +158,22 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "Over each lit house a small envelope pops up and floats off to the right: \"get more quotes when the price is higher than expected\".",
-   "t": 25.419,
-   "word": 65,
-   "end": 29.099
-  },
-  {
-   "id": "why.surprise",
-   "level": 1,
-   "quote": "One price that surprises",
-   "sfx": "pop",
-   "shift": 0.0,
-   "pin": null,
-   "text": "The street dims; one big quote slip drops in: a single price \"$$$$\" with a red \"?!\" over it.",
-   "t": 29.099,
-   "word": 78,
-   "end": 30.839
-  },
-  {
-   "id": "why.shop",
-   "level": 1,
-   "quote": "send them shopping.",
-   "sfx": null,
-   "shift": 0.0,
-   "pin": null,
-   "text": "The slip slides off to the right after a wobble; \"can send them shopping\" under it.",
-   "t": 30.839,
-   "word": 84,
-   "end": 32.199
+   "text": "Over each lit house a small envelope pops up and floats off to the right: \"get more quotes when a price is higher than expected\".",
+   "t": 23.134,
+   "word": 54,
+   "end": 26.914
   },
   {
    "id": "why.three",
    "level": 1,
-   "quote": "With three, the cheaper",
+   "quote": "With three, there's a",
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "A three-price quote slips in: $ / $$ / $$$; on \"cheaper\" the $ row glows teal with a check: \"The cheaper option is already on your quote.\"",
-   "t": 32.199,
-   "word": 87,
-   "end": 36.121
+   "text": "The street dims; a three-price quote slips in: $ / $$ / $$$; on \"cheaper\" the $ row glows teal with a check: \"There's a cheaper option already on your quote.\"",
+   "t": 26.914,
+   "word": 66,
+   "end": 30.818
   },
   {
    "id": "card",
@@ -207,9 +183,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "World: a quote clipboard on a truck tailgate at dusk. The clipboard rises into frame; the header \"Your quote (example)\"; three empty ruled rows.",
-   "t": 36.121,
-   "word": 97,
-   "end": 48.719
+   "t": 30.818,
+   "word": 76,
+   "end": 43.416
   },
   {
    "id": "card.good",
@@ -219,9 +195,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 1 lands: GOOD ($): The job done right. Nothing extra.",
-   "t": 38.081,
-   "word": 102,
-   "end": 41.121
+   "t": 32.778,
+   "word": 81,
+   "end": 35.818
   },
   {
    "id": "card.better",
@@ -231,9 +207,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 2 lands on a gold band: BETTER ($$): What you'd pick for your own house. A \"the middle\" tag pops beside it.",
-   "t": 41.121,
-   "word": 110,
-   "end": 44.021
+   "t": 35.818,
+   "word": 89,
+   "end": 38.718
   },
   {
    "id": "card.best",
@@ -243,9 +219,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row 3 lands: BEST ($$$): Plus upgrades.",
-   "t": 44.021,
-   "word": 120,
-   "end": 45.661
+   "t": 38.718,
+   "word": 99,
+   "end": 40.358
   },
   {
    "id": "card.warranty",
@@ -255,33 +231,33 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Longer warranty\" and \"faster start date\" check in under BEST as said. The full card holds big to the end of the take.",
-   "t": 45.661,
-   "word": 124,
-   "end": 48.719
+   "t": 40.358,
+   "word": 103,
+   "end": 43.416
   },
   {
    "id": "survey",
    "level": 0,
-   "quote": "One more thing from",
+   "quote": "Here's the part people skip.",
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "World: the slot machine. The crown reads ONE MORE FROM THE DATA; reels at rest; bulbs chase slowly.",
-   "t": 48.719,
-   "word": 132,
-   "end": 75.429
+   "text": "World: the slot machine. The crown reads THE PART PEOPLE SKIP; big bulbs chase up both sides of the cabinet and the waiting reels nudge a few pixels in turn (no still run over 1 s until the lever). The turn.",
+   "t": 43.416,
+   "word": 111,
+   "end": 65.006
   },
   {
    "id": "survey.ceiling",
    "level": 1,
-   "quote": "Three doesn't have to",
+   "quote": "Your three is a",
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "The crown flips to \"3 IS NOT THE CEILING\".",
-   "t": 50.599,
-   "word": 138,
-   "end": 52.939
+   "text": "The crown flips to \"3 IS THE FLOOR\".",
+   "t": 45.416,
+   "word": 116,
+   "end": 47.536
   },
   {
    "id": "survey.group",
@@ -291,9 +267,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "In the coin tray, typed: \"ACCA survey, ACHR News 2026\".",
-   "t": 52.939,
-   "word": 145,
-   "end": 54.819
+   "t": 47.536,
+   "word": 121,
+   "end": 49.396
   },
   {
    "id": "survey.n",
@@ -303,9 +279,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"1,000+ HVAC contractors\" lands in the tray.",
-   "t": 54.819,
-   "word": 152,
-   "end": 57.139
+   "t": 49.396,
+   "word": 128,
+   "end": 51.676
   },
   {
    "id": "survey.pull",
@@ -315,9 +291,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The crown reads \"4+ OPTIONS: CLOSE RATE\"; the lever pulls on \"four\", the reels spin.",
-   "t": 57.139,
-   "word": 156,
-   "end": 59.439
+   "t": 51.676,
+   "word": 132,
+   "end": 53.976
   },
   {
    "id": "survey.52",
@@ -327,33 +303,33 @@
    "shift": 0.0,
    "pin": null,
    "text": "The reels stop 5, 2, % on \"fifty-two percent\"; the bulbs chase fast; sparks; tray: \"4+ options: 52%\" and \"Only 10% offer 4+\".",
-   "t": 59.439,
-   "word": 163,
-   "end": 61.639
+   "t": 53.976,
+   "word": 139,
+   "end": 56.056
   },
   {
    "id": "survey.few",
    "level": 1,
-   "quote": "One to three options?",
+   "quote": "One to three? Forty-two.",
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "The crown reads \"1 TO 3 OPTIONS\"; the lever pulls again; the reels stop 4, 2, % on \"Forty-two\" (no coins); tray adds \"1 to 3 options: 42%\".",
-   "t": 61.639,
-   "word": 168,
-   "end": 64.425
+   "text": "The crown reads \"1 TO 3 OPTIONS\" and on the same frame the tray clears its 4+ lines and types \"1 to 3 options:\"; the lever pulls again; the reels stop 4, 2, % on \"Forty-two\" (no coins) as \"42%\" lands on the tray line; \"4+ options: 52%\" comes back under it to compare.",
+   "t": 56.056,
+   "word": 144,
+   "end": 58.495
   },
   {
    "id": "survey.caveat",
    "level": 1,
-   "quote": "Now, that survey lumps",
+   "quote": "That survey lumps one",
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "The reels roll to 1, 2, 3; a gold bracket clamps across all three: ONE GROUP. Tray: \"1 to 3 options: one group here.\"",
-   "t": 64.425,
-   "word": 173,
-   "end": 67.725
+   "text": "The reels roll to 1, 2, 3; a thick gold clamp grows across the reel tops, its jaws drop over the outer reels, and a small gold ONE GROUP tag sits on it. Tray: \"1 to 3 options: one group here.\" Snow checks his clipboard.",
+   "t": 58.495,
+   "word": 148,
+   "end": 60.815
   },
   {
    "id": "survey.cant",
@@ -363,21 +339,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Tray second line in the accent: \"It can't show 3 beats 1.\"",
-   "t": 67.725,
-   "word": 182,
-   "end": 70.505
-  },
-  {
-   "id": "survey.yeses",
-   "level": 1,
-   "quote": "Shops that gave more",
-   "sfx": "pop",
-   "shift": 0.0,
-   "pin": null,
-   "text": "Crown: \"MORE CHOICES, MORE YESES\". Snow checks his clipboard.",
-   "t": 70.505,
-   "word": 190,
-   "end": 74.005
+   "t": 60.815,
+   "word": 155,
+   "end": 63.575
   },
   {
    "id": "survey.start",
@@ -387,21 +351,33 @@
    "shift": 0.0,
    "pin": null,
    "text": "The lever pulls; the reels land 3, 3, 3; jackpot: coins in the tray, the crown reads START WITH 3.",
-   "t": 74.005,
-   "word": 200,
-   "end": 75.429
+   "t": 63.575,
+   "word": 163,
+   "end": 65.006
   },
   {
    "id": "close",
    "level": 0,
+   "quote": "Send this to whoever",
+   "sfx": "sting",
+   "shift": 0.0,
+   "pin": null,
+   "text": "World: the storefront again, tag on one price \"$\", no counter front: the shop window ends at a stone sill and the brick facade runs down to the sidewalk (the toolbox is off the counter). A dark plate hangs on the brick at one line's height; ProofNotFluff chip; \"Send this to whoever\" lands, then the plate grows a line and \"writes your quotes.\" lands on \"writes\".",
+   "t": 65.006,
+   "word": 166,
+   "end": 74.646
+  },
+  {
+   "id": "close.one",
+   "level": 1,
    "quote": "One price is a",
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "World: the storefront counter again, tag on one price \"$\". Over the counter front a dark plate: \"1 price: yes or no.\" lands as said.",
-   "t": 75.429,
-   "word": 203,
-   "end": 85.669
+   "text": "The plate grows a line; \"1 price: yes or no.\" lands under the send line as said.",
+   "t": 67.346,
+   "word": 173,
+   "end": 69.706
   },
   {
    "id": "close.choice",
@@ -410,34 +386,10 @@
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "The tag flips to \"$ $$ $$$\" on \"Three\"; \"3 prices: a choice.\" lands in the accent on \"choice\".",
-   "t": 77.949,
-   "word": 211,
-   "end": 80.249
-  },
-  {
-   "id": "close.send",
-   "level": 1,
-   "quote": "Send this to whoever",
-   "sfx": "sting",
-   "shift": 0.0,
-   "pin": null,
-   "text": "ProofNotFluff chip; the send line: \"Send this to whoever writes your quotes.\"",
-   "t": 80.249,
-   "word": 216,
-   "end": 82.009
-  },
-  {
-   "id": "close.next",
-   "level": 1,
-   "quote": "so the next one",
-   "sfx": null,
-   "shift": 0.0,
-   "pin": null,
-   "text": "An accent line sweeps under \"a choice.\"; sparks off the tag; Snow waves.",
-   "t": 82.009,
-   "word": 223,
-   "end": 85.669
+   "text": "The tag shows \"$ $$ $$$\" on \"Three\" and the plate grows its last line: \"3 prices:\" lands in the accent; \"a choice.\" lands on \"choice\"; an accent line sweeps under \"a choice.\"; sparks off the tag's top into the awning (never over the plate); Snow waves.",
+   "t": 69.706,
+   "word": 181,
+   "end": 74.646
   }
  ]
 }

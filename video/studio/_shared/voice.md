@@ -37,7 +37,7 @@ Five beats, 40 to 50 s with the end card, 100 to 135 spoken words, one take a be
 4. **Proof** (26 to 34 s, 18 to 25 words): one sourced number in one or two sentences. The source rides on screen as a
    tag, and "Pattern, not proof." goes in the tag when the source is correlational (it is no longer said).
 5. **Button** (34 to 42 s, 15 to 22 words): the rule in one line, echoing a word of the hook. The last spoken words.
-Then the end card (2.9 s): lockup, the site, and the send line from `SCENE.sendLine` ("Send this to whoever runs your
+Then the end card (3.1 s after the last word, the card up for the last 3.0 s): lockup, the site, and the send line from `SCENE.sendLine` ("Send this to whoever runs your
 estimates.").
 
 Hook formulas that fit (research/viral-formats-2026-10.md): the stuck moment ("The estimate's done. The homeowner says,

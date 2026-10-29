@@ -1,15 +1,15 @@
 # Script: Raise your prices; most trades already did (Lesson 6, Pricing Clinic; trades-first bank lesson 3, facts re-read Oct 28)
 
-[leaning in] Eighty-three percent of HVAC companies raised their prices last year. Did you? Here's the note that tells your customers.
+[leaning in] Most trades raised their prices last year. Did you? Here's the note that tells your customers.
 
-[matter-of-fact] That's from Jobber's survey of one thousand fifty home service owners, and sixty-five percent raised their prices last year. In plumbing, electrical and roofing, it was even higher than that, at seventy-four percent each.
+[matter-of-fact] That's from Jobber's survey of home service owners. Eighty-three percent of HVAC companies did. If you're in plumbing, electrical or roofing, it was seventy-four percent.
 
-[curious] As for why, seventy-two percent named inflation, and half named labor. That's backed up by federal data. Pay for install and repair workers rose three point seven percent in the year to June. For all workers, it was three point two, so your crew's pay rose faster than average.
+[curious] Why? Seventy-two percent named inflation, and half named labor. That's backed up by federal data. Install and repair pay rose three point seven percent in the year to June. So your crew's pay beat the three point two for all workers.
 
 [warmly] So send this before your next quote. "Starting the first of next month, our rates go up. Our labor and material costs rose this year. Anything you've already approved stays at the price we quoted."
 
 [short pause] Here's the part people skip. That last line. A price they already said yes to is a promise. Raise the next job, never the one on your calendar.
 
-[calm] One honest note. Jobber sells software, and its survey shows who raised prices. It doesn't show how customers took it. So watch your close rate for a month after.
+[calm] One honest note. Jobber sells software. Its survey doesn't show how customers took it, so watch your close rate for a month after.
 
-[confident] Your costs went up. Most of the trades already raised their prices. Send this to whoever writes your quotes, and don't wait. Raise yours with a reason.
+[confident] Your costs went up, and most trades already raised. Send this to whoever writes your quotes, and don't wait. Raise yours with a reason.

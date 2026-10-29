@@ -1,33 +1,19 @@
 {
  "gate": "render-critic",
- "round": 0,
- "at": "2026-10-28T22:10:00-05:00",
- "pass": false,
+ "round": 1,
+ "at": "2026-10-28T22:27:05-05:00",
+ "pass": true,
  "score": {
-  "faults": 2
+  "faults": 0
  },
- "faults": [
-  {
-   "kind": "cutoff",
-   "at": 9.76,
-   "text": "$1,000 / $1,500 / 1/3",
-   "scene": "math (quote monitor, 8.7 to 18.0 s)",
-   "what": "QUOTE monitor readout ends at x 944, past the x 930 content line; the 1/3 label (15.5 s on) also sits on the orange bar's top border. Fix: right-align the readout to x 920 or move the monitor about 20 px left, and lift the 1/3 label 6 px clear of the bar."
-  },
-  {
-   "kind": "cutoff",
-   "at": 59.5,
-   "text": "40% / 0.6 / $1,666.67",
-   "scene": "formula (tool belt value column, 54.5 to 61.4 s)",
-   "what": "Tool belt value column (MARGIN 40%, DIVIDE BY 0.6, PRICE $1,666.67) ends at x 941, past the x 930 content line. Fix: right-align the value column to x 920 or narrow the belt panel about 15 px."
-  }
- ],
+ "faults": [],
  "reasons": [
-  "Earlier review listed no faults; nothing to re-confirm.",
-  "Hook: '50% markup is NOT 50% margin' settled on frame 0.",
-  "Spoken numbers: 50%, $1,000, +$500, $1,500, 1/3, 33.3%, 50% pictured, 50% margin, double, 100% markup, $1,000 / $2,000, 40%, 0.6, $1,666.67, half or a third all on screen as said (left-side readouts carry them; only the right-edge prop readouts break the line).",
-  "Layout: nothing hidden under the host or dialog box; only faults are the two right-edge readouts above. Mid-transition frames at 18.0, 23.0, 46.0 and 54.0 s ignored as slide-ins.",
+  "Round 0 fault 1 (9.76 s, QUOTE monitor readout past x 930): gone. Readout $1,000 / $1,500 now ends at x 914 in f05, f06, f07; the 1/3 label (f08, 15.96 s) sits at y 411 to 434, clear of the bar top, and ends at x 920.",
+  "Round 0 fault 2 (59.5 s, tool belt value column past x 930): gone. MARGIN 40%, DIVIDE BY 0.6, PRICE $1,666.67 end at x 914 in f26 to f29.",
+  "Hook: '50% markup is NOT 50% margin' on screen from frame 0 (frame-0s, 0.8 s, 2.0 s).",
+  "Spoken numbers: 50%, $1,000, +$500, $1,500, 1/3, 33.3%, 50% pictured, double, 100% markup, $1,000 / $2,000 quote, 40%, 0.6, $1,666.67, half or a third all on screen at about the moment said.",
+  "Layout: nothing hidden under the host, dialog or another panel; '= $2,000 quote' ends about x 927. Mid-transition frames at 18.0, 23.0, 46.0, 54.0 and 61.5 s ignored as slide-ins. Note, not a fault: the ruler label '$1,500' (hook 4.5 to 8.0 s, why 27.5 to 37.0 s) ends at x 932, 2 px past the line, fully visible and nowhere near the frame edge. The 50% gauge needle crossing the dial's printed '50' (42.5 to 46 s) is gauge behavior; the 50% readout below is clear.",
   "Audio: last word 'third?' ends 71.66 s, video 73.57 s, end card held, nothing cut.",
-  "Text: smallest scene text is size 30; no flashing over 3 a second (dissolves at 23.0 and 46.0 s are single transitions)."
+  "Text: smallest scene text about size 30, readable on a phone; no flashing over 3 a second (dissolves at 18.0, 23.0, 46.0, 61.5 s are single transitions)."
  ]
 }

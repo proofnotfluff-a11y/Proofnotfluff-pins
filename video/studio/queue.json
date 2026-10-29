@@ -57,6 +57,26 @@
     "runtime_pixfont": "a8557997756e"
    },
    "posts": {}
+  },
+  {
+   "slug": "2026-10-30-markup-margin",
+   "readyAt": "2026-10-28T22:30:29-05:00",
+   "commit": "4fe6a2718032e8f5aabd27767757cf88a8e1810e",
+   "fingerprints": {
+    "script": "4f291c57245f",
+    "takes": "987ddd9b7a90",
+    "words": "10db9aee4d7e",
+    "cues": "eb83e5a4f289",
+    "scene": "d6483ce786b1",
+    "data": "cac5a48e1520",
+    "captions": "a51c063f3cef",
+    "mouth": "cd6dad0fdb1b",
+    "runtime_kit": "d12df837dc0a",
+    "runtime_player": "a66cf6faac98",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

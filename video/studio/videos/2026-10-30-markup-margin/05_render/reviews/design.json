@@ -1,27 +1,25 @@
 {
  "gate": "design",
- "round": 0,
- "at": "2026-10-28T21:59:18-05:00",
- "pass": false,
+ "round": 1,
+ "at": "2026-10-28T22:26:40-05:00",
+ "pass": true,
  "score": {
   "first": 5,
-  "hierarchy": 4,
-  "type": 4,
+  "hierarchy": 5,
+  "type": 5,
   "color": 5,
   "spacing": 4,
   "polish": 4,
   "trust": 5,
-  "average": 4.43
+  "average": 4.71
  },
- "freshness": "pass: job site, register, gauge and tool belt share no world or set piece with lesson 1 (framing, blackboard, workshop, garage, phone) or lesson 2 (same rooms, phone)",
+ "freshness": "pass: job site billboard, register counter, gauge cockpit and tool belt share no world or set piece with lesson 1 (framing, blackboard, workshop, garage, phone) or lesson 2 (street, kitchen fridge, truck chat)",
+ "round0_landed": "7 of 8: dialog box hidden until the host walks in (2.0 s clean), hook headline centered on the sign, chips 25 px clear of the plate, 1/3 label inside the QUOTE display above the blocks, OVERHEAD and YOUR PAY inside the 'Margin has to cover:' plate, why sign results lead with the Price line moved off the sign, 'Price =' inset to x 100. Partly landed: close plate (62.0 to 63.5 s is y 597 to 740 at headline size, but from 64.0 s it grows to y 850 and covers the register keys and drawer again)",
  "reasons": [
-  "62.0 to 73.6 s close plate: it covers the register's till and drawer (a panel over the set's main element). Shrink the plate to y 600 to 800 so the keys and drawer show, and set 'Markup is on cost.' / 'Margin is on price.' at the hook's headline size; the lone first line in an empty plate at 62.0 s reads unfinished",
-  "1.0 to 3.0 s dialog box: its tail points at empty ground because the host is hidden. Keep the box hidden until the host walks in at 3.0 s, or bring the host in with it",
-  "48.5 to 53.0 s formula card: 'Price =' sits on the card's left border (x 58). Inset it to x 100 or more and center 'Price = Cost / (1 - margin)' as one group in the card",
-  "0.0 to 23.6 s hook sign: the three headline lines are centered at x 485 in a sign that runs x 45 to 1035. Center them on the sign (about x 500 keeps the text inside x 950)",
-  "15.9 to 18.0 s QUOTE display: the '1/3' label overlaps the top of the orange third. Lift it 6 px clear of the block or set it inside the block in dark ink",
-  "33.9 to 37.0 s why: OVERHEAD and YOUR PAY hang off the plank outside the 'Margin has to cover:' plate, and YOUR PAY runs to x 970, past x 950. Drop both chips into that plate under its line (group, x 950 or less) and leave the plank tags as strings only",
-  "25.1 to 37.0 s why sign: five lines at close sizes crowd the sign, and 'Price = what the customer pays you' sits on its bottom edge. Give the two results (= 50%, = 33.3%) the size lead, set the two 'measured on' lines smaller with 12 px more space above each row, and move the 'Price =' line into the plate under the planks",
-  "6.5 s hook chips: '1 THE MATH' and '2 THE FIX' touch the bottom of the RUN THE NUMBERS plate. Drop them 15 px so a clear gap shows"
+  "64.0 to 73.6 s close plate: once the second line lands the plate runs to y 850 and hides the keys and drawer (a panel over the register's main element). Hold the plate at y 597 to 800: set 'Send this to whoever sets your prices.' as one line and drop the PROOFNOTFLUFF tag to the right of it, or move the tag under the LAST QUOTE display",
+  "69.0 to 70.4 s close plate: 'Your last quote?' sits alone above an 80 px empty band before 'Half, or a third?' lands. Type the second line in with the first, or close the gap so the tag sits right under the headline until the line arrives",
+  "61.5 s close: one frame of an empty plate shows before 'Markup is on cost.' types in. Start the plate's slide-in on the same frame the first letters appear",
+  "45.0 to 46.6 s gauge: the needle at 50 sits on the dial's '50' label and splits it into '5|0'. Move the 50 label 14 px left of the 12 o'clock tick (or above the rim) so the settled needle never crosses it",
+  "46.7 to 48.4 s tool belt: the detail pane under the belt (y 600 to 800) and the 'THE PART PEOPLE SKIP' plate are empty for 1.7 s. Fill the pane with the hammer's stat bars as the set intends, or bring the formula card in at 46.7 s"
  ]
 }

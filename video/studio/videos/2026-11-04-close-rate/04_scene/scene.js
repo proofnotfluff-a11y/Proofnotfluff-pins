@@ -95,7 +95,10 @@ const regionCard = (k, d, x, y, label, num, c, edge, at) => {
   const f = d.fr(at), dy = f < 0 ? null : [-26, -16, -8, -2, 2, 0][Math.min(5, f)];
   /* the slot: a recessed socket, there from frame 0 */
   d.P(x, y, 164, 80, '#120D14'); d.P(x + 1, y + 1, 162, 78, '#1B1420'); d.P(x + 1, y + 1, 162, 2, '#2B2033');
-  if (dy === null) { d.tx(label, x + 8, y + 8, {color: '#4A4E5A'}); return; }
+  if (dy === null) {   /* an empty slot still reads as a card waiting: its label and edge in the region's dim colour */
+    d.P(x + 3, y + 3, 158, 1, edge); d.P(x + 3, y + 76, 158, 1, edge); d.P(x + 3, y + 3, 1, 74, edge); d.P(x + 160, y + 3, 1, 74, edge);
+    d.tx(label, x + 8, y + 8, {color: edge}); return;
+  }
   d.clip(x - 2, y - 2, 170, 86, () => {
     d.win(x, y + dy, 164, 80, {base: '#1B1420', hi: edge, lo: INK, rule: edge});
     d.tx(label, x + 8, y + 8 + dy, {color: c});
@@ -228,7 +231,7 @@ const board = (k, o = {}) => {
   P(fx + 6, fy + 70, 14, 4, '#3D2E45'); P(fx + 52, fy + 70, 14, 4, '#3D2E45'); P(fx + 26, fy + 72, 20, 2, GREY);
   const bx = 126, by0 = 500;
   P(bx + 2, by0 + 2, 40, 50, INK); P(bx, by0, 40, 50, INK); P(bx + 1, by0 + 1, 38, 48, ORANGE); P(bx + 1, by0 + 1, 38, 4, '#FFE2A8');
-  P(bx + 1, by0 + 14, 38, 2, '#B07A47'); P(bx + 1, by0 + 36, 38, 2, '#B07A47'); d.ring(bx + 20, by0 - 2, 14, '#9AA0AD');
+  P(bx + 1, by0 + 14, 38, 2, '#B07A47'); P(bx + 1, by0 + 36, 38, 2, '#B07A47'); d.line(bx + 3, by0, bx + 9, by0 - 12, '#9AA0AD'); d.line(bx + 9, by0 - 12, bx + 31, by0 - 12, '#9AA0AD'); d.line(bx + 31, by0 - 12, bx + 37, by0, '#9AA0AD');
   P(bx - 4, by0, 48, 3, INK); P(bx - 3, by0, 46, 2, '#B07A47');
   const cx2 = 206;
   P(cx2 + 3, 452, 120, 110, INK); P(cx2, 449, 120, 110, INK); P(cx2 + 2, 451, 116, 106, RED); P(cx2 + 2, 451, 116, 3, '#F09A9A');
@@ -565,15 +568,15 @@ window.SCENE = {
       write(k, 'jobs sold', 120, 384, tJ, {color: PINE, size: 99});
       const dw = Math.round(Math.max(k.measure('jobs sold', {size: 99}), k.measure('estimates given', {size: 99})) / 3);
       if (T >= tD) { const w = Math.round(dw * clamp((d.fr(tD) + 1) / 8)); d.P(40, 172, w, 3, NAVY); }
-      write(k, 'estimates given', 120, 522, tE, {color: WINE, size: 99});
+      write(k, 'estimates given', 120, 520, tE, {color: WINE, size: 99});
       if (T >= send) {
-        k.chip('ProofNotFluff', 120, 676, {size: 30});
-        k.slam('Send this to whoever', 120, 724, send + 0.1, {size: 66, color: NAVY, from: 0.4, glint: false});
-        k.slam('writes your estimates.', 120, 788, send + 0.3, {size: 66, color: NAVY, from: 0.4, glint: false});
+        k.chip('ProofNotFluff', 120, 652, {size: 30});
+        k.slam('Send this to whoever', 120, 718, send + 0.1, {size: 66, color: NAVY, from: 0.4, glint: false});
+        k.slam('writes your estimates.', 120, 784, send + 0.3, {size: 66, color: NAVY, from: 0.4, glint: false});
       }
       if (T >= fri) {
-        write(k, 'Friday: your close rate.', 120, 856, fri + 0.1, {color: RED});
-        if (T >= tF) { k.sweep(120, 912, k.measure('Friday: your close rate.', {size: 66}), 3, tF, {color: 'accent'}); k.burst(120 + k.measure('Friday: your close rate.', {size: 66}), 880, tF + 0.2, {n: 16}); }
+        write(k, 'Friday: your close rate.', 120, 852, fri + 0.1, {color: RED});
+        if (T >= tF) { k.sweep(120, 910, k.measure('Friday: your close rate.', {size: 66}), 3, tF, {color: 'accent'}); k.burst(120 + k.measure('Friday: your close rate.', {size: 66}), 880, tF + 0.2, {n: 16}); }
       }
       return host(k, k.live('close.friday') ? 'wave' : (k.live('close.send') ? 'point' : null));
     },

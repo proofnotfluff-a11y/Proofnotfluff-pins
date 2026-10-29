@@ -3,17 +3,17 @@
 music: rooms
 
 ## hook "Trade owners, median close rates" [sfx: pop]
-Frame 0: the hook card, fully settled. "Median close rate:" / "31% to 38%" / "by region. Yours?" The range in the accent, sparks. Source small: ServiceTitan customers, May to Jul 2026. Host and dialog hidden.
+Frame 0: the hook card, fully settled: "Median close rate, by US region" / "31% to 38%" (31% orange, 38% teal), two empty card slots labeled US NORTHEAST and US WEST, the source plate "ServiceTitan customers, May to Jul 2026", a plain US silhouette on the floor. Snow and the dialog box on from 0.0. Pings round the claim at 0.6 and 1.4 s, sparks at 1.0 s.
 ## hook.region "percent by region."
-Room: framing. The card gives way to a range strip: a 0 to 100% track, the 31% to 38% segment lit, Northeast at 31%, West at 38%.
+The US NORTHEAST card (31%) drops into its slot on "thirty-one", the US WEST card (38%) on "thirty-eight"; each meter fills to its median and a marker lights on the floor map (Northeast, West).
 ## hook.source "That's ServiceTitan's data on" [sfx: blip]
-A source tag stamps under the strip: "ServiceTitan customer accounts".
+The source plate's first half lights gold and is underlined.
 ## hook.window "May through July."
-"May to Jul 2026" slides in beside it.
+"May to Jul 2026" lights gold and is underlined.
 ## hook.yours "Do you know yours?" [sfx: pop]
-A card "Your close rate: ?" pops in under the strip; the ? pulses. Snow points at it.
+A gold card "Your close rate: ?" pops in under the source; it pings twice a second. Snow points at it.
 ## hook.math "I'll show you the"
-Chip NUMBERS CLINIC slides in; Snow checks his clipboard.
+Chip NUMBERS CLINIC slides in beside the range; Snow checks his clipboard.
 
 ## stakes "Now take the top" [sfx: whoosh]
 Room: workshop. Panel SERVICETITAN, MAY TO JUL 2026, both rows shown as it opens: "Median shop" with its 31% to 38% segment, "Top 25%" with an empty track.
@@ -24,7 +24,7 @@ Row 2's segment grows to 70% to 73% as it is said; the numbers count up from 85%
 ## stakes.gap "That's a big gap." [sfx: pop]
 A bracket spans from 38% to 70% across the two rows: "the gap".
 ## stakes.measure "And you can't close" [sfx: stamp]
-A sticker stamps on the panel corner: "Can't close a gap you never measured." Snow points.
+A one-line red sticker stamps under the gauge: "Can't close a gap you never measured." The source line stays on. Snow points.
 
 ## formula "So here's your math." [sfx: whoosh]
 Room: blackboard. Chalk header: THE MATH.
@@ -49,15 +49,15 @@ A small range strip under the card: 31% to 38% lit, a marker drops at 35%.
 "Your turn: __ / __" chip stamps under the strip.
 
 ## turn "Here's the part people" [sfx: whoosh]
-Room: framing. Header THE PART PEOPLE SKIP on a dark band.
+The dispatch map (its one appearance): a map of shops. Plate under it: THE PART PEOPLE SKIP with "ServiceTitan's medians, May to Jul 2026" on until turn.own.
 ## turn.count "ServiceTitan doesn't say how" [sfx: blip]
-Note 1 slides in: "No formula on the page."
+Note 1 slides in: "How it counts a close: not on the page."
 ## turn.cust "and its customers aren't" [sfx: blip]
-Note 2 slides in: "ServiceTitan customers only. Not every shop."
+Note 2 slides in: "ServiceTitan customers. Not every shop."; teal pins mark the customers.
 ## turn.own "So the first number"
-"First number to beat:" writes in under the notes.
+The ghost lap board closes over the map in blinds: "Beat your ghost", lane GHOST: LAST MONTH (a dashed ghost bar to a checkered flag), lane YOU: THIS MONTH (a gold bar racing it); on the floor the ghost car and the gold car run the track. "First number to beat:" lands on the plate under the board. No numbers.
 ## turn.yours "is your OWN, from" [sfx: stamp]
-"Your own, last month." stamps in big in the accent. Snow points at it.
+"Your own, last month." stamps in big in the accent; the gold bar closes on the ghost's flag. Snow points at it.
 
 ## weekly "Track it every Friday." [sfx: whoosh]
 Room: workshop. A whiteboard panel FRIDAY with both rows shown as it opens: Estimates given, Jobs sold.
@@ -71,7 +71,7 @@ A note under the board: "$ rate lower than count?"
 "Big quotes are getting away." stamps under it. Snow checks his clipboard.
 
 ## close "Jobs sold, divided by" [sfx: pop]
-Room: blackboard. The formula again, big, centered: "Close rate =" / "jobs sold / estimates given".
+The Friday board wiped clean: "Close rate =" (132) / "jobs sold" over "estimates given" (size 99, the 2x glyphs), a divider as long as the wider line. Shop floor props below.
 ## close.send "Send this to whoever" [sfx: sting]
 ProofNotFluff plate slams on; send line: "Send this to whoever writes your estimates."
 ## close.friday "Then on Friday, you'll"

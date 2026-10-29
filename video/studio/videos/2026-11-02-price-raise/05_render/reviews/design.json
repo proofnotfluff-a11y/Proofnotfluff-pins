@@ -1,17 +1,21 @@
 {
   "gate": "design",
-  "round": 0,
-  "pass": false,
-  "score": {"first": 4, "hierarchy": 4, "type": 4, "color": 5, "spacing": 4, "polish": 4, "trust": 4, "average": 4.14},
-  "freshness": "Fresh against 2026-10-31-three-prices (counter, scores, slots) and 2026-11-01-same-visit-close (street, levelup, dispatch): this lesson uses weather, register and one price-note room, so first impression is not capped. Inside the lesson the weather map carries hook, stakes, caveat and close (about 50 of 80 s), so the close lands on a world already seen three times.",
+  "round": 1,
+  "pass": true,
+  "score": {"first": 4, "hierarchy": 5, "type": 5, "color": 5, "spacing": 4, "polish": 5, "trust": 5, "average": 4.71},
+  "freshness": "Fresh against 2026-10-31-three-prices (counter, scores, slots) and 2026-11-01-same-visit-close (street, levelup, dispatch): this lesson uses weather, register, a price-note room and a calendar close, so first impression is not capped. The numbered example card with a 'The part people skip' retitle echoes 11-01's SAY THIS card; it reads as the series' script format, not a repeated set.",
+  "round0_check": [
+    "Close off the weather map: landed (new calendar set, Dec 1 checked, coins gone; calendar is not in the two prior lessons).",
+    "Cover: partly landed. Sentence now sits directly under the map as one read and the sun label holds 'HVAC' until 3.08 s, but 83% is the same size and the map's right two thirds stay empty.",
+    "Receipt sources: landed (JOBBER SURVEY and BLS PAY DATA tagged on the receipt, no '|' cursor).",
+    "hook.note broken sentence: landed ('The note that tells your customers.').",
+    "note.next rule: landed (heading-size gold and white bar, about 18 px clear of the clipboard).",
+    "Close panel: landed (4 lines, 'Raise yours with a reason.' largest, underline 35 px clear of the border).",
+    "Stakes order and source format: landed (65% headline over 'Jobber, 1,050 home service owners, Dec 2025', same as the hook).",
+    "Coins: landed (coins fall into the register drawer only, nothing on labels or the display)."
+  ],
   "reasons": [
-    "69.8-79.6 s close: the fourth return to the weather map (the gameover move lands back on the same board). Replace the close with the chat set (not used in the last two lessons): the 3-line price note sent as a text to 'whoever writes your quotes', read ticks on 'Raise yours with a reason.', coins kept as the hud overlay.",
-    "0.00 s cover: the hero 83% floats mid-map and the sentence starts with a lowercase 'of' in a separate box below, while the map's right two thirds are empty green. Set 83% larger in the map's open area with 'of HVAC companies raised prices last year.' directly under it as one read, and hold the duplicate 'HVAC 83%' sun label until 3.08 s.",
-    "26.74-33.84 s why.federal to why.all: the header switches to 'Federal pay data, BLS' while the receipt still lists Jobber's INFLATION 72% and LABOR 50%, so the BLS source reads as theirs. Tag the receipt lines by source (Jobber on 72% and 50%, BLS on REPAIR PAY +3.7%) or keep the Jobber header and add the BLS line as its own source note; drop the '|' cursor after the display value (50%|, +3.7%|).",
-    "6.08-7.4 s hook.note: the panel reads 'of HVAC companies raised / The note that tells your customers.' (a broken sentence). Keep 'prices last year.' as line 2 and put the note line as its own headline line, or clear the panel and show only the note line.",
-    "55.04-58.6 s note.next: the lesson's rule 'Raise the next job. Never an approved one.' is the smallest text on screen in a dark box jammed against the clipboard's bottom edge. Put it in the clipboard as the heading-size gold line under PROMISE (or a full-width bar 16 px clear of the panel).",
-    "74.1-79.6 s close panel: 'Raise yours with a reason.' sits on the panel's bottom border with its underline crossing it, and the CTA is the smallest line of five. Make it the largest line with 24 px clear of the border, and cut the panel to 4 lines (if the close stays a panel).",
-    "12.37-18.97 s stakes panel: the source line sits above the 65% headline, and its format differs from the hook ('Jobber survey, ..., 2025' vs 'Jobber: ..., Dec 2025'). Order headline then source, one format everywhere ('Jobber survey, 1,050 home service owners, Dec 2025').",
-    "70.0-78.5 s and 26.7-33.8 s coins: coins fall across the map labels (a coin covers 'HVAC 83%' at 77.22 s) and from above the level bar through the shop ceiling. Keep coins in a lane right of the label column and below the panel top, and in why drop them only into the drawer."
+    "0.00-3.0 s cover, 83%: still about 360 px wide at the left with the lake and empty green filling the right two thirds. Scale 83% to about 540 px wide and center it in the map (or slide the lake right off the open area) so the first frame has one dominant number.",
+    "61.9-72.4 s caveat panel: the first line ('Where the numbers come from', then 'Jobber sells software.') sits about 18 px under the panel's top border with 40+ px empty below the last line. Center the lines vertically, matching the stakes panel's top inset."
   ]
 }

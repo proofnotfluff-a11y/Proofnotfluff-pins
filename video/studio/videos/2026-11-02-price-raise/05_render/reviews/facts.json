@@ -1,19 +1,24 @@
 {
  "gate": "facts",
- "round": 0,
- "at": "2026-10-28T23:52:56-05:00",
+ "round": 1,
+ "at": "2026-10-29T00:41:21-05:00",
  "pass": true,
- "score": {"numbers": 14, "mismatches": 0},
+ "score": {"numbers": 13, "mismatches": 0},
  "reasons": [],
  "notes": [
-  "transcript 00:26.1 'That's backed up by federal data.': judged fair. BLS shows install and repair pay up 3.7% vs 3.2% for all workers, which supports labor cost pressure; the window (12 months to June 2026) is said and shown, not passed off as the survey's year",
-  "scene.js why register: till amounts 72.0/50.0/3.7/3.2 are swapped for 72%/50%/+3.7%/+3.2% and the running total at x 948 is suppressed, so no sum is drawn",
-  "story elements (note card tagged EXAMPLE, 'the first of next month', wall clock, coins, weather fronts) do not read as data",
-  "trades first: core evidence is Jobber's survey of US home service owners and BLS occupational wage data; no non-trade study, no caveat needed",
-  "no em or en dashes in script, transcript, facts.json, brief, data.js or scene.js; no private person, business or address"
+  "round 0 fault fixed: 04_scene/scene.js why section displayLabel is 'REPAIR PAY' while crew is true (no CREW PAY string left in scene.js); the re-rendered MP4 (Oct 29 00:40) at 36.5 s ('so your crew's') shows the till display REPAIR PAY +3.7%, the receipt line REPAIR PAY +3.7% underlined, ALL PAY +3.2%, plate 'Crew pay: above average' over 'BLS, 12 months to June 2026'. The 3.7% now carries its own row's name; 'above average' holds for install and repair (3.7) and for the construction row (3.9) against all workers (3.2)",
+  "at 34.5 s (before 'three point two') the display reads PAY +3.7% and ALL PAY has not rung yet; it rings on 'three' at 34.68 s: timing fair",
+  "data.js sha256 d2283f60... matches 01_voice/facts.json; all 13 numbers in data.js equal facts.json and the brief's numbers block (83, 65, 74 x3, 1,050, 2025, 72, 50, +3.7, +3.2, 12, 3)",
+  "voice (transcript): 83% HVAC, 1,050 owners, 65% overall, 74% plumbing/electrical/roofing ('even higher than that' true vs 65), 72% inflation, half (50%) labor, 3.7% install and repair, 3.2% all workers, year to June; 'last year' = the survey's 2025 as the page says; cleaning 55% not said or drawn",
+  "screen (timeline sheets 1 and 2, scene.js): hook 83% with 'of HVAC companies raised prices last year.' and 'Jobber, 1,050 home service owners, Dec 2025'; stakes 65% count lands on 65, 'Plumbing, electrical, roofing: 74%', suns HVAC 83%, PLUMB/ELEC/ROOF 74%; register 72%, 50% under JOBBER SURVEY, running total at x 948 suppressed so no sum drawn",
+  "claims: 'backed up by federal data' fair (BLS wage rows support the labor reason, source and window on the plate); 'Jobber sells software' supported; survey limits (who raised, not how customers took it) said; 'watch your close rate' and 'raise the next job' are advice",
+  "story elements (EXAMPLE price note, 'first of next month', NEXT MONTH calendar, wall clock, coins, fronts, PROMISE stamp) do not read as data",
+  "trades first: Jobber survey of US home service owners plus BLS occupational wages; no non-trade study",
+  "no en or em dashes in script.md, transcript.md, scene.js, data.js, facts.json, brief.md; no private person, business or address"
  ],
  "sources_checked": [
-  "https://www.getjobber.com/home-service-trends-report/: title 'Blue Collar Strong: The 2026 Home Service Trends Report'; 1,050 US home service business owners, Conjointly, December 2025, +/-3 pts at 90%; 65% raised prices last year; HVAC 83%, plumbing 74%, electrical 74%, roofing 74%, cleaning 55% lowest of any trade; inflation 72% and labor costs 50% most common reasons; page gives no size of increase, customer reaction or future plans",
-  "https://www.bls.gov/news.release/eci.htm: ECI June 2026, USDL-26-1270, released Jul 31, 2026; Table 8 civilian wages and salaries, 12 months ending June 2026, not seasonally adjusted: all workers 3.2%, installation, maintenance, and repair 3.7%, construction, extraction, farming, fishing, and forestry 3.9%"
+  "https://www.getjobber.com/home-service-trends-report/: 1,050 US home service business owners, Conjointly, December 2025, +/-3 pts at 90% confidence; 65% raised prices last year; HVAC 83%, roofing 74%, plumbing 74%, electrical 74%, cleaning 55% the lowest; 'Inflation (72%) and labor costs (50%) are the most common reasons'; no size of increase or customer reaction given",
+  "https://www.bls.gov/news.release/eci.htm: ECI June 2026, USDL-26-1270, released Jul 31, 2026; Table 8 civilian wages and salaries, 12 months ending June 2026: all workers 3.2%, installation, maintenance, and repair 3.7%, construction, extraction, farming, fishing, and forestry 3.9%",
+  "https://www.getjobber.com/: title 'The Top Home & Commercial Service Software in 2026 | Jobber'; 'Jobber's home & commercial service software' (supports 'Jobber sells software')"
  ]
 }

@@ -186,7 +186,7 @@ window.SCENE = {
       };
       try {
         k.sets.register({items: items.map(({label, amount, at}) => ({label, amount, at})), prefix: '', dec: 1, openAt: tFed,
-          displayLabel: crew ? 'CREW PAY' : (cur && /PAY/.test(cur.label) ? 'PAY' : 'REASON')});
+          displayLabel: crew ? 'REPAIR PAY' : (cur && /PAY/.test(cur.label) ? 'PAY' : 'REASON')});
       } finally { k.text = real; }
       /* the display: right edge at x 918 (inside the 930 safe edge), no cursor */
       const val = crew ? n.repair.shown : (cur ? cur.show : '--'), size = d.tw(val, 66) <= 76 ? 66 : 39;

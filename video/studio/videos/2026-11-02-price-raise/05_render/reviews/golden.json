@@ -1,15 +1,14 @@
 {
  "gate": "golden",
- "round": 0,
- "pass": false,
- "score": {"post_as_is": "no"},
+ "round": 1,
+ "pass": true,
+ "score": {"post_as_is": "yes"},
  "reasons": [
-  "1. must-fix, 7.6 to 35.8 s: takes 02 (119 wpm) and 03 (145 wpm) are under the 150 wpm floor; transcript.md still says 'slow: rewrite it as talk, then speak --take 2/3', so the stage 02 check (pace in range) was never met. The whole stats stretch right after the hook drags; rewrite both takes as talk and re-speak.",
-  "2. must-fix, 21.0 to 35.5 s: the register scene's bottom third (y 1250 to 1920) is a flat beige and taupe checkerboard that reads as an image-editor transparency grid, not a floor. On a phone it looks like a missing texture: replace with a real floor or the shop's own fill.",
-  "3. polish, 0 to 79.9 s: the PRICE FORECAST weather-map label frames a past survey (Dec 2025, 'last year') as a forecast; facts.json says the page gives no plans for next year. Consider PRICE REPORT or similar. The map's Chicago lakeshore shape also means nothing for a national survey.",
-  "4. polish, 7.5 s and 69.0 s: the dissolves show one frame of dithered noise (7.5 s) and a near-black frame with a stray orange bar (69.0 s); clean transitions would read less cheap.",
-  "5. polish, 0 to 79.9 s: the bottom 35% of every map and desk scene is empty dark space; fine as platform UI safe area, but the cast and dialog could sit lower to use it.",
-  "6. polish, captions.json youtube.tags: 'how to rasie prices' is a misspelling; keep only if the typo tag is deliberate.",
-  "Checked and fine: every number on screen matches the voice and facts.json at the moment it is said (83, 65, 74, 55, 72, 50, 3.7, 3.2); no contradiction; qa.json all PASS (79.9 s, -14.2 LUFS, -2.8 dBTP, 0 black, 0 frozen); first 3 s show 83% with the line and source; clear send reason ('send this to whoever writes your quotes') and a saveable 3-line note; the honest caveat about Jobber builds trust."
+  "1. polish, 51.0 to 52.5 s: the speech bubble opens on the tail of the quoted note ('quoted.\" Here's the part people skip.'), so for a beat it shows a stray closing quote mark; start the bubble at 'Here's'.",
+  "2. polish, 7.5 s, 20.6 s and 61.2 s: the pixel dissolves bottom out on two flat dark frames (luma 29 to 36, about 67 ms); on brand for the pixel look and not broken, but a slightly shorter trough would feel smoother.",
+  "3. polish, captions.json youtube.tags: 'how to rasie prices hvac' is still misspelled; keep only if the typo tag is deliberate.",
+  "4. polish, 41.5 to 50.5 s: no speech bubble while the note is read; the note itself types word by word so it reads fine, the dashed placeholders on the cabinet doors are the only empty-looking bit.",
+  "Round 0 must-fixes cleared: takes 02 (159 wpm) and 03 (164 wpm) now in range, transcript flags none, every take 156 to 183 wpm, 0.9 s beat between the quoted note and 'Here's the part people skip'; register scene floor is now a dark brick, no transparency checkerboard (21.0 to 39.0 s); map label now PRICE REPORT, not forecast.",
+  "Checked and fine: every number matches voice, screen and facts.json when said (83, 65, 74 each, 72, 50, 3.7, 3.2; 1,050 owners, Dec 2025); 'even higher than that' (74 vs 65) and 'faster than average' (3.7 vs 3.2) hold; no contradiction; qa.json all PASS (83.13 s, -14.2 LUFS, -3.1 dBTP, 0 black, frozen only on the end card); first 3 s show 83% with the line and source and ask 'Did you?'; clear send reason ('send this to whoever writes your quotes') and a saveable 3-line note; the honest Jobber caveat builds trust; sounds like a person, steady motion throughout."
  ]
 }

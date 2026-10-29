@@ -177,6 +177,27 @@
     "runtime_pixfont": "a8557997756e"
    },
    "posts": {}
+  },
+  {
+   "slug": "2026-11-01-same-visit-close",
+   "readyAt": "2026-10-29T10:40:00-05:00",
+   "commit": "96582f99976513daadc2e19786828cd22e5c9d7b",
+   "fingerprints": {
+    "script": "ba80bd2e85ee",
+    "takes": "2b299fb79b0e",
+    "words": "b973fb652b2d",
+    "cues": "e9d080e100da",
+    "scene": "b38562276117",
+    "data": "511596e9c0a5",
+    "captions": "1b14b7147580",
+    "mouth": "9720cd68388e",
+    "runtime_kit": "d12df837dc0a",
+    "runtime_player": "a66cf6faac98",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {},
+   "note": "Todd's go, Oct 29, 10:32 am, on the held render-critic (fault fixed, confirm 0 faults); pinned to the commit its gates passed at"
   }
  ]
 }

@@ -3,9 +3,17 @@
   "round": 1,
   "slug": "2026-11-01-same-visit-close",
   "pass": false,
-  "score": {"faults": 1},
+  "score": {
+    "faults": 1
+  },
   "faults": [
-    {"kind": "cutoff", "at": 47.7, "text": "the worry", "scene": "skip.worry / skip.there", "what": "The lowered cloud label now runs from x 774 to x 941, past the x 930 content edge, from 47.7 s to about 49.9 s (measured on every 0.1 s frame and on key frame f23 at 49.23 s). Fix: shift the label left about 15 px (or center it under the cloud's bolt at x ~850 with a smaller width) so it ends at or before x 930; keep it below the bolt, whose lowest pixel is y 889 against the label top at y 906."}
+    {
+      "kind": "cutoff",
+      "at": 47.7,
+      "text": "the worry",
+      "scene": "skip.worry / skip.there",
+      "what": "The lowered cloud label now runs from x 774 to x 941, past the x 930 content edge, from 47.7 s to about 49.9 s (measured on every 0.1 s frame and on key frame f23 at 49.23 s). Fix: shift the label left about 15 px (or center it under the cloud's bolt at x ~850 with a smaller width) so it ends at or before x 930; keep it below the bolt, whose lowest pixel is y 889 against the label top at y 906."
+    }
   ],
   "reasons": [
     "Round 0 faults: caveat margin line FIXED (line now indented to x 186 and wrapped to 'ServiceTitan: correlated, / not shown to cause.', clear of the margin at x 158, f29 63.65 s, f30 66.43 s); bolt over 'the worry' FIXED (bolt bottom y 887 to 889 on every strike frame 47.3 to 50.8 s, label top y 906); hook source line FIXED (ends x 920, frame-0s).",
@@ -14,5 +22,11 @@
     "3 layout: FAIL, 'the worry' label ends x 941 (past x 930) for about 2.2 s. Everything else settled sits inside: map header 'ServiceTitan' ends about x 890, chart numbers x 926 max. Pencil passes over words only while writing them (41.0 s Thursday, 61 to 67 s notepad) and clears once settled; wipes at 8.0, 19.9, 33.5, 44.5, 59.5, 68.5 s ignored as transitions.",
     "4 audio end: PASS, last word 'estimates.' ends 74.90 s, video 76.80 s, no word cut.",
     "5 text size and flash: PASS, smallest labels ('the worry', 'example day', 'Your tech') about 20 px cap height; lightning strikes about once a second, LEVEL UP burst steady, nothing over 3 flashes a second."
-  ]
+  ],
+  "override": {
+    "by": "Todd",
+    "said": "go",
+    "at": "2026-10-29T10:32:09-05:00",
+    "note": "fault fixed; render-critic-confirm.json 0 faults"
+  }
 }

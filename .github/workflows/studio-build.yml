@@ -1,0 +1,77 @@
+name: Studio build
+# The studio's picture stages in the cloud (video/studio/CLAUDE.md): stills, lint, render, check, gatepack and export for
+# one or more lessons at a given commit, for sessions that have no browser of their own. It fetches each lesson's voice from
+# the video-renders branch, runs the asked steps with anim.py, and publishes what they made (sheets, timeline sheets, the
+# MP4, qa.json, worlds.json, the step logs) to video-renders under studio/<slug>/builds/<commit>/. Nothing is posted
+# anywhere and main is never written: the session reads the results and commits what the gates need.
+on:
+  workflow_dispatch:
+    inputs:
+      slugs:
+        description: 'JSON list of lesson slugs, e.g. ["2026-10-30-markup-margin"]'
+        required: true
+      steps:
+        description: "anim.py steps in order"
+        default: "stills lint render check gatepack export"
+      ref:
+        description: "commit or branch to build"
+        default: main
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        slug: ${{ fromJSON(inputs.slugs) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+      - name: Tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+          pip install --quiet playwright pillow numpy scipy opencv-python-headless
+          python3 -m playwright install --with-deps chromium > /dev/null
+      - name: Build
+        env:
+          SLUG: ${{ matrix.slug }}
+          STEPS: ${{ inputs.steps }}
+        run: |
+          git config user.name proofnotfluff-bot
+          git config user.email proofnotfluff-bot@users.noreply.github.com
+          mkdir -p /tmp/out/logs
+          python3 video/studio/anim.py fetch "$SLUG" 2>&1 | tee /tmp/out/logs/fetch.txt
+          for s in $STEPS; do
+            set +e
+            python3 video/studio/anim.py "$s" "$SLUG" > /tmp/out/logs/$s.txt 2>&1
+            echo "exit $?" >> /tmp/out/logs/$s.txt
+            set -e
+            tail -40 /tmp/out/logs/$s.txt
+          done
+          V=video/studio/videos/$SLUG
+          for p in 05_render/sheets 05_render/sheet.jpg 05_render/gates 05_render/$SLUG.mp4 05_render/$SLUG-post.mp4 05_render/qa.json 04_scene/worlds.json 02_transcript/mouth.js; do
+            [ -e "$V/$p" ] && mkdir -p "/tmp/out/$(dirname $p)" && cp -r "$V/$p" "/tmp/out/$p"
+          done
+          git rev-parse HEAD > /tmp/out/commit.txt
+      - name: Publish to video-renders
+        env:
+          SLUG: ${{ matrix.slug }}
+        run: |
+          C=$(cut -c1-12 /tmp/out/commit.txt)
+          git fetch --depth 1 origin +refs/heads/video-renders:refs/remotes/origin/video-renders
+          git worktree add -B video-renders /tmp/renders origin/video-renders
+          D=/tmp/renders/studio/$SLUG/builds/$C
+          rm -rf "$D" && mkdir -p "$D" && cp -r /tmp/out/. "$D/"
+          cd /tmp/renders
+          git add -A
+          git commit -qm "Studio build: $SLUG at $C" || exit 0
+          for i in 1 2 3 4 5 6; do
+            git push origin HEAD:video-renders && exit 0
+            git pull --rebase -q origin video-renders
+            sleep $((5 * i))
+          done
+          exit 1

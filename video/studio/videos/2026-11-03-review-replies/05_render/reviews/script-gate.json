@@ -1,94 +1,187 @@
 {
  "gate": "script",
- "round": 0,
- "at": "2026-10-29T12:48:24-05:00",
- "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
- "pass": false,
- "score": "10 of 12",
+ "round": 1,
+ "at": "2026-10-29T13:17:14-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
+ "pass": true,
+ "score": "12 of 12",
  "points": [
   {
    "n": 1,
    "name": "Spoken hook",
    "pass": true,
-   "evidence": "PASS 9 words, two whole sentences ('Got a one-star review? Here's your reply to copy.'), 'your' plus the stake (a one-star review), no greeting; 'copy.' ends 2.96 s on words.json (studio limit 3.6 s, playbook 3.0 s)"
+   "evidence": "PASS 9 words in two whole sentences ('Got a one-star review? Here's your reply to copy.'). It has 'your' and a concrete stake (a one-star review), and no greeting. 'copy.' ends at 2.96 s in words.json (studio limit 3.6 s, playbook 3.0 s)."
   },
   {
    "n": 2,
    "name": "On-screen hook",
    "pass": true,
-   "evidence": "PASS 7 words ('Got a 1-star review?' / 'Copy this reply.'), same idea as the spoken hook, on screen from frame 0 (frame-0s.png), kept through the cut in and the cut out (0.8 s, 2.0 s), cleared for the 43% card at 3.68 s = held 3.68 s (band 2.5 to 4.0); text sits at about y 300 to 830 of 1920, clear of the top 14% (y 269) and the bottom 35% (y 1248)"
+   "evidence": "PASS 7 words ('Got a 1-star review?' / 'Copy this reply.'), the same idea as the spoken hook. It is on screen from frame 0, stays through the cut in (0.5 to 1.5 s, on the header plate and the reply field) and the cut out (2.0 to 3.0 s), and clears for the 43% card at 3.68 s, so it holds 3.68 s (band 2.5 to 4.0). The highest text is the close-up header at about y 300 of 1920, below the top 14% line (y 269), and none of it sits in the bottom 35%."
   },
   {
    "n": 3,
    "name": "One idea",
    "pass": true,
-   "evidence": "PASS brief states it in 13 words ('answer every review, good and bad, with a short calm reply'); all 8 takes serve it (stakes, gap, two replies, rules, honest note, close), no second lesson"
+   "evidence": "PASS brief.md gives the idea in 13 words ('answer every review, good and bad, with a short calm reply'). All 8 takes serve it (hook and 43%, stakes, the 45% gap, the five-star reply, the one-star reply, rules for bad ones, the honest note and Monday habit, close) and there is no second lesson."
   },
   {
    "n": 4,
    "name": "Stakes early",
    "pass": true,
-   "evidence": "PASS sourced 'Forty-three percent' spoken at 3.68 s, 'Ninety-one percent' at 12.18 s (limit 14 s for 75 s)"
+   "evidence": "PASS the sourced 'Forty-three percent' is spoken at 3.68 s and 'Ninety-one percent' at 12.18 s (limit 14 s for a 75 s lesson)."
   },
   {
    "n": 5,
    "name": "Facts",
    "pass": true,
-   "evidence": "PASS I re-read the ACHR News URL today (Oct 29): 400 homeowners; 91% rate reviews an important factor when choosing an HVAC contractor; 56% use Google to seek out reviews; 45% do / 43% don't / 13% don't know answer reviews on third-party sites; Clear Seas Research with The ACHR News, Sep 17, 2024, Dylan Kurt. Spoken numbers (43, 91, 400, 56, 45, ten minutes as our advice) match facts.json; scope words kept ('in one HVAC survey', 'on third-party sites', 'when they pick an HVAC contractor'); no 'half', no 88% vendor stat; on-screen 13% and 2024 and all caption numbers match"
+   "evidence": "PASS I re-read the ACHR News URL today (Oct 29). It confirms 400 homeowners, 91% rate online reviews an important factor when choosing an HVAC contractor, 56% use Google to seek out reviews of contractors, and 45% do / 43% don't / 13% don't know answer reviews on third-party sites, Sep 17, 2024, Dylan Kurt, Clear Seas Research with The ACHR News. The spoken numbers 43, 91, 400, 56 and 45 match facts.json. 'Ten minutes', 'five-star' and 'one-star' are labeled advice and examples. The scope words are kept ('in one HVAC survey', 'on third-party sites', 'when they pick an HVAC contractor'). There is no 'half' and no 88% vendor stat. On screen, 13%, 2024, '400 homeowners, 2024' and '91%: picking an HVAC contractor' match, and all caption numbers match the page. The voiced script's sha256 matches the takes.json scriptSha256."
   },
   {
    "n": 6,
    "name": "Payoff timing",
    "pass": true,
-   "evidence": "PASS 'Here's your reply to copy' said 1.84 to 2.96 s (limit 6 s); both replies complete at 42.50 s = 57.9% of 73.37 s (limit 70%)"
+   "evidence": "PASS 'Here's your reply to copy' is said 1.84 to 2.96 s (limit 6 s). Both replies are complete, spoken by 43.26 s, which is 57.9% of 74.77 s (limit 70%)."
   },
   {
    "n": 7,
    "name": "Copyable artifact",
-   "pass": false,
-   "evidence": "FAIL each reply is spoken and typed on screen, but the complete reply is held under 3 s: the five-star thread is complete at 33.37 s ('We're here when you need us.' bubble) and replaced at 35.50 s = 2.13 s; the one-star thread is complete at 41.26 s ('Call me directly at the shop.') and replaced by the turn at 43.06 s = 1.80 s. cues.md replies.o3 claims 'the thread holds 3 s or more', which the timing does not meet. Partial lines do hold longer (e.g. 'Sorry we were late. That's on us. I want to make it right.' 39.88 to 43.06 s = 3.18 s), but no complete copyable reply does"
+   "pass": true,
+   "evidence": "PASS both replies are spoken word for word and typed on screen. The five-star thread is complete at 33.37 s and stays whole until the flip on 'reply' at 36.82 s, a 3.45 s hold (frames 33.97 and 36.10 s). The one-star thread is complete at 42.02 s and stays whole until the turn world arrives at 45.95 s, a 3.93 s hold. At 44.47 s the 'The part people skip' banner covers only the app header and the bubbles stay clear. Round 0's fault is fixed."
   },
   {
    "n": 8,
    "name": "Pace and length",
    "pass": true,
-   "evidence": "PASS every take inside 150 to 200 wpm (transcript.md: 156, 162, 199, 169, 191, 153, 156, 172); 190 words; duration 70.47 + 2.9 = 73.37 s (45 to 75); longest sentence 19 words, average 7.3"
+   "evidence": "PASS every take is inside 150 to 200 wpm (takes.json: 156, 162, 199, 169, 179, 153, 159, 172). 193 words. The last word ends at 71.86 s, so duration is 71.86 + 2.9 = 74.76 s (qa 74.77; band 45 to 75). The longest sentence is 19 words and the average is 7.4."
   },
   {
    "n": 9,
    "name": "Talk test",
-   "pass": false,
-   "evidence": "FAIL 'you/your' missing in 3 of 8 takes: take 5 (the one-star reply quote and 'And the one-star reply.'), take 6 ('Here's the part people skip... Never argue in public.') and take 7 ('One honest note... answer every new one.') have zero. A contraction is in every take (Here's, That's, you're, Here's, That's, Here's, doesn't, Don't); 0 banned words; 0 em or en dashes. script-check.md agrees takes 5 to 7 miss under a strict 6b reading"
+   "pass": true,
+   "evidence": "PASS every take has a contraction (Here's/don't, That's, you're, Here's/We're, here's/That's, Here's, doesn't, Don't) and a 'you' form (your; yours; you/you're; your; your; your; you; your). Takes 5 to 7 now carry 'your one-star reply', 'Answer your bad ones', 'every new one you get', so round 0's fault is fixed. 0 banned words and 0 em or en dashes."
   },
   {
    "n": 10,
    "name": "Voice markup",
    "pass": true,
-   "evidence": "PASS one tag per take, all on voice.md's allowed list ([leaning in], [matter-of-fact], [warmly], [calm], [short pause], [confident]); 0 CAPS stress words (ACHR and HVAC are proper acronyms); 0 digits, $, %, / or & in voice text; no SSML"
+   "evidence": "PASS one tag per take, all on voice.md's allowed list ([leaning in], [matter-of-fact] x3, [warmly], [calm], [short pause], [confident]). 0 CAPS stress words (ACHR and HVAC are acronyms). 0 digits, $, %, / or & in the voice text, and no SSML."
   },
   {
    "n": 11,
    "name": "Retention beats",
    "pass": true,
-   "evidence": "PASS 33 cues. The longest cue gap is caveat.monday 60.12 s to close 64.25 s (4.13 s), but scene.js puts the reply bubble in at 60.72 s, read ticks at 61.72 s and the banner out at 62.12 s, so no stretch without a change runs over 4 s. Next longest: stakes.google to gap at 3.97 s. Cuts at about 0.5 s and 1.84 s in the hook. Turn line 'Here's the part people skip.' at 43.06 s = 58.7% (band 55 to 75%)"
+   "evidence": "PASS 33 cues. The longest cue gap is caveat.monday (61.09 s) to close (65.64 s), 4.55 s. scene.js fills it: the Monday banner drops at 61.09 s, our reply bubble lands at 61.69 s, read ticks show at 62.69 s and the banner leaves about 63.09 s, so no still stretch runs over 4 s (about 2.55 s to close). Next longest is stakes.google to gap at 3.97 s. The turn line 'Here's the part people skip.' starts at 43.87 s, 58.7% of 74.77 s (band 55 to 75%)."
   },
   {
    "n": 12,
    "name": "Ending",
    "pass": true,
-   "evidence": "PASS one CTA, a send line naming a role ('Send this to whoever runs your Google profile'); last sentence echoes the hook ('so the next one-star gets a reply'); no like/follow/comment/tag asks; LESSON 7 on the HUD throughout, REVIEWS CLINIC chip on the cover 0 to 3.68 s; captions name the source on all four platforms (URL in YouTube); there is no AI voice line in the captions because Todd ruled it out on Oct 29 (voice.md, captions.md), and the platform AI labels are all set true"
+   "evidence": "PASS one CTA, a send line naming a role ('Send this to whoever runs your Google profile'). The last sentence echoes the hook ('so the next one-star gets a reply', also on screen as 'The next 1-star gets a reply.'). There are no like, follow, comment or tag asks. LESSON 7 shows on the HUD throughout, and the REVIEWS CLINIC chip shows on the cover from 0 to 3.68 s. All four captions name the ACHR News and Clear Seas source, with the URL in YouTube. There is no AI voice line in the captions because Todd ruled it out on Oct 29 (voice.md); the platform AI labels are set true."
   }
  ],
- "faults": [
-  "7: no complete copyable reply is held 3 s. The five-star reply is complete for 2.13 s (33.37 to 35.50 s) and the one-star for 1.80 s (41.26 to 43.06 s). Fix: add a short spoken beat after each reply (e.g. 'That's it.') or keep each finished thread on screen at least 3 s before the next section, then re-time cues.md replies.o3, which claims 3 s or more.",
-  "9: takes 5, 6 and 7 have no 'you' or 'your'. Fix: add one to each, e.g. take 5 'And here's your one-star reply.', take 6 'Answer your bad ones too.', take 7 'So block ten minutes every Monday, and answer every new one you get.' Then re-voice those takes and re-check pace."
- ],
+ "faults": [],
  "notes": [
-  "Pace: takes 1 (156), 6 (153) and 7 (156) are under the 160 target, and take 3 (199) is over 195. All are inside the 150 to 200 band. Take 3 measured by words alone (22.87 to 27.03 s) is 216 wpm, so it reads quick.",
-  "190 words is under the playbook's 200 to 240 guide for a 75 s lesson. It is not a fail at 73.37 s.",
-  "Spoken 'check reviews like yours on Google' is a fair paraphrase of 'use Google to seek out reviews of contractors'.",
-  "facts.json still says the page was read Oct 28. I re-read it today and every figure is unchanged, so its 'read' field can be updated.",
-  "Faults from the earlier cut are not back: slow takes 1 to 3 (131, 147, 117 wpm) are now 156, 162, 199; acronyms show as ACHR and HVAC; the reply review cards stay visible.",
-  "Lesson length is 73.37 s, last word at 70.47 s (voice.md wants the last word by 72 s)."
- ]
+  "Pace: takes 1 (156), 6 (153) and 7 (159) are under the 160 target, and take 3 (199) is over 195. All are inside the 150 to 200 band. Take 3 by words alone (22.87 to 27.03 s) is about 216 wpm, so it reads quick.",
+  "193 words is under the playbook's 200 to 240 guide for a 75 s lesson. It is not a fail at 74.77 s.",
+  "The lesson runs 74.77 s with the last word at 71.86 s, 0.23 s inside the 75 s cap and 0.14 s inside voice.md's 72 s last-word line, so there is no room for any longer re-voice.",
+  "The cue gap from caveat.monday to close (4.55 s) is longer than round 0's 4.13 s. It passes only because of the scene.js sub-events. cues.md could list the banner, reply and read ticks as their own beats.",
+  "The captions keep the old wording 'Answer the bad ones too' while the voice now says 'your bad ones'. This is fine as a paraphrase.",
+  "'check reviews like yours on Google' is a fair paraphrase of 'use Google to seek out reviews of contractors'.",
+  "facts.json still says the page was read Oct 28. I re-read it today (Oct 29) and every figure is unchanged.",
+  "Round 0's faults (point 7 hold under 3 s, point 9 missing 'you' in takes 5 to 7) are not back."
+ ],
+ "prior": {
+  "gate": "script",
+  "round": 0,
+  "at": "2026-10-29T12:48:24-05:00",
+  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+  "pass": false,
+  "score": "10 of 12",
+  "points": [
+   {
+    "n": 1,
+    "name": "Spoken hook",
+    "pass": true,
+    "evidence": "PASS 9 words, two whole sentences ('Got a one-star review? Here's your reply to copy.'), 'your' plus the stake (a one-star review), no greeting; 'copy.' ends 2.96 s on words.json (studio limit 3.6 s, playbook 3.0 s)"
+   },
+   {
+    "n": 2,
+    "name": "On-screen hook",
+    "pass": true,
+    "evidence": "PASS 7 words ('Got a 1-star review?' / 'Copy this reply.'), same idea as the spoken hook, on screen from frame 0 (frame-0s.png), kept through the cut in and the cut out (0.8 s, 2.0 s), cleared for the 43% card at 3.68 s = held 3.68 s (band 2.5 to 4.0); text sits at about y 300 to 830 of 1920, clear of the top 14% (y 269) and the bottom 35% (y 1248)"
+   },
+   {
+    "n": 3,
+    "name": "One idea",
+    "pass": true,
+    "evidence": "PASS brief states it in 13 words ('answer every review, good and bad, with a short calm reply'); all 8 takes serve it (stakes, gap, two replies, rules, honest note, close), no second lesson"
+   },
+   {
+    "n": 4,
+    "name": "Stakes early",
+    "pass": true,
+    "evidence": "PASS sourced 'Forty-three percent' spoken at 3.68 s, 'Ninety-one percent' at 12.18 s (limit 14 s for 75 s)"
+   },
+   {
+    "n": 5,
+    "name": "Facts",
+    "pass": true,
+    "evidence": "PASS I re-read the ACHR News URL today (Oct 29): 400 homeowners; 91% rate reviews an important factor when choosing an HVAC contractor; 56% use Google to seek out reviews; 45% do / 43% don't / 13% don't know answer reviews on third-party sites; Clear Seas Research with The ACHR News, Sep 17, 2024, Dylan Kurt. Spoken numbers (43, 91, 400, 56, 45, ten minutes as our advice) match facts.json; scope words kept ('in one HVAC survey', 'on third-party sites', 'when they pick an HVAC contractor'); no 'half', no 88% vendor stat; on-screen 13% and 2024 and all caption numbers match"
+   },
+   {
+    "n": 6,
+    "name": "Payoff timing",
+    "pass": true,
+    "evidence": "PASS 'Here's your reply to copy' said 1.84 to 2.96 s (limit 6 s); both replies complete at 42.50 s = 57.9% of 73.37 s (limit 70%)"
+   },
+   {
+    "n": 7,
+    "name": "Copyable artifact",
+    "pass": false,
+    "evidence": "FAIL each reply is spoken and typed on screen, but the complete reply is held under 3 s: the five-star thread is complete at 33.37 s ('We're here when you need us.' bubble) and replaced at 35.50 s = 2.13 s; the one-star thread is complete at 41.26 s ('Call me directly at the shop.') and replaced by the turn at 43.06 s = 1.80 s. cues.md replies.o3 claims 'the thread holds 3 s or more', which the timing does not meet. Partial lines do hold longer (e.g. 'Sorry we were late. That's on us. I want to make it right.' 39.88 to 43.06 s = 3.18 s), but no complete copyable reply does"
+   },
+   {
+    "n": 8,
+    "name": "Pace and length",
+    "pass": true,
+    "evidence": "PASS every take inside 150 to 200 wpm (transcript.md: 156, 162, 199, 169, 191, 153, 156, 172); 190 words; duration 70.47 + 2.9 = 73.37 s (45 to 75); longest sentence 19 words, average 7.3"
+   },
+   {
+    "n": 9,
+    "name": "Talk test",
+    "pass": false,
+    "evidence": "FAIL 'you/your' missing in 3 of 8 takes: take 5 (the one-star reply quote and 'And the one-star reply.'), take 6 ('Here's the part people skip... Never argue in public.') and take 7 ('One honest note... answer every new one.') have zero. A contraction is in every take (Here's, That's, you're, Here's, That's, Here's, doesn't, Don't); 0 banned words; 0 em or en dashes. script-check.md agrees takes 5 to 7 miss under a strict 6b reading"
+   },
+   {
+    "n": 10,
+    "name": "Voice markup",
+    "pass": true,
+    "evidence": "PASS one tag per take, all on voice.md's allowed list ([leaning in], [matter-of-fact], [warmly], [calm], [short pause], [confident]); 0 CAPS stress words (ACHR and HVAC are proper acronyms); 0 digits, $, %, / or & in voice text; no SSML"
+   },
+   {
+    "n": 11,
+    "name": "Retention beats",
+    "pass": true,
+    "evidence": "PASS 33 cues. The longest cue gap is caveat.monday 60.12 s to close 64.25 s (4.13 s), but scene.js puts the reply bubble in at 60.72 s, read ticks at 61.72 s and the banner out at 62.12 s, so no stretch without a change runs over 4 s. Next longest: stakes.google to gap at 3.97 s. Cuts at about 0.5 s and 1.84 s in the hook. Turn line 'Here's the part people skip.' at 43.06 s = 58.7% (band 55 to 75%)"
+   },
+   {
+    "n": 12,
+    "name": "Ending",
+    "pass": true,
+    "evidence": "PASS one CTA, a send line naming a role ('Send this to whoever runs your Google profile'); last sentence echoes the hook ('so the next one-star gets a reply'); no like/follow/comment/tag asks; LESSON 7 on the HUD throughout, REVIEWS CLINIC chip on the cover 0 to 3.68 s; captions name the source on all four platforms (URL in YouTube); there is no AI voice line in the captions because Todd ruled it out on Oct 29 (voice.md, captions.md), and the platform AI labels are all set true"
+   }
+  ],
+  "faults": [
+   "7: no complete copyable reply is held 3 s. The five-star reply is complete for 2.13 s (33.37 to 35.50 s) and the one-star for 1.80 s (41.26 to 43.06 s). Fix: add a short spoken beat after each reply (e.g. 'That's it.') or keep each finished thread on screen at least 3 s before the next section, then re-time cues.md replies.o3, which claims 3 s or more.",
+   "9: takes 5, 6 and 7 have no 'you' or 'your'. Fix: add one to each, e.g. take 5 'And here's your one-star reply.', take 6 'Answer your bad ones too.', take 7 'So block ten minutes every Monday, and answer every new one you get.' Then re-voice those takes and re-check pace."
+  ],
+  "notes": [
+   "Pace: takes 1 (156), 6 (153) and 7 (156) are under the 160 target, and take 3 (199) is over 195. All are inside the 150 to 200 band. Take 3 measured by words alone (22.87 to 27.03 s) is 216 wpm, so it reads quick.",
+   "190 words is under the playbook's 200 to 240 guide for a 75 s lesson. It is not a fail at 73.37 s.",
+   "Spoken 'check reviews like yours on Google' is a fair paraphrase of 'use Google to seek out reviews of contractors'.",
+   "facts.json still says the page was read Oct 28. I re-read it today and every figure is unchanged, so its 'read' field can be updated.",
+   "Faults from the earlier cut are not back: slow takes 1 to 3 (131, 147, 117 wpm) are now 156, 162, 199; acronyms show as ACHR and HVAC; the reply review cards stay visible.",
+   "Lesson length is 73.37 s, last word at 70.47 s (voice.md wants the last word by 72 s)."
+  ]
+ }
 }

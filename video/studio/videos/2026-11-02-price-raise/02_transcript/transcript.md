@@ -1,9 +1,9 @@
 # Transcript: 2026-11-02-price-raise
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 221 words, 84.8 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 221 words, 85.0 s of voice.
 
 ## Flags
-- 77.6 s heard 'cost' for 'costs'
+- dropped '"Starting next month, our rates are going up. Our labor and material costs went up this year. Anything you've already approved stays at the price we quoted."': not heard
 
 ## Pace per take (target 160 to 195 wpm)
 ```
@@ -13,7 +13,7 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 221 words, 84.8 s of voice.
   04    39.3 s  172 wpm  
   05    50.1 s  157 wpm  
   06    63.8 s  159 wpm  
-  07    77.7 s  179 wpm  
+  07    77.7 s  175 wpm  
 ```
 
 ## Words
@@ -38,21 +38,21 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 221 words, 84.8 s of voice.
 
 `00:23.7` Now try the reason you've got.
 
-`00:25.6` A grocer paid thirty cents more a head for lettuce and charged thirty cents more.
+`00:25.1` A grocer paid thirty cents more a head for lettuce and charged thirty cents more.
 
 `00:30.7` Seventy-nine percent called that acceptable.
 
 `00:33.4` A landlord raising rent to cover higher costs?
 
-`00:36.4` Seventy-five percent said acceptable.
+`00:36.3` Seventy-five percent said acceptable.
 
 `00:39.3` Here's the line.
 
-`00:40.6` "Starting next month, our rates are going up.
+`00:40.0` "Starting next month, our rates are going up.
 
-`00:43.2` Our labor and material costs went up this year.
+`00:40.0` Our labor and material costs went up this year.
 
-`00:46.1` Anything you've already approved stays at the price we quoted." Don't skip that last sentence.
+`00:40.0` Anything you've already approved stays at the price we quoted." Don't skip that last sentence.
 
 `00:52.1` A store repriced the peanut butter already on its shelf the moment the wholesale price rose.
 
@@ -70,8 +70,8 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 221 words, 84.8 s of voice.
 
 `01:17.5` Your costs went up?
 
-`01:18.7` Say so.
+`01:18.6` Say so.
 
 `01:19.6` Their bad luck isn't a reason.
 
-`01:21.9` Send this to whoever sets your prices, before your next raise.
+`01:21.4` Send this to whoever sets your prices, before your next raise.

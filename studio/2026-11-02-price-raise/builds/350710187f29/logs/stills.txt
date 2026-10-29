@@ -1,0 +1,2 @@
+stills: 34 frames, 3 sheet(s) in /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-11-02-price-raise/05_render/sheets; contact sheet 05_render/sheet.jpg
+exit 0

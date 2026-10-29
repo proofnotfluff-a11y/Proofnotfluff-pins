@@ -2,7 +2,7 @@
 
 music: rooms
 
-## hook "The estimate's done." [sfx: pop]
+## hook "Estimate's done." [sfx: pop]
 Frame 0, the cover: the kitchen table from above, the estimate done on its clipboard (three options, the signature line empty), the coffee, the next-visit card blank. The title plate up top, settled: "The estimate's done." / "Let me think about it." No host, no dialog.
 ## hook.home "The homeowner says," [sfx: whoosh]
 Cut by 0.8 s: the street. The van parked in the driveway, the homeowner's door, a thinking bubble (dots) over it. The plate stays. Snow and the dialog box come in.
@@ -30,7 +30,7 @@ Row 2 types on; the pen writes Thursday on the next-visit card, circles it, "exa
 ## fix.l3 "What questions do you" [sfx: tick]
 Row 3 types on; on "pick one" the pen ticks option B and signs. The card holds 3 s or more.
 
-## proof "ServiceTitan's top shops close" [sfx: whoosh]
+## proof "At ServiceTitan's top shops," [sfx: whoosh]
 The XP bars. Plate: "ServiceTitan" / "Estimates closed on the same visit" / "Its customers, 12 months to Jan 2026". Tab: "Same-visit close rate", tag "Pattern, not proof." Row 1 label lights: "Top 10% by revenue".
 ## proof.top "seventy-seven percent of estimates"
 Bar 1 fills to 77 as it is said; 77% lands, a crown on the bar end.

@@ -22,8 +22,10 @@ matches. So: the keyword in the first line, said out loud in the first seconds, 
 2. Proof line: the number, said exactly as the source supports it, with the source.
 3. The takeaway or steps (the copyable part).
 4. One send or save line ("Send this to whoever answers your phone.").
-5. "Narrated by an AI version of my own voice."
-6. Hashtags last.
+5. Hashtags last.
+
+No AI voice line in any caption (Todd, Oct 29, 2026, 10:28 am: "don't put this on the video captions: \"Narrated by an AI
+version of my own voice.\""). Each platform's own AI label toggle stays on as below (POSTING.md).
 
 ## Per platform
 - Instagram: 3 to 5 hashtags (cap 5): 1 umbrella (#homeservicebusiness or #contractorbusiness), 1 to 2 trade business
@@ -34,7 +36,7 @@ matches. So: the keyword in the first line, said out loud in the first seconds, 
   keyword and block off-target ones if the keyword panel shows.
 - Facebook Page: 2 to 3 hashtags, no link, no capitals shouting. AI label on. Public.
 - YouTube Shorts: title under 100 characters, keyword in the first 40 to 50, no hashtags in the title. Description: keyword
-  line, proof with the full source, numbered steps, a next-lesson line, the AI voice line, 2 to 3 hashtags. Tags field 5
+  line, proof with the full source, numbered steps, a next-lesson line, 2 to 3 hashtags. Tags field 5
   to 10 (primary, secondary, trade variants, one common misspelling). Made for kids: No. AI use: Yes (YouTube exempts
   cloning one's own voice, but we disclose on every platform the same way; YouTube says it does not limit reach).
   Category Education. Language English.

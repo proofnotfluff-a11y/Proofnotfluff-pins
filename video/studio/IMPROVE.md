@@ -21,7 +21,7 @@ The lab (Tue, Thu, Sat) ranks this list from its benchmark against _shared/style
 00. Motion: 60 fps renders (double render time) for smoother slides; Snow walk-ins, a point-at-board pose and a reaction
    pose on big numbers; squash and stretch on landings and 1-frame smears on fast moves (Todd, Oct 28: "better animation").
 0. Captions lint in code: line 1 under 100 characters on all four, a send line on all four, hashtag counts per platform,
-   the AI voice line, no em or en dashes (facts-captions caught two of these on lesson 4).
+   no AI voice line (Todd, Oct 29), no em or en dashes (facts-captions caught two of these on lesson 4).
 1. Sound: a short music bed per room (four tiny loops made in code, same key), ducked under the voice.
 2. Motion: a squash and stretch landing on every slammed number (scale 1.15 x 0.9 for 2 frames, then 1).
 3. Host: lip shapes matched to the voice's loudness (open, half, closed) instead of a fixed talk cycle.

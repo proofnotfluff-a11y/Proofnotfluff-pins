@@ -19,7 +19,10 @@ fresh reviewer checks before the next stage runs.
   stills SLUG [--look L]   a frame at every cue -> 05_render/sheets/*.jpg and 05_render/sheet.jpg
   render SLUG [--look L] [--from S --to S] [--out F]   frames in Chromium, the mix, H.264/AAC
   check SLUG [--mp4 F]     length, loudness, black, frozen, file -> 05_render/qa.json
-  lint SLUG                the layout check in code: text off the safe area, under the host, the dialog box or other text
+  lint SLUG                the layout check in code: text off the safe area, under the host, the dialog box or other text;
+                           the hook rules (hook, below); captions; each lesson its own world
+  hook SLUG                the opening in code: picture changes by 1 s and twice by 3 s, host on by 3 s, a 9 to 12 word
+                           spoken hook said by 3.6 s, 75 s at most
   gatepack SLUG            timeline sheets (2 frames a second) and first frames for the fresh reviewers -> 05_render/gates/
   export SLUG              a copy under 9.5 MB for posting (two-pass H.264; Chrome uploads cap at 10 MB) -> 05_render/SLUG-post.mp4
   ready SLUG               every gate passed: queue it for posting (video/studio/queue.json, fingerprints of what the gates saw)
@@ -1430,7 +1433,7 @@ def cmd_gatepack(slug):
 
 
 def captions_problems(slug):
-    """_shared/captions.md in code: line 1 under 100 characters, a send line, the AI voice line, hashtag counts, no em or
+    """_shared/captions.md in code: line 1 under 100 characters, a send line, no AI voice line (Todd, Oct 29), hashtag counts, no em or
     en dashes, YouTube title under 100 with no hashtags and 5 to 10 tags. Returns a list of problems."""
     f = vdir(slug, "05_render", "captions.json")
     if not os.path.exists(f):
@@ -1444,7 +1447,7 @@ def captions_problems(slug):
         first = text.split("\n")[0]
         if len(first) >= 100: out.append(f"{pl}: line 1 is {len(first)} characters (under 100)")
         if not re.search(r"(?i)\bsend this\b|\bsave this\b", text): out.append(f"{pl}: no send or save line")
-        if "Narrated by an AI version of my own voice." not in text: out.append(f"{pl}: no AI voice line")
+        if re.search(r"(?i)narrated by an ai|ai version of my own voice", text): out.append(f"{pl}: the AI voice line (Todd, Oct 29: none in any caption)")
         n = len(re.findall(r"(?<!\w)#\w+", text))
         if not lo <= n <= hi: out.append(f"{pl}: {n} hashtags ({lo} to {hi})")
         if re.search(r"(?i)#(fyp|foryou|viral)\b", text): out.append(f"{pl}: banned hashtag")
@@ -1496,6 +1499,87 @@ def variety_problems(slug, share):
     return out
 
 
+# The hook rules in code (IMPROVE 00a and 00c; Todd, Oct 29, 2026: "get this fixed today"; style board target spec): the
+# picture changes within 1 s and at least twice in the first 3 s, the host is on screen by 3 s, the spoken hook is 9 to 12
+# words and lands in the first 3 s, and the whole lesson runs 75 s or less (end card included).
+# A 9 to 12 word line takes about 3.3 s at our fastest natural pace (lesson 3), so the spoken hook must be said by 3.6 s;
+# the on-screen hook carries the first 3 s from frame 0.
+HOOK = {"first_change_by": 1.0, "changes_in": 3.0, "changes_min": 2, "host_by": 3.0, "words": (9, 12), "said_by": 3.6, "max_seconds": 75.0}
+HOOK_DIFF, HOOK_LEVEL, HOOK_MERGE, HOOK_FPS = 0.08, 40, 0.4, 15
+HOOK_JS = """(t) => { window.__boxes = []; drawAt(t); const b = window.__boxes; window.__boxes = null;
+  if (!window.__sm) { window.__sm = document.createElement('canvas'); window.__sm.width = 108; window.__sm.height = 192; }
+  const g = window.__sm.getContext('2d'); g.imageSmoothingEnabled = true; g.drawImage(document.getElementById('c'), 0, 0, 108, 192);
+  const d = g.getImageData(0, 0, 108, 192).data, out = new Array(108 * 192 * 3);
+  for (let i = 0, j = 0; i < d.length; i += 4) { out[j++] = d[i]; out[j++] = d[i + 1]; out[j++] = d[i + 2]; }
+  return {host: b.some((x) => x.tag === 'host'), px: out}; }"""
+
+
+def spoken_hook(words):
+    """The spoken hook: whole sentences from the first word until there are 9 or more words. Returns (words, end time)."""
+    n, end = 0, 0.0
+    for w in words:
+        n += 1; end = w["end"]
+        if n >= HOOK["words"][0] and re.search(r"[.?!]$", w["w"]):
+            break
+    return n, end
+
+
+def hook_report(slug, pg=None):
+    """Measures the opening on a 108 x 192 copy of each frame, 15 a second from 0 to 3 s: a picture change is 8% or more of
+    the pixels moving by 40+ levels against the last change (frame 0 first); changes under 0.4 s apart are one change (a
+    room's close and open is one cut). Returns the numbers and the problems (each rule above that fails)."""
+    import numpy as np
+    cues = json.load(open(vdir(slug, "03_cues", "cues.json")))
+    own = pg is None
+    if own:
+        pw, b, pg = open_stage(slug)
+    events, host_at, anchor, last = [], None, None, -9.0
+    for i in range(int(HOOK["changes_in"] * HOOK_FPS) + 1):
+        t = i / HOOK_FPS
+        r = pg.evaluate(f"({HOOK_JS})({t:.4f})")
+        f = np.array(r["px"], dtype=np.int16).reshape(192, 108, 3)
+        if r["host"] and host_at is None:
+            host_at = t
+        if anchor is None:
+            anchor = f; continue
+        frac = float((np.abs(f - anchor).max(axis=2) > HOOK_LEVEL).mean())
+        if frac >= HOOK_DIFF:
+            if t - last >= HOOK_MERGE:
+                events.append(round(t, 2)); last = t
+            anchor = f
+    if own:
+        b.close(); pw.stop()
+    words = json.load(open(vdir(slug, "02_transcript", "words.json")))["words"]
+    n, said = spoken_hook(words)
+    rep = {"first_change": events[0] if events else None, "changes_by_3s": len(events), "changes": events, "host_at": host_at,
+           "hook_words": n, "hook_said_by": round(said, 2), "seconds": round(cues["duration"], 2)}
+    bad = []
+    if rep["first_change"] is None or rep["first_change"] > HOOK["first_change_by"]:
+        bad.append(f"the picture first changes at {rep['first_change']} s (by {HOOK['first_change_by']} s)")
+    if len(events) < HOOK["changes_min"]:
+        bad.append(f"{len(events)} picture change(s) in the first {HOOK['changes_in']:.0f} s (at least {HOOK['changes_min']})")
+    if host_at is None or host_at > HOOK["host_by"]:
+        bad.append(f"the host is not on screen by {HOOK['host_by']:.0f} s")
+    if not HOOK["words"][0] <= n <= HOOK["words"][1]:
+        bad.append(f"the spoken hook is {n} words ({HOOK['words'][0]} to {HOOK['words'][1]})")
+    if said > HOOK["said_by"]:
+        bad.append(f"the spoken hook ends at {said:.2f} s (by {HOOK['said_by']} s)")
+    if cues["duration"] > HOOK["max_seconds"]:
+        bad.append(f"the lesson runs {cues['duration']:.1f} s (75 s at most, end card included)")
+    return rep, bad
+
+
+def cmd_hook(slug):
+    rep, bad = hook_report(slug)
+    print(json.dumps(rep))
+    for x in bad:
+        print("ERROR hook: " + x)
+    print("hook: " + ("FAIL" if bad else "PASS") + f" first change {rep['first_change']} s, {rep['changes_by_3s']} changes by 3 s, host {rep['host_at']} s, "
+          f"spoken hook {rep['hook_words']} words by {rep['hook_said_by']} s, {rep['seconds']} s long")
+    if bad:
+        sys.exit(1)
+
+
 def cmd_lint(slug, step=0.25):
     """The layout check in code, before a reviewer has to find it: every settled scene text inside the safe area
     (x 20 to 950, y 262 to 1250), not under the host, the dialog box or other text. Problems that last under 0.5 s
@@ -1506,6 +1590,7 @@ def cmd_lint(slug, step=0.25):
     def ov(p, q, pad=0):
         w = min(p["x1"], q["x1"]) - max(p["x0"], q["x0"]) + pad; h = min(p["y1"], q["y1"]) - max(p["y0"], q["y0"]) + pad
         return max(0, w) * max(0, h)
+    hook, hook_bad = hook_report(slug, pg)   # before the world spy, on a clean page
     pg.evaluate(WORLD_SPY)
     t, worlds, steps = 0.0, {}, 0
     while t < cues["duration"]:
@@ -1528,6 +1613,7 @@ def cmd_lint(slug, step=0.25):
         t += step
     b.close(); pw.stop()
     errors = [f"ERROR lint captions: {x}" for x in captions_problems(slug)] if os.path.exists(vdir(slug, "05_render", "captions.json")) else []
+    errors += [f"ERROR lint hook: {x}" for x in hook_bad]
     errors += [f"ERROR lint variety: {x}" for x in variety_problems(slug, {w: round(n / max(1, steps), 3) for w, n in worlds.items()})]
     for (kind, what), ts in sorted(hits.items(), key=lambda kv: kv[1][0]):
         runs, start, prev = [], ts[0], ts[0]
@@ -1541,7 +1627,8 @@ def cmd_lint(slug, step=0.25):
                 prev = x
         for a0, a1 in runs:
             errors.append(f"ERROR lint {a0:5.2f} to {a1:5.2f} s: {kind}: {what[:70]}")
-    print("\n".join(errors) if errors else f"lint: PASS 0 layout problems ({cues['duration']:.1f} s at {step} s steps)")
+    print("hook: " + json.dumps(hook))
+    print("\n".join(errors) if errors else f"lint: PASS 0 layout problems ({cues['duration']:.1f} s at {step} s steps); hook PASS (first change {hook['first_change']} s, {hook['changes_by_3s']} by 3 s, host {hook['host_at']} s, spoken hook {hook['hook_words']} words by {hook['hook_said_by']} s)")
     if errors:
         sys.exit(1)
 
@@ -1611,7 +1698,7 @@ def cmd_check(slug, mp4=None):
     checks = []
     def c_len():
         secs = float(Q.probe(mp4)["format"]["duration"])
-        return round(secs, 3), 45.0 <= secs <= 90.0, f"{secs:.2f} s (45.0 to 90.0, studio lessons)"
+        return round(secs, 3), 45.0 <= secs <= HOOK["max_seconds"], f"{secs:.2f} s (45.0 to {HOOK['max_seconds']:.1f}, studio lessons, end card included)"
     for name, fn in [("length", c_len), ("loudness", lambda: Q.c_loudness(mp4)), ("black", lambda: Q.c_black(mp4)),
                      ("frozen", lambda: Q.c_frozen(mp4, end_card))]:
         try:
@@ -1707,6 +1794,8 @@ def main():
         cmd_export(a.slug)
     elif c == "lint":
         cmd_lint(a.slug)
+    elif c == "hook":
+        cmd_hook(a.slug)
     elif c == "gatepack":
         cmd_gatepack(a.slug)
     elif c == "postcopy":

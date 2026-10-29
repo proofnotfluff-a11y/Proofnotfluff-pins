@@ -6,9 +6,9 @@
 1. `anim.py lint <slug>`: the layout check in code (text off the safe area, text under the host, the dialog box or other
    text). Fix every ERROR before rendering; it is cheaper than a gate round.
 2. `anim.py render <slug>`: every frame in Chromium at 30 fps; voice, music bed and cue sounds mixed to -14 LUFS, true
-   peak at or under -1.5 dBTP; H.264 and AAC. `anim.py check <slug>`: length 45 to 90 s, loudness, black, frozen, file.
+   peak at or under -1.5 dBTP; H.264 and AAC. `anim.py check <slug>`: length 45 to 75 s (end card included), loudness, black, frozen, file.
 3. `captions.json` from `_shared/captions.md` (Instagram, TikTok, Facebook, YouTube: keyword line, proof, takeaway,
-   send line, AI voice line, tags).
+   send line, tags; no AI voice line, Todd Oct 29).
 4. `anim.py stills <slug>` and `anim.py gatepack <slug>`, then the gates in `video/studio/prompts/` (README there): facts,
    facts-captions, render critic, buyer, design, golden, each a fresh agent (model opus). One fix round per gate; a
    gate's own second FAIL holds the lesson for Todd.

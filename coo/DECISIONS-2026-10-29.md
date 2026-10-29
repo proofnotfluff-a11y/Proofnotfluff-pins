@@ -2,3 +2,9 @@
 
 - 9:50 am [stated] "I cancelled Typefully"
 - So: Typefully's Creator trial ended before the $99/year charge (facts: posting runs paused since Oct 17 and 18; 0 LinkedIn or X visits in the Oct 19 to 25 traffic report; 0 sales). No run uses Typefully (CLAUDE.md invariant 8). If posting through it ever resumes, it uses the free plan only: Monday LinkedIn and Saturday X.
+
+- 10:28 am [stated] "don't put this on the video captions: \"Narrated by an AI version of my own voice.\""
+- So: no studio caption carries the AI voice line (video/studio/_shared/captions.md, voice.md, prompts/facts-captions.md; `anim.py lint` now fails a caption that has it). Each platform's own AI label toggle is unchanged (POSTING.md, CONSTITUTION 2's standing video post rule). Queued lessons' captions.json lose the line and are re-checked by the facts-captions gate.
+- 10:26 am [stated] "Yes, get this fixed today. Immediately, please." (on fixing the video hooks: the picture changes within 1 s and twice in the first 3 s, and the 75 s limit). 10:32 am [stated] "Okay, just make sure that all of them have the best possible structure with regard to hooks and chances of virality based on what we discussed."
+- So: `anim.py hook` and `lint` enforce the opening (first picture change by 1 s, 2 changes by 3 s, host on by 3 s, a 9 to 12 word spoken hook said by 3.6 s) and `lint` and `check` fail a lesson over 75 s, end card included (IMPROVE 00a, 00c). Every unposted lesson is checked and rebuilt to pass; the old gated version stays queued until its rebuild passes every gate.
+- 10:32 am [stated] "go" (lesson 5, 2026-11-01-same-visit-close, held on the render critic's second FAIL; the fault was fixed and a confirm check found 0 faults). So: queued last, pinned to the commit its gates passed at (96582f99).

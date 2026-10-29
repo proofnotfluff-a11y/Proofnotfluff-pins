@@ -34,14 +34,14 @@ Chip SCREENSHOT THIS pops beside the header.
 The formula card writes in: "Close rate =" then "jobs sold" over a line.
 ## formula.div "divided by estimates given."
 "estimates given" lands under the line; the card glows.
-## formula.month "both over the same" [sfx: pop]
+## formula.month "over the same month." [sfx: pop]
 "Same month for both." stamps under the card.
 
-## example "Here's an example." [sfx: whoosh]
+## example "For example, say you" [sfx: whoosh]
 Room: garage. Header EXAMPLE on a dark band. A card with three rows shown as it opens: Estimates given, Jobs sold, Close rate, each value empty.
-## example.forty "Say you gave forty"
+## example.forty "gave forty estimates last"
 40 counts in on "forty"; 14 counts in on "fourteen".
-## example.div "Fourteen divided by forty" [sfx: tick]
+## example.div "Fourteen over forty is" [sfx: tick]
 "14 / 40" writes in on the Close rate row; 35% slams in as it is said, sparks.
 ## example.range "right inside the median" [sfx: blip]
 A small range strip under the card: 31% to 38% lit, a marker drops at 35%.
@@ -59,9 +59,9 @@ The ghost lap board closes over the map in blinds: "Beat your ghost", lane GHOST
 ## turn.yours "is your OWN, from" [sfx: stamp]
 "Your own, last month." stamps in big in the accent; the gold bar closes on the ghost's flag. Snow points at it.
 
-## weekly "Track it every Friday." [sfx: whoosh]
+## weekly "Every Friday, put two" [sfx: whoosh]
 Room: workshop. The Friday board: "Every Friday" in red marker, underlined on "Friday"; both rows shown faint as it opens: Estimates given, Jobs sold.
-## weekly.two "Two numbers on the"
+## weekly.two "numbers on the whiteboard,"
 Each row is written in marker as it is said and its box ticks; slips on the cork flip to SOLD as "jobs sold" is said.
 ## weekly.all "That's all you need." [sfx: pop]
 A gold sticky note stamps on under the rows: "That's all" / "you need." Snow points at the board.

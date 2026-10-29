@@ -1,6 +1,6 @@
 # Transcript: 2026-11-03-review-replies
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 190 words, 70.5 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 193 words, 71.9 s of voice.
 
 ## Flags
 none
@@ -11,10 +11,10 @@ none
   02    10.0 s  162 wpm  
   03    22.9 s  199 wpm  
   04    27.7 s  169 wpm  
-  05    35.5 s  191 wpm  
-  06    43.1 s  153 wpm  
-  07    52.8 s  156 wpm  
-  08    64.3 s  172 wpm  
+  05    35.5 s  179 wpm  
+  06    43.9 s  153 wpm  
+  07    53.6 s  159 wpm  
+  08    65.6 s  172 wpm  
 ```
 
 ## Words
@@ -39,30 +39,30 @@ none
 
 `00:32.0` Glad it's running right.
 
-`00:33.4` We're here when you need us." And the one-star reply.
+`00:33.4` We're here when you need us." And here's your one-star reply.
 
-`00:37.5` "Sorry we were late.
+`00:38.1` "Sorry we were late.
 
-`00:38.8` That's on us.
+`00:39.4` That's on us.
 
-`00:39.9` I want to make it right.
+`00:40.5` I want to make it right.
 
-`00:41.3` Call me directly at the shop." Here's the part people skip.
+`00:42.0` Call me directly at the shop." Here's the part people skip.
 
-`00:45.2` Answer the bad ones too.
+`00:45.9` Answer your bad ones too.
 
-`00:47.0` Keep it short and calm, and take the details offline.
+`00:47.9` Keep it short and calm, and take the details offline.
 
-`00:50.7` Never argue in public.
+`00:51.5` Never argue in public.
 
-`00:52.8` One honest note.
+`00:53.6` One honest note.
 
-`00:54.4` The survey shows reviews matter to homeowners.
+`00:55.2` The survey shows reviews matter to homeowners.
 
-`00:57.5` It doesn't prove a reply wins the job.
+`00:58.3` It doesn't prove a reply wins the job.
 
-`01:00.1` So block ten minutes every Monday, and answer every new one.
+`01:01.1` So block ten minutes every Monday, and answer every new one you get.
 
-`01:04.3` Don't leave reviews hanging.
+`01:05.6` Don't leave reviews hanging.
 
-`01:06.2` Send this to whoever runs your Google profile, so the next one-star gets a reply.
+`01:07.6` Send this to whoever runs your Google profile, so the next one-star gets a reply.

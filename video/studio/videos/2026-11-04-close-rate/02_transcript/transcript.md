@@ -3,8 +3,7 @@
 Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 187 words, 70.4 s of voice.
 
 ## Flags
-- 28.4 s heard 'job' for 'jobs'
-- 63.4 s heard 'Job' for 'Jobs'
+none
 
 ## Pace per take (target 160 to 195 wpm)
 ```
@@ -58,3 +57,6 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 187 words, 70.4 s of voice.
 `01:06.4` Send this to whoever writes your estimates.
 
 `01:08.4` Then on Friday, you'll know your close rate.
+
+## Hand fixes
+- 28.4 s (take 3) and 63.4 s (take 7): Whisper heard 'job sold' for 'jobs sold'. The s of jobs runs into sold: one 120 to 130 ms hiss in both takes, the same shape. Take 7 is the same audio (sha ba2efdc0) that an earlier run heard as 'Jobs', so both keep the script's word.

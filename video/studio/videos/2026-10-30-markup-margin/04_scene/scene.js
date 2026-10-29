@@ -224,7 +224,7 @@ const answer = (k, o) => {
   P(XB(0), 188, XB(n.price.value) - XB(0), 2, CREAM); P(XB(0), 188, 2, 6, CREAM); P(XB(n.price.value) - 2, 188, 2, 6, CREAM);
   /* the bar: cost (raw wood) and the markup (painted orange), the bench's planks */
   const plank = (x0, x1, base, hi, lo) => { P(x0, 196, x1 - x0, 32, INK); P(x0 + 1, 197, x1 - x0 - 2, 30, base); P(x0 + 1, 197, x1 - x0 - 2, 2, hi); P(x0 + 1, 224, x1 - x0 - 2, 3, lo);
-    for (let x = x0 + 12; x < x1 - 8; x += 31) P(x, 205 + (x % 5), 14, 1, lo); };
+    for (let x = x0 + 12; x < x1 - 8; x += 31) P(x, 205 + (x % 5), Math.min(14, x1 - 3 - x), 1, lo); };
   plank(XB(0), XB(n.cost.value), '#D9A066', '#F7D79B', '#B07A47');
   plank(XB(n.cost.value), XB(n.price.value), '#F2A541', GOLD, '#B07A47');
   tx(`COST ${n.cost.shown}`, (XB(0) + XB(n.cost.value)) / 2, 201, {size: 66, color: '#4A2E1B', align: 'center'});
@@ -243,9 +243,9 @@ const answer = (k, o) => {
     const x0 = XB(n.cost.value) - 1, x1 = XB(n.price.value) + 1; P(x0, 194, x1 - x0, 2, GOLD); P(x0, 227, x1 - x0, 2, GOLD); P(x0, 194, 2, 35, GOLD); P(x1 - 2, 194, 2, 35, GOLD);
   }
   if (T >= o.thirdAt + 0.35) k.slam(`= ${n.marginPct.shown} margin`, 540, 732, o.thirdAt + 0.35, {size: 66, color: CREAM, align: 'center', drop: INK, from: 0.5});
-  /* the series chip and the source on one row */
-  k.chip('Run the numbers', 66, 816, {size: 30});
-  k.text('Example math. Sources: JLC, Xero', 426, 827, {size: 30, color: SAND});
+  /* the series chip, the source under it */
+  k.chip('Run the numbers', 66, 810, {size: 30});
+  k.text('Example math. Sources: JLC, Xero', 66, 874, {size: 30, color: SAND, drop: INK});
 };
 
 /* ================================================================================================================ */

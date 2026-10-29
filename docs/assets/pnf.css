@@ -460,7 +460,7 @@ h2,h3{line-height:1.2}section.block h2{line-height:1.2}
 .pnf-pop{animation:pnf-pop .5s ease-out}
 @keyframes pnf-pop{0%{background:var(--pop)}100%{background:transparent}}
 .tools a.card,.st-trades a,.st-printable,.qa-rel a{transition:transform .12s ease,border-color .12s ease,box-shadow .12s ease}
-@media(hover:hover) and (pointer:fine){.tools a.card:hover,.st-trades a:hover,.st-printable:hover,.qa-rel a:hover{transform:translateY(-2px)}}
+.tools a.card:hover,.st-trades a:hover,.st-printable:hover,.qa-rel a:hover{transform:translateY(-2px)}
 .mbar{transition:transform .2s ease}}
 body.mbar-off .mbar{transform:translateY(110%)}
 /* store v2, Oct 24, 2026 (design review; major, on Todd's go): header action, home hero with the product and the trade
@@ -570,7 +570,7 @@ html.qf-open{overflow:hidden}
 .cx-start .cx-item a{background:var(--band);border-color:var(--band);color:#fff}.cx-start .cx-tag{color:var(--band-eyebrow)}.cx-start .cx-d{color:var(--band-text)}
 .cx-start .cx-item a{--focus:#fff}
 .cx-empty{padding:28px;border:1px dashed var(--dash);border-radius:14px;text-align:center}.cx-empty p{margin:0 0 10px}
-@media(prefers-reduced-motion:no-preference){.cx-item a{transition:transform .12s ease,border-color .12s ease}@media(hover:hover) and (pointer:fine){.cx-item a:hover{transform:translateY(-2px)}}}
+@media(prefers-reduced-motion:no-preference){.cx-item a{transition:transform .12s ease,border-color .12s ease}.cx-item a:hover{transform:translateY(-2px)}}
 /* page to page: the header stays, the page crossfades (browsers without support just load the page) */
 @view-transition{navigation:auto}
 header.top{view-transition-name:site-header}
@@ -630,7 +630,7 @@ a.bt:hover{border-color:#6b7488;background:rgba(255,255,255,.07)}
 .bt-ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:15px;color:var(--band-text)}
 .bt-ul li{display:flex;gap:8px}.bt-ul li::before{content:"";flex:0 0 7px;height:7px;margin-top:8px;border-radius:50%;background:#6cc0b6}
 .bt-shot{margin-top:auto;padding-top:14px}.bt-shot img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--band-rule)}
-@media(prefers-reduced-motion:no-preference){a.bt{transition:transform .14s ease,border-color .14s ease,background .14s ease}@media(hover:hover) and (pointer:fine){a.bt:hover{transform:translateY(-3px)}}}
+@media(prefers-reduced-motion:no-preference){a.bt{transition:transform .14s ease,border-color .14s ease,background .14s ease}a.bt:hover{transform:translateY(-3px)}}
 @supports(animation-timeline:view()){@media(prefers-reduced-motion:no-preference){.bt{animation:pnf-rise linear both;animation-timeline:view();animation-range:entry 0% entry 40%}}}
 /* store v2 fix round 3 (independent review, Oct 24): phone header in one sticky row with a menu sheet, one section
    rhythm on home, catalog spacing, phone card padding, landing offsets, art-directed glow behind the product */

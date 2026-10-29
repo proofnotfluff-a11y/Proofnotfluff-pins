@@ -20,6 +20,7 @@ CSV_NAME = "chicago-construction-pipeline-by-community-area.csv"
 LEADS_SLUG = "chicago-construction-cleaning-leads"
 BUCKET_WORDS = [("b0", "Under 6 months", "under 6 mo."), ("b1", "6 to 12 months", "6 to 12 mo."),
                 ("b2", "1 to 2 years", "1 to 2 yrs"), ("b3", "Over 2 years", "over 2 yrs")]
+SHORT = {"b0": "Under 6 mo", "b2": "1 to 2 yr"}
 
 META = {"h1": "Chicago's Big Building Jobs, by How Far Along They Are",
         "card": "Open Chicago building jobs of $500,000 or more still waiting on a certificate of occupancy, by neighborhood and by months since the permit. Updated weekly.",
@@ -67,6 +68,17 @@ CSS = ("<style>"
        ".pp-one .cta{grid-template-columns:1fr}.ld-page .ld-tiles{margin-top:22px}.ld-page .ld-heroact .st-btn2{min-height:50px}"
        "@media(max-width:599px){.pp-t{min-width:0}.pp-t th,.pp-t td{padding:9px 6px;font-size:13.5px}"
        ".pp-t .hm{display:none}.pp-co .yr{grid-template-columns:44px 1fr}.ld-tiles .lab{white-space:normal}}"
+       ".pp-a{table-layout:fixed;min-width:640px}.pp-a th:first-child{width:28%}.pp-t .sh{display:none}"
+       "#weeks tbody th{white-space:nowrap}"
+       "#pmap .gm-a path.sel{stroke:var(--ink);stroke-width:3;paint-order:normal}"
+       ".gm-info .pp-by{margin:12px 0 0;padding-top:10px;border-top:1px solid var(--line);font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}"
+       ".gm-info .pp-by+dl{margin-top:6px}"
+       "@media(min-width:860px){#pmap .gm-stage svg{max-height:600px}}"
+       "@media(max-width:599px){.pp-more,.pp-more .pp-tw{min-width:0;max-width:100%}.pp-a{min-width:0}.pp-a th:first-child{width:34%}"
+       ".pp-t th,.pp-t td{padding:9px 5px}.pp-t .lg{display:none}.pp-t .sh{display:inline}"
+       "#pmap .gm-seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}"
+       "#pmap .gm-seg label{justify-content:center;padding:4px 6px;font-size:13.5px;line-height:1.15;text-align:center}}"
+       "@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .pp-co .bar.reno i,:root:not([data-theme=light]) .pp-key span.reno::before{background:color-mix(in srgb,var(--accent) 55%,var(--ink))}}:root[data-theme=dark] .pp-co .bar.reno i,:root[data-theme=dark] .pp-key span.reno::before{background:color-mix(in srgb,var(--accent) 55%,var(--ink))}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) #next .ld-cta{background:#222a3b;border-color:#3a4152;border-top:3px solid var(--accent)}}:root[data-theme=dark] #next .ld-cta{background:#222a3b;border-color:#3a4152;border-top:3px solid var(--accent)}"
        "</style>")
 
 
@@ -85,7 +97,7 @@ def map_block(d, E):
                          "say": {"open": plural(a["open"], "open big job"), "b2": f'{a["b2"]:,} with permits 1 to 2 years old',
                                  "partial": f'{a["partial"]:,} with partial occupancy'},
                          "html": ("<dl>" + "".join(f"<dt>{E(w)}</dt><dd>{a[k]:,}</dd>" for k, w, _ in BUCKET_WORDS)
-                                  + f'<dt>Partial occupancy</dt><dd>{a["partial"]:,}</dd><dt>New buildings</dt><dd>{a["new"]:,}</dd>'
+                                  + f'<dt>Partial occupancy</dt><dd>{a["partial"]:,}</dd></dl><p class="pp-by">By type</p><dl><dt>New buildings</dt><dd>{a["new"]:,}</dd>'
                                   f'<dt>Renovations</dt><dd>{a["reno"]:,}</dd></dl>')}
         partial_cls[a["n"]] = "q0" if not a["partial"] else "q2" if a["partial"] < 3 else "q4"
     metrics = [{"key": "open", "label": "All open jobs", "legendTitle": "Open building jobs of $500,000 or more",
@@ -121,15 +133,15 @@ def cohort_block(d, E):
 def history_block(d, E):
     import make_site as M
     h = d["history"]
-    rows = "".join(f'<tr><th scope="row">{E(M.nice_date(x["week"]))}</th><td>{x["open"]:,}</td><td>{x["partial"]:,}</td>'
-                   f'<td>{"" if x["moves"] is None else x["moves"]["gotCo"]:{"" if x["moves"] is None else ","}}</td>'
-                   f'<td>{"" if x["moves"] is None else x["moves"]["toPartial"]:{"" if x["moves"] is None else ","}}</td>'
-                   f'<td class="hm">{"" if x["moves"] is None else x["moves"]["newOnPath"]:{"" if x["moves"] is None else ","}}</td></tr>'
-                   for x in reversed(h))
     first = len(h) == 1 or all(x["moves"] is None for x in h)
-    return ('<div class="pp-tw" role="region" aria-label="Weekly snapshots" tabindex="0"><table class="pp-t"><thead><tr>'
+    mv = lambda x, k, cls="": "" if first else f'<td{cls}>{"" if x["moves"] is None else format(x["moves"][k], ",")}</td>'
+    rows = "".join(f'<tr><th scope="row">{E(M.nice_date(x["week"]))}</th><td>{x["open"]:,}</td><td>{x["partial"]:,}</td>'
+                   + mv(x, "gotCo") + mv(x, "toPartial") + mv(x, "newOnPath", ' class="hm"') + "</tr>"
+                   for x in reversed(h))
+    return ('<div class="pp-tw" role="region" aria-label="Weekly snapshots" tabindex="0"><table class="pp-t"' + (' style="min-width:0"' if first else "") + '><thead><tr>'
             '<th scope="col">Week of</th><th scope="col">Open jobs</th><th scope="col">Partial occupancy</th>'
-            '<th scope="col">Got their certificate</th><th scope="col">Moved to partial</th><th scope="col" class="hm">New on the list</th></tr></thead>'
+            + ("" if first else '<th scope="col">Got their certificate</th><th scope="col">Moved to partial</th><th scope="col" class="hm">New on the list</th>')
+            + '</tr></thead>'
             f"<tbody>{rows}</tbody></table></div>"
             + ('<p class="asof">This is the first weekly snapshot. Starting next week, each row also counts the jobs that got their certificate of occupancy, '
                "moved to partial occupancy or joined the list since the week before.</p>" if first else
@@ -143,10 +155,11 @@ def area_table(d, E):
                      + "".join(cell(a[k]) if k in ("b0", "b2") else cell(a[k]).replace("<td", '<td class="hm"', 1).replace('class="hm" class="z"', 'class="hm z"')
                                for k, _, _ in BUCKET_WORDS)
                      + cell(a["partial"]) + "</tr>")
-    thead = ('<thead><tr><th scope="col">Community area</th><th scope="col">Open jobs</th>'
-             + "".join(f'<th scope="col"{"" if k in ("b0", "b2") else " class=hm"}>{E(w)}</th>' for k, w, _ in BUCKET_WORDS)
-             + '<th scope="col">Partial occupancy</th></tr></thead>')
-    tbl = lambda rs, label: (f'<div class="pp-tw" role="region" aria-label="{E(label)}" tabindex="0"><table class="pp-t">{thead}'
+    two = lambda lg, sh: f'<span class="lg">{E(lg)}</span><span class="sh" aria-hidden="true">{E(sh)}</span>'
+    thead = ('<thead><tr><th scope="col">' + two("Community area", "Area") + '</th><th scope="col">' + two("Open jobs", "Open") + "</th>"
+             + "".join(f'<th scope="col"{"" if k in ("b0", "b2") else " class=hm"}>{two(w, SHORT[k]) if k in SHORT else E(w)}</th>' for k, w, _ in BUCKET_WORDS)
+             + '<th scope="col">' + two("Partial occupancy", "Partial") + "</th></tr></thead>")
+    tbl = lambda rs, label: (f'<div class="pp-tw" role="region" aria-label="{E(label)}" tabindex="0"><table class="pp-t pp-a">{thead}'
                              f'<tbody>{"".join(row(a) for a in rs)}</tbody></table></div>')
     SHOW = 20
     c = d["city"]
@@ -214,7 +227,7 @@ def page_html(p):
              f'</div><p class="asof">Week of {E(M.nice_date(d["week"]))}. Counts from City of Chicago permit records, checked {E(pulled)}. Updated every Monday.</p>')
     finish = (f'<p>Big jobs take a long time. Of the new buildings permitted in {y2}, {co[y2]["new"]["share"]}% have their certificate of occupancy today; '
               f'of those permitted in {y1}, {co[y1]["new"]["share"]}%. Recent renovations get theirs sooner: {co[y1]["reno"]["share"]}% of the {y1} renovations have theirs. '
-              "So most new buildings permitted in the last year are still a long way from their certificate. "
+              "So most new buildings permitted in the last year do not have their certificate yet. "
               "The City records cannot say how close any one job is.</p>") if y1 in co and y2 in co else ""
     nxt = p["next"]
     leads_live = any(x.get("slug") == LEADS_SLUG for x in M.PAGES_LIVE)
@@ -229,14 +242,18 @@ def page_html(p):
             + tiles
             + f'<section class="block" id="timing"><h2>How long a big job takes</h2>{finish}{cohort_block(d, E)}'
             '<p class="asof">Each bar is the share of big jobs from that permit year, on the certificate of occupancy path, that have the certificate today. '
-            "The bars also count permits the City now lists as suspended, expired, cancelled or revoked, and some City records are never updated, so older years stay below 100%.</p></section>"
-            + (f'<section class="block" id="map"><h2>Open jobs on the map</h2>{mapb}</section>' if mapb else "")
+            "The bars also count permits the City now lists as suspended, expired, cancelled or revoked, and some City records are not updated, so older years stay below 100%.</p></section>"
+            + (f'<section class="block" id="map"><h2>Open jobs on the map</h2>{mapb}'
+               '<script>(function(){var g=document.querySelector("#pmap .gm-a");if(!g||!window.MutationObserver)return;'
+               'new MutationObserver(function(){var s=g.querySelector("path.sel");if(s&&s!==g.lastElementChild)g.appendChild(s);})'
+               '.observe(g,{subtree:true,attributes:true,attributeFilter:["class"]});})();</script></section>' if mapb else "")
             + f'<section class="block" id="areas"><h2>Every community area</h2>{area_table(d, E)}</section>'
             f'<section class="block" id="stages"><h2>What the stages mean</h2>{stages}</section>'
             f'<section class="block" id="weeks"><h2>Week by week</h2>{history_block(d, E)}</section>'
             f"{nxt_panel}{method}{M.faq_block(faq) if faq else ''}"
-            '<p class="rl-act"><a class="btn" href="#areas">See every neighborhood</a>'
-            + (f' <a class="st-btn2" href="{rel}{LEADS_SLUG}/">{E(nxt["button"])}</a>' if leads_live else "") + "</p>")
+            + '<div class="ld-heroact rl-act">'
+            + (f'<a class="btn" href="{rel}{LEADS_SLUG}/">{E(nxt["button"])}</a><a class="st-btn2" href="#areas">See every neighborhood</a>' if leads_live
+               else '<a class="btn" href="#areas">See every neighborhood</a>') + "</div>")
     foot = (f'</main>\n<footer><div class="wrap">{M.foot_nav(rel)}'
             f'<p>Source: City of Chicago Data Portal, <a href="{E(src["url"])}">Building Permits dataset</a>, new construction and renovation permits '
             f'issued since {E(M.nice_date(src["since"]))} with a reported cost of ${src["minCost"]:,} or more, pulled {E(pulled)}. The page names no building, '

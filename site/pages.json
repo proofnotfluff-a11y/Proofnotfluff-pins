@@ -7725,12 +7725,12 @@
    "draft": true,
    "title": "Chicago Construction Projects in Progress by Neighborhood | ProofNotFluff",
    "desc": "Free weekly count of Chicago building jobs of $500,000 or more still waiting on a certificate of occupancy, by community area and months since the permit. From City records.",
-   "eyebrow": "Free weekly tracker, City permit records",
+   "eyebrow": "Free weekly tracker",
    "h1": "Chicago's Big Building Jobs, by How Far Along They Are",
    "card": "Open Chicago building jobs of $500,000 or more still waiting on a certificate of occupancy, by neighborhood and by months since the permit. Updated weekly.",
    "next": {
     "title": "Want the addresses and builders?",
-    "text": "Our Chicago construction cleaning leads list gives the address, the builder and the stage of each open apartment and commercial job of $500,000 or more, from the same City permit records, including jobs not yet at inspections. 7 days free, then $29 a month.",
+    "text": "Our Chicago construction cleaning leads list gives the address, the builder and the stage of open apartment and commercial jobs of $500,000 or more permitted in the last 24 months, from the same City permit records, including jobs not yet at inspections. 7 days free, then $29 a month.",
     "button": "See the cleaning leads list"
    },
    "stages": [
@@ -7751,13 +7751,13 @@
     ],
     [
      "Certificate of occupancy issued",
-     "The building can be used. These jobs are done and are not counted as open.",
+     "The building can be used. These jobs have their certificate and are not counted as open.",
      "They appear only in the bars under How long a big job takes."
     ]
    ],
    "method": [
     "Every Monday we pull the City of Chicago's public Building Permits dataset and keep new construction and renovation permits issued since January 1, 2021 with a reported cost of $500,000 or more. A job counts here when its City milestone puts it on the certificate of occupancy path: inspections with a certificate required, certificate pending, partial occupancy approved, or certificate issued.",
-    "Open jobs are the ones without a certificate yet. Permits the City lists as suspended, expired, cancelled or revoked are left out of the open counts. Each permit counts once, so a large project with phased permits can count more than once. Each open job is placed in a community area by the area the City gives for it and grouped by days since the permit was issued: under 6 months, 6 to 12 months, 1 to 2 years and over 2 years.",
+    "Open jobs are the ones without a certificate yet. Permits the City lists as suspended, expired, cancelled or revoked are left out of the open counts. We count permits, not projects, so a large project built under several phased permits can count more than once. Each open job is placed in a community area by the area the City gives for it and grouped by days since the permit was issued: under 6 months, 6 to 12 months, 1 to 2 years and over 2 years.",
     "How long a big job takes compares permit years: for each year, the share of jobs on the certificate path that have the certificate today. The City's records do not say on what day a certificate was issued, so the page does not give a number of weeks to move-in for any one job.",
     "Only counts are published. We never request contact, address, map point or description fields. To count the jobs that change stage from one week to the next, last week's permit numbers and stages are stored encrypted and are never shown, so the page names no building, address or business."
    ],
@@ -7772,11 +7772,11 @@
     ],
     [
      "What does partial occupancy mean?",
-     "The City has approved temporary or partial use of the building while the certificate of occupancy is still pending. On this page it means a job is late in its schedule, not that it is done."
+     "The City has approved temporary or partial use of the building while the certificate of occupancy is still pending. On this page it usually means a job is well along, not that it is done."
     ],
     [
      "Can I see the addresses?",
-     "Not on this free page, which shows counts only. Our paid Chicago construction cleaning leads list gives the address, the builder and the stage of each open apartment and commercial job of $500,000 or more."
+     "Not on this free page, which shows counts only. Our paid Chicago construction cleaning leads list gives the address, the builder and the stage of open apartment and commercial jobs of $500,000 or more permitted in the last 24 months."
     ]
    ]
   }

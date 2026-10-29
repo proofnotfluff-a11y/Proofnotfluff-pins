@@ -1,18 +1,22 @@
 {
  "gate": "golden",
- "round": 1,
- "at": "2026-10-28T22:38:25-05:00",
+ "round": 0,
+ "at": "2026-10-29T12:47:59-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
  "pass": true,
  "score": {
   "post_as_is": "yes"
  },
- "mp4Sha256": "10fcd7e2e7832637ab6fe20778f58fea55fb21fe1f81ecd84e2d632da3824bb2",
  "reasons": [
-  "1. POLISH 46.5 to 54.2 s: 'The part people skip' still sits on the Chicago city map (river, lakefront). Read as a metaphor (pins on some shops, 'Not every shop') it works, and the source plate says ServiceTitan's medians, but a viewer could take it as Chicago data; a generic town grid would be cleaner.",
-  "2. POLISH 34.0 to 46.0 s and 59 to 81 s: bottom third is empty floor (wood planks, office floor with fan and cabinets); fine as platform-UI safe zone, boards could sit larger.",
-  "3. POLISH 24.3 to 33.9 s: take 3 still 142 wpm, flagged slow in transcript.md while qa.json voice shows 0 flags; a slower read of the formula is defensible.",
-  "4. POLISH 0.0 to 2.4 s: the US NORTHEAST and US WEST cards are empty boxes until the numbers are said; the headline already shows 31% to 38%, so nothing is missing.",
-  "Round 0 must-fixes resolved: Snow, bubble (word by word) and US outline map are on screen from 0.0 s with a sweeping divider and pins lighting at 2.5 and 3.5 s; regions now read 'by US region' with US NORTHEAST / US WEST on a US outline, not the city map. Round 0 polish on months-as-pins replaced by the 'Beat your ghost' race (54.2 to 58.5 s).",
-  "Checked and fine: 31/38 at 2.5 to 3.5 s, top 25% and 70 to 73% at 12.9 to 18 s, 14 / 40 = 35% at 37.5 to 40.7 s, 35% inside 31 to 38 at 42.8 s, all match facts.json and captions.json; source line visible on the gauge through the 'never measured' sticker (21.7 s); turn plates fit; caveats said and shown; end card formula readable at 72.7 s; qa.json all PASS on hash 10fcd7e2; voice sounds like a person; clear save (Screenshot this, formula end card) and send (whoever writes your estimates)."
+  "1. What it says, and do the numbers match: most shops close 31% to 38% of estimates (ServiceTitan customers, May to Jul 2026), the top quarter close 70% to 73%, and you work yours out as jobs sold / estimates given over the same month (example 14 / 40 = 35%). Then put both numbers on the board every Friday. Screen, voice, facts.json and captions agree: 31/38 at 4.3 to 6.5 s, TOP 25% with 70% TO 73% at 17.5 to 18.5 s, 40, 14 and 14 / 40 = 35% at 35.5 to 39.5 s, 35% inside 31 to 38 at 41 to 44 s. No contradictions.",
+  "2. Hook (0 to 4 s) PASS: the cover at 0.0 s holds the question; it cuts in to the whiteboard close-up with Snow big at 0.8 s and back out at 2.3 s; NUMBERS CLINIC is on from 2.33 s; the hook gives way to 'Median close rate, by US region 31% to 38%' by 4.3 s. Clear reason to save ('screenshot this', the formula board at 63.5 to 71 s) and to send ('Send this to whoever writes your estimates').",
+  "3. POLISH 0.0 to 5.4 s: the US NORTHEAST and US WEST cards are empty boxes on the cover and stay empty until the numbers are said (this was round 0 polish before). The headline carries 31% to 38% from 4.3 s, so nothing is missing, but a cover showing settled cards would stop more thumbs.",
+  "4. POLISH 63.3 to 63.4 s: the board wipe closes to a thin strip and goes nearly black for about 3 frames before 'Close rate =' writes in. On a phone this can read as a glitch. A plain wipe would be cleaner. blackdetect finds no black stretch.",
+  "5. POLISH 1.0 to 2.3 s, 24.5 to 33 s, 57 to 71 s: the same workshop whiteboard room (fan, bucket, red drawers) appears in four sections, about a third of the runtime. That is under the 40% lint line, but the back half feels repetitive. cues.md still says 'Room: blackboard' for the formula section, while the render shows the workshop.",
+  "6. POLISH 44.5 to 52.5 s: 'The part people skip' still sits on a city map with a lakefront and river (a fault the earlier reviews also listed). It reads as a metaphor, but a generic town grid would be safer.",
+  "7. POLISH 23.0 to 24.0 s: the gauge readout turns to '?%' under 'Can't close a gap you never measured.' The intent (your rate is unknown) is clear enough, but for a beat it can look like a missing value.",
+  "8. POLISH voice 28.4 s and 63.4 s: I checked the audio for 'jobs sold'. Each take has one hiss of about 120 ms between the vowel of 'jobs' and the vowel of 'sold', the same shape in both takes. That fits a natural s-into-s merge, and the board shows 'jobs sold' at both moments, so a viewer will not mishear it. Takes 1, 3 and 4 run at 153 to 154 wpm, a little under the 160 target, and transcript.md shows no flag for it. The voice sounds like a person: warm, unhurried, no hype.",
+  "9. POLISH qa.json: every check passes on hash be01636b, which matches the mp4. One doubtful label: the 'frozen' check says the end card starts at 63.36 s, but 63.36 s is where the close board starts and the real end card starts at 71.0 s, so the check skipped 63.36 to 71.0 s. I ran freezedetect over that stretch: the longest still stretch is 0.83 s (67.6 to 68.4 s), so nothing is actually frozen. -post.mp4 has the same streams as the main mp4 (stream md5 ccff525e); only 9 container bytes differ.",
+  "10. POLISH captions: all four platforms still say 'Then run it in dollars: $ sold / $ quoted', a step the voice and screen no longer have. As an extra tip in the caption it is harmless and accurate, but the caption now teaches one more step than the video."
  ]
 }

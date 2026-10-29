@@ -1,7 +1,8 @@
 {
  "gate": "buyer",
  "round": 0,
- "at": "2026-10-28T22:09:12-05:00",
+ "at": "2026-10-29T12:46:28-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
  "pass": true,
  "score": {
   "stop": "yes",
@@ -10,12 +11,12 @@
   "follow_or_link": "no"
  },
  "reasons": [
-  "1. As an HVAC owner: most shops close about a third of their estimates, the top quarter close about 70%, and here is how to work out my own rate (jobs sold / estimates given, same month) and track it every Friday, by count and by dollars.",
-  "2. Stop: yes. Frame 0.8s shows two big numbers (West 38%, Northeast 31%) under 'Median close rate, by region' with the source, and the first spoken line names my business and a number. I want to know where I sit.",
-  "3. Send: yes, to my estimator; the line 'Send this to whoever writes your estimates' fits how my shop works. Save: yes, the formula, the 40/14 = 35% worked example and the dollar check are worth keeping. Follow or link: no, not yet; one useful lesson earns a save, and 'free tools, link in bio' gives no reason to click today.",
-  "4. Hype, fake urgency, pitch, slop, robotic: nothing that would make me scroll past. No sales pitch, no countdown, and the caveat (ServiceTitan does not define close, its customers are not every shop) reads as honest, not hedging. 'Screenshot this one' and 'Here's the part people skip' are common creator phrases but not hype. AI voice is disclosed in the caption.",
-  "5. Unclear to a stranger, minor: the first frame draws national regions (West, Northeast) on what looks like one city map with a lakefront, so for a second 'West 38%' can read as a side of town. Fix: label the card 'US West' / 'US Northeast', or keep the card text and drop the city-map cue for this scene. Also minor: 'top quarter ... their median runs seventy to seventy-three' is a median of a median; caption states it clearly enough, voice could say 'the top quarter of shops close seventy to seventy-three percent'.",
-  "6. Trust: yes. Source and dates on screen, the worked example checks out (35% sits inside 31 to 38), and it tells me to beat my own number rather than chase the benchmark.",
-  "Weak spot, not blocking: the bottom 40% of frame 0.8s is empty desk and floor; the numbers sit up top so Reels UI does not cover them."
+  "1. As an HVAC owner: most shops on ServiceTitan close about a third of their estimates and the top quarter close about 70%, so work out my own rate (jobs sold / estimates given, same month) and put those two numbers on the whiteboard every Friday.",
+  "2. Stop: yes. Frame 0.8s asks 'Do you know your close rate?' in big orange type on a whiteboard. Most owners don't know theirs, and the spoken 'Here's the one-line math' at 2.3 s promises a quick answer, so I'd give it a few seconds. It's a softer stop than last cut's 38% / 31% card because there's no number on screen yet, but it's clearer: no region card that reads like sides of a city, so last cut's map confusion is gone.",
+  "3. Send: yes, to my estimator. 'Send this to whoever writes your estimates' fits how my shop works. Save: yes. The formula, the 40 / 14 = 35% example and the Friday two-number habit are worth keeping, and 'screenshot this' lands right before the formula. Follow or link: no, not yet. One useful lesson earns a save, and 'Free tools for trade owners: link in bio' gives me no reason to tap today.",
+  "4. Hype, fake urgency, pitch, slop or robotic: nothing that would make me scroll past. No countdown, no pitch, and the caveat ('ServiceTitan doesn't say how it counts a close, and its customers aren't every shop out there') reads as honest. The AI voice is labelled (aiLabel true). A couple of lines are a little flat, e.g. 00:19.9 'That's a big gap.' and 00:33.2 'Here's an example where you gave forty estimates last month and sold fourteen.' (fix, optional: 'Say you gave forty estimates last month and sold fourteen.'). That's not blocking.",
+  "5. Unclear to a stranger, minor: 00:12.0 to 00:16.5 'top quarter of shops, ranked by close rate in each region. Their median runs seventy to seventy-three percent' is still a median of a median. It's clear enough, but 'the top quarter of shops close seventy to seventy-three percent' is easier. The caption has a dollar check ('$ sold / $ quoted') and asks 'count or by dollars?', but the voice no longer mentions dollars. They don't contradict each other, and the caption just adds a step. Fine as is.",
+  "6. Trust: yes. The source and dates are in the caption, the example checks out (35% sits inside 31 to 38%), and it tells me to beat my own last-month number instead of chasing the benchmark.",
+  "Weak spots, not blocking: on frame 0.8s the speech bubble ('Do you know your') repeats the whiteboard text, and the bottom 40% is floor and props. The key text sits high, so Reels UI won't cover it. Fix, optional: put a number teaser like '31 to 38%' somewhere in frame 0.8s to make the stop stronger."
  ]
 }

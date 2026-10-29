@@ -1,0 +1,93 @@
+{
+ "gate": "script",
+ "round": 0,
+ "at": "2026-10-29T12:48:35-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+ "pass": true,
+ "score": "12 of 12",
+ "points": [
+  {
+   "n": 1,
+   "name": "Spoken hook",
+   "pass": true,
+   "evidence": "Take 1 opens 'Do you know your close rate? Here's the one-line math.' = 2 whole sentences, 10 words (6 + 4); last word 'math.' ends 3.46 s in words.json (studio limit 3.6 s); 'you' and 'your'; the stake is the viewer's own number, which voice.md lists as a working hook pattern, and the promise is the one-line math; no greeting"
+  },
+  {
+   "n": 2,
+   "name": "On-screen hook",
+   "pass": true,
+   "evidence": "'Do you know your / close rate?' = 6 words, the same words as the spoken hook; on the cover title plate at frame 0, written on the Friday whiteboard in the close-up (frame-0.8s), back on the plate at 2.5 s; I pulled frames from the mp4: shown at 3.90 s, plate blank at 3.97 s, so it is held about 3.9 s (band 2.5 to 4.0); text sits at y about 306 to 533 of 1920 on the cover and 310 to 500 on the close-up, inside the safe area (269 to 1248)"
+  },
+  {
+   "n": 3,
+   "name": "One idea",
+   "pass": true,
+   "evidence": "brief.md: 'close rate is jobs sold divided by estimates given; know yours, track it weekly.' = 14 words; all 7 takes serve it (benchmark, gap, formula, example, caveat with beat-your-own, Friday tally, close); the dollar close rate is cut from voice, script and cues"
+  },
+  {
+   "n": 4,
+   "name": "Stakes early",
+   "pass": true,
+   "evidence": "Sourced number 'thirty-one to thirty-eight percent' is spoken from 5.22 s (limit 14 s for a 75 s lesson); 'seventy to seventy-three' follows at about 17.3 s"
+  },
+  {
+   "n": 5,
+   "name": "Facts",
+   "pass": true,
+   "evidence": "Spoken 31 to 38 percent 'by region', 'ServiceTitan's data on its own customers, May through July', 'top quarter of shops, ranked by close rate in each region' with medians 70 to 73 percent all match facts.json (medianLowPct 31, medianHighPct 38, topSharePct 25, topLowPct 70, topHighPct 73, window May to Jul 2026) with their scope words; 40 / 14 / 35 percent is said as 'Here's an example' and is ours in facts.json (14/40 = 0.35); screen numbers match (sheets f00 to f12, end frames); caption numbers 31, 38, 25, 70, 73, 40, 14, 35 match; reviews/facts.json re-read the source URL on Oct 29, 2026; spoken forms match the digits; nothing from the do-not-use list"
+  },
+  {
+   "n": 6,
+   "name": "Payoff timing",
+   "pass": true,
+   "evidence": "'Here's the one-line math.' names the payoff at 2.32 to 3.46 s (by 6 s); formula complete at end of take 3, 32.85 s = 45% of 73.28 s (limit 70% = 51.3 s)"
+  },
+  {
+   "n": 7,
+   "name": "Copyable artifact",
+   "pass": true,
+   "evidence": "'Close rate equals jobs sold, divided by estimates given, over the same month' is spoken from 27.4 s; the formula card (with 'Same month for both') is complete by about 30.3 s and held to the 33.17 s cut (my frames at 31.5 and 32.5 s), about 3 s or more; restated spoken and on the close board from 63.4 s to about 71 s (about 7 s)"
+  },
+  {
+   "n": 8,
+   "name": "Pace and length",
+   "pass": true,
+   "evidence": "transcript.md per-take wpm 153, 172, 154, 153, 176, 163, 174, all inside 150 to 200 (word-span wpm from words.json 158, 179, 163, 164, 182, 173, 179); duration = 70.38 + 2.9 = 73.28 s (cap 75, qa.json 73.27); longest sentence 16 words, average 9.35 across 20 sentences; 187 words"
+  },
+  {
+   "n": 9,
+   "name": "Talk test",
+   "pass": true,
+   "evidence": "Every take has a contraction (Here's/That's/ServiceTitan's; That's/can't; here's; Here's; Here's/doesn't/aren't; That's; you'll) and 'you' or 'your' (7 of 7); 0 banned words (utilize, leverage, game-changer, unlock, secret, hack); 0 em or en dashes"
+  },
+  {
+   "n": 10,
+   "name": "Voice markup",
+   "pass": true,
+   "evidence": "Tags per take 1, 2, 1, 1, 1, 1, 1 (take 2: matter-of-fact plus short pause), all on voice.md's allowed list (leaning in, matter-of-fact, short pause, warmly, curious, confident), none non-vocal; 1 CAPS word in the whole script (take 5: OWN); 0 digits, $, %, / or & in voice text; no SSML"
+  },
+  {
+   "n": 11,
+   "name": "Retention beats",
+   "pass": true,
+   "evidence": "32 cues in cues.md/cues.json; the longest gap is 3.74 s (weekly.two 58.25 to weekly.all 61.99), and every other gap is 3.6 s or shorter; the opening cuts at about 0.8 s and 2.32 s (sheets f01 to f05); after the last cue (68.42 s) the rendered end card comes in at about 71 s; turn line 'Here's the part people skip.' at 44.49 s = 60.7% (band 55 to 75%)"
+  },
+  {
+   "n": 12,
+   "name": "Ending",
+   "pass": true,
+   "evidence": "One send CTA, 'Send this to whoever writes your estimates.' (66.4 s), which names a role ('Screenshot this' is a save cue, and the playbook's own example 2 pairs one with a send line); last sentence 'Then on Friday, you'll know your close rate.' echoes the hook; no like/follow/comment/tag asks; LESSON 8 is on the HUD throughout and the NUMBERS CLINIC chip from 2.5 s (sheets f05 to f11); captions name ServiceTitan and the May to Jul 2026 window (YouTube gives the full page title and date); the AI voice line was dropped by Todd's Oct 29 rule in voice.md, and the platform AI flags are set instead (aiLabel, aiGenerated, aiUse true)"
+  }
+ ],
+ "faults": [],
+ "notes": [
+  "Point 1: the hook ends at 3.46 s. That passes the studio's 3.6 s rule but not the playbook's own 3.0 s line. The stake is softer than a number (reviews/buyer.json says the same).",
+  "Point 8: takes 1, 3 and 4 run 153, 154 and 153 wpm on transcript.md: inside 150 to 200 but under the 160 to 195 target.",
+  "Point 8: 187 words is under the playbook's 75 s band of 200 to 240 (guide only; the 73.28 s length passes). script-check.md cites '160 to 240' by merging the 60 and 75 s bands, which the playbook does not do.",
+  "Point 3: brief.md labels the one idea '(15 words)', but it counts 14. It passes either way.",
+  "Captions (instagram, tiktok, facebook, youtube) still teach the cut dollar close rate ('$ sold / $ quoted', 'If the dollar rate is lower...'), and the IG caption asks 'count or by dollars?'. That is a second idea the brief cut. No number is involved and the voice is unaffected, but dropping it would match the brief.",
+  "'jobs sold' at 28.4 s and 63.4 s: I had no whisper here, so I could not listen. A 4.5 kHz high-pass energy trace shows one sibilant burst of about 120 to 140 ms before 'sold' in both takes, which fits the hand-fix note, but it cannot tell 'jobs sold' from 'job sold'. Get a human listen. The screen shows 'jobs sold' both times, so the meaning holds.",
+  "Weekly tally against the monthly formula: the close says 'Then on Friday, you'll know your close rate', while the formula counts over the same month. The two fit (the Friday counts build up the month's rate) but are not tied together in words.",
+  "Earlier review faults checked: the dollar close rate is not back in the voice, script or cues. The empty US NORTHEAST/US WEST cover cards (design.json) are still empty through the hook (frames 0 to 4.2 s). That is a design-gate matter, not this gate's."
+ ]
+}

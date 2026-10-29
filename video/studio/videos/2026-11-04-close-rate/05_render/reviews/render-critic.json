@@ -1,18 +1,28 @@
 {
-  "gate": "render-critic",
-  "round": 1,
-  "pass": true,
-  "score": {"faults": 0},
-  "faults": [],
-  "reasons": [
-    "Round 0 fault 1 (21.1 s overlap) gone: the 'Can't close a gap you never measured.' sticker now sits below the gauge (y about 935 to 1000); the 'ServiceTitan, May to Jul 2026' source line and the 0 and 100 labels are fully visible through 24.0 s.",
-    "Round 0 fault 2 (21.1 s cutoff) gone: the sticker is one line, text clears both borders (text ends x about 912 inside a plate to x about 945).",
-    "Round 0 fault 3 (48.4 s cutoff) gone: 'How it counts a close: / not on the page.' plate (y about 670 to 795) holds both lines with clear margin through 54.0 s.",
-    "Round 0 fault 4 (51.3 s cutoff) gone: 'ServiceTitan customers. / Not every shop.' plate (y about 515 to 640) holds both lines, no clipped descenders; plate right edge at about x 930, text ends x about 772.",
-    "Hook: '31% to 38%' fully on screen at frame 0, 0.8 s and 2.0 s (pass).",
-    "Spoken numbers on screen on time: 31 to 38% (0 to 4.5 s, region cards 31% at 2.5 s, 38% at 3.5 s), May to Jul (source line from 0 s), top 25% (12.5 s), 70 to 73% (17.5 to 18.0 s), 40 (36.0 s), 14 of 40 (37.5 s), 14 / 40 = 35% (39.0 to 41.0 s), median 31% to 38% with 35% inside (42.5 s) (pass).",
-    "Layout: settled frames show no hidden, clipped or overlapped words or numbers; content within y 270 to 1250; plate edges at most about 15 px past x 930 with all text left of x 930.",
-    "Audio: last word 'rate.' ends 79.25 s, video 81.13 s; music fades (-28 dB at 80.0 s to -40 dB at 80.7 s), nothing cut (pass).",
-    "Text sizes readable on a phone, smallest caption lines about 30 px tall; no flashing; 12.0 s, 24.0 s, 33.5 s, 46.0 s, 54.0 s and 58.5 s are single scene transitions (pass)."
-  ]
+ "gate": "render-critic",
+ "round": 0,
+ "at": "2026-10-29T12:47:45-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+ "pass": false,
+ "score": {
+  "faults": 1
+ },
+ "faults": [
+  {
+   "kind": "cutoff",
+   "at": 34.5,
+   "text": "GIVEN 40 / SOLD 14 OF 40 / RATE 35%",
+   "scene": "example",
+   "what": "The right-aligned readout values in the EXAMPLE: LAST MONTH card run past the x 930 content edge. Their text ends at x 941 (measured on f22 34.95 s, f23 38.55 s, f24 41.25 s and f25 43.19 s) from about 34.5 s to 44.4 s. From 34.5 s to 37.9 s this readout is the only place the spoken 'forty' and 'fourteen' appear, and the last digit sits 11 px into the zone a platform's right rail can cover. Right-align the readouts at x 925 or less."
+  }
+ ],
+ "reasons": [
+  "Round 1 file (previous cut, context only): it listed no faults. Its old fixes still hold: the 'Can't close a gap you never measured.' sticker sits below the gauge (text ends at x 912), the gauge source line and the 0 and 100 labels stay clear, and both map notes at 47 to 52 s hold their two lines with margin. Its claim that all text stays left of x 930 does not hold for the example readout above.",
+  "Hook: PASS. 'Do you know your / close rate?' is on screen from frame 0 (cover), on the whiteboard close-up from the 0.8 s cut, and back on the title plate after the cut out at about 2.3 s. It clears to 'Median close rate, by US region / 31% to 38%' at 4.0 s.",
+  "Opening cuts: PASS. Cover until 0.7 s, cut in at 0.8 s, cut back out at about 2.3 s. That is two cuts in 2.5 s, so no flash fault. The NUMBERS CLINIC chip is on the plate by 2.5 s (text ends at x 928).",
+  "Spoken numbers: PASS on timing. 31% to 38% on screen from 4.0 s ('thirty-one' at 5.2 s), with the region cards at 5.0 s and 6.0 s. May to Jul is on the source line from 0 s ('May' at 10.4 s). TOP 25% by 13.0 s ('quarter' at 13.0 s). '70% TO' at 17.5 s and '70% TO 73%' at 18.0 s ('seventy' at 17.3 s, 'seventy-three' at 18.1 s). GIVEN 40 at 34.5 s ('forty' at 34.5 s). 14 OF 40 at 36.5 s ('fourteen' at 36.6 s). '14 / 40' at 38.0 s ('Fourteen over forty' at 37.9 to 38.6 s). 35% at 39.5 s ('thirty-five' at 39.4 s). Median 31% to 38% with 35% inside from 41.0 s.",
+  "Layout: aside from the readout fault, settled frames show no hidden, clipped or overlapped words or numbers. Content stays within y 270 to 1250. Plate edges reach at most about 18 px past x 930 (NUMBERS CLINIC chip, sticker) with their text inside. The SOLD slips on the cork strip (x 940 to 1025) are scenery props, not lesson text. Wipes at 24.0 s, 33.0 s, 52.5 s, 56.5 s, 63.0 s (screen-off collapse) and 70.5 to 71.0 s are single transitions.",
+  "Audio end: PASS. voice.mp3 ends at 70.35 s with a natural decay ('rate.' drops to -62 dB by 70.25 s), the last word is at 70.12 to 70.38 s, and the video runs 73.27 s. Mix level falls to -58 dB at the end, so nothing is cut mid-word. I did not judge the hand-fixed 'jobs sold' at 28.4 s and 63.4 s: wording is outside this gate.",
+  "Text size and flash: PASS. The smallest lines (source lines, 'Now yours: __ / __', 'Median 31% to 38%  35% sits inside', dialog text) are about 28 to 32 px tall at 1080 wide, readable on a phone. Nothing flashes more than 3 times a second."
+ ]
 }

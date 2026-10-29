@@ -1,0 +1,23 @@
+{
+ "gate": "script",
+ "round": 0,
+ "at": "2026-10-29T12:28:20-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+ "pass": false,
+ "score": "11 of 12",
+ "points_condensed": "1 PASS (9 words, ends 3.44 s); 2 FAIL (on-screen hook held 5.47 s); 3 to 12 PASS (stakes 57% at 11.21 s; facts re-read Oct 29; payoff 4.00 s, card complete 57%; artifact held 4.7 s all rows; pace 163/152/150/171/150/174/173 wpm, 74.45 s; talk test; markup; retention, turn 58.3%; ending with send line naming a role)",
+ "faults": [
+  "Point 2: the on-screen hook 'Top shops usually quote 3 prices' stays on screen for 5.47 s (0.0 to 5.466 s, cover card to title plate to card) against the 2.5 to 4.0 s band. Fix: take the hook text off by 4.0 s, for example clear or fold the cover card when hook.build starts at 4.0 s so the chalkboard's '3 prices, 1 quote.' carries 4.0 to 5.47 s"
+ ],
+ "notes": [
+  "Takes 2 (152 wpm), 3 (150) and 5 (150) are outside the 160 to 195 target but inside 150 to 200; take 3 and take 5 sit exactly on the 150 floor by file length",
+  "186 words is under the playbook's 200 to 240 guide for a 75 s slot; the runtime of 74.45 s is inside 45 to 75 s",
+  "Point 1: the playbook's 'ends by 3.0 s' is superseded by the studio's 3.6 s rule; the hook ends at 3.44 s",
+  "Point 9: takes 3, 5 and 7 meet the 'you' rule only through 'your'. That matches point 1's 'you/your' and the playbook's own example script 1, but a strict reading would want a bare 'you'",
+  "Count-up frames show passing values: 1,091+ homeowners at 19.29 s and 39% at 14.0 s. They are transient and not another group's figure, so the round 0 fault is not back",
+  "The 'a choice.' line shows at 70.31 s, before 'choice' is said at 71.27 s (cue says it lands on 'choice'); for the design/render gates",
+  "The Instagram caption also carries 'Free tools for trade owners: link in bio.' and a question beside the send line. The spoken ending has one CTA",
+  "Earlier review faults checked and not back: 'Not 1' hook, static first 3 s, count-up through the other group's figure, 2 s silent tail (last word 71.55 s, end card to 74.45 s)",
+  "The builder's script-check.md also measured the 5.5 s hook hold but scored it PASS"
+ ]
+}

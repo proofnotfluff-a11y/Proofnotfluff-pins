@@ -1,22 +1,19 @@
 {
  "gate": "render-critic",
  "round": 0,
- "at": "2026-10-28T23:41:55-05:00",
- "mp4Sha256": "fda9441b42f29953678457faf74faca94e220b8d0e07620dde96b03604423248",
- "note": "Round 0 rerun on the changed scene (bigger 57%/41%, new tray label, larger send line, new sparkle helper). Earlier render-critic.json listed 0 faults.",
+ "at": "2026-10-29T12:26:21-05:00",
+ "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
  "pass": true,
  "score": {
   "faults": 0
  },
  "faults": [],
  "reasons": [
-  "Hook: '3 prices' and '57%' on the hook card from 0.0 s (frame-0s, 0.8s, 2.0s).",
-  "Spoken numbers on screen at about the word: 10% (row at 9.5 s, said 9.93), 57% (count-up 12.0, lands by 12.5, said 12.43), 41% (count-up 15.0, 41% at 15.5, said 15.39), 1,100+ (21.5, said 21.92), 68% (24.0, said 24.08), 1,000+ (55.0, said 55.28), 4+ (label 57.5, said 57.7), 52 (reels 5 2 at 59.5, said 59.44; 52% tray 60.5), 1 to 3 (label 62.0, said 61.64), 42% (reel 4 at 63.0, 42% at 63.5, said 63.12), 'It can't show 3 beats 1.' from 68.0 (said 68.9 to 69.5), 3 prices tag flip at 78.0 (said 77.95).",
-  "Bigger stakes scores right-aligned at x 918, inside x 930; sparkle twinkles sit at the number box corners and never cross the digits (checked 12.95, 13.2, 16.0, 16.3, 24.6, 24.9 s).",
-  "New tray label 'close rate by options given' (57.5 to 60.2 s) fits inside the tray with the line above it, nothing hidden.",
-  "Larger send line 'Send this to whoever / writes your quotes.' fits the close plate (ends near x 620), above the host; host head meets the plate's lower frame only, no words hidden (80.85 to 85.37 s).",
-  "Settled layouts keep words and numbers between y 270 and 1250 and left of x 930; card frames, slot lever and plate borders past x 930 are decoration; quote slip leaving right at 31.0 s and reels mid-spin are motion only.",
-  "Voice ends 83.77 s ('prices.' complete), video 85.67 s.",
-  "Smallest text (citations, chips, bubble) about 30 px on 1080x1920, readable; no flashing over 3 a second (score '--' blink about 2 Hz, hazard 0.5 Hz, single dither transitions at 5.5, 18.5, 36.0 s and a cut at 48.5 s)."
+  "File checked: 2026-10-31-three-prices.mp4, sha256 4bdf7107...cbedb73f, the same file qa.json names; 74.43 s, 1080x1920. The earlier render-critic.json (previous cut) listed 0 faults, so there was nothing to carry over. The new cut adds no new fault.",
+  "Hook: '3 prices' is on screen from 0.0 s: on the cover card and the '1 price?' board at 0.0 s, on the title plate 'Top shops usually quote 3 prices' at 0.5 to 1.5 s, and back on the card at 2.0 s. The picture changes by 0.5 s (cut in to the tag close-up with Snow big) and again by 2.0 s (cut back out).",
+  "Spoken numbers are on screen at about the moment they are said: 'one' (0.50 s) shows as '1 price?' from 0.0 s; 'three' (3.04 s) as '3 prices' throughout; 'ten percent' (8.73 s) as the TOP 10% row by 8.0 s; 'fifty-seven' (11.81 s) as 57% by 11.0 s; 'Forty-one' (14.41 s) as 41% at 14.5 s; 'eleven hundred' (20.19 s) as 1,100+ by 19.5 s; 'Sixty-eight' (22.31 s) as 68% at 22.5 s; 'a thousand' (49.70 s) as 1,000+ at 49.5 s; 'four' (52.24 s) on the crown as 4+ at 52.5 s; 'fifty-two' (53.98 s) on the reels as 5 2 % by 54.5 s; 'One to three' (56.06 s) on the crown by 56.5 s; 'Forty-two' (57.16 s) on the reels as 4 2 % at 57.5 s; 'one to three together' (59.48 s) on the reels as 1 2 3 at 59.5 s; 'three beats one' (62.05 s) as 'It can't show 3 beats 1.' from 61.0 s; 'Start with three' (63.58 s) as 'Start with 3 prices.' at 63.5 s and reels 3 3 3 at 64.5 s; 'One price' (67.35 s) as '1 price: yes or no.' at 67.5 s; 'Three prices' (69.71 s) as '3 prices: a choice.' at 70.0 s.",
+  "Layout once settled: words and numbers sit between y 270 and y 1250 and left of x 930. At 2.0 to 4.6 s Snow overlaps only the card's lower-left frame (his arm reaches about x 250; the card text starts at about x 272). In the close (65.6 to 71.5 s) Snow's head meets only the plate's bottom frame, so no words are hidden. The 57% and 41% scores end at about x 917. The plate, the bubble edges and the slot lever at or past x 930 are decoration. The 1,085+ and 1,091+ count-ups, the 30.5 s dither transition and the mid-spin reels at 52.5 to 53.5 s and 58.5 s are motion only.",
+  "Voice ends at 71.55 s, on 'choice.', complete. The video runs to 74.43 s with the end card holding, so nothing is cut mid-word.",
+  "Smallest text (source lines, Snow bubble, 'Top 10% = by revenue in their trade') is about 28 to 30 px tall at 1080x1920, readable on a phone. Nothing flashes more than 3 times a second: the 'A HABIT YOU CAN COPY' line blinks about 2 a second, the score '--' blinks slowly, and the transitions are single cuts or dissolves."
  ]
 }

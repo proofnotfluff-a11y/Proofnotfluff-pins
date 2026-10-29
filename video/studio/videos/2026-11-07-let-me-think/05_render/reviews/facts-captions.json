@@ -1,0 +1,16 @@
+{
+ "gate": "facts-captions",
+ "round": 0,
+ "at": "2026-10-29T00:00:00-05:00",
+ "pass": true,
+ "score": {
+  "numbers": 9,
+  "mismatches": 0
+ },
+ "scope": "captions changed after the round 1 PASS: instagram and facebook line 2 removed (this gate's own round 1 polish note); rerun as round 0 at the coordinator's request",
+ "reasons": [
+  "diff of anim.py postcaptions output against the round 1 text: only the line 'For plumbing, HVAC and electrical business owners.' and its newline removed from instagram.caption and facebook.caption; every other key, the tiktok and youtube text, the tags and the settings are identical",
+  "numbers unchanged and still match the ServiceTitan page re-fetched Oct 29, 2026 (10% / 90th percentile, 77%, 62%, 15-point gap, participating customers, 12 months through January 2026, May 19, 2026); qualifier and correlation caveat on all four",
+  "rules: line 1 IG 92, TikTok 92, FB 92, YT description 88; YT title 65, no hashtags; hashtags IG 4, TikTok 5, FB 3, YT 3, all last; trade plus 'owners' kept on line 1 and the umbrella phrase in hashtags; no link in IG or FB; no AI voice line; no em or en dashes; no homeowner wording"
+ ]
+}

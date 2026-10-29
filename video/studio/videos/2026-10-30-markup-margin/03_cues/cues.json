@@ -5,7 +5,7 @@
   "id": "rooms",
   "level": 0.16
  },
- "duration": 73.56,
+ "duration": 74.56,
  "cues": [
   {
    "id": "hook",
@@ -14,7 +14,7 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "Hook card, settled on frame one, host and dialog box hidden: \"50% MARKUP / is NOT / 50% MARGIN\", the second 50% in the accent, chip RUN THE NUMBERS, source line \"Math: JLC and Xero\". At 3.0 s the room opens: framing. A quote card on the wall: Cost $1,000, Markup 50%, Margin 50%? Snow checks his clipboard.",
+   "text": "Three shots (IMPROVE 00a). Cover, frame one, host and dialog box hidden: the job site, the claim on the sign \"50% MARKUP / is NOT / 50% MARGIN\", chip RUN THE NUMBERS, source line \"Math: JLC and Xero\". On \"job\" cut in to the bench close-up: the claim and source on a title plate up top, the planks big (COST $1,000, +50% in orange), Snow and the dialog box come in. On \"fifty\" the big tape runs out to the $1,000 mark; on \"percent\" the markup plank blinks with sparks. On \"Is\" cut back out to the site: the \"?\" lands on \"margin?\".",
    "t": 0.0,
    "word": 0,
    "end": 8.14
@@ -329,7 +329,7 @@
    "text": "$1,000 / 0.6 writes in.",
    "t": 55.38,
    "word": 150,
-   "end": 57.36
+   "end": 57.56
   },
   {
    "id": "formula.result",
@@ -339,7 +339,7 @@
    "shift": 0.0,
    "pin": null,
    "text": "= $1,666.67 counts up on \"sixteen hundred sixty-seven\" and lands with sparks.",
-   "t": 57.36,
+   "t": 57.56,
    "word": 156,
    "end": 59.96
   },
@@ -365,7 +365,7 @@
    "text": "Room: framing. Rule card: MARKUP IS ON COST. / MARGIN IS ON PRICE., each line slammed as it is said.",
    "t": 61.42,
    "word": 164,
-   "end": 73.56
+   "end": 74.56
   },
   {
    "id": "close.send",
@@ -413,7 +413,7 @@
    "text": "Under it: \"Half, or a third?\" slams in. Snow waves.",
    "t": 69.9,
    "word": 187,
-   "end": 73.56
+   "end": 74.56
   }
  ]
 }

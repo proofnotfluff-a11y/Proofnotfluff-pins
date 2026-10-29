@@ -1,0 +1,29 @@
+{
+ "gate": "design",
+ "round": 1,
+ "at": "2026-10-29T18:35:00-05:00",
+ "build": "ad5b9e3",
+ "pass": true,
+ "score": {
+  "first": 4,
+  "hierarchy": 5,
+  "type": 5,
+  "color": 5,
+  "spacing": 5,
+  "polish": 5,
+  "trust": 5,
+  "average": 4.86
+ },
+ "reasons": [
+  "34.0 to 39.9 button, street: still the hook's exact street, van and house row (round 0 change 6 not taken), so the street fills three of six sections. Optional: give the close a new beat, such as the street set's stop move with the yard sign landing on 'yes'"
+ ],
+ "landed": [
+  "40.0 to 42.4 end card: the send line reads whole on every frame, Snow sits clear under it: PASS",
+  "10.5 to 12.6 dispatch caption ends at x about 690, clear of the mug: PASS",
+  "0.00 cover: the title box sits on the wall, the clipboard, coffee, Next visit card, clock and window all show whole: PASS",
+  "0.00 cover: Snow is on the cover with the dialog box: PASS",
+  "24.2 to 33.3 'Same-visit close rate' tag now has side padding: PASS",
+  "street bookend unchanged: not taken, kept as the one note"
+ ],
+ "freshness": "Checked against 2026-11-05-book-the-call (versus, calendar, boss, flaps) and 2026-11-06-monthly-first (stub scene, no render): no shared set or signature move."
+}

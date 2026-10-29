@@ -1,0 +1,51 @@
+{
+ "schema": "pnf.studio.qa.v1",
+ "slug": "2026-11-07-let-me-think",
+ "mp4Sha256": "36e8d99efe68b6005750440b5bb966067068365fa5f9230378b867f1edf6d665",
+ "checks": [
+  {
+   "name": "length",
+   "value": 42.467,
+   "pass": true,
+   "detail": "42.47 s (40.0 to 55.0, v2 lesson, end card included)"
+  },
+  {
+   "name": "loudness",
+   "value": {
+    "lufs": -14.3,
+    "truePeak": -2.3
+   },
+   "pass": true,
+   "detail": "-14.3 LUFS (target -14 +/- 1), true peak -2.3 dBTP (at most -1.5)"
+  },
+  {
+   "name": "black",
+   "value": [],
+   "pass": true,
+   "detail": "0 black stretch(es) of 0.5 s or more"
+  },
+  {
+   "name": "frozen",
+   "value": [],
+   "pass": true,
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 33.83 s"
+  },
+  {
+   "name": "file",
+   "value": {
+    "sha256": "36e8d99efe68b6005750440b5bb966067068365fa5f9230378b867f1edf6d665",
+    "bytes": 3630086
+   },
+   "pass": true,
+   "detail": "H.264 1080x1920 30 fps, AAC, 3.6 MB, decodes clean"
+  },
+  {
+   "name": "voice",
+   "value": "whisper medium.en int8, re-spelled from script.md",
+   "pass": true,
+   "detail": "whisper medium.en int8, re-spelled from script.md, 0 flag(s)"
+  }
+ ],
+ "pass": true,
+ "at": "2026-10-29T13:23:35-05:00"
+}

@@ -6,5 +6,10 @@ Freshness (Todd, Oct 28, 7:37 pm: "You are cycling through the same scenery ... 
 each video"): also open the sheets of the two lessons before this one (the folders sorting just before V in
 video/studio/videos/). If this lesson's worlds, set pieces or signature moves look like theirs, first impression is at
 most 3 and name the scenes to replace with what (video/studio/_shared/sets.md lists the set pieces).
+Style board (Todd, Oct 29, 2026: "go with rec"): also open video/studio/_shared/style-board/README.md and board.jpg, our
+best frames and the target spec. Judge the finish against them. Caps, each with a reason that names the frame time and the
+target: type at most 4 when spoken words run under 44 px or labels under 36 px at 1080 wide; first impression at most 4
+when the picture does not change within 1 s or the host is not on screen by 3 s; polish at most 4 when the last 3 s have no
+end card with proofnotfluff.com.
 Earlier rounds: if V/05_render/reviews/design.json exists, read it first. Check that each change it asked for landed, and do not ask to undo a change an earlier round asked for unless it broke something you can name. New problems count only if a phone viewer would notice them.
 Do not edit files. JSON only: {"pass": bool, "score": {"first": n, "hierarchy": n, "type": n, "color": n, "spacing": n, "polish": n, "trust": n, "average": n.nn}, "reasons": ["<time> <element>: <change>"]}

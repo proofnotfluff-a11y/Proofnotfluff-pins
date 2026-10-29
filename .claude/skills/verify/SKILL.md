@@ -18,7 +18,8 @@ The five questions, answered for PNF:
 3. Every DIFF line: open the pair image and confirm the change is the one intended.
 4. Members' apps are encrypted: their flows build a planted page (for example `python3 tools/seat_app.py preview docs/zz-verify-pest/index.html <pw>`), never real rows; docs/zz-* is never committed.
 5. Map tiles, analytics and fonts from other hosts do not load in the cloud sandbox: those show as notes, not FAILs. Leaflet is served from npm with its pinned hash.
-6. Report in the run's message or log: the summary line (`verify: PASS, 0 failing of N checks`) and the evidence folder; send Todd the pair image when the change is one he will see.
+6. A change that adds or touches motion, hover, taps or rendered data also runs the pnf-motion-mobile skill. A change outside index.html (docs/assets/pnf.css) checks no page through --changed: name the pages it touches, or dispatch the workflow with its pages input.
+7. Report in the run's message or log: the summary line (`verify: PASS, 0 failing of N checks`) and the evidence folder; send Todd the pair image when the change is one he will see.
 
 ## Outputs (Writes)
 - data/verify/<stamp>/ (gitignored): report.md, report.json, after/, before/, diff/, flows/.

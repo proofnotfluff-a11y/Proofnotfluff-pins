@@ -1,74 +1,68 @@
 # Transcript: 2026-11-03-review-replies
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 183 words, 74.2 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 193 words, 71.9 s of voice.
 
 ## Flags
 none
 
 ## Pace per take (target 160 to 195 wpm)
 ```
-  01     0.0 s  131 wpm  slow: rewrite it as talk, then speak --take 1
-  02     8.1 s  147 wpm  slow: rewrite it as talk, then speak --take 2
-  03    21.1 s  117 wpm  slow: rewrite it as talk, then speak --take 3
-  04    30.2 s  169 wpm  
-  05    38.0 s  191 wpm  
-  06    45.5 s  153 wpm  
-  07    55.3 s  156 wpm  
-  08    66.7 s  161 wpm  
+  01     0.0 s  156 wpm  
+  02    10.0 s  162 wpm  
+  03    22.9 s  199 wpm  
+  04    27.7 s  169 wpm  
+  05    35.5 s  179 wpm  
+  06    43.9 s  153 wpm  
+  07    53.6 s  159 wpm  
+  08    65.6 s  172 wpm  
 ```
 
 ## Words
 
-`00:00.0` In one hvac survey, forty-three percent of contractors don't answer reviews.
+`00:00.0` Got a one-star review?
 
-`00:06.2` Here are two replies to copy.
+`00:01.8` Here's your reply to copy.
 
-`00:08.1` That's The achr News, with Clear Seas Research.
+`00:03.7` Forty-three percent of contractors in one HVAC survey said they don't answer reviews on third-party sites.
 
-`00:11.8` They asked four hundred homeowners, and ninety-one percent said reviews are important when they pick an hvac contractor.
+`00:10.0` That's The ACHR News.
 
-`00:18.6` Fifty-six percent look on Google.
+`00:12.2` Ninety-one percent of the four hundred homeowners said reviews are important to them when they pick an HVAC contractor.
 
-`00:21.1` And the contractors?
+`00:18.9` And fifty-six percent of them check reviews like yours on Google.
 
-`00:22.7` Forty-five percent answer reviews on third-party sites.
+`00:22.9` So if you answer reviews on those sites, you're with the forty-five percent who do.
 
-`00:26.3` Forty-three percent don't.
+`00:27.7` Here's the five-star reply.
 
-`00:28.1` Thirteen percent don't know.
+`00:29.8` "Thanks for trusting us with your furnace.
 
-`00:30.2` Here's the five-star reply.
+`00:32.0` Glad it's running right.
 
-`00:32.3` "Thanks for trusting us with your furnace.
+`00:33.4` We're here when you need us." And here's your one-star reply.
 
-`00:34.5` Glad it's running right.
+`00:38.1` "Sorry we were late.
 
-`00:35.9` We're here when you need us." And the one-star reply.
+`00:39.4` That's on us.
 
-`00:40.0` "Sorry we were late.
+`00:40.5` I want to make it right.
 
-`00:41.3` That's on us.
+`00:42.0` Call me directly at the shop." Here's the part people skip.
 
-`00:42.4` I want to make it right.
+`00:45.9` Answer your bad ones too.
 
-`00:43.7` Call me directly at the shop." Here's the part people skip.
+`00:47.9` Keep it short and calm, and take the details offline.
 
-`00:47.7` Answer the bad ones too.
+`00:51.5` Never argue in public.
 
-`00:49.5` Keep it short and calm, and take the details offline.
+`00:53.6` One honest note.
 
-`00:53.2` Never argue in public.
+`00:55.2` The survey shows reviews matter to homeowners.
 
-`00:55.3` One honest note.
+`00:58.3` It doesn't prove a reply wins the job.
 
-`00:56.9` The survey shows reviews matter to homeowners.
+`01:01.1` So block ten minutes every Monday, and answer every new one you get.
 
-`00:60.0` It doesn't prove a reply wins the job.
+`01:05.6` Don't leave reviews hanging.
 
-`01:02.6` So block ten minutes every Monday, and answer every new one.
-
-`01:06.7` Plenty of contractors leave reviews hanging.
-
-`01:09.4` Don't be one.
-
-`01:10.7` Send this to whoever runs your Google profile, and answer your reviews.
+`01:07.6` Send this to whoever runs your Google profile, so the next one-star gets a reply.

@@ -1,0 +1,327 @@
+{
+  "date": "2026-10-29",
+  "topic": "pest",
+  "topicNote": "rotation after question (Oct 27) is pest; no pest carousel posted before (Oct 25 pest was built in chat, off brand, not posted). Lead number 45 and hook H10 not used in the last 14 days.",
+  "hookId": "H10",
+  "page": "chicago-restaurant-inspection-leads",
+  "product": "chicago-restaurant-inspection-leads",
+  "format": "1080 x 1350, 7 slides, rendered by tools/make_carousel.py; Instagram and Facebook carousel",
+  "data": {
+    "file": "permits/inspections-chicago/daily.json",
+    "also": "permits/inspections-chicago/rest-sample.json (slide 5, the weekly list's 30-day counts); site/pages.json (offer)",
+    "asOf": "daily.json asOf 2026-10-29, City dates through 2026-10-28; rest-sample.json asOf 2026-10-27"
+  },
+  "slides": [
+    {
+      "n": 1,
+      "role": "hook",
+      "ground": "ink",
+      "eyebrow": "CHICAGO PEST CONTROL",
+      "number": "45",
+      "title": "food inspections in Chicago cited pests in 14 days",
+      "sub": "At the food businesses we track, from City of Chicago records, Oct 15 to Oct 28, 2026",
+      "facts": [
+        {
+          "text": "45",
+          "file": "permits/inspections-chicago/daily.json",
+          "key": "sum(pestByDate[].pests)"
+        },
+        {
+          "text": "14 days, Oct 15 to Oct 28",
+          "file": "permits/inspections-chicago/daily.json",
+          "key": "pestByDate[0].date to pestByDate[-1].date (recentFrom, through)"
+        },
+        {
+          "text": "failed or passed with conditions, cited pests",
+          "file": "tools/rest_daily.py",
+          "key": "docstring: pestByDate = failed or conditional inspections that cited pests, per City date"
+        },
+        {
+          "text": "on our Chicago list",
+          "file": "tools/rest_daily.py",
+          "key": "pestByDate counts the listed places only (exclusions applied)"
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "role": "proof",
+      "ground": "canvas",
+      "eyebrow": "WHERE THE CITATIONS WERE",
+      "title": "Nearly all were at restaurants",
+      "tiles": [
+        {
+          "label": "AT RESTAURANTS",
+          "value": "40",
+          "accent": true
+        },
+        {
+          "label": "AT OTHER FOOD PLACES",
+          "value": "5"
+        }
+      ],
+      "source": "Source: City of Chicago Data Portal, Food Inspections, Oct 15 to Oct 28, 2026",
+      "facts": [
+        {
+          "text": "40",
+          "file": "permits/inspections-chicago/daily.json",
+          "key": "sum(pestByDate[].restaurant)"
+        },
+        {
+          "text": "5",
+          "file": "permits/inspections-chicago/daily.json",
+          "key": "sum(pests) 45 minus sum(restaurant) 40"
+        }
+      ],
+      "body": "Counted by inspection, so a place inspected twice counts twice."
+    },
+    {
+      "n": 3,
+      "role": "where",
+      "ground": "canvas",
+      "eyebrow": "PEST CITATIONS BY WEEKDAY",
+      "title": "Over half land on Mondays and Tuesdays",
+      "rows": [
+        [
+          "1",
+          "Tuesdays",
+          "15"
+        ],
+        [
+          "2",
+          "Mondays",
+          "10"
+        ],
+        [
+          "3",
+          "Thursdays",
+          "9"
+        ],
+        [
+          "4",
+          "Wednesdays",
+          "7"
+        ],
+        [
+          "5",
+          "Fridays",
+          "4"
+        ]
+      ],
+      "body": "Counted by City inspection date. The newest days can still fill in as the City posts.",
+      "source": "Source: City of Chicago Data Portal, Food Inspections, Oct 15 to Oct 28, 2026",
+      "facts": [
+        {
+          "text": "Tuesdays 15",
+          "file": "permits/inspections-chicago/daily.json",
+          "key": "pestByDate Oct 20 (12) + Oct 27 (3)"
+        },
+        {
+          "text": "Mondays 10",
+          "file": "permits/inspections-chicago/daily.json",
+          "key": "pestByDate Oct 19 (7) + Oct 26 (3)"
+        },
+        {
+          "text": "Thursdays 9",
+          "file": "permits/inspections-chicago/daily.json",
+          "key": "pestByDate Oct 15 (5) + Oct 22 (4)"
+        },
+        {
+          "text": "Wednesdays 7",
+          "file": "permits/inspections-chicago/daily.json",
+          "key": "pestByDate Oct 21 (7) + Oct 28 (0)"
+        },
+        {
+          "text": "Fridays 4",
+          "file": "permits/inspections-chicago/daily.json",
+          "key": "pestByDate Oct 16 (3) + Oct 23 (1)"
+        },
+        {
+          "text": "over half",
+          "file": "permits/inspections-chicago/daily.json",
+          "key": "(15 + 10) / 45 = 55.6%"
+        },
+        {
+          "text": "newest days can still fill in",
+          "file": "site/pages.json",
+          "key": "chicago-restaurant-inspection-leads faq: the City publishes results after the inspection date"
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "role": "why",
+      "ground": "canvas",
+      "eyebrow": "PAST WEEK, BY AREA",
+      "title": "Not stuck in one corner of the city",
+      "card": {
+        "label": "AREAS WITH A RESTAURANT PEST CITATION, OF 77",
+        "value": "7",
+        "of": "77"
+      },
+      "body": "From O'Hare and Albany Park to South Shore and Avalon Park.",
+      "source": "Source: City of Chicago Data Portal, Food Inspections, Oct 22 to Oct 28, 2026",
+      "facts": [
+        {
+          "text": "7",
+          "file": "permits/inspections-chicago/daily.json",
+          "key": "len(pestLast7.areas)"
+        },
+        {
+          "text": "O'Hare, Albany Park, South Shore, Avalon Park",
+          "file": "permits/inspections-chicago/daily.json",
+          "key": "pestLast7.areas"
+        },
+        {
+          "text": "Oct 22 to Oct 28",
+          "file": "permits/inspections-chicago/daily.json",
+          "key": "pestLast7.from, pestLast7.to"
+        },
+        {
+          "text": "77",
+          "file": "permits/inspections-chicago/profile.json",
+          "key": "areasLoaded (Chicago's 77 community areas)"
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "role": "work",
+      "ground": "canvas",
+      "eyebrow": "LAST 30 DAYS",
+      "title": "Your trade, sorted from the rest",
+      "bars": [
+        {
+          "label": "Failed or conditional, with a violation a trade works on",
+          "value": "130"
+        },
+        {
+          "label": "With a pest violation",
+          "value": "88"
+        }
+      ],
+      "body": "Each Monday the City’s newest results come in, sorted by violation, with pests as their own category.",
+      "source": "Source: City of Chicago Data Portal, Food Inspections, Sep 27 to Oct 26, 2026",
+      "facts": [
+        {
+          "text": "130",
+          "file": "permits/inspections-chicago/rest-sample.json",
+          "key": "counts.flagged"
+        },
+        {
+          "text": "88",
+          "file": "permits/inspections-chicago/rest-sample.json",
+          "key": "counts.byCat.pests"
+        },
+        {
+          "text": "Sep 27 to Oct 26",
+          "file": "permits/inspections-chicago/rest-sample.json",
+          "key": "window.from, window.to"
+        },
+        {
+          "text": "each Monday, sorted by violation",
+          "file": "site/pages.json",
+          "key": "chicago-restaurant-inspection-leads.eyebrow, .desc"
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "role": "offer",
+      "ground": "canvas",
+      "eyebrow": "FOR CHICAGO PEST CONTROL",
+      "title": "Chicago Restaurant Inspection Leads",
+      "body": "Restaurants with a fresh failed or conditional City inspection, by violation, every Monday.",
+      "price": "7 days free, then $39 a month",
+      "terms": "No lock-in, cancel any time.",
+      "includes": [
+        "Every place named, with its address",
+        "The City’s result, date and codes",
+        "Members’ app with a map, and Excel"
+      ],
+      "facts": [
+        {
+          "text": "Chicago Restaurant Inspection Leads",
+          "file": "site/pages.json",
+          "key": "chicago-restaurant-inspection-leads.h1"
+        },
+        {
+          "text": "7 days free",
+          "file": "site/pages.json",
+          "key": "chicago-restaurant-inspection-leads.trialDays"
+        },
+        {
+          "text": "$39 a month",
+          "file": "site/pages.json",
+          "key": "chicago-restaurant-inspection-leads.price"
+        },
+        {
+          "text": "No lock-in, cancel any time.",
+          "file": "docs/chicago-restaurant-inspection-leads/index.html",
+          "key": "hero offer line"
+        },
+        {
+          "text": "body",
+          "file": "site/pages.json",
+          "key": "chicago-restaurant-inspection-leads.card, .desc, .cta.title"
+        },
+        {
+          "text": "includes",
+          "file": "site/pages.json",
+          "key": "chicago-restaurant-inspection-leads.cta.text"
+        },
+        {
+          "text": "pest control",
+          "file": "site/pages.json",
+          "key": "chicago-restaurant-inspection-leads.lede"
+        }
+      ]
+    },
+    {
+      "n": 7,
+      "role": "cta",
+      "ground": "ink",
+      "eyebrow": "FREE SAMPLE EVERY MONDAY",
+      "title": "See this week’s free sample",
+      "domain": "proofnotfluff.com",
+      "sub": "This week’s places sorted by violation, from the City’s own records.",
+      "facts": [
+        {
+          "text": "free sample, every Monday",
+          "file": "site/pages.json",
+          "key": "chicago-restaurant-inspection-leads.eyebrow"
+        },
+        {
+          "text": "sorted by violation",
+          "file": "site/pages.json",
+          "key": "chicago-restaurant-inspection-leads.desc"
+        }
+      ]
+    }
+  ],
+  "footer": {
+    "left": "ProofNotFluff",
+    "right": "n/7"
+  },
+  "captions": {
+    "instagram": "45 food inspections on our Chicago list cited pests in 14 days, from City of Chicago records, Oct 15 to Oct 28, 2026.\n\n40 of the 45 were at restaurants. Tuesdays had the most (15), then Mondays (10). In the last 7 days alone, restaurant pest citations came from 7 community areas, from O'Hare to South Shore.\n\nIf you run a pest control company in Chicago, our weekly list names each place with the City's result, date and codes. Free sample: link in bio (proofnotfluff.com).\n\n#PestControl #Chicago #PestControlBusiness",
+    "facebook": "45 food inspections on our Chicago list cited pests in 14 days, from City of Chicago records, Oct 15 to Oct 28, 2026.\n\n40 of the 45 were at restaurants. Tuesdays had the most (15), then Mondays (10). In the last 7 days alone, restaurant pest citations came from 7 community areas, from O'Hare to South Shore.\n\nIf you run a pest control company in Chicago, our weekly list names each place with the City's result, date and codes. Free sample: proofnotfluff.com/go/free-chicago-restaurant-inspection-leads/\n\n#PestControl #Chicago #PestControlBusiness"
+  },
+  "platforms": [
+    "instagram",
+    "facebook"
+  ],
+  "gates": {
+    "facts_round1": "FAIL: slide 5 rowsRead covers 37 days not the 30-day window (now flagged 130 to pest 88); slide 4 areas are restaurant only; slide 2 counts are inspections not places; slide 1 and captions 45 is our list's count, not the City total. Fixed.",
+    "buyer_round1": "FAIL (would look at the free sample): slide 5 body and the result filter in slide 1 sub and captions read as a how-to; fixed (slide 5 body, slide 1 sub, captions); slide 2 eyebrow and slide 4 title reworded. Skipped 'every weekday' title (Oct 28 had 0).",
+    "facts_round2": "PASS (fresh reviewer; noted the list sorts newest first, so slide 5 'go to the top' was reworded)",
+    "buyer_round2": "PASS (would look at the free sample; no how-to); took the slide 5 bar label",
+    "facts_round3_slide5": "FAIL on bar 1 label (130 is only places citing a buyer-category violation); fixed with the checker's wording",
+    "design_round1": "FAIL 4.57 (5,4,5,5,4,4,5): slide 4 lone 7 echoes 'LAST 7 DAYS', slide 2 no sentence and dead space, slide 7 empty ink, three windows, slide 5 eyebrow",
+    "design_fix": "copy: slide 4 card '7 of 77' with proportion bar and eyebrow PAST WEEK; slide 2 sentence; slide 5 eyebrow LAST 30 DAYS; slide 1 title and sub. tool: proof role renders an optional body (additive; past specs have none). Skipped slide 7 fill (tool CSS change that would move past renders).",
+    "facts_round4": "PASS (changed lines: slide 1 title and sub, slide 2 body, slide 4 card, slide 5 eyebrow, bars and body)",
+    "design_round2": "FAIL 4.43 (5,4,4,5,4,4,5): slide 4 one number and a 7 of 77 stub bar that reads as a glitch, slide 5 title vague and label long, three time windows, slide 1 title descender touches the 14, slide 2 bars not centred on numbers, slide 7 about 400 px empty ink; second FAIL, stopped"
+  },
+  "posted": null,
+  "status": "stopped after the second design FAIL (4.57 then 4.43); not posted. Cloud run: no Claude in Chrome or computer link either. Slides sent to Todd."
+}

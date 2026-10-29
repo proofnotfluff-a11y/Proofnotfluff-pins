@@ -17,30 +17,59 @@ as the fallback (`speak --voice iP95p4xoKVk53GoZ742B`). Each platform's AI label
 - Numbers as they are said: "forty-five", "ten point two percent", "three one one". The brief holds the digits, and the
   facts gate checks the spoken form against them.
 - Plain words, no hype, no em or en dashes, nothing the facts gate can't trace to the data file.
-- Close: one line that tells them where to look ("See your own neighborhood free at proofnotfluff dot com slash rats.").
+- Close (Lead Clinic v2): the last spoken line is the rule, in words that echo the hook. No spoken call to action; the send
+  line rides on the end card and in the caption.
 
-## The hook (research run 2026-10-28-viral)
-- The first 3 seconds decide it (Instagram's skip rate). Spoken hook: 9 to 12 words, said by 3.6 s (`anim.py hook`; 9 words
-  take about 3.3 s at our fastest natural pace, so keep it to short words and one breath, and open on the stake). On-screen hook: 5 to 8 words, up in the
-  first second, held 2.5 to 4 s, inside the safe area (not the top 14% or bottom 35% of the frame).
-- Patterns that work: a question about their own number, a value promise ("One text that..."), "If you..., watch this",
-  a real customer question, a myth with a sourced bust, a top shops vs everyone else gap. The source rides on screen.
-- Views are not leads: speak to owners who can buy, and keep the host and a scene on screen (Instagram holds back
-  Reels that are mostly text).
+## Lead Clinic v2: the lesson format (Todd's yes, Oct 29, 2026, 12:14 pm: "Yes let's implement this immediately")
+Why: research/viral-formats-2026-10.md. Of 13 spoken shorts with 1M+ views, none opened on a percentage, named a source
+early or called out its audience; 10 stopped on the answer with no spoken call to action; 8 acted the lesson out; most ran
+under 50 s. A lesson whose `brief.md` has the line `- **Format:** v2` follows this section, and `anim.py script`, `hook`,
+`lint` and `check` hold it to it. Every new lesson is v2 (`_templates/brief.md`); lessons planned before Oct 29 keep the v1
+rules at the end until they are rebuilt.
 
-## The lesson shape and the 12-point check (research/runs/2026-10-28-script-playbook.md)
-Template: hook (0 to 3 s, 9 to 12 words, "you", a stake, a promise) / stakes (a sourced number by 12 s) / teach (one idea,
-the why) / artifact (the exact text, formula or line, shown and held 3 s or more) / turn ("Here's the part people skip",
-between 55% and 75% of the runtime) / close (the rule in one line, a send line naming a role, last words echo the hook).
-45 s = 120 to 145 words, 60 s = 160 to 195, 75 s = 200 to 240; the payoff is complete by 70% of the runtime.
-The script gate scores the playbook's 12 points PASS or FAIL; a lesson goes to voice only on 12 of 12. Segments that
-recur: The Text, Run the Numbers, Proof Check, Quote Clinic. No like, follow, tag or "comment YES" asks.
+Five beats, 40 to 50 s with the end card, 100 to 135 spoken words, one take a beat:
+1. **Drop-in** (0 to 3 s, 9 to 12 words): a moment on a real job, in the customer's own words or one object with a number.
+   It sets the question the lesson answers. No percent, no source, no audience call-out ("Trade owners,"). The trade word
+   sits inside the scene (homeowner, estimate, water heater), so the keyword is still said in the first seconds.
+2. **Play it out** (3 to 12 s, 20 to 25 words): the usual way, acted by the cast, and what it costs.
+3. **The fix** (12 to 26 s, 30 to 40 words): back to the moment; the right line, text or math, word for word, on screen and
+   held 3 s or more.
+4. **Proof** (26 to 34 s, 18 to 25 words): one sourced number in one or two sentences. The source rides on screen as a
+   tag, and "Pattern, not proof." goes in the tag when the source is correlational (it is no longer said).
+5. **Button** (34 to 42 s, 15 to 22 words): the rule in one line, echoing a word of the hook. The last spoken words.
+Then the end card (2.9 s): lockup, the site, and the send line from `SCENE.sendLine` ("Send this to whoever runs your
+estimates.").
+
+Hook formulas that fit (research/viral-formats-2026-10.md): the stuck moment ("The estimate's done. The homeowner says,
+let me think about it."), two shops one winner, the object with a number, which would you pick, your move.
+On-screen hook: 5 to 8 words up in the first second, held 2.5 to 4 s, inside the safe area (not the top 14% or bottom 35%).
+Picture changes within 1 s and twice in the first 3 s; the host is on by 3 s (`anim.py hook`). Spoken hook said by 3.6 s.
+Views are not leads: speak to owners who can buy, keep the host and a scene on screen.
+
+The script check (`01_voice/script-check.md`, PASS or FAIL with the metric; 12 of 12 before voice):
+1. Drop-in: 9 to 12 words, a trade noun or "you", no percent, no source name, no call-out, no greeting.
+2. On-screen hook: 5 to 8 words, by 1.0 s, held 2.5 to 4.0 s, in the safe area.
+3. One idea: brief.md states it in 15 words or fewer; every beat serves it.
+4. Acted: beat 2 shows the usual way and its cost in the cast's actions, not explained to camera.
+5. Facts: every number and named source in voice, screen and caption maps to facts.json; spoken form matches the digits.
+6. Artifact: one exact line, text or formula spoken and on screen, held 3 s or more, done by 65% of the runtime.
+7. Proof: one sourced number after the fix, the source tag on screen while it is said.
+8. Length: 100 to 135 words; 40 to 50 s with the end card (55 s hard cap in `check`).
+9. Talk test: a contraction and a "you" in most takes; no banned words (utilize, leverage, game-changer, unlock, secret,
+   hack); no em or en dashes; no sentence over 20 words.
+10. Voice markup: at most 2 tags a take, from the list above; at most 1 CAPS word a take; no digits, $, %, / or & in the voice.
+11. No tail: no turn line ("Here's the part people skip"), no spoken "one honest note", no spoken send, save, like, follow
+   or comment ask.
+12. Button: the last sentence is the rule and repeats a word from the hook; `SCENE.sendLine` names a role.
 
 ## Pace
-- Target 160 to 195 words a minute per take (a Reel runs a little quicker than a lesson).
-- Under 150: rewrite the take as talk. Over 200: give it a landing beat (a short sentence or `[short pause]`), re-roll.
-- The whole lesson runs 45 to 75 seconds, end card included, so the last word lands by 72 s (IMPROVE 00c; Todd's yes Oct 29,
-  10:26 am, "get this fixed today"; it replaces the Oct 28 45 to 90 s). `lint` and `check` fail anything longer.
+- Target 160 to 195 words a minute per take. Under 150: rewrite the take as talk. Over 200: give it a landing beat.
+- v2 runs 40 to 50 s, end card included (`check` fails under 40 s or over 55 s).
+
+## v1 (lessons planned before Oct 29, until rebuilt)
+hook / stakes (a sourced number by 12 s) / teach / artifact / turn (between 55% and 75%) / close (rule, a send line naming
+a role, last words echo the hook); 45 to 75 s, end card included (IMPROVE 00c); the 12-point check in
+research/runs/2026-10-28-script-playbook.md 6b.
 
 ## Rules that never bend
 - A count is complaints to 311, never rats found. No building, block, business or person named. Nothing sells pest control.

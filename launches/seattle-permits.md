@@ -21,3 +21,4 @@ Product 5 in the launch line (coo/PIVOT.md LEADS FOCUS, 4 Seattle permits; score
 ## Build log
 - Oct 23, 2026 (builder run): data check above; no FIX lines in qa/2026-10-19.md (newest QA). Nothing else built.
 - Oct 27, 2026 (builder run): still waiting on Todd's pick of option 1, 2 or 3; nothing built.
+- Oct 29, 2026 (builder run): no new QA file since qa/2026-10-26.md, whose FIX lines were fixed Oct 27 (Austin finaled counts re-read: 0 of 8, 0 of 2, 0 of 2). Thursday free basics checked on the four lead free pages (one title, one H1, meta description, alt text, JSON-LD, canonical, sitemap): nothing missing; this week's question pages came from the daily question-pages task. Still waiting on Todd's pick; nothing built.

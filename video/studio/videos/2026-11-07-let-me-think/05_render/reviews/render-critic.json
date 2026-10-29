@@ -1,0 +1,15 @@
+{
+ "gate": "render-critic",
+ "round": 1,
+ "pass": true,
+ "score": {"faults": 0},
+ "faults": [],
+ "reasons": [
+  "Round 0 fault gone: end card (40.2 to 42.47 s) now reads \"Send this to whoever runs your estimates.\" in full at y about 890; Snow at 0.6 scale stands below it (hat top about y 965), nothing covers the line.",
+  "1 Hook: PASS. \"The estimate's done.\" / \"Let me think about it.\" plate settled at 0.0 s (frame-0s), held at 0.8 s and 2.0 s. New cover props (clipboard, mug, pen, next-visit card, clock, window) are whole and Snow's dialog box sits clear of them.",
+  "2 Numbers: PASS. \"seventy-seven\" starts 25.64 s, 77% lands 25.70 s; \"sixty-two\" starts 30.10 s, 62% lands 30.17 s (frame by frame from the new MP4). 10%, 12 months, Jan 2026 and 15 points are screen only and readable.",
+  "3 Layout: PASS. Settled frames keep words and numbers inside y 270 to 1250 and left of x 930. Dispatch caption \"Or talk themselves out of it.\" now ends well before the mug; \"Same-visit close rate\" tag has padding. The pen over \"Thursday\" at 20 to 21.5 s is the writing animation and clears by 22 s.",
+  "4 Audio end: PASS. Last word \"alone.\" ends 39.57 s; video and audio run to 42.47 s; nothing cut mid-word.",
+  "5 Text size and flashes: PASS. Smallest text about 22 to 28 px tall at 1080 wide. Brightness jumps over 20 levels only at single scene dips (2.43, 4.07, 7.6, 12.9, 39.97 s), never more than 3 a second."
+ ]
+}

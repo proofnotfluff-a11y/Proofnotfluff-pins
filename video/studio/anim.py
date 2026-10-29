@@ -22,11 +22,15 @@ fresh reviewer checks before the next stage runs.
   lint SLUG                the layout check in code: text off the safe area, under the host, the dialog box or other text;
                            the hook rules (hook, below); captions; each lesson its own world
   hook SLUG                the opening in code: picture changes by 1 s and twice by 3 s, host on by 3 s, a 9 to 12 word
-                           spoken hook said by 3.6 s, 75 s at most
+                           spoken hook said by 3.6 s; 40 to 55 s for a v2 lesson (75 s at most for v1)
+  script SLUG              a v2 lesson's script in code (_shared/voice.md, Lead Clinic v2): 100 to 135 words, the drop-in
+                           with no percent, source or call-out, no tail (turn, honest note, spoken asks), the button
+                           echoes the hook, SCENE.sendLine set for the end card
   gatepack SLUG            timeline sheets (2 frames a second) and first frames for the fresh reviewers -> 05_render/gates/
   export SLUG              a copy under 9.5 MB for posting (two-pass H.264; Chrome uploads cap at 10 MB) -> 05_render/SLUG-post.mp4
   ready SLUG               every gate passed: queue it for posting (video/studio/queue.json, fingerprints of what the gates saw)
   next                     the oldest queued lesson not yet on all four platforms, and the commit its gates passed at
+  postcaptions SLUG        the captions to paste, per platform, with any AI voice line taken out (Todd, Oct 29)
   waiting                  the queued lessons with no post yet, in posting order (the daily run's queue rule reads it)
   postcopy SLUG            render the queued lesson from that commit, check its fingerprints, export it to the upload folder
   posted SLUG PLATFORM URL record one live post (instagram, tiktok, facebook, youtube)
@@ -1387,6 +1391,28 @@ def cmd_next():
     print(json.dumps({"slug": None}))
 
 
+AI_VOICE_LINE = re.compile(r"AI version of my", re.I)   # Todd, Oct 29, 2026: never in a caption, whatever the file says
+
+
+def postcaptions(slug):
+    """The text to paste on each platform: captions.json with any AI voice line taken out (Todd, Oct 29, 2026)."""
+    d = json.load(open(vdir(slug, "05_render", "captions.json")))
+    out = {}
+    for plat in PLATFORMS:
+        for k, v in d.get(plat, {}).items():
+            if isinstance(v, str):
+                v = "\n".join(l for l in v.split("\n") if not AI_VOICE_LINE.search(l))
+            out[f"{plat}.{k}"] = v
+    for k, v in out.items():
+        if isinstance(v, str) and AI_VOICE_LINE.search(v):
+            raise SystemExit(f"ERROR postcaptions: {k} still carries the AI voice line")
+    return out
+
+
+def cmd_postcaptions(slug):
+    print(json.dumps(postcaptions(slug), indent=1, ensure_ascii=False))
+
+
 def cmd_postcopy(slug):
     """Render the queued lesson from the commit its gates passed at, check every fingerprint, export the post copy
     to /mnt/user-data/outputs/<slug>.mp4 (the folder Chrome's upload reads)."""
@@ -1524,6 +1550,86 @@ def variety_problems(slug, share):
 # A 9 to 12 word line takes about 3.3 s at our fastest natural pace (lesson 3), so the spoken hook must be said by 3.6 s;
 # the on-screen hook carries the first 3 s from frame 0.
 HOOK = {"first_change_by": 1.0, "changes_in": 3.0, "changes_min": 2, "host_by": 3.0, "words": (9, 12), "said_by": 3.6, "max_seconds": 75.0}
+# Lead Clinic v2 (Todd's yes, Oct 29, 2026, 12:14 pm; research/viral-formats-2026-10.md; _shared/voice.md): a lesson whose
+# brief.md has "- **Format:** v2" runs 40 to 50 s with the end card (55 s hard cap), 100 to 135 spoken words, opens on a
+# moment (no percent, no source, no call-out), has no tail after the answer, and puts the send line on the end card.
+V2 = {"min_seconds": 40.0, "max_seconds": 55.0, "words": (100, 135)}
+V2_TAIL = [(r"(?i)\bpart people skip\b", "the turn line"), (r"(?i)\bhonest note\b", "a spoken honest note"),
+           (r"(?i)\b(send|save) this\b", "a spoken send or save line"), (r"(?i)\b(like and (follow|subscribe)|follow (us|me|for)|subscribe|comment (below|yes|\w+ below)|drop a comment)\b", "a spoken like, follow or comment ask")]
+V2_CALLOUT = re.compile(r"(?i)^(trade|hvac|plumbing|roofing|electrical|contractor|home service|small business)?\s*(owners?|pros|contractors|plumbers|electricians|roofers),")
+V2_SOURCEWORDS = {"percent", "percentage", "study", "survey", "report", "data", "according"}
+
+
+def lesson_format(slug):
+    """'v2' when brief.md carries the Lead Clinic v2 line, else 'v1' (lessons planned before Oct 29, 2026)."""
+    p = vdir(slug, "01_voice", "brief.md")
+    return "v2" if os.path.exists(p) and re.search(r"(?im)^- \*\*Format:\*\*\s*v2\b", open(p, encoding="utf-8").read()) else "v1"
+
+
+def length_band(slug):
+    return (V2["min_seconds"], V2["max_seconds"]) if lesson_format(slug) == "v2" else (45.0, HOOK["max_seconds"])
+
+
+def script_problems(slug, send_line=None):
+    """The v2 script rules in code (_shared/voice.md, Lead Clinic v2). Returns a list of problems ([] for a v1 lesson)."""
+    if lesson_format(slug) != "v2":
+        return []
+    takes = takes_of(slug)
+    words = [w for tk in takes for w in spoken_words(tk)]
+    out = []
+    lo, hi = V2["words"]
+    if not lo <= len(words) <= hi:
+        out.append(f"{len(words)} spoken words ({lo} to {hi})")
+    text = " ".join(TAG.sub(" ", tk) for tk in takes)
+    sents = [s.strip() for s in re.split(r"(?<=[.?!])\s+", " ".join(text.split())) if s.strip()]
+    hook, n = [], 0
+    for s in sents:
+        hook.append(s); n += len(s.split())
+        if n >= HOOK["words"][0]:
+            break
+    hook_text = " ".join(hook)
+    hw = {norm(w) for w in hook_text.split()}
+    sources = set()
+    fp = vdir(slug, "01_voice", "facts.json")
+    if os.path.exists(fp):
+        for k, v in json.load(open(fp)).items():
+            if isinstance(v, dict) and ("url" in v or "publisher" in v):
+                sources |= {norm(k)} | ({norm(v["publisher"].split()[0])} if v.get("publisher") else set())
+    bad = sorted((hw & (V2_SOURCEWORDS | sources)) - {""})
+    if bad:
+        out.append(f"the drop-in names a percent or a source ({', '.join(bad)}): open on a moment, the proof comes later")
+    if V2_CALLOUT.search(hook_text):
+        out.append("the drop-in opens on an audience call-out: put the trade inside the scene")
+    for rx, what in V2_TAIL:
+        m = re.search(rx, text)
+        if m:
+            out.append(f"{what} in the script (\"{m.group(0)}\"): v2 ends on the button, the send line rides on the end card")
+    stop = {"that", "this", "with", "your", "they", "them", "have", "what", "when", "then", "about", "there", "their", "just", "from", "into", "says"}
+    last = {norm(w) for w in sents[-1].split()} if sents else set()
+    if not {w for w in hw & last if len(w) >= 4 and w not in stop}:
+        out.append("the button does not echo the drop-in (repeat one of its words in the last sentence)")
+    if send_line is not None and not re.search(r"(?i)\bsend this to (whoever|your)\b", send_line or ""):
+        out.append(f"SCENE.sendLine is {send_line!r}: the end card needs a send line that names a role")
+    return out
+
+
+def cmd_script(slug):
+    if lesson_format(slug) != "v2":
+        print(f"script: {slug} is a v1 lesson (no Format: v2 line in brief.md); the v1 12-point check applies")
+        return
+    sl = None
+    sj = vdir(slug, "04_scene", "scene.js")
+    if os.path.exists(sj):
+        m = re.search(r"sendLine:\s*'([^']*)'", open(sj, encoding="utf-8").read())
+        sl = m.group(1) if m else ""
+    bad = script_problems(slug, sl)
+    takes = takes_of(slug)
+    nw = sum(len(spoken_words(tk)) for tk in takes)
+    for x in bad:
+        print("ERROR script: " + x)
+    print("script: " + ("FAIL" if bad else "PASS") + f" v2, {nw} words in {len(takes)} takes" + ("" if sl is None else f", end card send line {sl!r}"))
+    if bad:
+        sys.exit(1)
 HOOK_DIFF, HOOK_LEVEL, HOOK_MERGE, HOOK_FPS = 0.08, 40, 0.4, 15
 HOOK_JS = """(t) => { window.__boxes = []; drawAt(t); const b = window.__boxes; window.__boxes = null;
   if (!window.__sm) { window.__sm = document.createElement('canvas'); window.__sm.width = 108; window.__sm.height = 192; }
@@ -1583,8 +1689,9 @@ def hook_report(slug, pg=None):
         bad.append(f"the spoken hook is {n} words ({HOOK['words'][0]} to {HOOK['words'][1]})")
     if said > HOOK["said_by"]:
         bad.append(f"the spoken hook ends at {said:.2f} s (by {HOOK['said_by']} s)")
-    if cues["duration"] > HOOK["max_seconds"]:
-        bad.append(f"the lesson runs {cues['duration']:.1f} s (75 s at most, end card included)")
+    lo, hi = length_band(slug)
+    if cues["duration"] > hi or (lesson_format(slug) == "v2" and cues["duration"] < lo):
+        bad.append(f"the lesson runs {cues['duration']:.1f} s ({lo:.0f} to {hi:.0f} s for a {lesson_format(slug)} lesson, end card included)")
     return rep, bad
 
 
@@ -1610,6 +1717,7 @@ def cmd_lint(slug, step=0.25):
         w = min(p["x1"], q["x1"]) - max(p["x0"], q["x0"]) + pad; h = min(p["y1"], q["y1"]) - max(p["y0"], q["y0"]) + pad
         return max(0, w) * max(0, h)
     hook, hook_bad = hook_report(slug, pg)   # before the world spy, on a clean page
+    send_line = pg.evaluate("(window.SCENE && window.SCENE.sendLine) || ''") if lesson_format(slug) == "v2" else None
     pg.evaluate(WORLD_SPY)
     t, worlds, steps = 0.0, {}, 0
     while t < cues["duration"]:
@@ -1633,6 +1741,7 @@ def cmd_lint(slug, step=0.25):
     b.close(); pw.stop()
     errors = [f"ERROR lint captions: {x}" for x in captions_problems(slug)] if os.path.exists(vdir(slug, "05_render", "captions.json")) else []
     errors += [f"ERROR lint hook: {x}" for x in hook_bad]
+    errors += [f"ERROR lint script: {x}" for x in script_problems(slug, send_line)]
     errors += [f"ERROR lint variety: {x}" for x in variety_problems(slug, {w: round(n / max(1, steps), 3) for w, n in worlds.items()})]
     for (kind, what), ts in sorted(hits.items(), key=lambda kv: kv[1][0]):
         runs, start, prev = [], ts[0], ts[0]
@@ -1715,9 +1824,10 @@ def cmd_check(slug, mp4=None):
     cues = json.load(open(vdir(slug, "03_cues", "cues.json")))
     end_card = max(c["t"] for c in cues["cues"] if c["level"] == 0)
     checks = []
+    lo, hi = length_band(slug)
     def c_len():
         secs = float(Q.probe(mp4)["format"]["duration"])
-        return round(secs, 3), 45.0 <= secs <= HOOK["max_seconds"], f"{secs:.2f} s (45.0 to {HOOK['max_seconds']:.1f}, studio lessons, end card included)"
+        return round(secs, 3), lo <= secs <= hi, f"{secs:.2f} s ({lo:.1f} to {hi:.1f}, {lesson_format(slug)} lesson, end card included)"
     for name, fn in [("length", c_len), ("loudness", lambda: Q.c_loudness(mp4)), ("black", lambda: Q.c_black(mp4)),
                      ("frozen", lambda: Q.c_frozen(mp4, end_card))]:
         try:
@@ -1781,6 +1891,8 @@ def main():
         cmd_ci_voice()
     elif c == "next":
         cmd_next()
+    elif c == "postcaptions":
+        cmd_postcaptions(a.slug)
     elif c == "waiting":
         cmd_waiting()
     elif not a.slug:
@@ -1815,6 +1927,8 @@ def main():
         cmd_lint(a.slug)
     elif c == "hook":
         cmd_hook(a.slug)
+    elif c == "script":
+        cmd_script(a.slug)
     elif c == "gatepack":
         cmd_gatepack(a.slug)
     elif c == "postcopy":

@@ -10,7 +10,7 @@ One job: post yesterday's gated lesson to four platforms, make tomorrow's, and s
 1. Date, preflight `video-studio`, config stop: tell Todd, end.
 2. Post: `anim.py next`, then `anim.py postcopy <slug>` (renders it from its gated commit). Follow POSTING.md for each missing platform (Claude in Chrome). Chrome unreachable or a stop condition: skip posting, tell Todd one line, go on to 3.
 3. Mondays: research run by research/README.md (fresh agent, opus), then read each posted lesson's numbers in Chrome (views, average watch, shares, saves) into research/metrics/<slug>.json; rank IDEAS.md by them.
-4. Make: next idea from IDEAS.md (the top one not made; mix topics across follow-up, pricing, bids, marketing, reviews, numbers). Slug <date>-<words>. Stages 01 to 05 by their contracts:
+4. Make: next idea from IDEAS.md's Trades-first bank (the top one not made; mix topics). Trade evidence only, no other-industry studies; each lesson its own worlds from _shared/sets.md (lint fails reused scenery). Slug <date>-<words>. Stages 01 to 05 by their contracts:
    - brief.md and facts.json: every number re-read on its source page today; numbers block; `anim.py data`.
    - script.md as talk (_shared/voice.md hook rules), 45 to 75 s, one stat hook, a copyable takeaway, a send line.
    - `speak`, push (check_repo first), wait for the Studio voice workflow (pull every minute, up to 15 min), `fetch`; flags 0 and pace 160 to 195 or re-roll that take once. takes.json credits left under 3,000: tell Todd.

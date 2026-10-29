@@ -8,6 +8,9 @@ The studio learns in three loops (Todd, Oct 28, 2026, 3:43 pm: "make this video 
    hook formulas in research/runs/2026-10-28-script-playbook.md; what wins gets written into _shared/voice.md.
 
 ## Rules learned (newest first)
+- Each lesson its own world (Todd, Oct 28): `lint` fails a lesson whose stock rooms fill over 40% of the runtime, that
+  reuses the last lesson's set pieces, or that has fewer than 3 set pieces new against the two before (04_scene/worlds.json).
+- Trades first (Todd, Oct 28): the main evidence comes from the trades; the facts gate fails other-industry studies.
 - Frame 0 is the cover: no sheen, sparks or reveal on it (the shine waits until 1 s).
 - The freeze check flags only truly stuck pictures (qa.freezeNoiseDb -70, Todd's word): small crisp motion counts.
 - A number's base stays the source's: "points of share" is not "points of all orders" (facts caught lesson 4).

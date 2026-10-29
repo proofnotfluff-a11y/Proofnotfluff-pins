@@ -1,0 +1,9 @@
+{
+ "schema": "pnf.studio.worlds.v1",
+ "share": {
+  "room:framing": 0.229,
+  "room:workshop": 0.359,
+  "room:blackboard": 0.263,
+  "room:garage": 0.149
+ }
+}

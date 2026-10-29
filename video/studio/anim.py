@@ -1426,6 +1426,44 @@ def captions_problems(slug):
     return out
 
 
+# which worlds (rooms and set pieces) a lesson draws, counted per lint step (Todd, Oct 28, 7:37 pm: "You are cycling
+# through the same scenery ... come up with new cool graphic motion for each video")
+WORLD_SPY = """(() => { if (window.__spy) return; window.__spy = true; const mk = window.Kit.make;
+  const note = (w) => { if (window.__used) window.__used[w] = 1; };
+  window.Kit.make = function (...a) { const k = mk.apply(this, a); const r = k.room;
+    k.room = function (n, ...b) { note('room:' + n); return r.call(this, n, ...b); };
+    for (const key of ['set', 'sets']) if (k[key] && typeof k[key] === 'object') { const o = k[key];
+      k[key] = new Proxy(o, {get(t, p) { const f = t[p]; return typeof f === 'function' ? function (...b) { note('set:' + String(p)); return f.apply(this, b); } : f; }}); }
+    return k; }; })()"""
+BASE_ROOMS = ("room:framing", "room:blackboard", "room:workshop", "room:garage")
+
+
+def variety_problems(slug, share):
+    """Each lesson its own world: writes 04_scene/worlds.json (share of the runtime each world is on screen) and compares
+    with the two lessons before it. Rules: no set piece from the previous lesson; at least 3 set pieces new against the
+    two before; the four stock rooms on screen at most 40% of the runtime."""
+    json.dump({"schema": "pnf.studio.worlds.v1", "share": share}, open(vdir(slug, "04_scene", "worlds.json"), "w"), indent=1)
+    vids = sorted(d for d in os.listdir(VIDEOS) if re.match(r"\d{4}-\d\d-\d\d-", d))
+    prev = [d for d in vids if d < slug][-2:]
+    mine = {w for w, v in share.items() if v >= 0.05}
+    sets = {w for w in mine if w.startswith("set:")}
+    out = []
+    room_share = sum(v for w, v in share.items() if w in BASE_ROOMS)
+    if room_share > 0.4:
+        out.append(f"the stock rooms fill {room_share:.0%} of the runtime (at most 40%): build this lesson's own worlds (_shared/sets.md)")
+    seen = []
+    for d in prev:
+        f = os.path.join(VIDEOS, d, "04_scene", "worlds.json")
+        if os.path.exists(f):
+            seen.append({w for w, v in json.load(open(f))["share"].items() if v >= 0.05 and w.startswith("set:")})
+    if seen and sets & seen[-1]:
+        out.append(f"reuses the last lesson's set pieces: {', '.join(sorted(sets & seen[-1]))}")
+    new = sets - set().union(*seen) if seen else sets
+    if len(new) < 3:
+        out.append(f"{len(new)} set piece(s) new against the two lessons before (at least 3)")
+    return out
+
+
 def cmd_lint(slug, step=0.25):
     """The layout check in code, before a reviewer has to find it: every settled scene text inside the safe area
     (x 20 to 950, y 262 to 1250), not under the host, the dialog box or other text. Problems that last under 0.5 s
@@ -1436,9 +1474,13 @@ def cmd_lint(slug, step=0.25):
     def ov(p, q, pad=0):
         w = min(p["x1"], q["x1"]) - max(p["x0"], q["x0"]) + pad; h = min(p["y1"], q["y1"]) - max(p["y0"], q["y0"]) + pad
         return max(0, w) * max(0, h)
-    t = 0.0
+    pg.evaluate(WORLD_SPY)
+    t, worlds, steps = 0.0, {}, 0
     while t < cues["duration"]:
-        bx = pg.evaluate(f"(() => {{ window.__boxes = []; drawAt({t:.3f}); const r = window.__boxes; window.__boxes = null; return r; }})()")
+        bx, used = pg.evaluate(f"(() => {{ window.__boxes = []; window.__used = {{}}; drawAt({t:.3f}); const r = window.__boxes; window.__boxes = null; return [r, Object.keys(window.__used)]; }})()")
+        steps += 1
+        for w in used:
+            worlds[w] = worlds.get(w, 0) + 1
         texts = [x for x in bx if x["tag"] == "scene" and x["a"] > 0.6 and x["s"].strip()]
         host = [x for x in bx if x["tag"] == "host"]; dlg = [x for x in bx if x["tag"] == "dialogbox"]
         for x in texts:
@@ -1454,6 +1496,7 @@ def cmd_lint(slug, step=0.25):
         t += step
     b.close(); pw.stop()
     errors = [f"ERROR lint captions: {x}" for x in captions_problems(slug)] if os.path.exists(vdir(slug, "05_render", "captions.json")) else []
+    errors += [f"ERROR lint variety: {x}" for x in variety_problems(slug, {w: round(n / max(1, steps), 3) for w, n in worlds.items()})]
     for (kind, what), ts in sorted(hits.items(), key=lambda kv: kv[1][0]):
         runs, start, prev = [], ts[0], ts[0]
         for x in ts[1:] + [None]:

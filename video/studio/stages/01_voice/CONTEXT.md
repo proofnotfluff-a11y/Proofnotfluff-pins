@@ -6,6 +6,10 @@
 1. Plan before a word of script. `brief.md` answers: where it posts (Instagram Reel, 9:16, 45 to 60 s), the audience
    (a small Chicago trade owner on a phone), the one idea, the numbers (each with its path in the data file and the
    value as shown), the real screens worth showing, the metaphor only if one earns its place, the voice.
+   Evidence comes from the trades (Todd, Oct 28, 7:38 pm): pick the lesson from research/runs/2026-10-28-trades-insights.md
+   (what trades creators teach that lands, each backed by trade data, trade press or a trade association). No study from
+   another industry as the main evidence, and no "this isn't the trades" caveat: if the trades have no number, find one or
+   teach a different lesson. The brief names the creators who teach it and the visual world (`_shared/sets.md`).
 2. Write `script.md` as talk (`_shared/voice.md`): one paragraph per take, 2 to 4 sentences each, delivery tags in
    square brackets, a stressed word in capitals at most once a paragraph. Numbers are written the way they are said
    ("forty-five", "two hundred twenty-one percent"); the brief holds the digits.

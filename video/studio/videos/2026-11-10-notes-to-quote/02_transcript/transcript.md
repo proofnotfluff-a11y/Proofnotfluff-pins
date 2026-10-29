@@ -20,7 +20,7 @@ none
 
 `00:04.2` Usually those notes sit in your car all day.
 
-`00:06.5` You rebuild the quote at night, from memory, and forget the inside of the oven.
+`00:07.0` You rebuild the quote at night, from memory, and forget the inside of the oven.
 
 `00:11.7` Paste the notes into an AI chat app with this.
 

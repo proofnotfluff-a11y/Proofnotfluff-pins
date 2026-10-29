@@ -56,7 +56,24 @@
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {
+    "instagram": {
+     "url": "https://www.instagram.com/proofnotfluff/reel/DfFXimfu0Zd/",
+     "at": "2026-10-29T11:23:19-05:00"
+    },
+    "facebook": {
+     "url": "https://www.facebook.com/reel/2200132157567794",
+     "at": "2026-10-29T11:23:20-05:00"
+    },
+    "tiktok": {
+     "url": "https://www.tiktok.com/@proofnotfluff/video/7702120028610497823",
+     "at": "2026-10-29T11:23:20-05:00"
+    },
+    "youtube": {
+     "url": "https://youtube.com/shorts/kjNIG_Vmebo",
+     "at": "2026-10-29T11:23:20-05:00"
+    }
+   }
   },
   {
    "slug": "2026-10-30-markup-margin",

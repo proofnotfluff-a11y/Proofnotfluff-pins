@@ -1,0 +1,39 @@
+name: Kimi second opinion
+# One question to Kimi K3.1 Pro on Todd's Kimi Code key (repo secret KIMI_API, never printed), Oct 29, 2026.
+# Same route as kimi-smoke.yml: Claude Code pointed at Kimi's documented Anthropic-compatible endpoint, no custom
+# client, no User-Agent change. Branch-only; reads research_notes/kimi-ask-*.md, prints Kimi's answer to the log.
+on:
+  push:
+    branches: [claude/project-thread-93uxq6]
+    paths: [".github/workflows/kimi-second-opinion.yml", "research_notes/kimi-ask-2026-10-29-ai-education.md"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ask:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Claude Code
+        run: npm install -g --silent @anthropic-ai/claude-code >/dev/null 2>&1 && claude --version
+      - name: Ask Kimi once
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.KIMI_API }}
+          ANTHROPIC_BASE_URL: https://api.kimi.ai/coding/
+          ANTHROPIC_MODEL: k3.1-pro
+          ANTHROPIC_DEFAULT_HAIKU_MODEL: k3.1-pro
+          ANTHROPIC_DEFAULT_SONNET_MODEL: k3.1-pro
+          ANTHROPIC_DEFAULT_OPUS_MODEL: k3.1-pro
+          CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: "1"
+          DISABLE_TELEMETRY: "1"
+          DISABLE_AUTOUPDATER: "1"
+          CLAUDE_CODE_MAX_RETRIES: "1"
+          API_TIMEOUT_MS: "300000"
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then echo "FAIL secret KIMI_API is empty or missing"; exit 1; fi
+          ANTHROPIC_API_KEY="$(printf '%s' "$ANTHROPIC_API_KEY" | tr -d '[:space:]')"; export ANTHROPIC_API_KEY
+          ask="$GITHUB_WORKSPACE/research_notes/kimi-ask-2026-10-29-ai-education.md"
+          mkdir -p /tmp/empty && cd /tmp/empty
+          out=$(timeout 400 claude -p "$(cat "$ask")" --max-turns 1 --output-format json </dev/null 2>/dev/null || true)
+          printf '%s' "$out" | python3 -c 'import json,sys; s=sys.stdin.read().strip(); d=json.loads(s) if s.startswith("{") else {}; print("=== KIMI ANSWER ==="); print(d.get("result") or ("ERROR " + s[:300])); print("=== END ===")'

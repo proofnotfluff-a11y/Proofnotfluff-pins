@@ -1,6 +1,6 @@
 # Script: Close it before you leave the driveway (Lesson 5, Quote Clinic; topic bank T2, facts re-read Oct 28)
 
-[leaning in] Quote still open when you leave the driveway? Top shops close seventy-seven percent of their estimates on the same visit. Here's how to ask.
+[leaning in] Still no yes when you leave the driveway? Top shops close seventy-seven percent of their estimates on the same visit. Here's how to ask.
 
 [matter-of-fact] ServiceTitan looked at a year of data from its customers, up to this January. The top ten percent by revenue closed seventy-seven percent on the same visit. Everyone else? Sixty-two.
 

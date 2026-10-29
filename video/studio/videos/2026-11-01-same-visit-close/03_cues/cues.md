@@ -2,7 +2,7 @@
 
 music: rooms
 
-## hook "Quote still open when" [sfx: pop]
+## hook "Still no yes when" [sfx: pop]
 Frame 0: the hook card, fully settled. "Top shops close" / "77%" / "of estimates" / "on the same visit." The 77% in the accent, sparks. Source small: ServiceTitan, 12 months to Jan 2026. Host and dialog hidden.
 ## hook.top "Top shops close seventy-seven"
 Room: framing. A work van sits in the driveway; an estimate slip slides in beside it (lines, "Estimate", "Total: $"). Chip QUOTE CLINIC.

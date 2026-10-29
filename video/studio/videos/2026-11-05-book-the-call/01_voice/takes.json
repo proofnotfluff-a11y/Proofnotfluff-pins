@@ -1,6 +1,6 @@
 {
  "schema": "pnf.studio.takes.v1",
- "requestedAt": "2026-10-28T20:21:11-05:00",
+ "requestedAt": "2026-10-28T20:27:31-05:00",
  "voice": "W3pJy9ibur1FKUihVxzY",
  "model": "eleven_v4",
  "scriptSha256": "2d915a3f0247323bfd1a04c61ba90c729fc5cb727fb0d88b4811956ee4066ca8",
@@ -78,7 +78,7 @@
   }
  ],
  "chars": 1204,
- "at": "2026-10-28T20:25:58-05:00",
+ "at": "2026-10-28T20:32:07-05:00",
  "credits": {
   "used": 15577,
   "limit": 40000,

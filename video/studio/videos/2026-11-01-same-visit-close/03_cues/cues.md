@@ -67,7 +67,7 @@ The notebook page comes down on "honest". Header on dark tape: "One honest note.
 The pen writes "It's a pattern, not proof." as said; "not proof" gets a red underline; the source line lands: "ServiceTitan: correlated, / not shown to cause."
 ## caveat.other "Top shops might close"
 "Top shops might close more" / "for other reasons." written under it.
-## caveat.cost "but asking only costs" [sfx: pop]
+## caveat.cost "But asking only costs" [sfx: pop]
 "But asking only costs you" / "one sentence." written in red, double underlined. Snow shrugs.
 
 ## close "Don't drive off and" [sfx: pop]

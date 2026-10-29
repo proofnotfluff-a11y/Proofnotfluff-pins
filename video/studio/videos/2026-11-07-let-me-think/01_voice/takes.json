@@ -1,20 +1,20 @@
 {
  "schema": "pnf.studio.takes.v1",
- "requestedAt": "2026-10-29T12:31:06-05:00",
+ "requestedAt": "2026-10-29T12:35:58-05:00",
  "voice": "W3pJy9ibur1FKUihVxzY",
  "model": "eleven_v4",
- "scriptSha256": "9bc99aefff77b47fe75676fa3adcf7e4f3991d3de31697eef096f15bf76a477d",
- "voiceSha256": "2a4d7eaa1eeb8e74e94b8a3952ed0d87a211952b41d9e2bea69d9bb8a78d0015",
+ "scriptSha256": "9e5e609cc39e59976c3b887c6bba055c98fef3ac3866d8c30c26e3617fd54b05",
+ "voiceSha256": "70070db89bbfacc4a8b4953c3cefc2402d2ea685930a349defaf835e5b266a26",
  "takes": [
   {
    "n": 1,
    "file": "takes/01.mp3",
-   "sha256": "627f34ba19f62e2153e93fa67cec62d704e28761ab296131326687d33619b15d",
-   "seconds": 3.866,
-   "chars": 69,
+   "sha256": "37e84a9a1153a252b41e2e22419f8915c9e1d0a99cb2fc6ef1b88328150aa99d",
+   "seconds": 3.971,
+   "chars": 73,
    "start": 0.0,
-   "end": 3.866,
-   "wpm": 155
+   "end": 3.971,
+   "wpm": 166
   },
   {
    "n": 2,
@@ -22,8 +22,8 @@
    "sha256": "f0f13e9eb16d6feddac38f5407256c3054b75a5eda8258bc82f0d6775a2a0703",
    "seconds": 8.516,
    "chars": 134,
-   "start": 4.186,
-   "end": 12.702,
+   "start": 4.291,
+   "end": 12.807,
    "wpm": 155
   },
   {
@@ -32,8 +32,8 @@
    "sha256": "7559330c48a24b788441bdc8d660f58a90a24baa85478b457836f931b8e8aa01",
    "seconds": 10.371,
    "chars": 209,
-   "start": 13.022,
-   "end": 23.393,
+   "start": 13.127,
+   "end": 23.498,
    "wpm": 214
   },
   {
@@ -41,10 +41,10 @@
    "file": "takes/04.mp3",
    "sha256": "4aa901946db227f05b9f08c0a10c8a3137fcdfa146a879f0063471110159e8b3",
    "seconds": 9.561,
-   "chars": 167,
-   "start": 23.713,
-   "end": 33.274,
-   "wpm": 144
+   "chars": 171,
+   "start": 23.818,
+   "end": 33.379,
+   "wpm": 151
   },
   {
    "n": 5,
@@ -52,13 +52,13 @@
    "sha256": "10431333636d2ebffabe8123770e7932b4072b47fc4e15e3f3b5a19cfd8c186f",
    "seconds": 6.113,
    "chars": 140,
-   "start": 33.594,
-   "end": 39.707,
+   "start": 33.699,
+   "end": 39.812,
    "wpm": 206
   }
  ],
- "chars": 719,
- "at": "2026-10-29T12:34:59-05:00",
+ "chars": 727,
+ "at": "2026-10-29T12:37:33-05:00",
  "credits": {
   "used": 22094,
   "limit": 40000,

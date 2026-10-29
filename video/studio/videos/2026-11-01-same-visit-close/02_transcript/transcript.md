@@ -1,19 +1,19 @@
 # Transcript: 2026-11-01-same-visit-close
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 199 words, 70.7 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 200 words, 72.2 s of voice.
 
 ## Flags
-none
+- 4.8 s heard 'closed seventy seven %' for 'close seventy-seven percent'
 
 ## Pace per take (target 160 to 195 wpm)
 ```
   01     0.0 s  176 wpm  
   02     8.5 s  150 wpm  
   03    19.2 s  178 wpm  
-  04    32.7 s  206 wpm  fast: give it a landing beat, then speak --take 4
-  05    44.1 s  153 wpm  
-  06    55.0 s  143 wpm  slow: rewrite it as talk, then speak --take 6
-  07    64.6 s  211 wpm  fast: give it a landing beat, then speak --take 7
+  04    32.7 s  198 wpm  
+  05    44.8 s  153 wpm  
+  06    55.8 s  147 wpm  slow: rewrite it as talk, then speak --take 6
+  07    65.9 s  186 wpm  
 ```
 
 ## Words
@@ -44,30 +44,32 @@ none
 
 `00:32.7` So ask before you walk out.
 
-`00:34.7` It's three lines.
+`00:34.8` It's three lines.
 
-`00:36.2` Here are your options.
+`00:36.2` Ready?
 
-`00:37.6` If you want to go ahead today, I can get you on the schedule for Thursday.
+`00:37.0` Here are your options.
 
-`00:41.5` What questions do you have before you pick one?
+`00:38.4` If you want to go ahead today, I can get you on the schedule for Thursday.
 
-`00:44.1` Here's the part people skip.
+`00:42.3` What questions do you have before you pick one?
 
-`00:46.1` That last question brings the worry out while you're still there.
+`00:44.8` Here's the part people skip.
 
-`00:49.9` ServiceTitan says same-visit closes show how well your tech handles objections.
+`00:46.8` That last question brings the worry out while you're still there.
 
-`00:55.0` One honest note.
+`00:50.6` ServiceTitan says same-visit closes show how well your tech handles objections.
 
-`00:56.6` It's a pattern, not proof.
+`00:55.8` One honest note.
 
-`00:58.6` Top shops might close more for other reasons.
+`00:57.4` It's a pattern, not proof.
 
-`01:01.6` Asking still costs you one sentence.
+`00:59.6` Top shops might close more for other reasons, but asking still costs you just one sentence.
 
-`01:04.6` Don't drive off and wait for a yes.
+`01:05.9` Don't drive off and wait.
 
-`01:07.0` Ask for it in the driveway.
+`01:07.6` Ask for the yes.
 
-`01:08.9` Send this to whoever goes out on your estimates.
+`01:08.5` In the driveway.
+
+`01:10.4` Send this to whoever goes out on your estimates.

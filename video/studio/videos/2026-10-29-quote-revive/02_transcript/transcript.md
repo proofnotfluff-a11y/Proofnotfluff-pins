@@ -1,9 +1,9 @@
 # Transcript: 2026-10-29-quote-revive
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 229 words, 84.2 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 230 words, 84.6 s of voice.
 
 ## Flags
-- 53.3 s heard 'text' for 'texts'
+none
 
 ## Pace per take (target 160 to 195 wpm)
 ```
@@ -11,9 +11,9 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 229 words, 84.2 s of voice.
   02     5.1 s  174 wpm  
   03    18.1 s  169 wpm  
   04    33.7 s  169 wpm  
-  05    47.2 s  140 wpm  slow: rewrite it as talk, then speak --take 5
-  06    63.3 s  187 wpm  
-  07    75.8 s  180 wpm  
+  05    47.2 s  141 wpm  slow: rewrite it as talk, then speak --take 5
+  06    63.7 s  187 wpm  
+  07    76.2 s  180 wpm  
 ```
 
 ## Words
@@ -54,26 +54,26 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 229 words, 84.2 s of voice.
 
 `00:50.1` Don't email it.
 
-`00:51.5` ServiceTitan's follow-up webinar says texts beat email on open rates.
+`00:51.5` ServiceTitan's follow-up webinar says text messages beat email on open rates.
 
-`00:55.9` In a Housecall Pro survey, fifty-nine percent of homeowners expect text updates.
+`00:56.3` In a Housecall Pro survey, fifty-nine percent of homeowners expect text updates.
 
-`01:01.2` Your text fits right in.
+`01:01.6` Your text fits right in.
 
-`01:03.3` When do you send it?
+`01:03.7` When do you send it?
 
-`01:04.7` Jobber says within two days of the quote.
+`01:05.1` Jobber says within two days of the quote.
 
-`01:07.3` Then a week after you sent it.
+`01:07.7` Then a week after you sent it.
 
-`01:09.3` Then once more, a day or two before it expires.
+`01:09.7` Then once more, a day or two before it expires.
 
-`01:12.7` Still nothing?
+`01:13.1` Still nothing?
 
-`01:13.7` It's okay to close the file.
+`01:14.1` It's okay to close the file.
 
-`01:15.8` One name, one job, one question.
+`01:16.2` One name, one job, one question.
 
-`01:19.0` Send this to whoever follows up on your quotes.
+`01:19.4` Send this to whoever follows up on your quotes.
 
-`01:21.6` Next time a quote goes quiet, you'll know what to send.
+`01:22.0` Next time a quote goes quiet, you'll know what to send.

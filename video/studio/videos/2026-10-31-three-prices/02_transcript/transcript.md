@@ -3,7 +3,7 @@
 Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 230 words, 83.8 s of voice.
 
 ## Flags
-- 25.1 s heard 'they'd' for 'they'
+none
 
 ## Pace per take (target 160 to 195 wpm)
 ```
@@ -38,11 +38,11 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 230 words, 83.8 s of voice.
 
 `00:20.5` Housecall Pro surveyed over eleven hundred homeowners.
 
-`00:24.0` Sixty-eight percent said they go get more quotes when a price comes in higher than they expected.
+`00:24.1` Sixty-eight percent said they go get more quotes when a price comes in higher than they expected.
 
-`00:29.2` One price that surprises them can send them shopping.
+`00:29.1` One price that surprises them can send them shopping.
 
-`00:32.3` With three, the cheaper option is already on your quote.
+`00:32.2` With three, the cheaper option is already on your quote.
 
 `00:36.1` Build your three like this.
 

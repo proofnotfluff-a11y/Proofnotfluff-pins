@@ -1,6 +1,6 @@
 {
- "fetchedAt": "2026-10-26T09:00:38-05:00",
- "rowsUpdatedAt": "2026-10-24T09:53:08+00:00",
+ "fetchedAt": "2026-10-29T18:18:05-05:00",
+ "rowsUpdatedAt": "2026-10-29T09:56:52+00:00",
  "columns": [
   "id",
   "license_id",
@@ -48,47 +48,47 @@
  "byLicense": [
   [
    "Limited Business License",
-   157
+   174
   ],
   [
    "Pop-Up Retail User",
-   104
+   119
   ],
   [
    "Retail Food Establishment",
-   87
+   102
   ],
   [
    "Regulated Business License",
-   83
+   84
   ],
   [
    "Special Event Food",
-   60
+   58
   ],
   [
    "Peddler License",
-   29
+   31
   ],
   [
    "Pharmaceutical Representative",
-   25
-  ],
-  [
-   "Consumption on Premises - Incidental Activity",
-   16
+   26
   ],
   [
    "Shared Kitchen User (Long Term)",
-   14
+   16
   ],
   [
-   "Tobacco",
-   13
+   "Consumption on Premises - Incidental Activity",
+   14
   ],
   [
    "Shared Housing Unit Operator",
    13
+  ],
+  [
+   "Tobacco",
+   12
   ],
   [
    "Valet Parking Operator",
@@ -99,6 +99,14 @@
    11
   ],
   [
+   "Animal Care License",
+   8
+  ],
+  [
+   "Public Place of Amusement",
+   7
+  ],
+  [
    "Special Event Liquor",
    7
   ],
@@ -107,8 +115,8 @@
    6
   ],
   [
-   "Public Place of Amusement",
-   6
+   "Children's Services Facility License",
+   5
   ],
   [
    "Video Gaming Terminal",
@@ -119,24 +127,20 @@
    5
   ],
   [
+   "Commercial Garage",
+   4
+  ],
+  [
    "Raffles",
-   5
-  ],
-  [
-   "Animal Care License",
    4
   ],
   [
-   "Manufacturing Establishments",
-   4
+   "Caterer's Liquor License",
+   3
   ],
   [
-   "Children's Services Facility License",
-   4
-  ],
-  [
-   "Outdoor Patio",
-   4
+   "Tavern",
+   3
   ],
   [
    "Filling Station",
@@ -151,14 +155,6 @@
    3
   ],
   [
-   "Tavern",
-   3
-  ],
-  [
-   "Commercial Garage",
-   3
-  ],
-  [
    "Mobile Food License",
    3
   ],
@@ -167,15 +163,19 @@
    3
   ],
   [
+   "Outdoor Patio",
+   3
+  ],
+  [
    "Wholesale Food Establishment",
    2
   ],
   [
-   "Caterer's Liquor License",
+   "Shared Kitchen User (Short Term)",
    2
   ],
   [
-   "Shared Kitchen User (Short Term)",
+   "Manufacturing Establishments",
    2
   ],
   [
@@ -185,43 +185,47 @@
   [
    "Pawnbroker",
    1
-  ],
-  [
-   "Secondhand Dealer",
-   1
   ]
  ],
  "keptByLicense": [
   [
    "Limited Business License",
-   87
+   97
   ],
   [
    "Retail Food Establishment",
-   70
+   81
   ],
   [
    "Regulated Business License",
-   15
+   17
   ],
   [
    "Video Gaming Location",
    9
   ],
   [
+   "Animal Care License",
+   6
+  ],
+  [
    "Tobacco",
-   7
+   6
+  ],
+  [
+   "Commercial Garage",
+   4
   ],
   [
    "Motor Vehicle Services License",
    4
   ],
   [
-   "Commercial Garage",
+   "Tavern",
    3
   ],
   [
-   "Animal Care License",
+   "Children's Services Facility License",
    3
   ],
   [
@@ -237,15 +241,7 @@
    2
   ],
   [
-   "Tavern",
-   2
-  ],
-  [
    "Manufacturing Establishments",
-   2
-  ],
-  [
-   "Children's Services Facility License",
    2
   ],
   [

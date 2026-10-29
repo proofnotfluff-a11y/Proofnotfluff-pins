@@ -2,44 +2,44 @@
  "source": {
   "name": "City of Chicago Data Portal, Business Licenses",
   "url": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
-  "rowsUpdatedAt": "2026-10-24T09:53:08+00:00",
-  "fetchedAt": "2026-10-26T09:00:38-05:00",
+  "rowsUpdatedAt": "2026-10-29T09:56:52+00:00",
+  "fetchedAt": "2026-10-29T18:18:05-05:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "modified": "Filtered by ProofNotFluff: new business licenses (application type Issue) issued in the last 30 days at a Chicago business site, one row per business and address. Left out: renewals, cancelled or revoked licenses, licenses for one person's own work, for work away from a fixed business site, or for an event or season (peddlers, special events, pop-ups, tow trucks, home-sharing, shared kitchen users, private booting), home and mail-drop addresses, and any business whose name could be a person's full name. Business-level fields only."
  },
  "window": {
-  "from": "2026-10-19",
-  "to": "2026-10-26",
-  "listFrom": "2026-09-26"
+  "from": "2026-10-22",
+  "to": "2026-10-29",
+  "listFrom": "2026-09-29"
  },
  "counts": {
-  "fetched": 704,
-  "kept30": 216,
-  "keptWeek": 63,
+  "fetched": 755,
+  "kept30": 244,
+  "keptWeek": 65,
   "segmentsWeek": {
-   "food": 28,
+   "food": 25,
    "beauty": 9,
    "auto": 2,
    "care": 1,
-   "venue": 1,
-   "retail": 22
+   "venue": 0,
+   "retail": 28
   },
   "segments30": {
-   "food": 80,
-   "beauty": 35,
+   "food": 93,
+   "beauty": 40,
    "auto": 9,
-   "care": 2,
+   "care": 3,
    "venue": 3,
-   "retail": 87
+   "retail": 96
   },
   "excluded": {
-   "issued outside the window": 135,
-   "license for one person's own work, work away from a fixed site, or an event or season": 256,
-   "home or apartment address": 20,
-   "name could be a person's": 32,
-   "site outside Chicago": 20,
-   "second license at the same site (listed once)": 17,
-   "virtual office or mailbox address": 2,
+   "issued outside the window": 131,
+   "license for one person's own work, work away from a fixed site, or an event or season": 268,
+   "site outside Chicago": 25,
+   "second license at the same site (listed once)": 21,
+   "name could be a person's": 38,
+   "virtual office or mailbox address": 1,
+   "home or apartment address": 21,
    "not a new license (renewal or change)": 4,
    "license not active (cancelled or revoked)": 1,
    "on the do-not-list (asked to be left out, or a likely home)": 1
@@ -47,42 +47,42 @@
   "areasWeek": [
    [
     "West Town",
-    5
+    6
    ],
    [
-    "Irving Park",
+    "New City",
     4
    ],
    [
-    "Loop",
+    "Lake View",
     4
    ],
    [
     "Near North Side",
+    4
+   ],
+   [
+    "Loop",
     3
    ],
    [
-    "Portage Park",
+    "Irving Park",
+    3
+   ],
+   [
+    "Austin",
     2
    ],
    [
-    "Auburn Gresham",
+    "North Lawndale",
     2
    ],
    [
-    "Clearing",
+    "Woodlawn",
     2
    ],
    [
-    "Mount Greenwood",
-    2
-   ],
-   [
-    "Garfield Ridge",
-    2
-   ],
-   [
-    "Logan Square",
+    "Near West Side",
     2
    ]
   ],
@@ -92,13 +92,13 @@
    "foodInspections": true
   },
   "history30": {
-   "added": 24,
-   "relicensed": 36,
-   "first": 122,
-   "site": 34
+   "first": 142,
+   "added": 26,
+   "relicensed": 39,
+   "site": 37
   },
-  "foodInsp30": 75,
-  "freeLeftFailedWeek": 13
+  "foodInsp30": 88,
+  "freeLeftFailedWeek": 8
  },
  "segmentNames": {
   "food": "Restaurants, cafes, bars and food shops",
@@ -111,97 +111,151 @@
  "segments": {
   "food": [
    {
-    "business": "Subway",
-    "address": "3700 W Addison St",
-    "communityArea": "Irving Park",
-    "licenseType": "Retail Food Establishment",
-    "activity": "Preparation of Food and Dining on Premises With Seating",
-    "issued": "2026-10-23",
-    "history": "first"
-   },
-   {
-    "business": "Rke Foods and Meat",
-    "address": "1850 W 79th St",
-    "communityArea": "Auburn Gresham",
-    "licenseType": "Retail Food Establishment",
-    "activity": "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Perishable Foods",
-    "issued": "2026-10-23",
-    "history": "first"
-   },
-   {
-    "business": "Mos Food and Deli",
-    "address": "100 E 47th St 1st",
-    "communityArea": "Grand Boulevard",
-    "licenseType": "Retail Food Establishment",
-    "activity": "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Perishable Foods",
-    "issued": "2026-10-23",
-    "history": "first"
-   },
-   {
-    "business": "Icann Breakfast Buffet",
-    "address": "1829 W Chicago Ave",
-    "communityArea": "West Town",
-    "licenseType": "Retail Food Establishment",
-    "activity": "Sale of Food Prepared Onsite With Dining Area",
-    "issued": "2026-10-23",
-    "history": "first"
-   },
-   {
-    "business": "Da's Catering LLC",
-    "address": "7117 S State St 1st",
-    "communityArea": "Greater Grand Crossing",
-    "licenseType": "Retail Food Establishment",
-    "activity": "Sale of Food Prepared Onsite Without Dining Area",
-    "issued": "2026-10-23",
-    "history": "site"
-   },
-   {
-    "business": "Axum Cafe",
-    "address": "5842 N Broadway",
-    "communityArea": "Edgewater",
-    "licenseType": "Retail Food Establishment",
-    "activity": "Operation of a Deli, Butcher or Bakery | Preparation of Food and Dining on Premises With Seating | Preparation of Food, Coffee or Drinks | Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Perishable Foods | Sale of Food Prepared Onsite With Dining Area | and 6 more",
-    "issued": "2026-10-22",
-    "history": "first"
-   },
-   {
-    "business": "Pearl Club",
-    "address": "495-499 N Milwaukee Ave Basement, 1, Mezz.",
-    "communityArea": "West Town",
+    "business": "SomosMonos Cerveceria",
+    "address": "1400 W 46th St 101",
+    "communityArea": "New City",
     "licenseType": "Tavern",
     "activity": "Tavern - Consumption of Liquor on Premises",
-    "issued": "2026-10-21",
+    "issued": "2026-10-28",
     "history": "added"
    },
    {
-    "business": "Figurati Pizza & Italian Beef",
-    "address": "11611-11613 S Halsted St 1st",
-    "communityArea": "West Pullman",
+    "business": "Halsted One Stop Deli",
+    "address": "7059 S Halsted St 1st A",
+    "communityArea": "Englewood",
     "licenseType": "Retail Food Establishment",
     "activity": "Sale of Food Prepared Onsite Without Dining Area",
-    "issued": "2026-10-21",
+    "issued": "2026-10-28",
     "history": "first"
    },
    {
-    "business": "Da Nang Kitchen",
-    "address": "1019 W Argyle St 1/2",
-    "communityArea": "Uptown",
+    "business": "Gibsons Tavern",
+    "address": "925 W Fulton Market 1",
+    "communityArea": "Near West Side",
     "licenseType": "Retail Food Establishment",
-    "activity": "Sale of Food Prepared Onsite With Dining Area | Preparation and Sale of Coffee and/or Drinks",
-    "issued": "2026-10-21",
+    "activity": "Preparation of Food and Dining on Premises With Seating",
+    "issued": "2026-10-28",
     "history": "first"
    },
    {
-    "business": "Big Dawg Market Inc.",
-    "address": "8246 S Racine Ave 1 2",
-    "communityArea": "Auburn Gresham",
+    "business": "Just Butter Chicken",
+    "address": "2850 N Clark St 1",
+    "communityArea": "Lake View",
     "licenseType": "Retail Food Establishment",
-    "activity": "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Perishable Foods",
-    "issued": "2026-10-21",
+    "activity": "Preparation of Food and Dining on Premises With Seating | Sale of Food Prepared Onsite With Dining Area",
+    "issued": "2026-10-27",
     "history": "first"
+   },
+   {
+    "business": "Billal's",
+    "address": "131 N Clinton St",
+    "communityArea": "Near West Side",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Sale of Food Prepared Onsite Without Dining Area",
+    "issued": "2026-10-27",
+    "history": "first"
+   },
+   {
+    "business": "Xiao Long Ji Soup Dumplings",
+    "address": "2132 W Chicago Ave",
+    "communityArea": "West Town",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Sale of Food Prepared Onsite With Dining Area",
+    "issued": "2026-10-26",
+    "history": "first"
+   },
+   {
+    "business": "The Siam Lotus Thai Cuisine LLC",
+    "address": "3445 W 51st St 1st",
+    "communityArea": "Gage Park",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Preparation of Food and Dining on Premises With Seating",
+    "issued": "2026-10-26",
+    "history": "first"
+   },
+   {
+    "business": "The Big Mini",
+    "address": "1302 N Milwaukee Ave 1",
+    "communityArea": "West Town",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Retail Sales of Perishable Foods | Sale of Food Prepared Onsite With Dining Area",
+    "issued": "2026-10-26",
+    "history": "added"
+   },
+   {
+    "business": "Mirus Coffee",
+    "address": "1356 W Diversey Pkwy Front",
+    "communityArea": "Lake View",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Retail Sales of General Merchandise | Preparation and Sale of Coffee and/or Drinks",
+    "issued": "2026-10-26",
+    "history": "first"
+   },
+   {
+    "business": "Cava",
+    "address": "1830 W Fullerton Ave #36",
+    "communityArea": "Lincoln Park",
+    "licenseType": "Retail Food Establishment",
+    "activity": "Sale of Food Prepared Onsite With Dining Area",
+    "issued": "2026-10-26",
+    "history": "site"
    }
   ],
   "beauty": [
+   {
+    "business": "Sky Nails Salon, Inc.",
+    "address": "5306 S Pulaski Rd",
+    "communityArea": "West Elsdon",
+    "licenseType": "Limited Business License",
+    "activity": "Nail Services",
+    "issued": "2026-10-28",
+    "history": "relicensed"
+   },
+   {
+    "business": "Hair Braiding Salon",
+    "address": "6544 S Cottage Grove Ave",
+    "communityArea": "Woodlawn",
+    "licenseType": "Limited Business License",
+    "activity": "Hair Services",
+    "issued": "2026-10-28",
+    "history": "first"
+   },
+   {
+    "business": "Mamacitas Fitness 847",
+    "address": "4922 N Pulaski Rd",
+    "communityArea": "Albany Park",
+    "licenseType": "Regulated Business License",
+    "activity": "Provide Fitness Classes",
+    "issued": "2026-10-27",
+    "history": "first"
+   },
+   {
+    "business": "Sharp Standard Barbershop",
+    "address": "3000 N Elston Ave",
+    "communityArea": "Avondale",
+    "licenseType": "Limited Business License",
+    "activity": "Hair Services",
+    "issued": "2026-10-26",
+    "history": "first"
+   },
+   {
+    "business": "Petite Studio by Ramona Denigris",
+    "address": "6565 N Avondale Ave 1 1",
+    "communityArea": "Edison Park",
+    "licenseType": "Limited Business License",
+    "activity": "Retail Sales of General Merchandise and Non-Perishable Food | Skincare Services | Provide Waxing Services",
+    "issued": "2026-10-26",
+    "history": "relicensed"
+   },
+   {
+    "business": "Di Lashes Inc.",
+    "address": "460 W Chicago Ave 1st 103",
+    "communityArea": "Near North Side",
+    "licenseType": "Limited Business License",
+    "activity": "Skincare Services",
+    "issued": "2026-10-26",
+    "history": "first"
+   },
    {
     "business": "Sore Wellness/L.A. Tan",
     "address": "345 W North Ave 1",
@@ -228,63 +282,18 @@
     "activity": "Hair Services | Retail Sales of General Merchandise",
     "issued": "2026-10-22",
     "history": "first"
-   },
-   {
-    "business": "One Stop Nails & Spa",
-    "address": "8145 S Cottage Grove Ave",
-    "communityArea": "Chatham",
-    "licenseType": "Limited Business License",
-    "activity": "Nail Services | Provide Waxing Services",
-    "issued": "2026-10-21",
-    "history": "site"
-   },
-   {
-    "business": "Lincoln Park Waxing Studio Inc.",
-    "address": "2102 N Clark St 1st",
-    "communityArea": "Lincoln Park",
-    "licenseType": "Limited Business License",
-    "activity": "Skincare Services | Provide Waxing Services",
-    "issued": "2026-10-21",
-    "history": "relicensed"
-   },
-   {
-    "business": "Emyves Spa",
-    "address": "7127 N Clark St 1st",
-    "communityArea": "Rogers Park",
-    "licenseType": "Limited Business License",
-    "activity": "Hair Services | Skincare Services",
-    "issued": "2026-10-21",
-    "history": "first"
-   },
-   {
-    "business": "Vaknin Aesthetics LLC",
-    "address": "6165 N Northwest Hwy 123",
-    "communityArea": "Norwood Park",
-    "licenseType": "Limited Business License",
-    "activity": "Skincare Services | Retail Sales of General Merchandise",
-    "issued": "2026-10-20",
-    "history": "first"
-   },
-   {
-    "business": "Tabitha African Hair Braiding",
-    "address": "5806 W Division St",
-    "communityArea": "Austin",
-    "licenseType": "Limited Business License",
-    "activity": "Hair Services",
-    "issued": "2026-10-19",
-    "history": "first"
-   },
-   {
-    "business": "Montrose Foot Massage & Spa",
-    "address": "4401 N Keeler Ave 1st",
-    "communityArea": "Irving Park",
-    "licenseType": "Limited Business License",
-    "activity": "Skincare Services | Provide Foot Massage - Fully Clothed/No Disrobing",
-    "issued": "2026-10-19",
-    "history": "site"
    }
   ],
   "auto": [
+   {
+    "business": "TNT Car Wash",
+    "address": "5817-5823 W Corcoran Pl",
+    "communityArea": "Austin",
+    "licenseType": "Limited Business License",
+    "activity": "Operation of a Hand Car Wash",
+    "issued": "2026-10-28",
+    "history": "first"
+   },
    {
     "business": "Cti",
     "address": "4616 W Augusta Blvd 1",
@@ -293,133 +302,444 @@
     "activity": "Storage or Use of Hazardous Materials On Site (MVR)",
     "issued": "2026-10-22",
     "history": "site"
-   },
-   {
-    "business": "Bolts and Nuts",
-    "address": "3353 W Division St 1",
-    "communityArea": "Humboldt Park",
-    "licenseType": "Motor Vehicle Services License",
-    "activity": "Motor Vehicle Repair - Engine and Transmission Work",
-    "issued": "2026-10-19",
-    "history": "first"
    }
   ],
   "care": [
    {
-    "business": "Boitsov Classical Ballet",
-    "address": "5638 W 63rd St 1st",
-    "communityArea": "Clearing",
+    "business": "Enam Learning Center",
+    "address": "1326-1328 E 67th St 1",
+    "communityArea": "Woodlawn",
     "licenseType": "Children's Services Facility License",
-    "activity": "Instruction in Dance for Children Under 18 Years of Age",
-    "issued": "2026-10-20",
-    "history": "site"
-   }
-  ],
-  "venue": [
-   {
-    "business": "Play 424",
-    "address": "1415 N Ashland Ave 1 R1",
-    "communityArea": "West Town",
-    "licenseType": "Public Place of Amusement",
-    "activity": "Charges a Fee for Entertainment or Amusements or Recreational Activities | Retail Sales of General Merchandise and Non-Perishable Food",
-    "issued": "2026-10-20",
+    "activity": "After School Program / Tutoring Children Under 18 Years of Age",
+    "issued": "2026-10-26",
     "history": "first"
    }
   ],
+  "venue": [],
   "retail": [
    {
-    "business": "The Windsor Tavern & Grill",
-    "address": "4530 N Milwaukee Ave 1",
-    "communityArea": "Portage Park",
-    "licenseType": "Video Gaming Location",
-    "activity": "Provide Video Gaming Terminals for Customer Use",
-    "issued": "2026-10-23",
-    "history": "added"
-   },
-   {
-    "business": "Miskas Liquors",
-    "address": "6410-6416 W 63rd St",
-    "communityArea": "Clearing",
-    "licenseType": "Video Gaming Location",
-    "activity": "Provide Video Gaming Terminals for Customer Use",
-    "issued": "2026-10-23",
-    "history": "added"
-   },
-   {
-    "business": "Miller's Pub Restaurant",
-    "address": "134 S Wabash Ave 1",
-    "communityArea": "Loop",
-    "licenseType": "Video Gaming Location",
-    "activity": "Provide Video Gaming Terminals for Customer Use",
-    "issued": "2026-10-23",
-    "history": "added"
-   },
-   {
-    "business": "Lawlors Bar",
-    "address": "3908 W 111th St 1",
-    "communityArea": "Mount Greenwood",
-    "licenseType": "Video Gaming Location",
-    "activity": "Provide Video Gaming Terminals for Customer Use",
-    "issued": "2026-10-23",
-    "history": "added"
-   },
-   {
-    "business": "Lawlor's Bar",
-    "address": "6854 W Archer Ave 1",
-    "communityArea": "Garfield Ridge",
-    "licenseType": "Video Gaming Location",
-    "activity": "Provide Video Gaming Terminals for Customer Use",
-    "issued": "2026-10-23",
-    "history": "added"
-   },
-   {
-    "business": "Gritmind",
-    "address": "233 S Wacker Dr 44 4400",
-    "communityArea": "Loop",
-    "licenseType": "Limited Business License",
-    "activity": "Operation of an Administrative Commercial Office | Provide Computer Design/Development Consulting | Web / Software Development",
-    "issued": "2026-10-23",
+    "business": "Soap Box Laundry",
+    "address": "3932 W Cermak Rd 1",
+    "communityArea": "North Lawndale",
+    "licenseType": "Regulated Business License",
+    "activity": "Operation of a Laundromat - Self Service | Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Laundry Cleaning Products | Vending Machines (Sodas, Candy, Chips)",
+    "issued": "2026-10-28",
     "history": "first"
    },
    {
-    "business": "GHL Events",
-    "address": "2545 W Diversey Ave",
-    "communityArea": "Logan Square",
+    "business": "Levraddigans Studios",
+    "address": "10519 S Western Ave",
+    "communityArea": "Beverly",
     "licenseType": "Limited Business License",
-    "activity": "Operation of an Indoor Event Venue (Less Than 100 Person Occupancy)",
-    "issued": "2026-10-23",
+    "activity": "Provide Advertising or Marketing Services | Enagage in Multi-Media Services",
+    "issued": "2026-10-28",
+    "history": "site"
+   },
+   {
+    "business": "Aiki Budo Center LLC",
+    "address": "4962 N Milwaukee Ave 1 C-1",
+    "communityArea": "Jefferson Park",
+    "licenseType": "Limited Business License",
+    "activity": "Training in the Arts of Combat and Self-Defense for Both Adults and Children (Less Than 40% Children)",
+    "issued": "2026-10-28",
+    "history": "site"
+   },
+   {
+    "business": "Stylez Caribbean Roots Bar",
+    "address": "330 E 75th St",
+    "communityArea": "Greater Grand Crossing",
+    "licenseType": "Limited Business License",
+    "activity": "Retail Sales of General Merchandise",
+    "issued": "2026-10-27",
     "history": "first"
    },
    {
-    "business": "Danny's Pizza Place",
-    "address": "6021 S Archer Ave 1",
-    "communityArea": "Garfield Ridge",
-    "licenseType": "Video Gaming Location",
-    "activity": "Provide Video Gaming Terminals for Customer Use",
-    "issued": "2026-10-23",
-    "history": "added"
+    "business": "PSP Store Operations SPV, LLC",
+    "address": "3145 S Ashland Ave Suite 102",
+    "communityArea": "McKinley Park",
+    "licenseType": "Animal Care License",
+    "activity": "Provide Animal Grooming Services | Operate a Pet Shop / Sales of Animals | Retail Sales of General Merchandise | Retail Sales of Animal Treats and Animal Food | Provide Self Service Dog Wash",
+    "issued": "2026-10-27",
+    "history": "first"
    },
    {
-    "business": "D'Agostinos Pizza",
-    "address": "1351 W Addison St Ll-1",
-    "communityArea": "Lake View",
-    "licenseType": "Video Gaming Location",
-    "activity": "Provide Video Gaming Terminals for Customer Use",
-    "issued": "2026-10-23",
-    "history": "added"
-   },
-   {
-    "business": "D'Agostino's II",
-    "address": "752 N Ogden Ave",
+    "business": "PSP Store Operations SPV, LLC",
+    "address": "1289 N Milwaukee Ave",
     "communityArea": "West Town",
-    "licenseType": "Video Gaming Location",
-    "activity": "Provide Video Gaming Terminals for Customer Use",
-    "issued": "2026-10-23",
-    "history": "added"
+    "licenseType": "Animal Care License",
+    "activity": "Provide Animal Grooming Services | Operate a Pet Shop / Sales of Animals | Retail Sales of General Merchandise | Retail Sales of Animal Treats and Animal Food | Provide Self Service Dog Wash",
+    "issued": "2026-10-27",
+    "history": "first"
+   },
+   {
+    "business": "International Wholesalers",
+    "address": "4100 S Ashland Ave",
+    "communityArea": "New City",
+    "licenseType": "Limited Business License",
+    "activity": "Retail Sales of General Merchandise",
+    "issued": "2026-10-27",
+    "history": "site"
+   },
+   {
+    "business": "Fortuna Tax Services Inc",
+    "address": "4729 S Ashland Ave 1",
+    "communityArea": "New City",
+    "licenseType": "Limited Business License",
+    "activity": "Provide Tax Preparation Services | Provide Business and Management Consulting | Provide Financial and Accounting Services",
+    "issued": "2026-10-27",
+    "history": "first"
+   },
+   {
+    "business": "Ace Parking III, LLC",
+    "address": "350 E Monroe Dr",
+    "communityArea": "Loop",
+    "licenseType": "Commercial Garage",
+    "activity": "Provide 4 or More Parking Spaces For a Fee - to Residents, Tenants, Users, Employees and/or Guests (Not Available or Advertised to the Public)",
+    "issued": "2026-10-27",
+    "history": "first"
+   },
+   {
+    "business": "Vector7 Capital",
+    "address": "420 W Grand Ave 1b",
+    "communityArea": "Near North Side",
+    "licenseType": "Limited Business License",
+    "activity": "Operation of a Financial Services Commercial Office",
+    "issued": "2026-10-26",
+    "history": "first"
    }
   ]
  },
  "week": [
+  {
+   "business": "TNT Car Wash",
+   "address": "5817-5823 W Corcoran Pl",
+   "communityArea": "Austin",
+   "licenseType": "Limited Business License",
+   "activity": "Operation of a Hand Car Wash",
+   "issued": "2026-10-28",
+   "history": "first",
+   "segment": "auto"
+  },
+  {
+   "business": "SomosMonos Cerveceria",
+   "address": "1400 W 46th St 101",
+   "communityArea": "New City",
+   "licenseType": "Tavern",
+   "activity": "Tavern - Consumption of Liquor on Premises",
+   "issued": "2026-10-28",
+   "history": "added",
+   "segment": "food"
+  },
+  {
+   "business": "Soap Box Laundry",
+   "address": "3932 W Cermak Rd 1",
+   "communityArea": "North Lawndale",
+   "licenseType": "Regulated Business License",
+   "activity": "Operation of a Laundromat - Self Service | Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Laundry Cleaning Products | Vending Machines (Sodas, Candy, Chips)",
+   "issued": "2026-10-28",
+   "history": "first",
+   "segment": "retail"
+  },
+  {
+   "business": "Sky Nails Salon, Inc.",
+   "address": "5306 S Pulaski Rd",
+   "communityArea": "West Elsdon",
+   "licenseType": "Limited Business License",
+   "activity": "Nail Services",
+   "issued": "2026-10-28",
+   "history": "relicensed",
+   "segment": "beauty"
+  },
+  {
+   "business": "Levraddigans Studios",
+   "address": "10519 S Western Ave",
+   "communityArea": "Beverly",
+   "licenseType": "Limited Business License",
+   "activity": "Provide Advertising or Marketing Services | Enagage in Multi-Media Services",
+   "issued": "2026-10-28",
+   "history": "site",
+   "segment": "retail"
+  },
+  {
+   "business": "Halsted One Stop Deli",
+   "address": "7059 S Halsted St 1st A",
+   "communityArea": "Englewood",
+   "licenseType": "Retail Food Establishment",
+   "activity": "Sale of Food Prepared Onsite Without Dining Area",
+   "issued": "2026-10-28",
+   "history": "first",
+   "segment": "food"
+  },
+  {
+   "business": "Hair Braiding Salon",
+   "address": "6544 S Cottage Grove Ave",
+   "communityArea": "Woodlawn",
+   "licenseType": "Limited Business License",
+   "activity": "Hair Services",
+   "issued": "2026-10-28",
+   "history": "first",
+   "segment": "beauty"
+  },
+  {
+   "business": "Gibsons Tavern",
+   "address": "925 W Fulton Market 1",
+   "communityArea": "Near West Side",
+   "licenseType": "Retail Food Establishment",
+   "activity": "Preparation of Food and Dining on Premises With Seating",
+   "issued": "2026-10-28",
+   "history": "first",
+   "segment": "food"
+  },
+  {
+   "business": "Aiki Budo Center LLC",
+   "address": "4962 N Milwaukee Ave 1 C-1",
+   "communityArea": "Jefferson Park",
+   "licenseType": "Limited Business License",
+   "activity": "Training in the Arts of Combat and Self-Defense for Both Adults and Children (Less Than 40% Children)",
+   "issued": "2026-10-28",
+   "history": "site",
+   "segment": "retail"
+  },
+  {
+   "business": "Stylez Caribbean Roots Bar",
+   "address": "330 E 75th St",
+   "communityArea": "Greater Grand Crossing",
+   "licenseType": "Limited Business License",
+   "activity": "Retail Sales of General Merchandise",
+   "issued": "2026-10-27",
+   "history": "first",
+   "segment": "retail"
+  },
+  {
+   "business": "PSP Store Operations SPV, LLC",
+   "address": "3145 S Ashland Ave Suite 102",
+   "communityArea": "McKinley Park",
+   "licenseType": "Animal Care License",
+   "activity": "Provide Animal Grooming Services | Operate a Pet Shop / Sales of Animals | Retail Sales of General Merchandise | Retail Sales of Animal Treats and Animal Food | Provide Self Service Dog Wash",
+   "issued": "2026-10-27",
+   "history": "first",
+   "segment": "retail"
+  },
+  {
+   "business": "PSP Store Operations SPV, LLC",
+   "address": "1289 N Milwaukee Ave",
+   "communityArea": "West Town",
+   "licenseType": "Animal Care License",
+   "activity": "Provide Animal Grooming Services | Operate a Pet Shop / Sales of Animals | Retail Sales of General Merchandise | Retail Sales of Animal Treats and Animal Food | Provide Self Service Dog Wash",
+   "issued": "2026-10-27",
+   "history": "first",
+   "segment": "retail"
+  },
+  {
+   "business": "Mamacitas Fitness 847",
+   "address": "4922 N Pulaski Rd",
+   "communityArea": "Albany Park",
+   "licenseType": "Regulated Business License",
+   "activity": "Provide Fitness Classes",
+   "issued": "2026-10-27",
+   "history": "first",
+   "segment": "beauty"
+  },
+  {
+   "business": "Just Butter Chicken",
+   "address": "2850 N Clark St 1",
+   "communityArea": "Lake View",
+   "licenseType": "Retail Food Establishment",
+   "activity": "Preparation of Food and Dining on Premises With Seating | Sale of Food Prepared Onsite With Dining Area",
+   "issued": "2026-10-27",
+   "history": "first",
+   "segment": "food"
+  },
+  {
+   "business": "International Wholesalers",
+   "address": "4100 S Ashland Ave",
+   "communityArea": "New City",
+   "licenseType": "Limited Business License",
+   "activity": "Retail Sales of General Merchandise",
+   "issued": "2026-10-27",
+   "history": "site",
+   "segment": "retail"
+  },
+  {
+   "business": "Fortuna Tax Services Inc",
+   "address": "4729 S Ashland Ave 1",
+   "communityArea": "New City",
+   "licenseType": "Limited Business License",
+   "activity": "Provide Tax Preparation Services | Provide Business and Management Consulting | Provide Financial and Accounting Services",
+   "issued": "2026-10-27",
+   "history": "first",
+   "segment": "retail"
+  },
+  {
+   "business": "Billal's",
+   "address": "131 N Clinton St",
+   "communityArea": "Near West Side",
+   "licenseType": "Retail Food Establishment",
+   "activity": "Sale of Food Prepared Onsite Without Dining Area",
+   "issued": "2026-10-27",
+   "history": "first",
+   "segment": "food"
+  },
+  {
+   "business": "Ace Parking III, LLC",
+   "address": "350 E Monroe Dr",
+   "communityArea": "Loop",
+   "licenseType": "Commercial Garage",
+   "activity": "Provide 4 or More Parking Spaces For a Fee - to Residents, Tenants, Users, Employees and/or Guests (Not Available or Advertised to the Public)",
+   "issued": "2026-10-27",
+   "history": "first",
+   "segment": "retail"
+  },
+  {
+   "business": "Xiao Long Ji Soup Dumplings",
+   "address": "2132 W Chicago Ave",
+   "communityArea": "West Town",
+   "licenseType": "Retail Food Establishment",
+   "activity": "Sale of Food Prepared Onsite With Dining Area",
+   "issued": "2026-10-26",
+   "history": "first",
+   "segment": "food"
+  },
+  {
+   "business": "Vector7 Capital",
+   "address": "420 W Grand Ave 1b",
+   "communityArea": "Near North Side",
+   "licenseType": "Limited Business License",
+   "activity": "Operation of a Financial Services Commercial Office",
+   "issued": "2026-10-26",
+   "history": "first",
+   "segment": "retail"
+  },
+  {
+   "business": "Top Notch Appliances Sale and Repair",
+   "address": "5657-5659 S Ashland Ave",
+   "communityArea": "West Englewood",
+   "licenseType": "Limited Business License",
+   "activity": "Retail Sales of Appliances",
+   "issued": "2026-10-26",
+   "history": "added",
+   "segment": "retail"
+  },
+  {
+   "business": "The Siam Lotus Thai Cuisine LLC",
+   "address": "3445 W 51st St 1st",
+   "communityArea": "Gage Park",
+   "licenseType": "Retail Food Establishment",
+   "activity": "Preparation of Food and Dining on Premises With Seating",
+   "issued": "2026-10-26",
+   "history": "first",
+   "segment": "food"
+  },
+  {
+   "business": "The Big Mini",
+   "address": "1302 N Milwaukee Ave 1",
+   "communityArea": "West Town",
+   "licenseType": "Retail Food Establishment",
+   "activity": "Retail Sales of Perishable Foods | Sale of Food Prepared Onsite With Dining Area",
+   "issued": "2026-10-26",
+   "history": "added",
+   "segment": "food"
+  },
+  {
+   "business": "Sharp Standard Barbershop",
+   "address": "3000 N Elston Ave",
+   "communityArea": "Avondale",
+   "licenseType": "Limited Business License",
+   "activity": "Hair Services",
+   "issued": "2026-10-26",
+   "history": "first",
+   "segment": "beauty"
+  },
+  {
+   "business": "Pets First Veterinary Clinic",
+   "address": "3413 N Broadway",
+   "communityArea": "Lake View",
+   "licenseType": "Animal Care License",
+   "activity": "Operate a Veterinary Hospital | Retail Sales of General Merchandise | Retail Sales of Animal Treats and Animal Food",
+   "issued": "2026-10-26",
+   "history": "relicensed",
+   "segment": "retail"
+  },
+  {
+   "business": "Petite Studio by Ramona Denigris",
+   "address": "6565 N Avondale Ave 1 1",
+   "communityArea": "Edison Park",
+   "licenseType": "Limited Business License",
+   "activity": "Retail Sales of General Merchandise and Non-Perishable Food | Skincare Services | Provide Waxing Services",
+   "issued": "2026-10-26",
+   "history": "relicensed",
+   "segment": "beauty"
+  },
+  {
+   "business": "Mirus Coffee",
+   "address": "1356 W Diversey Pkwy Front",
+   "communityArea": "Lake View",
+   "licenseType": "Retail Food Establishment",
+   "activity": "Retail Sales of General Merchandise | Preparation and Sale of Coffee and/or Drinks",
+   "issued": "2026-10-26",
+   "history": "first",
+   "segment": "food"
+  },
+  {
+   "business": "Eviarx",
+   "address": "1935 S Wabash Ave 1 5",
+   "communityArea": "Near South Side",
+   "licenseType": "Limited Business License",
+   "activity": "Pharmacy / Photo Services | Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of General Merchandise",
+   "issued": "2026-10-26",
+   "history": "first",
+   "segment": "retail"
+  },
+  {
+   "business": "Enam Learning Center",
+   "address": "1326-1328 E 67th St 1",
+   "communityArea": "Woodlawn",
+   "licenseType": "Children's Services Facility License",
+   "activity": "After School Program / Tutoring Children Under 18 Years of Age",
+   "issued": "2026-10-26",
+   "history": "first",
+   "segment": "care"
+  },
+  {
+   "business": "Dna Beauty",
+   "address": "3952 W Cermak Rd",
+   "communityArea": "North Lawndale",
+   "licenseType": "Limited Business License",
+   "activity": "Retail Sales of General Merchandise",
+   "issued": "2026-10-26",
+   "history": "first",
+   "segment": "retail"
+  },
+  {
+   "business": "Di Lashes Inc.",
+   "address": "460 W Chicago Ave 1st 103",
+   "communityArea": "Near North Side",
+   "licenseType": "Limited Business License",
+   "activity": "Skincare Services",
+   "issued": "2026-10-26",
+   "history": "first",
+   "segment": "beauty"
+  },
+  {
+   "business": "Cava",
+   "address": "1830 W Fullerton Ave #36",
+   "communityArea": "Lincoln Park",
+   "licenseType": "Retail Food Establishment",
+   "activity": "Sale of Food Prepared Onsite With Dining Area",
+   "issued": "2026-10-26",
+   "history": "site",
+   "segment": "food"
+  },
+  {
+   "business": "Alsakka Food Market Inc.",
+   "address": "2959 W Devon Ave",
+   "communityArea": "West Ridge",
+   "licenseType": "Retail Food Establishment",
+   "activity": "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Perishable Foods",
+   "issued": "2026-10-26",
+   "history": "first",
+   "segment": "food"
+  },
   {
    "business": "The Windsor Tavern & Grill",
    "address": "4530 N Milwaukee Ave 1",
@@ -659,266 +979,6 @@
    "issued": "2026-10-22",
    "history": "first",
    "segment": "food"
-  },
-  {
-   "business": "Pro Plus Parking",
-   "address": "1005 N State St 23,4,5,6rt",
-   "communityArea": "Near North Side",
-   "licenseType": "Commercial Garage",
-   "activity": "Provide 4 or More Parking Spaces For a Fee - to Residents, Tenants, Users, Employees and/or Guests (Not Available or Advertised to the Public)",
-   "issued": "2026-10-21",
-   "history": "first",
-   "segment": "retail"
-  },
-  {
-   "business": "Pearl Club",
-   "address": "495-499 N Milwaukee Ave Basement, 1, Mezz.",
-   "communityArea": "West Town",
-   "licenseType": "Tavern",
-   "activity": "Tavern - Consumption of Liquor on Premises",
-   "issued": "2026-10-21",
-   "history": "added",
-   "segment": "food"
-  },
-  {
-   "business": "Paws & Effect",
-   "address": "2459 E 75th St",
-   "communityArea": "South Shore",
-   "licenseType": "Animal Care License",
-   "activity": "Provide Animal Grooming Services",
-   "issued": "2026-10-21",
-   "history": "first",
-   "segment": "retail"
-  },
-  {
-   "business": "One Stop Nails & Spa",
-   "address": "8145 S Cottage Grove Ave",
-   "communityArea": "Chatham",
-   "licenseType": "Limited Business License",
-   "activity": "Nail Services | Provide Waxing Services",
-   "issued": "2026-10-21",
-   "history": "site",
-   "segment": "beauty"
-  },
-  {
-   "business": "Lincoln Park Waxing Studio Inc.",
-   "address": "2102 N Clark St 1st",
-   "communityArea": "Lincoln Park",
-   "licenseType": "Limited Business License",
-   "activity": "Skincare Services | Provide Waxing Services",
-   "issued": "2026-10-21",
-   "history": "relicensed",
-   "segment": "beauty"
-  },
-  {
-   "business": "House of Fragrances Luxe",
-   "address": "3351 N Harlem Ave",
-   "communityArea": "Dunning",
-   "licenseType": "Limited Business License",
-   "activity": "Retail Sales of General Merchandise",
-   "issued": "2026-10-21",
-   "history": "first",
-   "segment": "retail"
-  },
-  {
-   "business": "House of Fragrances Collective",
-   "address": "3211 N Central Ave",
-   "communityArea": "Portage Park",
-   "licenseType": "Limited Business License",
-   "activity": "Retail Sales of General Merchandise",
-   "issued": "2026-10-21",
-   "history": "relicensed",
-   "segment": "retail"
-  },
-  {
-   "business": "Figurati Pizza & Italian Beef",
-   "address": "11611-11613 S Halsted St 1st",
-   "communityArea": "West Pullman",
-   "licenseType": "Retail Food Establishment",
-   "activity": "Sale of Food Prepared Onsite Without Dining Area",
-   "issued": "2026-10-21",
-   "history": "first",
-   "segment": "food"
-  },
-  {
-   "business": "Emyves Spa",
-   "address": "7127 N Clark St 1st",
-   "communityArea": "Rogers Park",
-   "licenseType": "Limited Business License",
-   "activity": "Hair Services | Skincare Services",
-   "issued": "2026-10-21",
-   "history": "first",
-   "segment": "beauty"
-  },
-  {
-   "business": "Da Nang Kitchen",
-   "address": "1019 W Argyle St 1/2",
-   "communityArea": "Uptown",
-   "licenseType": "Retail Food Establishment",
-   "activity": "Sale of Food Prepared Onsite With Dining Area | Preparation and Sale of Coffee and/or Drinks",
-   "issued": "2026-10-21",
-   "history": "first",
-   "segment": "food"
-  },
-  {
-   "business": "Big Dawg Market Inc.",
-   "address": "8246 S Racine Ave 1 2",
-   "communityArea": "Auburn Gresham",
-   "licenseType": "Retail Food Establishment",
-   "activity": "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Perishable Foods",
-   "issued": "2026-10-21",
-   "history": "first",
-   "segment": "food"
-  },
-  {
-   "business": "Vaknin Aesthetics LLC",
-   "address": "6165 N Northwest Hwy 123",
-   "communityArea": "Norwood Park",
-   "licenseType": "Limited Business License",
-   "activity": "Skincare Services | Retail Sales of General Merchandise",
-   "issued": "2026-10-20",
-   "history": "first",
-   "segment": "beauty"
-  },
-  {
-   "business": "Taquero LLC",
-   "address": "1734 W 35th St",
-   "communityArea": "McKinley Park",
-   "licenseType": "Retail Food Establishment",
-   "activity": "Sale of Food Prepared Onsite With Dining Area",
-   "issued": "2026-10-20",
-   "history": "first",
-   "segment": "food"
-  },
-  {
-   "business": "Play 424",
-   "address": "1415 N Ashland Ave 1 R1",
-   "communityArea": "West Town",
-   "licenseType": "Public Place of Amusement",
-   "activity": "Charges a Fee for Entertainment or Amusements or Recreational Activities | Retail Sales of General Merchandise and Non-Perishable Food",
-   "issued": "2026-10-20",
-   "history": "first",
-   "segment": "venue"
-  },
-  {
-   "business": "Christophes Fine Foods.",
-   "address": "2264 N Clark St",
-   "communityArea": "Lincoln Park",
-   "licenseType": "Retail Food Establishment",
-   "activity": "Retail Sales of General Merchandise and Non-Perishable Food | Sale of Food Prepared Onsite Without Dining Area",
-   "issued": "2026-10-20",
-   "history": "first",
-   "segment": "food"
-  },
-  {
-   "business": "COI Company",
-   "address": "4444 S Kildare Blvd",
-   "communityArea": "Archer Heights",
-   "licenseType": "Manufacturing Establishments",
-   "activity": "Manufacturing of Miscellaneous Items",
-   "issued": "2026-10-20",
-   "history": "site",
-   "segment": "retail"
-  },
-  {
-   "business": "Boitsov Classical Ballet",
-   "address": "5638 W 63rd St 1st",
-   "communityArea": "Clearing",
-   "licenseType": "Children's Services Facility License",
-   "activity": "Instruction in Dance for Children Under 18 Years of Age",
-   "issued": "2026-10-20",
-   "history": "site",
-   "segment": "care"
-  },
-  {
-   "business": "Big Baby's",
-   "address": "9926-9928 S Torrence Ave 1",
-   "communityArea": "South Deering",
-   "licenseType": "Retail Food Establishment",
-   "activity": "Sale of Food Prepared Onsite Without Dining Area",
-   "issued": "2026-10-20",
-   "history": "first",
-   "segment": "food"
-  },
-  {
-   "business": "Xtreme Supplements",
-   "address": "1974 W Lawrence Ave",
-   "communityArea": "Lincoln Square",
-   "licenseType": "Limited Business License",
-   "activity": "Retail Sales of General Merchandise and Non-Perishable Food",
-   "issued": "2026-10-19",
-   "history": "relicensed",
-   "segment": "retail"
-  },
-  {
-   "business": "Tabitha African Hair Braiding",
-   "address": "5806 W Division St",
-   "communityArea": "Austin",
-   "licenseType": "Limited Business License",
-   "activity": "Hair Services",
-   "issued": "2026-10-19",
-   "history": "first",
-   "segment": "beauty"
-  },
-  {
-   "business": "Prospect International Airport Services, LLC",
-   "address": "10000 W Ohare St",
-   "communityArea": "O'Hare",
-   "licenseType": "Limited Business License",
-   "activity": "Miscellaneous Commercial Services",
-   "issued": "2026-10-19",
-   "history": "first",
-   "segment": "retail"
-  },
-  {
-   "business": "Montrose Foot Massage & Spa",
-   "address": "4401 N Keeler Ave 1st",
-   "communityArea": "Irving Park",
-   "licenseType": "Limited Business License",
-   "activity": "Skincare Services | Provide Foot Massage - Fully Clothed/No Disrobing",
-   "issued": "2026-10-19",
-   "history": "site",
-   "segment": "beauty"
-  },
-  {
-   "business": "La Casa de las Flores",
-   "address": "2459 S Christiana Ave Strfrnt",
-   "communityArea": "South Lawndale",
-   "licenseType": "Retail Food Establishment",
-   "activity": "Sale of Food Prepared Onsite With Dining Area",
-   "issued": "2026-10-19",
-   "history": "first",
-   "segment": "food"
-  },
-  {
-   "business": "La Calaca Cantina/Porkchop",
-   "address": "1800-1802 W Pershing Rd",
-   "communityArea": "McKinley Park",
-   "licenseType": "Consumption on Premises - Incidental Activity",
-   "activity": "Consumption of Liquor on Premises",
-   "issued": "2026-10-19",
-   "history": "added",
-   "segment": "food"
-  },
-  {
-   "business": "Fotel 81",
-   "address": "2545 N Milwaukee Ave",
-   "communityArea": "Logan Square",
-   "licenseType": "Limited Business License",
-   "activity": "Retail Sales of General Merchandise | Provide Photography or Videography Services",
-   "issued": "2026-10-19",
-   "history": "first",
-   "segment": "retail"
-  },
-  {
-   "business": "Bolts and Nuts",
-   "address": "3353 W Division St 1",
-   "communityArea": "Humboldt Park",
-   "licenseType": "Motor Vehicle Services License",
-   "activity": "Motor Vehicle Repair - Engine and Transmission Work",
-   "issued": "2026-10-19",
-   "history": "first",
-   "segment": "auto"
   }
  ]
 }

@@ -6,14 +6,14 @@ so the music stays on one room loop until the set-piece library gives each world
 
 music: rooms
 
-## hook "Plumbers, top shops book" [sfx: pop]
+## hook "Trade owners, top shops book" [sfx: pop]
 World: the versus screen. Frame 0: the hook card, fully settled: "Top shops book" / "62%" / "of lead calls." The 62% in the accent. Source small: ServiceTitan customers, 12 months to Jan 2026. Behind it, the fighting-game select screen: TOP SHOPS on the left with a full score bar at 62, a big VS in the middle, the right slot dark. Host and dialog hidden. Sparks wait until 1 s.
 ## hook.top "percent of lead calls."
 Sparks on the 62% and a ping on the TOP SHOPS score bar (the first motion after the settled cover).
 ## hook.vs "Everyone else? Thirty-nine." [sfx: tick]
 The right slot lights: EVERYONE ELSE. Its score bar fills to 39 (count starts at 85% of 39), in grey; "39%" lands under it. The VS pulses once.
-## hook.line "Here's the line that" [sfx: pop]
-Chip LEAD CLINIC / LESSON 9 drops in at the top. Under the VS: "The line that books the call." Snow steps in small at the side and points at it.
+## hook.line "Here's how to ask" [sfx: pop]
+Chip LEAD CLINIC / LESSON 9 drops in at the top. Under the VS: "The line that asks for the booking." Snow steps in small at the side and points at it.
 
 ## stakes "That's ServiceTitan's data on" [sfx: whoosh]
 World: the switchboard. An old telephone switchboard slides up: rows of lamps, jacks and cords; a brass plate on top reads SERVICETITAN. Lamps start to light one by one, ringing.
@@ -28,7 +28,7 @@ A card slides onto the board: "Near 39%? Probably not your marketing." Source li
 ## stakes.minute "It's often the first" [sfx: tick]
 A 60-second sweep clock pops above the ringing lamp and starts its sweep: "The first 60 seconds after the phone rings." (ServiceTitan's words, quoted).
 
-## why "What goes wrong in" [sfx: whoosh]
+## why "What goes wrong on" [sfx: whoosh]
 World: the switchboard, close in. The operator answers a lamp; two speech bubbles trade questions and answers (no words, dots).
 ## why.invoca "Call tracker Invoca found" [sfx: tick]
 The brass plate flips: INVOCA, Home Services Lead Conversion Benchmarks, Jul 2026.
@@ -71,7 +71,7 @@ The buttons relabel MORNINGS / AFTERNOONS and fire; the boss's health bar drops 
 ## caveat "One honest note." [sfx: whoosh]
 World: the dispatch board. A magnetic dispatch board, columns Mon to Fri; job magnets clack into slots. Header on a dark band: "One honest note."
 ## caveat.pattern "and a pattern, not" [sfx: stamp]
-A corner stamp: "A pattern, not proof." Source line: ServiceTitan customers; correlated, not a cause.
+A corner stamp: "A pattern, not proof." Source line: ServiceTitan customers; correlated, not shown to cause.
 ## caveat.friday "So track your own" [sfx: tick]
 The FRI column lights; a note magnet: "Every Friday".
 ## caveat.formula "Booked calls divided by" [sfx: pop]

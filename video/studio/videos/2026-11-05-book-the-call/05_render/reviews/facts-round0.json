@@ -1,0 +1,14 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "at": "2026-10-28T20:25:00-05:00",
+ "pass": false,
+ "score": {
+  "numbers": 12,
+  "mismatches": 2
+ },
+ "reasons": [
+  "'the line that books yours' promises a tested result (fixed: 'how to ask for the booking')",
+  "'correlated, not a cause' overstates the footnote (fixed: 'not shown to cause')"
+ ]
+}

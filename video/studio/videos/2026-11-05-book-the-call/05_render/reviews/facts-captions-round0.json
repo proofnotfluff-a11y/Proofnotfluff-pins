@@ -1,0 +1,14 @@
+{
+ "gate": "facts-captions",
+ "round": 0,
+ "at": "2026-10-28T20:25:00-05:00",
+ "pass": false,
+ "score": {
+  "numbers": 32,
+  "mismatches": 4
+ },
+ "reasons": [
+  "Invoca without its population on TikTok and Facebook (fixed)",
+  "not a cause wording on Instagram and Facebook (fixed)"
+ ]
+}

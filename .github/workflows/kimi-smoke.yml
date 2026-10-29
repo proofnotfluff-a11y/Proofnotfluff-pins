@@ -1,0 +1,54 @@
+name: Kimi smoke test
+# One tiny test of Todd's Kimi Code membership key (secret KIMI_CODE_API_KEY, never printed), Oct 29, 2026.
+# Calls go through Claude Code, a coding agent Kimi documents for this key, pointed at Kimi's Anthropic-compatible
+# endpoint (https://api.kimi.ai/coding/, per kimi.com/code/docs/en/third-party-tools/claude-code.html). No hand-made
+# client and no changed User-Agent: Kimi's membership guide treats a changed User-Agent as a violation.
+# Lives on the kimi-smoke-test branch only; nothing here touches main, the studio or the routines.
+on:
+  push:
+    branches: [kimi-smoke-test]
+    paths: [".github/workflows/kimi-smoke.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Install Claude Code
+        run: npm install -g --silent @anthropic-ai/claude-code >/dev/null 2>&1 && claude --version
+      - name: One tiny call per model
+        env:
+          ANTHROPIC_BASE_URL: https://api.kimi.ai/coding/
+          ANTHROPIC_API_KEY: ${{ secrets.KIMI_CODE_API_KEY }}
+          CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: "1"
+          DISABLE_TELEMETRY: "1"
+          DISABLE_AUTOUPDATER: "1"
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then echo "FAIL secret KIMI_CODE_API_KEY is empty or missing"; exit 1; fi
+          echo "PASS secret present (length ${#ANTHROPIC_API_KEY})"
+          pass=0
+          for m in k3.1-pro k3 kimi-for-coding; do
+            export ANTHROPIC_MODEL="$m" ANTHROPIC_DEFAULT_HAIKU_MODEL="$m" ANTHROPIC_DEFAULT_SONNET_MODEL="$m" ANTHROPIC_DEFAULT_OPUS_MODEL="$m"
+            start=$(date +%s)
+            set +e
+            out=$(timeout 180 claude -p "Reply with exactly the word PONG and nothing else." --max-turns 1 --output-format json 2>err.txt)
+            code=$?
+            set -e
+            secs=$(( $(date +%s) - start ))
+            text=$(printf '%s' "$out" | python3 -c 'import json,sys
+try:
+    d=json.load(sys.stdin); print(str(d.get("result",""))[:80].replace("\n"," "), "| in", d.get("usage",{}).get("input_tokens"), "out", d.get("usage",{}).get("output_tokens"))
+except Exception as e: print("unparsed")' )
+            if printf '%s' "$out" | grep -q PONG; then
+              echo "PASS $m ${secs}s: $text"; pass=$((pass+1))
+            else
+              err=$(head -c 400 err.txt | tr '\n' ' ' | sed "s/$ANTHROPIC_API_KEY/[key]/g")
+              res=$(printf '%s' "$out" | head -c 400 | tr '\n' ' ' | sed "s/$ANTHROPIC_API_KEY/[key]/g")
+              echo "FAIL $m exit $code ${secs}s: $res $err"
+            fi
+          done
+          rm -f err.txt
+          echo "SUMMARY $pass of 3 models answered"
+          [ "$pass" -gt 0 ]

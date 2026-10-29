@@ -3,5 +3,7 @@ PASS chicago-construction-pipeline 390 dark: axe 0, 0 script errors, nothing cut
 PASS chicago-construction-pipeline 1280 light: axe 0, 0 script errors, nothing cut off or scrolling sideways
 PASS chicago-construction-pipeline 1280 dark: axe 0, 0 script errors, nothing cut off or scrolling sideways
 PASS flow chicago-construction-pipeline 390 light: 18 of 18 steps, 0 script errors, axe 0 after the flow
+PASS flow chicago-construction-pipeline 390 dark: 18 of 18 steps, 0 script errors, axe 0 after the flow
 PASS flow chicago-construction-pipeline 1280 light: 18 of 18 steps, 0 script errors, axe 0 after the flow
-verify: PASS, 0 failing of 6 checks; evidence in data/verify/ci
+PASS flow chicago-construction-pipeline 1280 dark: 18 of 18 steps, 0 script errors, axe 0 after the flow
+verify: PASS, 0 failing of 8 checks; evidence in data/verify/ci

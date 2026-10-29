@@ -1,6 +1,6 @@
 {
  "meta": {
-  "when": "20261029-212504",
+  "when": "20261029-213221",
   "pages": [
    "chicago-construction-pipeline"
   ],
@@ -65,10 +65,26 @@
   },
   {
    "flow": "chicago-construction-pipeline",
+   "width": 390,
+   "scheme": "dark",
+   "ok": true,
+   "label": "flow chicago-construction-pipeline 390 dark",
+   "detail": "18 of 18 steps, 0 script errors, axe 0 after the flow"
+  },
+  {
+   "flow": "chicago-construction-pipeline",
    "width": 1280,
    "scheme": "light",
    "ok": true,
    "label": "flow chicago-construction-pipeline 1280 light",
+   "detail": "18 of 18 steps, 0 script errors, axe 0 after the flow"
+  },
+  {
+   "flow": "chicago-construction-pipeline",
+   "width": 1280,
+   "scheme": "dark",
+   "ok": true,
+   "label": "flow chicago-construction-pipeline 1280 dark",
    "detail": "18 of 18 steps, 0 script errors, axe 0 after the flow"
   }
  ],
@@ -78,6 +94,8 @@
   "PASS chicago-construction-pipeline 1280 light: axe 0, 0 script errors, nothing cut off or scrolling sideways",
   "PASS chicago-construction-pipeline 1280 dark: axe 0, 0 script errors, nothing cut off or scrolling sideways",
   "PASS flow chicago-construction-pipeline 390 light: 18 of 18 steps, 0 script errors, axe 0 after the flow",
-  "PASS flow chicago-construction-pipeline 1280 light: 18 of 18 steps, 0 script errors, axe 0 after the flow"
+  "PASS flow chicago-construction-pipeline 390 dark: 18 of 18 steps, 0 script errors, axe 0 after the flow",
+  "PASS flow chicago-construction-pipeline 1280 light: 18 of 18 steps, 0 script errors, axe 0 after the flow",
+  "PASS flow chicago-construction-pipeline 1280 dark: 18 of 18 steps, 0 script errors, axe 0 after the flow"
  ]
 }

@@ -163,3 +163,11 @@ def test_failed_job_reports_what_google_sent(calls):
     with pytest.raises(wv.GeminiError) as err:
         wv.ask({'uri': 'u'}, 'q', key=KEY, model='m', sleep=lambda s: None)
     assert err.value.category == 'rejected' and '"id": "i"' in str(err.value)
+
+
+def test_dashes_removed_from_answers(calls, capsys):
+    _, queue = calls
+    queue.append(classic('Intro 00:02\u201300:04 \u2014 then trash first'))
+    assert wv.main(['https://youtu.be/abc']) == 0
+    out = capsys.readouterr().out
+    assert '00:02 to 00:04, then trash first' in out and '\u2013' not in out and '\u2014' not in out

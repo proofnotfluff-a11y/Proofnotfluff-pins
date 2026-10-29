@@ -42,13 +42,19 @@ DEFAULT_QUESTION = ('Give a thorough summary of this video: what is shown, any o
                     'and what is said, in order.')
 SUFFIX = ('\n\nCite an MM:SS timestamp for every claim about a specific moment. Separate what is seen '
           'from what is heard when it matters. If the video does not show or say something needed to '
-          'answer, say so plainly instead of guessing.')
+          'answer, say so plainly instead of guessing. Write time ranges as "00:02 to 00:04" and use no em or en dashes.')
 
 
 class GeminiError(Exception):
     def __init__(self, category: str, detail: str):
         super().__init__(f'Gemini {category}: {HINTS[category]}. Detail: {detail or "none"}')
         self.category = category
+
+
+def plain(text: str) -> str:
+    # Answers are committed to the repo, whose check refuses em and en dashes; Gemini uses both.
+    text = re.sub(r'(\d)\s*\u2013\s*(\d)', r'\1 to \2', text)
+    return re.sub(r'\s*[\u2013\u2014]\s*', ', ', text)
 
 
 def is_youtube(source: str) -> bool:
@@ -264,7 +270,7 @@ def main(argv=None) -> int:
     print()
     print("## Answer (Gemini's observations, not frames Claude viewed)")
     print()
-    print(result['text'])
+    print(plain(result['text']))
     return 0
 
 

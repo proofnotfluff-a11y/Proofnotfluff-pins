@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   push:
     branches: [claude/project-thread-4bg5nr]
-    paths: ["docs/chicago-construction-pipeline/**", "verify/flows/chicago-construction-pipeline.json", ".github/workflows/verify-branch.yml"]
+    paths: ["docs/chicago-construction-pipeline/**", "docs/chicago-construction-cleaning-leads/**", "verify/flows/chicago-construction-pipeline.json", ".github/workflows/verify-branch.yml"]
 permissions:
   contents: write
 jobs:
@@ -24,7 +24,7 @@ jobs:
       - name: Verify the page and its flow
         run: |
           git fetch -q origin main
-          python3 tools/verify_site.py chicago-construction-pipeline --flow chicago-construction-pipeline --out data/verify/ci 2>&1 | tee verify.txt || true
+          python3 tools/verify_site.py chicago-construction-pipeline chicago-construction-cleaning-leads austin-construction-cleaning-leads chicago-data --flow chicago-construction-pipeline --out data/verify/ci 2>&1 | tee verify.txt || true
       - name: List what is wider than a phone screen (v3)
         run: python3 .github/branch/wide.py 2>&1 | tee wide.txt || true
       - name: Commit the report and shots to this branch

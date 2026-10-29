@@ -2476,7 +2476,7 @@ def leads_page_html(p):
     card = lambda x, pill=True: project_card(x, pill, city, p.get("permitLabel", "Permit"), bool(p.get("billions2")), p.get("metaSep", " · "))
     near_title = p.get("nearTitle", "Partial occupancy approved")
     near_sub = p.get("nearSub", "partial occupancy approved")
-    near_text = p.get("nearText", "The City has approved temporary or partial occupancy on these projects, so a final clean is close.")
+    near_text = p.get("nearText", "The City has approved temporary or partial occupancy on these projects, so the final clean is close or already under way.")
     area_word, area_all, area_filter = (p.get("areaWord", "Neighborhood"), p.get("areaAll", "All neighborhoods"),
                                         p.get("areaFilter", "a neighborhood filter"))
 
@@ -2488,7 +2488,7 @@ def leads_page_html(p):
     # there are enough of them to sell on; below the floor the page keeps the total-projects lede
     lead_near = bool(p.get("leadNear")) and n_near >= int(p.get("leadNearMin", 5))
     if lead_near:
-        lede = (f'{n_near:,} big {E(p["city"])} projects have {E(p.get("nearLede", near_sub))}, so a final clean is close. You get the builder on each, '
+        lede = (f'{n_near:,} big {E(p["city"])} projects have {E(p.get("nearLede", near_sub))}, so the final clean is close or already under way. You get the builder on each, '
                 f'and on all {kept:,} open apartment and commercial projects of $500,000 or more'
                 + (" in the areas no seat holder has taken" if c.get("heldAreas") else "") + f'. {E(p["lede"])}')
     else:
@@ -2626,6 +2626,18 @@ def leads_page_html(p):
                     f'<div>{form}<small class="ld-note">We email you when the weekly list opens. Unsubscribe in one click. Your email is stored with Kit, our email provider, and never sold.</small></div></div></section>')
         sbar = ""
     faq = list(p["faq"])
+    ex = c.get("excluded") or {}
+    if p.get("leftOutCounts") and ex and c.get("fetched", 0) - kept == sum(ex.values()):
+        say = {"closed, complete or suspended": "closed, complete or suspended", "house or 2 to 3 flat": "houses and 2 to 3 flats",
+               "no construction clean (foundation, demolition, roof, mechanical or site work only)": "with no cleaning at the end (foundation, demolition, roof, mechanical or site work only)",
+               "no commercial or apartment wording": "with no commercial or apartment wording", "one home inside a larger building": "single homes inside a larger building",
+               "no interior finish work or new building named": "with no finish work named", "revision or second listing of a permit already listed": "repeat listings",
+               "apartment building with no unit count (could be a 2 or 3 flat)": "apartment buildings with no unit count",
+               "common areas only, no homes worked on": "common areas only", "no business listed as general contractor": "with no builder named"}
+        why = "; ".join(f"{n:,} {say.get(k, k)}" for k, n in sorted(ex.items(), key=lambda kv: (-kv[1], kv[0])) if n)
+        line = (f" This week, of {c['fetched']:,} big new construction and renovation permits from the last {window_months(d)}, the list keeps {kept:,}. "
+                f"Left out: {why}.")
+        faq = [[q, a + line] if q.startswith("Why are some big projects missing") else [q, a] for q, a in faq]
     if c.get("heldAreas"):   # Legal desk, Oct 26, fix 11: the shared list says plainly which areas it leaves out
         faq = [[q, a.replace("the weekly list covers every permit that passes the filter.",
                              "the weekly list covers every permit that passes the filter in the areas no seat holder has taken.")] for q, a in faq]
@@ -3207,7 +3219,7 @@ def bento_html(by):
         x = by.get(key)
         return (x, x["nums"][i]) if x and len(x.get("nums", [])) > i else (None, None)
     tiles = []
-    for key, i, cls, line in (("chicago-construction-cleaning-leads", 1, "bt-wide", "Chicago projects with temporary or partial occupancy approved, so a final clean is close. The builder is on each."),
+    for key, i, cls, line in (("chicago-construction-cleaning-leads", 1, "bt-wide", "Chicago projects with temporary or partial occupancy approved, so the final clean is close or already under way. The builder is on each."),
                               ("chicago-restaurant-inspection-leads", 1, "", "Chicago restaurants had the license inspection the City does before it opens."),
                               ("chicago-new-business-licenses", 1, "", "new Chicago business licenses this week, sorted by trade."),
                               ("austin-construction-cleaning-leads", 0, "", "open Austin projects of $500,000 or more, with the builders running them.")):
@@ -4202,7 +4214,7 @@ def answer_text(p):
     k = p.get("kind")
     if k == "leads":
         near = int(c.get("nearFinish") or 0)
-        near_s = (f' {near:,} {"has" if near == 1 else "have"} {E(p.get("nearLede", p.get("nearSub", "partial occupancy approved")))}, so a final clean is close.'
+        near_s = (f' {near:,} {"has" if near == 1 else "have"} {E(p.get("nearLede", p.get("nearSub", "partial occupancy approved")))}, so the final clean is close or already under way.'
                   if near else "")
         return (f'Where to find post-construction cleaning leads in {E(p["city"])}: the City\'s building permit records list the general contractor '
                 f'on big jobs. As of {E(asof)}, {int(c["kept"]):,} apartment and commercial projects of $500,000 or more are open.{near_s} '

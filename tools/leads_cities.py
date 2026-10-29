@@ -39,7 +39,7 @@ CHICAGO = {
     # stages: closest to a final clean first
     "stages": ["Partial occupancy approved", "Inspections under way", "Permit issued"],
     "stagesShort": ["Near finish", "Inspections", "Permit issued"],
-    "stageLines": ["The City approved partial or temporary occupancy: part of the building is cleared for use, so the final clean is close.",
+    "stageLines": ["The City approved partial or temporary occupancy: part of the building is cleared for use, so the final clean is close or already under way.",
                    "City inspections have started. The final clean usually comes after the last inspections.",
                    "The permit is issued and work can start. The City has not logged inspections yet."],
     "nearMatch": ("OCCUPANCY PENDING", "PARTIAL OCCUPANCY"),

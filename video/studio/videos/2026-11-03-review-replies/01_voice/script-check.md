@@ -17,7 +17,7 @@ the builder (no fresh scorer agent in this session); the script gate should re-s
 11 retention beats: PASS 33 cues, a visual change every 1.0 to 4.1 s (the longest: caveat.monday to close, 4.13 s, unchanged from the gated cut; stakes.google to gap 3.97 s); three shots in the first 3 s (cuts at 0.53 s and 1.87 s, measured); turn line "Here's the part people skip." at 43.06 s = 59% (band 55 to 75%)
 12 ending: PASS one CTA, a send line naming a role ("Send this to whoever runs your Google profile"); last words echo the hook ("so the next one-star gets a reply" / "Got a one-star review? Here's your reply"); no like/follow/comment asks; LESSON 7 on the HUD, REVIEWS CLINIC chip on the cover from frame 0 to 3.68 s; captions carry the source with its URL and no AI voice line (Todd, Oct 29)
 
-Result: 12 of 12 PASS (8 with the pace note above).
+Result: 12 of 12 PASS (9 as the gated cut read it, see above).
 
 Notes for the gates
 - The 91% is "rate online reviews as an important factor ... when choosing an HVAC contractor" (400 homeowners): said "said reviews are important to them when they pick an HVAC contractor".

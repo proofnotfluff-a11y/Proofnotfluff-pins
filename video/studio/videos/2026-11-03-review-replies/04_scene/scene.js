@@ -107,19 +107,25 @@ const closeUp = (k, o) => {
   k.text(`${n.one.shown} star`, 486, 444, {size: 39, color: '#6B7080'});
   k.text('The tech showed', 108, 540, {size: 66, color: PLUM});
   k.text('up late.', 108, 612, {size: 66, color: PLUM});
-  d.P(250, 226, 74, 17, INK); d.P(251, 227, 72, 15, RED); d.tx('EXAMPLE', 287, 228, {color: CREAM, align: 'center'});
+  /* the tag's box ends at x 924 (render-critic, Oct 29: it ran to 967, past the 930 safe line) */
+  d.P(234, 226, 74, 17, INK); d.P(235, 227, 72, 15, RED); d.tx('EXAMPLE', 271, 228, {color: CREAM, align: 'center'});
   // under the card: the reply box, the promise typed in it as its placeholder, the cursor blinking
   P(26, 254, 308, 36, '#FFF7EA'); P(26, 254, 308, 1, '#E6D3BC'); P(30, 258, 260, 28, '#F4E6D3'); d.P(296, 258, 30, 28, '#2F6F67');
   d.P(306, 268, 10, 2, CREAM); d.P(312, 265, 2, 8, CREAM);
   if (Math.floor(T * 2) % 2 === 0) P(34, 261, 2, 22, '#2F6F67');
   k.text('Copy this reply.', 120, 780, {size: 66, color: 'accent'});
-  // the keyboard: four rows of keys on whole pixels, no letters (the speech box sits over its top row)
+  // the keyboard: four rows of keys on whole pixels, QWERTY letters in the grey label tone (design, Oct 29: blank keys read
+  // as a placeholder); shift and delete are the darker function keys. Scenery under the Reel's UI band, so lint: false.
   P(14, 296, 332, 344, '#C9CCD3'); P(14, 296, 332, 1, '#9AA0AD');
-  const rows = [[10, 0], [9, 8], [9, 8], [5, 0]];
-  rows.forEach(([nk, off], r) => {
+  const rows = [[10, 0, 'QWERTYUIOP'], [9, 8, 'ASDFGHJKL'], [9, 8, ' ZXCVBNM '], [5, 0, '']];
+  rows.forEach(([nk, off, keys], r) => {
     const kw = r === 3 ? 0 : 28, gap = 4, y = 420 + r * 50;
     if (r === 3) { P(30, y, 56, 40, '#9AA0AD'); P(96, y, 168, 40, '#FFF7EA'); P(96, y + 39, 168, 1, '#6B7080'); P(274, y, 56, 40, '#2F6F67'); return; }
-    for (let i = 0; i < nk; i++) { const x = 24 + off + i * (kw + gap); P(x, y, kw, 40, '#FFF7EA'); P(x, y + 39, kw, 1, '#6B7080'); }
+    for (let i = 0; i < nk; i++) {
+      const x = 24 + off + i * (kw + gap), fn = keys[i] === ' ';
+      P(x, y, kw, 40, fn ? '#9AA0AD' : '#FFF7EA'); P(x, y + 39, kw, 1, '#6B7080');
+      if (!fn) k.text(keys[i], (x + kw / 2) * 3, (y + 13) * 3, {size: 39, color: GREY, align: 'center', lint: false});
+    }
   });
   return d;
 };
@@ -152,14 +158,19 @@ window.SCENE = {
         if (T >= tOut) k.sweep(324, 770, k.measure('Copy this reply.', {size: 66}), 6, tOut + 0.1, {color: 'accent'});
         k.chip('Reviews Clinic', 324, 800, {size: 30});
       } else {
-        k.slam(n.noAnswer.shown, 324, 404, tStat, {size: 132, color: 'accent', from: 0.6});
-        k.slam('of contractors', 324, 548, tStat + 0.1, {size: 66, color: PLUM, from: 0.4});
-        k.slam("don't answer", 324, 618, tStat + 0.15, {size: 66, color: PLUM, from: 0.4});
-        k.slam('reviews', 324, 688, tStat + 0.2, {size: 66, color: PLUM, from: 0.4});
+        /* the sparks fire once on "Forty-three" (about 0.6 s), around the 43% only: drawn first so every glyph sits on top,
+           and clipped to the number's band (y 390 to 540) so none reach the body lines. No glint on this card (design and
+           golden, Oct 29: the shine replaced letter pixels, "contrac ors"). */
+        k.ctx.save(); k.ctx.beginPath(); k.ctx.rect(306, 390, 564, 150); k.ctx.clip();
+        k.burst(420, 470, t43, {n: 14, r: 170, life: 0.6});
+        k.ctx.restore();
+        k.slam(n.noAnswer.shown, 324, 404, tStat, {size: 132, color: 'accent', from: 0.6, glint: false});
+        k.slam('of contractors', 324, 548, tStat + 0.1, {size: 66, color: PLUM, from: 0.4, glint: false});
+        k.slam("don't answer", 324, 618, tStat + 0.15, {size: 66, color: PLUM, from: 0.4, glint: false});
+        k.slam('reviews', 324, 688, tStat + 0.2, {size: 66, color: PLUM, from: 0.4, glint: false});
         /* the scope as it is said: the survey on "in one HVAC survey", the sites on "on third-party sites" */
         k.slam(`ACHR News survey, ${n.year.shown}`, 324, 770, k.S('hook.survey'), {size: 30, color: '#6B7080', from: 0.4});
         k.slam('on third-party sites', 324, 816, k.S('hook.sites'), {size: 30, color: 'accent', from: 0.5});
-        k.burst(470, 470, t43, {n: 18, r: 220});
       }
       if (T < tIn) return {host: false, speech: false};
       return host(k, k.live('hook.copy') ? 'point' : null);
@@ -204,18 +215,24 @@ window.SCENE = {
     // ---- replies: the review inbox; the example review arrives, our reply goes out a sentence at a time as it is said
     replies: (k, T) => {
       const n = k.data.numbers, t0 = k.S('replies'), tOne = k.S('replies.one');
-      const five = T < tOne;
+      /* script point 7 (Oct 29): each finished reply stays whole on screen 3 s or more. The five-star thread holds into
+         take 5: the New review banner drops over it on "one-star" and the thread flips on "reply" */
+      const tNote = wordT(k, 'replies.one', /^one-star/i, 0.5), tFlip = wordT(k, 'replies.one', /^reply/i, 1.0);
+      const five = T < tFlip;
+      /* the turn line is said over the finished one-star thread (a banner drops over the phone's top), so the whole reply
+         holds from "Call" into "Answer your bad ones", where the table world takes over */
+      const tSkip = k.S('replies.skip');
       const msgs = five ? [
         {me: false, text: `${n.five.shown} stars. Fixed our furnace fast.`, at: t0 + 0.6, typing: 0.5},
         /* two reply bubbles, not three, so the review stays whole at the top (no scroll); the first grows down a sentence at a time */
         {me: true, text: T >= k.S('replies.f2') ? "Thanks for trusting us with your furnace. Glad it's running right." : 'Thanks for trusting us with your furnace.', at: k.S('replies.f1')},
         {me: true, text: "We're here when you need us.", at: k.S('replies.f3'), read: k.S('replies.f3') + 0.9},
       ] : [
-        {me: false, text: `${n.one.shown} star. The tech showed up late.`, at: tOne + 0.6, typing: 0.5},
+        {me: false, text: `${n.one.shown} star. The tech showed up late.`, at: Math.max(tFlip + 0.1, Math.min(tFlip + 0.3, k.S('replies.o1') - 0.1)), typing: 0.2},
         {me: true, text: T >= k.S('replies.o2') ? "Sorry we were late. That's on us. I want to make it right." : "Sorry we were late. That's on us.", at: k.S('replies.o1')},
         {me: true, text: 'Call me directly at the shop.', at: k.S('replies.o3'), read: k.S('replies.o3') + 0.9},
       ];
-      chat(k, {who: five ? 'FIVE-STAR REPLY' : 'ONE-STAR REPLY', clock: '7:42', msgs, notify: five ? null : {text: `New review: ${n.one.shown} star`, at: tOne, dur: 1.6}});
+      chat(k, {who: five ? 'FIVE-STAR REPLY' : 'ONE-STAR REPLY', clock: '7:42', msgs, notify: T >= tSkip ? {text: 'The part people skip', at: tSkip, dur: 9} : (T >= tNote ? {text: `New review: ${n.one.shown} star`, at: tNote, dur: 1.6} : null)});
       exampleTag(k);
       const r = host(k, k.live('replies.f1') || k.live('replies.o1') ? 'point' : null);
       return r;
@@ -223,17 +240,17 @@ window.SCENE = {
 
     // ---- turn: THE PART PEOPLE SKIP as a rules table, each rule landing as it is said
     turn: (k, T) => {
-      const t0 = k.S('turn');
+      const t0 = k.S('turn'), tBad = wordT(k, 'turn', /^bad/i, 0.4);
       scoreTable(k, 'THE PART PEOPLE SKIP', ['NO.', 'RULE', 'DO'], [
-        {rank: '01', name: 'BAD ONES', value: 'ANSWER', at: wordT(k, 'turn.bad', /^bad/i)},
+        {rank: '01', name: 'BAD ONES', value: 'ANSWER', at: tBad},
         {rank: '02', name: 'LENGTH', value: 'SHORT', at: wordT(k, 'turn.short', /^short/i)},
         {rank: '03', name: 'TONE', value: 'CALM', at: wordT(k, 'turn.short', /^calm/i, 0.8)},
         {rank: '04', name: 'DETAILS', value: 'OFFLINE', at: wordT(k, 'turn.offline', /^offline/i, 0.6)},
         {rank: '05', name: 'ARGUING', value: 'NEVER', at: wordT(k, 'turn.never', /^Never/i), hi: true},
       ]);
-      if (T < k.S('turn.bad')) px(k).tx('Rules for every reply', 180, 284, {color: SAND, align: 'center'});
+      if (T < tBad) px(k).tx('Rules for every reply', 180, 284, {color: SAND, align: 'center'});
       else if (T >= k.S('turn.never')) k.slam('Never argue in public.', 540, 846, k.S('turn.never') + 0.2, {size: 39, color: RED, align: 'center', stamp: true, glint: false});
-      return host(k, k.live('turn.never') ? 'point' : (k.live('turn.bad') ? 'clip' : null));
+      return host(k, k.live('turn.never') ? 'point' : (T < k.S('turn.short') ? 'clip' : null));
     },
 
     // ---- caveat: the chat again, ONE HONEST NOTE; a Monday reminder and our reply
@@ -254,12 +271,14 @@ window.SCENE = {
       /* the column: a game window over the tray, one left edge (x 120), the line and the echo at headline size (lesson 9's 66),
          the echo the loudest (gold); the window ends by y 960 (shadow included) so the host's wave clears it */
       const open = d.ease(t0 + 0.25, 8, 110);
-      d.clip(0, 0, 360, 320, () => d.win(14, 222 + open, 332, 96, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#7A3442'}));
+      /* design, Oct 29: about 14 px headline to chip and 12 px chip to send line; the window starts 9 px higher and is 9 px
+         taller (same bottom), the headline moves up 8, the chip down 6, the send line down 15, the echo stays */
+      d.clip(0, 0, 360, 320, () => d.win(14, 219 + open, 332, 99, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#7A3442'}));
       if (open === 0) {
-        k.slam("Don't leave reviews hanging.", 120, 688, t0 + 0.3, {size: 66, color: 'accent', from: 0.5, drop: INK});
+        k.slam("Don't leave reviews hanging.", 120, 680, t0 + 0.3, {size: 66, color: 'accent', from: 0.5, drop: INK});
         if (T >= send) {
-          k.chip('ProofNotFluff', 120, 752, {size: 30});
-          k.slam('Send this to whoever runs your Google profile.', 120, 802, send + 0.1, {size: 39, color: CREAM, from: 0.4});
+          k.chip('ProofNotFluff', 120, 758, {size: 30});
+          k.slam('Send this to whoever runs your Google profile.', 120, 817, send + 0.1, {size: 39, color: CREAM, from: 0.4});
         }
         const echo = `The next ${n.one.shown}-star gets a reply.`;
         if (T >= ans) { k.slam(echo, 120, 856, ans, {size: 66, color: GOLD, from: 0.5, drop: INK}); k.sweep(120, 916, k.measure(echo, {size: 66}), 6, ans + 0.3, {color: 'accent'}); }

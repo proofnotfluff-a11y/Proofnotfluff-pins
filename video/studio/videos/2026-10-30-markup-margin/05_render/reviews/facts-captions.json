@@ -1,11 +1,23 @@
 {
  "gate": "facts-captions",
- "round": 0,
- "at": "2026-10-28T21:58:24-05:00",
+ "round": "delta-ai-line",
+ "at": "2026-10-29T10:57:13-05:00",
  "pass": true,
- "score": {
-  "numbers": 14,
-  "mismatches": 0
- },
- "reasons": []
+ "reasons": [
+  "Diff: instagram.caption, tiktok.caption, facebook.caption and youtube.description each lose only the line 'Narrated by an AI version of my own voice.' plus one newline; the only other change is a newline added at end of file. All other JSON leaves are byte-identical, and the working tree matches 35071018",
+  "Settings unchanged and on: instagram.aiLabel true, tiktok.aiGenerated true, facebook.aiLabel true, youtube.aiUse true",
+  "Line 1 length: IG 87, TT 78, FB 87, YT 37 (all under 100). Hashtags: IG 4, TT 5, FB 2, YT 3, all on their own final line. A send line is present on all 4. No em or en dashes, no triple newlines, no empty or trailing-space lines, no AI voice text anywhere in the file"
+ ],
+ "scope": "captions.json only: the AI voice line removed (Todd, Oct 29, 10:28 am)",
+ "prior": {
+  "gate": "facts-captions",
+  "round": 0,
+  "at": "2026-10-28T21:58:24-05:00",
+  "pass": true,
+  "score": {
+   "numbers": 14,
+   "mismatches": 0
+  },
+  "reasons": []
+ }
 }

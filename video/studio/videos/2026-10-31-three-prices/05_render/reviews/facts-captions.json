@@ -1,14 +1,26 @@
 {
  "gate": "facts-captions",
- "round": 0,
- "at": "2026-10-28T23:07:37-05:00",
+ "round": "delta-ai-line",
+ "at": "2026-10-29T10:57:13-05:00",
  "pass": true,
- "score": {
-  "numbers": 74,
-  "mismatches": 0
- },
  "reasons": [
-  "All four platforms: ServiceTitan 57% vs 41% of residential jobs, top 10% = 90th revenue percentile, trailing 12 months through Jan 2026; Housecall Pro 1,100+ U.S. homeowners, 68% seek additional quotes (May 13, 2026); ACCA and Farmington 1,000+ HVAC contractors, 4+ options 52% vs 42% for 1 to 3 (ACHR News, Feb 10, 2026) all match the source pages, with the 1-to-3 grouping caveat wherever ACCA appears.",
-  "Rules: line 1 IG 99, TT 86, FB 99, YT desc 72 chars; YT title 76 chars, no hashtags; hashtags IG 4, TT 5, FB 3, YT 3, no generic or homeowner tags; no link in IG or FB; AI voice line on all four; no em or en dashes; no private person, business or address; video never says 'in the caption'."
- ]
+  "Diff: only that one line plus one newline removed from each of the 4 texts, plus a newline added at end of file. All other leaves are identical",
+  "AI settings all true and unchanged",
+  "Line 1: IG 99, TT 86, FB 99, YT 72 (IG and FB are at 99, under 100). Hashtags: IG 4, TT 5, FB 3, YT 3, all last. A send line is present on all 4. No dashes, no spacing damage, no AI voice text"
+ ],
+ "scope": "captions.json only: the AI voice line removed (Todd, Oct 29, 10:28 am)",
+ "prior": {
+  "gate": "facts-captions",
+  "round": 0,
+  "at": "2026-10-28T23:07:37-05:00",
+  "pass": true,
+  "score": {
+   "numbers": 74,
+   "mismatches": 0
+  },
+  "reasons": [
+   "All four platforms: ServiceTitan 57% vs 41% of residential jobs, top 10% = 90th revenue percentile, trailing 12 months through Jan 2026; Housecall Pro 1,100+ U.S. homeowners, 68% seek additional quotes (May 13, 2026); ACCA and Farmington 1,000+ HVAC contractors, 4+ options 52% vs 42% for 1 to 3 (ACHR News, Feb 10, 2026) all match the source pages, with the 1-to-3 grouping caveat wherever ACCA appears.",
+   "Rules: line 1 IG 99, TT 86, FB 99, YT desc 72 chars; YT title 76 chars, no hashtags; hashtags IG 4, TT 5, FB 3, YT 3, no generic or homeowner tags; no link in IG or FB; AI voice line on all four; no em or en dashes; no private person, business or address; video never says 'in the caption'."
+  ]
+ }
 }

@@ -1,15 +1,27 @@
 {
  "gate": "facts-captions",
- "round": 1,
- "at": "2026-10-29T00:00:19-05:00",
+ "round": "delta-ai-line",
+ "at": "2026-10-29T10:57:13-05:00",
  "pass": true,
- "score": {
-  "numbers": 11,
-  "mismatches": 0
- },
  "reasons": [
-  "round 0 fault gone: YouTube next-lesson line now 'Next lesson: why your markup is not your profit.' with no number; 'Previous lesson: how to respond to leads fast' matches lesson 1's caption",
-  "every number on all four matches facts.json and the pages (37%, 2026, 1,040, 2025, 59%, 2 days, a week, 1 to 2 days, 3); 37% carries \"ServiceTitan's own data\" everywhere; 59% carries \"Housecall Pro survey of 1,040 U.S. homeowners (2025)\" and \"expect text updates\" (IG, YT; TikTok and FB omit it); timing credited to Jobber only",
-  "rules: line 1 IG 97, TikTok 88, FB 88 chars; YouTube title 78, no hashtags, keyword first; hashtags IG 4, TikTok 5, FB 2, YT 3, no generic or homeowner tags; YT tags 10 with one misspelling; TikTok owner question present; no link in IG or FB; AI voice line on all four; exact text 'Hi [name], it's [you]. Still want that water heater swapped before winter?' in all four as the video promises; no em or en dashes; no private person or business"
- ]
+  "Diff: only that one line plus one newline removed from each of the 4 texts, plus a newline added at end of file. All other leaves are identical",
+  "AI settings all true and unchanged",
+  "Line 1: IG 97, TT 88, FB 88, YT 44. Hashtags: IG 4, TT 5, FB 2, YT 3, all last. A send line is present on all 4. No dashes, no spacing damage, no AI voice text"
+ ],
+ "scope": "captions.json only: the AI voice line removed (Todd, Oct 29, 10:28 am)",
+ "prior": {
+  "gate": "facts-captions",
+  "round": 1,
+  "at": "2026-10-29T00:00:19-05:00",
+  "pass": true,
+  "score": {
+   "numbers": 11,
+   "mismatches": 0
+  },
+  "reasons": [
+   "round 0 fault gone: YouTube next-lesson line now 'Next lesson: why your markup is not your profit.' with no number; 'Previous lesson: how to respond to leads fast' matches lesson 1's caption",
+   "every number on all four matches facts.json and the pages (37%, 2026, 1,040, 2025, 59%, 2 days, a week, 1 to 2 days, 3); 37% carries \"ServiceTitan's own data\" everywhere; 59% carries \"Housecall Pro survey of 1,040 U.S. homeowners (2025)\" and \"expect text updates\" (IG, YT; TikTok and FB omit it); timing credited to Jobber only",
+   "rules: line 1 IG 97, TikTok 88, FB 88 chars; YouTube title 78, no hashtags, keyword first; hashtags IG 4, TikTok 5, FB 2, YT 3, no generic or homeowner tags; YT tags 10 with one misspelling; TikTok owner question present; no link in IG or FB; AI voice line on all four; exact text 'Hi [name], it's [you]. Still want that water heater swapped before winter?' in all four as the video promises; no em or en dashes; no private person or business"
+  ]
+ }
 }

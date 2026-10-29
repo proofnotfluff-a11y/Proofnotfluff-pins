@@ -1,20 +1,32 @@
 {
  "gate": "facts-captions",
- "round": 1,
- "at": "2026-10-28T23:15:26-05:00",
+ "round": "delta-ai-line",
+ "at": "2026-10-29T10:57:13-05:00",
  "pass": true,
- "score": {
-  "numbers": 7,
-  "mismatches": 0
- },
- "reasons": [],
- "checked": [
-  "numbers vs ServiceTitan page (re-fetched Oct 28, 2026): top 10% = 90th percentile of revenue in trade and market segment, 77%, 62%, 15-point gap, participating customers, trailing 12 months through January 2026, published May 19, 2026, trades list: all match; population qualifier on all four platforms",
-  "caveat on all four (correlated, not a cause); 'estimates' and 'same visit' only, never 'home jobs'; objections/financing/asks-for-the-sale line matches the page",
-  "youtube next-lesson line now 'how to raise your prices, and the note that tells your customers.': matches Lesson 6 (2026-11-02-price-raise) brief, which teaches the price note and does not claim how customers react; round 0 issue resolved",
-  "video says nothing is 'in the caption'; ask lines match the script with [day] for the example Thursday",
-  "line 1: instagram 97, tiktok 88 (keyword at char 0), facebook 97; youtube title 74, keyword first, no hashtags",
-  "hashtags: instagram 4, tiktok 5, facebook 3, youtube description 3; umbrella + trade + topic mix; no #fyp, generic or homeowner tags",
-  "youtube tags 10 with one misspelling; no link in instagram or facebook ('link in bio' only); AI voice line on all four; no em or en dashes; no private person, business or address"
- ]
+ "reasons": [
+  "Diff: only that one line plus one newline removed from each of the 4 texts, plus a newline added at end of file. All other leaves are identical",
+  "AI settings all true and unchanged",
+  "Line 1: IG 97, TT 88, FB 97, YT 81. Hashtags: IG 4, TT 5, FB 3, YT 3, all last. A send line is present on all 4. No dashes, no spacing damage, no AI voice text"
+ ],
+ "scope": "captions.json only: the AI voice line removed (Todd, Oct 29, 10:28 am)",
+ "prior": {
+  "gate": "facts-captions",
+  "round": 1,
+  "at": "2026-10-28T23:15:26-05:00",
+  "pass": true,
+  "score": {
+   "numbers": 7,
+   "mismatches": 0
+  },
+  "reasons": [],
+  "checked": [
+   "numbers vs ServiceTitan page (re-fetched Oct 28, 2026): top 10% = 90th percentile of revenue in trade and market segment, 77%, 62%, 15-point gap, participating customers, trailing 12 months through January 2026, published May 19, 2026, trades list: all match; population qualifier on all four platforms",
+   "caveat on all four (correlated, not a cause); 'estimates' and 'same visit' only, never 'home jobs'; objections/financing/asks-for-the-sale line matches the page",
+   "youtube next-lesson line now 'how to raise your prices, and the note that tells your customers.': matches Lesson 6 (2026-11-02-price-raise) brief, which teaches the price note and does not claim how customers react; round 0 issue resolved",
+   "video says nothing is 'in the caption'; ask lines match the script with [day] for the example Thursday",
+   "line 1: instagram 97, tiktok 88 (keyword at char 0), facebook 97; youtube title 74, keyword first, no hashtags",
+   "hashtags: instagram 4, tiktok 5, facebook 3, youtube description 3; umbrella + trade + topic mix; no #fyp, generic or homeowner tags",
+   "youtube tags 10 with one misspelling; no link in instagram or facebook ('link in bio' only); AI voice line on all four; no em or en dashes; no private person, business or address"
+  ]
+ }
 }

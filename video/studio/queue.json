@@ -61,7 +61,7 @@
   {
    "slug": "2026-10-30-markup-margin",
    "readyAt": "2026-10-28T22:30:29-05:00",
-   "commit": "4fe6a2718032e8f5aabd27767757cf88a8e1810e",
+   "commit": "e56503591ec8e1fe64e42d0305f4516f757b1a0c",
    "fingerprints": {
     "script": "4f291c57245f",
     "takes": "987ddd9b7a90",
@@ -69,19 +69,21 @@
     "cues": "eb83e5a4f289",
     "scene": "d6483ce786b1",
     "data": "cac5a48e1520",
-    "captions": "a51c063f3cef",
+    "captions": "2bf70f04cc0e",
     "mouth": "cd6dad0fdb1b",
     "runtime_kit": "d12df837dc0a",
     "runtime_player": "a66cf6faac98",
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {},
+   "commit_before_caption_fix": "4fe6a2718032e8f5aabd27767757cf88a8e1810e",
+   "note": "Oct 29: re-pinned to studio-pins/2026-10-30-markup-margin (the gated commit plus captions without the AI voice line; facts-captions delta PASS)."
   },
   {
    "slug": "2026-11-04-close-rate",
    "readyAt": "2026-10-28T22:42:57-05:00",
-   "commit": "4162a9b8f441ab8d0f2fffe6af066c8a1a44ca23",
+   "commit": "899eb110c1d4eeaec6f6b0cd7b7798edff61891a",
    "fingerprints": {
     "script": "2f228a698cbb",
     "takes": "38f36a5a119e",
@@ -89,19 +91,21 @@
     "cues": "b4d3e842d1d8",
     "scene": "4a7188f0d35c",
     "data": "c35bec85bbab",
-    "captions": "aa0bea80ffd9",
+    "captions": "13640c858a0f",
     "mouth": "e84cf18c10f9",
     "runtime_kit": "d12df837dc0a",
     "runtime_player": "a66cf6faac98",
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {},
+   "commit_before_caption_fix": "4162a9b8f441ab8d0f2fffe6af066c8a1a44ca23",
+   "note": "Oct 29: re-pinned to studio-pins/2026-11-04-close-rate (the gated commit plus captions without the AI voice line; facts-captions delta PASS)."
   },
   {
    "slug": "2026-11-03-review-replies",
    "readyAt": "2026-10-28T23:26:56-05:00",
-   "commit": "175d142abb5a1c6bb68bb8dfc7aefaa1ed911e3a",
+   "commit": "c76ac0d975f7296ac4c4a073d94388168a27bc27",
    "fingerprints": {
     "script": "d3f8706e7a9a",
     "takes": "a636386e1d80",
@@ -109,19 +113,21 @@
     "cues": "6f5df49672a0",
     "scene": "084aeb4d657c",
     "data": "9b085fcd1ff5",
-    "captions": "1b5ee448004b",
+    "captions": "9538e71f4861",
     "mouth": "0da8c8c3af77",
     "runtime_kit": "d12df837dc0a",
     "runtime_player": "a66cf6faac98",
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {},
+   "commit_before_caption_fix": "175d142abb5a1c6bb68bb8dfc7aefaa1ed911e3a",
+   "note": "Oct 29: re-pinned to studio-pins/2026-11-03-review-replies (the gated commit plus captions without the AI voice line; facts-captions delta PASS)."
   },
   {
    "slug": "2026-10-31-three-prices",
    "readyAt": "2026-10-28T23:45:42-05:00",
-   "commit": "6774b3100ff834d57c4b9eb4986e7e399e70714e",
+   "commit": "7faa6e450e2b8c3ff4c9fccba8b4288bf308ba63",
    "fingerprints": {
     "script": "4a2831489672",
     "takes": "36debef722d2",
@@ -129,19 +135,21 @@
     "cues": "075ad9232be1",
     "scene": "1c8e9bb7dc7d",
     "data": "403be68f89fb",
-    "captions": "2afcd05ae234",
+    "captions": "fe3a51ff0972",
     "mouth": "e5a75999616d",
     "runtime_kit": "d12df837dc0a",
     "runtime_player": "a66cf6faac98",
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {},
+   "commit_before_caption_fix": "6774b3100ff834d57c4b9eb4986e7e399e70714e",
+   "note": "Oct 29: re-pinned to studio-pins/2026-10-31-three-prices (the gated commit plus captions without the AI voice line; facts-captions delta PASS)."
   },
   {
    "slug": "2026-10-29-quote-revive",
    "readyAt": "2026-10-29T00:00:32-05:00",
-   "commit": "3b15048b4ecdfa9e5a54c3af637ab136b98d961f",
+   "commit": "e2c71a75e094d105b46eefd9eaa46f587b3778c5",
    "fingerprints": {
     "script": "548404bececa",
     "takes": "324103710f81",
@@ -149,19 +157,21 @@
     "cues": "0fdd763842d9",
     "scene": "316e66cac37b",
     "data": "945dc2c4e5fa",
-    "captions": "5ee99f396dd3",
+    "captions": "70b910a96b6a",
     "mouth": "85bfd5e28cf5",
     "runtime_kit": "d12df837dc0a",
     "runtime_player": "a66cf6faac98",
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {},
+   "commit_before_caption_fix": "3b15048b4ecdfa9e5a54c3af637ab136b98d961f",
+   "note": "Oct 29: re-pinned to studio-pins/2026-10-29-quote-revive (the gated commit plus captions without the AI voice line; facts-captions delta PASS)."
   },
   {
    "slug": "2026-11-02-price-raise",
    "readyAt": "2026-10-29T00:41:46-05:00",
-   "commit": "7e2760393d479ab6385fd9f5eb4faaa852f26eaa",
+   "commit": "7b1cfa9f42ec849de0ad6b4f89bfe661e608cd49",
    "fingerprints": {
     "script": "9df8d709301b",
     "takes": "392c040f9a29",
@@ -169,19 +179,21 @@
     "cues": "6901899d0463",
     "scene": "ea52d90595e0",
     "data": "ed7cee80801f",
-    "captions": "712be51eec4b",
+    "captions": "4e11ebe65df9",
     "mouth": "e2cb864756d7",
     "runtime_kit": "d12df837dc0a",
     "runtime_player": "a66cf6faac98",
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {},
+   "commit_before_caption_fix": "7e2760393d479ab6385fd9f5eb4faaa852f26eaa",
+   "note": "Oct 29: re-pinned to studio-pins/2026-11-02-price-raise (the gated commit plus captions without the AI voice line; facts-captions delta PASS)."
   },
   {
    "slug": "2026-11-01-same-visit-close",
    "readyAt": "2026-10-29T10:40:00-05:00",
-   "commit": "96582f99976513daadc2e19786828cd22e5c9d7b",
+   "commit": "193b4f65ccb84f99e0eee561f42127f9461b3c5c",
    "fingerprints": {
     "script": "ba80bd2e85ee",
     "takes": "2b299fb79b0e",
@@ -189,7 +201,7 @@
     "cues": "e9d080e100da",
     "scene": "b38562276117",
     "data": "511596e9c0a5",
-    "captions": "1b14b7147580",
+    "captions": "96168f9e9c3f",
     "mouth": "9720cd68388e",
     "runtime_kit": "d12df837dc0a",
     "runtime_player": "a66cf6faac98",
@@ -197,7 +209,8 @@
     "runtime_pixfont": "a8557997756e"
    },
    "posts": {},
-   "note": "Todd's go, Oct 29, 10:32 am, on the held render-critic (fault fixed, confirm 0 faults); pinned to the commit its gates passed at"
+   "note": "Todd's go, Oct 29, 10:32 am, on the held render-critic (fault fixed, confirm 0 faults); pinned to the commit its gates passed at Oct 29: re-pinned to studio-pins/2026-11-01-same-visit-close (the gated commit plus captions without the AI voice line; facts-captions delta PASS).",
+   "commit_before_caption_fix": "96582f99976513daadc2e19786828cd22e5c9d7b"
   }
  ]
 }

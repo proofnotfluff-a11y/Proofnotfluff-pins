@@ -1,11 +1,23 @@
 {
  "gate": "facts-captions",
- "round": 0,
- "at": "2026-10-28T22:09:31-05:00",
+ "round": "delta-ai-line",
+ "at": "2026-10-29T10:57:13-05:00",
  "pass": true,
- "score": {
-  "numbers": 10,
-  "mismatches": 0
- },
- "reasons": []
+ "reasons": [
+  "Diff: the removal of that one line plus one newline in each of the 4 platform texts is the only change (the file already ended with a newline). All other leaves are identical, and the working tree matches the commit",
+  "AI settings all true and unchanged",
+  "Line 1: IG 93, TT 84, FB 93, YT 93. Hashtags: IG 4, TT 5, FB 3, YT 3, all last on their own line. A send line is present on all 4. No dashes, no spacing damage, no AI voice text"
+ ],
+ "scope": "captions.json only: the AI voice line removed (Todd, Oct 29, 10:28 am)",
+ "prior": {
+  "gate": "facts-captions",
+  "round": 0,
+  "at": "2026-10-28T22:09:31-05:00",
+  "pass": true,
+  "score": {
+   "numbers": 10,
+   "mismatches": 0
+  },
+  "reasons": []
+ }
 }

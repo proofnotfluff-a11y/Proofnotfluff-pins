@@ -1,15 +1,30 @@
 {
  "gate": "facts-captions",
- "round": 0,
- "at": "2026-10-29T00:28:37-05:00",
+ "round": "delta-ai-line",
+ "at": "2026-10-29T10:57:13-05:00",
  "pass": true,
- "score": {"numbers": 15, "mismatches": 0},
- "reasons": [],
- "notes": [
-  "numbers on all four platforms match the Jobber page and BLS Table 8: 1,050 owners, Dec 2025, 65%, HVAC 83%, plumbing/electrical/roofing 74%, cleaning 55% lowest (Instagram, YouTube), inflation 72%, labor 50%, install/maintenance/repair 3.7%, all workers 3.2%, 12 months to June 2026",
-  "population qualifier present wherever a survey share appears (Jobber survey of 1,050 US home service business owners); BLS wages framed as wages and salaries for the occupational group; no size of increase, customer reaction or future plans claimed; caveat (who raised, not how customers took it) on Instagram, Facebook, YouTube",
-  "price note uses [date] and is marked example on Instagram and YouTube; the video says nothing is 'in the caption', so no consistency gap",
-  "rules: line 1 Instagram 99 chars, TikTok 67, Facebook 75; YouTube title 77 chars, no hashtags, keyword first; hashtags IG 4 (umbrella, 2 trade, 1 topic), TikTok 5 with no #fyp, Facebook 2, YouTube description 2; no link in Instagram or Facebook ('link in bio' only); AI voice line on all four; TikTok keyword in first 70 and an owner question; YouTube 9 tags incl. one misspelling ('rasie'), all business/contractor phrased, no homeowner or DIY tags",
-  "no em or en dashes; no private person, business or address"
- ]
+ "reasons": [
+  "Diff: only that one line plus one newline removed from each of the 4 texts. All other leaves are identical",
+  "AI settings all true and unchanged",
+  "Line 1: IG 99, TT 67, FB 75, YT 81. Hashtags: IG 4, TT 5, FB 2, YT 2, all last. A send line is present on all 4 (IG and TT also keep the 'Send this before your next quote' example line). No dashes, no spacing damage, no AI voice text"
+ ],
+ "scope": "captions.json only: the AI voice line removed (Todd, Oct 29, 10:28 am)",
+ "prior": {
+  "gate": "facts-captions",
+  "round": 0,
+  "at": "2026-10-29T00:28:37-05:00",
+  "pass": true,
+  "score": {
+   "numbers": 15,
+   "mismatches": 0
+  },
+  "reasons": [],
+  "notes": [
+   "numbers on all four platforms match the Jobber page and BLS Table 8: 1,050 owners, Dec 2025, 65%, HVAC 83%, plumbing/electrical/roofing 74%, cleaning 55% lowest (Instagram, YouTube), inflation 72%, labor 50%, install/maintenance/repair 3.7%, all workers 3.2%, 12 months to June 2026",
+   "population qualifier present wherever a survey share appears (Jobber survey of 1,050 US home service business owners); BLS wages framed as wages and salaries for the occupational group; no size of increase, customer reaction or future plans claimed; caveat (who raised, not how customers took it) on Instagram, Facebook, YouTube",
+   "price note uses [date] and is marked example on Instagram and YouTube; the video says nothing is 'in the caption', so no consistency gap",
+   "rules: line 1 Instagram 99 chars, TikTok 67, Facebook 75; YouTube title 77 chars, no hashtags, keyword first; hashtags IG 4 (umbrella, 2 trade, 1 topic), TikTok 5 with no #fyp, Facebook 2, YouTube description 2; no link in Instagram or Facebook ('link in bio' only); AI voice line on all four; TikTok keyword in first 70 and an owner question; YouTube 9 tags incl. one misspelling ('rasie'), all business/contractor phrased, no homeowner or DIY tags",
+   "no em or en dashes; no private person, business or address"
+  ]
+ }
 }

@@ -1,11 +1,26 @@
 {
+ "gate": "facts-captions",
+ "round": "delta-ai-line",
+ "at": "2026-10-29T10:57:13-05:00",
+ "pass": true,
+ "reasons": [
+  "Diff: only that one line plus one newline removed from each of the 4 texts. All other leaves are identical",
+  "AI settings all true and unchanged",
+  "Line 1: IG 97, TT 70, FB 73, YT 93. Hashtags: IG 4, TT 4, FB 2, YT 2, all last. A send line is present on all 4. No dashes, no spacing damage, no AI voice text"
+ ],
+ "scope": "captions.json only: the AI voice line removed (Todd, Oct 29, 10:28 am)",
+ "prior": {
   "gate": "facts-captions",
   "round": 0,
   "pass": true,
-  "score": {"numbers": 32, "mismatches": 0},
+  "score": {
+   "numbers": 32,
+   "mismatches": 0
+  },
   "reasons": [
-    "All numbers (91, 400, 56, 45, 43, 13, Sept/Sep 17 2024, 1 to 10 employees, 10 minutes) match the source page and facts.json; 'the contractors surveyed' qualifier present wherever contractor shares appear.",
-    "'(rounded)' on Instagram and YouTube is fair: the page's 45/43/13 sum to 101.",
-    "Rules: line 1 under 100 (IG 97, TT 70, FB 73); hashtags IG 4, TT 4, FB 2, YT 2; YT title 70 chars, no hashtags, 8 tags incl. misspelling; no link on IG or FB; AI voice line on all four; no em or en dashes; no private person, business or address."
+   "All numbers (91, 400, 56, 45, 43, 13, Sept/Sep 17 2024, 1 to 10 employees, 10 minutes) match the source page and facts.json; 'the contractors surveyed' qualifier present wherever contractor shares appear.",
+   "'(rounded)' on Instagram and YouTube is fair: the page's 45/43/13 sum to 101.",
+   "Rules: line 1 under 100 (IG 97, TT 70, FB 73); hashtags IG 4, TT 4, FB 2, YT 2; YT title 70 chars, no hashtags, 8 tags incl. misspelling; no link on IG or FB; AI voice line on all four; no em or en dashes; no private person, business or address."
   ]
+ }
 }

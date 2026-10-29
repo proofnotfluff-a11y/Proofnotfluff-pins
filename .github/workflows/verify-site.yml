@@ -10,6 +10,10 @@ on:
         description: "Commit to compare against (default: the commit before)"
         required: false
         default: "HEAD~1"
+      pages:
+        description: "Extra pages to check and diff, space separated (home = the home page); for changes outside index.html, such as docs/assets/pnf.css"
+        required: false
+        default: ""
   push:
     branches: [main]
     paths: ["docs/**", "tools/verify_site.py", "verify/**", ".github/workflows/verify-site.yml"]
@@ -37,9 +41,12 @@ jobs:
         # each FAIL line also becomes an error annotation, which cloud runs can read through the API (Oct 29, 2026)
         env:
           BASE: ${{ github.event.inputs.base || 'HEAD~1' }}
+          PAGES: ${{ github.event.inputs.pages || '' }}
         run: |
           set -o pipefail
-          python3 tools/verify_site.py --changed "$BASE" --flows --out data/verify/ci | tee verify.txt \
+          extra=(); for p in $PAGES; do if [ "$p" = home ]; then extra+=(""); else extra+=("$p"); fi; done
+          before=(); [ ${#extra[@]} -gt 0 ] && before=(--before "$BASE")
+          python3 tools/verify_site.py "${extra[@]}" --changed "$BASE" "${before[@]}" --flows --out data/verify/ci | tee verify.txt \
             || { grep -E '^(FAIL|ERROR)' verify.txt | head -40 | cut -c1-400 | sed 's/^/::error::/'; exit 1; }
       - if: always()
         uses: actions/upload-artifact@v4

@@ -1,5 +1,7 @@
 # Style board (the bar the lab and the design gate measure against)
 
+The design gate (prompts/design.md) grades every lesson against this board from Oct 29, 2026 (Todd: "go with rec"): a missed type floor, a slow hook or a missing end card caps that score at 4. The pass bar itself (no score under 4, average 4.61) is unchanged.
+
 Started Oct 29, 2026 (IMPROVE 000). Six frames from our own best lessons, cropped from their contact sheets (324x576, a 0.3 scale of the 1080x1920 output), plus board.jpg with all six. Each frame names what to keep and what to push. Replace a frame when a newer lesson beats it, and say so in research/LAB.md. Outside work we admire goes in as notes with its source page, never as copied art.
 
 ## The frames

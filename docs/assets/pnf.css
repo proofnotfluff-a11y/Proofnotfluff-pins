@@ -114,7 +114,7 @@ table.mt b{font-weight:700}
 .drow .field input{padding-left:8px;padding-right:8px}
 .drow .field.has-pre input{padding-left:20px}.drow .field.has-suf input{padding-right:22px}
 .drow .field .pre{left:8px}.drow .field .suf{right:8px}
-@media(max-width:560px){.drow{grid-template-columns:1.4fr .9fr 1fr;gap:4px 6px}.drow .dname{grid-column:1/-1;font-size:13px;font-weight:700;color:var(--ink2);margin-top:4px}.drow.dhead div:first-child{display:none}.drow .field input{font-size:15px}.debts{gap:6px}}
+@media(max-width:560px){.drow{grid-template-columns:1.4fr .9fr 1fr;gap:4px 6px}.drow .dname{grid-column:1/-1;font-size:13px;font-weight:700;color:var(--ink2);margin-top:4px}.drow.dhead div:first-child{display:none}.drow .field input{font-size:16px}.debts{gap:6px}}
 @media(max-width:400px){.duo{column-gap:12px}.duo .row{grid-template-columns:1fr 92px}}
 @media(max-width:420px){table.mt{font-size:14px}table.mt td+td,table.mt th+th{padding-left:7px}table.mt thead th{font-size:10.5px;letter-spacing:.04em}.tag{font-size:10px;padding:0 4px;margin-left:3px}}
 /* permit leads pages (kind "leads"); design director pass, Oct 17 */
@@ -460,7 +460,7 @@ h2,h3{line-height:1.2}section.block h2{line-height:1.2}
 .pnf-pop{animation:pnf-pop .5s ease-out}
 @keyframes pnf-pop{0%{background:var(--pop)}100%{background:transparent}}
 .tools a.card,.st-trades a,.st-printable,.qa-rel a{transition:transform .12s ease,border-color .12s ease,box-shadow .12s ease}
-.tools a.card:hover,.st-trades a:hover,.st-printable:hover,.qa-rel a:hover{transform:translateY(-2px)}
+@media(hover:hover) and (pointer:fine){.tools a.card:hover,.st-trades a:hover,.st-printable:hover,.qa-rel a:hover{transform:translateY(-2px)}}
 .mbar{transition:transform .2s ease}}
 body.mbar-off .mbar{transform:translateY(110%)}
 /* store v2, Oct 24, 2026 (design review; major, on Todd's go): header action, home hero with the product and the trade
@@ -570,7 +570,7 @@ html.qf-open{overflow:hidden}
 .cx-start .cx-item a{background:var(--band);border-color:var(--band);color:#fff}.cx-start .cx-tag{color:var(--band-eyebrow)}.cx-start .cx-d{color:var(--band-text)}
 .cx-start .cx-item a{--focus:#fff}
 .cx-empty{padding:28px;border:1px dashed var(--dash);border-radius:14px;text-align:center}.cx-empty p{margin:0 0 10px}
-@media(prefers-reduced-motion:no-preference){.cx-item a{transition:transform .12s ease,border-color .12s ease}.cx-item a:hover{transform:translateY(-2px)}}
+@media(prefers-reduced-motion:no-preference){.cx-item a{transition:transform .12s ease,border-color .12s ease}@media(hover:hover) and (pointer:fine){.cx-item a:hover{transform:translateY(-2px)}}}
 /* page to page: the header stays, the page crossfades (browsers without support just load the page) */
 @view-transition{navigation:auto}
 header.top{view-transition-name:site-header}
@@ -630,7 +630,7 @@ a.bt:hover{border-color:#6b7488;background:rgba(255,255,255,.07)}
 .bt-ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:15px;color:var(--band-text)}
 .bt-ul li{display:flex;gap:8px}.bt-ul li::before{content:"";flex:0 0 7px;height:7px;margin-top:8px;border-radius:50%;background:#6cc0b6}
 .bt-shot{margin-top:auto;padding-top:14px}.bt-shot img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--band-rule)}
-@media(prefers-reduced-motion:no-preference){a.bt{transition:transform .14s ease,border-color .14s ease,background .14s ease}a.bt:hover{transform:translateY(-3px)}}
+@media(prefers-reduced-motion:no-preference){a.bt{transition:transform .14s ease,border-color .14s ease,background .14s ease}@media(hover:hover) and (pointer:fine){a.bt:hover{transform:translateY(-3px)}}}
 @supports(animation-timeline:view()){@media(prefers-reduced-motion:no-preference){.bt{animation:pnf-rise linear both;animation-timeline:view();animation-range:entry 0% entry 40%}}}
 /* store v2 fix round 3 (independent review, Oct 24): phone header in one sticky row with a menu sheet, one section
    rhythm on home, catalog spacing, phone card padding, landing offsets, art-directed glow behind the product */
@@ -786,3 +786,11 @@ main p.cx-xlink a:not(.btn):not(.st-btn2){padding:14px 16px}
 @media(max-width:599px){.st-band-act .ld-btnbig{white-space:normal}}
 /* breadcrumbs one level deeper under the data hub (Oct 27): middle items shorten with an ellipsis instead of pushing the page sideways */
 .crumbs ol{max-width:100%}.crumbs li:not(:first-child){min-width:0;overflow:hidden;text-overflow:ellipsis}
+/* phone feel (Todd, Oct 29, 2026: yes to the pnf-motion-mobile skill and its four fixes): no gray flash on tap, taps fire at
+   once, buttons answer the press, and the lead-page area picker is 16 px on touch screens so iPhones do not zoom into it */
+html{-webkit-tap-highlight-color:transparent}
+a,button,input,select,label,summary{touch-action:manipulation}
+@media(pointer:coarse){.ld-area select{font-size:16px}}
+@media(prefers-reduced-motion:no-preference){.btn,.st-btn2,.qf-btn,a.navcta,.ld-buybtn,.ld-btnbig,.hubbtn,.ld-trialbtn,.as-btn{transition:transform .12s cubic-bezier(.23,1,.32,1)}
+.btn:active,.st-btn2:active,.qf-btn:active,a.navcta:active,.ld-buybtn:active,.ld-btnbig:active,.hubbtn:active,.ld-trialbtn:active,.as-btn:active{transform:scale(.97)}}
+@media(prefers-reduced-motion:reduce){.btn:active,.st-btn2:active,.qf-btn:active,a.navcta:active,.ld-buybtn:active,.ld-btnbig:active,.hubbtn:active,.ld-trialbtn:active,.as-btn:active{opacity:.8}}

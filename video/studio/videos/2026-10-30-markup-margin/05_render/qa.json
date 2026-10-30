@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-10-30-markup-margin",
- "mp4Sha256": "d55874933d0fb5b0683d39952a5526604a1db135e2ee3cd12d272bc70895d22e",
+ "mp4Sha256": "a0816b07e863e388e31f7d8131f2b5c6d28bf75fd501f81f7bf9a38702d34ecb",
  "checks": [
   {
    "name": "length",
@@ -38,8 +38,8 @@
   {
    "name": "file",
    "value": {
-    "sha256": "d55874933d0fb5b0683d39952a5526604a1db135e2ee3cd12d272bc70895d22e",
-    "bytes": 3934133
+    "sha256": "a0816b07e863e388e31f7d8131f2b5c6d28bf75fd501f81f7bf9a38702d34ecb",
+    "bytes": 3901524
    },
    "pass": true,
    "detail": "H.264 1080x1920 30 fps, AAC, 3.9 MB, decodes clean"
@@ -52,5 +52,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-29T20:12:46-05:00"
+ "at": "2026-10-29T20:23:53-05:00"
 }

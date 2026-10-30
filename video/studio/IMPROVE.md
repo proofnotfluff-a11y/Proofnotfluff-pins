@@ -12,8 +12,10 @@ The lab (Tue, Thu, Sat) ranks this list from its benchmark against _shared/style
 ## Backlog (most promising first)
 000. End card: the last 3 to 5 s show the ProofNotFluff lockup and proofnotfluff.com, music only (Jake Van Clief's
    voice-driven-animation end card; the buyer gate answered follow_or_link "no" on lessons 1 and 8).
-00b. Type floor in `lint` (now the top item: since Oct 29 the design gate caps type at 4 on every lesson for it; dialog
-   words measure about 24 px cap height): spoken words 44 px, labels 36 px at 1080 wide (lesson 9 runs about 20 to 27 px).
+00b. Type floor (the design gate caps type at 4 under 44 px spoken words or 36 px labels at 1080 wide). Spoken words:
+   done Oct 29 (Done, below): the arcade dialog box is size 66 now. Left: labels, tags and sources under 36 (size 30 or 39,
+   about 21 to 27 px caps; lesson 9's prompt card, the HUD and k.chip tags) still cap type at 4. Not changed on purpose
+   for now; next: a `lint` check that names every label drawn under size 36, then raise them scene by scene.
 00e. Trim each voice take's silent tail to about 0.3 to 0.5 s in the voice pipeline: lesson 3's take 5 left a 1.39 s
    tail (1.71 s of dead air at 59.9 s) and read 147 wpm on file length though it was spoken at 161; lesson 5's take 6
    reads 148 on the file and 155 spoken. The pace check measures the file, so a long tail is a false slow flag.
@@ -29,7 +31,8 @@ The lab (Tue, Thu, Sat) ranks this list from its benchmark against _shared/style
    pose on big numbers; squash and stretch on landings and 1-frame smears on fast moves (Todd, Oct 28: "better animation").
 0. Captions lint in code: line 1 under 100 characters on all four, a send line on all four, hashtag counts per platform,
    no AI voice line (Todd, Oct 29), no em or en dashes (facts-captions caught two of these on lesson 4).
-1. Sound: a short music bed per room (four tiny loops made in code, same key), ducked under the voice.
+1. Sound: a short music bed per room (done Oct 28), now in six tunes (done Oct 29, below). Next: a tune per lesson
+   picked from the hook's mood, and a two-bar fill on the last bar before each room change.
 2. Motion: a squash and stretch landing on every slammed number (scale 1.15 x 0.9 for 2 frames, then 1).
 3. Host: lip shapes matched to the voice's loudness (open, half, closed) instead of a fixed talk cycle.
 4. Visual: a one-frame white flash and a 2 px offset (impact frame) on stamps only; never more than once in 10 s.
@@ -43,6 +46,19 @@ The lab (Tue, Thu, Sat) ranks this list from its benchmark against _shared/style
 12. Visual: a seasonal touch per week (snow outside the half-built house in winter, leaves in fall).
 
 ## Done (newest first: date, item, what changed, proof)
+- 2026-10-29 (Todd, 8:11 pm: "different tunes for each video"): six room tunes of our own. `anim.py sound` builds
+  classic (A minor 96, unchanged byte for byte) plus sunny (C major 120), quest (D minor 108), night (E Phrygian 88),
+  chase (F major 132) and bounce (G Mixolydian 112, swung), each its own chords, lead and room patterns, to
+  `_runtime/music/<tune>/<room>.wav` (15.4 MB, RMS 0.12, seams under the loops' own steps, room crossfades 1.5 to 1.7 dB
+  like classic's 1.58). cues.md says `music: rooms <tune>`; the crossfade is one beat of the tune; `variety` fails a
+  tune shared with the lesson before or after in line (`tunes SLUG` names the free ones). Every new tune keeps C, E and
+  G natural, so the sting never rubs. Proof: mixes of 11-08 on four tunes (-15.9 LUFS without a voice, as classic).
+- 2026-10-29 (Todd, 8:08 pm: "Go with your recommendation"): spoken words bigger (00b). The arcade dialog box draws its
+  words at size 66 in the display pixel font (33 px caps, was 39 in the body font, 21 px), two rows, line height 78,
+  same box; `buildPhrases` cuts pages with the box's own pixel widths, so every page fits two rows at 66; a page with one
+  word wider than a row steps down to 39 on three rows; the more arrow moved under the second row. Proof: the real
+  player.js and kit.js code run on all 14 lessons' words: 0 pages over two rows, 0 step-downs, ink right edge 897 of 902;
+  11-08 goes from 19 pages to 22. Stills and lint not run (no Chromium in that session): run them on the next build.
 - 2026-10-29 (Todd: yes): end card up for the last 3.0 s. `cues` tail 2.9 s -> 3.1 s and the card drops 0.1 s after the
   last word (was 0.35 s), so it held 2.3 to 2.5 s before. Proof: the six waiting lessons rebuilt on it (lint, check).
 - 2026-10-29 (Todd: "get this fixed today"): hook motion (00a) and the 75 s cap (00c). anim.py `hook` measures the

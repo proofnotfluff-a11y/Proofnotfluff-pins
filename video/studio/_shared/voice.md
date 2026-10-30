@@ -66,6 +66,11 @@ The script check (`01_voice/script-check.md`, PASS or FAIL with the metric; 12 o
 `brief.md` names its hook pattern, treatment and real example (`_templates/brief.md`). `anim.py variety SLUG` (run by `lint`
 and `ready`): the example is the lesson's own; no other unposted lesson has the same hook pattern and treatment; the lessons
 before and after it in line do not open on the same hook pattern. Pick a hook pattern that passes before the voice is made.
+Music (Todd, Oct 29, 2026, 8:11 pm: "different tunes for each video"): a lesson's tune is not the tune of the lesson right
+before or right after it in line (the last posted lesson, then the unposted queue). The tunes: classic, sunny, quest, night,
+chase, bounce (`_shared/sound.md`), and a library bed counts as its own. The source of truth is cues.md's
+`music: rooms <tune>` line (plain `music: rooms` is classic); until cues.md exists, brief.md's Music line stands in.
+`anim.py tunes SLUG` names the free ones. Lessons pinned before the rule still post as they are; a rebuild picks a free tune.
 
 ## Pace
 - Target 160 to 195 words a minute per take. Under 150: rewrite the take as talk. Over 200: give it a landing beat.

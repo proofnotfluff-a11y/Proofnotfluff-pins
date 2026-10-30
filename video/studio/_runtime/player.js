@@ -14,12 +14,33 @@
 
   function load(src) { return new Promise((ok, bad) => { const s = document.createElement('script'); s.src = src + '?' + Date.now(); s.onload = ok; s.onerror = () => bad(new Error('missing ' + src)); document.head.appendChild(s); }); }
 
+  // The arcade dialog box (IMPROVE 00b; Todd, Oct 29, 2026, 8:08 pm: "Go with your recommendation"): the spoken words in
+  // the display pixel font at size 66 (one font pixel per low-res pixel: 33 px caps at 1080 wide, was 21 px at 39), two
+  // rows at most, lowercase. [size, rows, line height], first fit wins: a page holding one word wider than a row (none
+  // in our lessons so far) steps down to the body font at 39 on three rows, the old type.
+  const ARCADE_BOX = {x: 372, y: 1046, w: 560, h: 190}, ARCADE_PAD = 30;
+  const ARCADE_TYPE = [[66, 2, 78], [39, 3, 46]];
+  let mk = null;   // a kit on a spare canvas: measures words with the same pixel font widths the box draws them in
+  // rows a page takes inside the box at this size (the box's own wrap), or Infinity when one word alone is wider than a row
+  function arcadeRows(ws, size) {
+    const maxW = ARCADE_BOX.w - 2 * ARCADE_PAD, o = {size, weight: 600, font: 'body'}, sp = mk.measure(' ', o);
+    let cx = 0, rows = 1;
+    for (const wd of ws) {
+      const ww = mk.measure(wd.w, o);
+      if (ww > maxW) return Infinity;
+      if (cx + ww > maxW && cx > 0) { cx = 0; rows++; }
+      cx += ww + sp;
+    }
+    return rows;
+  }
+
   function buildPhrases(ws) {
     const out = []; let cur = [];
     const ctx = document.createElement('canvas').getContext('2d');
     ctx.font = `600 46px ${look.font.body}`;
-    const fitW = look.bitmap ? 470 : 520, maxL = look.bitmap ? 3 : 2;
-    const fits = (arr) => {
+    const fitW = 520, maxL = 2;
+    // the arcade look cuts its pages with the box's own measure, so every page fits two rows at 66
+    const fits = look.bitmap ? (arr) => arcadeRows(arr, ARCADE_TYPE[0][0]) <= ARCADE_TYPE[0][1] : (arr) => {
       const lines = []; let line = '';
       arr.forEach((w) => { const t = line ? line + ' ' + w.w : w.w; if (line && ctx.measureText(t).width > fitW) { lines.push(line); line = w.w; } else line = t; });
       lines.push(line); return lines.length <= maxL;
@@ -34,6 +55,8 @@
         out.push(cur.slice(0, cut)); cur = cur.slice(cut);
       }
       cur.push(w);
+      // (arcade) a clause cut can leave words that no longer fit with the new one: the new word starts the next page
+      if (look.bitmap && cur.length > 1 && !fits(cur)) { out.push(cur.slice(0, -1)); cur = [w]; }
       if (/[.!?]$/.test(w.w) && cur.length >= 3) { out.push(cur); cur = []; }
     });
     if (cur.length) out.push(cur);
@@ -53,7 +76,7 @@
     const ph = phrases[i];
     if (!ph) return;
     const arcade = !!look.bitmap;
-    const B = arcade ? {x: 372, y: 1046, w: 560, h: 190} : {x: 300, y: 1088, w: 628, h: 150};
+    const B = arcade ? ARCADE_BOX : {x: 300, y: 1088, w: 628, h: 150};
     const {x, y, w, h} = B;
     const r = look.name === 'pixel' || arcade ? 0 : (look.name === 'desk' ? 6 : 22);
     if (arcade) { k.shape(k.rectPts(x + 10, y + 10, w, h, 0), {fill: '#120D14', line: false, alpha: 0.6}); }
@@ -61,15 +84,18 @@
     if (arcade) k.shape(k.rectPts(x + 6, y + 6, w - 12, h - 12, 0), {stroke: 'bubbleText', lw: 6, line: false});
     k.shape([[x + 2, y + h - 70], [x - 40, y + h - 40], [x + 2, y + h - 30]], {fill: 'bubble', line: false});
     k.chip(window.SCENE.host_name || 'Snow', x + 24, y - 34, {size: arcade ? 30 : 24, fill: 'tag', color: 'tagText'});
-    // lay the phrase out; step the size down until it fits the box
-    let fs = arcade ? 39 : 46;
-    const pad = arcade ? 30 : 26, maxX = x + w - pad;
-    const lay = (size) => { const sp = k.measure(' ', {size, weight: 600, font: 'body'}); let cx2 = x + pad, rows = 1;
-      ph.words.forEach((wd) => { const ww = k.measure(wd.w, {size, weight: 600, font: 'body'}); if (cx2 + ww > maxX && cx2 > x + pad) { cx2 = x + pad; rows++; } cx2 += ww + sp; }); return rows; };
-    const maxRows = arcade ? 3 : 2;
-    while (fs > 30 && lay(fs) > maxRows) fs -= arcade ? 3 : 2;
-    const rows = lay(fs);
-    const lh = arcade ? Math.round(fs * 1.18) : Math.round(fs * 1.22);
+    // lay the phrase out: the arcade box takes the first size its page fits (ARCADE_TYPE); the other looks step down
+    let fs = arcade ? ARCADE_TYPE[0][0] : 46, lh;
+    const pad = arcade ? ARCADE_PAD : 26, maxX = x + w - pad;
+    if (arcade) {
+      const pick = ARCADE_TYPE.find(([s, n]) => arcadeRows(ph.words, s) <= n) || ARCADE_TYPE[ARCADE_TYPE.length - 1];
+      fs = pick[0]; lh = pick[2];
+    } else {
+      const lay = (size) => { const sp = k.measure(' ', {size, weight: 600, font: 'body'}); let cx2 = x + pad, rows = 1;
+        ph.words.forEach((wd) => { const ww = k.measure(wd.w, {size, weight: 600, font: 'body'}); if (cx2 + ww > maxX && cx2 > x + pad) { cx2 = x + pad; rows++; } cx2 += ww + sp; }); return rows; };
+      while (fs > 30 && lay(fs) > 2) fs -= 2;
+      lh = Math.round(fs * 1.22);
+    }
     const sp = k.measure(' ', {size: fs, weight: 600, font: 'body'});
     let cx = x + pad, cy = y + 26;   // every page starts on the same top line, so words never jump between pages
     ph.words.forEach((wd) => {
@@ -84,7 +110,8 @@
       }
       cx += ww + sp;
     });
-    if (arcade && (T * 2) % 1 < 0.5) k.shape([[x + w - 52, y + h - 40], [x + w - 28, y + h - 40], [x + w - 40, y + h - 26]], {fill: 'bubbleText', line: false});
+    // the blinking more arrow sits under the second row's baseline (y + 152), clear of the words
+    if (arcade && (T * 2) % 1 < 0.5) k.shape([[x + w - 50, y + h - 27], [x + w - 26, y + h - 27], [x + w - 38, y + h - 15]], {fill: 'bubbleText', line: false});
   }
 
   // the game HUD: lesson tag and a level bar, one block per section, filling as the lesson plays (a reason to stay)
@@ -378,11 +405,12 @@
     }
     await document.fonts.ready;
     await Promise.all(['700 40px Poppins', '600 40px Poppins', '600 40px Inter', '700 40px Inter'].map((f) => document.fonts.load(f)));
+    if (look.bitmap) { const cv = document.createElement('canvas'); cv.width = cv.height = 4; mk = Kit.make(cv.getContext('2d'), look, 0, env); }
     phrases = buildPhrases(words);
     if (words.length) END_T = words[words.length - 1].end + 0.1;   // after the fonts load, so the line breaks match what is drawn; 0.1 s after the last word, so the card is up for the last 3 s (style board, Oct 29)
     window.DURATION = window.CUES.duration;
     survey = runSurvey();
-    window.STUDIO = {env, survey, trauma, look, camera};   // for checks: blinks, pose runs, rooms, the shake
+    window.STUDIO = {env, survey, trauma, look, camera, phrases};   // for checks: blinks, pose runs, rooms, the shake, the dialog pages
     window.READY = true;
     if (q.get('play')) { const t0 = performance.now(); const tick = () => { const t = (performance.now() - t0) / 1000; drawAt(t % window.DURATION); requestAnimationFrame(tick); }; tick(); }
     else drawAt(Number(q.get('t') || 0));

@@ -3,8 +3,9 @@
 fresh reviewer checks before the next stage runs.
 
   kit                      build _runtime/map.js (77 community areas), pixfont.js and the sounds (below)
-  sound                    our own sounds, made in code: _runtime/sfx/*.wav (effects, takes, tick ladder, sting) and
-                           _runtime/music/<room>.wav (the four room loops for "music: rooms")
+  sound                    our own sounds, made in code: _runtime/sfx/*.wav (effects, takes, tick ladder, sting) and the
+                           room loops for "music: rooms [tune]": _runtime/music/<room>.wav (classic), music/<tune>/<room>.wav
+  tunes [SLUG]             the room tunes (key, tempo, chords); with a slug, the tunes its neighbours in line leave free
   new SLUG                 a video folder from _templates
   data SLUG                resolve brief.md's numbers block against the data file -> 04_scene/data.js (refuses a mismatch)
   speak SLUG [--take N ...] [--voice ID]   ask the Studio voice workflow to speak script.md (writes 01_voice/speak.json)
@@ -15,6 +16,7 @@ fresh reviewer checks before the next stage runs.
   mouth SLUG               lip sync from the voice: a mouth shape (0 to 3) for every frame -> 02_transcript/mouth.js
                            (stills, lint and render make it themselves when the voice is here)
   cues SLUG                match cues.md quotes to words.json -> cues.json, cues.js; prints the timing table
+                           (cues.md's "music: rooms [tune] [level]" or "music: <library bed> [level]" picks the bed)
   grab SLUG                capture docs/chicago-rat-complaints/ at phone width -> 04_scene/assets/rat-page.png
   stills SLUG [--look L]   a frame at every cue -> 05_render/sheets/*.jpg and 05_render/sheet.jpg
   render SLUG [--look L] [--from S --to S] [--out F]   frames in Chromium, the mix, H.264/AAC
@@ -33,7 +35,8 @@ fresh reviewer checks before the next stage runs.
   postcaptions SLUG        the captions to paste, per platform, with any AI voice line taken out (Todd, Oct 29)
   waiting                  the queued lessons with no post yet, in posting order (the daily run's queue rule reads it)
   variety [SLUG]           no two queued lessons alike: own example, no shared hook pattern plus treatment, no two
-                           in a row open on the same hook pattern (brief.md's Hook pattern, Treatment and Example lines; lint and ready run it)
+                           in a row open on the same hook pattern (brief.md's Hook pattern, Treatment and Example lines; lint and ready run it);
+                           with a slug, its tune differs from the lessons before and after it in line (cues.md music line)
   postcopy SLUG            render the queued lesson from that commit, check its fingerprints, export it to the upload folder
   posted SLUG PLATFORM URL record one live post (instagram, instagram-trial, tiktok, facebook, youtube)
   trials                   Instagram trial reels not yet shared to followers (due at 72 hours)
@@ -297,7 +300,9 @@ def build_sting():
     print("sfx: sting (E5 G5 C6)")
 
 
-# Room loops: one key (A minor), one tempo (96 BPM), 8 bars = 20.0 s, so any room can cross into any other on the beat.
+# Room loops: 8 bars of one tune, so any room can cross into any other on the beat. "classic" is the first tune (A minor,
+# 96 BPM, 20.0 s a loop) and keeps its files at _runtime/music/<room>.wav, so every cue file that says plain "music: rooms"
+# and every pinned lesson plays exactly what it played before.
 BPM, LOOP_BARS = 96, 8
 BEAT = 60 / BPM
 ROOMS = ("framing", "blackboard", "workshop", "garage")
@@ -307,85 +312,181 @@ CHORDS = [  # per bar: triad (around the octave below middle C), bass root
 LEAD = [(0, 1.5, 72), (1.5, 0.5, 71), (2, 2, 69), (8, 1, 67), (9, 1, 72), (10, 2, 76),   # (beat, beats, note): call and
         (16, 1.5, 76), (17.5, 0.5, 74), (18, 2, 72), (24, 1, 69), (25, 1, 72), (26, 2, 74), (28, 2, 71), (30, 2, 68)]   # rest
 
+NOTE_PC = {"C": 0, "D": 2, "E": 4, "F": 5, "G": 7, "A": 9, "B": 11}
 
-def build_music():
-    """Four chiptune loops, one per room, synthesized band-limited at 44.1 kHz and written as mono 22.05 kHz 16-bit wav
-    (under 1 MB each) to _runtime/music/<room>.wav. Same key, tempo, chords and quiet square lead in every room; the
-    rooms differ in what plays under it:
+
+def chord(name):
+    """'Am', 'Bb', 'C' -> (triad, bass root): each chord tone at its first note from F3 (53) up, the root from D2 (38) up
+    (the classic tune's voicings, bar for bar, except its Dm)."""
+    m = re.match(r"([A-G])(b|#)?(m?)$", name)
+    pc = (NOTE_PC[m.group(1)] + {"b": -1, "#": 1, None: 0}[m.group(2)]) % 12
+    up = lambda q, lo: lo + (q - lo) % 12
+    return sorted(up((pc + i) % 12, 53) for i in (0, 3 if m.group(3) else 4, 7)), up(pc, 38)
+
+
+# Tunes for "music: rooms <tune>" (Todd, Oct 29, 2026, 8:11 pm: "can we vary the retro video game music ... it's just
+# different tunes for each video"). Every one is ours, composed here: its own key, tempo, 8-bar progression and lead,
+# played by the four room grooves. No neighbour in the posting line plays the same tune (anim.py variety).
+# The brand sting (E5 G5 C6) lands on whatever bar is playing when the close comes (bars 1 to 8 all occur in our
+# lessons), so every new tune keeps C, E and G natural in every chord and lead note (no C#, D#, F# or G#): under any bar
+# the sting is a chord tone or a colour note, never a half step off one. classic's bar 8 (E major, G#) and its last lead
+# note (G#4) are the one exception, kept as they were (sting_rubs).
+# Each tune: key, bpm, chord names, lead (beat, beats, note), swing (beats added to every off-beat eighth), arp (blackboard:
+# the order it walks the triad, 3 = the root an octave up) and arp_rate (notes a beat), riff (garage bass, semitones over
+# each bar's root, 8 a bar), kicks (garage), plucks (framing: (beat, tone)), stabs (workshop chord stabs), lead_duty
+# (None: each room's own).
+TUNES = {
+    "classic": {"key": "A minor", "bpm": 96, "names": "Am F C G Am F Dm E", "chords": CHORDS, "lead": LEAD, "swing": 0,
+                "arp": (0, 1, 2, 3), "arp_rate": 4, "riff": (0, 0, 12, 0, 7, 0, 12, 7), "kicks": (0, 2, 2.5),
+                "plucks": ((1, 2), (2.5, 1), (3.5, 3)), "stabs": (0.5, 1.5, 2.5, 3.5), "lead_duty": None},
+    "sunny": {"key": "C major", "bpm": 120, "names": "C Am F G C Am Dm G", "swing": 0,
+              "lead": [(0, 0.5, 72), (0.5, 0.5, 76), (1, 1, 79), (2, 2, 76), (6, 1, 72), (7, 1, 74),
+                       (8, 1.5, 77), (9.5, 0.5, 76), (10, 2, 72), (12, 1, 71), (13, 1, 74), (14, 2, 79),
+                       (16, 0.5, 72), (16.5, 0.5, 76), (17, 1, 79), (18, 1, 81), (19, 1, 79), (20, 2, 76), (22, 2, 72),
+                       (24, 1, 74), (25, 1, 77), (26, 2, 81), (28, 1, 79), (29, 1, 74), (30, 2, 71)],
+              "arp": (0, 2, 1, 3), "arp_rate": 4, "riff": (0, 12, 0, 12, 7, 12, 0, 12), "kicks": (0, 2),
+              "plucks": ((1, 1), (2, 2), (3, 3)), "stabs": (0.5, 1.5, 2.5, 3.5), "lead_duty": None},
+    "quest": {"key": "D minor", "bpm": 108, "names": "Dm Bb F C Dm Bb Gm C", "swing": 0,
+              "lead": [(0, 1.5, 74), (1.5, 0.5, 76), (2, 2, 77), (4, 1, 77), (5, 1, 74), (6, 2, 70),
+                       (8, 1.5, 72), (9.5, 0.5, 74), (10, 2, 69), (12, 3, 67),
+                       (16, 1.5, 74), (17.5, 0.5, 76), (18, 1, 77), (19, 1, 81), (20, 2, 82), (22, 1, 81), (23, 1, 77),
+                       (24, 2, 79), (26, 1, 77), (27, 1, 74), (28, 2, 76), (30, 2, 72)],
+              "arp": (0, 1, 2, 3, 2, 1), "arp_rate": 4, "riff": (0, 7, 12, 7, 0, 7, 12, 7), "kicks": (0, 1.5, 2),
+              "plucks": ((1, 2), (2, 1), (3, 3)), "stabs": (0, 1.5, 3), "lead_duty": 0.5},
+    "night": {"key": "E minor (Phrygian)", "bpm": 88, "names": "Em F Em Dm Am G F Em", "swing": 0,
+              "lead": [(0, 2, 76), (2, 1, 79), (3, 1, 77), (4, 2, 77), (6, 2, 72), (8, 2, 71), (10, 1, 74), (11, 1, 76),
+                       (12, 3, 77), (16, 2, 76), (18, 1, 72), (19, 1, 69), (20, 2, 71), (22, 2, 74),
+                       (24, 1.5, 72), (25.5, 0.5, 74), (26, 2, 77), (28, 4, 76)],
+              "arp": (3, 2, 1, 0), "arp_rate": 2, "riff": (0, 0, 7, 0, 12, 0, 7, 12), "kicks": (0, 2.5),
+              "plucks": ((1.5, 2), (3, 3)), "stabs": (1, 3), "lead_duty": 0.5},
+    "chase": {"key": "F major", "bpm": 132, "names": "F C Dm Bb F C Bb C", "swing": 0,
+              "lead": [(0, 0.5, 77), (0.5, 0.5, 81), (1, 0.5, 84), (1.5, 0.5, 81), (2, 1, 77), (3, 1, 72),
+                       (4, 1, 76), (5, 1, 79), (6, 2, 72), (8, 0.5, 74), (8.5, 0.5, 77), (9, 0.5, 81), (9.5, 0.5, 77),
+                       (10, 2, 74), (12, 1, 70), (13, 1, 74), (14, 2, 77),
+                       (16, 0.5, 77), (16.5, 0.5, 81), (17, 0.5, 84), (17.5, 0.5, 81), (18, 1, 77), (19, 1, 72),
+                       (20, 1, 76), (21, 1, 79), (22, 2, 84), (24, 1, 82), (25, 1, 77), (26, 2, 74),
+                       (28, 1, 76), (29, 1, 79), (30, 1, 72), (31, 1, 76)],
+              "arp": (0, 1, 2, 3), "arp_rate": 4, "riff": (0, 12, 0, 12, 0, 12, 7, 12), "kicks": (0, 1, 2, 3),
+              "plucks": ((0.5, 2), (1.5, 1), (2.5, 2), (3.5, 3)), "stabs": (0.5, 1.5, 2.5, 3.5), "lead_duty": 0.125},
+    "bounce": {"key": "G Mixolydian", "bpm": 112, "names": "G F C G Am C F G", "swing": 1 / 6,
+               "lead": [(0, 0.5, 74), (0.5, 1, 79), (1.5, 0.5, 77), (2, 1, 74), (3, 1, 71), (5, 0.5, 72), (5.5, 0.5, 74),
+                        (6, 2, 77), (8, 1, 76), (9, 0.5, 79), (9.5, 0.5, 76), (10, 2, 72), (13, 1, 71), (14, 2, 74),
+                        (16, 1, 76), (17, 0.5, 72), (17.5, 0.5, 76), (18, 2, 81), (20, 1, 79), (21, 1, 76), (22, 2, 72),
+                        (24, 1, 77), (25, 0.5, 81), (25.5, 0.5, 77), (26, 2, 72), (28, 1, 74), (29, 1, 71), (30, 2, 67)],
+               "arp": (0, 1, 2), "arp_rate": 3, "riff": (0, 0, 7, 12, 0, 0, 7, 12), "kicks": (0, 2, 3.5),
+               "plucks": ((0.5, 2), (1.5, 1), (2.5, 2), (3.5, 3)), "stabs": (0.5, 1.5, 2.5, 3.5), "lead_duty": None},
+}
+for _t in TUNES.values():
+    _t.setdefault("chords", [chord(n) for n in _t["names"].split()])
+DEFAULT_TUNE = "classic"
+
+
+def tune_beat(tune):
+    return 60 / TUNES[tune]["bpm"]
+
+
+def tune_path(tune, room):
+    """classic keeps its first files (_runtime/music/<room>.wav); every other tune has its own folder."""
+    return os.path.join(RUNTIME, "music", *(() if tune == DEFAULT_TUNE else (tune,)), room + ".wav")
+
+
+def sting_rubs(tune):
+    """Where the sting (E5 G5 C6) would rub: bars whose chord, and lead notes whose pitch, sit a half step off one of its
+    notes from outside the C major scale (C#, D#, F#, G#). Returns ([bar numbers], [lead beats])."""
+    t, bad = TUNES[tune], (1, 3, 6, 8)
+    bars = [i + 1 for i, (triad, root) in enumerate(t["chords"]) if any(n % 12 in bad for n in list(triad) + [root])]
+    return bars, [b for b, _, m in t["lead"] if m % 12 in bad]
+
+
+def build_music(only=None):
+    """Each tune's four chiptune loops, one per room, synthesized band-limited at 44.1 kHz and written as mono 22.05 kHz
+    16-bit wav (under 1 MB each) to tune_path(). In one tune every room plays the same key, tempo, chords and quiet square
+    lead; the rooms differ in what plays under it (the tune sets each part's pattern):
       framing     half-time: triangle bass on 1 and 3, sparse 25% plucks, a soft snare on 3, hats on 2 and 4
-      blackboard  12.5% pulse arpeggios in sixteenths, triangle bass on every beat, light eighth hats
-      workshop    25% offbeat chord stabs, eighth hats with an open hat, bouncing triangle bass, kick on 1 and 3
-      garage      50% pulse bass riff, triangle kick slide on 1 and 3, noise snare on 2 and 4, eighth hats"""
+      blackboard  12.5% pulse arpeggios (sixteenths, triplets or eighths), triangle bass on every beat, light eighth hats
+      workshop    25% chord stabs, eighth hats with an open hat, bouncing triangle bass, kick on 1 and 3
+      garage      50% pulse bass riff, triangle kick slides, noise snare on 2 and 4, eighth hats
+    classic is the tune the studio played first and comes out byte for byte as it always has."""
     import numpy as np
     from scipy.signal import resample_poly
     sr = 44100
-    L = int(round(LOOP_BARS * 4 * BEAT * sr))
-    for ri, room in enumerate(ROOMS):
-        rng = np.random.default_rng(500 + ri)
-        y = np.zeros(L + 2 * sr)
+    for ti, (name, tn) in enumerate(TUNES.items()):
+        if only and name not in only:
+            continue
+        BEAT = 60 / tn["bpm"]   # this tune's beat (the module BEAT is classic's)
+        swing = tn["swing"]
+        sw = (lambda b: b + swing if abs(b % 1 - 0.5) < 1e-9 else b) if swing else (lambda b: b)   # off-beat eighths late
+        L = int(round(LOOP_BARS * 4 * BEAT * sr))
+        for ri, room in enumerate(ROOMS):
+            rng = np.random.default_rng(500 + ri + 100 * ti)
+            y = np.zeros(L + 2 * sr)
 
-        def put(beat, sig, g):
-            i = int(round(beat * BEAT * sr)); y[i:i + len(sig)] += g * sig
+            def put(beat, sig, g):
+                i = int(round(sw(beat) * BEAT * sr)); y[i:i + len(sig)] += g * sig
 
-        def noise(dur, fc, decay, high=True):
-            n = int(dur * sr); t = np.arange(n) / sr
-            return onepole(rng.standard_normal(n), fc, sr, high=high) * np.exp(-t / decay)
+            def noise(dur, fc, decay, high=True):
+                n = int(dur * sr); t = np.arange(n) / sr
+                return onepole(rng.standard_normal(n), fc, sr, high=high) * np.exp(-t / decay)
 
-        def kick():
-            n = int(0.16 * sr); t = np.arange(n) / sr
-            return tri(150 * (50 / 150) ** np.clip(t / 0.08, 0, 1), sr) * np.exp(-t / 0.07)
+            def kick():
+                n = int(0.16 * sr); t = np.arange(n) / sr
+                return tri(150 * (50 / 150) ** np.clip(t / 0.08, 0, 1), sr) * np.exp(-t / 0.07)
 
-        for bar, (triad, root) in enumerate(CHORDS):
-            b0 = bar * 4
-            if room == "framing":
-                for k in (0, 2):
-                    put(b0 + k, chip_note("tri", root if k == 0 else root + 7, 1.8 * BEAT, sr, s=0.8, r=0.08), 0.42)
-                for k, m in ((1, triad[2]), (2.5, triad[1]), (3.5, triad[0] + 12)):
-                    put(b0 + k, chip_note("pulse", m, 0.09, sr, 0.25, d=0.06, s=0.3, r=0.12), 0.16)
-                put(b0 + 2, noise(0.12, 900, 0.035), 0.10)
-                for k in (1, 3):
-                    put(b0 + k, noise(0.03, 6000, 0.008), 0.07)
-                put(b0, kick(), 0.30)
-            elif room == "blackboard":
-                arp = [triad[0], triad[1], triad[2], triad[0] + 12]
-                for k in range(16):
-                    put(b0 + k / 4, chip_note("pulse", arp[k % 4], 0.13, sr, 0.125, d=0.08, s=0.4, r=0.02), 0.11)
-                for k in range(4):
-                    put(b0 + k, chip_note("tri", root, 0.9 * BEAT, sr, s=0.8, r=0.05), 0.40)
-                for k in range(8):
-                    put(b0 + k / 2, noise(0.03, 7000, 0.006), 0.045 if k % 2 else 0.06)
-            elif room == "workshop":
-                for k in range(4):
-                    for m in triad:
-                        put(b0 + k + 0.5, chip_note("pulse", m, 0.11, sr, 0.25, d=0.08, s=0.4, r=0.03), 0.07)
-                for k in range(8):
-                    put(b0 + k / 2, chip_note("tri", root + (12 if k % 2 else 0), 0.42 * BEAT, sr, s=0.8, r=0.03), 0.36)
-                    put(b0 + k / 2, noise(0.12 if k == 7 else 0.03, 7000, 0.04 if k == 7 else 0.007), 0.06)
-                for k in (0, 2):
-                    put(b0 + k, kick(), 0.35)
-            else:   # garage
-                riff = [0, 0, 12, 0, 7, 0, 12, 7]
-                for k in range(8):
-                    put(b0 + k / 2, onepole(chip_note("pulse", root + riff[k], 0.4 * BEAT, sr, 0.5, d=0.1, s=0.5, r=0.03), 1800, sr), 0.16)
-                for k in (0, 2, 2.5):
-                    put(b0 + k, kick(), 0.45)
-                for k in (1, 3):   # the snare kept under 3 kHz, out of the voice's consonants
-                    put(b0 + k, onepole(onepole(noise(0.12, 600, 0.04), 2500, sr), 2500, sr), 0.30)
-                for k in range(8):
-                    put(b0 + k / 2, noise(0.03, 7000, 0.007), 0.05)
-        lead_duty, lead_g = {"framing": (0.5, 0.06), "blackboard": (0.25, 0.06), "workshop": (0.25, 0.06), "garage": (0.25, 0.036)}[room]
-        for beat, beats, m in LEAD:   # quiet (about 16 dB under the rest), with an echo 1/8 later at -9 dB, +7 cents
-            dur = beats * BEAT * 0.92
-            for at, g, c in ((0, 1.0, 0.0), (0.5, 10 ** (-9 / 20), 7.0)):
-                put(beat + at, chip_note("pulse", m, dur, sr, lead_duty, c, d=0.12, s=0.6, r=0.06, vib=beats >= 1), lead_g * g)
-        y[:len(y) - L] += y[L:]          # what rings past the end comes back in at the start: a seamless loop
-        y = onepole(y[:L], 20, sr, high=True)
-        y = resample_poly(y, 1, 2)       # to 22.05 kHz, through resample_poly's anti-alias filter
-        y *= 0.12 / np.sqrt(np.mean(y ** 2))   # the same RMS in every room, so a crossfade never jumps
-        if np.max(np.abs(y)) > 0.95:
-            y *= 0.95 / np.max(np.abs(y))
-        write_wav(os.path.join(RUNTIME, "music", room + ".wav"), y, sr // 2)
-    print(f"music: {' '.join(ROOMS)} ({LOOP_BARS} bars at {BPM} BPM, A minor, {LOOP_BARS * 4 * BEAT:.1f} s each)")
+            for bar, (triad, root) in enumerate(tn["chords"]):
+                b0 = bar * 4
+                tones = [triad[0], triad[1], triad[2], triad[0] + 12]
+                if room == "framing":
+                    for k in (0, 2):
+                        put(b0 + k, chip_note("tri", root if k == 0 else root + 7, 1.8 * BEAT, sr, s=0.8, r=0.08), 0.42)
+                    for k, j in tn["plucks"]:
+                        put(b0 + k, chip_note("pulse", tones[j], 0.09, sr, 0.25, d=0.06, s=0.3, r=0.12), 0.16)
+                    put(b0 + 2, noise(0.12, 900, 0.035), 0.10)
+                    for k in (1, 3):
+                        put(b0 + k, noise(0.03, 6000, 0.008), 0.07)
+                    put(b0, kick(), 0.30)
+                elif room == "blackboard":
+                    arp, rate = [tones[j] for j in tn["arp"]], tn["arp_rate"]
+                    for k in range(4 * rate):
+                        put(b0 + k / rate, chip_note("pulse", arp[k % len(arp)], 0.13, sr, 0.125, d=0.08, s=0.4, r=0.02), 0.11)
+                    for k in range(4):
+                        put(b0 + k, chip_note("tri", root, 0.9 * BEAT, sr, s=0.8, r=0.05), 0.40)
+                    for k in range(8):
+                        put(b0 + k / 2, noise(0.03, 7000, 0.006), 0.045 if k % 2 else 0.06)
+                elif room == "workshop":
+                    for k in tn["stabs"]:
+                        for m in triad:
+                            put(b0 + k, chip_note("pulse", m, 0.11, sr, 0.25, d=0.08, s=0.4, r=0.03), 0.07)
+                    for k in range(8):
+                        put(b0 + k / 2, chip_note("tri", root + (12 if k % 2 else 0), 0.42 * BEAT, sr, s=0.8, r=0.03), 0.36)
+                        put(b0 + k / 2, noise(0.12 if k == 7 else 0.03, 7000, 0.04 if k == 7 else 0.007), 0.06)
+                    for k in (0, 2):
+                        put(b0 + k, kick(), 0.35)
+                else:   # garage
+                    riff = tn["riff"]
+                    for k in range(8):
+                        put(b0 + k / 2, onepole(chip_note("pulse", root + riff[k], 0.4 * BEAT, sr, 0.5, d=0.1, s=0.5, r=0.03), 1800, sr), 0.16)
+                    for k in tn["kicks"]:
+                        put(b0 + k, kick(), 0.45)
+                    for k in (1, 3):   # the snare kept under 3 kHz, out of the voice's consonants
+                        put(b0 + k, onepole(onepole(noise(0.12, 600, 0.04), 2500, sr), 2500, sr), 0.30)
+                    for k in range(8):
+                        put(b0 + k / 2, noise(0.03, 7000, 0.007), 0.05)
+            lead_duty, lead_g = {"framing": (0.5, 0.06), "blackboard": (0.25, 0.06), "workshop": (0.25, 0.06), "garage": (0.25, 0.036)}[room]
+            lead_duty = tn["lead_duty"] or lead_duty
+            for beat, beats, m in tn["lead"]:   # quiet (about 16 dB under the rest), with an echo 1/8 later at -9 dB, +7 cents
+                dur = beats * BEAT * 0.92
+                for at, g, c in ((0, 1.0, 0.0), (0.5, 10 ** (-9 / 20), 7.0)):
+                    put(beat + at, chip_note("pulse", m, dur, sr, lead_duty, c, d=0.12, s=0.6, r=0.06, vib=beats >= 1), lead_g * g)
+            y[:len(y) - L] += y[L:]          # what rings past the end comes back in at the start: a seamless loop
+            y = onepole(y[:L], 20, sr, high=True)
+            y = resample_poly(y, 1, 2)       # to 22.05 kHz, through resample_poly's anti-alias filter
+            y *= 0.12 / np.sqrt(np.mean(y ** 2))   # the same RMS in every room and tune, so a crossfade never jumps
+            if np.max(np.abs(y)) > 0.95:
+                y *= 0.95 / np.max(np.abs(y))
+            write_wav(tune_path(name, room), y, sr // 2)
+        bars, notes = sting_rubs(name)
+        rub = "the sting fits every bar" if not bars and not notes else f"the sting rubs on bar {', '.join(map(str, bars))}" + (f" and the lead at beat {', '.join(f'{b:g}' for b in notes)}" if notes else "")
+        print(f"music: {name}: {' '.join(ROOMS)} ({LOOP_BARS} bars at {tn['bpm']} BPM, {tn['key']}, {tn['names']}, {LOOP_BARS * 4 * BEAT:.1f} s each; {rub})")
 
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -822,6 +923,24 @@ def cmd_fetch(slug):
 # cues
 
 CUE = re.compile(r'^##\s+([\w.\-]+)\s+"([^"]+)"(.*)$')
+# cues.md's music line: "music: <library bed id> [level]", or "music: rooms [tune] [level]" (the room loops; plain rooms is
+# the classic tune, TUNES lists the rest). A tune name starts with a letter, a level with a digit.
+MUSIC_LINE = re.compile(r"^music:\s*([\w\-]+)(?:\s+([a-z][\w\-]*))?(?:\s+([\d.]+))?\s*$")
+
+
+def music_entry(m):
+    """cues.json's music entry from a MUSIC_LINE match. classic writes no tune key, so a plain "music: rooms" cue file
+    comes out as it always has."""
+    mid, tune = m.group(1), (m.group(2) or "").lower() or None
+    if tune and mid != "rooms":
+        raise SystemExit(f"ERROR cues: a tune name only follows rooms ('music: rooms {tune}'), not '{mid}'")
+    if tune and tune not in TUNES:
+        raise SystemExit(f"ERROR cues: no tune '{tune}' (tunes: {', '.join(TUNES)})")
+    out = {"id": mid, "level": float(m.group(3) or 0.16)}
+    if tune and tune != DEFAULT_TUNE:
+        out["tune"] = tune
+    return out
+
 
 
 def cmd_cues(slug):
@@ -831,10 +950,12 @@ def cmd_cues(slug):
     toks = [norm(w["w"]) for w in words]
     cues, music, cur = [], None, None
     for ln in src:
-        m = re.match(r"^music:\s*([\w\-]+)(?:\s+([\d.]+))?\s*$", ln.strip())
-        if m:   # music: steady-hands 0.12 (a library bed) or music: rooms (the room loops); the level is optional
-            music = {"id": m.group(1), "level": float(m.group(2) or 0.16)}
+        m = MUSIC_LINE.match(ln.strip())
+        if m:   # music: steady-hands 0.12 (a library bed), music: rooms (classic) or music: rooms quest (a tune); level optional
+            music = music_entry(m)
             continue
+        if ln.strip().startswith("music:"):   # a music line that does not parse would fall back to quiet-math unseen
+            raise SystemExit(f"ERROR cues: '{ln.strip()}' is not 'music: rooms [tune] [level]' or 'music: <bed id> [level]' (tunes: {', '.join(TUNES)})")
         m = CUE.match(ln.strip())
         if m:
             cid, quote, rest = m.groups()
@@ -1163,22 +1284,25 @@ def room_plan(cues):
     return plan
 
 
-def rooms_bed(cues, seconds, work):
-    """The room loops laid end to end on one beat grid (every loop starts at 0 s, so all are in step), with a one-beat
-    crossfade centred on each room change. The fade curve is the mean of equal-power and equal-gain: the rooms share some
+def rooms_bed(cues, seconds, work, tune=DEFAULT_TUNE):
+    """The tune's room loops laid end to end on one beat grid (every loop starts at 0 s, so all are in step), with a
+    crossfade one of the tune's beats long centred on each room change. The fade curve is the mean of equal-power and equal-gain: the rooms share some
     parts (bass notes, kicks) and not others, so either pure curve bumps or dips up to 3 dB at the join; the mean keeps
     it within about 1.5 dB."""
     import numpy as np
     from scipy.io import wavfile
     from scipy.signal import resample_poly
+    if tune not in TUNES:
+        raise SystemExit(f"ERROR render: no tune '{tune}' (tunes: {', '.join(TUNES)})")
+    BEAT = tune_beat(tune)   # the crossfade is one beat of this tune
     n = int(round(seconds * SR)) + 1
     t = np.arange(n) / SR
     plan = room_plan(cues)
     bed = np.zeros(n)
     for i, (t0, r) in enumerate(plan):
-        p = os.path.join(RUNTIME, "music", r + ".wav")
+        p = tune_path(tune, r)
         if not os.path.exists(p):
-            raise SystemExit(f"ERROR render: no music for room '{r}' (anim.py sound)")
+            raise SystemExit(f"ERROR render: no music for room '{r}' in the tune {tune} (anim.py sound)")
         sr, x = wavfile.read(p)
         loop = resample_poly(x / 32768.0, SR, sr)
         t1 = plan[i + 1][0] if i + 1 < len(plan) else seconds + BEAT
@@ -1188,7 +1312,7 @@ def rooms_bed(cues, seconds, work):
         w = fade(up) * fade(down)
         k = w > 0
         bed[k] += w[k] * loop[np.arange(n)[k] % len(loop)]
-    print("mix: rooms " + ", ".join(f"{r} {t0:.2f} s" for t0, r in plan))
+    print(f"mix: rooms ({tune}, {TUNES[tune]['bpm']} BPM) " + ", ".join(f"{r} {t0:.2f} s" for t0, r in plan))
     path = os.path.join(work, "rooms.wav")
     wavfile.write(path, SR, bed.astype("float32"))
     return path
@@ -1201,7 +1325,7 @@ def bed_stem(slug, seconds, cues, work, dips=()):
     lib = json.load(open(os.path.join(ROOT, "tools", "music", "library.json")))
     mus = cues.get("music") or {"id": "quiet-math", "level": 0.16}
     if mus["id"] == "rooms":
-        bed = rooms_bed(cues, seconds, work)
+        bed = rooms_bed(cues, seconds, work, mus.get("tune", DEFAULT_TUNE))
     else:
         track = next((t for t in lib["tracks"] if t["id"] == mus["id"]), None)
         if not track:
@@ -1626,7 +1750,67 @@ def variety_of(slug):
     return out
 
 
-def queue_variety_problems(slug):
+# The tune (Todd, Oct 29, 2026, 8:11 pm: "different tunes for each video"): a lesson's music is not the same as the
+# lesson right before or right after it in the posting line (the last posted lesson, then the unposted queue in order).
+# Its music is its 03_cues/cues.md music line (the source of truth): "music: rooms" is classic, "music: rooms <tune>" that
+# tune, a library bed id (quiet-math) is a tune of its own, and a cues.md with no music line plays quiet-math (bed_stem).
+# Before cues.md exists, brief.md's "- **Music:**" line stands in. Posting never runs this, so a lesson pinned before the
+# rule still posts; `variety SLUG`, lint and ready hold a new or rebuilt lesson to it.
+def music_of(slug):
+    cm = vdir(slug, "03_cues", "cues.md")
+    if os.path.exists(cm):
+        music = None
+        for ln in open(cm, encoding="utf-8").read().splitlines():
+            if ln.strip().startswith("music:"):
+                music = ln.strip()
+        if music is None:
+            return "quiet-math"
+        m = MUSIC_LINE.match(music)
+        if not m:
+            return music[len("music:"):].strip() or "?"   # unreadable: shown as written, so the message names it
+        return ((m.group(2) or DEFAULT_TUNE).lower() if m.group(1) == "rooms" else m.group(1))
+    p = vdir(slug, "01_voice", "brief.md")
+    m = re.search(r"(?im)^- \*\*Music:\*\*\s*`?(?:music:\s*)?(?:rooms\s+)?([a-z0-9-]+)`?", open(p, encoding="utf-8").read()) if os.path.exists(p) else None
+    return m.group(1).lower() if m else None
+
+
+def music_known():
+    lib = os.path.join(ROOT, "tools", "music", "library.json")
+    return set(TUNES) | ({t["id"] for t in json.load(open(lib))["tracks"]} if os.path.exists(lib) else set())
+
+
+def posting_line(slug):
+    """The posting line around a lesson: the last posted lesson (by its latest post time), then the unposted lessons in
+    queue order, with a lesson not yet queued at the back."""
+    items = load_queue()["items"]
+    order = [i["slug"] for i in items if not i["posts"] and os.path.isdir(vdir(i["slug"]))]
+    if slug not in order:
+        order.append(slug)
+    posted = [i for i in items if i["posts"] and i["slug"] != slug and os.path.isdir(vdir(i["slug"]))]
+    last = max(posted, key=lambda i: max((p.get("at", "") if isinstance(p, dict) else "") for p in i["posts"].values()), default=None)
+    return ([last["slug"]] if last else []) + order
+
+
+def music_problems(slug):
+    me = music_of(slug)
+    if not me:
+        return []
+    if me not in music_known():
+        return [f"music '{me}' is not a tune ({', '.join(TUNES)}) or a bed in tools/music/library.json"]
+    line = posting_line(slug)
+    n = line.index(slug)
+    near = {k: music_of(line[k]) for k in (n - 1, n + 1) if 0 <= k < len(line)}
+    free = [t for t in TUNES if t not in near.values()]
+    return [f"music '{me}' is also the {'lesson before' if k < n else 'next lesson'} in line's ({line[k]}): "
+            f"'music: rooms <tune>' in cues.md, free: {', '.join(free)}" for k, o in near.items() if o == me]
+
+
+def queue_variety_problems(slug, music=True):
+    """Hook pattern, treatment and example (below), and the tune (music_problems) when music is True."""
+    return queue_hook_problems(slug) + (music_problems(slug) if music else [])
+
+
+def queue_hook_problems(slug):
     me = variety_of(slug)
     out = [f"brief.md has no '- **{label}:**' line (_templates/brief.md)" for key, label in VARIETY_FIELDS if not me[key]]
     if me["hook"] and me["hook"] not in HOOK_PATTERNS:
@@ -1653,18 +1837,32 @@ def queue_variety_problems(slug):
     return out
 
 
+def cmd_tunes(slug=None):
+    """The room tunes (name, key, tempo, chords). With a slug: its music now, its neighbours' in line, and the free tunes."""
+    for name, t in TUNES.items():
+        print(f"{name:8s} {t['key']:20s} {t['bpm']:3d} BPM  {t['names']}" + ("  (plain 'music: rooms')" if name == DEFAULT_TUNE else ""))
+    if slug:
+        line = posting_line(slug); n = line.index(slug)
+        near = [(line[k], music_of(line[k])) for k in (n - 1, n + 1) if 0 <= k < len(line)]
+        print(f"{slug}: music {music_of(slug)}; in line next to " + (", ".join(f"{o} ({m})" for o, m in near) or "nothing")
+              + "; free: " + ", ".join(t for t in TUNES if t not in {m for _, m in near}))
+
+
 def cmd_variety(slug=None):
-    """No two queued lessons alike (rules above). With a slug: that lesson against the queue. Without: every unposted lesson."""
+    """No two queued lessons alike (rules above). With a slug: that lesson against the queue, the tune included. Without:
+    every unposted lesson; they are pinned, so a tune shared with a neighbour is a note for its rebuild, not a FAIL."""
     slugs = [slug] if slug else [i["slug"] for i in load_queue()["items"] if not i["posts"]]
     bad = 0
     for s_ in slugs:
-        probs = queue_variety_problems(s_)
+        probs = queue_variety_problems(s_, music=bool(slug))
         v = variety_of(s_)
+        notes = [] if slug else music_problems(s_)
         if probs:
             bad += 1
             print(f"variety: FAIL {s_}: " + "; ".join(probs))
         else:
-            print(f"variety: PASS {s_} ({v['hook']}, {v['treatment']}, {v['example']})")
+            print(f"variety: PASS {s_} ({v['hook']}, {v['treatment']}, {v['example']}, music {music_of(s_)})"
+                  + (" note: " + "; ".join(notes) + " (pinned: its rebuild picks another tune)" if notes else ""))
     if bad:
         sys.exit(1)
 
@@ -2022,6 +2220,8 @@ def main():
         cmd_waiting()
     elif c == "variety":
         cmd_variety(a.slug)
+    elif c == "tunes":
+        cmd_tunes(a.slug)
     elif c == "trials":
         cmd_trials()
     elif c == "recuts":

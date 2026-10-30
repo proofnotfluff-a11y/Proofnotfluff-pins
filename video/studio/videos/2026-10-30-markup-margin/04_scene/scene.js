@@ -174,14 +174,20 @@ const XB = (usd) => Math.round(8 + usd * 344 / 1500);   /* big plank pixels per 
 const bench = (k, o) => {
   const d = px(k), {P, DOT, dith, disc, fr, tx, T} = d, n = k.data.numbers;
   /* the OSB wall, the bench edge, the bench top, the floor under the caption band */
-  P(0, 0, 360, 300, '#C99A5B'); for (let i = 0; i < 260; i++) { const x = Math.floor(hash(i * 1.37) * 358), y = Math.floor(hash(i * 4.11) * 298); P(x, y, 2 + (i % 3), 1, i % 4 ? '#B07A47' : '#E6C08A'); }
+  P(0, 0, 360, 300, o.ask ? '#4A2E1B' : '#C99A5B'); for (let i = 0; i < 260; i++) { const x = Math.floor(hash(i * 1.37) * 358), y = Math.floor(hash(i * 4.11) * 298); P(x, y, 2 + (i % 3), 1, o.ask ? (i % 4 ? '#3A2416' : '#6B4226') : (i % 4 ? '#B07A47' : '#E6C08A')); }
   P(0, 300, 360, 4, '#4A2E1B'); P(0, 304, 360, 113, '#6B4226'); for (let y = 310; y < 417; y += 9) P(0, y + (y % 2), 360, 1, '#5A3720');
   P(0, 417, 360, 223, '#8C5A33'); for (let i = 0; i < 160; i++) DOT(Math.floor(hash(i * 7.7) * 360), 420 + Math.floor(hash(i * 3.9) * 216), i % 2 ? '#6B4226' : '#B07A47');
   /* the title plate: the question and its source, held from the cover */
-  d.win(14, 82, 332, 78, {base: '#253048', hi: '#3B82C4', lo: '#1B1420', rule: '#3B82C4'});
-  k.text(`${n.cost.shown} job.`, 540, 268, {size: 66, color: CREAM, align: 'center', drop: INK});
-  k.text('What do you quote?', 540, 344, {size: 66, color: 'accent', align: 'center', drop: INK});
-  k.text('Example math. Sources: JLC, Xero', 540, 424, {size: 30, color: SAND, align: 'center'});
+  if (o.ask) {   /* the third shot: the question big, the wall in shadow */
+    d.win(14, 82, 332, 104, {base: '#253048', hi: '#3B82C4', lo: '#1B1420', rule: '#3B82C4'});
+    k.slam('What do you', 540, 270, o.askAt, {size: 132, color: CREAM, align: 'center', drop: INK, from: 0.6});
+    k.slam('quote?', 540, 410, o.askAt + 0.1, {size: 132, color: 'accent', align: 'center', drop: INK, from: 0.6});
+  } else {
+    d.win(14, 82, 332, 78, {base: '#253048', hi: '#3B82C4', lo: '#1B1420', rule: '#3B82C4'});
+    k.text(`${n.cost.shown} job.`, 540, 268, {size: 66, color: CREAM, align: 'center', drop: INK});
+    k.text('What do you quote?', 540, 344, {size: 66, color: 'accent', align: 'center', drop: INK});
+    k.text('Example math. Sources: JLC, Xero', 540, 424, {size: 30, color: SAND, align: 'center'});
+  }
   /* the planks, big, on the bench: cost (raw wood) and the markup (painted orange) */
   const plank = (x0, x1, base, hi, lo) => { P(x0, 222, x1 - x0, 44, INK); P(x0 + 1, 223, x1 - x0 - 2, 42, base); P(x0 + 1, 223, x1 - x0 - 2, 2, hi); P(x0 + 1, 261, x1 - x0 - 2, 4, lo);
     for (let x = x0 + 12; x < x1 - 8; x += 31) { P(x, 233 + (x % 5), 14, 1, lo); P(x + 5, 247 - (x % 3), 10, 1, lo); } };
@@ -264,7 +270,8 @@ window.SCENE = {
       const n = k.data.numbers, d = px(k);
       const tQ = k.S('hook.q'), tCosts = Math.min(0.8, Math.max(0.4, wordT(k, 'hook', /^costs/i, 0.5) - 0.05));
       const tThou = wordT(k, 'hook', /^thousand/i, 1.1), tOut = Math.min(2.6, Math.max(tCosts + 0.6, tQ - 0.05));
-      if (T >= tCosts && T < tOut) { bench(k, {tapeAt: tThou}); return host(k); }
+      if (T >= tOut) { bench(k, {tapeAt: tThou, ask: true, askAt: tOut}); return host(k, 'shrug'); }   /* never back to the cover (design r0) */
+      if (T >= tCosts) { bench(k, {tapeAt: tThou}); return host(k); }
       site(k, {noMarkup: true, askAt: tQ, twitch: 0.3, tape: [{at: Math.min(tThou, tOut), usd: n.cost.value}]});
       /* the question on the sign, settled from frame 0, centred on the sign (x 42 to 1038) */
       k.slam(`${n.cost.shown} job.`, 540, 268, -1, {size: 132, color: CREAM, align: 'center', drop: INK});
@@ -283,19 +290,16 @@ window.SCENE = {
     answer: (k, T) => {
       const n = k.data.numbers, d = px(k), t0 = k.S('answer');
       const tSix = wordT(k, 'answer', /^point/i, 0.6), tRes = wordT(k, 'answer.price', /^sixteen/i, 0.3), tForty = wordT(k, 'answer.margin', /^forty/i, 0.3);
-      belt(k, t0);
-      const Y = 90, settled = true, L = {lint: settled};   /* settled from its first frame: no rise past the belt's title (golden r0) */
-      d.clip(0, 0, 360, 326, () => {
-        d.win(14, Y, 332, 206, {base: '#1B1420', hi: '#7A3442', lo: INK, rule: '#F2A541'});
-        k.ctx.save(); k.ctx.translate(0, (Y - 90) * 3);
-        k.chip('The answer', 66, 318, {size: 30, fill: 'accent', color: INK});
-        if (T >= Math.min(tSix, t0 + 0.4)) k.slam(`${n.cost.shown} / ${n.divisor.shown}`, 540, 384, Math.min(tSix, t0 + 0.4), Object.assign({size: 132, color: CREAM, align: 'center', from: 0.5, drop: INK}, L));
-        if (T >= tRes) k.slam(`= ${n.targetPrice.shown}`, 540, 548, tRes, Object.assign({size: 132, color: GOLD, align: 'center', from: 0.5, drop: INK}, L));
-        if (T >= tForty) k.slam(`${n.targetMarginPct.shown} margin`, 540, 712, tForty, Object.assign({size: 132, color: 'accent', align: 'center', from: 0.4, drop: INK}, L));
-        k.text('Example math', 540, 830, Object.assign({size: 30, color: SAND, align: 'center'}, L));
-        k.ctx.restore();
-      });
-      if (T >= tRes) k.burst(540, 600, tRes + 0.1, {n: 18, r: 240});
+      /* the answer on a split-flap board, row by row on its words (design r0: its own world, never empty on the cut) */
+      k.sets.flaps({title: 'THE ANSWER', cols: 12, rows: [
+        {label: 'COST', value: n.cost.shown, at: t0 + 0.05},
+        {label: 'DIVIDE BY', value: n.divisor.shown, at: tSix},
+        {label: '=', value: n.targetPrice.shown, at: tRes, hi: true},
+        {label: 'MARGIN', value: n.targetMarginPct.shown, at: tForty, hi: true}]});
+      d.win(14, 282, 332, 42, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
+      if (T < tForty) k.text('Example math', 540, 884, {size: 30, color: SAND, align: 'center'});
+      else k.slam(`${n.targetMarginPct.shown} margin`, 540, 864, tForty, {size: 66, color: 'accent', align: 'center', from: 0.5, drop: INK});
+      if (T >= tRes) k.burst(780, 540, tRes + 0.4, {n: 18, r: 220});
       return host(k, k.live('answer') ? 'point' : null);
     },
 
@@ -306,8 +310,8 @@ window.SCENE = {
       register(k, {items: [{label: 'COST', amount: n.cost.value, at: t0 + 0.15}, {label: `MARKUP ${n.markupPct.shown}`, amount: n.markupUsd.value, at: tFive}],
         totalAt: tPrice, totalLabel: 'PRICE', displayLabel: 'QUOTE', openAt: tPrice + 0.35});
       k.slam('The usual way', 72, 270, t0 + 0.15, {size: 39, color: GOLD, from: 0.4, drop: INK});
-      const say = T >= tThird ? [`${n.markupUsd.shown} = 1/3 of the price`, tThird + 0.1, 'accent'] : T >= tHalf ? ['Half is margin?', tHalf, GOLD]
-        : T >= tPrice ? [`The quote: ${n.price.shown}`, tPrice, CREAM] : T >= tFive ? [`${n.markupPct.shown} markup: +${n.markupUsd.shown}`, tFive, 'accent'] : [`Your cost: ${n.cost.shown}`, t0 + 0.15, CREAM];
+      const say = T >= tThird ? [`${n.markupUsd.shown} = 1/3`, tThird + 0.1, 'accent'] : T >= tHalf ? ['Half is margin?', tHalf, GOLD]
+        : T >= tPrice ? [`The quote: ${n.price.shown}`, tPrice, CREAM] : T >= tFive ? [`Markup: +${n.markupUsd.shown}`, tFive, 'accent'] : [`Your cost: ${n.cost.shown}`, t0 + 0.15, CREAM];
       k.slam(say[0], 72, 318, say[1], {size: 66, color: say[2], from: 0.5, drop: INK});
       if (T >= tThird) {
         const f = d.fr(tThird), x0 = DPX + 12, w = 24;
@@ -348,7 +352,7 @@ window.SCENE = {
         d.win(14, Y, 332, 176, {base: '#1B1420', hi: '#7A3442', lo: INK, rule: '#F2A541'});
         k.ctx.save(); k.ctx.translate(0, (Y - 148) * 3);
         k.chip('Start from the margin', 66, 462, {size: 30, fill: 'accent', color: INK});
-        const te = Math.min(tEq, t0 + 1.2), a = (t) => (T >= t ? 1 : 0), L = {lint: settled};
+        const te = t0 + 0.05, a = (t) => (T >= t ? 1 : 0), L = {lint: settled};
         const wP = k.measure('Price =', {size: 132}), wM = k.measure('1 - margin', {size: 132}), bw = Math.round((wM + 24) / 3) * 3;
         const fx = Math.max(102, Math.round((520 - (wP + 24 + bw) / 2) / 3) * 3), bx = Math.round((fx + wP + 24) / 3) * 3, fc = bx + bw / 2;
         if (a(te)) k.text('Price =', fx, 616, Object.assign({size: 132, color: CREAM, drop: INK}, L));
@@ -392,13 +396,17 @@ window.SCENE = {
       k.sets.register({items: [], displayLabel: 'NEXT QUOTE'}); planks(k);
       const ring = [t0 + 0.1, tQuote, tNot].filter((at) => T >= at).pop();
       if (ring != null && d.fr(ring) < 12) { const fy = [10, 6, 3, 1, 0, 0, 0, 0, 0, 1, 4, 8][d.fr(ring)]; d.P(DPX + 84, DPY - 18 + fy, 18, 16, INK); d.P(DPX + 85, DPY - 17 + fy, 16, 14, RED); d.tx('$', DPX + 93, DPY - 16 + fy, {color: CREAM, align: 'center', lint: false}); }
-      displayText(k, '?', Math.floor((T - t0) * 2) % 2 ? GOLD : TEAL);
+      if (T >= tQuote) { const dd = px(k); dd.P(DPX + 7, DPY + 19, 92, 38, '#24453A'); for (let y = DPY + 20; y < DPY + 57; y += 3) dd.P(DPX + 7, y, 92, 1, '#1A332B'); dd.tx(n.targetPrice.shown, DPX + 53, DPY + 31, {size: 39, color: GOLD, align: 'center'}); }
+      else displayText(k, '?', Math.floor((T - t0) * 2) % 2 ? GOLD : TEAL);
       const open = d.ease(t0 + 0.1, 8, 120);
-      d.clip(0, 0, 360, 326, () => d.win(14, 198 + open, 332, 92, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#7A3442'}));
+      d.clip(0, 0, 360, 326, () => d.win(14, 198 + open, 332, 120, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#7A3442'}));
       if (open === 0) {
-        k.slam(`${n.cost.shown} job?`, 72, 612, t0 + 0.3, {size: 66, color: CREAM, from: 0.4, drop: INK});
-        if (T >= tQuote) k.slam('Quote from the margin.', 72, 694, tQuote, {size: 66, color: 'accent', from: 0.4, drop: INK});
-        if (T >= tNot) { k.slam('Not the markup.', 72, 776, tNot, {size: 66, color: GOLD, from: 0.4, drop: INK}); k.sweep(72, 848, k.measure('Not the markup.', {size: 66}), 6, tNot + 0.3, {color: 'accent'}); }
+        if (T < tQuote) k.slam(`${n.cost.shown} job?`, 72, 640, t0 + 0.3, {size: 132, color: CREAM, from: 0.4, drop: INK});
+        else {
+          k.slam('Quote from', 72, 606, tQuote, {size: 132, color: CREAM, from: 0.4, drop: INK});
+          k.slam('the margin.', 72, 736, tQuote + 0.15, {size: 132, color: 'accent', from: 0.4, drop: INK});
+        }
+        if (T >= tNot) { k.slam('Not the markup.', 72, 878, tNot, {size: 66, color: GOLD, from: 0.4, drop: INK}); k.sweep(72, 950, k.measure('Not the markup.', {size: 66}), 6, tNot + 0.3, {color: 'accent'}); }
       }
       return host(k, T >= tNot + 0.6 ? 'wave' : (k.live('button') ? 'point' : null));
     },

@@ -1,0 +1,14 @@
+{
+ "gate": "render-critic",
+ "round": 0,
+ "pass": true,
+ "build": "309368c9",
+ "score": {
+  "faults": 0
+ },
+ "faults": [],
+ "reviewer": "fresh opus agent",
+ "reasons": [
+  "0 faults on build 309368c9 (hook, spoken numbers, layout, audio end, small text, flashes). Superseded: design r0's fixes changed the picture, so this gate reruns on the next build."
+ ]
+}

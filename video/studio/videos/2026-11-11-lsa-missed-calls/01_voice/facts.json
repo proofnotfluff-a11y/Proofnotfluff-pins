@@ -1,0 +1,46 @@
+{
+ "about": "Every number and rule this video shows or says, with its source. Google's Local Services help page 'How leads work' (answer 7195435) re-read on Oct 30, 2026 (Central) with WebFetch; the support.google.com/localservices/ path timed out on a permission prompt in this unattended run, so the page was read at support.google.com/adwords/answer/7195435, the same article id, served with the title 'How leads work - Local Services Help'. Every 'confirms' line was found on that page that day. The two shops, the 7 pm call and the hours are our example, not data (EXAMPLE on screen).",
+ "google": {
+  "title": "How leads work - Local Services Help",
+  "publisher": "Google",
+  "date": "no date on the page",
+  "url": "https://support.google.com/localservices/answer/7195435",
+  "readAt": "https://support.google.com/adwords/answer/7195435",
+  "reread": "2026-10-30",
+  "missedSeconds": 20,
+  "followUpDays": 15,
+  "qualityDays": 30,
+  "confirms": [
+   "You missed a phone call during your business hours and the customer stays on the line for more than 20 seconds.",
+   "The 20-second ring rule applies only to unanswered (missed) calls.",
+   "Voicemail or greeting without a key press: If a call goes to voicemail or an automated greeting during your business hours, it's treated as a connected call and is charged if the caller stays on the line for more than 20 seconds (summarized by the fetch tool: whether or not a message is left)",
+   "If your ad schedule differs from your business hours, missed calls are charged only when they occur within both your active ad schedule and your business hours (the fetch tool's summary of the FAQ 'How are business hours defined, and what if I use an ad schedule?'; excerpt: 'unanswered calls are only charged when they happen during your active ad schedule and within your business hours.')",
+   "\"Business hours\" are the hours you set in your Google Business Profile, which you can update at any time.",
+   "Once a lead is charged, any follow-up calls or messages with that customer are not charged again (excerpt); after 15 idle days a new contact starts a new lead.",
+   "The Charge Status column on the Leads page in Google Ads shows each lead's billing status: Charged, Not charged, In review, or Credited (summary).",
+   "If you believe the lead you received is poor quality, you can let us know in the Feedback Survey for that lead.",
+   "We may also occasionally credit leads you report as poor quality through this survey.",
+   "Google continuously assesses lead quality over a 30-day period."
+  ],
+  "statuses": ["Charged", "Not charged", "In review", "Credited"],
+  "notOnPage": "The page gives no start date for the missed-call rule (PPC Land and Search Engine Land report Oct 1, 2026; not used in the video). The page says nothing about forwarding calls or texting back; those two steps are our advice, built on the page's rules (a missed call is charged only in your hours and ad schedule; follow-ups on a charged lead within 15 days are not charged again).",
+  "scope": "Local Services Ads only. The 20-second rule is for missed calls and voicemail during business hours and the active ad schedule; an answered call is judged on the conversation."
+ },
+ "example": {
+  "source": "OURS: an example of two shops getting the same call, labeled EXAMPLE on screen; not a real shop or call",
+  "callHour": 7,
+  "callShown": "7 PM",
+  "shopOneUntil": 9,
+  "shopTwoUntil": 5,
+  "shopOneCharged": 1,
+  "shopTwoCharged": 0,
+  "text": "Sorry I missed you. What's the job, and when works?",
+  "steps": [
+   "Ad schedule: only the hours a person answers",
+   "Missed rings go to a second phone",
+   "Text back every missed call",
+   "Fridays: Leads page, Charge Status"
+  ],
+  "stepCount": 4
+ }
+}

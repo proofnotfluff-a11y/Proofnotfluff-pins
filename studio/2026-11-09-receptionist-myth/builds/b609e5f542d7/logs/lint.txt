@@ -1,0 +1,4 @@
+hook: {"first_change": 0.8, "changes_by_3s": 2, "changes": [0.8, 2.27], "share": [0.217, 0.232], "host_at": 0.0, "hook_words": 9, "hook_said_by": 3.48, "seconds": 44.45}
+ERROR lint 25.50 to 35.25 s: under the host: 1,000+ residential service contractors
+ERROR lint 25.50 to 35.25 s: under the dialog box: 1,000+ residential service contractors
+exit 1

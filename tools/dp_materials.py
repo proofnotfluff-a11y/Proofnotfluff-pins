@@ -554,7 +554,7 @@ def page_html(p):
               "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "isAccessibleForFree": True,
               "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}
     lede = (f'How far {len(d["mats"])} materials the trades buy have moved since the month you quoted, from the federal producer price index. '
-            f'{n_up} of {len(ys)} are up from a year ago. Free, no sign-up.')
+            f'{n_up} of {len(ys)} are up from a year ago in the {L} index. Free, no sign-up.')
     tiles = ('<div class="tiles ld-tiles mp-tiles">'
              f'<div class="tile mp-lead"><div class="lab">Top rise, 1\u00a0yr</div><div class="val">{pct_txt(top["y12"])}</div><div class="sub">{E(top["title"])}<br>since {nb(mlabel(top["y12o"][0]))}</div></div>'
              f'<div class="tile"><div class="lab">{"Top drop" if low["y12"] < 0 else "Smallest rise"}, 1\u00a0yr</div><div class="val">{pct_txt(low["y12"])}</div><div class="sub">{E(low["title"])}<br>since {nb(mlabel(low["y12o"][0]))}</div></div>'

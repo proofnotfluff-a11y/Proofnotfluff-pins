@@ -175,7 +175,7 @@ def page_html(p):
             return f'<a class="{cls}" href="{E(checkout)}" rel="noopener">' + (f"Start your {trial}-day free trial" if trial else f"Get the full list, ${price} a month") + '</a>'
         return f'<a class="{cls}" href="{E(notify)}">Tell me when it opens</a>'
 
-    lede = (f'{c["flagged"]:,} Chicago food businesses failed or passed with conditions with a pest, hood, grease trap or cleaning violation in the last 30 days, and {c["opening"]:,} had '
+    lede = (f'{c["flagged"]:,} Chicago food businesses failed or passed with conditions with a pest, hood, grease trap or cleaning violation in the 30 days to {E(M.nice_date(w["to"]))}, and {c["opening"]:,} had '
             f'the license inspection Chicago does before it issues a food license. {E(p["lede"])}')
     sub_link = (f'<a class="ld-textlink ld-trialbtn" href="{E(checkout)}" rel="noopener">Try {trial} days free, then ${price} a month</a>' if trial else
                 f'<a class="ld-textlink" href="{E(checkout)}" rel="noopener">Subscribe, ${price} a month</a>' if checkout else

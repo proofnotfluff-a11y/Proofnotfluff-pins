@@ -2488,11 +2488,11 @@ def leads_page_html(p):
     # there are enough of them to sell on; below the floor the page keeps the total-projects lede
     lead_near = bool(p.get("leadNear")) and n_near >= int(p.get("leadNearMin", 5))
     if lead_near:
-        lede = (f'{n_near:,} big {E(p["city"])} projects have {E(p.get("nearLede", near_sub))}, so the final clean is close or already under way. You get the builder on each, '
+        lede = (f'As of {E(asof)}, {n_near:,} big {E(p["city"])} projects have {E(p.get("nearLede", near_sub))}, so the final clean is close or already under way. You get the builder on each, '
                 f'and on all {kept:,} open apartment and commercial projects of $500,000 or more'
                 + (" in the areas no seat holder has taken" if c.get("heldAreas") else "") + f'. {E(p["lede"])}')
     else:
-        lede = (f'{kept:,} open apartment and commercial projects of $500,000 or more in {E(p["city"])}, about {M(cost, True)} {"in City valuation" if p.get("costLabel") == "Valuation" else "of work"}, '
+        lede = (f'As of {E(asof)}, {kept:,} open apartment and commercial projects of $500,000 or more in {E(p["city"])}, about {M(cost, True)} {"in City valuation" if p.get("costLabel") == "Valuation" else "of work"}, '
                 f'and the builders running them. {E(p["lede"])}')
     if checkout:   # the free sample first, then subscribe (store design, Oct 22)
         hero_act = (f'<div class="ld-heroact" id="ldHeroCta"><a class="btn ld-btnbig" href="{"#near" if near else "#sample"}">See this week\'s free sample</a>'
@@ -3133,7 +3133,9 @@ def product_ld(x, url):
 
 
 ORG = {"@type": "Organization", "name": "ProofNotFluff", "url": "https://proofnotfluff.com/", "email": "hello@proofnotfluff.com",
-       "sameAs": [SHOP, "https://proofnotfluff.gumroad.com"]}
+       # the brand's own profiles, so search engines and AI assistants tie the videos and the site to one business (Oct 29)
+       "sameAs": [SHOP, "https://proofnotfluff.gumroad.com", "https://www.youtube.com/@ProofNotFluff", "https://www.instagram.com/proofnotfluff/",
+                  "https://www.tiktok.com/@proofnotfluff", "https://www.facebook.com/profile.php?id=61594865921562"]}
 
 
 def data_date(rel):
@@ -4200,10 +4202,124 @@ def main():
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
         "".join(f"  <url><loc>{u}</loc><lastmod>{lastmod.get(u, spec['updated'])}</lastmod></url>\n" for u in urls) + "</urlset>\n")
     open(os.path.join(DOCS, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\n\nSitemap: {BASE}sitemap.xml\n")
+    open(os.path.join(DOCS, "llms.txt"), "w", encoding="utf-8").write(llms_txt(urls, live))
+    write_data_feed(live, lastmod)
     open(os.path.join(DOCS, INDEXNOW_KEY + ".txt"), "w").write(INDEXNOW_KEY)
     for p in pages:
         if chr(0x2014) in json.dumps(p, ensure_ascii=False):
             sys.exit(f"em dash in {p['slug']}")
+
+
+def llms_txt(urls, live):
+    """docs/llms.txt (llmstxt.org): a plain map of the live site for AI assistants, rebuilt with the sitemap so it never
+    goes stale (Todd's pick, Oct 29, 2026, "All five", AI search plan item 5). Each line is the page's own title and meta
+    description as built, so it says nothing the page does not; only sitemap URLs, so drafts and noindex pages stay out."""
+    def meta(u):
+        f = os.path.join(DOCS, u[len(BASE):], "index.html")
+        try:
+            t = open(f, encoding="utf-8").read(20000)
+        except OSError:
+            return None
+        if re.search(r'<meta name="robots" content="[^"]*noindex', t):
+            return None
+        ti = re.search(r"<title>(.*?)</title>", t, re.S)
+        de = re.search(r'<meta name="description" content="([^"]*)"', t)
+        un = lambda x: html.unescape(re.sub(r"\s+", " ", x)).strip()
+        return (un(ti.group(1)) if ti else u, un(de.group(1)) if de else "")
+    kinds = {BASE + p["slug"] + "/": p for p in live}
+    q_urls = {BASE + q["slug"] + "/" for q in LIVE_QUESTIONS}
+    groups = {"lead": [], "data": [], "calc": [], "q": [], "site": []}
+    for u in urls:
+        if u == BASE:
+            continue
+        m = meta(u)
+        if not m:
+            continue
+        p = kinds.get(u) or {}
+        k = p.get("kind")
+        line = f"- [{m[0]}]({u})" + (f": {m[1]}" if m[1] else "")
+        if k in ("leads", "restleads", "licleads"):
+            trial = int(p.get("trialDays") or 0) if p.get("checkout") else 0
+            line += f" ${p['price']} a month" + (f", {trial}-day free trial" if trial else "") + ", cancel any time."
+            groups["lead"].append(line)
+        elif k in ("datapage", "rodents", "tradesnews") or u == BASE + "chicago-data/":
+            groups["data"].append(line)
+        elif u in q_urls or u == BASE + "questions/":
+            groups["q"].append(line)
+        elif p:
+            groups["calc"].append(line)
+        else:
+            groups["site"].append(line)
+    head_ = ("# ProofNotFluff\n\n> Sales lead lists built from public city records, sent every Monday, plus free calculators and free "
+             "Chicago data pages for trade and small business owners. Every number on the site comes from a named public source "
+             "(City of Chicago, City of Austin, Chicago 311, BLS, NOAA) and carries the date it was pulled.\n\n"
+             "Contact: hello@proofnotfluff.com. Checkout is on Gumroad; small downloads are on Etsy.\n")
+    out = [head_]
+    for title, key in (("Lead lists (paid, weekly)", "lead"), ("Free Chicago data", "data"), ("Questions answered", "q"),
+                       ("Free calculators", "calc"), ("Shop and policies", "site")):
+        if groups[key]:
+            out.append(f"\n## {title}\n\n" + "\n".join(groups[key]) + "\n")
+    txt = "".join(out)
+    if chr(0x2014) in txt or chr(0x2013) in txt:
+        sys.exit("em or en dash in llms.txt")
+    return txt
+
+
+# The free data feed (AI search plan item 4, Todd's pick Oct 29, 2026): one JSON file that lists every free Chicago data page
+# with its headline figure, source, schedule and CSV downloads, so an AI agent can read our numbers without scraping a page.
+# A new kind of output, so it is major (CONSTITUTION 2): False writes a preview to data/work/ (gitignored) only; set True
+# only after Todd's yes in a live chat, and the file then publishes at docs/data/feed.json.
+FEED_LIVE = False
+
+
+def data_feed(live, lastmod):
+    spec = json.load(open(os.path.join(ROOT, "site", "datahub.json"), encoding="utf-8"))["pages"]
+    live_slugs = {p["slug"]: p for p in live}
+    out = []
+    for slug, e in spec.items():
+        if slug not in live_slugs:
+            continue
+        u = BASE + slug + "/"
+        try:
+            t = open(os.path.join(DOCS, slug, "index.html"), encoding="utf-8").read()
+        except OSError:
+            continue
+        csvs = []
+        for blob in re.findall(r'<script type="application/ld\+json">(.*?)</script>', t, re.S):
+            try:
+                ld = json.loads(blob)
+            except ValueError:
+                continue
+            for x in (ld if isinstance(ld, list) else [ld]):
+                if isinstance(x, dict) and x.get("@type") == "Dataset":
+                    for dl in x.get("distribution") or []:
+                        if dl.get("contentUrl") and dl["contentUrl"] not in csvs:
+                            csvs.append(dl["contentUrl"])
+        st = hub_stat(slug, e.get("stat"))
+        out.append({"name": e["name"], "url": u, "source": e.get("source"), "schedule": e.get("cadence"),
+                    "headline": {"value": st[0], "label": st[1]} if st else None,
+                    "pageUpdated": lastmod.get(u), "downloads": csvs})
+    leads = []
+    for p in live:
+        if p.get("kind") in ("leads", "restleads", "licleads") and p.get("checkout"):
+            leads.append({"name": p.get("h1") or p["slug"], "url": BASE + p["slug"] + "/", "priceUSDPerMonth": float(p["price"]) if "." in str(p["price"]) else int(p["price"]),
+                          "freeTrialDays": int(p.get("trialDays") or 0), "pageUpdated": lastmod.get(BASE + p["slug"] + "/")})
+    return {"schema": "pnf.feed.v1", "publisher": "ProofNotFluff", "site": BASE, "contact": "hello@proofnotfluff.com",
+            "about": "Free Chicago data for trade and small business owners, from public records. Each headline figure is read from "
+                     "its page as built; pageUpdated is the day the page's data last changed. Free to use; credit ProofNotFluff and the source.",
+            "datasets": out, "leadLists": leads}
+
+
+def write_data_feed(live, lastmod):
+    txt = json.dumps(data_feed(live, lastmod), ensure_ascii=False, indent=1) + "\n"
+    if chr(0x2014) in txt or chr(0x2013) in txt:
+        sys.exit("em or en dash in the data feed")
+    if FEED_LIVE:
+        d = os.path.join(DOCS, "data"); os.makedirs(d, exist_ok=True)
+        open(os.path.join(d, "feed.json"), "w", encoding="utf-8").write(txt)
+    else:
+        d = os.path.join(ROOT, "data", "work", "preview"); os.makedirs(d, exist_ok=True)
+        open(os.path.join(d, "feed.json"), "w", encoding="utf-8").write(txt)
 
 
 def answer_text(p):

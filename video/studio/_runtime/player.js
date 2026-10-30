@@ -60,6 +60,29 @@
       if (/[.!?]$/.test(w.w) && cur.length >= 3) { out.push(cur); cur = []; }
     });
     if (cur.length) out.push(cur);
+    // pages follow sentences (IMPROVE 00h, Oct 30): a page never opens on the last word or two of the sentence before,
+    // and never ends on the first word of the next one. The tail goes back to its sentence when it fits; else it takes
+    // the sentence's last words with it (from a comma when there is one) so no page is a lone word.
+    const END = /[.!?]["')]?$/;
+    for (let i = 0; i + 1 < out.length; i++) {
+      const A = out[i], B = out[i + 1];
+      if (END.test(A[A.length - 1].w)) continue;
+      const e = B.findIndex((x) => END.test(x.w));
+      if (e < 0 || e > 1) continue;
+      const tail = B.slice(0, e + 1), rest = B.slice(e + 1);
+      if (fits(A.concat(tail))) { out[i] = A.concat(tail); if (rest.length) out[i + 1] = rest; else out.splice(i + 1, 1); continue; }
+      const ks = [];
+      for (let k = Math.max(1, 3 - tail.length); k <= A.length - 2; k++) if (fits(A.slice(-k).concat(tail))) ks.push(k);
+      if (!ks.length) continue;
+      const k = ks.find((k2) => /[,;:]$/.test(A[A.length - k2 - 1].w)) || ks[0];
+      out.splice(i, 2, A.slice(0, -k), A.slice(-k).concat(tail), ...(rest.length ? [rest] : []));
+    }
+    for (let i = 0; i + 1 < out.length; i++) {
+      const A = out[i];
+      if (A.length < 3 || !END.test(A[A.length - 2].w)) continue;
+      const w1 = A.slice(-1);
+      if (fits(w1.concat(out[i + 1]))) { out[i] = A.slice(0, -1); out[i + 1] = w1.concat(out[i + 1]); }
+    }
     // never leave one word alone in the box: join it to the phrase before when it fits, else to the one after
     for (let i = 0; i < out.length; i++) {
       if (out[i].length !== 1 || out.length < 2) continue;

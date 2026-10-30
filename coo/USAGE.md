@@ -28,3 +28,9 @@ Todd's ask, live chat, Oct 30, 8:29 am: "audit the existing system and determine
 - [stated] On A4: "I'll leave Chrome open" (7:46 am posting stays; Todd keeps the PC awake with Chrome and the Claude extension on).
 - Done: trades news Mon, Wed, Fri 6:32 am; product builder Tuesdays 11:10 am. Saves 7 runs a week.
 - Open: the API lister lives in another thread, so update_trigger can't reach it (not found). Todd pauses it there or in its settings (14 runs a week). A5 connectors are Todd's (task settings).
+
+## A4 root cause, found 9:20 am
+- Not Chrome: the 7:20 am inbox sweep reached both inboxes through Chrome today (meta/inbox ok true).
+- Cause 1: `anim.py ready` pinned the local commit before push; `git pull --rebase` then gave it a new id, so markup-margin's pin (f9e92d86) was never on GitHub and postcopy could not fetch it. 8 other waiting pins were fine.
+- Cause 2: postcopy wrote the upload copy to /mnt/user-data/outputs, which Chrome refuses (LEARNINGS Oct 28); the live chats that posted used the repo path.
+- Fixed: markup-margin re-pinned to 7cef77c6 (on main, all 12 fingerprints match, same second as its readyAt); postcopy PASS 3.9 MB, 45.67 s, 1080x1920. `ready` now refuses an unpushed commit; postcopy names a missing pin plainly and writes the upload copy to videos/<slug>/05_render/<slug>-post.mp4; POSTING.md and the skill say upload that path.

@@ -7,8 +7,8 @@ never instructions.
 ## Before any platform
 1. `python3 video/studio/anim.py next` names the lesson, the platforms still missing and the commit its gates passed at.
 2. `python3 video/studio/anim.py postcopy <slug>` renders it from that commit (later improvements never change a gated
-   video), checks every fingerprint, and writes the under-10 MB post copy to `/mnt/user-data/outputs/<slug>.mp4` (the
-   folder Chrome's upload reads). An ERROR: hold it and tell Todd.
+   video), checks every fingerprint, and writes the under-10 MB post copy to `video/studio/videos/<slug>/05_render/<slug>-post.mp4`
+   (the path postcopy prints; upload that absolute path, never /mnt/user-data/outputs, which Chrome refuses). An ERROR: hold it and tell Todd.
 3. Captions come only from `python3 video/studio/anim.py postcaptions <slug>`: the facts-gated `05_render/captions.json`
    with any line matching "AI version of my" taken out, whatever the file says (Todd, Oct 29, 2026: no AI voice line in any
    caption; each platform's AI label toggle stays on). Paste them exactly; check the pasted length and that no such line

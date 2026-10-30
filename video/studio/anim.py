@@ -1495,6 +1495,11 @@ def cmd_ready(slug):
     if dirty:
         raise SystemExit("ERROR ready: commit the lesson and the runtime first: " + "; ".join(d.strip() for d in dirty[:6]))
     head = sh(["git", "-C", ROOT, "rev-parse", "HEAD"]).stdout.strip()
+    # the pin must already be on GitHub: a later `git pull --rebase` gives an unpushed commit a new id, and posting
+    # then can't fetch it (Oct 30: markup-margin's pin was rebased away and the 7:46 run could not post).
+    sh(["git", "-C", ROOT, "fetch", "-q", "origin", "main"], check=False)
+    if sh(["git", "-C", ROOT, "merge-base", "--is-ancestor", head, "origin/main"], check=False).returncode:
+        raise SystemExit("ERROR ready: push the lesson commit to main first (git pull --rebase, git push), then run ready")
     q = load_queue()
     item = {"slug": slug, "readyAt": now(), "commit": head, "fingerprints": fingerprints(slug), "posts": {}}
     pos = next((n for n, i in enumerate(q["items"]) if i["slug"] == slug), None)
@@ -1545,12 +1550,15 @@ def cmd_postcaptions(slug):
 
 def cmd_postcopy(slug):
     """Render the queued lesson from the commit its gates passed at, check every fingerprint, export the post copy
-    to /mnt/user-data/outputs/<slug>.mp4 (the folder Chrome's upload reads)."""
+    to videos/<slug>/05_render/<slug>-post.mp4 in this checkout (the path Chrome's file_upload reads)."""
     it = next((i for i in load_queue()["items"] if i["slug"] == slug), None)
     if not it or not it.get("commit"):
         raise SystemExit(f"ERROR postcopy: {slug} is not queued with a commit")
     wt = tempfile.mkdtemp(prefix="gated-")
     sh(["git", "-C", ROOT, "fetch", "--depth", "1", "origin", it["commit"]], check=False)
+    if sh(["git", "-C", ROOT, "cat-file", "-e", it["commit"] + "^{commit}"], check=False).returncode:
+        raise SystemExit(f"ERROR postcopy: pinned commit {it['commit'][:12]} is not on GitHub (rebased away); hold the "
+                         "post and tell Todd: the lesson needs re-pinning to a pushed commit with the same fingerprints")
     sh(["git", "-C", ROOT, "worktree", "add", "--detach", wt, it["commit"]])
     try:
         cmd = [sys.executable, os.path.join(wt, "video", "studio", "anim.py")]
@@ -1567,10 +1575,17 @@ def cmd_postcopy(slug):
         wr = os.path.join(wt, "video", "studio", "videos", slug, "05_render")   # packaging only: today's export
         cmd_export(slug, os.path.join(wr, f"{slug}.mp4"), os.path.join(wr, f"{slug}-post.mp4"))
         src = os.path.join(wt, "video", "studio", "videos", slug, "05_render", f"{slug}-post.mp4")
-        os.makedirs("/mnt/user-data/outputs", exist_ok=True)
-        dst = os.path.join("/mnt/user-data/outputs", f"{slug}.mp4")
+        # Chrome's file_upload reads the repo path; /mnt/user-data/outputs is refused (LEARNINGS Oct 28; usage audit Oct 30).
+        # The worktree is removed below, so the upload copy goes to the main checkout (gitignored, never committed).
+        dst = vdir(slug, "05_render", f"{slug}-post.mp4")
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
         shutil.copy(src, dst)
-        print(f"postcopy: {dst} ({os.path.getsize(dst) / 1e6:.1f} MB) from {it['commit'][:12]}")
+        try:   # older sessions looked here; harmless if the folder is not writable
+            os.makedirs("/mnt/user-data/outputs", exist_ok=True)
+            shutil.copy(src, os.path.join("/mnt/user-data/outputs", f"{slug}.mp4"))
+        except OSError:
+            pass
+        print(f"postcopy: upload {dst} ({os.path.getsize(dst) / 1e6:.1f} MB) from {it['commit'][:12]}")
     finally:
         sh(["git", "-C", ROOT, "worktree", "remove", "--force", wt], check=False)
 

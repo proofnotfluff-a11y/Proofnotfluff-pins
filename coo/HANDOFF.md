@@ -14,4 +14,4 @@
 - Oct 27: trade owners only; free plan waits (DECISIONS-2026-10-27). Trades News (Mon, Wed, Fri 6:32), maps, templates live. R10: 11 free data pages and redesign live (/chicago-data/, site/datahub.json); inspections by area, Quarterly open (W).
 - Oct 30: AI lane (11-08 to 11-10) queued; 5 older lessons re-pinned on new tunes; variety checks tune.
 - Oct 25: Chief of Staff live (DECISIONS-2026-10-25): sweep (PC, sole reply-status writer), brief, Sun review.
-- Oct 30 usage audit: coo/USAGE.md; builder Tue only. Next: Todd pauses API lister, strips unused connectors.
+- Oct 30 usage audit: coo/USAGE.md. Video 7:46 fix: pins must be pushed, upload repo path. Next: Todd pauses API lister, strips connectors.

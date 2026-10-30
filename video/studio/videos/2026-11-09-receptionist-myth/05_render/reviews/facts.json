@@ -1,17 +1,20 @@
 {
  "gate": "facts",
- "round": 0,
- "at": "2026-10-29T18:42:18-05:00",
- "build": "d576936",
- "pass": false,
+ "round": 1,
+ "at": "2026-10-29T19:20:21-05:00",
+ "build": "ce74f66",
+ "pass": true,
  "score": {
   "numbers": 5,
-  "mismatches": 1
+  "mismatches": 0
  },
  "reasons": [
-  "04_scene/scene.js line 115 (proof tag) and line 106 (hero label): the fix round cut the sample's scope. The screen now says 'ServiceTitan, 1,000+ contractors, 2026' and 'contractors surveyed'. brief.md's trust note says the tag says 'residential service contractors', and cues.md (proof) says '1,000+ residential service contractors, 2026'. The lesson is aimed at cleaning owners, so without the qualifier an HVAC, plumbing, electrical and roofing finding is applied beyond its population. Exact fix: put the qualifier back on screen at size 39 or larger, on two lines, for example 'ServiceTitan survey, 2026' / '1,000+ residential service contractors'. The voice line 'over a thousand contractors' can stay.",
-  "note, not failing: the draft card says 'DRAFT' but carries no 'EXAMPLE' tag, while brief.md says the prompt and the draft are shown with EXAMPLE.",
-  "note, not failing: the 'MYTH?' stamp and 'BUSTED!' boss match the brief (the myth beaten is the order, 'Follow-up first').",
-  "PASS checks: 11% and 58% on voice, rows and hero match the source and data.js; wording fair; 'over a thousand' and '1,000+' match 'over 1,000'; 2026 report year; prompt 2 sentences; story elements; trades first; no product or private person; 0 em or en dashes."
+  "Round 0 FAIL fixed: scene.js now draws 'ServiceTitan survey, 2026' and '1,000+ residential service contractors' at size 39 for the whole proof beat; frames f14, f15, f16 show both lines readable inside the score board.",
+  "PASS numbers: 11%, 58%, 1,000+ and 2026 in voice, rows, hero and tag match the PHCP Pros page and data.js; data.js matches facts.json; promptLines 2 matches.",
+  "PASS wording: fair paraphrases; trust figures said as 'contractors', as on the page; descriptive, no causal claim.",
+  "PASS trades first: ServiceTitan survey of US residential service contractors; the scope tag keeps it from reading as cleaning data.",
+  "PASS story elements: prompt card and draft card both carry EXAMPLE (round 0 note resolved); no product, vendor or logo.",
+  "PASS: no private person, business or address; 0 em or en dashes.",
+  "Note: 'MYTH?' then 'BUSTED!' beats the order, not the bots, as the brief says."
  ]
 }

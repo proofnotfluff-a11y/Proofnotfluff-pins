@@ -1,20 +1,23 @@
 {
  "gate": "render-critic",
  "round": 0,
- "at": "2026-10-29T18:42:25-05:00",
- "build": "d576936",
+ "at": "2026-10-29T19:21:51-05:00",
+ "build": "ce74f66",
  "pass": true,
  "score": {
   "faults": 0
  },
  "faults": [],
  "reasons": [
-  "Build checked: main and -post mp4 decode to the same streams; qa.json sha 79bcb0cb matches; 44.43 s, 1080x1920.",
-  "Hook card on screen 0.0 to 3.5 s; no number in the hook.",
-  "Numbers land on their words: 1,000+ by 27.0 s, 11% from 29.0 s, 58% from 32.0 s; all large and readable.",
-  "A shine sweep crosses 58% and 11% for about 0.33 s every 1.4 s; readable, not a fault.",
-  "Layout settled: nothing hidden, cut off or covered; edge cases x 937, 965, 935 all inside the frame.",
-  "Audio end: last word 41.35 s, end card 41.5 to 44.43 s, nothing cut mid-word.",
-  "Smallest text about 28 to 30 px; brightness jumps only at single transitions."
+  "Build checked: mp4 sha 5a5382c6 matches qa.json; -post streams equal; 44.43 s, 1080x1920, 30 fps.",
+  "Hook plate fully on screen 0.0 to 3.5 s; no number in the hook.",
+  "Numbers land on their words: 1,000+ about 27.0 s with the scope line from 25.5 s; 11% by 29.0 s; 58% by 32.0 s; all large and readable.",
+  "Transient: the 58% row counts up for about 0.3 s after the hero reads 58%; readable.",
+  "Layout settled: nothing hidden, cut off or covered; scope tag inside the score board.",
+  "Edge cases x 935 and x 932 fully in frame, not faults.",
+  "Audio end: last word 41.35 s, end card 41.5 to 44.43 s, nothing cut.",
+  "Smallest text about 28 px.",
+  "No flashing over 3 a second.",
+  "Prior round listed 0 faults; none new."
  ]
 }

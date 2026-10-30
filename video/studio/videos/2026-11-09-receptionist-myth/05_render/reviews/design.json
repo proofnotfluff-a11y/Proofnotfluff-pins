@@ -1,27 +1,27 @@
 {
  "gate": "design",
- "round": 1,
- "at": "2026-10-29T18:43:31-05:00",
- "build": "d576936",
- "pass": true,
+ "round": 0,
+ "at": "2026-10-29T19:23:02-05:00",
+ "build": "ce74f66",
+ "pass": false,
  "score": {
   "first": 5,
   "hierarchy": 5,
   "type": 4,
-  "color": 5,
+  "color": 4,
   "spacing": 5,
   "polish": 4,
   "trust": 5,
-  "average": 4.71
+  "average": 4.57
  },
  "reasons": [
-  "Type cap: dialog renders about 24 px cap; font 39 renders the same as 30, under the 44 px floor; labels under the 36 px floor. Raise the runtime dialog to 44 px with a 3-line box and labels to 36 px (IMPROVE 00b, shared runtime).",
-  "41.53 to 44.43 end card about 2.9 s on screen; spec asks 3 to 5 s. Start the close at 41.35 s or add 0.3 s of tail.",
-  "12.0 to 17.4 prompt card: ruled lines blank for about 5 s read as placeholder.",
-  "41.6 to 44.4 end card send line about 22 px cap; set it at 44 px in gold.",
-  "35.5 to 39.9 boss MOVES box: lower 60% empty.",
-  "17.4 to 21.5 prompt card live word red on cream at 3.25:1; use maroon.",
-  "21.5 to 25.0 draft card: no EXAMPLE tag; add it beside DRAFT.",
-  "Round 0 changes all landed (58% hero, calendar line, 1,000+ count-up, padlock and Pasted tag, HELD FOR YOU contrast, 'Follow-up first.' at 132 px, cover card). Hook cuts by 0.8 s and 2.5 s; host on screen from frame 0. Freshness: sets calendar, scores, boss; no repeats."
+  "35.9 to 39.9 boss MOVES menu: 'You hit send' grey on navy at 2.7:1; at 38.95 'Follow-up first' also grey with no cursor, so both moves look disabled. Draw both rows in cream, the picked move in gold with the cursor, at size 66.",
+  "21.5 to 25.0 draft card 'DRAFT' label teal on cream 2.2:1; set it in jacket #2F6F67 or ink.",
+  "17.2 to 21.5 prompt card live word orange on cream 3.25:1; use maroon #7A3442.",
+  "Dialog box body font 39 px under the 44 px floor caps type at 4 (runtime IMPROVE 00b).",
+  "24.2 to 25.0 send payoff: dissolve at 25.0 cuts the draft slide; start the dissolve about 25.3 and keep the path above the SEND key.",
+  "41.43 to 41.55 end card on screen about 2.85 s vs the 3 to 5 s spec; start the close at 41.3 or add 0.3 s of tail.",
+  "12.0 to 17.2 prompt card ruled lines empty about 5 s; blink a caret on line 1 from 12.8.",
+  "Landed: EXAMPLE on the draft, scope tag inside the board, hero at 198, picture changes at 1.0 and 2.5 s, host from frame 0, no set repeats."
  ]
 }

@@ -146,7 +146,7 @@ const hookPlate = (k, d) => {
 const lockIcon = (d, x, y, open) => { const {P} = d; if (open) { P(x + 6, y - 7, 2, 7, GREY); P(x + 6, y - 9, 10, 2, GREY); P(x + 14, y - 9, 2, 3, GREY); } else { P(x + 2, y - 8, 2, 8, GREY); P(x + 2, y - 10, 10, 2, GREY); P(x + 10, y - 8, 2, 8, GREY); } P(x - 1, y - 1, 16, 13, INK); P(x, y, 14, 11, GOLD); P(x, y, 14, 2, '#FFE39A'); P(x + 6, y + 4, 2, 4, INK); };
 const eye = (d, x, y, open) => { const {P} = d; P(x, y + 3, 18, 6, INK); if (open) { P(x + 1, y + 4, 16, 4, CREAM); P(x + 7, y + 3, 5, 6, NAVY); P(x + 8, y + 4, 2, 2, CREAM); } else P(x + 1, y + 6, 16, 1, CREAM); };
 
-const quiet = (k, fn) => { const t = k.text; k.text = function (s, ...a) { return /^-\d+$/.test(String(s)) ? {w: 0, h: 0, lines: []} : t.call(this, s, ...a); }; try { return fn(); } finally { k.text = t; } };
+const quiet = (k, fn, hide = []) => { const t = k.text; k.text = function (s, ...a) { return /^-\d+$/.test(String(s)) || hide.includes(String(s)) ? {w: 0, h: 0, lines: []} : t.call(this, s, ...a); }; try { return fn(); } finally { k.text = t; } };
 
 window.SCENE = {
   look: 'arcade',
@@ -231,8 +231,10 @@ window.SCENE = {
       d.tx('ASK AN AI CHAT APP', cx + 6, cy + 2, {size: 30, color: CREAM});
       const tg = 'EXAMPLE', tgw = d.tw(tg, 30), tgx = cx + 14 + d.tw('ASK AN AI CHAT APP', 30); P(tgx, cy + 1, tgw + 8, 15, GOLD); d.tx(tg, tgx + 4, cy + 2, {size: 30, color: INK});
       let y = (cy + 21) * 3;
+      // a caret blinks at the start of line 1 from the end of the title line until the prompt is said
+      if (T >= W(/^first/i, t0, t0 + 1.1) && T < tP1 && ((d.F >> 3) & 1) === 0) P(cx + 8, cy + 21, 2, 13, NAVY);
       [{text: 'Write a short check-in on this quote, in my voice.', at: tP1}, {text: 'Ask what questions they have.', at: tP2}].forEach((r) => {
-        const ln = typed(k, T, r.text, r.at, (cx + 8) * 3, y, (cx + cw - 8) * 3, {size: 39, color: NAVY}); y += ln * 45;
+        const ln = typed(k, T, r.text, r.at, (cx + 8) * 3, y, (cx + cw - 8) * 3, {size: 39, color: NAVY, hot: MAROON}); y += ln * 45;
       });
       // on "Paste": the quote you sent clips onto the card (example), and the padlock drops into the empty tray
       const tPaste = W(/^Paste/i, t0, t0 + 2.2);
@@ -247,15 +249,16 @@ window.SCENE = {
       P(tx0, ty + 78, tw0, 6, GREY); P(tx0, ty + 78, tw0, 1, CREAM); P(tx0, ty + 30, 4, 54, GREY); P(tx0 + tw0 - 4, ty + 30, 4, 54, GREY);
       for (let x = tx0 + 12; x < tx0 + tw0 - 6; x += 16) P(x, ty + 48, 2, 30, '#6B7080');
       const hw = d.tw('HELD FOR YOU') + 12; P(tx0 + 1, ty + 87, hw, 17, INK); P(tx0, ty + 86, hw, 17, MAROON); d.tx('HELD FOR YOU', tx0 + 6, ty + 88, {color: GOLD});
-      const tDrop = tHave + 0.1, sent = T >= tSend, fly = sent ? Math.floor(Math.pow(Math.max(0, T - tSend - 0.25) * 9, 2)) : 0;
+      // on send: the draft lifts clear of the send key, then flies off to the right, gone before the dissolve
+      const tDrop = tHave + 0.1, sent = T >= tSend, sg = T - tSend - 0.2, lift = sg > 0 ? Math.round(44 * eo(sg / 0.2)) : 0, fly = sg > 0.12 ? Math.floor(Math.pow((sg - 0.12) * 24, 2)) : 0;
       if (T >= tPaste && T < tDrop) { const f = d.fr(tPaste), dy = f < 6 ? [-30, -16, -6, 2, 1, 0][f] : 0; lockIcon(d, tx0 + tw0 / 2 - 7, ty + 52 + dy, false); }
       if (T >= tDrop && tx0 + 8 + fly < 360) {
-        const dy = d.fr(tDrop) < 5 ? [-24, -12, -4, 1, 0][d.fr(tDrop)] : 0, ex = tx0 + 8 + fly, ey = ty + 10 + dy;
+        const dy = d.fr(tDrop) < 5 ? [-24, -12, -4, 1, 0][d.fr(tDrop)] : 0, ex = tx0 + 8 + fly, ey = ty + 10 + dy - lift;
         P(ex + 2, ey + 2, 220, 66, '#5A3A22'); P(ex - 1, ey - 1, 222, 68, INK); P(ex, ey, 220, 66, '#F7F1E6');
         d.line(ex, ey, ex + 110, ey + 18, '#E6D3BC'); d.line(ex + 219, ey, ex + 110, ey + 18, '#E6D3BC');
-        d.tx('DRAFT', ex + 6, ey + 4, {size: 30, color: TEAL});
+        d.tx('DRAFT', ex + 6, ey + 4, {size: 30, color: '#2F6F67'});
         { const tg = 'EXAMPLE', tgw = d.tw(tg, 30), tgx = ex + 14 + d.tw('DRAFT', 30); P(tgx, ey + 3, tgw + 8, 15, GOLD); d.tx(tg, tgx + 4, ey + 4, {size: 30, color: INK}); }
-        written(k, 1e9, 'Hi, just checking in on the quote I sent for your deep clean. Any questions I can answer?', 0, (ex + 6) * 3, (ey + 17) * 3, (ex + 214) * 3, {size: 30, lh: 45, color: PLUM, lint: fly === 0});
+        written(k, 1e9, 'Hi, just checking in on the quote I sent for your deep clean. Any questions I can answer?', 0, (ex + 6) * 3, (ey + 17) * 3, (ex + 214) * 3, {size: 30, lh: 45, color: PLUM, lint: lift === 0});
         lockIcon(d, ex + 202, ey + 1, sent);
       }
       if (T >= tRead && T < tSend + 0.3) eye(d, 226, 210, ((d.F >> 3) % 6) !== 0);
@@ -300,7 +303,22 @@ window.SCENE = {
       const t0 = k.S('button');
       const tHand = W(/^hand$/i, t0, t0 + 0.8), tBuy = W(/^buy$/i, k.S('button.fix')), tRec = W(/^receptionist/i, tBuy, tBuy + 0.6), tBefore = W(/^before$/i, tRec, tRec + 0.8);
       const tFix = tRec + 0.3, tEnd = tBefore + 0.3;
-      quiet(k, () => k.sets.boss({name: 'THE MYTH', hp: 100, t0, menu: 'MOVES', hits: [{at: tHand, dmg: 50, label: 'You hit send'}, {at: tBuy, dmg: 50, label: 'Follow-up first'}], defeatAt: tFix, winText: 'BUSTED!'}));
+      const moves = [{at: tHand, dmg: 50, label: 'You hit send'}, {at: tBuy, dmg: 50, label: 'Follow-up first'}];
+      quiet(k, () => k.sets.boss({name: 'THE MYTH', hp: 100, t0, menu: 'MOVES', hits: moves, defeatAt: tFix, winText: 'BUSTED!'}), ['MOVES'].concat(moves.map((m) => m.label)));
+      // the moves menu, our own: both rows readable (cream), large enough to fill the box; the picked move goes gold on
+      // its word, and the cursor sits on the next move (the set greys used rows, which read as disabled)
+      if (T < tFix + 0.4) {
+        const d = px(k), {P} = d, mw = d.tw('MOVES') + 12;
+        P(20, 128, 150, 128, NAVY);
+        P(24, 119, mw, 12, INK); P(25, 120, mw - 2, 10, MAROON); d.tx('MOVES', 31, 119, {color: CREAM});
+        const nxt = moves.findIndex((m) => T < m.at), cur = nxt < 0 ? moves.length - 1 : nxt;
+        moves.forEach((m, i) => {
+          if (T < t0 + i * 0.15) return;
+          const y = 150 + i * 56;
+          if (i === cur) { const b = (d.F >> 3) & 1; P(24 + b, y + 6, 3, 10, GOLD); P(27 + b, y + 8, 2, 6, GOLD); P(29 + b, y + 10, 1, 2, GOLD); }
+          k.text(m.label, 36 * 3, y * 3, {size: 66, color: i === 1 && T >= tBuy ? GOLD : PAPER});
+        });
+      }
       if (T >= tEnd) k.slam('Follow-up first.', 540, 690, tEnd, {size: 132, color: GOLD, align: 'center', from: 0.5, drop: INK});
       return host(k, T >= tFix ? 'wave' : (k.live('button') ? 'point' : null));
     },

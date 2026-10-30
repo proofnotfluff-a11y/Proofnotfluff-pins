@@ -25,7 +25,7 @@ Line 2. The drafted check-in drops into the tray (example), a padlock on it: HEL
 ## fix.send "Nothing goes out until" [sfx: pop]
 An eye blinks over the draft on "read"; on "send" the big green key presses, the lock opens, the envelope flies out. The prompt stays up 3 s or more.
 
-## proof "ServiceTitan surveyed over a" [sfx: whoosh]
+## proof "ServiceTitan surveyed over a" +0.17 [sfx: whoosh]
 The high-score cabinet: "TRUST IN AI TOOLS". On screen: "ServiceTitan survey" / "1,000+ residential service contractors, 2026".
 ## proof.low "Only eleven percent trust" [sfx: tick]
 Row 1 slides in: "HIGH OR COMPLETE 11%", gold.

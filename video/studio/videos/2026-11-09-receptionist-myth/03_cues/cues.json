@@ -89,7 +89,7 @@
    "text": "Our own outbox tray. \"Fix follow-up first.\" slams in; the prompt card (AI chat app, example) waits.",
    "t": 11.664,
    "word": 33,
-   "end": 25.306
+   "end": 25.476
   },
   {
    "id": "fix.p1",
@@ -125,17 +125,17 @@
    "text": "An eye blinks over the draft on \"read\"; on \"send\" the big green key presses, the lock opens, the envelope flies out. The prompt stays up 3 s or more.",
    "t": 22.084,
    "word": 61,
-   "end": 25.306
+   "end": 25.476
   },
   {
    "id": "proof",
    "level": 0,
    "quote": "ServiceTitan surveyed over a",
    "sfx": "whoosh",
-   "shift": 0.0,
+   "shift": 0.17,
    "pin": null,
    "text": "The high-score cabinet: \"TRUST IN AI TOOLS\". On screen: \"ServiceTitan survey\" / \"1,000+ residential service contractors, 2026\".",
-   "t": 25.306,
+   "t": 25.476,
    "word": 71,
    "end": 35.265
   },

@@ -1,27 +1,22 @@
 {
  "gate": "design",
- "round": 0,
- "at": "2026-10-29T22:39:17-05:00",
- "build": "6c6be63b",
- "pass": false,
+ "round": 1,
+ "at": "2026-10-29T23:34:27-05:00",
+ "build": "4f3ac098",
+ "pass": true,
  "score": {
-  "first": 4,
+  "first": 5,
   "hierarchy": 5,
   "type": 4,
   "color": 5,
   "spacing": 4,
-  "polish": 4,
+  "polish": 5,
   "trust": 5,
-  "average": 4.43
+  "average": 4.71
  },
  "reasons": [
-  "71.3 to 71.7 s close payoff: 'a choice.' shows about 0.4 s before the gameover wipe; hold the close plate to 72.6 s and start the end card there.",
-  "69.9 to 71.7 s: a spark pixel on the 's' of 'this' at 70.31 s; keep the emitter out of the plate box.",
-  "2.0 to 3.9 s hook card: Snow covers the card's left third; narrow the card to x 300 to 975 or keep Snow off until 3.97 s.",
-  "4.0 to 5.4 s hook.build: empty drawer cabinets, the same counter front 10-30 uses; swap for the storefront base.",
-  "65.0 to 67.3 s close chalkboard: only the chip for 2.3 s; write '1 price?' at 65.0 s.",
-  "63.5 to 64.3 s slot crown flips to START WITH 3 before the reels land 3 3 3; flip at 64.4 s.",
-  "labels and sources drawn at size 30 or 39 (about 21 px caps); raise to size 66 display font.",
-  "44.0 to 52.4 s: reels hold still about 8 s; pull the lever on 'surveyed' (49.0 s)."
+  "4.0 to 5.4 s hook.build: the band under the counter (frame y 780 to 1250) is bare brick, and Snow stands at about 260 px pointing at empty wall for 1.4 s right after the hook. Fill it: hang a plate in that band with '3 prices, / 1 quote.' at size 132 (the chalk board can keep its small copy), or step Snow up to hostScale 0.86 next to the chalk board and have him point at it.",
+  "22.5 to 30.0 s why.68: the line that gives the 68% its meaning ('of 1,100+ homeowners get more quotes when a price is higher than expected') is still in the body font (size 39, 21 px caps) in a box that is mostly empty. Set it at size 52 or more on two or three lines in that box.",
+  "5.5 to 17.0 s stakes footnote, 33 to 43 s card row lines, 47.5 to 64.4 s slot tray: round 0 asked for size 66. Only the headers, crown, banner, tier names and the habit bar moved up. 'Home jobs offered good, better, best.', 'The job done right.', '1,000+ HVAC contractors', '4+ options: 52%' and '1 to 3 options: 42%' still render at body size (21 px caps). Raise the lines that carry a number or the rule to size 52. Sources can stay at 39, but the hook card source and the close-up plate source (0.0 to 3.9 s, 0.5 to 1.9 s) are coded at size 30, so set them to 39."
  ]
 }

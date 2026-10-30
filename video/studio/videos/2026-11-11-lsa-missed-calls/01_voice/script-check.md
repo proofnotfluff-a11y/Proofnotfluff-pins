@@ -30,5 +30,17 @@ re-measured on the real words.json below. The script gate should re-score it bli
 
 Result: 12 of 12 before the voice.
 
-## After the voice
-(filled in after `fetch`)
+## After the voice (Oct 30, 2026, three Studio voice runs; flags 0 on each)
+- Run 1 (all 6 takes): file wpm 146, 156, 160, 147, 184, 159. Takes 1, 2, 4, 6 under 160.
+- Run 2 (re-roll of takes 1, 2, 4, 6, same words): 149, 156, 160, 149, 184, 154 (spoken, without the silent tail:
+  158, 166, 169, 157, 192, 161).
+- Run 3 (takes 1 and 4 rewritten as talk, voice.md "under 150: rewrite the take"; take 1 "Seven at night, same call,
+  two shops." with commas, take 4 joined into two sentences): 133, 156, 160, 151, 184, 154 (spoken 139, 166, 169, 163,
+  193, 161). Take 4 now clears the 150 floor; take 1 got slower.
+- Held here: take 1 (the hook) failed the pace check three times (146, 149, 133 wpm on the file). The run's rule (a
+  step that fails twice stops the run) holds the lesson at stage 02. Runtime on the current words 49.9 s with the end
+  card (two-shops band 35 to 52); `anim.py cues` matches all 18 cues; `script` and `variety` PASS.
+- Next for take 1: go back to the run 2 wording ("Seven at night. Same call to two shops. Nobody picks up.", 149 file,
+  158 spoken), or a hook that flows as one sentence and still lands inside 9 to 12 words, then `speak --take 1` once.
+  Takes 2 and 6 (156, 154 on the file; 166 and 161 spoken) sit under the 160 target only because of their silent tails
+  (IMPROVE 00e).

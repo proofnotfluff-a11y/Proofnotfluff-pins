@@ -99,3 +99,4 @@ The studio learns in three loops (Todd, Oct 28, 2026, 3:43 pm: "make this video 
 - Oct 30 lunch post, close-rate (instagram): Instagram web uploader showed no Trial option under Advanced settings, so close-rate went up as a normal reel.
 - Oct 30 lunch post, close-rate (tiktok): two Chromes are connected; only the one Todd picks with switch_browser is signed in to TikTok. Browser 1 was signed out.
 - Oct 30 lunch post, close-rate (youtube): YouTube's AI use question came up pre-set to Yes on upload; check it reads No before Publish.
+- Oct 30 evening make, lsa-missed-calls: held at stage 02 on pace. The hook take (10 to 11 words in three short sentences) read 146, then 149 on a re-roll, then 133 after it was rewritten with commas in place of full stops; commas did not speed Eleven v4 up on a fragment opener. A short hook take carries its silent tail in the file pace (IMPROVE 00e). Next time: keep the hook as one flowing sentence, or accept the 149 take.

@@ -4,14 +4,12 @@
  "model": "eleven_v4",
  "takes": [
   1,
-  2,
-  4,
-  6
+  4
  ],
  "settings": {
   "stability": 0.7,
   "similarity_boost": 0.7
  },
- "scriptSha256": "e8c07181cd693b348fdbeaf469055b6444ab076eb2d28e511df160821efb855c",
- "requestedAt": "2026-10-30T18:01:46-05:00"
+ "scriptSha256": "3aa46bf06272f95563dfa1f14ae3c5f7b907a4a65195d93f4f156aed6489c0c9",
+ "requestedAt": "2026-10-30T18:09:29-05:00"
 }

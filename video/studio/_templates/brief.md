@@ -10,6 +10,7 @@ Planned with Todd in chat, <date>.
 - **Hook pattern:** <one of: stuck-moment, two-shops, object-number, which-pick, your-move, problem-question, result-first, myth>.
 - **Treatment:** <one of: story, myth-fact, steps, before-after, math-board, copy-this>.
 - **Example:** <a short key for the real example the lesson is built on, e.g. servicetitan-same-visit-77>.
+- **Music:** <one of: classic, sunny, quest, night, chase, bounce; not the tune of the lesson before or after it in line (`anim.py tunes <slug>`); cues.md's `music: rooms <tune>` line then carries it>.
 - **Metaphor:** <only if it earns its place, else none>.
 - **Voice:** the library voice in `_shared/voice.md`.
 - **Real screens:** <the email, the text thread, the page, the data, shown for real>.

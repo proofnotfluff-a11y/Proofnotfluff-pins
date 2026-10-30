@@ -14,7 +14,7 @@
    - The quote is 3 to 6 words copied from `transcript.md`; the cue starts on its first word. `+0.3` after the quote shifts it; `@12.5` pins a time.
    - A new beat every 2 to 5 seconds (a Reel moves faster than a lesson). Say what is on screen and what the cast does.
    - Anything the words name that exists (a number from the City's data, our map, our page) is shown for real (`_shared/desk.md`). The cast carries the idea.
-   - Sound: `[sfx: name]` fires on that word (`_shared/sound.md`); `music: name 0.2` (a library bed) or `music: rooms` (the room loops, which follow each section's `Room:` line) on the first cue sets the music.
+   - Sound: `[sfx: name]` fires on that word (`_shared/sound.md`); `music: name 0.2` (a library bed) or `music: rooms <tune>` (the room loops in one of our tunes, which follow each section's `Room:` line; plain `music: rooms` is classic) on the first cue sets the music. The tune is not the one the lessons before and after it in line use (`anim.py tunes <slug>` names the free ones; `_shared/sound.md`).
 2. `python3 video/studio/anim.py cues <slug>` matches every quote and writes `cues.json` with each cue's time; a quote
    it can't find stops the run with the closest words.
 

@@ -21,7 +21,8 @@ Everything below draws in every look (`_shared/looks.md`); scene.js calls it thr
 ## Words on screen
 - `k.title(text, y)`, `k.label(text, x, y, opts)`, `k.big(text, x, y, opts)`.
 - The speech box (bottom band, y 1060 to 1240): Snow's name tag and the words being said, the spoken word lit. The
-  player draws it from words.json; scene.js never draws captions itself.
+  player draws it from words.json; scene.js never draws captions itself. Arcade look: size 66 in the display pixel font
+  (33 px caps), two rows, lowercase; the player cuts each page to fit (IMPROVE 00b).
 
 ## Motion
 - `k.p(t0, t1)` eases 0 to 1, `k.pop(t)` a quick overshoot, `k.shake(t)`, `k.spot(box, t)` a highlight ring that

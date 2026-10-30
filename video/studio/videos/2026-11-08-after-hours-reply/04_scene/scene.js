@@ -258,7 +258,7 @@ window.SCENE = {
         P(xx + 2, yy + 2, 66, 24, INK); P(xx, yy, 66, 24, c); P(xx, yy, 66, 3, '#FFFFFF');
         d.tx(lbl, xx + 5, yy + 6, {size: 30, color: INK});
       });
-      if (T >= tDraft) k.slam('Still a draft.', 588, 696, tDraft, {size: 66, color: RED, align: 'center', stamp: true, drop: INK});
+      if (T >= tDraft) k.slam('Still a draft.', 588, 696, tDraft, {size: 66, color: MAROON, align: 'center', stamp: true});
       return host(k, T >= tBooked ? 'shrug' : null);
     },
 
@@ -272,19 +272,27 @@ window.SCENE = {
       P(0, 0, 360, 417, '#2B2033'); for (let y = 0; y < 417; y += 6) d.dith(0, y, 360, 1, '#3D2E45', (y / 6) & 1);
       P(0, 340, 360, 77, '#6B4226'); P(0, 340, 360, 2, '#B07A47');
       for (let y = 417; y < 640; y += 16) for (let x = 0, c = 0; x < 360; x += 16, c++) P(x, y, 16, 16, ((y >> 4) + c) % 2 ? '#5A3A22' : '#4A2E1B');
-      const X = 20, Y = 84, Wd = 300, H = 252, op = d.ease(t0 + 0.05, 8, 40);
-      appWindow(k, d, X, Y + op, Wd, H);
-      if (op !== 0) return host(k);
-      // their message, pasted as a grey block (it slides in from the left as "paste" comes)
-      const tMsg = Math.min(tPaste - 0.3, t0 + 0.3);
+      // the window unrolls downward from its title bar (never past its own bottom, which ends above the host's hat)
+      const X = 20, Y = 74, Wd = 300, H = 242, op = clamp(d.fr(t0) / 6);
+      appWindow(k, d, X, Y, Wd, Math.max(22, Math.round(H * eo(op))));
+      if (op < 1) return host(k);
+      // their message, pasted as a grey block (it slides in from the left as the window opens)
+      const tMsg = Math.min(tPaste - 0.3, t0 + 0.22);
       if (T >= tMsg) {
         const sl = d.ease(tMsg, 6, 24);
         bubbleBox(d, X + 8 - sl, Y + 25, Wd - 40, 50, '#E2DACB', '#C9BFAE');
         d.tx('THEIR MESSAGE', X + 14 - sl, Y + 27, {size: 30, color: MAROON});
         written(k, 1e9, MSG(n), 0, (X + 14 - sl) * 3, (Y + 42) * 3, (X + Wd - 46) * 3, {size: 30, lh: 45, color: PLUM, lint: sl === 0});
+        // "their message": the label underlines as it is said
+        const tTheir = W(/^message/i, tPaste, tPaste + 0.4);
+        if (T >= tTheir) k.sweep((X + 14) * 3, (Y + 37) * 3, d.tw('THEIR MESSAGE', 30) * 3, 3, tTheir, {color: 'accent'});
       }
+      // "an AI chat app": the title bar's three lights flash in turn on "AI", "chat", "app"
+      [W(/^AI$/i, tPaste, tPaste + 1.2), W(/^chat$/i, tPaste, tPaste + 1.5), W(/^app$/i, tPaste, tPaste + 1.8)].forEach((at, i) => {
+        if (T >= at && T < at + 0.35) { d.disc(X + 9 + i * 9, Y + 10, 4, CREAM); d.disc(X + 9 + i * 9, Y + 10, 3, [RED, GOLD, TEAL][i]); }
+      });
       // the prompt box: up on "paste" with a blinking cursor, then typed on as said
-      const bx = (X + 34) * 3, bmax = (X + Wd - 10) * 3, py = Y + 80;
+      const bx = (X + 34) * 3, bmax = (X + Wd - 10) * 3, py = Y + 78;
       if (T >= tPaste) {
         const pop = d.fr(tPaste) < 3 ? [3, 1, 0][d.fr(tPaste)] : 0;
         bubbleBox(d, X + 30, py - pop, Wd - 38, 81, '#DCE9F7', '#A9C4E0');
@@ -295,9 +303,14 @@ window.SCENE = {
           {text: "Ask one question if anything's missing.", at: tP3},
         ];
         let y = (py + 17) * 3;
-        if (T < tP1 - 0.05) { if (((d.F >> 3) & 1) === 0) P(X + 38, py + 18, 2, 12, NAVY); }
+        if (T < tP1 - 0.05) {
+          if (((d.F >> 3) & 1) === 0) P(X + 38, py + 18, 2, 12, NAVY);
+          // on "this": a gold arrow points into the box while it waits for the prompt
+          const tThis = W(/^this/i, tPaste, tPaste + 2.2);
+          if (T >= tThis) { const b = (d.F >> 3) & 1, ax = X + 14 + b, ay = py + 30; P(ax, ay, 8, 4, GOLD); P(ax + 8, ay - 3, 2, 10, GOLD); P(ax + 10, ay - 1, 2, 6, GOLD); P(ax + 12, ay + 1, 1, 2, GOLD); }
+        }
         else rows.forEach((r, i) => {
-          const ln = typed(k, T, r.text, r.at, bx + 12, y, bmax - 12, {size: 39, color: NAVY});
+          const ln = typed(k, T, r.text, r.at, bx + 12, y, bmax - 12, {size: 39, color: NAVY, hot: MAROON});
           if (i === 1 && T >= WE(/^below/i, tP2, tP2 + 1)) { const x0 = bx + 12 + k.measure(r.text + ' ', {size: 39}), cw = k.measure('[my rates]', {size: 30}); k.shape(k.rectPts(x0, y - 3, cw + 18, 45, 0), {fill: GOLD, line: false}); k.text('[my rates]', x0 + 9, y, {size: 30, color: INK}); }
           y += ln * 45;
         });
@@ -305,12 +318,12 @@ window.SCENE = {
       // the drafted reply (example), written out fast once the prompt is done
       const tDraft = tMiss + 0.15;
       if (T >= tDraft) {
-        const dy = py + 86, pop = d.fr(tDraft) < 3 ? [3, 1, 0][d.fr(tDraft)] : 0;
-        bubbleBox(d, X + 8, dy - pop, Wd - 16, 80, CREAM, SAND);
-        d.tx('DRAFT', X + 14, dy + 2 - pop, {size: 30, color: TEAL});
+        const dy = py + 83, pop = d.fr(tDraft) < 3 ? [3, 1, 0][d.fr(tDraft)] : 0;
+        bubbleBox(d, X + 8, dy - pop, Wd - 16, 78, CREAM, SAND);
+        d.tx('DRAFT', X + 14, dy + 2 - pop, {size: 30, color: '#2F6F67'});
         const reply = `Thanks for reaching out! A move-out clean for a ${n.beds.shown} bed, ${n.baths.shown} bath is [your rate]. Want the inside of the fridge and oven done too?`;
         written(k, T, reply, tDraft, (X + 14) * 3, (dy + 17 - pop) * 3, (X + Wd - 40) * 3, {size: 30, lh: 45, cps: 160, color: PLUM, lint: T >= tDraft + 1.2,
-          colorOf: (w) => (/^\[your|^rate\]/.test(w) ? (T >= tFix ? '#2F6F67' : ORANGE) : null)});
+          colorOf: (w) => (/^\[your|^rate\]/.test(w) ? (T >= tFix ? '#2F6F67' : MAROON) : null)});
         // the pen ticks it on "read"
         if (T >= tRead) { const nn = Math.min(14, d.fr(tRead) * 3); for (let i = 0; i < nn; i++) { const px2 = X + Wd - 58 + i, py2 = dy + 66 + (i < 5 ? i : 5 - (i - 5)); P(px2, py2, 2, 2, '#2F6F67'); } }
         // the send key: pressed on "send"
@@ -327,17 +340,18 @@ window.SCENE = {
     proof: (k, T) => {
       const d = px(k), {P} = d, n = k.data.numbers, t0 = k.S('proof');
       const t26 = W(/^twenty/i, k.S('proof.pct'), t0 + 1.4), tFast = W(/^fastest/i, k.S('proof.fast'));
-      quiet(k, /^\d+%$/, () => k.sets.gauge({value: n.hourPct.value, max: 100, at: t26, dur: 1.0, zones: [[0, 40, RED], [40, 70, ORANGE], [70, 100, TEAL]], suffix: '%'}));
+      quiet(k, /^(\d+%|0|100)$/, () => k.sets.gauge({value: n.hourPct.value, max: 100, at: t26, dur: 1.0, zones: [[0, 40, RED], [40, 70, ORANGE], [70, 100, TEAL]], suffix: '%'}));
       k.text(`Jobber survey, ${n.owners.shown} owners, Dec ${n.surveyYear.shown}`, 540, 270, {size: 39, color: SAND, align: 'center'});
       k.slam('Cleaning businesses', 540, 456, t0 + 0.05, {size: 39, color: GOLD, align: 'center', from: 0.4, drop: INK});
       k.slam('reply within an hour', 540, 501, t0 + 0.25, {size: 39, color: CREAM, align: 'center', from: 0.4, drop: INK});
-      // the hero readout, over the gauge's own box: it counts with the needle
-      P(141, 226, 78, 46, INK); P(142, 227, 76, 44, '#1A332B'); P(143, 228, 74, 42, '#24453A');
-      if (T >= t26) k.slam(cnt(k, n.hourPct, t26, {suffix: '%'}), 540, 681, t26, {size: 132, color: GOLD, align: 'center', from: 0.3, drop: INK});
+      // the hero readout at the 198 slot under the hub: the gauge's own box and its 0 and 100 are covered, it counts with the needle
+      P(128, 228, 104, 68, '#120D14');
+      if (T >= t26) k.slam(cnt(k, n.hourPct, t26, {suffix: '%'}), 540, 684, t26, {size: 198, color: GOLD, align: 'center', from: 0.3, drop: INK});
+      // "Fastest trade." on a plaque fixed to the bottom of the bezel, below the ticks and the arc ends
       if (T >= tFast) {
-        const pw = d.tw('Fastest trade.', 66) + 28, pop = d.fr(tFast) < 3 ? [2, 1, 0][d.fr(tFast)] : 0;
-        P(180 - pw / 2 + 2, 276 + 2 - pop, pw, 28, INK); P(180 - pw / 2, 276 - pop, pw, 28, MAROON); P(180 - pw / 2, 276 - pop, pw, 2, RED);
-        k.slam('Fastest trade.', 540, (279 - pop) * 3, tFast, {size: 66, color: GOLD, align: 'center', stamp: true, drop: INK});
+        const pw = d.tw('Fastest trade.', 66) + 28, pop = d.fr(tFast) < 3 ? [2, 1, 0][d.fr(tFast)] : 0, py0 = 303 - pop;
+        P(180 - pw / 2 + 2, py0 + 2, pw, 27, INK); P(180 - pw / 2 - 1, py0 - 1, pw + 2, 29, INK); P(180 - pw / 2, py0, pw, 27, MAROON); P(180 - pw / 2, py0, pw, 2, RED);
+        k.slam('Fastest trade.', 540, (py0 + 3) * 3, tFast, {size: 66, color: GOLD, align: 'center', stamp: true, drop: INK});
       }
       k.burst(540, 760, t26 + 1.0, {n: 14, r: 180, colors: ['accent', 'paper']});
       return host(k, k.live('proof.pct') ? 'point' : null);
@@ -353,10 +367,13 @@ window.SCENE = {
         {label: 'QUOTE', value: 'SENT', at: tBut, hi: true},
         {label: 'FIRST JOB', value: 'UP', at: tHave},
       ]});
-      if (T >= tBut) d.win(30, 284, 300, 54, {base: DUSK, hi: '#3D2E45', lo: INK, rule: MAROON});
-      if (T >= tBut) k.slam('Answer the night quote', 120, 870, tBut, {size: 66, color: CREAM, from: 0.4, drop: INK});
-      if (T >= tFirst) k.slam('before your first job.', 120, 936, tFirst, {size: 66, color: GOLD, from: 0.4, drop: INK});
-      if (T >= tJob) k.sweep(120, 1002, k.measure('before your first job.', {size: 66}), 3, tJob, {color: 'accent'});
+      // the rule on a plate hung over the board's empty fourth row: it ends well above the host's hat and inside x 960;
+      // its second line lands on "before", so it holds over a second before the end card
+      const tBefore = W(/^before/i, tHave, tFirst - 0.6);
+      if (T >= tBut) d.win(26, 228, 280, 72, {base: DUSK, hi: '#3D2E45', lo: INK, rule: MAROON});
+      if (T >= tBut) k.slam('Answer the night quote', 120, 708, tBut, {size: 66, color: CREAM, from: 0.4, drop: INK});
+      if (T >= tBefore) k.slam('before your first job.', 120, 786, tBefore, {size: 66, color: GOLD, from: 0.4, drop: INK});
+      if (T >= tJob) k.sweep(120, 858, k.measure('before your first job.', {size: 66}), 3, tJob, {color: 'accent'});
       return host(k, T >= tJob ? 'wave' : null);
     },
   },

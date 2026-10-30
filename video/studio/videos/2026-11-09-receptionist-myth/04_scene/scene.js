@@ -280,7 +280,7 @@ window.SCENE = {
       if (T >= tSur && T < t11) {
         const p = clamp((T - tSur) / Math.max(0.3, tTh - tSur));
         k.text(k.count(n.contractors.value, p, {from: Math.round(n.contractors.value * 0.85), comma: true, suffix: p >= 1 ? '+' : ''}), 120, 588, {size: 198, color: CREAM, drop: INK, lint: p >= 1});
-        k.text('residential service', 120, 792, {size: 66, color: SAND}); k.text('contractors surveyed', 120, 858, {size: 66, color: SAND});
+        k.text('contractors surveyed', 120, 792, {size: 66, color: SAND});
       } else if (T >= t11 && T < t58) {
         k.slam(n.highTrust.shown, 120, 588, t11, {size: 198, color: GOLD, from: 0.3, drop: INK});
         k.text('high or complete trust', 120, 792, {size: 66, color: GOLD});
@@ -290,8 +290,8 @@ window.SCENE = {
         k.burst(260, 680, t58 + 0.05, {n: 14, r: 200, colors: ['accent', 'paper']});
       }
       // the sample's scope stays on screen the whole beat (facts): two lines, inside x 930
-      k.text(`ServiceTitan survey, ${n.reportYear.shown}`, 120, 936, {size: 39, color: SAND});
-      k.text(`${n.contractors.shown}+ residential service contractors`, 120, 978, {size: 39, color: SAND});
+      k.text(`ServiceTitan survey, ${n.reportYear.shown}`, 120, 864, {size: 39, color: SAND});
+      k.text(`${n.contractors.shown}+ residential service contractors`, 120, 904, {size: 39, color: SAND});
       return host(k, k.live('proof.low') || k.live('proof.none') ? 'point' : null);
     },
 

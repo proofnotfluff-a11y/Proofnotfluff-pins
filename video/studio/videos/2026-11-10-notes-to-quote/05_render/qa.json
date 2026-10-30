@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-10-notes-to-quote",
- "mp4Sha256": "990c7b6bc6e3a2c178ec053b934823bba8d8b6c35d535cc49eb11f6aae616a6f",
+ "mp4Sha256": "c2cb55ea90ea39af4a18fe3f7fa13797175fdd8b285ee4fd9a9a32c04519c41b",
  "checks": [
   {
    "name": "length",
@@ -38,11 +38,11 @@
   {
    "name": "file",
    "value": {
-    "sha256": "990c7b6bc6e3a2c178ec053b934823bba8d8b6c35d535cc49eb11f6aae616a6f",
-    "bytes": 4280221
+    "sha256": "c2cb55ea90ea39af4a18fe3f7fa13797175fdd8b285ee4fd9a9a32c04519c41b",
+    "bytes": 4507510
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 4.3 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 4.5 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -52,5 +52,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-29T18:29:38-05:00"
+ "at": "2026-10-29T21:50:56-05:00"
 }

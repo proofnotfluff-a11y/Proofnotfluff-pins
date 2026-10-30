@@ -1,0 +1,4 @@
+hook: {"first_change": 0.8, "changes_by_3s": 2, "changes": [0.8, 2.2], "share": [0.092, 0.086], "host_at": 0.0, "hook_words": 11, "hook_said_by": 3.34, "seconds": 45.4}
+ERROR lint 14.25 to 28.75 s: off the safe area: AI CHAT APP
+ERROR lint 14.25 to 28.75 s: off the safe area: EXAMPLE
+exit 1

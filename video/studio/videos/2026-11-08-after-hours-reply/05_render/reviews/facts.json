@@ -1,22 +1,22 @@
 {
  "gate": "facts",
- "round": 1,
- "at": "2026-10-29T18:41:38-05:00",
- "build": "d576936",
+ "round": 0,
+ "at": "2026-10-29T22:00:21-05:00",
+ "build": "fc9a028",
  "pass": true,
  "score": {
   "numbers": 9,
   "mismatches": 0
  },
  "reasons": [
-  "01_voice/facts.json + 04_scene/data.js: data.js matches facts.json; all 9 numbers agree in value and path",
-  "transcript 00:29.0 to 00:35.1 matches the Jobber page in substance (cleaning: 26% replying within an hour, fastest responders); same base and window, attributed to Jobber",
-  "scene.js proof: 'Jobber survey, 1,050 owners, Dec 2025', 26% readout, 'Fastest trade.' match the page",
-  "Script and transcript agree (117 words); no overstatement, no promise that an AI draft wins jobs",
-  "Story elements (11 PM, 7 AM clocks, the move-out message, the draft reply) carry EXAMPLE on the phone, chat set and AI app; minor: frame 0 plate and clock shots carry no EXAMPLE tag, acceptable since a time of day does not read as a statistic",
-  "Trades first: Jobber survey of 1,050 US home service owners, cleaning subgroup",
-  "No real private person, business or address; 0 em or en dashes",
-  "Non-blocking: page gives HVAC as 11% and 17% in different sections; video does not use HVAC",
-  "Non-blocking: cues.md says 'FIRST JOB NEXT' and a longer end card line while the render shows 'FIRST JOB UP' and 'whoever answers quote requests'; wording only"
+  "data.js matches facts.json; all 9 values agree; build fc9a028e changed only cues (tunes) on fact inputs.",
+  "Transcript 00:29.0 to 00:35.1 matches the Jobber page (cleaning, 26% within an hour, fastest responders); same base and window; 'only' fair.",
+  "scene.js proof and sheet frames match the page's method line and finding; gauge 50 is a scale tick.",
+  "No line says an AI-drafted reply wins jobs; owner sends every reply; no product named; no price shown.",
+  "Story elements carry EXAMPLE; clock and board times read as story, acceptable.",
+  "Prompt on screen matches the voice word for word; draft matches facts.json.",
+  "Trades first: Jobber survey of 1,050 US home service owners, cleaning subgroup.",
+  "No private person; 0 em or en dashes.",
+  "Not blocking: facts.json quote cuts the page sentence (HVAC part unused); subgroup size not given on the page, already noted in facts.json and brief."
  ]
 }

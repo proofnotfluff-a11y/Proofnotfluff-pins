@@ -1,24 +1,22 @@
 {
  "gate": "render-critic",
- "round": 1,
- "at": "2026-10-29T18:43:20-05:00",
- "build": "d576936",
+ "round": 0,
+ "at": "2026-10-29T22:01:36-05:00",
+ "build": "fc9a028",
  "pass": true,
  "score": {
   "faults": 0
  },
  "faults": [],
  "reasons": [
-  "Round 0 fault 1 (overlap, play.oven, 9.5 s) fixed: 'Forgot: the oven.' sits inside the thought card and clears the desk card (checked 9.6 and 9.9 s).",
-  "Round 0 fault 2 (cutoff, '54%') fixed: settled glyphs x 600 to 878; widest mid fill x 925, inside 930.",
-  "Round 0 fault 3 (cutoff, fix.check card) fixed: cards end at x 929; only border and shadow at 930 to 938.",
-  "Hook PASS: full on screen at 0.0 s.",
-  "Spoken numbers PASS: '1,050 owners' from 25.5 s, 'thousand' at 27.04 s; '54%' from 30.5 s, 'fifty-four' at 30.55 s.",
-  "Layout PASS: nothing hidden, cut off or covered once settled.",
-  "Note: some hook-scene shapes cross x 930 at 0 to 3 s; all text stays inside.",
-  "Audio end PASS: last word ends 39.40 s, no word cut.",
-  "Small text PASS: smallest line about 24 px.",
-  "Flash PASS: only single scene cuts.",
-  "Side note: -post.mp4 differs by 4 bytes, container metadata only."
+  "mp4 sha256 c2cb55ea matches qa.json; 1080x1920, 30 fps, 42.50 s.",
+  "Hook PASS: fully on screen at 0.0 s; no number.",
+  "Spoken numbers PASS: source line from 25.5 s ('thousand' 27.04 s); 54% from 30.5 s ('fifty-four' 30.55 s).",
+  "Layout PASS: nothing hidden, cut off or covered once settled; text inside y 270 to 1250 and left of x 930.",
+  "Transient only: 'Pet hair' row mid write-in at 17.47 s; burst particles over 'YOUR PRICES' at 36.46 s.",
+  "Note: some shapes cross x 930 with no text there.",
+  "Audio end PASS: last word 39.40 s, no word cut.",
+  "Small text PASS: smallest lines about 22 to 26 px.",
+  "Flash PASS: single scene-cut dips only."
  ]
 }

@@ -1,36 +1,23 @@
 {
  "gate": "design",
- "round": 1,
- "at": "2026-10-29T18:43:52-05:00",
- "build": "d576936",
- "pass": false,
+ "round": 2,
+ "at": "2026-10-29T22:03:42-05:00",
+ "build": "fc9a028",
+ "pass": true,
  "score": {
   "first": 5,
-  "hierarchy": 4,
+  "hierarchy": 5,
   "type": 4,
-  "color": 4,
-  "spacing": 4,
+  "color": 5,
+  "spacing": 5,
   "polish": 5,
   "trust": 5,
-  "average": 4.43
+  "average": 4.86
  },
  "reasons": [
-  "0.0 to 42.4 dialog words still drawn at 39 px (player.js speechBox fs 39, about 23 px cap), labels and source about 22 to 25 px cap, under the 44 px spoken and 36 px label floor, so type is capped at 4. Fix in the runtime (IMPROVE 00b).",
-  "30.4 to 37.0 gauge hero: '26%' at size 132, under the 160 px hero floor round 0 asked for; use the 198 px slot.",
-  "35.4 to 37.0 'Fastest trade.' stamp sits on the ring bottom over the tick and arc ends; round 0 asked for a pill under the dial.",
-  "25.5 to 29.0 draft card: 'DRAFT' 2.2:1, '[your rate]' 1.9:1; 11.3 to 14.0 'Still a draft.' 2.8:1; all under 4.5:1.",
-  "18.5 to 25.5 YOUR PROMPT box: spoken word in orange on light blue about 1.6:1.",
-  "14.0 to 29.0 and 39.5 to 42.4: Snow's hat crosses the AI CHAT APP panel's bottom edge and the 'Answer the night quote' plate; the plate's right edge runs to x 990."
- ],
- "landed": [
-  "Hook hero line, lead card, 0.8 s change: PASS",
-  "Night clock: PASS",
-  "Morning room: PASS",
-  "Chips and AI CHAT APP panel margins: PASS",
-  "YOUR PROMPT box from 15.0: PASS",
-  "Source line above the ring: PASS",
-  "26% readout in accent: partly (132 px)",
-  "'Fastest trade.' pill: partly (still on the ring)",
-  "Flaps payoff row and end card send line: PASS"
+  "0.0 to 42.4, labels drawn at size 30: HUD, SNOW name tag, THEIR MESSAGE, YOUR PROMPT, DRAFT, chips, pasted message and draft body, composer line. All under the 36 px label floor, so type is capped at 4. Raise them to size 39 or more (HUD and k.chip in player.js, d.tx/written size 30 in scene.js). Open half of IMPROVE 00b. Spoken words pass: size 66, 33 px caps at 5.91 s.",
+  "Optional, not scored: 15.0 to 29.0, 'YOUR PROMPT' label #3B82C4 on #BDE6F5 at 3.05:1; NAVY #253048 gives 10.7:1.",
+  "Landed: dialog size 66 display font; 26% hero at 198; 'Fastest trade.' maroon plaque clear of ticks; draft card contrast; YOUR PROMPT spoken word 7.1:1; Snow's hat clear of panels.",
+  "Checks: picture changes 0.8 and 2.5 s, host from 0 s; end card 42.4 to 45.4 s; freshness vs 11-07 PASS; content band and text bounds PASS."
  ]
 }

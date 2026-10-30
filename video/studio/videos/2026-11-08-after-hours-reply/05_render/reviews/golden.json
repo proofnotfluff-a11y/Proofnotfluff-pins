@@ -1,24 +1,23 @@
 {
  "gate": "golden",
  "round": 0,
- "at": "2026-10-29T18:42:34-05:00",
- "build": "d576936",
+ "at": "2026-10-29T22:01:08-05:00",
+ "build": "fc9a028",
  "pass": true,
  "score": {
   "post_as_is": "yes"
  },
  "reasons": [
-  "What it says: a move-out quote request lands at 11 pm, seen at 7 am, still a draft at lunch, booked elsewhere; fix: paste it into an AI chat app with a 3-line prompt plus your rates, read, fix, send it yourself. Jobber: 26% of cleaning businesses reply within an hour, fastest trade. Screen matches voice.",
-  "Numbers match facts.json; 11 pm, 7 am, 2 bed, 1 bath marked EXAMPLE on the lead card from 0.8 s, phone from 5.5 s, AI app from 14 s (round 0 facts gap fixed). 26% on screen at 30.5 s as spoken. Captions match. 0 em or en dashes.",
-  "Voice reads human; 117 words, 156 to 197 wpm; no hype, no product named.",
-  "qa.json all 6 PASS (45.40 s, -14.2 LUFS, -2.9 dBTP). The frozen check's 'end card at 37.12 s' label is wrong; freezedetect rerun shows the only freeze 43.4 to 44.4 s on the end card, PASS holds. Polish: fix the label in anim.py cmd_check.",
-  "First 3 s earn the stop; reason to save (3-line prompt) and send (end card and caption).",
-  "Round 0 design and golden notes fixed.",
-  "Polish 41.96 to 42.4 s: Snow's hat pom-pom touches 'before' on the plate's second line; line up only about 0.45 s.",
-  "Polish 14.0 to 14.6 s: AI CHAT APP window empty for about 0.6 s; 15.4 to 17.9 s nearly still.",
-  "Polish 26.0 to 28.8 s: draft shows '[your rate]' placeholder; Snow's hat overlaps the chat panel's bottom edge.",
-  "Polish: last take 197 wpm; 'FIRST JOB UP' slightly awkward.",
-  "Polish: bottom third backdrop only, consistent with the series.",
-  "No must-fix found."
+  "What it says matches facts.json; on-screen prompt is word for word the spoken prompt. PASS",
+  "Trust: lead card, AI app and draft carry EXAMPLE; no product named; no invented price; source line up while 26% is said. PASS",
+  "Earlier render-critic fault at 41.8 s (hat over 'before') gone in fc9a028. PASS",
+  "First 3 s: hook done by 3.3 s, cuts at 1.0 and 2.5 s, plate from frame 0; send reason clear. PASS",
+  "Sounds like a person; voice 0 flags. PASS",
+  "-post.mp4 stream copy; music is its own tune ('rooms night'). PASS",
+  "Polish 33.0 to 36.5 s: glint over '26%' sometimes a cream blob.",
+  "Polish 12.5 to 12.6 s: 'Booked elsewhere.' cut at the phone edge for a frame.",
+  "Polish: qa frozen label names the wrong cue; checked by eye, no freeze.",
+  "Polish: take 5 at 197 wpm.",
+  "Polish: end card send line small."
  ]
 }

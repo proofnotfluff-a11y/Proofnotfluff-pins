@@ -1,30 +1,24 @@
 {
  "gate": "render-critic",
- "round": 0,
- "at": "2026-10-29T18:42:46-05:00",
- "build": "d576936",
- "pass": false,
+ "round": 2,
+ "at": "2026-10-29T22:01:41-05:00",
+ "build": "fc9a028",
+ "pass": true,
  "score": {
-  "faults": 1
+  "faults": 0
  },
- "faults": [
-  {
-   "kind": "overlap",
-   "at": 41.8,
-   "text": "before your first job.",
-   "scene": "closing split-flap board with the 'Answer the night quote' plate",
-   "what": "From about 41.8 s to 42.4 s the host's hat pom-pom (host at x 110 to 190, head top near y 980) sits on the second plate line and covers most of the 'e' in 'before' (y about 905 to 960, x about 140 to 200). Fix: move the host down or left, or raise the plate or its second line, so the hat clears the text."
-  }
- ],
+ "faults": [],
  "reasons": [
-  "FAIL: 1 overlap fault, the host's hat covers part of 'before' in the closing line 41.8 to 42.4 s.",
-  "Hook PASS: 'Quote request, 11 pm.' and 'Seen at 7 am.' on screen from 0.0 s.",
-  "Numbers PASS: each lands with its word (11 pm, 7 am, one question, 26% at 30.5 s, board at 37.5 s).",
-  "Earlier minor notes still non-blocking: 'Booked elsewhere.' covers the LUNCH header like a notification after 'lunch' was readable; 'Fastest trade.' over the gauge's lower arc.",
-  "Fix-round claim PASS: the 26% plate clears the '100' label, gap about 2 px.",
-  "Layout otherwise PASS: all words inside y 270 to 1250 and left of x 930.",
-  "Audio end PASS: last word ends 42.3 s, nothing cut.",
-  "Small text and flashes PASS.",
-  "Pack matches the render (mp4 sha256 e724a814 equals qa.json)."
+  "0 faults on build fc9a028e; mp4 sha256 ed4e5ba2 matches qa.json.",
+  "Earlier fault fixed: the plate sits over the board's empty fourth row (y about 690 to 905); 'before your first job.' reads clean at 41.7, 42.2, 42.4 s.",
+  "Hook PASS: plate from frame 0.",
+  "Numbers PASS: each spoken number on screen when said (11, 7, one question, 26% by 30.6 s, board 11 PM).",
+  "Layout PASS: nothing settled hidden, cut off or covered; draft, check and send key clear; 'Fastest trade.' plaque clear of 26%.",
+  "Note: 'Booked elsewhere.' notification covers the phone header by design after LUNCH was readable.",
+  "Note: end-card send line ends x 938 (shared runtime end card), fully readable.",
+  "Note: cut-in sparkle briefly crosses the phone's 11 PM at about 1.0 s.",
+  "Audio end PASS: last word 42.30 s, nothing cut.",
+  "Small text PASS: smallest size 39.",
+  "Flash PASS."
  ]
 }

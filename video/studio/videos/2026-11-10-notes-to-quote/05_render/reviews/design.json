@@ -1,28 +1,25 @@
 {
  "gate": "design",
- "round": 1,
- "at": "2026-10-29T18:42:56-05:00",
- "build": "d576936",
- "pass": false,
+ "round": 2,
+ "at": "2026-10-29T22:02:32-05:00",
+ "build": "fc9a028",
+ "pass": true,
  "score": {
-  "first": 4,
+  "first": 5,
   "hierarchy": 5,
   "type": 4,
-  "color": 4,
-  "spacing": 4,
+  "color": 5,
+  "spacing": 5,
   "polish": 4,
   "trust": 5,
-  "average": 4.29
+  "average": 4.71
  },
  "reasons": [
-  "Round 0's seven changes landed; not asked to undo any of them.",
-  "10.5 to 25.5 s fix room: the wall is #2F6F67, the host's jacket color (1.04:1); for 15 s his torso and pointing arm vanish. Repaint the wall in a non-teal brick (e.g. #7A3442 with #1B1420 mortar, or bg2 #2B2033).",
-  "All dialog: spoken words render at 39 px (_runtime/player.js arcade fs = 39), under the 44 px floor, which caps type at 4. Raise the arcade dialog fs to 44.",
-  "33.0 to 36.4 s button (levelup): about half the band stays empty for 3.4 s while 'The AI does the typing.' is said; type three quote rows into y 700 to 960 as the bar fills.",
-  "0.8 to 1.6 s hook.lines: close-up backdrop #253048 matches the host's navy trousers; use #1B1420 or #2B2033.",
-  "30.5 to 33.0 s proof.pct: 'Of AI users' appears twice; drop the stat label.",
-  "25.5 to 33.0 s proof inventory: second row of slots empty, y 810 to 990 dead; fill with dim icons and set the source line at 39 px.",
-  "3.5 to 6.0 s play street: the 'Notes: in the car all day.' slam has no notepad in shot.",
-  "6.0 to 10.3 s play.night: reads as 11-08's hook room; three room-and-panel sections where sets.md allows one; restage as a kitchen table at night."
+  "Round 1 changes, all 8 landed: brick fix wall, hook backdrop #2B2033, quote rows type in 33.5 to 36.0 s, 'Of AI users' once, dim second belt row, notepad above the van, night kitchen with fridge and pendant lamp, dialog size raised.",
+  "Dialog type measured: size 66 display font, 33 px caps, 27 px x-height, clears the 44 px floor. Labels body font at 39 (21 px caps). Hero 54% about 100 px caps.",
+  "Freshness PASS vs 11-08 and 11-09; picture changes by 0.8 and 1.5 s; host from 0 s; end card 39.5 to 42.5 s.",
+  "Polish 38.92 to 39.5 s: payoff line pages so 'notes.' sits alone; never let a sentence's last page hold one word.",
+  "Type 12.72 to 14.28 s: 'this.' alone in the box for 1.56 s; re-page 'Paste the notes into an AI' / 'chat app with this.'",
+  "Type 5.10 and 16.00 s: pages open on the last word of the sentence before; break at the sentence end."
  ]
 }

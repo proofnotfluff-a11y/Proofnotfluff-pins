@@ -1,23 +1,22 @@
 {
  "gate": "facts",
  "round": 0,
- "at": "2026-10-29T18:41:51-05:00",
- "build": "d576936",
+ "at": "2026-10-29T22:00:26-05:00",
+ "build": "fc9a028",
  "pass": true,
  "score": {
-  "numbers": 7,
+  "numbers": 6,
   "mismatches": 0
  },
  "reasons": [
-  "No blocking issues. Every number in voice, screen and scene matches facts.json, data.js and the Jobber page, with the same value and base.",
-  "data.js matches facts.json; values 54, 1050, 2025, 2026, 3, 3 bed, 2 bath match the brief.",
-  "Voice 'over a thousand home service owners' for n=1,050 is fair rounding; 'Of the ones who use AI, fifty-four percent use it for quoting' uses the page's base.",
-  "Screen proof 'Jobber survey / 1,050 owners, Dec 2025 / 54% / of AI users use it to quote' matches the method line.",
-  "Tool belt items are AI uses named on the page; only quoting carries a value; no stray numbers.",
-  "Trades first: home service owners survey; said as Jobber's, not cleaning-specific.",
-  "Story elements carry EXAMPLE tags, prices are blank 'YOUR RATE' bars, no AI product named.",
-  "No private person, business or address; no em or en dashes.",
-  "Non-blocking doc drift: facts.json story.notes lists 'blinds x6?' but the scene draws 'blinds?'.",
-  "Non-blocking doc drift: cues.md wording differs from scene.js ('Forgot: inside of the oven.', proof footer)."
+  "54% matches the Jobber page body text; base AI users in voice and screen.",
+  "1,050 owners, Conjointly, December 2025 confirmed; voice 'over a thousand home service owners' fair.",
+  "Belt labels are on the page's use-case list; no figures shown for them.",
+  "3 bed, 2 bath and prompt lines from data.js and facts.json; quote and AI app carry EXAMPLE; no prices or product.",
+  "Trades first: US home service owners survey; video says home service, not cleaning-specific.",
+  "Descriptive claim only.",
+  "No private person; 0 em or en dashes; data.js matches facts.json.",
+  "Note: facts.json story.notes 'blinds x6?' vs screen 'blinds?'; align later.",
+  "Note: cues.md wording differs from rendered text; rendered text accurate."
  ]
 }

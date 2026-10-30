@@ -1,8 +1,8 @@
 {
  "gate": "buyer",
  "round": 0,
- "at": "2026-10-29T18:41:06-05:00",
- "build": "d576936",
+ "at": "2026-10-29T21:59:35-05:00",
+ "build": "fc9a028",
  "pass": true,
  "score": {
   "stop": "yes",
@@ -11,12 +11,13 @@
   "follow_or_link": "yes"
  },
  "reasons": [
-  "1. What it tells me: when a cleaning quote request comes in overnight, paste it into any AI chat app with a three-line prompt and my price list, then read, fix and send the draft myself before my first job, so I'm not still typing at lunch while they book someone else.",
-  "2. Stop: yes. frame-0.8s.png gives me 'Quote request, 11 pm.' over a big 'Seen at 7 am.', with a real-looking lead underneath, now tagged EXAMPLE, and the voice opens on the same moment (00:00.0).",
-  "3. Send: yes, to whoever answers our quote requests, and the caption asks for exactly that. Save: yes, the prompt is printed word for word in the caption and the new line 'Then paste your price list under it.' makes it usable tonight. Follow or link: yes, follow for 'AI lesson 1'; the link is low pressure.",
-  "4. Hype, fake urgency, pitch, slop, robotic: nothing. The 26% is credited to Jobber with sample size and date, and the caption keeps 'said' (self-reported). No product is named or sold, and no bookings are promised.",
-  "5. Unclear to a stranger (minor, not blocking): (a) transcript 00:21.9 'Use my rates below.' The voice never says to paste the rates; caption and the on-screen [my rates] chip cover it. (b) 00:39.4 'But the night quote should have your answer before your first job' reads a little stiff. (c) The speaker tag 'SNOW' on frame 0.8s means nothing to a new viewer; harmless.",
-  "6. Trust: yes. Scenario specific and true to cleaning work, stat sourced and checks against 01_voice/facts.json (26%, 1,050 owners, Dec 2025, fastest responders), story and prompt marked EXAMPLE in hook and play frames (sheets f02 to f12).",
-  "Checked: frame-0.8s.png (build d5769368), transcript.md, captions.json, facts.json, sheets 1 and 2. Both mp4 files match qa.json sha256 e724a814. Round 0 buyer issue (pasting the price list) fixed in all four captions."
+  "Inputs from build fc9a028e pack: transcript.md (117 words), captions.json instagram.caption, gates/frame-0.8s.png.",
+  "What it tells me: paste an overnight quote request into an AI chat app with a three-line prompt and my price list, then read, fix and send the reply myself before my first job.",
+  "Stop: yes, 'Quote request, 11 pm.' over 'Seen at 7 am.' and a move-out lead marked EXAMPLE; voice opens on the same moment.",
+  "Send: yes, to whoever answers quote requests. Save: yes, prompt in the caption plus the price list line. Follow or link: yes, 'AI lesson 1' sets up a series.",
+  "Hype, urgency, pitch, slop, robotic: none; 26% credited to Jobber with sample and date, matches facts.json.",
+  "Minor: voice never says to paste the rates (caption covers it); 'But the night quote should have your answer...' a little stiff; 'SNOW' tag means nothing to a new viewer.",
+  "Trust: yes.",
+  "Not checked: audio and music (outside the buyer gate)."
  ]
 }

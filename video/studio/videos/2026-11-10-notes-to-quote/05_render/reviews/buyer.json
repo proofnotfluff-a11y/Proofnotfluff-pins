@@ -1,8 +1,8 @@
 {
  "gate": "buyer",
  "round": 0,
- "at": "2026-10-29T18:41:06-05:00",
- "build": "d576936",
+ "at": "2026-10-29T21:59:26-05:00",
+ "build": "fc9a028",
  "pass": true,
  "score": {
   "stop": "yes",
@@ -11,12 +11,13 @@
   "follow_or_link": "no"
  },
  "reasons": [
-  "1 What it tells me: paste my walkthrough notes and my price list into an AI chat app with a three-line prompt, then check every line myself, because the AI does the typing and I own the prices.",
-  "2 Stop: yes. The frame at 0.8 s says 'This quote started as messy notes.' over a 'Deep clean, 3 bed, 2 bath' list, and the voice says 'This deep clean quote'. 'You forget the inside of the oven' at 5.8 s is a real pain.",
-  "3 Save: yes. The prompt is short and reusable, and the caption spells it out to copy. Send: yes, to whoever writes our quotes. Follow: maybe ('AI lesson 3' hints at a series). Link in bio: no, 'Free tools for trade owners' is too vague to tap.",
-  "4 Hype, urgency, pitch, slop, robotic: none found. One soft 'link in bio' line. The pixel-art host looks deliberate.",
-  "5 Unclear (minor): the voice at 10.3 s says only 'Paste the notes into an AI chat app with this', but the prompt says 'Use only my price list'; only the caption says to paste the price list too. Fix: voice 'Paste the notes and your price list...'",
-  "5 Unclear (minor): at 0.8 s the 'messy notes' header sits over a neat typed checklist; the handwritten pad only shows at 2.0 s.",
-  "6 Trust: yes. 'Check every line against your own rates' and 'The AI just does the typing' set honest limits. Jobber stat sourced on screen and in caption (1,050 owners, Dec 2025, 54% of AI users use it for quoting)."
+  "What it tells me: paste walkthrough notes into an AI chat app with a three-line prompt, then check every line against my own rates.",
+  "Stop: yes, the 0.8 s frame shows a real deep clean job under 'This quote started as messy notes.'; the oven line at 5.8 s is a real pain.",
+  "Save: yes, short reusable prompt in the caption. Send: yes, to whoever writes our quotes. Follow: maybe. Link in bio: no, too vague.",
+  "Hype, urgency, pitch, slop, robotic: none.",
+  "Minor: 00:10.3 voice never says to paste the price list; only the caption does.",
+  "Minor: frame-0.8s shows a neat typed list under 'messy notes'.",
+  "Trust: yes; voice and caption match facts.json and Jobber (1,050 owners, Dec 2025, 54% of AI users for quoting).",
+  "transcript.md and captions.json unchanged since the prior buyer review; this build changes music, cues and scene."
  ]
 }

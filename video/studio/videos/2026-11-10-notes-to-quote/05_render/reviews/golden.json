@@ -1,24 +1,23 @@
 {
  "gate": "golden",
- "round": 1,
- "at": "2026-10-29T18:43:08-05:00",
- "build": "d576936",
+ "round": 0,
+ "at": "2026-10-29T22:01:54-05:00",
+ "build": "fc9a028",
  "pass": true,
  "score": {
   "post_as_is": "yes"
  },
  "reasons": [
-  "What it says: paste walkthrough notes into an AI chat app with a 3-line prompt, check every line against your own rates, you still own the prices. Screen matches voice; 54% of AI users for quoting lands about 30.5 s with the Jobber source tag. No contradictions.",
-  "Source re-read: getjobber.com/home-service-trends-report, 54% quoting, 52% invoicing, 51% business writing (base: owners who use AI), 1,050 US owners, Dec 2025. Belt labels are in the report; none shows a number.",
-  "Round 0 must-fixes fixed: 'Forgot: the oven.' stamp clear of the laptop; 54% hero inside the safe edge; button scene bar fills and holds, two perk cards; blinds flag lands on 'Flag'.",
-  "qa.json all pass; only freeze 40.6 to 41.6 s inside the end card; -post.mp4 is a stream copy; captions clean.",
-  "Polish 3.2 to 10.0 s: take 02 at 222 wpm, pain beat sounds rushed; re-take if there is time.",
-  "Polish 10.3 s: voice says 'Paste the notes' while the prompt says 'Use only my price list'; captions already cover the price list.",
-  "Polish 10.5 to 25.5 s: host's green sweater on the teal brick wall is low contrast.",
-  "Polish about 27.6 s: belt cursor and label briefly out of step.",
-  "Polish 30.5 to 33.0 s: 'Of AI users' appears twice.",
-  "Polish: 'YOUR RATE' vs 'MY PRICE LIST' wording.",
-  "Polish (tooling): qa frozen detail label points at the button cue, not the end card.",
-  "First 3 s earn the stop; reason to save and send present; sounds like a person; EXAMPLE tags present."
+  "What it says: paste walkthrough notes with a 3-line prompt, check every line against your own rates. Screen matches voice; no contradictions.",
+  "Source re-read today: 54% quoting among AI adopters, 1,050 owners, Dec 2025; belt labels on the page, no numbers; captions match facts.json.",
+  "Music: own 'sunny' tune (measured about 119 BPM, C/G); neighbours 11-08 night and 11-09 classic differ.",
+  "Design round-1 must-fixes visible: brick wall, notepad, night kitchen, single 'of AI users', dim belt row, quote rows under the level bar, larger dialog.",
+  "qa.json all PASS; only freeze inside the end card; frozen label names the wrong cue (tooling polish).",
+  "First 3 s earn the stop; reasons to save and send clear; sounds like a person.",
+  "Polish: take 02 at 222 wpm.",
+  "Polish 10.3 to 14.3 s: chat strip blank about 4 s on 'Paste the notes'.",
+  "Polish 10.3 s: voice says paste only the notes; captions add the price list.",
+  "Polish 0.8 to 1.9 s: close-up drops the EXAMPLE tag and shows a neat list under 'messy notes'.",
+  "Polish 30.5 to 31.0 s: belt cursor lags the QUOTING label."
  ]
 }

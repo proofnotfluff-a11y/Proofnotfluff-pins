@@ -3,7 +3,7 @@
 Worlds (brief.md): weather map (hook, stakes, caveat), register with the HUD's coins (why), the boss fight, the price note
 as the move list against PRICE PUSHBACK (note), the calendar (close). No stock room in any section; each top-level cue names its world in a "World:" line.
 
-music: rooms
+music: rooms quest
 
 ## hook "Most trades raised their" [sfx: pop]
 World: the weather map. Three shots (IMPROVE 00a). Frame 0, the cover, fully settled: one sun over the west labeled HVAC, the 83% about 560 px wide, centered in the map's open land left of the lake (the one dominant number), and under it in our panel, the block centered: "of HVAC companies raised" / "prices last year.", the source small under them (Jobber, 1,050 home service owners, Dec 2025). A PRICING CLINIC tag sits on the panel's top edge. Under the panel, the weather desk with a sun emblem (no words) fills the lower third. Host and dialog hidden. On "raised" cut in to the close-up: the map at three times, its land run out to the title plate's left edge (one left edge at x 42), the HVAC sun big in the middle with HVAC beside it, a bright red warm front with big domes sweeping across the land the whole close-up; the claim and the source on a title plate up top (the source well clear of its inner border), PRICING CLINIC at its top right; Snow comes in big at the lower left with the dialog box. On "Did" cut back out to the whole map; the warm front finishes its sweep and the sun's label reads HVAC 83%.

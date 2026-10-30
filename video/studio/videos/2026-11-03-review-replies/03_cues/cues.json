@@ -3,7 +3,8 @@
  "source": "whisper medium.en int8, re-spelled from script.md",
  "music": {
   "id": "rooms",
-  "level": 0.16
+  "level": 0.16,
+  "tune": "chase"
  },
  "duration": 74.959,
  "cues": [

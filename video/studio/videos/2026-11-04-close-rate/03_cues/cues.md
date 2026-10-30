@@ -1,6 +1,6 @@
 # Cues: Know your close rate (Lesson 8, Numbers Clinic, arcade)
 
-music: rooms
+music: rooms quest
 
 ## hook "Do you know your" [sfx: pop]
 Three shots (IMPROVE 00a). Frame 0, the cover, settled: the studio wall, the title plate "Do you know your" / "close rate?" (the on-screen hook, 6 words), the two region cards settled in their slots (US NORTHEAST 31% with its orange meter, US WEST 38% with its teal meter), the source plate "ServiceTitan customers, May to Jul 2026", a plain US silhouette on the floor. No host, no dialog box. Cut in on "close" (by 0.8 s) to the close-up: the Friday board in the shop, the hook written big on the whiteboard in marker ("Do you know your" / "close rate?" and a red "?"), the cork strip of estimate slips beside it flipping to SOLD one after another. Snow and the dialog box come on with the cut and stay.

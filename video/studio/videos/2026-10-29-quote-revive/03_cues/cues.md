@@ -6,7 +6,7 @@ the level-up screen (close). No stock room in any section; each top-level cue na
 "Room:", so the music stays on one room loop). Every time in scene.js comes from a cue start or a spoken word, so the
 re-voiced takes move the picture with them. Oct 29: the hook in three shots and the cadence beat cut for the 75 s cap.
 
-music: rooms
+music: rooms sunny
 
 ## hook "Quote went quiet? One text" [sfx: pop]
 Three shots (IMPROVE 00a). World: the street. The cover, frame 0, settled: the van parked at a frame house, a yard sign QUOTE with its arrow bobbing; in the sky a dark game window holds the chip THE TEXT, "Quote went" / "quiet?" (quiet in the accent) and "Send this text.", with the source line "Sources: ServiceTitan, Jobber, Housecall Pro" under them (the window is tall enough to keep it 15 px inside its rule). Host and dialog box hidden. On "quiet" cut in to the phone close-up in the cab: the A-pillars down the frame edges, the roof liner, the mirror and the swinging air freshener round a dusk windshield; the hook on a title plate up top ("Quote went quiet?" / "Send this text." and the same Sources line); your phone big in the truck's dash mount, with the same chrome and contact as the text section (9:41 status bar, avatar, Homeowner): the quote you sent, Quote.pdf, Seen, and their typing bubble whose dots blink, stop and never become a reply; the dash, its vents, the glovebox, the cup holder with a coffee, the keys and a clipboard of quotes fill the lower frame; Snow steps up big in the cab (about three times his usual size). On "One" cut back out to the street, Snow on at his usual size; stars wink in the window's corners, the typing bubble over the front door blinks.

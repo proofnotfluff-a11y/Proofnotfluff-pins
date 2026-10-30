@@ -3,7 +3,7 @@
 Worlds (brief.md): the chat in the truck (hook, replies, caveat), the slot machine (stakes, close), the arcade high-score
 table (gap, turn). No stock room in any section; each top-level cue names its world in a "World:" line.
 
-music: rooms
+music: rooms chase
 
 ## hook "Got a one-star review?" [sfx: pop]
 World: the chat in the truck. Three shots (IMPROVE 00a). Frame 0, the cover, settled: the phone in its dash mount, header REVIEWS, and on its screen the hook card: "Got a 1-star review?" / "Copy this reply." (the on-screen hook, 7 words), the REVIEWS CLINIC chip under it. The road rushes in the windshield, the air freshener swings. Host and dialog hidden. Cut in on "one-star" (by 0.8 s) to the close-up: the phone's screen fills the frame, the hook on the app's header plate, and the example review big: one star lit of five, "The tech showed up late.", tagged EXAMPLE; the lit star pulses as "review" is said. Snow and the dialog box come on with the cut and stay.

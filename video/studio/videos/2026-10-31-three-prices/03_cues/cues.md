@@ -6,7 +6,7 @@ None of lesson 9's versus, calendar, flaps or boss; no stock room. Steady camera
 in the sets (tags flipping, reels spinning, houses lighting, rows landing). Each top-level cue names its world in a
 "World:" line. Times come from the words (scene.js reads cue names and spoken words, never typed seconds).
 
-music: rooms
+music: rooms bounce
 
 ## hook "You quote one price?" [sfx: pop]
 Three shots (IMPROVE 00a). The cover, frame 0, fully settled, host and dialog hidden: World: the storefront counter. Shop sign QUOTE CLINIC; a toolbox on the counter with one price tag ("$"); a cream card hung on the counter front: "Top shops usually quote" / "3 prices" (big, the 3 in red); under it "Top 10%: 57% of home jobs" and the source small: ServiceTitan data, 12 months to Jan 2026. On "one" cut in to the tag close-up, outside the shop, drawn big: the striped awning, the brick facade, the shop window with the one-price tag hanging in the glass over the toolbox on the display ledge (a light crosses the glass), the teal door with its OPEN sign, the sidewalk in the awning's shade; the hook on a title plate over the glass ("Top shops usually" / "quote 3 prices", source under it); Snow steps up big on the sidewalk. On "Top" cut back out to the storefront, Snow on; the card swings a pixel on its strings, sparks off the tag.

@@ -218,3 +218,27 @@ I track city building permits and pass site security companies the jobs worth a 
 
 Want me to send you jobs like this free each Monday?
 ```
+
+## Follow-ups (Todd, Oct 29, 2026, 10:11 pm, task thread: "Yes", to "Do you approve these two follow-ups?")
+At most two, each 5 business days after the last email, sent as a reply in the first email's thread, never after a reply and never after follow-up 2. {obs} is the middle paragraph of the A template for the new lead's trade and stage, filled for a job this prospect was never sent, so the job sentence is approved first-email wording; the who-and-why sentence of a B template is not repeated. {first_subject} is the first email's subject as sent. A follow-up draft carries variant T17-A or T18-A for its step. tools/copy_gate.py renders each wrapper with every A template's job sentence and checks follow-up drafts against both. Review: 4.90 of 5, Oct 29.
+
+### T17 follow-up 1
+Step: followup1
+Subject: Re: {first_subject}
+```text
+Hi {first},
+
+Here's another job your team could chase. {obs}
+
+Want me to send you jobs like this free each Monday?
+```
+### T18 follow-up 2
+Step: followup2
+Subject: Re: {first_subject}
+```text
+Hi {first},
+
+Last note from me, with one more job your team could chase. {obs}
+
+Want me to send you jobs like this free each Monday?
+```

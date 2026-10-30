@@ -250,6 +250,46 @@
     "runtime_pixfont": "a8557997756e"
    },
    "posts": {}
+  },
+  {
+   "slug": "2026-11-08-after-hours-reply",
+   "readyAt": "2026-10-29T22:03:46-05:00",
+   "commit": "15e88a4ed45fb641e6732e49925a2fd72f63c52c",
+   "fingerprints": {
+    "script": "e99669a672b5",
+    "takes": "0b1617384fcd",
+    "words": "969c3ab6d059",
+    "cues": "02061d55eac4",
+    "scene": "309d59763d12",
+    "data": "6fd8ff68c95a",
+    "captions": "7dabf3b1fed2",
+    "mouth": "5308b5071d53",
+    "runtime_kit": "d12df837dc0a",
+    "runtime_player": "c16acf89b7d1",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
+  },
+  {
+   "slug": "2026-11-10-notes-to-quote",
+   "readyAt": "2026-10-29T22:03:49-05:00",
+   "commit": "15e88a4ed45fb641e6732e49925a2fd72f63c52c",
+   "fingerprints": {
+    "script": "887c417a09f4",
+    "takes": "952f04e9405a",
+    "words": "fd1d074d8cce",
+    "cues": "e868e3ba365d",
+    "scene": "4e25bf9fea13",
+    "data": "526843e726bc",
+    "captions": "7221eeca43a7",
+    "mouth": "6bdf282e6ae8",
+    "runtime_kit": "d12df837dc0a",
+    "runtime_player": "c16acf89b7d1",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

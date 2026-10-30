@@ -16,6 +16,9 @@ The lab (Tue, Thu, Sat) ranks this list from its benchmark against _shared/style
    done Oct 29 (Done, below): the arcade dialog box is size 66 now. Left: labels, tags and sources under 36 (size 30 or 39,
    about 21 to 27 px caps; lesson 9's prompt card, the HUD and k.chip tags) still cap type at 4. Not changed on purpose
    for now; next: a `lint` check that names every label drawn under size 36, then raise them scene by scene.
+00h. Dialog paging: never leave one word alone on a sentence's last page, and start each page at a sentence start
+   (buildPhrases in player.js). The 11-10 design gate (Oct 30) flagged 'this.' alone for 1.56 s and 'notes.' alone at
+   38.9 s, and pages that open on the last word of the sentence before. Polish scored 4 for it.
 00e. Trim each voice take's silent tail to about 0.3 to 0.5 s in the voice pipeline: lesson 3's take 5 left a 1.39 s
    tail (1.71 s of dead air at 59.9 s) and read 147 wpm on file length though it was spoken at 161; lesson 5's take 6
    reads 148 on the file and 155 spoken. The pace check measures the file, so a long tail is a false slow flag.

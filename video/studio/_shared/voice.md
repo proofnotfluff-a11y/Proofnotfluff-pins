@@ -3,7 +3,7 @@
 **The voice:** Todd's own ElevenLabs voice clone (`W3pJy9ibur1FKUihVxzY`; Todd, Oct 28, 1:41 pm), made from his recording,
 cleaned. Settings (`anim.py` VOICE_SETTINGS) lean steady and a touch warmer: "Just make me sound a bit smoother and more
 confident" (Todd, Oct 28, 1:03 pm). Model: Eleven v4 (`eleven_v4`). The library voice Chris (`iP95p4xoKVk53GoZ742B`) stays
-as the fallback (`speak --voice iP95p4xoKVk53GoZ742B`). Each platform's AI label is set when it posts (POSTING.md); the caption carries no AI voice line (Todd, Oct 29).
+as the fallback (`speak --voice iP95p4xoKVk53GoZ742B`). AI labels are off on every platform (Todd, Oct 30; POSTING.md); the caption carries no AI voice line (Todd, Oct 29).
 
 ## Written as talk
 - One paragraph is one take: 2 to 4 sentences, 15 to 25 seconds. A take that sounds off is re-rolled alone.
@@ -83,4 +83,4 @@ research/runs/2026-10-28-script-playbook.md 6b.
 
 ## Rules that never bend
 - A count is complaints to 311, never rats found. No building, block, business or person named. Nothing sells pest control.
-- No AI voice line in the caption (Todd, Oct 29); the platform AI labels stay on.
+- No AI voice line in the caption (Todd, Oct 29); platform AI labels off (Todd, Oct 30).

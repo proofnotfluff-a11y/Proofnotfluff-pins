@@ -14,7 +14,7 @@ video/config.json "posting". Never two lessons in one run; a run that finds the 
    (the path postcopy prints; upload that absolute path, never /mnt/user-data/outputs, which Chrome refuses). An ERROR: hold it and tell Todd.
 3. Captions come only from `python3 video/studio/anim.py postcaptions <slug>`: the facts-gated `05_render/captions.json`
    with any line matching "AI version of my" taken out, whatever the file says (Todd, Oct 29, 2026: no AI voice line in any
-   caption; each platform's AI label toggle stays on). Paste them exactly; check the pasted length and that no such line
+   caption). AI labels: OFF on every platform (Todd, Oct 30, 2026, 12:36 pm: "off for all future posts"; the pixel-art scenes are not realistic, and he chose no AI label), whatever captions.json "settings" say. Paste them exactly; check the pasted length and that no such line
    went in.
 4. If the lesson's `01_voice/brief.md` has a `- **Re-read before posting:**` line, re-read that source page today. If the
    newer data no longer supports what the video says (its dated claim stays true but reads stale), hold it and tell Todd.
@@ -25,21 +25,22 @@ move on: never post twice. Trial reels do not show on the grid: on Instagram als
 professional dashboard.
 
 - **Instagram** (instagram.com): the signed-in account must read proofnotfluff (switch if not; never another account).
-  Create, Post, file_upload the MP4, keep the original 9:16 crop, Next, Next, paste `instagram.caption`. Turn on
-  "Label as made with AI" (or Advanced settings, AI label). "Share to Facebook" off. Turn on "Trial" (trial reel: shown
+  Create, Post, file_upload the MP4, keep the original 9:16 crop, Next, Next, paste `instagram.caption`. "Add AI label"
+  off. "Share to Facebook" off. Turn on "Trial" (trial reel: shown
   to non-followers first) with automatic sharing off. Share. Record the newest /reel/ link with `posted <slug>
   instagram-trial <url>`. No Trial option on the screen: post it as a normal reel, record it with `posted <slug>
   instagram <url>` and add one line to LEARNINGS.md.
 - **TikTok** (tiktok.com/tiktokstudio/upload): the account must be ProofNotFluff. file_upload the MP4, paste
-  `tiktok.caption`. More options: "AI-generated content" on; commercial disclosure off. Who can watch: Everyone. Post. Record the video link from the
+  `tiktok.caption`. More options: "AI-generated content" off; commercial disclosure off. Who can watch: Everyone. Post. Record the video link from the
   profile's newest video.
 - **Facebook Page** (https://www.facebook.com/profile.php?id=61594865921562, acting as the Page): Reel, file_upload the
-  MP4, Next, paste `facebook.caption`, AI info label on when offered, Public, Share now. Decline boosts and Call Now. Record
+  MP4, Next, paste `facebook.caption`, "Add AI label" off, Public, Share now. Decline boosts and Call Now. Record
   the reel link.
 - **YouTube** (studio.youtube.com, the ProofNotFluff channel): Create, Upload videos, file_upload the MP4. Title =
   `youtube.title`, description = `youtube.description`. Audience: "No, it's not made for kids". Show more: tags =
-  `youtube.tags` (comma separated), "AI use" or altered content: Yes (the same disclosure as every other platform; YouTube says
-  disclosure does not limit reach). Category: Education. Language: English. Visibility: Public. Publish.
+  `youtube.tags` (comma separated), "AI use" ("Was AI used to generate or edit your content" in the listed ways: a real person
+  saying what they didn't, altered real footage, a realistic scene, music as the main focus): No; none applies to our
+  pixel-art lessons (Todd, Oct 30). Category: Education. Language: English. Visibility: Public. Publish.
   Record the youtube.com/shorts/<id> link.
 
 After each: `python3 video/studio/anim.py posted <slug> <platform> <url>`, commit, push. A trial reel is the lesson's Instagram link

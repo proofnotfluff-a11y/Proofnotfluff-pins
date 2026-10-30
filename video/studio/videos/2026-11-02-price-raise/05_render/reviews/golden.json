@@ -1,40 +1,19 @@
 {
  "gate": "golden",
- "round": 1,
- "at": "2026-10-29T13:40:53-05:00",
- "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
- "pass": true,
+ "round": 0,
+ "at": "2026-10-29T22:40:04-05:00",
+ "build": "6c6be63b",
+ "pass": false,
  "score": {
-  "post_as_is": "yes"
+  "post_as_is": "no"
  },
  "reasons": [
-  "1. polish, 46.17 to 46.23 s (2 frames): the stray closing quote fault from round 0 is shorter but not gone. The bubble reads 'Here's the part people skip.' correctly from 44.3 s, then for two frames just before 'That' (46.24 s) it re-pages to 'quoted.\" Here's the part / people skip.' and then clears. On a phone it's a flicker, not a read, but it is broken text. Fix: drop the 'quoted.\"' token from the bubble's page text when it pages over to the next line.",
-  "2. polish, 0.0 to 0.8 s cover: the 83% is now big and leads the frame, and 'PRICING CLINIC' is on it. But everything still sits above y about 1250, with empty dark floor below, so a 3:4 grid crop has a blank bottom third. Put the host or a prop in the lower area.",
-  "3. polish, qa.json 'frozen': the PASS holds, but the label is doubtful. It says 'before the end card at 63.73 s', while 63.73 s is where the close starts and the end card starts at 72.0 s. The close (63.7 to 72 s) moves in the timeline: the calendar check lands, the lines type and the bubble types. Every other check passes cleanly: 74.50 s of a 75 s cap, -14.2 LUFS, -3.0 dBTP, no black stretch (one-frame dips at 6.3, 32.5, 54.5 and 63.5 s are scene changes), H.264 1080x1920, 0 voice flags. The last word ends at 71.61 s, so nothing is cut.",
-  "4. polish, 6.3 s: 'That's from Jobber's survey' follows 'Here's the note that tells your customers.', so for a moment 'that' could mean the note. The 'Who raised prices last year?' panel covers it. Voice is unchanged by design.",
-  "5. polish, 28.4 and 32.5 s: two lines in a row start with 'So'. Takes 02 (150 wpm), 03 and 06 are just under 160 wpm. Neither drags, and the voice is unchanged by design.",
-  "Round 0 must-fixes are confirmed gone. (a) The close-up plate's source line 'Jobber, 1,050 home service owners, Dec 2025' now sits clear above the plate's bottom border (frame-0.8s, frame-2.0s). (b) The hook text clears at 3.93 s (MP4 frames), under the 4.0 s ceiling. (c) 'PRICING CLINIC' is on screen on the cover and the close-up plate. (d) The note section is a new set, PRICE PUSHBACK with a boss and an HP bar. The YOUR PRICE NOTE window types three numbered rows on the words that say them, and the HP drops as each row lands. It retitles to THE PART PEOPLE SKIP, row 3 gets a gold ring, PROMISE stamps on the boss, and 'Raise the next job. / Never an approved one.' lands on a heading card. The rows read at about 30 px with nothing clipped. (e) The 74% now lands big at 15.0 s.",
-  "Checked and fine. What it says: most trades raised prices last year (HVAC 83%; plumbing, electrical and roofing 74%), why (inflation 72%, labor half), BLS install and repair pay +3.7% against +3.2% for all workers, the 3-line note, keep approved quotes at the quoted price, the honest Jobber caveat, and the close. Every number is on screen when it is said and matches facts.json and captions.json: 83% at 9.2 s, 74% at 15.0, 72% at 18.0, 50% at 20.2, +3.7% at 25.5, +3.2% at 30.0. Nothing contradicts. It sounds like a person. Lots of motion: the hook cuts, the map pins, the register receipt, the boss fight and the calendar check. The first 3 seconds earn the stop, with a big 83% plus 'Did you?' at 3.2 s. There are clear send and save reasons: a paste-ready note and 'Send this to whoever writes your quotes.'"
- ],
- "prior": {
-  "gate": "golden",
-  "round": 0,
-  "at": "2026-10-29T12:20:22-05:00",
-  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
-  "pass": false,
-  "score": {
-   "post_as_is": "no"
-  },
-  "reasons": [
-   "1. must-fix, 1.0 to 2.5 s (the new close-up title plate): the source line 'Jobber, 1,050 home service owners, Dec 2025' sits on the plate's inner border. The border line runs through the text's baseline, and the j and comma descenders poke out below it (seen in frame-0.8s, frame-2.0s and MP4 frames at 1.0 and 2.4 s). It is the only text-on-border collision in the cut and it falls in the stop window. Fix: give the plate about 20 px more bottom padding, or move the source up so it clears the inner border like it does on the cover panel (0 to 0.8 s) and the PRICE REPORT panel (6.5 s on).",
-   "2. polish, 44.3 to 46.0 s: the stray closing quote fault from the earlier cut is back. The bubble opens on 'quoted.\" Here's the part people skip.' Start that bubble at 'Here's'.",
-   "3. polish, 6.3 s: 'That's from Jobber's survey' comes right after 'Here's the note that tells your customers.', so for a moment 'that' can sound like it means the note. 'Those numbers are from Jobber's survey' or 'That stat is from...' removes the doubt. The 'Who raised prices last year?' panel helps.",
-   "4. polish, 28.4 and 32.5 s: two sentences in a row start with 'So' ('So your crew's pay beat...', 'So send this before your next quote'). Dropping the second 'So' reads more human.",
-   "5. polish, pace: take 02 is 150 wpm against the 160 to 195 target (takes 03 at 158 and 06 at 159 are just under it). It's number-heavy and clear, with about 0.5 s gaps, so it doesn't drag, but it is the slowest take and sits right after the hook.",
-   "6. polish, 0.0 to 0.8 s cover: everything sits above y about 1000, with empty dark floor below (flagged before as not blocking, and still there). In a 3:4 grid crop the bottom third is blank. A host or prop in the lower area would make a fuller thumbnail.",
-   "7. polish, 55.3 to 61.0 s caveat panel: the lines sit at the top of a tall panel with a large empty band under them (the earlier design note, still not fixed). Also 33 to 44 s: there's no bubble while the note is read and the cabinet doors show dashed placeholders. The note types word by word, so this reads fine.",
-   "8. polish, qa.json 'frozen': this reads as a doubtful label, not a fault. It says it checked 'before the end card at 63.73 s', but 63.73 s is where the close starts and the end card starts at 72.0 s. My own freezedetect over the whole MP4 found no still stretch longer than 1.5 s anywhere (the longest in 63.7 to 72 s is 1.27 s), so the PASS holds. Every other check passes cleanly: 74.50 s against a 75 s cap, -14.2 LUFS, -3.0 dBTP, no black stretch (the 1-frame dips at 6.3, 32.5, 54.7 and 63.7 s bottom out at luma 29), H.264 1080x1920, voice 0 flags. The last word ends at 71.61 s, so nothing is cut.",
-   "Checked and fine: what it says (most trades raised prices, HVAC 83%, plumbing, electrical and roofing 74%, why: inflation 72% and labor half, BLS install and repair pay 3.7 vs 3.2 for all workers, the 3-line note, keep approved quotes, Jobber caveat, close). Every number is on screen when said: 83% at 9.2 s, 74% labels at about 15.0 s (said 14.96), 72% at 17.8, 50% at 20.2, +3.7% at 25.4, +3.2% at 30.0. All match facts.json, with no contradiction. Captions are unchanged and consistent. Earlier faults are not back: no checkerboard floor, map titled PRICE REPORT, coins only in the drawer, no clipped register figures. The hook cuts as briefed: cover at 0 s, close-up with Snow big by 1.0 s, back out to the wide map with HVAC 83% by 2.5 s, 'Did you?' at 3.2 s. Sounds like a person. Clear send and save reasons: a paste-ready note and 'send this to whoever writes your quotes'. The honest Jobber line builds trust."
-  ]
- }
+  "must-fix 4.1 to 7.5 s voice: 'Here's the note that tells your customers.' then 'That's from Jobber's survey of home service owners.' reads as our own note credited to Jobber (facts.json note.source OURS; the note is tagged EXAMPLE only at 32.5 s). Re-voice take 2 to open 'Those numbers come from Jobber's survey of home service owners.'",
+  "polish 28.4 to 32.5 s: 'your crew's pay beat' applies the installation and repair row to every trade; two 'So' openers in a row.",
+  "polish 44.5 to 45.9 s: 'Here's the part people skip.' bubble renders smaller, then jumps to size 66 at 46.0 s.",
+  "polish 63.70 to 63.77 s: 2-frame black flash between caveat and close.",
+  "polish: boss and PROMISE stamp lean gimmicky; lower 35 to 40% empty floor; some dialog pages open mid-sentence.",
+  "polish: qa frozen check window label; YouTube tag misspelling 'rasie' (check if deliberate).",
+  "checks: every spoken number big on screen when said, matches facts.json and captions; first 3 s earn the stop."
+ ]
 }

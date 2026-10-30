@@ -1,8 +1,8 @@
 {
  "gate": "buyer",
  "round": 0,
- "at": "2026-10-29T12:16:48-05:00",
- "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+ "at": "2026-10-29T22:37:20-05:00",
+ "build": "6c6be63b",
  "pass": true,
  "score": {
   "stop": "yes",
@@ -11,12 +11,10 @@
   "follow_or_link": "yes"
  },
  "reasons": [
-  "1. As an HVAC owner: most trades raised prices last year (83% of HVAC shops) because inflation and labor went up, so here is a three line note to send customers before my next quote, and I should never touch a price they already approved.",
-  "2. Stop: yes. Frame 0.8 s shows a big 83% with 'of HVAC companies raised prices last year.' and the source line (Jobber, 1,050 owners, Dec 2025), Snow is pointing at the HVAC sun, and the voice opens 'Most trades raised their prices last year. Did you?' with the question landing at 3.2 s. That is my trade and a question I have been putting off.",
-  "3. Send: yes, to whoever writes my quotes; the video and every caption tell me to, and the note is short enough to paste. Save: yes, the three lines (date, reason, approved jobs keep their price) are a template I would use. Follow or link: yes, it gave me something usable for free, named its source and its weakness, and the caption's 'Free tools for trade owners: link in bio' is low pressure.",
-  "4. Hype, urgency, pitch, slop, robotic: nothing that makes me scroll or distrust. 'One honest note. Jobber sells software. Its survey doesn't show how customers took it' raises trust. 'and don't wait' (01:07.1) is mild and tied to the next quote. AI voice is labeled in the caption settings. Small robotic tic, not blocking: two lines in a row start with 'So' (00:28.4 'So your crew's pay beat...' and 00:32.5 'So send this...'). Fix: drop the first 'So' ('Your crew's pay beat...').",
-  "5. Unclear to a stranger, not blocking: 00:04.1 'Here's the note that tells your customers.' is followed straight away by 00:06.3 'That's from Jobber's survey of home service owners.', so by ear 'That' can sound like the note came from Jobber rather than the 'most trades raised' number. The on-screen source line under 83% rescues it for viewers watching. Fix: say 'Those numbers are from Jobber's survey...' or 'The 83 percent is from Jobber's survey...'. Also 00:28.4 'your crew's pay beat the three point two' says 'your crew' when the BLS figure is an occupation average and drops 'percent'; fix: 'Pay in the trades beat the three point two percent for all workers.'",
-  "6. Trust: yes. Survey size and date are on the first frame and in every caption, the federal number is named with its window, the vendor's interest is disclosed, and 'raise the next job, never the one on your calendar' is what a real owner would say.",
-  "Earlier faults checked: the old buyer note (frame-0.8s empty below y about 1000) is mostly fixed; Snow, the HVAC sun and the speech bubble now fill y about 780 to 1250, though the lower third (y about 1250 to 1900) is still bare green map. Not blocking for this gate; for design, a prop or the map's trade labels in the lower third would make the thumbnail look finished. Cleaning's number stays out of the voice, the 'faster than average' meaning is still carried by 'beat the three point two for all workers', and the caption keeps the AI label and source detail."
+  "what: most trades raised prices last year (inflation, labor, BLS wage data), with a three-line note to send customers before the next quote.",
+  "stop: yes. 0.8 s '83% of HVAC companies raised prices last year' with its source; 'Did you?' at 3.2 s.",
+  "send, save, follow: yes; link in bio: maybe, not a pitch.",
+  "trust: yes; every number sourced, the source's bias and limit said.",
+  "minor: 6.3 s 'That's from Jobber's survey' can read as the note; two 'So' openers at 28.4 and 32.5 s; 40.6 s quote end runs into the next line; 'and don't wait' (67.1 s) is soft urgency."
  ]
 }

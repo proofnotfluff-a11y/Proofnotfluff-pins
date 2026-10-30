@@ -1,54 +1,24 @@
 {
-  "gate": "design",
-  "round": 1,
-  "at": "2026-10-29T12:48:12-05:00",
-  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
-  "pass": false,
-  "score": {
-    "first": 5,
-    "hierarchy": 4,
-    "type": 5,
-    "color": 5,
-    "spacing": 4,
-    "polish": 4,
-    "trust": 5,
-    "average": 4.57
-  },
-  "reasons": [
-    "0.45-0.70 hook cover, burst on 'quiet?': the spark pixels land on the glyphs. They cover the '?', the 'i' of 'quiet', 'text.' in 'Send this text.' and 'Housecall' in the Sources line (0.6 s). This is the 'sparks on glyphs' fault the 3.7 s fix cleared, now back on the first second. Spawn the burst only in the clear space beside the word (x under 380 and over 700, y 470 to 580), the way the 'Send this text.' sparks sit at the window's sides.",
-    "64.0-69.5 close, CTA 'Send this to whoever / follows up on your quotes.': it sits about 20 px under '+ ONE QUESTION', at the same small size as the perks, so it reads as a fourth list item and not as the ask. Add about 50 px of space (or a thin accent rule) above it and set it one size up, at least the size of 'Now you know what to send.', so it ranks second after LEVEL UP!.",
-    "18.5-28.0 homework, 'Just checking in!' bubble over the counter phone: the text sits low, about 4 px above the bubble's bottom edge against about 12 px at the top. Center it vertically (equal padding above and below).",
-    "Round 0 items checked, all landed: the cover Sources line names ServiceTitan, Jobber, Housecall Pro and clears the window rule by about 14 px; 'Jobber Academy, / 2026' wraps inside the panel; the 59% matches the 37%'s size and both source lines arrive with it in the window's lower third; the dash close-up has no bare slabs and Snow stands big; both phones read 'Homeowner' with 9:41 chrome; the 'Send this text.' sparks sit at the sides; the level-up close stands on the arcade deck with 'The rule:' at headline size. Freshness PASS: street, fridge, truck dash, mail desk and arcade cabinet do not repeat lesson 1's site, chalkboard, garage or classroom sets."
-  ],
-  "prior": {
-    "gate": "design",
-    "round": 0,
-    "at": "2026-10-29T12:26:39-05:00",
-    "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
-    "pass": false,
-    "score": {
-      "first": 4,
-      "hierarchy": 4,
-      "type": 5,
-      "color": 5,
-      "spacing": 4,
-      "polish": 4,
-      "trust": 5,
-      "average": 4.43
-    },
-    "reasons": [
-      "0.00-0.80 cover game window: the new 'Sources: Jobber, ServiceTitan' line has 0 px clearance. Its baseline sits on the window's inner border at y 698 and the J descender crosses it. Pull the source line up (or tighten the gap under 'Send this text.') so it keeps at least 12 px inside the frame. The same window is reused at 2.0-3.4, so the fix carries there too.",
-      "28.07-33.0 homework JOBBER'S TIPS panel: round 1's fix did not land. The '6' of 'Jobber Academy, 2026' still runs across the inner blue border at x 426 and onto the outer frame to x 434. Drop the line one size or wrap it to 'Jobber Academy,' / '2026' so it keeps 12 px inside the inner border.",
-      "56.0-60.7 turn 59% window: round 1's fix did not land. 59% is still about 80 px tall against the hook's roughly 150 px 37%, and the window's lower third (y 660-760) sits empty. Set 59% at about 2x to match the 37% treatment, then tighten the window to its content or move the Housecall Pro source line (now floating on the desk at y 830-880) into that empty lower third.",
-      "0.80-1.90 cut-in to the dash phone: two bare maroon slabs flank the title plate at the frame edges (x 0-42, y 270-480 and x 1040-1080, y 270-385). They read as leftover scenery, not as part of the cab. Remove them or draw them as real cab parts (A-pillars or a sun visor with detail) in the dash palette.",
-      "0.80-1.90 vs 34.06-46.5 chat contact: the hook's phone header says 'Homeowner' with no status bar, but the text section's phone says 'Customer' with 9:41 and signal. It is the same conversation (Quote.pdf, Seen), so use 'Homeowner' and the same phone chrome in both shots.",
-      "55.5 turn source line: for a moment only '1,040 U.S. homeowners, 2025' shows on the desk before 'Housecall Pro survey,' appears. Bring both source lines in on the same frame, together with the 59% window."
-    ]
-  },
-  "override": {
-    "by": "Todd",
-    "said": "Yes",
-    "at": "2026-10-29T14:05:34-05:00",
-    "note": "answer to: Queue the five rebuilds now and hold the end card 3 s? They pass every gate but the design average (no score under 4); the old versions run 76 to 87 s with slow hooks"
-  }
+ "gate": "design",
+ "round": 0,
+ "at": "2026-10-29T22:39:25-05:00",
+ "build": "6c6be63b",
+ "pass": false,
+ "score": {
+  "first": 5,
+  "hierarchy": 4,
+  "type": 4,
+  "color": 5,
+  "spacing": 4,
+  "polish": 4,
+  "trust": 5,
+  "average": 4.43
+ },
+ "reasons": [
+  "0.45 to 0.70 s hook cover: burst centred on the '?' (scene.js k.burst(700, 520, 0.45, ...)); use two small bursts beside the word.",
+  "64.0 to 69.0 s close CTA sits about 20 px under '+ ONE QUESTION' at perk size; add about 50 px space and set it size 66.",
+  "Labels and sources at size 30 under the 36 px floor (cover Sources line, source tags, closed/still open, chips); raise to at least size 42 and re-wrap.",
+  "18.5 to 27.5 s 'Just checking in!' tag text sits low; move it up 2 low-res px.",
+  "Checks: freshness PASS; picture changes 0.45 and 0.8 s; end card 69.3 to 72.2 s; spoken words size 66."
+ ]
 }

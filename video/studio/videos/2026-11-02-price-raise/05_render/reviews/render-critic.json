@@ -1,68 +1,20 @@
 {
  "gate": "render-critic",
- "round": 3,
- "at": "2026-10-29T14:23:44-05:00",
- "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 3",
+ "round": 0,
+ "at": "2026-10-29T22:38:09-05:00",
+ "build": "6c6be63b",
  "pass": true,
  "score": {
   "faults": 0
  },
  "faults": [],
  "reasons": [
-  "Earlier rounds: the round 0 fault (source line on the hook close-up plate running onto the plate's inner border) is still fixed. In frame-0.8s and frame-2.0s, 'Jobber, 1,050 home service owners, Dec 2025' ends at about y 629 and the plate's border sits near y 660, so the line is clear of it. Round 1 listed no faults, and none of its minor notes has turned into a fault.",
-  "Hook: PASS. '83%' at about 560 px wide, plus 'of HVAC companies raised / prices last year.' and the source line, are fully on screen from frame 0 (frame-0s). The 83% stays up on the close-up title plate (0.8 to 2.5 s) and on the map after the cut back.",
-  "Numbers: PASS. 83%: said at 9.22 s, the panel slams in from 9.0 and reads clearly by 9.5. 74%: said at 14.96 s, on the labels and the panel by 15.0. 72%: said at 17.77 s, on the display at 17.5 and the receipt by 18.0. Half: said at 20.23 s, LABOR 50% and the 50% display by 20.0. +3.7%: said at 25.37 s, on the PAY display and the receipt by 25.5. 3.2: said at 29.93 s, ALL PAY +3.2% on the receipt at 30.0.",
-  "Layout: PASS. Once each scene settles, nothing hides a word or a number. Content sits between y 270 and y 1250 and left of x 930. This covers the boss set's note window rows, the PROMISE stamp, the 'Raise the next job. / Never an approved one.' bar, the caveat panel, the calendar window and the ProofNotFluff chip. The hook close-up runs the map past y 1250 on purpose (a 3x zoom shot), and its text stays inside the title plate.",
-  "Last 4 s: PASS. The final take is on the calendar, with 'Raise yours with a reason.' in gold in the window. The dialog bubble shows the full 'Raise yours with a reason.' through 71.7 s, so the last word, 'reason.' (71.29 to 71.61 s), plays with its text on screen. The end card drops in as one curtain from about 71.72 s (0.1 s after the last word) and is settled by about 72.0 s. In the mid-drop frame at 71.85 s the card's three lines are already whole. The settled card ('ProofNotFluff', 'proofnotfluff.com', 'Lessons for trade owners', host waving) runs from y 283 to y 795. Its text is large and inside the safe area, and it holds unchanged to the end of the file at 74.70 s, about 2.7 s settled.",
-  "Audio end: PASS. The last word ends at 71.61 s. The video and audio streams both run to 74.70 s, so the file runs 3.1 s past the last word. The card sound peaks at about -21 dB around 72.0 to 72.3 s. After that the music fades steadily: -25 dB at 73.0 s, -30.5 dB at 74.0 s, -43.4 dB at 74.5 s, -51.6 dB at 74.6 s, then silence. No word is cut and there is no hard audio stop.",
-  "Text size and flash: PASS. The smallest lines are the source lines, the receipt rows and the note window rows, at about 28 to 32 px, and they read on a phone. Each sharp brightness change is a single event: the hook cuts at 0.8 and 2.5 s, the scene changes at about 6.0, 16.5, 32.5, 54.5 and 63.5 s, and the end-card drop at 71.7 s. Nothing flashes more than 3 times a second.",
-  "File check: the mp4 matches the hash in qa.json (sha256 c310e458...). It is 1080x1920 at 30 fps and 74.70 s long."
- ],
- "prior": {
-  "gate": "render-critic",
-  "round": 1,
-  "at": "2026-10-29T13:41:01-05:00",
-  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
-  "pass": true,
-  "score": {
-   "faults": 0
-  },
-  "faults": [],
-  "reasons": [
-   "Round 0 fault is gone. On the hook close-up (frame-0.8s, frame-2.0s) the source line 'Jobber, 1,050 home service owners, Dec 2025' now ends at about y 629. The plate's inner border sits at y 660 to 662, so there is about 30 px of clear space, and no descenders run onto the rim.",
-   "Hook: PASS. '83%' at four times body size plus 'of HVAC companies raised prices last year.' are fully on screen from frame 0 (frame-0s). The 83% stays up on the close-up plate (0.8 to 2.5 s) and on the wide map after the cut back.",
-   "Numbers: PASS. 83%: said 9.22, panel slams in 9.0 to 9.5. 74%: said 14.96, on the panel at 15.0. 72%: said 17.77, on the display at 17.5 and on the receipt by 18.0. Half: said 20.23, 50% on the display and LABOR 50% by 20.0. +3.7%: said 25.37, on the PAY display and receipt at 25.5. 3.2: said 29.93, ALL PAY +3.2% on the receipt at 30.0.",
-   "Layout: PASS. On the new boss set (32.5 to 54.5 s) the YOUR PRICE NOTE window's three rows stay inside its frame. The row 3 highlight box clears both the '3' and the text, and its underline sits below 'we quoted.' The PROMISE stamp ends at about x 918. The 'Raise the next job. / Never an approved one.' bar (y 800 to 960) covers no other text. All content sits between y 270 and y 1250. The bubble ends at about y 1230.",
-   "Minor notes, not faults: the boss set's 'HP' label runs to about x 938. It is a decoration label on the health bar, like the calendar's 'S' day header, and is fully visible. A confetti burst crosses 'ROOF 74%' at about 15.4 s and is gone by 15.5 s. The typing caret touches the '2' briefly at 38.4 s. All of these are passing moments and leave every word readable.",
-   "Audio: PASS. The last word, 'reason.', ends at 71.61 s. Video and audio both run to 74.50 s. The music fades from -18.8 dB at 71.0 s to -42.3 dB at 74.2 s, and no word is cut.",
-   "Text size and flash: PASS. The smallest lines are the source lines, the window header and the receipt rows, at about 28 to 30 px, and they read on a phone. The note rows are about 32 px bold. The only sharp brightness jumps are the scene changes at 16.6, 32.5, 63.8 and 72.0 s. Each is a single event, the dither dissolve at 16.6 s included. Nothing flashes more than 3 times a second."
-  ],
-  "prior": {
-   "gate": "render-critic",
-   "round": 0,
-   "at": "2026-10-29T12:18:12-05:00",
-   "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
-   "pass": false,
-   "score": {
-    "faults": 1
-   },
-   "faults": [
-    {
-     "kind": "overlap",
-     "at": 0.8,
-     "text": "Jobber, 1,050 home service owners, Dec 2025",
-     "scene": "hook close-up (title plate up top, 0.8 to 2.6 s)",
-     "what": "On the close-up's title plate the source line overruns the bottom of the plate. The text runs from y 597 to 629. The plate's inner border line sits at y 618 to 620, so it passes through the lower part of every letter, and the descenders (j, comma) spill past the frame onto the plate's outer rim (y 624 to 629). It shows the whole time the close-up is on screen (cuts at 0.8 and 2.6 s). The words are still legible, but the line visibly collides with the frame. Fix: raise the source line about 16 px, or make the plate taller, so it sits inside the inner border like the cover's source line does."
-    }
-   ],
-   "reasons": [
-    "Hook: PASS. 83% at four times body size plus 'of HVAC companies raised / prices last year.' are fully on screen from frame 0 (frame-0s). The 83% stays up on the close-up plate (frame-0.8s, frame-2.0s) and on the wide map after the cut back at 2.6 s.",
-    "Numbers: PASS. Each number shows within about 0.25 s of being said. 83%: said 9.22, panel slam 9.0 to 9.5. 74%: said 14.96, labels and panel line by 15.0. 72%: said 17.77, display and receipt by 18.0. Half: said 20.23, LABOR 50% and display by 20.0. +3.7%: said 25.37, PAY display and receipt by 25.5. +3.2%: said 29.93, ALL PAY on receipt by 30.0.",
-    "Layout: 1 FAIL (the hook close-up plate's source line, above). Everything else PASS. The 'YOUR SHOP?' label ends at about x 922. The CUSTOMERS? label, the price-note rows (end at about x 885), the PROMISE stamp, the 'Raise the next job.' bar, the caveat panel (its top line is tight to the border but clear of it), the close window and the ProofNotFluff chip hide no words or numbers. Content sits in y 270 to 1250. The calendar's Saturday 'S' at about x 945 is a day header and fully visible.",
-    "Earlier faults, confirmed gone: 72% late (now on screen at 18.0, said 17.77). Coins on +3.7% (display clear at 29.03). Register figure past x 930 (+3.7% ends at about x 915).",
-    "Audio: PASS. Last word 'reason.' ends at 71.61 s. Video and audio both run to 74.50 s. The music fades to silence by about 74.4 s, and no word is cut.",
-    "Text size and flash: PASS. The smallest lines (source lines, receipt rows, at about 30 px) read on a phone. The hook cuts at 0.8 and 2.6 s and the scene changes at about 6.0, 16.5, 32.5, 54.5 and 63.5 s are single events. The dither dissolve and the one-frame black at the 54.5 and 63.5 transitions are single events too. Nothing flashes more than 3 times a second."
-   ]
-  }
- }
+  "Build: only the tune changed (quest); mp4 sha matches qa.json; 74.70 s video and audio.",
+  "Earlier fault (hook plate source line) still fixed.",
+  "Hook PASS: 83% and its source on screen from 0.0 s through the cuts.",
+  "Numbers PASS: 83%, 74%, 72%, half, +3.7%, 3.2 each on screen as said.",
+  "Layout PASS (one confetti dot crosses 'ROOF 74%' for one frame at 15.4 s, label readable).",
+  "Audio end PASS on the new tune: voice to 71.6 s, card sound, steady fade to silence at 74.7 s; -14.2 LUFS, -3.3 dBTP.",
+  "Text size and flash PASS."
+ ]
 }

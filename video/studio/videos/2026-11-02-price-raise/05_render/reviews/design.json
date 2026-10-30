@@ -1,60 +1,26 @@
 {
-  "gate": "design",
-  "round": 1,
-  "at": "2026-10-29T13:41:29-05:00",
-  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
-  "pass": false,
-  "score": {
-    "first": 5,
-    "hierarchy": 4,
-    "type": 4,
-    "color": 5,
-    "spacing": 4,
-    "polish": 4,
-    "trust": 5,
-    "average": 4.43
-  },
-  "reasons": [
-    "33.0-44.5 s boss set, band y 790 to 1250: while the YOUR PRICE NOTE window types, the band under it is bare brick with only the host and no dialog box for about 11 s. That is about 45% of the band empty, against the style board's limit of a third for 2 s. Keep the dialog box up with the spoken words during the typing, or move the note window down so it starts at about y 800 under the boss and runs full width (x 60 to 950).",
-    "32.5-54.5 s boss set, HP bar and boss: HP drops to 2 of 10 segments and then stops. The boss is never beaten, so the section has no payoff before the dissolve at 54.5 s. On 'Never an approved one' (about 52 s), take the last 2 segments and run the set's defeat: the boss breaks into pixels and VICTORY stamps in. Keep the 'Raise the next job.' bar in place.",
-    "Whole video, type (caps type at 4 against the board's floor): dialog-box words run about 36 px (cap height about 25 px), and the source and label lines run about 32 px. Examples are 'Jobber, 1,050 home service owners, Dec 2025' at 0.0 s, 'BLS, 12 months to June 2026' at 29.0 s, and the receipt rows at 17 to 31 s. Raise the spoken words to 44 px and the sources and labels to 36 px.",
-    "17.2-31.5 s register display: each number the voice says (72%, 50%, +3.7%) is about 50 px, in teal on dark green. That is no bigger than the receipt rows, so the hero of each beat is weak. Draw the display digits at least twice as tall (about 100 px, 160 px if the screen allows) in accent #F2A541 or ink #F4E6D3, so the spoken number is the largest thing on screen.",
-    "46.0 s dialog box: the stray closing quote is still there, in the bubble that reads 'quoted.\" Here's the part people skip.' Start that bubble at 'Here's'.",
-    "72.0-74.5 s end card: it holds only 2.5 s, against the board's 3 to 5 s. Either bring it in at about 71.7 s, right after 'reason.' ends at 71.61 s, or run the tail out to 75.0 s, the length cap, so it holds at least 3 s.",
-    "64.0-67.0 s close panel under the calendar: one line, then two, sit at the top of a panel about 335 px tall, with about 60% of it empty for about 3 s. Grow the panel with its lines as they arrive, or center the block vertically, using the same top inset as the caveat panel at 59.3 s.",
-    "Round 0 asks, all landed and not back: the cover 83% now fills the map's left half, the close-up source line clears the plate border, the plate's left edge lines up with the map at x 45, the warm front is big red domes that sweep through 1.0 to 2.5 s, 74% slams at headline size at 15.4 s, the register source line is a step smaller and dimmer, and the hook.note and caveat text sit centered. Freshness PASS: weather, register, boss and calendar are not used in 2026-10-31 (counter, scores, crowd, slots) or 2026-11-01 (street, dispatch, levelup, notebook)."
-  ],
-  "prior": {
-    "gate": "design",
-    "round": 0,
-    "at": "2026-10-29T12:18:27-05:00",
-    "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
-    "pass": false,
-    "score": {
-      "first": 3,
-      "hierarchy": 4,
-      "type": 4,
-      "color": 4,
-      "spacing": 3,
-      "polish": 4,
-      "trust": 4,
-      "average": 3.71
-    },
-    "reasons": [
-      "32.5-54.5 s note section (freshness, caps first impression at 3): the cream sheet with a maroon header bar, three numbered rows typed word by word with the gold current word, a wall clock, a wood desk, the host shown with no dialog box, and the retitle to 'The part people skip' is the same set piece and move as 2026-11-01's 'SAY THIS (EXAMPLE)' sheet (34-43 s, retitled 'The part people skip'). 2026-10-31's 'Your quote (example)' clipboard with three ruled rows was the same idea, so this is the third lesson in a row with it. Replace it with the chat set (not used in either earlier lesson): the three note lines go out as bubbles typed on the words that say them, with read ticks. On 'That last line' the third bubble gets the gold sweep. The PROMISE stamp lands beside it and 'Raise the next job. / Never an approved one.' sits in the set's area.",
-      "0.0-1.0 s cover, 83%: the round-1 fault is still there. The 83% is about 360 px wide at the map's left edge (x 70 to 430), while the lake and empty green fill the right two thirds, and y 1000 to 1250 is blank. Scale 83% to about 540 px wide and center it in the map's open area, or move the lake to the far right edge, so the first frame has one dominant number.",
-      "1.0-2.5 s close-up title plate: the source line 'Jobber, 1,050 home service owners, Dec 2025' is drawn over the plate's inner bottom border (the border line runs through the letters at about y 612 to 622). Move the source line up so it sits 24 px clear of the border, or make the plate about 30 px taller. Also line the plate's left edge (x 45) up with the map's left edge (x 245), or run the map out to x 45, so the shot has one left edge.",
-      "55.3-61.0 s caveat panel ('Where the numbers come from', then 'Jobber sells software.' and the two gold lines): the first line sits about 10 px under the panel's inner top border, with about 35 px empty under the last line. This is round 1's fault back, and tighter than before. Center the lines vertically, with the same top inset (about 30 px) as the stakes panel at 9.8 to 16 s.",
-      "1.0-1.5 s close-up warm front: the dark maroon line with small domes on the green reads as a crack, has low contrast, and is gone by 1.5 s, so 1.5 to 2.5 s is a still map. Draw the front in the palette's bright red with domes at least 3x their current size, and keep it sweeping across the map for the whole close-up (1.0 to 2.5 s).",
-      "15.4-16.5 s stakes.74 panel: 74% lands only as small gold text at the end of 'Plumbing, electrical, roofing: 74%', while 83% stays at headline size, so the second stat is buried. On 'seventy-four' slam 74% in at the same size as 83% (for example 83% and 74% side by side, each over its own label), or swap the big number to 74% with the HVAC line under it.",
-      "17.2-31.5 s register wall plate: the source line ('Jobber survey, reasons named' / 'BLS, 12 months to June 2026') is set at the same size and weight as the heading and is just as bright. Make it one size step smaller, in the dimmer cream used for source lines on the map panels, so the heading leads.",
-      "4.7-6.2 s hook.note panel: 'The note that tells / your customers.' and its accent line fill the top half of the panel, leaving about 75 px empty under the line. Center the block vertically in the panel."
-    ]
-  },
-  "override": {
-    "by": "Todd",
-    "said": "Yes",
-    "at": "2026-10-29T14:05:34-05:00",
-    "note": "answer to: Queue the five rebuilds now and hold the end card 3 s? They pass every gate but the design average (no score under 4); the old versions run 76 to 87 s with slow hooks"
-  }
+ "gate": "design",
+ "round": 0,
+ "at": "2026-10-29T22:40:04-05:00",
+ "build": "6c6be63b",
+ "pass": false,
+ "score": {
+  "first": 5,
+  "hierarchy": 4,
+  "type": 4,
+  "color": 5,
+  "spacing": 4,
+  "polish": 4,
+  "trust": 5,
+  "average": 4.43
+ },
+ "reasons": [
+  "33.0 to 44.3 s boss set: band y 780 to 1250 about 48% empty for 11 s while the note rows type; keep the dialog box up or move the note window down (round 1, not landed).",
+  "44.3 to 46.2 s speechOwn draws 'Here's the part people skip.' at size 39; draw it with the player's size 66 type.",
+  "Sources and chips at size 30 under the 36 px floor; raise to 36 (round 1, not landed).",
+  "17.2 to 32.5 s register display digits about 35 px; draw them 100 px or more in accent (round 1, not landed).",
+  "50.2 to 54.5 s boss never beaten; run the defeat on 'Never an approved one' (round 1, not landed).",
+  "64.0 to 67.6 s close note window 60 to 70% empty for 3.5 s; grow it or centre the block (round 1, not landed).",
+  "Landed: stray quote gone, spoken words size 66, end card 3 s, freshness PASS."
+ ]
 }

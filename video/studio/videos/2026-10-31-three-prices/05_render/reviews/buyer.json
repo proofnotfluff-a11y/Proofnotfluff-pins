@@ -1,8 +1,8 @@
 {
  "gate": "buyer",
  "round": 0,
- "at": "2026-10-29T12:24:51-05:00",
- "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
+ "at": "2026-10-29T22:37:13-05:00",
+ "build": "6c6be63b",
  "pass": true,
  "score": {
   "stop": "yes",
@@ -11,11 +11,10 @@
   "follow_or_link": "yes"
  },
  "reasons": [
-  "1 what: as an HVAC owner who quotes one number, the message is that I should put three prices (good, better, best) on every quote. Top shops do it on 57% of home jobs versus 41% for everyone else, and a price that comes in high sends 68% of homeowners off to get more quotes.",
-  "2 stop: yes. 'You quote one price?' at 00:00.0 is aimed straight at me, and 'Here's how to build yours.' at 00:04.0 promises something I can use right away. By 0.8 s the frame already shows the claim, 'Top shops usually quote 3 prices', in big readable type with the source under it (ServiceTitan data, 12 months to Jan 2026). The pixel shop counter with a $ sign card looks friendly, not stock.",
-  "3 send: yes. The close names who gets it ('Send this to whoever writes your quotes', 01:05.0), and my office person could build the three tiers tomorrow. save: yes. The recipe (job done right / the one you'd pick for your own house / upgrades like a longer warranty or a faster start date) is a template I'd come back to when quoting. follow or link: yes. It's Lesson 4 of a series, sourced and practical with no pitch, and 'Free tools for trade owners: link in bio' makes the tap worth it.",
-  "4 hype/slop: none found. There's no urgency, no guarantee and no selling. Every number has a named source, the AI use is disclosed (aiLabel true), and the lines read like a person talking. 'Here's the part people skip.' (00:43.4) is a mild bridge, not hype. The voice saying the ACCA survey 'can't tell you three beats one' (00:58.5) builds trust. The previous cut's only note ('why not four?') is now mostly answered by 'Your three is a floor.' (00:45.4), so that fault is not back.",
-  "5 unclear: minor only, not a scroll-past problem. 'Your three is a floor.' (00:45.4) could read as cryptic to a stranger for a second. Optional fix: 'Three is your minimum, not your max.' 'Forty-one.' (00:14.4) and 'Forty-two.' (00:57.2) rely on the earlier 'percent'. They're clear in context and in the caption, so no fix needed.",
-  "6 trust: yes. ServiceTitan, Housecall Pro and ACCA are named with dates on screen and in the caption, the data's limits are stated out loud, and 'Top shops usually quote three' fits the 57% figure without overclaiming."
+  "what: an HVAC owner who gives one number is told to put three prices on every quote (57% vs 41%; 68% shop around when a price is higher than expected).",
+  "stop: yes. 'You quote one price?' at 0.0 s; at 0.8 s 'Top shops usually quote 3 prices' with its source.",
+  "send: yes ('Send this to whoever writes your quotes', 65.0 s); save: yes (the three-tier recipe 32.8 to 38.7 s); follow or link: yes.",
+  "hype or slop: none; numbers match facts.json; transcript matches words.json.",
+  "minor, not a FAIL: 'Your three is a floor.' (45.4 s) is a beat cryptic; 'Here's the part people skip.' (43.4 s) is not backed on screen."
  ]
 }

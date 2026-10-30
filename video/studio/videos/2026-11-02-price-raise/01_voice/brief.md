@@ -8,7 +8,7 @@ with WebFetch the same evening.
 - **Where:** Instagram Reel, 9:16, 75 s at most, end card included (192 words; Oct 29 hook and length rewrite: takes 1, 2, 3, 6 and 7 re-voiced), then TikTok, Facebook, YouTube Shorts.
 - **Audience:** an HVAC, plumbing, electrical or roofing owner whose costs went up this year and who hasn't raised prices, or did it quietly and is nervous about telling customers.
 - **The one idea:** most trades raised prices for their costs; tell customers why, keep approved quotes. (13 words)
-- **Shape:** hook (spoken: most trades raised their prices last year; did you; the note that tells customers. On screen: 83% of HVAC companies raised prices last year) -> stakes (Jobber's survey of home service owners, 1,050 on screen: 83% of HVAC companies; plumbing, electrical, roofing 74%; the 65% for all owners and cleaning's 55% are caption only since the Oct 29 length cut) -> why (72% named inflation, half named labor; BLS: install and repair pay +3.7% in the year to June, so your crew's pay beat the +3.2% for all workers) -> the artifact (the three-line price note, held big) -> the turn (the last line is the promise: raise the next job, never one already approved) -> the honest note (Jobber sells software; its survey doesn't show how customers took it; watch your close rate for a month) -> close (your costs went up, and most trades already raised; send line; "raise yours with a reason").
+- **Shape:** hook (spoken: most trades raised their prices last year; did you; the note that tells customers. On screen: 83% of HVAC companies raised prices last year) -> stakes (a Jobber survey of home service owners, 1,050 on screen: 83% of HVAC companies; plumbing, electrical, roofing 74%; the 65% for all owners and cleaning's 55% are caption only since the Oct 29 length cut) -> why (72% named inflation, half named labor; BLS: install and repair pay +3.7% in the year to June, that beat the +3.2% for all workers) -> the artifact (the three-line price note, held big) -> the turn (the last line is the promise: raise the next job, never one already approved) -> the honest note (Jobber sells software; its survey doesn't show how customers took it; watch your close rate for a month) -> close (your costs went up, and most trades already raised; send line; "raise yours with a reason").
 - **Hook pattern:** object-number
 - **Treatment:** copy-this
 - **Example:** jobber-price-raise-note
@@ -30,16 +30,17 @@ with WebFetch the same evening.
    HONEST NOTE, a cold front and a "?" cloud for how customers took it.
 2. **why: the register** (`k.sets.register`). The receipt is tagged by source: JOBBER SURVEY, then INFLATION 72%,
    LABOR 50%; the drawer opens on "federal data" and it prints BLS PAY DATA, REPAIR PAY +3.7%, ALL PAY +3.2%. The display
-   shows the line just rung (never a sum: the set's own total is painted over, the brief has no total); on "your crew's
-   pay" it reads CREW PAY +3.7%. A plank floor under the counter.
+   shows the line just rung (never a sum: the set's own total is painted over, the brief has no total); on "That beat
+   the three" it reads REPAIR PAY +3.7% and the plate says "Repair pay beat all pay". A plank floor under the counter.
 3. **why: the HUD** (`k.sets.hud`): coins drop into the open drawer while the wage lines print, drawn only between the
    till and the drawer (never over the display or the plate).
 5. **close: the calendar** (`k.sets.calendar`), titled NEXT MONTH (the note's "first of next month"; no real date): day 1
    fills gold with a coin, the note window rises over the lower rows, and on the send line an envelope flies to day 1,
    which takes a check: the note going out.
-4. **note: the price note on the desk** (drawn in scene.js): an office wall with a ticking clock, a desk, a mug that steams,
-   a letterhead sheet where the three lines type as they are said (EXAMPLE tag); on the turn, the third line gets a gold
-   sweep and a PROMISE stamp; the rule lands under the sheet at heading size.
+4. **note: the boss fight** (`k.sets.boss`, Oct 29 fix round): the boss is SURPRISE BILL (the problem the note's last
+   line solves, never the customer's pushback, which the survey doesn't show); the price note is the move window
+   (EXAMPLE tag), each line typing as it is said; on the turn the third line gets a gold ring and a PROMISE hit; the rule
+   lands on a card at heading size, and on "never" the boss breaks and PROMISE KEPT stamps in.
 
 ## Trust notes
 - Jobber: 1,050 US home service business owners, through Conjointly, December 2025; the page's "last year" is said as
@@ -51,7 +52,7 @@ with WebFetch the same evening.
 - BLS ECI: wages and salaries, civilian, 12 months ending June 2026: Installation, maintenance, and repair 3.7%; all
   workers 3.2%. Said "pay for install and repair workers" (the row's occupations) and "all workers". The construction
   row (3.9%) also counts farming, fishing and forestry, so it is caption context only.
-- "So your crew's pay beat the three point two for all workers" (take 3, Oct 29 length cut; earlier "rose faster than
+- "That beat the three point two for all workers" (take 3, Oct 30 rebuild; Oct 29 "So your crew's pay beat ...", earlier "rose faster than
   average"): 3.7% for installation, maintenance and repair against 3.2% for all civilian workers, the same table and window. Plumbers and
   electricians sit in the construction row (3.9%), also above 3.2%, so the line holds for them too.
 - The price note and its date ("the first of next month") are an example (tagged EXAMPLE on screen). No rate is suggested.
@@ -62,7 +63,7 @@ with WebFetch the same evening.
 |---|---|---|
 | Most trades raised their prices last year; 83% of HVAC companies did; plumbing, electrical, roofing 74% (65% of all owners and cleaning 55%, the lowest: caption only) | Jobber, "Blue Collar Strong: The 2026 Home Service Trends Report" (1,050 owners, Dec 2025, Conjointly) | https://www.getjobber.com/home-service-trends-report/ |
 | 72% named inflation; half (50%) named labor | same page | same |
-| Install and repair pay rose 3.7% in the year to June; so your crew's pay beat the 3.2% for all workers | BLS, Employment Cost Index, June 2026, released Jul 31, 2026, Table 8 | https://www.bls.gov/news.release/eci.htm |
+| Install and repair pay rose 3.7% in the year to June; that beat the 3.2% for all workers | BLS, Employment Cost Index, June 2026, released Jul 31, 2026, Table 8 | https://www.bls.gov/news.release/eci.htm |
 | Jobber sells software | Jobber is a field service software company (its own site) | https://www.getjobber.com/ |
 | The price note; keep approved quotes; watch your close rate for a month | ours (advice; bank lesson 3 takeaway) | n/a |
 

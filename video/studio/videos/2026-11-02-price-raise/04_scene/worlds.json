@@ -1,11 +1,11 @@
 {
  "schema": "pnf.studio.worlds.v1",
  "share": {
-  "set:weather": 0.344,
-  "set:register": 0.214,
-  "set:hud": 0.144,
-  "set:boss": 0.294,
-  "set:calendar": 0.147,
-  "set:icon": 0.007
+  "set:weather": 0.349,
+  "set:register": 0.2,
+  "set:hud": 0.129,
+  "set:boss": 0.302,
+  "set:calendar": 0.149,
+  "set:icon": 0.003
  }
 }

@@ -1,7 +1,7 @@
 # Cues: Raise your prices; most trades already did (Lesson 6, Pricing Clinic, arcade look)
 
 Worlds (brief.md): weather map (hook, stakes, caveat), register with the HUD's coins (why), the boss fight, the price note
-as the move list against PRICE PUSHBACK (note), the calendar (close). No stock room in any section; each top-level cue names its world in a "World:" line.
+as the move list against SURPRISE BILL (note), the calendar (close). No stock room in any section; each top-level cue names its world in a "World:" line.
 
 music: rooms quest
 
@@ -12,7 +12,7 @@ A "?" cloud pops in the map's lower right: YOUR SHOP? Snow drops back to his sma
 ## hook.note "Here's the note that" [sfx: pop]
 About 0.15 s before "Here's" (the on-screen hook holds under 4.0 s) the panel clears to the one headline, centered in it: "The note that tells" / "your customers." with an accent line under it. The 83% stays on the map. Snow points.
 
-## stakes "Jobber surveyed home service" [sfx: whoosh]
+## stakes "In a Jobber survey" [sfx: whoosh]
 World: the weather map again (dissolve), titled PRICE REPORT. The panel: "Who raised prices last year?" with the source under it (Jobber, 1,050 home service owners, Dec 2025).
 ## stakes.hvac "Eighty-three percent of HVAC" [sfx: tick]
 "83%" slams into the panel (count from 85% of it): "of HVAC companies did." A second warm front starts; the HVAC sun pings.
@@ -33,7 +33,7 @@ REPAIR PAY +3.7% prints under BLS PAY DATA on "three point seven"; the display l
 The display reads REPAIR PAY +3.7%; the plate: "Repair pay beat all pay". On "three point two" ALL PAY +3.2% prints under it, then a gold line under REPAIR PAY. It holds to the end of the take, coins still landing.
 
 ## note "So send this before" [sfx: whoosh]
-World: the boss fight (iris), not used in the two lessons before or after: a dusk arena, the objection PRICE PUSHBACK as the boss with its HP bar. Over its menu, our move window tagged YOUR PRICE NOTE (EXAMPLE): three numbered rows showing empty, a gold cursor on the next. While the note is said the dialog box is off and the window drops into its place on the floor, right of Snow (it carries the words). No damage numbers.
+World: the boss fight (iris), not used in the two lessons before or after: a dusk arena, SURPRISE BILL as the boss with its HP bar (the problem the note's last line solves; the survey doesn't show how customers took it, so the boss is never the customer's pushback). Over its menu, our move window tagged YOUR PRICE NOTE (EXAMPLE): three numbered rows showing empty, a gold cursor on the next. While the note is said the dialog box is off and the window drops into its place on the floor, right of Snow (it carries the words). No damage numbers.
 ## note.l1 "Starting the first of" [sfx: tick]
 Row 1 types word by word as it is said: "Starting the first of next month, our rates go up." As it ends, a hit: flash, slash, the HP bar drops.
 ## note.l2 "Our labor and material" [sfx: tick]
@@ -47,7 +47,7 @@ Row 3 is ringed in gold with a gold sweep under it.
 ## note.promise "is a promise." [sfx: stamp]
 The big hit: PROMISE stamps on the boss, beside row 3; the HP bar drops to its last fifth.
 ## note.next "Raise the next job," [sfx: pop]
-The rule lands on a card on the arena floor: "Raise the next job." in gold and "Never an approved one." under it, both at heading size, centered. On "never" the last hit takes the HP to zero: the boss breaks into pixels, the window and PROMISE leave with the set's menu, and VICTORY stamps in over the card.
+The rule lands on a card on the arena floor: "Raise the next job." in gold and "Never an approved one." under it, both at heading size, centered. On "never" the last hit takes the HP to zero: the boss breaks into pixels, the window and PROMISE leave with the set's menu, and PROMISE KEPT stamps in over the card.
 
 ## caveat "One honest note." [sfx: whoosh]
 World: the weather map (dissolve), titled ONE HONEST NOTE. A cold front (blue teeth) sweeps in from the east.

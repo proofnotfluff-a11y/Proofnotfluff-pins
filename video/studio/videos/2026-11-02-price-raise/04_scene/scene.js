@@ -2,7 +2,7 @@
 // 03_cues/cues.md. Numbers only from k.data (brief.md -> data.js). Every time comes from a cue start (k.S) or a spoken word
 // (wordT), so a re-voiced take moves the picture with it.
 /* Worlds (brief.md): hook, stakes, caveat = the weather map (PRICE REPORT, a sun per trade); why = the register with the
-   HUD's coins; note = the boss fight (k.sets.boss): the note is the move list against PRICE PUSHBACK;
+   HUD's coins; note = the boss fight (k.sets.boss): the note is the move list against SURPRISE BILL;
    close = the calendar (NEXT MONTH, the note going out). */
 const INK = '#120D14', CREAM = '#FFF7EA', SAND = '#E6D3BC', GOLD = '#F7C873', ORANGE = '#F2A541', RED = '#E2633B', TEAL = '#6FB7A8', GREY = '#9AA0AD';
 const hash = (n) => { const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
@@ -356,12 +356,12 @@ window.SCENE = {
       return host(k, k.live('why.federal') || k.live('why.crew') ? 'point' : (k.live('why') || k.live('why.labor') ? 'clip' : null));
     },
 
-    // ---- note: the boss fight (k.sets.boss, not used in the two lessons before or the two after). The objection is
-    // PRICE PUSHBACK; the price note is the move list, a game window that types each line as it is said. Lines 1 and 2
+    // ---- note: the boss fight (k.sets.boss, not used in the two lessons before or the two after). The boss is
+    // SURPRISE BILL, the problem the note's own last line solves (not the customer's reaction, which the survey doesn't show); the price note is the move list, a game window that types each line as it is said. Lines 1 and 2
     // each land a hit as they finish; "That last line" rings line 3 in gold; "is a promise" is the big hit, PROMISE
     // stamping on the boss beside line 3. No damage numbers. On "Raise the next job" the rule lands on a card on the
     // arena floor, and on "never" the last hit takes the HP to zero: the boss breaks into pixels, the set's menu leaves
-    // and our window and PROMISE with it, and VICTORY stamps into the clear arena.
+    // and our window and PROMISE with it, and PROMISE KEPT stamps into the clear arena.
     // The window opens over the set's menu; while the note is said (the dialog box off) it drops into the dialog's place
     // on the floor, right of Snow (x 372..948, y 780..1224 with its tag, text ends by x 925), with the set's empty menu painted out;
     // just before "Here's the part people skip" it rises back beside the boss and the dialog box returns.
@@ -379,9 +379,9 @@ window.SCENE = {
         return Object.assign(r, {lay, lines: line + 1, tEnd: times[times.length - 1][1]});
       });
       /* the set: its own move labels, menu tag and damage numbers are not drawn (our window carries the note) */
-      mute(k, (s) => /^-\d+$/.test(String(s)) || String(s) === 'MOVES', () => k.sets.boss({name: 'PRICE PUSHBACK', hp: 100, t0: t0 + 0.3, menu: 'MOVES',
+      mute(k, (s) => /^-\d+$/.test(String(s)) || String(s) === 'MOVES', () => k.sets.boss({name: 'SURPRISE BILL', hp: 100, t0: t0 + 0.3, menu: 'MOVES',
         hits: [{at: rows[0].tEnd, dmg: 20, label: ''}, {at: rows[1].tEnd, dmg: 20, label: ''}, {at: tProm, dmg: 40, label: ''}, {at: tNever, dmg: 20, label: ''}],
-        defeatAt: tDef}));
+        defeatAt: tDef, winText: 'PROMISE KEPT'}));
       /* where the window is: over the set's menu (ox, oy 0), or down on the floor while the note is said. It drops as
          the dialog box goes off (0.35 s before "Starting") and rises after line 3 is said, by 0.13 s before "Here's";
          8 frames each way, on whole pixels */

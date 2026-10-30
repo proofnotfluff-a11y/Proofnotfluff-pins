@@ -1,0 +1,3 @@
+hook: {"first_change": 0.53, "changes_by_3s": 2, "changes": [0.53, 2.33], "share": [0.566, 0.501], "host_at": 0.5333333333333333, "hook_words": 10, "hook_said_by": 2.98, "seconds": 45.67}
+lint: PASS 0 layout problems (45.7 s at 0.25 s steps); hook PASS (first change 0.53 s, 2 by 3 s, host 0.5333333333333333 s, spoken hook 10 words by 2.98 s)
+exit 0

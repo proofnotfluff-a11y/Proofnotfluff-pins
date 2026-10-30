@@ -201,3 +201,7 @@ Built in parallel on Todd's go (Oct 27, 12:17 pm, "Let's do them all"); rules in
 - `dp_flooding.py`, `dp_flooding_data.py`, `dp_repairs.py`, `dp_repairs_data.py`, `dp_probe_b8.py`: /chicago-basement-flooding/ (311 AAF and CHECKFOR) and /chicago-repair-demand/ (building violations in 6 trades); dp_flooding.yml and dp_repairs.yml daily.
 - `dp_materials.py`, `dp_materials_bls.py`: /material-price-changes/ (23 BLS PPI series, calculator, 23 sub-pages) through the BLS Public Data API (flat files refuse runners); dp_materials.yml weekdays; a free BLS API key on Todd's account would let titles refresh from the BLS catalog.
 - The hub (make_site.py data_hub_html, hub_entries, hub_more): site/datahub.json holds each page's group, short name, source, schedule, one short line and a `stat` pattern read from the built page's own text (`raw` for the page's HTML), so a card's number is always what its page shows; a pattern that stops matching drops the number and prints "hub: no headline figure". Every hub page ends with three neighbors (the More free Chicago data strip, filled after all pages are written). Flow: verify/flows/chicago-data-hub.json.
+
+## Kimi answers: kimi_wait.py
+
+`python3 tools/kimi_wait.py <job name> [<job name> ...] [--timeout 900] [--every 30]` waits for kimi/answers/<name>.json in one command (git fetch only, then one pull), prints `<name>: <status>` per job, exits 2 on timeout. Use it instead of pulling once per tool call (usage audit, Oct 30, 2026).

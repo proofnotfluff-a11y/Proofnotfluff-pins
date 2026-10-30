@@ -529,8 +529,8 @@ def check_cos():
 def _video_tools_missing():
     """What the video selftests need that this machine lacks (a fresh cloud machine has none of it)."""
     gone = [p for p in ("ffmpeg", "tesseract") if not shutil.which(p)]
-    r = subprocess.run([sys.executable, "-c", "import cv2, fontTools, PIL, jsonschema"], capture_output=True, text=True)
-    return gone + (["Python packages (cv2, fontTools, PIL, jsonschema)"] if r.returncode else [])
+    r = subprocess.run([sys.executable, "-c", "import cv2, fontTools, PIL, jsonschema, brotli"], capture_output=True, text=True)
+    return gone + (["Python packages (cv2, fontTools, PIL, jsonschema, brotli)"] if r.returncode else [])
 
 
 def check_video():

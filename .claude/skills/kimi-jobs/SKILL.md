@@ -10,7 +10,7 @@ One job: move high-volume text work off Claude onto Todd's Kimi Code membership.
 ## Process (Executes)
 1. Date from bash. Name the job `<slug>-<kind>-<YYYYMMDD>-r<round>` (second opinion: `<YYYY-MM-DD>-<topic>`). Write kimi/jobs/<name>.json: `{"kind": "facts", "slug": "<slug>"}`, or `{"kind": "second-opinion", "title": "...", "text": "...", "question": "..."}`. Jobs needed at the same point go in one push.
 2. git pull --rebase, commit only the job files, check_repo exits 0, push to main (never force). The push starts the Kimi jobs workflow.
-3. Wait for kimi/answers/<name>.json: git pull every 60 s, up to 15 minutes. Never rerun a job whose answer exists; a new round is a new name.
+3. Wait for kimi/answers/<name>.json in ONE command: `python3 tools/kimi_wait.py <name> [<name> ...]` (checks every 30 s, up to 15 minutes; tool timeout 16 minutes; never a pull per tool call). Never rerun a job whose answer exists; a new round is a new name.
 4. status cap, error or bad_json, or no answer in 15 minutes: do that work on Claude exactly as before (a fresh opus gate agent, or write the captions yourself). Note it in the run's message. Never retry Kimi the same day for that job.
 5. status ok, gates: write 05_render/reviews/<gate>.json from result with "reviewer": "kimi k3.1-pro" and "kimi_job": "<name>". Then Claude checks:
    - FAIL: check each reason against the files and source yourself before fixing; drop a reason that is wrong (say why in the review). The fix round goes back to Kimi as round 1.

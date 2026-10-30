@@ -1,4 +1,5 @@
-/* Scene: Markup vs margin (Lesson 3, Run the Numbers, arcade). One function per top-level cue in 03_cues/cues.md. */
+/* Scene: Markup vs margin, payoff first (Lesson 3 in Lead Clinic v2, Run the Numbers, arcade; the payoff-first test,   */
+/* Oct 29, 2026). One function per top-level cue in 03_cues/cues.md. The answer card is up by the fourth second.        */
 /* Numbers only from k.data (brief.md -> data.js). Every time comes from a cue start (k.S) or a spoken word (wordT), so a */
 /* re-voiced take moves the picture with it. */
 /* Worlds, one per section (Todd, Oct 28: "new cool graphic motion for each video"): hook and why = a job site drawn */
@@ -130,7 +131,9 @@ const site = (k, o) => {
     tx(label, (x0 + x1) / 2, 235, {color: lc, align: 'center'});
   };
   plank(XC(0), XC(n.cost.value), '#D9A066', '#F7D79B', '#B07A47', `COST ${n.cost.shown}`, '#4A2E1B');
-  plank(XC(n.cost.value), XC(n.price.value), '#F2A541', GOLD, '#B07A47', o.markupLabel || `+${n.markupUsd.shown}`, '#4A2E1B');
+  if (o.noMarkup) { const x0 = XC(n.cost.value) + 2, x1 = XC(n.price.value); for (let x = x0; x < x1; x += 5) { P(x, 232, 3, 1, GOLD); P(x, 249, 3, 1, GOLD); } P(x1 - 1, 232, 1, 18, GOLD);
+    if (o.askAt == null || T < o.askAt || Math.floor(fr(o.askAt) / 8) % 2 === 0) tx('?', (x0 + x1) / 2, 235, {color: GOLD, align: 'center'}); }
+  else plank(XC(n.cost.value), XC(n.price.value), '#F2A541', GOLD, '#B07A47', o.markupLabel || `+${n.markupUsd.shown}`, '#4A2E1B');
   /* the glow: the markup plank outlined in gold, blinking twice a second for its first second */
   const glow = () => { const x0 = XC(n.cost.value) - 1, x1 = XC(n.price.value) + 1; P(x0, 230, x1 - x0, 2, GOLD); P(x0, 250, x1 - x0, 2, GOLD); P(x0, 230, 2, 22, GOLD); P(x1 - 2, 230, 2, 22, GOLD); };
   if (o.glowAt != null && T >= o.glowAt && (fr(o.glowAt) >= 30 || Math.floor(fr(o.glowAt) / 8) % 2 === 0)) glow();
@@ -174,25 +177,20 @@ const bench = (k, o) => {
   P(0, 0, 360, 300, '#C99A5B'); for (let i = 0; i < 260; i++) { const x = Math.floor(hash(i * 1.37) * 358), y = Math.floor(hash(i * 4.11) * 298); P(x, y, 2 + (i % 3), 1, i % 4 ? '#B07A47' : '#E6C08A'); }
   P(0, 300, 360, 4, '#4A2E1B'); P(0, 304, 360, 113, '#6B4226'); for (let y = 310; y < 417; y += 9) P(0, y + (y % 2), 360, 1, '#5A3720');
   P(0, 417, 360, 223, '#8C5A33'); for (let i = 0; i < 160; i++) DOT(Math.floor(hash(i * 7.7) * 360), 420 + Math.floor(hash(i * 3.9) * 216), i % 2 ? '#6B4226' : '#B07A47');
-  /* the title plate: the claim and its source, held from the cover */
+  /* the title plate: the question and its source, held from the cover */
   d.win(14, 82, 332, 78, {base: '#253048', hi: '#3B82C4', lo: '#1B1420', rule: '#3B82C4'});
-  const a = `${n.markupPct.shown} markup `, b = 'is NOT', wa = k.measure(a, {size: 66}), wb = k.measure(b, {size: 66}), x0 = 540 - (wa + wb) / 2;
-  k.text(a, x0, 268, {size: 66, color: CREAM, drop: INK}); k.text(b, x0 + wa, 268, {size: 66, color: 'accent', drop: INK});
-  const c = `${n.doubleMarginPct.shown} margin`, wc = k.measure(c, {size: 66});
-  k.text(c, 540, 344, {size: 66, color: CREAM, align: 'center', drop: INK});
-  if (o.qAt != null && T >= o.qAt) k.slam('?', 540 + wc / 2 + 8, 344, o.qAt, {size: 66, color: GOLD, from: 0.8, drop: INK});
+  k.text(`${n.cost.shown} job.`, 540, 268, {size: 66, color: CREAM, align: 'center', drop: INK});
+  k.text('What do you quote?', 540, 344, {size: 66, color: 'accent', align: 'center', drop: INK});
   k.text('Example math. Sources: JLC, Xero', 540, 424, {size: 30, color: SAND, align: 'center'});
   /* the planks, big, on the bench: cost (raw wood) and the markup (painted orange) */
   const plank = (x0, x1, base, hi, lo) => { P(x0, 222, x1 - x0, 44, INK); P(x0 + 1, 223, x1 - x0 - 2, 42, base); P(x0 + 1, 223, x1 - x0 - 2, 2, hi); P(x0 + 1, 261, x1 - x0 - 2, 4, lo);
     for (let x = x0 + 12; x < x1 - 8; x += 31) { P(x, 233 + (x % 5), 14, 1, lo); P(x + 5, 247 - (x % 3), 10, 1, lo); } };
   P(4, 266, 352, 6, '#4A2E1B');
   plank(XB(0), XB(n.cost.value), '#D9A066', '#F7D79B', '#B07A47');
-  plank(XB(n.cost.value), XB(n.price.value), '#F2A541', GOLD, '#B07A47');
   tx(`COST ${n.cost.shown}`, (XB(0) + XB(n.cost.value)) / 2, 233, {size: 66, color: '#4A2E1B', align: 'center'});
-  tx(`+${n.markupPct.shown}`, XB(n.cost.value) + 8, 233, {size: 66, color: '#4A2E1B'});
-  if (o.pulseAt != null && fr(o.pulseAt) >= 0 && fr(o.pulseAt) < 24 && Math.floor(fr(o.pulseAt) / 4) % 2 === 0) {
-    const x0 = XB(n.cost.value) - 1, x1 = XB(n.price.value) + 1; P(x0, 220, x1 - x0, 3, GOLD); P(x0, 265, x1 - x0, 3, GOLD); P(x0, 220, 3, 48, GOLD); P(x1 - 3, 220, 3, 48, GOLD);
-  }
+  /* the empty slot where the price goes: a dashed gold outline and a blinking question mark */
+  { const x0 = XB(n.cost.value) + 3, x1 = XB(n.price.value); for (let x = x0; x < x1; x += 6) { P(x, 222, 3, 2, GOLD); P(x, 264, 3, 2, GOLD); } for (let y = 222; y < 266; y += 6) P(x1 - 2, y, 2, 3, GOLD);
+    if (Math.floor(fr(0) / 10) % 2 === 0) tx('?', (x0 + x1) / 2, 233, {size: 66, color: GOLD, align: 'center', drop: INK}); }
   /* the tape: a big case at the left, the blade along the top of the planks, marks every hundred dollars */
   let L = 4;
   if (o.tapeAt != null && T >= o.tapeAt) { const to = XB(n.cost.value) - 30, q = clamp(fr(o.tapeAt) / 8), back = q >= 1 ? 1 : 1 + 2.2 * Math.pow(q - 1, 3) + 1.2 * Math.pow(q - 1, 2); L = Math.round(4 + (to - 4) * back); }
@@ -240,104 +238,87 @@ const register = (k, o) => {
 };
 const displayText = (k, s, c = TEAL) => { const d = px(k); d.P(DPX + 7, DPY + 19, 92, 38, '#24453A'); for (let y = DPY + 20; y < DPY + 57; y += 3) d.P(DPX + 7, y, 92, 1, '#1A332B'); d.tx(s, DPX + 53, DPY + 27, {size: 66, color: c, align: 'center'}); };
 
+/* the tool belt behind a big card (answer, formula): the same inventory set, the FORMULA item selected */
+const belt = (k, t0) => k.sets.inventory({title: 'TOOL BELT', select: [{slot: 3, at: t0}],
+  items: [{icon: 'wrench', name: 'WRENCH'}, {icon: 'hammer', name: 'HAMMER'}, {icon: 'phone', name: 'PHONE'}, {icon: 'clip', name: 'FORMULA', stats: []},
+    {icon: 'clock', name: 'CLOCK'}, {icon: 'mail', name: 'MAIL'}, {icon: 'coin', name: 'COIN'}, {icon: 'star', name: 'STAR'}]});
+
 window.SCENE = {
   look: 'arcade',
   images: [],
   host_name: 'Snow',
   hud: 'LESSON 3',
-  transitions: {math: 'door', why: 'dissolve', double: 'blinds', formula: 'levelselect', close: 'gameover'},
+  sendLine: 'Send this to whoever sets your prices.',
+  transitions: {answer: 'levelselect', usual: 'door', why: 'dissolve', formula: 'iris', double: 'blinds', button: 'gameover'},
   trauma: {'double.x2': 0.8},
   sections: {
-    /* ---- hook: three shots (IMPROVE 00a: the picture changes by 1 s and twice by 3 s, Snow on by 1 s). The cover: the job */
-    /* site, the claim on the sign (frame 0, held still to "job"). Cut in on "job" to the bench close-up: Snow and the dialog */
-    /* box come in, the big tape runs to the cost on "fifty", the markup plank blinks on "percent". Cut back out on "Is" to */
-    /* the site: the "?" lands on "margin?", the tape whips out to the whole price on "Nope" and the markup is a third of it. */
+    /* ---- hook: the drop-in in three shots (IMPROVE 00a). The cover: the job site, the question on the sign (frame 0). */
+    /* Cut in on "costs" to the bench close-up (the cost plank, the empty price slot; Snow and the dialog box come in, the */
+    /* tape runs to the cost on "thousand"). Cut back out on "What" to the site: the "?" in the price slot blinks. */
     hook: (k, T) => {
       const n = k.data.numbers, d = px(k);
-      const tQ = wordT(k, 'hook', /^margin/i, 3), tNope = k.S('hook.nope'), tThird = wordT(k, 'hook.nope', /^third/i, 0.9), fix = k.S('hook.fix');
-      const tJob = Math.min(0.8, Math.max(0.5, wordT(k, 'hook', /^job/i, 0.76))), tFifty = wordT(k, 'hook', /^fifty/i, 1), tPct = wordT(k, 'hook', /^percent/i, 1.5);
-      const tOut = Math.min(2.6, wordT(k, 'hook', /^is$/i, 2.04));
-      if (T >= tJob && T < tOut) {
-        bench(k, {tapeAt: tFifty, pulseAt: tPct});
-        k.burst(((XB(n.cost.value) + XB(n.price.value)) / 2) * 3, 730, tPct, {n: 18, r: 240, colors: ['accent', 'paper']});
-        return host(k);
-      }
-      site(k, {markupLabel: `+${n.markupPct.shown}`, twitch: 0.3,
-        tape: [{at: Math.min(tFifty, tOut), usd: n.cost.value}, {at: tNope, usd: n.price.value}], glowAt: tNope + 0.3, bracket: {at: tNope + 0.3, from: n.cost.value, to: n.price.value}});
-      /* the claim on the sign, settled from frame 0, centred on the sign (x 42 to 1038) */
-      const l3 = `${n.doubleMarginPct.shown} margin`, w3 = k.measure(l3, {size: 132}), x3 = 540 - w3 / 2;
-      k.slam(`${n.markupPct.shown} markup`, 540, 268, -1, {size: 132, color: CREAM, align: 'center', drop: INK});
-      k.slam('is NOT', 540, 412, -1, {size: 66, color: 'accent', align: 'center', drop: INK, glintAt: 0.5});
-      k.slam(l3, 540, 486, -1, {size: 132, color: CREAM, align: 'center', drop: INK, glintAt: 0.9});
-      if (T >= tQ) k.slam('?', x3 + w3 + 12, 486, tQ, {size: 132, color: GOLD, from: 0.8, drop: INK});
-      strike(k, x3 - 6, 548, k.measure(n.doubleMarginPct.shown, {size: 132}) + 12, tNope + 0.4);
-      /* the ground: the chip and the source on a plate from frame 0; the stamp lands on the third; the two chips */
+      const tQ = k.S('hook.q'), tCosts = Math.min(0.8, Math.max(0.4, wordT(k, 'hook', /^costs/i, 0.5) - 0.05));
+      const tThou = wordT(k, 'hook', /^thousand/i, 1.1), tOut = Math.min(2.6, Math.max(tCosts + 0.6, tQ - 0.05));
+      if (T >= tCosts && T < tOut) { bench(k, {tapeAt: tThou}); return host(k); }
+      site(k, {noMarkup: true, askAt: tQ, twitch: 0.3, tape: [{at: Math.min(tThou, tOut), usd: n.cost.value}]});
+      /* the question on the sign, settled from frame 0, centred on the sign (x 42 to 1038) */
+      k.slam(`${n.cost.shown} job.`, 540, 268, -1, {size: 132, color: CREAM, align: 'center', drop: INK});
+      k.slam('What do you', 540, 412, -1, {size: 66, color: 'accent', align: 'center', drop: INK, glintAt: 0.5});
+      k.slam('quote?', 540, 486, -1, {size: 132, color: CREAM, align: 'center', drop: INK, glintAt: 0.9});
       plate(d, 14, 256, 200, 44);
       k.chip('Run the numbers', 66, 786, {size: 30});
       k.text('Example math. Sources: JLC, Xero', 66, 856, {size: 30, color: SAND});
-      if (T >= tThird) stampBox(k, 'A THIRD', 798, 786, tThird);
-      if (T >= fix) {
-        const c1 = d.ease(fix, 8, 120), c2 = d.ease(fix + 0.2, 8, 120);
-        /* 15 px clear of the RUN THE NUMBERS plate */
-        d.clip(0, 296, 360, 36, () => { k.chip('1  The math', 240, 927 + c1 * 3, {size: 30, fill: 'accent', color: INK}); k.chip('2  The fix', 560, 927 + c2 * 3, {size: 30, fill: 'accent', color: INK}); });
-        k.burst(400, 940, fix + 0.1, {n: 12, r: 160});
-      }
-      /* the cover frame has no host; Snow and the dialog box come in together on "job" and stay */
-      if (T < tJob) return {host: false, speech: false};
-      return host(k, T >= tNope && T < fix ? 'shrug' : null);
+      if (T >= tQ) k.burst(XC(n.cost.value + 250) * 3, 720, tQ + 0.1, {n: 12, r: 160});
+      if (T < tCosts) return {host: false, speech: false};
+      return host(k, T >= tQ ? 'shrug' : null);
     },
 
-    /* ---- math: the register rings the quote up (cost, the markup, the price); the display splits the price in three; */
-    /* then a dither wipe to the gauge, whose needle reads the margin on "thirty-three" */
-    math: (k, T) => {
-      const n = k.data.numbers, d = px(k), t0 = k.S('math');
-      const tCost = wordT(k, 'math.cost', /^thousand/i), tFive = wordT(k, 'math.markup', /^five/i, 1.5), tPrice = wordT(k, 'math.price', /^fifteen/i, 0.9);
-      const tThird = k.S('math.third'), tMargin = k.S('math.margin'), t33 = wordT(k, 'math.margin', /^thirty/i, 1.4), tNot = k.S('math.not'), t50 = wordT(k, 'math.not', /^fifty/i, 0.8);
-      if (T < tMargin) {
-        register(k, {items: [{label: 'COST', amount: n.cost.value, at: tCost}, {label: `MARKUP ${n.markupPct.shown}`, amount: n.markupUsd.value, at: tFive}],
-          totalAt: tPrice, totalLabel: 'PRICE', displayLabel: 'QUOTE', openAt: tPrice + 0.35});
-        /* the header and the beat's line on the wall above the first shelf */
-        k.slam('Cost + markup = price', 72, 270, t0 + 0.15, {size: 39, color: GOLD, from: 0.4, drop: INK});
-        const say = T >= tThird ? [`${n.markupUsd.shown} = 1/3 of the price`, tThird + 0.15, 'accent'] : T >= tPrice ? [`The quote: ${n.price.shown}`, tPrice, CREAM]
-          : T >= tFive ? [`${n.markupPct.shown} markup: +${n.markupUsd.shown}`, tFive, 'accent'] : T >= tCost ? [`Your cost: ${n.cost.shown}`, tCost, CREAM] : null;
-        if (say) k.slam(say[0], 72, 318, say[1], {size: 66, color: say[2], from: 0.5, drop: INK});
-        /* the display splits the price into thirds: two cost thirds, the markup third in orange, a cursor over it */
-        if (T >= tThird) {
-          /* three blocks, all inside the x 930 content line; the 1/3 label sits 6 px clear above the orange one */
-          const f = d.fr(tThird), x0 = DPX + 12, w = 24;
-          d.P(DPX + 7, DPY + 19, 92, 38, '#24453A');
-          for (let i = 0; i < n.thirds.value; i++) { if (f < 3 * i) continue; const last = i === n.thirds.value - 1; d.P(x0 + i * (w + 2), DPY + 33, w, 16, INK); d.P(x0 + i * (w + 2) + 1, DPY + 34, w - 2, 14, last ? ORANGE : TEAL); d.P(x0 + i * (w + 2) + 1, DPY + 34, w - 2, 1, last ? GOLD : '#BDE6F5'); }
-          if (f >= 6) { d.tx('1/3', x0 + 2 * (w + 2) + w / 2, DPY + 19, {color: GOLD, align: 'center', lint: false}); /* over the painted-out total, which the set still reports */ if (Math.floor(f / 15) % 2 === 0) d.P(x0 + 2 * (w + 2) + 4, DPY + 51, w - 8, 2, GOLD); }
-        }
-        wipe(k, tMargin);
-        return host(k, k.live('math.markup') || k.live('math.third') ? 'point' : null);
-      }
-      /* the gauge: the margin, $500 over the $1,500 price; the needle swings to a third; the fifty people picture */
-      const tRise = Math.min(t33 - 0.5, tMargin + 0.3), v = swing(T, tRise, 0, n.marginPct.value, (t33 - tRise) / 0.55), shown = T >= t33 + 0.6 ? n.marginPct.value : Math.max(0, Math.min(n.marginPct.value, Math.round(v * 10) / 10));
-      dial(k, 'YOUR MARGIN', v, Math.max(0, shown), {notchAt: t50, ghostAt: t50, ghostC: GOLD});
-      if (T >= t33) k.burst(540, 740, t33 + 0.05, {n: 18, r: 240});
-      plate(d, 14, 268, 332, 56);
-      k.slam(`${n.markupUsd.shown} / ${n.price.shown} =`, 72, 822, tMargin + 0.1, {size: 39, color: CREAM, from: 0.4});
-      if (T >= t33) k.slam(`${n.marginPct.shown} margin`, 72 + k.measure(`${n.markupUsd.shown} / ${n.price.shown} =`, {size: 39}) + 24, 808, t33 + 0.5, {size: 66, color: 'accent', from: 0.5, drop: INK});
-      if (T >= tNot) {
-        const pre = 'Not the ', s50 = n.doubleMarginPct.shown;
-        k.slam(`${pre}${s50} you pictured.`, 72, 900, tNot, {size: 39, color: GOLD, from: 0.4});
-        strike(k, 72 + k.measure(pre, {size: 39}) - 3, 915, k.measure(s50, {size: 39}) + 6, Math.max(tNot, t50) + 0.4);
-      }
-      wipe(k, tMargin);
-      return host(k, k.live('math.not') ? 'shrug' : null);
+    /* ---- answer: the payoff, inside the first 8 s. The answer card rises at once over the tool belt; the division writes */
+    /* in on "point", the price lands whole on "sixteen", the margin slams in on "forty". It holds to the section's end. */
+    answer: (k, T) => {
+      const n = k.data.numbers, d = px(k), t0 = k.S('answer');
+      const tSix = wordT(k, 'answer', /^point/i, 0.6), tRes = wordT(k, 'answer.price', /^sixteen/i, 0.3), tForty = wordT(k, 'answer.margin', /^forty/i, 0.3);
+      belt(k, t0);
+      const up = d.ease(t0, 8, 180), Y = 96 + up, settled = up === 0, L = {lint: settled};
+      d.clip(0, 0, 360, 326, () => {
+        d.win(14, Y, 332, 200, {base: '#1B1420', hi: '#7A3442', lo: INK, rule: '#F2A541'});
+        k.ctx.save(); k.ctx.translate(0, (Y - 96) * 3);
+        k.chip('The answer', 66, 318, {size: 30, fill: 'accent', color: INK});
+        if (T >= Math.min(tSix, t0 + 0.4)) k.slam(`${n.cost.shown} / ${n.divisor.shown}`, 540, 384, Math.min(tSix, t0 + 0.4), Object.assign({size: 132, color: CREAM, align: 'center', from: 0.5, drop: INK}, L));
+        if (T >= tRes) k.slam(`= ${n.targetPrice.shown}`, 540, 548, tRes, Object.assign({size: 132, color: GOLD, align: 'center', from: 0.5, drop: INK}, L));
+        if (T >= tForty) k.slam(`${n.targetMarginPct.shown} margin`, 540, 712, tForty, Object.assign({size: 132, color: 'accent', align: 'center', from: 0.4, drop: INK}, L));
+        k.text('Example math', 540, 830, Object.assign({size: 30, color: SAND, align: 'center'}, L));
+        k.ctx.restore();
+      });
+      if (T >= tRes) k.burst(540, 600, tRes + 0.1, {n: 18, r: 240});
+      return host(k, k.live('answer') ? 'point' : null);
     },
 
-    /* ---- why: back on the job site. The tape measures the cost, then the whole price; the same $500 plank is half of */
-    /* one and a third of the other. Coins land (the price is what the customer pays); tags hang off the markup plank */
+    /* ---- usual: the register rings the usual quote up (cost, the 50% markup, the price), then splits the price in three */
+    usual: (k, T) => {
+      const n = k.data.numbers, d = px(k), t0 = k.S('usual');
+      const tFive = wordT(k, 'usual', /^fifty/i, 0.6), tPrice = wordT(k, 'usual.price', /^fifteen/i, 0.6), tHalf = k.S('usual.half'), tThird = wordT(k, 'usual.third', /^third/i, 1.2);
+      register(k, {items: [{label: 'COST', amount: n.cost.value, at: t0 + 0.15}, {label: `MARKUP ${n.markupPct.shown}`, amount: n.markupUsd.value, at: tFive}],
+        totalAt: tPrice, totalLabel: 'PRICE', displayLabel: 'QUOTE', openAt: tPrice + 0.35});
+      k.slam('The usual way', 72, 270, t0 + 0.15, {size: 39, color: GOLD, from: 0.4, drop: INK});
+      const say = T >= tThird ? [`${n.markupUsd.shown} = 1/3 of the price`, tThird + 0.1, 'accent'] : T >= tHalf ? ['Half is margin?', tHalf, GOLD]
+        : T >= tPrice ? [`The quote: ${n.price.shown}`, tPrice, CREAM] : T >= tFive ? [`${n.markupPct.shown} markup: +${n.markupUsd.shown}`, tFive, 'accent'] : [`Your cost: ${n.cost.shown}`, t0 + 0.15, CREAM];
+      k.slam(say[0], 72, 318, say[1], {size: 66, color: say[2], from: 0.5, drop: INK});
+      if (T >= tThird) {
+        const f = d.fr(tThird), x0 = DPX + 12, w = 24;
+        d.P(DPX + 7, DPY + 19, 92, 38, '#24453A');
+        for (let i = 0; i < n.thirds.value; i++) { if (f < 3 * i) continue; const last = i === n.thirds.value - 1; d.P(x0 + i * (w + 2), DPY + 33, w, 16, INK); d.P(x0 + i * (w + 2) + 1, DPY + 34, w - 2, 14, last ? ORANGE : TEAL); d.P(x0 + i * (w + 2) + 1, DPY + 34, w - 2, 1, last ? GOLD : '#BDE6F5'); }
+        if (f >= 6) { d.tx('1/3', x0 + 2 * (w + 2) + w / 2, DPY + 19, {color: GOLD, align: 'center', lint: false}); if (Math.floor(f / 15) % 2 === 0) d.P(x0 + 2 * (w + 2) + 4, DPY + 51, w - 8, 2, GOLD); }
+      }
+      return host(k, k.live('usual') || k.live('usual.third') ? 'point' : (k.live('usual.half') ? 'shrug' : null));
+    },
+
+    /* ---- why: back on the job site. The tape measures the cost, then the whole price; the same $500 is half of one and */
+    /* a third of the other. Coins land on the planks (the price is what the customer pays). */
     why: (k, T) => {
-      const n = k.data.numbers, d = px(k), t0 = k.S('why');
-      const tMk = k.S('why.markup'), tMg = k.S('why.margin'), tPay = wordT(k, 'why.pays', /^pays/i, 1.6), tLeft = k.S('why.left'), tCover = k.S('why.cover');
-      const tOver = wordT(k, 'why.cover', /^overhead/i, 1.4), tYou = wordT(k, 'why.pay', /^pay$/i, 0.3);
-      site(k, {tape: [{at: tMk, usd: n.cost.value}, {at: tMg, usd: n.price.value}], glowAt: tMk, bracket: {at: tPay, from: 0, to: n.price.value}, coinsAt: tPay});
-      k.slam('Why the gap?', 72, 270, t0 + 0.15, {size: 66, color: GOLD, from: 0.5, drop: INK});
-      /* a row: the result leads at the right edge (headline size); the fraction and what it is measured on (the word
-         swept) stack small on the left */
+      const n = k.data.numbers, d = px(k), t0 = k.S('why'), tMg = k.S('why.margin'), tPay = wordT(k, 'why.pays', /^pays/i, 0.6);
+      site(k, {tape: [{at: t0, usd: n.cost.value}, {at: tMg, usd: n.price.value}], glowAt: t0, bracket: {at: tPay, from: 0, to: n.price.value}, coinsAt: tPay});
+      k.slam('Markup vs margin', 72, 270, t0 + 0.15, {size: 66, color: GOLD, from: 0.5, drop: INK});
       const row = (y, name, top, base, sub, on, res, t, tOn) => {
         if (T < t) return;
         k.slam(`${name}: ${top} / ${base}`, 72, y + 12, t, {size: 39, color: CREAM, from: 0.4, drop: INK});
@@ -345,41 +326,47 @@ window.SCENE = {
         k.text(sub + on, 72, y + 60, {size: 30, color: SAND});
         k.sweep(72 + k.measure(sub, {size: 30}) - 3, y + 90, k.measure(on, {size: 30}) + 6, 6, tOn, {color: 'accent2'});
       };
-      row(350, 'Markup', n.markupUsd.shown, n.cost.shown, 'measured on your ', 'cost', `= ${n.markupPct.shown}`, tMk, wordT(k, 'why.markup', /^cost/i, 1.2));
-      row(482, 'Margin', n.markupUsd.shown, n.price.shown, 'measured on the ', 'price', `= ${n.marginPct.shown}`, tMg, wordT(k, 'why.margin', /^price/i, 1.3));
-      /* the plate under the planks: what the price is, then the stamp, then what margin has to cover (two tags) */
-      if (T >= k.S('why.pays')) plate(d, 14, 263, 332, 50);
-      const tStamp = wordT(k, 'why.left', /^take/i, 0.6);   /* the price line holds until the stamp drops over it */
-      if (T >= k.S('why.pays') && T < tStamp - 0.1) k.slam('Price = what the customer pays you', 72, 843, wordT(k, 'why.pays', /^money/i, 0.4), {size: 39, color: GOLD, from: 0.4});
-      if (T >= tStamp - 0.1 && T < tCover) stampBox(k, 'NOT TAKE-HOME PAY', 540, 812, tStamp, {color: RED});
-      if (T >= tCover) {
-        k.slam('Margin has to cover:', 72, 810, tCover, {size: 39, color: CREAM, from: 0.4});
-        /* the tags drop onto a nail under the line and swing to rest, one left edge with the line */
-        let tx0 = 72;
-        [{text: 'OVERHEAD', at: tOver, c: '#7A3442', hi: '#F09A9A'}, {text: 'YOUR PAY', at: tYou, c: '#2F6F67', hi: '#6FB7A8'}].forEach((tg) => {
-          const w = Math.round(d.tw(tg.text)) + 10, cx = tx0 / 3 + w / 2; tx0 += w * 3 + 24;
-          if (T < tg.at) return;
-          const f = d.fr(tg.at), sw = [0, -3, -2, -1, 1, 2, 1, 0, -1, 0][Math.min(9, Math.floor(f / 2))], drop = f < 4 ? [-8, -4, -2, 1][f] : 0;
-          const x = Math.round(cx + sw), y = 288 + drop;
-          d.DOT(Math.round(cx), 284, GREY); d.line(Math.round(cx), 284, x, y, CREAM);
-          d.P(x - w / 2 - 1, y - 1, w + 2, 18, INK); d.P(x - w / 2, y, w, 16, tg.c); d.P(x - w / 2, y, w, 1, tg.hi); d.DOT(x, y + 2, INK);
-          d.tx(tg.text, x, y + 2, {color: CREAM, align: 'center', lint: f >= 20});
-        });
-      }
-      return host(k, T >= tLeft && T < tCover ? 'shrug' : (k.live('why.markup') || k.live('why.margin') ? 'point' : null));
+      row(350, 'Markup', n.markupUsd.shown, n.cost.shown, 'measured on your ', 'cost', `= ${n.markupPct.shown}`, t0, wordT(k, 'why', /^cost/i, 1.2));
+      row(482, 'Margin', n.markupUsd.shown, n.price.shown, 'measured on the ', 'price', `= ${n.marginPct.shown}`, tMg, wordT(k, 'why.margin', /^price/i, 1.0));
+      if (T >= k.S('why.pays')) { plate(d, 14, 263, 332, 50); k.slam('Price = what the customer pays you', 72, 843, k.S('why.pays'), {size: 39, color: GOLD, from: 0.4}); }
+      return host(k, k.live('why') || k.live('why.margin') ? 'point' : null);
     },
 
-    /* ---- double: the gauge again. The needle sits at a third; the gold notch is the target; doubling the cost (a */
-    /* second cost-sized block in the plate) is a 100% markup, and only then does the needle climb to 50 */
+    /* ---- formula: the tool belt again. The formula card rises, Price = Cost over 1 - margin writes in on "Price is", the */
+    /* ring draws round 1 - margin on "minus"; the worked 40% line sits on the card. Held to the section's end. */
+    formula: (k, T) => {
+      const n = k.data.numbers, d = px(k), t0 = k.S('formula'), tEq = k.S('formula.eq');
+      const tMinus = wordT(k, 'formula.minus', /^minus/i, 0.3);
+      belt(k, t0);
+      const up = d.ease(t0, 8, 180), Y = 148 + up, settled = up === 0;
+      d.clip(0, 0, 360, 326, () => {
+        d.win(14, Y, 332, 176, {base: '#1B1420', hi: '#7A3442', lo: INK, rule: '#F2A541'});
+        k.ctx.save(); k.ctx.translate(0, (Y - 148) * 3);
+        k.chip('Start from the margin', 66, 462, {size: 30, fill: 'accent', color: INK});
+        const te = Math.min(tEq, t0 + 1.2), a = (t) => (T >= t ? 1 : 0), L = {lint: settled};
+        const wP = k.measure('Price =', {size: 132}), wM = k.measure('1 - margin', {size: 132}), bw = Math.round((wM + 24) / 3) * 3;
+        const fx = Math.max(102, Math.round((520 - (wP + 24 + bw) / 2) / 3) * 3), bx = Math.round((fx + wP + 24) / 3) * 3, fc = bx + bw / 2;
+        if (a(te)) k.text('Price =', fx, 616, Object.assign({size: 132, color: CREAM, drop: INK}, L));
+        if (a(te + 0.2)) k.text('Cost', fc, 530, Object.assign({size: 132, color: CREAM, align: 'center', drop: INK}, L));
+        k.sweep(bx, 676, bw, 12, te + 0.35, {color: GOLD});
+        if (a(te + 0.5)) k.text('1 - margin', fc, 700, Object.assign({size: 132, color: 'accent', align: 'center', drop: INK}, L));
+        if (a(tMinus + 0.4)) k.text(`${n.targetMarginPct.shown}: ${n.cost.shown} / ${n.divisor.shown} = ${n.targetPrice.shown}`, 66, 880, Object.assign({size: 39, color: GOLD}, L));
+        k.ctx.restore();
+        if (T >= tMinus) d.ringOn(Math.round(bx / 3) - 2, 228 + (Y - 148), Math.round(bw / 3) + 4, 54, tMinus, GOLD, 2);
+        if (settled) k.burst(684, 690, te + 0.55, {n: 14, r: 220, colors: ['paper', 'accent2']});
+      });
+      return host(k, k.live('formula.eq') || k.live('formula.minus') ? 'point' : null);
+    },
+
+    /* ---- double (the proof): the gauge. The needle sits at a third; the gold notch is the target; doubling the cost (a */
+    /* second cost-sized block in the plate) is a 100% markup, and only then does the needle climb to 50. Source tag: JLC. */
     double: (k, T) => {
       const n = k.data.numbers, d = px(k), t0 = k.S('double');
-      const tDbl = wordT(k, 'double.x2', /^double/i, 0.6), tHun = wordT(k, 'double.markup', /^hundred/i, 0.5);
-      const tCost = wordT(k, 'double.markup', /^thousand/i, 2.1), tTwo = wordT(k, 'double.quote', /^thousand/i, 0.2);
+      const tDbl = wordT(k, 'double.x2', /^double/i, 0.6), tHun = tDbl + 0.5, tTwo = wordT(k, 'double.quote', /^two$/i, 0.1);
       const v = swing(T, tHun, n.marginPct.value, n.doubleMarginPct.value, 1.1);
       const shown = T < tHun ? n.marginPct.value : (T >= tHun + 1.1 ? n.doubleMarginPct.value : clamp(Math.round(v * 10) / 10, n.marginPct.value, n.doubleMarginPct.value));
       dial(k, `WANT A ${n.doubleMarginPct.shown} MARGIN?`, v, shown, {notchAt: t0 + 0.4, ghostAt: t0 + 0.4, ghostC: ORANGE});
-      if (T >= tHun + 1.1) { k.burst(540, 330, tHun + 1.1, {n: 22, r: 260}); }
-      /* the plate: two blocks, the cost and the markup; the markup block grows to match the cost on "double" */
+      if (T >= tHun + 1.1) k.burst(540, 330, tHun + 1.1, {n: 22, r: 260});
       plate(d, 14, 268, 332, 56);
       const bx = 22, bw = 96, by = 275, gw = T < tDbl ? 0 : Math.round(bw * eo(d.fr(tDbl) / 8));
       d.P(bx - 1, by - 1, bw + 2, 20, INK); d.P(bx, by, bw, 18, TEAL); d.P(bx, by, bw, 1, '#BDE6F5'); d.P(bx, by + 16, bw, 2, '#2F6F67');
@@ -387,111 +374,28 @@ window.SCENE = {
       if (gw > 0) { d.P(bx + bw + 1, by - 1, gw + 1, 20, INK); d.P(bx + bw + 2, by, gw - 1, 18, ORANGE); d.P(bx + bw + 2, by, gw - 1, 1, GOLD); d.P(bx + bw + 2, by + 16, gw - 1, 2, '#B07A47'); }
       if (gw === bw && T >= tHun) d.tx(`+${n.doubleMarkupPct.shown}`, bx + bw + 2 + bw / 2, by + 3, {color: INK, align: 'center'});
       if (T >= tTwo) k.slam(`= ${n.doublePrice.shown} quote`, 930, 822, tTwo, {size: 39, color: GOLD, align: 'right', from: 0.5});
-      if (T >= tDbl && T < tHun) stampBox(k, 'DOUBLE YOUR COST', 560, 882, tDbl, {color: RED, freeze: 5});
+      if (T >= tDbl && T < tHun + 0.6) stampBox(k, 'DOUBLE YOUR COST', 560, 882, tDbl, {color: RED, freeze: 5});
       else if (T < tDbl) k.slam(`Now: ${n.markupPct.shown} markup = ${n.marginPct.shown} margin`, 72, 900, t0 + 0.2, {size: 39, color: SAND, from: 0.4});
-      else {
-        k.slam(`${n.doubleMarkupPct.shown} markup = ${n.doubleMarginPct.shown} margin`, 72, 900, tHun, {size: 39, color: CREAM, from: 0.4});
-        if (T >= tCost) k.sweep(72, 942, k.measure(`${n.doubleMarkupPct.shown} markup`, {size: 39}), 6, tHun + 0.4, {color: 'accent'});
-      }
-      return host(k, k.live('double.x2') ? 'point' : (k.live('double.quote') ? 'point' : null));
+      else k.slam(`${n.doubleMarkupPct.shown} markup = ${n.doubleMarginPct.shown} margin`, 72, 900, tHun + 0.6, {size: 39, color: CREAM, from: 0.4});
+      k.text('Math: JLC', 72, 954, {size: 30, color: SAND});
+      return host(k, k.live('double.x2') || k.live('double.quote') ? 'point' : null);
     },
 
-    /* ---- formula: the tool belt. The cursor runs over the tools; the part people skip is a new item; equip it and its */
-    /* card fills the screen (Price = Cost / (1 - margin)); then its stats fill as the 40% example is said */
-    formula: (k, T) => {
-      const n = k.data.numbers, d = px(k), t0 = k.S('formula'), tShot = k.S('formula.shot'), tEq = k.S('formula.eq');
-      const tMinus = wordT(k, 'formula.minus', /^minus/i, 0.4), tForty = k.S('formula.forty'), t40 = wordT(k, 'formula.forty', /^forty/i, 0.1);
-      const tDiv = k.S('formula.div'), tSix = wordT(k, 'formula.div', /^point/i, 1.2), tRes = wordT(k, 'formula.result', /^sixteen/i, 1.4), tChk = k.S('formula.check');
-      const tOff = Math.max(tForty, tEq + 3.6);   /* the card holds big at least 3.6 s from "Price equals" */
-      const items = [{icon: 'wrench', name: 'WRENCH'}, {icon: 'hammer', name: 'HAMMER'}, {icon: 'phone', name: 'PHONE'},
-        T >= tShot ? {icon: 'clip', name: 'FORMULA', stats: []} : null, {icon: 'clock', name: 'CLOCK'}, {icon: 'mail', name: 'MAIL'}, {icon: 'coin', name: 'COIN'}, {icon: 'star', name: 'STAR'}];
-      k.sets.inventory({title: 'TOOL BELT', items,
-        select: [{slot: 0, at: t0 + 0.15}, {slot: 1, at: wordT(k, 'formula', /^part/i, 0.4)}, {slot: 2, at: wordT(k, 'formula', /^skip/i, 0.8)}, {slot: 3, at: tShot}]});
-      /* the new item: twinkles round its slot as it lands */
-      if (T >= tShot && d.fr(tShot) < 16) for (let i = 0; i < 4; i++) d.twinkle([150, 184, 150, 184][i], [110, 110, 142, 142][i], d.fr(tShot) - i * 2, GOLD);
-      /* the stats, filled on their words (drawn here, in the set's own style) */
-      /* the value column right-aligns at x 918 (inside the x 930 content line); the bars end with it */
-      const stat = (j, label, frac, text, at) => {
-        if (T < at) return; const y = 152 + j * 36, dx = 194, p = clamp((T - at) / 0.4), fw = Math.round(110 * clamp(frac) * eo(p));
-        d.tx(label, dx, y, {color: CREAM}); d.P(dx, y + 17, 114, 8, INK); d.P(dx + 1, y + 18, 112, 6, '#3D2E45'); d.P(dx + 1, y + 18, fw, 6, TEAL); d.P(dx + 1, y + 18, fw, 1, '#BDE6F5');
-        for (let x = dx + 13; x < dx + 112; x += 12) d.P(x, y + 18, 1, 6, INK);
-        d.tx(text, dx + 112, y, {color: TEAL, align: 'right'});
-      };
-      stat(0, 'MARGIN', n.targetMarginPct.value / 100, n.targetMarginPct.shown, t40);
-      stat(1, 'DIVIDE BY', n.divisor.value, n.divisor.shown, tSix);
-      stat(2, 'PRICE', 1, n.targetPrice.shown, tRes);
-      /* the formula, small, in the belt's own corner once the card has gone */
-      if (T >= tOff + 0.25) { k.slam('Price = cost', 84, 612, tOff + 0.25, {size: 39, color: GOLD, from: 0.4}); k.slam('/ (1 - margin)', 84, 660, tOff + 0.35, {size: 39, color: GOLD, from: 0.4}); }
-      /* the plate under the belt: the part people skip, then the worked example and its check */
-      plate(d, 14, 274, 332, 50);
-      if (T < tShot) { k.chip('The part people skip', 66, 844, {size: 30}); k.slam('NEW ITEM!', 930, 852, wordT(k, 'formula', /^skip/i, 0.8), {size: 39, color: GOLD, align: 'right', from: 0.5}); }
-      else if (T >= tOff) {
-        if (T < tDiv) k.slam(`Want ${n.targetMarginPct.shown} margin?`, 72, 834, tForty, {size: 66, color: CREAM, from: 0.5, drop: INK});
-        else {
-          const lhs = `${n.cost.shown} / ${n.divisor.shown} =`;
-          k.slam(lhs, 72, 834, tDiv, {size: 66, color: CREAM, from: 0.5, drop: INK});
-          /* the price lands whole on "sixteen": no count-up through odd cents */
-          if (T >= tRes) { k.slam(n.targetPrice.shown, 72 + k.measure(lhs, {size: 66}) + 24, 834, tRes, {size: 66, color: 'accent', from: 0.5, drop: INK}); k.burst(760, 870, tRes + 0.2, {n: 18, r: 220}); }
-          if (T >= tChk) k.slam(`Check: ${n.targetMarginUsd.shown} / ${n.targetPrice.shown} = ${n.targetCheck.shown}`, 72, 912, tChk, {size: 30, color: SAND, from: 0.4});
-        }
-      }
-      /* the item card: rises from behind the dash on "Screenshot this", holds the formula big, then sinks away */
-      if (T >= tShot && T < tOff + 0.5) {
-        const up = d.ease(tShot, 8, 180), down = T >= tOff ? Math.round(190 * eo(d.fr(tOff) / 10)) : 0, Y = 148 + up + down, settled = up === 0 && down === 0;
-        d.clip(0, 0, 360, 326, () => {
-          d.win(14, Y, 332, 176, {base: '#1B1420', hi: '#7A3442', lo: INK, rule: '#F2A541'});
-          k.ctx.save(); k.ctx.translate(0, (Y - 148) * 3);
-          k.chip('Screenshot this', 66, 462, {size: 30, fill: 'accent', color: INK});
-          /* the formula as one group, centred between x 100 and 940 (its text ends by x 930): Price =, a gap, the bar */
-          const te = Math.min(tEq, tShot + 0.3), a = (t) => (T >= t ? 1 : 0), L = {lint: settled};
-          const wP = k.measure('Price =', {size: 132}), wM = k.measure('1 - margin', {size: 132}), bw = Math.round((wM + 24) / 3) * 3;
-          const fx = Math.max(102, Math.round((520 - (wP + 24 + bw) / 2) / 3) * 3), bx = Math.round((fx + wP + 24) / 3) * 3, fc = bx + bw / 2;
-          if (a(te)) k.text('Price =', fx, 616, Object.assign({size: 132, color: CREAM, drop: INK}, L));
-          if (a(te + 0.2)) k.text('Cost', fc, 530, Object.assign({size: 132, color: CREAM, align: 'center', drop: INK}, L));
-          k.sweep(bx, 676, bw, 12, te + 0.35, {color: GOLD});
-          if (a(te + 0.5)) k.text('1 - margin', fc, 700, Object.assign({size: 132, color: 'accent', align: 'center', drop: INK}, L));
-          if (a(te + 0.5)) k.text('Price = Cost / (1 - margin)', 66, 880, Object.assign({size: 30, color: SAND}, L));
-          k.ctx.restore();
-          if (T >= tMinus) d.ringOn(Math.round(bx / 3) - 2, 228 + (Y - 148), Math.round(bw / 3) + 4, 54, tMinus, GOLD, 2);
-          if (settled) k.burst(684, 690, te + 0.55, {n: 14, r: 220, colors: ['paper', 'accent2']});
-        });
-      }
-      return host(k, k.live('formula.shot') || k.live('formula.minus') ? 'point' : null);
-    },
-
-    /* ---- close: the register asks. One column in a game window, one left edge (x 120); the till rings each line and */
-    /* its display asks about your last quote */
-    close: (k, T) => {
-      const n = k.data.numbers, d = px(k), t0 = k.S('close'), tRule2 = wordT(k, 'close', /^Margin/i, 2), send = k.S('close.send'), you = k.S('close.you');
-      const last = k.S('close.last'), echo = k.S('close.echo'), tHalf = wordT(k, 'close.echo', /^half/i, 0.5), tThird = wordT(k, 'close.echo', /^third/i, 1.6);
-      k.sets.register({items: [], displayLabel: 'LAST QUOTE'});   /* its $0 readout is painted out by displayText below */
-      /* the till rings each line: the red $ flag pops up over the display and drops back, as it does for an item */
-      const ring = [t0 + 0.1, tRule2, send, last, tHalf, tThird].filter((at) => T >= at).pop();
+    /* ---- button: the register asks again. One column, one left edge (x 72): the job, then the rule in two lines */
+    button: (k, T) => {
+      const n = k.data.numbers, d = px(k), t0 = k.S('button'), tQuote = wordT(k, 'button', /^quote$/i, 1.4), tNot = k.S('button.not');
+      k.sets.register({items: [], displayLabel: 'NEXT QUOTE'});
+      const ring = [t0 + 0.1, tQuote, tNot].filter((at) => T >= at).pop();
       if (ring != null && d.fr(ring) < 12) { const fy = [10, 6, 3, 1, 0, 0, 0, 0, 0, 1, 4, 8][d.fr(ring)]; d.P(DPX + 84, DPY - 18 + fy, 18, 16, INK); d.P(DPX + 85, DPY - 17 + fy, 16, 14, RED); d.tx('$', DPX + 93, DPY - 16 + fy, {color: CREAM, align: 'center', lint: false}); }
-      /* the display: the question, then the two answers it could be */
-      const blink = Math.floor((T - t0) * 2) % 2;
-      if (T >= tThird) displayText(k, '1/3?', GOLD); else if (T >= tHalf) displayText(k, '1/2?', CREAM); else displayText(k, '?', blink ? GOLD : TEAL);
-      /* the column: a short plate (y 594 to 852) that leaves the display and the drawer in view; the two rules at the
-         hook's headline size, so one left edge at x 72 keeps the longer rule inside x 930 */
-      const open = d.ease(t0 + 0.1, 8, 120), grow = T < tRule2 ? 48 : 86 - d.ease(tRule2, 6, 38);   /* one line's plate, then it grows for the second rule */
-      d.clip(0, 0, 360, 326, () => d.win(14, 198 + open, 332, grow, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#7A3442'}));
+      displayText(k, '?', Math.floor((T - t0) * 2) % 2 ? GOLD : TEAL);
+      const open = d.ease(t0 + 0.1, 8, 120);
+      d.clip(0, 0, 360, 326, () => d.win(14, 198 + open, 332, 92, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#7A3442'}));
       if (open === 0) {
-        if (T < send) {
-          k.slam('Markup is on cost.', 72, 602, t0 + 0.3, {size: 132, color: CREAM, from: 0.3, drop: INK});
-          if (T >= tRule2) k.slam('Margin is on price.', 72, 716, tRule2, {size: 132, color: 'accent', from: 0.3, drop: INK});
-        } else if (T < last) {
-          k.slam('Margin is on price.', 72, 602, send - 0.05, {size: 132, color: 'accent', from: 0.2, drop: INK});
-          k.slam('Send this to whoever', 72, 736, send + 0.1, {size: 39, color: CREAM, from: 0.4});
-          k.slam('sets your prices.', 72, 782, send + 0.25, {size: 39, color: CREAM, from: 0.4});
-          if (T >= you) k.sweep(68, 824, k.measure('sets your prices.', {size: 39}) + 8, 6, you, {color: 'accent2'});
-        } else {
-          k.slam('Your last quote?', 72, 600, last, {size: 66, color: CREAM, from: 0.5, drop: INK});
-          if (T >= echo) k.slam('Half, or a third?', 72, 666, echo, {size: 66, color: GOLD, from: 0.5, drop: INK});
-          k.chip('ProofNotFluff', 72, 738, {size: 30});
-          k.text('Send this to whoever sets your prices.', 72, 798, {size: 30, color: SAND});
-        }
+        k.slam(`${n.cost.shown} job?`, 72, 612, t0 + 0.3, {size: 66, color: CREAM, from: 0.4, drop: INK});
+        if (T >= tQuote) k.slam('Quote from the margin.', 72, 694, tQuote, {size: 66, color: 'accent', from: 0.4, drop: INK});
+        if (T >= tNot) { k.slam('Not the markup.', 72, 776, tNot, {size: 66, color: GOLD, from: 0.4, drop: INK}); k.sweep(72, 848, k.measure('Not the markup.', {size: 66}), 6, tNot + 0.3, {color: 'accent'}); }
       }
-      return host(k, T >= echo + 1.2 ? 'wave' : (k.live('close.you') ? 'point' : null));
+      return host(k, T >= tNot + 0.6 ? 'wave' : (k.live('button') ? 'point' : null));
     },
   },
 };

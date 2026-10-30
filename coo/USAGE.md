@@ -10,7 +10,7 @@ Todd's ask, live chat, Oct 30, 8:29 am: "audit the existing system and determine
 1. tools/check_repo.py: the video check now counts a missing brotli as a missing tool, so tools/setup_cloud.sh runs by itself. Before: a fresh run without brotli got "ERROR video" and had to debug before it could push. After: full check 0 errors in a fresh container.
 2. tools/kimi_wait.py and kimi-jobs step 3: one command waits for Kimi answers. Before: one git pull per tool call, up to 15 calls per job, each carrying the whole run's context.
 
-## Findings that need Todd (open)
+## Findings and Todd's answers
 - A1. API lister: 14 runs a week; every recent note reads "Nothing cleared on the shelf" (Oct 30, 7:50 am). The Etsy builders stopped Oct 17 (scoreboard: factory, builder, R&D last ran Oct 17). It wakes one long-lived session, which grows each time. Constitution 5 keeps it Todd's call.
 - A2. Trades news daily: 3 runs Oct 28 to 30, 1 publish (Oct 29, 2 added). Each run starts 5 or more helper agents. Mon, Wed, Fri with the 3-day lookback misses nothing.
 - A3. Product builder Tue to Fri: last note "blocked", nothing built (Oct 29); step 3 cities stay parked until 3 pest seats sell (HANDOFF).
@@ -22,3 +22,9 @@ Todd's ask, live chat, Oct 30, 8:29 am: "audit the existing system and determine
 - Question pages daily: 90 of 101 inspected pages are indexed (Oct 30), search visits 0 but most pages are under 2 weeks old; judge at the Nov 7 reading.
 - Chief of Staff twice a day: outreach restarted Oct 29, so replies can arrive now.
 - Outlandia tasks and the app's own check-ins: not PNF, untouched (Constitution 5).
+
+## Todd's answers, Oct 30, 8:58 am
+- [stated] Picked in chat: "Pause Etsy API lister", "Trades news Mon/Wed/Fri", "Product builder Tue only". Not picked: video build cap at 5 (builds stay daily).
+- [stated] On A4: "I'll leave Chrome open" (7:46 am posting stays; Todd keeps the PC awake with Chrome and the Claude extension on).
+- Done: trades news Mon, Wed, Fri 6:32 am; product builder Tuesdays 11:10 am. Saves 7 runs a week.
+- Open: the API lister lives in another thread, so update_trigger can't reach it (not found). Todd pauses it there or in its settings (14 runs a week). A5 connectors are Todd's (task settings).

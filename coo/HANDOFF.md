@@ -11,7 +11,7 @@
 - Pest seat live Oct 24 (3 seats, launches/chicago-pest-seat.md). Outreach on, Legal subject (Oct 24); batches go to Todd; role inboxes allowed (pest_role_inbox); 12 sendable after Bouncer (todo pest-owners-100).
 - Credits plan (DECISIONS-2026-10-25): burst Nov 2. Area seats live Oct 26, 6 open.
 - Oct 26 pm: TRAFFIC FIRST; no builder outreach. Kimi R8 kept.
-- Oct 27: trade owners only; free plan waits (DECISIONS-2026-10-27). Trades News (daily 6:32), maps, templates live. R10: 11 free data pages and redesign live (/chicago-data/, site/datahub.json); inspections by area, Quarterly open (W).
+- Oct 27: trade owners only; free plan waits (DECISIONS-2026-10-27). Trades News (Mon, Wed, Fri 6:32), maps, templates live. R10: 11 free data pages and redesign live (/chicago-data/, site/datahub.json); inspections by area, Quarterly open (W).
 - Oct 30: AI lane (11-08 to 11-10) queued; 5 older lessons re-pinned on new tunes; variety checks tune.
 - Oct 25: Chief of Staff live (DECISIONS-2026-10-25): sweep (PC, sole reply-status writer), brief, Sun review.
-- Oct 30 usage audit: coo/USAGE.md (Kimi waits: tools/kimi_wait.py). Next: Todd's answers to A1 to A6.
+- Oct 30 usage audit: coo/USAGE.md; builder Tue only. Next: Todd pauses API lister, strips unused connectors.

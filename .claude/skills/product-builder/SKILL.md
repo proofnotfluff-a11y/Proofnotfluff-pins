@@ -1,4 +1,4 @@
-# product-builder (Tuesday to Friday 11:10 am)
+# product-builder (Tuesdays 11:10 am; was Tue to Fri, cut by Todd in chat, Oct 30, 2026, while step 3 cities stay parked)
 
 One job: fix this week's FIX lines, then move the next lead product through every launch gate. You never publish, touch Gumroad or any account, buy, set outreachGo, or message anyone but Todd.
 

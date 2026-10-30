@@ -52,7 +52,7 @@ A faceless brand selling money tools to small operators. Three shelves: $2.99 Et
 
 ## 4. Agents and how they hand off
 
-Cloud (Opus 5.5 unless noted): trades news 6:32 am daily (agents/trades-news.md, Oct 27), COO 5:00 am (runs everything below; Monday deep run with the Gemini red team), CMO 5:20 am, rule desk 6:32 am (Haiku), morning promote 7:05 am, Legal desk 7:35 am plus builder hand-offs, cloud builder 10:10 am, 3:10 pm, 10:10 pm, afternoon promote 4:10 pm, optimizer 9:10 pm, capability scout Sun and Wed 8:40 pm. Paused to Nov 1: edition desk, redesign desk. Todd's PC: factory 8:20 am, 1:20 pm, 6:20 pm, shop run 6:50 am (the only run with Chrome for Etsy), R&D lab 11:40 am, 4:40 pm. Todd's own environment: API lister (the Etsy key lives only there).
+Cloud (Opus 5.5 unless noted): trades news 6:32 am Mon, Wed, Fri (agents/trades-news.md, Oct 27; cut Oct 30), COO 5:00 am (runs everything below; Monday deep run with the Gemini red team), CMO 5:20 am, rule desk 6:32 am (Haiku), morning promote 7:05 am, Legal desk 7:35 am plus builder hand-offs, cloud builder 10:10 am, 3:10 pm, 10:10 pm, afternoon promote 4:10 pm, optimizer 9:10 pm, capability scout Sun and Wed 8:40 pm. Paused to Nov 1: edition desk, redesign desk. Todd's PC: factory 8:20 am, 1:20 pm, 6:20 pm, shop run 6:50 am (the only run with Chrome for Etsy), R&D lab 11:40 am, 4:40 pm. Todd's own environment: API lister (the Etsy key lives only there).
 
 Hand-offs, never polling: the builder packs, then fires the Legal desk once; the Legal desk clears, then fires the API lister once. Nothing fires itself.
 

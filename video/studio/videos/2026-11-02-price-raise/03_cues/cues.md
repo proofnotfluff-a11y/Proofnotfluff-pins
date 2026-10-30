@@ -12,7 +12,7 @@ A "?" cloud pops in the map's lower right: YOUR SHOP? Snow drops back to his sma
 ## hook.note "Here's the note that" [sfx: pop]
 About 0.15 s before "Here's" (the on-screen hook holds under 4.0 s) the panel clears to the one headline, centered in it: "The note that tells" / "your customers." with an accent line under it. The 83% stays on the map. Snow points.
 
-## stakes "That's from Jobber's survey" [sfx: whoosh]
+## stakes "Jobber surveyed home service" [sfx: whoosh]
 World: the weather map again (dissolve), titled PRICE REPORT. The panel: "Who raised prices last year?" with the source under it (Jobber, 1,050 home service owners, Dec 2025).
 ## stakes.hvac "Eighty-three percent of HVAC" [sfx: tick]
 "83%" slams into the panel (count from 85% of it): "of HVAC companies did." A second warm front starts; the HVAC sun pings.
@@ -29,8 +29,8 @@ LABOR 50% prints; the display shows 50%.
 The receipt prints its second source line, BLS PAY DATA. The drawer slides out; coins drop into it (only between the till and the drawer) to the end of the take. The plate: "Federal pay data" / "BLS, 12 months to June 2026" (heading size over the small source).
 ## why.repair "Install and repair pay" [sfx: tick]
 REPAIR PAY +3.7% prints under BLS PAY DATA on "three point seven"; the display label flips to PAY and shows +3.7%.
-## why.crew "So your crew's pay" [sfx: blip]
-The display reads REPAIR PAY +3.7%; the plate: "Crew pay beat all pay". On "three point two" ALL PAY +3.2% prints under it, then a gold line under REPAIR PAY. It holds to the end of the take, coins still landing.
+## why.crew "That beat the three" [sfx: blip]
+The display reads REPAIR PAY +3.7%; the plate: "Repair pay beat all pay". On "three point two" ALL PAY +3.2% prints under it, then a gold line under REPAIR PAY. It holds to the end of the take, coins still landing.
 
 ## note "So send this before" [sfx: whoosh]
 World: the boss fight (iris), not used in the two lessons before or after: a dusk arena, the objection PRICE PUSHBACK as the boss with its HP bar. Over its menu, our move window tagged YOUR PRICE NOTE (EXAMPLE): three numbered rows showing empty, a gold cursor on the next. The dialog box is off while the note is said (the window carries it). No damage numbers, no defeat.

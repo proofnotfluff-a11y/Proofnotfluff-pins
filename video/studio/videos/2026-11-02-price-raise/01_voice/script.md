@@ -2,9 +2,9 @@
 
 [leaning in] Most trades raised their prices last year. Did you? Here's the note that tells your customers.
 
-[matter-of-fact] That's from Jobber's survey of home service owners. Eighty-three percent of HVAC companies did. If you're in plumbing, electrical or roofing, it was seventy-four percent.
+[matter-of-fact] Jobber surveyed home service owners. Eighty-three percent of HVAC companies raised theirs. If you're in plumbing, electrical or roofing, it was seventy-four percent.
 
-[curious] Why? Seventy-two percent named inflation, and half named labor. That's backed up by federal data. Install and repair pay rose three point seven percent in the year to June. So your crew's pay beat the three point two for all workers.
+[curious] Why? Seventy-two percent named inflation, and half named labor. That's backed up by federal data. Install and repair pay rose three point seven percent in the year to June. That beat the three point two for all workers.
 
 [warmly] So send this before your next quote. "Starting the first of next month, our rates go up. Our labor and material costs rose this year. Anything you've already approved stays at the price we quoted."
 

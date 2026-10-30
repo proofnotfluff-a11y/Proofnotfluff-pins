@@ -264,7 +264,7 @@ window.SCENE = {
       /* the display: right edge at x 918 (inside the 930 safe edge), no cursor */
       const val = crew ? n.repair.shown : (cur ? cur.show : '--'), size = d.tw(val, 66) <= 76 ? 66 : 39;
       d.tx(val, 306, 152 - (size >= 52 ? 11 : 6), {size, color: TEAL, align: 'right'});
-      /* once ALL PAY has printed (after "your crew's pay"): a gold line under REPAIR PAY (the receipt holds 6 lines by
+      /* once ALL PAY has printed (after "That beat the three"): a gold line under REPAIR PAY (the receipt holds 6 lines by
          then, top at y 136) */
       const tLine = tAll + 0.3;
       if (T >= tLine) d.P(56, 136 + 6 + 4 * 18 + 15, Math.min(128, Math.round(128 * eo(d.fr(tLine) / 8))), 2, ORANGE);
@@ -285,7 +285,7 @@ window.SCENE = {
         k.slam('Why they raised prices', 66, 268, t0 + 0.2, {size: 66, color: CREAM, from: 0.4, drop: INK});
         k.text('Jobber survey, reasons named', 66, 338, {size: 30, color: SAND});
       } else {
-        if (crew) k.slam('Crew pay beat all pay', 66, 268, tCrew, {size: 66, color: GOLD, from: 0.4, drop: INK});
+        if (crew) k.slam('Repair pay beat all pay', 66, 268, tCrew, {size: 66, color: GOLD, from: 0.4, drop: INK});
         else k.slam('Federal pay data', 66, 268, tFed, {size: 66, color: GOLD, from: 0.4, drop: INK});
         k.text(`BLS, ${n.months.shown} months to June 2026`, 66, 338, {size: 30, color: SAND});
       }

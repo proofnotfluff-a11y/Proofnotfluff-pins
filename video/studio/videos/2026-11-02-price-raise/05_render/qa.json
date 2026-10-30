@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-02-price-raise",
- "mp4Sha256": "c310e458cf0af6e183314761a4afc9dff8624b04a1ccfaac48ee4be9229d7828",
+ "mp4Sha256": "26b39a8130cbe07ff9c51cb973269c0660938d84f562c6bc6ab868864a614c26",
  "checks": [
   {
    "name": "length",
@@ -13,10 +13,10 @@
    "name": "loudness",
    "value": {
     "lufs": -14.2,
-    "truePeak": -2.9
+    "truePeak": -3.3
    },
    "pass": true,
-   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -2.9 dBTP (at most -1.5)"
+   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -3.3 dBTP (at most -1.5)"
   },
   {
    "name": "black",
@@ -33,11 +33,11 @@
   {
    "name": "file",
    "value": {
-    "sha256": "c310e458cf0af6e183314761a4afc9dff8624b04a1ccfaac48ee4be9229d7828",
-    "bytes": 7315615
+    "sha256": "26b39a8130cbe07ff9c51cb973269c0660938d84f562c6bc6ab868864a614c26",
+    "bytes": 7518124
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 7.3 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 7.5 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -47,5 +47,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-29T14:19:22-05:00"
+ "at": "2026-10-29T22:28:04-05:00"
 }

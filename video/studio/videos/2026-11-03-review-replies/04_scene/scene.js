@@ -85,7 +85,7 @@ const chat = (k, o) => mute(k, (s, x, y, t) => y < 390 && !(x === 408 && y === 3
 const exampleTag = (k) => { const d = px(k); d.P(8, 196, 60, 17, INK); d.P(9, 197, 58, 15, RED); d.tx('EXAMPLE', 38, 198, {color: CREAM, align: 'center'}); };
 
 // ================================================================================================================
-// the review close-up (hook, "one-star" to "Here's"): the cut in on the phone. Its screen fills the frame; the hook rides on
+// the review close-up (hook, "one-star" to "Your move"): the cut in on the phone. Its screen fills the frame; the hook rides on
 // the app's header plate; the example review sits big under it, one star lit of five (pulsing on "review"), tagged EXAMPLE.
 const STAR = ['....#....', '...###...', '...###...', '#########', '.#######.', '..#####..', '..##.##..', '.##...##.', '##.....##'];
 const star = (d, x, y, c, s = 2) => STAR.forEach((r, j) => { for (let i = 0; i < r.length; i++) if (r[i] === '#') d.P(x + i * s, y + j * s, s, s, c); });
@@ -98,7 +98,7 @@ const closeUp = (k, o) => {
   for (let y = 136; y < 316; y += 10) for (let x = 16 + ((y / 10) % 2) * 5; x < 346; x += 10) d.P(x, y, 1, 1, '#E6D3BC');
   // the header plate: the hook, held from the cover
   P(14, 76, 332, 46, '#2F6F67'); P(14, 122, 332, 1, '#245752');
-  k.text(`Got a ${n.one.shown}-star review?`, 66, 270, {size: 66, color: CREAM, drop: '#245752'});
+  k.text(`New ${n.one.shown}-star review.`, 66, 270, {size: 66, color: CREAM, drop: '#245752'});
   // the review card: five stars, one lit; the example review in big type; the EXAMPLE tag
   P(27, 139, 308, 112, '#E6D3BC'); P(26, 136, 308, 112, '#FFF7EA'); P(26, 136, 308, 1, '#FFFFFF');
   const pulse = o.pulseAt != null && fr(o.pulseAt) >= 0 && fr(o.pulseAt) < 18 && Math.floor(fr(o.pulseAt) / 3) % 2 === 0;
@@ -140,7 +140,7 @@ window.SCENE = {
   sections: {
     // ---- hook: three shots (IMPROVE 00a: the picture changes by 1 s and twice by 3 s, Snow on by 3 s). The cover: the phone
     // in the truck, the hook card on its screen, settled on frame 0, no host or dialog. Cut in on "one-star" to the review
-    // close-up (Snow and the dialog on). Cut back out on "Here's" to the truck; the card turns to the 43% on "Forty-three".
+    // close-up (Snow and the dialog on). Cut back out on "Your move" to the truck; the card turns to the 43% on "Forty-three".
     hook: (k, T) => {
       const n = k.data.numbers, t43 = wordT(k, 'hook.43', /^forty/i, 1.0), tStat = Math.min(4.0, k.S('hook.43')); /* clamp: the on-screen hook holds 2.5 to 4.0 s, then clears */
       const tIn = Math.min(0.8, Math.max(0.5, wordT(k, 'hook', /^one-star/i, 0.5))), tRev = wordT(k, 'hook', /^review/i, tIn + 0.3);
@@ -151,11 +151,12 @@ window.SCENE = {
       k.sets.chat({who: 'REVIEWS', clock: '7:42', msgs: [], notify: T >= tStat ? {text: 'New review', at: tStat, dur: Math.max(1.6, t43 + 1.0 - tStat)} : null});
       // the card on the screen (frame x 306..870, y 390..888): light wallpaper, dark words
       if (T < tStat) {
-        k.text('Got a', 324, 404, {size: 66, color: PLUM});
-        k.text(`${n.one.shown}-star`, 324, 474, {size: 132, color: 'accent'});
-        k.text('review?', 324, 618, {size: 66, color: PLUM});
-        k.text('Copy this reply.', 324, 700, {size: 66, color: PLUM});
-        if (T >= tOut) k.sweep(324, 770, k.measure('Copy this reply.', {size: 66}), 6, tOut + 0.1, {color: 'accent'});
+        /* the on-screen hook (Oct 29, 10:10 pm rebuild, your-move): "1-star review just landed. Your move." (6 words) */
+        k.text(`${n.one.shown}-star`, 324, 404, {size: 132, color: 'accent'});
+        k.text('review just', 324, 548, {size: 66, color: PLUM});
+        k.text('landed.', 324, 618, {size: 66, color: PLUM});
+        k.text('Your move.', 324, 700, {size: 66, color: PLUM});
+        if (T >= tOut) k.sweep(324, 770, k.measure('Your move.', {size: 66}), 6, tOut + 0.1, {color: 'accent'});
         k.chip('Reviews Clinic', 324, 800, {size: 30});
       } else {
         /* the sparks fire once on "Forty-three" (about 0.6 s), around the 43% only: drawn first so every glyph sits on top,

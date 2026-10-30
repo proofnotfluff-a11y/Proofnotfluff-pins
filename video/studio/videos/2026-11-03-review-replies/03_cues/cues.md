@@ -5,10 +5,10 @@ table (gap, turn). No stock room in any section; each top-level cue names its wo
 
 music: rooms chase
 
-## hook "Got a one-star review?" [sfx: pop]
-World: the chat in the truck. Three shots (IMPROVE 00a). Frame 0, the cover, settled: the phone in its dash mount, header REVIEWS, and on its screen the hook card: "Got a 1-star review?" / "Copy this reply." (the on-screen hook, 7 words), the REVIEWS CLINIC chip under it. The road rushes in the windshield, the air freshener swings. Host and dialog hidden. Cut in on "one-star" (by 0.8 s) to the close-up: the phone's screen fills the frame, the hook on the app's header plate, and the example review big: one star lit of five, "The tech showed up late.", tagged EXAMPLE; the lit star pulses as "review" is said. Snow and the dialog box come on with the cut and stay.
-## hook.copy "Here's your reply to" [sfx: whoosh]
-Cut back out (before 2.6 s) to the truck: the card on the screen holds the hook; "Copy this reply." gets an accent sweep and typing dots show under it. Snow points at the phone.
+## hook "A one-star review just" [sfx: pop]
+World: the chat in the truck. Three shots (IMPROVE 00a). Frame 0, the cover, settled: the phone in its dash mount, header REVIEWS, and on its screen the hook card: "1-star" / "review just" / "landed." / "Your move." (the on-screen hook, 6 words), the REVIEWS CLINIC chip under it. The road rushes in the windshield, the air freshener swings. Host and dialog hidden. Cut in on "one-star" (by 0.8 s) to the close-up: the phone's screen fills the frame, and the example review big: one star lit of five, "The tech showed up late.", tagged EXAMPLE; the lit star pulses as "review" is said. The header plate reads "New 1-star review."; the reply box under the review holds "Copy this reply." Snow and the dialog box come on with the cut and stay.
+## hook.copy "Your move, copy this." [sfx: whoosh]
+Cut back out (before 2.6 s) to the truck: the card on the screen holds the hook; "Your move." gets an accent sweep and typing dots show under it. Snow points at the phone.
 ## hook.43 "Forty-three percent of contractors" [sfx: tick]
 The card turns to the number: "43%" in the accent, "of contractors" / "don't answer" / "reviews". A "New review" notification drops in over the phone's top and goes back up; sparks on the 43%.
 ## hook.survey "in one HVAC survey" [sfx: tick]

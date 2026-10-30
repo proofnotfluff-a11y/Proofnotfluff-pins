@@ -6,31 +6,31 @@
   "level": 0.16,
   "tune": "chase"
  },
- "duration": 74.959,
+ "duration": 76.161,
  "cues": [
   {
    "id": "hook",
    "level": 0,
-   "quote": "Got a one-star review?",
+   "quote": "A one-star review just",
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "World: the chat in the truck. Three shots (IMPROVE 00a). Frame 0, the cover, settled: the phone in its dash mount, header REVIEWS, and on its screen the hook card: \"Got a 1-star review?\" / \"Copy this reply.\" (the on-screen hook, 7 words), the REVIEWS CLINIC chip under it. The road rushes in the windshield, the air freshener swings. Host and dialog hidden. Cut in on \"one-star\" (by 0.8 s) to the close-up: the phone's screen fills the frame, the hook on the app's header plate, and the example review big: one star lit of five, \"The tech showed up late.\", tagged EXAMPLE; the lit star pulses as \"review\" is said. Snow and the dialog box come on with the cut and stay.",
+   "text": "World: the chat in the truck. Three shots (IMPROVE 00a). Frame 0, the cover, settled: the phone in its dash mount, header REVIEWS, and on its screen the hook card: \"1-star\" / \"review just\" / \"landed.\" / \"Your move.\" (the on-screen hook, 6 words), the REVIEWS CLINIC chip under it. The road rushes in the windshield, the air freshener swings. Host and dialog hidden. Cut in on \"one-star\" (by 0.8 s) to the close-up: the phone's screen fills the frame, and the example review big: one star lit of five, \"The tech showed up late.\", tagged EXAMPLE; the lit star pulses as \"review\" is said. The header plate reads \"New 1-star review.\"; the reply box under the review holds \"Copy this reply.\" Snow and the dialog box come on with the cut and stay.",
    "t": 0.0,
    "word": 0,
-   "end": 9.959
+   "end": 11.161
   },
   {
    "id": "hook.copy",
    "level": 1,
-   "quote": "Here's your reply to",
+   "quote": "Your move. Copy this.",
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "Cut back out (before 2.6 s) to the truck: the card on the screen holds the hook; \"Copy this reply.\" gets an accent sweep and typing dots show under it. Snow points at the phone.",
-   "t": 1.84,
-   "word": 4,
-   "end": 3.68
+   "text": "Cut back out (before 2.6 s) to the truck: the card on the screen holds the hook; \"Your move.\" gets an accent sweep and typing dots show under it. Snow points at the phone.",
+   "t": 2.48,
+   "word": 5,
+   "end": 4.84
   },
   {
    "id": "hook.43",
@@ -40,9 +40,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The card turns to the number: \"43%\" in the accent, \"of contractors\" / \"don't answer\" / \"reviews\". A \"New review\" notification drops in over the phone's top and goes back up; sparks on the 43%.",
-   "t": 3.68,
+   "t": 4.84,
    "word": 9,
-   "end": 5.22
+   "end": 6.34
   },
   {
    "id": "hook.survey",
@@ -52,9 +52,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The source line types in under the card: ACHR News survey, 2024.",
-   "t": 5.22,
+   "t": 6.34,
    "word": 13,
-   "end": 8.4
+   "end": 9.62
   },
   {
    "id": "hook.sites",
@@ -64,9 +64,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The scope lands in the accent under it: \"on third-party sites\".",
-   "t": 8.4,
+   "t": 9.62,
    "word": 22,
-   "end": 9.959
+   "end": 11.161
   },
   {
    "id": "stakes",
@@ -76,9 +76,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "World: the slot machine (level select). The crown reads ACHR NEWS + CLEAR SEAS; the reels idle on ?, ?, ?.",
-   "t": 9.959,
+   "t": 11.161,
    "word": 25,
-   "end": 22.87
+   "end": 24.072
   },
   {
    "id": "stakes.pull",
@@ -88,9 +88,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The lever pulls in 3 steps; the reels spin and stop left to right on 9, 1, % as \"ninety-one percent\" is said. The crown flips to SAY REVIEWS MATTER; bulbs chase, coins jump in the tray.",
-   "t": 12.179,
+   "t": 13.381,
    "word": 29,
-   "end": 13.379
+   "end": 14.581
   },
   {
    "id": "stakes.asked",
@@ -100,9 +100,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The plate under the reels types: \"400 homeowners, 2024\"; the bulbs chase faster.",
-   "t": 13.379,
+   "t": 14.581,
    "word": 33,
-   "end": 16.359
+   "end": 17.561
   },
   {
    "id": "stakes.hvac",
@@ -112,9 +112,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The plate: \"when they pick an HVAC contractor\".",
-   "t": 16.359,
+   "t": 17.561,
    "word": 42,
-   "end": 18.899
+   "end": 20.101
   },
   {
    "id": "stakes.google",
@@ -124,9 +124,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A second pull: the reels stop on 5, 6, %; the crown: LOOK ON GOOGLE.",
-   "t": 18.899,
+   "t": 20.101,
    "word": 48,
-   "end": 22.87
+   "end": 24.072
   },
   {
    "id": "gap",
@@ -136,9 +136,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "World: the arcade high-score table (dissolve). Title DO CONTRACTORS ANSWER? The line under the rows: \"Reviews on third-party sites\". Row NO slides in first, 43% (said in the hook), the blinking row with the cursor.",
-   "t": 22.87,
+   "t": 24.072,
    "word": 59,
-   "end": 27.709
+   "end": 28.911
   },
   {
    "id": "gap.yes",
@@ -148,9 +148,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row YES slides in, counting to 45%; Snow points at it.",
-   "t": 25.63,
+   "t": 26.812,
    "word": 69,
-   "end": 26.65
+   "end": 27.852
   },
   {
    "id": "gap.dk",
@@ -160,9 +160,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row DON'T KNOW, 13% (on screen only). The source line: ACHR News survey, 2024.",
-   "t": 26.65,
+   "t": 27.852,
    "word": 72,
-   "end": 27.709
+   "end": 28.911
   },
   {
    "id": "replies",
@@ -172,9 +172,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "World: the chat in the truck (iris). Header FIVE-STAR REPLY; an EXAMPLE tag on the pillar. The example review arrives: \"5 stars. Fixed our furnace fast.\"",
-   "t": 27.709,
+   "t": 28.911,
    "word": 74,
-   "end": 45.946
+   "end": 47.148
   },
   {
    "id": "replies.f1",
@@ -184,9 +184,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Our reply goes out a sentence at a time, each bubble on its first word: \"Thanks for trusting us with your furnace.\"",
-   "t": 29.769,
+   "t": 30.971,
    "word": 78,
-   "end": 31.989
+   "end": 33.191
   },
   {
    "id": "replies.f2",
@@ -196,9 +196,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Glad it's running right.\"",
-   "t": 31.989,
+   "t": 33.191,
    "word": 85,
-   "end": 33.369
+   "end": 34.571
   },
   {
    "id": "replies.f3",
@@ -208,9 +208,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"We're here when you need us.\" Read ticks light; the whole five-star thread holds 3 s or more, into the next take.",
-   "t": 33.369,
+   "t": 34.571,
    "word": 89,
-   "end": 35.5
+   "end": 36.702
   },
   {
    "id": "replies.one",
@@ -220,9 +220,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The five-star thread holds whole. A notification drops over it on \"one-star\": \"New review: 1 star\". On \"reply\" the header flips to ONE-STAR REPLY; the example review slides up: \"1 star. The tech showed up late.\"",
-   "t": 35.5,
+   "t": 36.702,
    "word": 95,
-   "end": 38.1
+   "end": 39.302
   },
   {
    "id": "replies.o1",
@@ -232,9 +232,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Sorry we were late. That's on us.\"",
-   "t": 38.1,
+   "t": 39.302,
    "word": 100,
-   "end": 40.52
+   "end": 41.742
   },
   {
    "id": "replies.o2",
@@ -244,9 +244,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"I want to make it right.\"",
-   "t": 40.52,
+   "t": 41.742,
    "word": 107,
-   "end": 42.02
+   "end": 43.222
   },
   {
    "id": "replies.o3",
@@ -256,9 +256,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"Call me directly at the shop.\" Read ticks light. The whole one-star thread stays on screen from \"Call\" through the turn line, into \"Answer your bad ones\" (about 3.8 s).",
-   "t": 42.02,
+   "t": 43.222,
    "word": 113,
-   "end": 43.866
+   "end": 45.068
   },
   {
    "id": "replies.skip",
@@ -268,9 +268,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The turn line, said over the finished one-star thread: a banner drops over the phone's top, \"The part people skip\", and holds; the thread stays whole under it.",
-   "t": 43.866,
+   "t": 45.068,
    "word": 119,
-   "end": 45.946
+   "end": 47.148
   },
   {
    "id": "turn",
@@ -280,9 +280,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "World: the high-score table again (blinds), title THE PART PEOPLE SKIP, every row dashed; under them \"Rules for every reply\" until row BAD ONES: ANSWER lands on \"bad\".",
-   "t": 45.946,
+   "t": 47.148,
    "word": 124,
-   "end": 53.59
+   "end": 54.792
   },
   {
    "id": "turn.short",
@@ -292,9 +292,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Rows LENGTH: SHORT and TONE: CALM land on \"short\" and \"calm\".",
-   "t": 47.886,
+   "t": 49.068,
    "word": 129,
-   "end": 49.586
+   "end": 50.788
   },
   {
    "id": "turn.offline",
@@ -304,9 +304,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row DETAILS: OFFLINE.",
-   "t": 49.586,
+   "t": 50.788,
    "word": 135,
-   "end": 51.546
+   "end": 52.748
   },
   {
    "id": "turn.never",
@@ -316,9 +316,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row ARGUING: NEVER, the blinking row; \"Never argue in public.\" stamps in under the rows.",
-   "t": 51.546,
+   "t": 52.748,
    "word": 139,
-   "end": 53.59
+   "end": 54.792
   },
   {
    "id": "caveat",
@@ -328,9 +328,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "World: the chat in the truck (dissolve). Header ONE HONEST NOTE; typing dots.",
-   "t": 53.59,
+   "t": 54.792,
    "word": 143,
-   "end": 65.639
+   "end": 66.841
   },
   {
    "id": "caveat.survey",
@@ -340,9 +340,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Incoming: \"The survey: reviews matter to homeowners.\"",
-   "t": 55.19,
+   "t": 56.412,
    "word": 146,
-   "end": 58.27
+   "end": 59.492
   },
   {
    "id": "caveat.prove",
@@ -352,9 +352,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Incoming: \"It doesn't prove a reply wins the job.\"",
-   "t": 58.27,
+   "t": 59.492,
    "word": 153,
-   "end": 61.09
+   "end": 62.272
   },
   {
    "id": "caveat.monday",
@@ -364,9 +364,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A reminder banner drops: \"Monday: reviews, 10 min\". Our reply: \"Every Monday. 10 minutes. Answer every new one.\" It holds to the end of the take.",
-   "t": 61.09,
+   "t": 62.272,
    "word": 161,
-   "end": 65.639
+   "end": 66.841
   },
   {
    "id": "close",
@@ -376,9 +376,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "World: the slot machine, a last pull (crown: ONE MORE PULL): the reels stop on Y, E, S; the crown: ANSWER EVERY REVIEW; the bulbs chase. A game window opens over the tray: \"Don't leave reviews hanging.\" in the accent.",
-   "t": 65.639,
+   "t": 66.841,
    "word": 174,
-   "end": 74.959
+   "end": 76.161
   },
   {
    "id": "close.send",
@@ -388,9 +388,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "ProofNotFluff chip and the send line: \"Send this to whoever runs your Google profile.\" One column, one left edge, host small at the side.",
-   "t": 67.619,
+   "t": 68.821,
    "word": 178,
-   "end": 69.819
+   "end": 71.021
   },
   {
    "id": "close.answer",
@@ -400,9 +400,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"The next 1-star gets a reply.\" lands in gold with an accent line sweeping under it; Snow waves.",
-   "t": 69.819,
+   "t": 71.021,
    "word": 186,
-   "end": 74.959
+   "end": 76.161
   }
  ]
 }

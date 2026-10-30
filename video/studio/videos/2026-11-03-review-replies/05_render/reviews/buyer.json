@@ -1,50 +1,20 @@
 {
  "gate": "buyer",
- "round": 1,
- "at": "2026-10-29T13:15:05-05:00",
- "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
+ "round": 0,
+ "at": "2026-10-29T23:12:33-05:00",
+ "build": "63989223",
  "pass": true,
  "score": {
   "stop": "yes",
   "send": "yes",
   "save": "yes",
-  "follow_or_link": "yes"
+  "follow_or_link": "no"
  },
  "reasons": [
-  "1. As an HVAC owner, here's what I take from it: homeowners lean on reviews and a lot of contractors don't answer them, so here's a five-star reply and a one-star reply to copy. Answer the bad ones short and calm, take the details offline, never argue in public, and block ten minutes every Monday.",
-  "2. Stop: yes. The 0.8 s frame is a phone close-up. It shows 'Got a 1-star review?', a 1-star card reading 'The tech showed up late.' with an EXAMPLE tag, and 'Copy this reply.' in the reply box. The voice says 'Got a one-star review? Here's your reply to copy.' Every owner has had that review, and the promise is concrete. The EXAMPLE tag now sits clear of the card's right edge, and the QWERTY keys read as a real phone.",
-  "3. Save: yes. Both replies are short enough to paste into Google, and the caption gives fill-in templates ([job], [fell short]). Send: yes. The close names who to send it to ('whoever runs your Google profile') and why ('so the next one-star gets a reply'). Follow or link: yes, as a soft check. The only ask is 'Free tools for trade owners: link in bio' in the caption, and the video makes no pitch.",
-  "4. No hype, fake urgency, pitch or AI slop. 'One honest note. The survey shows reviews matter to homeowners. It doesn't prove a reply wins the job.' (0:53.6 to 1:01.1) is what earns my trust. Adding 'your' and 'you' to the re-voiced lines ('And here's your one-star reply.', 'Answer your bad ones too.', 'answer every new one you get') makes it talk to me, not at me. The AI voice is disclosed (aiLabel true). Nothing here would make me scroll past.",
-  "4b. Earlier faults stay fixed. 'Don't be one' is gone, the 45/43/13 split carries '(rounded)', and the 43% is voiced as 'third-party sites'. The one-star reply 'Sorry we were late.' matches the late-tech review on the hook card.",
-  "5. Minor, not blocking: the hook promises a one-star reply, but it doesn't start until about 0:36 ('And here's your one-star reply.'). Before it come about 24 s of stats (0:03.7 to 0:27.7) and the five-star reply. Fix for a future cut: give the one-star reply first, or cut the stats to one line.",
-  "5b. Minor, not blocking: 'That's The ACHR News.' (0:10.0) is still clipped and means nothing to a stranger by voice alone. Fix: 'That's from The ACHR News, an HVAC trade paper.' The caption already explains it.",
-  "5c. Minor, not blocking: 'Ninety-one percent of the four hundred homeowners' (0:12.2) says 'the' as if those homeowners were already introduced, but the line before was about contractors. Fix: 'In the same survey, ninety-one percent of four hundred homeowners...'",
-  "5d. Minor, not blocking: 'So if you answer reviews on those sites, you're with the forty-five percent who do.' (0:22.9) lands flat and doesn't say why it matters. A tighter cut could drop it.",
-  "6. Trust: yes. It names the source and the sample size, the caption gives the date (Sept 2024) and the rounding, it admits the data's limit, and the replies sound like something a real shop owner would say."
- ],
- "prior": {
-  "gate": "buyer",
-  "round": 0,
-  "at": "2026-10-29T12:46:28-05:00",
-  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
-  "pass": true,
-  "score": {
-   "stop": "yes",
-   "send": "yes",
-   "save": "yes",
-   "follow_or_link": "yes"
-  },
-  "reasons": [
-   "1. As an HVAC owner, here's what it tells me: homeowners lean hard on reviews and a lot of contractors don't answer them, so here are a five-star reply and a one-star reply to copy. Answer the bad ones short and calm, take it offline, and spend ten minutes on reviews every Monday.",
-   "2. Stop: yes. The 0.8 s frame is a phone close-up with 'Got a 1-star review?', a 1-star card that says 'The tech showed up late.' and 'Copy this reply.' in the reply box. Every owner has had that review. The voice line 'Got a one-star review? Here's your reply to copy.' matches the screen and promises a concrete payoff, so it doesn't read as a tease.",
-   "3. Save: yes. Both replies are short enough to paste straight into Google, and the caption gives fill-in templates ([job], [fell short]). Send: yes. The close names a real person to send it to (whoever runs your Google profile) and gives a reason (so the next one-star gets a reply). Follow or link: yes, a soft check. The only ask is 'Free tools for trade owners: link in bio' in the caption, and there's no pitch in the video.",
-   "4. No hype, no fake urgency, no pitch, and it doesn't feel like AI slop. 'One honest note... It doesn't prove a reply wins the job' (0:52.8 to 1:00.1) is what earns my trust. The AI voice is disclosed (aiLabel true). Nothing here would make me scroll past.",
-   "4b. Earlier faults stay fixed. The preachy 'Don't be one' line is gone, and the close is now 'Don't leave reviews hanging.' (1:04.3). The caption's 45/43/13 split now carries '(rounded)'. The 43% is now voiced precisely as 'third-party sites'.",
-   "5. Minor, not blocking: the one-star reply the hook promises doesn't arrive until 0:37.5. Before it come about 24 s of stats (0:03.7 to 0:27.7) and then the five-star reply first. An impatient viewer could drop in that stretch. Fix for a future cut: give the one-star reply first, or cut the stats to one line before the replies.",
-   "5b. Minor, not blocking: 'That's The ACHR News.' (0:10.0) is clipped and means nothing to a stranger by voice alone. Fix: 'That's from The ACHR News, an HVAC trade paper.' (The caption already explains it.)",
-   "5c. Minor, not blocking: 'Ninety-one percent of the four hundred homeowners' (0:12.2) says 'the' as if those homeowners were already introduced, but the line before talked about contractors. Fix: 'In the same survey, ninety-one percent of four hundred homeowners...'",
-   "5d. Minor, not blocking: 'So if you answer reviews on those sites, you're with the forty-five percent who do.' (0:22.9) lands flat and doesn't tell me why it matters. Fine to keep, but a tighter cut could drop it.",
-   "6. Trust: yes. It names the source and the sample size, the caption gives the date (Sept 2024), it admits the data's limit, and the replies sound like something a real shop owner would say."
-  ]
- }
+  "what: answer every review, good and bad; two short replies to copy; one HVAC trade-paper survey behind it.",
+  "stop: yes. 0.8 s the 1-star card 'The tech showed up late.' tagged EXAMPLE with 'Copy this reply.'; voice 'A one-star review just landed.'",
+  "send: yes; save: yes (two replies, caption templates); follow or link: no, 'link in bio' too vague.",
+  "minor: 'Your move, copy this.' (1.6 s) a bit clipped; the promised reply arrives at 26.8 s; 'the four hundred homeowners' (11.3 s); 45% vs 43% line flat; 'That's The ACHR News' needs context by ear.",
+  "trust: yes; numbers match facts.json."
+ ]
 }

@@ -1,47 +1,26 @@
 {
  "gate": "design",
- "round": 1,
- "at": "2026-10-29T13:16:54-05:00",
- "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
- "pass": true,
+ "round": 0,
+ "at": "2026-10-29T23:13:01-05:00",
+ "build": "63989223",
+ "pass": false,
  "score": {
   "first": 5,
   "hierarchy": 5,
-  "type": 5,
-  "color": 5,
+  "type": 4,
+  "color": 4,
   "spacing": 5,
   "polish": 4,
   "trust": 5,
-  "average": 4.86
+  "average": 4.57
  },
  "reasons": [
-  "67.6-67.7 s close panel, send line 'Send this to whoever runs your Google profile.': for its first 2 frames the slam-in draws the line oversized, so 'Google pr' runs past the panel's right border (x about 1030 to 1080). Clip the slam to the panel's inner edge, or start it at no more than the panel's text width (ending by x 1000), so no letter crosses the frame of the window",
-  "3.72 s hook.43 card, '43%': on the one entry frame a cream spark pixel still sits on top of the '3' while the scanline reveal runs. A phone viewer will hardly notice it. If the scene is touched again, clip the sparks to outside the glyph boxes on the reveal frames too",
-  "round-1 checks: all three round-0 changes landed. Sparks fire once on 'Forty-three' (3.7 to 4.2 s), stay around the 43% and never cut the body lines. The close panel now has about 17 px from the headline to the PROOFNOTFLUFF chip and about 14 px from the chip to the send line, with the gold payoff line clear below. The keyboard at 0.5 to 1.5 s carries QWERTY letters in the grey label tone. The EXAMPLE tag sits inside the review card with margin. The five-star thread holds whole from 33.5 to 36.5 s, the one-star thread holds from 42.0 to 45.8 s under the 'The part people skip' banner, and the cover at 0.0 still holds the hook card. No fault from the earlier review has come back",
-  "freshness: the truck chat, slot machine and high-score table share no world or set piece with lesson 5 (street, dispatch board, estimate desk, night 'part people skip' panel) or lesson 6 (weather map, register counter, price-note room, calendar). No scene to replace"
- ],
- "prior": {
-  "gate": "design",
-  "round": 0,
-  "at": "2026-10-29T12:46:45-05:00",
-  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
-  "pass": true,
-  "score": {
-   "first": 5,
-   "hierarchy": 5,
-   "type": 5,
-   "color": 5,
-   "spacing": 4,
-   "polish": 4,
-   "trust": 5,
-   "average": 4.71
-  },
-  "reasons": [
-   "3.5-9.0 s hook card, 43% and 'of contractors / don't answer / reviews': the cream glint or spark streak cuts through the letters again and again (3.5 '43%' half gone; 4.5 'contrac ors', 'revi ws'; 5.84 '4 3%', 'c/ contractors'; 6.0 'answ r'; 7.0; 8.5 'c ntractors', 'dr n't'; 9.0 'contractor s', 'ansv er', 'revie s'). On a phone it reads as broken text. Fire the sparks once, around the 43% only, at hook.43 (about 3.6 to 4.2 s), keep them out of the body lines, and draw them under the glyphs so no letter pixel is ever replaced",
-   "64.85-71.0 s close panel: 'Don't leave reviews hanging.' / PROOFNOTFLUFF chip / 'Send this to whoever runs your Google profile.' are stacked with about 8 px above the chip and 0 px below it (the chip's bottom edge touches the send line's cap height). Last round asked for about 12 px between the headline and the tag, and it has not landed. Set about 14 px headline to chip and about 12 px chip to send line, and keep the 'The next 1-star gets a reply.' line where it is. The panel can grow about 26 px downward, since it ends near y 945 and the host and dialog start at y 975",
-   "0.5-1.5 s close-up cut-in: the phone keyboard below y 1250 has blank cream keys with no letters, so it reads as an unfinished placeholder in the strip that shows between the Reel's UI bands. Give the keys letter glyphs in the grey label tone (QWERTY rows), or darken the keys to the floor's tone so the keyboard sits back as scenery",
-   "round-0 checks on this rebuild: cover (0.0) holds the hook card 'Got a 1-star review? Copy this reply.' with the REVIEWS CLINIC chip; the picture changes by 0.5 s (cut in to the close-up with Snow and the dialog) and again by 2.0 s (cut back out), so the 1 s and 3 s rule holds. The previous cut's 'acronym case' and 'reply scroll' faults have not come back: dialog reads 'That's The ACHR' at 10.56, and both example reviews stay in view above their reply bubbles at 30-42 s",
-   "freshness: chat in the truck, slot machine and high-score table share nothing with lesson 5 (street, dispatch board) or lesson 6 (weather map, register counter, price-note room); no scene to replace"
-  ]
- }
+  "0.0 to 9.0 s hook card and 0.5 to 1.6 s close-up: accent orange on the phone's cream is 1.65:1 ('1-star', '43%', 'Copy this reply.', 'on third-party sites'); use a dark card or set the accent words in maroon #7A3442 (7.05:1).",
+  "28.9 to 64.0 s reply bubbles: cream on blue #3B82C4 is 3.81:1; darken to about #2B6CB0. Grey source line #6B7080 on cream 3.97:1; use #4A4E5A or darker.",
+  "Type floor: labels at body size 30 or 39 (bubbles, sources, plates, table rows, CTA, chips, HUD); '1-star' and '43%' at size 132 under the 160 px hero floor.",
+  "66.83 to 66.93 s: the send line slam draws past the panel's right border to the frame edge for 3 frames; clip it or start at final width.",
+  "Dialog paging (IMPROVE 00h): lone 'homeowners.' 56.36 s, 'furnace.' 30.10 s, 'sites,' 23.62 s, 'Google profile,' 67.99 s.",
+  "3.17 to 3.27 s: spark pixels on the '4' and '3' entry frames.",
+  "Checks: new hook card, cuts 0.5 and 2.0 s, end card 3.07 s, freshness PASS."
+ ]
 }

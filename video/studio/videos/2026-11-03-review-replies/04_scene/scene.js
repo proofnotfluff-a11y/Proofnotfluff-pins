@@ -5,6 +5,9 @@
 // one-star review and back out); stakes, close = the slot machine;
 // gap, turn = the arcade high-score table (its rows drawn here in the set's own style, each landing on its own word).
 const INK = '#120D14', CREAM = '#FFF7EA', SAND = '#E6D3BC', GOLD = '#F7C873', ORANGE = '#F2A541', RED = '#E2633B', TEAL = '#6FB7A8', GREY = '#9AA0AD', PLUM = '#2B2033';
+/* type on the phone's cream (design, Oct 29: the accent orange is 1.65:1 there, the grey 3.97:1): the tag maroon (7.1:1)
+   for the loud words, slate (6.8:1) for the source line */
+const MAROON = '#7A3442', SLATE = '#4A4E5A';
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 const eo = (x) => 1 - Math.pow(1 - clamp(x), 3);
 
@@ -44,6 +47,15 @@ const cnt = (k, value, t0, o = {}) => k.count(value, k.lin(t0, t0 + 0.7) >= 1 ? 
 const host = (k, pose) => ({hostPose: pose || (k.talking() ? 'talk' : 'stand'), hostScale: 0.55, hostX: 150});
 // a set's own text that we redraw or cover is not drawn at all (hidden text still counts for the layout lint)
 const mute = (k, drop, fn) => { const real = k.text; k.text = function (s, x, y, o) { if (drop(s, x, y, o)) return; return real.call(this, s, x, y, o); }; try { return fn(); } finally { k.text = real; } };
+/* a set's own fill swapped while it draws (map: lowercase hex -> new colour), for a set that takes no colour option; the
+   canvas's own fillStyle comes back after */
+const recolor = (k, map, fn) => {
+  const ctx = k.ctx; let pr = Object.getPrototypeOf(ctx), dsc = null;
+  while (pr && !(dsc = Object.getOwnPropertyDescriptor(pr, 'fillStyle'))) pr = Object.getPrototypeOf(pr);
+  if (!dsc || !dsc.set) return fn();
+  Object.defineProperty(ctx, 'fillStyle', {configurable: true, get() { return dsc.get.call(this); }, set(v) { dsc.set.call(this, (typeof v === 'string' && map[v.toLowerCase()]) || v); }});
+  try { return fn(); } finally { delete ctx.fillStyle; }
+};
 
 // ================================================================================================================
 // the high-score table (gap, turn): k.sets.scores draws the cabinet, marquee and screen; the rows are drawn here in the
@@ -80,7 +92,10 @@ const plate = (k, s, at, o = {}) => {
 
 // ================================================================================================================
 // the chat (hook, replies, caveat): lines of a bubble scrolled up under the app header are clipped, so they are not drawn
-const chat = (k, o) => mute(k, (s, x, y, t) => y < 390 && !(x === 408 && y === 318) && !(t && t.lint === false), () => k.sets.chat(o));
+/* our bubbles: the set fills them #3B82C4 with no option to change it, and cream on that is 3.81:1 (design, Oct 29), so
+   they draw in #2B6CB0 (5.1:1); nothing else in the chat set uses that blue */
+const BUBBLE = {'#3b82c4': '#2B6CB0'};
+const chat = (k, o) => recolor(k, BUBBLE, () => mute(k, (s, x, y, t) => y < 390 && !(x === 408 && y === 318) && !(t && t.lint === false), () => k.sets.chat(o)));
 // the EXAMPLE tag on the left pillar
 const exampleTag = (k) => { const d = px(k); d.P(8, 196, 60, 17, INK); d.P(9, 197, 58, 15, RED); d.tx('EXAMPLE', 38, 198, {color: CREAM, align: 'center'}); };
 
@@ -113,7 +128,7 @@ const closeUp = (k, o) => {
   P(26, 254, 308, 36, '#FFF7EA'); P(26, 254, 308, 1, '#E6D3BC'); P(30, 258, 260, 28, '#F4E6D3'); d.P(296, 258, 30, 28, '#2F6F67');
   d.P(306, 268, 10, 2, CREAM); d.P(312, 265, 2, 8, CREAM);
   if (Math.floor(T * 2) % 2 === 0) P(34, 261, 2, 22, '#2F6F67');
-  k.text('Copy this reply.', 120, 780, {size: 66, color: 'accent'});
+  k.text('Copy this reply.', 120, 780, {size: 66, color: MAROON});
   // the keyboard: four rows of keys on whole pixels, QWERTY letters in the grey label tone (design, Oct 29: blank keys read
   // as a placeholder); shift and delete are the darker function keys. Scenery under the Reel's UI band, so lint: false.
   P(14, 296, 332, 344, '#C9CCD3'); P(14, 296, 332, 1, '#9AA0AD');
@@ -150,28 +165,31 @@ window.SCENE = {
       /* the New review banner drops on "Forty-three" with the number and holds past it */
       k.sets.chat({who: 'REVIEWS', clock: '7:42', msgs: [], notify: T >= tStat ? {text: 'New review', at: tStat, dur: Math.max(1.6, t43 + 1.0 - tStat)} : null});
       // the card on the screen (frame x 306..870, y 390..888): light wallpaper, dark words
+      /* the hero words at size 198 (design, Oct 29: 132 sat under the 160 floor; the pixel font steps in 66s, so 160 draws as
+         132 and 198 is the next step). Set at y 360 so the ink ends at y 504, where the 132 ink ended, and starts by y 396 */
       if (T < tStat) {
         /* the on-screen hook (Oct 29, 10:10 pm rebuild, your-move): "1-star review just landed. Your move." (6 words) */
-        k.text(`${n.one.shown}-star`, 324, 404, {size: 132, color: 'accent'});
+        k.text(`${n.one.shown}-star`, 324, 360, {size: 198, color: MAROON});
         k.text('review just', 324, 548, {size: 66, color: PLUM});
         k.text('landed.', 324, 618, {size: 66, color: PLUM});
         k.text('Your move.', 324, 700, {size: 66, color: PLUM});
         if (T >= tOut) k.sweep(324, 770, k.measure('Your move.', {size: 66}), 6, tOut + 0.1, {color: 'accent'});
         k.chip('Reviews Clinic', 324, 800, {size: 30});
       } else {
-        /* the sparks fire once on "Forty-three" (about 0.6 s), around the 43% only: drawn first so every glyph sits on top,
+        /* the sparks fire once on "Forty-three" (about 0.6 s), beside the 43% only: drawn first so every glyph sits on top,
            and clipped to the number's band (y 390 to 540) so none reach the body lines. No glint on this card (design and
-           golden, Oct 29: the shine replaced letter pixels, "contrac ors"). */
-        k.ctx.save(); k.ctx.beginPath(); k.ctx.rect(306, 390, 564, 150); k.ctx.clip();
-        k.burst(420, 470, t43, {n: 14, r: 170, life: 0.6});
-        k.ctx.restore();
-        k.slam(n.noAnswer.shown, 324, 404, tStat, {size: 132, color: 'accent', from: 0.6, glint: false});
+           golden, Oct 29: the shine replaced letter pixels, "contrac ors"). They fly from just right of the %, and the clip
+           starts 12 px past the number's right edge at its slam scale (shake included), so none land on the glyphs while it
+           settles (design, Oct 29: spark pixels on the '4' and '3' entry frames) */
+        const w43 = k.measure(n.noAnswer.shown, {size: 198}), q43 = clamp((T - tStat) / 0.2), x43 = 324 + w43 * (1 + 0.6 * (1 - q43) * (1 - q43)) + 12;
+        if (x43 < 870) { k.ctx.save(); k.ctx.beginPath(); k.ctx.rect(x43, 390, 870 - x43, 150); k.ctx.clip(); k.burst(324 + w43 + 48, 450, t43, {n: 14, r: 170, life: 0.6}); k.ctx.restore(); }
+        k.slam(n.noAnswer.shown, 324, 360, tStat, {size: 198, color: MAROON, from: 0.6, glint: false});
         k.slam('of contractors', 324, 548, tStat + 0.1, {size: 66, color: PLUM, from: 0.4, glint: false});
         k.slam("don't answer", 324, 618, tStat + 0.15, {size: 66, color: PLUM, from: 0.4, glint: false});
         k.slam('reviews', 324, 688, tStat + 0.2, {size: 66, color: PLUM, from: 0.4, glint: false});
         /* the scope as it is said: the survey on "in one HVAC survey", the sites on "on third-party sites" */
-        k.slam(`ACHR News survey, ${n.year.shown}`, 324, 770, k.S('hook.survey'), {size: 30, color: '#6B7080', from: 0.4});
-        k.slam('on third-party sites', 324, 816, k.S('hook.sites'), {size: 30, color: 'accent', from: 0.5});
+        k.slam(`ACHR News survey, ${n.year.shown}`, 324, 770, k.S('hook.survey'), {size: 30, color: SLATE, from: 0.4});
+        k.slam('on third-party sites', 324, 816, k.S('hook.sites'), {size: 30, color: MAROON, from: 0.5});
       }
       if (T < tIn) return {host: false, speech: false};
       return host(k, k.live('hook.copy') ? 'point' : null);
@@ -279,7 +297,9 @@ window.SCENE = {
         k.slam("Don't leave reviews hanging.", 120, 677, t0 + 0.3, {size: 66, color: 'accent', from: 0.5, drop: INK});
         if (T >= send) {
           k.chip('ProofNotFluff', 120, 758, {size: 30});
-          k.slam('Send this to whoever runs your Google profile.', 120, 817, send + 0.1, {size: 39, color: CREAM, from: 0.4});
+          /* it lands at its final width, no scale and no shake, and is clipped at x 930 (design, Oct 29: the 1.4x entry ran
+             past the panel's right border to the frame edge for 3 frames; at size 39 its ink ends at x 930 exactly) */
+          d.clip(0, 0, 310, 640, () => k.slam('Send this to whoever runs your Google profile.', 120, 817, send + 0.1, {size: 39, color: CREAM, from: 1e-6, shake: 0}));
         }
         const echo = `The next ${n.one.shown}-star gets a reply.`;
         if (T >= ans) { k.slam(echo, 120, 856, ans, {size: 66, color: GOLD, from: 0.5, drop: INK}); k.sweep(120, 916, k.measure(echo, {size: 66}), 6, ans + 0.3, {color: 'accent'}); }

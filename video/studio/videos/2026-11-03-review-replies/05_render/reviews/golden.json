@@ -1,49 +1,18 @@
 {
  "gate": "golden",
- "round": 1,
- "at": "2026-10-29T13:16:10-05:00",
- "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer, fix round 1",
+ "round": 0,
+ "at": "2026-10-29T23:12:33-05:00",
+ "build": "63989223",
  "pass": true,
  "score": {
   "post_as_is": "yes"
  },
  "reasons": [
-  "Trade-owner read: lots of contractors skip their reviews, but homeowners lean on them, so here are two short replies to copy, a five-star one and a one-star one. Answer the bad ones short and calm, take the details offline, never argue in public, and block 10 minutes every Monday. The on-screen numbers match the voice, facts.json and captions.json: 43% card at about 3.65 s (said 3.7), 91% reels land at 12.5 (said 12.2), '400 homeowners, 2024' at 13.5 (said about 13.4), 56% reels at 19.0 to 19.5 (said about 19.0), '1ST YES 45%' row at 26.0 (said about 25.8), 'MON: reviews, 10 min' banner and 'Every Monday. 10 minutes.' bubble at 61.0 to 61.5 (said 61.1+). No contradictions. The 13% shows on the board without being said, which is fine.",
-  "Round-1 fixes confirmed on the mp4 and sheets: the EXAMPLE chip in the opening close-up now runs x 705 to 920, inside the 930 safe line. The keyboard has QWERTY letters. The glint is gone from the 43% card. The sparks fire once at about 3.65 to 3.9 s and are gone by 4.28, and the body lines read clean at 4.28, 5.82 and 9.00. The five-star thread holds whole from about 33.4 to 36.5 s, and the one-star thread from about 42.0 to 45.8 s, with the 'The part people skip' banner at 44.0 to 45.5. The table world arrives at 46.0 on 'Answer your bad ones too.' Takes 5 to 7 say 'your one-star reply', 'Answer your bad ones too' and 'every new one you get', and the reply quotes match the bubbles word for word. The close panel's headline / PROOFNOTFLUFF chip / send line / 'The next 1-star gets a reply.' now have clear gaps (68.2 to 72.0 s). The earlier faults (acronym case, reply scroll, broken stat letters) have not come back.",
-  "qa.json: all six checks PASS and none are doubtful. Length 74.77 s (cap 75), -14.2 LUFS, true peak -3.1 dBTP, 0 black stretches, 0 frozen stretches, voice 0 flags. The block-wipe transitions at 27.5 s and 65.4 to 65.8 s are single short events, not black stretches.",
-  "First 3 s: the cover 'Got a 1-star review? Copy this reply.' with the REVIEWS CLINIC chip at 0.0. It cuts in to the phone close-up with Snow and the EXAMPLE one-star review at 0.5, cuts back out at 2.0, and the 43% stat lands at 3.65. That earns the stop. The reasons to save (two paste-ready replies) and to send ('Send this to whoever runs your Google profile', 67.6 to 72 s) are both clear. It sounds like a person: short plain lines ('That's on us. I want to make it right.'), and the 'One honest note' caveat (53.6 to 60.5 s) builds trust.",
-  "1. polish 3.65 to 3.85 s: the 43% card arrives through a scan-line glitch, and a few spark pixels still touch the bottom of the '3' at about 3.72 s. It lasts a few frames and is unreadable only in passing. Fine to ship.",
-  "2. polish 10.0 to 14.0 s voice: 'That's The ACHR News.' is still a stilted way to name the source. Then 'the four hundred homeowners' uses 'the' for a group that was never introduced. The '400 homeowners, 2024' plate covers it (carried over).",
-  "3. polish 22.9 to 27.7 s: take 3 runs at 199 wpm, just over the 195 target, and the 'So' doesn't follow from the Google stat (carried over).",
-  "4. polish 4.28 s: the 'New review' notification drops in over a statistic, not a review. It is a small mixed signal (carried over).",
-  "5. polish 0 to 72 s: the bottom third (about y 1250 to 1920) is empty pattern throughout. It works as the platform caption safe zone but reads as dead space (carried over).",
-  "6. polish 11.5 to 12.0, 18.3 and 65.8 to 66.5 s: mid-spin reels flash '2 6 $' and '$ 2 2'. The end pull landing on Y E S right after the honest caveat is mildly gimmicky. The landed numbers and words hold and read fine (carried over).",
-  "7. polish 26.0 to 27.5 s: the board shows 45 + 43 + 13 = 101% with no 'rounded' note on screen. The captions say rounded, and few viewers will add it up.",
-  "No must-fix items. Nothing broken, cramped, off-brand or confusing enough to block. I would post it as is."
- ],
- "prior": {
-  "gate": "golden",
-  "round": 0,
-  "at": "2026-10-29T12:46:45-05:00",
-  "note": "rebuild Oct 29: hook re-cut and 75 s cap (IMPROVE 00a, 00c), fresh opus reviewer",
-  "pass": true,
-  "score": {
-   "post_as_is": "yes"
-  },
-  "reasons": [
-   "Trade-owner read: lots of contractors ignore reviews and homeowners care about them, so here are two short replies to copy (five-star and one-star). Answer the bad ones short and calm, take the details offline, never argue in public, and block 10 minutes every Monday. The numbers on screen match the voice, facts.json and captions.json: 43%, 400 homeowners 2024, 91%, 56% on Google, 45/43/13 on third-party sites, 10 min Monday. No contradiction.",
-   "Numbers readable when said: 43% card at 3.68 to 4.28 s (said 3.7), 400 plate at 13.98 (said 12.2 to 14.0), 91% reels land at 12.5 (said 12.2), 56% reels at 19.0 (said ~19.0), YES 45% row at 26.0 (said ~26), 10 min banner and bubble at 60.0 to 61.5 (said 60.1). The 13% shows on the board at 26.5 to 27.25 without being said, which is fine.",
-   "qa.json: all six checks PASS and none are doubtful. Length 73.37 s (limit 75), -14.2 LUFS, true peak -3.2 dBTP, 0 black stretches, 0 frozen stretches, voice 0 flags. The one-sample blacks at 27.5 s and 64.0 s are short transition wipes, not stretches.",
-   "First 3 s: the cover reads 'Got a 1-star review? / Copy this reply.' with the REVIEWS CLINIC chip at 0.0. It cuts in to the phone close-up with Snow and the EXAMPLE one-star review at 0.5, cuts back out at 2.0, and the hook clears at 3.68. That earns the stop. The reason to send is clear at 66.8 to 70.5 s ('Send this to whoever runs your Google profile'), and the two replies make it worth saving. The faults listed in earlier reviews (lowercase acronyms, scrolled-off reviews, bubble with no host) are not back.",
-   "1. polish 4.3 to 9.0 s: the sparks on the 43% card overlap the glyphs, so single frames read as broken letters ('4 3%', 'c/ contractors', 'ansv er', 'revie/ws' at 5.84 and 9.00). Keep the sparks off the key stat's letters or end them by ~5 s.",
-   "2. polish 10.0 to 14.0 s voice: 'That's The ACHR News.' is a stilted way to name the source. Then 'the four hundred homeowners' uses 'the' for a group that was never introduced, right after a contractor stat, so a listener can briefly mix up who was surveyed. The on-screen plate '400 homeowners, 2024' covers it.",
-   "3. polish 22.9 to 27.7 s: take 3 runs at 199 wpm, just over the 195 target. 'So if you answer reviews on those sites...' feels a touch rushed, and the 'So' doesn't follow from the Google stat.",
-   "4. polish 4.28 s: the 'New review' notification drops in over a statistic, not a review. It is a small mixed signal.",
-   "5. polish 0.0 to 73 s: the bottom third of the frame (about y 1250 to 1920) is empty pattern the whole time. It works as a safe zone for platform buttons and captions but reads as dead space (carried over from the last cut).",
-   "6. polish 11.5 to 12.0, 18.3 and 64.5 to 65.0 s: mid-spin reels flash '2 6 $' and '$ 2 2'. The end pull landing on YES with an orange S right after 'it doesn't prove a reply wins the job' is mildly gimmicky (carried over). The landed numbers hold and read fine.",
-   "7. polish 66.8 to 70.5 s: the PROOFNOTFLUFF tag sits tight under 'Don't leave reviews hanging.'; a few px more space would help.",
-   "8. polish 3.7 to 37.5 s: the hook promises 'your reply to copy' but the one-star reply only arrives at 37.5 s. The stats section is short enough that most viewers will stay, but a quick flash of the reply earlier would pay the hook off sooner.",
-   "Sounds like a person: yes. The lines are short and plain ('That's on us. I want to make it right.'), and the 'one honest note' caveat at 52.8 to 60 s builds trust. Nothing broken, cheap, off-brand or confusing enough to block. I would post it as is."
-  ]
- }
+  "polish 49.6 to 50.7 s rules table near still 1.1 s.",
+  "polish: spinning reels flash stray digits next to spoken percentages, each under a second.",
+  "polish: qa frozen check stops at 64.75 s; checked by hand to 71.0 s, PASS holds.",
+  "polish 3.7 to 7.5 s: 'on third-party sites' lands when said, about 4 s after the card.",
+  "polish: misspelled YouTube tag is deliberate.",
+  "checked: numbers match facts.json and the source quotes, scope right, caveat honest, replies readable, hook by 3.0 s, qa all PASS, post copy streams match."
+ ]
 }

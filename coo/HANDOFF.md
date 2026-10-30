@@ -12,6 +12,6 @@
 - Credits plan (DECISIONS-2026-10-25): burst Nov 2. Area seats live Oct 26, 6 open.
 - Oct 26: TRAFFIC FIRST; no builder outreach. Kimi R8 kept.
 - Oct 27: trade owners only; free plan waits (DECISIONS-2026-10-27). Trades News (Mon, Wed, Fri 6:32), maps, templates live. R10: 11 free data pages and redesign live (/chicago-data/, site/datahub.json); inspections by area, Quarterly open (W).
-- Oct 30: AI lane queued. Videos 3/day (11:37, 4:41, 8:13), 6 formats, viral-script, daily numbers. add_repo fix live; next: 11:37 posts.
+- Oct 30: AI lane queued. Videos 3/day (11:37, 4:41, 8:13), 6 formats, viral-script, daily numbers. No push: Todd remakes 3 posts in PNF thread.
 - Oct 25: Chief of Staff live (DECISIONS-2026-10-25): sweep (PC, sole reply-status writer), brief, Sun review.
 - Oct 30 usage audit, 7:46 video fix: coo/USAGE.md. Next: Todd pauses API lister, strips connectors.

@@ -1,0 +1,43 @@
+{
+ "job": "2026-10-30-pivot-method-a",
+ "model": "k3.1-pro",
+ "at": "2026-10-30T12:10:50+00:00",
+ "status": "ok",
+ "kind": "second-opinion",
+ "slug": null,
+ "sources": [],
+ "prompt_chars": 5733,
+ "usage": {
+  "input_tokens": 1896,
+  "cache_read_input_tokens": 0,
+  "output_tokens": 2439
+ },
+ "result": {
+  "agree": [
+   "Paid categories are clear: subscriptions, setup fees and retainers show existing spend on bookkeeping, reconciliation, analytics and planning.",
+   "Accuracy is the strongest functional pain: 26 complaints about wrong or mismatched numbers strike at the core value buyers purchase.",
+   "Bookkeeping reliability is sharp: late, wrong or undelivered books recur, and buyers already pay for human-assisted delivery.",
+   "Implementation needs attention: 24 setup complaints plus inventory, COGS and shipping errors support testing expert onboarding and cleanup.",
+   "Support is widespread: 52 complaints indicate that access to competent help may differentiate a service, though not necessarily standalone demand."
+  ],
+  "disagree": [
+   "Cash forecasting as the lead opportunity: only 5 of about 375 reviews mention cash issues and none mention inventory timing; retainers prove spend, not sharp unmet demand.",
+   "Ranking by raw mentions: tools have different review volumes and dates, while overlapping reviews and 'cons' fields may distort counts.",
+   "Generalizing bookkeeping failure: Bench supplies 19 of 24 human-delivery complaints, so vendor-specific failure may dominate this signal.",
+   "Treating price complaints as willingness to pay: 55 complaints show dissatisfaction, not budget for a higher-touch alternative.",
+   "Using funding and company-reported growth as pain validation: these support vendor activity, not demand for the proposed service or its specific outcome."
+  ],
+  "missing": [
+   "Target-segment fit: review authors' revenue, channels and complexity are unknown, so relevance to $1M-$20M brands is unclear.",
+   "Severity and consequences: evidence rarely shows financial loss, time consumed, decisions delayed or whether buyers switched.",
+   "Actual purchasing behavior: listed prices do not establish amounts paid, purchase frequency, churn or willingness to buy standalone help.",
+   "Current workarounds: little evidence shows whether buyers use spreadsheets, accountants, agencies or internal staff and why those fail.",
+   "Comparable sampling: per-tool review denominators, selection rules and deduplication are absent, preventing incidence comparisons."
+  ],
+  "top_three": [
+   "Test a monthly reconciliation and close service that gives owners one trusted profit view across sales channels, bank accounts and QuickBooks or Xero.",
+   "Test human-reviewed bookkeeping with a fixed close calendar, explicit delivery commitments and a defined correction process.",
+   "Test fixed-scope setup and cleanup covering account mappings, inventory, COGS and shipping inputs, with documented accuracy checks."
+  ]
+ }
+}

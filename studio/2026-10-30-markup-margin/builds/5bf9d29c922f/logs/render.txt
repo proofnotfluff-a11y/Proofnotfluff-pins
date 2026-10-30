@@ -1,0 +1,14 @@
+  300/1353 frames, 42 s
+  600/1353 frames, 82 s
+  900/1353 frames, 123 s
+  1200/1353 frames, 167 s
+mix: no music for room 'the' on answer; it keeps framing (framing, blackboard, workshop, garage have loops)
+mix: no music for room 'the' on usual; it keeps framing (framing, blackboard, workshop, garage have loops)
+mix: no music for room 'the' on why; it keeps framing (framing, blackboard, workshop, garage have loops)
+mix: no music for room 'the' on formula; it keeps framing (framing, blackboard, workshop, garage have loops)
+mix: no music for room 'the' on double; it keeps framing (framing, blackboard, workshop, garage have loops)
+mix: no music for room 'the' on button; it keeps framing (framing, blackboard, workshop, garage have loops)
+mix: rooms framing 0.00 s
+mix: voice -23.1 LUFS, bed -21.8 LUFS after EQ; bed gain -19.3 dB under speech, -11.3 dB in pauses, 8 phrases
+render: /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-10-30-markup-margin/05_render/2026-10-30-markup-margin.mp4 (1353 frames, 45.10 s, voice, 196 s)
+exit 0

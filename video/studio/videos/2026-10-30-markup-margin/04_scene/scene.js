@@ -307,7 +307,7 @@ window.SCENE = {
           if (T < r.at || d.fr(r.at + j * 0.035) < 14) continue;
           const cx = x0 + j * cw, ch = str[j] || ' ', color = r.hi && j >= cols - String(r.value).length ? '#F2A541' : '#FFF7EA';
           d.P(cx, y, cw - 2, chh, '#2B2033'); d.P(cx, y, cw - 2, 1, '#3D2E45'); d.P(cx, y + chh - 1, cw - 2, 1, INK);
-          if (ch !== ' ') d.tx(ch, cx + (cw - 2) / 2, y + 5, {size: 66, color, align: 'center'});
+          if (ch !== ' ') d.tx(ch, cx + (cw - 2) / 2, y + 5, {size: 66, color, align: 'center', lint: false});
           d.P(cx, y + h2, 2, 1, INK); d.P(cx + cw - 4, y + h2, 2, 1, INK);
         }
       });

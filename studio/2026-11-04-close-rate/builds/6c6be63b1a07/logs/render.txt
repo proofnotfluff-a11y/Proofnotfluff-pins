@@ -1,0 +1,11 @@
+  300/2204 frames, 41 s
+  600/2204 frames, 85 s
+  900/2204 frames, 127 s
+  1200/2204 frames, 167 s
+  1500/2204 frames, 207 s
+  1800/2204 frames, 248 s
+  2100/2204 frames, 290 s
+mix: rooms (quest, 108 BPM) framing 0.00 s, workshop 56.77 s
+mix: voice -23.4 LUFS, bed -21.6 LUFS after EQ; bed gain -19.8 dB under speech, -11.8 dB in pauses, 11 phrases
+render: /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-11-04-close-rate/05_render/2026-11-04-close-rate.mp4 (2204 frames, 73.47 s, voice, 316 s)
+exit 0

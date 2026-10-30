@@ -1,17 +1,17 @@
 # Transcript: 2026-10-30-markup-margin
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 118 words, 42.0 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 118 words, 42.1 s of voice.
 
 ## Flags
-- 13.8 s heard 'his' for 'is'
+- 13.6 s heard 'his' for 'is'
 
 ## Pace per take (target 160 to 195 wpm)
 ```
   01     0.0 s  159 wpm  
-  02     9.0 s  183 wpm  
-  03    18.1 s  160 wpm  
-  04    30.4 s  177 wpm  
-  05    37.2 s  198 wpm  
+  02     9.0 s  182 wpm  
+  03    18.2 s  160 wpm  
+  04    30.5 s  177 wpm  
+  05    37.3 s  198 wpm  
 ```
 
 ## Words
@@ -28,22 +28,22 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 118 words, 42.0 s of voice.
 
 `00:09.0` Mark it up fifty percent instead, and you'd quote fifteen hundred.
 
-`00:13.1` Sounds like half is margin.
+`00:13.0` Sounds like half is margin.
 
-`00:15.0` But that five hundred is only a third of the price.
+`00:14.8` But that five hundred is only a third of the price.
 
-`00:18.1` Markup is measured on your cost.
+`00:18.2` Markup is measured on your cost.
 
-`00:20.7` Margin is measured on the price the customer pays.
+`00:20.8` Margin is measured on the price the customer pays.
 
-`00:23.8` So start from the margin you want.
+`00:23.9` So start from the margin you want.
 
-`00:26.0` Price is your cost, divided by one minus that margin.
+`00:26.1` Price is your cost, divided by one minus that margin.
 
-`00:30.4` Want a fifty percent margin?
+`00:30.5` Want a fifty percent margin?
 
-`00:32.3` You'd have to double your cost.
+`00:32.4` You'd have to double your cost.
 
-`00:34.3` A thousand in, two thousand on the quote.
+`00:34.4` A thousand in, two thousand on the quote.
 
-`00:37.2` So when a job costs you a thousand, quote from the margin you want, not the markup.
+`00:37.3` So when a job costs you a thousand, quote from the margin you want, not the markup.

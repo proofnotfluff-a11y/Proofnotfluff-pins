@@ -1,10 +1,10 @@
 {
  "schema": "pnf.studio.takes.v1",
- "requestedAt": "2026-10-29T11:29:13-05:00",
+ "requestedAt": "2026-10-29T22:46:14-05:00",
  "voice": "W3pJy9ibur1FKUihVxzY",
  "model": "eleven_v4",
- "scriptSha256": "383b068b7bce96e28948cf78880ad4bdbc18b98e90f9c93a77c995679c084af3",
- "voiceSha256": "eb9c0ae0d0f336c37f35cad98ce399c6f0b6f7a6d1ba4fc3971901eee4d71f8f",
+ "scriptSha256": "9706e8c78690e973763e5363a301716e84564cbd0b1d1e23b998f57a8b29ae8c",
+ "voiceSha256": "61cfd7f9c473bb33a6a6e04d3f96a19f7e791834eb01f65629e26c3134448346",
  "takes": [
   {
    "n": 1,
@@ -19,22 +19,22 @@
   {
    "n": 2,
    "file": "takes/02.mp3",
-   "sha256": "37e796f3f2ca25c6fd81171150a0c0be6b1a007c023d9860fa60ae74c911741a",
-   "seconds": 10.031,
-   "chars": 187,
+   "sha256": "0dc2b939427d154d9569b841103a0e052ceae00ed307f64182678293cfb8c28b",
+   "seconds": 10.371,
+   "chars": 182,
    "start": 6.276,
-   "end": 16.307,
-   "wpm": 150
+   "end": 16.647,
+   "wpm": 133
   },
   {
    "n": 3,
    "file": "takes/03.mp3",
-   "sha256": "c86c9ffbe707511b49d5dc698c315d047b3b35e55147c8b5622d781908f4105e",
-   "seconds": 15.569,
-   "chars": 243,
-   "start": 16.627,
-   "end": 32.196,
-   "wpm": 158
+   "sha256": "327ebb81423a64574ba9c846119dfb3e58e2a7324a64e372febe10f05535fe56",
+   "seconds": 14.524,
+   "chars": 229,
+   "start": 16.967,
+   "end": 31.491,
+   "wpm": 157
   },
   {
    "n": 4,
@@ -42,8 +42,8 @@
    "sha256": "226700d2491a9ab7e1051abdc90ed343240d8364de0c5553e10639249b940764",
    "seconds": 11.468,
    "chars": 206,
-   "start": 32.516,
-   "end": 43.984,
+   "start": 31.811,
+   "end": 43.279,
    "wpm": 183
   },
   {
@@ -52,8 +52,8 @@
    "sha256": "486f184a3008fa104a25cc27a4c8a149f3751317ebf069b1bed89ddad4dbd59a",
    "seconds": 10.109,
    "chars": 157,
-   "start": 44.304,
-   "end": 54.413,
+   "start": 43.599,
+   "end": 53.708,
    "wpm": 166
   },
   {
@@ -62,8 +62,8 @@
    "sha256": "565160d9e777edbadb9d378b79bf3e0f6e15d4e30782cf0b5305411aa5c76b71",
    "seconds": 8.673,
    "chars": 137,
-   "start": 54.733,
-   "end": 63.406,
+   "start": 54.028,
+   "end": 62.701,
    "wpm": 159
   },
   {
@@ -72,15 +72,15 @@
    "sha256": "e8f6030b5e8d4eaf4110425a8449169c2ac5465e4341bd197ba51f31acffc1d9",
    "seconds": 8.202,
    "chars": 147,
-   "start": 63.726,
-   "end": 71.928,
+   "start": 63.021,
+   "end": 71.223,
    "wpm": 176
   }
  ],
- "chars": 1184,
- "at": "2026-10-29T11:37:04-05:00",
+ "chars": 1165,
+ "at": "2026-10-29T22:53:47-05:00",
  "credits": {
-  "used": 19671,
+  "used": 24942,
   "limit": 40000,
   "tier": "starter",
   "resetsAt": 1794774902

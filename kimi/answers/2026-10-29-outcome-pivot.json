@@ -1,0 +1,12 @@
+{
+ "job": "2026-10-29-outcome-pivot",
+ "model": "k3.1-pro",
+ "at": "2026-10-30T02:23:13+00:00",
+ "status": "error",
+ "kind": "second-opinion",
+ "slug": null,
+ "sources": [],
+ "prompt_chars": 3792,
+ "usage": {},
+ "error": "timed out after 300 s"
+}

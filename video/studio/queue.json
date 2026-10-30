@@ -130,7 +130,24 @@
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {
+    "instagram": {
+     "url": "https://www.instagram.com/proofnotfluff/reel/DfITNEIsJmU/",
+     "at": "2026-10-30T14:11:13-05:00"
+    },
+    "tiktok": {
+     "url": "https://www.tiktok.com/@proofnotfluff/video/7702543191379086623",
+     "at": "2026-10-30T14:21:00-05:00"
+    },
+    "facebook": {
+     "url": "https://www.facebook.com/reel/989622343545340/",
+     "at": "2026-10-30T14:25:00-05:00"
+    },
+    "youtube": {
+     "url": "https://youtube.com/shorts/7um84yVghMA",
+     "at": "2026-10-30T14:26:55-05:00"
+    }
+   }
   },
   {
    "slug": "2026-11-03-review-replies",

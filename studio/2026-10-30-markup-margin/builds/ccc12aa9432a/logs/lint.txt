@@ -1,0 +1,25 @@
+hook: {"first_change": 0.53, "changes_by_3s": 2, "changes": [0.53, 2.33], "share": [0.566, 0.297], "host_at": 0.5333333333333333, "hook_words": 10, "hook_said_by": 2.98, "seconds": 45.67}
+ERROR lint  4.25 to  8.75 s: text on text: C / C
+ERROR lint  4.25 to  8.75 s: text on text: O / O
+ERROR lint  4.25 to  8.75 s: text on text: S / S
+ERROR lint  4.25 to  8.75 s: text on text: T / T
+ERROR lint  4.25 to  8.75 s: text on text: D / D
+ERROR lint  4.25 to  8.75 s: text on text: I / I
+ERROR lint  4.25 to  8.75 s: text on text: V / V
+ERROR lint  4.25 to  8.75 s: text on text: E / E
+ERROR lint  4.50 to  8.75 s: text on text: $ / $
+ERROR lint  4.50 to  8.75 s: text on text: 1 / 1
+ERROR lint  4.50 to  8.75 s: text on text: , / ,
+ERROR lint  4.50 to  8.75 s: text on text: 0 / 0
+ERROR lint  4.50 to  8.75 s: text on text: . / .
+ERROR lint  4.50 to  8.75 s: text on text: 6 / 6
+ERROR lint  5.75 to  8.75 s: text on text: = / =
+ERROR lint  6.25 to  8.75 s: text on text: 7 / 7
+ERROR lint  7.75 to  8.75 s: text on text: M / M
+ERROR lint  7.75 to  8.75 s: text on text: A / A
+ERROR lint  7.75 to  8.75 s: text on text: R / R
+ERROR lint  7.75 to  8.75 s: text on text: G / G
+ERROR lint  8.00 to  8.75 s: text on text: N / N
+ERROR lint  8.00 to  8.75 s: text on text: 4 / 4
+ERROR lint  8.00 to  8.75 s: text on text: % / %
+exit 1

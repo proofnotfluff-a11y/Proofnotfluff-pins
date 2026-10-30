@@ -1,0 +1,37 @@
+{
+ "job": "2026-10-30-markup-margin-facts-captions-20261030-r1",
+ "model": "k3.1-pro",
+ "at": "2026-10-30T17:31:45+00:00",
+ "status": "ok",
+ "kind": "facts-captions",
+ "slug": "2026-10-30-markup-margin",
+ "sources": [
+  {
+   "url": "https://www.jlconline.com/business/markup-vs-margin_o/",
+   "read": false
+  },
+  {
+   "url": "https://www.xero.com/us/glossary/margin-vs-markup/",
+   "read": true,
+   "chars": 5006
+  }
+ ],
+ "prompt_chars": 25440,
+ "usage": {
+  "input_tokens": 7521,
+  "cache_read_input_tokens": 0,
+  "output_tokens": 3397
+ },
+ "result": {
+  "pass": true,
+  "score": {
+   "numbers": 14,
+   "mismatches": 0
+  },
+  "reasons": [],
+  "unconfirmed": [
+   "https://www.jlconline.com/business/markup-vs-margin_o/: JLC-attributed claims that a 50% markup on $1,000 gives a $1,500 price and a 33%/33.3% margin, and that a 100% markup ($1,000 cost to a $2,000 quote) gives a 50% margin; the page returned HTTP 403.",
+   "https://www.xero.com/us/glossary/margin-vs-markup/: YouTube's claim that margin is not take-home pay and must still cover overhead and the owner's pay; the pasted excerpt does not include the overhead passage."
+  ]
+ }
+}

@@ -3,7 +3,8 @@
  "source": "whisper medium.en int8, re-spelled from script.md",
  "music": {
   "id": "rooms",
-  "level": 0.16
+  "level": 0.16,
+  "tune": "night"
  },
  "duration": 45.4,
  "cues": [
@@ -14,7 +15,7 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "Frame 0, the cover: a dark bedroom at night, the moon in the window, the phone on the nightstand lit with a quote request. The title plate up top, settled: \"Quote request: 11 pm.\" / \"You see it at 7.\" Snow in his spot.",
+   "text": "Frame 0, the cover: a dark bedroom at night, the moon in the window, the phone on the nightstand lit with a quote request. The title plate up top, settled: \"Quote request, 11 pm.\" / \"Seen at 7 am.\" Snow in his spot.",
    "t": 0.0,
    "word": 0,
    "end": 5.309

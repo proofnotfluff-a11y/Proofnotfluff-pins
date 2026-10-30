@@ -1,6 +1,6 @@
 # Cues: The after-hours quote request (AI lead lane, lesson 1, Lead Clinic, arcade)
 
-music: rooms
+music: rooms night
 
 ## hook "A move-out clean quote" [sfx: pop]
 Frame 0, the cover: a dark bedroom at night, the moon in the window, the phone on the nightstand lit with a quote request. The title plate up top, settled: "Quote request, 11 pm." / "Seen at 7 am." Snow in his spot.

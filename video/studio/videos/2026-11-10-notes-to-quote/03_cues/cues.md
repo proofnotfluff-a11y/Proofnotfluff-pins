@@ -1,6 +1,6 @@
 # Cues: Walkthrough notes to a quote (AI lead lane, lesson 3, Quote Clinic, arcade)
 
-music: rooms
+music: rooms sunny
 
 ## hook "This deep clean" [sfx: pop]
 Frame 0, the cover: the finished quote (example) on a clipboard: DEEP CLEAN QUOTE, five itemized lines with ticks, the price column marked "your rate". The title plate up top, settled: "This quote started as" / "messy notes." Snow in his spot.

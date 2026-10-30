@@ -147,7 +147,7 @@ const site = (k, o) => {
   if (!cur && o.twitch != null && fr(o.twitch) >= 0 && fr(o.twitch) < 12) L = 2 + [2, 5, 7, 8, 8, 7, 6, 5, 4, 3, 2, 0][fr(o.twitch)];
   P(TX0, 226, L, 4, INK); P(TX0, 226, L, 3, GOLD); P(TX0, 226, L, 1, '#FFF2B8');
   for (let usd = 100; XC(usd) - TX0 <= L; usd += 100) P(XC(usd), 226, 1, 2, INK);
-  [n.markupUsd, n.cost, n.price].forEach((m) => { const x = XC(m.value); if (x - TX0 > L) return; P(x, 226, 1, 4, INK); tx(m.shown, x - 1, 213, {color: CREAM, align: 'right', drop: INK}); });
+  (o.noMarkup ? [n.cost, n.price] : [n.markupUsd, n.cost, n.price]).forEach((m) => { const x = XC(m.value); if (x - TX0 > L) return; P(x, 226, 1, 4, INK); tx(m.shown, x - 1, 213, {color: CREAM, align: 'right', drop: INK}); });
   P(TX0 + L - 1, 224, 2, 8, INK); P(TX0 + L, 225, 1, 6, GREY);   /* the hook on the end */
   /* the case: yellow, a black grip, the belt clip, the lock button */
   bevel(6, 218, 24, 22, GOLD, '#FFF2B8', '#B07A47', INK); P(9, 230, 18, 7, '#2B2033'); P(9, 230, 18, 1, '#4A4E5A'); disc(18, 225, 3, '#B07A47'); DOT(17, 224, CREAM); P(28, 222, 3, 4, '#E2633B');
@@ -279,10 +279,10 @@ window.SCENE = {
       const n = k.data.numbers, d = px(k), t0 = k.S('answer');
       const tSix = wordT(k, 'answer', /^point/i, 0.6), tRes = wordT(k, 'answer.price', /^sixteen/i, 0.3), tForty = wordT(k, 'answer.margin', /^forty/i, 0.3);
       belt(k, t0);
-      const up = d.ease(t0, 8, 180), Y = 96 + up, settled = up === 0, L = {lint: settled};
+      const up = d.ease(t0, 8, 180), Y = 90 + up, settled = up === 0, L = {lint: settled};
       d.clip(0, 0, 360, 326, () => {
-        d.win(14, Y, 332, 200, {base: '#1B1420', hi: '#7A3442', lo: INK, rule: '#F2A541'});
-        k.ctx.save(); k.ctx.translate(0, (Y - 96) * 3);
+        d.win(14, Y, 332, 206, {base: '#1B1420', hi: '#7A3442', lo: INK, rule: '#F2A541'});
+        k.ctx.save(); k.ctx.translate(0, (Y - 90) * 3);
         k.chip('The answer', 66, 318, {size: 30, fill: 'accent', color: INK});
         if (T >= Math.min(tSix, t0 + 0.4)) k.slam(`${n.cost.shown} / ${n.divisor.shown}`, 540, 384, Math.min(tSix, t0 + 0.4), Object.assign({size: 132, color: CREAM, align: 'center', from: 0.5, drop: INK}, L));
         if (T >= tRes) k.slam(`= ${n.targetPrice.shown}`, 540, 548, tRes, Object.assign({size: 132, color: GOLD, align: 'center', from: 0.5, drop: INK}, L));
@@ -377,7 +377,7 @@ window.SCENE = {
       if (T >= tDbl && T < tHun + 0.6) stampBox(k, 'DOUBLE YOUR COST', 560, 882, tDbl, {color: RED, freeze: 5});
       else if (T < tDbl) k.slam(`Now: ${n.markupPct.shown} markup = ${n.marginPct.shown} margin`, 72, 900, t0 + 0.2, {size: 39, color: SAND, from: 0.4});
       else k.slam(`${n.doubleMarkupPct.shown} markup = ${n.doubleMarginPct.shown} margin`, 72, 900, tHun + 0.6, {size: 39, color: CREAM, from: 0.4});
-      k.text('Math: JLC', 72, 954, {size: 30, color: SAND});
+      k.text('Math: JLC', 930, 276, {size: 30, color: SAND, align: 'right'});
       return host(k, k.live('double.x2') || k.live('double.quote') ? 'point' : null);
     },
 

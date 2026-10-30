@@ -1,0 +1,18 @@
+{
+ "gate": "golden",
+ "round": 0,
+ "pass": false,
+ "score": {
+  "post_as_is": "no"
+ },
+ "reviewer": "fresh opus agent",
+ "reasons": [
+  "1 must-fix: 9.0 to 18.4 s and 38.0 to 42.9 s, the register set's beige checker floor reads as a missing-image transparency grid (as price-raise found). Fixed: dark planks floor drawn over it in usual and button.",
+  "2 polish: qa.json 'frozen' detail names 37.75 s (the last level-0 cue) as the end card; the real card is up about 42.9 s. Timeline shows motion 38 to 42.5 s. A shared anim.py item, not changed in this lesson (logged to IMPROVE).",
+  "3 polish: never says the $1,500 usual quote is $166.67 under the 40% quote. Not added: a new number outside the one-variable test.",
+  "4 polish: 3.5 s empty answer panel with a stray TOOL BELT tag while the card rose. Fixed: the card is settled from its first frame. Sub-0.5 s black wipes at 18.5 and 37.5 s are the section transitions.",
+  "5 polish: small unspoken lines at 29.5 to 33 s; gauge readout passed 49.6 and 49.7 on the way to 50. Fixed the readout: 33.3% then 50%, no in-between.",
+  "6 polish: take 5 at 198 wpm (inside the 150 to 200 band). Kept.",
+  "7 polish: crane hook bar behind the LESSON 3 bar at frame 0. Kept (decor, under the HUD)."
+ ]
+}

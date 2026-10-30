@@ -234,7 +234,12 @@ const DPX = 222, DPY = 114;
 const register = (k, o) => {
   const t = k.text;
   k.text = (s, x, y, oo) => t.call(k, s, oo && oo.align === 'right' && x === (DPX + 94) * 3 ? (DPX + 84) * 3 : x, y, oo);
-  try { return k.sets.register(o); } finally { k.text = t; }
+  try { return k.sets.register(o); } finally { k.text = t; planks(k); }
+};
+const planks = (k) => {
+  /* the shop floor: dark planks, staggered seams (the set's checker tiles read as a transparency grid; golden r0) */
+  const pd = px(k); pd.P(0, 417, 360, 223, '#3D2E45'); pd.P(0, 417, 360, 3, '#1B1420');
+  for (let y = 420, r = 0; y < 640; y += 12, r++) { pd.P(0, y + 11, 360, 1, '#2B2033'); for (let x = (r * 53) % 96; x < 360; x += 96) pd.P(x, y, 1, 11, '#2B2033'); }
 };
 const displayText = (k, s, c = TEAL) => { const d = px(k); d.P(DPX + 7, DPY + 19, 92, 38, '#24453A'); for (let y = DPY + 20; y < DPY + 57; y += 3) d.P(DPX + 7, y, 92, 1, '#1A332B'); d.tx(s, DPX + 53, DPY + 27, {size: 66, color: c, align: 'center'}); };
 
@@ -279,7 +284,7 @@ window.SCENE = {
       const n = k.data.numbers, d = px(k), t0 = k.S('answer');
       const tSix = wordT(k, 'answer', /^point/i, 0.6), tRes = wordT(k, 'answer.price', /^sixteen/i, 0.3), tForty = wordT(k, 'answer.margin', /^forty/i, 0.3);
       belt(k, t0);
-      const up = d.ease(t0, 8, 180), Y = 90 + up, settled = up === 0, L = {lint: settled};
+      const Y = 90, settled = true, L = {lint: settled};   /* settled from its first frame: no rise past the belt's title (golden r0) */
       d.clip(0, 0, 360, 326, () => {
         d.win(14, Y, 332, 206, {base: '#1B1420', hi: '#7A3442', lo: INK, rule: '#F2A541'});
         k.ctx.save(); k.ctx.translate(0, (Y - 90) * 3);
@@ -364,7 +369,7 @@ window.SCENE = {
       const n = k.data.numbers, d = px(k), t0 = k.S('double');
       const tDbl = wordT(k, 'double.x2', /^double/i, 0.6), tHun = tDbl + 0.5, tTwo = wordT(k, 'double.quote', /^two$/i, 0.1);
       const v = swing(T, tHun, n.marginPct.value, n.doubleMarginPct.value, 1.1);
-      const shown = T < tHun ? n.marginPct.value : (T >= tHun + 1.1 ? n.doubleMarginPct.value : clamp(Math.round(v * 10) / 10, n.marginPct.value, n.doubleMarginPct.value));
+      const shown = T < tHun + 0.6 ? n.marginPct.value : n.doubleMarginPct.value;   /* no in-between readouts like 49.6 (golden r0) */
       dial(k, `WANT A ${n.doubleMarginPct.shown} MARGIN?`, v, shown, {notchAt: t0 + 0.4, ghostAt: t0 + 0.4, ghostC: ORANGE});
       if (T >= tHun + 1.1) k.burst(540, 330, tHun + 1.1, {n: 22, r: 260});
       plate(d, 14, 268, 332, 56);
@@ -384,7 +389,7 @@ window.SCENE = {
     /* ---- button: the register asks again. One column, one left edge (x 72): the job, then the rule in two lines */
     button: (k, T) => {
       const n = k.data.numbers, d = px(k), t0 = k.S('button'), tQuote = wordT(k, 'button', /^quote$/i, 1.4), tNot = k.S('button.not');
-      k.sets.register({items: [], displayLabel: 'NEXT QUOTE'});
+      k.sets.register({items: [], displayLabel: 'NEXT QUOTE'}); planks(k);
       const ring = [t0 + 0.1, tQuote, tNot].filter((at) => T >= at).pop();
       if (ring != null && d.fr(ring) < 12) { const fy = [10, 6, 3, 1, 0, 0, 0, 0, 0, 1, 4, 8][d.fr(ring)]; d.P(DPX + 84, DPY - 18 + fy, 18, 16, INK); d.P(DPX + 85, DPY - 17 + fy, 16, 14, RED); d.tx('$', DPX + 93, DPY - 16 + fy, {color: CREAM, align: 'center', lint: false}); }
       displayText(k, '?', Math.floor((T - t0) * 2) % 2 ? GOLD : TEAL);

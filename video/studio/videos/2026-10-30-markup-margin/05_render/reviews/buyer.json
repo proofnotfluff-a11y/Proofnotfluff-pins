@@ -1,0 +1,17 @@
+{
+ "gate": "buyer",
+ "round": 0,
+ "pass": true,
+ "score": {
+  "stop": "yes",
+  "send": "yes",
+  "save": "yes",
+  "follow_or_link": "yes"
+ },
+ "reviewer": "fresh opus agent",
+ "reasons": [
+  "Electrician at 9 pm: stops on '$1,000 job. What do you quote?' with the empty '?' box; would send to whoever writes estimates and save the formula and the $1,000 to $1,666.67 example; would follow (a series of real math).",
+  "Nothing hype, no pitch or urgency; trusts it (math checks out, sources named, labelled example math).",
+  "Optional: 'Divide it by point six' comes about 3 s before 'forty percent margin', so the why of 0.6 lands second; 'half the price is margin' takes a beat to link to the 50% markup; the spoken formula is hard by ear alone (it is on screen 26.6 to 31.0 s, which this gate cannot see); frame 0's bottom third is plain ground. None blocking."
+ ]
+}

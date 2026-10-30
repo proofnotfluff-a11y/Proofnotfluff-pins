@@ -625,7 +625,8 @@ def page_html(p):
     v0 = sd[st0]
     s0 = v0["sum"][t0]
     checked = day_words(dt.date.fromisoformat(d["source"]["fetchedAt"][:10]), True)
-    lede = 'How many plowable days a Chicago winter brings at your trigger depth, from 30 winters of NOAA records.'
+    lede = (f"At O'Hare, the middle winter of the last {s0['n']} complete ones had {pushes(s0['mid'])} with {inch(s0['t'])} or more of new snow. "
+            'Pick your station and trigger depth to see the plowable days a Chicago winter brings, from NOAA daily records.')
     st_opts = "".join(f'<label><input type="radio" name="st" value="{k}"{" checked" if k == st0 else ""}>{E(v["s"]["label"])}</label>' for k, v in sd.items())
     t_opts = "".join(f'<label><input type="radio" name="t" value="{t}"{" checked" if t == t0 else ""}><span aria-hidden="true">{t} in</span>'
                      f'<span class="vh">{E(inch(t))}</span></label>' for t in TRIGGERS)

@@ -36,7 +36,11 @@ version of my own voice.\""). Each platform's own AI label toggle stays on as be
   keyword and block off-target ones if the keyword panel shows.
 - Facebook Page: 2 to 3 hashtags, no link, no capitals shouting. AI label on. Public.
 - YouTube Shorts: title under 100 characters, keyword in the first 40 to 50, no hashtags in the title. Description: keyword
-  line, proof with the full source, numbered steps, a next-lesson line, 2 to 3 hashtags. Tags field 5
+  line, proof with the full source, numbered steps, a next-lesson line, a site line, 2 to 3 hashtags. Site line (Todd's pick,
+  Oct 29, 2026, "All five", AI search plan): one plain sentence naming the free proofnotfluff.com page whose topic the lesson
+  covers, with its full https address (a calculator, a data page or a question page that is live in docs/sitemap.xml), else
+  "Free tools and Chicago data for trade owners: https://proofnotfluff.com/". YouTube only; Instagram, TikTok and Facebook keep
+  no link. Why: AI answers lean on YouTube, and the description is the text that ties the video to the site. Tags field 5
   to 10 (primary, secondary, trade variants, one common misspelling). Made for kids: No. AI use: Yes (YouTube exempts
   cloning one's own voice, but we disclose on every platform the same way; YouTube says it does not limit reach).
   Category Education. Language English.

@@ -333,8 +333,9 @@ def page_html(p):
           "isBasedOn": s["url"], "creator": {"@type": "Organization", "name": "ProofNotFluff"},
           "temporalCoverage": f'{w["from36"]}/{w["today"]}', "dateModified": s["fetchedAt"][:10],
           "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": f'{url}{t["key"]}/{csv_name(t)}'} for t in T]}
-    lede = (f'The City of Chicago publishes the contracts it awards. We sort the last 36 months into {len(T)} trades, so you can see who wins City work in yours, '
-            f'what it was worth, and which contracts end in the next 12 months and may go back out to bid.')
+    lede = (f'{S["ending"]:,} City of Chicago contracts in {len(T)} trades end in the next 12 months, from the City\'s contract records as of {E(M.nice_date(w["today"]))}. '
+            f'We sort the last 36 months of City awards by trade, so you can see who wins City work in yours, '
+            f'what it was worth, and which contracts may go back out to bid.')
     tiles = ('<div class="tiles ld-tiles">'
              f'<div class="tile key"><div class="lab">Ending in 12 months</div><div class="val">{S["ending"]:,}</div><div class="sub">contracts in these trades; the work may go back out to bid</div></div>'
              f'<div class="tile"><div class="lab">New awards, 12 months</div><div class="val">{S["awards12"]:,}</div><div class="sub">{E(usd_short(S["total12"]))} in all</div></div>'

@@ -1,0 +1,18 @@
+{
+ "product": "brand-cash-forecast monthly plan",
+ "unit": "client-month",
+ "price": 1250,
+ "price_source": "proposal only; Todd sets any price in a live chat (CONSTITUTION 1)",
+ "fee_pct": 10,
+ "fee_fixed": 0.5,
+ "fee_source": "Gumroad 10% plus $0.50 a sale on our own links (stress-test SKILL.md); a bank transfer invoice would cost less, to check",
+ "variable": [],
+ "variable_note": "no cash cost per client; owner hours are the real cost: estimate 4 to 6 a month per client, 6 to 10 for the first forecast",
+ "fixed_monthly": [{"label": "AI and hosting", "cost": 0, "source": "Claude subscription already paid; GitHub Pages free"}],
+ "startup": [],
+ "cap": 5,
+ "cap_source": "estimate: about 25 owner hours a month at 4 to 6 hours per client",
+ "ramp": [0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 5],
+ "ramp_source": "estimate: test target only; no funnel data exists for the warm-network channel",
+ "goal_month": 1000
+}

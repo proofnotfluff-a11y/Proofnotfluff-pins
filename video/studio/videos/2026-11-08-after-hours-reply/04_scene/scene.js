@@ -273,29 +273,29 @@ window.SCENE = {
       P(0, 340, 360, 77, '#6B4226'); P(0, 340, 360, 2, '#B07A47');
       for (let y = 417; y < 640; y += 16) for (let x = 0, c = 0; x < 360; x += 16, c++) P(x, y, 16, 16, ((y >> 4) + c) % 2 ? '#5A3A22' : '#4A2E1B');
       // the window unrolls downward from its title bar (never past its own bottom, which ends above the host's hat)
-      const X = 20, Y = 74, Wd = 300, H = 242, op = clamp(d.fr(t0) / 6);
+      const X = 20, Y = 84, Wd = 300, H = 229, op = clamp(d.fr(t0) / 6);
       appWindow(k, d, X, Y, Wd, Math.max(22, Math.round(H * eo(op))));
       if (op < 1) return host(k);
       // their message, pasted as a grey block (it slides in from the left as the window opens)
       const tMsg = Math.min(tPaste - 0.3, t0 + 0.22);
       if (T >= tMsg) {
         const sl = d.ease(tMsg, 6, 24);
-        bubbleBox(d, X + 8 - sl, Y + 25, Wd - 40, 50, '#E2DACB', '#C9BFAE');
-        d.tx('THEIR MESSAGE', X + 14 - sl, Y + 27, {size: 30, color: MAROON});
-        written(k, 1e9, MSG(n), 0, (X + 14 - sl) * 3, (Y + 42) * 3, (X + Wd - 46) * 3, {size: 30, lh: 45, color: PLUM, lint: sl === 0});
+        bubbleBox(d, X + 8 - sl, Y + 24, Wd - 40, 48, '#E2DACB', '#C9BFAE');
+        d.tx('THEIR MESSAGE', X + 14 - sl, Y + 26, {size: 30, color: MAROON});
+        written(k, 1e9, MSG(n), 0, (X + 14 - sl) * 3, (Y + 40) * 3, (X + Wd - 46) * 3, {size: 30, lh: 45, color: PLUM, lint: sl === 0});
         // "their message": the label underlines as it is said
         const tTheir = W(/^message/i, tPaste, tPaste + 0.4);
-        if (T >= tTheir) k.sweep((X + 14) * 3, (Y + 37) * 3, d.tw('THEIR MESSAGE', 30) * 3, 3, tTheir, {color: 'accent'});
+        if (T >= tTheir) k.sweep((X + 14) * 3, (Y + 36) * 3, d.tw('THEIR MESSAGE', 30) * 3, 3, tTheir, {color: 'accent'});
       }
       // "an AI chat app": the title bar's three lights flash in turn on "AI", "chat", "app"
       [W(/^AI$/i, tPaste, tPaste + 1.2), W(/^chat$/i, tPaste, tPaste + 1.5), W(/^app$/i, tPaste, tPaste + 1.8)].forEach((at, i) => {
         if (T >= at && T < at + 0.35) { d.disc(X + 9 + i * 9, Y + 10, 4, CREAM); d.disc(X + 9 + i * 9, Y + 10, 3, [RED, GOLD, TEAL][i]); }
       });
       // the prompt box: up on "paste" with a blinking cursor, then typed on as said
-      const bx = (X + 34) * 3, bmax = (X + Wd - 10) * 3, py = Y + 78;
+      const bx = (X + 34) * 3, bmax = (X + Wd - 10) * 3, py = Y + 75;
       if (T >= tPaste) {
         const pop = d.fr(tPaste) < 3 ? [3, 1, 0][d.fr(tPaste)] : 0;
-        bubbleBox(d, X + 30, py - pop, Wd - 38, 81, '#DCE9F7', '#A9C4E0');
+        bubbleBox(d, X + 30, py - pop, Wd - 38, 75, '#DCE9F7', '#A9C4E0');
         d.tx('YOUR PROMPT', X + 36, py + 2 - pop, {size: 30, color: BLUE});
         const rows = [
           {text: 'Write a short, friendly reply to this cleaning quote request.', at: tP1},
@@ -310,24 +310,24 @@ window.SCENE = {
           if (T >= tThis) { const b = (d.F >> 3) & 1, ax = X + 14 + b, ay = py + 30; P(ax, ay, 8, 4, GOLD); P(ax + 8, ay - 3, 2, 10, GOLD); P(ax + 10, ay - 1, 2, 6, GOLD); P(ax + 12, ay + 1, 1, 2, GOLD); }
         }
         else rows.forEach((r, i) => {
-          const ln = typed(k, T, r.text, r.at, bx + 12, y, bmax - 12, {size: 39, color: NAVY, hot: MAROON});
+          const ln = typed(k, T, r.text, r.at, bx + 12, y, bmax - 12, {size: 39, lh: 42, color: NAVY, hot: MAROON});
           if (i === 1 && T >= WE(/^below/i, tP2, tP2 + 1)) { const x0 = bx + 12 + k.measure(r.text + ' ', {size: 39}), cw = k.measure('[my rates]', {size: 30}); k.shape(k.rectPts(x0, y - 3, cw + 18, 45, 0), {fill: GOLD, line: false}); k.text('[my rates]', x0 + 9, y, {size: 30, color: INK}); }
-          y += ln * 45;
+          y += ln * 42;
         });
       }
       // the drafted reply (example), written out fast once the prompt is done
       const tDraft = tMiss + 0.15;
       if (T >= tDraft) {
-        const dy = py + 83, pop = d.fr(tDraft) < 3 ? [3, 1, 0][d.fr(tDraft)] : 0;
-        bubbleBox(d, X + 8, dy - pop, Wd - 16, 78, CREAM, SAND);
+        const dy = py + 78, pop = d.fr(tDraft) < 3 ? [3, 1, 0][d.fr(tDraft)] : 0;
+        bubbleBox(d, X + 8, dy - pop, Wd - 16, 74, CREAM, SAND);
         d.tx('DRAFT', X + 14, dy + 2 - pop, {size: 30, color: '#2F6F67'});
         const reply = `Thanks for reaching out! A move-out clean for a ${n.beds.shown} bed, ${n.baths.shown} bath is [your rate]. Want the inside of the fridge and oven done too?`;
-        written(k, T, reply, tDraft, (X + 14) * 3, (dy + 17 - pop) * 3, (X + Wd - 40) * 3, {size: 30, lh: 45, cps: 160, color: PLUM, lint: T >= tDraft + 1.2,
+        written(k, T, reply, tDraft, (X + 14) * 3, (dy + 17 - pop) * 3, (X + Wd - 40) * 3, {size: 30, lh: 42, cps: 160, color: PLUM, lint: T >= tDraft + 1.2,
           colorOf: (w) => (/^\[your|^rate\]/.test(w) ? (T >= tFix ? '#2F6F67' : MAROON) : null)});
         // the pen ticks it on "read"
-        if (T >= tRead) { const nn = Math.min(14, d.fr(tRead) * 3); for (let i = 0; i < nn; i++) { const px2 = X + Wd - 58 + i, py2 = dy + 66 + (i < 5 ? i : 5 - (i - 5)); P(px2, py2, 2, 2, '#2F6F67'); } }
+        if (T >= tRead) { const nn = Math.min(14, d.fr(tRead) * 3); for (let i = 0; i < nn; i++) { const px2 = X + Wd - 58 + i, py2 = dy + 62 + (i < 5 ? i : 5 - (i - 5)); P(px2, py2, 2, 2, '#2F6F67'); } }
         // the send key: pressed on "send"
-        const pressed = T >= tSend, sx = X + Wd - 34, sy = dy + 58, pd = pressed ? 2 : 0;
+        const pressed = T >= tSend, sx = X + Wd - 34, sy = dy + 54, pd = pressed ? 2 : 0;
         P(sx + 2, sy + 2, 22, 18, INK); P(sx - 1, sy + pd, 22, 18, INK); P(sx, sy + 1 + pd, 20, 16, pressed ? '#2F6F67' : TEAL);
         d.line(sx + 5, sy + 9 + pd, sx + 14, sy + 9 + pd, CREAM); d.line(sx + 10, sy + 5 + pd, sx + 14, sy + 9 + pd, CREAM); d.line(sx + 10, sy + 13 + pd, sx + 14, sy + 9 + pd, CREAM);
         if (pressed) { k.burst((sx + 10) * 3, (sy + 10) * 3, tSend + 0.05, {n: 12, r: 140, colors: ['teal', 'paper']}); }

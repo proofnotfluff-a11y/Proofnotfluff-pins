@@ -202,10 +202,17 @@ window.SCENE = {
       if (T < tNight) {
         const s = k.sets.street({t0, speed: 1, van: true});
         k.slam('Notes: in the car all day.', 150, 300, t0 + 0.1, {size: 39, color: NAVY, from: 0.4});
-        // the yellow notepad on the dash behind the windshield (the van bobs a pixel as it drives), a gold arrow on it
-        const bob = (d.F >> 2) & 1, b = (d.F >> 3) & 1;
+        // the yellow notepad on the dash behind the windshield (the van bobs a pixel as it drives), and a callout over the
+        // van that shows it close: the pad of notes riding along all day
+        const bob = (d.F >> 2) & 1;
         P(310, 314 + bob, 14, 8, INK); P(311, 315 + bob, 12, 6, '#F8E58C'); P(311, 315 + bob, 12, 2, '#C9402F'); P(313, 319 + bob, 8, 1, '#2B3F7A');
-        P(315, 270 + b, 4, 10, GOLD); P(311, 280 + b, 12, 2, GOLD); P(313, 282 + b, 8, 2, GOLD); P(315, 284 + b, 4, 2, GOLD);
+        if (T >= t0 + 0.2) {
+          const pop = d.fr(t0 + 0.2) < 3 ? [3, 1, 0][d.fr(t0 + 0.2)] : 0, cx = 266, cy = 236 - pop;
+          [[300, 282], [304, 290], [308, 298]].forEach(([x, y], i) => { P(x - 1, y - 1 - pop, 5 - i, 5 - i, INK); P(x, y - pop, 3 - i, 3 - i, CREAM); });
+          P(cx - 1, cy - 1, 46, 44, INK); P(cx, cy, 44, 42, CREAM); P(cx + 2, cy + 40, 42, 2, SAND);
+          P(cx + 10, cy + 5, 25, 32, INK); P(cx + 11, cy + 6, 23, 30, '#F8E58C'); P(cx + 11, cy + 6, 23, 5, '#C9402F');
+          for (let j = 0; j < 4; j++) P(cx + 14, cy + 15 + j * 5, 12 + ((j * 5) % 7), 1, '#2B3F7A');
+        }
         return host(k);
       }
       // night: the kitchen. A tiled backsplash, a pendant lamp whose cone falls on the table and the blank quote, the fridge
@@ -259,7 +266,7 @@ window.SCENE = {
       const tg = 'EXAMPLE', tgw = d.tw(tg), tgx = X + 42 + d.tw('AI CHAT APP'); P(tgx, Y + 1, tgw + 8, 15, GOLD); d.tx(tg, tgx + 4, Y + 2, {color: INK});
       let y = (Y + 19) * 3;
       [{text: 'Turn these notes into an itemized quote.', at: tP1}, {text: 'Use only my price list.', at: tP2}, {text: "Flag anything I didn't price.", at: tP3}].forEach((r, i) => {
-        typed(k, T, r.text, r.at, (X + 8) * 3, y, (X + Wd - 8) * 3, {size: 39, color: NAVY});
+        typed(k, T, r.text, r.at, (X + 8) * 3, y, (X + Wd - 8) * 3, {size: 39, color: NAVY, hot: MAROON});
         if (T >= ends[i] + 0.05) {   // a check stamps at the end of the line once it is said
           const cx = Math.round((X + 8) + k.measure(r.text, {size: 39}) / 3 + 5), cy = y / 3 + 2, m = Math.min(9, d.fr(ends[i] + 0.05) * 3 + 1);
           tick(d, cx, cy, '#2F6F67', m);

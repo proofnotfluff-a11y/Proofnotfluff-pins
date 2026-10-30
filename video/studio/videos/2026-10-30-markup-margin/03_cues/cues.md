@@ -1,77 +1,50 @@
-# Cues: Markup vs margin (Lesson 3, Run the Numbers, arcade)
+# Cues: Markup vs margin, payoff first (Lesson 3 in Lead Clinic v2, Run the Numbers, arcade; the payoff-first test)
 
 music: rooms
 
-## hook "Mark up a job fifty" [sfx: pop]
-Three shots (IMPROVE 00a). Cover, frame one, host and dialog box hidden: the job site, the claim on the sign "50% MARKUP / is NOT / 50% MARGIN", chip RUN THE NUMBERS, source line "Math: JLC and Xero". On "job" cut in to the bench close-up: the claim and source on a title plate up top, the planks big (COST $1,000, +50% in orange), Snow and the dialog box come in. On "fifty" the big tape runs out to the $1,000 mark; on "percent" the markup plank blinks with sparks. On "Is" cut back out to the site: the "?" lands on "margin?".
-## hook.nope "Nope. It's a third." [sfx: stamp]
-Stamp ONE THIRD slams across the "Margin 50%?" line. Snow shrugs.
-## hook.fix "I'll show you the" [sfx: blip]
-Two chips slide in under the card: 1 THE MATH, 2 THE FIX.
+## hook "This job costs you" [sfx: pop]
+Three shots (IMPROVE 00a). Cover, frame one, host and dialog box hidden: the job site, the question on the sign "$1,000 JOB." / "What do you quote?", chip RUN THE NUMBERS, the source line "Example math. Sources: JLC, Xero". On "costs" cut in to the bench close-up: the question on a title plate up top, the cost plank big (COST $1,000) and an empty slot after it marked "?"; Snow and the dialog box come in; the tape runs out to the $1,000 mark on "thousand". On "What" cut back out to the site: the "?" blinks on the sign.
+## hook.q "What do you quote?" [sfx: blip]
+The empty price slot on the sign blinks "?".
 
-## math "Let's say your cost" [sfx: whoosh]
-Room: blackboard. Chalk header: COST + MARKUP = PRICE. An empty bar outline on the right.
-## math.cost "a thousand dollars." [sfx: tick]
-The cost block fills the bottom of the bar; $1,000 counts up beside it: cost.
-## math.markup "A fifty percent markup adds" [sfx: tick]
-The markup slice stacks on top in the accent; +$500 counts up as "five hundred" is said: 50% markup.
-## math.price "so the quote says" [sfx: pop]
-The price lands on top of the bar: $1,500 counts up on "fifteen hundred".
-## math.third "That five hundred is" [sfx: whoosh]
-Chalk lines cut the bar into three equal parts; the slice glows: ONE THIRD of the price.
-## math.margin "So your margin is" [sfx: stamp]
-33.3% counts up on "thirty-three" and slams in big: margin.
-## math.not "Not the fifty you" [sfx: tick]
-"not 50%" chalks in under it and gets struck through.
+## answer "Divide it by point" [sfx: whoosh]
+Room: the tool belt. The answer card rises at once and fills the screen, chip THE ANSWER: "$1,000 / 0.6" writes in big on "point six".
+## answer.price "About sixteen sixty-seven." [sfx: pop]
+"= $1,666.67" lands whole under it with sparks.
+## answer.margin "That's a forty percent" [sfx: stamp]
+"40% margin" slams in under it in the accent. The card holds big into the next take (4 s or more on screen).
 
-## why "Why the gap?" [sfx: whoosh]
-Room: workshop. Header on the pegboard: WHY THE GAP?
-## why.markup "Markup is measured on" [sfx: tick]
-Card MARKUP: $500 / $1,000 cost = 50%. "on cost" highlighted.
+## usual "Mark it up fifty" [sfx: whoosh]
+Room: the register. Header: THE USUAL WAY. COST $1,000 rings up; MARKUP 50% +$500 rings on "fifty".
+## usual.price "and you'd quote fifteen" [sfx: pop]
+The total rings: PRICE $1,500, display QUOTE.
+## usual.half "Sounds like half is" [sfx: tick]
+Line under it: "Half is margin?" in gold.
+## usual.third "But that five hundred" [sfx: stamp]
+The display splits the price into thirds, the markup third in orange, "1/3"; stamp A THIRD: "$500 = 1/3 of the price".
+
+## why "Markup is measured on" [sfx: whoosh]
+Room: the job site. Header WHY. Row: Markup: $500 / $1,000 = 50%, "on cost" swept; the tape runs to the cost.
 ## why.margin "Margin is measured on" [sfx: tick]
-Card MARGIN: $500 / $1,500 price = 33.3%. "on price" highlighted.
-## why.pays "the money the customer" [sfx: blip]
-A sweep under "price": what the customer pays you.
-## why.left "And margin isn't take-home" [sfx: stamp]
-Stamp NOT TAKE-HOME PAY across the margin card.
-## why.cover "It's what's left to" [sfx: tick]
-A chip drops into the margin card: OVERHEAD.
-## why.pay "and pay yourself." [sfx: tick]
-A second chip drops in beside it: YOUR PAY.
+Row: Margin: $500 / $1,500 = 33.3%, "on price" swept; the tape runs out to the whole price.
+## why.pays "the customer pays." [sfx: blip]
+Coins hop onto the planks; plate line: Price = what the customer pays you.
 
-## double "Want a real fifty" [sfx: whoosh]
-Room: garage. Header: WANT A 50% MARGIN? The bar again: cost $1,000.
+## formula "So start from the" [sfx: whoosh]
+Room: the tool belt again. Chip START FROM THE MARGIN.
+## formula.eq "Price is your cost," [sfx: tick]
+The formula card: Price = Cost over 1 - margin, big, held 3 s or more.
+## formula.minus "one minus that margin." [sfx: tick]
+A gold ring draws around 1 - margin; under the card the worked line "40%: $1,000 / 0.6 = $1,666.67".
+
+## double "Want a fifty percent" [sfx: whoosh]
+Room: the gauge. Dial WANT A 50% MARGIN?, the needle at a third, the gold notch at 50. Source tag "Math: JLC".
 ## double.x2 "You'd have to double" [sfx: stamp]
-Stamp DOUBLE YOUR COST. A second cost-sized block stacks on top.
-## double.markup "That's a hundred percent" [sfx: tick]
-100% counts up beside the new block: markup.
+Stamp DOUBLE YOUR COST; a second cost-sized block stacks on; 100% markup; the needle climbs to 50.
 ## double.quote "two thousand on the" [sfx: pop]
-$2,000 on the quote slams on top; the top block reads 50% margin.
+"= $2,000 quote" slams in.
 
-## formula "Here's the part people" [sfx: blip]
-Room: blackboard. Chip THE PART PEOPLE SKIP.
-## formula.shot "Screenshot this one." [sfx: whoosh]
-The formula card slams in, chip SCREENSHOT THIS.
-## formula.eq "Price equals your cost," [sfx: tick]
-Price = Cost / (1 - margin) chalks in big (Price = over Cost over 1 - margin) and holds big for at least 3.6 s; it then steps up to half size and stays on the board to the end of the section.
-## formula.minus "one minus the margin" [sfx: tick]
-A chalk ring draws around 1 - margin.
-## formula.forty "Want forty percent?" [sfx: tick]
-Under the card: 40% margin.
-## formula.div "Divide your cost by" [sfx: tick]
-$1,000 / 0.6 writes in.
-## formula.result "A thousand becomes about" [sfx: pop]
-= $1,666.67 counts up on "sixteen hundred sixty-seven" and lands with sparks.
-## formula.check "sixteen hundred sixty-seven dollars." +1.2 [sfx: tick]
-Check line chalks in: $666.67 / $1,666.67 = 40% margin.
-
-## close "Markup is on cost." [sfx: whoosh]
-Room: framing. Rule card: MARKUP IS ON COST. / MARGIN IS ON PRICE., each line slammed as it is said.
-## close.send "Send this to whoever" [sfx: sting]
-Brand plate ProofNotFluff, then the send line: Send this to whoever sets your prices.
-## close.you "even if that's you." [sfx: tick]
-A highlighter sweeps under "sets your prices."; Snow points at himself.
-## close.last "And your last quote?" [sfx: pop]
-Last panel: YOUR LAST QUOTE?
-## close.echo "Was the margin half," [sfx: tick]
-Under it: "Half, or a third?" slams in. Snow waves.
+## button "So when a job" [sfx: whoosh]
+Room: the register, its display asking "?". Rule card: "$1,000 job?" then "Quote from the margin." / "Not the markup."
+## button.not "not the markup." [sfx: sting]
+The rule underlined; Snow waves. Then the end card with the send line: "Send this to whoever sets your prices."

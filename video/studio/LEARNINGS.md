@@ -92,3 +92,4 @@ The studio learns in three loops (Todd, Oct 28, 2026, 3:43 pm: "make this video 
   S or $ (golden r0 must-fix) -> redraw landed letters whole with hinge notches at the cell edges; a redraw over a
   linted letter needs lint false. A 12-column board has no room for 'DIVIDE BY 0.6' -> 'DIVIDE 0.6'. Design held at
   4.43 r1 on the type cap again (third lesson); IMPROVE 00b is the blocker, not the scenes.
+- Oct 30: the 7:46 am run could not render markup-margin: `ready` had pinned f9e92d86, a commit a later pull --rebase rewrote (7cef77c6, all 12 fingerprints equal), so it never reached origin. `ready` now refuses a commit origin does not have.

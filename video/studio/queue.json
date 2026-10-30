@@ -230,6 +230,26 @@
      "at": "2026-10-29T13:54:01-05:00"
     }
    }
+  },
+  {
+   "slug": "2026-11-09-receptionist-myth",
+   "readyAt": "2026-10-29T19:46:00-05:00",
+   "commit": "513048ca9f3166845b578f1fa8a10c6038ffff18",
+   "fingerprints": {
+    "script": "948aaa19f939",
+    "takes": "38c2a74b2a95",
+    "words": "1e1855b13485",
+    "cues": "a30613efe30c",
+    "scene": "7f1619c79c76",
+    "data": "00e528a559cb",
+    "captions": "6396e3320ba0",
+    "mouth": "506c724b05cb",
+    "runtime_kit": "d12df837dc0a",
+    "runtime_player": "b6ba5eeebb4b",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

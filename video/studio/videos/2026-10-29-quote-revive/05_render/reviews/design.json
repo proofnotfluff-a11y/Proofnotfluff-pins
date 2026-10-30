@@ -1,24 +1,24 @@
 {
  "gate": "design",
- "round": 0,
- "at": "2026-10-29T22:39:25-05:00",
- "build": "6c6be63b",
- "pass": false,
+ "round": 1,
+ "at": "2026-10-29T23:29:17-05:00",
+ "build": "4f3ac098",
+ "pass": true,
  "score": {
   "first": 5,
-  "hierarchy": 4,
+  "hierarchy": 5,
   "type": 4,
   "color": 5,
   "spacing": 4,
-  "polish": 4,
+  "polish": 5,
   "trust": 5,
-  "average": 4.43
+  "average": 4.71
  },
  "reasons": [
-  "0.45 to 0.70 s hook cover: burst centred on the '?' (scene.js k.burst(700, 520, 0.45, ...)); use two small bursts beside the word.",
-  "64.0 to 69.0 s close CTA sits about 20 px under '+ ONE QUESTION' at perk size; add about 50 px space and set it size 66.",
-  "Labels and sources at size 30 under the 36 px floor (cover Sources line, source tags, closed/still open, chips); raise to at least size 42 and re-wrap.",
-  "18.5 to 27.5 s 'Just checking in!' tag text sits low; move it up 2 low-res px.",
-  "Checks: freshness PASS; picture changes 0.45 and 0.8 s; end card 69.3 to 72.2 s; spoken words size 66."
+  "0.0 to 69.0 s labels and sources (type capped at 4, the 36 px label floor): the cover 'Sources: ServiceTitan, Jobber, Housecall Pro', the 'THE TEXT', 'SERVICETITAN'S OWN DATA' and 'PROOFNOTFLUFF' chips, 'ServiceTitan blog, 2026', 'Jobber Academy, 2026', 'The part people skip.', 'ServiceTitan follow-up webinar, 2026', 'Housecall Pro survey, 1,040 U.S. homeowners, 2025', the small close perk list and 'Exact text in the caption.' are still drawn in the body pixel font (21 px caps). Round 0 asked for size 42 and it did not land (these lines are still size 30 or 39), and size 42 would not have helped anyway: kit.js rounds every size under 52 to the same body glyphs (m = 1), so 30, 39 and 42 all render the same. Fix: set them at size 52 or more (display font, 33 px caps) and re-wrap. The cover Sources line is 1035 px wide in the display font, so split it into two lines inside x 60 to 950.",
+  "64.5 to 69.0 s close send line: the descenders of 'follows up on your quotes.' (p, y, q) end at y 995 and their drop shadow runs to y 998, right on the dark dialog band's top edge (y 996). Raise both lines 12 px (y 870 to 858, 936 to 924). That still leaves about 33 px under '+ ONE QUESTION'.",
+  "49.4 to 60.0 s 'Text it.' over the phone: its ink ends about 10 px above the phone's gold frame (y 400), so it reads as touching. Raise it 12 px (y 336 to 324).",
+  "Round 0 changes that landed: the hook bursts now sit either side of 'quiet?' (0.45 s); the close CTA is size 66 with about 45 px of air under the perks; 'closed' and 'still open' are size 66 (12.3 to 15.5 s); the 'Just checking in!' tag text moved up 2 px (18.5 s). Not landed: the size-42 labels (first reason).",
+  "Checks: freshness PASS (2026-10-28-first-reply is the only earlier lesson and uses the framing, blackboard, workshop and garage rooms; this one uses the street, the dash phone close-up, the kitchen fridge, the in-truck chat, the office desk and levelup); picture changes at 0.45 s and 0.8 s, then cuts back at about 1.9 s; host on screen from 0.8 s; end card with proofnotfluff.com from 69.3 to 72.2 s; spoken words size 66 (display font); heroes 37% and 59% at size 264. Not capped: Snow stands about 270 px tall for most of the lesson, under the board's 360 px target."
  ]
 }

@@ -1,19 +1,21 @@
 {
  "gate": "render-critic",
  "round": 0,
- "at": "2026-10-29T22:39:25-05:00",
- "build": "6c6be63b",
+ "at": "2026-10-29T23:29:17-05:00",
+ "build": "4f3ac098",
  "pass": true,
  "score": {
   "faults": 0
  },
  "faults": [],
  "reasons": [
-  "mp4 sha matches qa.json; 74.63 s, 1080x1920, 30 fps; words still line up with the voice.",
-  "Hook: '3 prices' on screen from 0.0 s.",
-  "Every spoken number on screen at about the moment it is said (one price to three prices, 0.5 to 70.0 s).",
-  "Layout once settled inside y 270 to 1250 and x 930; Snow's hand stops short of 'ServiceTitan'.",
-  "End: 'a choice.' lands 71.30 s, held to 71.67 s, end card 71.70 to 74.63 s; voice ends 3 s before the file.",
-  "Small text about 28 to 30 px; no flashes over 3 a second."
+  "Build checked: 05_render/2026-10-31-three-prices.mp4 sha256 26e2d592...9302 matches qa.json. It is 74.63 s, 1080x1920, 30 fps, with audio running the full length. The earlier render-critic.json (round 0, build 6c6be63b) listed no faults, so there was nothing to confirm gone.",
+  "Hook: '3 prices' is big on the cover card from 0.0 s, sits on the title plate from 0.5 to 1.87 s, and is back on the card from 1.9 s. That is well before 0:02.",
+  "Spoken numbers are on screen at about the moment each is said, checked against the times in words.json. They include 10% (8.45 s), 57% (11.2 to 12.4 s), 41% (counts up and lands 14.5 s for 14.41 s), 1,100+ (19.5 s for 19.83 to 20.85 s), 68% (lands 22.5 s for 22.31 s), 1,000+ (49.5 s for 'thousand', which ends 49.40 s), 4+ (52.5 s), 52% (54.5 s), 1 TO 3 (56.5 s), 42% (57.5 s), '1, 2 AND 3: ONE GROUP' plus 'It can't show 3 beats 1.' (59 to 63 s), START WITH 3 (64.5 s), '1 price: yes or no.' (67.5 s) and '3 prices' plus '$ $$ $$$' (69.5 s). Mid-lesson 'three' lines show a 3 or the three-row quote, except 'Build your three' (31.52 s), which shows only the word 'three' in the speech bubble. I took the bubble word as readable.",
+  "Borderline, not a fault: 'one price' (0.50 to 1.30 s) falls inside the planned cut-in. '1 price?' is on the cover from 0.00 to 0.47 s and the cut lands on 'one' at 0.50 s. The cut back at 1.90 s brings the chalkboard '1 price?' back, 0.6 s after 'price' ends. While 'one' is spoken, the screen reads 'quote 3 prices'. I judged the 1 within 'about the moment' on both sides.",
+  "Layout once settled: no words or numbers are hidden, cut off or under another element. Content text stays between y 270 and y 1250 and left of x 930. The rightmost edges are 57% at about x 915, $$$ at about x 928 and the hook line at about x 855. Past x 930 there are only card frames, house rows and the scenery OPEN sign. Snow's pom-pom sits on the bottom edge of the plate and the clipboard at 70.3 s and 41 s without covering any text. The clamp and ONE GROUP tag leave 1 2 3 fully visible.",
+  "End: 'a choice.' runs 71.27 to 71.55 s and the voice is silent by about 71.6 s. Only the bed and a fade remain to 74.63 s, so the voice ends 3 s before the file and nothing is cut mid-word. 'a choice.' is on the plate from about 71.0 s, then the wipe to the end card starts around 71.5 s.",
+  "Small text: the smallest lines (tray and source lines, the footnote, 'Lessons for trade owners') are about 26 to 30 px tall at 1080 wide and readable on a phone. Flashes: none over 3 a second. The busiest moment is two hard cuts in the hook (0.50 s and 1.90 s), and the rest is reel spins and one pixel-dissolve transition (30.5 s, 43.5 s).",
+  "Side note outside this gate: 05_render/2026-10-31-three-prices-post.mp4 has a different sha256 (1fc73cc6...) from the reviewed master but the same byte count. I reviewed only the master named in qa.json. Nothing was edited or written."
  ]
 }

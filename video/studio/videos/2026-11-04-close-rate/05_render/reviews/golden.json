@@ -1,19 +1,23 @@
 {
  "gate": "golden",
  "round": 0,
- "at": "2026-10-29T22:40:04-05:00",
- "build": "6c6be63b",
+ "at": "2026-10-29T23:29:17-05:00",
+ "build": "4f3ac098",
  "pass": true,
  "score": {
   "post_as_is": "yes"
  },
  "reasons": [
-  "Every number matches facts.json; 14 / 40 = 35% inside 31 to 38; the source plate is up with each ServiceTitan number.",
-  "Glad to have the name on it: yes; caveats said out loud, example labelled.",
-  "Numbers readable when said; dialog size 66 pages fit two rows.",
-  "Voice sounds like a person; music 10 to 14 dB under the voice.",
-  "qa PASS (frozen-check window label is off; freezedetect over the whole file finds 0).",
-  "polish 66.4 to 66.8 s tag covers 'ESTIMATES GIVEN'; 65.7 to 70.4 s empty LV 2 bar; three short transitions; Friday tally vs same-month formula; 'one-line math' promise arrives at 27.4 s.",
-  "captions: IG asks for comments, replies are Todd's."
+  "1. polish, 12.0 to 24.3 s (gauge): the bottom half of the frame below the host band is empty dark stripes for about 12 s, the longest dead area in the lesson. A floor prop or a faint echo of the dial would fill it. Nothing is broken and it reads clean on a phone.",
+  "2. polish, 37.9 to 41.5 s: the voice says 'right inside the median range', but 31% to 38% is the spread of regional medians, not one median range. The on-screen strip ('Median 31% to 38%, 35% sits inside') and facts.json carry the same reading, so nothing contradicts and the facts gate already accepted it. 'Right inside the regional medians' would be tighter.",
+  "3. polish, 27.4 to 33.2 s vs 56.8 to 70.4 s: the formula says 'over the same month', and the close says 'Every Friday ... then on Friday, you'll know your close rate.' This is not a contradiction (count both every week, divide), but an owner could wonder whether the rate is weekly or monthly. One plate line such as 'add up the month' would settle it.",
+  "4. polish, 1.5 to 2.0 s: on the cork strip the SOLD stamps sit a few px past the edges of the slips (for example the slip at about x 847 to 925 at 2.0 s). It only shows on a paused frame.",
+  "5. polish, 0 to 12 s: the source plate 'ServiceTitan customers, May to Jul 2026' and the 41.25 s strip text are about 24 to 28 px caps, small but readable at phone size. The design gate raised the same point in round 0 and its other fixes are visible in this pack (TOP 25% plate sized to its text, LV 2 bar filled, PROOFNOTFLUFF tag in its own slot at 69 s).",
+  "Q1 PASS: the message is that ServiceTitan's regional medians run 31% (Northeast) to 38% (West) and the top quarter by close rate runs 70% to 73%, so measure yours with jobs sold over estimates given and beat last month. The numbers on screen match the voice and facts.json: 31/38 cards and map markers, a gauge with the gold band at about 31 to 38 and the teal band at about 70 to 73 on its 0 to 100 scale, 14 / 40 = 35% with a marker at 35 on a 0 to 100 strip.",
+  "Q2 PASS: nothing broken or off-brand. The transitions at 24.0, 33.0, 52.0, 56.5 (shutter) and 63.0 s (chalk wipe) are planned in cues.md and look clean in extracted frames. The 0 to 0.8 s cover and the cut back at 2.3 s match the planned three-shot hook.",
+  "Q3 PASS: every number is on screen as it is said (31, 38, 25, 70, 73, 40, 14, 35) and there is no contradiction. The source caveats are said (ServiceTitan does not define a close; its customers are not every shop) and shown at 47 to 52 s.",
+  "Q4 PASS: it sounds like a person. Takes run 153 to 176 wpm; three are just under the 160 target but above anim.py's 150 slow flag. The transcript has no flags, and the only hand fix is a justified 'jobs sold' spelling.",
+  "Q5 PASS: qa.json has 6 of 6 checks passing: 73.47 s length, -14.2 LUFS, -3.2 dBTP, 0 black stretches, 0 frozen stretches, and a clean decode. Its sha 79a7b3d3 matches 2026-11-04-close-rate.mp4. The -post.mp4 has a different sha only because anim.py export stream-copies it with faststart, so the content is identical (same 7,084,607 bytes).",
+  "Q6 PASS: the first 3 s hold a question hook with two big numbers and a cut at 0.8 s. The reasons to save and send are clear: 'screenshot this' at 24.3 s, the formula end card, and 'Send this to whoever writes your estimates' at 66.4 s. Captions on all four platforms match the video's numbers and caveats, and the AI labels are set."
  ]
 }

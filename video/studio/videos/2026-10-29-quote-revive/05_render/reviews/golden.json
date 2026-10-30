@@ -1,20 +1,22 @@
 {
  "gate": "golden",
  "round": 0,
- "at": "2026-10-29T22:39:17-05:00",
- "build": "6c6be63b",
+ "at": "2026-10-29T23:29:17-05:00",
+ "build": "4f3ac098",
  "pass": true,
  "score": {
   "post_as_is": "yes"
  },
  "reasons": [
-  "polish 0.45 to 0.65 s: spark burst on 'quiet?' lands on glyphs (design round 1 item, not landed).",
-  "polish 0.5 to 3.5 s: blinking typing dots read as 'they're typing', fighting 'went quiet'.",
-  "polish 0.5 to 1.8 s: cab close-up reads as a dark room more than a truck cab.",
-  "polish 0.0 to 17.9 s: bottom 40% flat grass; frame 0 has no Snow.",
-  "polish 64.0 to 69.0 s: CTA sits about 20 px under '+ ONE QUESTION', reads as a fourth item.",
-  "file: qa.json names the render sha, the post copy is a stream copy differing in 9 header bytes.",
-  "process: design on this build still to run; golden alone is not enough to post.",
-  "checked: numbers match facts.json, voice, screen and captions agree, first 3 s earn the stop; I would put my name on it."
+  "1. polish, 0.0 to 17.9 s and 33.5 to 60.5 s: the bottom 35 to 40 percent of the frame is empty grass or dark slats, and Snow is small. Nothing gets cut off, and the platform UI covers part of that area anyway, but the stakes window and the phone could sit lower and bigger.",
+  "2. polish, 1.8 to 3.5 s: 'One text can bring it back.' has no dialog box, so someone watching with the sound off only gets the cover's 'Send this text.' The struck 'Just checking in!' bubble (2.5 to 3.4 s) is readable but small for a beat that matters.",
+  "3. polish, 13.6 to 16.5 s: the van 'pulls away' only as a slow parallax drift. The van holds its spot while the QUOTE sign creeps left, so the driveway line lands softly.",
+  "4. polish, 44.0 to 46.9 s: the YES and NO buttons show as a lock-screen notification on the dash-mounted phone, which is the owner's phone. It reads as the homeowner's view, but not right away. The gold frame around the sent bubble described in cues.md does not show at 43.2 s.",
+  "5. polish, 52.0 to 55.5 s: 'Don't email it.' in grey on navy has low contrast. It is readable at full size and the grey is clearly meant to play it down.",
+  "6. polish, captions: the IG and YouTube captions apply Jobber's three-send cadence, which is written for email, to the text, while the video says 'One text'. It is sourced and the facts-captions gate passed it, but 'Send it ... again a week after ... once more' is a little at odds with the spoken promise.",
+  "Checks: the numbers agree everywhere. 37 percent is spoken at 8.0 s and on screen at 8.0 s with the bar at 37 and the rest marked 'still open'. 59 percent is spoken at 55.6 s and on screen at 56.0 s with 'Housecall Pro survey, 1,040 U.S. homeowners, 2025'. Both match facts.json, and the do-not-use 64, 72 and 87 percent figures appear nowhere. There are no contradictions. The source lines are readable at 1080x1920. The phone text 'Hi [name], it's [you].' and 'Still want that water heater swapped before winter?' are large and clear (37.4 to 43.2 s). The CTA 'Send this to whoever follows up on your quotes.' is size 66 with clear space (64.0 to 69.0 s). The promise 'Exact text in the caption.' holds on all four platforms.",
+  "Voice: it sounds like a person. Pace is 156 to 182 wpm, transcript flags are 0, and the lines are plain and confident, including the 'it hands them homework' turn.",
+  "qa.json: all 6 checks PASS (72.17 s, -14.2 LUFS, -3.1 dBTP, 0 black stretches, 0 frozen stretches, voice 0 flags). The mp4 sha256 efd413c4 matches the render. The post copy is a remux of the same streams with faststart (same size and duration; the hash differs only because of the remux). The 60.6 s dip to the close is a dark wipe of about 0.1 s (Y about 36, not black), so it is not a fault.",
+  "Hook: the first 3 seconds earn the stop. 'Quote went quiet? Send this text.' on the cover, a cut at 0.8 s to the cab phone showing Quote.pdf Seen with no reply, a cut back at 2.0 s, and the strike-through by 3.0 s. There is a clear reason to send it (the owner passes it to whoever follows up on quotes) and to save it (an exact, copyable text)."
  ]
 }

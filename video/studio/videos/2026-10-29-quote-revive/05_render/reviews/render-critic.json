@@ -1,18 +1,21 @@
 {
  "gate": "render-critic",
  "round": 0,
- "at": "2026-10-29T22:38:01-05:00",
- "build": "6c6be63b",
+ "at": "2026-10-29T23:29:24-05:00",
+ "build": "4f3ac098",
  "pass": true,
  "score": {
   "faults": 0
  },
  "faults": [],
  "reasons": [
-  "Build mp4 sha matches qa.json; 1080x1920, 30 fps, 72.17 s.",
-  "Earlier round faults still fixed (23.29 s bubble descenders, 28.07 s Jobber source wrap, hook Sources line).",
-  "hook-number PASS: hook text from frame 0 through 2.0 s.",
-  "number-readable PASS: 37% at 8.0 s (said 7.94), 59% at 56.0 s (said 55.72), name/job/question at 61 to 63 s.",
-  "layout PASS; audio-end PASS (last word 69.08 s, card 69.2 to 72.17 s); small-text and flash PASS."
+  "Build checked: 05_render/2026-10-29-quote-revive.mp4 sha256 efd413c4... matches qa.json; 1080x1920, 30 fps, 72.17 s. The -post.mp4 copy is the same size and differs only in 9 header bytes (container timestamps), not in picture or sound.",
+  "Earlier round: reviews/render-critic.json (round 0, build 6c6be63b) listed 0 faults. The faults from older rounds are still fixed. 'Just checking in!' now sits clear of its blue tag's border at 18.5 to 27.5 s. 'Jobber Academy, 2026' wraps inside the JOBBER'S TIPS panel. The hook Sources line ends at x 914, inside its window.",
+  "This build's design fix touched only the scene. 'closed' and 'still open' at 12.3 to 15 s are now size 66, fully inside the 37% card with no overlap. The close send line 'Send this to whoever / follows up on your quotes.' measures x 300 to 926 and y 879 to 995, so it is inside x 930 and clear of the SNOW tag at about y 1012. Its p, y and q descenders cross the console floor's top edge but are drawn over it and fully readable. The hook bursts at 0.45 to 0.7 s sit beside 'quiet?', not on it. There is no typing bubble.",
+  "hook-number: PASS. 'Quote went quiet?' and 'Send this text.' are on screen from frame 0. The mp4 cuts to the dash phone close-up at about 0.7 s and back to the street at about 1.9 s. The title plate stays up the whole time and is still there at 2.0 s.",
+  "number-readable: PASS. 'thirty-seven' is said at 7.94 s and 37% is big on screen by 8.0 s. 'fifty-nine' is said at 55.72 s and 59% is up by 56.0 s, with its source line. '+ ONE NAME' appears at about 60.9 s (said 60.74), 'ONE JOB' at about 61.9 s (said 61.78) and 'ONE QUESTION' by 63.0 s (said 62.68). Numbers on screen that are not spoken (1,040, 2025, 2026, 4pm) are all readable.",
+  "layout: PASS. Once each scene settles, no words or numbers are hidden, cut off or under another element. The Dentist note covering the plumber note and the lock-screen notification over the chat (44 to 47 s; notification and YES/NO at about x 353 to 913) are scripted reveals. Three items brush the guides but are fully visible, so I did not count them, the same call earlier rounds made. 'Groceries' on the fridge note ends at x 938 (18 to 33 s). 'ServiceTitan follow-up webinar, 2026' ends at x 935 (51.5 to 55.5 s). In the 0.7 to 1.9 s dash close-up, the phone's 'Text message' input hint sits at about y 1263. That hint is phone UI chrome, not lesson content, and nothing here reaches the platform right rail (about x 955 and up).",
+  "audio-end: PASS. The last word 'send.' runs 68.84 to 69.08 s. The close screen with 'you'll know what to send.' stays up through 69.1 s in the decoded frames, and the end card drops in from about 69.2 s and holds to 72.17 s. Sound fades from about -24 dB at 70.5 s to -45 dB at 72.0 s, so nothing is cut mid-word.",
+  "small-text / flash: PASS. The smallest text (source lines, '1,040 U.S. homeowners, 2025', 'Lessons for trade owners', the notification header) is about 28 px tall or more, which is readable on a phone. The only dark dip is a single dithered transition frame at about 60.7 s. The hook has 2 picture changes in about 1.2 s. Nothing flashes more than 3 times a second."
  ]
 }

@@ -1,16 +1,19 @@
 {
  "gate": "golden",
  "round": 0,
- "at": "2026-10-29T22:40:11-05:00",
- "build": "6c6be63b",
+ "at": "2026-10-29T23:29:17-05:00",
+ "build": "4f3ac098",
  "pass": true,
  "score": {
   "post_as_is": "yes"
  },
  "reasons": [
-  "Numbers on screen match voice, facts.json and all four captions; every number on screen when said; 0 voice flags; I'd put my name on it.",
-  "First 3 s earn the stop: cover card at frame 0, cuts at 0.5 and 2.0 s.",
-  "polish 71.30 to 71.70 s payoff on the plate about 0.4 s; 4.0 to 5.4 s empty drawer fronts; 2.0 to 3.9 s Snow at the card's left edge; 65.0 to 67.3 s near-empty chalkboard; 63.5 to 64.3 s crown flips early; count-ups pass non-stat figures; 45.4 s 'Your three is a floor.' cryptic.",
-  "qa frozen check only covers to 65.01 s; motion checked by eye to 71.7 s."
+  "1. polish, 19.0 to 19.4 s: the homeowner count-up shows 1,085+ and 1,091+ homeowners for about half a second. Neither is the source number, and the plus makes each look like a claim. It settles on 1,100+ by 19.5 s, before 'eleven' is said at 20.19 s. The 39% at 14.0 s and 67% at 22.0 s count-ups are the same kind of thing and also settle as they are said.",
+  "2. polish, 53.98 to 54.5 s and 57.16 to 57.5 s: the slot reels land on 52% and 42% about 0.3 s after 'fifty-two' and 'forty-two' start. Each number is readable while its word is still being said, so this is not a mismatch.",
+  "3. polish (doubtful PASS in qa.json, frozen check): the detail says 'before the end card at 65.01 s', but the end card actually starts at about 71.8 s (anim.py takes the last level-0 cue). That left 65.0 to 74.6 s outside the check. I reran freezedetect on the whole file. At -60 dB the only still stretch before the end card is 14.43 to 15.47 s (1.03 s on 'Forty-one'), and at the configured -70 dB there is none. 65 to 72.5 s is clean, and the only freeze starts at 72.57 s, which is the end card. So the PASS holds, but the label and window are wrong in the tool.",
+  "4. polish, 6 to 16 s and 59 to 64 s: the secondary text is small on a phone ('ServiceTitan customers, 12 months to Jan 2026', 'Top 10% = by revenue in their trade', and the red 'It can't show 3 beats 1.'). Every headline number and the speech bubble read fine.",
+  "5. polish, 45.4 s: 'Your three is a floor' leans on the ACCA 4+ result (52% vs 42%). That result is correlational, and only 10% of contractors offer 4+. The video honestly flags that the survey lumps 1 to 3 together, then lands on 'Start with three', so the message holds together. No contradiction between what is said, what is shown and facts.json: 57/41, 1,100+, 68%, 1,000+, 52/42 and Jan 2026 all match the sources on file.",
+  "6. polish, captions: the YouTube tag 'contracter pricing' is a deliberate misspelling. It does no harm, but it reads cheap if anyone looks at the tags.",
+  "Owner on a phone: it says to put good, better and best on every quote. Top 10% of shops do it on 57% of home jobs vs 41% for everyone else. 68% of homeowners shop around when a price surprises them, so give them the cheaper option yourself. Here is how to word each tier. The numbers on screen match what is said. The first 3 s earn the stop: 'You quote one price?' with a cut to the host at 0.5 s and the 3 prices / 57% card. There is lots of motion (scoreboard, homeowner grid, the quote card filling in, slot reels), and the voice sounds like a person (short questions, 'Everyone else? Forty-one.'). The final line 'That's a choice.' lands at 71.3 s before the wipe at 71.8 s. It has a clear send line ('Send this to whoever writes your quotes') and a reason to save it (the three-tier card). Nothing broken or off-brand. I would post it as it is."
  ]
 }

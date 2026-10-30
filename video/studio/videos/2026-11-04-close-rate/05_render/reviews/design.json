@@ -1,25 +1,23 @@
 {
  "gate": "design",
- "round": 0,
- "at": "2026-10-29T22:38:59-05:00",
- "build": "6c6be63b",
- "pass": false,
+ "round": 1,
+ "at": "2026-10-29T23:29:17-05:00",
+ "build": "4f3ac098",
+ "pass": true,
  "score": {
   "first": 5,
   "hierarchy": 5,
   "type": 4,
   "color": 5,
-  "spacing": 4,
-  "polish": 4,
+  "spacing": 5,
+  "polish": 5,
   "trust": 5,
-  "average": 4.57
+  "average": 4.86
  },
  "reasons": [
-  "Context: build 6c6be63b changes only the tune; end card holds 3.0 s; dialog words 33 px caps; freshness PASS; cuts 0.8 and 2.3 s, host from 0.8 s.",
-  "Whole lesson labels and sources about 21 to 24 px caps (source plate 0 to 12 s, gauge source, MEDIAN and TOP 25% plates 12 to 24 s, 41.25 s line, map notes 47 to 52 s, send plate, close perk lines 66.98 and 69.02 s): raise to 36 px caps; give '+ CLOSE RATE = JOBS SOLD / ESTIMATES GIVEN' the most room.",
-  "66.4 to 66.75 s close.send: PROOFNOTFLUFF tag lands on the formula perk line for about 10 frames; drop it straight into its final slot (y about 735).",
-  "65.6 to 70.5 s close: LV 2 XP bar is an empty dark box under LEVEL UP!; fill its first segments in gold on 'given' or swap for a full-bar flash.",
-  "63.4 to 65.6 s close opening: band holds only the LV 1 bar and one perk line over empty sky for 2.2 s; bring the send plate or a header in at 63.4 s or start LEVEL UP! on 'divided' (64.3 s).",
-  "13.0 to 17.5 s stakes: TOP 25% plate opens at full width holding only 'TOP 25%'; size it to its text and grow it when '70% TO 73%' arrives."
+  "Context: build 4f3ac0987e24, mp4 sha 79a7b3d3 matches qa.json, 73.47 s. Round 0 asks checked on the render: TOP 25% plate now hugs its words at 14.0 s and grows at 18.0 s (landed); close opens with the three-row formula at 66 px caps from 63.4 s and LEVEL UP! lands at 64.4 s (landed); LV 2 bar flashes full at 64.3 s, then fills gold from 65.5 s with more segments at 66.5 and 69.0 s (landed); ProofNotFluff tag drops straight into its slot right of the Friday row at 66.6 s and never touches the formula (landed). Round 0 ask 1 (labels to 36 px) did not land, so type stays capped at 4.",
+  "Freshness PASS: this lesson's sets are gauge, inventory, dispatch and levelup, plus the ghost race, the brick math board and the whiteboard room. 11-02 (weather, register, boss, calendar, hud, shop shelves) and 11-03 (slots, chat, scores) share none of them. Hook: the picture changes at 0.5 s and cuts at 0.8 s, host on screen at 1.0 s, end card with proofnotfluff.com from 70.5 to 73.47 s.",
+  "Whole lesson, labels and sources measure 21 px caps (LESSON 8, US NORTHEAST/US WEST, the 'ServiceTitan customers, May to Jul 2026' plate from 0 to 12 s, the gauge's source line and MEDIAN/TOP 25% plates from 12 to 24 s, the 'Median 31% to 38% / 35% sits inside' line at 41.25 s, the map notes at 47 to 52 s, the 'Send this to whoever writes your estimates.' plate and the '+ Friday: your close rate.' perk at 66 to 70.5 s, the PROOFNOTFLUFF chip): raise them to the 36 px floor (runtime IMPROVE 00b). Start with the source plates and the send plate, which a viewer needs to read.",
+  "Optional, not scored: one-word dialog pages ('gap.' 20.4 to 21.3 s, 'estimates.' 67.4 to 68.3 s) are the runtime paging item IMPROVE 00h."
  ]
 }

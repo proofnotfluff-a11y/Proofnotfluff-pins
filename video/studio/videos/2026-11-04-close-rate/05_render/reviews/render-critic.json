@@ -1,20 +1,20 @@
 {
  "gate": "render-critic",
  "round": 0,
- "at": "2026-10-29T22:45:39-05:00",
- "build": "6c6be63b",
+ "at": "2026-10-29T23:29:17-05:00",
+ "build": "4f3ac098",
  "pass": true,
  "score": {
   "faults": 0
  },
  "faults": [],
  "reasons": [
-  "mp4 sha 9e67cd3c matches qa.json; 73.47 s; new render with size 66 dialog and the quest tune.",
-  "Earlier round 0 fault still fixed (readouts end at x 917).",
-  "Hook PASS from frame 0 through the cuts at 0.8 and 2.33 s.",
-  "Spoken numbers PASS against words.json (31, 38, 25, 70, 73, 40, 14, 35).",
-  "Layout PASS: dialog text inside the box at 10 fps, two rows or fewer; PROOFNOTFLUFF stamp over 'ESTIMATES GIVEN' 66.43 to 66.7 s is an entrance.",
-  "Audio end PASS: last word 70.38 s, end card 70.5 to 73.47 s over the bed.",
-  "Text size and flash PASS."
+  "Render checked: 2026-11-04-close-rate.mp4 sha 79a7b3d3 matches qa.json, 73.47 s, 1080x1920 30 fps. The -post.mp4 copy has identical video and audio stream hashes (only metadata differs). Sheet f15 matches the extracted 22.05 s frame (mean difference 0.9 of 255).",
+  "Earlier round: render-critic.json (round 0, build 6c6be63b) listed 0 faults. Its old readout fix still holds: all words and numbers end by about x 918.",
+  "1 Hook PASS: 'close rate?' plus 31% and 38% are on screen from frame 0. The warm-room cut from 0.8 to 2.33 s keeps 'close rate?' large on the whiteboard.",
+  "2 Spoken numbers PASS against words.json. 'thirty-one to thirty-eight' (5.2 to 6.5 s): 31% and 38% shown from 0 s and in the header from 4.0 s. 'top quarter' (12.97 s): TOP 25% chip from 13.0 s. 'seventy to seventy-three' (17.3 to 19.3 s): chip '70% TO' at 17.5 s, full 70% TO 73% chip and readout by 18.0 s. 'forty' (34.5 s): GIVEN 40 at 34.5 s. 'fourteen' (36.65 s): SOLD 14 OF 40 at 36.5 s, then the hero 14 / 40 at 38.0 s for 'Fourteen over forty'. 'thirty-five' (39.43 s): = 35% at 39.5 s. 'May through July': 'May to Jul 2026' source line on screen.",
+  "3 Layout PASS once settled. The 'Can't close a gap you never measured.' banner (21.5 to 23.9 s) covers only the bottom rim of the gauge. Its text ends at x 911, though its box edge reaches x 941 with no words past 930. The 'Median 31% to 38%  35% sits inside' line ends at y 881, 7 px above the band edge at 888, so nothing is clipped. The PROOFNOTFLUFF stamp settles at y 490 to 540, clear of 'Friday: your close rate.' (text ends x 492) and LEVEL UP!. The dimmed ESTIMATES GIVEN at 63.4 to 65 s is a staged reveal, not hidden. Slide-ins and glitch wipes at 46.5, 52.0 and 63.0 s were not judged. Map pins at 50 to 52 s stay above the label boxes.",
+  "4 Audio end PASS: last word 'rate.' ends 70.38 s, end card from 70.5 s, and the bed fades out by about 73.4 s. Nothing is cut mid-word.",
+  "5 Text size and flash PASS. The smallest lines (source tags, 'Now yours', median line) are about 24 px cap height, in line with earlier passes at 20 to 26 px. Luma jumps over 20 levels happen only at 0.8, 2.33, 25.97/26.03 (one screenshot flash on 'screenshot this'), 44.57 and 63.3 s, at most 2 in any 1 s window, so nothing flashes more than 3 times a second."
  ]
 }

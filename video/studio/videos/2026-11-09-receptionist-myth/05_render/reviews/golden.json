@@ -1,20 +1,23 @@
 {
  "gate": "golden",
  "round": 0,
- "at": "2026-10-29T19:21:13-05:00",
- "build": "ce74f66",
+ "at": "2026-10-29T19:44:04-05:00",
+ "build": "93ad0b0",
  "pass": true,
  "score": {
   "post_as_is": "yes"
  },
  "reasons": [
-  "Build ce74f66f: qa.json mp4Sha256 5a5382c6 matches; -post.mp4 differs only in container bytes; 44.43 s, 1080x1920.",
-  "What it says: fix follow-up first with a two-line prompt, read the draft, send it yourself; ServiceTitan trust numbers back keeping your hand on send. Numbers match voice, captions and facts.json.",
-  "Round 0 facts FAIL fixed: two-line scope tag under the hero 25.5 to 35.0 s; EXAMPLE beside DRAFT; no '+' until the count lands.",
-  "Numbers land on their words (1,000+ 27.0 s, 11% 29.0 s, 58% 32.0 s).",
-  "Sounds like a person; no product named.",
+  "Build 93ad0b03ad2f: qa.json mp4Sha256 dd6e422c matches the mp4; -post differs only in container bytes; 44.43 s, 1080x1920.",
+  "What it says: fix follow-up first with a two-line prompt, read the draft, send it yourself; PHCP Pros article re-read: over 1,000 residential service contractors, 11% and 58%; voice, screen, captions and facts.json agree. Next-lesson line matches lesson 3.",
+  "Numbers land as said, each with label and scope line; prompt, draft and chat card marked EXAMPLE; no product named.",
+  "First 3 s earn the stop; reasons to send and save clear.",
+  "Sounds like a person; boss fight stays on message.",
   "qa.json all six PASS; frozen label points at the wrong cue, PASS holds.",
-  "First 3 s earn the stop; reasons to save and send present.",
-  "Polish: prompt card lines blank about 5 s; HELD FOR YOU tray empty about 9.5 s; shine sweep on 58%; end card about 2.9 s and small send line; tiles read as blocks; takes 1 and 4 under pace target."
+  "Polish 25.5 to 26.9 s: count-up passes through 868, 916, 991 'contractors surveyed'; consider starting the roll from 1,000 or hiding the label until it lands.",
+  "Polish 24.4 to 25.3 s: DRAFT card covers the 'Pasted' chip, then clips past the panel edge before the cut.",
+  "Polish 35.0 to 35.4 s: half a frame of old scoreboard in the wipe.",
+  "Polish: takes 1 and 4 under pace target; end card about 2.9 s with a small send line; YouTube misspelled tag is deliberate.",
+  "No must-fix found."
  ]
 }

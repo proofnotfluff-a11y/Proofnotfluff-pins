@@ -1,27 +1,25 @@
 {
  "gate": "design",
- "round": 0,
- "at": "2026-10-29T19:23:02-05:00",
- "build": "ce74f66",
- "pass": false,
+ "round": 1,
+ "at": "2026-10-29T19:44:11-05:00",
+ "build": "93ad0b0",
+ "pass": true,
  "score": {
   "first": 5,
   "hierarchy": 5,
   "type": 4,
-  "color": 4,
+  "color": 5,
   "spacing": 5,
   "polish": 4,
   "trust": 5,
-  "average": 4.57
+  "average": 4.71
  },
  "reasons": [
-  "35.9 to 39.9 boss MOVES menu: 'You hit send' grey on navy at 2.7:1; at 38.95 'Follow-up first' also grey with no cursor, so both moves look disabled. Draw both rows in cream, the picked move in gold with the cursor, at size 66.",
-  "21.5 to 25.0 draft card 'DRAFT' label teal on cream 2.2:1; set it in jacket #2F6F67 or ink.",
-  "17.2 to 21.5 prompt card live word orange on cream 3.25:1; use maroon #7A3442.",
-  "Dialog box body font 39 px under the 44 px floor caps type at 4 (runtime IMPROVE 00b).",
-  "24.2 to 25.0 send payoff: dissolve at 25.0 cuts the draft slide; start the dissolve about 25.3 and keep the path above the SEND key.",
-  "41.43 to 41.55 end card on screen about 2.85 s vs the 3 to 5 s spec; start the close at 41.3 or add 0.3 s of tail.",
-  "12.0 to 17.2 prompt card ruled lines empty about 5 s; blink a caret on line 1 from 12.8.",
-  "Landed: EXAMPLE on the draft, scope tag inside the board, hero at 198, picture changes at 1.0 and 2.5 s, host from frame 0, no set repeats."
+  "Landed from round 0: MOVES menu rows cream at 66, picked move gold with the cursor; DRAFT label #2F6F67; live prompt word maroon; draft lifts clear of SEND before the dissolve at 25.48; caret blinks on prompt line 1.",
+  "Not landed (all lessons): dialog box spoken words at size 39 under the 44 px floor cap type at 4; runtime IMPROVE 00b.",
+  "Type 12.0 to 25.4 prompt card: header, EXAMPLE tags and draft body at size 30, under the 36 px label floor.",
+  "Not landed, polish: end card on screen 2.96 s, short of the 3 to 5 s spec (runtime start time and tail).",
+  "Polish 31.9 to 35.2: score board cursor stays on the top row while 58% is the hero; move it on 'Fifty-eight'.",
+  "Checked fine: picture changes 0.94 and 2.36 s, host from frame 0, hero numbers large, safe band kept, no set repeats; mp4 sha matches qa.json."
  ]
 }

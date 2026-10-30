@@ -1,23 +1,21 @@
 {
  "gate": "render-critic",
  "round": 0,
- "at": "2026-10-29T19:21:51-05:00",
- "build": "ce74f66",
+ "at": "2026-10-29T19:45:40-05:00",
+ "build": "93ad0b0",
  "pass": true,
  "score": {
   "faults": 0
  },
  "faults": [],
  "reasons": [
-  "Build checked: mp4 sha 5a5382c6 matches qa.json; -post streams equal; 44.43 s, 1080x1920, 30 fps.",
-  "Hook plate fully on screen 0.0 to 3.5 s; no number in the hook.",
-  "Numbers land on their words: 1,000+ about 27.0 s with the scope line from 25.5 s; 11% by 29.0 s; 58% by 32.0 s; all large and readable.",
-  "Transient: the 58% row counts up for about 0.3 s after the hero reads 58%; readable.",
-  "Layout settled: nothing hidden, cut off or covered; scope tag inside the score board.",
-  "Edge cases x 935 and x 932 fully in frame, not faults.",
-  "Audio end: last word 41.35 s, end card 41.5 to 44.43 s, nothing cut.",
-  "Smallest text about 28 px.",
-  "No flashing over 3 a second.",
-  "Prior round listed 0 faults; none new."
+  "Build checked: mp4 sha dd6e422c matches qa.json; -post streams match; 44.43 s, 1080x1920, 30 fps.",
+  "Hook PASS: plate fully on screen from 0.0 s; no number.",
+  "Numbers PASS: 1,000+ by 27.0 s, 11% by 29.0 s, 58% by 32.0 s, hero size 198 with 39 px scope lines; the 0.17 s proof cue shift kept every number on its word.",
+  "Layout PASS: nothing hidden, cut off or covered once settled; the draft card passes over the 'Pasted' chip only while moving.",
+  "Content zone: two items a few px past x 930 high in the frame, readable, not faults.",
+  "Audio end PASS: last word ends 41.35 s, nothing cut.",
+  "Text and flashes PASS: smallest text size 30; single dips only at cuts.",
+  "No new faults; design-round changes check out."
  ]
 }

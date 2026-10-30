@@ -82,3 +82,8 @@ The studio learns in three loops (Todd, Oct 28, 2026, 3:43 pm: "make this video 
   -> Housecall Pro's homeowner survey (68% get more quotes when a price is higher than expected); scenery -> counter,
   scores, slots and two pieces of our own (a 100-house street, a tailgate clipboard). The settled hook card read as frozen
   1.0 to 3.4 s at -70 dB even with shines on it -> the card swings a pixel on its strings from 0.6 s, sparks every 0.6 s.
+- 2026-10-30 AI lane gates: the last YouTube tag in every lesson is a deliberate misspelling (captions.md); a fix round
+  "corrected" it and facts-captions failed -> never fix the misspelled tag. A 2-line size-66 label under the 198 hero
+  pushes the scope tag under the host and dialog -> one-line hero label, scope in the board's source tag. Design scores
+  vary about 0.15 between fresh reviewers on the same render; type stays capped at 4 until the runtime dialog font rises
+  (IMPROVE 00b), so 11-08 and 11-10 held on design at 4.43 and 4.29.

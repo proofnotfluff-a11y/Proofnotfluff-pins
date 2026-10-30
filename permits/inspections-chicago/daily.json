@@ -1,22 +1,22 @@
 {
  "product": "Chicago Restaurant Daily List",
- "asOf": "2026-10-29",
- "asOfText": "Oct 29, 2026",
- "through": "2026-10-28",
- "throughText": "Oct 28, 2026",
- "recentFrom": "2026-10-15",
+ "asOf": "2026-10-30",
+ "asOfText": "Oct 30, 2026",
+ "through": "2026-10-29",
+ "throughText": "Oct 29, 2026",
+ "recentFrom": "2026-10-16",
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-29T12:19:56+00:00",
-  "rowsUpdatedAt": "2026-10-29T09:08:12+00:00",
+  "fetchedAt": "2026-10-30T12:19:08+00:00",
+  "rowsUpdatedAt": "2026-10-30T09:13:52+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "pests": 9,
-  "hood": 1,
-  "places": 9
+  "pests": 3,
+  "hood": 0,
+  "places": 3
  },
  "history": [
   {
@@ -66,13 +66,21 @@
    "hood": 1,
    "places": 9,
    "withPhone": 6
+  },
+  {
+   "asOf": "2026-10-30",
+   "through": "2026-10-29",
+   "pests": 3,
+   "hood": 0,
+   "places": 3,
+   "withPhone": 1
   }
  ],
  "examples": [
   {
-   "area": "Woodlawn",
+   "area": "Chicago Lawn",
    "type": "Grocery Store",
-   "result": "Fail",
+   "result": "Pass w/ Conditions",
    "trades": [
     "pests"
    ]
@@ -82,12 +90,11 @@
    "type": "Restaurant",
    "result": "Fail",
    "trades": [
-    "pests",
-    "hood and exhaust"
+    "pests"
    ]
   },
   {
-   "area": "Avalon Park",
+   "area": "Brighton Park",
    "type": "Restaurant",
    "result": "Pass w/ Conditions",
    "trades": [
@@ -96,11 +103,6 @@
   }
  ],
  "pestByDate": [
-  {
-   "date": "2026-10-15",
-   "pests": 5,
-   "restaurant": 4
-  },
   {
    "date": "2026-10-16",
    "pests": 3,
@@ -163,37 +165,40 @@
   },
   {
    "date": "2026-10-28",
-   "pests": 0,
+   "pests": 2,
+   "restaurant": 2
+  },
+  {
+   "date": "2026-10-29",
+   "pests": 1,
    "restaurant": 0
   }
  ],
  "pestLast7": {
-  "from": "2026-10-22",
-  "to": "2026-10-28",
-  "inspections": 11,
-  "restaurantInspections": 9,
+  "from": "2026-10-23",
+  "to": "2026-10-29",
+  "inspections": 10,
+  "restaurantInspections": 8,
   "areas": [
    "Albany Park",
    "Avalon Park",
    "Brighton Park",
-   "Greater Grand Crossing",
    "O'Hare",
-   "South Shore",
-   "West Elsdon"
+   "South Shore"
   ]
  },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
  "phones": {
-  "rows": 9,
-  "withPhone": 6,
-  "coverage": 66.7
+  "rows": 3,
+  "withPhone": 1,
+  "coverage": 33.3
  },
  "seat": {
-  "asOf": "2026-10-29",
-  "places14": 41,
-  "new": 9,
-  "withPhone14": 29,
-  "coverage14": 70.7,
+  "asOf": "2026-10-30",
+  "places14": 40,
+  "new": 3,
+  "withPhone14": 27,
+  "coverage14": 67.5,
   "phonesChecked": true
  }
 }

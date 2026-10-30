@@ -1,0 +1,11 @@
+  300/2239 frames, 41 s
+  600/2239 frames, 81 s
+  900/2239 frames, 123 s
+  1200/2239 frames, 163 s
+  1500/2239 frames, 203 s
+  1800/2239 frames, 243 s
+  2100/2239 frames, 284 s
+mix: rooms (bounce, 112 BPM) framing 0.00 s
+mix: voice -23.5 LUFS, bed -21.4 LUFS after EQ; bed gain -20.1 dB under speech, -12.1 dB in pauses, 11 phrases
+render: /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-10-31-three-prices/05_render/2026-10-31-three-prices.mp4 (2239 frames, 74.63 s, voice, 315 s)
+exit 0

@@ -1,5 +1,33 @@
 # Ideas: the video bank
 
+## Depth bank (Oct 30, 2026; START HERE, outranks every list below)
+
+Todd, Oct 30, 2026, 4:01 pm: "go with your recommendation on everything. Drive this hard, and let's get real good videos
+out." Owners want setups and decisions, not definitions: every lesson teaches a playbook an owner can do this week, with
+the exact words, settings or steps on screen. Full entries, evidence and facts to source: research/topics-2026-10-30.md.
+Make them in this order unless a facts gate can't source one. Retell in our own words; never copy a creator's script.
+
+| # | Lesson | Format |
+|---|---|---|
+| 1 | Google now bills you for calls you miss (LSA missed-call rule) | clinic or two-shops |
+| 2 | Missed-call text-back in one afternoon (part 1 the text, 2 turn it on, 3 register the number) | playbook x3 |
+| 3 | Do you need an AI receptionist? The 3-question test | case or playbook x2 |
+| 4 | Make ChatGPT quote from YOUR price list | fix-this |
+| 5 | The lead-source scorecard (cost per sold job) | quick-math |
+| 6 | Switch your Google category for the season | clinic |
+| 7 | Your next job is in your old invoices (reactivation text) | scenario |
+| 8 | The review ask that runs itself | fix-this |
+| 9 | Answer in the hour without living on your phone | two-shops |
+| 10 | Talk your quotes, don't type them | clinic |
+| 11 | The 10-minute weekly Google profile routine | myth-three |
+| 12 | A quote follow-up that runs itself | playbook x2 |
+| 13 | Send a video with the quote | clinic |
+| 14 | Read 3 lines before you sign with a lead site | fix-this |
+| 15 | From a call center to text and an AI greeting | case (only once the source is heard and checked) |
+| 16 | The 10-door rule after every job | quick-math |
+| 17 | The daily job-update text | fix-this |
+| 18 | A 1-minute morning owner briefing | clinic |
+
 ## Trades-first bank (run 2026-10-28-trades-insights; START HERE)
 
 Todd, Oct 28 evening: real lessons from the trades, built on what trade creators teach, backed by trade sources. This

@@ -150,7 +150,11 @@
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {},
+   "hold": {
+    "reason": "Held Oct 30 (Todd, 4:01 pm): too thin; rebuild from research/topics-2026-10-30.md or drop",
+    "at": "2026-10-30T16:02:13-05:00"
+   }
   },
   {
    "slug": "2026-10-31-three-prices",
@@ -210,7 +214,11 @@
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {},
+   "hold": {
+    "reason": "Held Oct 30 (Todd, 4:01 pm): too thin; rebuild from research/topics-2026-10-30.md or drop",
+    "at": "2026-10-30T16:02:13-05:00"
+   }
   },
   {
    "slug": "2026-11-07-let-me-think",
@@ -266,7 +274,11 @@
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {},
+   "hold": {
+    "reason": "Held Oct 30 (Todd, 4:01 pm): too thin; rebuild from research/topics-2026-10-30.md or drop",
+    "at": "2026-10-30T16:02:13-05:00"
+   }
   },
   {
    "slug": "2026-11-08-after-hours-reply",
@@ -286,7 +298,11 @@
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {},
+   "hold": {
+    "reason": "Held Oct 30 (Todd, 4:01 pm): too thin; rebuild from research/topics-2026-10-30.md or drop",
+    "at": "2026-10-30T16:02:13-05:00"
+   }
   },
   {
    "slug": "2026-11-10-notes-to-quote",
@@ -306,7 +322,11 @@
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {},
+   "hold": {
+    "reason": "Held Oct 30 (Todd, 4:01 pm): too thin; rebuild from research/topics-2026-10-30.md or drop",
+    "at": "2026-10-30T16:02:13-05:00"
+   }
   }
  ]
 }

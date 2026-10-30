@@ -55,7 +55,9 @@ FPS = 30
 DEFAULT_VOICE = "W3pJy9ibur1FKUihVxzY"   # Todd's own voice clone (Todd, Oct 28, 1:41 pm; _shared/voice.md)
 LIBRARY_VOICE = "iP95p4xoKVk53GoZ742B"   # Chris, ElevenLabs library voice, the fallback (Todd, Oct 28, 11:51 am)
 # Todd, Oct 28, 1:03 pm: "Just make me sound a bit smoother and more confident". Steadier delivery, close to his timbre.
-VOICE_SETTINGS = {"W3pJy9ibur1FKUihVxzY": {"stability": 0.6, "similarity_boost": 0.8, "style": 0.15, "use_speaker_boost": True}}
+# Eleven v4 reads only stability and similarity (ElevenLabs v4 docs: no style or speed slider). Steadier and a touch less
+# clone-tight for a natural, even delivery (Todd, Oct 30, 2026, 4:01 pm: "go with your recommendation on everything").
+VOICE_SETTINGS = {"W3pJy9ibur1FKUihVxzY": {"stability": 0.7, "similarity_boost": 0.7}}
 MODEL = "eleven_v4"
 API = "https://api.elevenlabs.io/v1/text-to-speech/{voice}?output_format=mp3_44100_128"
 MAX_CHARS = 2400
@@ -542,6 +544,9 @@ def cmd_data(slug):
 # script -> takes, words
 
 TAG = re.compile(r"\[[^\]]*\]")
+SOFT_TAG = re.compile(r"(?i)lean|whisper|soft|breath|quiet|hush|intimate|murmur|close to|aside")
+_NW = "one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety"
+ABOUT_EXACT = re.compile(rf"(?i)\babout\s+(?:(?:{_NW})\s+(?:{_NW})(?:-(?:{_NW}))?\b|(?:twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)-(?:one|two|three|four|five|six|seven|eight|nine)\b|\w+ point \w+)")
 
 
 def takes_of(slug):
@@ -1514,11 +1519,30 @@ def cmd_ready(slug):
 
 
 def cmd_waiting():
-    print(json.dumps([i["slug"] for i in load_queue()["items"] if not i["posts"]]))
+    print(json.dumps([i["slug"] for i in load_queue()["items"] if not i["posts"] and not i.get("hold")]))
+
+
+def cmd_hold(slug, reason, off=False):
+    """Take a lesson out of the posting line (Todd, Oct 30, 2026, 4:01 pm: too thin to post; rebuild or drop it).
+    A held lesson is skipped by next and not counted by waiting. `unhold` puts it back."""
+    q = load_queue()
+    it = next((i for i in q["items"] if i["slug"] == slug), None)
+    if not it:
+        raise SystemExit(f"ERROR hold: {slug} is not in the queue")
+    if off:
+        it.pop("hold", None)
+    else:
+        if not reason:
+            raise SystemExit("ERROR hold: give a reason")
+        it["hold"] = {"reason": reason, "at": now()}
+    save_queue(q)
+    print(f"{'unheld' if off else 'held'}: {slug}")
 
 
 def cmd_next():
     for i in load_queue()["items"]:
+        if i.get("hold") and not i["posts"]:
+            continue
         missing = [p for p in PLATFORMS if p not in i["posts"]]
         if missing:
             print(json.dumps({"slug": i["slug"], "missing": missing, "commit": i.get("commit")}))
@@ -1944,6 +1968,11 @@ FORMATS = {
     "two-shops":  {"min_seconds": 35.0, "max_seconds": 52.0, "words": (85, 125)},
     "myth-three": {"min_seconds": 30.0, "max_seconds": 48.0, "words": (75, 115)},
     "scenario":   {"min_seconds": 42.0, "max_seconds": 62.0, "words": (110, 160)},
+    # Depth formats (Todd, Oct 30, 2026, 4:01 pm: "go with your recommendation on everything. Drive this hard, and let's
+    # get real good videos out"; research/topics-2026-10-30.md): a playbook part teaches one step of a setup; a case walks
+    # one real setup end to end.
+    "playbook":   {"min_seconds": 40.0, "max_seconds": 58.0, "words": (100, 150)},
+    "case":       {"min_seconds": 70.0, "max_seconds": 92.0, "words": (180, 245)},
 }
 FORMAT_ALIASES = {"v2": "clinic"}
 
@@ -2005,6 +2034,19 @@ def script_problems(slug, send_line=None):
     last = {norm(w) for w in sents[-1].split()} if sents else set()
     if not {w for w in hw & last if len(w) >= 4 and w not in stop}:
         out.append("the button does not echo the drop-in (repeat one of its words in the last sentence)")
+    # Sound human (Todd, Oct 30, 2026, 1:12 pm: the price-a-job voice "starts whispering"; "about sixteen sixty-seven"
+    # sounds weird; 4:01 pm: "go with your recommendation on everything"). Tags must be something a listener hears: a
+    # staging or softness tag makes Eleven v4 go quiet (ElevenLabs tag guidance). Two tags a script at most. An exact
+    # number is said plainly; a rounded one says so ("call it").
+    tags = [t.lower() for tk in takes for t in TAG.findall(tk)]
+    soft = [t for t in tags if SOFT_TAG.search(t)]
+    if soft:
+        out.append(f"soft or staging tag {', '.join(sorted(set(soft)))}: it makes the voice go quiet; use no tag or [conversational]")
+    if len(tags) > 2:
+        out.append(f"{len(tags)} delivery tags (2 a script at most; pace is a writing job)")
+    m = ABOUT_EXACT.search(text)
+    if m:
+        out.append(f"\"{m.group(0)}\": an exact number takes no \"about\"; say it plainly or round it (\"call it seventeen hundred\")")
     if send_line is not None and not re.search(r"(?i)\bsend this to (whoever|your)\b", send_line or ""):
         out.append(f"SCENE.sendLine is {send_line!r}: the end card needs a send line that names a role")
     return out
@@ -2333,6 +2375,10 @@ def main():
         cmd_grab(a.slug)
     elif c == "stills":
         cmd_stills(a.slug, a.look)
+    elif c == "hold":
+        cmd_hold(a.slug, " ".join(a.rest))
+    elif c == "unhold":
+        cmd_hold(a.slug, "", off=True)
     elif c == "posted":
         cmd_posted(a.slug, a.rest[0] if len(a.rest) > 0 else "", a.rest[1] if len(a.rest) > 1 else "",
                    a.rest[2] if len(a.rest) > 2 else None)

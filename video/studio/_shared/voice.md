@@ -1,21 +1,29 @@
 # Voice: how scripts are written and spoken
 
 **The voice:** Todd's own ElevenLabs voice clone (`W3pJy9ibur1FKUihVxzY`; Todd, Oct 28, 1:41 pm), made from his recording,
-cleaned. Settings (`anim.py` VOICE_SETTINGS) lean steady and a touch warmer: "Just make me sound a bit smoother and more
-confident" (Todd, Oct 28, 1:03 pm). Model: Eleven v4 (`eleven_v4`). The library voice Chris (`iP95p4xoKVk53GoZ742B`) stays
+cleaned. Settings (`anim.py` VOICE_SETTINGS) lean steady: "Just make me sound a bit smoother and more confident" (Todd, Oct 28,
+1:03 pm). Since Oct 30: stability 0.7, similarity 0.7, nothing else (Eleven v4 has no style or speaker boost setting). Model: Eleven v4 (`eleven_v4`). The library voice Chris (`iP95p4xoKVk53GoZ742B`) stays
 as the fallback (`speak --voice iP95p4xoKVk53GoZ742B`). AI labels are off on every platform (Todd, Oct 30; POSTING.md); the caption carries no AI voice line (Todd, Oct 29).
 
 ## Written as talk
 - One paragraph is one take: 2 to 4 sentences, 15 to 25 seconds. A take that sounds off is re-rolled alone.
 - Say it the way a person tells a friend something they just found out. Short sentences, contractions, one aside.
-- One delivery tag where the energy changes, in square brackets at the start of the sentence it shapes:
-  `[curious]`, `[leaning in]`, `[matter-of-fact]`, `[a little surprised]`, `[warmly]`, `[short pause]`, `[calm]`,
-  `[confident]`, `[thoughtful]`, `[quickly]`, `[playful]`. At most two a take. Eleven v4 has no speed or style slider and no
+- Delivery tags (Todd, Oct 30, 2026, 4:01 pm, after the price-a-job voice "starts whispering"): two a script at most, and
+  only sounds a listener can hear: `[conversational]`, `[curious]`, `[matter-of-fact]`, `[a little surprised]`,
+  `[confident]`, `[quickly]`, `[playful]`, `[short pause]`. Open with no tag or `[conversational]`. Never a staging or
+  softness tag (`[leaning in]`, `[whispers]`, `[softly]`, `[quietly]`): Eleven v4 reads them as close and quiet, so the
+  take starts in a whisper and jumps to normal (`anim.py script` fails them). Eleven v4 has no speed or style slider and no
   SSML pauses: pace is a writing job (short sentences, a period or `[short pause]` for a beat; never a dash).
   The voice acts the tag and does not say it; tags never carry a fact.
 - One stressed word a paragraph at most, in capitals (`MORE than triple`).
 - Numbers as they are said: "forty-five", "ten point two percent", "three one one". The brief holds the digits, and the
-  facts gate checks the spoken form against them.
+  facts gate checks the spoken form against them. Money the way an owner says it: "a thousand bucks", "two grand",
+  "fifteen hundred". An exact number is said plainly ("sixteen sixty-seven"); a rounded one says so ("call it seventeen
+  hundred"). Never "about" in front of an exact figure (`anim.py script` fails it).
+- Say the viewer's wrong first guess out loud before the fix ("Your gut says fifteen hundred."), then correct it.
+- Keep the key words the same all the way through (markup is markup, never "your add-on"); no synonyms for variety.
+- Depth (research/topics-2026-10-30.md): every lesson hands the owner one thing to do this week, the exact words, setting
+  or steps on screen. A definition plus someone else's percentage is not a lesson.
 - Plain words, no hype, no em or en dashes, nothing the facts gate can't trace to the data file.
 - Close (Lead Clinic v2): the last spoken line is the rule, in words that echo the hook. No spoken call to action; the send
   line rides on the end card and in the caption.
@@ -57,7 +65,7 @@ The script check (`01_voice/script-check.md`, PASS or FAIL with the metric; 12 o
 8. Length: 100 to 135 words; 40 to 50 s with the end card (55 s hard cap in `check`).
 9. Talk test: a contraction and a "you" in most takes; no banned words (utilize, leverage, game-changer, unlock, secret,
    hack); no em or en dashes; no sentence over 20 words.
-10. Voice markup: at most 2 tags a take, from the list above; at most 1 CAPS word a take; no digits, $, %, / or & in the voice.
+10. Voice markup: at most 2 tags a script, from the list above, none soft or staging; at most 1 CAPS word a take; no digits, $, %, / or & in the voice.
 11. No tail: no turn line ("Here's the part people skip"), no spoken "one honest note", no spoken send, save, like, follow
    or comment ask.
 12. Button: the last sentence is the rule and repeats a word from the hook; `SCENE.sendLine` names a role.

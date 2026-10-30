@@ -11,6 +11,9 @@ pattern and Treatment lines and script.md; the existing gates still judge the re
 - research/IDEAS.md, KNOWLEDGE.md and the lesson's facts.json.
 
 ## Process (Executes)
+0. **Depth first** (Todd, Oct 30, 2026: "aren't really deep enough"; "Drive this hard"). Take the next lesson from
+   IDEAS.md's Depth bank (research/topics-2026-10-30.md). It hands the owner one thing to do this week (exact words,
+   setting, prompt or steps, on screen); a definition or someone else's percentage alone fails.
 1. **Pick the problem, not the topic.** One problem an owner loses money on this month, said in their words ("they ghost
    after the quote", "I'm too cheap", "the phone rings while I'm under a sink"). Read IDEAS.md's top line, then check that
    people are asking it now: a public web search for the problem in owner forums or video comments from the last 90 days.
@@ -26,7 +29,12 @@ pattern and Treatment lines and script.md; the existing gates still judge the re
    scroll past. Our own numbers (PERFORMANCE.md) set the bar: 60% of viewers left in the first 3 s on our first lessons.
 5. **Write it as talk.** Tell it to one owner across a tailgate. Contractions. Short sentences, one aside. Say "you".
    Plain trade words (call, quote, truck, homeowner, callback), never marketing words (leverage, funnel, optimize,
-   pipeline, game-changer, unlock, secret, hack). Numbers said the way a person says them.
+   pipeline, game-changer, unlock, secret, hack). Numbers said the way a person says them: money as owners say it
+   ("a thousand bucks", "two grand"), an exact figure plainly, a rounded one flagged ("call it"), never "about" before
+   an exact figure. Say the viewer's wrong first guess out loud, then correct it. Average sentence under 12 words, at
+   least 3 fragments of 1 to 3 words, one idea a sentence, no sentence with more than two numbers. Same key words all the
+   way through. No AI tells: no staged run-ups ("Here's the thing"), no lists of three for rhythm, at most one "not X,
+   it's Y". Tags: two a script, sounds only, open with none or `[conversational]` (_shared/voice.md).
 6. **Make the middle earn the watch.** Every 3 to 4 seconds a new fact, a turn or a picture change. Show it acted, not
    explained. One open question set in the opening and answered late.
 7. **End on the answer.** The last line is the rule, echoing a hook word. No "follow", no "save this", nothing after it.
@@ -36,6 +44,8 @@ pattern and Treatment lines and script.md; the existing gates still judge the re
    - Owner words: 0 banned words; at least 1 trade noun in the opening.
    - Specific: at least 1 concrete number or object in the first 2 lines; no claim without a facts.json key.
    - Sameness: the opening's first 4 words differ from the last 6 lessons' openings (`grep` their script.md).
+   - Do this week: the lesson names one action an owner can take this week and shows the thing to copy on screen.
+   - Ear test: read it aloud at speaking pace; every sentence fits one breath; `anim.py script` PASS (tags, "about").
    - Then the 12-point check in _shared/voice.md with the format's own bands.
 
 ## Outputs (Writes)

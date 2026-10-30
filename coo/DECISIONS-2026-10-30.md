@@ -14,3 +14,9 @@
 - [stated] Todd, 12:22 pm: "why are we adding the AI label if it only applies to photo realistic images? We are using retro gaming graphics."
 - [stated] Todd, 12:36 pm: "off for all future posts"
 - So: AI labels off on every platform (POSTING.md, _shared/captions.md, _shared/voice.md); YouTube's AI-use question answered No, since none of its listed uses applies. The three post task prompts still say the label stays on; they change with Todd's approval on the linked computer.
+
+## Video depth, scheduled-run fix and script voice, 1:29 to 4:01 pm (live chat)
+- [stated] 1:29 pm: "Please rewrite the tasks to fix this" (scheduled PC runs could not push). Done: the three PC post tasks post only and write each post to the scoreboard post log (ArtifactData `videoposts`); new cloud task "PNF video studio: record and make" (12:33, 5:33, 9:33 pm) commits the log and does all making (POSTING.md). Test run posted close-rate to all four (Instagram, TikTok, Facebook, YouTube).
+- 3:37 pm: markup-margin showed square on Instagram (posted from a live chat with a 1:1 crop). POSTING.md now requires crop "Original" and a JS tall-preview check.
+- [stated] 3:43 pm: "I feel like these videos aren't really deep enough... why aren't we doing more videos about in depth about how, you know, tradespeople can gather leads by doing X, Y, and Z, or how they can implement AI into their businesses". Research: video/studio/research/topics-2026-10-30.md.
+- [stated] 4:01 pm: "go with your recommendation on everything. Drive this hard, and let's get real good videos out." Applied: review-replies, price-raise, receptionist-myth, after-hours-reply and notes-to-quote held (`anim.py hold`); IDEAS.md Depth bank on top; new formats playbook (3-part series) and case (70 to 92 s); script rules: no soft or staging tags, 2 tags a script, no "about" before an exact number (`anim.py script` checks); voice settings stability 0.7, similarity 0.7.

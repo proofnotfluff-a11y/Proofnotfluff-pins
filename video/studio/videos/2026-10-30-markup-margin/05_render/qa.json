@@ -1,22 +1,22 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-10-30-markup-margin",
- "mp4Sha256": "7b514620a8cc6e778051fc18451d0ea9196154ba2fe4f9b209c2cd3b560ce619",
+ "mp4Sha256": "d55874933d0fb5b0683d39952a5526604a1db135e2ee3cd12d272bc70895d22e",
  "checks": [
   {
    "name": "length",
-   "value": 74.767,
+   "value": 45.667,
    "pass": true,
-   "detail": "74.77 s (45.0 to 75.0, v1 lesson, end card included)"
+   "detail": "45.67 s (40.0 to 55.0, v2 lesson, end card included)"
   },
   {
    "name": "loudness",
    "value": {
-    "lufs": -14.4,
-    "truePeak": -3.1
+    "lufs": -14.3,
+    "truePeak": -3.2
    },
    "pass": true,
-   "detail": "-14.4 LUFS (target -14 +/- 1), true peak -3.1 dBTP (at most -1.5)"
+   "detail": "-14.3 LUFS (target -14 +/- 1), true peak -3.2 dBTP (at most -1.5)"
   },
   {
    "name": "black",
@@ -26,18 +26,23 @@
   },
   {
    "name": "frozen",
-   "value": [],
+   "value": [
+    [
+     44.4,
+     45.666667
+    ]
+   ],
    "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 61.42 s"
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 37.75 s"
   },
   {
    "name": "file",
    "value": {
-    "sha256": "7b514620a8cc6e778051fc18451d0ea9196154ba2fe4f9b209c2cd3b560ce619",
-    "bytes": 6447076
+    "sha256": "d55874933d0fb5b0683d39952a5526604a1db135e2ee3cd12d272bc70895d22e",
+    "bytes": 3934133
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 6.4 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 3.9 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -47,5 +52,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-29T14:21:01-05:00"
+ "at": "2026-10-29T20:12:46-05:00"
 }

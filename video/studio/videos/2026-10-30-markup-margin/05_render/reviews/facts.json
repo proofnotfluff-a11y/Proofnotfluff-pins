@@ -11,7 +11,8 @@
  "reasons": [
   "Kimi: 14 numbers, 0 mismatches. Voice, screen and scene strings checked against data.js and facts.json; every computed value recomputes from its formula.",
   "Claude, Oct 29, 2026 (Central): Kimi's code fetch got HTTP 403 from JLC, so its four unconfirmed items were checked on the pages with WebFetch (full fetch, HTTP 200). JLC: '$1,000 in direct costs, our markup is set at $500 ... a total selling price of $1,500', 'a 50% markup is equivalent to a 33% margin', 'So, a 100% markup gives a 50% margin', 'you must double the direct cost amount'. Xero (Published Thursday 23 July 2026): 'Markup = Margin / (1 - Margin)', 'a 50% markup actually gives you a 33.3% margin', margin on revenue and markup on cost, 'Gross margin only accounts for the direct cost of goods sold. It does not include rent, salaries, utilities, marketing, or other operating expenses.' All confirmed; nothing left unconfirmed.",
-  "Trades first: JLC (Journal of Light Construction) is trade press for builders and remodelers; Xero is used for the formulas only."
+  "Trades first: JLC (Journal of Light Construction) is trade press for builders and remodelers; Xero is used for the formulas only.",
+  "Claude, after the gate: take 2's 'Sounds like half is margin' became 'Sounds like half the price is margin' (a Whisper mishearing, twice). No number, source or claim changed: the sentence voices the belief the next sentence corrects with the sourced third."
  ],
  "sources_checked": [
   "https://www.jlconline.com/business/markup-vs-margin_o/: The page returned HTTP 403, so none of its attributed claims could be confirmed.",

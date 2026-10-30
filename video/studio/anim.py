@@ -1849,6 +1849,31 @@ def queue_hook_problems(slug):
     for other in [order[k] for k in (n - 1, n + 1) if 0 <= k < len(order)]:
         if variety_of(other)["hook"] == me["hook"]:
             out.append(f"hook pattern '{me['hook']}' is also the next lesson in line's ({other})")
+    out += format_rotation_problems(slug, order, posted)
+    return out
+
+
+# Format rotation (Todd, live chat, Oct 30, 2026: three a day, "unique and not following a cookie cutter template";
+# _shared/formats.md). Held only for lessons planned after the rule (brief.md carries a named format other than v2), so
+# the lessons already gated keep their place: the lesson before it in line is not the same format, and no format fills
+# more than 2 of the 6 lessons around it in line (3 a day: no format twice in a posting day, at most twice in two days).
+def format_rotation_problems(slug, order, posted):
+    p = vdir(slug, "01_voice", "brief.md")
+    txt = open(p, encoding="utf-8").read() if os.path.exists(p) else ""
+    m = re.search(r"(?im)^- \*\*Format:\*\*\s*`?([a-z0-9-]+)`?", txt)
+    if not m or m.group(1).lower() in ("v2", "v1"):
+        return []
+    me = lesson_format(slug)
+    if me == "v1":
+        return [f"format '{m.group(1)}' is not one of {', '.join(FORMATS)}"]
+    line = posted + [o for o in order]
+    n = line.index(slug)
+    out = []
+    if n > 0 and lesson_format(line[n - 1]) == me:
+        out.append(f"format '{me}' is also the lesson before it in line's ({line[n - 1]})")
+    window = line[max(0, n - 5):n + 1]
+    if sum(1 for o in window if lesson_format(o) == me) > 2:
+        out.append(f"format '{me}' fills more than 2 of the last 6 in line ({', '.join(window)})")
     return out
 
 
@@ -1897,24 +1922,48 @@ V2_CALLOUT = re.compile(r"(?i)^(trade|hvac|plumbing|roofing|electrical|contracto
 V2_SOURCEWORDS = {"percent", "percentage", "study", "survey", "report", "data", "according"}
 
 
+# Formats (Todd, live chat, Oct 30, 2026: "Ensure that the videos are unique and not following a cookie cutter template so
+# we do not get flagged by the platforms for mass produced AI content"; _shared/formats.md). A format is the lesson's
+# skeleton: its beats, its length and its word count. "v2" is the Lead Clinic (clinic). Every format keeps the v2 script
+# rules (drop-in opener, no tail, button echoes the hook); only the bands differ.
+FORMATS = {
+    "clinic":     {"min_seconds": 40.0, "max_seconds": 55.0, "words": (100, 135)},
+    "quick-math": {"min_seconds": 20.0, "max_seconds": 34.0, "words": (45, 80)},
+    "fix-this":   {"min_seconds": 25.0, "max_seconds": 42.0, "words": (60, 100)},
+    "two-shops":  {"min_seconds": 35.0, "max_seconds": 52.0, "words": (85, 125)},
+    "myth-three": {"min_seconds": 30.0, "max_seconds": 48.0, "words": (75, 115)},
+    "scenario":   {"min_seconds": 42.0, "max_seconds": 62.0, "words": (110, 160)},
+}
+FORMAT_ALIASES = {"v2": "clinic"}
+
+
 def lesson_format(slug):
-    """'v2' when brief.md carries the Lead Clinic v2 line, else 'v1' (lessons planned before Oct 29, 2026)."""
+    """The lesson's format from brief.md's '- **Format:**' line ('v2' reads as clinic); 'v1' for lessons planned before
+    Oct 29, 2026 with no Format line."""
     p = vdir(slug, "01_voice", "brief.md")
-    return "v2" if os.path.exists(p) and re.search(r"(?im)^- \*\*Format:\*\*\s*v2\b", open(p, encoding="utf-8").read()) else "v1"
+    m = re.search(r"(?im)^- \*\*Format:\*\*\s*`?([a-z0-9-]+)`?", open(p, encoding="utf-8").read()) if os.path.exists(p) else None
+    f = FORMAT_ALIASES.get(m.group(1).lower(), m.group(1).lower()) if m else "v1"
+    return f if f in FORMATS else "v1"
+
+
+def is_modern(slug):
+    """Every named format (clinic and the newer ones) runs the v2 script rules; only v1 lessons keep the old ones."""
+    return lesson_format(slug) != "v1"
 
 
 def length_band(slug):
-    return (V2["min_seconds"], V2["max_seconds"]) if lesson_format(slug) == "v2" else (45.0, HOOK["max_seconds"])
+    f = FORMATS.get(lesson_format(slug))
+    return (f["min_seconds"], f["max_seconds"]) if f else (45.0, HOOK["max_seconds"])
 
 
 def script_problems(slug, send_line=None):
     """The v2 script rules in code (_shared/voice.md, Lead Clinic v2). Returns a list of problems ([] for a v1 lesson)."""
-    if lesson_format(slug) != "v2":
+    if not is_modern(slug):
         return []
     takes = takes_of(slug)
     words = [w for tk in takes for w in spoken_words(tk)]
     out = []
-    lo, hi = V2["words"]
+    lo, hi = FORMATS[lesson_format(slug)]["words"]
     if not lo <= len(words) <= hi:
         out.append(f"{len(words)} spoken words ({lo} to {hi})")
     text = " ".join(TAG.sub(" ", tk) for tk in takes)
@@ -1951,7 +2000,7 @@ def script_problems(slug, send_line=None):
 
 
 def cmd_script(slug):
-    if lesson_format(slug) != "v2":
+    if not is_modern(slug):
         print(f"script: {slug} is a v1 lesson (no Format: v2 line in brief.md); the v1 12-point check applies")
         return
     sl = None
@@ -2027,7 +2076,7 @@ def hook_report(slug, pg=None):
     if said > HOOK["said_by"]:
         bad.append(f"the spoken hook ends at {said:.2f} s (by {HOOK['said_by']} s)")
     lo, hi = length_band(slug)
-    if cues["duration"] > hi or (lesson_format(slug) == "v2" and cues["duration"] < lo):
+    if cues["duration"] > hi or (is_modern(slug) and cues["duration"] < lo):
         bad.append(f"the lesson runs {cues['duration']:.1f} s ({lo:.0f} to {hi:.0f} s for a {lesson_format(slug)} lesson, end card included)")
     return rep, bad
 
@@ -2054,7 +2103,7 @@ def cmd_lint(slug, step=0.25):
         w = min(p["x1"], q["x1"]) - max(p["x0"], q["x0"]) + pad; h = min(p["y1"], q["y1"]) - max(p["y0"], q["y0"]) + pad
         return max(0, w) * max(0, h)
     hook, hook_bad = hook_report(slug, pg)   # before the world spy, on a clean page
-    send_line = pg.evaluate("(window.SCENE && window.SCENE.sendLine) || ''") if lesson_format(slug) == "v2" else None
+    send_line = pg.evaluate("(window.SCENE && window.SCENE.sendLine) || ''") if is_modern(slug) else None
     pg.evaluate(WORLD_SPY)
     t, worlds, steps = 0.0, {}, 0
     while t < cues["duration"]:

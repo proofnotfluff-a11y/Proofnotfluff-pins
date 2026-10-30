@@ -106,5 +106,24 @@
     "branch": "video-renders"
   },
   "remotion": "4.0.539",
-  "node": "22"
+  "node": "22",
+  "posting": {
+    "perDay": 3,
+    "note": "Todd, live chat, Oct 30, 2026: \"I want to switch to 3 posts per day on each platform\"; \"Schedule the 3 video releases each day based on when it will give us the best performance.\" Slots and evidence: video/studio/research/runs/2026-10-30-cadence.md. A slot moves only by research/PERFORMANCE.md's weekly rule, logged in coo/DECISIONS.",
+    "slots": [
+      {
+        "name": "lunch",
+        "central": "11:37"
+      },
+      {
+        "name": "end-of-day",
+        "central": "16:41"
+      },
+      {
+        "name": "evening",
+        "central": "20:13"
+      }
+    ],
+    "makeWhenWaitingUnder": 9
+  }
 }

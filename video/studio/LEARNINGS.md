@@ -87,3 +87,7 @@ The studio learns in three loops (Todd, Oct 28, 2026, 3:43 pm: "make this video 
   pushes the scope tag under the host and dialog -> one-line hero label, scope in the board's source tag. Design scores
   vary about 0.15 between fresh reviewers on the same render; type stays capped at 4 until the runtime dialog font rises
   (IMPROVE 00b), so 11-08 and 11-10 held on design at 4.43 and 4.29.
+- 2026-10-30 markup-margin payoff-first: the split-flap board's hinge line cuts the middle stroke of 6, so 6 reads as
+  S or $ (golden r0 must-fix) -> redraw landed letters whole with hinge notches at the cell edges; a redraw over a
+  linted letter needs lint false. A 12-column board has no room for 'DIVIDE BY 0.6' -> 'DIVIDE 0.6'. Design held at
+  4.43 r1 on the type cap again (third lesson); IMPROVE 00b is the blocker, not the scenes.

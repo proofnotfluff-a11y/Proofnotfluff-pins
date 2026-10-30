@@ -29,4 +29,8 @@ Instagram insights: views, average watch (baseline 8 to 9 s), skip rate (baselin
 - Not kept: watch at 9 s or under and no saves. Next single variable: the opening picture, then the topic.
 
 ## Record
-- Built: (filled at queue time)
+- Built Oct 29, 2026 at commit 96fdfd87 (outputs 8105b7c). Answer action said at 3.56 s, price at 6.26 s, full answer
+  line ends 8.22 s; board shows 0.6 by 4.5 s, $1,666.67 at 132 px by 5.5 s, MARGIN 40% by 7.5 s. 45.67 s long.
+- Gates: facts PASS, facts-captions PASS r1, buyer PASS, render-critic PASS 0 faults, golden PASS r1 (post as is),
+  design FAIL r1 4.43 (type capped at 4 by the shared dialog size; held for Todd). Not queued yet: the queue still
+  pins the earlier cut (e8e05da) for this slot until Todd's word on the design hold.

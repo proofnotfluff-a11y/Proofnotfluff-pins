@@ -1,18 +1,21 @@
 {
  "gate": "golden",
  "round": 0,
- "at": "2026-10-29T23:12:33-05:00",
- "build": "63989223",
+ "at": "2026-10-29T23:42:37-05:00",
+ "build": "3afe75e5",
  "pass": true,
  "score": {
   "post_as_is": "yes"
  },
  "reasons": [
-  "polish 49.6 to 50.7 s rules table near still 1.1 s.",
-  "polish: spinning reels flash stray digits next to spoken percentages, each under a second.",
-  "polish: qa frozen check stops at 64.75 s; checked by hand to 71.0 s, PASS holds.",
-  "polish 3.7 to 7.5 s: 'on third-party sites' lands when said, about 4 s after the card.",
-  "polish: misspelled YouTube tag is deliberate.",
-  "checked: numbers match facts.json and the source quotes, scope right, caveat honest, replies readable, hook by 3.0 s, qa all PASS, post copy streams match."
+  "1. polish, 0.0 to 74.07 s: the bottom third of the frame is filler (dash slats, carpet, starfield) and the content sits in the top two thirds. That keeps it clear of the platform UI, but the phone and table text runs smaller than it needs to. The bubble text measured about 28 px cap at 33.5 s and is readable.",
+  "2. polish, 22.0 to 26.8 s: 'So if you answer reviews on those sites, you're with the forty-five percent who do' nearly says the same thing twice. The 45 vs 43 split lands flat, and the line does not say why it matters.",
+  "3. polish, 26.4 to 27.0 s: the score table shows YES 45%, NO 43% and DON'T KNOW 13%, which add up to 101 with no 'rounded' on screen. The IG and YT captions carry it. The figures match the source page.",
+  "4. polish, 17.0 to 17.5 s and 65.0 to 65.6 s: the spinning reels flash '$' and stray digits (for example '2 6 $') next to the spoken 56% and the close. Each lasts under 0.6 s and settles on the right value.",
+  "5. polish, 2.0 to 37.2 s: the hook 'Your move, copy this.' promises the 1-star reply, but the five-star reply comes first (26.8 s) and the 1-star reply starts at 37.2 s. The stats in between hold the viewer, but the promise is paid late.",
+  "6. polish, 49.6 to 50.7 s: the rules table is almost still for about 1.1 s (freezedetect at n 0.001). It is under qa's 1.0 s rule at qa's own threshold.",
+  "7. polish, 52.6 to 52.8 s: the pixel dissolve into the caveat passes through about one full-black frame (mean luma 15). That is far under qa's 0.5 s black bar.",
+  "8. polish, qa.json: the frozen check says 'before the end card at 64.75 s', but the end card starts at 71.0 s, so the close section from 64.75 to 71.0 s is outside that check. I checked it by hand with freezedetect: the longest near-still stretch there is 0.63 s, so the PASS holds. The label is wrong.",
+  "Checked: the mp4 sha256 ac6fa2e8 matches qa.json, it runs 74.07 s, and every qa check is PASS. Each spoken number shows on screen as it is said and matches facts.json and the quoted ACHR page: 43% with the 'one HVAC survey' and 'third-party sites' scope, 91% of 400 homeowners for picking an HVAC contractor, 56% on Google, 45% and 13%, and 10 min as advice. There is no contradiction and no 'half'. The example reviews are tagged EXAMPLE. The caveat is honest ('doesn't prove a reply wins the job'). Both replies are typed whole and held about 3.5 to 4 s. The design fix round 1 items are in: maroon hero and 43% on cream, bubbles #2B6CB0, the send line clipped at 66.83 to 66.93 s, and no spark pixels on the 43% at 3.2 to 3.4 s. Frame 0 '1-star review just landed. Your move.' and the 0.5 s close-up of the late-tech review earn the stop. 'Send this to whoever runs your Google profile' is a clear reason to send, and the two copyable replies are a reason to save. The voice reads human, with contractions and 'you' throughout."
  ]
 }

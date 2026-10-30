@@ -1,19 +1,19 @@
 {
  "gate": "render-critic",
  "round": 0,
- "at": "2026-10-29T23:12:41-05:00",
- "build": "63989223",
+ "at": "2026-10-29T23:42:37-05:00",
+ "build": "3afe75e5",
  "pass": true,
  "score": {
   "faults": 0
  },
  "faults": [],
  "reasons": [
-  "mp4 sha 3a804ae9 matches qa.json; 74.07 s; new cut re-measured from scratch; earlier EXAMPLE chip fault not back.",
-  "Hook PASS: '1-star / review just landed. Your move.' at 0.0 s; close-up 0.5 to 1.5 s; back at 2.0 s.",
-  "Numbers PASS: 43%, 91%, 400, 56%, 45%, 10 minutes each on screen when said.",
-  "Layout PASS: text inside y 270 to 1250 and x 930 once settled.",
-  "Audio end PASS: last word 70.97 s, end card 71.0 to 74.07 s.",
-  "Small text and flash PASS."
+  "Assumptions checked against the files: the mp4 sha256 ac6fa2e8 matches qa.json (74.07 s, 1080x1920, 30 fps). The pack in gates/ and sheets/ has the same 04:39 timestamp as the mp4. The earlier render-critic.json was for build 63989223 (mp4 3a804ae9) and listed 0 faults, so this cut on 3afe75e5 was measured from scratch.",
+  "Hook PASS: the cover card '1-star / review just / landed. / Your move.' is on screen at 0.0 s. The close-up 'New 1-star review.' runs 0.5 to 1.5 s and the card is back by 2.0 s.",
+  "Numbers PASS (word time, then on-screen time): 43% said 3.10 s, card shows 43% at 3.0 s; 91% said 11.29 s, reels stop 9 1 % by 11.5 s; 400 said 12.49 s, plate reads '400 homeowners, 2024' at 12.5 s; 56% said 18.09 s, reels 5 6 % at 18.0 s; 45% said 24.90 s, row YES 45% at 25.0 s; ten minutes said 60.52 s, banner 'MON: reviews, 10 min' at 60.5 s. The five-star and one-star labels are on screen when said.",
+  "Layout PASS: once settled, all words and numbers sit in y 270 to 1250 and left of x 930. The send line measures x 120 to 929 at y 822 to 851 and is whole at 4x zoom, period included. Table text ends at x 915. Bubble text ends by about x 845. The notification banners over the phone header ('New review', 'The part people skip', 'MON: reviews, 10 min') are intended cue notifications and are fully readable. The keyboard below y 1250 in the 0.5 to 1.5 s close-up is decorative, not content.",
+  "Audio end PASS: the last word 'reply.' ends at 70.97 s. The level drops from -16.8 dB at 70.5 s to -27.2 dB at 70.8 s, then music only and fading to -47 dB by 73.9 s. The end card runs 71.0 to 74.07 s and no word is cut.",
+  "Small text and flash PASS: the smallest lines (source lines, the send line, about 29 px tall) are readable at phone size. Each is also spoken or appears in large type elsewhere. A per-frame luma scan found 9 big jumps, all single scene transitions (0.5, 1.6, 9.0 to 9.13, 26.9, 52.77 and 64.73 to 64.83 s). No 1 s window holds more than 3, so nothing flashes more than 3 times a second."
  ]
 }

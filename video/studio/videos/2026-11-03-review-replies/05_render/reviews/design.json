@@ -1,26 +1,25 @@
 {
  "gate": "design",
- "round": 0,
- "at": "2026-10-29T23:13:01-05:00",
- "build": "63989223",
- "pass": false,
+ "round": 1,
+ "at": "2026-10-29T23:47:34-05:00",
+ "build": "3afe75e5",
+ "pass": true,
  "score": {
   "first": 5,
   "hierarchy": 5,
   "type": 4,
   "color": 4,
   "spacing": 5,
-  "polish": 4,
+  "polish": 5,
   "trust": 5,
-  "average": 4.57
+  "average": 4.71
  },
  "reasons": [
-  "0.0 to 9.0 s hook card and 0.5 to 1.6 s close-up: accent orange on the phone's cream is 1.65:1 ('1-star', '43%', 'Copy this reply.', 'on third-party sites'); use a dark card or set the accent words in maroon #7A3442 (7.05:1).",
-  "28.9 to 64.0 s reply bubbles: cream on blue #3B82C4 is 3.81:1; darken to about #2B6CB0. Grey source line #6B7080 on cream 3.97:1; use #4A4E5A or darker.",
-  "Type floor: labels at body size 30 or 39 (bubbles, sources, plates, table rows, CTA, chips, HUD); '1-star' and '43%' at size 132 under the 160 px hero floor.",
-  "66.83 to 66.93 s: the send line slam draws past the panel's right border to the frame edge for 3 frames; clip it or start at final width.",
-  "Dialog paging (IMPROVE 00h): lone 'homeowners.' 56.36 s, 'furnace.' 30.10 s, 'sites,' 23.62 s, 'Google profile,' 67.99 s.",
-  "3.17 to 3.27 s: spark pixels on the '4' and '3' entry frames.",
-  "Checks: new hook card, cuts 0.5 and 2.0 s, end card 3.07 s, freshness PASS."
+  "28.9 to 64.0 s reply bubbles (also the 60.8 s Monday bubble): round 0 ask NOT landed in the render. scene.js recolors to #2B6CB0, but the arcade quantizer snaps it back to palette #3B82C4: frames at 31.7 s measure #3A81C2, cream text 3.84:1. Fill the bubbles with a palette colour, #245752 (7.7:1) or #2F6F67 (5.5:1), or add #2B6CB0 to the arcade palette in _runtime/looks.js. Then re-measure on the mp4, not in the code.",
+  "Dialog paging (round 0 ask, IMPROVE 00h): NOT landed. Pages holding one word still show at 23.62 to 24.36 s 'sites,', 30.10 to 30.9 s 'furnace.', 56.36 to 57.4 s 'homeowners.' and 67.99 to 68.9 s 'Google profile,', and also about 16.5 s 'HVAC contractor.' and 26.0 s 'who do.'. Make the page break keep a sentence's last 1 or 2 words on the line before, or hold the earlier line while they are said.",
+  "Landed and checked on frames from the mp4 (sha ac6fa2e8, build 3afe75e5): hook '1-star', '43%', 'Copy this reply.' and 'on third-party sites' are maroon on cream at 7.22:1; the source line is slate at 6.78:1; the hero is on the 198 cell; sparks from 3.10 to 3.60 s stay right of the % and off the glyphs; the 66.83 s send line fades in at its final width inside the panel border.",
+  "Type floor: labels drawn at nominal size 30 or 39 both render on the same 39 px body cell (bmPick), so the 36 px label floor holds. Dialog words are 66 on every page sampled at 0.5 s steps from 0.5 to 71 s. The type score stays 4 only because of the orphaned dialog pages above.",
+  "Caps and freshness: the picture changes at 0.5 s and 2.0 s, the host is on at 0.5 s, and the end card with proofnotfluff.com runs 71.0 to 74.07 s. Freshness PASS: this lesson uses chat, slots and scores; 11-01 used street, levelup and dispatch; 11-02 used weather, register, hud, boss and calendar.",
+  "Not scored, for the lab: in the truck and table shots the host is about 246 px tall at 1080 wide, under the style board's 360 px target. This is a standing hostScale 0.55 choice shared across lessons."
  ]
 }

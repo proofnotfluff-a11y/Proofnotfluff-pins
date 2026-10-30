@@ -18,9 +18,9 @@ The source plate's first half lights gold and is underlined.
 ## stakes "Now take the top" [sfx: whoosh]
 World: the gauge (set). The needle swings into the gold median band on the rim; one-line plate top left "MEDIAN 31% TO 38%" (gold), clear above the rim; the readout says 31% TO 38%; source line ServiceTitan, May to Jul 2026 under the hub.
 ## stakes.ranked "ranked by close rate in" [sfx: tick]
-The plate top right "TOP 25%" slides in on "top" and lights teal on "ranked"; the top quarter's band lights teal on the rim.
+The plate top right "TOP 25%" slides in on "top", sized to its words, and lights teal on "ranked"; the top quarter's band lights teal on the rim.
 ## stakes.top "Their median runs seventy"
-The plate reads "TOP 25% 70% TO 73%" as it is said (the numbers count up from 85%); the needle swings out to the band; the readout turns teal, 70% TO 73%, with sparks.
+The plate reads "TOP 25% 70% TO 73%" as it is said, growing to hold each part as it lands (the numbers count up from 85%); the needle swings out to the band; the readout turns teal, 70% TO 73%, with sparks.
 ## stakes.gap "That's a big gap." [sfx: pop]
 The rim between the two bands fills red; THE GAP stamps at the top of the dial.
 ## stakes.measure "And you can't close" [sfx: stamp]
@@ -67,8 +67,8 @@ Each row is written in marker as it is said and its box ticks; slips on the cork
 A gold sticky note stamps on under the rows: "That's all" / "you need." Snow points at the board.
 
 ## close "Jobs sold, divided by" [sfx: pop]
-World: the levelup set, in on a chalk-wipe sweep. The XP bar fills while the formula is said and the perk line builds word by word: "+ CLOSE RATE = JOBS SOLD / ESTIMATES GIVEN" (JOBS SOLD teal on "Jobs", / on "divided", ESTIMATES GIVEN gold on "estimates"); LEVEL UP! stamps on "given", the rays start turning.
+World: the levelup set, in on a chalk-wipe sweep. The formula is the perk and the biggest words on screen, three rows under the XP bar, there in faint grey from the first frame and lit as it is said: "+ CLOSE RATE =" / "JOBS SOLD /" / "ESTIMATES GIVEN" (JOBS SOLD teal on "Jobs", / on "divided", ESTIMATES GIVEN gold on "estimates", with sparks). The XP bar fills on "Jobs sold"; LEVEL UP! stamps on "divided" and the rays start turning; the LV 2 bar flashes full, then its first segments fill gold on "given".
 ## close.send "Send this to whoever" [sfx: sting]
-A gold-edged plate over the rays: "Send this to whoever writes your estimates." slams in on one line; the ProofNotFluff tag drops into the perk rows on the right.
+A gold-edged plate over the rays: "Send this to whoever writes your estimates." slams in on one line; the ProofNotFluff tag drops straight into its slot on the right of the row under LEVEL UP! (a ping round it); two more gold segments on the LV 2 bar.
 ## close.friday "Then on Friday, you'll"
-The last perk line lands: "+ Friday: your close rate."; an accent line sweeps under it on "close"; Snow waves.
+The last perk line lands in the row under LEVEL UP!, left of the tag: "+ Friday: your close rate."; an accent line sweeps under it on "close" and two more gold segments fill; Snow waves.

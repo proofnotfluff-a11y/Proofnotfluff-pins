@@ -324,11 +324,11 @@ const desk = (k, o) => {
 
 /* ================================================================================================================ */
 /* the phone close-up (hook, "quiet" to "One"): the cut in on the quiet quote (IMPROVE 00a). The hook rides on a title */
-/* plate up top; below it your phone, big in its dash mount: the quote you sent, Seen, and a typing bubble whose dots */
-/* blink, stop and start again and never turn into a reply. The dash and its vents fill the lower frame; Snow steps up */
-/* big in the cab (a reframe, not a backdrop swap). One low-res pixel per 3 frame units, nothing scaled. */
+/* plate up top; below it your phone, big in its dash mount: the quote you sent, Seen, and no reply under it. The dash */
+/* and its vents fill the lower frame; Snow steps up big in the cab (a reframe, not a backdrop swap). One low-res */
+/* pixel per 3 frame units, nothing scaled. */
 const quietPhone = (k) => {
-  const d = px(k), {P, DOT, disc, line, F, T} = d;
+  const d = px(k), {P, DOT, disc, line, F} = d;
   /* the windshield: dusk over the street; the cab around it, as in the chat set: roof liner, mirror, air freshener and
      the two A-pillars down the frame edges (no bare slabs beside the title plate) */
   P(0, 0, 360, 168, '#5A3042'); P(0, 0, 360, 52, '#3D2E45'); d.dith(0, 50, 360, 3, '#3D2E45', 1);
@@ -356,7 +356,7 @@ const quietPhone = (k) => {
   k.text(a, x0, 276, {size: 66, color: CREAM, drop: INK}); k.text('quiet?', x0 + wa, 276, {size: 66, color: 'accent', drop: INK});
   k.text('Send this text.', 540, 352, {size: 66, color: CREAM, align: 'center', drop: INK});
   k.text('Sources: ServiceTitan, Jobber, Housecall Pro', 540, 432, {size: 30, color: SAND, align: 'center'});
-  /* the phone in its mount, big: bezel, header, your quote (a PDF card, Seen), the typing bubble */
+  /* the phone in its mount, big: bezel, header, your quote (a PDF card, Seen), nothing after it */
   const X = 150, Y = 176, W = 182, H = 268;
   P(X + 50, Y + H, 82, 14, '#4A4E5A'); P(X + 50, Y + H, 82, 2, '#9AA0AD');
   P(X - 1, Y - 1, W + 2, H + 2, INK); P(X, Y, W, H, '#1B1420'); P(X + 1, Y, W - 2, 1, '#4A4E5A');
@@ -377,10 +377,7 @@ const quietPhone = (k) => {
   d.tx('Quote.pdf', bx + 40, by + 9, {color: CREAM});
   d.tx('Seen', bx + 40, by + 29, {color: '#BDE6F5'});
   [0, 4].forEach((dx) => { DOT(bx + 72 + dx, by + 36, '#BDE6F5'); DOT(bx + 73 + dx, by + 37, '#BDE6F5'); line(bx + 74 + dx, by + 36, bx + 77 + dx, by + 33, '#BDE6F5'); });
-  /* their typing bubble: the dots step for a while, stop, start again; nothing ever arrives */
-  const tx0 = sx + 8, ty0 = by + bh + 22, ph = Math.floor(T * 5) % 10;
-  P(tx0 + 1, ty0, 58, 26, '#C9CCD3'); P(tx0, ty0 + 1, 60, 24, '#C9CCD3'); P(tx0 - 3, ty0 + 20, 4, 4, '#C9CCD3');
-  for (let i = 0; i < 3; i++) { const on = ph < 6 && ph % 3 === i; P(tx0 + 11 + i * 15, ty0 + 9 - (on ? 2 : 0), 8, 8, on ? '#4A4E5A' : '#9AA0AD'); }
+  /* no typing bubble under it: Seen, and the chat stays empty (dots would read as "they're typing") */
   /* the empty composer at the screen's foot */
   P(sx, sy + sh - 30, sw, 30, CREAM); P(sx, sy + sh - 30, sw, 1, SAND); P(sx + 6, sy + sh - 24, sw - 40, 18, '#F4E6D3');
   d.tx('Text message', sx + 11, sy + sh - 22, {color: '#B39A88', lint: false});
@@ -418,14 +415,12 @@ window.SCENE = {
         k.slam('quiet?', 540, 456, -1, {size: 132, color: 'accent', align: 'center', drop: INK});
         k.text('Send this text.', 540, 594, {size: 66, color: CREAM, align: 'center'});
         k.text('Sources: ServiceTitan, Jobber, Housecall Pro', 540, 666, {size: 30, color: SAND, align: 'center'});
-        k.burst(700, 520, 0.45, {n: 18, r: 260}); k.sweep(390, 590, 300, 6, 1.2, {color: 'accent'});
-        /* after frame 0: stars wink in the card's empty corners (never on a line of text), and over the QUOTE house a
-           typing bubble blinks its dots and never turns into a reply */
+        /* two small bursts in the clear space either side of "quiet?" (x 396 to 684), never on its glyphs */
+        k.burst(330, 520, 0.45, {n: 8, r: 60}); k.burst(760, 520, 0.45, {n: 8, r: 60}); k.sweep(390, 590, 300, 6, 1.2, {color: 'accent'});
+        /* after frame 0: stars wink in the card's empty corners (never on a line of text). No typing bubble over the
+           house: the quote was seen and nobody is answering */
         if (T >= 0.4) {
           [[32, 100], [328, 100], [42, 168], [318, 164], [30, 222], [330, 222]].forEach(([x, y], i) => { const f = Math.floor((T - 0.4) * 6) + i * 2; d.twinkle(x, y, f % 6 < 4 ? f % 4 : 0, i % 2 ? GOLD : CREAM); });
-          const bx = 80, by = 250;
-          d.P(bx - 1, by - 1, 30, 16, INK); d.P(bx, by, 28, 14, CREAM); d.P(bx + 20, by + 14, 4, 3, CREAM); d.P(bx + 22, by + 17, 2, 2, CREAM);
-          for (let i = 0; i < 3; i++) { const on = (Math.floor((T - 0.4) * 4) % 4) === i; d.P(bx + 5 + i * 7, by + 5 - (on ? 1 : 0), 4, 4, on ? '#6B7080' : '#C9CCD3'); }
         }
         /* "just checking in" from the van, struck once it has been read */
         if (T >= tSkip) {
@@ -462,9 +457,9 @@ window.SCENE = {
       if (h >= hCard) {   /* the bar: the share that closed fills with the count, the rest stays open */
         const p = T >= tCount ? eo((T - tCount) / 0.7) : 0, fw = Math.round(W * frac * p);
         d.P(x0 - 1, BY - 1, W + 2, 12, INK); d.P(x0, BY, W, 10, '#3D2E45'); d.P(x0, BY, fw, 10, ORANGE); d.P(x0, BY, fw, 2, GOLD);
-        if (T >= tBar && T < tRest) {
-          k.slam('closed', x0 * 3, 606, tBar, {size: 39, color: 'accent', from: 0.5});
-          k.slam('still open', (x0 + W * frac + W * (1 - frac) / 2) * 3, 606, tBar + 0.15, {size: 39, color: CREAM, from: 0.5, align: 'center'});
+        if (T >= tBar && T < tRest) {   /* the bar's two labels at the display font (33 px caps, over the 36 px label floor) */
+          k.slam('closed', x0 * 3, 606, tBar, {size: 66, color: 'accent', from: 0.5});
+          k.slam('still open', (x0 + W * frac + W * (1 - frac) / 2) * 3, 606, tBar + 0.15, {size: 66, color: CREAM, from: 0.5, align: 'center'});
         }
       }
       if (T >= tRest) {
@@ -484,7 +479,7 @@ window.SCENE = {
       const cardIn = T >= tFix ? d.ease(tFix, 8, -160) : null;
       if (cardIn == null || cardIn < -120) {
         const s = 'Just checking in!', bw = Math.ceil(d.tw(s, 30)) + 12, f = d.fr(t0 + 0.2), up = f >= 0 && f < 4 ? [4, 2, 1, 0][f] : 0;
-        if (f >= 0) { d.P(16, 196 - 2 + up, bw + 2, 20, INK); d.P(17, 197 - 2 + up, bw, 18, '#3B82C4'); d.P(104, 213 + up, 4, 4, '#3B82C4');   /* 2 px taller: the J and g descenders clear the border */ d.tx(s, 23, 199 + up, {size: 30, color: CREAM}); }
+        if (f >= 0) { d.P(16, 196 - 2 + up, bw + 2, 20, INK); d.P(17, 197 - 2 + up, bw, 18, '#3B82C4'); d.P(104, 213 + up, 4, 4, '#3B82C4');   /* 2 px taller: the J and g descenders clear the border; the text sits 2 px up so the space over the caps and under the descenders matches */ d.tx(s, 23, 197 + up, {size: 30, color: CREAM}); }
       }
       /* the notes: the plumber's, then the week piles on; Dentist lands right on top of it */
       const A = [166, 152], B = [254, 152], C = [166, 220], D = [254, 220];
@@ -587,10 +582,10 @@ window.SCENE = {
       const d = px(k), t0 = k.S('close');
       const tName = wordT(k, 'close', /^name/i), tJob = wordT(k, 'close', /^job/i, 0.8), tQ = wordT(k, 'close', /^question/i, 1.6);
       const send = k.S('close.send'), quiet = k.S('close.quiet'), know = k.S('close.know');
-      const r = k.sets.levelup({from: 0, to: 100, max: 100, at: t0, dur: Math.max(0.6, tQ - t0), levelAt: tQ, level: 2, text: 'LEVEL UP!', stats: []});
-      /* the perks as one block centered under the bar (one left edge), each sliding in on its "one" */
-      const perks = [['ONE NAME', tName], ['ONE JOB', tJob], ['ONE QUESTION', tQ]], bw = Math.max(...perks.map(([s]) => d.tw(s))) + 12;
-      const bx = Math.round(r.bar.x / 3 + r.bar.w / 6 - bw / 2);
+      k.sets.levelup({from: 0, to: 100, max: 100, at: t0, dur: Math.max(0.6, tQ - t0), levelAt: tQ, level: 2, text: 'LEVEL UP!', stats: []});
+      /* the perks, the chip and the send line share one left edge (x 300, low-res 100): the send line at size 66 needs */
+      /* 630 px for its second line, so the column starts there to end inside x 930. Each perk slides in on its "one" */
+      const perks = [['ONE NAME', tName], ['ONE JOB', tJob], ['ONE QUESTION', tQ]], bx = 100;
       /* the floor: an arcade cabinet's control deck in place of the set's tiled stage (stick, three buttons, coin door) */
       { const {P, disc, DOT} = d;
         P(0, 417, 360, 223, '#3D2E45'); P(0, 417, 360, 3, '#5A4A63'); P(0, 420, 360, 2, INK); P(0, 470, 360, 2, '#2B2033');
@@ -601,12 +596,13 @@ window.SCENE = {
         [[150, 530], [194, 530]].forEach(([x, y]) => { P(x, y, 16, 34, INK); P(x + 1, y + 1, 14, 32, (d.F >> 4) % 2 ? ORANGE : '#F2A541'); P(x + 6, y + 6, 4, 22, INK); });
         P(152, 580, 56, 4, '#5A4A63');
         [[20, 506], [250, 506]].forEach(([x, y]) => { P(x - 1, y - 1, 92, 102, INK); P(x, y, 90, 100, '#1B1420'); for (let j = 0; j < 9; j++) P(x + 6, y + 8 + j * 10, 78, 4, '#352840'); }); }   /* the cabinet's two speaker grilles */
-      /* the perks: while "The rule:" is up they are big, one line each; once the level ticks over they settle into a small list */
+      /* the perks: while "The rule:" is up they are big, one line each; once the level ticks over they settle into a small */
+      /* list (16 px low-res apart, so the send line gets its 50 px of air and still clears Snow's name tag at y 1012) */
       const big = T < tQ + 0.6, bigW = Math.max(...perks.map(([s]) => k.measure('+ ' + s, {size: 66}))), bigX = Math.round(540 - bigW / 2);
       perks.forEach(([s, at], i) => {
         if (T < at) return;
         if (big) { k.slam('+ ' + s, bigX, 708 + i * 78, at, {size: 66, color: CREAM, from: 0.4, drop: INK}); return; }
-        const sl = d.ease(at, 5, 30); d.tx('+', bx + sl, 236 + i * 18, {color: TEAL}); d.tx(s, bx + 12 + sl, 236 + i * 18, {color: CREAM});
+        const sl = d.ease(at, 5, 30); d.tx('+', bx + sl, 236 + i * 16, {color: TEAL}); d.tx(s, bx + 12 + sl, 236 + i * 16, {color: CREAM});
       });
       /* LV 3 starts earning: from "Send this" the first 3 segments fill one by one, each blinking while it fills */
       if (T >= tQ) for (let i = 0; i < 3; i++) {
@@ -619,10 +615,11 @@ window.SCENE = {
         const echo = T >= know;
         k.slam(echo ? 'Now you know what to send.' : 'Exact text in the caption.', 540, 506, echo ? know : quiet, {size: 39, color: echo ? GOLD : CREAM, align: 'center', from: 0.4, drop: INK});
       }
-      if (T >= send) {
-        k.chip('ProofNotFluff', 366, 276, {size: 30});
-        k.slam('Send this to whoever', 366, 870, send, {size: 39, color: 'accent', from: 0.5, drop: INK});
-        k.slam('follows up on your quotes.', 366, 916, send + 0.15, {size: 39, color: 'accent', from: 0.5, drop: INK});
+      if (T >= send) {   /* the send line ranks second after LEVEL UP!: size 66, its ink 45 px under the perk list (ends */
+        /* y 837), line 2 ending y 996, clear of Snow's name tag (y 1012) and inside x 930 (504 and 630 px wide from x 300) */
+        k.chip('ProofNotFluff', 300, 276, {size: 30});
+        k.slam('Send this to whoever', 300, 870, send, {size: 66, color: 'accent', from: 0.5, drop: INK});
+        k.slam('follows up on your quotes.', 300, 936, send + 0.15, {size: 66, color: 'accent', from: 0.5, drop: INK});
       }
       return host(k, k.live('close.know') ? 'wave' : (k.live('close.send') ? 'point' : null));
     },

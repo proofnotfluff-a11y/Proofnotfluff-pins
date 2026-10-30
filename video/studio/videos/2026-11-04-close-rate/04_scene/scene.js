@@ -435,10 +435,15 @@ window.SCENE = {
       d.tx('MEDIAN', 15, 90, {color: GOLD});
       d.tx(`${n.medLow.shown} TO ${n.medHigh.shown}`, 15 + d.tw('MEDIAN '), 90, {color: CREAM});
       if (T >= tTop) {
+        /* the plate hugs its words: 'TOP 25%' alone, then it grows in two steps (4 frames each, done as the word lands) */
+        /* to hold '70% TO' and then '73%'; its right edge ends by frame x 921 */
         const sl = d.ease(tTop, 8, 40), lit = T >= tRank, lab = `TOP ${n.topShare.shown}`;
-        plate(d, 176 + sl, 86, 140, 22, lit ? TEAL : '#4A4E5A');
-        d.tx(lab, 183 + sl, 90, {color: lit ? TEAL : GREY});
-        if (T >= t70) d.tx(T >= t73 ? `${cnt(k, n.topLow, t70)}% TO ${cnt(k, n.topHigh, t73)}%` : `${cnt(k, n.topLow, t70)}% TO`, 183 + sl + d.tw(lab + ' '), 90, {color: CREAM});
+        const wOf = (s) => Math.round(d.tw(s)) + 16, w0 = wOf(lab), w1 = wOf(`${lab} ${n.topLow.shown} TO`), w2 = wOf(`${lab} ${n.topLow.shown} TO ${n.topHigh.shown}`);
+        const grow = (a, b, at) => { const q = clamp((d.fr(at - 4 / 30) + 1) / 4); return q <= 0 ? a : a + Math.round((b - a) * eo(q)); };
+        const pw = T >= t73 - 4 / 30 ? grow(w1, w2, t73) : (T >= t70 - 4 / 30 ? grow(w0, w1, t70) : w0);
+        plate(d, 166 + sl, 86, pw, 22, lit ? TEAL : '#4A4E5A');
+        d.tx(lab, 173 + sl, 90, {color: lit ? TEAL : GREY});
+        if (T >= t70) d.tx(T >= t73 ? `${cnt(k, n.topLow, t70)}% TO ${cnt(k, n.topHigh, t73)}%` : `${cnt(k, n.topLow, t70)}% TO`, 173 + sl + d.tw(lab + ' '), 90, {color: CREAM});
       }
       /* the readout: the band the needle sits in, then yours, which nobody has measured yet */
       if (T >= tNever) lcd(k, d, 'YOURS: ?', Math.floor((T - tNever) * 2) % 2 ? RED : GOLD, 39);
@@ -641,31 +646,51 @@ window.SCENE = {
       return host(k, k.live('weekly.all') ? 'point' : (k.live('weekly.two') ? 'point' : null));
     },
 
-    /* ---- close: the levelup set. The XP bar fills while the formula is said and the perk line builds word by word: */
-    /* + CLOSE RATE = JOBS SOLD / ESTIMATES GIVEN; it levels up on "given". The send line lands on a plate over the rays, */
-    /* then the last perk line: + Friday: your close rate. */
+    /* ---- close: the levelup set. The XP bar fills on "Jobs sold" and it levels up on "divided", so the rays and */
+    /* LEVEL UP! fill the sky under a second in; the LV 2 bar flashes full, then fills gold from "given". The formula is */
+    /* the perk, the biggest words on screen: + CLOSE RATE = / JOBS SOLD / / ESTIMATES GIVEN in three rows at size 99 */
+    /* (66 px caps) under the bar, shown faint from the first frame and lit part by part as it is said. The send line */
+    /* lands on a plate over the rays; the last perk line (+ Friday: your close rate.) and the ProofNotFluff tag share */
+    /* the row between LEVEL UP! and the bar. */
     close: (k, T) => {
       const t0 = k.S('close'), send = k.S('close.send'), fri = k.S('close.friday');
       const tJ = wordT(k, 'close', /^Jobs/i), tD = wordT(k, 'close', /^divided/i, 0.6), tE = wordT(k, 'close', /^estimates/i, 1.5), tG = wordT(k, 'close', /^given/i, 2.0), tF = wordT(k, 'close.friday', /^close$/i, 1.8);
-      const lvAt = tG + 0.15;
+      const lvAt = tD + 0.15;
       k.sets.levelup({from: 30, to: 100, max: 100, at: t0, dur: Math.max(0.5, lvAt - t0), levelAt: lvAt, level: 1});
-      const d = px(k);
-      /* a perk line: a teal +, then its parts, each lit when it is said (low-res x 32 on, frame 96 to 858) */
-      const perk = (i, parts, at) => {
-        if (T < at) return;
-        const sl = d.ease(at, 5, 30), y = 236 + i * 18; let x = 32 + sl;
-        d.tx('+', 20 + sl, y, {color: TEAL});
-        parts.forEach(([str, a, c]) => { if (T >= a) d.tx(str, x, y, {color: c}); x += d.tw(str); });
-      };
-      perk(0, [['CLOSE RATE = ', t0, CREAM], ['JOBS SOLD', tJ, TEAL], [' / ', tD, CREAM], ['ESTIMATES GIVEN', tE, GOLD]], t0);
-      perk(1, [['Friday: your close rate.', fri + 0.1, CREAM]], fri + 0.1);
-      if (T >= tF) k.sweep(96, 804, k.measure('Friday: your close rate.', {size: 39}), 3, tF, {color: 'accent'});
-      /* the send line, one line on its own plate over the rays (frame y 258 to 336); the ProofNotFluff tag lands in the */
-      /* perk rows, right of where the Friday line will be */
+      const d = px(k), {P} = d;
+      /* the LV 2 bar (the set's X 30, Y 208, 20 segments of 14): a 2-frame full flash as it levels up, then its first */
+      /* four segments step in gold on "given" (one every 2 frames), two more on "Send" and two more on "close" */
+      if (T >= lvAt) {
+        const X = 30, Y = 208, W = 280, sw = W / 20, f = d.fr(lvAt);
+        if (f >= 0 && f < 2) P(X, Y, W, 14, CREAM);
+        const steps = [[tG, 4], [send, 6], [tF, 8]]; let lit = 0;
+        steps.forEach(([at, to], j) => { if (T >= at) lit = Math.min(to, (j ? steps[j - 1][1] : 0) + Math.floor(d.fr(at) / 2) + 1); });
+        for (let i = 0; i < lit; i++) { const x = Math.round(X + i * sw); P(x + 1, Y + 1, Math.round(sw) - 2, 12, GOLD); P(x + 1, Y + 1, Math.round(sw) - 2, 3, '#FFE2A8'); P(x + 1, Y + 10, Math.round(sw) - 2, 3, ORANGE); }
+      }
+      /* the formula perk: a teal + at frame x 48, rows 99 apart at y 669, 768 and 867 (caps ink 699 to 963, under the */
+      /* bar's 672 and above Snow's cap at 976 and the floor band at 990; rows 99 apart keep the lint's font boxes under */
+      /* 15 per cent overlap); ESTIMATES GIVEN ends at frame x 900. Unlit parts are grey glass */
+      const big = (s, x, y, at, c) => { if (T < at) k.text(s, x, y, {size: 99, color: '#4A4E5A', lint: false}); else k.text(s, x, y, {size: 99, color: c, drop: INK}); };
+      k.text('+', 48, 669, {size: 99, color: TEAL, drop: INK});
+      big('CLOSE RATE =', 108, 669, t0, CREAM);
+      big('JOBS SOLD', 108, 768, tJ, TEAL);
+      big('/', 108 + k.measure('JOBS SOLD ', {size: 99}), 768, tD, CREAM);
+      big('ESTIMATES GIVEN', 108, 867, tE, GOLD);
+      if (T >= tE + 0.1 && T < tE + 0.9) k.burst(504, 930, tE + 0.1, {n: 16, r: 220});
+      /* the Friday perk line, between LEVEL UP! (ink to 456) and the LV label (ink from 579): frame y 498, ink 507 to 528 */
+      if (T >= fri + 0.1) {
+        const sl = d.ease(fri + 0.1, 5, 30);
+        d.tx('+', 20 + sl, 166, {color: TEAL, drop: INK});
+        d.tx('Friday: your close rate.', 32 + sl, 166, {color: CREAM, drop: INK});
+      }
+      if (T >= tF) k.sweep(96, 540, k.measure('Friday: your close rate.', {size: 39}), 3, tF, {color: 'accent'});
+      /* the send line, one line on its own plate over the rays (frame y 258 to 336); the ProofNotFluff tag lands straight */
+      /* in its slot in the Friday row (frame x 600 to 912, y 489 to 541), right of where the Friday line will be, with a */
+      /* ping round it, and never crosses the formula */
       if (T >= send) {
         plate(d, 12, 86, 336, 26, GOLD);
         k.slam('Send this to whoever writes your estimates.', 60, 279, send + 0.1, {size: 39, color: CREAM, from: 0.1});
-        k.ctx.save(); k.ctx.translate(0, d.ease(send + 0.3, 6, -14) * 3); k.chip('ProofNotFluff', 600, 750, {size: 30}); k.ctx.restore();
+        if (T >= send + 0.3) { const c = k.chip('ProofNotFluff', 600, 489, {size: 30}); d.ping(send + 0.3, 200, 163, Math.round(c.w / 3), Math.round(c.h / 3), GOLD); }
       }
       return host(k, k.live('close.friday') ? 'wave' : (k.live('close.send') ? 'point' : null));
     },

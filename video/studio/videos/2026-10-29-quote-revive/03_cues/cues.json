@@ -15,7 +15,7 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "Three shots (IMPROVE 00a). World: the street. The cover, frame 0, settled: the van parked at a frame house, a yard sign QUOTE with its arrow bobbing; in the sky a dark game window holds the chip THE TEXT, \"Quote went\" / \"quiet?\" (quiet in the accent) and \"Send this text.\", with the source line \"Sources: ServiceTitan, Jobber, Housecall Pro\" under them (the window is tall enough to keep it 15 px inside its rule). Host and dialog box hidden. On \"quiet\" cut in to the phone close-up in the cab: the A-pillars down the frame edges, the roof liner, the mirror and the swinging air freshener round a dusk windshield; the hook on a title plate up top (\"Quote went quiet?\" / \"Send this text.\" and the same Sources line); your phone big in the truck's dash mount, with the same chrome and contact as the text section (9:41 status bar, avatar, Homeowner): the quote you sent, Quote.pdf, Seen, and their typing bubble whose dots blink, stop and never become a reply; the dash, its vents, the glovebox, the cup holder with a coffee, the keys and a clipboard of quotes fill the lower frame; Snow steps up big in the cab (about three times his usual size). On \"One\" cut back out to the street, Snow on at his usual size; stars wink in the window's corners, the typing bubble over the front door blinks.",
+   "text": "Three shots (IMPROVE 00a). World: the street. The cover, frame 0, settled: the van parked at a frame house, a yard sign QUOTE with its arrow bobbing; in the sky a dark game window holds the chip THE TEXT, \"Quote went\" / \"quiet?\" (quiet in the accent) and \"Send this text.\", with the source line \"Sources: ServiceTitan, Jobber, Housecall Pro\" under them (the window is tall enough to keep it 15 px inside its rule). Host and dialog box hidden. On \"quiet\" cut in to the phone close-up in the cab: the A-pillars down the frame edges, the roof liner, the mirror and the swinging air freshener round a dusk windshield; the hook on a title plate up top (\"Quote went quiet?\" / \"Send this text.\" and the same Sources line); your phone big in the truck's dash mount, with the same chrome and contact as the text section (9:41 status bar, avatar, Homeowner): the quote you sent, Quote.pdf, Seen, and no reply under it (no typing dots); the dash, its vents, the glovebox, the cup holder with a coffee, the keys and a clipboard of quotes fill the lower frame; Snow steps up big in the cab (about three times his usual size). On \"One\" cut back out to the street, Snow on at his usual size; stars wink in the window's corners.",
    "t": 0.0,
    "word": 0,
    "end": 17.907
@@ -351,7 +351,7 @@
    "sfx": "sting",
    "shift": 0.0,
    "pin": null,
-   "text": "One left edge (x 366): ProofNotFluff chip, \"Send this to whoever\" / \"follows up on your quotes.\" in the accent.",
+   "text": "One left edge (x 300) for the ProofNotFluff chip, the perk list and \"Send this to whoever\" / \"follows up on your quotes.\" in the accent at size 66, about 50 px under the perks, second only to LEVEL UP!.",
    "t": 63.901,
    "word": 171,
    "end": 66.641

@@ -15,7 +15,7 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "Three shots (IMPROVE 00a). The cover, frame 0, fully settled, host and dialog hidden: World: the storefront counter. Shop sign QUOTE CLINIC; a toolbox on the counter with one price tag (\"$\"); a cream card hung on the counter front: \"Top shops usually quote\" / \"3 prices\" (big, the 3 in red); under it \"Top 10%: 57% of home jobs\" and the source small: ServiceTitan data, 12 months to Jan 2026. On \"one\" cut in to the tag close-up, outside the shop, drawn big: the striped awning, the brick facade, the shop window with the one-price tag hanging in the glass over the toolbox on the display ledge (a light crosses the glass), the teal door with its OPEN sign, the sidewalk in the awning's shade; the hook on a title plate over the glass (\"Top shops usually\" / \"quote 3 prices\", source under it); Snow steps up big on the sidewalk. On \"Top\" cut back out to the storefront, Snow on; the card swings a pixel on its strings, sparks off the tag.",
+   "text": "Three shots (IMPROVE 00a). The cover, frame 0, fully settled, host and dialog hidden: World: the storefront counter. Shop sign QUOTE CLINIC; a toolbox on the counter with one price tag (\"$\"); under the counter top the brick facade runs down to the sidewalk (the close's storefront base), and a cream card hangs on it: \"Top shops usually quote\" / \"3 prices\" (big, the 3 in red); under it \"Top 10%: 57% of home jobs\" at the line size and the source small: ServiceTitan data, 12 months to Jan 2026. On \"one\" cut in to the tag close-up, outside the shop, drawn big: the striped awning, the brick facade, the shop window with the one-price tag hanging in the glass over the toolbox on the display ledge (a light crosses the glass), the teal door with its OPEN sign, the sidewalk in the awning's shade; the hook on a title plate over the glass (\"Top shops usually\" / \"quote 3 prices\", source under it); Snow steps up big on the sidewalk. On \"Top\" cut back out to the storefront; Snow stays off while the card hangs (he would stand on its left third); the card swings a pixel on its strings, sparks off the tag.",
    "t": 0.0,
    "word": 0,
    "end": 5.466
@@ -39,7 +39,7 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "The hook card rolls up onto its strings and is gone by 4.0 s (the on-screen hook's hold ends); the chalk board on the wall writes \"3 prices,\" / \"1 quote.\" line by line and carries the rest of the take.",
+   "text": "The hook card rolls up onto its strings and is gone by 4.0 s (the on-screen hook's hold ends) and Snow steps on the frame it is gone, in front of the brick; the chalk board on the wall writes \"3 prices,\" / \"1 quote.\" line by line and carries the rest of the take.",
    "t": 4.0,
    "word": 9,
    "end": 5.466
@@ -111,7 +111,7 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "A plum bar opens in the band between the rows and the footnote; \"A HABIT YOU CAN COPY\" lands on it on \"habit\", gold, at the row names' size, a twinkle at each end. The footnote (what the score is, the source, Top 10% = by revenue) sits under it. Snow points at it.",
+   "text": "A plum bar opens in the band between the rows and the footnote; \"A HABIT YOU CAN COPY\" lands on it on \"habit\", gold, at line size (66), a twinkle at each end. The footnote (what the score is, the source, Top 10% = by revenue) sits under it. Snow points at it.",
    "t": 15.466,
    "word": 37,
    "end": 17.254
@@ -267,7 +267,7 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "In the coin tray, typed: \"ACCA survey, ACHR News 2026\".",
+   "text": "In the coin tray, typed: \"ACCA survey, ACHR News 2026\". On \"surveyed\" the lever pulls for a short spin and the reels land back on $ $ $ (no sparks, no coins), so they never sit still long before \"four\".",
    "t": 47.536,
    "word": 121,
    "end": 49.396
@@ -351,7 +351,7 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "The lever pulls; the reels land 3, 3, 3; jackpot: coins in the tray, the crown reads START WITH 3.",
+   "text": "The lever pulls; the reels land 3, 3, 3; jackpot: coins in the tray, and the crown flips to START WITH 3 on the frame the last reel lands.",
    "t": 63.575,
    "word": 163,
    "end": 65.006
@@ -363,7 +363,7 @@
    "sfx": "sting",
    "shift": 0.0,
    "pin": null,
-   "text": "World: the storefront again, tag on one price \"$\", no counter front: the shop window ends at a stone sill and the brick facade runs down to the sidewalk (the toolbox is off the counter). A dark plate hangs on the brick at one line's height; ProofNotFluff chip; \"Send this to whoever\" lands, then the plate grows a line and \"writes your quotes.\" lands on \"writes\".",
+   "text": "World: the storefront again, tag on one price \"$\", no counter front: the shop window ends at a stone sill and the brick facade runs down to the sidewalk (the toolbox is off the counter). A dark plate hangs on the brick at one line's height; ProofNotFluff chip, and the chalk board writes \"1 price?\" as the room opens; \"Send this to whoever\" lands, then the plate grows a line and \"writes your quotes.\" lands on \"writes\".",
    "t": 65.006,
    "word": 166,
    "end": 74.646
@@ -387,7 +387,7 @@
    "sfx": null,
    "shift": 0.0,
    "pin": null,
-   "text": "The tag shows \"$ $$ $$$\" on \"Three\" and the plate grows its last line: \"3 prices:\" lands in the accent; \"a choice.\" lands on \"choice\"; an accent line sweeps under \"a choice.\"; sparks off the tag's top into the awning (never over the plate); Snow waves.",
+   "text": "The tag shows \"$ $$ $$$\" on \"Three\" and the plate grows its last line: \"3 prices:\" lands in the accent; \"a choice.\" lands on \"That's\" (so it holds before the end card); an accent line sweeps under \"a choice.\"; sparks off the tag's top into the awning (never over the plate); no shine crosses the plate's lines; Snow waves.",
    "t": 69.706,
    "word": 181,
    "end": 74.646

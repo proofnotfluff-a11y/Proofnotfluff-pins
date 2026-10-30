@@ -18,7 +18,7 @@ Room: blackboard. The tool belt behind it; the answer card rises at once and fil
 Room: garage. The register. Header: THE USUAL WAY. COST $1,000 rings up; MARKUP 50% +$500 rings on "fifty".
 ## usual.price "and you'd quote fifteen" [sfx: pop]
 The total rings: PRICE $1,500, display QUOTE.
-## usual.half "Sounds like half is" [sfx: tick]
+## usual.half "Sounds like half the" [sfx: tick]
 Line under it: "Half is margin?" in gold.
 ## usual.third "But that five hundred" [sfx: stamp]
 The display splits the price into thirds, the markup third in orange, "1/3": line "$500 = 1/3 of the price".

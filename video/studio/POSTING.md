@@ -25,7 +25,10 @@ move on: never post twice. Trial reels do not show on the grid: on Instagram als
 professional dashboard.
 
 - **Instagram** (instagram.com): the signed-in account must read proofnotfluff (switch if not; never another account).
-  Create, Post, file_upload the MP4, keep the original 9:16 crop, Next, Next, paste `instagram.caption`. "Add AI label"
+  Create, Post, file_upload the MP4. Crop: instagram.com can crop to a 1:1 square, which cut off the top and bottom of
+  markup-margin (posted Oct 30 from a live chat; Todd's phone, 3:37 pm; close-rate the same day was fine). On the Crop screen open the crop button (bottom left of the
+  preview) and choose "Original" (not 1:1, 4:5 or 16:9). Check before Next with JS: the preview media is taller than
+  wide (height about 1.78 times width); square or wide means stop and redo. Next, Next, paste `instagram.caption`. "Add AI label"
   off. "Share to Facebook" off. Turn on "Trial" (trial reel: shown
   to non-followers first) with automatic sharing off. Share. Record the newest /reel/ link with `posted <slug>
   instagram-trial <url>`. No Trial option on the screen: post it as a normal reel, record it with `posted <slug>

@@ -1,0 +1,8 @@
+length: PASS 73.67 s (45.0 to 75.0, v1 lesson, end card included)
+loudness: PASS -14.2 LUFS (target -14 +/- 1), true peak -3.2 dBTP (at most -1.5)
+black: PASS 0 black stretch(es) of 0.5 s or more
+frozen: PASS 0 frozen stretch(es) of 1.0 s or more before the end card at 62.68 s
+file: PASS H.264 1080x1920 30 fps, AAC, 7.7 MB, decodes clean
+voice: FAIL whisper medium.en int8, re-spelled from script.md, 1 flag(s)
+qa: FAIL
+exit 0

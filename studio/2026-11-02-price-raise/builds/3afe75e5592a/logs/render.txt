@@ -1,0 +1,11 @@
+  300/2210 frames, 45 s
+  600/2210 frames, 87 s
+  900/2210 frames, 128 s
+  1200/2210 frames, 168 s
+  1500/2210 frames, 209 s
+  1800/2210 frames, 252 s
+  2100/2210 frames, 294 s
+mix: rooms (quest, 108 BPM) framing 0.00 s
+mix: voice -23.3 LUFS, bed -21.6 LUFS after EQ; bed gain -19.7 dB under speech, -11.7 dB in pauses, 13 phrases
+render: /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-11-02-price-raise/05_render/2026-11-02-price-raise.mp4 (2210 frames, 73.67 s, voice, 321 s)
+exit 0

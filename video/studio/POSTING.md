@@ -43,8 +43,28 @@ professional dashboard.
   pixel-art lessons (Todd, Oct 30). Category: Education. Language: English. Visibility: Public. Publish.
   Record the youtube.com/shorts/<id> link.
 
-After each: `python3 video/studio/anim.py posted <slug> <platform> <url>`, commit, push. A trial reel is the lesson's Instagram link
+After each: `python3 video/studio/anim.py posted <slug> <platform> <url>`, commit, push (a live chat), or the post log below
+(a scheduled run on Todd's PC). A trial reel is the lesson's Instagram link
 (`instagram-trial` records it under `instagram`), so it counts toward the four; never post Instagram again for it.
+
+## Scheduled runs on Todd's PC: the post log (Oct 30, 2026)
+Why: a scheduled run tied to Todd's computer can reach his Chrome but GitHub refuses its push ("not in this session's
+authorized repository set", tests at 12:13 pm and 1:28 pm Oct 30). So those runs never push. They clone the public repo
+read only, post, and write each post to the scoreboard post log; the cloud task "PNF video studio: record and make"
+(12:33, 5:33 and 9:33 pm Central) commits the log to queue.json and does the making and improving.
+- The log: ArtifactData on the scoreboard (https://claude.ai/artifact/N9eKZy7Pv39njSe4izVgbE), collection `videoposts`,
+  doc id `<slug>.<platform>`, data `{"slug", "platform", "url", "at", "run", "committed": false, "note"}`. `platform` is
+  what `posted` takes (`instagram-trial`, `instagram`, `tiktok`, `facebook`, `youtube`) or `feedshared`; `at` is the UTC
+  time it went up (`date -u +%Y-%m-%dT%H:%M:%SZ`); `note` is an optional LEARNINGS.md line. Write it right after the post,
+  read it back with `get`, then go on. A write that fails: stop posting and give Todd the link in the end message.
+- Before `anim.py next`, a PC run applies every log doc with `committed` not true to its own clone (`anim.py posted <slug>
+  <platform> <url> <at>`, or `anim.py feedshared <slug> <at>`), never committing, so a post the recorder has not pushed
+  yet is never posted twice and counts toward three a day.
+- The recorder applies the same docs, runs `check_repo`, pushes, then sets each one's `committed` to true (pinned to the
+  version it read) and appends any `note` to LEARNINGS.md. Applying a doc twice is harmless: same link, same time.
+- Numbers the evening and Monday PC runs read in Chrome go to collection `videometrics`, doc id `<slug>.<YYYY-MM-DD>`,
+  numbers only (views, average watch, skip rate, likes, comments, shares, saves; "hidden" when not shown),
+  `committed: false`; the recorder writes research/metrics/<slug>.json and the diagnosis from them.
 
 ## Trial reels to the feed, and the 90-day re-cut (Todd, Oct 29, 2026, 3:59 pm: "Fold it in")
 - Each run: `python3 video/studio/anim.py trials`. For each one marked due (72 hours old), open its link as proofnotfluff,

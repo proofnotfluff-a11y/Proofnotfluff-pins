@@ -1590,7 +1590,18 @@ def cmd_postcopy(slug):
         sh(["git", "-C", ROOT, "worktree", "remove", "--force", wt], check=False)
 
 
-def cmd_posted(slug, platform, url):
+def _at(at):
+    """A post time from the scoreboard post log (scheduled runs on Todd's PC can't push; the cloud recorder commits
+    their posts later with the time they really went up). None: now."""
+    if not at:
+        return now()
+    try:
+        return dt.datetime.fromisoformat(at.replace("Z", "+00:00")).astimezone(dt.timezone(dt.timedelta(hours=-5))).isoformat(timespec="seconds")
+    except ValueError:
+        raise SystemExit(f"ERROR: bad time {at!r} (ISO 8601, e.g. 2026-10-30T16:52:00Z)")
+
+
+def cmd_posted(slug, platform, url, at=None):
     trial = platform == "instagram-trial"   # the Instagram post went up as a trial reel (non-followers first)
     platform = "instagram" if trial else platform
     if platform not in PLATFORMS:
@@ -1599,7 +1610,7 @@ def cmd_posted(slug, platform, url):
     it = next((i for i in q["items"] if i["slug"] == slug), None)
     if not it:
         raise SystemExit(f"ERROR posted: {slug} is not in the queue")
-    it["posts"][platform] = {"url": url, "at": now(), **({"trial": True} if trial else {})}
+    it["posts"][platform] = {"url": url, "at": _at(at), **({"trial": True} if trial else {})}
     save_queue(q)
     print(f"posted: {slug} on {platform} ({len(it['posts'])} of 4)")
 
@@ -1615,12 +1626,12 @@ def _age_hours(at):
     return (dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(at)).total_seconds() / 3600
 
 
-def cmd_feedshared(slug):
+def cmd_feedshared(slug, at=None):
     q = load_queue()
     it = next((i for i in q["items"] if i["slug"] == slug), None)
     if not it or "instagram" not in it["posts"]:
         raise SystemExit(f"ERROR feedshared: {slug} has no Instagram trial post")
-    it["instagramFeed"] = {"at": now()}
+    it["instagramFeed"] = {"at": _at(at)}
     save_queue(q)
     print(f"feedshared: {slug} shared to followers")
 
@@ -2303,7 +2314,7 @@ def main():
     elif c == "new":
         cmd_new(a.slug)
     elif c == "feedshared":
-        cmd_feedshared(a.slug)
+        cmd_feedshared(a.slug, a.rest[0] if a.rest else None)
     elif c == "data":
         cmd_data(a.slug)
     elif c == "speak":
@@ -2323,7 +2334,8 @@ def main():
     elif c == "stills":
         cmd_stills(a.slug, a.look)
     elif c == "posted":
-        cmd_posted(a.slug, a.rest[0] if len(a.rest) > 0 else "", a.rest[1] if len(a.rest) > 1 else "")
+        cmd_posted(a.slug, a.rest[0] if len(a.rest) > 0 else "", a.rest[1] if len(a.rest) > 1 else "",
+                   a.rest[2] if len(a.rest) > 2 else None)
     elif c == "ready":
         cmd_ready(a.slug)
     elif c == "export":

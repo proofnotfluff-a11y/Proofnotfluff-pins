@@ -22,7 +22,7 @@ Suns pop on each word: PLUMB, ELEC, ROOF; the panel line: "Plumbing, electrical,
 Their labels land: 74% each, with a burst. In the panel 74% slams in at the same size as the 83% it replaces, over "Plumbing, electrical, roofing", with "HVAC companies: 83%" in gold under it.
 
 ## why "Why? Seventy-two percent" [sfx: whoosh]
-World: the register (level select). A shop counter with a brass till on a plank floor. The receipt prints its source line, JOBBER SURVEY. The display reads REASON. The plate on the wall: "Why they raised prices" at heading size / "Jobber survey, reasons named" smaller, in the source sand. On "Seventy-two" the till rings INFLATION 72% onto the receipt; the $ flag pops; the display shows 72%.
+World: the register (level select). A shop counter with a brass till on a plank floor. The receipt prints its source line, JOBBER SURVEY. The till's display is ours and big (its figure the largest thing on screen, its label on a tag on its top edge): it reads REASON. The plate on the wall: "Why they raised prices" at heading size / "Jobber survey, reasons named" smaller, in the source sand. On "Seventy-two" the till rings INFLATION 72% onto the receipt; the $ flag pops; the display shows 72%.
 ## why.labor "and half named labor." [sfx: tick]
 LABOR 50% prints; the display shows 50%.
 ## why.federal "That's backed up by" [sfx: pop]
@@ -33,7 +33,7 @@ REPAIR PAY +3.7% prints under BLS PAY DATA on "three point seven"; the display l
 The display reads REPAIR PAY +3.7%; the plate: "Repair pay beat all pay". On "three point two" ALL PAY +3.2% prints under it, then a gold line under REPAIR PAY. It holds to the end of the take, coins still landing.
 
 ## note "So send this before" [sfx: whoosh]
-World: the boss fight (iris), not used in the two lessons before or after: a dusk arena, the objection PRICE PUSHBACK as the boss with its HP bar. Over its menu, our move window tagged YOUR PRICE NOTE (EXAMPLE): three numbered rows showing empty, a gold cursor on the next. The dialog box is off while the note is said (the window carries it). No damage numbers, no defeat.
+World: the boss fight (iris), not used in the two lessons before or after: a dusk arena, the objection PRICE PUSHBACK as the boss with its HP bar. Over its menu, our move window tagged YOUR PRICE NOTE (EXAMPLE): three numbered rows showing empty, a gold cursor on the next. While the note is said the dialog box is off and the window drops into its place on the floor, right of Snow (it carries the words). No damage numbers.
 ## note.l1 "Starting the first of" [sfx: tick]
 Row 1 types word by word as it is said: "Starting the first of next month, our rates go up." As it ends, a hit: flash, slash, the HP bar drops.
 ## note.l2 "Our labor and material" [sfx: tick]
@@ -41,13 +41,13 @@ Row 2 types: "Our labor and material costs rose this year." Another hit as it en
 ## note.l3 "Anything you've already approved" [sfx: tick]
 Row 3 types: "Anything you've already approved stays at the price we quoted." The full note holds 3 s or more, unchanged, through the next two beats.
 ## note.skip "Here's the part people" [sfx: whoosh]
-Only the window's tag changes: THE PART PEOPLE SKIP in gold. The dialog box comes back starting at "Here's".
+Just before "Here's" the window rises back over the menu, beside the boss, unchanged but for its tag: THE PART PEOPLE SKIP in gold. The dialog box comes back starting at "Here's", in the same size 66 type as the rest.
 ## note.last "That last line." [sfx: blip]
 Row 3 is ringed in gold with a gold sweep under it.
 ## note.promise "is a promise." [sfx: stamp]
 The big hit: PROMISE stamps on the boss, beside row 3; the HP bar drops to its last fifth.
 ## note.next "Raise the next job," [sfx: pop]
-The rule lands on a card on the arena floor: "Raise the next job." in gold and "Never an approved one." under it, both at heading size, centered.
+The rule lands on a card on the arena floor: "Raise the next job." in gold and "Never an approved one." under it, both at heading size, centered. On "never" the last hit takes the HP to zero: the boss breaks into pixels, the window and PROMISE leave with the set's menu, and VICTORY stamps in over the card.
 
 ## caveat "One honest note." [sfx: whoosh]
 World: the weather map (dissolve), titled ONE HONEST NOTE. A cold front (blue teeth) sweeps in from the east.
@@ -59,7 +59,7 @@ A "?" cloud pops over the lake: CUSTOMERS ?. Line 1 steps up and lines 2 and 3 l
 The panel clears to: "Watch your close rate for a month after.", centered. It holds to the end of the take.
 
 ## close "Your costs went up," [sfx: pop]
-World: the calendar (game over), titled NEXT MONTH: day 1 fills gold with a coin, the week frame lands on the first row. The note window rises over the lower rows: "Your costs went up."
+World: the calendar (blinds: no full-black frame on the cut), titled NEXT MONTH: day 1 fills gold with a coin, the week frame lands on the first row. The note window rises over the lower rows and grows with each line that lands: "Your costs went up."
 ## close.most "and most trades already" [sfx: tick]
 "Most trades already raised prices." lands under it.
 ## close.send "Send this to whoever" [sfx: sting]

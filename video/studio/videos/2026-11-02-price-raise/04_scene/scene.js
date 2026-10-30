@@ -84,12 +84,21 @@ const allTrades = (n) => [['hvac', 'sun', -1, `HVAC ${n.hvac.shown}`], ['elec', 
 const SRC = (n) => `Jobber, ${n.owners.shown} home service owners, Dec ${n.field.shown}`;
 
 // ================================================================================================================
-// our own copy of the player's dialog box (same box, tail, name tag and typing) for one stretch where the player's
-// paging would open on the note's last word: it shows only the words said from t0 on, until t1
+// our own copy of the player's dialog box (same box, tail, name tag, type and typing) for one stretch where the player's
+// paging would open on the note's last word: it shows only the words said from t0 on, until t1. The type is the
+// player's arcade type (player.js ARCADE_TYPE): the first [size, rows, line height] the words fit, measured the way the
+// box wraps, so the size never jumps when the player's own box takes over.
+const ARCADE_TYPE = [[66, 2, 78], [39, 3, 46]];
 const speechOwn = (k, T, t0, t1) => {
   const ws = WS().filter((w) => w.start >= t0 && w.start < t1);
   if (!ws.length) return;
-  const x = 372, y = 1046, w = 560, h = 190, pad = 30, maxX = x + w - pad, o = {size: 39, weight: 600, font: 'body'};
+  const x = 372, y = 1046, w = 560, h = 190, pad = 30, maxX = x + w - pad;
+  const fits = ([size, n]) => {
+    const o = {size, weight: 600, font: 'body'}, sp = k.measure(' ', o); let cx = 0, rows = 1;
+    for (const wd of ws) { const ww = k.measure(wd.w, o); if (ww > w - 2 * pad) return false; if (cx + ww > w - 2 * pad && cx > 0) { cx = 0; rows++; } cx += ww + sp; }
+    return rows <= n;
+  };
+  const [fs, , lh] = ARCADE_TYPE.find(fits) || ARCADE_TYPE[ARCADE_TYPE.length - 1], o = {size: fs, weight: 600, font: 'body'};
   k.shape(k.rectPts(x + 10, y + 10, w, h, 0), {fill: '#120D14', line: false, alpha: 0.6});
   k.shape(k.rectPts(x, y, w, h, 0), {fill: 'bubble', stroke: null, lw: 2});
   k.shape(k.rectPts(x + 6, y + 6, w - 12, h - 12, 0), {stroke: 'bubbleText', lw: 6, line: false});
@@ -98,11 +107,62 @@ const speechOwn = (k, T, t0, t1) => {
   const sp = k.measure(' ', o); let cx = x + pad, cy = y + 26;
   ws.forEach((wd) => {
     const ww = k.measure(wd.w, o);
-    if (cx + ww > maxX && cx > x + pad) { cx = x + pad; cy += Math.round(39 * 1.18); }
+    if (cx + ww > maxX && cx > x + pad) { cx = x + pad; cy += lh; }
     if (T >= wd.start) k.text(wd.w, cx, cy, Object.assign({}, o, {color: T < wd.end + 0.05 ? 'tag' : 'bubbleText'}));
     cx += ww + sp;
   });
-  if ((T * 2) % 1 < 0.5) k.shape([[x + w - 52, y + h - 40], [x + w - 28, y + h - 40], [x + w - 40, y + h - 26]], {fill: 'bubbleText', line: false});
+  /* the blinking more arrow under the second row's baseline, where the player puts it */
+  if ((T * 2) % 1 < 0.5) k.shape([[x + w - 50, y + h - 27], [x + w - 26, y + h - 27], [x + w - 38, y + h - 15]], {fill: 'bubbleText', line: false});
+};
+
+// ================================================================================================================
+// the register's own wall and top shelf (the set's paneling and stock, same hash), repainted where its small display
+// tower and $ flag stood, so our bigger display can sit on the till instead
+const shopWall = (k, x, y, w, h) => {
+  const d = px(k), {P} = d, sy = 150;
+  d.clip(x, y, w, h, () => {
+    P(0, 0, 360, 286, '#6B4226'); for (let i = 0; i < 360; i += 24) { P(i, 0, 1, 286, '#4A2E1B'); P(i + 1, 0, 1, 286, '#8C5A33'); }
+    P(0, sy, 360, 4, '#D9A066'); P(0, sy + 4, 360, 2, '#4A2E1B');
+    for (let i = 4; i < 356; i += 18) {
+      const c = [[RED, '#7A3442'], [TEAL, '#2F6F67'], ['#87CEEB', '#3B82C4'], [GOLD, ORANGE]][Math.floor(hash(i * 0.3 + sy) * 4)], hh = 10 + Math.floor(hash(i + sy) * 8);
+      P(i - 1, sy - hh - 1, 14, hh + 1, INK); P(i, sy - hh, 12, hh, c[0]); P(i + 9, sy - hh, 3, hh, c[1]); P(i + 2, sy - hh + 3, 6, 3, CREAM);
+    }
+  });
+};
+// the till's display, ours: a grey bezel round a green screen with the figure in the display pixel font at three times
+// (99 px caps, the biggest thing on screen) and its sign and % at two times, top-aligned like a price display; the
+// label rides on a tag on its top edge, like the game windows' tags (stacked in the bezel, its text box would overlap
+// the figure's in the lint). Low-res x 194..313 (right of the receipt), y 138..198 on the till's top, the tag at x 217
+// (clear of the plate's shadow); the figure is centred in the screen and ends at x 924. pf: frames since the last ring,
+// for the $ flag at the top right.
+const tillDisplay = (k, label, val, pf) => {
+  const d = px(k), {P} = d, x = 194, y = 138, w = 120, h = 61, R = 308, top = 152;
+  P(x - 1, y - 1, w + 2, h + 2, INK); P(x, y, w, h, '#4A4E5A'); P(x, y, w, 1, '#9AA0AD'); P(x, y, 1, h, '#9AA0AD'); P(x, y + h - 1, w, 1, '#2B2033'); P(x + w - 1, y + 1, 1, h - 1, '#2B2033');
+  P(x + 3, y + 3, w - 6, h - 6, '#1A332B'); P(x + 4, y + 4, w - 8, h - 8, '#24453A'); for (let yy = y + 5; yy < y + h - 4; yy += 3) P(x + 4, yy, w - 8, 1, '#1A332B');
+  const lw = d.tw(label); P(217, y - 12, lw + 8, 14, INK); P(218, y - 11, lw + 6, 12, '#4A4E5A'); P(218, y - 11, lw + 6, 1, '#9AA0AD');
+  d.tx(label, 221, y - 11, {color: '#C9CCD3'});
+  const o = {color: ORANGE, drop: INK, align: 'right'}, m = /^([+-]?)([\d.]+)(%?)$/.exec(val);
+  if (!m) d.tx(val, R, top - 15, Object.assign({size: 198}, o));
+  else {
+    let rx = R;
+    if (m[3]) { d.tx(m[3], rx, top - 10, Object.assign({size: 132}, o)); rx -= d.tw(m[3], 132); }
+    d.tx(m[2], rx, top - 15, Object.assign({size: 198}, o)); rx -= d.tw(m[2], 198);
+    if (m[1]) d.tx(m[1], rx, top - 10, Object.assign({size: 132}, o));
+  }
+  if (pf >= 0 && pf < 12) { const fy = [10, 6, 3, 1, 0, 0, 0, 0, 0, 1, 4, 8][pf], fx = x + w - 17, fyy = y - 20 + fy; P(fx, fyy, 18, 16, INK); P(fx + 1, fyy + 1, 16, 14, RED); d.tx('$', fx + 9, fyy + 2, {color: CREAM, align: 'center', lint: false}); }
+};
+
+// the boss arena's own sky, mountains and floor edge (k.sets.boss, same hash), repainted over the set's empty command
+// menu while our move window is down on the floor
+const arenaSky = (k) => {
+  const d = px(k), {P, DOT, dith} = d;
+  d.clip(16, 116, 162, 146, () => {
+    P(0, 0, 360, 80, '#1B1420'); P(0, 80, 360, 70, '#2B2033'); P(0, 150, 360, 60, '#3D2E45'); P(0, 210, 360, 50, '#7A3442');
+    dith(0, 78, 360, 3, '#2B2033'); dith(0, 148, 360, 3, '#3D2E45'); dith(0, 208, 360, 3, '#7A3442');
+    for (let i = 0; i < 30; i++) { const x = Math.floor(hash(i * 1.3) * 360), y = Math.floor(hash(i * 4.9) * 140); DOT(x, y, (Math.floor(d.F / 20) + i) % 5 === 0 ? GOLD : '#6B7080'); }
+    for (let x = 0; x < 360; x++) { const h = 20 + Math.round(14 * Math.sin(x * 0.03) + 9 * Math.sin(x * 0.087 + 1)); P(x, 260 - h, 1, h, '#1B1420'); if (h > 30) DOT(x, 260 - h, '#3D2E45'); }
+    P(0, 260, 360, 2, '#9AA0AD');
+  });
 };
 
 // ================================================================================================================
@@ -138,7 +198,7 @@ const sunClose = (k, t0, t1) => {
   k.text('HVAC', SUN_AT[0] + 120, SUN_AT[1] - 36, {size: 66, color: CREAM, drop: INK});
   /* the title plate: the claim and its source (the source's descenders end about 31 px above the inner border) */
   d.win(14, 84, 332, 140, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
-  k.chip('Pricing Clinic', 640, 276, {size: 30, fill: 'accent', color: INK});
+  k.chip('Pricing Clinic', 540, 276, {size: 66, fill: 'accent', color: INK});   // at the zoom's size: 540..924, 276..364
   k.text(n.hvac.shown, 72, 276, {size: 132, color: 'accent', drop: INK});
   k.text('of HVAC companies raised', 72, 432, {size: 66, color: CREAM, drop: INK});
   k.text('prices last year.', 72, 506, {size: 66, color: CREAM, drop: INK});
@@ -162,7 +222,8 @@ window.SCENE = {
   images: [],
   host_name: 'Snow',
   hud: 'LESSON 6',
-  transitions: {stakes: 'dissolve', why: 'levelselect', note: 'iris', caveat: 'dissolve', close: 'gameover'},
+  /* into the close: the player's wooden blinds, not gameover (its CRT-off goes full black for 2 frames on the cut) */
+  transitions: {stakes: 'dissolve', why: 'levelselect', note: 'iris', caveat: 'dissolve', close: 'blinds'},
   trauma: {'note.promise': 0.8},
   sections: {
     // ---- hook: three shots (IMPROVE 00a: the picture changes by 1 s and twice by 3 s, Snow on by 1 s). The cover: the
@@ -248,22 +309,25 @@ window.SCENE = {
         {label: 'LABOR', amount: 50, at: tLab, show: n.labor.shown}, {label: SB, amount: 0, at: tFed, src: true},
         {label: 'REPAIR PAY', amount: 3.7, at: tRep, show: n.repair.shown}, {label: 'ALL PAY', amount: 3.2, at: tAll, show: n.allPay.shown}];
       const rung = items.filter((it) => !it.src && T >= it.at), cur = rung[rung.length - 1];
+      const label = crew ? 'REPAIR PAY' : (cur && /PAY/.test(cur.label) ? 'PAY' : 'REASON');
       /* the set prints its own amounts and a running sum; the brief has no sum, so each amount is swapped for the line's
-         own figure (with its % sign), the source lines print no amount, and the display shows the line just rung */
+         own figure (with its % sign), the source lines print no amount, and the display shows the line just rung. The
+         set's small display (label x 690, sum x 948, $ x 945) is not drawn: ours replaces it */
       const real = k.text, byAmt = {'72.0': n.inflation.shown, '50.0': n.labor.shown, '3.7': n.repair.shown, '3.2': n.allPay.shown};
       k.text = function (s, x, y, o) {
         if (x === 552) return byAmt[s] ? real.call(this, byAmt[s], x, y, o) : undefined;
         if (x === 168 && (s === SJ || s === SB)) return real.call(this, s, x, y, Object.assign({}, o, {color: '#7A3442'}));
-        if (x === 948) return;
+        if (x === 948 || x === 945 || x === 690) return;
         return real.call(this, s, x, y, o);
       };
       try {
-        k.sets.register({items: items.map(({label, amount, at}) => ({label, amount, at})), prefix: '', dec: 1, openAt: tFed,
-          displayLabel: crew ? 'REPAIR PAY' : (cur && /PAY/.test(cur.label) ? 'PAY' : 'REASON')});
+        k.sets.register({items: items.map(({label, amount, at}) => ({label, amount, at})), prefix: '', dec: 1, openAt: tFed, displayLabel: label});
       } finally { k.text = real; }
-      /* the display: right edge at x 918 (inside the 930 safe edge), no cursor */
-      const val = crew ? n.repair.shown : (cur ? cur.show : '--'), size = d.tw(val, 66) <= 76 ? 66 : 39;
-      d.tx(val, 306, 152 - (size >= 52 ? 11 : 6), {size, color: TEAL, align: 'right'});
+      /* the display: the set's tower is painted out with its own wall, and ours sits on the till, big enough that the
+         spoken figure is the largest thing on screen (99 px caps, right edge x 924, inside the 930 safe edge) */
+      const val = crew ? n.repair.shown : (cur ? cur.show : '--'), last = items.filter((it) => T >= it.at).pop();
+      shopWall(k, 216, 92, 116, 103);
+      tillDisplay(k, label, val, last ? d.fr(last.at) : 99);
       /* once ALL PAY has printed (after "That beat the three"): a gold line under REPAIR PAY (the receipt holds 6 lines by
          then, top at y 136) */
       const tLine = tAll + 0.3;
@@ -273,7 +337,7 @@ window.SCENE = {
       for (let y = 420, r = 0; y < 640; y += 12, r++) { d.P(0, y + 11, 360, 1, '#2B2033'); for (let x = (r * 53) % 96; x < 360; x += 96) d.P(x, y, 1, 11, '#2B2033'); }
       /* the HUD: coins drop into the open drawer, drawn only between the display and the drawer (never over the display,
          the plate or the HUD bar) */
-      d.clip(0, 182, 360, 118, () => {
+      d.clip(0, 200, 360, 100, () => {
         if (T >= tFed) k.sets.hud({coins: {at: tFed + 0.1, dur: Math.max(1.4, k.E('why') - tFed - 0.8), n: 34, x0: 222, x1: 320, floor: 288}});
         if (T >= tRep) k.sets.hud({coins: {at: tRep, dur: 1.0, n: 10, x0: 230, x1: 320, floor: 288}});
         if (T >= tAll) k.sets.hud({coins: {at: tAll, dur: 1.0, n: 10, x0: 230, x1: 320, floor: 288}});
@@ -295,12 +359,16 @@ window.SCENE = {
     // ---- note: the boss fight (k.sets.boss, not used in the two lessons before or the two after). The objection is
     // PRICE PUSHBACK; the price note is the move list, a game window that types each line as it is said. Lines 1 and 2
     // each land a hit as they finish; "That last line" rings line 3 in gold; "is a promise" is the big hit, PROMISE
-    // stamping on the boss beside line 3. No defeat and no damage numbers (the note does not end pushback; the caveat
-    // says the survey doesn't show how customers took it). On "Raise the next job" the rule lands on a card on the arena
-    // floor.
+    // stamping on the boss beside line 3. No damage numbers. On "Raise the next job" the rule lands on a card on the
+    // arena floor, and on "never" the last hit takes the HP to zero: the boss breaks into pixels, the set's menu leaves
+    // and our window and PROMISE with it, and VICTORY stamps into the clear arena.
+    // The window opens over the set's menu; while the note is said (the dialog box off) it drops into the dialog's place
+    // on the floor, right of Snow (x 372..948, y 780..1224 with its tag, text ends by x 925), with the set's empty menu painted out;
+    // just before "Here's the part people skip" it rises back beside the boss and the dialog box returns.
     note: (k, T) => {
       const d = px(k), t0 = k.S('note'), tSkip = k.S('note.skip'), tLast = k.S('note.last'), tProm = wordT(k, 'note.promise', /^promise/i), tNext = k.S('note.next');
       const tThat = wordT(k, 'note.last', /^That/i, 0), WRAP = 505, sp = k.measure(' ', {size: 39});
+      const tNever = wordT(k, 'note.next', /^never/i, 1.5), tDef = tNever + 0.2, tGone = tDef + 0.4;
       const rows = [
         {text: 'Starting the first of next month, our rates go up.', at: k.S('note.l1'), y: 134},
         {text: 'Our labor and material costs rose this year.', at: k.S('note.l2'), y: 168},
@@ -312,31 +380,40 @@ window.SCENE = {
       });
       /* the set: its own move labels, menu tag and damage numbers are not drawn (our window carries the note) */
       mute(k, (s) => /^-\d+$/.test(String(s)) || String(s) === 'MOVES', () => k.sets.boss({name: 'PRICE PUSHBACK', hp: 100, t0: t0 + 0.3, menu: 'MOVES',
-        hits: [{at: rows[0].tEnd, dmg: 20, label: ''}, {at: rows[1].tEnd, dmg: 20, label: ''}, {at: tProm, dmg: 40, label: ''}]}));
-      /* the move window, over the set's menu and clear of the boss's arm */
-      d.win(14, 122, 192, 138, {});
-      const head = T >= tSkip ? 'THE PART PEOPLE SKIP' : 'YOUR PRICE NOTE (EXAMPLE)', tw = d.tw(head);
-      d.P(22, 116, tw + 12, 14, INK); d.P(23, 117, tw + 10, 12, '#7A3442');
-      if (T < tSkip || d.fr(tSkip) >= 3) d.tx(head, 29, 117, {color: T >= tSkip ? GOLD : CREAM}); else d.dith(29, 118, tw, 10, '#3D2E45');
-      const next = rows.findIndex((r) => T < r.tEnd);
-      rows.forEach((r, i) => {
-        const on = T >= r.at;
-        d.tx(String(i + 1), 20, r.y, {color: on ? GOLD : '#6B7080'});
-        if (i === next && T >= t0 + 0.3) { const b = (d.F >> 3) & 1; d.P(15 + b, r.y + 3, 2, 7, GOLD); d.P(17 + b, r.y + 4, 1, 5, GOLD); }
-        r.lay.forEach((L) => {
-          const ly = r.y + L.line * 15;
-          if (T < L.t[0]) { d.P(30 + Math.round(L.x / 3), ly + 11, Math.round(k.measure(L.wd, {size: 39}) / 3), 1, '#3D2E45'); return; }
-          k.text(L.wd, 90 + L.x, ly * 3, {size: 39, color: T < L.t[1] + 0.05 ? GOLD : CREAM});
-        });
-      });
-      /* the turn: line 3 ringed and swept in gold */
+        hits: [{at: rows[0].tEnd, dmg: 20, label: ''}, {at: rows[1].tEnd, dmg: 20, label: ''}, {at: tProm, dmg: 40, label: ''}, {at: tNever, dmg: 20, label: ''}],
+        defeatAt: tDef}));
+      /* where the window is: over the set's menu (ox, oy 0), or down on the floor while the note is said. It drops as
+         the dialog box goes off (0.35 s before "Starting") and rises after line 3 is said, by 0.13 s before "Here's";
+         8 frames each way, on whole pixels */
+      const tDown = k.S('note.l1') - 0.35, tUp = Math.max(rows[2].tEnd + 0.1, tSkip - 0.4);
+      const q = eo(d.fr(tDown) / 8) * (1 - eo(d.fr(tUp) / 8)), ox = Math.round(110 * q), oy = Math.round(146 * q);
+      if (oy > 0) arenaSky(k);
+      /* the move window, over the set's menu and clear of the boss's arm (gone with the set's menu at the defeat) */
       const r3 = rows[2], y3 = r3.y - 3, h3 = r3.lines * 15 + 2;
-      if (T >= tLast) {
-        const g = ORANGE; d.P(27, y3, 172, 1, g); d.P(27, y3 + h3, 172, 1, g); d.P(27, y3, 1, h3 + 1, g); d.P(198, y3, 1, h3 + 1, g);
-        k.sweep(84, (y3 + h3 + 3) * 3, 510, 6, tLast + 0.1, {color: 'accent'});
+      if (T < tGone) {
+        d.win(14 + ox, 122 + oy, 192, 138, {});
+        const head = T >= tSkip ? 'THE PART PEOPLE SKIP' : 'YOUR PRICE NOTE (EXAMPLE)', tw = d.tw(head);
+        d.P(22 + ox, 116 + oy, tw + 12, 14, INK); d.P(23 + ox, 117 + oy, tw + 10, 12, '#7A3442');
+        if (T < tSkip || d.fr(tSkip) >= 3) d.tx(head, 29 + ox, 117 + oy, {color: T >= tSkip ? GOLD : CREAM}); else d.dith(29 + ox, 118 + oy, tw, 10, '#3D2E45');
+        const next = rows.findIndex((r) => T < r.tEnd);
+        rows.forEach((r, i) => {
+          const on = T >= r.at, ry = r.y + oy;
+          d.tx(String(i + 1), 20 + ox, ry, {color: on ? GOLD : '#6B7080'});
+          if (i === next && T >= t0 + 0.3) { const b = (d.F >> 3) & 1; d.P(15 + b + ox, ry + 3, 2, 7, GOLD); d.P(17 + b + ox, ry + 4, 1, 5, GOLD); }
+          r.lay.forEach((L) => {
+            const ly = ry + L.line * 15;
+            if (T < L.t[0]) { d.P(30 + ox + Math.round(L.x / 3), ly + 11, Math.round(k.measure(L.wd, {size: 39}) / 3), 1, '#3D2E45'); return; }
+            k.text(L.wd, 90 + ox * 3 + L.x, ly * 3, {size: 39, color: T < L.t[1] + 0.05 ? GOLD : CREAM});
+          });
+        });
+        /* the turn: line 3 ringed and swept in gold */
+        if (T >= tLast) {
+          const g = ORANGE, gy = y3 + oy; d.P(27 + ox, gy, 172, 1, g); d.P(27 + ox, gy + h3, 172, 1, g); d.P(27 + ox, gy, 1, h3 + 1, g); d.P(198 + ox, gy, 1, h3 + 1, g);
+          k.sweep(84 + ox * 3, (gy + h3 + 3) * 3, 510, 6, tLast + 0.1, {color: 'accent'});
+        }
       }
       /* the promise lands as the big hit: PROMISE stamps on the boss, beside line 3 */
-      if (T >= tProm - 0.1) {
+      if (T >= tProm - 0.1 && T < tGone) {
         const yy = (y3 + h3 / 2) * 3 - 33;
         k.stampIn(tProm, () => {
           k.shape(k.rectPts(678, yy - 6, 216, 72, 0), {stroke: RED, lw: 6, line: false});
@@ -353,9 +430,10 @@ window.SCENE = {
         }
       }
       const r = host(k, k.live('note.last') || k.live('note.next') ? 'point' : null);
-      /* the move window is the dialog while the note is said; then, until "That last line", our own box carries "Here's
-         the part people skip." (the player's box would open on the note's last word and its closing quote) */
-      if (T >= k.S('note.l1') - 0.05 && T < tThat - 0.05) r.speech = false;
+      /* the move window is the dialog while the note is said (from its drop); then, until "That last line", our own box
+         carries "Here's the part people skip." (the player's box would open on the note's last word and its closing
+         quote) */
+      if (T >= tDown && T < tThat - 0.05) r.speech = false;
       if (T >= tSkip - 0.05 && T < tThat - 0.05) speechOwn(k, T, tSkip - 0.05, tThat - 0.05);
       return r;
     },
@@ -388,15 +466,20 @@ window.SCENE = {
       const tMark = t0 + 0.3, tFly = send + 0.3, FLY = 12, tLand = tFly + FLY / 30;
       const fills = [{day: 1, at: tMark, c: GOLD, mark: 'coin'}];
       if (T >= tLand) fills.push({day: 1, at: tLand, c: GOLD, mark: 'check'});
-      /* the note window rises from the desk over rows 2 to 4 (rows 0 and 1, with day 1, stay in view); the day numbers
-         it covers are not drawn (hidden text still counts for lint) */
+      /* the note window rises from the desk over rows 2 to 4 (rows 0 and 1, with day 1, stay in view) and grows with its
+         lines: one line, two (its edge on row 4's top line, so row 4 stays whole), three, then the big last line and its
+         sweep, each step 5 frames and landing just before its line (about 54 px over the text, 32 to 45 px under it). The
+         day numbers it covers are not drawn (hidden text still counts for lint) */
       const open = d.ease(t0 + 0.25, 8, 120), WY = 182;
-      const cal = mute(k, (s, x, y) => /^\d+$/.test(String(s)) && y >= (WY + open) * 3,
+      const steps = [[t0, 47], [most, 60], [send + 0.1, 82], [rs, 118]].map(([at, hh]) => [at - 0.17, hh]);
+      let WH = steps[0][1];
+      steps.forEach(([at, hh], i) => { if (i && T >= at) WH = steps[i - 1][1] + Math.round((hh - steps[i - 1][1]) * eo(d.fr(at) / 5)); });
+      const cal = mute(k, (s, x, y) => /^\d+$/.test(String(s)) && y >= (WY + open) * 3 && y + 9 < (WY + open + WH) * 3,
         () => k.sets.calendar({month: 'NEXT MONTH', start: 2, days: 30, fills, weeks: [{row: 0, at: tMark}]}));
       const [cx, cy, cw, ch] = cal.cell(1).map((v) => v / 3);
-      d.clip(0, 0, 360, 334, () => d.win(14, WY + open, 332, 118, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#7A3442'}));
+      d.clip(0, 0, 360, 334, () => d.win(14, WY + open, 332, WH, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#7A3442'}));
       if (open === 0) {
-        if (T >= send) k.chip('ProofNotFluff', 120, WY * 3 - 22, {size: 30});
+        if (T >= send) k.chip('ProofNotFluff', 120, WY * 3 - 44, {size: 66});
         k.slam('Your costs went up.', 120, 600, t0 + 0.3, {size: 39, color: CREAM, from: 0.4});
         if (T >= most) k.slam('Most trades already raised prices.', 120, 652, most, {size: 39, color: CREAM, from: 0.4});
         if (T >= send) k.slam('Send this to whoever writes your quotes.', 120, 704, send + 0.1, {size: 39, color: CREAM, from: 0.4});

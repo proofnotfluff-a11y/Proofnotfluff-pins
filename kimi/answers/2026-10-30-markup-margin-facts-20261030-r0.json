@@ -1,0 +1,40 @@
+{
+ "job": "2026-10-30-markup-margin-facts-20261030-r0",
+ "model": "k3.1-pro",
+ "at": "2026-10-30T16:57:13+00:00",
+ "status": "ok",
+ "kind": "facts",
+ "slug": "2026-10-30-markup-margin",
+ "sources": [
+  {
+   "url": "https://www.jlconline.com/business/markup-vs-margin_o/",
+   "read": false
+  },
+  {
+   "url": "https://www.xero.com/us/glossary/margin-vs-markup/",
+   "read": true,
+   "chars": 5006
+  }
+ ],
+ "prompt_chars": 22279,
+ "usage": {
+  "input_tokens": 6682,
+  "cache_read_input_tokens": 0,
+  "output_tokens": 2199
+ },
+ "result": {
+  "pass": true,
+  "score": {
+   "numbers": 14,
+   "mismatches": 0
+  },
+  "reasons": [],
+  "sources_checked": [
+   "https://www.xero.com/us/glossary/margin-vs-markup/: Confirmed that margin uses revenue or selling price as its base, markup uses cost, Margin = (Revenue - COGS) / Revenue x 100, Markup = (Revenue - COGS) / COGS x 100, and a 50% markup gives a 33.3% margin. The worked-example arithmetic is consistent with these formulas."
+  ],
+  "unconfirmed": [
+   "https://www.jlconline.com/business/markup-vs-margin_o/: HTTP 403 prevented checking the $1,000 cost, $500 markup and $1,500 price example; the 50% markup to 33% margin statement; the 100% markup to 50% margin statement; and the instruction to double direct cost for a 50% margin.",
+   "https://www.xero.com/us/glossary/margin-vs-markup/: The pasted excerpt does not show Markup = Margin / (1 - Margin), the corresponding 66.7% markup comparison, or the claim that gross margin excludes rent, salaries, utilities, marketing and other operating expenses."
+  ]
+ }
+}

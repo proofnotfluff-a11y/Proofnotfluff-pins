@@ -2,7 +2,7 @@
 
 [leaning in] This job costs you a thousand. What do you quote? [confident] Divide it by point six. About sixteen sixty-seven. That's a forty percent margin.
 
-[matter-of-fact] Mark it up fifty percent instead, and you'd quote fifteen hundred. Sounds like half is margin. But that five hundred is only a third of the price.
+[matter-of-fact] Mark it up fifty percent instead, and you'd quote fifteen hundred. Sounds like half the price is margin. But that five hundred is only a third of the price.
 
 [curious] Markup is measured on your cost. Margin is measured on the price the customer pays. So start from the margin you want. Price is your cost, divided by one minus that margin.
 

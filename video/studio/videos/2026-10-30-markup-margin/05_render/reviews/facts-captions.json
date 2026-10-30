@@ -1,23 +1,19 @@
 {
  "gate": "facts-captions",
- "round": "delta-ai-line",
- "at": "2026-10-29T10:57:13-05:00",
+ "round": 1,
  "pass": true,
+ "score": {
+  "numbers": 14,
+  "mismatches": 0
+ },
+ "reviewer": "kimi k3.1-pro, unconfirmed items confirmed by Claude",
+ "kimi_job": "2026-10-30-markup-margin-facts-captions-20261029-r1",
  "reasons": [
-  "Diff: instagram.caption, tiktok.caption, facebook.caption and youtube.description each lose only the line 'Narrated by an AI version of my own voice.' plus one newline; the only other change is a newline added at end of file. All other JSON leaves are byte-identical, and the working tree matches 35071018",
-  "Settings unchanged and on: instagram.aiLabel true, tiktok.aiGenerated true, facebook.aiLabel true, youtube.aiUse true",
-  "Line 1 length: IG 87, TT 78, FB 87, YT 37 (all under 100). Hashtags: IG 4, TT 5, FB 2, YT 3, all on their own final line. A send line is present on all 4. No em or en dashes, no triple newlines, no empty or trailing-space lines, no AI voice text anywhere in the file"
+  "Round 0 (Kimi, 2026-10-30-markup-margin-facts-captions-20261029-r0): FAIL, 1 reason, checked and right: the YouTube description's line 1 did not name the trades (captions.md shape 1). Fixed: line 1 now 'How to price a job: markup vs margin for electrical, plumbing and HVAC business owners.'",
+  "Round 1 (Kimi): PASS, 14 numbers, 0 mismatches.",
+  "Claude, Oct 29, 2026 (Central): Kimi's unconfirmed items checked on the pages with WebFetch (HTTP 200): JLC $1,000 cost, $500 markup, $1,500 price; 50% markup equals a 33% margin; a 100% markup gives a 50% margin; double the direct cost. Xero: gross margin 'does not include rent, salaries, utilities, marketing, or other operating expenses' (supports 'margin isn't take-home pay: it still has to cover your overhead and your pay'). All confirmed."
  ],
- "scope": "captions.json only: the AI voice line removed (Todd, Oct 29, 10:28 am)",
- "prior": {
-  "gate": "facts-captions",
-  "round": 0,
-  "at": "2026-10-28T21:58:24-05:00",
-  "pass": true,
-  "score": {
-   "numbers": 14,
-   "mismatches": 0
-  },
-  "reasons": []
- }
+ "round0_reasons": [
+  "youtube: The description's first line does not name the trades, as captions.md requires for all four platforms. Replace it with \"How to price a job: markup vs margin for electrical, plumbing and HVAC business owners.\""
+ ]
 }

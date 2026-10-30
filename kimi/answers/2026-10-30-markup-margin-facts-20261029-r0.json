@@ -1,0 +1,43 @@
+{
+ "job": "2026-10-30-markup-margin-facts-20261029-r0",
+ "model": "k3.1-pro",
+ "at": "2026-10-30T00:57:15+00:00",
+ "status": "ok",
+ "kind": "facts",
+ "slug": "2026-10-30-markup-margin",
+ "sources": [
+  {
+   "url": "https://www.jlconline.com/business/markup-vs-margin_o/",
+   "read": false
+  },
+  {
+   "url": "https://www.xero.com/us/glossary/margin-vs-markup/",
+   "read": true,
+   "chars": 5006
+  }
+ ],
+ "prompt_chars": 22374,
+ "usage": {
+  "input_tokens": 6712,
+  "cache_read_input_tokens": 0,
+  "output_tokens": 1852
+ },
+ "result": {
+  "pass": true,
+  "score": {
+   "numbers": 14,
+   "mismatches": 0
+  },
+  "reasons": [],
+  "sources_checked": [
+   "https://www.jlconline.com/business/markup-vs-margin_o/: The page returned HTTP 403, so none of its attributed claims could be confirmed.",
+   "https://www.xero.com/us/glossary/margin-vs-markup/: Confirmed that margin divides profit by revenue and markup divides it by cost, confirmed both formulas, and confirmed that a 50% markup gives a 33.3% margin. These formulas also confirm the worked calculations for $1,500, $2,000, 0.6, $1,666.67, $666.67, and the 33.3%, 40%, and 50% margins."
+  ],
+  "unconfirmed": [
+   "https://www.jlconline.com/business/markup-vs-margin_o/: The JLC attribution for the $1,000 cost, $500 markup, and $1,500 selling price example, and for a 50% markup equaling a 33% margin.",
+   "https://www.jlconline.com/business/markup-vs-margin_o/: The JLC attribution that a 100% markup gives a 50% margin and that earning a 50% margin requires doubling direct cost.",
+   "https://www.xero.com/us/glossary/margin-vs-markup/: The conversion formula Markup = Margin / (1 - Margin) and the derived 66.7% markup statement are not visible in the supplied excerpt.",
+   "https://www.xero.com/us/glossary/margin-vs-markup/: The statement that gross margin excludes rent, salaries, utilities, marketing, and other operating expenses is not visible in the supplied excerpt."
+  ]
+ }
+}

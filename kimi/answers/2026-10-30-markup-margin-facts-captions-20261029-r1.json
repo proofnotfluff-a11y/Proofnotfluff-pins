@@ -1,0 +1,37 @@
+{
+ "job": "2026-10-30-markup-margin-facts-captions-20261029-r1",
+ "model": "k3.1-pro",
+ "at": "2026-10-30T01:03:30+00:00",
+ "status": "ok",
+ "kind": "facts-captions",
+ "slug": "2026-10-30-markup-margin",
+ "sources": [
+  {
+   "url": "https://www.jlconline.com/business/markup-vs-margin_o/",
+   "read": false
+  },
+  {
+   "url": "https://www.xero.com/us/glossary/margin-vs-markup/",
+   "read": true,
+   "chars": 5006
+  }
+ ],
+ "prompt_chars": 24908,
+ "usage": {
+  "input_tokens": 6108,
+  "cache_read_input_tokens": 1280,
+  "output_tokens": 3636
+ },
+ "result": {
+  "pass": true,
+  "score": {
+   "numbers": 14,
+   "mismatches": 0
+  },
+  "reasons": [],
+  "unconfirmed": [
+   "https://www.jlconline.com/business/markup-vs-margin_o/: Sal Alfano/JLC attribution; $1,000 cost plus a $500 markup gives a $1,500 price; JLC's 50% markup to 33% margin comparison; a 100% markup gives a 50% margin; doubling $1,000 cost to a $2,000 quote gives a 50% margin.",
+   "https://www.xero.com/us/glossary/margin-vs-markup/: Margin is not take-home pay and still has to cover overhead and pay; gross margin excludes rent, salaries, utilities, marketing and other operating expenses."
+  ]
+ }
+}

@@ -4,13 +4,13 @@
  "pass": true,
  "score": {"stop": "yes", "send": "yes", "save": "yes", "follow_or_link": "no"},
  "reasons": [
-  "Trade picked: electrician. 1. It tells me a 50% markup on a $1,000 job only gets me a one third margin, and to hit the margin I want I should price at cost divided by one minus that margin.",
-  "2. Stop yes: '$1,000 job. What do you quote?' over a COST $1,000 bar with an empty slot is a question I answer every week, so I want to see if my number matches.",
-  "3. Send yes: to my office manager or whoever writes our quotes, since most of us say markup and margin like they are the same. Save yes: the formula (Price = Cost / (1 - margin)) and the 0.6 divisor are in the caption to look up later. Follow or link no: nothing in the video or caption gives me a reason to follow or tap the bio; 'Run the Numbers, lesson 3' hints at a series but never says what the next lesson is.",
-  "4. Nothing hype, no fake urgency, no pitch. Math checks: 1000/0.6 = 1,666.67; 500/1,500 = 33.3%; 50% margin needs 2,000. Sources named on screen (JLC, Xero) and in the caption. Voice reads as a person.",
-  "5. Minor unclear spots, not blocking: line 00:03.6 'Divide it by point six' comes before any reason, so a stranger hears a magic number for about 3 s; fix by saying 'For a forty percent margin, divide it by point six.' Line 00:13.2 'Sounds like half the price is margin' does not say who thinks it; fix with 'Most guys think half the price is margin.'",
-  "6. Trust yes: worked numbers, named sources, no claim it cannot back. Follow fix if wanted: end the caption with one line naming the next lesson, e.g. 'Lesson 4: what overhead does to that margin. Follow for it.' (only if that lesson is real)."
+  "Trade picked: plumber. 1. It tells me a 50% markup on a $1,000 job is only a one third margin, and that to get the margin I want I price at cost divided by one minus that margin (40% margin: divide by 0.6, about $1,667).",
+  "2. Stop yes: the first frame asks '$1,000 job. What do you quote?' over a COST $1,000 bar with an empty '?' slot. That is a question I answer every week, and I want to check my own number against it in the first 3 seconds.",
+  "3. Send yes: to whoever writes our quotes, because most of us use markup and margin like they mean the same thing, and this shows the $500 on $1,500 is a third, not half. Save yes: the formula Price = Cost / (1 - margin) and the worked $1,000 to $1,666.67 and $2,000 examples are in the caption to look up when quoting. Follow or link no: 'Run the Numbers, lesson 3' hints at a series, but nothing names what comes next or why to follow, and there is no reason given to check the bio.",
+  "4. Nothing hype, no fake urgency, no pitch. Math checks: 1000/0.6 = 1,666.67; 500/1,500 = 33.3%; a 50% margin needs 2,000. Sources named on screen (JLC, Xero) and in the caption. The script reads like a person talking shop, not robotic.",
+  "5. Small unclear spots, not blocking: line 00:03.6 'Divide it by point six' gives a magic number before the reason (the 40% margin arrives at 00:06.8); fix: 'For a forty percent margin, divide it by point six.' Line 00:13.2 'Sounds like half the price is margin' does not say who thinks so; fix: 'Most guys think half the price is margin.' First frame speaker tag 'SNOW' means nothing to a stranger; fine if the character is a recurring host, otherwise drop the tag. Caption opener 'for electrical, plumbing and HVAC business owners' reads a little like search keywords; fix: 'Markup vs margin, on a $1,000 job.'",
+  "6. Trust yes: worked numbers I can redo on a calculator, named sources, 'Example math' label, no claim it cannot back. Follow fix if wanted: end the caption with one line naming the next real lesson and 'Follow for it.'"
  ],
  "reviewer": "claude opus fresh agent",
- "at": "2026-10-30T12:16:49-05:00"
+ "at": "2026-10-30T12:31:53-05:00"
 }

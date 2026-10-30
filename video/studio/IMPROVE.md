@@ -23,8 +23,6 @@ The lab (Tue, Thu, Sat) ranks this list from its benchmark against _shared/style
    these on Oct 29; lint does not check them.
 00h. Variety lint looks back two lessons only; the design gate caught set repeats three to four lessons back (shared
    drawer-shop set, cream note sheet, flaps on lesson 9 next to lesson 8). Look back four.
-00i. qa 'frozen' window: it stops at the close cue, not the end card, so the close is never checked (two golden gates
-   flagged it Oct 29). Use the end card start.
 00d. Fill the frame: y 1250 to 1600 is bare floor in most rooms (style board 04 to 06); set dressing or a lower band
    edge there, and a bigger host.
 00. Motion: 60 fps renders (double render time) for smoother slides; Snow walk-ins, a point-at-board pose and a reaction
@@ -46,6 +44,10 @@ The lab (Tue, Thu, Sat) ranks this list from its benchmark against _shared/style
 12. Visual: a seasonal touch per week (snow outside the half-built house in winter, leaves in fall).
 
 ## Done (newest first: date, item, what changed, proof)
+- 2026-10-30 (lunch run, 11:37 slot): qa frozen window to the end card (00i). `check` now checks frozen stretches up to
+  the end card (last word + 0.1 s, as player.js END_T) instead of the close cue, so the close room is checked. Proof:
+  markup-margin rebuild, window 37.75 s -> 42.67 s, frozen PASS (0 stretches; the only freeze, 44.4 to 45.67 s, is the
+  card); stills of markup-margin read and lint PASS. Lesson 1 not re-rendered this run (its MP4 is on video-renders).
 - 2026-10-30 (lunch run): dialog pages follow sentences (00h). buildPhrases in player.js gives a sentence's last word or
   two back to its own page when it fits, else carries the sentence's last words over with it (from a comma when there is
   one); a page no longer ends on the first word of the next sentence. Proof: dialog pages of all 13 built lessons, lone

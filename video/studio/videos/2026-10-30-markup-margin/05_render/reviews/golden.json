@@ -3,22 +3,20 @@
  "round": 0,
  "pass": true,
  "verdict": "post as is",
- "score": {"post_as_is": "yes"},
- "mp4Sha256": "ccc3e85b837bcce12c84ef975d9f9473d89ec185bc5b9fc431d8375a4184bf03",
- "reviewer": "claude opus fresh agent",
- "at": "2026-10-30T12:17:29-05:00",
+ "score": {
+  "post_as_is": "yes"
+ },
  "reasons": [
-  "1. What it says: price from the margin you want (cost / (1 - margin)); a 50% markup is only a 33.3% margin; a real 50% margin means doubling cost. Every on-screen number matches the voice and facts.json: $1,000, 0.6, $1,666.67, 40%, $500, $1,500, 1/3, 50% vs 33.3%, +100%, $2,000. No contradiction. Note: the line 'Not the markup.' is the payoff and it lands.",
-  "2. Hook 0 to 3 s earns the stop: '$1,000 job. What do you quote?' big on frame 0 over COST $1,000 and an empty slot. Clear send reason: end card 'Send this to whoever sets your prices.' Save reason: the formula card 24.5 to 31 s.",
-  "3. Numbers readable when said: 0.6 settled by 4.5 s ('six' at about 4.6 s), $1,666.67 at hero size from 5.5 s, MARGIN 40% settled by 7.5 s; $1,500 at 11.5 s; 1/3 at 17.5 s; 33.3% at 22 s; 50% gauge at 34.5 s; $2,000 quote at 36 s. The split-flap 6s now read as 6.",
-  "4. Sounds like a person; transcript has 0 flags; pace 159 to 198 wpm.",
-  "5. qa.json: all 6 checks PASS and its mp4Sha256 matches the MP4 on disk; frozen window 44.4 to 45.67 s sits on the end card. No doubtful PASS.",
-  "6. polish 3.5 to 4.5 s and 7.0 to 7.4 s: split-flap rows show scrambled glyphs while flipping (intended motion, settles on the word).",
-  "7. polish 5.6 s, 7.4 s, 42.4 s: the shine sweep briefly whitens part of a glyph ($1,666.67, 'margin'); transient.",
-  "8. polish 31 to 37 s: the gauge's dotted target line runs through the '50' tick label.",
-  "9. polish 17.0 s, 40.0 s, 42.4 s: dialog pages open lowercase mid-sentence ('third of the price.', 'quote from', 'not the markup.').",
-  "10. polish 13.2 s: 'Sounds like half the price is margin' does not say whose belief it is; the next line fixes it.",
-  "11. polish whole video: the bottom third below the floor line is empty in most scenes.",
-  "12. Outside this gate: design.json is still a held round 1 FAIL (average 4.43, type capped at 4). That call is Todd's; golden passes on its own bar."
- ]
+  "1. Says: a $1,000-cost job at a 40% margin is cost / 0.6 = $1,666.67; a 50% markup ($1,500) is only a 33.3% margin; a real 50% margin needs a 100% markup ($2,000). Every spoken number matches the screen and facts.json (1,000, 0.6, 1,666.67, 40%, 1,500, 500 = 1/3, 33.3%, 50%, 2,000). No contradiction found. Formula Price = Cost / (1 - margin) is correct.",
+  "2. Voice sounds like a person: short talk lines, 159 to 198 wpm, no flags. qa.json: all six checks PASS; the frozen stretch 44.4 to 45.67 s sits inside the end card, so it is not a doubtful pass.",
+  "3. Hook 0 to 3 s: '$1,000 job. What do you quote?' with COST $1,000 plank is a real question an owner asks; the answer lands by 5 s (payoff first). Reason to save: the formula card and the 1,666.67 example; send line on the end card.",
+  "4. polish, 0.0 to 3.0 s and 38.3 s: '$1,000 job' could read as a $1,000 price, not cost; the COST $1,000 plank and voice clear it, but '$1,000 in cost' on the board would be cleaner.",
+  "5. polish, 25.0 to 30.5 s: the formula card holds about 5.5 s with only a highlight moving; the lowest-motion stretch in the cut.",
+  "6. polish, 29.5 to 30.5 s and 31 to 37 s: the worked line '40%: $1,000 / 0.6 = $1,666.67', 'Now: 50% markup = 33.3% margin' and '100% markup = 50% margin' are small for a phone; none are spoken numbers, the big numbers carry them.",
+  "7. polish, most scenes: lower third to half of the frame is empty floor (works as platform UI safe area, but feels a little bare).",
+  "8. polish, 3.5 to 4.2 s and 7.0 to 7.4 s: split-flap scramble shows garbage glyphs briefly; reads as the flap animation, not a fault.",
+  "No must-fix found. Transitions at 18.5 s and 37.5 s are short pixel dissolves, not black frames."
+ ],
+ "reviewer": "claude opus fresh agent",
+ "at": "2026-10-30T12:32:43-05:00"
 }

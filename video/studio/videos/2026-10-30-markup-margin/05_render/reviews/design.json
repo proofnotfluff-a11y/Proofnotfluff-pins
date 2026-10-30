@@ -1,26 +1,49 @@
 {
  "gate": "design",
- "round": 0,
- "pass": false,
+ "round": 1,
+ "pass": true,
  "reviewer": "claude opus fresh agent",
- "at": "2026-10-30T17:18:40Z",
+ "at": "2026-10-30T17:33:26Z",
  "score": {
-  "first": 4,
+  "first": 5,
   "hierarchy": 5,
-  "type": 4,
+  "type": 5,
   "color": 5,
-  "spacing": 4,
+  "spacing": 5,
   "polish": 4,
   "trust": 5,
-  "average": 4.43
+  "average": 4.86
  },
- "average": 4.43,
+ "average": 4.86,
  "reasons": [
-  "2.5 to 3.4 s hook.q panel: 'quote?' at hero size spills through the panel's bottom border (q descender and ? cross the blue frame at y 550) and the tape tag '$1,000' sits on the border under it; raise the two lines about 24 px (or set 'quote?' one step smaller) so the descender clears the frame, and move the '$1,000' tag down onto the tape (y 575 or lower).",
-  "0 to 42.6 s labels and sources: about 30 px against the 36 px floor (1.0 s 'Example math. Sources: JLC, Xero', 23.4 s 'measured on your cost / price', 36.58 s 'Math: JLC' and '100% markup = 50% margin'); raise them to 36 px. Type capped at 4 by the style board. Dialog words now about 48 px, floor met.",
-  "0 to 3 s and 19.3 to 25 s job site: billboard over a yard with a sawhorse table and a lumber stack repeats the hook set of 2026-10-28-first-reply (billboard, sawhorses, lumber); keep the crane and tape measure but swap the sawhorse table and lumber stack for a prop of this lesson (the counter's price tag or a flaps row reading COST $1,000) so the first second reads as a new world.",
-  "31.6 to 37.0 s gauge: the needle lies over the '50' numeral at the top of the dial (reads '5|)' at 36.58 s); move the numeral outside the arc above the tick, or draw it in front of the needle with a dark backing.",
-  "7.40 s and 42.39 s glint: a one-glyph white slice cuts '$1,6|66.67' and 'from' / 'margin' so a paused frame looks like broken letters; run the glint as a full-height diagonal band across the whole line for 2 frames, or over the panel edge instead of the glyphs.",
-  "Earlier asks checked: board now reads DIVIDE 0.6 with whole 6s, $1,666.67 hero strip from 5.6 s, '$1,000 job?' centred at 38.35 s, 'Not the markup.' underline inside the panel, end card 42.67 to 45.67 s (3.0 s) with proofnotfluff.com, dialog raised to about 48 px. All landed."
- ]
+  "7.2 to 7.6 s and 42.2 to 42.6 s glint: still a one-glyph white slice stepping across '$1,666.67' and 'Quote from / the margin.' (round 0 ask not landed), so a paused frame shows half-white letters ('$1,6|66.67', 'm|argin'); run it as a full-height diagonal band over the whole line for 2 frames, or sweep the panel border instead of the glyphs. Polish 4.",
+  "Round 0 asks checked: 2.5 s 'quote?' now clears the panel frame and the '$1,000' tag no longer sits on the border; labels and sources now about 36 px (1.0 s 'Example math. Sources: JLC, Xero', 4.16 s 'Example math', 23.4 s 'measured on your cost / price', 36.58 s 'Math: JLC' and '100% markup = 50% margin'); job site now cinder blocks, cones, bricks, toolbox and cart instead of sawhorse table and lumber; 36.58 s gauge '50' sits clear of the needle. All landed.",
+  "Freshness: sets (job site billboard with tape, departure-board flaps, store counter with register, tool belt formula, gauge, end card) do not repeat first-reply (framing, blackboard, workshop dials) or quote-revive (street, phone, fridge, level-up). Style board caps clear: dialog about 48 px, labels about 36 px, picture changes at 1.0 s and 1.5 s, host on at 1.0 s, end card 42.67 to 45.67 s with proofnotfluff.com."
+ ],
+ "previous": {
+  "gate": "design",
+  "round": 0,
+  "pass": false,
+  "reviewer": "claude opus fresh agent",
+  "at": "2026-10-30T17:18:40Z",
+  "score": {
+   "first": 4,
+   "hierarchy": 5,
+   "type": 4,
+   "color": 5,
+   "spacing": 4,
+   "polish": 4,
+   "trust": 5,
+   "average": 4.43
+  },
+  "average": 4.43,
+  "reasons": [
+   "2.5 to 3.4 s hook.q panel: 'quote?' at hero size spills through the panel's bottom border (q descender and ? cross the blue frame at y 550) and the tape tag '$1,000' sits on the border under it; raise the two lines about 24 px (or set 'quote?' one step smaller) so the descender clears the frame, and move the '$1,000' tag down onto the tape (y 575 or lower).",
+   "0 to 42.6 s labels and sources: about 30 px against the 36 px floor (1.0 s 'Example math. Sources: JLC, Xero', 23.4 s 'measured on your cost / price', 36.58 s 'Math: JLC' and '100% markup = 50% margin'); raise them to 36 px. Type capped at 4 by the style board. Dialog words now about 48 px, floor met.",
+   "0 to 3 s and 19.3 to 25 s job site: billboard over a yard with a sawhorse table and a lumber stack repeats the hook set of 2026-10-28-first-reply (billboard, sawhorses, lumber); keep the crane and tape measure but swap the sawhorse table and lumber stack for a prop of this lesson (the counter's price tag or a flaps row reading COST $1,000) so the first second reads as a new world.",
+   "31.6 to 37.0 s gauge: the needle lies over the '50' numeral at the top of the dial (reads '5|)' at 36.58 s); move the numeral outside the arc above the tick, or draw it in front of the needle with a dark backing.",
+   "7.40 s and 42.39 s glint: a one-glyph white slice cuts '$1,6|66.67' and 'from' / 'margin' so a paused frame looks like broken letters; run the glint as a full-height diagonal band across the whole line for 2 frames, or over the panel edge instead of the glyphs.",
+   "Earlier asks checked: board now reads DIVIDE 0.6 with whole 6s, $1,666.67 hero strip from 5.6 s, '$1,000 job?' centred at 38.35 s, 'Not the markup.' underline inside the panel, end card 42.67 to 45.67 s (3.0 s) with proofnotfluff.com, dialog raised to about 48 px. All landed."
+  ]
+ }
 }

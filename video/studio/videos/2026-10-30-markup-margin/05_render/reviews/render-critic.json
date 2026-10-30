@@ -7,12 +7,13 @@
  },
  "faults": [],
  "reasons": [
-  "Hook on screen from 0.0 s: '$1,000 job. What do you quote?' plus COST $1,000.",
-  "Every spoken number readable at its word: 0.6 settled by 4.5 s (said 4.16), $1,666.67 by 5.5 s (said 5.0 to 5.7), MARGIN 40% settled at 7.9 s (said 7.12 to 7.82, flip board readable as 'margin' lands), $500 and 50% on the receipt from 9.5 s, $1,500 at 11.5 s, $500 = 1/3 at 17.5 s, 50% and 33.3% boards at 19 to 22 s, 1 - margin at 25 s, WANT A 50% MARGIN at 31 s, DOUBLE YOUR COST at 33.5 s, = $2,000 quote at 36 s, $1,000 job? at 38 s.",
-  "Earlier round listed no faults; still none. Settled layouts hide no words or numbers; text stays inside y 270 to 1250 and left of x 930 (= $2,000 quote ends near x 928, closest call). Card frames and quote screens past x 930 carry no text beyond it.",
-  "Voice ends 42.57 s on 'markup.'; video runs to 45.67 s on the end card, nothing cut mid-word.",
-  "Smallest text (receipt, dial caption, end card line) still readable at phone size; only single-cut dark transition frames at 18.5 s and 37.5 s, no flashing over 3 a second."
+  "Earlier review listed no faults; this pack (gates rebuilt from the current MP4) still shows none.",
+  "Hook on screen from 0.0 s: '$1,000 job. What do you quote?' with COST $1,000 under it, still up at 2.0 s.",
+  "Spoken numbers readable at their words: thousand (1.0 s) COST $1,000; point six (4.16 to 4.62) DIVIDE 0.6 settled by 4.5 s; sixteen sixty-seven (5.0 to 6.3) $1,666.67 from 5.5 s; forty percent margin (7.1 to 8.2) MARGIN 40% settled 7.5 s; fifty percent and fifteen hundred (9.5 to 12.2) MARKUP 50% $500 and The quote: $1,500; five hundred, a third (16.0 to 17.6) $500 on receipt, $500 = 1/3 at 17.5 s; boards 50% and 33.3% 19 to 23 s; one minus that margin (28.6 to 30.0) formula 1 - margin; fifty percent margin (31.4) WANT A 50% MARGIN?; double (33.3) DOUBLE YOUR COST at 33.5 s; thousand in, two thousand (34.9 to 36.7) COST $1,000 and = $2,000 quote from 36.0 s; thousand (38.6) $1,000 job?.",
+  "Settled layouts hide no words or numbers; text sits between y 270 and 1250 and left of x 930 (= 50% and = 33.3% end near x 925, = $2,000 quote near x 928, NEXT QUOTE $1,666.67 near x 903). Card and monitor frames past x 930 carry no text there.",
+  "Voice ends 42.57 s on 'markup.'; video and audio run to 45.67 s on the end card, nothing cut mid-word.",
+  "Smallest text (receipt lines, dial caption, end card line) readable at 1080 wide; a letter shimmer on 'Quote from the margin.' at 42.4 s leaves every word readable. Only single dark cut frames at 18.5 s, 37.5 s and 42.5 s, no flashing over 3 a second."
  ],
  "reviewer": "claude opus fresh agent",
- "at": "2026-10-30T12:18:26-05:00"
+ "at": "2026-10-30T12:32:34-05:00"
 }

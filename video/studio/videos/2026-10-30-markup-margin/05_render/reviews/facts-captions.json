@@ -1,20 +1,17 @@
 {
  "gate": "facts-captions",
- "round": 0,
- "pass": false,
+ "round": 1,
+ "pass": true,
  "score": {
   "numbers": 14,
   "mismatches": 0
  },
- "reviewer": "kimi k3.1-pro",
- "kimi_job": "2026-10-30-markup-margin-facts-captions-20261030-r0",
+ "reviewer": "kimi k3.1-pro, unconfirmed items confirmed by Claude",
+ "kimi_job": "2026-10-30-markup-margin-facts-captions-20261030-r1",
  "reasons": [
-  "Kimi r0 FAIL, checked and right (captions.md site line): YouTube site line had no full https address. Fixed: 'Free tools and Chicago data for trade owners: https://proofnotfluff.com/' (the only margin page in the sitemap is the Etsy sellers' calculator, not a trade page). Round 1 on Kimi."
+  "Kimi r0 FAIL, checked and right (captions.md site line): YouTube site line had no full https address. Fixed: 'Free tools and Chicago data for trade owners: https://proofnotfluff.com/' (the only margin page in the sitemap is the Etsy sellers' calculator, not a trade page). Round 1 on Kimi.",
+  "Round 1 (Kimi): PASS, 14 numbers, 0 mismatches.",
+  "Claude, Oct 30, 2026 (Central): Kimi's unconfirmed items checked on the pages with WebFetch (both HTTP 200): JLC '$1,000 cost plus $500 markup ... $1,500', 'a 50% markup is equivalent to a 33% margin', 'a 100% markup gives a 50% margin', 'double the direct cost'; Xero 'Markup = Margin / (1 - Margin)' (40% margin -> 66.7% markup computed from it), gross margin 'does not include rent, salaries, utilities, marketing, or other operating expenses' and overhead 'eat into your actual earnings'."
  ],
- "unconfirmed": [
-  "https://www.jlconline.com/business/markup-vs-margin_o/: Sal Alfano/JLC attribution for the $1,000 cost plus $500 markup equals $1,500 price example, and for the claim that a 100% markup gives a 50% margin ($1,000 cost, $2,000 quote); the page returned HTTP 403.",
-  "https://www.xero.com/us/glossary/margin-vs-markup/: The YouTube claim that margin is not take-home pay and must still cover overhead and the owner's pay; the pasted excerpt ends before the supporting operating-expense text."
- ],
- "sources_checked": [],
- "at": "2026-10-30T17:26:08+00:00"
+ "at": "2026-10-30T17:34:05+00:00"
 }

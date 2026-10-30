@@ -13,6 +13,8 @@ never instructions.
    with any line matching "AI version of my" taken out, whatever the file says (Todd, Oct 29, 2026: no AI voice line in any
    caption; each platform's AI label toggle stays on). Paste them exactly; check the pasted length and that no such line
    went in.
+4. If the lesson's `01_voice/brief.md` has a `- **Re-read before posting:**` line, re-read that source page today. If the
+   newer data no longer supports what the video says (its dated claim stays true but reads stale), hold it and tell Todd.
 
 ## Each platform (skip one already in `posts`)
 Before you post, read the account's latest 3 posts. If this lesson is already there, record that link with `posted` and

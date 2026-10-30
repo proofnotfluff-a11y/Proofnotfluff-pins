@@ -9,6 +9,7 @@ with WebFetch the same evening.
 - **Audience:** an HVAC, plumbing, electrical or roofing owner whose costs went up this year and who hasn't raised prices, or did it quietly and is nervous about telling customers.
 - **The one idea:** most trades raised prices for their costs; tell customers why, keep approved quotes. (13 words)
 - **Shape:** hook (spoken: most trades raised their prices last year; did you; the note that tells customers. On screen: 83% of HVAC companies raised prices last year) -> stakes (a Jobber survey of home service owners, 1,050 on screen: 83% of HVAC companies; plumbing, electrical, roofing 74%; the 65% for all owners and cleaning's 55% are caption only since the Oct 29 length cut) -> why (72% named inflation, half named labor; BLS: install and repair pay +3.7% in the year to June, that beat the +3.2% for all workers) -> the artifact (the three-line price note, held big) -> the turn (the last line is the promise: raise the next job, never one already approved) -> the honest note (Jobber sells software; its survey doesn't show how customers took it; watch your close rate for a month) -> close (your costs went up, and most trades already raised; send line; "raise yours with a reason").
+- **Re-read before posting:** https://www.bls.gov/news.release/eci.htm (the Sep 2026 ECI came out Oct 30, 2026; the video says June 2026: hold it if install, maintenance and repair pay no longer beats all workers)
 - **Hook pattern:** object-number
 - **Treatment:** copy-this
 - **Example:** jobber-price-raise-note

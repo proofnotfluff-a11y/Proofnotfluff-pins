@@ -13,5 +13,5 @@
 - Oct 25: credits plan (DECISIONS-2026-10-25): audit Oct 28; bursts Oct 29, Nov 2. Area seats live Oct 26, 6 open.
 - Oct 26 pm: TRAFFIC FIRST; no builder outreach. Kimi R8 kept.
 - Oct 27: trade owners only; free plan waits (DECISIONS-2026-10-27). Trades News (daily 6:32), maps, templates live. R10: 11 free data pages and redesign live (/chicago-data/, site/datahub.json); inspections by area, Quarterly open (W).
-- Oct 30: AI lane: 11-09, 11-08 (night), 11-10 (sunny) queued; 6 tunes, variety checks tune. IG trials live. The 5 older waiting lessons re-pinned on new tunes, every gate PASS (close-rate quest, review-replies chase with a your-move hook, three-prices bounce, quote-revive sunny, price-raise quest). Before price-raise posts: BLS put out the Sep 2026 ECI on Oct 30; hold it if repair pay no longer beats all workers.
+- Oct 30: AI lane (11-08 to 11-10) queued; 5 older lessons re-pinned on new tunes; variety checks tune.
 - Oct 25: Chief of Staff live (DECISIONS-2026-10-25): sweep (PC, sole reply-status writer), brief, Sun review.

@@ -1,20 +1,20 @@
 {
  "schema": "pnf.studio.takes.v1",
- "requestedAt": "2026-10-30T18:01:46-05:00",
+ "requestedAt": "2026-10-30T18:09:29-05:00",
  "voice": "W3pJy9ibur1FKUihVxzY",
  "model": "eleven_v4",
- "scriptSha256": "e8c07181cd693b348fdbeaf469055b6444ab076eb2d28e511df160821efb855c",
- "voiceSha256": "58e0c517af08c333b5ad2dda358f2ea9f45ecc18e618cb9d851c26fc61595958",
+ "scriptSha256": "3aa46bf06272f95563dfa1f14ae3c5f7b907a4a65195d93f4f156aed6489c0c9",
+ "voiceSha256": "2c867043f3e1415c5131773353e34e7266725d6b9ef63f79e7cd11a0c7e88580",
  "takes": [
   {
    "n": 1,
    "file": "takes/01.mp3",
-   "sha256": "4379daa53fe02ee124bcfc0c372bf165d67c64dc9b8eace4b4d3301ecab554bb",
-   "seconds": 4.441,
-   "chars": 56,
+   "sha256": "60f3247b4bb405e05e5cb9fc7538c2c5fe2e4e1c2e016d921ca3db1de1739fa1",
+   "seconds": 4.519,
+   "chars": 54,
    "start": 0.0,
-   "end": 4.441,
-   "wpm": 149
+   "end": 4.519,
+   "wpm": 133
   },
   {
    "n": 2,
@@ -22,8 +22,8 @@
    "sha256": "84354f3fc748222ff9ab8f82b26920825a6f3c4990e23e04f9e607bc15682d66",
    "seconds": 10.031,
    "chars": 145,
-   "start": 4.761,
-   "end": 14.792,
+   "start": 4.839,
+   "end": 14.87,
    "wpm": 156
   },
   {
@@ -32,19 +32,19 @@
    "sha256": "a2dc39e36dcd97fa5e51a6137a84c3b0d1f2de23656362bb6dfe938901039010",
    "seconds": 10.109,
    "chars": 144,
-   "start": 15.112,
-   "end": 25.221,
+   "start": 15.19,
+   "end": 25.299,
    "wpm": 160
   },
   {
    "n": 4,
    "file": "takes/04.mp3",
-   "sha256": "85b569456919ed25afdb16302b4f84adf4281a4d44c7217ce2a544106e0dd73e",
-   "seconds": 9.247,
-   "chars": 141,
-   "start": 25.541,
-   "end": 34.788,
-   "wpm": 149
+   "sha256": "24158b8ef25660dd50538025606228a71d7095a3459f88b6212da9967f9b9714",
+   "seconds": 9.561,
+   "chars": 148,
+   "start": 25.619,
+   "end": 35.18,
+   "wpm": 151
   },
   {
    "n": 5,
@@ -52,8 +52,8 @@
    "sha256": "d0469faaa9490884d27c5d013d11cd57a8b8dec03b56ba4b7867ec8de704796d",
    "seconds": 6.531,
    "chars": 128,
-   "start": 35.108,
-   "end": 41.639,
+   "start": 35.5,
+   "end": 42.031,
    "wpm": 184
   },
   {
@@ -62,15 +62,15 @@
    "sha256": "2ede607fb85b33d1c5d973d6982c39ce640054fd2d7fe5373841d296c7d3ba40",
    "seconds": 4.676,
    "chars": 75,
-   "start": 41.959,
-   "end": 46.635,
+   "start": 42.351,
+   "end": 47.027,
    "wpm": 154
   }
  ],
- "chars": 689,
- "at": "2026-10-30T18:08:21-05:00",
+ "chars": 694,
+ "at": "2026-10-30T18:16:07-05:00",
  "credits": {
-  "used": 25365,
+  "used": 25612,
   "limit": 40000,
   "tier": "starter",
   "resetsAt": 1794774902

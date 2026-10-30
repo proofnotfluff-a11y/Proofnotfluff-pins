@@ -2,19 +2,15 @@
  "gate": "buyer",
  "round": 0,
  "pass": true,
- "build": "a9eb0850",
- "reviewer": "fresh opus agent",
- "score": {
-  "stop": "yes",
-  "send": "yes",
-  "save": "yes",
-  "follow_or_link": "no"
- },
+ "score": {"stop": "yes", "send": "yes", "save": "yes", "follow_or_link": "no"},
  "reasons": [
-  "Stop yes: '$1,000 job. What do you quote?' over a COST $1,000 bar with an empty slot is a question an owner faces daily.",
-  "Send yes (to whoever marks up 50% and thinks it is half profit); save yes (the 0.6 divisor and the formula).",
-  "Follow or link no: the IG caption gives no reason to follow. Not changed in this cut: the caption pattern is shared with lesson 5 and the test changes one variable (payoff timing).",
-  "Nothing hype, urgent, salesy or robotic; math checks out; sources named on screen and in the caption.",
-  "Minor: 'Divide it by point six' lands about 3 s before the reason; 'Sounds like half the price is margin' unclear who thinks it. Kept: the test is the answer inside 8 s, and the next line explains it."
- ]
+  "Trade picked: electrician. 1. It tells me a 50% markup on a $1,000 job only gets me a one third margin, and to hit the margin I want I should price at cost divided by one minus that margin.",
+  "2. Stop yes: '$1,000 job. What do you quote?' over a COST $1,000 bar with an empty slot is a question I answer every week, so I want to see if my number matches.",
+  "3. Send yes: to my office manager or whoever writes our quotes, since most of us say markup and margin like they are the same. Save yes: the formula (Price = Cost / (1 - margin)) and the 0.6 divisor are in the caption to look up later. Follow or link no: nothing in the video or caption gives me a reason to follow or tap the bio; 'Run the Numbers, lesson 3' hints at a series but never says what the next lesson is.",
+  "4. Nothing hype, no fake urgency, no pitch. Math checks: 1000/0.6 = 1,666.67; 500/1,500 = 33.3%; 50% margin needs 2,000. Sources named on screen (JLC, Xero) and in the caption. Voice reads as a person.",
+  "5. Minor unclear spots, not blocking: line 00:03.6 'Divide it by point six' comes before any reason, so a stranger hears a magic number for about 3 s; fix by saying 'For a forty percent margin, divide it by point six.' Line 00:13.2 'Sounds like half the price is margin' does not say who thinks it; fix with 'Most guys think half the price is margin.'",
+  "6. Trust yes: worked numbers, named sources, no claim it cannot back. Follow fix if wanted: end the caption with one line naming the next lesson, e.g. 'Lesson 4: what overhead does to that margin. Follow for it.' (only if that lesson is real)."
+ ],
+ "reviewer": "claude opus fresh agent",
+ "at": "2026-10-30T12:16:49-05:00"
 }

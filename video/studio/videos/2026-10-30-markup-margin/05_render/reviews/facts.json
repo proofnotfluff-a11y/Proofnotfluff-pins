@@ -6,18 +6,15 @@
   "numbers": 14,
   "mismatches": 0
  },
- "reviewer": "kimi k3.1-pro, unconfirmed items confirmed by Claude",
- "kimi_job": "2026-10-30-markup-margin-facts-20261029-r0",
- "reasons": [
-  "Kimi: 14 numbers, 0 mismatches. Voice, screen and scene strings checked against data.js and facts.json; every computed value recomputes from its formula.",
-  "Claude, Oct 29, 2026 (Central): Kimi's code fetch got HTTP 403 from JLC, so its four unconfirmed items were checked on the pages with WebFetch (full fetch, HTTP 200). JLC: '$1,000 in direct costs, our markup is set at $500 ... a total selling price of $1,500', 'a 50% markup is equivalent to a 33% margin', 'So, a 100% markup gives a 50% margin', 'you must double the direct cost amount'. Xero (Published Thursday 23 July 2026): 'Markup = Margin / (1 - Margin)', 'a 50% markup actually gives you a 33.3% margin', margin on revenue and markup on cost, 'Gross margin only accounts for the direct cost of goods sold. It does not include rent, salaries, utilities, marketing, or other operating expenses.' All confirmed; nothing left unconfirmed.",
-  "Trades first: JLC (Journal of Light Construction) is trade press for builders and remodelers; Xero is used for the formulas only.",
-  "Claude, after the gate: take 2's 'Sounds like half is margin' became 'Sounds like half the price is margin' (a Whisper mishearing, twice). No number, source or claim changed: the sentence voices the belief the next sentence corrects with the sourced third."
+ "reviewer": "kimi k3.1-pro",
+ "kimi_job": "2026-10-30-markup-margin-facts-20261030-r0",
+ "reasons": [],
+ "unconfirmed": [
+  "https://www.jlconline.com/business/markup-vs-margin_o/: HTTP 403 prevented checking the $1,000 cost, $500 markup and $1,500 price example; the 50% markup to 33% margin statement; the 100% markup to 50% margin statement; and the instruction to double direct cost for a 50% margin.",
+  "https://www.xero.com/us/glossary/margin-vs-markup/: The pasted excerpt does not show Markup = Margin / (1 - Margin), the corresponding 66.7% markup comparison, or the claim that gross margin excludes rent, salaries, utilities, marketing and other operating expenses."
  ],
  "sources_checked": [
-  "https://www.jlconline.com/business/markup-vs-margin_o/: The page returned HTTP 403, so none of its attributed claims could be confirmed.",
-  "https://www.xero.com/us/glossary/margin-vs-markup/: Confirmed that margin divides profit by revenue and markup divides it by cost, confirmed both formulas, and confirmed that a 50% markup gives a 33.3% margin. These formulas also confirm the worked calculations for $1,500, $2,000, 0.6, $1,666.67, $666.67, and the 33.3%, 40%, and 50% margins.",
-  "https://www.jlconline.com/business/markup-vs-margin_o/: Claude WebFetch Oct 29, 2026, HTTP 200, all four lines found (no visible date on the page).",
-  "https://www.xero.com/us/glossary/margin-vs-markup/: Claude WebFetch Oct 29, 2026, conversion formula and gross margin line found."
- ]
+  "https://www.xero.com/us/glossary/margin-vs-markup/: Confirmed that margin uses revenue or selling price as its base, markup uses cost, Margin = (Revenue - COGS) / Revenue x 100, Markup = (Revenue - COGS) / COGS x 100, and a 50% markup gives a 33.3% margin. The worked-example arithmetic is consistent with these formulas."
+ ],
+ "at": "2026-10-30T17:26:08+00:00"
 }

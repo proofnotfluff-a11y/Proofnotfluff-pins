@@ -1,12 +1,12 @@
 {
  "gate": "design",
- "round": 1,
+ "round": 0,
  "pass": false,
- "build": "a9eb0850",
- "reviewer": "fresh opus agent",
+ "reviewer": "claude opus fresh agent",
+ "at": "2026-10-30T17:18:40Z",
  "score": {
-  "first": 5,
-  "hierarchy": 4,
+  "first": 4,
+  "hierarchy": 5,
   "type": 4,
   "color": 5,
   "spacing": 4,
@@ -14,45 +14,13 @@
   "trust": 5,
   "average": 4.43
  },
- "held": "Second FAIL: held for Todd (README: one fix round per gate). Type stays capped at 4 by the shared dialog size, which the coordinator note keeps unchanged in this cut.",
+ "average": 4.43,
  "reasons": [
-  "5.6 to 9.0 s: the price never reaches hero size. Done in ccc12aa9: $1,666.67 at 132 px in the strip from 'sixteen'; 40% stays on the MARGIN row.",
-  "7.4 s: hinge seam cuts each glyph (6 reads S, DIVIDE reads D!V!DE), 'BY0.6' no space. Done in ccc12aa9: landed letters redrawn whole, hinge as edge notches; row reads DIVIDE 0.6.",
-  "42.39 s: 'Not the markup.' underline on the panel border. Done in ccc12aa9: the three lines raised 16 to 28 px.",
-  "38.0 to 39.9 s: '$1,000 job?' alone top-left. Done in ccc12aa9: centred at 132 px.",
-  "0 to 45.7 s: dialog about 30 px and labels about 30 px against 44 and 36 px floors. Not changed: dialog is shared runtime raised after this test; 30 and 39 render the same in the pixel font.",
-  "38.0 to 42.8 s: NEXT QUOTE $1,666.67 at 39 vs $1,500 at 66. Not changed: nine characters do not fit the display at 66.",
-  "42.85 to 45.67 s: end card holds 2.8 s, style board asks 3 to 5 s. Not changed: the end card timing is shared runtime."
- ],
- "previous": {
-  "gate": "design",
-  "round": 0,
-  "pass": false,
-  "build": "309368c9",
-  "reviewer": "fresh opus agent",
-  "score": {
-   "first": 4,
-   "hierarchy": 4,
-   "type": 4,
-   "color": 5,
-   "spacing": 4,
-   "polish": 4,
-   "trust": 5,
-   "average": 4.29
-  },
-  "reasons": [
-   "0 to 45 s: dialog words 39 px under the style board's 44 px floor; labels 30 px. Not changed in this lesson: the dialog size is shared runtime (another thread raises it for all lessons after this test; Todd's coordinator note, Oct 29), and body sizes 30 and 39 render the same in the pixel font (LEARNINGS).",
-   "38 to 42.5 s: the rule small in a half-empty panel, display '?' to the end. Fixed: 'Quote from / the margin.' at 132 px fills the panel, 'Not the markup.' under it, NEXT QUOTE shows $1,666.67 on 'quote'.",
-   "0 to 3 s: the cut back to the cover read as a loop. Fixed: the third shot is the bench in shadow with 'What do you / quote?' at 132 px; never back to the cover.",
-   "1 to 42.5 s: host at 0.55 scale points at empty wall. Not changed (same scale as lesson 5 and the queue; a lint-checked layout).",
-   "9.59 s: '50% markup: +$500' touched the QUOTE monitor. Fixed: 'Markup: +$500'; '$500 = 1/3 of the price' shortened to '$500 = 1/3'.",
-   "4.16 and 25.0 s: answer and formula the same plain panel, each empty on the cut. Fixed: the answer is a split-flap board (COST $1,000, DIVIDE BY 0.6, = $1,666.67, MARGIN 40%) landing row by row on the words; the formula draws on the cut."
-  ]
- },
- "override": {
-  "by": "Todd",
-  "said": "Queue it for tomorrow",
-  "at": "2026-10-30T02:27:21Z",
-  "where": "project chat, answer to the design-hold question (shared caption size caps type at 4)"
- }
+  "2.5 to 3.4 s hook.q panel: 'quote?' at hero size spills through the panel's bottom border (q descender and ? cross the blue frame at y 550) and the tape tag '$1,000' sits on the border under it; raise the two lines about 24 px (or set 'quote?' one step smaller) so the descender clears the frame, and move the '$1,000' tag down onto the tape (y 575 or lower).",
+  "0 to 42.6 s labels and sources: about 30 px against the 36 px floor (1.0 s 'Example math. Sources: JLC, Xero', 23.4 s 'measured on your cost / price', 36.58 s 'Math: JLC' and '100% markup = 50% margin'); raise them to 36 px. Type capped at 4 by the style board. Dialog words now about 48 px, floor met.",
+  "0 to 3 s and 19.3 to 25 s job site: billboard over a yard with a sawhorse table and a lumber stack repeats the hook set of 2026-10-28-first-reply (billboard, sawhorses, lumber); keep the crane and tape measure but swap the sawhorse table and lumber stack for a prop of this lesson (the counter's price tag or a flaps row reading COST $1,000) so the first second reads as a new world.",
+  "31.6 to 37.0 s gauge: the needle lies over the '50' numeral at the top of the dial (reads '5|)' at 36.58 s); move the numeral outside the arc above the tick, or draw it in front of the needle with a dark backing.",
+  "7.40 s and 42.39 s glint: a one-glyph white slice cuts '$1,6|66.67' and 'from' / 'margin' so a paused frame looks like broken letters; run the glint as a full-height diagonal band across the whole line for 2 frames, or over the panel edge instead of the glyphs.",
+  "Earlier asks checked: board now reads DIVIDE 0.6 with whole 6s, $1,666.67 hero strip from 5.6 s, '$1,000 job?' centred at 38.35 s, 'Not the markup.' underline inside the panel, end card 42.67 to 45.67 s (3.0 s) with proofnotfluff.com, dialog raised to about 48 px. All landed."
+ ]
 }

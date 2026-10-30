@@ -1,69 +1,24 @@
 {
  "gate": "golden",
- "round": 1,
+ "round": 0,
  "pass": true,
- "build": "96fdfd87",
- "reviewer": "fresh opus agent",
- "score": {
-  "post_as_is": "yes"
- },
+ "verdict": "post as is",
+ "score": {"post_as_is": "yes"},
+ "mp4Sha256": "ccc3e85b837bcce12c84ef975d9f9473d89ec185bc5b9fc431d8375a4184bf03",
+ "reviewer": "claude opus fresh agent",
+ "at": "2026-10-30T12:17:29-05:00",
  "reasons": [
-  "Round 0 must-fix landed: board reads COST $1,000 / DIVIDE 0.6 / = $1,666.67 / MARGIN 40%, every 6 clean; 0.6 settled by 4.5 s as 'six' is said; $1,666.67 big from 5.5 s; 40% by 7.5 s.",
-  "polish: 1 - 40% = 0.6 shown only at the formula (kept: payoff-first test).",
-  "polish 40.0 s: last dialog page opens lowercase (shared paging, unchanged).",
-  "polish 29.5 s: small support line under the formula.",
-  "polish qa.json frozen label names 37.75 s (shared anim.py item); PASS holds.",
-  "Every spoken number has a big on-screen match; voice human, 0 flags; would post as is."
- ],
- "previous": {
-  "gate": "golden",
-  "round": 0,
-  "pass": false,
-  "build": "a9eb0850",
-  "reviewer": "fresh opus agent",
-  "score": {
-   "post_as_is": "no"
-  },
-  "note": "Rerun at round 0: design r0 fixes changed the picture. The r1 PASS on 309368c9 is kept under previous.",
-  "reasons": [
-   "must-fix 4.5 to 9.0 s answer board: in the split-flap cells the hinge line cuts the 6's middle stroke, so 6 reads as S or $ ('BY0.S', '$1,SSS.S7'); no blank between BY and 0.6; 0.6 still flipping while 'point six' is said.",
-   "polish 3.6 to 7.0 s: where 0.6 comes from (1 - 40%) is not shown until 29.5 s.",
-   "polish 42.0 s: the last dialog page opens lowercase mid-sentence (shared dialog paging).",
-   "polish qa.json: frozen check labels the end card at 37.75 s (last level-0 cue); the PASS holds.",
-   "polish captions youtube tag 'markup vs margen' (search variant)."
-  ],
-  "previous": {
-   "gate": "golden",
-   "round": 1,
-   "pass": true,
-   "score": {
-    "post_as_is": "yes"
-   },
-   "reviewer": "fresh opus agent",
-   "build": "309368c9",
-   "reasons": [
-    "Round 0 must-fix (checker floor reading as a transparency grid): gone; dark planks under the register 9.0 to 18.4 s and 38.0 to 42.9 s.",
-    "Polish only: hook billboard push-in and pull-back 0 to 3 s reads as intended; answer panel empty about 0.5 s before '$1,000 / 0.6' (stray tag gone); 0.6 explained at 26.6 to 31.0 s; small unspoken lines at 29.5 to 33 s; gauge needle covers the '50' tick (readout clear); sub-0.5 s wipes; qa frozen label names 37.75 s (a shared anim.py item); crane bar behind the HUD at frame 0; take 5 at 198 wpm.",
-    "Every spoken number has a big on-screen match when said; no contradiction with facts.json; human voice; frame 0 earns the stop; the end card gives a reason to send. Post as it is."
-   ],
-   "round0": {
-    "gate": "golden",
-    "round": 0,
-    "pass": false,
-    "score": {
-     "post_as_is": "no"
-    },
-    "reviewer": "fresh opus agent",
-    "reasons": [
-     "1 must-fix: 9.0 to 18.4 s and 38.0 to 42.9 s, the register set's beige checker floor reads as a missing-image transparency grid (as price-raise found). Fixed: dark planks floor drawn over it in usual and button.",
-     "2 polish: qa.json 'frozen' detail names 37.75 s (the last level-0 cue) as the end card; the real card is up about 42.9 s. Timeline shows motion 38 to 42.5 s. A shared anim.py item, not changed in this lesson (logged to IMPROVE).",
-     "3 polish: never says the $1,500 usual quote is $166.67 under the 40% quote. Not added: a new number outside the one-variable test.",
-     "4 polish: 3.5 s empty answer panel with a stray TOOL BELT tag while the card rose. Fixed: the card is settled from its first frame. Sub-0.5 s black wipes at 18.5 and 37.5 s are the section transitions.",
-     "5 polish: small unspoken lines at 29.5 to 33 s; gauge readout passed 49.6 and 49.7 on the way to 50. Fixed the readout: 33.3% then 50%, no in-between.",
-     "6 polish: take 5 at 198 wpm (inside the 150 to 200 band). Kept.",
-     "7 polish: crane hook bar behind the LESSON 3 bar at frame 0. Kept (decor, under the HUD)."
-    ]
-   }
-  }
- }
+  "1. What it says: price from the margin you want (cost / (1 - margin)); a 50% markup is only a 33.3% margin; a real 50% margin means doubling cost. Every on-screen number matches the voice and facts.json: $1,000, 0.6, $1,666.67, 40%, $500, $1,500, 1/3, 50% vs 33.3%, +100%, $2,000. No contradiction. Note: the line 'Not the markup.' is the payoff and it lands.",
+  "2. Hook 0 to 3 s earns the stop: '$1,000 job. What do you quote?' big on frame 0 over COST $1,000 and an empty slot. Clear send reason: end card 'Send this to whoever sets your prices.' Save reason: the formula card 24.5 to 31 s.",
+  "3. Numbers readable when said: 0.6 settled by 4.5 s ('six' at about 4.6 s), $1,666.67 at hero size from 5.5 s, MARGIN 40% settled by 7.5 s; $1,500 at 11.5 s; 1/3 at 17.5 s; 33.3% at 22 s; 50% gauge at 34.5 s; $2,000 quote at 36 s. The split-flap 6s now read as 6.",
+  "4. Sounds like a person; transcript has 0 flags; pace 159 to 198 wpm.",
+  "5. qa.json: all 6 checks PASS and its mp4Sha256 matches the MP4 on disk; frozen window 44.4 to 45.67 s sits on the end card. No doubtful PASS.",
+  "6. polish 3.5 to 4.5 s and 7.0 to 7.4 s: split-flap rows show scrambled glyphs while flipping (intended motion, settles on the word).",
+  "7. polish 5.6 s, 7.4 s, 42.4 s: the shine sweep briefly whitens part of a glyph ($1,666.67, 'margin'); transient.",
+  "8. polish 31 to 37 s: the gauge's dotted target line runs through the '50' tick label.",
+  "9. polish 17.0 s, 40.0 s, 42.4 s: dialog pages open lowercase mid-sentence ('third of the price.', 'quote from', 'not the markup.').",
+  "10. polish 13.2 s: 'Sounds like half the price is margin' does not say whose belief it is; the next line fixes it.",
+  "11. polish whole video: the bottom third below the floor line is empty in most scenes.",
+  "12. Outside this gate: design.json is still a held round 1 FAIL (average 4.43, type capped at 4). That call is Todd's; golden passes on its own bar."
+ ]
 }

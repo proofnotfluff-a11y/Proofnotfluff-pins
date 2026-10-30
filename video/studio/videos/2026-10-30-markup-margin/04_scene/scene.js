@@ -115,7 +115,10 @@ const site = (k, o) => {
   P(0, 417, 360, 223, '#8C5A33'); for (let i = 0; i < 160; i++) DOT(Math.floor(hash(i * 7.7) * 360), 420 + Math.floor(hash(i * 3.9) * 216), i % 2 ? '#6B4226' : '#B07A47');
   /* a poured slab with its form boards, a lumber stack and a wheelbarrow under the Reel's caption band */
   P(0, 417, 360, 30, '#9AA0AD'); P(0, 417, 360, 2, '#C9CCD3'); P(0, 445, 360, 3, '#6B4226'); for (let x = 30; x < 360; x += 60) P(x, 419, 1, 26, '#6B7080');
-  for (let r = 0; r < 4; r++) { const y = 492 - r * 7, w = 96 - r * 10; P(18 + r * 5, y, w, 7, INK); P(19 + r * 5, y + 1, w - 2, 5, '#D9A066'); P(19 + r * 5, y + 1, w - 2, 1, '#F7D79B'); DOT(19 + r * 5 + 3, y + 3, '#B07A47'); }
+  /* a contractor's toolbox (this lesson's own, design r0 Oct 30: lesson 1 had the lumber stack): red box, tray lid, handle, latches */
+  P(20, 470, 90, 30, INK); P(21, 471, 88, 28, '#E2633B'); P(21, 471, 88, 2, '#F2A541'); P(21, 483, 88, 2, '#7A3442'); P(21, 496, 88, 3, '#7A3442');
+  P(46, 460, 38, 3, INK); P(46, 460, 3, 11, INK); P(81, 460, 3, 11, INK); P(47, 461, 36, 1, GREY);
+  P(30, 485, 6, 5, GREY); P(94, 485, 6, 5, GREY); DOT(31, 486, CREAM); DOT(95, 486, CREAM);
   P(236, 470, 64, 20, INK); P(238, 472, 60, 16, '#3B82C4'); P(238, 472, 60, 2, '#87CEEB'); P(244, 466, 48, 6, '#9AA0AD'); line(298, 478, 330, 470, '#6B4226', 2); line(240, 488, 232, 500, '#6B4226', 2);
   disc(262, 500, 8, INK); disc(262, 500, 6, '#4A4E5A'); disc(262, 500, 2, GREY); P(262 + [0, 4, 0, -4][Math.floor(F / 20) % 4] - 0, 499, 1, 1, GREY);
   /* the site sign: two posts, a painted board with bolts (the scene's words go on it) */
@@ -123,7 +126,9 @@ const site = (k, o) => {
   d.win(14, 82, 332, 130, {base: '#253048', hi: '#3B82C4', lo: '#1B1420', rule: '#3B82C4'});
   [[18, 86], [338, 86], [18, 204], [338, 204]].forEach(([a, b]) => { DOT(a, b, GREY); DOT(a + 1, b + 1, '#4A4E5A'); });
   /* the sawhorses */
-  [[44, 30], [232, 30]].forEach(([x, w]) => { P(x - 4, 250, w + 8, 5, '#8C5A33'); P(x - 4, 250, w + 8, 1, '#D9A066'); line(x, 255, x - 6, 304, '#6B4226', 3); line(x + w, 255, x + w + 6, 304, '#6B4226', 3); P(x - 3, 280, w + 6, 2, '#6B4226'); });
+  /* cinder-block piers under the planks (design r0 Oct 30: lesson 1's hook had sawhorses): two stacked grey blocks, two cores each */
+  [[44, 30], [232, 30]].forEach(([x, w]) => { for (let r = 0; r < 2; r++) { const y = 250 + r * 27, bw = w + 8; P(x - 4, y, bw, 26, INK); P(x - 3, y + 1, bw - 2, 24, '#9AA0AD'); P(x - 3, y + 1, bw - 2, 2, '#C9CCD3'); P(x - 3, y + 22, bw - 2, 3, '#6B7080');
+    P(x + 2, y + 7, 9, 11, '#4A4E5A'); P(x + bw - 15, y + 7, 9, 11, '#4A4E5A'); P(x + 2, y + 7, 9, 2, '#2B2033'); P(x + bw - 15, y + 7, 9, 2, '#2B2033'); } });
   /* the planks: cost (raw wood), markup (painted orange); each carries its price */
   const plank = (x0, x1, base, hi, lo, label, lc) => {
     P(x0, 232, x1 - x0, 18, INK); P(x0 + 1, 233, x1 - x0 - 2, 16, base); P(x0 + 1, 233, x1 - x0 - 2, 1, hi); P(x0 + 1, 247, x1 - x0 - 2, 2, lo);
@@ -180,8 +185,8 @@ const bench = (k, o) => {
   /* the title plate: the question and its source, held from the cover */
   if (o.ask) {   /* the third shot: the question big, the wall in shadow */
     d.win(14, 82, 332, 104, {base: '#253048', hi: '#3B82C4', lo: '#1B1420', rule: '#3B82C4'});
-    k.slam('What do you', 540, 270, o.askAt, {size: 132, color: CREAM, align: 'center', drop: INK, from: 0.6});
-    k.slam('quote?', 540, 410, o.askAt + 0.1, {size: 132, color: 'accent', align: 'center', drop: INK, from: 0.6});
+    k.slam('What do you', 540, 262, o.askAt, {size: 132, color: CREAM, align: 'center', drop: INK, from: 0.6});
+    k.slam('quote?', 540, 384, o.askAt + 0.1, {size: 132, color: 'accent', align: 'center', drop: INK, from: 0.6});
   } else {
     d.win(14, 82, 332, 78, {base: '#253048', hi: '#3B82C4', lo: '#1B1420', rule: '#3B82C4'});
     k.text(`${n.cost.shown} job.`, 540, 268, {size: 66, color: CREAM, align: 'center', drop: INK});
@@ -202,7 +207,7 @@ const bench = (k, o) => {
   if (o.tapeAt != null && T >= o.tapeAt) { const to = XB(n.cost.value) - 30, q = clamp(fr(o.tapeAt) / 8), back = q >= 1 ? 1 : 1 + 2.2 * Math.pow(q - 1, 3) + 1.2 * Math.pow(q - 1, 2); L = Math.round(4 + (to - 4) * back); }
   P(30, 204, L, 10, INK); P(30, 205, L, 8, GOLD); P(30, 205, L, 2, '#FFF2B8');
   for (let usd = 100; XB(usd) - 30 <= L; usd += 100) P(XB(usd), 205, 2, usd % 500 ? 4 : 7, INK);
-  if (L >= XB(n.cost.value) - 30) { P(XB(n.cost.value) - 1, 200, 3, 16, INK); tx(n.cost.shown, XB(n.cost.value) - 4, 180, {size: 39, color: CREAM, align: 'right', drop: INK}); }
+  if (L >= XB(n.cost.value) - 30) { P(XB(n.cost.value) - 1, 200, 3, 16, INK); if (!o.ask) tx(n.cost.shown, XB(n.cost.value) - 4, 180, {size: 39, color: CREAM, align: 'right', drop: INK}); }
   P(30 + L - 2, 200, 4, 18, INK); P(30 + L - 1, 201, 2, 16, GREY);
   d.bevel(2, 192, 34, 34, GOLD, '#FFF2B8', '#B07A47', INK); P(6, 210, 26, 10, '#2B2033'); P(6, 210, 26, 2, '#4A4E5A'); disc(19, 201, 5, '#B07A47'); DOT(17, 199, CREAM); P(33, 197, 4, 6, '#E2633B');
   k.chip('Run the numbers', 66, 846, {size: 30});
@@ -223,8 +228,9 @@ const dial = (k, label, v, shown, o = {}) => {
   d.tx('0', GX + Math.cos(GA0) * (GR - 32), GY + Math.sin(GA0) * (GR - 32) - 10, {color: '#C9CCD3', align: 'center', lint: false});
   /* the mark at 50: a gold notch on the bezel; a dotted ghost needle when o.ghost (what people picture, or the target) */
   if (o.notchAt != null && k.T >= o.notchAt) { const f = d.fr(o.notchAt), lift = f < 4 ? [-6, -3, -1, 1][f] : 0; for (let j = 0; j < 6; j++) d.P(GX - 5 + j, 103 + j + lift, 11 - 2 * j, 1, j ? ORANGE : GOLD); d.P(GX - 6, 102 + lift, 13, 1, INK); }
-  if (o.ghostAt != null && k.T >= o.ghostAt) { const blink = d.fr(o.ghostAt) < 30 && Math.floor(d.fr(o.ghostAt) / 8) % 2; if (!blink) for (let r = 14; r < GR - 18; r += 4) d.P(GX - 1, GY - r - 1, 2, 2, o.ghostC || GOLD); }
-  const na = Math.round((GA0 + GSW * clamp(v / 100, -0.02, 1.02)) * 180 / Math.PI) * Math.PI / 180, R1 = GR - 16, R2 = GR - 30;
+  if (o.ghostAt != null && k.T >= o.ghostAt) { const blink = d.fr(o.ghostAt) < 30 && Math.floor(d.fr(o.ghostAt) / 8) % 2; if (!blink) for (let r = 14; r < GR - 50; r += 4) d.P(GX - 1, GY - r - 1, 2, 2, o.ghostC || GOLD); }
+  /* near 50 the needle would run through the set's '50' numeral (design r0 Oct 30): it stops short of it there */
+  const near = Math.abs(v - 50) < 7, na = Math.round((GA0 + GSW * clamp(v / 100, -0.02, 1.02)) * 180 / Math.PI) * Math.PI / 180, R1 = near ? GR - 50 : GR - 16, R2 = near ? GR - 58 : GR - 30;
   d.line(GX + 1, GY + 1, GX + 1 + Math.round(Math.cos(na) * R1), GY + 1 + Math.round(Math.sin(na) * R1), INK, 2);
   d.line(GX, GY, GX + Math.round(Math.cos(na) * R1), GY + Math.round(Math.sin(na) * R1), RED, 2);
   d.line(GX, GY, GX + Math.round(Math.cos(na) * R2), GY + Math.round(Math.sin(na) * R2), ORANGE, 1);

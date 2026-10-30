@@ -2,17 +2,17 @@
  "gate": "render-critic",
  "round": 0,
  "pass": true,
- "build": "96fdfd87",
- "reviewer": "fresh opus agent",
  "score": {
   "faults": 0
  },
  "faults": [],
  "reasons": [
-  "Hook on screen from 0.0 s.",
-  "0.6 settled by 4.5 s, $1,666.67 by 5.5 s, MARGIN 40% by 7.5 s, every later number at its word.",
-  "Nothing hidden or cut off; text inside y 270 to 1250 and left of x 930.",
-  "Last word 42.57 s; video to 45.67 s on the end card.",
-  "No flashing; spoken numbers readable at phone size."
- ]
+  "Hook on screen from 0.0 s: '$1,000 job. What do you quote?' plus COST $1,000.",
+  "Every spoken number readable at its word: 0.6 settled by 4.5 s (said 4.16), $1,666.67 by 5.5 s (said 5.0 to 5.7), MARGIN 40% settled at 7.9 s (said 7.12 to 7.82, flip board readable as 'margin' lands), $500 and 50% on the receipt from 9.5 s, $1,500 at 11.5 s, $500 = 1/3 at 17.5 s, 50% and 33.3% boards at 19 to 22 s, 1 - margin at 25 s, WANT A 50% MARGIN at 31 s, DOUBLE YOUR COST at 33.5 s, = $2,000 quote at 36 s, $1,000 job? at 38 s.",
+  "Earlier round listed no faults; still none. Settled layouts hide no words or numbers; text stays inside y 270 to 1250 and left of x 930 (= $2,000 quote ends near x 928, closest call). Card frames and quote screens past x 930 carry no text beyond it.",
+  "Voice ends 42.57 s on 'markup.'; video runs to 45.67 s on the end card, nothing cut mid-word.",
+  "Smallest text (receipt, dial caption, end card line) still readable at phone size; only single-cut dark transition frames at 18.5 s and 37.5 s, no flashing over 3 a second."
+ ],
+ "reviewer": "claude opus fresh agent",
+ "at": "2026-10-30T12:18:26-05:00"
 }

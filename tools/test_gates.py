@@ -333,7 +333,7 @@ def variant_cases():
     import copy_gate as CG
     ts = CG.variant_templates(CG.TEMPLATES)
     expect("variant: live templates carry A and B for every slot passes",
-           [] if all(sorted(CG.slot_letters(ts, t["trade"], t["stage"])) == ["A", "B"] for t in ts) else ["a slot lacks A or B"], False)
+           [] if all(sorted(CG.slot_letters(CG.firsts(ts), t["trade"], t["stage"])) == ["A", "B"] for t in CG.firsts(ts)) else ["a slot lacks A or B"], False)
     ids = [f"cc-test{i}" for i in range(400)]
     arms = [R.assign_variant(i, ["B", "A"]) for i in ids]
     expect("variant: the split is fixed and even passes",
@@ -368,15 +368,38 @@ def variant_cases():
            CG.variant_problems(mk(arm, body=CG.fill(t2[arm]["body"], f).replace("usually", "always")), ts, leads, pros), True)
     expect("variant: draft naming a template for another stage fails",
            CG.variant_problems(mk(arm, lead_id="chi-1"), ts, leads, pros), True)
+    # Follow-ups (Todd, Oct 29, 2026, task thread: "Yes" to the two wrappers): T17-A then T18-A, each with the A job sentence.
+    fus = {t["step"]: t for t in ts if t["step"] in CG.FOLLOWUP_STEPS}
+    expect("followup: one wrapper per step passes", [] if sorted(fus) == ["followup1", "followup2"] else ["missing a step"], False)
     fu = {PROSPECT["prospect_id"]: dict(PROSPECT, variant=other, first_example="chi-2")}
-    expect("variant: follow-up keeps the recorded arm and a new lead passes",
-           CG.variant_problems(mk(other, lid="chi-3"), ts, leads, fu, followup=True), False)
-    expect("variant: follow-up off its recorded arm fails", CG.variant_problems(mk(arm, lid="chi-3"), ts, leads, fu, followup=True), True)
-    expect("variant: follow-up repeating the first email's lead fails",
-           CG.variant_problems(mk(other, lid="chi-2"), ts, leads, fu, followup=True), True)
     fu2 = {PROSPECT["prospect_id"]: dict(PROSPECT, variant=other, first_example="chi-2", followup_examples=["chi-3"])}
-    expect("variant: second follow-up repeating the first follow-up's lead fails",
-           CG.variant_problems(mk(other, lid="chi-3"), ts, leads, fu2, followup=True), True)
+    fu3 = {PROSPECT["prospect_id"]: dict(PROSPECT, variant=other, first_example="chi-2", followup_examples=["chi-3", "chi-1"])}
+    first_subj = "Re: " + CG.fill(t2[other]["subject"], f)
+    fd = lambda step, lid="chi-3", **k: {"schema": "pnf.draft.v1", "drafts": [dict({
+        "prospect_id": PROSPECT["prospect_id"], "lead_id": lid, "to": PROSPECT["email"], "variant": fus[step]["id"],
+        "subject": first_subj, "body": CG.fill(CG.followup_template(fus[step], t2["A"]), f)}, **k)]}
+    expect("followup: first follow-up on T17 with the A job sentence passes", CG.variant_problems(fd("followup1"), ts, leads, fu, followup=True), False)
+    expect("followup: second follow-up on T18 with a new lead passes",
+           CG.variant_problems(fd("followup2", lid="chi-1"), ts, {**leads, "chi-1": dict(insp, lead_id="chi-1")}, fu2, followup=True), False)
+    expect("followup: resending the first email's template as a follow-up fails",
+           CG.variant_problems(mk(other, lid="chi-3"), ts, leads, fu, followup=True), True)
+    expect("followup: T18 as the first follow-up fails", CG.variant_problems(fd("followup2"), ts, leads, fu, followup=True), True)
+    expect("followup: a third follow-up fails", CG.variant_problems(fd("followup2", lid="chi-1"), ts, leads, fu3, followup=True), True)
+    expect("followup: the B who-and-why sentence in place of the A job sentence fails",
+           CG.variant_problems(fd("followup1", body=CG.fill(CG.followup_template(fus["followup1"], t2["B"]), f)), ts, leads, fu, followup=True), True)
+    expect("followup: changed fixed words fail",
+           CG.variant_problems(fd("followup1", body=CG.fill(CG.followup_template(fus["followup1"], t2["A"]), f).replace("another", "a great")),
+                               ts, leads, fu, followup=True), True)
+    expect("followup: a subject without Re: fails",
+           CG.variant_problems(fd("followup1", subject=CG.fill(t2[other]["subject"], f)), ts, leads, fu, followup=True), True)
+    expect("followup: repeating the first email's lead fails", CG.variant_problems(fd("followup1", lid="chi-2"), ts, leads, fu, followup=True), True)
+    expect("followup: second follow-up repeating the first follow-up's lead fails",
+           CG.variant_problems(fd("followup2", lid="chi-3"), ts, leads, fu2, followup=True), True)
+    expect("followup: a wrapper with a second field fails",
+           planted(lambda x: x.replace("one more job your team could chase. {obs}", "one more job your team could chase. {obs} {gc}")), True)
+    expect("followup: a wrapper whose subject is not Re: {first_subject} fails",
+           planted(lambda x: x.replace("Step: followup2\nSubject: Re: {first_subject}", "Step: followup2\nSubject: Quick note")), True)
+    expect("followup: a missing second step fails", planted(lambda x: x.replace("Step: followup2", "Step: followup9")), True)
 
 
 def ladder_cases():

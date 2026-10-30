@@ -22,13 +22,15 @@ Usage: python3 tools/copy_gate.py [data/work/drafts.json] [--gc permits/downstre
            renders every live GC lead through each vertical's template(s) for that lead's stage and city.
        python3 tools/copy_gate.py --assign [data/work/matches.json]
            prints, for each validated match, the template id the draft must use (T2-B): the template slot comes from the
-           prospect's trade vertical and the lead's stage, the letter from pnf_rules.assign_variant (a follow-up keeps the
-           prospect's recorded CRM variant).
+           prospect's trade vertical and the lead's stage, the letter from pnf_rules.assign_variant. For a prospect already
+           emailed (first_example set) it prints its next follow-up template (T17-A, then T18-A) instead.
 
 Variants (Todd, Oct 22, 2026, live chat): a template may carry a 'Variant: <letter>' line (blank means A); one template
 per trade vertical, stage and letter. Every draft carries 'variant' (the template id), must be that template filled in
-(its fixed words unchanged), and must be the prospect's arm. Follow-ups (run with --matches '') must name a lead the
-prospect has not been sent before (first_example and followup_examples).
+(its fixed words unchanged), and must be the prospect's arm. Follow-ups (run with --matches '', Todd, Oct 29, 2026: "Yes"
+to the two follow-up wrappers) must use the wrapper for the prospect's next step (Step: followup1, then followup2) with
+the A template's job sentence for the new lead's trade and stage, a 'Re:' subject, and a lead the prospect has not been
+sent before (first_example and followup_examples).
 
 Signal leads (Todd, Oct 22, 2026, live chat, decision 2: gate extension for license and citation signals approved; the
 permit checks above are unchanged):
@@ -107,11 +109,34 @@ def variant_templates(path):
         stage = re.search(r"^Stage:\s*(.+)$", chunk, re.M)
         trade = re.search(r"^Trade:\s*(.+)$", chunk, re.M)
         var = re.search(r"^Variant:\s*(.*)$", chunk, re.M)
+        step = re.search(r"^Step:\s*(.+)$", chunk, re.M)
         letter = (var.group(1).strip() if var else "") or "A"
         out.append({"id": f"T{num}-{letter}", "letter": letter, "name": name, "subject": subj.group(1).strip(),
                     "body": body.group(1).strip("\n"), "stage": stage.group(1).strip() if stage else "",
-                    "trade": trade.group(1).strip() if trade else R.TRADE_DEFAULT})
+                    "trade": trade.group(1).strip() if trade else R.TRADE_DEFAULT,
+                    "step": step.group(1).strip() if step else "first"})
     return out
+
+
+# Construction follow-ups (Todd, Oct 29, 2026, 10:11 pm, task thread: "Yes", to "Do you approve these two follow-ups?"):
+# one wrapper per step ('Step: followup1' or 'followup2', Subject 'Re: {first_subject}'); its {obs} is the observation
+# paragraph of the A template for the new lead's trade and stage, so the job sentence is approved first-email wording.
+FOLLOWUP_STEPS = ("followup1", "followup2")
+
+
+def firsts(ts):
+    return [t for t in ts if t["step"] == "first"]
+
+
+def observation(t):
+    """A first-email template's middle paragraph: the job sentence a follow-up repeats for a new lead."""
+    parts = t["body"].split("\n\n")
+    return parts[1] if len(parts) == 3 else ""
+
+
+def followup_template(fu, a):
+    """The follow-up wrapper with the A template's observation in place of {obs} (fields still open)."""
+    return fu["body"].replace("{obs}", observation(a))
 
 
 def pattern(t):
@@ -138,7 +163,10 @@ def variant_problems(drafts, ts, leads, prospects, followup=False):
             p.append(f"draft {pid}: variant {vid!r} must be a template id like T2-B")
             continue
         trade = R.trade_of(pr)
-        t = next((x for x in ts if x["id"] == vid), None)
+        if followup:
+            p += followup_problems(d, pid, pr, ld, trade, vid, ts)
+            continue
+        t = next((x for x in firsts(ts) if x["id"] == vid), None)
         if t is None or t["trade"] != trade or (t["stage"] and t["stage"] != ld.get("stage")):
             p.append(f"draft {pid}: variant {vid} is not a {trade} template for {ld.get('stage')!r}")
             continue
@@ -151,10 +179,39 @@ def variant_problems(drafts, ts, leads, prospects, followup=False):
             p.append(f"draft {pid}: body is not template {vid} filled in (its fixed words changed)")
         if not pattern(t["subject"]).match((d.get("subject") or "").strip()):
             p.append(f"draft {pid}: subject is not template {vid}'s subject filled in")
-        if followup:
-            sent = {pr.get("first_example") or ""} | set(pr.get("followup_examples") or [])
-            if d.get("lead_id") in sent:
-                p.append(f"draft {pid}: follow-up repeats a lead this prospect was already sent")
+    return p
+
+
+def followup_step(pr):
+    """The step a prospect's next follow-up is (followup1, followup2), or '' when it has had MAX_FOLLOWUPS."""
+    done = len(pr.get("followup_examples") or [])
+    return FOLLOWUP_STEPS[done] if done < min(R.MAX_FOLLOWUPS, len(FOLLOWUP_STEPS)) else ""
+
+
+def followup_problems(d, pid, pr, ld, trade, vid, ts):
+    """A follow-up draft: the wrapper for the prospect's next step, the A observation for the new lead's trade and stage
+    with the fixed words unchanged, a 'Re:' subject of one of the trade's first-email subjects, a lead not sent before."""
+    p = []
+    want = followup_step(pr)
+    if not want:
+        return [f"draft {pid}: already sent {len(pr.get('followup_examples') or [])} follow-ups, the limit is {R.MAX_FOLLOWUPS}"]
+    fu = next((x for x in ts if x["id"] == vid), None)
+    if fu is None or fu["step"] != want:
+        return [f"draft {pid}: variant {vid} is not the {want} template (this prospect's next follow-up is {want})"]
+    a = next((x for x in firsts(ts) if x["trade"] == trade and x["stage"] == ld.get("stage") and x["letter"] == "A"), None)
+    if a is None or not observation(a):
+        return [f"draft {pid}: no {trade} A template for {ld.get('stage')!r} to take the job sentence from"]
+    body = (d.get("body") or "").strip("\n")
+    if not pattern(followup_template(fu, a)).match(body):
+        p.append(f"draft {pid}: body is not {vid} with {a['id']}'s job sentence filled in (its fixed words changed)")
+    if trade in R.STEP2_TRADES and "{kind}" in a["body"] and not re.search(r"\b%s\b" % re.escape(R.kind_display(ld)), body):
+        p.append(f"draft {pid}: {{kind}} must be {R.kind_display(ld)!r} (pnf_rules.kind_display of the City scope)")
+    subj = (d.get("subject") or "").strip()
+    if not any(pattern("Re: " + x["subject"]).match(subj) for x in firsts(ts) if x["trade"] == trade):
+        p.append(f"draft {pid}: a follow-up keeps the first email's subject as a reply (Re: ...), got {subj!r}")
+    sent = {pr.get("first_example") or ""} | set(pr.get("followup_examples") or [])
+    if d.get("lead_id") in sent:
+        p.append(f"draft {pid}: follow-up repeats a lead this prospect was already sent")
     return p
 
 
@@ -174,6 +231,9 @@ def check_templates(path):
         if t["id"] in ids:
             problems.append(f"{name}: a second template with id {t['id']}")
         ids.add(t["id"])
+        if t["step"] != "first":
+            problems += followup_template_problems(t, ts)
+            continue
         if stage and stage not in R.DOWNSTREAM:
             problems.append(f"{name}: Stage {stage!r} is not a downstream stage")
         v = R.TRADE_VERTICALS.get(trade)
@@ -192,9 +252,38 @@ def check_templates(path):
         unknown = set(re.findall(r"\{(\w+)\}", subj + body)) - set(FIXTURE_FIELDS)
         if unknown:
             problems.append(f"{name}: unknown fields {sorted(unknown)}")
-    for trade in sorted(set(R.TRADE_VERTICALS) - {t["trade"] for t in ts}):
+    for trade in sorted(set(R.TRADE_VERTICALS) - {t["trade"] for t in firsts(ts)}):
         problems.append(f"trade vertical {trade} has no template")
+    for s in FOLLOWUP_STEPS[:R.MAX_FOLLOWUPS]:
+        n = sum(t["step"] == s for t in ts)
+        if n != 1:
+            problems.append(f"{n} templates for step {s}: there must be exactly one")
     return problems, len(ts)
+
+
+def followup_template_problems(fu, ts):
+    """A follow-up wrapper: a known step, Subject 'Re: {first_subject}', one {obs} and no other field but {first}, no
+    Trade, Stage or Variant of its own; rendered with every A template's job sentence on a fixture lead of that stage,
+    each must pass the copy rules."""
+    name, p = fu["name"], []
+    if fu["step"] not in FOLLOWUP_STEPS[:R.MAX_FOLLOWUPS]:
+        return [f"{name}: Step {fu['step']!r} must be first or one of {', '.join(FOLLOWUP_STEPS[:R.MAX_FOLLOWUPS])}"]
+    if fu["subject"] != "Re: {first_subject}":
+        p.append(f"{name}: a follow-up's Subject must be 'Re: {{first_subject}}'")
+    if fu["stage"] or fu["trade"] != R.TRADE_DEFAULT or fu["letter"] != "A":
+        p.append(f"{name}: a follow-up takes no Trade, Stage or Variant line (it fits every A template)")
+    if fu["body"].count("{obs}") != 1 or set(re.findall(r"\{(\w+)\}", fu["body"])) != {"first", "obs"}:
+        p.append(f"{name}: a follow-up body holds {{first}} and exactly one {{obs}}, no other field")
+    for a in firsts(ts):
+        if a["letter"] != "A":
+            continue
+        if not observation(a):
+            p.append(f"{name}: {a['id']} has no middle paragraph to use as the job sentence")
+            continue
+        lead = dict(FIXTURE_LEAD, stage=a["stage"] or FIXTURE_LEAD["stage"])
+        subj, body = "Re: " + fill(a["subject"], FIXTURE_FIELDS), fill(followup_template(fu, a), FIXTURE_FIELDS)
+        p += [f"{name} with {a['id']}: {x}" for x in R.copy_problems(subj, body, FIXTURE_FIELDS["first"], lead)]
+    return p
 
 
 def check_live(path, gc_path):
@@ -202,9 +291,12 @@ def check_live(path, gc_path):
     templates and the display helpers work on real City names and streets, not only on the fixture). A vertical renders
     only the leads pnf_rules.trade_fits allows: its products' cities, its stages, work types and valuation floor. Returns (problems, leads, renders per vertical)."""
     gc = json.load(open(gc_path, encoding="utf-8"))
-    ts = {}
-    for t in variant_templates(path):
+    ts, every = {}, variant_templates(path)
+    fus = [t for t in every if t["step"] in FOLLOWUP_STEPS]
+    for t in firsts(every):
         ts.setdefault((t["trade"], t["stage"]), []).append((t["subject"], t["body"]))
+        if t["letter"] == "A" and observation(t):
+            ts[(t["trade"], t["stage"])] += [("Re: " + t["subject"], followup_template(fu, t)) for fu in fus]
     problems, n, per = [], 0, {t: 0 for t in R.TRADE_VERTICALS}
     for ld in gc.get("leads", []):
         f = {"first": "Dana", "gc": R.gc_display(ld.get("gc_company")), "value": R.value_display(ld.get("valuation")),
@@ -1019,12 +1111,23 @@ def main():
         except (OSError, ValueError, KeyError) as e:
             print(f"ERROR copy: cannot read inputs ({e})")
             sys.exit(1)
-        ts, bad = variant_templates(TEMPLATES), 0
+        every, bad = variant_templates(TEMPLATES), 0
+        ts = firsts(every)
         for m in ms:
             pr, ld = pros.get(m.get("prospect_id")), leads.get(m.get("lead_id"))
             if pr is None or ld is None:
                 continue
             trade = R.trade_of(pr)
+            if pr.get("first_example"):
+                step = followup_step(pr)
+                fu = next((t for t in every if step and t["step"] == step), None)
+                a = next((t for t in ts if t["trade"] == trade and t["stage"] == ld.get("stage") and t["letter"] == "A"), None)
+                if fu is None or a is None:
+                    bad += 1
+                    print(f"ERROR copy: {pr['prospect_id']}: no follow-up left, or no {trade} A template for {ld.get('stage')!r}")
+                else:
+                    print(f"{pr['prospect_id']}\t{ld['lead_id']}\t{fu['id']}\t{step} with {a['id']}'s job sentence")
+                continue
             slot = [t for t in ts if t["trade"] == trade and t["stage"] == ld.get("stage")]
             arm = str(pr.get("variant") or "") or R.assign_variant(pr["prospect_id"], [t["letter"] for t in slot])
             t = next((x for x in slot if x["letter"] == arm), None)

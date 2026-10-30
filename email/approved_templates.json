@@ -11,6 +11,16 @@
    "approvedOn": "2026-10-24",
    "note": "Todd, Oct 24, 2026, 2:08 pm, live chat: \"I approve the standing send rule as worded above. Approved templates: the construction outreach templates T1 to T9, variants A and B, in .claude/skills/outreach-drafter/templates.md, as they read today. Record them and make the change.\""
   },
+  ".claude/skills/outreach-drafter/templates.md#T17-A": {
+   "sha256": "3ff540f5c53cf6885a97ae78fa0f6256b1a0feb9f47e86dcb00974e9e38561d5",
+   "approvedOn": "2026-10-29",
+   "note": "Todd, Oct 29, 2026, 10:11 pm, task thread: \"Yes\", answering \"Do you approve these two follow-ups?\" (construction follow-up 1 and 2, each a Re: reply 5 business days after the last email with the A template job sentence for a new lead; review 4.90 of 5)"
+  },
+  ".claude/skills/outreach-drafter/templates.md#T18-A": {
+   "sha256": "787a9686cdb7abe0e79e604127f1912bea45610a80cfde86fb5123d83c8ee173",
+   "approvedOn": "2026-10-29",
+   "note": "Todd, Oct 29, 2026, 10:11 pm, task thread: \"Yes\", answering \"Do you approve these two follow-ups?\" (construction follow-up 1 and 2, each a Re: reply 5 business days after the last email with the A template job sentence for a new lead; review 4.90 of 5)"
+  },
   ".claude/skills/outreach-drafter/templates.md#T2-A": {
    "sha256": "3b7df28ad53dffe141975dc892af859c378236c49da6feef0aeadb8494b65612",
    "approvedOn": "2026-10-24",

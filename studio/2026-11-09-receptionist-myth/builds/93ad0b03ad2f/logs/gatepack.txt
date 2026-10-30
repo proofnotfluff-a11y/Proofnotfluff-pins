@@ -1,0 +1,2 @@
+gatepack: /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-11-09-receptionist-myth/05_render/gates (3 timeline sheets, 3 first frames)
+exit 0

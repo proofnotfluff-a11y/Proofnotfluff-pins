@@ -3,7 +3,8 @@
  "source": "whisper medium.en int8, re-spelled from script.md",
  "music": {
   "id": "rooms",
-  "level": 0.16
+  "level": 0.16,
+  "tune": "sunny"
  },
  "duration": 45.667,
  "cues": [
@@ -14,7 +15,7 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "Three shots (IMPROVE 00a). Cover, frame one, host and dialog box hidden: the job site, the question on the sign \"$1,000 JOB.\" / \"What do you quote?\", chip RUN THE NUMBERS, the source line \"Example math. Sources: JLC, Xero\". On \"costs\" cut in to the bench close-up: the question on a title plate up top, the cost plank big (COST $1,000) and an empty slot after it marked \"?\"; Snow and the dialog box come in; the tape runs out to the $1,000 mark on \"thousand\". On \"What\" cut back out to the site: the \"?\" blinks on the sign.",
+   "text": "Three shots (IMPROVE 00a). Cover, frame one, host and dialog box hidden: the job site, the question on the sign \"$1,000 JOB.\" / \"What do you quote?\", chip RUN THE NUMBERS, the source line \"Example math. Sources: JLC, Xero\". On \"costs\" cut in to the bench close-up: the question on a title plate up top, the cost plank big (COST $1,000) and an empty slot after it marked \"?\"; Snow and the dialog box come in; the tape runs out to the $1,000 mark on \"thousand\". On \"What\" cut to the third shot: the bench in shadow, \"What do you / quote?\" big on the plate (never back to the cover).",
    "t": 0.0,
    "word": 0,
    "end": 3.56
@@ -26,7 +27,7 @@
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "The empty price slot on the sign blinks \"?\".",
+   "text": "The empty price slot blinks \"?\"; Snow shrugs.",
    "t": 2.38,
    "word": 6,
    "end": 3.56
@@ -38,7 +39,7 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "Room: blackboard. The tool belt behind it; the answer card rises at once and fills the screen, chip THE ANSWER: \"$1,000 / 0.6\" writes in big on \"point six\".",
+   "text": "Room: blackboard. A split-flap board, THE ANSWER: COST $1,000 flips in on the cut; DIVIDE 0.6 flips on \"Divide\" and lands on \"point six\".",
    "t": 3.56,
    "word": 10,
    "end": 8.993
@@ -50,7 +51,7 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "\"= $1,666.67\" lands whole under it with sparks.",
+   "text": "\"= $1,666.67\" flips in gold, and $1,666.67 slams at 132 px in the strip under the board.",
    "t": 5.0,
    "word": 15,
    "end": 6.8
@@ -62,7 +63,7 @@
    "sfx": "stamp",
    "shift": 0.0,
    "pin": null,
-   "text": "\"40% margin\" slams in under it in the accent. The card holds big into the next take (4 s or more on screen).",
+   "text": "MARGIN 40% flips in gold. The board holds to 9.0 s (5.4 s on screen).",
    "t": 6.8,
    "word": 18,
    "end": 8.993
@@ -74,7 +75,7 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "Room: garage. The register. Header: THE USUAL WAY. COST $1,000 rings up; MARKUP 50% +$500 rings on \"fifty\".",
+   "text": "Room: garage. The register. Header: THE USUAL WAY. COST $1,000 rings up; MARKUP 50% +$500 rings on \"fifty\"; line \"Markup: +$500\".",
    "t": 8.993,
    "word": 23,
    "end": 18.717
@@ -110,7 +111,7 @@
    "sfx": "stamp",
    "shift": 0.0,
    "pin": null,
-   "text": "The display splits the price into thirds, the markup third in orange, \"1/3\": line \"$500 = 1/3 of the price\".",
+   "text": "The display splits the price into thirds, the markup third in orange, \"1/3\": line \"$500 = 1/3\".",
    "t": 15.333,
    "word": 41,
    "end": 18.717
@@ -170,7 +171,7 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "The formula card: Price = Cost over 1 - margin, big, held 3 s or more.",
+   "text": "The formula card, drawn on the cut: Price = Cost over 1 - margin, big, held 6.6 s.",
    "t": 26.617,
    "word": 74,
    "end": 28.637
@@ -230,7 +231,7 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "Room: framing. The register, its display asking \"?\". Rule card: \"$1,000 job?\" then \"Quote from the margin.\" / \"Not the markup.\"",
+   "text": "Room: framing. The register, its display asking \"?\". Rule card: \"$1,000 job?\" big and centred, then on \"quote\" \"Quote from / the margin.\" at 132 px and the display reads $1,666.67.",
    "t": 37.747,
    "word": 103,
    "end": 45.667
@@ -242,7 +243,7 @@
    "sfx": "sting",
    "shift": 0.0,
    "pin": null,
-   "text": "The rule underlined; Snow waves. Then the end card with the send line: \"Send this to whoever sets your prices.\"",
+   "text": "\"Not the markup.\" under it, underlined; Snow waves. Then the end card with the send line: \"Send this to whoever sets your prices.\"",
    "t": 41.787,
    "word": 117,
    "end": 45.667

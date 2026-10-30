@@ -2209,7 +2209,15 @@ def cmd_check(slug, mp4=None):
     import video_qa as Q
     mp4 = mp4 or vdir(slug, "05_render", f"{slug}.mp4")
     cues = json.load(open(vdir(slug, "03_cues", "cues.json")))
-    end_card = max(c["t"] for c in cues["cues"] if c["level"] == 0)
+    close_cue = max(c["t"] for c in cues["cues"] if c["level"] == 0)
+    # IMPROVE 00i (Oct 30): the frozen window runs to the end card (0.1 s after the last word, as player.js END_T), not
+    # the close cue, so the close room is checked too.
+    try:
+        ws = json.load(open(vdir(slug, "02_transcript", "words.json")))["words"]
+        end_card = round(ws[-1]["end"] + 0.1, 3) if ws else close_cue
+    except Exception:
+        end_card = close_cue
+    end_card = max(end_card, close_cue)
     checks = []
     lo, hi = length_band(slug)
     def c_len():

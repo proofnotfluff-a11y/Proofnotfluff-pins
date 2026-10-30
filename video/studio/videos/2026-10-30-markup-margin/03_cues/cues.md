@@ -1,6 +1,6 @@
 # Cues: Markup vs margin, payoff first (Lesson 3 in Lead Clinic v2, Run the Numbers, arcade; the payoff-first test)
 
-music: rooms
+music: rooms sunny
 
 ## hook "This job costs you" [sfx: pop]
 Three shots (IMPROVE 00a). Cover, frame one, host and dialog box hidden: the job site, the question on the sign "$1,000 JOB." / "What do you quote?", chip RUN THE NUMBERS, the source line "Example math. Sources: JLC, Xero". On "costs" cut in to the bench close-up: the question on a title plate up top, the cost plank big (COST $1,000) and an empty slot after it marked "?"; Snow and the dialog box come in; the tape runs out to the $1,000 mark on "thousand". On "What" cut to the third shot: the bench in shadow, "What do you / quote?" big on the plate (never back to the cover).

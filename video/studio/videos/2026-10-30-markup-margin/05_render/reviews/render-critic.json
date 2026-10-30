@@ -2,13 +2,17 @@
  "gate": "render-critic",
  "round": 0,
  "pass": true,
- "build": "309368c9",
+ "build": "a9eb0850",
+ "reviewer": "fresh opus agent",
  "score": {
   "faults": 0
  },
  "faults": [],
- "reviewer": "fresh opus agent",
  "reasons": [
-  "0 faults on build 309368c9 (hook, spoken numbers, layout, audio end, small text, flashes). Superseded: design r0's fixes changed the picture, so this gate reruns on the next build."
+  "Hook on screen at 0.0 s.",
+  "Every spoken number on screen at about its moment; 0.6 on the board by 4.5 s, $1,666.67 settled by 6.0 s, MARGIN 40% by 7.5 s.",
+  "Nothing hidden or cut off; content inside y 270 to 1250.",
+  "Last word 42.57 s, video runs to 45.67 s on the end card.",
+  "No small spoken-number text; no flashing."
  ]
 }

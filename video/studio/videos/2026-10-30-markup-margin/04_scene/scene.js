@@ -289,16 +289,32 @@ window.SCENE = {
     /* in on "point", the price lands whole on "sixteen", the margin slams in on "forty". It holds to the section's end. */
     answer: (k, T) => {
       const n = k.data.numbers, d = px(k), t0 = k.S('answer');
-      const tSix = wordT(k, 'answer', /^point/i, 0.6), tRes = wordT(k, 'answer.price', /^sixteen/i, 0.3), tForty = wordT(k, 'answer.margin', /^forty/i, 0.3);
+      const tRes = wordT(k, 'answer.price', /^sixteen/i, 0.3), tForty = wordT(k, 'answer.margin', /^forty/i, 0.3);
       /* the answer on a split-flap board, row by row on its words (design r0: its own world, never empty on the cut) */
-      k.sets.flaps({title: 'THE ANSWER', cols: 12, rows: [
+      const tDiv = wordT(k, 'answer', /^divide/i, 0.05);
+      const rows = [
         {label: 'COST', value: n.cost.shown, at: t0 + 0.05},
-        {label: 'DIVIDE BY', value: n.divisor.shown, at: tSix},
+        {label: 'DIVIDE', value: n.divisor.shown, at: tDiv},
         {label: '=', value: n.targetPrice.shown, at: tRes, hi: true},
-        {label: 'MARGIN', value: n.targetMarginPct.shown, at: tForty, hi: true}]});
+        {label: 'MARGIN', value: n.targetMarginPct.shown, at: tForty, hi: true}];
+      k.sets.flaps({title: 'THE ANSWER', cols: 12, rows});
+      /* golden r0 (a9eb0850): the board's hinge line cut the 6's middle stroke, so 6 read as S or $. Once a letter has */
+      /* landed (14 frames covers every flip), redraw its cell whole, with the hinge only as notches at the cell edges. */
+      const cols = 12, cw = 22, chh = 32, h2 = chh / 2, x0 = Math.round(180 - (cols * cw) / 2);
+      rows.forEach((r, ri) => {
+        const y = 84 + 34 + ri * 38, str = (String(r.label).padEnd(Math.max(0, cols - String(r.value).length)) + r.value).slice(0, cols).toUpperCase();
+        for (let j = 0; j < cols; j++) {
+          if (T < r.at || d.fr(r.at + j * 0.035) < 14) continue;
+          const cx = x0 + j * cw, ch = str[j] || ' ', color = r.hi && j >= cols - String(r.value).length ? '#F2A541' : '#FFF7EA';
+          d.P(cx, y, cw - 2, chh, '#2B2033'); d.P(cx, y, cw - 2, 1, '#3D2E45'); d.P(cx, y + chh - 1, cw - 2, 1, INK);
+          if (ch !== ' ') d.tx(ch, cx + (cw - 2) / 2, y + 5, {size: 66, color, align: 'center'});
+          d.P(cx, y + h2, 2, 1, INK); d.P(cx + cw - 4, y + h2, 2, 1, INK);
+        }
+      });
       d.win(14, 282, 332, 42, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
-      if (T < tForty) k.text('Example math', 540, 884, {size: 30, color: SAND, align: 'center'});
-      else k.slam(`${n.targetMarginPct.shown} margin`, 540, 864, tForty, {size: 66, color: 'accent', align: 'center', from: 0.5, drop: INK});
+      /* design r1: the price is the hero, at 132 px in the strip from "sixteen"; the margin stays on the board's MARGIN row */
+      if (T < tRes) k.text('Example math', 540, 884, {size: 30, color: SAND, align: 'center'});
+      else k.slam(n.targetPrice.shown, 540, 852, tRes, {size: 132, color: 'accent', align: 'center', from: 0.5, drop: INK});
       if (T >= tRes) k.burst(780, 540, tRes + 0.4, {n: 18, r: 220});
       return host(k, k.live('answer') ? 'point' : null);
     },
@@ -401,12 +417,12 @@ window.SCENE = {
       const open = d.ease(t0 + 0.1, 8, 120);
       d.clip(0, 0, 360, 326, () => d.win(14, 198 + open, 332, 120, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#7A3442'}));
       if (open === 0) {
-        if (T < tQuote) k.slam(`${n.cost.shown} job?`, 72, 640, t0 + 0.3, {size: 132, color: CREAM, from: 0.4, drop: INK});
+        if (T < tQuote) k.slam(`${n.cost.shown} job?`, 540, 690, t0 + 0.3, {size: 132, color: CREAM, align: 'center', from: 0.4, drop: INK});
         else {
-          k.slam('Quote from', 72, 606, tQuote, {size: 132, color: CREAM, from: 0.4, drop: INK});
-          k.slam('the margin.', 72, 736, tQuote + 0.15, {size: 132, color: 'accent', from: 0.4, drop: INK});
+          k.slam('Quote from', 72, 590, tQuote, {size: 132, color: CREAM, from: 0.4, drop: INK});
+          k.slam('the margin.', 72, 716, tQuote + 0.15, {size: 132, color: 'accent', from: 0.4, drop: INK});
         }
-        if (T >= tNot) { k.slam('Not the markup.', 72, 878, tNot, {size: 66, color: GOLD, from: 0.4, drop: INK}); k.sweep(72, 950, k.measure('Not the markup.', {size: 66}), 6, tNot + 0.3, {color: 'accent'}); }
+        if (T >= tNot) { k.slam('Not the markup.', 72, 850, tNot, {size: 66, color: GOLD, from: 0.4, drop: INK}); k.sweep(72, 922, k.measure('Not the markup.', {size: 66}), 6, tNot + 0.3, {color: 'accent'}); }
       }
       return host(k, T >= tNot + 0.6 ? 'wave' : (k.live('button') ? 'point' : null));
     },

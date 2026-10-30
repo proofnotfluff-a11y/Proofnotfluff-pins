@@ -2,16 +2,19 @@
  "gate": "buyer",
  "round": 0,
  "pass": true,
+ "build": "a9eb0850",
+ "reviewer": "fresh opus agent",
  "score": {
   "stop": "yes",
   "send": "yes",
   "save": "yes",
-  "follow_or_link": "yes"
+  "follow_or_link": "no"
  },
- "reviewer": "fresh opus agent",
  "reasons": [
-  "Electrician at 9 pm: stops on '$1,000 job. What do you quote?' with the empty '?' box; would send to whoever writes estimates and save the formula and the $1,000 to $1,666.67 example; would follow (a series of real math).",
-  "Nothing hype, no pitch or urgency; trusts it (math checks out, sources named, labelled example math).",
-  "Optional: 'Divide it by point six' comes about 3 s before 'forty percent margin', so the why of 0.6 lands second; 'half the price is margin' takes a beat to link to the 50% markup; the spoken formula is hard by ear alone (it is on screen 26.6 to 31.0 s, which this gate cannot see); frame 0's bottom third is plain ground. None blocking."
+  "Stop yes: '$1,000 job. What do you quote?' over a COST $1,000 bar with an empty slot is a question an owner faces daily.",
+  "Send yes (to whoever marks up 50% and thinks it is half profit); save yes (the 0.6 divisor and the formula).",
+  "Follow or link no: the IG caption gives no reason to follow. Not changed in this cut: the caption pattern is shared with lesson 5 and the test changes one variable (payoff timing).",
+  "Nothing hype, urgent, salesy or robotic; math checks out; sources named on screen and in the caption.",
+  "Minor: 'Divide it by point six' lands about 3 s before the reason; 'Sounds like half the price is margin' unclear who thinks it. Kept: the test is the answer inside 8 s, and the next line explains it."
  ]
 }

@@ -8,11 +8,11 @@ Three shots (IMPROVE 00a). Cover, frame one, host and dialog box hidden: the job
 The empty price slot blinks "?"; Snow shrugs.
 
 ## answer "Divide it by point" [sfx: whoosh]
-Room: blackboard. A split-flap board, THE ANSWER: COST $1,000 flips in on the cut; DIVIDE BY 0.6 flips on "point six".
+Room: blackboard. A split-flap board, THE ANSWER: COST $1,000 flips in on the cut; DIVIDE 0.6 flips on "Divide" and lands on "point six".
 ## answer.price "About sixteen sixty-seven." [sfx: pop]
-"= $1,666.67" flips in gold.
+"= $1,666.67" flips in gold, and $1,666.67 slams at 132 px in the strip under the board.
 ## answer.margin "That's a forty percent" [sfx: stamp]
-MARGIN 40% flips in gold; "40% margin" slams under the board. The board holds to 9.0 s (5.4 s on screen).
+MARGIN 40% flips in gold. The board holds to 9.0 s (5.4 s on screen).
 
 ## usual "Mark it up fifty" [sfx: whoosh]
 Room: garage. The register. Header: THE USUAL WAY. COST $1,000 rings up; MARKUP 50% +$500 rings on "fifty"; line "Markup: +$500".
@@ -45,6 +45,6 @@ Source tag "Math: JLC" up top. Stamp DOUBLE YOUR COST; a second cost-sized block
 "= $2,000 quote" slams in.
 
 ## button "So when a job" [sfx: whoosh]
-Room: framing. The register, its display asking "?". Rule card: "$1,000 job?" big, then on "quote" "Quote from / the margin." at 132 px and the display reads $1,666.67.
+Room: framing. The register, its display asking "?". Rule card: "$1,000 job?" big and centred, then on "quote" "Quote from / the margin." at 132 px and the display reads $1,666.67.
 ## button.not "not the markup." [sfx: sting]
 "Not the markup." under it, underlined; Snow waves. Then the end card with the send line: "Send this to whoever sets your prices."

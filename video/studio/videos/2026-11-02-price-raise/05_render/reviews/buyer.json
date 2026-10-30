@@ -1,8 +1,8 @@
 {
  "gate": "buyer",
  "round": 0,
- "at": "2026-10-29T22:37:20-05:00",
- "build": "6c6be63b",
+ "at": "2026-10-30T00:12:16-05:00",
+ "build": "d05fc500",
  "pass": true,
  "score": {
   "stop": "yes",
@@ -11,10 +11,12 @@
   "follow_or_link": "yes"
  },
  "reasons": [
-  "what: most trades raised prices last year (inflation, labor, BLS wage data), with a three-line note to send customers before the next quote.",
-  "stop: yes. 0.8 s '83% of HVAC companies raised prices last year' with its source; 'Did you?' at 3.2 s.",
-  "send, save, follow: yes; link in bio: maybe, not a pitch.",
-  "trust: yes; every number sourced, the source's bias and limit said.",
-  "minor: 6.3 s 'That's from Jobber's survey' can read as the note; two 'So' openers at 28.4 and 32.5 s; 40.6 s quote end runs into the next line; 'and don't wait' (67.1 s) is soft urgency."
+  "Assumptions I checked rather than took on trust: (a) the viewer is an HVAC owner, since the example trade on the first frame is HVAC; (b) the viewer sees only the transcript, instagram.caption and frame-0.8s.png; (c) the spoken numbers match 01_voice/facts.json. Jobber 83% HVAC, 74% plumbing, electrical and roofing, 65% of all owners, 72% inflation, 50% labor, survey of 1,050 owners in Dec 2025. BLS ECI installation, maintenance and repair 3.7% against 3.2% for all civilian workers, 12 months to June 2026. They match, and 'Most trades raised' holds because every trade on the page is at 55% or more; (d) the first frame as rendered says what the transcript says. It shows '83% of HVAC companies raised prices last year. Jobber, 1,050 home service owners, Dec 2025', and the bubble starts 'Most trades'.",
+  "1. What it tells me: most trades, 83% of HVAC shops among them, raised prices last year because of inflation and labor, so I should send customers a 3-line note before my next quote and never reprice a job they already approved.",
+  "2. Stop in 3 s: yes. A big '83% of HVAC companies raised prices last year' with a named source, plus the spoken 'Did you?', hits an HVAC owner who hasn't raised prices directly and makes them feel left behind. The promise 'Here's the note that tells your customers' arrives by 4.1 s and gives a reason to stay.",
+  "3. Send: yes, to the office manager or whoever writes quotes. The video tells me to, and the note is ready to use. Save: yes, the three lines are a template I'd copy word for word, and the caption prints them with a [date] slot. Follow: yes, 'Pricing Clinic, Lesson 6' says it's a series, and this one respected my time and cited sources. Link in bio: probably not. 'Free tools for trade owners' is too vague to make me tap.",
+  "4. Hype, fake urgency, pitch or slop: nothing that would make me scroll past or distrust it. 'Jobber sells software' and 'its survey doesn't show how customers took it, so watch your close rate' read as honest, and they raise trust. Two small flags, neither one blocking: (i) 01:06.4 'Send this to whoever writes your quotes, and don't wait.' 'Don't wait' is mild urgency with no reason given, and it pulls against the careful 'watch your close rate for a month after'. Fix: end on 'Send this to whoever writes your quotes.' (ii) 00:39.9 'Here's the part people skip.' is an unsourced generalization about other owners. Fix: 'Here's the line that matters.'",
+  "5. Unclear to a stranger: (i) On the first frame, the red 'SNOW' tag on the speech bubble, next to a sun icon labeled HVAC, can read as a weather or season label instead of the character's name. Not blocking, because the 83% card carries the frame. (ii) The voice says 'Starting the first of next month' while the caption uses 'Starting [date]'. That's fine, but the caption's version is the one to copy. (iii) 'Install and repair pay' drops 'maintenance' from the BLS row name. The caption gives the full row, so this is acceptable.",
+  "6. Trust: yes. Every number names its source and date, the screen shows the source under the stat, the claims match facts.json, the sponsor bias is disclosed, and the advice admits its limit (no data on how customers took it). Nothing in it is invented or oversold."
  ]
 }

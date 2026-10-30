@@ -1,26 +1,25 @@
 {
  "gate": "design",
- "round": 0,
- "at": "2026-10-29T22:40:04-05:00",
- "build": "6c6be63b",
- "pass": false,
+ "round": 1,
+ "at": "2026-10-30T00:12:16-05:00",
+ "build": "d05fc500",
+ "pass": true,
  "score": {
   "first": 5,
   "hierarchy": 4,
   "type": 4,
   "color": 5,
-  "spacing": 4,
-  "polish": 4,
+  "spacing": 5,
+  "polish": 5,
   "trust": 5,
-  "average": 4.43
+  "average": 4.71
  },
  "reasons": [
-  "33.0 to 44.3 s boss set: band y 780 to 1250 about 48% empty for 11 s while the note rows type; keep the dialog box up or move the note window down (round 1, not landed).",
-  "44.3 to 46.2 s speechOwn draws 'Here's the part people skip.' at size 39; draw it with the player's size 66 type.",
-  "Sources and chips at size 30 under the 36 px floor; raise to 36 (round 1, not landed).",
-  "17.2 to 32.5 s register display digits about 35 px; draw them 100 px or more in accent (round 1, not landed).",
-  "50.2 to 54.5 s boss never beaten; run the defeat on 'Never an approved one' (round 1, not landed).",
-  "64.0 to 67.6 s close note window 60 to 70% empty for 3.5 s; grow it or centre the block (round 1, not landed).",
-  "Landed: stray quote gone, spoken words size 66, end card 3 s, freshness PASS."
+  "0.0 to 32.5 s sources and chips (Jobber source line, 'Jobber survey, reasons named', 'BLS, 12 months to June 2026', cover PRICING CLINIC chip, SNOW name tag): still size 30 (scene.js lines 106, 205, 256, 260, 296, 350, 354; source 'D' cap 21 px at 0.0 s), under the 36 px label floor, so type is capped at 4. Draw them at 39, the next size the font has (round 0 ask, not landed).",
+  "7.0 to 16.5 s stakes: the 83% and 74% sit in the panel at size 132 (about 70 px caps, under the 160 px hero spec) while the right half of the map above is empty green. Slam the spoken number big in the map's open land, as on the cover (size 396), and keep the panel for the sentence and source.",
+  "Landed from round 0: register display digits about 100 px in accent (17.5 to 32 s); note window moved down into the band and typing the spoken words (34 to 43 s); 'Here's the part people skip.' at size 66 (44.3 to 46 s); boss broken on 'never' with PROMISE KEPT (52.0 to 54 s); close window grows line by line (63.4 to 70 s); plank wipe at 63.0 s with no black frame (luma 69 to 124, never near 0).",
+  "Caps checked: picture changes by 0.9 s (zoom), host on screen at 0.9 s, end card with proofnotfluff.com 71.0 to 74.0 s (3.0 s), spoken words size 66 throughout.",
+  "Freshness PASS: this lesson uses weather, register, boss and calendar; 2026-10-31-three-prices uses counter, scores, slots and 2026-11-01-same-visit-close uses street, levelup, dispatch. No shared set or signature move.",
+  "Not a design change, for the record: build d05fc5007ad9 sheets folder still holds stale stills from 03:35 and 04:39 builds beside the 05:06 ones; judged only the 05:06 set and frames pulled from the mp4."
  ]
 }

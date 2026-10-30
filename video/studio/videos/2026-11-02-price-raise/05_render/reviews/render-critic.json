@@ -1,20 +1,21 @@
 {
  "gate": "render-critic",
  "round": 0,
- "at": "2026-10-29T22:38:09-05:00",
- "build": "6c6be63b",
+ "at": "2026-10-30T00:12:16-05:00",
+ "build": "d05fc500",
  "pass": true,
  "score": {
   "faults": 0
  },
  "faults": [],
  "reasons": [
-  "Build: only the tune changed (quest); mp4 sha matches qa.json; 74.70 s video and audio.",
-  "Earlier fault (hook plate source line) still fixed.",
-  "Hook PASS: 83% and its source on screen from 0.0 s through the cuts.",
-  "Numbers PASS: 83%, 74%, 72%, half, +3.7%, 3.2 each on screen as said.",
-  "Layout PASS (one confetti dot crosses 'ROOF 74%' for one frame at 15.4 s, label readable).",
-  "Audio end PASS on the new tune: voice to 71.6 s, card sound, steady fade to silence at 74.7 s; -14.2 LUFS, -3.3 dBTP.",
-  "Text size and flash PASS."
+  "Assumptions checked: the mp4 is the build under review (sha 42e5cf5c matches qa.json; 1080x1920, 30 fps, video and audio both 74.00 s). The sheets and gates (dated Oct 30 05:06) come from this render. Word times in words.json line up with the render audio, so the words are read at those times. Reproducing build id d05fc5007ad9 from repo files was not possible.",
+  "Earlier round: render-critic.json round 0 listed 0 faults. Its build was 6c6be63b and its length 74.70 s. This build is 74.00 s and was rechecked from scratch.",
+  "Hook PASS: '83%' plus 'of HVAC companies raised prices last year' and the Jobber source line are on screen from 0.0 s. The cut-in at 0.8 s keeps the 83% card on screen through 3.0 s.",
+  "Numbers PASS: 83% shown when 'eighty-three' is said (8.9 s): big readout 9.0 s, HVAC 83% tag from 2.5 s. 74% at 15.3 to 16.4 s: ROOF 74% tag 15.5 s, big 74% 16.0 s. 72% at 18.2 s: readout 18.0 s. 'Half' at 20.5 s: 50% readout 20.5 s. 3.7% at 25.7 to 27.2 s: +3.7% 26.0 s. 'Three point two' at 29.3 to 30.0 s: receipt line 'ALL PAY +3.2%' from about 29.5 s, readable at full size (frame 30.2 s).",
+  "Layout PASS: in the settled frames no words or numbers are hidden or cut off. All content text sits between y 270 and y 1250 and left of x 930. The YOUR SHOP? tag clears the PRICING CLINIC tab, and the speech bubble ends at about x 928. Box frames that run past x 930 (the +3.7% sign at about x 942, the end card at about x 955) have their text inside 920. The close card covers calendar rows 13 to 26 by design. Those dates are decoration, are never spoken, and the cover is clean with no clipped digits. The host's hat touches the bottom edge of the price report card at about 9 to 16 s but covers no text. Short partial lines at 6.5 to 6.9 s are a type-on effect and finish by 7.0 s.",
+  "Audio end PASS: the last word 'reason.' ends at 70.9 s (words.json) and the speech level is already down by 70.7 s. The cut to the end card at 71.07 s comes after the word. After that, music and a card sound fade steadily to -51 dB at 73.9 s and to silence at 74.0 s. Nothing is cut mid-word.",
+  "Text size PASS: the smallest text (source lines, close card lines, 'Lessons for trade owners') is about 25 to 30 px tall at 1080 wide and readable on a phone.",
+  "Flash PASS: the big frame-to-frame brightness jumps are the cut at 0.8 s and single dip transitions at 2.6, 6.2, 17.0, 31.8, 54.0, 63.0 and 71.07 s. No spot has more than 3 flashes in one second."
  ]
 }

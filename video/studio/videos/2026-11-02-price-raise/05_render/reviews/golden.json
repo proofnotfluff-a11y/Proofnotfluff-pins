@@ -1,19 +1,22 @@
 {
  "gate": "golden",
- "round": 0,
- "at": "2026-10-29T22:40:04-05:00",
- "build": "6c6be63b",
- "pass": false,
+ "round": 1,
+ "at": "2026-10-30T00:12:16-05:00",
+ "build": "d05fc500",
+ "pass": true,
  "score": {
-  "post_as_is": "no"
+  "post_as_is": "yes"
  },
  "reasons": [
-  "must-fix 4.1 to 7.5 s voice: 'Here's the note that tells your customers.' then 'That's from Jobber's survey of home service owners.' reads as our own note credited to Jobber (facts.json note.source OURS; the note is tagged EXAMPLE only at 32.5 s). Re-voice take 2 to open 'Those numbers come from Jobber's survey of home service owners.'",
-  "polish 28.4 to 32.5 s: 'your crew's pay beat' applies the installation and repair row to every trade; two 'So' openers in a row.",
-  "polish 44.5 to 45.9 s: 'Here's the part people skip.' bubble renders smaller, then jumps to size 66 at 46.0 s.",
-  "polish 63.70 to 63.77 s: 2-frame black flash between caveat and close.",
-  "polish: boss and PROMISE stamp lean gimmicky; lower 35 to 40% empty floor; some dialog pages open mid-sentence.",
-  "polish: qa frozen check window label; YouTube tag misspelling 'rasie' (check if deliberate).",
-  "checks: every spoken number big on screen when said, matches facts.json and captions; first 3 s earn the stop."
+  "1. Round 0 must-fix is fixed (checked against build d05fc500, mp4 sha 42e5cf5c matching qa.json). Take 2 now says 'In a Jobber survey of home service owners, eighty-three percent of HVAC companies raised theirs.' (6.3 to 12.4 s, words.json and the frames line up). The source now goes with the numbers, not with the note, and the note is tagged YOUR PRICE NOTE (EXAMPLE) wherever it shows (32 to 53.5 s). Round 0's other points: the 63.70 s black flash is gone (luma steady from 62.8 to 64.0 s, clean cut into the close); 'Here's the part people skip' draws at the same size 66 type (44.2 s); the 'So your crew's pay beat' line is now 'That beat the three point two for all workers', and the double 'So' is gone.",
+  "2. What a trade owner gets: most trades raised prices last year (HVAC 83%; plumbing, electrical, roofing 74%), the reasons (inflation 72%, labor half), federal pay data (repair pay +3.7% vs all workers 3.2%), a 3-line note to send, the rule to keep approved quotes, an honest caveat, and a clear send line. Every spoken number shows on screen as it is said and matches facts.json and the captions: 83% big at 0.0 s with its source, 74% at 15.7 s, 72% and 50% on the till display, +3.7% on the display, 3.2 on the receipt and in the dialog. No contradictions. The facts gate's boss fix is in: SURPRISE BILL and PROMISE KEPT (52.5 to 53.7 s), so the screen makes no claim about how customers react.",
+  "3. First 3 s earn the stop (a big sourced 83% at frame 0, 'Most trades raised their prices last year. Did you?' with a YOUR SHOP? cloud). There is a clear reason to save it (the note) and to send it ('Send this to whoever writes your quotes', 66.5 s). It sounds like a person, the motion runs the whole way, and the source's bias and limits are said (56 to 62 s).",
+  "4. qa.json: all PASS. I re-ran freeze detection at the qa threshold (-70 dB, 1 s) on the whole file, end card included: 0 frozen stretches. The 'end card at 63.02 s' label is the close cue time, not the end card (71.0 s). The check passes, but the label still reads wrong (polish, carried over from round 0).",
+  "5. Post-time check, not a render fix: BLS puts out the September 2026 ECI today, Oct 30, at 8:30 am ET, before the Nov 2 post. The video's 'in the year to June' and the 'BLS, 12 months to June 2026' plate stay true as dated (I re-read the release page: June 2026 shows 3.7% and 3.2%). The posting run should still re-read the release, and hold the video if the new data has repair pay no longer beating all workers.",
+  "6. polish 16.97 to 17.03 s: 2 near-black frames in the grid dissolve between stakes and why; 6.3, 31.83 and 54.03 s have 1 each. They are part of the transition style and nobody will notice them on a phone.",
+  "7. polish 13.0 to 14.8 s: 'Plumbing, electrical, roofing' sits in gold under '83% of HVAC companies did.' until the 74% lands, which can read as 83% for those trades for about 1.5 s (facts gate non-blocking, still there).",
+  "8. polish 28.6 to 31.5 s: 'three point two' is only on the receipt row (ALL PAY +3.2%, about 28 px) and in the dialog; the big display stays on +3.7%.",
+  "9. polish 22.2 s: 'That's backed up by federal data' follows both reasons, but the BLS pay data only backs the labor reason. The plate 'Federal pay data' narrows it (facts gate non-blocking).",
+  "10. polish: take 2 runs at 150 wpm, under the 160 target; 4.0 to 5.9 s puts 'The note that tells your customers.' right under the big 83%, an odd pairing for a moment; the boss and PROMISE KEPT lean gamey but fit the series' arcade look; the lower 35% of the frame is empty floor (safe zone under the platform UI); the NEXT MONTH calendar (63 to 71 s) shows 30 days, while December, the month after the Nov 2 post, has 31 (its weekday, Tuesday the 1st, is right); YouTube tag 'how to rasie prices hvac' is misspelled (check that it is deliberate)."
  ]
 }

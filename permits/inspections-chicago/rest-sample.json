@@ -13,7 +13,7 @@
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-29T21:44:48+00:00",
+  "fetchedAt": "2026-10-30T03:23:12+00:00",
   "rowsUpdatedAt": "2026-10-29T09:08:12+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
@@ -37,8 +37,8 @@
    "school, day care, hospital, senior or mobile vendor": 54,
    "the City's latest result is out of business or not located": 3
   },
-  "rowsRead": 1256,
-  "historyRead": 762,
+  "rowsRead": 1201,
+  "historyRead": 738,
   "areas": [
    [
     "Loop",
@@ -141,15 +141,15 @@
     4
    ],
    [
+    "Douglas",
+    3
+   ],
+   [
     "Beverly",
     3
    ],
    [
     "West Englewood",
-    3
-   ],
-   [
-    "Douglas",
     3
    ],
    [
@@ -245,15 +245,15 @@
     1
    ],
    [
+    "New City",
+    1
+   ],
+   [
     "North Center",
     1
    ],
    [
     "Rogers Park",
-    1
-   ],
-   [
-    "New City",
     1
    ],
    [

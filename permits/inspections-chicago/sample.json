@@ -3,39 +3,35 @@
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
   "rowsUpdatedAt": "2026-10-29T09:08:12+00:00",
-  "fetchedAt": "2026-10-29T21:44:48+00:00",
+  "fetchedAt": "2026-10-30T03:23:12+00:00",
   "modified": "Filtered by ProofNotFluff: food inspections of the last 7 days at licensed food businesses (schools, day care, hospitals, senior meal sites and mobile vendors left out) that failed with pest violations, failed or passed with conditions with hood, grease or grease trap violations, had a license (pre-opening) inspection, or failed twice in 30 days. Violation notes are read only to set category labels; inspector notes are not republished. Business-level fields only.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
  "window": {
-  "from": "2026-10-22",
-  "to": "2026-10-29"
+  "from": "2026-10-23",
+  "to": "2026-10-30"
  },
  "counts": {
-  "fetched": 1256,
-  "kept": 49,
+  "fetched": 1201,
+  "kept": 32,
   "segments": {
-   "pests": 13,
-   "hoodGrease": 9,
-   "newOpening": 35,
-   "repeatFail": 4
+   "pests": 7,
+   "hoodGrease": 5,
+   "newOpening": 24,
+   "repeatFail": 2
   },
   "excluded": {
-   "institution or mobile vendor": 24,
-   "no lead segment (passed, or no buyer-relevant violation)": 74
+   "institution or mobile vendor": 16,
+   "no lead segment (passed, or no buyer-relevant violation)": 48
   },
-  "licensePlaces": 30,
+  "licensePlaces": 19,
   "areas": [
    [
-    "Lake View",
-    5
-   ],
-   [
-    "Loop",
+    "Near North Side",
     4
    ],
    [
-    "Near North Side",
+    "Lake View",
     4
    ],
    [
@@ -43,19 +39,15 @@
     3
    ],
    [
-    "Greater Grand Crossing",
-    3
-   ],
-   [
-    "O'Hare",
-    3
-   ],
-   [
-    "Gage Park",
+    "West Englewood",
     2
    ],
    [
-    "West Englewood",
+    "Greater Grand Crossing",
+    2
+   ],
+   [
+    "O'Hare",
     2
    ],
    [
@@ -65,6 +57,14 @@
    [
     "South Shore",
     2
+   ],
+   [
+    "Near West Side",
+    2
+   ],
+   [
+    "Chicago Lawn",
+    1
    ]
   ]
  },
@@ -163,46 +163,6 @@
      "Grease buildup",
      "Pests"
     ]
-   },
-   {
-    "business": "Subway",
-    "address": "5131 S Pulaski Rd",
-    "communityArea": "West Elsdon",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Canvass Re-Inspection",
-    "date": "2026-10-22",
-    "categories": [
-     "Pests"
-    ]
-   },
-   {
-    "business": "Macaroni Grill",
-    "address": "11601 W Touhy Ave",
-    "communityArea": "O'Hare",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Canvass Re-Inspection",
-    "date": "2026-10-22",
-    "categories": [
-     "Cleaning and sanitation",
-     "Grease buildup",
-     "Hood and ventilation",
-     "Pests"
-    ]
-   },
-   {
-    "business": "Lion's Beverage Depot",
-    "address": "6601 S Halsted",
-    "communityArea": "Englewood",
-    "facilityType": "Grocery Store",
-    "result": "Fail",
-    "inspectionType": "License",
-    "date": "2026-10-22",
-    "categories": [
-     "Cleaning and sanitation",
-     "Pests"
-    ]
    }
   ],
   "hoodGrease": [
@@ -277,61 +237,6 @@
      "Cleaning and sanitation",
      "Grease buildup",
      "Plumbing"
-    ]
-   },
-   {
-    "business": "Pie-Eyed Pizzeria",
-    "address": "1111 W Chicago Ave",
-    "communityArea": "West Town",
-    "facilityType": "Restaurant",
-    "result": "Pass w/ Conditions",
-    "inspectionType": "Canvass",
-    "date": "2026-10-22",
-    "categories": [
-     "Cleaning and sanitation",
-     "Hood and ventilation"
-    ]
-   },
-   {
-    "business": "Macaroni Grill",
-    "address": "11601 W Touhy Ave",
-    "communityArea": "O'Hare",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Canvass Re-Inspection",
-    "date": "2026-10-22",
-    "categories": [
-     "Cleaning and sanitation",
-     "Grease buildup",
-     "Hood and ventilation",
-     "Pests"
-    ]
-   },
-   {
-    "business": "73 ST Harolds Chicken",
-    "address": "7318 S Vincennes Ave",
-    "communityArea": "Greater Grand Crossing",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Complaint",
-    "date": "2026-10-22",
-    "categories": [
-     "Cleaning and sanitation",
-     "Grease buildup",
-     "Pests"
-    ]
-   },
-   {
-    "business": "5800 North Cafe",
-    "address": "5800-5802 N Milwaukee Ave",
-    "communityArea": "Norwood Park",
-    "facilityType": "Restaurant",
-    "result": "Pass w/ Conditions",
-    "inspectionType": "Canvass Re-Inspection",
-    "date": "2026-10-22",
-    "categories": [
-     "Cleaning and sanitation",
-     "Grease buildup"
     ]
    }
   ],
@@ -466,33 +371,6 @@
     "categories": [
      "Cleaning and sanitation",
      "Grease buildup",
-     "Pests"
-    ]
-   },
-   {
-    "business": "Subway",
-    "address": "5131 S Pulaski Rd",
-    "communityArea": "West Elsdon",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Canvass Re-Inspection",
-    "date": "2026-10-22",
-    "categories": [
-     "Pests"
-    ]
-   },
-   {
-    "business": "Macaroni Grill",
-    "address": "11601 W Touhy Ave",
-    "communityArea": "O'Hare",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Canvass Re-Inspection",
-    "date": "2026-10-22",
-    "categories": [
-     "Cleaning and sanitation",
-     "Grease buildup",
-     "Hood and ventilation",
      "Pests"
     ]
    }

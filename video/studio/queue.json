@@ -361,6 +361,26 @@
     "reason": "Held Oct 30 (Todd, 4:01 pm): too thin; rebuild from research/topics-2026-10-30.md or drop",
     "at": "2026-10-30T16:02:13-05:00"
    }
+  },
+  {
+   "slug": "2026-11-11-lsa-missed-calls",
+   "readyAt": "2026-10-31T08:04:24-05:00",
+   "commit": "879b7d444229644f813f3c1f26d0773d52da344f",
+   "fingerprints": {
+    "script": "c64774f7d680",
+    "takes": "8b82a30dc824",
+    "words": "9b014953c718",
+    "cues": "2348ef1babb7",
+    "scene": "3ef4479f4193",
+    "data": "f7e5976772b5",
+    "captions": "1ce286f48f64",
+    "mouth": "26b3b0862534",
+    "runtime_kit": "d12df837dc0a",
+    "runtime_player": "ac7bc278f293",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

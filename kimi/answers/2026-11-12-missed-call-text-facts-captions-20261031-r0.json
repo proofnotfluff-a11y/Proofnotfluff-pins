@@ -1,0 +1,32 @@
+{
+ "job": "2026-11-12-missed-call-text-facts-captions-20261031-r0",
+ "model": "k3.1-pro",
+ "at": "2026-10-31T15:17:33+00:00",
+ "status": "ok",
+ "kind": "facts-captions",
+ "slug": "2026-11-12-missed-call-text",
+ "sources": [
+  {
+   "url": "https://www.twilio.com/docs/glossary/what-sms-character-limit",
+   "read": true,
+   "chars": 5006
+  }
+ ],
+ "prompt_chars": 25001,
+ "usage": {
+  "input_tokens": 6855,
+  "cache_read_input_tokens": 0,
+  "output_tokens": 4084
+ },
+ "result": {
+  "pass": true,
+  "score": {
+   "numbers": 26,
+   "mismatches": 0
+  },
+  "reasons": [],
+  "unconfirmed": [
+   "https://proofnotfluff.com/missed-call-cost-calculator/: the claim that this live page works out what a missed call costs"
+  ]
+ }
+}

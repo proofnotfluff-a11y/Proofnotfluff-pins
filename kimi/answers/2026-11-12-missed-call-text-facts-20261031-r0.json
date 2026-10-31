@@ -1,0 +1,37 @@
+{
+ "job": "2026-11-12-missed-call-text-facts-20261031-r0",
+ "model": "k3.1-pro",
+ "at": "2026-10-31T15:16:11+00:00",
+ "status": "ok",
+ "kind": "facts",
+ "slug": "2026-11-12-missed-call-text",
+ "sources": [
+  {
+   "url": "https://www.twilio.com/docs/glossary/what-sms-character-limit",
+   "read": true,
+   "chars": 5006
+  }
+ ],
+ "prompt_chars": 20229,
+ "usage": {
+  "input_tokens": 5693,
+  "cache_read_input_tokens": 0,
+  "output_tokens": 2341
+ },
+ "result": {
+  "pass": false,
+  "score": {
+   "numbers": 8,
+   "mismatches": 1
+  },
+  "reasons": [
+   "01_voice/script.md and 02_transcript/transcript.md at 00:15.8: \"Nobody answers that\" is an absolute response claim that no source tests. Replace it with \"There is no question to answer.\"",
+   "01_voice/script.md and 02_transcript/transcript.md at 00:00.0 and 00:21.9: \"to book the job\" and \"one question that books it\" present booking as the text's result, but the source only documents SMS limits and billing. Use \"Your missed-call text gets a hundred sixty characters in one plain segment\" and \"Then one clear question, like what do you need fixed, and when works for you?\"",
+   "01_voice/script.md and 02_transcript/transcript.md at 00:36.8: as a general rule, \"Go past that and Twilio splits it in two and bills both\" is wrong for messages requiring three or more segments. The source says two or more. Replace it with \"Go past that and Twilio splits it into segments and bills each one.\" The screen's \"2 PIECES, 2 BILLS\" is accurate only for the labeled 102-character example."
+  ],
+  "sources_checked": [
+   "https://www.twilio.com/docs/glossary/what-sms-character-limit: Confirmed GSM-7 limits of 160 characters for one segment and 153 for multiple segments, UCS-2 limits of 70 and 67, the switch to UCS-2 for emoji or curly quotes, splitting into two or more messages, reassembly, and Twilio billing per segment. The pasted example also supports two segments for the 102-character text with one emoji."
+  ],
+  "unconfirmed": []
+ }
+}

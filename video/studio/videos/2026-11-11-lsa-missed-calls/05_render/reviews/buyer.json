@@ -1,13 +1,15 @@
 {
- "pass": true,
+ "pass": false,
  "score": {
-  "stop": "yes",
+  "stop": "no",
   "send": "yes",
   "save": "yes",
   "follow_or_link": "no"
  },
  "reasons": [
-  "the money stake waits until 4 s; 20 s rule lands late (35.7 s); 'in your hours' vague; 'since' in the 15-day line"
+  "Stop: no; the first 3 s never say Google, ads or that you pay for the miss; the stake lands at 11 s.",
+  "FIX frame-0.8s: put the stake on the plate (e.g. Google charges you for calls you miss) and make the two phones look different (Shop 1 charged, Shop 2 $0).",
+  "Other notes: story logic of shop two's 7 PM call, the trade-off of switching evening ads off, the SNOW tag, the vague link-in-bio line."
  ],
  "gate": "buyer",
  "round": 0,

@@ -4,7 +4,9 @@
   "post_as_is": "yes"
  },
  "reasons": [
-  "polish: stake later than the hook; EXAMPLE tag clipped by the source strip on frame 0; shop 2 lit at night before ADS OFF AT 5 PM; shop 1 black in the day scene; winner in red; bottom third empty"
+  "Polish: the hook could state the stake in the first 3 s (since applied: plate 'Google bills one shop.').",
+  "Polish: bottom third empty by design (safe zone); 9:14 clock in the text scene; three takes slightly under 160 wpm.",
+  "Numbers, sources, qa all check out."
  ],
  "gate": "golden",
  "round": 0,

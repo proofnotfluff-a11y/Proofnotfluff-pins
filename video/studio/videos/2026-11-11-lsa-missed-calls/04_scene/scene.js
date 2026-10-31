@@ -171,7 +171,7 @@ window.SCENE = {
       }
       if (T >= tIn) {
         const d = closeup(k, {barAt: tIn});
-        hookPlate(k, d, [`${n.callAt.shown}. Same call.`, 'Two shops.']);
+        hookPlate(k, d, [`Same ${n.callAt.shown} missed call.`, 'Google bills one shop.']);
         return host(k);
       }
       const d = street(k, {lit: [true, true], ring: [false, false]});
@@ -179,9 +179,11 @@ window.SCENE = {
       /* phone ringing in front of both shops, the call time on its screen                                              */
       k.ctx.save(); k.ctx.globalAlpha = 0.6; d.P(0, 150, 360, 267, '#120D14'); k.ctx.restore();
       phone(d, 146, 176, 68, 112, {ring: true, screen: '#3B82C4'});
+      d.P(30, 262, 60, 22, INK); d.P(31, 263, 58, 20, RED); d.tx('$ BILLED', 60, 266, {size: 30, color: CREAM, align: 'center'});
+      d.P(270, 262, 60, 22, INK); d.P(271, 263, 58, 20, '#2F6F67'); d.tx('$0', 300, 266, {size: 30, color: CREAM, align: 'center'});
       k.text(n.callAt.shown, 540, 642, {size: 66, color: CREAM, align: 'center', drop: INK});
       k.text('CALLING', 540, 720, {size: 39, color: '#BDE6F5', align: 'center'});
-      hookPlate(k, d, [`${n.callAt.shown}. Same call.`, 'Two shops.']);
+      hookPlate(k, d, [`Same ${n.callAt.shown} missed call.`, 'Google bills one shop.']);
       k.chip('EXAMPLE', 66, 1008, {size: 30});
       d.P(20, 358, 300, 20, INK); d.P(21, 359, 298, 18, '#1B1420');
       k.text('Rule: Google Local Services Help', 78, 1086, {size: 39, color: SAND});

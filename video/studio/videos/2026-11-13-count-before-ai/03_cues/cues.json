@@ -6,7 +6,7 @@
   "level": 0.16,
   "tune": "quest"
  },
- "duration": 48.742,
+ "duration": 49.944,
  "cues": [
   {
    "id": "hook",
@@ -59,14 +59,14 @@
   {
    "id": "step",
    "level": 0,
-   "quote": "For two weeks, mark",
+   "quote": "Tonight, scroll your call",
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "The calendar set, NOVEMBER: a red X lands on each day from 1 to 14 on \"mark every call\"; the gold week strip sits on week 1, then week 2. Line in the strip under it: \"Mark every missed call.\"",
+   "text": "The calendar set, NOVEMBER: a red X lands on each day from 1 to 14 on \"count every miss\"; the gold week strip sits on week 1, then week 2. Line in the strip under it: \"Count every missed call.\"",
    "t": 13.518,
    "word": 34,
-   "end": 22.432
+   "end": 23.634
   },
   {
    "id": "step.circle",
@@ -76,9 +76,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Four of the days take a gold coin, one by one (\"real jobs\"). The strip line turns to \"Circle the real jobs.\"",
-   "t": 17.258,
-   "word": 45,
-   "end": 19.938
+   "t": 18.398,
+   "word": 46,
+   "end": 21.058
   },
   {
    "id": "step.four",
@@ -88,9 +88,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"4 JOBS OF 14 CALLS\" lands in the strip, EXAMPLE tag.",
-   "t": 19.938,
-   "word": 53,
-   "end": 22.432
+   "t": 21.058,
+   "word": 54,
+   "end": 23.634
   },
   {
    "id": "board",
@@ -100,9 +100,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Our own chalk board, EXAMPLE: \"4 jobs x what you clear\" chalks on.",
-   "t": 22.432,
-   "word": 59,
-   "end": 32.391
+   "t": 23.634,
+   "word": 60,
+   "end": 33.593
   },
   {
    "id": "board.clear",
@@ -112,9 +112,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"$350\" lands in place of \"what you clear\": \"4 x $350\".",
-   "t": 25.772,
-   "word": 69,
-   "end": 27.252
+   "t": 26.974,
+   "word": 70,
+   "end": 28.454
   },
   {
    "id": "board.two",
@@ -124,9 +124,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"= $1,400\" hero size, \"in 2 weeks\" under it; held.",
-   "t": 27.252,
-   "word": 72,
-   "end": 30.012
+   "t": 28.454,
+   "word": 73,
+   "end": 31.214
   },
   {
    "id": "board.month",
@@ -136,9 +136,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "\"x 2: call it $2,800 a month\" chalks under it; the whole board held.",
-   "t": 30.012,
-   "word": 79,
-   "end": 32.391
+   "t": 31.214,
+   "word": 80,
+   "end": 33.593
   },
   {
    "id": "check",
@@ -148,9 +148,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A balance scale on the office desk: the left pan \"$2,800 / MO\" (missed jobs), the right pan the quote sheet \"QUOTE / MO\".",
-   "t": 32.391,
-   "word": 85,
-   "end": 39.491
+   "t": 33.593,
+   "word": 86,
+   "end": 40.693
   },
   {
    "id": "check.bigger",
@@ -160,9 +160,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The quote pan drops; red stamp \"NOT PAID BACK YET\".",
-   "t": 35.471,
-   "word": 96,
-   "end": 38.491
+   "t": 36.673,
+   "word": 97,
+   "end": 39.713
   },
   {
    "id": "check.smaller",
@@ -172,9 +172,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The pan swings up; teal \"TRY PART 2\".",
-   "t": 38.491,
-   "word": 105,
-   "end": 39.491
+   "t": 39.713,
+   "word": 106,
+   "end": 40.693
   },
   {
    "id": "next",
@@ -184,9 +184,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The inventory set, title \"PART 2\": three slots, TEXT BACK, A PERSON, AI; the cursor jumps slot to slot on \"three options side by side\".",
-   "t": 39.491,
-   "word": 106,
-   "end": 42.742
+   "t": 40.693,
+   "word": 110,
+   "end": 43.944
   },
   {
    "id": "button",
@@ -196,9 +196,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Back on the chalk board, a tally of 14 strokes chalked in the corner; the rule lands big: \"Count the\" / \"missed calls\" (gold) / \"before you buy.\", \"NEXT: PART 2\" under it. Snow waves. Then the end card with the send line: \"Send this to whoever signs the software bills.\"",
-   "t": 42.742,
-   "word": 114,
-   "end": 48.742
+   "t": 43.944,
+   "word": 118,
+   "end": 49.944
   }
  ]
 }

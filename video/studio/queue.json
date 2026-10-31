@@ -415,6 +415,26 @@
      "at": "2026-10-31T11:55:00-05:00"
     }
    }
+  },
+  {
+   "slug": "2026-11-13-count-before-ai",
+   "readyAt": "2026-10-31T18:06:56-05:00",
+   "commit": "ac2af8a73c083bb927a9e931f9f149d2ed90788a",
+   "fingerprints": {
+    "script": "65caee173681",
+    "takes": "59f0ca65dccc",
+    "words": "d95e6d6839e5",
+    "cues": "0d739e5e6306",
+    "scene": "f9ba2e7ce231",
+    "data": "1a07a8e8e988",
+    "captions": "a2bc1193f9c9",
+    "mouth": "92b2a0c167d5",
+    "runtime_kit": "d12df837dc0a",
+    "runtime_player": "34cc933b308e",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

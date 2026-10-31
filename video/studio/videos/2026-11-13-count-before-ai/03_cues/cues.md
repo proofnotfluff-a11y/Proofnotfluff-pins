@@ -2,7 +2,7 @@
 
 music: rooms quest
 
-## hook "Fourteen missed calls in" [sfx: pop]
+## hook "You missed fourteen calls" [sfx: pop]
 Three shots. Cover, frame one, host and dialog box hidden: the dispatch board, our service area with 14 red pins already down (the 14 missed calls), the hero "14" big in gold, plate "14 missed calls." / "Need an AI receptionist?", chip "PART 1 OF 2", EXAMPLE tag. By 0.8 s cut in close: a desk phone on the dash, its screen MISSED CALL with the red badge "14"; Snow and the dialog box come in. On "Need" cut to the third shot: a laptop on a desk, AI RECEPTIONIST on its screen with a talking wave; the plate stays up.
 
 ## usual "Part one of two," [sfx: whoosh]

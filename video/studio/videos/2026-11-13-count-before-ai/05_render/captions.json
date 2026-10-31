@@ -1,0 +1,63 @@
+{
+ "schema": "pnf.studio.captions.v1",
+ "keywords": {
+  "primary": "do you need an AI receptionist",
+  "secondary": [
+   "plumbing business owner",
+   "home service business"
+  ],
+  "trades": [
+   "plumbing",
+   "hvac",
+   "electrical"
+  ]
+ },
+ "instagram": {
+  "caption": "Thinking about an AI receptionist? Plumbing and HVAC owners, count missed calls first.\nOur worked example (labeled EXAMPLE, not a real shop): 14 missed calls in 2 weeks, 4 were real jobs, $350 cleared a job. 4 x $350 = $1,400 in 2 weeks, call it $2,800 a month.\n\n1. For 2 weeks, mark every missed call on a calendar.\n2. Circle the ones that were real jobs.\n3. Real jobs x what you clear on an average job.\n4. Hold that next to the monthly price on the quote. Price bigger? It can't pay for itself yet. Smaller? Part 2 tries 3 options side by side.\n\nSend this to whoever signs the software bills.\nFree tools for trade owners: link in bio.\n\n#homeservicebusiness #plumbingbusiness #hvacbusiness #missedcalls",
+  "settings": {
+   "aiLabel": false,
+   "shareToFacebook": false
+  }
+ },
+ "tiktok": {
+  "caption": "Need an AI receptionist for your plumbing business? Count missed calls first (part 1 of 2).\nOur worked example (labeled EXAMPLE, not a real shop): 14 missed calls in 2 weeks, 4 were real jobs, $350 cleared a job. 4 x $350 = $1,400 in 2 weeks, call it $2,800 a month.\nMark every missed call for 2 weeks, circle the real jobs, multiply by what you clear a job, then hold it next to the quote's monthly price.\nOwners: how many calls did you miss last week?\nSend this to whoever signs the software bills.\n#homeservicebusiness #plumbingbusiness #hvacbusiness #missedcalls",
+  "settings": {
+   "aiGenerated": true,
+   "commercialDisclosure": false,
+   "suggestKeywords": [
+    "ai receptionist for plumbing business",
+    "plumbing business owner",
+    "home service business"
+   ]
+  }
+ },
+ "facebook": {
+  "caption": "Before you buy an AI receptionist: trade business owners, count missed calls first.\nOur worked example (labeled EXAMPLE, not a real shop): 14 missed calls in 2 weeks, 4 were real jobs, $350 cleared a job. 4 x $350 = $1,400 in 2 weeks, call it $2,800 a month.\nFor 2 weeks, mark every missed call on a calendar and circle the real jobs. Multiply real jobs by what you clear on an average job, then hold that next to the monthly price on the quote. Price bigger? It can't pay for itself yet. Smaller? Part 2 tries 3 options side by side.\nSend this to whoever signs the software bills.\n#homeservicebusiness #plumbingbusiness",
+  "settings": {
+   "aiLabel": false,
+   "audience": "Public"
+  }
+ },
+ "youtube": {
+  "title": "AI Receptionist for Your Plumbing Business? Count Missed Calls First (Part 1 of 2)",
+  "description": "AI receptionist for a plumbing or HVAC business? Count your missed calls first. Part 1 of 2.\nThe numbers are our worked example, labeled EXAMPLE on screen, not a real shop or customer: 14 missed calls in 2 weeks; 4 were real jobs; $350 cleared a job. 4 x $350 = $1,400 in 2 weeks; call it $2,800 a month.\n\nSteps:\n1. For 2 weeks, mark every missed call on a calendar.\n2. Circle the ones that were real jobs.\n3. Multiply real jobs by what you clear on an average job.\n4. Hold that next to the monthly price on the quote. If the price is bigger, it can't pay for itself from missed calls yet.\n\nNext: part 2 tries 3 options side by side: a missed-call text-back, a person answering, and an AI receptionist.\nSend this to whoever signs the software bills.\nWhat a missed call costs your shop, free: https://proofnotfluff.com/missed-call-cost-calculator/\n#homeservicebusiness #plumbingbusiness #missedcalls",
+  "tags": [
+   "do you need an ai receptionist",
+   "ai receptionist for plumbers",
+   "plumbing business owner",
+   "hvac business tips",
+   "electrical business owner",
+   "home service business",
+   "contractor business tips",
+   "missed calls",
+   "ai receptionest"
+  ],
+  "settings": {
+   "madeForKids": false,
+   "aiUse": false,
+   "category": "Education",
+   "language": "English",
+   "visibility": "Public"
+  }
+ }
+}

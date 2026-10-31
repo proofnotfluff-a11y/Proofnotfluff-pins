@@ -4254,6 +4254,8 @@ def llms_txt(urls, live):
              "Chicago data pages for trade and small business owners. Every number on the site comes from a named public source "
              "(City of Chicago, City of Austin, Chicago 311, BLS, NOAA) and carries the date it was pulled.\n\n"
              "Contact: hello@proofnotfluff.com. Checkout is on Gumroad; small downloads are on Etsy.\n")
+    if FEED_LIVE:
+        head_ += f"\nData feed (JSON, every free dataset with its headline figure and CSV links, plus the lead lists and prices): {BASE}data-feed.json\n"
     out = [head_]
     for title, key in (("Lead lists (paid, weekly)", "lead"), ("Free Chicago data", "data"), ("Questions answered", "q"),
                        ("Free calculators", "calc"), ("Shop and policies", "site")):
@@ -4267,9 +4269,9 @@ def llms_txt(urls, live):
 
 # The free data feed (AI search plan item 4, Todd's pick Oct 29, 2026): one JSON file that lists every free Chicago data page
 # with its headline figure, source, schedule and CSV downloads, so an AI agent can read our numbers without scraping a page.
-# A new kind of output, so it is major (CONSTITUTION 2): False writes a preview to data/work/ (gitignored) only; set True
-# only after Todd's yes in a live chat, and the file then publishes at docs/data/feed.json.
-FEED_LIVE = False
+# A new kind of output, so it is major (CONSTITUTION 2). Live on Todd's yes in the task thread, Oct 31, 2026 ("Yes if it helps");
+# False would write a preview to data/work/ (gitignored) only. llms.txt names the feed while it is live.
+FEED_LIVE = True
 
 
 def data_feed(live, lastmod):
@@ -4315,8 +4317,8 @@ def write_data_feed(live, lastmod):
     if chr(0x2014) in txt or chr(0x2013) in txt:
         sys.exit("em or en dash in the data feed")
     if FEED_LIVE:
-        d = os.path.join(DOCS, "data"); os.makedirs(d, exist_ok=True)
-        open(os.path.join(d, "feed.json"), "w", encoding="utf-8").write(txt)
+        # at the site root, not docs/data/: .gitignore keeps every data/ folder out of the repo (named people live there)
+        open(os.path.join(DOCS, "data-feed.json"), "w", encoding="utf-8").write(txt)
     else:
         d = os.path.join(ROOT, "data", "work", "preview"); os.makedirs(d, exist_ok=True)
         open(os.path.join(d, "feed.json"), "w", encoding="utf-8").write(txt)

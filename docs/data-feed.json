@@ -1,0 +1,227 @@
+{
+ "schema": "pnf.feed.v1",
+ "publisher": "ProofNotFluff",
+ "site": "https://proofnotfluff.com/",
+ "contact": "hello@proofnotfluff.com",
+ "about": "Free Chicago data for trade and small business owners, from public records. Each headline figure is read from its page as built; pageUpdated is the day the page's data last changed. Free to use; credit ProofNotFluff and the source.",
+ "datasets": [
+  {
+   "name": "Chicago Rat Index",
+   "url": "https://proofnotfluff.com/chicago-rat-complaints/",
+   "source": "Chicago 311",
+   "schedule": "Updated every Monday",
+   "headline": {
+    "value": "1,072",
+    "label": "rat complaints to 311 in the last 7 days"
+   },
+   "pageUpdated": "2026-10-29",
+   "downloads": [
+    "https://proofnotfluff.com/chicago-rat-complaints/rat-index.csv"
+   ]
+  },
+  {
+   "name": "City Contracts by Trade",
+   "url": "https://proofnotfluff.com/chicago-city-contracts/",
+   "source": "City of Chicago",
+   "schedule": "Updated daily",
+   "headline": {
+    "value": "29",
+    "label": "City contracts in the 12 trades end in the next 12 months"
+   },
+   "pageUpdated": "2026-10-31",
+   "downloads": [
+    "https://proofnotfluff.com/chicago-city-contracts/janitorial/chicago-city-contracts-janitorial.csv",
+    "https://proofnotfluff.com/chicago-city-contracts/pest-control/chicago-city-contracts-pest-control.csv",
+    "https://proofnotfluff.com/chicago-city-contracts/landscaping/chicago-city-contracts-landscaping.csv",
+    "https://proofnotfluff.com/chicago-city-contracts/snow-removal/chicago-city-contracts-snow-removal.csv",
+    "https://proofnotfluff.com/chicago-city-contracts/roofing/chicago-city-contracts-roofing.csv",
+    "https://proofnotfluff.com/chicago-city-contracts/painting/chicago-city-contracts-painting.csv",
+    "https://proofnotfluff.com/chicago-city-contracts/hvac/chicago-city-contracts-hvac.csv",
+    "https://proofnotfluff.com/chicago-city-contracts/electrical/chicago-city-contracts-electrical.csv",
+    "https://proofnotfluff.com/chicago-city-contracts/plumbing/chicago-city-contracts-plumbing.csv",
+    "https://proofnotfluff.com/chicago-city-contracts/demolition/chicago-city-contracts-demolition.csv",
+    "https://proofnotfluff.com/chicago-city-contracts/hauling/chicago-city-contracts-hauling.csv",
+    "https://proofnotfluff.com/chicago-city-contracts/pressure-washing/chicago-city-contracts-pressure-washing.csv"
+   ]
+  },
+  {
+   "name": "Repair Demand by Trade",
+   "url": "https://proofnotfluff.com/chicago-repair-demand/",
+   "source": "City of Chicago",
+   "schedule": "Updated daily",
+   "headline": {
+    "value": "22,822",
+    "label": "repair violations cited, October 2025 to September 2026"
+   },
+   "pageUpdated": "2026-10-30",
+   "downloads": [
+    "https://proofnotfluff.com/chicago-repair-demand/chicago-repair-demand-by-area-month.csv"
+   ]
+  },
+  {
+   "name": "Basement Flooding Calls",
+   "url": "https://proofnotfluff.com/chicago-basement-flooding/",
+   "source": "Chicago 311",
+   "schedule": "Updated daily",
+   "headline": {
+    "value": "7,306",
+    "label": "water in basement calls, October 2025 to September 2026"
+   },
+   "pageUpdated": "2026-10-30",
+   "downloads": [
+    "https://proofnotfluff.com/chicago-basement-flooding/chicago-basement-flooding-by-area-month.csv",
+    "https://proofnotfluff.com/chicago-basement-flooding/chicago-basement-flooding-citywide-daily.csv"
+   ]
+  },
+  {
+   "name": "Dumpster Permits by Neighborhood",
+   "url": "https://proofnotfluff.com/chicago-dumpster-permits/",
+   "source": "CDOT",
+   "schedule": "Updated daily",
+   "headline": {
+    "value": "4,294",
+    "label": "dumpster permits in the last 90 days"
+   },
+   "pageUpdated": "2026-10-31",
+   "downloads": [
+    "https://proofnotfluff.com/chicago-dumpster-permits/chicago-dumpster-permits-by-community-area.csv"
+   ]
+  },
+  {
+   "name": "Material Price Changes",
+   "url": "https://proofnotfluff.com/material-price-changes/",
+   "source": "BLS",
+   "schedule": "Checked every weekday",
+   "headline": {
+    "value": "22 of 23",
+    "label": "materials up from a year ago"
+   },
+   "pageUpdated": "2026-10-27",
+   "downloads": [
+    "https://proofnotfluff.com/material-price-changes/material-price-indexes.csv"
+   ]
+  },
+  {
+   "name": "Public Way Permit Cost Calculator",
+   "url": "https://proofnotfluff.com/chicago-public-way-permit-costs/",
+   "source": "CDOT",
+   "schedule": "2026 fee schedule",
+   "headline": {
+    "value": "$50",
+    "label": "CDOT usage fee, Class A outside the CBD, 1 to 3 days, before the application fee"
+   },
+   "pageUpdated": "2026-10-27",
+   "downloads": []
+  },
+  {
+   "name": "What a Chicago Crew Costs",
+   "url": "https://proofnotfluff.com/chicago-crew-cost/",
+   "source": "BLS, City, County and State",
+   "schedule": "Checked every Tuesday",
+   "headline": {
+    "value": "$17.05",
+    "label": "Chicago minimum wage an hour from July 1, 2026, employers with 4 or more employees"
+   },
+   "pageUpdated": "2026-10-29",
+   "downloads": [
+    "https://proofnotfluff.com/chicago-crew-cost/chicago-metro-hourly-pay-by-trade-may-2025.csv",
+    "https://proofnotfluff.com/chicago-crew-cost/cook-county-prevailing-wage-2026-10-19.csv"
+   ]
+  },
+  {
+   "name": "Snow Season Board",
+   "url": "https://proofnotfluff.com/chicago-snow-season/",
+   "source": "NOAA",
+   "schedule": "Updated daily, Oct to Apr",
+   "headline": {
+    "value": "6",
+    "label": "plowable days in a middle winter at O'Hare, 2 inch trigger"
+   },
+   "pageUpdated": "2026-10-31",
+   "downloads": [
+    "https://proofnotfluff.com/chicago-snow-season/ohare-winters.csv",
+    "https://proofnotfluff.com/chicago-snow-season/midway-winters.csv"
+   ]
+  },
+  {
+   "name": "Permit Wait Times",
+   "url": "https://proofnotfluff.com/chicago-permit-wait-times/",
+   "source": "City of Chicago",
+   "schedule": "Updated every Monday",
+   "headline": {
+    "value": "6 days",
+    "label": "for half of Chicago building permits to be issued, last 12 months"
+   },
+   "pageUpdated": "2026-10-29",
+   "downloads": [
+    "https://proofnotfluff.com/chicago-permit-wait-times/chicago-permit-wait-times.csv"
+   ]
+  },
+  {
+   "name": "Trade License Finder",
+   "url": "https://proofnotfluff.com/chicago-trade-licenses/",
+   "source": "City, State and federal agencies",
+   "schedule": "Checked by hand",
+   "headline": {
+    "value": "$300 to $2,000",
+    "label": "a year for a City general contractor license, Class A to E"
+   },
+   "pageUpdated": "2026-10-27",
+   "downloads": []
+  },
+  {
+   "name": "Demolition Rodent Baiting",
+   "url": "https://proofnotfluff.com/chicago-demolition-rodent-baiting/",
+   "source": "City of Chicago",
+   "schedule": "Updated every Monday",
+   "headline": {
+    "value": "59",
+    "label": "wrecking and demolition permits in the last 30 days"
+   },
+   "pageUpdated": "2026-10-29",
+   "downloads": []
+  },
+  {
+   "name": "Chicago Trades News",
+   "url": "https://proofnotfluff.com/chicago-trades-news/",
+   "source": "Sources linked",
+   "schedule": "Updated daily",
+   "headline": {
+    "value": "3",
+    "label": "new items this week, each with its source"
+   },
+   "pageUpdated": "2026-10-29",
+   "downloads": []
+  }
+ ],
+ "leadLists": [
+  {
+   "name": "Chicago Construction Cleaning Leads",
+   "url": "https://proofnotfluff.com/chicago-construction-cleaning-leads/",
+   "priceUSDPerMonth": 29,
+   "freeTrialDays": 7,
+   "pageUpdated": "2026-10-29"
+  },
+  {
+   "name": "Austin Construction Cleaning Leads",
+   "url": "https://proofnotfluff.com/austin-construction-cleaning-leads/",
+   "priceUSDPerMonth": 29,
+   "freeTrialDays": 7,
+   "pageUpdated": "2026-10-29"
+  },
+  {
+   "name": "Chicago Restaurant Inspection Leads",
+   "url": "https://proofnotfluff.com/chicago-restaurant-inspection-leads/",
+   "priceUSDPerMonth": 39,
+   "freeTrialDays": 7,
+   "pageUpdated": "2026-10-30"
+  },
+  {
+   "name": "Chicago New Business Licenses",
+   "url": "https://proofnotfluff.com/chicago-new-business-licenses/",
+   "priceUSDPerMonth": 29,
+   "freeTrialDays": 7,
+   "pageUpdated": "2026-10-29"
+  }
+ ]
+}

@@ -1,0 +1,53 @@
+{
+ "slug": "2026-11-05-book-the-call",
+ "reads": [
+  {
+   "date": "2026-10-30",
+   "age": "about 34 h",
+   "readAt": "2026-10-31T01:18:31Z",
+   "platforms": {
+    "facebook": {
+     "avgPctWatched": 2,
+     "avgWatchS": 1,
+     "comments": 0,
+     "follows": 0,
+     "reactions": 0,
+     "shares": 0,
+     "threeSecViews": 3,
+     "viewers": 105,
+     "views": 110
+    },
+    "instagram": {
+     "avgWatchS": "hidden",
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 0,
+     "shares": 0,
+     "skipRate": "hidden",
+     "viewers": 11,
+     "views": 11
+    },
+    "tiktok": {
+     "avgWatchS": 4.67,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 85,
+     "watchedFullPct": 2.1
+    },
+    "youtube": {
+     "avgWatchS": "hidden",
+     "comments": "hidden",
+     "likes": "hidden",
+     "shares": "hidden",
+     "subscribers": "hidden",
+     "viewedVsSwipedPct": "hidden",
+     "views": 11
+    }
+   }
+  }
+ ]
+}

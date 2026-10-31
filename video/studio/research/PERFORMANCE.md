@@ -40,3 +40,5 @@ more for two weeks moves (log it here and in video/config.json slots).
 ## Diagnosis log
 | Lesson | Format | Slot | 72 h views (IG, TT, FB, YT) | Avg watch | Skip | Cause | Change made |
 |---|---|---|---|---|---|---|---|
+| 2026-11-05-book-the-call (early read, 34 h) | v1 long, 77.5 s | Oct 29 11:23 am (pre 3/day) | 11, 85, 110, 11 | TT 4.7 s (6%), FB 1 s (2%) | IG hidden | Rule 1 unreadable (skip hidden); rule 2 fires: the middle. An average under 5 s on a 77 s video means most leave inside the opening. | None yet: 72 h read due Nov 1; one post is noise (3-lesson rule). |
+| 2026-11-07-let-me-think (early read, 31 h) | v2, 42.5 s | Oct 29 1:43 pm (pre 3/day) | 103, 130, 11, 3 | TT 7.9 s (18%), FB 3 s (7%) | IG hidden | Rule 1 unreadable (skip hidden); rule 2 fires: the middle. The shorter v2 holds about 3x the share of the long cut on TikTok. | None yet: 72 h read due Nov 1; points toward the shorter v2 length. |

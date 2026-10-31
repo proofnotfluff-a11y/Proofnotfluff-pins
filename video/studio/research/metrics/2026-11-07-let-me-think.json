@@ -1,0 +1,53 @@
+{
+ "slug": "2026-11-07-let-me-think",
+ "reads": [
+  {
+   "date": "2026-10-30",
+   "age": "about 31 h",
+   "readAt": "2026-10-31T01:18:31Z",
+   "platforms": {
+    "facebook": {
+     "avgPctWatched": 7,
+     "avgWatchS": 3,
+     "comments": 0,
+     "follows": 0,
+     "reactions": 0,
+     "shares": 0,
+     "threeSecViews": 2,
+     "viewers": 11,
+     "views": 11
+    },
+    "instagram": {
+     "avgWatchS": "hidden",
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 0,
+     "shares": 0,
+     "skipRate": "hidden",
+     "viewers": 99,
+     "views": 103
+    },
+    "tiktok": {
+     "avgWatchS": 7.85,
+     "comments": 0,
+     "follows": 0,
+     "likes": 1,
+     "saves": 0,
+     "shares": 0,
+     "views": 130,
+     "watchedFullPct": 6.3
+    },
+    "youtube": {
+     "avgWatchS": "hidden",
+     "comments": "hidden",
+     "likes": "hidden",
+     "shares": "hidden",
+     "subscribers": "hidden",
+     "viewedVsSwipedPct": "hidden",
+     "views": 3
+    }
+   }
+  }
+ ]
+}

@@ -1,13 +1,13 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-11-lsa-missed-calls",
- "mp4Sha256": "ee10400f02947db21470ca26f6c917f2e9c4a23b299c8e23f61b8eb5b6631143",
+ "mp4Sha256": "36c64bd6bf9f00485ff7589de5ff21e36902095e0b4cdaaaaff9093301d24225",
  "checks": [
   {
    "name": "length",
-   "value": 49.2,
+   "value": 50.067,
    "pass": true,
-   "detail": "49.20 s (35.0 to 52.0, two-shops lesson, end card included)"
+   "detail": "50.07 s (35.0 to 52.0, two-shops lesson, end card included)"
   },
   {
    "name": "loudness",
@@ -28,21 +28,21 @@
    "name": "frozen",
    "value": [
     [
-     47.2,
-     49.0
+     49.0,
+     50.0
     ]
    ],
    "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 46.20 s"
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 47.07 s"
   },
   {
    "name": "file",
    "value": {
-    "sha256": "ee10400f02947db21470ca26f6c917f2e9c4a23b299c8e23f61b8eb5b6631143",
-    "bytes": 6141881
+    "sha256": "36c64bd6bf9f00485ff7589de5ff21e36902095e0b4cdaaaaff9093301d24225",
+    "bytes": 5396039
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 6.1 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 5.4 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -52,5 +52,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-30T22:09:02-05:00"
+ "at": "2026-10-30T22:45:02-05:00"
 }

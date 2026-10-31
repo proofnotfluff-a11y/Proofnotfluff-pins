@@ -116,7 +116,7 @@ const street = (k, o = {}) => {
     /* the sign in the window (hours) */
     if (o.signs && o.signs[i]) { const sg = o.signs[i], sw = Math.round(d.tw(sg.text)) + 12, sx = wx + 6, sy = wy + 8, dy = sg.at != null && d.fr(sg.at) < 4 ? [-8, -4, -1, 1][Math.max(0, d.fr(sg.at))] : 0;
       if (sg.at == null || d.T >= sg.at) { P(sx - 1, sy - 1 + dy, sw + 2, 20, INK); P(sx, sy + dy, sw, 18, sg.c || '#1B1420'); tx(sg.text, sx + 6, sy + 2 + dy, {color: sg.tc || GOLD}); } }
-    if (dim) dith(s.x, 151, s.w, 266, '#120D14');
+    if (dim) { k.ctx.save(); k.ctx.globalAlpha = 0.62; P(s.x, 151, s.w, 266, '#120D14'); k.ctx.restore(); }
   });
   /* the ring bars, inside each shop under its window (clear of the host's band) */
   (o.bars || []).forEach((b, i) => { if (b) ringBar(d, SHOPS[i].x + 14, 262, SHOPS[i].w - 28, b.at, b.dur, b); });
@@ -151,7 +151,7 @@ window.SCENE = {
   look: 'arcade',
   images: [],
   host_name: 'Snow',
-  hud: 'GOOGLE ADS 1',
+  hud: 'MISSED CALLS',
   sendLine: 'Send this to whoever pays for your Google ads.',
   transitions: {one: 'dissolve', text: 'levelselect', friday: 'dissolve', proof: 'levelselect', score: 'dissolve', button: 'gameover'},
   trauma: {'one.charged': 0.8},
@@ -177,7 +177,8 @@ window.SCENE = {
       const d = street(k, {lit: [true, true], ring: [true, true]});
       hookPlate(k, d, [`${n.callAt.shown}. Same call.`, 'Two shops.']);
       k.chip('EXAMPLE', 66, 846, {size: 30});
-      k.text('Rule: Google Local Services Help', 66, 906, {size: 30, color: SAND});
+      d.P(20, 296, 300, 20, INK); d.P(21, 297, 298, 18, '#1B1420');
+      k.text('Rule: Google Local Services Help', 78, 900, {size: 39, color: SAND});
       return {host: false, speech: false};
     },
 
@@ -187,9 +188,9 @@ window.SCENE = {
       const n = k.data.numbers, t0 = k.S('one'), tSign = wordT(k, 'one', /^till/i, 2.4), tWait = k.S('one.wait'), tVm = wordT(k, 'one.wait', /^voicemail/i, 1.2);
       const tCh = k.S('one.charged'), tPaid = k.S('one.paid'), tPhone = wordT(k, 'one.paid', /^ringing/i, 0.8);
       const d = street(k, {lit: [true, false], dim: [false, true], ring: [T >= t0 + 0.3 && T < tVm, false], screen: [T >= tVm ? '#7A3442' : null, null],
-        signs: [{text: `ADS ON TILL ${n.oneUntil.shown}`, at: tSign}, null], bars: [{at: tWait, dur: 1.3, to: 0.85}, null]});
+        signs: [{text: `OPEN + ADS TILL ${n.oneUntil.shown}`, at: tSign}, null], bars: [{at: tWait, dur: 1.3, to: 0.85}, null]});
       d.win(14, 84, 332, 62, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
-      const say = T >= tPaid ? ['You paid for a', 'ringing phone.', tPaid] : T >= tVm ? [`Caller waits ${n.secs.shown} s+`, 'into voicemail.', tVm] : T >= tWait ? ['The caller waits', 'it out...', tWait] : [`Shop 1, ${n.callAt.shown}:`, 'Google ads still on.', t0 + 0.1];
+      const say = T >= tPaid ? ['You paid for a', 'ringing phone.', tPaid] : T >= tVm ? [`Caller waits ${n.secs.shown} s+`, 'into voicemail.', tVm] : T >= tWait ? ['The caller waits', 'it out...', tWait] : [`Shop 1, ${n.callAt.shown}:`, 'open, ads still on.', t0 + 0.1];
       k.slam(say[0], 72, 262, say[2], {size: 66, color: CREAM, from: 0.4, drop: INK});
       k.slam(say[1], 72, 336, say[2] + 0.06, {size: 66, color: 'accent', from: 0.4, drop: INK});
       if (T >= tVm && T < tCh) { const sx = SHOPS[0].x + 12 + 75 + 14; d.P(sx - 16, 238 - 12, 50, 12, INK); d.tx('VOICEMAIL', sx + 9, 238 - 12, {size: 30, color: CREAM, align: 'center', lint: false}); }
@@ -220,8 +221,8 @@ window.SCENE = {
       const d = street(k, {lit: [false, !after5], dim: [true, false], ring: [false, after5 && T < tFree + 0.6],
         signs: [null, after5 ? {text: `ADS OFF AT ${n.twoUntil.shown}`, at: tFive} : {text: 'ADS: STAFFED', at: t0 + 0.2, tc: TEAL}]});
       d.win(14, 84, 332, 62, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
-      if (T < tFive) { k.slam('Ad schedule =', 72, 262, t0 + 0.1, {size: 66, color: CREAM, from: 0.4, drop: INK}); k.slam('hours a person answers', 72, 336, wordT(k, 'two', /^person/i, 1.6), {size: 66, color: TEAL, from: 0.4, drop: INK}); }
-      else { k.slam(`${n.callAt.shown} call, ads off:`, 72, 262, tFive, {size: 66, color: CREAM, from: 0.4, drop: INK}); if (T >= tFree) k.slam('costs nothing.', 72, 336, tFree, {size: 66, color: TEAL, from: 0.4, drop: INK}); }
+      if (T < tFive) { k.slam('Ad schedule =', 72, 262, t0 + 0.1, {size: 66, color: CREAM, from: 0.4, drop: INK}); k.slam('hours a person answers', 72, 336, t0 + 0.16, {size: 66, color: TEAL, from: 0.4, drop: INK}); }
+      else { k.slam(`${n.callAt.shown} call, ads off:`, 72, 262, tFive, {size: 66, color: CREAM, from: 0.4, drop: INK}); k.slam('costs nothing.', 72, 336, tFive + 0.06, {size: 66, color: TEAL, from: 0.4, drop: INK}); }
       if (T >= tFree) stampBox(k, 'NOT CHARGED', 700, 640, tFree, {color: TEAL});
       return host(k, k.live('two.free') ? 'point' : null);
     },
@@ -230,7 +231,7 @@ window.SCENE = {
     /* "follow-ups" the 15-day line lands in a gold box over the chat.                                                   */
     text: (k, T) => {
       const n = k.data.numbers, d = px(k), t0 = k.S('text'), tEvery = wordT(k, 'text', /^every/i, 0.6), tFol = k.S('text.follow');
-      k.sets.chat({who: 'Missed caller', clock: '7:02', notify: {text: 'Missed call', at: t0 + 0.05, dur: 1.2},
+      k.sets.chat({who: 'Missed caller', clock: '9:14', notify: {text: 'Missed call', at: t0 + 0.05, dur: 1.2},
         msgs: [{me: true, text: "Sorry I missed you. What's the job, and when works?", at: tEvery, read: tEvery + 1.6}]});
       d.P(10, 84, 80, 22, INK); d.P(11, 85, 78, 20, ORANGE); d.tx('EXAMPLE', 50, 88, {size: 30, color: INK, align: 'center'});
       if (T >= tFol) {
@@ -265,7 +266,7 @@ window.SCENE = {
       /* bezel marks the line instead, dropping in on "line" */
       { const at = Math.PI * 1.5; d.P(Math.round(cx + Math.cos(at) * (R - 32)) - 16, Math.round(cy + Math.sin(at) * (R - 32)) - 12, 32, 16, '#120D14'); }
       const tLine = wordT(k, 'proof', /^line/i, 1.4);
-      if (T >= tLine) { const f = d.fr(tLine), lift = f < 4 ? [-6, -3, -1, 1][f] : 0; for (let j = 0; j < 7; j++) d.P(cx - 6 + j, 101 + j + lift, 13 - 2 * j, 1, j ? ORANGE : GOLD); d.P(cx - 7, 100 + lift, 15, 1, INK); }
+      if (T >= tLine) { const f = d.fr(tLine), lift = f < 4 ? [-6, -3, -1, 1][f] : 0; for (let j = 0; j < 6; j++) d.P(cx - 5 + j, 128 + j + lift, 11 - 2 * j, 1, j ? ORANGE : GOLD); d.P(cx - 6, 127 + lift, 13, 1, INK); }
       return host(k, k.live('proof.twenty') ? 'point' : null);
     },
 
@@ -276,7 +277,10 @@ window.SCENE = {
       k.sets.versus({a: {name: 'SHOP 1', icon: 'phone', stats: [{label: 'CHARGED', value: n.oneCharged.value, max: 1, text: n.oneCharged.shown}]},
         b: {name: 'SHOP 2', icon: 'clock', stats: [{label: 'CHARGED', value: n.twoCharged.value, max: 1, text: n.twoCharged.shown}]},
         at: t0 - 0.05, vsAt: t0 + 0.35, winner: 'b', winAt: tVm, winText: 'WIN'});
-      if (T >= tVm) { plate(d, 98, 280, 248, 38); k.slam('Even voicemail counts.', 312, 870, tVm, {size: 39, color: GOLD, from: 0.4}); }
+      const tCnt = t0 + 0.8;
+      if (T >= tCnt) { k.slam(n.oneCharged.shown, 270, 726, tCnt, {size: 132, color: RED, align: 'center', from: 0.5, drop: INK}); k.slam(n.twoCharged.shown, 738, 726, tCnt + 0.15, {size: 132, color: TEAL, align: 'center', from: 0.5, drop: INK}); }
+      plate(d, 98, 280, 248, 38); k.slam('Even voicemail counts.', 312, 870, t0 + 0.2, {size: 39, color: GOLD, from: 0.4});
+      if (T >= tVm) k.sweep(312, 912, k.measure('Even voicemail counts.', {size: 39}), 6, tVm, {color: 'accent'});
       return host(k, k.live('score') ? 'point' : null);
     },
 
@@ -286,12 +290,12 @@ window.SCENE = {
       const n = k.data.numbers, t0 = k.S('button'), tRun = k.S('button.rule');
       const d = street(k, {lit: [false, false]});
       const up = d.ease(t0 + 0.05, 8, 160);
-      d.clip(0, 0, 360, 322, () => d.win(14, 84 + up, 332, 236, {base: '#1B1420', hi: '#7A3442', lo: INK, rule: ORANGE}));
+      d.clip(0, 0, 360, 322, () => d.win(14, 84 + up, 332, 192, {base: '#1B1420', hi: '#7A3442', lo: INK, rule: ORANGE}));
       if (up === 0) {
         k.text(`DO THIS WEEK (${n.steps.shown})`, 72, 270, {size: 39, color: GOLD});
         ['1 Ads: only hours you answer', '2 Missed rings: second phone', '3 Text back every missed call', '4 Fridays: Charge Status'].forEach((s, i) => {
-          if (T >= t0 + 0.2 + i * 0.25) k.slam(s, 72, 330 + i * 54, t0 + 0.2 + i * 0.25, {size: 39, color: CREAM, from: 0.3}); });
-        if (T >= tRun) { k.slam('Run ads only when', 72, 600, tRun, {size: 66, color: CREAM, from: 0.4, drop: INK}); k.slam('someone picks up.', 72, 680, tRun + 0.1, {size: 66, color: GOLD, from: 0.4, drop: INK}); k.sweep(72, 756, k.measure('someone picks up.', {size: 66}), 6, tRun + 0.4, {color: 'accent'}); }
+          if (T >= t0 + 0.2 + i * 0.25) k.slam(s, 72, 336 + i * 62, t0 + 0.2 + i * 0.25, {size: 39, color: CREAM, from: 0.3}); });
+        if (T >= tRun) { k.slam('Run ads only when', 72, 610, tRun, {size: 66, color: CREAM, from: 0.4, drop: INK}); k.slam('someone picks up.', 72, 690, tRun + 0.1, {size: 66, color: GOLD, from: 0.4, drop: INK}); k.sweep(72, 766, k.measure('someone picks up.', {size: 66}), 6, tRun + 0.4, {color: 'accent'}); }
       }
       return host(k, T >= tRun + 0.8 ? 'wave' : (k.live('button') ? 'point' : null));
     },

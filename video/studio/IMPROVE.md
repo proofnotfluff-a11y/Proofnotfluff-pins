@@ -11,15 +11,24 @@ The lab (Tue, Thu, Sat) ranks this list from its benchmark against _shared/style
 
 ## Backlog (most promising first)
 The bar first (Todd, Oct 31, 2026, 2:28 pm: "We need to set a higher standard... Keep driving improvements";
-_shared/standard.md). Until these four are done, every run ships the top one still open before anything below.
+_shared/standard.md; craft from lemo-opuscar, research/opuscar-2026-10-31.md). Until these are done, every run ships
+the top one still open before anything below.
 00a-1. M1 flat check in `anim.py check` (motion every 0.1 s; no 1.2 s stretch under 0.1). Done Oct 31 in a live chat:
    lsa-missed-calls, our best read, fails it once (14.0 to 15.2 s, a held line), so the bar is above our best.
-00a-2. C3 save card: a kit component for the copyable thing (text, setting path, checklist) on one clean card, held 3 s,
-   with a slow highlight sweep so it never reads flat (M1). lsa-missed-calls had 0 saves at 2.7 h.
+00a-2. C3 save card as a game "ITEM GET" window: the copyable thing (text, setting path, checklist) in a menu window that
+   slides in over 0.3 s (ease-out, whole pixels), a hand cursor bobbing 1 px at 4 fps down its lines (so it is never flat,
+   M1), a short item fanfare, held 3 s or more. lsa-missed-calls had 0 saves at 2.7 h.
 00a-3. M3 accent words: the beat's key word slams on screen 0.2 to 0.3 s before it is spoken, from words.json timing
    (replaces item 10 below).
-00a-4. M4 travel between rooms: a whip pan with a 3-frame smear and a zoom kick on verdict stamps, both in kit.js, each
-   at most once in 10 s (with item 2 below).
+00a-4. M4 pixel-native travel and hits: rooms change by mosaic cross or a 4-step palette fade (never an alpha fade), a
+   verdict stamp gets a 3-2-1 px screen shake over 8 frames, the camera pans in whole pixels with 2 to 3 parallax layers;
+   each hit at most once in 10 s (with item 2 below).
+00a-5. Read time lint: every on-screen text holds at least letters / 15 + 1.5 s after it finishes typing in, and the
+   dialog box at least 1.8 s and the spoken line + 0.6 s (`lint`, from words.json and scene text).
+00a-6. M5 host face: a 32x32 portrait in the dialog box with 4 expressions (calm, shock, lean-in, grin) switched on the
+   beat's key word; the street sprite keeps 1 eye pixel. Breath = shoulders up 1 px.
+00a-7. Sound grammar: two near-silences of 0.4 s or more before the turn and the answer, the first sound after each one
+   of the lesson's biggest; one J-cut (the next room's sound 0.3 s early) a lesson; text blips per speaker at low level.
 000. End card: the last 3 to 5 s show the ProofNotFluff lockup and proofnotfluff.com, music only (Jake Van Clief's
    voice-driven-animation end card; the buyer gate answered follow_or_link "no" on lessons 1 and 8).
 00s. Sound effects from earshot's code bank (Todd, live chat, Oct 31, 2026: "Let's include these skills", on a reel naming

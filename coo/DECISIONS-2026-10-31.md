@@ -24,3 +24,7 @@
 ## Keep fixing, design bar 4.5 after two fails (live chat, 4:19 pm)
 - [stated] 4:19 pm: "Why would it stop producing them when it fails twice? Please change the rule so it keeps going until the design is fixed. After two fails lower the threshold to 4.5"
 - Applied: CONSTITUTION 2 amendment line; video-studio SKILL step 5, stages/05_render/CONTEXT.md, prompts/README.md and prompts/design.md: fix rounds go on until every gate passes, design bar 4.50 (no score under 4) from the third round, unqueued lessons (count-before-ai, missed-call-text) are finished before a new one. Nothing posts until every gate passes.
+
+## lemo-opuscar (live chat, 4:28 pm)
+- [stated] 4:28 pm: "If this could help us step up our game, let's do it." (lemo-opuscar, a toolbox of film styles made in code)
+- Read at bebbbe1 (MIT). Adapted, not installed: its pixel RPG craft and director rules went into _shared/standard.md (M6 read time, M7 one native move) and IMPROVE "The bar first" 00a-2 and 00a-4 to 00a-7; notes in video/studio/research/opuscar-2026-10-31.md.

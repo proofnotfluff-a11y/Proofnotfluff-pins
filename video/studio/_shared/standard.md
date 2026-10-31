@@ -38,6 +38,9 @@ measures what code can (M1 now). A line a lesson misses is a FAIL with its numbe
 - M4 Physical motion: entrances overshoot and settle; a verdict gets a zoom kick or a short shake (at most once in
   10 s); room changes travel (a whip pan or a wipe that fits the room), never a plain cut to a new room.
 - M5 The host acts: mouth follows the voice, and he reacts on the big numbers (shock, lean-in, a point at the board).
+- M6 Time to read: every on-screen text holds letters / 15 + 1.5 s after it lands; never cut before a viewer can finish.
+- M7 One native move a lesson, a game moment only our world can do (ITEM GET, LEVEL UP, a stat screen, a boss HP bar
+  draining, a save file), placed at the turn. Craft source for M4 to M7: research/opuscar-2026-10-31.md.
 
 ## Sound
 - Every beat has a sound and none fight the voice (_shared/sound.md; IMPROVE 00s for the earshot bank).

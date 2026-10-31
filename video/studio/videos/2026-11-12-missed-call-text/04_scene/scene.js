@@ -168,8 +168,8 @@ window.SCENE = {
       /* the text bubble in the sky: the label, then the paragraph typing from the cut, done by "polite" */
       d.win(14, 84, 332, 150, {base: CREAM, hi: '#FFFFFF', lo: '#C9B79C', rule: '#3B82C4'});
       d.P(300, 234, 12, 8, '#C9B79C'); d.P(302, 234, 8, 6, CREAM);
-      k.text(`THE WORDS (PART ${n.part.shown} OF ${n.series.shown})`, 540, 276, {size: 39, color: INK, align: 'center'});
-      d.P(250, 212, 84, 18, ORANGE); k.text('EXAMPLE', 876, 640, {size: 30, color: INK, align: 'center', lint: false});
+      k.text(`THE WORDS (PART ${n.part.shown} OF ${n.series.shown})`, 624, 276, {size: 39, color: INK, align: 'center'});
+      d.P(24, 92, 84, 18, ORANGE); k.text('EXAMPLE', 198, 280, {size: 30, color: INK, align: 'center', lint: false});
       const lines = ['Thanks for calling,', 'we value your', 'business.'], all = lines.join(' ').length;
       const shown = Math.floor(clamp((T - (t0 + 0.3)) / Math.max(0.6, tPol + 0.8 - (t0 + 0.3))) * all); let used = 0;
       lines.forEach((s2, i2) => { const c = clamp(shown - used, 0, s2.length); used += s2.length + 1; if (c > 0) k.text(s2.slice(0, c), 96, 360 + i2 * 78, {size: 66, color: INK}); });
@@ -221,7 +221,7 @@ window.SCENE = {
       /* rows 2 and 3 drawn on the table's grid (y 174, 198) as they are said, red: the drop */
       [[tEm, 'EMOJI', 174], [tCu, 'CURLY', 198]].forEach(([ti, name, y]) => { if (T < ti) return; const sl = d.ease(ti, 5, 40);
         d.P(32, y - 4, 280, 21, '#3D2E45'); d.tx(name, 110 + sl, y, {color: RED}); d.tx(n.emoji.shown, 306 + sl, y, {color: RED, align: 'right'}); });
-      if (T >= tBill) { k.text("Sam's text plus an emoji:", 540, 600, {size: 39, color: CREAM, align: 'center'}); stampBox(k, `${n.segs.shown} PIECES, ${n.segs.shown} BILLS`, 540, 664, tBill, {color: RED, freeze: 4}); }
+      if (T >= tBill) { k.text("Sam's text plus an emoji:", 540, 636, {size: 39, color: CREAM, align: 'center'}); stampBox(k, `${n.segs.shown} PIECES, ${n.segs.shown} BILLS`, 540, 700, tBill, {color: RED, freeze: 4}); }
       else if (T >= tEm) k.slam(n.emoji.shown, 540, 640, tEm, {size: 198, color: RED, align: 'center', from: 0.5, drop: INK, glint: false});
       else if (T >= tPl) k.slam(n.plain.shown, 540, 640, tPl, {size: 198, color: GOLD, align: 'center', from: 0.5, drop: INK, glint: false});
       k.text('Source: Twilio docs,', 600, 846, {size: 39, color: SAND, align: 'center'});

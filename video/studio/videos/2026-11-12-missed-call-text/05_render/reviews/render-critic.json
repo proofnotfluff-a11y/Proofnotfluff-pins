@@ -2,14 +2,23 @@
   "gate": "render-critic",
   "round": 0,
   "reviewer": "claude (fresh render-critic agent)",
-  "pass": true,
-  "score": {"faults": 0},
-  "faults": [],
+  "pass": false,
+  "score": {"faults": 1},
+  "faults": [
+    {
+      "kind": "overlap",
+      "at": 18.0,
+      "text": "register screen total: 0, 29, 55, 102",
+      "scene": "parts",
+      "what": "From about 18.0s to 21.4s the top plate ('Three parts. Each one rings up.' / 'Who you are: name and trade.' / 'Sorry I missed your call.') sits over the top of the register's green screen, so the running total (0 at 18.0s, 29 at 19.0s, 55 at 20.0s, 102 at 21.0s) has its top rows of pixels hidden under the plate (checked full size at 18.3, 19.6 and 21.0s). The '102' also runs to about x 945, right of x 930. Move the register screen down or the number lower so the whole total shows below the plate."
+    }
+  ],
   "reasons": [
-    "Hook: plate 'Your missed-call text gets 160 characters.' and hero '160' on screen from 0.0s; '160' on the tape blade at 0.8s and 2.0s while '160' is said (1.30 to 2.00s).",
-    "Numbers: 'part one of three' (4.11 to 5.13s) shows 'THE WORDS (PART 1 OF 3)' on the clipboard from about 4.5s; 'Three parts' (17.67s) shows 'Three parts' in the TEXT KIT pane from 18.0s; '160' (30.05s) big on the scoreboard from 29.0s; '70' (33.99s) EMOJI row and big 70 from 32.5s; 'two' in 'splits it in two' (38.85s) shown as '2 PIECES, 2 BILLS' at 39.5s, on 'bills', within the same sentence; 'part two' (42.52s) 'NEXT: PART 2' from 41.0s; 'under 160' (45.78s) 'Under 160.' from 44.0s.",
-    "Layout: settled frames f00 to f18 and timeline 0 to 49.3s show no word or number hidden, cut off or under another element; text sits between y 270 and y 1250 and left of x 930 (scoreboard values end near x 915). The big 70 at 33 to 41s sits flush under the CURLY row with no overlap (checked at 2x crop). Dither wipes at 4.0, 17.5, 21.5, 27.5s are mid-transition and ignored.",
-    "Audio: last word '160.' ends 46.22s; video runs 49.33s; music fades from -15 dB at 45.5s to -41 dB at 49.0s; no word cut.",
-    "Small text and flash: smallest text (source line, clipboard header, end card send line) is about 28 to 32 px high, readable on a phone. Frame luminance shows one dark dip per scene change (4.1, 17.6, 21.9, 27.6, 41.0s), never more than 3 a second."
+    "Earlier round: the last render-critic.json (round 0 on the previous render) listed no faults, so nothing to confirm gone; this render has a new script line at 36.5s ('splits it and bills each piece') and was checked fresh.",
+    "Hook: plate 'Your missed-call text gets 160 characters.' and big '160' on screen from 0.0s; '160' on the tape blade at 1.0 to 2.5s while 'a hundred sixty' is said (1.53 to 2.00s).",
+    "Numbers: 'Part one of three' (4.11 to 5.07s) shows 'THE WORDS (PART 1 OF 3)' on the clipboard from about 4.5s and 'PART 1 OF 3' at 0.0s; 'Three parts' (17.52s) on the plate from 17.5s; '160' (30.12s) big on the scoreboard and PLAIN 160 row from 29.0s; 'seventy' (33.83s) EMOJI 70 row and big 70 from 32.5s; 'part two' (42.02s) 'NEXT: PART 2' from 40.5s; 'a hundred sixty' (45.48s) 'Under 160.' from 43.5s.",
+    "Layout: apart from the fault above, settled frames f00 to f18 and the timeline show no word or number hidden or cut off. Plates, scoreboard and bubbles sit between y 270 and y 1250; scoreboard scores end near x 915. 'Sam's text plus an emoji:' at 39.5 to 40.3s sits flush against the bottom of the CURLY row but is not covered (checked at 2x crop). Dither wipes at 4.0, 17.5, 21.5, 27.5, 40.5s are mid-transition and ignored.",
+    "Audio: last word 'sixty.' ends 45.88s; video runs 48.97s; audio RMS falls from about -16 dB at 45s to -50 dB at 48.8s; no word cut.",
+    "Small text and flash: smallest text (clipboard header, scoreboard source line, end card lines) is about 26 to 30 px high, readable on a phone. One dark wipe per scene change, never more than 3 flashes a second."
   ]
 }

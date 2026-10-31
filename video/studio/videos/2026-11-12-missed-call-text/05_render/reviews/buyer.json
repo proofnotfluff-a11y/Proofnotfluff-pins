@@ -5,13 +5,12 @@
   "pass": true,
   "score": {"stop": "yes", "send": "yes", "save": "yes", "follow_or_link": "yes"},
   "reasons": [
-    "1. What it says (as a plumber): my auto text back after a missed call should be one plain text under 160 characters, say who I am, say sorry, and ask one booking question, and an emoji or curly quote cuts the limit to 70 and gets me billed twice.",
-    "2. Stop: yes. Frame 0.8s puts '160 characters' big on a tape measure with 'Your missed-call text' over it, and the first spoken line ties it to booking the job. I miss calls on jobs every day, so it is about my money in under 3 seconds.",
-    "3. Send: yes, the caption says to send it to whoever answers the phones and that is exactly who sets this up. Save: yes, the caption holds a ready 102-character text I can copy. Follow: yes, 'part 1 of 3' with part 2 being how to turn it on gives me a reason to come back. Link in bio: weak yes, 'free tools for trade owners' is plain and not a pitch, but nothing in the video says what the tool is.",
-    "4. Hype or slop: none found. No urgency, no pitch, no made-up stats; it names Twilio's guide as the source, the voice reads like a person ('your gut says write a polite paragraph').",
-    "5. Unclear (minor, not blocking): line 00:41.0 'So count yours before part two turns it on' reads oddly to a stranger, 'it' could be the emoji; fix: 'So count yours now. Part two: how to turn it on.'",
-    "5. Unclear (minor, not blocking): line 00:36.8 'Twilio splits it in two and bills both' is only true just past the limit; a long text splits into more pieces. The caption already says 'pieces, each billed'; fix if re-voiced: 'splits it and bills each piece.'",
-    "5. Unclear (minor, not blocking): the speech bubble tag in frame 0.8s reads 'SNOW' while the caption's example says 'Sam the plumber'; a stranger may wonder who Snow is. Fix: no change needed if Snow is the recurring host, otherwise drop the tag.",
+    "1. What it says (as a plumber): my auto text after a missed call should say who I am, say sorry, and ask one question that books the job, and stay one plain text under 160 characters, because one emoji or curly quote drops the limit to 70 and Twilio then splits it and bills each piece.",
+    "2. Stop: yes. Frame 0.8s shows 'Your missed-call text gets 160 characters.' over a tape measure stopped at 160, and the first spoken line ties it to booking the job. A plumber who misses calls on every job sees his money in under 3 seconds.",
+    "3. Send: yes, the caption says send it to whoever answers your phones, and that person sets this up. Save: yes, the caption holds a ready 102-character example text to copy. Follow: yes, part 1 of 3 with part 2 being how to turn it on is a reason to come back. Link in bio: weak yes, 'free tools for trade owners' is plain, not a pitch, but nothing says which tool.",
+    "4. Hype or slop: none found. No urgency, no pitch, no invented stats; Twilio's guide is named as the source. The voice reads like a person ('Your gut says write a polite paragraph'). The 00:36.5 line now says 'splits it and bills each piece', which matches the caption and is accurate for long texts.",
+    "5. Unclear (minor, not blocking): 00:40.5 'So count yours before part two turns it on' still reads oddly to a stranger ('it' could be the emoji or the text). Fix if re-voiced: 'So count yours now. Part two: turning it on.'",
+    "5. Unclear (minor, not blocking): frame 0.8s tags the speaker 'SNOW' while the caption's example says 'Sam the plumber'. Fine if Snow is the recurring host; otherwise drop the tag.",
     "5. Minor: the voice never reads the full example text start to finish; it lives in the caption. Fine for saving, but a viewer who skips the caption only gets the three parts.",
     "6. Trust: yes. Specific, checkable numbers with a named source, a real example text with its count, and it asks nothing of me."
   ]

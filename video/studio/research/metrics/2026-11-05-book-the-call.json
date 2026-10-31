@@ -48,6 +48,25 @@
      "views": 11
     }
    }
+  },
+  {
+   "date": "2026-10-31",
+   "readAt": "2026-10-31T21:43:44Z",
+   "source": "list views only (end-of-day PC run)",
+   "platforms": {
+    "facebook": {
+     "views": 113
+    },
+    "instagram": {
+     "views": 14
+    },
+    "tiktok": {
+     "views": "hidden"
+    },
+    "youtube": {
+     "views": 10
+    }
+   }
   }
  ]
 }

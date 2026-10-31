@@ -27,6 +27,28 @@
      "vsTypicalAt2_5h": "ahead and still climbing; typical reel flattens near 100"
     }
    }
+  },
+  {
+   "date": "2026-10-31",
+   "readAt": "2026-10-31T21:43:44Z",
+   "source": "list views only (end-of-day PC run)",
+   "platforms": {
+    "facebook": {
+     "views": 6
+    },
+    "instagram": {
+     "views": 480
+    },
+    "tiktok": {
+     "comments": 0,
+     "likes": 2,
+     "views": 148
+    },
+    "youtube": {
+     "comments": 0,
+     "views": 1
+    }
+   }
   }
  ]
 }

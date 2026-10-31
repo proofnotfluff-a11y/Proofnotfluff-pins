@@ -8,6 +8,6 @@ Tonight, scroll your call log back two weeks and count every miss. Then circle t
 
 [matter-of-fact] Four jobs times what you clear on an average job. Say three fifty. That's fourteen hundred bucks in two weeks. Call it twenty-eight hundred a month.
 
-Now hold that next to the monthly price on the quote. Price is bigger? It can't pay for itself yet. Smaller? Then it might pay. Part two tries three options side by side.
+Now hold that next to the monthly price on the quote. Price is bigger? It can't pay for itself yet. Smaller? Now it might pay. Part two tries three options side by side.
 
 [confident] Count the missed calls before you buy what answers them.

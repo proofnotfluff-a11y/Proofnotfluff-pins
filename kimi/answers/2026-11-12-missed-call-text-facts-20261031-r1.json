@@ -1,0 +1,36 @@
+{
+ "job": "2026-11-12-missed-call-text-facts-20261031-r1",
+ "model": "k3.1-pro",
+ "at": "2026-10-31T15:48:15+00:00",
+ "status": "ok",
+ "kind": "facts",
+ "slug": "2026-11-12-missed-call-text",
+ "sources": [
+  {
+   "url": "https://www.twilio.com/docs/glossary/what-sms-character-limit",
+   "read": true,
+   "chars": 5006
+  }
+ ],
+ "prompt_chars": 20906,
+ "usage": {
+  "input_tokens": 5921,
+  "cache_read_input_tokens": 0,
+  "output_tokens": 3416
+ },
+ "result": {
+  "pass": false,
+  "score": {
+   "numbers": 11,
+   "mismatches": 0
+  },
+  "reasons": [
+   "01_voice/script.md and 02_transcript/transcript.md: \"one question that books it\" promises a booking result that the Twilio source does not test. Replace it with \"one question they can answer\" and keep the example question.",
+   "01_voice/brief.md: The lesson's main evidence is Twilio's general SMS documentation, not trade or home-services evidence as the trades-first rule requires. Add trade or home-services evidence for the central missed-call texting lesson, keeping Twilio as support for the technical SMS limits."
+  ],
+  "sources_checked": [
+   "https://www.twilio.com/docs/glossary/what-sms-character-limit: Confirmed GSM-7 single-segment limit 160, UCS-2 single-segment limit 70, multi-segment limits 153 and 67, the switch to UCS-2 for emoji and curly quotes, splitting past the applicable limit, reassembly, and Twilio billing per segment. The pasted example text and character counts also support 102 characters and two billed segments when an emoji is added."
+  ],
+  "unconfirmed": []
+ }
+}

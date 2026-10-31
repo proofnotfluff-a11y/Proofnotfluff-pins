@@ -1,128 +1,128 @@
 {
  "started_at": "2026-10-17T18:19:43Z",
- "cash": 0.0,
- "realized_pnl": -3.9296,
+ "cash": 5.1228,
+ "realized_pnl": -3.8068,
  "cohort": {
-  "picked_at": "2026-10-24T18:31:25Z",
+  "picked_at": "2026-10-31T18:42:11Z",
   "wallets": [
    {
     "user_id": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
     "user_name": "BreakTheBank",
-    "pnl": 8095761.618049075,
+    "pnl": 6987187.83006301,
     "rank": 1
    },
    {
     "user_id": "0xcdcccd0f2d86e450d973da415ad2430e5cc7935a",
     "user_name": "joseph00677",
-    "pnl": 6510251.92660286,
+    "pnl": 5614973.943886471,
     "rank": 2
    },
    {
     "user_id": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
     "user_name": "e46m3",
-    "pnl": 3507346.350630894,
+    "pnl": 4155742.538988267,
     "rank": 3
+   },
+   {
+    "user_id": "0xb0e74df9430a089aa102e2207af5fde1967439d2",
+    "user_name": "0xb0e74DF9430A089Aa102e2207Af5fde1967439D2-1789545517033",
+    "pnl": 2618832.6921967636,
+    "rank": 4
    },
    {
     "user_id": "0x7c37b52eb226bcb9411375ec48b0169663fb6aeb",
     "user_name": "Diabolical-Prize",
-    "pnl": 2851407.245134473,
-    "rank": 4
-   },
-   {
-    "user_id": "0x5268527977f700f9bf9b6d5cd843859e4e70135d",
-    "user_name": "HomeRunHazard",
-    "pnl": 2032949.1666690474,
+    "pnl": 2372836.552894997,
     "rank": 5
    },
    {
     "user_id": "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b",
     "user_name": "Papeasy",
-    "pnl": 1977243.8245929051,
+    "pnl": 2298675.214077701,
     "rank": 6
-   },
-   {
-    "user_id": "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d",
-    "user_name": "mooseborzoii",
-    "pnl": 1676717.9865802918,
-    "rank": 7
    },
    {
     "user_id": "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7",
     "user_name": "UpTheBlues",
-    "pnl": 1599892.0577560184,
+    "pnl": 1740630.2239743886,
+    "rank": 7
+   },
+   {
+    "user_id": "0xe9b710551dd82a44e79203c2394a2b10163ace7b",
+    "user_name": "googleplay",
+    "pnl": 1630193.571286002,
     "rank": 8
+   },
+   {
+    "user_id": "0x5268527977f700f9bf9b6d5cd843859e4e70135d",
+    "user_name": "HomeRunHazard",
+    "pnl": 1614020.999801259,
+    "rank": 9
    },
    {
     "user_id": "0x511f9c771449162349795d17becf8b37031acbe1",
     "user_name": "Bigggggggg",
-    "pnl": 1467555.9908563972,
-    "rank": 9
-   },
-   {
-    "user_id": "0xe6ca6ebbec97e8a46ff3dbdb2a99d46254fbbff4",
-    "user_name": "SmartPredictOrNot",
-    "pnl": 1433138.6521169997,
+    "pnl": 1374048.305480322,
     "rank": 10
-   },
-   {
-    "user_id": "0xb0e74df9430a089aa102e2207af5fde1967439d2",
-    "user_name": "0xb0e74DF9430A089Aa102e2207Af5fde1967439D2-1789545517033",
-    "pnl": 1429716.2985416206,
-    "rank": 11
    },
    {
     "user_id": "0x5a218c7ad04135830a45c41aaed7294df7809318",
     "user_name": "balthazar",
-    "pnl": 1105417.2756764733,
+    "pnl": 1328088.5808277186,
+    "rank": 11
+   },
+   {
+    "user_id": "0x03805a13a0b3e058f55f6c6af95389d4f431073d",
+    "user_name": "donthackme",
+    "pnl": 1150579.1215536715,
     "rank": 12
    },
    {
-    "user_id": "0x1387d145aaf01f6e33b66525dda6e1f51f6955f8",
-    "user_name": "Lucerys",
-    "pnl": 1011141.4063327941,
+    "user_id": "0x821dab0565ebf5b327f51db06223fdcfe01acf16",
+    "user_name": "Flaznorp",
+    "pnl": 1099350.2971577775,
     "rank": 13
    },
    {
-    "user_id": "0x361b16e3ddfe1d415d41008daac2631d94ab74fe",
-    "user_name": "RichieRicher",
-    "pnl": 1010859.4694063934,
+    "user_id": "0x7ad71d79a3bb90d0a87a06500fa0fe11663842aa",
+    "user_name": "theowalcott",
+    "pnl": 1055798.4784070388,
     "rank": 14
    },
    {
-    "user_id": "0x924379a79c64b77ad5816ad362122a5f6228658e",
-    "user_name": "Kch-Temp",
-    "pnl": 958010.3543065633,
+    "user_id": "0x67542c3219b37fd1610aad290676ff91cdbfe3bc",
+    "user_name": "gmpm2",
+    "pnl": 1053097.4484337003,
     "rank": 15
-   },
-   {
-    "user_id": "0x57a85952044f2c8e4d31b475aab6987d2f98ebc2",
-    "user_name": "Mooseborzoiii",
-    "pnl": 949700.6705412974,
-    "rank": 16
-   },
-   {
-    "user_id": "0x2b5920274740ca61745eeb077587bf5bb4ff9db6",
-    "user_name": "aHjCz",
-    "pnl": 865129.4167040687,
-    "rank": 17
-   },
-   {
-    "user_id": "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3",
-    "user_name": "0xBc43c8bfBC4d77c2FC9011adaD38Ba43b88996d3-1765231687816",
-    "pnl": 761098.3561895951,
-    "rank": 18
-   },
-   {
-    "user_id": "0x4868c31e81040e002b41984842b84bae8923a1c1",
-    "user_name": "alex20011",
-    "pnl": 757108.7306816609,
-    "rank": 19
    },
    {
     "user_id": "0x5fdd66ffd0325d4e8d1d86fbec50caa31770a747",
     "user_name": "juice-fruit",
-    "pnl": 737681.40135458,
+    "pnl": 1023031.636579,
+    "rank": 16
+   },
+   {
+    "user_id": "0x1387d145aaf01f6e33b66525dda6e1f51f6955f8",
+    "user_name": "Lucerys",
+    "pnl": 1006050.7429583395,
+    "rank": 17
+   },
+   {
+    "user_id": "0x96489abcb9f583d6835c8ef95ffc923d05a86825",
+    "user_name": "anoin123",
+    "pnl": 983658.7280110187,
+    "rank": 18
+   },
+   {
+    "user_id": "0xb0c85813a7a4428f1139ff91d3118a92c391fe7f",
+    "user_name": "qwen300.fund",
+    "pnl": 975639.2615775812,
+    "rank": 19
+   },
+   {
+    "user_id": "0x684baa57c338c2549aec0aa3f034f695d72a8409",
+    "user_name": "monkeymashingkeyboard",
+    "pnl": 974552.2745844751,
     "rank": 20
    }
   ]
@@ -144,16 +144,8 @@
    "name": "Diabolical-Prize",
    "since": "2026-10-17T18:19:43Z"
   },
-  "0x924379a79c64b77ad5816ad362122a5f6228658e": {
-   "name": "Kch-Temp",
-   "since": "2026-10-17T18:19:43Z"
-  },
   "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": {
    "name": "UpTheBlues",
-   "since": "2026-10-17T18:19:43Z"
-  },
-  "0x361b16e3ddfe1d415d41008daac2631d94ab74fe": {
-   "name": "0x361b16e3ddfe1d415d41008daac2631d94ab74fe",
    "since": "2026-10-17T18:19:43Z"
   },
   "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": {
@@ -164,10 +156,6 @@
    "name": "HomeRunHazard",
    "since": "2026-10-17T18:19:43Z"
   },
-  "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d": {
-   "name": "mooseborzoii",
-   "since": "2026-10-17T18:19:43Z"
-  },
   "0xb0e74df9430a089aa102e2207af5fde1967439d2": {
    "name": "0xb0e74DF9430A089Aa102e2207Af5fde1967439D2-1789545517033",
    "since": "2026-10-17T18:19:43Z"
@@ -176,17 +164,9 @@
    "name": "juice-fruit",
    "since": "2026-10-17T18:19:43Z"
   },
-  "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": {
-   "name": "0xBc43c8bfBC4d77c2FC9011adaD38Ba43b88996d3-1765231687816",
-   "since": "2026-10-17T18:19:43Z"
-  },
   "0x511f9c771449162349795d17becf8b37031acbe1": {
    "name": "Bigggggggg",
    "since": "2026-10-17T18:19:43Z"
-  },
-  "0xe6ca6ebbec97e8a46ff3dbdb2a99d46254fbbff4": {
-   "name": "SmartPredictOrNot",
-   "since": "2026-10-24T18:31:25Z"
   },
   "0x5a218c7ad04135830a45c41aaed7294df7809318": {
    "name": "balthazar",
@@ -196,46 +176,73 @@
    "name": "Lucerys",
    "since": "2026-10-24T18:31:25Z"
   },
-  "0x57a85952044f2c8e4d31b475aab6987d2f98ebc2": {
-   "name": "Mooseborzoiii",
-   "since": "2026-10-24T18:31:25Z"
+  "0xe9b710551dd82a44e79203c2394a2b10163ace7b": {
+   "name": "googleplay",
+   "since": "2026-10-31T18:42:11Z"
   },
-  "0x2b5920274740ca61745eeb077587bf5bb4ff9db6": {
-   "name": "aHjCz",
-   "since": "2026-10-24T18:31:25Z"
+  "0x03805a13a0b3e058f55f6c6af95389d4f431073d": {
+   "name": "donthackme",
+   "since": "2026-10-31T18:42:11Z"
   },
-  "0x4868c31e81040e002b41984842b84bae8923a1c1": {
-   "name": "alex20011",
-   "since": "2026-10-24T18:31:25Z"
+  "0x821dab0565ebf5b327f51db06223fdcfe01acf16": {
+   "name": "Flaznorp",
+   "since": "2026-10-31T18:42:11Z"
+  },
+  "0x7ad71d79a3bb90d0a87a06500fa0fe11663842aa": {
+   "name": "theowalcott",
+   "since": "2026-10-31T18:42:11Z"
+  },
+  "0x67542c3219b37fd1610aad290676ff91cdbfe3bc": {
+   "name": "gmpm2",
+   "since": "2026-10-31T18:42:11Z"
+  },
+  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": {
+   "name": "anoin123",
+   "since": "2026-10-31T18:42:11Z"
+  },
+  "0xb0c85813a7a4428f1139ff91d3118a92c391fe7f": {
+   "name": "qwen300.fund",
+   "since": "2026-10-31T18:42:11Z"
+  },
+  "0x684baa57c338c2549aec0aa3f034f695d72a8409": {
+   "name": "monkeymashingkeyboard",
+   "since": "2026-10-31T18:42:11Z"
   }
  },
  "last_seen": {
-  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1793450802,
+  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1793471956,
   "0xcdcccd0f2d86e450d973da415ad2430e5cc7935a": 1792857432,
   "0x4f1d5ae26fc31472966e951af3183308736d8de2": 1793384107,
   "0x7c37b52eb226bcb9411375ec48b0169663fb6aeb": 1792261183,
   "0x924379a79c64b77ad5816ad362122a5f6228658e": 1793448003,
   "0x63cf8544631c31e9fcea0b02141dd24d01d6e4d0": 1792261183,
-  "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": 1793450793,
+  "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": 1793472129,
   "0x361b16e3ddfe1d415d41008daac2631d94ab74fe": 1793450797,
-  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1793450782,
-  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1793450625,
+  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1793472048,
+  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1793472070,
   "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d": 1793286674,
   "0xb0e74df9430a089aa102e2207af5fde1967439d2": 1792261183,
   "0x5fdd66ffd0325d4e8d1d86fbec50caa31770a747": 1793287201,
   "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c": 1792845297,
   "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": 1793450530,
-  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1792845260,
+  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1793469340,
   "0xd38b71f3e8ed1af71983e5c309eac3dfa9b35029": 1792818993,
-  "0x511f9c771449162349795d17becf8b37031acbe1": 1793450632,
+  "0x511f9c771449162349795d17becf8b37031acbe1": 1793472109,
   "0x0f6f76ced62a911bccef92f50faaff143854d977": 1792575788,
   "0xa2cced8bfae7d645f7f437fb76becf2fcbb70cbc": 1792834263,
   "0xe6ca6ebbec97e8a46ff3dbdb2a99d46254fbbff4": 1792866685,
-  "0x5a218c7ad04135830a45c41aaed7294df7809318": 1793450692,
-  "0x1387d145aaf01f6e33b66525dda6e1f51f6955f8": 1793450557,
+  "0x5a218c7ad04135830a45c41aaed7294df7809318": 1793472096,
+  "0x1387d145aaf01f6e33b66525dda6e1f51f6955f8": 1793472097,
   "0x57a85952044f2c8e4d31b475aab6987d2f98ebc2": 1793447691,
   "0x2b5920274740ca61745eeb077587bf5bb4ff9db6": 1793450595,
-  "0x4868c31e81040e002b41984842b84bae8923a1c1": 1793446809
+  "0x4868c31e81040e002b41984842b84bae8923a1c1": 1793446809,
+  "0xe9b710551dd82a44e79203c2394a2b10163ace7b": 1793472131,
+  "0x03805a13a0b3e058f55f6c6af95389d4f431073d": 1793472131,
+  "0x821dab0565ebf5b327f51db06223fdcfe01acf16": 1793472131,
+  "0x7ad71d79a3bb90d0a87a06500fa0fe11663842aa": 1793472131,
+  "0x67542c3219b37fd1610aad290676ff91cdbfe3bc": 1793472131,
+  "0xb0c85813a7a4428f1139ff91d3118a92c391fe7f": 1793472131,
+  "0x684baa57c338c2549aec0aa3f034f695d72a8409": 1793472131
  },
  "positions": {
   "65139230827417363158752884968303867495725894165574887635816574090175320800482": {
@@ -265,8 +272,8 @@
    "shares": 6.7586,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.785,
-   "value": 5.3055
+   "last_price": 0.745,
+   "value": 5.0352
   },
   "38274379050640062523611849065721372699838119672720475300345842413156391540232": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -295,8 +302,8 @@
    "shares": 6.7586,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.805,
-   "value": 5.4407
+   "last_price": 0.84,
+   "value": 5.6772
   },
   "34211495561850364902657006812472964732267678973593165677831288791451957431998": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -310,8 +317,8 @@
    "shares": 5.1363,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.943,
-   "value": 4.8435
+   "last_price": 0.9265,
+   "value": 4.7588
   },
   "8818882580258325166337837102966293982190018467620490556947006190938951037006": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -325,8 +332,8 @@
    "shares": 5.1336,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.959,
-   "value": 4.9231
+   "last_price": 0.9525,
+   "value": 4.8898
   },
   "67556833911038516663762658580603672381492400838184408384897474335007438931935": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -340,8 +347,8 @@
    "shares": 12.3581,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.046,
-   "value": 0.5685
+   "last_price": 0.0005,
+   "value": 0.0062
   },
   "51971221506050097243705792157899572281015127216972300934938845878155423445294": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -355,23 +362,8 @@
    "shares": 5.9394,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9855,
-   "value": 5.8533
-  },
-  "5025646279751821747465277196511043885318485329317122457171454361662285580942": {
-   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
-   "condition_id": "0x64f712b42fa19413947e34fe085a4f45cfc4f4d9a0e08ea78434b3928717ef54",
-   "title": "Will Z.ai have the best Chinese AI model at the end of October 2026?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-18T13:40:02Z",
-   "leader_price": 0.949,
-   "entry_price": 0.9565,
-   "shares": 5.1228,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.997,
-   "value": 5.1074
+   "last_price": 1.0,
+   "value": 5.9394
   },
   "108767173380374027732080104990699635190337878673564806647896154227197681002646": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -385,8 +377,8 @@
    "shares": 5.3552,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9505,
-   "value": 5.0901
+   "last_price": 0.9095,
+   "value": 4.8706
   },
   "104332866126515956093450589750286954738111137415513428604932963328511192583801": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -415,8 +407,8 @@
    "shares": 8.0328,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.037,
-   "value": 0.2972
+   "last_price": 0.014,
+   "value": 0.1125
   },
   "48363336280603988612943937623657599900834676634371552666346986109028055383864": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -430,8 +422,8 @@
    "shares": 5.2973,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9925,
-   "value": 5.2576
+   "last_price": 0.9965,
+   "value": 5.2788
   },
   "39228840575449881837568889168840039857058636039550121318060583610152400585337": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -460,8 +452,8 @@
    "shares": 9.0741,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.455,
-   "value": 4.1287
+   "last_price": 0.47,
+   "value": 4.2648
   },
   "74897964775279535413258818950960058718976813244965274421640138167280313090417": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -490,8 +482,8 @@
    "shares": 17.8182,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.36,
-   "value": 6.4146
+   "last_price": 0.355,
+   "value": 6.3255
   },
   "10229340737584154978359500415623156606488248988978412976257532327635966656733": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -505,8 +497,8 @@
    "shares": 5.6322,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.885,
-   "value": 4.9845
+   "last_price": 0.89,
+   "value": 5.0127
   },
   "60186594918326728407185405226545526273084940240456698624096625852288751603361": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -520,8 +512,8 @@
    "shares": 12.6126,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.511,
-   "value": 6.445
+   "last_price": 0.494,
+   "value": 6.2306
   },
   "11128925845879348170706262358649886447119541463625558967934110995591843189690": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -565,8 +557,8 @@
    "shares": 5.1042,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.952,
-   "value": 4.8592
+   "last_price": 0.951,
+   "value": 4.8541
   },
   "86244383967682722276671267649138716350905219852788359298490648253439988317095": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -580,8 +572,8 @@
    "shares": 5.1309,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.93,
-   "value": 4.7717
+   "last_price": 0.925,
+   "value": 4.7461
   },
   "36239502843139056490017972775659052465829376116421868520754321803936920411142": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -610,8 +602,8 @@
    "shares": 6.0123,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.78,
-   "value": 4.6896
+   "last_price": 0.775,
+   "value": 4.6595
   },
   "54949287641954727970495527675829776321290963944233443017122215153125602528873": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -640,8 +632,8 @@
    "shares": 5.4204,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.8905,
-   "value": 4.8269
+   "last_price": 0.887,
+   "value": 4.8079
   },
   "44228841638106976312311756070964931486206207912533799720886034328840862003816": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -655,8 +647,8 @@
    "shares": 5.9036,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.865,
-   "value": 5.1066
+   "last_price": 0.855,
+   "value": 5.0476
   },
   "16732794503241344955211759129081935831471333136077396410104877315365094912870": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -670,8 +662,8 @@
    "shares": 16.3333,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.46,
-   "value": 7.5133
+   "last_price": 0.455,
+   "value": 7.4317
   },
   "35770751885924798388281446298756041002177848619471659098755120133048843736673": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -715,8 +707,8 @@
    "shares": 5.2128,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9745,
-   "value": 5.0799
+   "last_price": 0.975,
+   "value": 5.0825
   },
   "47942880964158617614279118228047750547985543191564455484169740327839925876869": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -730,8 +722,8 @@
    "shares": 21.7778,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.22,
-   "value": 4.7911
+   "last_price": 0.225,
+   "value": 4.9
   },
   "90689690530039118737607894922148077480097700217322320781526913496162509181445": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -790,8 +782,8 @@
    "shares": 31.123,
    "cost": 4.6208,
    "fee_in": 0.0924,
-   "last_price": 0.0985,
-   "value": 3.0656
+   "last_price": 0.0925,
+   "value": 2.8789
   },
   "92576281548134350814800877416860562553699794074017301653635964206220838638047": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -805,8 +797,8 @@
    "shares": 7.0504,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.785,
-   "value": 5.5346
+   "last_price": 0.745,
+   "value": 5.2525
   },
   "33156410999665902694791064431724433042010245771106314074312009703157423879038": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -2359,12 +2351,32 @@
    "fee_out": 0.0,
    "pnl": 4.3333,
    "reason": "resolved"
+  },
+  {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x64f712b42fa19413947e34fe085a4f45cfc4f4d9a0e08ea78434b3928717ef54",
+   "title": "Will Z.ai have the best Chinese AI model at the end of October 2026?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-18T13:40:02Z",
+   "leader_price": 0.949,
+   "entry_price": 0.9565,
+   "shares": 5.1228,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.997,
+   "value": 5.1074,
+   "closed_at": "2026-10-31T18:42:21Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 0.1228,
+   "reason": "resolved"
   }
  ],
  "signals": {
   "buy": 116,
   "sell": 6,
-  "skipped": 40320,
+  "skipped": 40905,
   "fallback_price": 0
  },
  "errors": 0

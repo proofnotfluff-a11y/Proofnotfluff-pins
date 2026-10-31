@@ -1,0 +1,77 @@
+{
+ "job": "2026-11-13-count-before-ai-captions-draft-20261031-r0",
+ "model": "k3.1-pro",
+ "at": "2026-10-31T18:15:04+00:00",
+ "status": "ok",
+ "kind": "captions-draft",
+ "slug": "2026-11-13-count-before-ai",
+ "sources": [],
+ "prompt_chars": 18388,
+ "usage": {
+  "input_tokens": 5450,
+  "cache_read_input_tokens": 0,
+  "output_tokens": 3624
+ },
+ "result": {
+  "schema": "pnf.studio.captions.v1",
+  "keywords": {
+   "primary": "AI receptionist for plumbing business owners",
+   "secondary": [
+    "HVAC business owner",
+    "home service business"
+   ],
+   "trades": [
+    "plumbing",
+    "hvac",
+    "electrical"
+   ]
+  },
+  "instagram": {
+   "caption": "AI receptionist for plumbing business owners: count missed calls first (part 1 of 2).\nOur worked example, labeled EXAMPLE: 14 missed calls in 2 weeks, 4 real jobs at $350 cleared each, $1,400 in 2 weeks, call it $2,800 a month.\n\n1. For 2 weeks, mark every missed call on a calendar.\n2. Circle the real jobs.\n3. Multiply real jobs by what you clear on an average job.\n4. Hold that monthly value next to the quote's monthly price. Bigger price: it can't pay for itself from missed calls yet. Smaller: part 2 tries 3 options side by side.\n\nSend this to whoever signs the software bills.\nFree tools for trade owners: link in bio.\n\n#homeservicebusiness #plumbingbusiness #hvacbusiness #missedcalls",
+   "settings": {
+    "aiLabel": false,
+    "shareToFacebook": false
+   }
+  },
+  "tiktok": {
+   "caption": "AI receptionist for plumbing business owners: count missed calls first (part 1 of 2).\nOur worked example, labeled EXAMPLE: 14 missed calls in 2 weeks, 4 real jobs at $350 cleared each, $1,400 in 2 weeks, call it $2,800 a month.\nMark every missed call for 2 weeks, circle the real jobs, then multiply by what you clear a job. Hold that monthly value next to the quote's monthly price.\nOwners: what monthly price is on the quote in your hand?\nSend this to whoever signs the software bills.\n#homeservicebusiness #plumbingbusiness #hvacbusiness #missedcalls",
+   "settings": {
+    "aiGenerated": true,
+    "commercialDisclosure": false,
+    "suggestKeywords": [
+     "AI receptionist for plumbing business owners",
+     "HVAC business owner",
+     "home service business"
+    ]
+   }
+  },
+  "facebook": {
+   "caption": "AI receptionist for plumbing business owners: count missed calls first (part 1 of 2).\nOur worked example, labeled EXAMPLE: 14 missed calls in 2 weeks, 4 real jobs at $350 cleared each, $1,400 in 2 weeks, call it $2,800 a month.\nFor 2 weeks, mark every missed call on a calendar and circle the real jobs. Multiply real jobs by what you clear on an average job, then hold that monthly value next to the quote's monthly price. Bigger price: it can't pay for itself from missed calls yet. Smaller: part 2 tries 3 options side by side.\nSend this to whoever signs the software bills.\n#homeservicebusiness #plumbingbusiness",
+   "settings": {
+    "aiLabel": false,
+    "audience": "Public"
+   }
+  },
+  "youtube": {
+   "title": "AI Receptionist for Plumbing Business Owners: Count Missed Calls First (Part 1 of 2)",
+   "description": "AI receptionist for plumbing, HVAC and electrical business owners: count missed calls first, part 1 of 2.\nSource: our worked example in 01_voice/facts.json, labeled EXAMPLE on screen and not a real shop or customer: 14 missed calls in 2 weeks; 4 were real jobs; $350 cleared a job. 4 x $350 = $1,400 in 2 weeks; call it $2,800 a month.\n\nSteps:\n1. For 2 weeks, mark every missed call on a calendar.\n2. Circle the ones that were real jobs.\n3. Multiply real jobs by what you clear on an average job.\n4. Hold that monthly value next to the monthly price on the quote. A bigger price can't pay for itself from missed calls yet.\n\nNext: part 2 tries 3 options side by side: a missed-call text-back, a person answering, and an AI receptionist.\nSend this to whoever signs the software bills.\nFree tools and Chicago data for trade owners: https://proofnotfluff.com/\n#homeservicebusiness #plumbingbusiness #missedcalls",
+   "tags": [
+    "ai receptionist for plumbing business owners",
+    "plumbing business owner",
+    "hvac business tips",
+    "electrical business owner",
+    "home service business",
+    "contractor business tips",
+    "count missed calls",
+    "ai receptionest"
+   ],
+   "settings": {
+    "madeForKids": false,
+    "aiUse": false,
+    "category": "Education",
+    "language": "English",
+    "visibility": "Public"
+   }
+  }
+ }
+}

@@ -1,13 +1,13 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-12-missed-call-text",
- "mp4Sha256": "392ca7382b427d21c508cf526d281787255f3b72c81371b92d90121324678a44",
+ "mp4Sha256": "7541f4386b111428d35d6833ff2c3f144a5ae0072b6342f94876afb0ad4bcef3",
  "checks": [
   {
    "name": "length",
-   "value": 49.333,
+   "value": 48.967,
    "pass": true,
-   "detail": "49.33 s (40.0 to 58.0, playbook lesson, end card included)"
+   "detail": "48.97 s (40.0 to 58.0, playbook lesson, end card included)"
   },
   {
    "name": "loudness",
@@ -28,18 +28,18 @@
    "name": "frozen",
    "value": [
     [
-     47.9,
-     49.0
+     47.2,
+     48.966667
     ]
    ],
    "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 46.32 s"
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 45.98 s"
   },
   {
    "name": "file",
    "value": {
-    "sha256": "392ca7382b427d21c508cf526d281787255f3b72c81371b92d90121324678a44",
-    "bytes": 5095583
+    "sha256": "7541f4386b111428d35d6833ff2c3f144a5ae0072b6342f94876afb0ad4bcef3",
+    "bytes": 5107935
    },
    "pass": true,
    "detail": "H.264 1080x1920 30 fps, AAC, 5.1 MB, decodes clean"
@@ -52,5 +52,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-31T10:22:56-05:00"
+ "at": "2026-10-31T10:43:17-05:00"
 }

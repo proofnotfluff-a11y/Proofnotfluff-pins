@@ -6,7 +6,7 @@
   "level": 0.16,
   "tune": "bounce"
  },
- "duration": 49.06,
+ "duration": 48.982,
  "cues": [
   {
    "id": "hook",
@@ -102,7 +102,7 @@
    "text": "The scores set, title CHARS PER TEXT: row PLAIN 160 lands on \"plain\". Source tag up top while it is said: \"Twilio docs: How long can a message be?\".",
    "t": 27.474,
    "word": 73,
-   "end": 40.62
+   "end": 40.542
   },
   {
    "id": "proof.emoji",
@@ -114,7 +114,7 @@
    "text": "Row EMOJI 70 lands in red; row CURLY \" 70 on \"Curly\".",
    "t": 31.914,
    "word": 84,
-   "end": 36.614
+   "end": 36.474
   },
   {
    "id": "proof.split",
@@ -124,9 +124,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Under the table: \"Sam's text plus an emoji:\" and \"2 PIECES, 2 BILLS\" stamps on \"piece\".",
-   "t": 36.614,
+   "t": 36.474,
    "word": 98,
-   "end": 40.62
+   "end": 40.542
   },
   {
    "id": "button",
@@ -136,9 +136,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Back on the workbench, the tape out to 160, the clean text's 102 marked on the blade in teal. Card: \"NEXT: PART 2, TURN IT ON.\"",
-   "t": 40.62,
+   "t": 40.542,
    "word": 109,
-   "end": 49.06
+   "end": 48.982
   },
   {
    "id": "button.rule",
@@ -148,9 +148,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The rule lands in gold: \"Keep it plain. Under 160.\" Snow waves. Then the end card with the send line: \"Send this to whoever answers your phones.\"",
-   "t": 43.62,
+   "t": 43.542,
    "word": 118,
-   "end": 49.06
+   "end": 48.982
   }
  ]
 }

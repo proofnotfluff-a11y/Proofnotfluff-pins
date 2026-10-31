@@ -205,3 +205,7 @@ Built in parallel on Todd's go (Oct 27, 12:17 pm, "Let's do them all"); rules in
 ## Kimi answers: kimi_wait.py
 
 `python3 tools/kimi_wait.py <job name> [<job name> ...] [--timeout 900] [--every 30]` waits for kimi/answers/<name>.json in one command (git fetch only, then one pull), prints `<name>: <status>` per job, exits 2 on timeout. Use it instead of pulling once per tool call (usage audit, Oct 30, 2026).
+
+## skill_scan.py: check a skill before it goes in (Oct 31, 2026)
+
+`python3 -I tools/skill_scan.py <folder>` reads every file of a skill, plugin or skill pack and never runs, imports or installs any of it. It flags hidden characters, instructions that switch off Claude's rules or hide things from Todd, data drop boxes, download-and-run lines, decoded code, key and password files, a script that reads keys and calls the network, symlinks, archives and bundled scripts, and lists every web address named. Exit 0 CLEAN, 1 CAUTION, 2 REJECT. It is the first step of `.claude/skills/skill-security-check/SKILL.md`, which still has you read every file. `selftest` plants each risk and checks it is caught. Tested Oct 31 on NVIDIA SkillSpector's own sample skills: its malicious examples came back REJECT, its safe one CLEAN.

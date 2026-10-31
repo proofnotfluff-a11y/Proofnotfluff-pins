@@ -1,0 +1,14 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "reviewer": "kimi k3.1-pro",
+ "kimi_job": "2026-11-13-count-before-ai-facts-20261031-r0",
+ "pass": true,
+ "score": {
+  "numbers": 11,
+  "mismatches": 0
+ },
+ "reasons": [],
+ "unconfirmed": [],
+ "note": "rerun as r1 on the design fix round's scene strings"
+}

@@ -1,0 +1,26 @@
+{
+ "gate": "design",
+ "round": 0,
+ "reviewer": "claude opus (fresh agent)",
+ "pass": false,
+ "score": {
+  "first": 4,
+  "hierarchy": 4,
+  "type": 4,
+  "color": 4,
+  "spacing": 4,
+  "polish": 4,
+  "trust": 5,
+  "average": 4.14
+ },
+ "reasons": [
+  "0.00 s cover: MISSED label on the mug and radio; hero 14 about 135 px (target 160); frames 0.0 and 0.5 the same: start a move before 0.7 s.",
+  "20.5 to 22.0 s step.four: REAL JOBS OF THE CALLS about 20 px into the calendar edge; 4 OF 14 to hero size.",
+  "32.5 to 39.5 s check: / MO about 28 px; the quote pan a blank box: a price tag with ? and a line saying which side wins.",
+  "40.0 to 42.4 s next: five empty slots, bare lower panel, low-contrast 'Next part' placeholder: fill with the three option names at 36 px or more.",
+  "3.0 to 10.0 s usual: right half empty until the quote card at 9.0 s: bring it in on 'Part one'.",
+  "10.0 s usual.worth: title panel blank for a frame.",
+  "1.0 to 2.9 s hook phone: 14 on the screen about 60 px: 120 px or more.",
+  "43.0 to 45.6 s button: NEXT: PART 2 about 30 px teal on green, low contrast: 36 px or more in gold or ink."
+ ]
+}

@@ -1,0 +1,17 @@
+{
+ "gate": "render-critic",
+ "round": 0,
+ "reviewer": "claude opus (fresh agent)",
+ "pass": true,
+ "score": {
+  "faults": 0
+ },
+ "faults": [],
+ "reasons": [
+  "Hook text and 14 on screen from 0.0 s.",
+  "Every spoken number on screen as said (14, part 1 of 2, two weeks, 4 of 14, $350, $1,400, $2,800, part 2, 3 options).",
+  "No hidden or cut-off words once settled; near misses: sparkles over DEMO 8.0 to 9.5 s, quote card text to about x 932.",
+  "Voice ends 45.64 s, end card from about 45.7 s, nothing cut.",
+  "Smallest text the end card send line, about 30 px, readable; no flash over 3 a second."
+ ]
+}

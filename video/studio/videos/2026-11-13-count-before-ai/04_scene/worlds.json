@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.worlds.v1",
  "share": {
-  "set:dispatch": 0.092,
+  "set:dispatch": 0.087,
   "set:calendar": 0.179,
   "set:inventory": 0.067
  }

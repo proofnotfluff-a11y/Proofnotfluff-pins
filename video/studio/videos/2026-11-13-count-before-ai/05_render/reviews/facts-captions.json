@@ -1,0 +1,17 @@
+{
+ "gate": "facts-captions",
+ "round": 0,
+ "reviewer": "kimi k3.1-pro",
+ "kimi_job": "2026-11-13-count-before-ai-facts-captions-20261031-r0",
+ "pass": false,
+ "score": {
+  "numbers": 52,
+  "mismatches": 1
+ },
+ "reasons": [
+  "facebook: line 1 says 'trade business owners' without naming the trades (captions.md). Fixed: 'Before you buy an AI receptionist: plumbing and HVAC owners, count missed calls first.'"
+ ],
+ "unconfirmed_checked": [
+  "https://proofnotfluff.com/missed-call-cost-calculator/: confirmed by Claude in the repo: docs/missed-call-cost-calculator/index.html exists and the URL is in docs/sitemap.xml"
+ ]
+}

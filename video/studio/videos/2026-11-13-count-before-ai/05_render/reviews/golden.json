@@ -1,0 +1,17 @@
+{
+ "gate": "golden",
+ "round": 0,
+ "reviewer": "claude opus (fresh agent)",
+ "pass": true,
+ "score": {
+  "post_as_is": "yes"
+ },
+ "reasons": [
+  "1. polish 10.0 s: title box empty about half a second before 'Worth how much?'.",
+  "2. polish 42.5 s: near-black gameover cut before the chalkboard close.",
+  "3. polish 0.0 to 4.0 s: take 01 reads 146 wpm on file length (spoken 9 words by 3.38 s).",
+  "4. polish: bottom third empty under the speech box.",
+  "5. polish captions: AI labels differ by platform (by design, POSTING.md: TikTok on, the rest off, Todd Oct 31); 'ai receptionest' is the deliberate misspelling tag (_shared/captions.md).",
+  "Numbers match facts.json and are on screen as said; qa all PASS; sounds like a person."
+ ]
+}

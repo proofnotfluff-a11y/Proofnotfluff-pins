@@ -1,0 +1,20 @@
+{
+ "gate": "buyer",
+ "round": 0,
+ "reviewer": "claude opus (fresh agent)",
+ "pass": true,
+ "score": {
+  "stop": "yes",
+  "send": "yes",
+  "save": "yes",
+  "follow_or_link": "yes"
+ },
+ "reasons": [
+  "1. Before signing for an AI receptionist, count two weeks of missed calls that were real jobs, multiply by what you clear, compare to the quote's monthly price.",
+  "2. Stop: yes, 14 missed calls and the AI pitch every owner gets.",
+  "3. Send yes (to whoever pays the software bills), save yes (the math to redo with my numbers), follow yes (part 2).",
+  "4. Nothing hype; one stiff line at 6.5 s ('Your gut says the demo sounded great, so sign.'): polish.",
+  "5. 'Smaller?' at 38.5 s leaves 'so do I buy it?' to part 2; '14 missed calls' has no time span until 13.5 s; SNOW name tag; empty bottom third: polish.",
+  "6. Trust: yes, the numbers are labeled EXAMPLE and the advice is count before you buy."
+ ]
+}

@@ -1,17 +1,17 @@
 # Transcript: 2026-11-12-missed-call-text
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 128 words, 46.0 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 128 words, 45.9 s of voice.
 
 ## Flags
-- 38.8 s heard 'builds' for 'bills'
+none
 
 ## Pace per take (target 160 to 195 wpm)
 ```
   01     0.0 s  190 wpm  
   02     4.1 s  156 wpm  
   03    17.5 s  168 wpm  
-  04    27.5 s  168 wpm  
-  05    40.6 s  194 wpm  
+  04    27.5 s  169 wpm  
+  05    40.5 s  194 wpm  
 ```
 
 ## Words
@@ -40,8 +40,8 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 128 words, 46.0 s of voice.
 
 `00:34.9` Curly quotes do it too.
 
-`00:36.6` Go past that and Twilio splits it and bills each piece.
+`00:36.5` Go past that and Twilio splits it and bills each piece.
 
-`00:40.6` So count yours before part two turns it on.
+`00:40.5` So count yours before part two turns it on.
 
-`00:43.6` Keep it plain, and keep it under a hundred sixty.
+`00:43.5` Keep it plain, and keep it under a hundred sixty.

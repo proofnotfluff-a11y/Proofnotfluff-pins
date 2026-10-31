@@ -10,3 +10,8 @@
 - Meta's help pages list "a reel narrated with a realistic AI-generated voiceover" as needing a label on Instagram and Facebook. Recommendation to Todd: turn "Add AI label" on for both. Waiting on his word.
 - [stated] 9:38 am: "Let's include these skills" (earshot, Real SFX, Openverse API). Vetted: earshot's sfx bank (MIT, 591fa3e, 252 code sounds, offline) and Real SFX's cue-to-motion check queued as video/studio/IMPROVE.md 00s; Openverse stays out (recordings, varying licenses). Research Wiki updated.
 - Reddit trade subreddits still refused this session; Kimi prompt given to Todd.
+
+## Mass-produced flag risk (live chat, 11:57 am)
+- [stated] 11:58 am: "Okay, but please ensure you put measures in place to mitigate those risks as much as possible." (after: same posting times are not what the platforms judge; the risks are sameness, volume and copies)
+- Applied (anim.py variety, run by lint and ready): no format twice in a posting day (last 4) or more than 2 of the last 8; no set piece from either of the two lessons before; caption and YouTube title openers (first 3 words) unique against the last 4 posted and the queue (it would have caught markup-margin and three-prices, both "How to price").
+- Account health read every evening, held platform on any warning, and a reach-collapse alert with a 2-a-day recommendation (research/PERFORMANCE.md, POSTING.md step 5). IMPROVE 00t: one new set piece a week.

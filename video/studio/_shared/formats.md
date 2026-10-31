@@ -11,8 +11,11 @@ viewer sees and hears: a different shape, length, opening and payoff, each built
 
 ## The rule (code: `anim.py variety`, `format_rotation_problems`)
 - brief.md names one format: `- **Format:** <name>`. Lessons gated before Oct 30 say `v2` (read as clinic) and keep their place.
-- A new lesson is not the same format as the lesson before it in line, and no format fills more than 2 of the 6 lessons
-  around it. At 3 a day: no format twice in a posting day.
+- A new lesson is not the same format as the lesson before it in line, no format twice in the last 4 in line (one
+  posting day at 4 a day) and no format in more than 2 of the last 8 (Todd, Oct 31, 2026, 11:58 am: "put measures in
+  place to mitigate those risks as much as possible").
+- Also checked by `anim.py variety` (same date): no set piece from either of the two lessons before; the first 3 words of
+  the Instagram and TikTok captions and the YouTube title differ from the last 4 posted lessons and the queue.
 - Each format has its own length and word band (`check` and `script` hold them). All keep the v2 script rules in
   `_shared/voice.md`: open on a moment, nothing after the answer, the last line echoes the hook.
 

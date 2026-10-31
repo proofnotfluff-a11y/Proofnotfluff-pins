@@ -23,6 +23,9 @@ The lab (Tue, Thu, Sat) ranks this list from its benchmark against _shared/style
    Also from Real SFX (github.com/Bodila51/opus-sound-layer, MIT, 52ac266): add its idea to `anim.py check`, each effect
    within 2 frames of the picture change it marks. Its sample downloader and the Openverse API stay out (recordings with
    varying licenses; "No samples, no licenses" in _shared/sound.md).
+00t. Grow the set catalog: one new set piece a week in _shared/sets.md (16 on Oct 31). At 4 a day a set comes back
+   every day or two, and the variety rule now bars the last two lessons' sets (Todd, Oct 31, 2026, 11:58 am: "put
+   measures in place to mitigate those risks as much as possible", on mass-produced flags).
 00b. Type floor (the design gate caps type at 4 under 44 px spoken words or 36 px labels at 1080 wide). Spoken words:
    done Oct 29 (Done, below): the arcade dialog box is size 66 now. Left: labels, tags and sources under 36 (size 30 or 39,
    about 21 to 27 px caps; lesson 9's prompt card, the HUD and k.chip tags) still cap type at 4. Not changed on purpose

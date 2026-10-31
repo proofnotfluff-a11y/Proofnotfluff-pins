@@ -1754,8 +1754,9 @@ BASE_ROOMS = ("room:framing", "room:blackboard", "room:workshop", "room:garage")
 
 def variety_problems(slug, share):
     """Each lesson its own world: writes 04_scene/worlds.json (share of the runtime each world is on screen) and compares
-    with the two lessons before it. Rules: no set piece from the previous lesson; at least 3 set pieces new against the
-    two before; the four stock rooms on screen at most 40% of the runtime."""
+    with the two lessons before it. Rules: no set piece from either of the two lessons before (Todd, Oct 31, 2026: "put
+    measures in place to mitigate those risks as much as possible", on mass-produced flags; was the last one only); at
+    least 3 set pieces new against the two before; the four stock rooms on screen at most 40% of the runtime."""
     json.dump({"schema": "pnf.studio.worlds.v1", "share": share}, open(vdir(slug, "04_scene", "worlds.json"), "w"), indent=1)
     vids = sorted(d for d in os.listdir(VIDEOS) if re.match(r"\d{4}-\d\d-\d\d-", d))
     prev = [d for d in vids if d < slug][-2:]
@@ -1770,8 +1771,8 @@ def variety_problems(slug, share):
         f = os.path.join(VIDEOS, d, "04_scene", "worlds.json")
         if os.path.exists(f):
             seen.append({w for w, v in json.load(open(f))["share"].items() if v >= 0.05 and w.startswith("set:")})
-    if seen and sets & seen[-1]:
-        out.append(f"reuses the last lesson's set pieces: {', '.join(sorted(sets & seen[-1]))}")
+    if seen and sets & set().union(*seen):
+        out.append(f"reuses set pieces from the last two lessons: {', '.join(sorted(sets & set().union(*seen)))}")
     new = sets - set().union(*seen) if seen else sets
     if len(new) < 3:
         out.append(f"{len(new)} set piece(s) new against the two lessons before (at least 3)")
@@ -1856,8 +1857,42 @@ def music_problems(slug):
 
 
 def queue_variety_problems(slug, music=True):
-    """Hook pattern, treatment and example (below), and the tune (music_problems) when music is True."""
-    return queue_hook_problems(slug) + (music_problems(slug) if music else [])
+    """Hook pattern, treatment and example (below), and the tune (music_problems) and caption openers
+    (opener_problems) when music is True (a new or rebuilt lesson)."""
+    return queue_hook_problems(slug) + (music_problems(slug) + opener_problems(slug) if music else [])
+
+
+# Caption and title openers (Todd, Oct 31, 2026, 11:58 am: "put measures in place to mitigate those risks as much as
+# possible", on mass-produced flags; three of five captions had opened "How to ..." and two "How to price a job").
+# The first 3 words of the Instagram and TikTok caption and of the YouTube title differ from the same platform's opener on
+# the last 4 posted lessons and every unposted lesson in the queue. No captions.json yet: nothing to check.
+OPENER_FIELDS = (("instagram", "caption"), ("tiktok", "caption"), ("youtube", "title"))
+
+
+def opener_of(slug, pl, field):
+    f = vdir(slug, "05_render", "captions.json")
+    if not os.path.exists(f):
+        return None
+    text = (json.load(open(f)).get(pl) or {}).get(field) or ""
+    words = re.findall(r"[a-z0-9$%']+", text.split("\n")[0].lower())
+    return " ".join(words[:3]) if len(words) >= 3 else None
+
+
+def opener_problems(slug):
+    items = load_queue()["items"]
+    posted = [i for i in items if i["posts"] and i["slug"] != slug and os.path.isdir(vdir(i["slug"]))]
+    posted.sort(key=lambda i: max((p.get("at", "") if isinstance(p, dict) else "") for p in i["posts"].values()))
+    others = [i["slug"] for i in posted[-4:]] + [i["slug"] for i in items if not i["posts"] and i["slug"] != slug
+                                                 and os.path.isdir(vdir(i["slug"]))]
+    out = []
+    for pl, field in OPENER_FIELDS:
+        me = opener_of(slug, pl, field)
+        if not me:
+            continue
+        same = [o for o in others if opener_of(o, pl, field) == me]
+        if same:
+            out.append(f"{pl} {field} opens '{me}' like {', '.join(same)}: start it another way")
+    return out
 
 
 def queue_hook_problems(slug):
@@ -1906,9 +1941,14 @@ def format_rotation_problems(slug, order, posted):
     out = []
     if n > 0 and lesson_format(line[n - 1]) == me:
         out.append(f"format '{me}' is also the lesson before it in line's ({line[n - 1]})")
-    window = line[max(0, n - 5):n + 1]
+    # four a day (Todd, Oct 31, 2026, 9:08 am; 11:58 am: "put measures in place to mitigate those risks"): no format
+    # twice in a posting day (the last 4 in line) and at most twice in two days (the last 8)
+    day = line[max(0, n - 3):n + 1]
+    if sum(1 for o in day if lesson_format(o) == me) > 1:
+        out.append(f"format '{me}' is twice in one posting day ({', '.join(day)})")
+    window = line[max(0, n - 7):n + 1]
     if sum(1 for o in window if lesson_format(o) == me) > 2:
-        out.append(f"format '{me}' fills more than 2 of the last 6 in line ({', '.join(window)})")
+        out.append(f"format '{me}' fills more than 2 of the last 8 in line ({', '.join(window)})")
     return out
 
 

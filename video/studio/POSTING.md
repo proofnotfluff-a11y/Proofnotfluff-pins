@@ -26,6 +26,11 @@ video/config.json "posting". Never two lessons in one run; a run that finds the 
 4. If the lesson's `01_voice/brief.md` has a `- **Re-read before posting:**` line, re-read that source page today. If the
    newer data no longer supports what the video says (its dated claim stays true but reads stale), hold it and tell Todd.
 
+5. Account health (Todd, Oct 31, 2026, 11:58 am: "put measures in place to mitigate those risks"): if the newest entry in
+   `video/studio/research/metrics/account-health.json` has 1 for a platform (a warning, strike, restriction or
+   originality notice read by the evening run; research/PERFORMANCE.md), do not post there: that platform is held, and the
+   end message says so. Todd's word in a live chat clears it.
+
 ## Each platform (skip one already in `posts`)
 Before you post, read the account's latest 3 posts. If this lesson is already there, record that link with `posted` and
 move on: never post twice. Trial reels do not show on the grid: on Instagram also check the trial reels list in the

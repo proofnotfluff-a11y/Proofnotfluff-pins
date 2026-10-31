@@ -19,6 +19,20 @@ comments, shares, saves, follows. Sources: Instagram professional dashboard insi
 Studio Shorts analytics, Facebook Page reel insights. Read numbers only: never reply, like, change a setting or a post.
 A sign-in prompt or a hidden number: write "hidden" and go on.
 
+## Account health and reach (every evening; Todd, Oct 31, 2026, 11:58 am: "put measures in place to mitigate those
+risks as much as possible", on being flagged for mass-produced content)
+- The evening PC run also opens each account's own status page, read only: Instagram and Facebook "Account status"
+  (Settings, or the Page's professional dashboard), TikTok "Account status" (Settings and privacy), YouTube Studio's
+  dashboard and Earn (strikes, restrictions, "inauthentic" or "reused content" notices). It writes one videometrics doc,
+  id `account-health.<YYYY-MM-DD>`, numbers only: per platform 0 (nothing flagged), 1 (any warning, strike, "can't be
+  recommended", restriction or originality notice) or "hidden". Never click an appeal, a "learn more" that asks to act,
+  or anything else; a sign-in prompt is "hidden".
+- The recorder files it as research/metrics/account-health.json. A 1 on any platform: tell Todd that run, in one line
+  with the platform and the words on the page (no names), and POSTING.md holds that platform until he answers.
+- Reach collapse (the evening diagnosis, cloud): on one platform, the last 3 posts each under 20% of that platform's median
+  24 h views of the 6 posts before them (under 10 views each when fewer than 6 exist). Tell Todd that day with the
+  numbers and recommend 2 a day on that platform; volume changes only with his word (CONSTITUTION 2).
+
 ## Diagnosis (each lesson at 72 h; one cause, one change)
 Read the numbers top to bottom; the first rule that fires is the cause. Write one line per lesson in the table below.
 1. Skip rate over 55% (Instagram) or viewed vs swiped under 60% (YouTube): **the opening.** Next lesson changes the hook

@@ -1,5 +1,5 @@
 {
- "about": "Every number and rule this video shows or says, with its source. Twilio's docs page 'How long can a message be? | Twilio' (twilio.com/docs/glossary/what-sms-character-limit, modified 2026-09-16 per its meta tags) read on Oct 31, 2026 (Central) by a web-fetch agent; every 'confirms' line was quoted verbatim from that page that day. The plumber Sam and the example text are ours, not a real customer's words (EXAMPLE on screen).",
+ "about": "Every number and rule this video shows or says, with its source. Twilio's docs page 'How long can a message be? | Twilio' (twilio.com/docs/glossary/what-sms-character-limit, modified 2026-09-16 per its meta tags) read on Oct 31, 2026 (Central) by a web-fetch agent; every 'confirms' line was quoted verbatim from that page that day. The plumber Sam and the example text are ours, not a real customer's words (EXAMPLE on screen). ServiceTitan's 'When Summer HVAC Demand Spikes, After-Hours Calls Do Too' (June 3, 2026) re-read Oct 31, 2026 by a web-fetch agent for the trade evidence (14.1% of residential HVAC calls after hours in June 2025).",
  "twilio": {
   "title": "How long can a message be? | Twilio",
   "publisher": "Twilio",
@@ -29,7 +29,7 @@
   "parts": [
    "Who you are",
    "Sorry I missed your call",
-   "One question that books it"
+   "One question they can answer"
   ],
   "partCount": 3,
   "partNo": 1,
@@ -42,5 +42,23 @@
   "sorryLen": 26,
   "askLen": 47,
   "partLenNote": "Character counts of each part as it sits in the text, the space after a sentence counted with it: who 29, sorry 26, ask 47; they add up to 102."
+ },
+ "servicetitan": {
+  "title": "When Summer HVAC Demand Spikes, After-Hours Calls Do Too (HVAC off-hours summer call spike data | State of the Trades)",
+  "publisher": "ServiceTitan",
+  "date": "2026-06-03",
+  "url": "https://www.servicetitan.com/toolbox/state-of-the-trades/trends/hvac-summer-after-hours-call-spike",
+  "reread": "2026-10-31",
+  "afterHoursJunePct": 14.1,
+  "afterHoursOctPct": 9.8,
+  "dataYear": 2025,
+  "oneIn": 7,
+  "oneInNote": "14.1% is about 1 in 7 (1/7 = 14.3%); said as 'about one in seven'. Data year 2025, said as 'June of last year'.",
+  "confirms": [
+   "In June 2025, 14.1% of inbound calls to residential HVAC shops arrived outside business hours. During October, that figure fell to 9.8%, the lowest point of the year.",
+   "For this analysis, standard business hours were defined as Monday through Friday, 8 a.m. to 5 p.m. in each contractor's local time zone. Any call outside that window was categorized as off-hours, including weekday evenings, early mornings, and all hours on weekends.",
+   "Figures reflect tenant-weighted averages across a same-store cohort of contractors with activity in all 12 months of 2025 and are not nationally representative."
+  ],
+  "scope": "Trade evidence for why the missed-call text matters: a share of calls to residential HVAC shops on ServiceTitan that came outside Mon to Fri 8 to 5, June 2025. Vendor cohort, not nationally representative; no claim that texting back wins jobs."
  }
 }

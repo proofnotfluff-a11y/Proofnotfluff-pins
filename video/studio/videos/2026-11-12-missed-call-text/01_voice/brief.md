@@ -46,6 +46,7 @@ Twilio's "How long can a message be?" docs page; every line in facts.json quoted
   a 6 s logo intro, a minute of why, then the setting; it warns not to put the caller's first name in the text, since
   a first-time caller has no name on file. What we take: open on the problem, not a logo, and keep the caller's name
   out (ours names the owner, not the caller). A third (oS-NwdP3tdc) failed twice on Gemini 503. Our words only.
+- **Trade evidence (r2, Oct 31 end-of-day run):** facts r1 failed on the trades-first rule (Twilio was the only source). Take 2 now says ServiceTitan's June 2025 after-hours share (14.1%, about one in seven) as the stake, with its source tag on screen while said; take 3 says "one question they can answer" (facts r1 reason 1).
 - **Trust notes:** 160 and 70 are Twilio's single-segment limits for GSM-7 and UCS-2; an emoji or a curly quote switches
   the text to UCS-2 (the page). "Twilio splits it in two and bills both" is said of our 102-character example with an
   emoji (102 + 2 units over 70, 67 a segment: 2 segments; the page bills per segment). Phones put the pieces back
@@ -55,6 +56,7 @@ Twilio's "How long can a message be?" docs page; every line in facts.json quoted
 ## Claims and their sources
 | Claim, as said | Source | URL |
 |---|---|---|
+| About one in seven calls to home HVAC shops came after hours in June of last year | ServiceTitan, When Summer HVAC Demand Spikes, After-Hours Calls Do Too, Jun 3, 2026, read Oct 31, 2026 (14.1% in June 2025; Mon to Fri 8 to 5 is business hours; vendor cohort, not nationally representative) | https://www.servicetitan.com/toolbox/state-of-the-trades/trends/hvac-summer-after-hours-call-spike |
 | One plain text holds 160 characters | Twilio docs, How long can a message be?, read Oct 31, 2026 | https://www.twilio.com/docs/glossary/what-sms-character-limit |
 | One emoji drops the limit to 70 | same (UCS-2 switch; 70 per single segment) | same |
 | Curly quotes do it too | same (curly quotation marks are UCS-2; 160 to 70) | same |
@@ -73,6 +75,7 @@ Twilio's "How long can a message be?" docs page; every line in facts.json quoted
  "series": {"path": "example.series", "shown": "3"},
  "segs": {"path": "example.withEmojiSegments", "shown": "2"},
  "next": {"path": "example.nextPart", "shown": "2"},
+ "oneIn": {"path": "servicetitan.oneIn", "shown": "7"},
  "who": {"path": "example.whoLen", "shown": "29"},
  "sorry": {"path": "example.sorryLen", "shown": "26"},
  "ask": {"path": "example.askLen", "shown": "47"}

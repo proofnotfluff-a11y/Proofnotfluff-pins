@@ -7720,6 +7720,205 @@
    "footnote": "The worked example uses the free Christmas light installation pricing calculator's example inputs; the vehicle cost uses the IRS business mileage rate for July 1 to December 31, 2026. Timing advice is quoted from a public forum thread and published guides read Oct 29, 2026; search interest from Google Trends read Oct 26, 2026."
   },
   {
+   "slug": "snow-plowing-seasonal-or-per-push",
+   "kind": "question",
+   "city": "Chicago",
+   "product": "chicago-construction-cleaning-leads",
+   "data": "site/pages.json",
+   "stats": "snow_choice",
+   "title": "Snow Plowing: Seasonal Contract or Per Push? | ProofNotFluff",
+   "desc": "A first-year plower asks: seasonal or per push, what to charge for a 50 by 15 foot driveway, and how to charge for salt. Worked answer with 28 Chicago winters.",
+   "card": "Seasonal contract or per push for a first plowing season, what a driveway push should cost and how to charge for salt, checked against 28 Chicago winters.",
+   "eyebrow": "Snow removal pricing",
+   "updated": "Worked example from the free snow removal pricing calculator and NOAA daily snowfall at {station}. Checked Oct 31, 2026.",
+   "h1": "Seasonal contract or per push for snow plowing, and what to charge for a driveway and salt?",
+   "answer": [
+    "In your first season, price per push and work the push price out from your own minutes, not a going rate. A seasonal contract only pays if you know how many times you will plow, and a first-year plower does not. Per push, every storm pays; on a seasonal contract, a heavy winter comes out of your pocket.",
+    "In the worked example a driveway stop prices at **{quote}** a push. Priced as a season at the middle Chicago winter ({mid} days with {trigger} or more of new snow at {station}), the same stop is a **{season}** contract. It covers **{covers}** pushes before the season costs more than it pays, and {overCovers} of the last {n} complete winters went past that. Salt is a cost on every visit you spread it: price it into the push, or charge it as its own line, and say which in writing."
+   ],
+   "numbersTitle": "The worked example, in four numbers",
+   "tiles": [
+    [
+     "Price per push",
+     "{quote}",
+     "{pushMin} minutes on site, {salt} of salt, {margin} margin"
+    ],
+    [
+     "Seasonal contract",
+     "{season}",
+     "{mid} pushes plus a {cushion} cushion, {monthly} a month"
+    ],
+    [
+     "Pushes it covers",
+     "{covers}",
+     "before the season costs more than it pays"
+    ],
+    [
+     "Salt in the push",
+     "{saltAdds}",
+     "the same push without salt prices at {noSaltQuote}"
+    ]
+   ],
+   "numbers": [
+    "From the free calculator's example inputs: {pushMin} minutes on site for a normal push, {driveMin} minutes of drive from the stop before, {people} person at {rate} an hour, a truck and plow at {equip} an hour, {salt} of salt or ice melt a visit and a {margin} margin. A push costs {cost}, so it prices at {quote}, rounded up to the next $5. A deep storm at {deepMin} minutes costs {deepCost} and prices at {deepQuote}.",
+    "The seasonal contract is the push price times the pushes you expect, plus a {cushion} cushion for a heavy winter, rounded up to the next $5. Here the pushes expected are {mid}, the {station} middle winter with a trigger of {trigger}, so the contract is {season}, or {monthly} a month over {months} months. These are the calculator's example numbers, not a 50 by 15 foot driveway: time your own stop and type your own minutes."
+   ],
+   "tables": [
+    {
+     "title": "Per push or seasonal, the same stop in past Chicago winters",
+     "intro": [
+      "One push for each day with {trigger} or more of new snow at {station}, at the example's {quote} a push and {cost} of cost. The seasonal contract is priced at the middle winter, {mid} pushes, and pays {season} however much it snows."
+     ],
+     "head": [
+      "Winter",
+      "Pushes",
+      "Per push pays",
+      "Per push profit",
+      "Seasonal pays",
+      "Seasonal profit"
+     ],
+     "rows": "winterRows",
+     "notes": [
+      "Days counted from NOAA's daily snowfall at {station}, the last {n} complete winters, {firstWinter} to {lastWinter} (the free snow season board). Light is the winter one fifth of the way up from the fewest, middle the median, heavy four fifths of the way up. A day of new snow is counted as one push; a long storm can take two visits and a deep one takes longer, so a real winter can cost more than this table shows. Past winters only, not a forecast."
+     ]
+    },
+    {
+     "title": "Your trigger decides how often you plow",
+     "intro": [
+      "Days a winter with new snow at or over each trigger at {station}, over the same {n} winters. A lower trigger means more pushes, so a seasonal price has to count them."
+     ],
+     "head": [
+      "Trigger",
+      "Light winter",
+      "Middle winter",
+      "Heavy winter",
+      "Most in one winter"
+     ],
+     "rows": "triggerRows",
+     "notes": [
+      "The board has no 4 inch count; the 3 and 6 inch rows sit either side of the 4 inch trigger in the question. Pick a station and trigger on the snow season board for the Midway counts."
+     ]
+    }
+   ],
+   "stepsTitle": "How to set your prices, step by step",
+   "steps": [
+    [
+     "Time one stop",
+     "Plow a driveway like the one in the question and time it, walks included, plus the drive from the stop before. Those minutes, at your labor and truck cost an hour, are the cost of a push."
+    ],
+    [
+     "Price per push from that cost",
+     "Divide the cost by one less your margin. In the example, {cost} of cost at a {margin} margin is {quote}. Price a deep storm from its own, longer minutes: {deepQuote} at {deepMin} minutes."
+    ],
+    [
+     "Set the trigger in writing",
+     "The trigger decides how often you go out. At {station}, a middle winter had {mid} days with {trigger} or more of new snow. Write the trigger into the agreement, and price a lower trigger with more pushes."
+    ],
+    [
+     "Put salt on its own line",
+     "Salt costs you money on every visit you spread it. Either build it into the push, as the example does, or quote it as a separate charge when the customer asks for it. In the example it adds {saltAdds} to the push."
+    ],
+    [
+     "Offer a season only with a cap",
+     "If a customer wants one price, count the pushes it covers and write in a push limit, with extra pushes billed at the per push price. The example contract covers {covers} pushes; the {mostWinter} winter had {most}."
+    ]
+   ],
+   "sections": [
+    [
+     "What the thread says",
+     [
+      "The question was posted Sep 20, 2016 on PlowSite by a first-year residential plower with five to seven interested customers, later saying they were in Connecticut. They planned $40 a push for a 50 by 15 foot driveway at a 4 inch trigger, $50 with the sidewalk, and asked how to price salt and a seasonal rate.",
+      "One reply priced about 30 by 16 foot subdivision drives with about 50 feet of walk at $35 a push from 1 to 6 inches, $45 from 6 to 12 and $60 at 12, with deicer included if the customer wants it. It said 15 to 20 pounds of deicer is enough for a drive and that 3 times the cost of materials is a pretty safe rate. Another reply said salt is of course extra, and to base a seasonal price on your average storms plus another 5 to 10 trips. A third said it would never use a 4 inch trigger, 3 inches at most."
+     ]
+    ],
+    [
+     "Why a seasonal contract is a bet on the winter",
+     [
+      "A seasonal price pays the same in every winter. At the example's {season}, a winter with {low} pushes pays well; the {mostWinter} winter, with {most} days of {trigger} or more at {station}, would have cost more than the contract paid. Per push, the same stop earns more in a heavy winter and less in a light one, and every visit pays as long as the push price covers its cost.",
+      "That is why the thread's advice to add trips on top of the average matters. In {n} winters, {highN} had {high} or more pushes and {overCovers} went past the {covers} the example contract covers. A cushion, a cap on pushes, or both keep a heavy winter from wiping out the season."
+     ]
+    ],
+    [
+     "How to charge for salt",
+     [
+      "Salt is a material you buy, so it belongs in the price on every visit you spread it. Two ways work: put it in the push price, which the example does with {salt} of salt raising the push from {noSaltQuote} to {quote}, or quote it as a separate application the customer asks for.",
+      "A separate line is easier to explain and lets a customer skip it. The thread's rule of thumb of 3 times your material cost would charge {salt3x} for {salt} of salt; the example's margin method charges {saltAdds}. Whichever you use, weigh what a drive actually takes rather than guessing in bags."
+     ]
+    ],
+    [
+     "Per storm pricing",
+     [
+      "The question also asks about one price per storm. One reply in the thread called it dicey unless the terms are clearly stated. A long storm can take more than one visit, so if you offer it, say how many inches or visits it covers and what happens past that."
+     ]
+    ]
+   ],
+   "calculator": [
+    "snow-removal-pricing-calculator",
+    "snow removal pricing calculator",
+    "Put in your own minutes, truck cost and salt in"
+   ],
+   "cta": {
+    "title": "Keep the crew busy between storms",
+    "text": "If you also clean buildings or windows in Chicago, the Chicago Construction Cleaning Leads list sends every Monday the open projects of $500,000 or more and the builder on each, with the ones near finish marked. {price} a month, cancel any time."
+   },
+   "faq": [
+    [
+     "Should I do seasonal contracts or per push in my first year?",
+     "Per push, until you know how many times you plow and how long each stop takes. A seasonal price is a bet on the winter. In the example, a {season} contract covers {covers} pushes and {overCovers} of the last {n} winters at {station} went past that."
+    ],
+    [
+     "How much should I charge to plow a 50 by 15 foot driveway?",
+     "Time it, then price from your cost. In the calculator's example, a {pushMin}-minute stop with a {driveMin}-minute drive, {rate} an hour of labor, a {equip} an hour truck and {salt} of salt prices at {quote} a push at a {margin} margin. Your own minutes give your own price."
+    ],
+    [
+     "Should salt be included in the push price?",
+     "Either works if the customer knows which. Built in, the example's {salt} of salt adds {saltAdds} to the push. As its own line, the customer can skip it. One reply in the thread includes deicer; another charges it extra."
+    ],
+    [
+     "How many times will I plow in a Chicago winter?",
+     "At {station}, the middle of the last {n} complete winters had {mid} days with {trigger} or more of new snow, a light one {low} and a heavy one {high}. The most was {most}, in {mostWinter}. Check the snow season board for your trigger and station."
+    ]
+   ],
+   "related": [
+    [
+     "snow-removal-pricing-calculator",
+     "Free snow removal pricing calculator"
+    ],
+    [
+     "chicago-snow-season",
+     "Chicago snow season board for plow owners"
+    ],
+    [
+     "contractor-hourly-rate-calculator",
+     "Free contractor hourly rate calculator"
+    ]
+   ],
+   "sources": [
+    [
+     "PlowSite, Primarily residential work: seasonal vs per push (the question as asked)",
+     "https://www.plowsite.com/threads/primarily-residential-work-seasonal-vs-per-push.167692/",
+     "posted Sep 20, 2016, read Oct 31, 2026"
+    ],
+    [
+     "NOAA NCEI, Global Historical Climatology Network daily (GHCN-Daily), daily snowfall at {station}",
+     "https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily",
+     "winters {firstWinter} to {lastWinter}, counted on the ProofNotFluff snow season board"
+    ],
+    [
+     "ProofNotFluff, Chicago snow season board for plow owners",
+     "../chicago-snow-season/",
+     "checked Oct 31, 2026"
+    ],
+    [
+     "ProofNotFluff, snow removal pricing calculator (example inputs)",
+     "../snow-removal-pricing-calculator/",
+     "checked Oct 31, 2026"
+    ]
+   ],
+   "footnote": "The worked example uses the free snow removal pricing calculator's example inputs, with the pushes set to the middle winter at O'Hare. Snow days are counted from NOAA daily records of past winters, not a forecast. Plower prices are quoted from a public forum thread read Oct 31, 2026.",
+   "published": "2026-10-31"
+  },
+  {
    "slug": "chicago-construction-pipeline",
    "kind": "datapage",
    "module": "dp_pipeline",

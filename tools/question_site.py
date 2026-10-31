@@ -236,6 +236,55 @@ def stats(kind, d):
             rows.append([f"{hrs} hours", str(per), _n(houses), "$" + _n(round(houses * q)), f"{perT} a day, {tdays} working days"])
         s["calRows"] = rows
         return s
+    if kind == "snow_choice":   # seasonal or per push: the free snow calculator's model (PNF.snowQuote) and the snow board's past winters
+        import subprocess, dp_snow
+        c = next(x for x in d["pages"] if x["slug"] == "snow-removal-pricing-calculator")["defaults"]
+        sd = dp_snow.station_data(dp_snow.load())
+        st, t = dp_snow.DEFAULT
+        sm = sd[st]["sum"][t]
+        past = [r for r in sd[st]["rows"] if r["complete"] and not r["current"]]
+        mid = sm["mid"]
+        cases = {"base": {"events": str(mid)}, "noSalt": {"events": str(mid), "salt": "0"}}
+        js = ('const P=require(process.argv[1]);const b=JSON.parse(process.argv[2]),c=JSON.parse(process.argv[3]);const o={};'
+              'for(const k in c)o[k]=P.snowQuote(Object.assign({},b,c[k]));console.log(JSON.stringify(o));')
+        out = json.loads(subprocess.run(["node", "-e", js, os.path.join(ROOT, "docs", "assets", "pnf-calc.js"), json.dumps(c),
+                                         json.dumps(cases)], capture_output=True, text=True, check=True).stdout)
+        r2 = lambda v: round(v + 1e-9, 2)
+        m = lambda v: ("-$" if v < -0.004 else "$") + (_n(round(abs(v))) if abs(abs(v) - round(abs(v))) < 0.005 else f"{r2(abs(v)):,.2f}")
+        b, ns = out["base"], out["noSalt"]
+        salt = float(c["salt"])
+        s = {"pushMin": c["pushMin"], "deepMin": c["deepMin"], "driveMin": c["driveMin"], "salt": m(salt), "people": c["people"],
+             "rate": m(float(c["rate"])), "equip": m(float(c["equip"])), "margin": c["margin"] + "%", "cushion": c["cushion"] + "%",
+             "months": c["months"], "quote": m(b["quote"]), "cost": m(b["cost"]), "profit": m(b["profit"]), "deepQuote": m(b["deepQuote"]),
+             "deepCost": m(b["deepCost"]), "season": m(b["season"]), "monthly": m(b["monthly"]), "covers": str(b["covers"]),
+             "seasonProfit": m(b["seasonProfit"]), "hourly": m(b["hourly"]), "noSaltQuote": m(ns["quote"]), "noSaltCost": m(ns["cost"]),
+             "saltAdds": m(b["quote"] - ns["quote"]), "salt3x": m(3 * salt),
+             "station": sd[st]["s"]["label"], "trigger": dp_snow.inch(t), "n": str(sm["n"]), "mid": dp_snow.num(mid),
+             "low": dp_snow.num(sm["low"]), "high": dp_snow.num(sm["high"]),
+             "firstWinter": dp_snow.wlabel(past[0]["y"]), "lastWinter": dp_snow.wlabel(past[-1]["y"]),
+             "most": str(sm["most"]["events"][t]), "mostWinter": dp_snow.wlabel(sm["most"]["y"]),
+             "fewest": str(sm["fewest"]["events"][t]), "fewestWinter": dp_snow.wlabel(sm["fewest"]["y"]),
+             "overCovers": str(sum(1 for x in sm["counts"] if x > b["covers"])), "underMid": str(sum(1 for x in sm["counts"] if x < mid)),
+             "board": dp_snow.SLUG}
+        q, cst, season = b["quote"], b["cost"], b["season"]
+        rows = []
+        ties = lambda x, v: sum(1 for y in x["counts"] if y == v)
+        s |= {"fewestTies": str(ties(sm, int(s["fewest"]))), "mostTies": str(ties(sm, int(s["most"]))), "highN": str(sm["highN"]),
+              "lowN": str(sm["lowN"])}
+        fl = f"Fewest, {s['fewestWinter']}" if s["fewestTies"] == "1" else f"Fewest ({s['fewestTies']} winters, latest {s['fewestWinter']})"
+        ml = f"Most, {s['mostWinter']}" if s["mostTies"] == "1" else f"Most ({s['mostTies']} winters, latest {s['mostWinter']})"
+        for label, k in ((fl, int(s["fewest"])), ("Light winter", sm["low"]), ("Middle winter", mid),
+                         ("Heavy winter", sm["high"]), (ml, int(s["most"]))):
+            rows.append([label, dp_snow.num(k), m(q * k), m((q - cst) * k), m(season), m(season - cst * k)])
+        s["winterRows"] = rows
+        trig = []
+        for tt in dp_snow.TRIGGERS:
+            x = sd[st]["sum"][tt]
+            trig.append([dp_snow.inch(tt), dp_snow.num(x["low"]), dp_snow.num(x["mid"]), dp_snow.num(x["high"]),
+                         str(x["most"]["events"][tt]) + (" (" + dp_snow.wlabel(x["most"]["y"]) + ")" if ties(x, x["most"]["events"][tt]) == 1
+                                                         else f" ({ties(x, x['most']['events'][tt])} winters)")])
+        s["triggerRows"] = trig
+        return s
     if kind == "rats":   # rat question pages: the free Rat Index's own weekly file (311 counts by community area, no addresses)
         import rodents_site as R
         ix = R.index(d, R.load_json(R.POP), None)

@@ -2,7 +2,7 @@
 
 One call rings two shops at night and nobody picks up.
 
-Shop one runs Google's Local Services ads till nine. The caller waits it out into voicemail. That's a charged lead. You paid for a ringing phone.
+Shop one is open and runs Google's Local Services ads till nine. The caller waits it out into voicemail. That's a charged lead. You paid for a ringing phone.
 
 Shop two runs its ads only while a person answers. Its schedule ends at five, so that call costs nothing. Daytime misses roll to a second phone.
 

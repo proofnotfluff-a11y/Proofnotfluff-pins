@@ -57,7 +57,7 @@ in facts.json found on the page that day.
 | Missed calls are charged only within both your active ad schedule and your business hours | same (FAQ, business hours and ad schedule) | same |
 | Follow-up calls or messages on a charged lead are not charged again within 15 days | same | same |
 | The Charge Status column on the Leads page shows Charged, Not charged, In review or Credited | same | same |
-| Two shops, a 7 pm call, ads till 9 and till 5; shop one 1 charged lead, shop two 0 | ours (example, labeled) | n/a |
+| Two shops, a 7 pm call, shop one open with ads till 9, shop two's ads till 5; shop one 1 charged lead, shop two 0 | ours (example, labeled) | n/a |
 | Missed rings to a second phone; text back every missed call | ours (advice built on the page's rules) | n/a |
 
 ## Numbers on screen

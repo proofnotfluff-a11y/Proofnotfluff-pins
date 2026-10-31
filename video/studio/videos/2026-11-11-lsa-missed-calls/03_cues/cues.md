@@ -7,7 +7,7 @@ Three shots (IMPROVE 00a). Cover, frame one, host and dialog box hidden: our own
 ## hook.nobody "nobody picks up." [sfx: tick]
 The ring bars keep filling; Snow shrugs.
 
-## one "Shop one runs Google's" [sfx: whoosh]
+## one "Shop one is open" [sfx: whoosh]
 The split screen, shop one's half lit and shop two's dimmed. Shop one's sign: ADS ON TILL 9 PM. The phone rings in the window.
 ## one.wait "The caller waits it" [sfx: tick]
 The ring bar runs past the 20 s notch; the phone's screen turns to VOICEMAIL.

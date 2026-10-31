@@ -22,7 +22,12 @@
    "We may also occasionally credit leads you report as poor quality through this survey.",
    "Google continuously assesses lead quality over a 30-day period."
   ],
-  "statuses": ["Charged", "Not charged", "In review", "Credited"],
+  "statuses": [
+   "Charged",
+   "Not charged",
+   "In review",
+   "Credited"
+  ],
   "notOnPage": "The page gives no start date for the missed-call rule (PPC Land and Search Engine Land report Oct 1, 2026; not used in the video). The page says nothing about forwarding calls or texting back; those two steps are our advice, built on the page's rules (a missed call is charged only in your hours and ad schedule; follow-ups on a charged lead within 15 days are not charged again).",
   "scope": "Local Services Ads only. The 20-second rule is for missed calls and voicemail during business hours and the active ad schedule; an answered call is judged on the conversation."
  },
@@ -41,6 +46,8 @@
    "Text back every missed call",
    "Fridays: Leads page, Charge Status"
   ],
-  "stepCount": 4
+  "stepCount": 4,
+  "shopOneHoursUntil": 9,
+  "shopOneNote": "Shop one is open (business hours) and runs its ads till 9 PM, so a 7 PM missed call is inside both; shop two's ads end at 5 PM."
  }
 }

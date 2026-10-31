@@ -1,0 +1,19 @@
+{
+ "gate": "buyer",
+ "round": 0,
+ "reviewer": "fresh opus agent",
+ "pass": true,
+ "score": {
+  "stop": "yes",
+  "send": "yes",
+  "save": "yes",
+  "follow_or_link": "no"
+ },
+ "reasons": [
+  "Stop yes (7 PM, same call, two shops; nobody picks up); the charge itself lands at 10 s.",
+  "Send yes (to whoever runs the Google ads); save yes (4-step checklist).",
+  "No hype, pitch or slop; source named (Google, How leads work).",
+  "Unclear: 'the line' at 34.8 s refers back late; 'Stay on past that in your hours' is clunky; the 15-day line is dense; the hook does not say charges.",
+  "Trust yes; confirm 'now' in the caption."
+ ]
+}

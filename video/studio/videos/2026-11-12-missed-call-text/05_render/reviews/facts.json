@@ -1,0 +1,25 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "pass": false,
+ "score": {
+  "numbers": 8,
+  "mismatches": 1
+ },
+ "reasons": [
+  "01_voice/script.md and 02_transcript/transcript.md at 00:15.8: \"Nobody answers that\" is an absolute response claim that no source tests. Replace it with \"There is no question to answer.\"",
+  "01_voice/script.md and 02_transcript/transcript.md at 00:00.0 and 00:21.9: \"to book the job\" and \"one question that books it\" present booking as the text's result, but the source only documents SMS limits and billing. Use \"Your missed-call text gets a hundred sixty characters in one plain segment\" and \"Then one clear question, like what do you need fixed, and when works for you?\"",
+  "01_voice/script.md and 02_transcript/transcript.md at 00:36.8: as a general rule, \"Go past that and Twilio splits it in two and bills both\" is wrong for messages requiring three or more segments. The source says two or more. Replace it with \"Go past that and Twilio splits it into segments and bills each one.\" The screen's \"2 PIECES, 2 BILLS\" is accurate only for the labeled 102-character example."
+ ],
+ "sources_checked": [
+  "https://www.twilio.com/docs/glossary/what-sms-character-limit: Confirmed GSM-7 limits of 160 characters for one segment and 153 for multiple segments, UCS-2 limits of 70 and 67, the switch to UCS-2 for emoji or curly quotes, splitting into two or more messages, reassembly, and Twilio billing per segment. The pasted example also supports two segments for the 102-character text with one emoji."
+ ],
+ "unconfirmed": [],
+ "reviewer": "kimi k3.1-pro",
+ "kimi_job": "2026-11-12-missed-call-text-facts-20261031-r0",
+ "claude_check": [
+  "Reason 1 kept: 'Nobody answers that' is a claim no source tests; take 2 now ends 'There's nothing to answer.' (true of the paragraph shown: no question in it).",
+  "Reason 2 dropped: 'to book the job' and 'one question that books it' name what the text is for, not a result it promises; no number or rate is claimed.",
+  "Reason 3 kept: take 4 now says 'Go past that and Twilio splits it and bills each piece.'; the 2 PIECES, 2 BILLS stamp sits under 'Sam's text plus an emoji:' (the 102-character example, 2 segments)."
+ ]
+}

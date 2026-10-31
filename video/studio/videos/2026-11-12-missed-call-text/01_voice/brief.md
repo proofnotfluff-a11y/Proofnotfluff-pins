@@ -27,8 +27,8 @@ Twilio's "How long can a message be?" docs page; every line in facts.json quoted
 - **Voice:** Todd's own voice clone in `_shared/voice.md` (Eleven v4).
 - **Real screens:** Twilio's limits as its own table states them (GSM-7 160, UCS-2 70) on a high-score table, the source
   tag "Twilio docs: How long can a message be?" on screen while it is said.
-- **Worlds (_shared/sets.md):** our own tape measure on a workbench (hook and button), our own clipboard note (the usual
-  paragraph), `inventory` (the three parts), our own big text card with a character counter (the copy), `scores` (the
+- **Worlds (_shared/sets.md):** our own tape measure on a workbench (hook and button), `street` (the usual paragraph, typed
+  between jobs), `register` (the three parts ring up to 102), our own big text card with a character counter (the copy), `scores` (the
   limits). None used by the lesson before it in line (lsa-missed-calls: its own night street, gauge, chat, flaps, versus).
 - **End card send line:** "Send this to whoever answers your phones." (SCENE.sendLine)
 - **Asked by owners:** thin. No owner forum thread from the last 90 days surfaced on public search (Reddit refused in the
@@ -59,7 +59,7 @@ Twilio's "How long can a message be?" docs page; every line in facts.json quoted
 | One emoji drops the limit to 70 | same (UCS-2 switch; 70 per single segment) | same |
 | Curly quotes do it too | same (curly quotation marks are UCS-2; 160 to 70) | same |
 | Past that, Twilio splits it and bills each piece | same (split into 67-character segments; bills per segment) | same |
-| The example text, 102 characters, 3 parts; part 1 of 3, next part 2 | ours (example, labeled; length counted in code) | n/a |
+| The example text, 102 characters (who 29, sorry 26, ask 47), 3 parts; part 1 of 3, next part 2 | ours (example, labeled; length counted in code) | n/a |
 
 ## Numbers on screen
 
@@ -72,6 +72,9 @@ Twilio's "How long can a message be?" docs page; every line in facts.json quoted
  "part": {"path": "example.partNo", "shown": "1"},
  "series": {"path": "example.series", "shown": "3"},
  "segs": {"path": "example.withEmojiSegments", "shown": "2"},
- "next": {"path": "example.nextPart", "shown": "2"}
+ "next": {"path": "example.nextPart", "shown": "2"},
+ "who": {"path": "example.whoLen", "shown": "29"},
+ "sorry": {"path": "example.sorryLen", "shown": "26"},
+ "ask": {"path": "example.askLen", "shown": "47"}
 }}
 ```

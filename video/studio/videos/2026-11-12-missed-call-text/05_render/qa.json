@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-12-missed-call-text",
- "mp4Sha256": "43beaa80ec106e81c0403bed2b4f92dc79c0a6a1772069099cb83bcb8c9b1987",
+ "mp4Sha256": "392ca7382b427d21c508cf526d281787255f3b72c81371b92d90121324678a44",
  "checks": [
   {
    "name": "length",
@@ -38,11 +38,11 @@
   {
    "name": "file",
    "value": {
-    "sha256": "43beaa80ec106e81c0403bed2b4f92dc79c0a6a1772069099cb83bcb8c9b1987",
-    "bytes": 4104670
+    "sha256": "392ca7382b427d21c508cf526d281787255f3b72c81371b92d90121324678a44",
+    "bytes": 5095583
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 4.1 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 5.1 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -52,5 +52,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-31T10:11:24-05:00"
+ "at": "2026-10-31T10:22:56-05:00"
 }

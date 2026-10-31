@@ -1,0 +1,27 @@
+{
+  "gate": "design",
+  "round": 0,
+  "reviewer": "claude opus (fresh agent)",
+  "pass": false,
+  "score": {"first": 3, "hierarchy": 4, "type": 4, "color": 4, "spacing": 4, "polish": 4, "trust": 4, "average": 3.86},
+  "reasons": [
+    "18.0-21.5 s parts (TEXT KIT inventory): this is the same inventory set as 2026-11-10 notes-to-quote's AI USES panel (26-31 s), and hook, usual, copy and button are all the green pegboard workshop room with a panel (sets.md allows one room-and-panel section). First impression capped at 3 for freshness. Replace the parts section with a set neither 11-10 nor 11-11 used (for example register: one receipt line per part, WHO, SORRY, QUESTION, with the character count as the total) and move the usual section (4.5-17.5 s) off the pegboard room into a set such as boss (the polite paragraph as the boss, NO NAME and NO QUESTION as hits).",
+    "4.5-8.0 s usual clipboard: the paper sits blank for about 3.5 s while the host says 'Part one of three, the words'; more than a third of the band empty over 2 s. Start typing 'Thanks for calling' at 'your gut says' (about 7.0 s) and drop the empty lead-in, or open on a missed-call notification on the clipboard so it is never blank.",
+    "4.71-17.5 s clipboard subtitle 'THE WORDS (PART 1 OF 3)': accent #F2A541 on bubble #FFF7EA is about 1.9:1 and the caps run about 27 px tall (under the 36 px label floor). Set it in ink #1B1420 or tag #7A3442 at 36 px or more.",
+    "18.0-19.0 s TEXT KIT detail pane 'Three parts': grey on navy, under 4.5:1, and the pane below the slots (y 590 to 800) is empty with five of eight slots empty. Use ink #F4E6D3 at 36 px or more, show only three slots (one per part) and fill the lower pane with the part's label and a sample line.",
+    "41.0-46.5 s button panel 'NEXT: PART 2, TURN IT ON' / 'Keep it plain. Under 160.': the lower half of the black panel (y 450 to 620) is empty for 5.5 s and only the text swaps once. Shrink the panel to its two lines and slide the tape-measure blade out from 102 to the 160 mark on 'under a hundred sixty' so something moves every 2 s.",
+    "32.5-40.5 s scores set hero '70': the big 70 butts the CURLY row bottom (no gap at about y 645) and holds for 8 s. Give it 24 px of space above, and pulse or count it once when the CURLY row lands at about 35.5 s.",
+    "4.71-17.5 s clipboard clip: the plain grey bar at the top reads as a placeholder. Draw a metal clip with a highlight and a rivet, or drop it.",
+    "0.0 s cover hero '160': the digits run about 110 px tall, under the 160 px hero target. Set the cover 160 at 160 px or more so it reads as the one number of the hook."
+  ],
+  "must_fix": [
+    {"time": "18.0-21.5 s", "element": "TEXT KIT inventory (parts)", "change": "replace with a set not used by 2026-11-10 or 2026-11-11 (the inventory panel repeats 11-10's AI USES)"},
+    {"time": "4.5-17.5 s", "element": "usual section on the pegboard room", "change": "move to a set (for example boss: the polite paragraph as the boss, NO NAME and NO QUESTION as hits) so only one section is room-and-panel"},
+    {"time": "4.5-8.0 s", "element": "blank clipboard", "change": "no blank paper longer than 1 s; start the typed text sooner"},
+    {"time": "4.71-17.5 s", "element": "'THE WORDS (PART 1 OF 3)' label", "change": "ink or tag color on the cream, 36 px or more"},
+    {"time": "18.0-19.0 s", "element": "'Three parts' detail text", "change": "ink #F4E6D3, 36 px or more; fill the empty pane"},
+    {"time": "41.0-46.5 s", "element": "button panel", "change": "shrink to its two lines and add motion every 2 s (tape blade to 160)"}
+  ],
+  "competitor_lines": [],
+  "earlier_rounds": "none (no design.json before this round)"
+}

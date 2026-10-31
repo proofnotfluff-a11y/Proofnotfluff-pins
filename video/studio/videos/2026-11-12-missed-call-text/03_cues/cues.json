@@ -27,7 +27,7 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "Our own clipboard on the bench: \"PART 1 OF 3: THE WORDS\" on the clip, the paper blank, a pencil over it. EXAMPLE tag.",
+   "text": "The street set: the van driving between jobs; a text bubble in the sky with \"THE WORDS (PART 1 OF 3)\" and the usual paragraph typing out at once. EXAMPLE tag.",
    "t": 4.108,
    "word": 12,
    "end": 17.672
@@ -39,7 +39,7 @@
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "The usual paragraph types out on the paper: \"Thanks for calling, we value your business.\"",
+   "text": "The paragraph finishes: \"Thanks for calling, we value your business.\"",
    "t": 7.908,
    "word": 21,
    "end": 12.928
@@ -63,7 +63,7 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "Snow shrugs; the note slides down a pixel at a time.",
+   "text": "The van brakes and parks; Snow shrugs.",
    "t": 15.768,
    "word": 42,
    "end": 17.672
@@ -75,7 +75,7 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "The inventory set, title TEXT KIT. Three slots: WHO YOU ARE (clip), SORRY (phone), ONE QUESTION (clock). The cursor jumps to WHO on \"Who\" and SORRY on \"Sorry\"; the detail pane names it, the part's words land under the belt.",
+   "text": "The register set: WHO 29 rings on \"Who\", SORRY 26 on \"Sorry\", ASK 47 before the cut, CHARS 102 prints as the total.",
    "t": 17.672,
    "word": 45,
    "end": 21.872

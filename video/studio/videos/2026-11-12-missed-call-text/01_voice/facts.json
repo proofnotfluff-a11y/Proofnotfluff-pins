@@ -1,0 +1,41 @@
+{
+ "about": "Every number and rule this video shows or says, with its source. Twilio's docs page 'How long can a message be? | Twilio' (twilio.com/docs/glossary/what-sms-character-limit, modified 2026-09-16 per its meta tags) read on Oct 31, 2026 (Central) by a web-fetch agent; every 'confirms' line was quoted verbatim from that page that day. The plumber Sam and the example text are ours, not a real customer's words (EXAMPLE on screen).",
+ "twilio": {
+  "title": "How long can a message be? | Twilio",
+  "publisher": "Twilio",
+  "date": "modified 2026-09-16",
+  "url": "https://www.twilio.com/docs/glossary/what-sms-character-limit",
+  "reread": "2026-10-31",
+  "gsm7Chars": 160,
+  "ucs2Chars": 70,
+  "gsm7MultiChars": 153,
+  "ucs2MultiChars": 67,
+  "confirms": [
+   "Table, SMS / GSM-7: Characters per one segment message 160; Characters per multi-segment message 153.",
+   "Table, SMS / UCS-2: Characters per one segment message 70; Characters per multi-segment message 67.",
+   "SMS splits messages longer than 160 characters into parts called segments, then are re-assembled when they received.",
+   "If your message includes a UCS-2 character like an emoji or a Chinese hanzi, SMS switches to the UCS-2 encoding.",
+   "Your text editor changes \" to a curly or smart quotation mark. Your message includes a UCS-2 encoded character. This reduces the single message character limit from 160 to 70.",
+   "If the message exceeds 70 characters, it splits the message into two or more messages with 67 characters each.",
+   "Twilio bills SMS per message segment sent.",
+   "To avoid the cost of a second message segment, remove that UCS-2 character."
+  ],
+  "scope": "SMS character limits and segment billing as Twilio documents them. Other texting apps built on SMS split the same way; their billing is their own (the video says Twilio bills per segment, nothing about other vendors' prices)."
+ },
+ "example": {
+  "source": "OURS: an example missed-call text, labeled EXAMPLE on screen; not a real shop or customer",
+  "text": "Hi, this is Sam the plumber. Sorry I missed your call. What do you need fixed, and when works for you?",
+  "textLength": 102,
+  "parts": [
+   "Who you are",
+   "Sorry I missed your call",
+   "One question that books it"
+  ],
+  "partCount": 3,
+  "partNo": 1,
+  "series": 3,
+  "withEmojiSegments": 2,
+  "withEmojiNote": "The 102-character text plus one emoji switches to UCS-2: over 70 characters, so it splits into 67-character segments, 2 of them (an emoji is 2 UTF-16 units); Twilio bills per segment. Every character of the plain text is in GSM-7's basic set (checked in code), so plain it is one segment.",
+  "usual": "Thanks for calling, we value your business."
+ }
+}

@@ -1,18 +1,18 @@
 # Transcript: 2026-11-13-count-before-ai
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 124 words, 45.6 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 128 words, 46.8 s of voice.
 
 ## Flags
-none
+- dropped 'It might pay.': not heard
 
 ## Pace per take (target 160 to 195 wpm)
 ```
   01     0.0 s  146 wpm  slow: rewrite it as talk, then speak --take 1
   02     4.0 s  164 wpm  
-  03    13.5 s  175 wpm  
-  04    22.4 s  162 wpm  
-  05    32.4 s  173 wpm  
-  06    42.7 s  190 wpm  
+  03    13.5 s  159 wpm  
+  04    23.6 s  162 wpm  
+  05    33.6 s  191 wpm  
+  06    43.9 s  190 wpm  
 ```
 
 ## Words
@@ -25,28 +25,30 @@ none
 
 `00:10.2` But you don't know what those calls are worth yet.
 
-`00:13.5` For two weeks, mark every call you miss on a calendar.
+`00:13.5` Tonight, scroll your call log back two weeks and count every miss.
 
-`00:17.3` Then circle the ones that were real jobs.
+`00:18.4` Then circle the ones that were real jobs.
 
-`00:19.9` Say it's four of the fourteen.
+`00:21.1` Say it's four of the fourteen.
 
-`00:22.4` Four jobs times what you clear on an average job.
+`00:23.6` Four jobs times what you clear on an average job.
 
-`00:25.8` Say three fifty.
+`00:27.0` Say three fifty.
 
-`00:27.3` That's fourteen hundred bucks in two weeks.
+`00:28.5` That's fourteen hundred bucks in two weeks.
 
-`00:30.0` Call it twenty-eight hundred a month.
+`00:31.2` Call it twenty-eight hundred a month.
 
-`00:32.4` Now hold that next to the monthly price on the quote.
+`00:33.6` Now hold that next to the monthly price on the quote.
 
-`00:35.5` Price is bigger?
+`00:36.7` Price is bigger?
 
-`00:36.7` It can't pay for itself yet.
+`00:37.9` It can't pay for itself yet.
 
-`00:38.5` Smaller?
+`00:39.7` Smaller?
 
-`00:39.5` Part two tries three options side by side.
+`00:40.2` It might pay.
 
-`00:42.7` Count the missed calls before you buy what answers them.
+`00:40.7` Part two tries three options side by side.
+
+`00:43.9` Count the missed calls before you buy what answers them.

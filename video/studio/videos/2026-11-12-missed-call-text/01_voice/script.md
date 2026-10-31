@@ -2,7 +2,7 @@
 
 Your missed-call text gets a hundred sixty characters to book the job.
 
-Part one of three, the words. Your gut says write a polite paragraph, like thanks for calling, we value your business. No name. No question. Nobody answers that.
+Part one of three, the words. Your gut says write a polite paragraph, like thanks for calling, we value your business. But there's no name and no question in it. Nobody answers that.
 
 Three parts. Who you are. Sorry I missed your call. Then one question that books it, like what do you need fixed, and when works for you?
 

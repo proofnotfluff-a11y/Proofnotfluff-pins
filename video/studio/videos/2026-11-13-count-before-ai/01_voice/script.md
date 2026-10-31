@@ -1,6 +1,6 @@
 # Script: Do you need an AI receptionist? Part 1 of 2 (playbook; Depth bank #3; all numbers ours, EXAMPLE)
 
-You missed fourteen calls and now you want an AI receptionist?
+You want an AI receptionist after fourteen missed calls?
 
 Part one of two, the count. Your gut says the demo sounded great, so sign. But you don't know what those calls are worth yet.
 

@@ -12,6 +12,17 @@ The lab (Tue, Thu, Sat) ranks this list from its benchmark against _shared/style
 ## Backlog (most promising first)
 000. End card: the last 3 to 5 s show the ProofNotFluff lockup and proofnotfluff.com, music only (Jake Van Clief's
    voice-driven-animation end card; the buyer gate answered follow_or_link "no" on lessons 1 and 8).
+00s. Sound effects from earshot's code bank (Todd, live chat, Oct 31, 2026: "Let's include these skills", on a reel naming
+   earshot, Real SFX and Openverse). Vetted Oct 31 in a live chat: github.com/Leonxlnx/earshot, MIT, pinned commit
+   591fa3e; `earshot sfx list` shows 252 sounds made in code (no recordings, no models, no network; only numpy, scipy,
+   soundfile, soxr); whoosh_fast/tight and click/soft rendered and passed `earshot sfx check` (clean). Copy only
+   earshot/forge (bank, sfx, kit, dsp, fx and their json) and LICENSE into tools/earshot/ at that commit; never pip
+   install the package (it pulls torch and transformers) and never use its llm, mcp or models code. Map our 7 effect names
+   to 2 to 3 bank ids each so takes vary across lessons (our variety rule), keep every rule in _shared/sound.md (levels,
+   1.5 s spacing, never on a number, the sting stays ours), and A/B one lesson's mix with `anim.py check` before the switch.
+   Also from Real SFX (github.com/Bodila51/opus-sound-layer, MIT, 52ac266): add its idea to `anim.py check`, each effect
+   within 2 frames of the picture change it marks. Its sample downloader and the Openverse API stay out (recordings with
+   varying licenses; "No samples, no licenses" in _shared/sound.md).
 00b. Type floor (the design gate caps type at 4 under 44 px spoken words or 36 px labels at 1080 wide). Spoken words:
    done Oct 29 (Done, below): the arcade dialog box is size 66 now. Left: labels, tags and sources under 36 (size 30 or 39,
    about 21 to 27 px caps; lesson 9's prompt card, the HUD and k.chip tags) still cap type at 4. Not changed on purpose

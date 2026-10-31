@@ -29,7 +29,7 @@ in facts.json found on the page that day.
   a 20 s ring bar), `gauge` (the twenty-second line), `chat` (the text back), `flaps` (the charge statuses), `versus`
   (the scoreboard). None used by the two lessons before it (notes-to-quote: street, inventory, levelup;
   receptionist-myth: calendar, scores, boss).
-- **End card send line:** "Send this to whoever pays for your Google ads." (SCENE.sendLine; no recent lesson names this role)
+- **End card send line:** "Send this to whoever runs your Google ads." (SCENE.sendLine; no recent lesson names this role)
 - **Asked by owners:** thin. No owner forum thread from the last 90 days was found on public pages (Reddit was refused
   in the Oct 30 research run; Local Search Forum's LSA threads found were from 2024). Signs that the trades are asking:
   The Pool Deck (Skimmer's community for pool service owners), "Google Will Now Charge for Missed LSA Calls: What Pool

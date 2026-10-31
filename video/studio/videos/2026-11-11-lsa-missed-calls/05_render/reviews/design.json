@@ -1,24 +1,22 @@
 {
- "pass": false,
+ "pass": true,
  "score": {
-  "first": 4,
-  "hierarchy": 4,
+  "first": 5,
+  "hierarchy": 5,
   "type": 5,
   "color": 5,
-  "spacing": 4,
-  "polish": 5,
+  "spacing": 5,
+  "polish": 4,
   "trust": 5,
-  "average": 4.57
+  "average": 4.86
  },
  "reasons": [
-  "gauge readout still a 60 px chip, no 160 px hero",
-  "cover has no single focal point",
-  "1 and 0 about 90 px, want 160",
-  "Fridays strip half empty, board blank at 32.1 s",
-  "DO THIS WEEK box opens full height with 2 of 4 lines",
-  "dead padding under the rule"
+  "0.00 s EXAMPLE tag above the source bar: the bar covers the bottom of the letters; move the tag up or the bar down (fixed: bar moved down).",
+  "42.50 s DO THIS WEEK box opens empty for one beat (fixed: box in 5 frames, first line 0.22 s after the cue).",
+  "Round 1 asks all landed: gauge hero about 150 px, cover focal phone, 1 and 0 about 240 px, board fills, box fits, tight padding."
  ],
  "gate": "design",
- "round": 1,
- "reviewer": "fresh opus agent"
+ "round": 2,
+ "reviewer": "fresh opus agent",
+ "note": "Round 2 after Todd's ask to fix, live chat, Oct 31, 2026, 7:12 am: \"Please diagnose and fix design issue\""
 }

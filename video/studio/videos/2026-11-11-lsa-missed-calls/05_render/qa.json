@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-11-lsa-missed-calls",
- "mp4Sha256": "36c64bd6bf9f00485ff7589de5ff21e36902095e0b4cdaaaaff9093301d24225",
+ "mp4Sha256": "98ee919579b3709e32746a3209d5c0f31974971e95d96bd9e271d4c5b9973459",
  "checks": [
   {
    "name": "length",
@@ -38,8 +38,8 @@
   {
    "name": "file",
    "value": {
-    "sha256": "36c64bd6bf9f00485ff7589de5ff21e36902095e0b4cdaaaaff9093301d24225",
-    "bytes": 5396039
+    "sha256": "98ee919579b3709e32746a3209d5c0f31974971e95d96bd9e271d4c5b9973459",
+    "bytes": 5379231
    },
    "pass": true,
    "detail": "H.264 1080x1920 30 fps, AAC, 5.4 MB, decodes clean"
@@ -52,5 +52,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-30T22:45:02-05:00"
+ "at": "2026-10-31T07:43:35-05:00"
 }

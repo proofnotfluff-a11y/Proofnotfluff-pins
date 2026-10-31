@@ -5,7 +5,8 @@
  },
  "faults": [],
  "reasons": [
-  "r0 overlap fixed"
+  "Round 0 faults fixed: EXAMPLE tag clear of the source strip at 0.0 s; end-card send line x 155 to 913.",
+  "Hook, numbers, layout, audio, small text and flash PASS."
  ],
  "gate": "render-critic",
  "round": 1,

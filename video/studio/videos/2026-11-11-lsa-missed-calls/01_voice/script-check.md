@@ -26,7 +26,7 @@ re-measured on the real words.json below. The script gate should re-score it bli
 9 talk test: PASS contractions in takes 2, 4 (That's, aren't) and "you" or "your" in takes 2, 4, 5; 0 banned words; 0 em or en dashes; no sentence over 20 words. Takes 1, 3 and 6 are the moment, shop two and the rule, written short on purpose
 10 voice markup: PASS 2 tags ([matter-of-fact], [confident]), none soft; 0 CAPS words; no digits, $, %, / or & in the voice
 11 no tail: PASS no turn line, no honest note, no spoken send, save, like, follow or comment ask
-12 button: PASS last sentence "Run the ads only when somebody picks up." repeats "picks up" from the hook; SCENE.sendLine "Send this to whoever pays for your Google ads."
+12 button: PASS last sentence "Run the ads only when somebody picks up." repeats "picks up" from the hook; SCENE.sendLine "Send this to whoever runs your Google ads."
 
 Result: 12 of 12 before the voice.
 

@@ -44,4 +44,4 @@ The versus screen, the scoreboard: SHOP 1 (CHARGED 1) against SHOP 2 (CHARGED 0)
 ## button "Same call. Same night." [sfx: whoosh]
 Back on the split street at night, both windows dark. The DO THIS WEEK card: 1 Ad schedule: only hours a person answers. 2 Missed rings: a second phone. 3 Text back every missed call. 4 Fridays: Charge Status. Then the rule on "Run": "Run ads only when someone picks up."
 ## button.rule "Run the ads only" [sfx: sting]
-The rule lands in gold; Snow waves. Then the end card with the send line: "Send this to whoever pays for your Google ads."
+The rule lands in gold; Snow waves. Then the end card with the send line: "Send this to whoever runs your Google ads."

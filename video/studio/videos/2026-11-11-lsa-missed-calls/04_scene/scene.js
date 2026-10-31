@@ -152,7 +152,7 @@ window.SCENE = {
   images: [],
   host_name: 'Snow',
   hud: 'MISSED CALLS',
-  sendLine: 'Send this to whoever pays for your Google ads.',
+  sendLine: 'Send this to whoever runs your Google ads.',
   transitions: {one: 'dissolve', text: 'levelselect', friday: 'dissolve', proof: 'levelselect', score: 'dissolve', button: 'gameover'},
   trauma: {'one.charged': 0.8},
   sections: {
@@ -174,11 +174,17 @@ window.SCENE = {
         hookPlate(k, d, [`${n.callAt.shown}. Same call.`, 'Two shops.']);
         return host(k);
       }
-      const d = street(k, {lit: [true, true], ring: [true, true]});
+      const d = street(k, {lit: [true, true], ring: [false, false]});
+      /* the cover's one focal point (design gate, Oct 30: "cover has no single focal point"): the street dimmed, one big */
+      /* phone ringing in front of both shops, the call time on its screen                                              */
+      k.ctx.save(); k.ctx.globalAlpha = 0.6; d.P(0, 150, 360, 267, '#120D14'); k.ctx.restore();
+      phone(d, 146, 176, 68, 112, {ring: true, screen: '#3B82C4'});
+      k.text(n.callAt.shown, 540, 642, {size: 66, color: CREAM, align: 'center', drop: INK});
+      k.text('CALLING', 540, 720, {size: 39, color: '#BDE6F5', align: 'center'});
       hookPlate(k, d, [`${n.callAt.shown}. Same call.`, 'Two shops.']);
-      k.chip('EXAMPLE', 66, 846, {size: 30});
-      d.P(20, 296, 300, 20, INK); d.P(21, 297, 298, 18, '#1B1420');
-      k.text('Rule: Google Local Services Help', 78, 900, {size: 39, color: SAND});
+      k.chip('EXAMPLE', 66, 1008, {size: 30});
+      d.P(20, 358, 300, 20, INK); d.P(21, 359, 298, 18, '#1B1420');
+      k.text('Rule: Google Local Services Help', 78, 1086, {size: 39, color: SAND});
       return {host: false, speech: false};
     },
 
@@ -246,11 +252,12 @@ window.SCENE = {
     /* "status" and "Leads"; the strip under it: FRIDAYS: LEADS PAGE.                                                     */
     friday: (k, T) => {
       const d = px(k), t0 = k.S('friday'), tCheck = wordT(k, 'friday', /^check/i, 1.2), tSt = wordT(k, 'friday', /^status/i, 1.8), tLeads = wordT(k, 'friday', /^leads/i, 2.5);
-      k.sets.flaps({title: 'CHARGE STATUS', cols: 12, rows: [
-        {label: 'CHARGED', value: '', at: tCheck}, {label: 'NOT CHARGED', value: '', at: tCheck + 0.3},
+      k.sets.flaps({title: 'CHARGE STATUS', cols: 11, rows: [
+        {label: 'CHARGED', value: '', at: t0 - 0.8}, {label: 'NOT CHARGED', value: '', at: Math.min(t0 + 0.1, tCheck)},
         {label: 'IN REVIEW', value: '', at: tSt}, {label: 'CREDITED', value: '', at: tSt + 0.3, hi: true}]});
-      if (T >= t0 + 0.1) { plate(d, 98, 284, 248, 34); k.slam('Fridays: Leads page', 312, 870, t0 + 0.1, {size: 39, color: GOLD, from: 0.4}); }
-      if (T >= tLeads) k.sweep(312, 912, k.measure('Fridays: Leads page', {size: 39}), 6, tLeads, {color: 'accent'});
+      { const s = 'Fridays: Leads page, Charge Status', w = Math.ceil((k.measure(s, {size: 39}) + 60) / 3);
+        plate(d, Math.round(180 - w / 2), 284, w, 34); k.slam(s, 540, 870, t0 - 0.2, {size: 39, color: GOLD, align: 'center', from: 0.4});
+        if (T >= tLeads) k.sweep(540 - k.measure(s, {size: 39}) / 2, 912, k.measure(s, {size: 39}), 6, tLeads, {color: 'accent'}); }
       return host(k, k.live('friday') ? 'point' : null);
     },
 
@@ -258,13 +265,16 @@ window.SCENE = {
     /* The source on the hood the whole time it is said.                                                                */
     proof: (k, T) => {
       const n = k.data.numbers, d = px(k), tTw = wordT(k, 'proof.twenty', /^twenty/i, 0.2);
-      k.sets.gauge({value: n.secs.value, max: n.secs.value * 2, at: tTw - 0.3, dur: 0.9, suffix: ' S', label: 'GOOGLE HELP: HOW LEADS WORK',
+      k.sets.gauge({value: n.secs.value, max: n.secs.value * 2, at: tTw - 0.3, dur: 0.9, suffix: ' S', readout: false, labels: false, label: 'GOOGLE HELP: HOW LEADS WORK',
         zones: [[0, n.secs.value, '#2F6F67'], [n.secs.value, n.secs.value * 2, '#E2633B']]});
-      /* the dial's top mark is the line; its end label is painted out (only the brief's 20 is on the face) */
-      const R = 100, cx = 180, cy = 214, a = Math.PI * 2.25; d.P(Math.round(cx + Math.cos(a) * (R - 32)) - 16, Math.round(cy + Math.sin(a) * (R - 32)) - 12, 32, 16, '#120D14');
-      /* the top label too (the needle would run through it at 20; the readout carries the number): a gold notch on the */
-      /* bezel marks the line instead, dropping in on "line" */
-      { const at = Math.PI * 1.5; d.P(Math.round(cx + Math.cos(at) * (R - 32)) - 16, Math.round(cy + Math.sin(at) * (R - 32)) - 12, 32, 16, '#120D14'); }
+      /* the dial shows only the 0 (labels: false; only the brief's 20 is on the face): a gold notch on the bezel marks */
+      /* the line, dropping in on "line" */
+      const R = 100, cx = 180, cy = 214;
+      /* the readout as the hero (design gate: "gauge readout still a 60 px chip, no 160 px hero"): the kit's chip is */
+      /* left off (readout: false) and the count is drawn 144 px tall under the hub, counting with the needle                      */
+      { const at = tTw - 0.3, dur = 0.9, dt = Math.max(0, T - at), v = T < at ? 0 : (dt >= dur ? n.secs.value : Math.round(n.secs.value * eo(clamp(dt / (dur * 0.55)))));
+        k.text(String(v), 540, 640, {size: 264, color: GOLD, align: 'center', drop: INK});
+        k.text('SEC', 668, 768, {size: 39, color: SAND}); }
       const tLine = wordT(k, 'proof', /^line/i, 1.4);
       if (T >= tLine) { const f = d.fr(tLine), lift = f < 4 ? [-6, -3, -1, 1][f] : 0; for (let j = 0; j < 6; j++) d.P(cx - 5 + j, 128 + j + lift, 11 - 2 * j, 1, j ? ORANGE : GOLD); d.P(cx - 6, 127 + lift, 13, 1, INK); }
       return host(k, k.live('proof.twenty') ? 'point' : null);
@@ -278,9 +288,9 @@ window.SCENE = {
         b: {name: 'SHOP 2', icon: 'clock', stats: [{label: 'CHARGED', value: n.twoCharged.value, max: 1, text: n.twoCharged.shown}]},
         at: t0 - 0.05, vsAt: t0 + 0.35, winner: 'b', winAt: tVm, winText: 'WIN'});
       const tCnt = t0 + 0.8;
-      if (T >= tCnt) { k.slam(n.oneCharged.shown, 270, 726, tCnt, {size: 132, color: RED, align: 'center', from: 0.5, drop: INK}); k.slam(n.twoCharged.shown, 738, 726, tCnt + 0.15, {size: 132, color: TEAL, align: 'center', from: 0.5, drop: INK}); }
-      plate(d, 98, 280, 248, 38); k.slam('Even voicemail counts.', 312, 870, t0 + 0.2, {size: 39, color: GOLD, from: 0.4});
-      if (T >= tVm) k.sweep(312, 912, k.measure('Even voicemail counts.', {size: 39}), 6, tVm, {color: 'accent'});
+      if (T >= tCnt) { k.slam(n.oneCharged.shown, 270, 650, tCnt, {size: 330, color: RED, align: 'center', from: 0.5, drop: INK}); k.slam(n.twoCharged.shown, 738, 650, tCnt + 0.15, {size: 330, color: TEAL, align: 'center', from: 0.5, drop: INK}); }
+      plate(d, 98, 300, 248, 38); k.slam('Even voicemail counts.', 312, 930, t0 + 0.2, {size: 39, color: GOLD, from: 0.4});
+      if (T >= tVm) k.sweep(312, 972, k.measure('Even voicemail counts.', {size: 39}), 6, tVm, {color: 'accent'});
       return host(k, k.live('score') ? 'point' : null);
     },
 
@@ -289,13 +299,14 @@ window.SCENE = {
     button: (k, T) => {
       const n = k.data.numbers, t0 = k.S('button'), tRun = k.S('button.rule');
       const d = street(k, {lit: [false, false]});
-      const up = d.ease(t0 + 0.05, 8, 160);
-      d.clip(0, 0, 360, 322, () => d.win(14, 84 + up, 332, 192, {base: '#1B1420', hi: '#7A3442', lo: INK, rule: ORANGE}));
+      const up = d.ease(t0 + 0.05, 5, 160);
+      const hh = 176 - d.ease(tRun, 6, 58);
+      d.clip(0, 0, 360, 322, () => d.win(14, 84 + up, 332, hh, {base: '#1B1420', hi: '#7A3442', lo: INK, rule: ORANGE}));
       if (up === 0) {
         k.text(`DO THIS WEEK (${n.steps.shown})`, 72, 270, {size: 39, color: GOLD});
         ['1 Ads: only hours you answer', '2 Missed rings: second phone', '3 Text back every missed call', '4 Fridays: Charge Status'].forEach((s, i) => {
-          if (T >= t0 + 0.2 + i * 0.25) k.slam(s, 72, 336 + i * 62, t0 + 0.2 + i * 0.25, {size: 39, color: CREAM, from: 0.3}); });
-        if (T >= tRun) { k.slam('Run ads only when', 72, 610, tRun, {size: 66, color: CREAM, from: 0.4, drop: INK}); k.slam('someone picks up.', 72, 690, tRun + 0.1, {size: 66, color: GOLD, from: 0.4, drop: INK}); k.sweep(72, 766, k.measure('someone picks up.', {size: 66}), 6, tRun + 0.4, {color: 'accent'}); }
+          const ti = t0 + 0.22 + i * 0.06; if (T >= ti) k.slam(s, 72, 330 + i * 58, ti, {size: 39, color: CREAM, from: 0.3}); });
+        if (T >= tRun) { k.slam('Run ads only when', 72, 594, tRun, {size: 66, color: CREAM, from: 0.4, drop: INK}); k.slam('someone picks up.', 72, 670, tRun + 0.1, {size: 66, color: GOLD, from: 0.4, drop: INK}); k.sweep(72, 744, k.measure('someone picks up.', {size: 66}), 6, tRun + 0.4, {color: 'accent'}); }
       }
       return host(k, T >= tRun + 0.8 ? 'wave' : (k.live('button') ? 'point' : null));
     },

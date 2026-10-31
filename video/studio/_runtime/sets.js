@@ -694,7 +694,8 @@
     // ================================================================================================================
     // 11. gauge: a dashboard speedometer for a rate. The needle swings from the low end, overshoots and settles (its
     // angle stepped so the line is always whole pixels), the readout counts up. o: {value, max (100), at, dur (1.0),
-    // zones: [[from, to, color]], label, suffix ('%'), prefix, dec, ticks (10)}
+    // zones: [[from, to, color]], label, suffix ('%'), prefix, dec, ticks (10), readout (true),
+    // labels (true; false keeps only the 0 at the low end)}
     S.gauge = function (o = {}) {
       const max = o.max || 100, val = o.value != null ? o.value : 0, at = o.at || 0;
       P(0, 0, 360, 417, '#1B1420'); for (let y = 0; y < 417; y += 3) dith(0, y, 360, 1, '#2B2033', y % 2);
@@ -707,7 +708,7 @@
       (o.zones || [[0, max * 0.4, '#E2633B'], [max * 0.4, max * 0.7, '#F2A541'], [max * 0.7, max, '#6FB7A8']]).forEach(([v0, v1, c]) => { for (let a = ang(v0); a <= ang(v1); a += 0.006) for (let r = R - 8; r <= R - 3; r++) DOT(cx + Math.round(Math.cos(a) * r), cy + Math.round(Math.sin(a) * r), c); });
       const nt = o.ticks || 10;
       for (let i = 0; i <= nt; i++) { const a = a0 + sweep * i / nt, r1 = i % 5 === 0 ? R - 20 : R - 14; line(cx + Math.cos(a) * r1, cy + Math.sin(a) * r1, cx + Math.cos(a) * (R - 10), cy + Math.sin(a) * (R - 10), '#FFF7EA', i % 5 === 0 ? 2 : 1); }
-      [[0, '0'], [nt / 2, String(max / 2)], [nt, String(max)]].forEach(([i, s]) => { const a = a0 + sweep * i / nt; tx(s, cx + Math.cos(a) * (R - 32), cy + Math.sin(a) * (R - 32) - 10, {color: '#C9CCD3', align: 'center'}); });
+      (o.labels === false ? [[0, '0']] : [[0, '0'], [nt / 2, String(max / 2)], [nt, String(max)]]).forEach(([i, s]) => { const a = a0 + sweep * i / nt; tx(s, cx + Math.cos(a) * (R - 32), cy + Math.sin(a) * (R - 32) - 10, {color: '#C9CCD3', align: 'center'}); });
       // the needle: overshoot and settle, the angle stepped to whole degrees
       const d = Math.max(0, T - at), dur = o.dur || 1.0;
       const rise = clamp(d / (dur * 0.55)), base = val * easeOut(rise), wob = d > dur * 0.55 ? val * 0.06 * Math.exp(-5 * (d - dur * 0.55)) * Math.sin((d - dur * 0.55) * 16) : 0;
@@ -721,8 +722,10 @@
       // the readout under the hub (inside the dial), counting as the needle rises
       const shownV = T < at ? (o.from != null ? o.from : 0) : (d >= dur ? val : val * easeOut(rise));
       const s = (o.prefix || '') + (d >= dur ? val.toFixed(o.dec || 0) : shownV.toFixed(o.dec || 0)) + (o.suffix != null ? o.suffix : '%');
-      P(cx - 38, cy + 18, 76, 30, INK); P(cx - 37, cy + 19, 74, 28, '#1A332B'); P(cx - 36, cy + 20, 72, 26, '#24453A');
-      tx(s, cx, cy + 22, {size: 66, color: '#F7C873', align: 'center'});
+      if (o.readout !== false) {   // readout: false leaves the face clear for a scene's own hero number (Oct 31, 2026)
+        P(cx - 38, cy + 18, 76, 30, INK); P(cx - 37, cy + 19, 74, 28, '#1A332B'); P(cx - 36, cy + 20, 72, 26, '#24453A');
+        tx(s, cx, cy + 22, {size: 66, color: '#F7C873', align: 'center'});
+      }
       if (o.label) tx(o.label, cx, 92, {align: 'center', color: '#FFF7EA', drop: INK});
       // side gauges: fuel and temp, small and still
       [[38, 'F'], [322, 'H']].forEach(([x, s2], i) => { const y = 150; disc(x, y, 18, INK); disc(x, y, 16, '#2B2033'); ring(x, y, 16, '#6B7080'); line(x, y, x + (i ? -8 : 10), y - 9, '#F2A541'); disc(x, y, 2, '#9AA0AD'); });

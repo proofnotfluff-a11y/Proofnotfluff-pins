@@ -18,9 +18,9 @@ pattern and Treatment lines and script.md; the existing gates still judge the re
    after the quote", "I'm too cheap", "the phone rings while I'm under a sink"). Read IDEAS.md's top line, then check that
    people are asking it now: a public web search for the problem in owner forums or video comments from the last 90 days.
    No sign of anyone asking: take the next idea. Note the evidence link in brief.md (`- **Asked by owners:**`).
-2. **Study what is winning on it this week.** Public pages only, no sign-in: search YouTube Shorts for the problem and
-   read 3 recent videos with the most views (title, hook words, length, how it ends). Write one line in brief.md
-   (`- **Niche check:**`) naming the angle they used and how ours differs. Never copy a script, a line or a shot.
+2. **Model videos (Todd, Oct 31: "Yes").** 2 or 3 public YouTube videos on the problem, most views (100K+ if any).
+   Watch each with the watch-video skill: hook, beats with times, steps taught, ending. brief.md `- **Model videos:**`
+   link, views, what we take. None watched, no lesson. Our words only: never a line, shot or script.
 3. **Pick the format** from _shared/formats.md that fits the problem and passes rotation (`anim.py variety <slug>` after
    brief.md exists). The fix is a line to say: clinic. A number: quick-math. A text or reply: fix-this. Speed or process:
    two-shops. A belief: myth-three. A habit that adds up: scenario.
@@ -49,6 +49,6 @@ pattern and Treatment lines and script.md; the existing gates still judge the re
    - Then the 12-point check in _shared/voice.md with the format's own bands.
 
 ## Outputs (Writes)
-- brief.md lines: Format, Hook pattern, Treatment, Example, Asked by owners, Niche check; script.md; script-check.md.
+- brief.md lines: Format, Hook pattern, Treatment, Example, Asked by owners, Model videos; script.md; script-check.md.
 - Never: a quote over 15 words from anyone's video, a real customer's words, an invented story told as true, a number
   not in facts.json, em or en dashes.

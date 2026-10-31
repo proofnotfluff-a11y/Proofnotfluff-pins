@@ -5,9 +5,9 @@ succeed in this niche." Used by the video-studio SKILL at stage 01 for every new
 pattern and Treatment lines and script.md; the existing gates still judge the result.
 
 ## Inputs (Reads)
-- video/studio/_shared/voice.md (the voice rules and the 12-point check), _shared/formats.md (the six formats).
-- video/studio/research/viral-formats-2026-10.md (18 1M+ shorts read on their pages) and research/PERFORMANCE.md (what our
-  own posts say: the newest diagnosis wins over outside research when they disagree).
+- video/studio/_shared/voice.md (voice rules, 12-point check), _shared/formats.md (the six formats).
+- video/studio/research/viral-formats-2026-10.md (18 1M+ shorts) and research/PERFORMANCE.md (our own
+  posts; its newest diagnosis beats outside research).
 - research/IDEAS.md, KNOWLEDGE.md and the lesson's facts.json.
 
 ## Process (Executes)
@@ -18,9 +18,9 @@ pattern and Treatment lines and script.md; the existing gates still judge the re
    after the quote", "I'm too cheap", "the phone rings while I'm under a sink"). Read IDEAS.md's top line, then check that
    people are asking it now: a public web search for the problem in owner forums or video comments from the last 90 days.
    No sign of anyone asking: take the next idea. Note the evidence link in brief.md (`- **Asked by owners:**`).
-2. **Model videos (Todd, Oct 31: "Yes").** 2 or 3 public YouTube videos on the problem, most views (100K+ if any).
+2. **Model videos (Todd, Oct 31: "Yes").** 2 or 3 public YouTube videos on the problem, owner-made over vendor tutorials, most views (100K+ if any).
    Watch each with the watch-video skill: hook, beats with times, steps taught, ending. brief.md `- **Model videos:**`
-   link, views, what we take. None watched, no lesson. Our words only: never a line, shot or script.
+   link, views, what we take. Read 2+ answers before step 4 (503: rename, retry, 3 rounds max); fewer, no lesson. Our words only: never a line, shot or script.
 3. **Pick the format** from _shared/formats.md that fits the problem and passes rotation (`anim.py variety <slug>` after
    brief.md exists). The fix is a line to say: clinic. A number: quick-math. A text or reply: fix-this. Speed or process:
    two-shops. A belief: myth-three. A habit that adds up: scenario.

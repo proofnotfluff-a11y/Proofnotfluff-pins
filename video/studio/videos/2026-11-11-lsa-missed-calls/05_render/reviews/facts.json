@@ -1,17 +1,16 @@
 {
- "pass": false,
+ "pass": true,
  "score": {
   "numbers": 8,
-  "mismatches": 1
+  "mismatches": 0
  },
  "reasons": [
-  "shop one: charged needs both ad schedule and business hours; the example states only the ad schedule. Fix: 'is open and runs ... till nine', sign shows hours and ads.",
-  "15-day line ok via 'again' (optional tightening)."
+  "r0 fixed: shop one open and ads till 9; all 8 numbers match"
  ],
  "sources_checked": [
-  "https://support.google.com/localservices/answer/7195435?hl=en (read)"
+  "https://support.google.com/localservices/answer/7195435?hl=en"
  ],
  "gate": "facts",
- "round": 0,
+ "round": 1,
  "reviewer": "fresh opus agent"
 }

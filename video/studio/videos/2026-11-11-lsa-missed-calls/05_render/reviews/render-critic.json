@@ -1,20 +1,13 @@
 {
- "pass": false,
+ "pass": true,
  "score": {
-  "faults": 1
+  "faults": 0
  },
- "faults": [
-  {
-   "kind": "overlap",
-   "at": 36.5,
-   "text": "GOOGLE HELP: HOW LEADS WORK",
-   "what": "the gold notch sits on HOW"
-  }
- ],
+ "faults": [],
  "reasons": [
-  "everything else clean"
+  "r0 overlap fixed"
  ],
  "gate": "render-critic",
- "round": 0,
+ "round": 1,
  "reviewer": "fresh opus agent"
 }

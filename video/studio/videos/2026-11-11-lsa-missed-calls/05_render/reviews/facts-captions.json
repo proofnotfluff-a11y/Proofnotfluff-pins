@@ -1,14 +1,11 @@
 {
- "pass": false,
+ "pass": true,
  "score": {
   "numbers": 4,
   "mismatches": 0
  },
- "reasons": [
-  "source blocked for the reviewer (unconfirmed)",
-  "IG and YT step 3 drop the 15-day window"
- ],
+ "reasons": [],
  "gate": "facts-captions",
- "round": 0,
+ "round": 1,
  "reviewer": "fresh opus agent"
 }

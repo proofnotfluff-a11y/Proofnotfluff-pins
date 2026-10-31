@@ -3,24 +3,22 @@
  "score": {
   "first": 4,
   "hierarchy": 4,
-  "type": 4,
+  "type": 5,
   "color": 5,
   "spacing": 4,
-  "polish": 4,
+  "polish": 5,
   "trust": 5,
-  "average": 4.29
+  "average": 4.57
  },
  "reasons": [
-  "gauge number small, no 160 px hero",
-  "cover: no focal point, source loose on brick",
-  "labels under 36 px (type cap)",
-  "half-sentence headers at 15 and 18 s",
-  "score: empty bars, small 1 and 0, empty band",
-  "DO THIS WEEK box too tall for its lines",
-  "night street holds long; CHARGED LEAD small",
-  "dithered dim signs read as a glitch"
+  "gauge readout still a 60 px chip, no 160 px hero",
+  "cover has no single focal point",
+  "1 and 0 about 90 px, want 160",
+  "Fridays strip half empty, board blank at 32.1 s",
+  "DO THIS WEEK box opens full height with 2 of 4 lines",
+  "dead padding under the rule"
  ],
  "gate": "design",
- "round": 0,
+ "round": 1,
  "reviewer": "fresh opus agent"
 }

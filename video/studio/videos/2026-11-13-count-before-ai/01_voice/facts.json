@@ -1,0 +1,20 @@
+{
+ "about": "Every number this video shows or says. All of them are OURS: a worked example labeled EXAMPLE on screen (the missed calls, the jobs, the dollars), plus the lesson's own method (two weeks of counting, part 1 of 2). No outside study or percentage is used. The arithmetic is checked in code (jobs x clear = twoWeekValue; twoWeekValue x 2 = monthValue, said as 'call it' because a month is a little over four weeks).",
+ "example": {
+  "source": "OURS: an example two-week count, labeled EXAMPLE on screen; not a real shop or customer",
+  "countDays": 14,
+  "countWeeks": 2,
+  "missedCalls": 14,
+  "realJobs": 4,
+  "clearPerJob": 350,
+  "twoWeekValue": 1400,
+  "monthValue": 2800,
+  "monthNote": "twoWeekValue x 2; said 'call it' because a month runs a little over four weeks",
+  "partNo": 1,
+  "series": 2,
+  "nextPart": 2,
+  "nextPartOptions": 3,
+  "nextPartNote": "Part 2 tries three options side by side: a missed-call text-back, a person answering, and an AI receptionist (research/topics-2026-10-30.md lesson 3).",
+  "rule": "If the monthly price on the quote is bigger than what the missed jobs are worth a month, it can't pay for itself from missed calls yet."
+ }
+}

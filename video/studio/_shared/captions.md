@@ -25,14 +25,14 @@ matches. So: the keyword in the first line, said out loud in the first seconds, 
 5. Hashtags last.
 
 No AI voice line in any caption (Todd, Oct 29, 2026, 10:28 am: "don't put this on the video captions: \"Narrated by an AI
-version of my own voice.\""). AI labels are off on every platform (Todd, Oct 30, 2026, 12:36 pm: "off for all future posts"; POSTING.md).
+version of my own voice.\""). AI labels: TikTok on, the rest off (Todd, Oct 31, 2026: label where the rules require it; the voice is an AI clone; POSTING.md).
 
 ## Per platform
 - Instagram: 3 to 5 hashtags (cap 5): 1 umbrella (#homeservicebusiness or #contractorbusiness), 1 to 2 trade business
   (#plumbingbusiness, #hvacbusiness, #roofingbusiness), 1 topic. No link; "link in bio" is fine. AI label off. Share to
   Facebook off (Facebook gets its own post).
 - TikTok: keyword in the first 70 characters, a question for owners, 3 to 5 hashtags, no #fyp/#foryou/#viral.
-  AI-generated content off; commercial disclosure only when the video sells something. After posting, suggest the primary
+  AI-generated content ON (Oct 31); commercial disclosure only when the video sells something. After posting, suggest the primary
   keyword and block off-target ones if the keyword panel shows.
 - Facebook Page: 2 to 3 hashtags, no link, no capitals shouting. AI label off. Public.
 - YouTube Shorts: title under 100 characters, keyword in the first 40 to 50, no hashtags in the title. Description: keyword

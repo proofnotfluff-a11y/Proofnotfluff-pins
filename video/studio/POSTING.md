@@ -11,7 +11,7 @@ and call it with that deviceId. Never ask which browser and never call `switch_b
 there to answer; the 4:41 pm run stopped on it). Not connected or refused: post nothing, tell Todd one line with the
 error and the names and deviceIds `list_connected_browsers` shows.
 
-Three a day (Todd, live chat, Oct 30, 2026): each run posts one lesson, the next in queue order, at its slot in
+Four a day (Todd, live chat, Oct 30, 2026: three; Oct 31, 9:08 am: "let's add a fourth to the morning time"): each run posts one lesson, the next in queue order, at its slot in
 video/config.json "posting". Never two lessons in one run; a run that finds the lesson already fully posted takes the next.
 
 ## Before any platform
@@ -21,7 +21,7 @@ video/config.json "posting". Never two lessons in one run; a run that finds the 
    (the path postcopy prints; upload that absolute path, never /mnt/user-data/outputs, which Chrome refuses). An ERROR: hold it and tell Todd.
 3. Captions come only from `python3 video/studio/anim.py postcaptions <slug>`: the facts-gated `05_render/captions.json`
    with any line matching "AI version of my" taken out, whatever the file says (Todd, Oct 29, 2026: no AI voice line in any
-   caption). AI labels: OFF on every platform (Todd, Oct 30, 2026, 12:36 pm: "off for all future posts"; the pixel-art scenes are not realistic, and he chose no AI label), whatever captions.json "settings" say. Paste them exactly; check the pasted length and that no such line
+   caption). AI labels (Todd, Oct 30, 2026, 12:36 pm: "off for all future posts"; Oct 31, 9:06 am: "you can label for Tik Tok and YouTube so we are following the rules if you are sure"): the pictures are pixel art, but the narration is an AI clone of Todd's voice. TikTok requires a label on AI content with realistic audio (its help page, "realistic images, audio, and video"), so TikTok's "AI-generated content" is ON. YouTube lists "cloning one's own voice to create voice overs or dubs" as not needing disclosure (support.google.com/youtube/answer/14328491), so YouTube's AI use answer stays No. Instagram and Facebook stay off until Todd decides. Whatever captions.json "settings" say. Paste them exactly; check the pasted length and that no such line
    went in.
 4. If the lesson's `01_voice/brief.md` has a `- **Re-read before posting:**` line, re-read that source page today. If the
    newer data no longer supports what the video says (its dated claim stays true but reads stale), hold it and tell Todd.
@@ -41,16 +41,15 @@ professional dashboard.
   instagram-trial <url>`. No Trial option on the screen: post it as a normal reel, record it with `posted <slug>
   instagram <url>` and add one line to LEARNINGS.md.
 - **TikTok** (tiktok.com/tiktokstudio/upload): the account must be ProofNotFluff. file_upload the MP4, paste
-  `tiktok.caption`. More options: "AI-generated content" off; commercial disclosure off. Who can watch: Everyone. Post. Record the video link from the
+  `tiktok.caption`. More options: "AI-generated content" ON (Todd, Oct 31: realistic AI voice); commercial disclosure off. Who can watch: Everyone. Post. Record the video link from the
   profile's newest video.
 - **Facebook Page** (https://www.facebook.com/profile.php?id=61594865921562, acting as the Page): Reel, file_upload the
   MP4, Next, paste `facebook.caption`, "Add AI label" off, Public, Share now. Decline boosts and Call Now. Record
   the reel link.
 - **YouTube** (studio.youtube.com, the ProofNotFluff channel): Create, Upload videos, file_upload the MP4. Title =
   `youtube.title`, description = `youtube.description`. Audience: "No, it's not made for kids". Show more: tags =
-  `youtube.tags` (comma separated), "AI use" ("Was AI used to generate or edit your content" in the listed ways: a real person
-  saying what they didn't, altered real footage, a realistic scene, music as the main focus): No; none applies to our
-  pixel-art lessons (Todd, Oct 30). Category: Education. Language: English. Visibility: Public. Publish.
+  `youtube.tags` (comma separated), "AI use": No. Our voice is Todd's own clone, which YouTube lists as not needing
+  disclosure (Oct 31 check); the pictures are pixel art. If the question comes up pre-set to Yes, set it to No. Category: Education. Language: English. Visibility: Public. Publish.
   Record the youtube.com/shorts/<id> link.
 
 After each: `python3 video/studio/anim.py posted <slug> <platform> <url>`, commit, push (a live chat), or the post log below
@@ -69,7 +68,7 @@ read only, post, and write each post to the scoreboard post log; the cloud task 
   read it back with `get`, then go on. A write that fails: stop posting and give Todd the link in the end message.
 - Before `anim.py next`, a PC run applies every log doc with `committed` not true to its own clone (`anim.py posted <slug>
   <platform> <url> <at>`, or `anim.py feedshared <slug> <at>`), never committing, so a post the recorder has not pushed
-  yet is never posted twice and counts toward three a day.
+  yet is never posted twice and counts toward four a day.
 - The recorder applies the same docs, runs `check_repo`, pushes, then sets each one's `committed` to true (pinned to the
   version it read) and appends any `note` to LEARNINGS.md. Applying a doc twice is harmless: same link, same time.
 - Numbers the evening and Monday PC runs read in Chrome go to collection `videometrics`, doc id `<slug>.<YYYY-MM-DD>`,

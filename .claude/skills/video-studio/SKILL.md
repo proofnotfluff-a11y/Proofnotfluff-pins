@@ -1,6 +1,6 @@
-# video-studio (three runs a day: post, make, learn; slots in video/config.json "posting")
+# video-studio (four runs a day: post, make, learn; slots in video/config.json "posting")
 
-Each run: post the next gated lesson on four platforms, make one, learn. Todd, Oct 30, 2026: 3 a day, queue first, each unique (coo/DECISIONS-2026-10-30.md; CONSTITUTION 2). The prompt names the slot. "stop videos" in any chat halts it (video/config.json stop).
+Each run: post the next gated lesson on four platforms, make one, learn. Todd, Oct 31, 2026: 4 a day, queue first, each unique (coo/DECISIONS-2026-10-30.md; CONSTITUTION 2). The prompt names the slot. "stop videos" in any chat halts it (video/config.json stop).
 
 ## Inputs (Reads)
 - video/studio/CLAUDE.md, CONTEXT.md, stages/*/CONTEXT.md, _shared/*.md, POSTING.md, IMPROVE.md, LEARNINGS.md, prompts/, queue.json, research/IDEAS.md, KNOWLEDGE.md, PERFORMANCE.md, the last lesson as the pattern.

@@ -11,7 +11,8 @@
    send line, tags; no AI voice line, Todd Oct 29). Start from Kimi's draft (kimi-jobs skill) and edit it.
 4. `anim.py stills <slug>` and `anim.py gatepack <slug>`, then the gates in `video/studio/prompts/` (README there): facts,
    facts-captions, render critic, buyer, design, golden, each a fresh agent (model opus); facts and facts-captions on Kimi first
-   (prompts/README.md). One fix round per gate; a
-   gate's own second FAIL holds the lesson for Todd.
+   (prompts/README.md). Fix rounds go on until every gate
+   passes (Todd, live chat, Oct 31, 2026, 4:19 pm: "keeps going until the design is fixed"); after two design FAILs the
+   design bar is 4.50. A run that ends mid-fix leaves the lesson for the next run, which finishes it before a new one.
 5. All PASS: commit the lesson, then `anim.py ready <slug>` (it pins the commit), commit and push. It posts on the next
    daily run (POSTING.md). Nothing posts that is not in the queue.

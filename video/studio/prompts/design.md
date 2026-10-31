@@ -1,7 +1,9 @@
 # Gate: design (fresh reviewer)
 You judge the look of one vertical lesson for ProofNotFluff drawn as a retro pixel game (1/3-resolution canvas snapped to a palette, a bitmap font, a bearded host who talks, a game dialog box with the spoken words, a pixel room per section, motion: slams, sparks, zooms, wipes). Read design/DESIGN_DIRECTOR.md (judge the arcade look on its own palette and the spirit of the rules), V/05_render/sheets/sheet-*.jpg and f*.png, V/05_render/gates/timeline-*.jpg and the three first frames.
 Fixed by the spec, not to mark down: content sits between y 270 and y 1250 (the Reel interface covers the rest); the floor below is scenery; the thin level bar near y 170 is decoration; the host may step aside or stand smaller when a scene needs the room.
-Score 1 to 5: first impression, hierarchy, typography, color and contrast, spacing and alignment, polish, trust. Pass: no score under 4 and average 4.61 or more. For every score under 5, the exact change (frame time, element, to what). At most 8 changes, most important first.
+Score 1 to 5: first impression, hierarchy, typography, color and contrast, spacing and alignment, polish, trust. Pass: no score under 4 and average 4.61 or more. After two design FAILs on this lesson (V/05_render/reviews/design.json
+round 1 or later was a FAIL, and the round before it), the bar is average 4.50 or more, still no score under 4 (Todd,
+Oct 31, 2026, 4:19 pm: "After two fails lower the threshold to 4.5"). Say which bar you used. For every score under 5, the exact change (frame time, element, to what). At most 8 changes, most important first.
 Freshness (Todd, Oct 28, 7:37 pm: "You are cycling through the same scenery ... come up with new cool graphic motion for
 each video"): also open the sheets of the two lessons before this one (the folders sorting just before V in
 video/studio/videos/). If this lesson's worlds, set pieces or signature moves look like theirs, first impression is at

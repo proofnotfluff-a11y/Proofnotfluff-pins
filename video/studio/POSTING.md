@@ -80,6 +80,13 @@ read only, post, and write each post to the scoreboard post log; the cloud task 
   numbers only (views, average watch, skip rate, likes, comments, shares, saves; "hidden" when not shown),
   `committed: false`; the recorder writes research/metrics/<slug>.json and the diagnosis from them.
 
+## Early numbers, every run (Todd, live chat, Oct 31, 2026, 2:28 pm: "We should improve real time.")
+After posting and trials, every PC run (not only the evening one) reads the numbers of each lesson posted 2 h or more
+before that has no read in the last 6 h, by the "Real time" section of research/PERFORMANCE.md: read only, own tabs
+closed after, never sign in, click through a prompt, reply, like, comment, follow or change anything; numbers only, no
+names or comment text; "hidden" for a hidden number or a sign-in prompt. Each read goes to videometrics as doc id
+`<slug>.<YYYY-MM-DD>T<HH>` (Central hour), `committed: false`, and one line of numbers goes in the end message.
+
 ## Trial reels to the feed, and the 90-day re-cut (Todd, Oct 29, 2026, 3:59 pm: "Fold it in")
 - Each run: `python3 video/studio/anim.py trials`. For each one marked due (72 hours old), open its link as proofnotfluff,
   choose "Share to followers" (the same reel goes to the feed; it is not a second post), then `anim.py feedshared <slug>`,

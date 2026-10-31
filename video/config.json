@@ -71,6 +71,8 @@
   "blackMaxSeconds": 0.5,
   "freezeMaxSeconds": 1.0,
   "freezeNoiseDb": -70,
+  "flatFloor": 0.1,
+  "flatMaxSeconds": 1.2,
   "hookEndsBy": 3.0,
   "safeTop": 270,
   "safeBottom": 1250,

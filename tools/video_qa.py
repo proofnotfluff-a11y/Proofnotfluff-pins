@@ -118,6 +118,38 @@ def c_frozen(mp4, end_card_from):
     return spans, not bad, f"{len(bad)} frozen stretch(es) of 1.0 s or more before the end card at {end_card_from:.2f} s"
 
 
+def motion_series(mp4, fps=10, w=90, h=160):
+    """Mean absolute change between frames sampled every 1/fps s (0 to 100, percent of full scale), small grey frames."""
+    r = subprocess.run(["ffmpeg", "-v", "error", "-i", mp4, "-vf", f"fps={fps},scale={w}:{h},format=gray", "-f", "rawvideo", "-"],
+                       capture_output=True, timeout=900)
+    if r.returncode:
+        raise RuntimeError(r.stderr.decode()[-300:])
+    n = w * h
+    frames = [r.stdout[i:i + n] for i in range(0, len(r.stdout) - n + 1, n)]
+    out = []
+    for a_, b_ in zip(frames, frames[1:]):
+        out.append(round(sum(abs(x - y) for x, y in zip(a_, b_)) / n / 2.55, 3))
+    return out
+
+
+def c_flat(mp4, end_card_from):
+    """M1 of video/studio/_shared/standard.md (Todd, Oct 31, 2026: "We need to set a higher standard"): motion measured
+    every 0.1 s; FAIL on any stretch of flatMaxSeconds or more under flatFloor before the end card."""
+    q = cfg()
+    floor, most, fps = q.get("flatFloor", 0.15), q.get("flatMaxSeconds", 1.2), 10
+    m = motion_series(mp4, fps)
+    spans, start = [], None
+    for i, v in enumerate(m + [999]):
+        t = (i + 1) / fps
+        if v < floor and t < end_card_from:
+            start = t if start is None else start
+        else:
+            if start is not None and t - start >= most - 1e-6:
+                spans.append([round(start, 1), round(t, 1)])
+            start = None
+    return spans, not spans, f"{len(spans)} flat stretch(es) of {most:.1f} s or more under {floor} before the end card at {end_card_from:.2f} s" + (f": {spans[:4]}" if spans else "")
+
+
 def c_hook(props):
     q = cfg()
     hook = [w for w in props.get("words", []) if w.get("seg") == "hook"]

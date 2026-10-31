@@ -1,0 +1,32 @@
+{
+ "slug": "2026-11-11-lsa-missed-calls",
+ "reads": [
+  {
+   "date": "2026-10-31",
+   "age": "about 2.7 h",
+   "readAt": "2026-10-31T19:29:00Z",
+   "source": "Instagram Reel insights screenshots Todd sent in a live chat, Oct 31, 2026, 2:29 pm",
+   "platforms": {
+    "instagram": {
+     "views": 179,
+     "viewers": 141,
+     "avgWatchS": 18,
+     "lengthS": 50.07,
+     "avgPctWatched": 36,
+     "skipRate": 29.1,
+     "skipRateLabel": "Lower",
+     "shareRate": 0.0,
+     "likeRate": 0.6,
+     "saveRate": 0.0,
+     "likes": 1,
+     "comments": 0,
+     "reposts": 0,
+     "shares": 0,
+     "saves": 0,
+     "follows": 0,
+     "vsTypicalAt2_5h": "ahead and still climbing; typical reel flattens near 100"
+    }
+   }
+  }
+ ]
+}

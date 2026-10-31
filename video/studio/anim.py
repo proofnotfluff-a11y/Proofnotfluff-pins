@@ -2327,7 +2327,9 @@ def cmd_check(slug, mp4=None):
         secs = float(Q.probe(mp4)["format"]["duration"])
         return round(secs, 3), lo <= secs <= hi, f"{secs:.2f} s ({lo:.1f} to {hi:.1f}, {lesson_format(slug)} lesson, end card included)"
     for name, fn in [("length", c_len), ("loudness", lambda: Q.c_loudness(mp4)), ("black", lambda: Q.c_black(mp4)),
-                     ("frozen", lambda: Q.c_frozen(mp4, end_card))]:
+                     ("frozen", lambda: Q.c_frozen(mp4, end_card)),
+                     # M1 (_shared/standard.md; Todd, Oct 31, 2026: "We need to set a higher standard"): never flat
+                     ("flat", lambda: Q.c_flat(mp4, end_card))]:
         try:
             v, ok, d = fn()
         except Exception as e:

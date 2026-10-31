@@ -11,5 +11,9 @@ best frames and the target spec. Judge the finish against them. Caps, each with 
 target: type at most 4 when spoken words run under 44 px or labels under 36 px at 1080 wide; first impression at most 4
 when the picture does not change within 1 s or the host is not on screen by 3 s; polish at most 4 when the last 3 s have no
 end card with proofnotfluff.com.
+The bar (Todd, Oct 31, 2026: "We need to set a higher standard"): also open video/studio/_shared/standard.md and hold
+the lesson to its M lines (motion) and C3 (a clean card worth saving, held 3 s or more). Caps: polish at most 4 when
+M4 fails (an entrance with no overshoot and settle, a plain cut between rooms, no kick on a verdict); first impression
+at most 4 when 05_render/qa.json "flat" fails; hierarchy at most 4 when C3's card is missing or unreadable at phone size.
 Earlier rounds: if V/05_render/reviews/design.json exists, read it first. Check that each change it asked for landed, and do not ask to undo a change an earlier round asked for unless it broke something you can name. New problems count only if a phone viewer would notice them.
 Do not edit files. JSON only: {"pass": bool, "score": {"first": n, "hierarchy": n, "type": n, "color": n, "spacing": n, "polish": n, "trust": n, "average": n.nn}, "reasons": ["<time> <element>: <change>"]}

@@ -33,6 +33,20 @@ risks as much as possible", on being flagged for mass-produced content)
   24 h views of the 6 posts before them (under 10 views each when fewer than 6 exist). Tell Todd that day with the
   numbers and recommend 2 a day on that platform; volume changes only with his word (CONSTITUTION 2).
 
+## Real time (Todd, live chat, Oct 31, 2026, 2:28 pm: "We don't need to wait until Sunday to examine video data and
+implement changes. We should improve real time.")
+- Every posting run (four a day) also reads the numbers of each lesson posted 2 h or more before that has no read in
+  the last 6 h, on all four platforms, read only, the same way as the daily read below (videometrics doc
+  `<slug>.<YYYY-MM-DD>T<HH>`). Instagram's early numbers (skip rate, average watch, views against "your typical reel")
+  show by 2 to 3 h.
+- Every recorder run (four a day) files those numbers and runs the diagnosis below on the newest read of every lesson
+  under 72 h old, not only at 72 h. The first rule that fires is the cause.
+- Act on one lesson for the next lesson's own choices (hook, format, stake, save card): the lesson made in that same run
+  applies the change, and the diagnosis log names it. Change a shared rule (_shared/, a gate, a prompt) when 2 lessons in
+  a row show the same cause (was 3), logged in LEARNINGS.md with the numbers.
+- What works gets kept the same way: a lesson that beats "your typical reel" on skip and watch names what it did
+  differently, and the next lesson keeps it.
+
 ## Diagnosis (each lesson at 72 h; one cause, one change)
 Read the numbers top to bottom; the first rule that fires is the cause. Write one line per lesson in the table below.
 1. Skip rate over 55% (Instagram) or viewed vs swiped under 60% (YouTube): **the opening.** Next lesson changes the hook
@@ -44,8 +58,8 @@ Read the numbers top to bottom; the first rule that fires is the cause. Write on
 5. Everything above passes: **a winner.** Note what it did in LEARNINGS.md and make the next lesson in the same format
    on a new problem (never a copy of the video).
 
-Two signals need 3 lessons before a rule changes: one bad post is noise. A rule in `_shared/` or a gate changes only
-when 3 lessons in a row show the same cause, and the change is logged in LEARNINGS.md with the numbers.
+One bad post is noise for shared rules: they change on 2 lessons in a row (Real time, above). A single lesson still
+steers the next lesson's own choices.
 
 ## Weekly (Mondays, the research step)
 Rank formats, hook patterns and posting slots by median 72 h numbers. A posting slot that trails the other two by half or
@@ -56,3 +70,4 @@ more for two weeks moves (log it here and in video/config.json slots).
 |---|---|---|---|---|---|---|---|
 | 2026-11-05-book-the-call (early read, 34 h) | v1 long, 77.5 s | Oct 29 11:23 am (pre 3/day) | 11, 85, 110, 11 | TT 4.7 s (6%), FB 1 s (2%) | IG hidden | Rule 1 unreadable (skip hidden); rule 2 fires: the middle. An average under 5 s on a 77 s video means most leave inside the opening. | None yet: 72 h read due Nov 1; one post is noise (3-lesson rule). |
 | 2026-11-07-let-me-think (early read, 31 h) | v2, 42.5 s | Oct 29 1:43 pm (pre 3/day) | 103, 130, 11, 3 | TT 7.9 s (18%), FB 3 s (7%) | IG hidden | Rule 1 unreadable (skip hidden); rule 2 fires: the middle. The shorter v2 holds about 3x the share of the long cut on TikTok. | None yet: 72 h read due Nov 1; points toward the shorter v2 length. |
+| 2026-11-11-lsa-missed-calls (early read, 2.7 h; Todd's screenshots) | two-shops, 50.1 s, Depth bank #1 | Oct 31 11:47 am (lunch) | IG 179 (others not read yet) | IG 18 s (36%) | IG 29.1% ("Lower") | Rules 1 and 2 pass (skip 29.1% vs 59.6 to 67.3% before; watch 36% vs about 20%). Rule 4 fires: 0 shares, 0 saves. What changed: a money stake in the hook plate and cover ("Google bills one shop."), a two-shop split, a real rule with a source. | Keep: stake on the cover and in the first line. Next lesson: a screen worth saving (the exact setting or checklist held 3 s). |

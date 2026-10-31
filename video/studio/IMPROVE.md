@@ -10,6 +10,16 @@ weekly numbers), then the top of the backlog. Research runs (Mondays) add items 
 The lab (Tue, Thu, Sat) ranks this list from its benchmark against _shared/style-board/ and builds the bigger items.
 
 ## Backlog (most promising first)
+The bar first (Todd, Oct 31, 2026, 2:28 pm: "We need to set a higher standard... Keep driving improvements";
+_shared/standard.md). Until these four are done, every run ships the top one still open before anything below.
+00a-1. M1 flat check in `anim.py check` (motion every 0.1 s; no 1.2 s stretch under 0.1). Done Oct 31 in a live chat:
+   lsa-missed-calls, our best read, fails it once (14.0 to 15.2 s, a held line), so the bar is above our best.
+00a-2. C3 save card: a kit component for the copyable thing (text, setting path, checklist) on one clean card, held 3 s,
+   with a slow highlight sweep so it never reads flat (M1). lsa-missed-calls had 0 saves at 2.7 h.
+00a-3. M3 accent words: the beat's key word slams on screen 0.2 to 0.3 s before it is spoken, from words.json timing
+   (replaces item 10 below).
+00a-4. M4 travel between rooms: a whip pan with a 3-frame smear and a zoom kick on verdict stamps, both in kit.js, each
+   at most once in 10 s (with item 2 below).
 000. End card: the last 3 to 5 s show the ProofNotFluff lockup and proofnotfluff.com, music only (Jake Van Clief's
    voice-driven-animation end card; the buyer gate answered follow_or_link "no" on lessons 1 and 8).
 00s. Sound effects from earshot's code bank (Todd, live chat, Oct 31, 2026: "Let's include these skills", on a reel naming

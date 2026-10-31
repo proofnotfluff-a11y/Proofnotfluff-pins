@@ -5,13 +5,13 @@
   "pass": true,
   "score": {"stop": "yes", "send": "yes", "save": "yes", "follow_or_link": "yes"},
   "reasons": [
-    "1. What it says (as a plumber): my auto text after a missed call should say who I am, say sorry, and ask one question that books the job, and stay one plain text under 160 characters, because one emoji or curly quote drops the limit to 70 and Twilio then splits it and bills each piece.",
-    "2. Stop: yes. Frame 0.8s shows 'Your missed-call text gets 160 characters.' over a tape measure stopped at 160, and the first spoken line ties it to booking the job. A plumber who misses calls on every job sees his money in under 3 seconds.",
-    "3. Send: yes, the caption says send it to whoever answers your phones, and that person sets this up. Save: yes, the caption holds a ready 102-character example text to copy. Follow: yes, part 1 of 3 with part 2 being how to turn it on is a reason to come back. Link in bio: weak yes, 'free tools for trade owners' is plain, not a pitch, but nothing says which tool.",
-    "4. Hype or slop: none found. No urgency, no pitch, no invented stats; Twilio's guide is named as the source. The voice reads like a person ('Your gut says write a polite paragraph'). The 00:36.5 line now says 'splits it and bills each piece', which matches the caption and is accurate for long texts.",
-    "5. Unclear (minor, not blocking): 00:40.5 'So count yours before part two turns it on' still reads oddly to a stranger ('it' could be the emoji or the text). Fix if re-voiced: 'So count yours now. Part two: turning it on.'",
-    "5. Unclear (minor, not blocking): frame 0.8s tags the speaker 'SNOW' while the caption's example says 'Sam the plumber'. Fine if Snow is the recurring host; otherwise drop the tag.",
-    "5. Minor: the voice never reads the full example text start to finish; it lives in the caption. Fine for saving, but a viewer who skips the caption only gets the three parts.",
-    "6. Trust: yes. Specific, checkable numbers with a named source, a real example text with its count, and it asks nothing of me."
+    "1. As an HVAC/plumbing owner: my missed-call text back should say who I am, sorry I missed you, and ask one question they can answer, and stay under 160 plain characters (no emoji, no curly quotes) so it is not split and billed in pieces.",
+    "2. Stop: yes, mostly. 'Your missed-call text gets a hundred sixty characters to book the job' names my problem (missed calls) and a stake (the job), and frame 0.8s shows a big 160 on a tape measure. A number I did not know plus my own phone problem is enough for 3 seconds.",
+    "3. Send: yes, the caption tells me to send it to whoever answers my phones and it is short enough to forward. Save: yes, the exact text (Hi, this is Sam the plumber. Sorry I missed your call. What do you need fixed, and when works for you?) is in the caption and on a clean card, ready to copy. Follow: yes, 'part one of three' and 'part two turns it on' give me a reason to follow for the next one. Link in bio is vague ('free tools') and would not get a tap on its own.",
+    "4. No hype, no fake urgency, no pitch. Sources are named in the voice (ServiceTitan, Twilio). Reads like a person, not slop.",
+    "5. Clear to a stranger. 'Curly quotes do it too' may lose some owners who do not know what a curly quote is; the caption covers it, acceptable.",
+    "6. Trust: yes. Specific, sourced, modest claims, and it admits the limit is about billing pieces rather than inventing a disaster.",
+    "7. Bar: C1 yes (stake is the job, backed by about one in seven calls coming after hours; Twilio billing each split piece is a direct cost). S1 yes ('there's no name and no question in it. There's nothing to answer' is the why). C3/S3 yes (one copyable text, three-part checklist, 'count yours' is a do-this-week action under an hour).",
+    "Minor, not a FAIL: the hook stake is implied, not counted. A future cut could put the after-hours share in the first 3 s (e.g. 'One in seven calls come after hours. Your text back gets 160 characters to book that job.') for a harder stop."
   ]
 }

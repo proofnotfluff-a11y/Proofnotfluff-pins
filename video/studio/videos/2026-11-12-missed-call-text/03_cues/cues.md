@@ -6,19 +6,19 @@ music: rooms bounce
 Three shots. Cover, frame one, host and dialog box hidden: our own workbench in daylight, a tape measure pulled out across it, the blade's numbers big, the gold end hook resting on the 160 mark; one focal object, the hero number "160" above the tape; plate "160 characters" / "to book the job.", chip "PART 1 OF 3". By 0.8 s cut in close on the tape's hook at 160 (the blade's ticks big, a missed-call phone lying on the bench beside it); Snow and the dialog box come in. On "book" cut to the third shot: the phone close up, MISSED CALL on its screen, a blank text bubble with a cursor and "0 / 160" under it.
 
 ## usual "Part one of three," [sfx: whoosh]
-The street set: the van driving between jobs; a text bubble in the sky with "THE WORDS (PART 1 OF 3)" and the usual paragraph typing out at once. EXAMPLE tag.
-## usual.polite "write a polite paragraph," [sfx: blip]
+The boss arena (r2; was street) under a night panel: ABOUT 1 IN 7 lands big on "about", seven phones pop in one a beat, the seventh rings red on "after" with "came after hours"; source tag "Source: ServiceTitan, June 2025" while it is said. On "gut" the panel lifts away: THE POLITE TEXT is the boss, our cream window over its menu types the usual paragraph. EXAMPLE tag.
+## usual.polite "a polite paragraph," [sfx: blip]
 The paragraph finishes: "Thanks for calling, we value your business."
 ## usual.no "But there's no name" [sfx: stamp]
-NO NAME stamps in red over the note; NO QUESTION follows on "question".
+NO NAME hits the boss and stamps on "name"; NO QUESTION hits and stamps on "question".
 ## usual.nobody "There's nothing to answer." [sfx: tick]
-The van brakes and parks; Snow shrugs.
+The last hit on "answer": the boss breaks into pixels and SKIP IT. stamps in; Snow waves.
 
 ## parts "Three parts. Who you" [sfx: whoosh]
 The register set: WHO 29 rings on "Who", SORRY 26 on "Sorry", ASK 47 before the cut, CHARS 102 prints as the total.
 
-## copy "Then one question that" [sfx: pop]
-The big text card, EXAMPLE: "Hi, this is Sam the plumber. Sorry I missed your call. What do you need fixed, and when works for you?" Each part gets its slot colour bar as it is said ("question" lights the ask); the counter under it counts up to 102 / 160, the tape strip fills to 102 under the 160 mark.
+## copy "Then one question they" [sfx: chime]
+The text as an ITEM GET window (kit k.itemGet; the chime is its fanfare), EXAMPLE: "Hi, this is Sam the plumber. Sorry I missed your call. What do you need fixed, and when works for you?" Each part gets its slot colour bar as it is said ("question" lights the ask); the counter under it counts up to 102 / 160, the tape strip fills to 102 under the 160 mark.
 
 ## proof "Twilio's guide says one" [sfx: whoosh]
 The scores set, title CHARS PER TEXT: row PLAIN 160 lands on "plain". Source tag up top while it is said: "Twilio docs: How long can a message be?".

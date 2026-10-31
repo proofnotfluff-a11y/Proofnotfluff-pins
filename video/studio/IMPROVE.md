@@ -15,7 +15,7 @@ _shared/standard.md; craft from lemo-opuscar, research/opuscar-2026-10-31.md). U
 the top one still open before anything below.
 00a-1. M1 flat check in `anim.py check` (motion every 0.1 s; no 1.2 s stretch under 0.1). Done Oct 31 in a live chat:
    lsa-missed-calls, our best read, fails it once (14.0 to 15.2 s, a held line), so the bar is above our best.
-00a-2. C3 save card as a game "ITEM GET" window: the copyable thing (text, setting path, checklist) in a menu window that
+00a-2. Done Oct 31 (end-of-day run, k.itemGet). C3 save card as a game "ITEM GET" window: the copyable thing (text, setting path, checklist) in a menu window that
    slides in over 0.3 s (ease-out, whole pixels), a hand cursor bobbing 1 px at 4 fps down its lines (so it is never flat,
    M1), a short item fanfare, held 3 s or more. lsa-missed-calls had 0 saves at 2.7 h.
 00a-3. M3 accent words: the beat's key word slams on screen 0.2 to 0.3 s before it is spoken, from words.json timing
@@ -77,6 +77,13 @@ the top one still open before anything below.
 12. Visual: a seasonal touch per week (snow outside the half-built house in winter, leaves in fall).
 
 ## Done (newest first: date, item, what changed, proof)
+- 2026-10-31 (end-of-day run, cloud): C3 save card as a game ITEM GET window (00a-2). New `k.itemGet` in _runtime/kit.js:
+  the copyable thing in a cream menu window with a gold ITEM GET tab and an optional tag (EXAMPLE), sliding in from the
+  right over 0.3 s on whole low-res pixels, a gold pointer that bobs 1 px at 4 fps and steps down a line every `step` s,
+  corner twinkles, slot bars per line, and a 1 px float on a 4-step cycle once landed so a held card is never flat (M1);
+  cue the chime on its `at` as the fanfare. Proof: missed-call-text's copy card (28.9 to 34.7 s) uses it, held 5.7 s;
+  `check` flat PASS (the old static card was one of three flat stretches, 33.3 to 34.5 s); design 4.71 and buyer save yes on
+  that render. Lesson 1 (first-reply) stills at 1.0 and 10.0 s unchanged (the kit only adds the function).
 - 2026-10-31 (lunch run, cloud): type floor lint (00b, next step). `lint` now prints one WARN line naming every scene label
   whose tallest settled ink stays under 36 px at 1080 wide (LABEL_FLOOR_PX in anim.py), smallest first, so a build sees the
   design gate's type cap before the gate does. A warning, not an ERROR: lessons pinned before it keep their labels. Proof:

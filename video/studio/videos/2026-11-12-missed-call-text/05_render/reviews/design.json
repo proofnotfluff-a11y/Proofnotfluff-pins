@@ -1,31 +1,16 @@
 {
   "gate": "design",
-  "round": 1,
+  "round": 0,
   "reviewer": "claude opus (fresh agent)",
-  "pass": false,
-  "score": {"first": 3, "hierarchy": 4, "type": 4, "color": 5, "spacing": 4, "polish": 4, "trust": 5, "average": 4.14},
+  "pass": true,
+  "bar": "no score under 4 and average 4.61 or more (rerun after another gate's fix changed the render, so round 0; the 4.50 bar does not apply)",
+  "mp4Sha256": "ed0e77f93907605bb1460847a3165ff3a28c601467637343ec8a832635b99b63",
+  "score": {"first": 5, "hierarchy": 5, "type": 5, "color": 5, "spacing": 4, "polish": 4, "trust": 5, "average": 4.71},
   "reasons": [
-    "4.5-17.5 s usual on the street set: the row of blue, green, brick and cream houses, the white van with the orange stripe and the JOB yard sign are the same street set 2026-11-10 notes-to-quote used at 3.85 s (play). Round 0 asked to move this section off the pegboard room and it did, but onto a set one of the two lessons before already showed, so first impression stays capped at 3 for freshness. Replace it with a set neither 11-10 nor 11-11 used, for example boss as round 0 suggested: the polite paragraph as the boss on the menu, NO NAME hits at 13.45 s ('name'), NO QUESTION at 14.35 s ('question'), defeat on 'nothing to answer' at 15.75 s.",
-    "17.5-21.5 s register: the header panel (y 255 to 440) covers the top of the register's display, so the running total (0, 29, 55, 102) shows only as a cut-off number at y 440 to 475, and the set's main element is hidden (sets.md: no panel over a set's main element). Shrink the panel to one line or end it above the display so the full total reads, or drop the panel and let the receipt carry the words.",
-    "41.0-46.0 s button: the tape blade runs out to the end by 41.0 s and then holds with the 102 and 160 marks still for 5 s; only the panel text swaps at 43.5 s, and the band between the panel and the tape (y 470 to 690) is empty. Round 0 asked for the blade to slide from 102 to the 160 mark on 'under a hundred sixty': start the blade at 102 and run it to 160 between 45.06 s ('under') and 45.68 s ('sixty'), and move the tape up under the panel to close the gap.",
-    "22.0-27.5 s copy counter: the '/ 160' and 'CHARACTERS' labels beside the count run about 24 px at 1080 wide, under the 36 px label floor (style board target spec), which caps type at 4. Set them at 36 px or more."
-  ],
-  "must_fix": [
-    {"time": "4.5-17.5 s", "element": "usual section on the street set", "change": "replace with a set not used by 2026-11-10 or 2026-11-11 (the street, van and JOB sign repeat 11-10's play scene); boss with hits at 13.45, 14.35 and defeat at 15.75 s fits"},
-    {"time": "17.5-21.5 s", "element": "register display behind the header panel", "change": "panel ends above the display or shrinks to one line so the running total 0 / 29 / 55 / 102 reads in full"},
-    {"time": "41.0-46.0 s", "element": "tape blade in the button section", "change": "blade starts at 102 and runs to 160 on 'under a hundred sixty' (45.06 to 45.68 s); tape moved up to close the empty y 470 to 690 band"},
-    {"time": "22.0-27.5 s", "element": "'/ 160' and 'CHARACTERS' labels", "change": "36 px or more"}
-  ],
-  "round0_must_fix_status": [
-    {"item": "18.0-21.5 s TEXT KIT inventory (parts)", "status": "resolved: replaced by the register set (WHO 29, SORRY 26, ASK 47, CHARS 102), new to this run of lessons"},
-    {"item": "4.5-17.5 s usual on the pegboard room", "status": "resolved as asked (now a set), but the chosen set (street) repeats 11-10; see must-fix 1"},
-    {"item": "4.5-8.0 s blank clipboard", "status": "resolved: typing starts at about 4.5 s, the paper is never blank over 1 s"},
-    {"item": "4.71-17.5 s 'THE WORDS (PART 1 OF 3)' label", "status": "resolved: now ink on the cream, about 36 px"},
-    {"item": "18.0-19.0 s 'Three parts' detail text", "status": "resolved: the inventory pane is gone; 'Three parts. Each one rings up.' sits in ink and accent on the dark panel"},
-    {"item": "41.0-46.5 s button panel", "status": "partly resolved: the panel is shrunk to its two lines, but the tape blade runs out once at 40.5 to 41.0 s and holds still to 46 s; see must-fix 3"},
-    {"item": "other round 0 notes", "status": "32.5-40.5 s hero 70 now has about 30 px above it (resolved); clipboard clip bar removed (resolved); cover 160 now about 150 px tall (improved, near the 160 px target)"}
-  ],
-  "checks": "Host on screen by 1.0 s; picture changes at 1.0 s and again at 3.0 s; end card with proofnotfluff.com from 46.0 to 49.0 s; spoken words about 48 px; color and contrast pass on every text seen.",
-  "competitor_lines": [],
-  "earlier_rounds": "round 0: FAIL, average 3.86 (first 3)"
+    "35.0-47.5 s scores board: the RANK column is still empty on every row (PLAIN, EMOJI, CURLY), asked for last round and not landed; it reads as a missing value. Fill it with 1ST, 2ND, 3RD (or 1, 2, 2 for the tie) or drop the RANK header and move NAME left to x 130.",
+    "4.5-8.5 s title panel (PART 1 OF 3 / THE WORDS, then JUNE 2025 / home HVAC calls): the text sits in the top half of a panel that runs to about y 840, so roughly 300 px of the band is empty dark panel for 4 s (style board: no more than a third of the band empty for longer than 2 s). Center the text vertically in the panel, or bring the row of 7 phones in at 7.0 s with JUNE 2025 instead of at 8.5 s.",
+    "Earlier round checks: 46.5-47.5 s 'Sam's text plus an emoji:' now has a clear gap under the CURLY bar and the 2 PIECES, 2 BILLS stamp sits clean above the source (landed). 29.0-34.5 s counter now reads 0 to 102 / 160 with CHARS on its own line under 160, clear of the digits (landed). The 4.0-14.5 s room-and-panel stretch is a note for the next lesson, not a blocker, and is not counted again.",
+    "Freshness: tape measure workshop, boss fight (THE POLITE TEXT, NO NAME / NO QUESTION hits, SKIP IT.), shop register, ITEM GET copy card, arcade score table and end card; 11-11 used the two-shop split, phones and charged-lead boards, 11-10 used the price list, notepad, street and AI chat. No repeated world or signature move.",
+    "Style board and standard: picture changes by 1.0 s, host on screen from 1.0 s; room changes travel (dither dissolves at 4.0, 24.5 and 34.5 s, shutter wipe at 47.5 s, card at 53.0 s); qa.json flat passes with 0 stretches; C3 copy card (Hi, this is Sam the plumber...) clean, readable and held about 5.5 s with the counter and bar moving; end card with the ProofNotFluff lockup and proofnotfluff.com from 53.0 to 56.0 s; spoken words about 48 px and labels 36 px or more at 1080 wide; palette on spec with accent numbers (160, 70, 102) and red rows read as large bold text."
+  ]
 }

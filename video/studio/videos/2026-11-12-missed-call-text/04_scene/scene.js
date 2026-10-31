@@ -2,7 +2,7 @@
 /* 03_cues/cues.md. Numbers only from k.data (brief.md -> data.js); every time from a cue start (k.S) or a spoken word   */
 /* (wordT), so a re-voiced take moves the picture with it.                                                              */
 /* Worlds: hook and button = our own workbench with a tape measure pulled out to the 160 mark (the text's whole budget), */
-/* its close-up and a phone close-up; usual = street; parts = register; copy = our own big text card with a hud bar;    */
+/* its close-up and a phone close-up; usual = boss (r2; was street); parts = register; copy = our own big text card with a hud bar;    */
 /* proof = scores. None of them used by the lesson before it in line (brief.md, Worlds).                                */
 const INK = '#120D14', CREAM = '#FFF7EA', SAND = '#E6D3BC', GOLD = '#F7C873', ORANGE = '#F2A541', RED = '#E2633B', TEAL = '#6FB7A8', GREY = '#9AA0AD';
 const hash = (n) => { const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
@@ -49,6 +49,7 @@ const wordT = (k, id, re, dflt = 0) => {
   const w = WS().find((x) => x.start >= t0 - 0.05 && re.test(x.w));
   return w ? w.start : t0 + dflt;
 };
+const bob2 = (T, t0) => (T - t0 < 0.3 ? 0 : [0, 6, 0, -6][Math.floor((T - t0 - 0.3) / 0.15) % 4]);
 const host = (k, pose) => ({hostPose: pose || (k.talking() ? 'talk' : 'stand'), hostScale: 0.55, hostX: 150});
 const plate = (d, x, y, w, h) => d.win(x, y, w, h, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
 /* a rubber stamp in a dark box with a coloured rim, landed with the kit's hit-stop */
@@ -60,6 +61,19 @@ const stampBox = (k, s, cx, y, t0, o = {}) => {
     k.shape(k.rectPts(x + 6, y + 6, 6, h - 12, 0), {fill: c, line: false}); k.shape(k.rectPts(x + w - 12, y + 6, 6, h - 12, 0), {fill: c, line: false});
     k.text(s, x + w / 2, y + 18, {size, color: c, align: 'center'});
   }, {at: [x + w / 2, y + h], freeze: o.freeze});
+};
+
+const mute = (k, drop, fn) => { const real = k.text; k.text = function (s, x, y, o) { if (drop(s, x, y, o)) return; return real.call(this, s, x, y, o); }; try { return fn(); } finally { k.text = real; } };
+/* the boss arena's own sky, repainted over the set's empty menu window (same hash as k.sets.boss) */
+const arenaSky = (k) => {
+  const d = px(k), {P, DOT, dith} = d;
+  d.clip(14, 114, 196, 148, () => {
+    P(0, 0, 360, 80, '#1B1420'); P(0, 80, 360, 70, '#2B2033'); P(0, 150, 360, 60, '#3D2E45'); P(0, 210, 360, 50, '#7A3442');
+    dith(0, 78, 360, 3, '#2B2033'); dith(0, 148, 360, 3, '#3D2E45'); dith(0, 208, 360, 3, '#7A3442');
+    for (let i = 0; i < 30; i++) { const x = Math.floor(hash(i * 1.3) * 360), y = Math.floor(hash(i * 4.9) * 140); DOT(x, y, (Math.floor(d.F / 20) + i) % 5 === 0 ? GOLD : '#6B7080'); }
+    for (let x = 0; x < 360; x++) { const h = 20 + Math.round(14 * Math.sin(x * 0.03) + 9 * Math.sin(x * 0.087 + 1)); P(x, 260 - h, 1, h, '#1B1420'); if (h > 30) DOT(x, 260 - h, '#3D2E45'); }
+    P(0, 260, 360, 2, '#9AA0AD');
+  });
 };
 
 /* ================================================================================================================ */
@@ -158,35 +172,81 @@ window.SCENE = {
       return {host: false, speech: false};
     },
 
-    /* ---- usual: the clipboard on the bench. PART 1 OF 3: THE WORDS on the clip; the polite paragraph types out on    */
-    /* "polite"; NO NAME stamps on "name", NO QUESTION on "question"; Snow shrugs on "Nobody".                          */
+    /* ---- usual (r2): the boss arena (k.sets.boss; neither 11-10 nor 11-11 drew it). First the stake: a night panel    */
+    /* over the arena, ABOUT 1 IN 7 big, seven phones popping in one a word, the seventh ringing red on "after", and     */
+    /* ServiceTitan's source tag while it is said. On "gut" the panel lifts away (travel up) and THE POLITE TEXT is the */
+    /* boss: our window over the set's menu types the paragraph by "polite"; NO NAME hits on "name", NO QUESTION on     */
+    /* "question", and on "answer" the last hit breaks it into pixels and SKIP IT stamps (the native move, M7).          */
     usual: (k, T) => {
       const n = k.data.numbers, t0 = k.S('usual'), tPol = k.S('usual.polite');
-      const tName = wordT(k, 'usual.no', /^name/i, 0.5), tQ = wordT(k, 'usual.no', /^question/i, 1.1), tNob = k.S('usual.nobody');
-      const r = k.sets.street({t0, speed: 1, stopAt: tNob, stopDur: 0.8, sign: 'JOB', van: true});
+      const tAbout = wordT(k, 'usual', /^about/i, 1.6), tAfter = wordT(k, 'usual', /^after/i, 3.4), tSrc = wordT(k, 'usual', /^service/i, 4.2);
+      const tGut = wordT(k, 'usual', /^gut/i, 5.6);
+      const tName = wordT(k, 'usual.no', /^name/i, 0.5), tQ = wordT(k, 'usual.no', /^question/i, 1.1), tAns = wordT(k, 'usual.nobody', /^answer/i, 0.8);
+      const tDef = tQ + 0.3, tGone = tDef + 0.4;
+      mute(k, (s2) => /^-\d+$/.test(String(s2)) || String(s2) === 'ITS WORDS' || String(s2) === 'X', () => k.sets.boss({name: 'THE POLITE TEXT', hp: 100, t0: tGut, menu: 'ITS WORDS',
+        hits: [{at: tName, dmg: 40, label: 'X'}, {at: tQ, dmg: 60, label: 'X'}], defeatAt: tDef, winText: 'SKIP IT.'}));
       const d = px(k);
-      /* the text bubble in the sky: the label, then the paragraph typing from the cut, done by "polite" */
-      d.win(14, 84, 332, 150, {base: CREAM, hi: '#FFFFFF', lo: '#C9B79C', rule: '#3B82C4'});
-      d.P(300, 234, 12, 8, '#C9B79C'); d.P(302, 234, 8, 6, CREAM);
-      k.text(`THE WORDS (PART ${n.part.shown} OF ${n.series.shown})`, 624, 276, {size: 39, color: INK, align: 'center'});
-      d.P(24, 92, 84, 18, ORANGE); k.text('EXAMPLE', 198, 280, {size: 30, color: INK, align: 'center', lint: false});
-      const lines = ['Thanks for calling,', 'we value your', 'business.'], all = lines.join(' ').length;
-      const shown = Math.floor(clamp((T - (t0 + 0.3)) / Math.max(0.6, tPol + 0.8 - (t0 + 0.3))) * all); let used = 0;
-      lines.forEach((s2, i2) => { const c = clamp(shown - used, 0, s2.length); used += s2.length + 1; if (c > 0) k.text(s2.slice(0, c), 96, 360 + i2 * 78, {size: 66, color: INK}); });
-      if (T >= tName) stampBox(k, 'NO NAME', 300, 600, tName, {color: RED, freeze: 4});
-      if (T >= tQ) stampBox(k, 'NO QUESTION', 680, 600, tQ, {color: RED});
-      return host(k, T >= tNob ? 'shrug' : (k.live('usual.no') ? 'point' : null));
+      /* our window over the set's menu: the paragraph, typed from the lift to "polite" + 0.8 s */
+      if (T >= tGut && T < tGone) {
+        arenaSky(k);
+        d.win(14, 122, 192, 138, {base: CREAM, hi: '#FFFFFF', lo: '#C9B79C', rule: '#3B82C4'});
+        const head = 'THE USUAL (EXAMPLE)', hw = d.tw(head);
+        d.P(22, 116, hw + 12, 14, INK); d.P(23, 117, hw + 10, 12, ORANGE); d.tx(head, 29, 117, {color: INK});
+        const lines = ['Thanks for', 'calling, we value', 'your business.'], all = lines.join(' ').length;
+        const shown = Math.floor(clamp((T - (tGut + 0.1)) / Math.max(0.6, tPol + 0.8 - (tGut + 0.1))) * all); let used = 0;
+        lines.forEach((s2, i2) => { const c = clamp(shown - used, 0, s2.length); used += s2.length + 1; if (c > 0) k.text(s2.slice(0, c), 84, 420 + i2 * 84, {size: 66, color: INK}); });
+      }
+      /* the hits land as stamps on the boss's side of the arena (under the HP bar, clear of the window) */
+      if (T >= tName && T < tGone) stampBox(k, 'NO NAME', 846, 372, tName, {color: RED, freeze: 4, size: 39});
+      if (T >= tQ && T < tGone) stampBox(k, 'NO QUESTION', 822, 666, tQ, {color: RED, size: 39});
+      /* the stake panel: down from the cut, lifts away from "gut" over 8 frames (eased, whole pixels) */
+      const lift = T < tGut ? 0 : Math.round(320 * eo(d.fr(tGut) / 8));
+      if (lift < 320) {
+        const oy = -lift;
+        d.win(14, 84 + oy, 332, 196, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3B82C4'});
+        d.disc(318, 104 + oy, 7, '#FFF2B8'); d.disc(321, 102 + oy, 6, '#1B1420');
+        for (let i = 0; i < 14; i++) d.DOT(24 + Math.floor(hash(i * 2.1) * 280), 92 + oy + Math.floor(hash(i * 5.7) * 18), (Math.floor(d.F / 12) + i) % 4 === 0 ? GOLD : '#6B7080');
+        /* before "about": PART 1 OF 3 / THE WORDS lands on the cut, then JUNE 2025 on "June" (never an empty panel) */
+        const tJune = wordT(k, 'usual', /^june/i, 2.6);
+        if (T < tAbout - 0.25) {
+          if (T < tJune - 0.2) { k.slam(`PART ${n.part.shown} OF ${n.series.shown}`, 540, (108 + oy) * 3, t0 + 0.1, {size: 66, color: ORANGE, align: 'center', from: 0.4, drop: INK, glint: false});
+            k.slam('THE WORDS', 540, (140 + oy) * 3, t0 + 0.25, {size: 132, color: CREAM, align: 'center', from: 0.5, drop: INK, glint: false}); }
+          else { k.slam('JUNE 2025', 540, (118 + oy) * 3, tJune - 0.2, {size: 132, color: GOLD, align: 'center', from: 0.5, drop: INK, glint: false});
+            k.text('home HVAC calls', 540, (176 + oy) * 3, {size: 66, color: SAND, align: 'center'}); }
+        }
+        if (T >= tAbout - 0.25) {
+          k.slam('ABOUT', 540, (96 + oy) * 3, tAbout - 0.25, {size: 39, color: SAND, align: 'center', from: 0.4, glint: false});
+          k.slam(`1 IN ${n.oneIn.shown}`, 540, (106 + oy) * 3, tAbout - 0.2, {size: 198, color: GOLD, align: 'center', from: 0.5, drop: INK, glint: false});
+        }
+        if (T >= tAbout) { k.text('calls to home HVAC shops', 540, (170 + oy) * 3, {size: 66, color: CREAM, align: 'center'}); }
+        /* seven phones, one a beat from "about"; the seventh red and ringing from "after" */
+        for (let i = 0; i < 7; i++) {
+          const ti = tAbout + i * 0.18; if (T < ti) continue;
+          const red = i === 6 && T >= tAfter - 0.2, x = 89 + i * 26, bob = d.fr(ti) < 4 ? -2 + Math.floor(d.fr(ti) / 2) : 0;
+          const sh = red ? (((d.F >> 1) & 1) ? 1 : -1) : 0, y = 197 + oy + bob;
+          d.P(x + sh, y, 16, 26, INK); d.P(x + 1 + sh, y + 1, 14, 24, red ? RED : '#4A4E5A'); d.P(x + 3 + sh, y + 4, 10, 15, red ? '#FFF2B8' : '#253048');
+          if (red) { const f = d.fr(tAfter - 0.2) % 12; [4, 8].forEach((r) => { if (f >= r - 4) { d.P(x + 18 + r - 4, y + 4, 1, 8, GOLD); d.P(x - 3 - (r - 4), y + 4, 1, 8, GOLD); } }); }
+        }
+        if (T >= tAfter - 0.2) k.slam('came after hours', 540, (228 + oy) * 3, tAfter - 0.2, {size: 66, color: RED, align: 'center', from: 0.4, glint: false});
+        if (T >= Math.min(tSrc, tAfter + 0.3)) k.text('Source: ServiceTitan, June 2025', 540, (255 + oy) * 3, {size: 39, color: SAND, align: 'center'});
+      }
+      return host(k, T >= tDef ? 'wave' : (T >= tName ? 'point' : (T >= tAfter - 0.2 && T < tGut ? 'lean' : null)));
     },
 
     /* ---- parts: the register set. WHO 29 rings on "Who", SORRY 26 on "Sorry", ASK 47 before the cut, CHARS 102 prints */
     /* as the total; the part's words land in the set's area.                                                         */
     parts: (k, T) => {
       const n = k.data.numbers, t0 = k.S('parts'), tWho = wordT(k, 'parts', /^who/i, 0.8), tSor = wordT(k, 'parts', /^sorry/i, 1.6), tEnd = k.S('copy');
-      k.sets.register({prefix: '', totalLabel: 'CHARS', displayLabel: 'CHARS', items: [
+      /* r2 (render critic r1): the set right-aligns its display total at x 948, past the 930 content line; the total is */
+      /* drawn again right-aligned at x 918 inside the display (same size, colour and height).                          */
+      const moved = [];
+      mute(k, (s2, x, y, o) => { if (o && o.color === '#6FB7A8' && o.align === 'right' && x > 930) { moved.push([s2, y, o]); return true; } return false; }, () => k.sets.register({prefix: '', totalLabel: 'CHARS', displayLabel: 'CHARS', items: [
         {label: 'WHO', amount: n.who.value, at: tWho}, {label: 'SORRY', amount: n.sorry.value, at: tSor}, {label: 'ASK', amount: n.ask.value, at: Math.max(tSor + 0.6, tEnd - 0.9)}],
-        totalAt: Math.max(tSor + 0.9, tEnd - 0.5)});
-      const say = T >= tSor ? ['Sorry I missed', 'your call.', tSor] : T >= tWho ? ['Who you are:', 'name and trade.', tWho] : ['Three parts.', 'Each one rings up.', t0];
-      const d = px(k); d.win(14, 84, 332, 62, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
+        totalAt: Math.max(tSor + 0.9, tEnd - 0.5)}));
+      moved.forEach(([s2, y, o]) => k.text(s2, 918, y, o));
+      /* r2: the plate sits left of the register's display (design r1: the total was cut off under a full-width plate) */
+      const say = T >= tSor ? ['Sorry I missed', 'your call.', tSor] : T >= tWho ? ['Who you are:', 'name, trade.', tWho] : ['Three parts.', 'Each rings up.', t0];
+      const d = px(k); d.win(14, 84, 200, 62, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
       k.slam(say[0], 72, 262, say[2], {size: 66, color: CREAM, from: 0.4, drop: INK, glint: false}); k.slam(say[1], 72, 336, say[2] + 0.06, {size: 66, color: GOLD, from: 0.4, drop: INK, glint: false});
       return host(k, k.live('parts') && T >= tWho ? 'point' : null);
     },
@@ -195,18 +255,19 @@ window.SCENE = {
     /* to 102 / 160 and a tape strip fills to 102 under the 160 mark.                                                    */
     copy: (k, T) => {
       const n = k.data.numbers, t0 = k.S('copy'), d = bench(k, {top: 330, dim: 0.35});
-      d.win(14, 84, 332, 154, {base: '#F4E6D3', hi: CREAM, lo: '#C9B79C', rule: '#3B82C4'});
-      d.P(24, 92, 80, 20, INK); d.P(25, 93, 78, 18, ORANGE); k.text('EXAMPLE', 192, 282, {size: 30, color: INK, align: 'center', lint: false});
+      /* r2: the text as an ITEM GET window (kit k.itemGet, IMPROVE 00a-2): slides in, the hand walks its lines (never   */
+      /* flat), each part's slot bar lights as it is said; held the whole section (5 s and more).                       */
       const L = [['Hi, this is Sam the plumber.', TEAL], ['Sorry I missed your call.', ORANGE], ['What do you need fixed,', RED], ['and when works for you?', RED]];
-      L.forEach((g, i) => { const ti = t0 - 0.2 + i * 0.12, y = 360 + i * 84; if (T >= ti) k.slam(g[0], 96, y, ti, {size: 66, color: INK, from: 0.3, glint: false}); if (T >= ti + 0.5 + i * 0.25) d.P(22, Math.round(y / 3) + 1, 4, 22, g[1]); });
+      const bars = L.map((g, i) => (T >= t0 + 0.3 + i * 0.37 ? g[1] : null));
+      k.itemGet({x: 84, y: 276, w: 954, at: t0 - 0.2, size: 66, lh: 84, pad: 48, title: 'ITEM GET! THE TEXT', tag: 'EXAMPLE', step: 0.9, lines: L.map((g) => g[0]), bars});
       /* the counter: hero 102, then / 160, counting up */
       const p = clamp((T - (t0 + 0.4)) / 1.2), v = Math.round(n.len.value * eo(p));
-      k.text(String(v), 640, 726, {size: 198, color: GOLD, align: 'right', drop: INK});
-      k.text(`/ ${n.plain.shown}`, 664, 726, {size: 66, color: CREAM, drop: INK});
-      k.text('CHARACTERS', 664, 804, {size: 39, color: SAND});
+      k.text(String(v), 640, 726 + (p >= 1 ? bob2(T, t0 + 1.6) : 0), {size: 198, color: GOLD, align: 'right', drop: INK});
+      k.text(`/ ${n.plain.shown}`, 664, 726, {size: 99, color: CREAM, drop: INK});
+      k.text('CHARS', 742, 846, {size: 66, color: SAND});
       /* the hud bar: the count against the 160 budget, a gold notch at the end */
-      k.sets.hud({bar: {x: 104, y: 300, w: 220, from: 0, to: n.len.value, max: n.plain.value, at: t0 + 0.4, dur: 1.2, c: TEAL}});
-      d.P(104 + 219, 296, 2, 16, GOLD);
+      k.sets.hud({bar: {x: 104, y: 308, w: 220, from: 0, to: n.len.value, max: n.plain.value, at: t0 + 0.4, dur: 1.2, c: TEAL}});
+      d.P(104 + 219, 304, 2, 16, GOLD);
       return host(k, k.live('copy') ? 'point' : null);
     },
 
@@ -221,9 +282,10 @@ window.SCENE = {
       /* rows 2 and 3 drawn on the table's grid (y 174, 198) as they are said, red: the drop */
       [[tEm, 'EMOJI', 174], [tCu, 'CURLY', 198]].forEach(([ti, name, y]) => { if (T < ti) return; const sl = d.ease(ti, 5, 40);
         d.P(32, y - 4, 280, 21, '#3D2E45'); d.tx(name, 110 + sl, y, {color: RED}); d.tx(n.emoji.shown, 306 + sl, y, {color: RED, align: 'right'}); });
-      if (T >= tBill) { k.text("Sam's text plus an emoji:", 540, 636, {size: 39, color: CREAM, align: 'center'}); stampBox(k, `${n.segs.shown} PIECES, ${n.segs.shown} BILLS`, 540, 700, tBill, {color: RED, freeze: 4}); }
-      else if (T >= tEm) k.slam(n.emoji.shown, 540, 640, tEm, {size: 198, color: RED, align: 'center', from: 0.5, drop: INK, glint: false});
-      else if (T >= tPl) k.slam(n.plain.shown, 540, 640, tPl, {size: 198, color: GOLD, align: 'center', from: 0.5, drop: INK, glint: false});
+      if (T >= tBill) { k.text("Sam's text plus an emoji:", 540, 660, {size: 39, color: CREAM, align: 'center'}); stampBox(k, `${n.segs.shown} PIECES, ${n.segs.shown} BILLS`, 540, 724, tBill, {color: RED, freeze: 4}); }
+      /* r2 (M1): the landed number floats 2 px on a 4-step cycle, so the table is never flat between rows */
+      else if (T >= tEm) k.slam(n.emoji.shown, 540, 640 + bob2(T, tEm), tEm, {size: 198, color: RED, align: 'center', from: 0.5, drop: INK, glint: false});
+      else if (T >= tPl) k.slam(n.plain.shown, 540, 640 + bob2(T, tPl), tPl, {size: 198, color: GOLD, align: 'center', from: 0.5, drop: INK, glint: false});
       k.text('Source: Twilio docs,', 600, 846, {size: 39, color: SAND, align: 'center'});
       k.text('How long can a message be?', 600, 900, {size: 39, color: SAND, align: 'center'});
       return host(k, k.live('proof.split') ? 'point' : null);
@@ -233,11 +295,16 @@ window.SCENE = {
     /* the rule lands in gold on "Keep".                                                                               */
     button: (k, T) => {
       const n = k.data.numbers, t0 = k.S('button'), tKeep = k.S('button.rule');
-      const d = bench(k);
-      const pull = clamp((T - (t0 + 0.1)) / 0.9), lenNow = Math.max(40, Math.round(250 * eo(pull)));
-      const t = tape(k, d, {x0: 84, y: 250, len: lenNow, h: 22, max: Math.max(1, Math.round(n.plain.value * lenNow / 250)), marks: [{v: n.len.value, c: TEAL, at: t0 + 0.9}]});
-      if (T >= t0 + 0.9) k.text(n.len.shown, t.x(n.len.value) * 3, 696, {size: 66, color: TEAL, align: 'center', drop: INK});
-      if (pull >= 1) k.text(n.plain.shown, 920, 696, {size: 66, color: GOLD, align: 'right', drop: INK});
+      const d = bench(k, {top: 236});
+      /* r2: the blade starts out at 102 (the clean text) and runs on to the 160 mark between "under" and "sixty"; the */
+      /* tape sits right under the panel (y 176), no empty band.                                                       */
+      const tUnder = wordT(k, 'button.rule', /^under/i, 1.0), tSixty = wordT(k, 'button.rule', /^sixty/i, 1.6);
+      const L102 = Math.round(250 * n.len.value / n.plain.value), pull0 = clamp((T - (t0 + 0.1)) / 0.6);
+      const run = clamp((T - tUnder) / Math.max(0.3, tSixty - tUnder)), lenNow = Math.max(30, Math.round(L102 * eo(pull0) + (250 - L102) * eo(run)));
+      const t = tape(k, d, {x0: 84, y: 176, len: lenNow, h: 22, max: Math.max(1, Math.round(n.plain.value * lenNow / 250)), marks: [{v: n.len.value, c: TEAL, at: t0 + 0.7}]});
+      if (T >= t0 + 0.7) k.text(n.len.shown, t.x(n.len.value) * 3, 474, {size: 66, color: TEAL, align: 'center', drop: INK});
+      if (run >= 1) k.slam(n.plain.shown, 920, 474, tSixty, {size: 66, color: GOLD, align: 'right', from: 0.4, drop: INK, glint: false});
+      else if (T >= t0 + 0.7) k.text(n.plain.shown, 920, 474, {size: 66, color: GREY, align: 'right'});
       d.win(14, 84, 332, 70, {base: '#1B1420', hi: '#7A3442', lo: INK, rule: ORANGE});
       if (T < tKeep) { k.slam(`NEXT: PART ${n.next.shown},`, 540, 280, t0 + 0.1, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false}); k.slam('TURN IT ON.', 540, 358, t0 + 0.16, {size: 66, color: ORANGE, align: 'center', from: 0.4, drop: INK, glint: false}); }
       else { k.slam('Keep it plain.', 540, 280, tKeep, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false}); k.slam(`Under ${n.plain.shown}.`, 540, 358, tKeep + 0.1, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false}); k.sweep(540 - k.measure(`Under ${n.plain.shown}.`, {size: 66}) / 2, 432, k.measure(`Under ${n.plain.shown}.`, {size: 66}), 6, tKeep + 0.4, {color: 'accent'}); }

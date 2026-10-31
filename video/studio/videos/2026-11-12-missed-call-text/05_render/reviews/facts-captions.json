@@ -1,18 +1,19 @@
 {
  "gate": "facts-captions",
- "round": 0,
+ "round": 1,
+ "reviewer": "claude opus (fresh agent; Kimi daily cap reached)",
  "pass": true,
- "score": {
-  "numbers": 26,
-  "mismatches": 0
- },
- "reasons": [],
- "unconfirmed": [
-  "https://proofnotfluff.com/missed-call-cost-calculator/: the claim that this live page works out what a missed call costs"
+ "score": {"numbers": 43, "mismatches": 0},
+ "reasons": [
+  "instagram (note, not a FAIL): line 1 leads with HVAC though the example trade is a plumber (captions.md says lead with the example trade); optional fix: 'Plumbing and HVAC business owners: what your missed-call text back should say (part 1 of 3).'"
  ],
- "reviewer": "kimi k3.1-pro",
- "kimi_job": "2026-11-12-missed-call-text-facts-captions-20261031-r0",
- "claude_check": [
-  "Unconfirmed item confirmed by Claude Oct 31: https://proofnotfluff.com/missed-call-cost-calculator/ is in docs/sitemap.xml and docs/missed-call-cost-calculator/index.html is titled 'Missed Call Cost Calculator for Service Businesses'."
+ "unconfirmed": [],
+ "checked": [
+  "Twilio 'How long can a message be? | Twilio' fetched Oct 31, 2026: GSM-7 160 one segment (153 multi), UCS-2 70 (67 multi); emoji switches to UCS-2; curly quotes cut the single limit from 160 to 70; longer messages split into segments; 'Twilio bills SMS per message segment sent.' All four captions match.",
+  "ServiceTitan 'When Summer HVAC Demand Spikes, After-Hours Calls Do Too' (June 3, 2026) fetched Oct 31, 2026: 'In June 2025, 14.1% of inbound calls to residential HVAC shops arrived outside business hours'; same-store cohort, not nationally representative. Captions say 'on its platform' and make no promise that texting back wins jobs. 14.1 is in facts.json.",
+  "Example text counted in code: 102 characters; labeled example in every caption; Sam is fictional. No real private person, business or address.",
+  "Rules: line 1 is 92 (IG), 75 (TikTok), 92 (FB) characters; YouTube title 74, no hashtags; hashtags IG 4, TikTok 4, FB 2, YouTube 3 (umbrella, trade, topic); TikTok keyword at character 0 plus an owner question; no link in IG, TikTok or FB; no AI voice line; no non-ASCII characters (no em or en dashes, no curly quotes); 8 YouTube tags with one misspelling; AI labels TikTok on, others off.",
+  "YouTube site line https://proofnotfluff.com/missed-call-cost-calculator/ is in docs/sitemap.xml and the live page is the Missed Call Cost Calculator for Service Businesses.",
+  "Video consistency: transcript says nothing is 'in the caption'; 'June of last year' matches June 2025; caption steps match the three spoken parts and the 160, 70, split and bill lines."
  ]
 }

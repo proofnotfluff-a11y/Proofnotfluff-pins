@@ -6,7 +6,7 @@
   "level": 0.16,
   "tune": "bounce"
  },
- "duration": 48.982,
+ "duration": 56.007,
  "cues": [
   {
    "id": "hook",
@@ -27,22 +27,22 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "The street set: the van driving between jobs; a text bubble in the sky with \"THE WORDS (PART 1 OF 3)\" and the usual paragraph typing out at once. EXAMPLE tag.",
+   "text": "The boss arena (r2; was street) under a night panel: ABOUT 1 IN 7 lands big on \"about\", seven phones pop in one a beat, the seventh rings red on \"after\" with \"came after hours\"; source tag \"Source: ServiceTitan, June 2025\" while it is said. On \"gut\" the panel lifts away: THE POLITE TEXT is the boss, our cream window over its menu types the usual paragraph. EXAMPLE tag.",
    "t": 4.108,
    "word": 12,
-   "end": 17.515
+   "end": 24.621
   },
   {
    "id": "usual.polite",
    "level": 1,
-   "quote": "write a polite paragraph,",
+   "quote": "a polite paragraph,",
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
    "text": "The paragraph finishes: \"Thanks for calling, we value your business.\"",
-   "t": 7.648,
-   "word": 21,
-   "end": 12.688
+   "t": 15.648,
+   "word": 41,
+   "end": 20.108
   },
   {
    "id": "usual.no",
@@ -51,10 +51,10 @@
    "sfx": "stamp",
    "shift": 0.0,
    "pin": null,
-   "text": "NO NAME stamps in red over the note; NO QUESTION follows on \"question\".",
-   "t": 12.688,
-   "word": 33,
-   "end": 15.588
+   "text": "NO NAME hits the boss and stamps on \"name\"; NO QUESTION hits and stamps on \"question\".",
+   "t": 20.108,
+   "word": 52,
+   "end": 22.848
   },
   {
    "id": "usual.nobody",
@@ -63,10 +63,10 @@
    "sfx": "tick",
    "shift": 0.0,
    "pin": null,
-   "text": "The van brakes and parks; Snow shrugs.",
-   "t": 15.588,
-   "word": 42,
-   "end": 17.515
+   "text": "The last hit on \"answer\": the boss breaks into pixels and SKIP IT. stamps in; Snow waves.",
+   "t": 22.848,
+   "word": 61,
+   "end": 24.621
   },
   {
    "id": "parts",
@@ -76,21 +76,21 @@
    "shift": 0.0,
    "pin": null,
    "text": "The register set: WHO 29 rings on \"Who\", SORRY 26 on \"Sorry\", ASK 47 before the cut, CHARS 102 prints as the total.",
-   "t": 17.515,
-   "word": 46,
-   "end": 21.715
+   "t": 24.621,
+   "word": 65,
+   "end": 28.921
   },
   {
    "id": "copy",
    "level": 0,
-   "quote": "Then one question that",
-   "sfx": "pop",
+   "quote": "Then one question they",
+   "sfx": "chime",
    "shift": 0.0,
    "pin": null,
-   "text": "The big text card, EXAMPLE: \"Hi, this is Sam the plumber. Sorry I missed your call. What do you need fixed, and when works for you?\" Each part gets its slot colour bar as it is said (\"question\" lights the ask); the counter under it counts up to 102 / 160, the tape strip fills to 102 under the 160 mark.",
-   "t": 21.715,
-   "word": 56,
-   "end": 27.474
+   "text": "The text as an ITEM GET window (kit k.itemGet; the chime is its fanfare), EXAMPLE: \"Hi, this is Sam the plumber. Sorry I missed your call. What do you need fixed, and when works for you?\" Each part gets its slot colour bar as it is said (\"question\" lights the ask); the counter under it counts up to 102 / 160, the tape strip fills to 102 under the 160 mark.",
+   "t": 28.921,
+   "word": 75,
+   "end": 34.659
   },
   {
    "id": "proof",
@@ -100,9 +100,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The scores set, title CHARS PER TEXT: row PLAIN 160 lands on \"plain\". Source tag up top while it is said: \"Twilio docs: How long can a message be?\".",
-   "t": 27.474,
-   "word": 73,
-   "end": 40.542
+   "t": 34.659,
+   "word": 92,
+   "end": 47.727
   },
   {
    "id": "proof.emoji",
@@ -112,9 +112,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row EMOJI 70 lands in red; row CURLY \" 70 on \"Curly\".",
-   "t": 31.914,
-   "word": 84,
-   "end": 36.474
+   "t": 39.099,
+   "word": 103,
+   "end": 43.679
   },
   {
    "id": "proof.split",
@@ -124,9 +124,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Under the table: \"Sam's text plus an emoji:\" and \"2 PIECES, 2 BILLS\" stamps on \"piece\".",
-   "t": 36.474,
-   "word": 98,
-   "end": 40.542
+   "t": 43.679,
+   "word": 117,
+   "end": 47.727
   },
   {
    "id": "button",
@@ -136,9 +136,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Back on the workbench, the tape out to 160, the clean text's 102 marked on the blade in teal. Card: \"NEXT: PART 2, TURN IT ON.\"",
-   "t": 40.542,
-   "word": 109,
-   "end": 48.982
+   "t": 47.727,
+   "word": 128,
+   "end": 56.007
   },
   {
    "id": "button.rule",
@@ -148,9 +148,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The rule lands in gold: \"Keep it plain. Under 160.\" Snow waves. Then the end card with the send line: \"Send this to whoever answers your phones.\"",
-   "t": 43.542,
-   "word": 118,
-   "end": 48.982
+   "t": 50.747,
+   "word": 137,
+   "end": 56.007
   }
  ]
 }

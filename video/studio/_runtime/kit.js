@@ -1156,6 +1156,53 @@
       }
       ctx.restore();
     };
+    // the save card as a game ITEM GET window (IMPROVE 00a-2; standard.md C3 and M1): the thing to copy in a menu window
+    // that slides in from the right over 0.3 s (ease-out, whole low-res pixels), a gold ITEM GET tab, the lines in ink on
+    // cream, and a hand cursor that bobs 1 px at 4 fps beside the line it points at, stepping down a line every o.step
+    // seconds, so a held card is never flat. Put the fanfare (sfx: chime) on o.at in cues.md. Hold it 3 s or more.
+    // o: {x, y, w, at, lines: [string | [string, color]], size (66), lh (84), pad (48), title ('ITEM GET!'), tag, step (0.8),
+    //     until (when it leaves; it drops away over 0.2 s), bars: [color per line] (a slot bar left of each line)}
+    // Returns {x, y, w, h, line} (frame units; line = the index the hand points at) or null before it appears.
+    k.itemGet = function (o = {}) {
+      const at = o.at || 0; if (T < at) return null;
+      if (o.until != null && T >= o.until + 0.2) return null;
+      const size = o.size || 66, lh = o.lh || Math.round(size * 1.27), pad = o.pad || 48, lines = o.lines || [];
+      const x0 = o.x != null ? o.x : 42, y0 = o.y != null ? o.y : 252, w = o.w || 996, h = pad * 2 + lines.length * lh - (lh - size);
+      const snap = (v) => Math.round(v / LPX) * LPX;
+      const q = easeOut(clamp((T - at) / 0.3)), out = o.until != null ? easeOut(clamp((T - o.until) / 0.2)) : 0;
+      // once landed it floats like a picked-up item: 1 px up and down on a 4-step cycle (0.15 s a step), so a held card
+      // is never flat (M1) and still reads; o.float: false holds it still
+      const fl = q >= 1 && o.float !== false ? [0, 1, 0, -1][Math.floor((T - at - 0.3) / 0.15) % 4] * LPX : 0;
+      const x = snap(x0 + (1 - q) * (1080 - x0)), y = snap(y0 + out * 1920) + fl;
+      const P3 = (a, b, c, d, e) => R(x + a, y + b, c, d, e), u = LPX;
+      // shadow, ink rim, cream body, a light top edge, a blue inner rule
+      P3(2 * u, 2 * u, w, h, '#120D14'); P3(u, 0, w - 2 * u, h, '#120D14'); P3(0, u, w, h - 2 * u, '#120D14');
+      P3(u, u, w - 2 * u, h - 2 * u, '#FFF7EA'); P3(2 * u, u, w - 4 * u, u, '#FFFFFF'); P3(2 * u, h - 2 * u, w - 4 * u, u, '#C9B79C');
+      P3(3 * u, 3 * u, w - 6 * u, u, '#3B82C4'); P3(3 * u, h - 4 * u, w - 6 * u, u, '#3B82C4'); P3(3 * u, 3 * u, u, h - 6 * u, '#3B82C4'); P3(w - 4 * u, 3 * u, u, h - 6 * u, '#3B82C4');
+      // the tab: ITEM GET! in gold on ink, riding the top edge; an optional tag (EXAMPLE) at its right
+      const title = o.title || 'ITEM GET!', tw = measure(title, {size: 39}) + 12 * u;
+      P3(6 * u, -6 * u, tw, 14 * u, '#120D14'); P3(7 * u, -5 * u, tw - 2 * u, 12 * u, '#7A3442');
+      text(title, x + 12 * u, y - 4 * u, {size: 39, color: '#F7C873'});
+      if (o.tag) { const gw = measure(o.tag, {size: 39}) + 12 * u, gx = 10 * u + tw; P3(gx, -6 * u, gw, 14 * u, '#120D14'); P3(gx + u, -5 * u, gw - 2 * u, 12 * u, '#F2A541'); text(o.tag, x + gx + 6 * u, y - 4 * u, {size: 39, color: '#120D14'}); }
+      // the lines, each with its slot bar
+      lines.forEach((ln, i) => {
+        const str = Array.isArray(ln) ? ln[0] : ln, c = Array.isArray(ln) ? ln[1] : '#120D14', ly = pad + i * lh;
+        if (o.bars && o.bars[i]) P3(8 * u, ly + u, 4 * u, size - 2 * u, o.bars[i]);
+        text(str, x + pad + 6 * u, y + ly, {size, color: c});
+      });
+      // twinkles on two corners (2 frames on, 6 off, out of step)
+      const F = Math.floor(T * FR + 0.005);
+      [[w - 10 * u, 8 * u, 0], [10 * u, h - 9 * u, 4]].forEach(([a, b, ph]) => { const f = (F + ph) % 8; if (f < 3) { const r = f === 1 ? 2 : 1; P3(a, b - r * u, u, (2 * r + 1) * u, '#F7C873'); P3(a - r * u, b, (2 * r + 1) * u, u, '#F7C873'); } });
+      // the hand: points at a line, steps down every o.step s after the slide, bobs 1 px at 4 fps
+      const line = lines.length ? Math.floor(Math.max(0, T - at - 0.3) / (o.step || 0.8)) % lines.length : 0;
+      if (q >= 1 && lines.length) {
+        const bob = Math.floor(T * 4) % 2 ? u : 0, hx = -13 * u + bob, hy = pad + line * lh + Math.round((size - 11 * u) / 2 / u) * u;
+        // a gold pointer: an ink-rimmed arrow head (11 px tall) on a short stem
+        for (let j = 0; j < 11; j++) { const wj = 6 - Math.abs(5 - j); P3(hx + 5 * u, hy + j * u, (wj + 1) * u, u, '#120D14'); if (j > 0 && j < 10) P3(hx + 5 * u, hy + j * u, Math.max(0, wj - 1) * u, u, '#F7C873'); }
+        P3(hx, hy + 4 * u, 5 * u, 3 * u, '#120D14'); P3(hx + u, hy + 5 * u, 5 * u, u, '#F7C873');
+      }
+      return {x, y, w, h, line};
+    };
     // a bar that sweeps across behind a line, like a highlighter (game style: hard edges)
     k.sweep = function (x, y, w, h, t0, o = {}) {
       const q = easeOut((T - t0) / (o.dur || 0.3)); if (q <= 0) return;

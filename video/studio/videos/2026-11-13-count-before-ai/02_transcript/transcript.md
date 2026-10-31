@@ -47,7 +47,7 @@ none
 
 `00:37.3` It can't pay for itself yet.
 
-`00:39.2` Smaller?
+`00:39.1` Smaller?
 
 `00:40.1` Part two tries three options side by side.
 

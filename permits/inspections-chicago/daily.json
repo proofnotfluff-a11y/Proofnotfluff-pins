@@ -1,22 +1,22 @@
 {
  "product": "Chicago Restaurant Daily List",
- "asOf": "2026-10-30",
- "asOfText": "Oct 30, 2026",
+ "asOf": "2026-10-31",
+ "asOfText": "Oct 31, 2026",
  "through": "2026-10-29",
  "throughText": "Oct 29, 2026",
  "recentFrom": "2026-10-16",
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-30T12:19:08+00:00",
+  "fetchedAt": "2026-10-31T12:15:09+00:00",
   "rowsUpdatedAt": "2026-10-30T09:13:52+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "pests": 3,
+  "pests": 0,
   "hood": 0,
-  "places": 3
+  "places": 0
  },
  "history": [
   {
@@ -74,34 +74,17 @@
    "hood": 0,
    "places": 3,
    "withPhone": 1
-  }
- ],
- "examples": [
-  {
-   "area": "Chicago Lawn",
-   "type": "Grocery Store",
-   "result": "Pass w/ Conditions",
-   "trades": [
-    "pests"
-   ]
   },
   {
-   "area": "Albany Park",
-   "type": "Restaurant",
-   "result": "Fail",
-   "trades": [
-    "pests"
-   ]
-  },
-  {
-   "area": "Brighton Park",
-   "type": "Restaurant",
-   "result": "Pass w/ Conditions",
-   "trades": [
-    "pests"
-   ]
+   "asOf": "2026-10-31",
+   "through": "2026-10-29",
+   "pests": 0,
+   "hood": 0,
+   "places": 0,
+   "withPhone": 0
   }
  ],
+ "examples": [],
  "pestByDate": [
   {
    "date": "2026-10-16",
@@ -189,14 +172,14 @@
  },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
  "phones": {
-  "rows": 3,
-  "withPhone": 1,
-  "coverage": 33.3
+  "rows": 0,
+  "withPhone": 0,
+  "coverage": 0.0
  },
  "seat": {
-  "asOf": "2026-10-30",
+  "asOf": "2026-10-31",
   "places14": 40,
-  "new": 3,
+  "new": 0,
   "withPhone14": 27,
   "coverage14": 67.5,
   "phonesChecked": true

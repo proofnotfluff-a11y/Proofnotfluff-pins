@@ -69,7 +69,7 @@ const exTag = (k, d, x, y) => { d.P(x, y, 84, 18, INK); d.P(x + 1, y + 1, 82, 16
 const partTag = (k, d, n, x = 20, y = 160) => { const s = `PART ${n.part.shown} OF ${n.series.shown}`, w = Math.ceil((k.measure(s, {size: 39}) + 36) / 3); d.P(x, y, w + 2, 22, INK); d.P(x + 1, y + 1, w, 20, ORANGE); k.text(s, (x + 1 + w / 2) * 3, (y + 2) * 3, {size: 39, color: INK, align: 'center'}); };
 const hookPlate = (k, d, n) => {
   d.win(14, 84, 332, 66, {base: '#253048', hi: '#3B82C4', lo: '#1B1420', rule: '#3B82C4'});
-  k.text(`${n.missed.shown} missed calls.`, 540, 270, {size: 66, color: CREAM, align: 'center', drop: INK});
+  k.text(`${n.missed.shown} missed calls in ${n.weeks.shown} weeks.`, 540, 270, {size: 66, color: CREAM, align: 'center', drop: INK});
   k.text('Need an AI receptionist?', 540, 346, {size: 66, color: 'accent', align: 'center', drop: INK});
 };
 
@@ -144,7 +144,7 @@ window.SCENE = {
     /* cut to the laptop with the AI RECEPTIONIST screen. The plate stays up through every cut.                         */
     hook: (k, T) => {
       const n = k.data.numbers;
-      const tIn = 0.6, tOut = Math.min(2.9, wordT(k, 'hook', /^need/i, 2.8));
+      const tIn = 0.6, tOut = Math.min(2.0, wordT(k, 'hook', /^need/i, 2.0));
       if (T >= tOut) {
         const d = office(k, {top: 300});
         laptop(k, d, 70, 166, 220, 120, {demo: true});
@@ -158,11 +158,11 @@ window.SCENE = {
       }
       k.sets.dispatch({pins: PINS.slice(0, n.missed.value).map(([x, y]) => ({x, y, at: -1, c: '#E2633B'}))});
       const d = px(k);
-      k.text('MISSED', 540, 852, {size: 66, color: CREAM, align: 'center', drop: INK});
-      k.text(n.missed.shown, 540, 920, {size: 330, color: 'accent', align: 'center', drop: INK});
+      k.text('MISSED CALLS', 540, 1120, {size: 66, color: CREAM, align: 'center', drop: INK});
+      k.text(n.missed.shown, 540, 880, {size: 264, color: 'accent', align: 'center', drop: INK});
       hookPlate(k, d, n);
       partTag(k, d, n);
-      exTag(k, d, 250, 162);
+      exTag(k, d, 220, 162);
       return {host: false, speech: false};
     },
 
@@ -201,18 +201,20 @@ window.SCENE = {
     /* ---- step: the calendar set, NOVEMBER. An X lands on days 1 to 14 on "mark every call"; the week strip on week 1, */
     /* then week 2 on "weeks"; 4 of the days take a coin on "real jobs"; 4 OF 14 lands on "four".                       */
     step: (k, T) => {
-      const n = k.data.numbers, t0 = k.S('step'), tMark = wordT(k, 'step', /^mark/i, 1.4), tJobs = wordT(k, 'step.circle', /^jobs/i, 1.8), tFour = wordT(k, 'step.four', /^four/i, 0.4);
+      const n = k.data.numbers, t0 = k.S('step'), tMark = wordT(k, 'step', /^count/i, 2.4), tJobs = wordT(k, 'step.circle', /^jobs/i, 1.8), tFour = wordT(k, 'step.four', /^four/i, 0.4);
       const JOB_DAYS = [3, 6, 10, 13].slice(0, n.jobs.value);
       const fills = [];
       for (let dd = 1; dd <= n.days.value; dd++) fills.push({day: dd, at: tMark + (dd - 1) * 0.1, mark: 'x'});
       JOB_DAYS.forEach((dd, i) => fills.push({day: dd, at: tJobs - 0.3 + i * 0.25, mark: 'coin', c: '#F7C873'}));
-      k.sets.calendar({month: 'NOVEMBER', year: 2026, start: 0, days: 30, fills, weeks: [{row: 0, at: t0 + 0.1}, {row: 1, at: tMark + 0.8}]});
+      k.sets.calendar({month: 'NOVEMBER', year: 2026, start: 0, days: 30, numbersTo: T >= tFour - 0.1 ? 14 : 30, fills, weeks: [{row: 0, at: t0 + 0.1}, {row: 1, at: tMark + 0.8}]});
       if (T >= tFour) {
-        k.slam(n.jobs.shown, 920, 826, tFour, {size: 198, color: GOLD, align: 'right', from: 0.5, drop: INK, glint: false});
-        k.text('REAL JOBS', 800, 846, {size: 66, color: CREAM, align: 'right', drop: INK});
-        k.text(`OF ${n.missed.shown} CALLS`, 800, 920, {size: 66, color: CREAM, align: 'right', drop: INK});
+        /* a plate over the empty weeks of the month: the count big, what it means under it */
+        const hero = `${n.jobs.shown} OF ${n.missed.shown}`, dp = px(k), sl = dp.ease(tFour - 0.1, 5, 40);
+        dp.win(24, 186 + sl, 312, 90, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: GOLD});
+        k.slam(hero, 540, 578 + sl * 3, tFour, {size: fit(k, hero, 900, [198, 132]), color: GOLD, align: 'center', from: 0.6, drop: INK, glint: false});
+        k.text('CALLS WERE REAL JOBS', 540, 748 + sl * 3, {size: 66, color: CREAM, align: 'center', drop: INK});
       } else {
-        const s = T >= k.S('step.circle') ? 'Circle the real jobs.' : 'Mark every missed call.';
+        const s = T >= k.S('step.circle') ? 'Circle the real jobs.' : 'Count every missed call.';
         k.text(s, 920, 846, {size: fit(k, s, 600, [66, 39]), color: CREAM, align: 'right', drop: INK});
       }
       return host(k, k.live('step.circle') ? 'point' : null);
@@ -242,7 +244,7 @@ window.SCENE = {
       const n = k.data.numbers, t0 = k.S('check'), tBig = k.S('check.bigger'), tSm = k.S('check.smaller');
       const d = office(k, {top: 300, clock: false}), {P, line, disc} = d;
       d.win(14, 84, 332, 66, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
-      const say = T >= tSm ? ['Price smaller?', `Try part ${n.next.shown}.`, tSm, TEAL] : T >= tBig ? ['Price bigger?', 'Not paid back yet.', tBig, RED] : ['Missed jobs a month', 'next to the quote', t0, GOLD];
+      const say = T >= tSm ? ['Smaller? It might pay.', `Try part ${n.next.shown}.`, tSm, TEAL] : T >= tBig ? ['Price bigger?', 'Not paid back yet.', tBig, RED] : ['Missed jobs a month', 'next to the quote', t0, GOLD];
       k.slam(say[0], 540, 270, say[2] + 0.05, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false});
       k.slam(say[1], 540, 346, say[2] + 0.12, {size: 66, color: say[3], align: 'center', from: 0.4, drop: INK, glint: false});
       /* the tilt in whole pixels: level, then the quote side down on "bigger", up on "Smaller" */
@@ -255,9 +257,9 @@ window.SCENE = {
       for (let i = 0; i < 4; i++) d.coin(50 + i * 10, ly + 22, 0);
       k.text(n.month.shown, 210, (ly - 44) * 3 - 40, {size: 66, color: GOLD, align: 'center', drop: INK});
       k.text('/ MO', 210, (ly - 44) * 3 + 36, {size: 66, color: CREAM, align: 'center', drop: INK});
-      P(268, ry + 2, 44, 28, INK); P(269, ry + 3, 42, 26, GOLD); P(269, ry + 3, 42, 3, '#FFF2B8'); disc(275, ry + 9, 2, INK); k.text('$?', 870, (ry + 7) * 3, {size: 66, color: INK, align: 'center'});
-      k.text('QUOTE', 870, (ry - 44) * 3 - 40, {size: 66, color: CREAM, align: 'center', drop: INK});
-      k.text('/ MO', 870, (ry - 44) * 3 + 36, {size: 66, color: CREAM, align: 'center', drop: INK});
+      P(268, ry + 2, 44, 28, INK); P(269, ry + 3, 42, 26, GOLD); P(269, ry + 3, 42, 3, '#FFF2B8'); disc(275, ry + 9, 2, INK); k.text('$?', 840, (ry + 7) * 3, {size: 66, color: INK, align: 'center'});
+      k.text('QUOTE', 840, (ry - 44) * 3 - 40, {size: 66, color: CREAM, align: 'center', drop: INK});
+      k.text('/ MO', 840, (ry - 44) * 3 + 36, {size: 66, color: CREAM, align: 'center', drop: INK});
       if (T >= tBig && T < tSm) stampBox(k, 'NOT YET', 540, 486, tBig, {color: RED, freeze: 4});
       else if (T < tBig) k.text('Which side is heavier?', 540, 476, {size: 66, color: SAND, align: 'center', drop: INK});
       return host(k, k.live('check.bigger') ? 'shrug' : null);
@@ -268,9 +270,10 @@ window.SCENE = {
     next: (k, T) => {
       const n = k.data.numbers, t0 = k.S('next'), tA = wordT(k, 'next', /^three/i, 0.6), tB = wordT(k, 'next', /^options/i, 1.0), tC = wordT(k, 'next', /^side/i, 1.6);
       k.sets.inventory({title: `PART ${n.next.shown}`, hint: ' ', items: [{icon: 'mail', name: 'TEXT BACK'}, {icon: 'phone', name: 'A PERSON'}, {icon: 'star', name: 'AI'}],
-        select: [{slot: 0, at: tA}, {slot: 1, at: tB}, {slot: 2, at: tC}]});
-      k.text(`${n.opts.shown} options, side by side:`, 72, 606, {size: 66, color: CREAM, drop: INK});
-      [['TEXT BACK', tA], ['A PERSON', tB], ['AI', tC]].forEach(([s2, ti], i) => { if (T >= ti) k.slam(s2, 72 + i * 0, 690 + i * 70, ti, {size: 66, color: i === 2 ? GOLD : '#F4E6D3', from: 0.4, drop: INK, glint: false}); });
+        slots: 3, select: [{slot: 0, at: t0}, {slot: 0, at: tA}, {slot: 1, at: tB}, {slot: 2, at: tC}]});
+      k.text(`${n.opts.shown} options, side by side`, 540, 606, {size: 66, color: CREAM, align: 'center', drop: INK});
+      const opts = [['TEXT BACK', tA], ['A PERSON', tB], ['AI', tC]], on = opts.filter(([, ti]) => T >= ti).length - 1;
+      if (on >= 0) { const [s2, ti] = opts[on]; k.slam(`${on + 1}. ${s2}`, 540, 684, ti, {size: fit(k, `${on + 1}. ${s2}`, 860, [132, 99]), color: on === 2 ? GOLD : '#F4E6D3', align: 'center', from: 0.4, drop: INK, glint: false}); }
       return host(k, k.live('next') ? 'point' : null);
     },
 

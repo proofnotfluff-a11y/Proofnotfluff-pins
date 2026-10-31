@@ -12,8 +12,8 @@ Gold stars pop over the wave on "great"; on "sign" a quote sheet slides up with 
 ## usual.worth "But you don't know" [sfx: stamp]
 Cut to the dispatch board again, the 14 red pins; plate "14 missed calls." / "Worth how much?"; a red stamp "WORTH: ?" hits on "worth"; Snow shrugs.
 
-## step "For two weeks, mark" [sfx: whoosh]
-The calendar set, NOVEMBER: a red X lands on each day from 1 to 14 on "mark every call"; the gold week strip sits on week 1, then week 2. Line in the strip under it: "Mark every missed call."
+## step "Tonight, scroll your call" [sfx: whoosh]
+The calendar set, NOVEMBER: a red X lands on each day from 1 to 14 on "count every miss"; the gold week strip sits on week 1, then week 2. Line in the strip under it: "Count every missed call."
 ## step.circle "Then circle the ones" [sfx: tick]
 Four of the days take a gold coin, one by one ("real jobs"). The strip line turns to "Circle the real jobs."
 ## step.four "Say it's four of" [sfx: tick]

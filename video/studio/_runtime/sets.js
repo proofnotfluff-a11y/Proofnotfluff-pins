@@ -455,7 +455,7 @@
         if (q < 2) dith(x + 1, y + 1, cw - 1, ch - 1, c); else P(x + 1, y + 1, cw - 1, ch - 1, c);
         if (q >= 2 && f.mark && f.mark !== 'fill') { const d = q < 4 ? -2 : 0; mark(x, y + d, f.mark, f.mc); }
       });
-      for (let d = 1; d <= days; d++) { const [x, y] = cell(d); tx(String(d), x + 3, y + 2, {color: (start + d - 1) % 7 === 0 ? '#E2633B' : '#3D2E45'}); }
+      for (let d = 1; d <= Math.min(days, o.numbersTo || days); d++) { const [x, y] = cell(d); tx(String(d), x + 3, y + 2, {color: (start + d - 1) % 7 === 0 ? '#E2633B' : '#3D2E45'}); }
       // the week strip
       const ws = (o.weeks || []).filter((w) => T >= w.at);
       if (ws.length) {
@@ -788,7 +788,7 @@
     // ================================================================================================================
     // 13. inventory: an RPG item screen. A tool belt of eight slots with pixel icons; the cursor jumps from slot to slot
     // (its corner brackets breathing in and out a pixel), the detail pane names the item and fills its stat bars.
-    // o: {title ('TOOL BELT'), items: [{icon, name, stats: [{label, value, max, text}]}], select: [{slot, at}]}
+    // o: {title ('TOOL BELT'), slots (8), items: [{icon, name, stats: [{label, value, max, text}]}], select: [{slot, at}]}
     const ICONS = {
       wrench: ['....aa....', '...aab....', '...ab.....', '...abb..a.', '....abbaab', '.....abbb.', '....abb...', '...abb....', '..abb.....', '.abb......'],
       phone: ['.cccccc...', '.cddddc...', '.cdeedc...', '.cddddc...', '.cddddc...', '.cddddc...', '.cddddc...', '.cccccc...', '.cc..cc...', '.cccccc...'],
@@ -811,9 +811,9 @@
       P(X + 10, Y - 6, tw(o.title || 'TOOL BELT') + 14, 13, INK); P(X + 11, Y - 5, tw(o.title || 'TOOL BELT') + 12, 11, '#7A3442'); tx(o.title || 'TOOL BELT', X + 17, Y - 5, {color: '#FFF7EA'});
       const items = o.items || [], sel = (o.select || []).filter((s) => T >= s.at), cur = sel[sel.length - 1], prev = sel[sel.length - 2];
       const slot = (i) => [X + 12 + (i % 4) * 40, Y + 14 + Math.floor(i / 4) * 40];
-      for (let i = 0; i < 8; i++) { const [sx, sy] = slot(i); P(sx, sy, 34, 34, '#1B1420'); P(sx, sy, 34, 1, '#120D14'); P(sx, sy + 33, 34, 1, '#3B82C4'); P(sx + 33, sy, 1, 34, '#3B82C4'); if (items[i]) S.icon(items[i].icon, sx + 7, sy + 7, 2); }
+      const nS = o.slots || 8; for (let i = 0; i < nS; i++) { const [sx, sy] = slot(i); P(sx, sy, 34, 34, '#1B1420'); P(sx, sy, 34, 1, '#120D14'); P(sx, sy + 33, 34, 1, '#3B82C4'); P(sx + 33, sy, 1, 34, '#3B82C4'); if (items[i]) S.icon(items[i].icon, sx + 7, sy + 7, 2); }
       // the belt strap under the slots
-      P(X + 8, Y + 98, 160, 4, '#6B4226'); P(X + 8, Y + 98, 160, 1, '#B07A47'); P(X + 80, Y + 96, 12, 8, '#F2A541'); P(X + 82, Y + 98, 8, 4, '#6B4226');
+      const sw = Math.min(4, nS) * 40; P(X + 8, Y + 98, sw, 4, '#6B4226'); P(X + 8, Y + 98, sw, 1, '#B07A47'); P(X + 8 + sw / 2 - 6, Y + 96, 12, 8, '#F2A541'); P(X + 8 + sw / 2 - 4, Y + 98, 8, 4, '#6B4226');
       if (!cur) { P(X + 178, Y + 14, 124, 34, '#1B1420'); tx(o.hint || 'Pick a tool', X + 186, Y + 25, {color: '#6B7080'}); }
       if (cur) {
         const [ax, ay] = slot(cur.slot), [bx0, by0] = prev ? slot(prev.slot) : [ax, ay], q = easeOut(fr(cur.at) / 4);

@@ -11,7 +11,7 @@ worked example labeled EXAMPLE on screen (facts.json); no outside study or perce
 - **Audience:** a solo or small-crew plumber, HVAC tech or electrician who misses calls on jobs and has an AI
   receptionist demo or quote in hand.
 - **The one idea:** count your missed calls and what they're worth before you buy anything to answer them. (15 words)
-- **Do this week (on screen, held):** for two weeks, mark every missed call on a calendar and circle the real jobs; then
+- **Do this week (on screen, held):** tonight, scroll the call log back two weeks, count every missed call and circle the real jobs (buyer gate, Oct 31: under an hour, standard.md S3); then
   the board: real jobs x what you clear a job = what they're worth; hold that next to the monthly price on the quote.
 - **Shape:** hook (a wall calendar, two weeks, 14 red X's; "Need an AI receptionist?") -> part 1 of 2, the usual way (the
   demo sounded great, so sign; but nobody knows what the calls are worth) -> the step (two weeks of marks on the

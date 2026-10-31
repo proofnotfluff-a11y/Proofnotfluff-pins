@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-13-count-before-ai",
- "mp4Sha256": "9d2018008e597bae03cedd7a0215dc3ee1c2d8831b5bea43349b470723eefe1d",
+ "mp4Sha256": "d47c63b9ace300bfac83ac52c83824d7675193d582a6946ae1bb82717100d620",
  "checks": [
   {
    "name": "length",
@@ -36,13 +36,19 @@
    "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 45.74 s"
   },
   {
+   "name": "flat",
+   "value": [],
+   "pass": true,
+   "detail": "0 flat stretch(es) of 1.2 s or more under 0.1 before the end card at 45.74 s"
+  },
+  {
    "name": "file",
    "value": {
-    "sha256": "9d2018008e597bae03cedd7a0215dc3ee1c2d8831b5bea43349b470723eefe1d",
-    "bytes": 4903798
+    "sha256": "d47c63b9ace300bfac83ac52c83824d7675193d582a6946ae1bb82717100d620",
+    "bytes": 4993351
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 4.9 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 5.0 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -52,5 +58,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-31T13:48:07-05:00"
+ "at": "2026-10-31T16:59:40-05:00"
 }

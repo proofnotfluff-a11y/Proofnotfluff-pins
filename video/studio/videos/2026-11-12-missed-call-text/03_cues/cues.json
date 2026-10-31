@@ -1,0 +1,156 @@
+{
+ "schema": "pnf.studio.cues.v1",
+ "source": "whisper medium.en int8, re-spelled from script.md",
+ "music": {
+  "id": "rooms",
+  "level": 0.16,
+  "tune": "bounce"
+ },
+ "duration": 49.318,
+ "cues": [
+  {
+   "id": "hook",
+   "level": 0,
+   "quote": "Your missed-call text gets",
+   "sfx": "pop",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Three shots. Cover, frame one, host and dialog box hidden: our own workbench in daylight, a tape measure pulled out across it, the blade's numbers big, the gold end hook resting on the 160 mark; one focal object, the hero number \"160\" above the tape; plate \"160 characters\" / \"to book the job.\", chip \"PART 1 OF 3\". By 0.8 s cut in close on the tape's hook at 160 (the blade's ticks big, a missed-call phone lying on the bench beside it); Snow and the dialog box come in. On \"book\" cut to the third shot: the phone close up, MISSED CALL on its screen, a blank text bubble with a cursor and \"0 / 160\" under it.",
+   "t": 0.0,
+   "word": 0,
+   "end": 4.108
+  },
+  {
+   "id": "usual",
+   "level": 0,
+   "quote": "Part one of three,",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Our own clipboard on the bench: \"PART 1 OF 3: THE WORDS\" on the clip, the paper blank, a pencil over it. EXAMPLE tag.",
+   "t": 4.108,
+   "word": 12,
+   "end": 17.672
+  },
+  {
+   "id": "usual.polite",
+   "level": 1,
+   "quote": "write a polite paragraph,",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The usual paragraph types out on the paper: \"Thanks for calling, we value your business.\"",
+   "t": 7.908,
+   "word": 21,
+   "end": 12.928
+  },
+  {
+   "id": "usual.no",
+   "level": 1,
+   "quote": "But there's no name",
+   "sfx": "stamp",
+   "shift": 0.0,
+   "pin": null,
+   "text": "NO NAME stamps in red over the note; NO QUESTION follows on \"question\".",
+   "t": 12.928,
+   "word": 33,
+   "end": 15.768
+  },
+  {
+   "id": "usual.nobody",
+   "level": 1,
+   "quote": "Nobody answers that.",
+   "sfx": "tick",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Snow shrugs; the note slides down a pixel at a time.",
+   "t": 15.768,
+   "word": 42,
+   "end": 17.672
+  },
+  {
+   "id": "parts",
+   "level": 0,
+   "quote": "Three parts. Who you",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The inventory set, title TEXT KIT. Three slots: WHO YOU ARE (clip), SORRY (phone), ONE QUESTION (clock). The cursor jumps to WHO on \"Who\" and SORRY on \"Sorry\"; the detail pane names it, the part's words land under the belt.",
+   "t": 17.672,
+   "word": 45,
+   "end": 21.872
+  },
+  {
+   "id": "copy",
+   "level": 0,
+   "quote": "Then one question that",
+   "sfx": "pop",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The big text card, EXAMPLE: \"Hi, this is Sam the plumber. Sorry I missed your call. What do you need fixed, and when works for you?\" Each part gets its slot colour bar as it is said (\"question\" lights the ask); the counter under it counts up to 102 / 160, the tape strip fills to 102 under the 160 mark.",
+   "t": 21.872,
+   "word": 55,
+   "end": 27.631
+  },
+  {
+   "id": "proof",
+   "level": 0,
+   "quote": "Twilio's guide says one",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The scores set, title CHARS PER TEXT: row PLAIN 160 lands on \"plain\". Source tag up top while it is said: \"Twilio docs: How long can a message be?\".",
+   "t": 27.631,
+   "word": 72,
+   "end": 41.038
+  },
+  {
+   "id": "proof.emoji",
+   "level": 1,
+   "quote": "Add one emoji and",
+   "sfx": "tick",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Row EMOJI 70 lands in red; row CURLY \" 70 on \"Curly\".",
+   "t": 31.991,
+   "word": 83,
+   "end": 36.751
+  },
+  {
+   "id": "proof.split",
+   "level": 1,
+   "quote": "Go past that and",
+   "sfx": "stamp",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Under the table: \"102 + emoji = 2 pieces, 2 bills.\" stamps on \"bills\".",
+   "t": 36.751,
+   "word": 97,
+   "end": 41.038
+  },
+  {
+   "id": "button",
+   "level": 0,
+   "quote": "So count yours before",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Back on the workbench, the tape out to 160, the clean text's 102 marked on the blade in teal. Card: \"NEXT: PART 2, TURN IT ON.\"",
+   "t": 41.038,
+   "word": 109,
+   "end": 49.318
+  },
+  {
+   "id": "button.rule",
+   "level": 1,
+   "quote": "Keep it plain, and",
+   "sfx": "sting",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The rule lands in gold: \"Keep it plain. Under 160.\" Snow waves. Then the end card with the send line: \"Send this to whoever answers your phones.\"",
+   "t": 44.058,
+   "word": 118,
+   "end": 49.318
+  }
+ ]
+}

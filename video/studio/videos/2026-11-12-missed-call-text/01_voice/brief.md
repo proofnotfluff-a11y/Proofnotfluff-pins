@@ -37,7 +37,15 @@ Twilio's "How long can a message be?" docs page; every line in facts.json quoted
   Springs Digital, Oct 14, 2026, https://copperspringsdigital.com/2026/10/14/why-plumbers-and-hvac-companies-lose-calls-after-hours/ ;
   "What should a contractor missed-call text say?", https://www.shiftflow.app/playbook/contractor-missed-call-text-back-templates ;
   and the research run's pick (topics-2026-10-30.md #2).
-- **Model videos:** see the watch answers video/watch/answers/2026-10-31-missed-text-{a,b,c}.md (filled in below once read).
+- **Model videos:** watched Oct 31 with the watch-video skill (Gemini; view counts not readable from here, so not
+  ranked by views). (1) https://www.youtube.com/watch?v=TQKoy70dkDk , "Setting up Missed Call Text Back for your
+  business!" (answer: video/watch/answers/2026-10-31-missed-text-a-r2.md): opens on a desk shot and the title, then a
+  settings walkthrough; its default text is the business name, "we just missed your call", "how can I help?". What we
+  take: the three slots are right but "how can I help?" books nothing, so ours asks what needs fixing and when. (2)
+  https://www.youtube.com/watch?v=HXgkxiQ1f4I , "How To Set Up the Missed Call Text Back Feature" (answer: ...-b-r2.md):
+  a 6 s logo intro, a minute of why, then the setting; it warns not to put the caller's first name in the text, since
+  a first-time caller has no name on file. What we take: open on the problem, not a logo, and keep the caller's name
+  out (ours names the owner, not the caller). A third (oS-NwdP3tdc) failed twice on Gemini 503. Our words only.
 - **Trust notes:** 160 and 70 are Twilio's single-segment limits for GSM-7 and UCS-2; an emoji or a curly quote switches
   the text to UCS-2 (the page). "Twilio splits it in two and bills both" is said of our 102-character example with an
   emoji (102 + 2 units over 70, 67 a segment: 2 segments; the page bills per segment). Phones put the pieces back
@@ -51,7 +59,7 @@ Twilio's "How long can a message be?" docs page; every line in facts.json quoted
 | One emoji drops the limit to 70 | same (UCS-2 switch; 70 per single segment) | same |
 | Curly quotes do it too | same (curly quotation marks are UCS-2; 160 to 70) | same |
 | Past that, Twilio splits it and bills each piece | same (split into 67-character segments; bills per segment) | same |
-| The example text, 102 characters, 3 parts; part 1 of 3 | ours (example, labeled; length counted in code) | n/a |
+| The example text, 102 characters, 3 parts; part 1 of 3, next part 2 | ours (example, labeled; length counted in code) | n/a |
 
 ## Numbers on screen
 
@@ -63,6 +71,7 @@ Twilio's "How long can a message be?" docs page; every line in facts.json quoted
  "parts": {"path": "example.partCount", "shown": "3"},
  "part": {"path": "example.partNo", "shown": "1"},
  "series": {"path": "example.series", "shown": "3"},
- "segs": {"path": "example.withEmojiSegments", "shown": "2"}
+ "segs": {"path": "example.withEmojiSegments", "shown": "2"},
+ "next": {"path": "example.nextPart", "shown": "2"}
 }}
 ```

@@ -1,0 +1,62 @@
+{
+ "schema": "pnf.studio.captions.v1",
+ "keywords": {
+  "primary": "missed call text back for plumbers",
+  "secondary": [
+   "plumbing business owner",
+   "home service business"
+  ],
+  "trades": [
+   "plumbing",
+   "hvac",
+   "electrician"
+  ]
+ },
+ "instagram": {
+  "caption": "Plumbing business owners: what your missed-call text back should say (part 1 of 3).\nTwilio's docs (How long can a message be?): one plain text holds 160 characters. One emoji or a curly quote switches it to a 70-character limit, and past that it splits into pieces, each billed.\n\nThe example text (102 characters, one plain text):\nHi, this is Sam the plumber. Sorry I missed your call. What do you need fixed, and when works for you?\n\n1. Who you are.\n2. Sorry I missed your call.\n3. One question that books the job.\nCount it: under 160, no emoji, no curly quotes.\nPart 2: turning it on.\n\nSend this to whoever answers your phones.\nFree tools for trade owners: link in bio.\n\n#homeservicebusiness #plumbingbusiness #hvacbusiness #missedcalls",
+  "settings": {
+   "aiLabel": false,
+   "shareToFacebook": false
+  }
+ },
+ "tiktok": {
+  "caption": "Missed call text back for plumbing and HVAC owners, part 1 of 3: the words.\nTwilio's docs (How long can a message be?): one plain text holds 160 characters. One emoji or a curly quote switches it to a 70-character limit, and past that it splits into pieces, each billed.\nThe example: Hi, this is Sam the plumber. Sorry I missed your call. What do you need fixed, and when works for you?\nWho you are, sorry I missed your call, one question that books it. Under 160, no emoji.\nOwners: what does your missed-call text say right now?\nSend this to whoever answers your phones.\n#homeservicebusiness #plumbingbusiness #hvacbusiness #missedcalls",
+  "settings": {
+   "aiGenerated": true,
+   "commercialDisclosure": false,
+   "suggestKeywords": [
+    "missed call text back for plumbers",
+    "plumbing business owner",
+    "hvac business tips"
+   ]
+  }
+ },
+ "facebook": {
+  "caption": "Plumbing and HVAC business owners: what your missed-call text back should say (part 1 of 3).\nTwilio's docs (How long can a message be?): one plain text holds 160 characters. One emoji or a curly quote switches it to a 70-character limit, and past that it splits into pieces, each billed.\nThe example: Hi, this is Sam the plumber. Sorry I missed your call. What do you need fixed, and when works for you?\nWho you are, sorry I missed your call, one question that books it. Keep it under 160, no emoji, no curly quotes.\nSend this to whoever answers your phones.\n#homeservicebusiness #plumbingbusiness",
+  "settings": {
+   "aiLabel": false,
+   "audience": "Public"
+  }
+ },
+ "youtube": {
+  "title": "Missed Call Text Back for Plumbers: What the Text Should Say (Part 1 of 3)",
+  "description": "Missed call text back for plumbing, HVAC and electrical business owners: the words, part 1 of 3.\nTwilio, \"How long can a message be?\" (https://www.twilio.com/docs/glossary/what-sms-character-limit): a single GSM-7 text holds 160 characters; an emoji or a curly quotation mark switches the text to UCS-2, where a single text holds 70; a longer message is split into segments, and Twilio bills per segment.\n\nThe text (an example, 102 characters):\nHi, this is Sam the plumber. Sorry I missed your call. What do you need fixed, and when works for you?\n\nSteps:\n1. Who you are: your name and trade.\n2. Sorry I missed your call.\n3. One question that books the job (what needs fixing, and when).\n4. Count it: under 160 characters, no emoji, no curly quotes.\n\nNext: part 2, turning it on.\nSend this to whoever answers your phones.\nWhat a missed call costs you, worked out: https://proofnotfluff.com/missed-call-cost-calculator/\n#homeservicebusiness #plumbingbusiness #missedcalls",
+  "tags": [
+   "missed call text back",
+   "missed call text back for plumbers",
+   "plumbing business owner",
+   "hvac business tips",
+   "home service business",
+   "sms character limit",
+   "text back missed calls",
+   "missed call text bak"
+  ],
+  "settings": {
+   "madeForKids": false,
+   "aiUse": false,
+   "category": "Education",
+   "language": "English",
+   "visibility": "Public"
+  }
+ }
+}

@@ -36,6 +36,7 @@
   "series": 3,
   "withEmojiSegments": 2,
   "withEmojiNote": "The 102-character text plus one emoji switches to UCS-2: over 70 characters, so it splits into 67-character segments, 2 of them (an emoji is 2 UTF-16 units); Twilio bills per segment. Every character of the plain text is in GSM-7's basic set (checked in code), so plain it is one segment.",
-  "usual": "Thanks for calling, we value your business."
+  "usual": "Thanks for calling, we value your business.",
+  "nextPart": 2
  }
 }

@@ -228,7 +228,24 @@
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {
+    "instagram": {
+     "url": "https://www.instagram.com/proofnotfluff/reel/DfKZRKdB6Bl/",
+     "at": "2026-10-31T09:41:58-05:00"
+    },
+    "tiktok": {
+     "url": "https://www.tiktok.com/@proofnotfluff/video/7702842797082070302",
+     "at": "2026-10-31T09:44:41-05:00"
+    },
+    "facebook": {
+     "url": "https://www.facebook.com/reel/1134226072396052/",
+     "at": "2026-10-31T09:46:30-05:00"
+    },
+    "youtube": {
+     "url": "https://youtube.com/shorts/CMPjbP-OIZQ",
+     "at": "2026-10-31T09:51:05-05:00"
+    }
+   }
   },
   {
    "slug": "2026-11-02-price-raise",
@@ -380,7 +397,24 @@
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {
+    "instagram": {
+     "url": "https://www.instagram.com/proofnotfluff/reel/DfKnu1NhGEF/",
+     "at": "2026-10-31T11:47:30-05:00"
+    },
+    "tiktok": {
+     "url": "https://www.tiktok.com/@proofnotfluff/video/7702875297049333023",
+     "at": "2026-10-31T11:50:20-05:00"
+    },
+    "facebook": {
+     "url": "https://www.facebook.com/reel/1858633361803432/",
+     "at": "2026-10-31T11:52:30-05:00"
+    },
+    "youtube": {
+     "url": "https://youtube.com/shorts/jFE8fcLtxlY",
+     "at": "2026-10-31T11:55:00-05:00"
+    }
+   }
   }
  ]
 }

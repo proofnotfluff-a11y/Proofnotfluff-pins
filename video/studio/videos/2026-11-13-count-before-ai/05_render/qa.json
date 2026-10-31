@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-13-count-before-ai",
- "mp4Sha256": "9964315dd382b95a2d16cd6dbb947b45ddec34e99dbcf4e234779acf31aedc88",
+ "mp4Sha256": "9d2018008e597bae03cedd7a0215dc3ee1c2d8831b5bea43349b470723eefe1d",
  "checks": [
   {
    "name": "length",
@@ -38,11 +38,11 @@
   {
    "name": "file",
    "value": {
-    "sha256": "9964315dd382b95a2d16cd6dbb947b45ddec34e99dbcf4e234779acf31aedc88",
-    "bytes": 4685402
+    "sha256": "9d2018008e597bae03cedd7a0215dc3ee1c2d8831b5bea43349b470723eefe1d",
+    "bytes": 4903798
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 4.7 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 4.9 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -52,5 +52,5 @@
   }
  ],
  "pass": true,
- "at": "2026-10-31T13:38:46-05:00"
+ "at": "2026-10-31T13:48:07-05:00"
 }

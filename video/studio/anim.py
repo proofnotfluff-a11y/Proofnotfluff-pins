@@ -2185,6 +2185,9 @@ def cmd_hook(slug):
         sys.exit(1)
 
 
+LABEL_FLOOR_PX = 36   # ink height in 1080-wide frame units; the design gate caps type at 4 under 36 px labels
+
+
 def cmd_lint(slug, step=0.25):
     """The layout check in code, before a reviewer has to find it: every settled scene text inside the safe area
     (x 20 to 950, y 262 to 1250), not under the host, the dialog box or other text. Problems that last under 0.5 s
@@ -2198,7 +2201,7 @@ def cmd_lint(slug, step=0.25):
     hook, hook_bad = hook_report(slug, pg)   # before the world spy, on a clean page
     send_line = pg.evaluate("(window.SCENE && window.SCENE.sendLine) || ''") if is_modern(slug) else None
     pg.evaluate(WORLD_SPY)
-    t, worlds, steps = 0.0, {}, 0
+    t, worlds, steps, small = 0.0, {}, 0, {}
     while t < cues["duration"]:
         bx, used = pg.evaluate(f"(() => {{ window.__boxes = []; window.__used = {{}}; drawAt({t:.3f}); const r = window.__boxes; window.__boxes = null; return [r, Object.keys(window.__used)]; }})()")
         steps += 1
@@ -2212,6 +2215,9 @@ def cmd_lint(slug, step=0.25):
             for o, name in [(h, "under the host") for h in host] + [(d, "under the dialog box") for d in dlg]:
                 if ov(x, o) > 0.08 * (x["x1"] - x["x0"]) * (x["y1"] - x["y0"]):
                     hits.setdefault((name, x["s"]), []).append(t)
+        for x in texts:   # the type floor (IMPROVE 00b): a label's tallest settled ink height, over the whole lesson
+            k_ = x["s"].strip()[:40]
+            small[k_] = max(small.get(k_, 0), round(x["y1"] - x["y0"]))
         for i, x in enumerate(texts):
             for y in texts[i + 1:]:
                 if ov(x, y) > 0.15 * min((x["x1"] - x["x0"]) * (x["y1"] - x["y0"]), (y["x1"] - y["x0"]) * (y["y1"] - y["y0"])):
@@ -2236,6 +2242,10 @@ def cmd_lint(slug, step=0.25):
         for a0, a1 in runs:
             errors.append(f"ERROR lint {a0:5.2f} to {a1:5.2f} s: {kind}: {what[:70]}")
     print("hook: " + json.dumps(hook))
+    small = {s_: h_ for s_, h_ in small.items() if h_ < LABEL_FLOOR_PX and any(c.isalnum() for c in s_)}
+    if small:   # a warning, not an ERROR: lessons pinned before Oct 31 keep their labels; the design gate weighs them
+        print(f"WARN lint type: {len(small)} scene labels under {LABEL_FLOOR_PX} px tall (IMPROVE 00b): "
+              + "; ".join(f"'{s_}' {h_} px" for s_, h_ in sorted(small.items(), key=lambda kv: kv[1])[:12]))
     print("\n".join(errors) if errors else f"lint: PASS 0 layout problems ({cues['duration']:.1f} s at {step} s steps); hook PASS (first change {hook['first_change']} s, {hook['changes_by_3s']} by 3 s, host {hook['host_at']} s, spoken hook {hook['hook_words']} words by {hook['hook_said_by']} s)")
     if errors:
         sys.exit(1)

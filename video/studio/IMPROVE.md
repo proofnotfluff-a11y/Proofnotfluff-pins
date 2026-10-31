@@ -58,6 +58,12 @@ The lab (Tue, Thu, Sat) ranks this list from its benchmark against _shared/style
 12. Visual: a seasonal touch per week (snow outside the half-built house in winter, leaves in fall).
 
 ## Done (newest first: date, item, what changed, proof)
+- 2026-10-31 (lunch run, cloud): type floor lint (00b, next step). `lint` now prints one WARN line naming every scene label
+  whose tallest settled ink stays under 36 px at 1080 wide (LABEL_FLOOR_PX in anim.py), smallest first, so a build sees the
+  design gate's type cap before the gate does. A warning, not an ERROR: lessons pinned before it keep their labels. Proof:
+  lint on lesson 1 (first-reply) lists 95 labels (smallest 23 px, 'and you know what to bring.'); on today's
+  count-before-ai, 51 (calendar day numbers, the 39-size tags at 30 px); lint PASS lines unchanged on both. Next: raise
+  the kit's 39-size tags to 66 scene by scene, then make the floor an ERROR for new lessons.
 - 2026-10-30 (lunch run, 11:37 slot): qa frozen window to the end card (00i). `check` now checks frozen stretches up to
   the end card (last word + 0.1 s, as player.js END_T) instead of the close cue, so the close room is checked. Proof:
   markup-margin rebuild, window 37.75 s -> 42.67 s, frozen PASS (0 stretches; the only freeze, 44.4 to 45.67 s, is the

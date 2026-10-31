@@ -10,7 +10,7 @@ Our own office: the laptop's demo screen big (AI RECEPTIONIST, DEMO, the wave mo
 ## usual.great "demo sounded great, so" [sfx: blip]
 Gold stars pop over the wave on "great"; on "sign" a quote sheet slides up with a pen and a SIGN HERE line.
 ## usual.worth "But you don't know" [sfx: stamp]
-A red stamp "WORTH: ?" hits the sheet on "worth"; Snow shrugs.
+Cut to the dispatch board again, the 14 red pins; plate "14 missed calls." / "Worth how much?"; a red stamp "WORTH: ?" hits on "worth"; Snow shrugs.
 
 ## step "For two weeks, mark" [sfx: whoosh]
 The calendar set, NOVEMBER: a red X lands on each day from 1 to 14 on "mark every call"; the gold week strip sits on week 1, then week 2. Line in the strip under it: "Mark every missed call."
@@ -39,4 +39,4 @@ The pan swings up; teal "TRY PART 2".
 The inventory set, title "PART 2": three slots, TEXT BACK, A PERSON, AI; the cursor jumps slot to slot on "three options side by side".
 
 ## button "Count the missed calls" [sfx: sting]
-Back on the calendar with the 14 X's and the 4 coins; the rule lands in gold: "Count the missed calls" / "before you buy." Snow waves. Then the end card with the send line: "Send this to whoever signs the software bills."
+Back on the chalk board, a tally of 14 strokes chalked in the corner; the rule lands big: "Count the" / "missed calls" (gold) / "before you buy.", "NEXT: PART 2" under it. Snow waves. Then the end card with the send line: "Send this to whoever signs the software bills."

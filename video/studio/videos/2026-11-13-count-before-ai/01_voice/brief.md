@@ -27,10 +27,11 @@ worked example labeled EXAMPLE on screen (facts.json); no outside study or perce
 - **Voice:** Todd's own voice clone in `_shared/voice.md` (Eleven v4).
 - **Real screens:** none outside ours; the calendar, the board and the quote are our own example (EXAMPLE on screen). No
   vendor, product or price is named or shown.
-- **Worlds (_shared/sets.md):** `calendar` (the hook's two weeks and the step), our own office wall with a
-  ringing desk phone and a demo screen (the usual way), our own chalk math board (the board), `levelup`-free close: the
-  quote sheet on a clipboard beside the hero number (the check), `inventory` of three options greyed out as the next
-  part (button). None used by the lesson before it in line (lsa-missed-calls: chat, flaps, gauge, versus).
+- **Worlds (_shared/sets.md):** `dispatch` (the cover: 14 red pins, the 14 missed calls; and the "worth how much?" cut),
+  our own office (a desk phone close up, a laptop with the AI receptionist demo, a quote sheet), `calendar` (the step:
+  14 X's, 4 coins), our own chalk board (the math, then the rule), our own balance scale on the desk (the check),
+  `inventory` (part 2's three options). None used by the two lessons before (lsa-missed-calls: chat, flaps, gauge,
+  versus; missed-call-text: street, register, hud, scores, icon).
 - **End card send line:** "Send this to whoever signs the software bills." (SCENE.sendLine)
 - **Asked by owners:** thin, like the lesson before. No owner forum thread from the last 90 days surfaced on public
   search (Reddit refused in the Oct 30 research run; searches on Oct 31 for contractor forum threads on AI receptionists

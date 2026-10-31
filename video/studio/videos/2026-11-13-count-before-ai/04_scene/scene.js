@@ -128,6 +128,8 @@ const chalk = (k) => {
   return d;
 };
 
+const PINS = [[0.30, 0.52], [0.42, 0.47], [0.55, 0.55], [0.70, 0.50], [0.82, 0.62], [0.36, 0.66], [0.50, 0.70], [0.64, 0.68], [0.76, 0.78], [0.44, 0.84], [0.58, 0.88], [0.70, 0.92], [0.86, 0.86], [0.28, 0.80]];
+
 window.SCENE = {
   look: 'arcade',
   images: [],
@@ -154,11 +156,10 @@ window.SCENE = {
         hookPlate(k, d, n);
         return host(k);
       }
-      const PINS = [[0.30, 0.52], [0.42, 0.47], [0.55, 0.55], [0.70, 0.50], [0.82, 0.62], [0.36, 0.66], [0.50, 0.70], [0.64, 0.68], [0.76, 0.78], [0.44, 0.84], [0.58, 0.88], [0.70, 0.92], [0.86, 0.86], [0.28, 0.80]];
       k.sets.dispatch({pins: PINS.slice(0, n.missed.value).map(([x, y]) => ({x, y, at: -1, c: '#E2633B'}))});
       const d = px(k);
-      k.text(n.missed.shown, 912, 1010, {size: 264, color: GOLD, align: 'right', drop: INK});
-      k.text('MISSED', 912, 960, {size: 39, color: CREAM, align: 'right', drop: INK});
+      k.text(n.missed.shown, 912, 880, {size: 264, color: GOLD, align: 'right', drop: INK});
+      k.text('MISSED', 912, 836, {size: 39, color: CREAM, align: 'right', drop: INK});
       hookPlate(k, d, n);
       partTag(k, d, n);
       exTag(k, d, 250, 162);
@@ -169,12 +170,22 @@ window.SCENE = {
     /* SIGN HERE line and a pen; WORTH: ? stamps on "worth"; Snow shrugs.                                            */
     usual: (k, T) => {
       const n = k.data.numbers, t0 = k.S('usual'), tGreat = wordT(k, 'usual.great', /^great/i, 0.4), tSign = wordT(k, 'usual.great', /^sign/i, 1.2), tWorth = wordT(k, 'usual.worth', /^worth/i, 1.6);
+      if (T >= k.S('usual.worth')) {
+        const tW = k.S('usual.worth');
+        k.sets.dispatch({pins: PINS.slice(0, n.missed.value).map(([x, y]) => ({x, y, at: tW - 1, c: '#E2633B'}))});
+        const d2 = px(k);
+        d2.win(14, 84, 332, 66, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
+        k.slam(`${n.missed.shown} missed calls.`, 540, 270, tW + 0.05, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false});
+        k.slam('Worth how much?', 540, 346, tW + 0.12, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false});
+        if (T >= tWorth) stampBox(k, 'WORTH: ?', 540, 600, tWorth, {color: RED, freeze: 4});
+        return host(k, T >= tWorth + 0.2 ? 'shrug' : null);
+      }
       const d = office(k, {top: 300});
       laptop(k, d, 18, 166, 178, 112, {demo: true});
       d.win(14, 84, 332, 66, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: ORANGE});
       k.slam(`PART ${n.part.shown} OF ${n.series.shown}:`, 540, 270, t0 + 0.05, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false});
       k.slam('THE COUNT', 540, 346, t0 + 0.12, {size: 66, color: ORANGE, align: 'center', from: 0.4, drop: INK, glint: false});
-      if (T >= tGreat) [[40, 200], [120, 192], [160, 210]].forEach(([x, y], i) => { const f = d.fr(tGreat + i * 0.12); if (f >= 0) { k.sets.icon('star', x, y - Math.min(6, f), 2); } });
+      if (T >= tGreat) [[44, 204], [120, 196], [164, 212]].forEach(([x, y], i) => { const f = d.fr(tGreat + i * 0.12); if (f >= 0) { const yy = y - Math.min(6, f); d.P(x - 1, yy - 6, 3, 13, GOLD); d.P(x - 6, yy - 1, 13, 3, GOLD); d.P(x - 3, yy - 3, 7, 7, GOLD); d.DOT(x, yy, CREAM); d.twinkle(x + 8, yy - 6, f, CREAM); } });
       if (T >= tSign) {
         const sl = d.ease(tSign, 6, 120), x = 206, y = 162 + sl;
         d.P(x + 3, y + 3, 128, 134, INK); d.P(x, y, 128, 134, CREAM); d.P(x, y, 128, 20, '#E6D3BC');
@@ -184,8 +195,7 @@ window.SCENE = {
         d.P(x + 12, y + 112, 104, 2, INK); k.text('SIGN HERE', (x + 64) * 3, (y + 92) * 3, {size: 30, color: RED, align: 'center', lint: false});
         const pp = clamp((T - tSign - 0.3) / 0.6); d.line(x + 112 - Math.round(40 * pp), y + 112, x + 92 - Math.round(40 * pp), y + 126, '#253048', 3);
       }
-      if (T >= tWorth) stampBox(k, 'WORTH: ?', 810, 640, tWorth, {color: RED, freeze: 4});
-      return host(k, T >= tWorth + 0.2 ? 'shrug' : (k.live('usual.great') ? 'point' : null));
+      return host(k, k.live('usual.great') ? 'point' : null);
     },
 
     /* ---- step: the calendar set, NOVEMBER. An X lands on days 1 to 14 on "mark every call"; the week strip on week 1, */
@@ -217,7 +227,9 @@ window.SCENE = {
       if (T < tClr) { k.slam(`${n.jobs.shown} jobs x`, 540, 330, t0 + 0.1, {size: 99, color: CREAM, align: 'center', from: 0.3, glint: false}); k.slam('what you clear', 540, 450, t0 + 0.3, {size: 99, color: SAND, align: 'center', from: 0.3, glint: false}); }
       else { const s = `${n.jobs.shown} jobs x ${n.clear.shown}`; k.slam(s, 540, 336, tClr, {size: 99, color: CREAM, align: 'center', from: 0.3, glint: false}); }
       if (T >= tTwo) {
-        k.slam(`= ${n.two.shown}`, 540, 470, tTwo, {size: fit(k, `= ${n.two.shown}`, 920), color: GOLD, align: 'center', from: 0.5, drop: INK, glint: false});
+        const hz = fit(k, n.two.shown, 760);
+        k.text('=', 150, 470 + Math.round(hz * 0.2), {size: 99, color: CREAM, align: 'center'});
+        k.slam(n.two.shown, 580, 450, tTwo, {size: hz, color: GOLD, align: 'center', from: 0.5, drop: INK, glint: false});
         k.text(`in ${n.weeks.shown} weeks`, 540, 690, {size: 66, color: SAND, align: 'center'});
       }
       if (T >= tMo) k.slam(`x 2: call it ${n.month.shown} a month`, 540, 780, tMo, {size: fit(k, `x 2: call it ${n.month.shown} a month`, 900, [66, 39]), color: TEAL, align: 'center', from: 0.3, glint: false});
@@ -265,16 +277,14 @@ window.SCENE = {
     /* in the strip; Snow waves.                                                                                       */
     button: (k, T) => {
       const n = k.data.numbers, t0 = k.S('button');
-      const JOB_DAYS = [3, 6, 10, 13].slice(0, n.jobs.value), fills = [];
-      for (let dd = 1; dd <= n.days.value; dd++) fills.push({day: dd, at: t0 - 2, mark: 'x'});
-      JOB_DAYS.forEach((dd) => fills.push({day: dd, at: t0 - 2, mark: 'coin', c: '#F7C873'}));
-      k.sets.calendar({month: 'NOVEMBER', year: 2026, start: 0, days: 30, fills, weeks: [{row: 0, at: t0 - 2}, {row: 1, at: t0 - 1.5}]});
-      const d = px(k);
-      d.win(14, 84, 332, 66, {base: '#1B1420', hi: '#7A3442', lo: INK, rule: ORANGE});
-      k.slam('Count the missed calls', 540, 270, t0 + 0.05, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false});
-      k.slam('before you buy.', 540, 346, t0 + 0.15, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false});
-      k.sweep(540 - k.measure('before you buy.', {size: 66}) / 2, 420, k.measure('before you buy.', {size: 66}), 6, t0 + 0.6, {color: 'accent'});
-      k.text(`NEXT: PART ${n.next.shown}`, 920, 846, {size: 66, color: TEAL, align: 'right', drop: INK});
+      const d = chalk(k);
+      /* the tally from the calendar, chalked small in the corner: 14 strokes, 4 circled */
+      for (let i = 0; i < n.missed.value; i++) { const g = Math.floor(i / 5), j = i % 5, x = 36 + g * 30 + j * 5; if (j === 4) d.line(x - 21, 116, x + 1, 100, CREAM, 1); else d.P(x, 98, 1, 20, CREAM); }
+      k.slam('Count the', 540, 330, t0 + 0.05, {size: 132, color: CREAM, align: 'center', from: 0.4, glint: false});
+      k.slam('missed calls', 540, 480, t0 + 0.12, {size: fit(k, 'missed calls', 900, [132, 99]), color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false});
+      k.slam('before you buy.', 540, 630, t0 + 0.2, {size: 99, color: CREAM, align: 'center', from: 0.4, glint: false});
+      k.sweep(540 - k.measure('missed calls', {size: fit(k, 'missed calls', 900, [132, 99])}) / 2, 624, k.measure('missed calls', {size: fit(k, 'missed calls', 900, [132, 99])}), 6, t0 + 0.6, {color: 'accent'});
+      k.text(`NEXT: PART ${n.next.shown}`, 540, 780, {size: 66, color: TEAL, align: 'center'});
       return host(k, T >= t0 + 1.2 ? 'wave' : 'point');
     },
   },

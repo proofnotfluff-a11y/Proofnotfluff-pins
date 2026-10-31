@@ -6,6 +6,7 @@
 - Specific: PASS. "Fourteen missed calls in two weeks" in line 1; every number keyed in facts.json (all ours, EXAMPLE).
 - Sameness: PASS. Opening "Fourteen missed calls in" differs from the last 6 openings (receptionist-myth opens "The demo says an AI receptionist": different first 4 words, held lesson).
 - Do this week: PASS. Mark every missed call on a calendar for two weeks, circle the real jobs, then real jobs x what you clear a job, next to the quote's monthly price; the calendar and the board on screen and held.
+- Pace: take 1 reads 146 wpm on file length (a silent tail, IMPROVE 00e); spoken, its 9 words run 0.00 to 3.38 s (160 wpm). Takes 2 to 6: 164, 175, 162, 173, 190. Flags 0.
 - Ear test: PASS. Every sentence one breath; `anim.py script` PASS (125 words, 6 takes, 2 tags).
 
 ## The 12-point check (_shared/voice.md, playbook bands: 40 to 58 s, 100 to 150 words)

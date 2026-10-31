@@ -1,9 +1,9 @@
 # Transcript: 2026-11-13-count-before-ai
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 129 words, 48.2 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 129 words, 48.6 s of voice.
 
 ## Flags
-- 40.4 s heard 'than' for 'Then'
+none
 
 ## Pace per take (target 160 to 195 wpm)
 ```
@@ -11,8 +11,8 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 129 words, 48.2 s of voice.
   02     4.0 s  164 wpm  
   03    13.5 s  159 wpm  
   04    23.6 s  162 wpm  
-  05    33.6 s  174 wpm  
-  06    45.3 s  190 wpm  
+  05    33.6 s  168 wpm  
+  06    45.7 s  190 wpm  
 ```
 
 ## Words
@@ -41,14 +41,14 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 129 words, 48.2 s of voice.
 
 `00:33.6` Now hold that next to the monthly price on the quote.
 
-`00:36.8` Price is bigger?
+`00:36.7` Price is bigger?
 
-`00:37.9` It can't pay for itself yet.
+`00:37.8` It can't pay for itself yet.
 
-`00:39.9` Smaller?
+`00:39.7` Smaller?
 
-`00:40.4` Then it might pay.
+`00:40.7` Now it might pay.
 
-`00:42.1` Part two tries three options side by side.
+`00:42.4` Part two tries three options side by side.
 
-`00:45.3` Count the missed calls before you buy what answers them.
+`00:45.7` Count the missed calls before you buy what answers them.

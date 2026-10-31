@@ -1,13 +1,14 @@
 {
  "gate": "facts",
- "round": 1,
- "reviewer": "kimi k3.1-pro",
- "kimi_job": "2026-11-13-count-before-ai-facts-20261031-r1",
+ "round": 0,
+ "reviewer": "claude opus (fresh agent)",
  "pass": true,
  "score": {
-  "numbers": 11,
+  "numbers": 12,
   "mismatches": 0
  },
- "reasons": [],
+ "reasons": [
+  "Note: the board's 'x 2' is drawn as a literal 2; value right (1,400 x 2 = 2,800). All numbers on screen and in the voice match facts.json; trades first holds; no em or en dashes."
+ ],
  "unconfirmed": []
 }

@@ -6,7 +6,7 @@
   "level": 0.16,
   "tune": "quest"
  },
- "duration": 49.944,
+ "duration": 51.72,
  "cues": [
   {
    "id": "hook",
@@ -150,7 +150,7 @@
    "text": "A balance scale on the office desk: the left pan \"$2,800 / MO\" (missed jobs), the right pan the quote sheet \"QUOTE / MO\".",
    "t": 33.593,
    "word": 86,
-   "end": 40.693
+   "end": 42.433
   },
   {
    "id": "check.bigger",
@@ -160,7 +160,7 @@
    "shift": 0.0,
    "pin": null,
    "text": "The quote pan drops; red stamp \"NOT PAID BACK YET\".",
-   "t": 36.673,
+   "t": 36.693,
    "word": 97,
    "end": 39.713
   },
@@ -174,7 +174,7 @@
    "text": "The pan swings up; teal \"TRY PART 2\".",
    "t": 39.713,
    "word": 106,
-   "end": 40.693
+   "end": 42.433
   },
   {
    "id": "next",
@@ -184,9 +184,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The inventory set, title \"PART 2\": three slots, TEXT BACK, A PERSON, AI; the cursor jumps slot to slot on \"three options side by side\".",
-   "t": 40.693,
-   "word": 110,
-   "end": 43.944
+   "t": 42.433,
+   "word": 111,
+   "end": 45.72
   },
   {
    "id": "button",
@@ -196,9 +196,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Back on the chalk board, a tally of 14 strokes chalked in the corner; the rule lands big: \"Count the\" / \"missed calls\" (gold) / \"before you buy.\", \"NEXT: PART 2\" under it. Snow waves. Then the end card with the send line: \"Send this to whoever signs the software bills.\"",
-   "t": 43.944,
-   "word": 118,
-   "end": 49.944
+   "t": 45.72,
+   "word": 119,
+   "end": 51.72
   }
  ]
 }

@@ -1,16 +1,15 @@
 {
  "gate": "buyer",
- "round": 0,
+ "round": 1,
  "reviewer": "claude opus (fresh agent)",
  "pass": true,
  "score": {
   "stop": "yes",
   "send": "yes",
   "save": "yes",
-  "follow_or_link": "no"
+  "follow_or_link": "yes"
  },
  "reasons": [
-  "Stop, send, save yes; follow or link no ('free tools' too vague).",
-  "'Smaller?' never answered; 'Say three fifty' could read $3.50; the math assumes every missed job is lost; EXAMPLE tag not on the 0.8 s frame; empty bottom band: polish."
+  "Round 0 S3 fixed: count tonight from the call log. Polish left for part 2: say 'real jobs you never got back' and why a smaller price only might pay."
  ]
 }

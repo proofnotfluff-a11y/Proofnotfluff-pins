@@ -1,8 +1,7 @@
 {
  "gate": "facts-captions",
- "round": 1,
- "reviewer": "kimi k3.1-pro",
- "kimi_job": "2026-11-13-count-before-ai-facts-captions-20261031-r1",
+ "round": 0,
+ "reviewer": "claude opus (fresh agent)",
  "pass": true,
  "score": {
   "numbers": 52,
@@ -10,6 +9,6 @@
  },
  "reasons": [],
  "unconfirmed_checked": [
-  "https://proofnotfluff.com/missed-call-cost-calculator/: docs/missed-call-cost-calculator/index.html exists and is in docs/sitemap.xml (checked by Claude)"
+  "youtube: the missed-call cost calculator page could not be fetched live from this session; confirmed in docs/sitemap.xml and docs/missed-call-cost-calculator/index.html"
  ]
 }

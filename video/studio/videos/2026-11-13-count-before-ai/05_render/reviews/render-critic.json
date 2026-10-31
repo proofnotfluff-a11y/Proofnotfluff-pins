@@ -1,21 +1,14 @@
 {
  "gate": "render-critic",
- "round": 0,
+ "round": 3,
  "reviewer": "claude opus (fresh agent)",
- "pass": false,
+ "pass": true,
  "score": {
-  "faults": 1
+  "faults": 0
  },
- "faults": [
-  {
-   "kind": "overlap",
-   "at": 40.5,
-   "text": "A PERSON / AI",
-   "scene": "next",
-   "what": "the options list runs off the bottom of the inventory panel: A PERSON on the border, AI below it"
-  }
- ],
+ "faults": [],
  "reasons": [
-  "rerun at round 0 on the design fix round's render; everything else clean"
+  "Round 2 fault fixed: about 35 px clear between the slider and the option labels at 43.3 to 43.95 s.",
+  "Hook, spoken numbers, layout, audio end, flashes and text size all PASS."
  ]
 }

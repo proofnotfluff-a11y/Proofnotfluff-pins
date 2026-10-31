@@ -101,19 +101,20 @@ const laptop = (k, d, x, y, w, h, o = {}) => {
 const deskPhone = (k, d, n) => {
   const {P, disc, F} = d;
   P(0, 0, 360, 417, '#24303F'); for (let y = 0; y < 417; y += 6) P(0, y, 360, 1, '#202A37');
-  P(40, 120, 286, 200, INK); P(42, 118, 282, 200, '#2B2033'); P(44, 120, 278, 4, '#4A4E5A');
+  const o = 40;
+  P(0, 330, 360, 87, '#1B1420'); P(0, 330, 360, 2, '#3D2E45');
+  P(40, 120 + o, 286, 200, INK); P(42, 118 + o, 282, 200, '#2B2033'); P(44, 120 + o, 278, 4, '#4A4E5A');
   /* the handset on its cradle */
-  P(58, 132, 70, 170, INK); P(60, 134, 66, 166, '#3D2E45'); P(60, 134, 66, 4, '#6B7080'); disc(93, 150, 12, '#1B1420'); disc(93, 284, 12, '#1B1420');
-  /* the screen */
-  P(146, 132, 164, 110, INK); P(148, 134, 160, 106, '#253048'); P(148, 134, 160, 30, '#7A3442'); P(148, 163, 160, 1, RED);
-  k.text('MISSED CALL', 684, 420, {size: 39, color: CREAM, align: 'center'});
-  disc(296, 136, 16, INK); disc(296, 136, 15, RED);
-  k.text(n.missed.shown, 888, 380, {size: 66, color: CREAM, align: 'center', drop: INK});
+  P(58, 132 + o, 70, 170, INK); P(60, 134 + o, 66, 166, '#3D2E45'); P(60, 134 + o, 66, 4, '#6B7080'); disc(93, 150 + o, 12, '#1B1420'); disc(93, 284 + o, 12, '#1B1420');
+  /* the screen: MISSED CALL and the count in big type, the one focal point */
+  P(146, 132 + o, 164, 110, INK); P(148, 134 + o, 160, 106, '#253048'); P(148, 134 + o, 160, 30, '#7A3442'); P(148, 163 + o, 160, 1, RED);
+  k.text('MISSED CALL', 684, (138 + o) * 3, {size: 39, color: CREAM, align: 'center'});
+  k.text(n.missed.shown, 684, (172 + o) * 3, {size: 132, color: RED, align: 'center', drop: INK});
   /* the keys */
-  for (let r = 0; r < 3; r++) for (let c = 0; c < 4; c++) { P(150 + c * 40, 252 + r * 16, 34, 12, '#1B1420'); P(150 + c * 40, 252 + r * 16, 34, 2, '#4A4E5A'); }
+  for (let r = 0; r < 2; r++) for (let c = 0; c < 4; c++) { P(150 + c * 40, 252 + o + r * 16, 34, 12, '#1B1420'); P(150 + c * 40, 252 + o + r * 16, 34, 2, '#4A4E5A'); }
   /* the ring light blinks once a second */
-  P(296, 300, 14, 6, Math.floor(d.T * 2) % 2 ? '#E2633B' : '#7A3442');
-  P(0, 330, 360, 87, '#1B1420'); P(0, 330, 360, 2, '#3D2E45'); P(0, 417, 360, 223, '#120D14');
+  P(296, 300 + o, 14, 6, Math.floor(d.T * 2) % 2 ? '#E2633B' : '#7A3442'); P(0, 417, 360, 223, '#120D14');
+  return d;
 };
 /* our own chalk board: green slate in a wood frame, chalk dust, the tray */
 const chalk = (k) => {
@@ -181,7 +182,7 @@ window.SCENE = {
         k.text('AI ANSWERING', (x + 64) * 3, (y + 30) * 3, {size: 30, color: '#3D2E45', align: 'center', lint: false});
         k.text('$ ? / MO', (x + 64) * 3, (y + 56) * 3, {size: 39, color: INK, align: 'center'});
         d.P(x + 12, y + 112, 104, 2, INK); k.text('SIGN HERE', (x + 64) * 3, (y + 92) * 3, {size: 30, color: RED, align: 'center', lint: false});
-        const pp = clamp((T - tSign - 0.3) / 0.6); d.line(x + 100 - Math.round(40 * pp), y + 90, x + 70 - Math.round(40 * pp), y + 108, '#253048', 3);
+        const pp = clamp((T - tSign - 0.3) / 0.6); d.line(x + 112 - Math.round(40 * pp), y + 112, x + 92 - Math.round(40 * pp), y + 126, '#253048', 3);
       }
       if (T >= tWorth) stampBox(k, 'WORTH: ?', 810, 640, tWorth, {color: RED, freeze: 4});
       return host(k, T >= tWorth + 0.2 ? 'shrug' : (k.live('usual.great') ? 'point' : null));
@@ -213,7 +214,7 @@ window.SCENE = {
       const n = k.data.numbers, t0 = k.S('board'), tClr = wordT(k, 'board.clear', /^three/i, 0.3), tTwo = wordT(k, 'board.two', /^fourteen/i, 0.4), tMo = wordT(k, 'board.month', /^twenty/i, 0.4);
       const d = chalk(k);
       exTag(k, d, 22, 92);
-      if (T < tClr) k.slam(`${n.jobs.shown} jobs x what you clear`, 540, 336, t0 + 0.1, {size: fit(k, `${n.jobs.shown} jobs x what you clear`, 900, [66, 39]), color: CREAM, align: 'center', from: 0.3, glint: false});
+      if (T < tClr) { k.slam(`${n.jobs.shown} jobs x`, 540, 330, t0 + 0.1, {size: 99, color: CREAM, align: 'center', from: 0.3, glint: false}); k.slam('what you clear', 540, 450, t0 + 0.3, {size: 99, color: SAND, align: 'center', from: 0.3, glint: false}); }
       else { const s = `${n.jobs.shown} jobs x ${n.clear.shown}`; k.slam(s, 540, 336, tClr, {size: 99, color: CREAM, align: 'center', from: 0.3, glint: false}); }
       if (T >= tTwo) {
         k.slam(`= ${n.two.shown}`, 540, 470, tTwo, {size: fit(k, `= ${n.two.shown}`, 920), color: GOLD, align: 'center', from: 0.5, drop: INK, glint: false});
@@ -229,23 +230,23 @@ window.SCENE = {
       const n = k.data.numbers, t0 = k.S('check'), tBig = k.S('check.bigger'), tSm = k.S('check.smaller');
       const d = office(k, {top: 300, clock: false}), {P, line, disc} = d;
       d.win(14, 84, 332, 66, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
-      k.slam('Missed jobs a month', 540, 270, t0 + 0.05, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false});
-      k.slam('next to the quote', 540, 346, t0 + 0.12, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false});
+      const say = T >= tSm ? ['Price smaller?', `Try part ${n.next.shown}.`, tSm, TEAL] : T >= tBig ? ['Price bigger?', 'Not paid back yet.', tBig, RED] : ['Missed jobs a month', 'next to the quote', t0, GOLD];
+      k.slam(say[0], 540, 270, say[2] + 0.05, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false});
+      k.slam(say[1], 540, 346, say[2] + 0.12, {size: 66, color: say[3], align: 'center', from: 0.4, drop: INK, glint: false});
       /* the tilt in whole pixels: level, then the quote side down on "bigger", up on "Smaller" */
-      const tilt = T >= tSm ? -14 + d.ease(tSm, 6, 28) : (T >= tBig ? 14 - d.ease(tBig, 6, 14) : 0);
-      P(176, 180, 8, 116, INK); P(177, 180, 6, 116, '#9AA0AD'); P(150, 292, 60, 8, INK); P(152, 292, 56, 6, '#6B7080'); disc(180, 178, 6, GOLD);
-      line(70, 178 - tilt, 290, 178 + tilt, INK, 4); line(70, 177 - tilt, 290, 177 + tilt, '#C9CCD3', 2);
-      const pan = (cx, cy) => { line(cx - 30, cy + 40, cx, cy, '#9AA0AD'); line(cx + 30, cy + 40, cx, cy, '#9AA0AD'); P(cx - 40, cy + 40, 80, 6, INK); P(cx - 39, cy + 40, 78, 4, '#B07A47'); };
-      const ly = 178 - tilt, ry = 178 + tilt; pan(70, ly); pan(290, ry);
+      const Y0 = 236, tilt = T >= tSm ? -14 + d.ease(tSm, 6, 28) : (T >= tBig ? 14 - d.ease(tBig, 6, 14) : 0);
+      P(176, Y0, 8, 296 - Y0, INK); P(177, Y0, 6, 296 - Y0, '#9AA0AD'); P(150, 292, 60, 8, INK); P(152, 292, 56, 6, '#6B7080'); disc(180, Y0, 6, GOLD);
+      line(70, Y0 - tilt, 290, Y0 + tilt, INK, 4); line(70, Y0 - 1 - tilt, 290, Y0 - 1 + tilt, '#C9CCD3', 2);
+      const pan = (cx, cy) => { line(cx - 30, cy + 30, cx, cy, '#9AA0AD'); line(cx + 30, cy + 30, cx, cy, '#9AA0AD'); P(cx - 40, cy + 30, 80, 6, INK); P(cx - 39, cy + 30, 78, 4, '#B07A47'); };
+      const ly = Y0 - tilt, ry = Y0 + tilt; pan(70, ly); pan(290, ry);
       /* left pan: the money on it; right pan: the quote sheet */
-      for (let i = 0; i < 4; i++) d.coin(50 + i * 10, ly + 30, 0);
+      for (let i = 0; i < 4; i++) d.coin(50 + i * 10, ly + 22, 0);
       k.text(n.month.shown, 210, (ly - 30) * 3 - 30, {size: 66, color: GOLD, align: 'center', drop: INK});
       k.text('/ MO', 210, (ly - 30) * 3 + 30, {size: 39, color: CREAM, align: 'center', drop: INK});
-      P(262, ry + 8, 56, 32, INK); P(263, ry + 9, 54, 30, CREAM); P(263, ry + 9, 54, 8, '#E6D3BC');
+      P(266, ry + 4, 48, 26, INK); P(267, ry + 5, 46, 24, CREAM); P(267, ry + 5, 46, 7, '#E6D3BC');
       k.text('QUOTE', 870, (ry - 30) * 3 - 30, {size: 66, color: CREAM, align: 'center', drop: INK});
       k.text('/ MO', 870, (ry - 30) * 3 + 30, {size: 39, color: CREAM, align: 'center', drop: INK});
-      if (T >= tSm) k.slam(`TRY PART ${n.next.shown}`, 600, 960, tSm, {size: 99, color: TEAL, align: 'center', from: 0.4, drop: INK, glint: false});
-      else if (T >= tBig) stampBox(k, 'NOT PAID BACK YET', 600, 930, tBig, {color: RED, freeze: 4});
+      if (T >= tBig && T < tSm) stampBox(k, 'NOT YET', 540, 486, tBig, {color: RED, freeze: 4});
       return host(k, k.live('check.bigger') ? 'shrug' : null);
     },
 

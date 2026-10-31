@@ -9,7 +9,7 @@
 - Ear test: PASS. Every sentence one breath; `anim.py script` PASS (125 words, 6 takes, 2 tags).
 
 ## The 12-point check (_shared/voice.md, playbook bands: 40 to 58 s, 100 to 150 words)
-1. Drop-in: PASS. 10 words ("Fourteen missed calls. So do you need an AI receptionist?", rewritten from the 138 wpm take), a number and a trade object, no percent, no source, no call-out.
+1. Drop-in: PASS. 11 words, one flowing sentence ("You missed fourteen calls, so do you need an AI receptionist?"; the two-sentence versions ran 138 and 128 wpm with long pauses at the full stop), a number and a trade object, no percent, no source, no call-out.
 2. On-screen hook: PASS (planned). "14 missed calls. Need an AI?" style plate, 5 to 8 words, up from frame 0, held through the cuts to about 3.4 s, inside y 270 to 1250.
 3. One idea: PASS. "Count your missed calls and what they're worth before you buy anything to answer them." (15 words)
 4. Acted: PASS. The usual way is acted: the demo screen glowing, the pen going to the sign line, Snow shrugging at the unknown.

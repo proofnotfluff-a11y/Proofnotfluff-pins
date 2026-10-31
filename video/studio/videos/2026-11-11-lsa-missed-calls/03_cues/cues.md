@@ -2,9 +2,9 @@
 
 music: rooms chase
 
-## hook "Seven at night, same" [sfx: pop]
+## hook "One call rings two" [sfx: pop]
 Three shots (IMPROVE 00a). Cover, frame one, host and dialog box hidden: our own split street at night, two shopfronts side by side (SHOP 1 left in teal, SHOP 2 right in red), a phone glowing in each window; the hook on a plate up top, "7 PM. Same call." / "Two shops.", tag EXAMPLE and "Rule: Google Local Services Help". By 0.8 s cut in to the two phones close up, split down the middle, both ringing, a ring bar under each; Snow and the dialog box come in. On "Nobody" cut to the third shot: both phones still ringing, the windows dark, "Nobody picks up." on the plate.
-## hook.nobody "Nobody picks up." [sfx: tick]
+## hook.nobody "nobody picks up." [sfx: tick]
 The ring bars keep filling; Snow shrugs.
 
 ## one "Shop one runs Google's" [sfx: whoosh]

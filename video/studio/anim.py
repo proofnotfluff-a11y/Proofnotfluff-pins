@@ -31,6 +31,9 @@ fresh reviewer checks before the next stage runs.
   gatepack SLUG            timeline sheets (2 frames a second) and first frames for the fresh reviewers -> 05_render/gates/
   export SLUG              a copy under 9.5 MB for posting (two-pass H.264; Chrome uploads cap at 10 MB) -> 05_render/SLUG-post.mp4
   ready SLUG               every gate passed: queue it for posting (video/studio/queue.json, fingerprints of what the gates saw)
+  hookb SLUG               the lesson's second opening (01_voice/hook-b.md, 03_cues/hook-b.md) -> videos/SLUG-hookb/,
+                           the same lesson after the hook; asks the voice workflow for take 1 only (Instagram trial reels)
+  hookready SLUG           SLUG-hookb passed its gates (HOOKB_GATES) and matches the queued lesson after the hook: pin it
   next                     the oldest queued lesson not yet on all four platforms, and the commit its gates passed at
   postcaptions SLUG        the captions to paste, per platform, with any AI voice line taken out (Todd, Oct 29)
   waiting                  the queued lessons with no post yet, in posting order (the daily run's queue rule reads it)
@@ -38,9 +41,11 @@ fresh reviewer checks before the next stage runs.
                            in a row open on the same hook pattern (brief.md's Hook pattern, Treatment and Example lines; lint and ready run it);
                            with a slug, its tune differs from the lessons before and after it in line (cues.md music line)
   postcopy SLUG            render the queued lesson from that commit, check its fingerprints, export it to the upload folder
-  posted SLUG PLATFORM URL record one live post (instagram, instagram-trial, tiktok, facebook, youtube)
-  trials                   Instagram trial reels not yet shared to followers (due at 72 hours)
-  feedshared SLUG          record that the trial reel was shared to followers (the same post, not a second one)
+  posted SLUG PLATFORM URL record one live post (instagram, instagram-trial, tiktok, facebook, youtube); SLUG-hookb
+                           instagram-trial records the second opening's trial reel
+  trials                   Instagram trial reels not yet shared to followers (due at 72 hours), with the hook B reel
+  feedshared SLUG          record that the trial reel was shared to followers (the same post, not a second one);
+                           SLUG-hookb when the second opening won
   recuts                   each posted lesson's 90-day re-cut date, re-cuts done (brief.md "Re-cut of:"), numbers if read
   status SLUG              what exists
 """
@@ -795,19 +800,20 @@ def cmd_ci_voice():
             sh(["git", "-C", ROOT, "fetch", "--depth", "1", "origin", f"+refs/heads/{BRANCH}:refs/remotes/origin/{BRANCH}"])
             os.makedirs(old, exist_ok=True)
             prev12 = prev.get("voiceSha256", "")[:12]   # the takes of the voice main has now (its voices/ copy first)
-            arc = subprocess.run(["git", "-C", ROOT, "archive", f"origin/{BRANCH}", f"studio/{slug}/voices/{prev12}/takes"], capture_output=True)
+            src = req.get("takesFrom") or slug   # a second opening keeps its lesson's other takes (anim.py hookb)
+            arc = subprocess.run(["git", "-C", ROOT, "archive", f"origin/{BRANCH}", f"studio/{src}/voices/{prev12}/takes"], capture_output=True)
             if arc.returncode or not prev12:
-                arc = subprocess.run(["git", "-C", ROOT, "archive", f"origin/{BRANCH}", f"studio/{slug}/01_voice/takes"], capture_output=True)
+                arc = subprocess.run(["git", "-C", ROOT, "archive", f"origin/{BRANCH}", f"studio/{src}/01_voice/takes"], capture_output=True)
                 subprocess.run(["tar", "-x", "-C", old], input=arc.stdout)
             else:
                 subprocess.run(["tar", "-x", "-C", old], input=arc.stdout)
-                os.makedirs(os.path.join(old, "studio", slug, "01_voice"), exist_ok=True)
-                shutil.move(os.path.join(old, "studio", slug, "voices", prev12, "takes"), os.path.join(old, "studio", slug, "01_voice", "takes"))
+                os.makedirs(os.path.join(old, "studio", src, "01_voice"), exist_ok=True)
+                shutil.move(os.path.join(old, "studio", src, "voices", prev12, "takes"), os.path.join(old, "studio", src, "01_voice", "takes"))
         info = []
         for i, t in enumerate(takes):
             n = i + 1
             f = os.path.join(out, "takes", f"{n:02d}.mp3")
-            keep = os.path.join(old, "studio", slug, "01_voice", "takes", f"{n:02d}.mp3")
+            keep = os.path.join(old, "studio", req.get("takesFrom") or slug, "01_voice", "takes", f"{n:02d}.mp3")
             if req["takes"] != "all" and n not in req["takes"] and os.path.exists(keep):
                 shutil.copy(keep, f)
             else:
@@ -1455,7 +1461,13 @@ def cmd_remix(slug):
 
 QUEUE = os.path.join(HERE, "queue.json")
 PLATFORMS = ("instagram", "tiktok", "facebook", "youtube")
-GATES = ("qa", "facts", "facts-captions", "render-critic", "buyer", "design", "golden")
+GATES = ("qa", "facts", "facts-captions", "render-critic", "buyer", "send", "design", "golden")
+# Two openings per lesson as two Instagram trial reels (Todd, live chat, Nov 1, 2026, 4:35 pm: "Do both", to two hook
+# versions per lesson as Instagram trial reels and a send reviewer gate). The second opening is the same lesson after the
+# hook (hookb_drift proves it), so it reruns only the gates its new opening can change; send and golden judge the whole
+# lesson and carry over from it, facts-captions too (same captions file).
+HOOKB_SUFFIX = "-hookb"
+HOOKB_GATES = ("qa", "facts", "render-critic", "buyer", "design")
 
 
 def fingerprints(slug):
@@ -1518,6 +1530,173 @@ def cmd_ready(slug):
     print(f"ready: {slug} {'queued' if pos is None else 're-pinned at place ' + str(pos + 1)} ({len(q['items'])} in the queue)")
 
 
+# ---------------------------------------------------------------- the second opening (hook B)
+HOOKB_LINE = re.compile(r"(?im)^line:\s*(.+)$")
+HOOKB_PATTERN = re.compile(r"(?im)^pattern:\s*([a-z-]+)\s*$")
+CUE_HEAD = re.compile(r"(?m)^## ([a-z0-9][a-z0-9.\-]*)\b")
+
+
+def cue_blocks(text):
+    """cues.md split into (preamble, [(name, block text)]): a block runs from its '## name' line to the next one."""
+    heads = list(CUE_HEAD.finditer(text))
+    if not heads:
+        return text, []
+    pre = text[:heads[0].start()]
+    blocks = [(m.group(1), text[m.start():(heads[i + 1].start() if i + 1 < len(heads) else len(text))]) for i, m in enumerate(heads)]
+    return pre, blocks
+
+
+def is_hook_cue(name):
+    return name == "hook" or name.startswith("hook.")
+
+
+def hookb_parts(slug):
+    """The lesson's second opening: 01_voice/hook-b.md (Pattern: and Line:) and 03_cues/hook-b.md (its hook cues)."""
+    fv, fc = vdir(slug, "01_voice", "hook-b.md"), vdir(slug, "03_cues", "hook-b.md")
+    if not (os.path.exists(fv) and os.path.exists(fc)):
+        raise SystemExit(f"ERROR hookb: {slug} needs 01_voice/hook-b.md (Pattern:, Line:) and 03_cues/hook-b.md (its hook cues); "
+                         "_templates/hook-b-voice.md and hook-b-cues.md show the shape")
+    v = open(fv, encoding="utf-8").read()
+    line, pat = HOOKB_LINE.search(v), HOOKB_PATTERN.search(v)
+    if not line or not pat:
+        raise SystemExit("ERROR hookb: 01_voice/hook-b.md needs a 'Pattern: <hook pattern>' line and a 'Line: <the spoken opening>' line")
+    if pat.group(1) not in HOOK_PATTERNS:
+        raise SystemExit(f"ERROR hookb: pattern {pat.group(1)} is not one of {', '.join(sorted(HOOK_PATTERNS))}")
+    if pat.group(1) == variety_of(slug)["hook"]:
+        raise SystemExit(f"ERROR hookb: the second opening uses the lesson's own hook pattern ({pat.group(1)}); a test needs another")
+    _, blocks = cue_blocks(open(fc, encoding="utf-8").read())
+    if not blocks or any(not is_hook_cue(n) for n, _ in blocks) or blocks[0][0] != "hook":
+        raise SystemExit("ERROR hookb: 03_cues/hook-b.md holds only hook cues ('## hook' first, then '## hook.<name>')")
+    return " ".join(line.group(1).split()), pat.group(1), blocks
+
+
+def hookb_script(slug, line):
+    """script.md with its first paragraph (take 1) swapped for the second opening's line."""
+    txt = open(vdir(slug, "01_voice", "script.md"), encoding="utf-8").read()
+    parts = re.split(r"(\n\s*\n)", txt)
+    for i, p in enumerate(parts):
+        if p.strip() and not p.strip().startswith("#") and not re.fullmatch(r"\n\s*\n", p):
+            parts[i] = line
+            return "".join(parts)
+    raise SystemExit("ERROR hookb: script.md has no paragraph")
+
+
+def hookb_cues(slug, blocks):
+    pre, mine = cue_blocks(open(vdir(slug, "03_cues", "cues.md"), encoding="utf-8").read())
+    rest = [b for n, b in mine if not is_hook_cue(n)]
+    if not rest or len(rest) == len(mine):
+        raise SystemExit("ERROR hookb: the lesson's cues.md needs its opening as '## hook' cues and the rest after them")
+    body = "".join(b if b.endswith("\n") else b + "\n" for _, b in blocks)
+    return pre + body + ("\n" if not body.endswith("\n\n") else "") + "".join(rest)
+
+
+HOOKB_SCENE_LINE = "window.HOOK = 'b';   // anim.py hookb: the second opening; scene.js draws its hook cues for it\n"
+
+
+def cmd_hookb(slug):
+    """Make videos/<slug>-hookb/: the lesson with its second opening. Same brief, facts, scene, captions and every take
+    after the first; the voice workflow speaks take 1 only and keeps the rest from the lesson's own voice."""
+    if slug.endswith(HOOKB_SUFFIX):
+        raise SystemExit("ERROR hookb: give the lesson's own slug")
+    if not os.path.exists(vdir(slug, "01_voice", "takes.json")):
+        raise SystemExit(f"ERROR hookb: {slug} has no voice yet (takes.json); voice the lesson first")
+    line, pat, blocks = hookb_parts(slug)
+    b = slug + HOOKB_SUFFIX
+    for sub in ("01_voice", "03_cues", "04_scene", "05_render"):
+        os.makedirs(vdir(b, sub), exist_ok=True)
+    for f in ("brief.md", "facts.json", "takes.json"):
+        if os.path.exists(vdir(slug, "01_voice", f)):
+            shutil.copy(vdir(slug, "01_voice", f), vdir(b, "01_voice", f))
+    brief = open(vdir(b, "01_voice", "brief.md"), encoding="utf-8").read()
+    brief = re.sub(r"(?im)^(- \*\*Hook pattern:\*\*\s*).*$", lambda m: m.group(1) + pat, brief, count=1)
+    open(vdir(b, "01_voice", "brief.md"), "w", encoding="utf-8").write(
+        brief.rstrip("\n") + f"\n- **Hook B of:** {slug} (anim.py hookb; the same lesson after the hook)\n")
+    open(vdir(b, "01_voice", "script.md"), "w", encoding="utf-8").write(hookb_script(slug, line))
+    open(vdir(b, "03_cues", "cues.md"), "w", encoding="utf-8").write(hookb_cues(slug, blocks))
+    shutil.rmtree(vdir(b, "04_scene"))
+    shutil.copytree(vdir(slug, "04_scene"), vdir(b, "04_scene"))
+    sj = open(vdir(slug, "04_scene", "scene.js"), encoding="utf-8").read()
+    open(vdir(b, "04_scene", "scene.js"), "w", encoding="utf-8").write(HOOKB_SCENE_LINE + sj)
+    if os.path.exists(vdir(slug, "05_render", "captions.json")):
+        shutil.copy(vdir(slug, "05_render", "captions.json"), vdir(b, "05_render", "captions.json"))
+    cmd_speak(b, [1])
+    req = json.load(open(vdir(b, "01_voice", "speak.json")))
+    req["takesFrom"] = slug
+    json.dump(req, open(vdir(b, "01_voice", "speak.json"), "w"), indent=1)
+    print(f"hookb: {b} made ({pat}: \"{line}\"). Next: check_repo, push, wait for the voice workflow, then fetch, cues, "
+          f"stills, lint, render, check, gatepack {b}; gates {', '.join(HOOKB_GATES)}; then hookready {slug}")
+
+
+def hookb_drift(slug, ref=None):
+    """What differs between the lesson and its second opening outside the hook: must be nothing. ref: compare with the
+    lesson as pinned at that commit (what its gates saw and what posts), not the working copy."""
+    b, out = slug + HOOKB_SUFFIX, []
+    def lesson(*p):   # the lesson's file, at ref when given; None when missing
+        if ref:
+            r = sh(["git", "-C", ROOT, "show", f"{ref}:{os.path.relpath(vdir(slug, *p), ROOT)}"], check=False)
+            return r.stdout if r.returncode == 0 else None
+        return open(vdir(slug, *p), encoding="utf-8").read() if os.path.exists(vdir(slug, *p)) else None
+    def mine(*p):
+        return open(vdir(b, *p), encoding="utf-8").read() if os.path.exists(vdir(b, *p)) else None
+    paras = lambda t: [" ".join(x.split()) for x in re.split(r"\n\s*\n", t or "") if x.strip() and not x.strip().startswith("#")]
+    if paras(lesson("01_voice", "script.md"))[1:] != paras(mine("01_voice", "script.md"))[1:]:
+        out.append("script.md differs after the first paragraph")
+    ca, cb = cue_blocks(lesson("03_cues", "cues.md") or "")[1], cue_blocks(mine("03_cues", "cues.md") or "")[1]
+    if [x for x in ca if not is_hook_cue(x[0])] != [x for x in cb if not is_hook_cue(x[0])]:
+        out.append("cues.md differs after the hook cues")
+    if mine("04_scene", "scene.js") != HOOKB_SCENE_LINE + (lesson("04_scene", "scene.js") or ""):
+        out.append("scene.js is not the lesson's scene.js with the hook line")
+    for f in (("04_scene", "data.js"), ("05_render", "captions.json")):
+        if lesson(*f) is not None and lesson(*f) != mine(*f):
+            out.append(f"{'/'.join(f)} differs")
+    ka, kb = json.loads(lesson("01_voice", "takes.json") or "{}"), json.loads(mine("01_voice", "takes.json") or "{}")
+    if not ka.get("takes") or [t.get("sha256") for t in ka["takes"][1:]] != [t.get("sha256") for t in kb.get("takes", [])[1:]]:
+        out.append("the voice after take 1 is not the lesson's own (takes.json)")
+    return out
+
+
+def cmd_hookready(slug):
+    b = slug + HOOKB_SUFFIX
+    if not os.path.isdir(vdir(b)):
+        raise SystemExit(f"ERROR hookready: no {b} (anim.py hookb {slug})")
+    bad = []
+    for g in HOOKB_GATES:
+        f = vdir(b, "05_render", "qa.json") if g == "qa" else vdir(b, "05_render", "reviews", f"{g}.json")
+        if not os.path.exists(f):
+            bad.append(f"{g}: no file"); continue
+        if not json.load(open(f)).get("pass"):
+            bad.append(f"{g}: FAIL")
+    q = load_queue()
+    it = next((i for i in q["items"] if i["slug"] == slug), None)
+    if not it:
+        bad.append(f"{slug} is not queued (ready it first)")
+    elif "instagram" in it["posts"]:
+        bad.append(f"{slug} is already on Instagram: the two openings go up together")
+    bad += [f"drift: {x}" for x in hookb_drift(slug, it.get("commit") if it else None)]
+    if bad:
+        raise SystemExit("ERROR hookready: " + "; ".join(bad))
+    dirty = sh(["git", "-C", ROOT, "status", "--porcelain", "--", os.path.relpath(vdir(b), ROOT)], check=False).stdout.strip().splitlines()
+    dirty = [d for d in dirty if "/05_render/sheet" not in d and "/05_render/qa.json" not in d and "/reviews/" not in d]
+    if dirty:
+        raise SystemExit("ERROR hookready: commit the second opening first: " + "; ".join(d.strip() for d in dirty[:6]))
+    head = sh(["git", "-C", ROOT, "rev-parse", "HEAD"]).stdout.strip()
+    sh(["git", "-C", ROOT, "fetch", "-q", "origin", "main"], check=False)
+    if sh(["git", "-C", ROOT, "merge-base", "--is-ancestor", head, "origin/main"], check=False).returncode:
+        raise SystemExit("ERROR hookready: push the commit to main first, then run hookready")
+    it["hookB"] = {"slug": b, "readyAt": now(), "commit": head, "fingerprints": fingerprints(b)}
+    save_queue(q)
+    print(f"hookready: {b} pinned to {slug}; it goes up as a second Instagram trial reel with the lesson")
+
+
+def queue_pin(slug):
+    """(queue item, pin) for a lesson or its second opening; the pin holds commit and fingerprints."""
+    base = slug[:-len(HOOKB_SUFFIX)] if slug.endswith(HOOKB_SUFFIX) else slug
+    it = next((i for i in load_queue()["items"] if i["slug"] == base), None)
+    if not it:
+        return None, None
+    return it, (it.get("hookB") if base != slug else it)
+
+
 def cmd_waiting():
     print(json.dumps([i["slug"] for i in load_queue()["items"] if not i["posts"] and not i.get("hold")]))
 
@@ -1575,7 +1754,7 @@ def cmd_postcaptions(slug):
 def cmd_postcopy(slug):
     """Render the queued lesson from the commit its gates passed at, check every fingerprint, export the post copy
     to videos/<slug>/05_render/<slug>-post.mp4 in this checkout (the path Chrome's file_upload reads)."""
-    it = next((i for i in load_queue()["items"] if i["slug"] == slug), None)
+    _, it = queue_pin(slug)   # a lesson, or its second opening (SLUG-hookb, pinned by hookready)
     if not it or not it.get("commit"):
         raise SystemExit(f"ERROR postcopy: {slug} is not queued with a commit")
     wt = tempfile.mkdtemp(prefix="gated-")
@@ -1631,6 +1810,16 @@ def cmd_posted(slug, platform, url, at=None):
     if platform not in PLATFORMS:
         raise SystemExit(f"ERROR posted: platform must be one of {', '.join(PLATFORMS)}")
     q = load_queue()
+    if slug.endswith(HOOKB_SUFFIX):   # the second opening: an Instagram trial reel only
+        it = next((i for i in q["items"] if i["slug"] == slug[:-len(HOOKB_SUFFIX)]), None)
+        if not it or not it.get("hookB"):
+            raise SystemExit(f"ERROR posted: {slug} is not pinned (anim.py hookready)")
+        if not trial:
+            raise SystemExit("ERROR posted: the second opening goes up only as an Instagram trial reel (instagram-trial)")
+        it["hookB"]["post"] = {"url": url, "at": _at(at), "trial": True}
+        save_queue(q)
+        print(f"posted: {slug} as the second Instagram trial reel")
+        return
     it = next((i for i in q["items"] if i["slug"] == slug), None)
     if not it:
         raise SystemExit(f"ERROR posted: {slug} is not in the queue")
@@ -1651,11 +1840,16 @@ def _age_hours(at):
 
 
 def cmd_feedshared(slug, at=None):
+    """The trial reel shared to followers. SLUG-hookb: the second opening won and was the one shared."""
     q = load_queue()
-    it = next((i for i in q["items"] if i["slug"] == slug), None)
+    won_b = slug.endswith(HOOKB_SUFFIX)
+    base = slug[:-len(HOOKB_SUFFIX)] if won_b else slug
+    it = next((i for i in q["items"] if i["slug"] == base), None)
     if not it or "instagram" not in it["posts"]:
-        raise SystemExit(f"ERROR feedshared: {slug} has no Instagram trial post")
-    it["instagramFeed"] = {"at": _at(at)}
+        raise SystemExit(f"ERROR feedshared: {base} has no Instagram trial post")
+    if won_b and not (it.get("hookB") or {}).get("post"):
+        raise SystemExit(f"ERROR feedshared: {slug} has no trial reel recorded")
+    it["instagramFeed"] = {"at": _at(at), **({"hook": "b" if won_b else "a"} if it.get("hookB", {}).get("post") else {})}
     save_queue(q)
     print(f"feedshared: {slug} shared to followers")
 
@@ -1667,7 +1861,12 @@ def cmd_trials():
         ig = i["posts"].get("instagram")
         if ig and not i.get("instagramFeed") and ig.get("trial"):
             h = _age_hours(ig["at"])
-            out.append({"slug": i["slug"], "url": ig["url"], "hours": round(h, 1), "due": h >= TRIAL_HOURS})
+            row = {"slug": i["slug"], "url": ig["url"], "hours": round(h, 1), "due": h >= TRIAL_HOURS}
+            hb = (i.get("hookB") or {}).get("post")
+            if hb:   # two openings: share the one that kept more viewers (POSTING.md), never both
+                hh = _age_hours(hb["at"])
+                row.update(hookB={"slug": i["hookB"]["slug"], "url": hb["url"], "hours": round(hh, 1)}, due=min(h, hh) >= TRIAL_HOURS)
+            out.append(row)
     print(json.dumps(out))
 
 
@@ -1758,7 +1957,7 @@ def variety_problems(slug, share):
     measures in place to mitigate those risks as much as possible", on mass-produced flags; was the last one only); at
     least 3 set pieces new against the two before; the four stock rooms on screen at most 40% of the runtime."""
     json.dump({"schema": "pnf.studio.worlds.v1", "share": share}, open(vdir(slug, "04_scene", "worlds.json"), "w"), indent=1)
-    vids = sorted(d for d in os.listdir(VIDEOS) if re.match(r"\d{4}-\d\d-\d\d-", d))
+    vids = sorted(d for d in os.listdir(VIDEOS) if re.match(r"\d{4}-\d\d-\d\d-", d) and not d.endswith(HOOKB_SUFFIX))
     prev = [d for d in vids if d < slug][-2:]
     mine = {w for w, v in share.items() if v >= 0.05}
     sets = {w for w in mine if w.startswith("set:")}
@@ -2369,11 +2568,12 @@ def cmd_lint(slug, step=0.25):
                     hits.setdefault(("text on text", x["s"] + " / " + y["s"]), []).append(t)
         t += step
     b.close(); pw.stop()
-    errors = [f"ERROR lint captions: {x}" for x in captions_problems(slug)] if os.path.exists(vdir(slug, "05_render", "captions.json")) else []
+    errors = [f"ERROR lint captions: {x}" for x in captions_problems(slug)] if os.path.exists(vdir(slug, "05_render", "captions.json")) and not slug.endswith(HOOKB_SUFFIX) else []
     errors += [f"ERROR lint hook: {x}" for x in hook_bad]
     errors += [f"ERROR lint script: {x}" for x in script_problems(slug, send_line)]
-    errors += [f"ERROR lint variety: {x}" for x in variety_problems(slug, {w: round(n / max(1, steps), 3) for w, n in worlds.items()})]
-    errors += [f"ERROR lint queue variety: {x}" for x in queue_variety_problems(slug)]
+    if not slug.endswith(HOOKB_SUFFIX):   # a second opening is its lesson after the hook: the lesson passed variety
+        errors += [f"ERROR lint variety: {x}" for x in variety_problems(slug, {w: round(n / max(1, steps), 3) for w, n in worlds.items()})]
+        errors += [f"ERROR lint queue variety: {x}" for x in queue_variety_problems(slug)]
     for (kind, what), ts in sorted(hits.items(), key=lambda kv: kv[1][0]):
         runs, start, prev = [], ts[0], ts[0]
         for x in ts[1:] + [None]:
@@ -2596,6 +2796,10 @@ def main():
                    a.rest[2] if len(a.rest) > 2 else None)
     elif c == "ready":
         cmd_ready(a.slug)
+    elif c == "hookb":
+        cmd_hookb(a.slug)
+    elif c == "hookready":
+        cmd_hookready(a.slug)
     elif c == "export":
         cmd_export(a.slug)
     elif c == "lint":

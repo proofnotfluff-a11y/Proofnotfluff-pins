@@ -45,6 +45,14 @@ follows per 1,000 pooled over the week, not per lesson.
    next one's question. Why: the faceless channels that broke out kept one recognizable format (vendor lists, picked
    for success, so weak); no data found that a series lifts follows. Read follows per 1,000 views.
 
+Running on every lesson from Nov 2, 2026 (Todd, live chat, Nov 1, 4:35 pm: "Do both"), alongside the test above:
+- **Two openings:** each new lesson also gets a second opening on another hook pattern (stages/05_render/CONTEXT.md step 6),
+  posted with it as a second Instagram trial reel; the one with the lower skip rate is shared to followers (POSTING.md).
+  Log each pair in FORMULA.md: both patterns, both skip rates, the winner. After 6 pairs, the pattern that wins most is
+  the default opening.
+- **Send gate:** every lesson must name one person a viewer would send it to (prompts/send.md). Read sends against the
+  start numbers weekly.
+
 ## A run with 2 already waiting (no new lesson)
 In this order, one run's worth, each step logged:
 1. **Study.** Find 2 public Shorts or Reels for trade owners or AI for small business that drew far more shares or saves

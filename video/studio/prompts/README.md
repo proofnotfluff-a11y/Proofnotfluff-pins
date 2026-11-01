@@ -7,9 +7,15 @@ V/05_render/reviews/<gate>.json with the gate, round, pass, score and reasons. F
 (Todd, live chat, Oct 31, 2026, 4:19 pm: "Please change the rule so it keeps going until the design is fixed. After two
 fails lower the threshold to 4.5"); nothing is held for Todd on a FAIL count. A gate rerun because another gate's fix changed its input starts at round 0.
 
-Order: facts, facts-captions (after the script and captions exist), then after the render: render-critic, buyer, design,
-golden. Pass bars: facts and facts-captions no mismatch; render-critic 0 faults; buyer stop and send or save yes;
-design no score under 4 and average 4.61 or more (4.50 from the third round, after two FAILs); golden "post as is" (polish alone is not a FAIL).
+Order: facts, facts-captions (after the script and captions exist), then after the render: render-critic, buyer, send,
+design, golden. Pass bars: facts and facts-captions no mismatch; render-critic 0 faults; buyer stop and send or save yes;
+send names one person by role and tie, a real line, a gain beyond "useful", a feeling, and thanks (send.md; Todd, live
+chat, Nov 1, 2026, 4:35 pm: "Do both"); design no score under 4 and average 4.61 or more (4.50 from the third round,
+after two FAILs); golden "post as is" (polish alone is not a FAIL).
+
+The second opening (SLUG-hookb, anim.py hookb; same Todd message): the same lesson after the hook, so it reruns only
+qa, facts, render-critic, buyer and design on its own files (anim.py HOOKB_GATES); send, golden and facts-captions carry
+over from the lesson, and `anim.py hookready` refuses it if anything after the hook differs.
 
 Kimi (Todd, Oct 29, 2026, 6:20 pm): facts and facts-captions run on Kimi first (.claude/skills/kimi-jobs/SKILL.md, tools/kimi_job.py
 pastes these prompts with the files and source excerpts, since Kimi has no tools). Claude checks every Kimi FAIL reason and

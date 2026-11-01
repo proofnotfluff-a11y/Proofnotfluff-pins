@@ -1,6 +1,6 @@
-# video-studio (four runs a day: post, make, learn; slots in video/config.json "posting")
+# video-studio (post, make, learn; slots in video/config.json "posting")
 
-Each run: post the next gated lesson on four platforms, make one, learn. Todd, Oct 31, 2026: 4 a day, queue first, each unique (coo/DECISIONS-2026-10-30.md; CONSTITUTION 2). The prompt names the slot. "stop videos" in any chat halts it (video/config.json stop).
+Each run: post the next gated lesson on four platforms, make one, learn. Todd, Nov 1, 2026: 2 a day, queue first, each unique (CONSTITUTION 2). The prompt names the slot. "stop videos" in any chat halts it (video/config.json stop).
 
 ## Inputs (Reads)
 - video/studio/CLAUDE.md, CONTEXT.md, stages/*/CONTEXT.md, _shared/*.md, POSTING.md, IMPROVE.md, LEARNINGS.md, prompts/, queue.json, research/IDEAS.md, KNOWLEDGE.md, PERFORMANCE.md, the last lesson as the pattern.
@@ -18,7 +18,7 @@ Each run: post the next gated lesson on four platforms, make one, learn. Todd, O
    - `speak`, push (check_repo first), wait for the Studio voice workflow (pull each minute, 15 min max), `fetch`; flags 0 and pace 160 to 195 or re-roll that take once. takes.json credits left under 3,000: tell Todd once and make no new lesson until they reset.
    - cues.md (`music: rooms <tune>`, rooms, one beat every 2 to 4 s), `cues`; scene.js from the last lesson's pattern and the kit, motion rules in _shared/looks.md; `stills`, read the sheets, fix; `lint` PASS; `render`, `check`, `gatepack`.
    - captions.json: per platform from _shared/captions.md (descriptions, keywords, tags). First draft from Kimi: send the captions-draft job with the facts job right after `fetch` (.claude/skills/kimi-jobs/SKILL.md), then edit it yourself.
-5. Gates from video/studio/prompts/ (README: order and bars), each a fresh agent (model opus) that never saw the build, results in 05_render/reviews/<gate>.json. Facts and facts-captions go to Kimi first by the kimi-jobs skill, with its Claude checks; cap, error or no answer: the opus agent as before (Todd, Oct 29). Fix rounds go on until all pass (design bar 4.50 after 2 FAILs; Todd, Oct 31); finish unqueued ones first. Faults go in LEARNINGS.md; a lint-catchable one becomes a lint rule. All PASS: commit, `anim.py ready <slug>` (push first).
+5. Gates from video/studio/prompts/ (README: order and bars; hook B: stages/05_render/CONTEXT.md step 6), each a fresh agent (model opus) that never saw the build, results in 05_render/reviews/<gate>.json. Facts and facts-captions go to Kimi first by the kimi-jobs skill, with its Claude checks; cap, error or no answer: the opus agent as before (Todd, Oct 29). Fix rounds go on until all pass (design bar 4.50 after 2 FAILs; Todd, Oct 31); finish unqueued ones first. Faults go in LEARNINGS.md; a lint-catchable one becomes a lint rule. All PASS: commit, `anim.py ready <slug>` (push first).
 6. Every slot: one IMPROVE.md item in the shared runtime, proven on stills of today's lesson and lesson 1 before step 4's render; log it under Done.
 7. Push after check_repo exits 0 (never force). Scoreboard rows (video engine todos, agents/video-studio), counts only. coo/HANDOFF.md one line only when state changes.
 8. Send Todd one message: posted (4 links), made (gate lines PASS/FAIL with values), improved (one line), held (why).

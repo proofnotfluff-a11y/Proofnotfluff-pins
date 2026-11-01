@@ -78,7 +78,11 @@ def shoot(pages, out):
             page = ctx.new_page()
             row = {"n": n, "url": url, "at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")}
             try:
-                resp = page.goto(url, wait_until="networkidle", timeout=45000)
+                try:
+                    resp = page.goto(url, wait_until="networkidle", timeout=45000)
+                except Exception:  # pages with endless trackers never go idle: take the loaded page instead
+                    resp = page.goto(url, wait_until="load", timeout=45000)
+                    page.wait_for_timeout(3000)
                 page.wait_for_timeout(1500)
                 page.screenshot(path=str(out / f"page-{n}.png"))
                 page.screenshot(path=str(out / f"page-{n}-full.png"), full_page=True)

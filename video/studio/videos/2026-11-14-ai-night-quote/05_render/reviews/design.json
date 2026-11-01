@@ -1,0 +1,19 @@
+{
+  "gate": "design",
+  "round": 0,
+  "reviewer": "claude opus (fresh agent)",
+  "build": "e1ae980",
+  "pass": false,
+  "bar": "first-round bar: no score under 4 and average 4.61 or more (no earlier design review exists)",
+  "score": {"first": 3, "hierarchy": 4, "type": 4, "color": 5, "spacing": 4, "polish": 4, "trust": 4, "average": 4.00},
+  "reasons": [
+    "22.5-27.0 s prompt card (freshness cap, first impression at most 3): the cream 'ITEM GET! THE PROMPT' card on the navy dotted room with the yellow arrow cursor is the same set and signature move as 2026-11-12-missed-call-text at 30.40 s ('ITEM GET! THE TEXT'). Replace it with a move the last two lessons did not use, for example type the prompt into the Gemini screen's input box from 21.8 s as it is said (chat set) or drop it into an inventory slot (sets.md 13), still one clean card held 3 s or more with a moving cursor (C3).",
+    "0.0-1.5 s hook (freshness): the navy two-line title banner over a device on the wood desk is the same hook frame as 2026-11-12 (0.0 s) and 2026-11-13 (0.0 s). Open instead on the night window wide with the phone lighting the dark room and the '11 pm' stake in the window glow, so the first frame does not read as the last two covers.",
+    "2.0-31.0 s real reply card, line 1: the apostrophe renders as a question mark ('Hi! I?d love to help'). Fix the glyph (straight apostrophe in the bitmap font) so the 'REAL REPLY' card does not look broken.",
+    "2.0-31.0 s real reply card header: 'REAL REPLY: GEMINI 3.6 FLASH (API), NOV 1, 2026' runs into the card's right edge and the final 6 is clipped. Shorten to 'REAL GEMINI REPLY, NOV 1, 2026' or widen the card so the tag has 24 px of padding.",
+    "16.0-21.0 s gauge: the stat '26%' sits in a pill about 60 px tall and 'of cleaning businesses' (y about 830) overlaps the gauge ring, the 0 tick and the needle. Make 26% the hero at 160 px or more in accent inside the dial, and move 'of cleaning businesses' below the ring above the source line.",
+    "Type floor (type at most 4): reply card body about 32 px (2.0-31.0 s), the Jobber source lines about 30 px (16.0-21.0 s) and '+ A PRICE / + ONE QUESTION' about 24 px (33.5-37.7 s) are under the 36 px label floor. Raise them to 36 px, and the two LEVEL UP rule items to 44 px since they are the takeaway.",
+    "32.5-34.3 s LEVEL UP room: before the burst only the XP bar sits in the band (about two thirds of y 270-1250 empty for 1.8 s). Show the '+ A PRICE' item filling the bar as a large card from 32.5 s so the band carries the rule.",
+    "Trust: after the fixes above, keep the real-capture tags consistent (one tag style for the Gemini screen at 21.8 s and the reply card) so both read as the same real source."
+  ]
+}

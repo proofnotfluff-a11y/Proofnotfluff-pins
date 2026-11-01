@@ -22,7 +22,7 @@ The gauge: the needle to 26%, label "REPLY IN 1 HOUR", "cleaning businesses"; so
 ## fix "Paste their text into" [sfx: whoosh]
 A phone frame with Gemini's own start screen (page shot, Nov 1), the address tag "gemini.google.com" and the customer's text sliding into the box.
 ## fix.prompt "with this prompt" [sfx: chime]
-The prompt as an ITEM GET window, THE PROMPT, word for word as run; the hand walks its lines; held into the next section.
+The prompt in a dark PROMPT window with a gold COPY THIS PROMPT tab, typed in word for word as run, a block cursor blinking; held into the next section, its last two lines lit red on "two".
 
 ## fix.free "It's free." [sfx: tick]
 Cut to Gemini's own plan page shot: "Free" and "$0/ month with a Google Account", tag "gemini.google/subscriptions, Nov 1, 2026".
@@ -32,6 +32,6 @@ The real reply card again, full text word for word, labelled with model and date
 The second ask greys and strikes through on "Cut"; "[your price]" lights gold on "price"; a SEND button presses on "yourself"; "Gemini is AI and can make mistakes." from its own page under it.
 
 ## button "Every quote reply needs" [sfx: whoosh]
-The levelup set: the bar fills, LEVEL UP on "question", perks PRICE and ONE QUESTION land; the work order's boxes ticked.
+The versus set: YOURS (price YES, question YES) against LUNCH (NO, NO); QUEST COMPLETE on YOURS on "question".
 ## button.rule "Send that reply before" [sfx: sting]
 "Send it before / your first job." in gold. Snow waves. Then the end card with the send line.

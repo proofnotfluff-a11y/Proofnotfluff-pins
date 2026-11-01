@@ -3,6 +3,6 @@
  "share": {
   "set:flaps": 0.16,
   "set:gauge": 0.123,
-  "set:levelup": 0.202
+  "set:versus": 0.202
  }
 }

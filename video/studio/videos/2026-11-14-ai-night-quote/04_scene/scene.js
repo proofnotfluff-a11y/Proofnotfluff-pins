@@ -72,17 +72,18 @@ const REPLY = ["Hi! I’d love to help with your move-out clean. For a 2-bed, 1-
   'Could you let me know if you need the inside of the oven or fridge included?',
   'Let me know what day before Friday works best for you!'];
 const CUSTOMER = 'Hi! Need a quote for a move-out clean, 2 bed 1 bath, before Friday. Thanks!';
-const LABEL = 'REAL REPLY: GEMINI 3.6 FLASH (API), NOV 1, 2026';
+const LABEL = ['REAL REPLY: GEMINI 3.6 FLASH (API)', 'NOV 1, 2026'];
+const glyphs = (l) => l.replace(/\u2019/g, "'");   /* the pixel font has no curly apostrophe: the same word, drawn straight */
 
 /* the bedroom at night: a dark wall, a window with the moon and a city line, the nightstand top, the phone glow */
 const bedroom = (k, o = {}) => {
   const d = px(k), {P, DOT, dith, disc, F} = d;
   P(0, 0, 360, 417, '#1B1420'); for (let y = 0; y < 417; y += 6) P(0, y, 360, 1, '#1F1726');
   /* the window, top right: a navy sky, the moon, stars that twinkle slowly, a skyline */
-  const wx = 214, wy = 20, ww = 128, wh = 88;
+  const wide = o.wide, wx = wide ? 14 : 214, wy = wide ? 20 : 20, ww = wide ? 332 : 128, wh = wide ? 150 : 88;
   P(wx - 4, wy - 4, ww + 8, wh + 8, '#3D2E45'); P(wx, wy, ww, wh, '#253048'); dith(wx, wy + wh - 30, ww, 30, '#2B3A5A');
-  disc(wx + 96, wy + 24, 9, '#FFF2B8'); disc(wx + 100, wy + 21, 8, '#253048');
-  for (let i = 0; i < 9; i++) { const x = wx + 6 + Math.floor(hash(i * 3.1) * (ww - 12)), y = wy + 6 + Math.floor(hash(i * 7.3) * 40); DOT(x, y, (Math.floor(F / 18) + i) % 4 === 0 ? GOLD : '#6B7080'); }
+  disc(wx + ww - 32, wy + 24, 9, '#FFF2B8'); disc(wx + ww - 28, wy + 21, 8, '#253048');
+  for (let i = 0; i < (wide ? 22 : 9); i++) { const x = wx + 6 + Math.floor(hash(i * 3.1) * (ww - 12)), y = wy + 6 + Math.floor(hash(i * 7.3) * 40); DOT(x, y, (Math.floor(F / 18) + i) % 4 === 0 ? GOLD : '#6B7080'); }
   for (let x = wx; x < wx + ww; x += 8) { const h = 10 + Math.floor(hash(x * 0.37) * 26); P(x, wy + wh - h, 7, h, '#120D14'); if (hash(x * 1.7) > 0.5) DOT(x + 3, wy + wh - h + 4, GOLD); }
   P(wx + ww / 2 - 1, wy, 2, wh, '#3D2E45'); P(wx, wy + wh / 2 - 1, ww, 2, '#3D2E45');
   /* the nightstand */
@@ -103,7 +104,6 @@ const bigPhone = (k, d, x, y, w, h, o = {}) => {
 };
 /* the hook's title plate */
 const hookPlate = (k, d, n) => {
-  d.win(14, 84, 332, 66, {base: '#253048', hi: '#3B82C4', lo: '#1B1420', rule: '#3B82C4'});
   k.text(`${n.night.shown} pm quote.`, 540, 270, {size: 66, color: CREAM, align: 'center', drop: INK});
   k.text(`Reply in ${n.under.shown} seconds.`, 540, 346, {size: 66, color: GOLD, align: 'center', drop: INK});
 };
@@ -114,24 +114,50 @@ const tag = (k, s, x, y, o = {}) => chipText(k, s, x, y, Object.assign({size: 39
 const replyCard = (k, x, y, w, o = {}) => {
   const lh = 50, pad = 30, rows = [];
   REPLY.forEach((p, pi) => k.wrap(p, {size: 39}, w - 2 * pad).forEach((l) => rows.push([l, pi])));
-  const n = o.max != null ? Math.min(o.max, rows.length) : rows.length, h = 84 + n * lh + 30 + (o.extra || 0);
+  const n = o.max != null ? Math.min(o.max, rows.length) : rows.length, h = 126 + n * lh + 30 + (o.extra || 0);
   const fl = o.float ? bob2(k.T, o.float) / 2 : 0;
   k.ctx.fillStyle = INK; k.ctx.fillRect(x + 9, y + 9 + fl, w, h); k.ctx.fillRect(x - 3, y - 3 + fl, w + 6, h + 6);
   k.ctx.fillStyle = CREAM; k.ctx.fillRect(x, y + fl, w, h);
-  k.ctx.fillStyle = '#2F6F67'; k.ctx.fillRect(x, y + fl, w, 66);
-  k.text(o.label || LABEL, x + 24, y + 16 + fl, {size: 39, color: CREAM});
+  k.ctx.fillStyle = '#2F6F67'; k.ctx.fillRect(x, y + fl, w, 108);
+  k.text(LABEL[0], x + 24, y + 14 + fl, {size: 39, color: CREAM}); k.text(LABEL[1], x + 24, y + 58 + fl, {size: 39, color: GOLD});
   rows.slice(0, n).forEach(([l, pi], i) => {
-    const ly = y + 84 + i * lh + fl;
+    const ly = y + 126 + i * lh + fl;
     if (o.hi && o.hi[pi] && k.T >= o.hi[pi][1]) { k.ctx.fillStyle = o.hi[pi][0]; k.ctx.fillRect(x + 12, ly - 6, w - 24, lh - 2); }
     const dead = o.strike && o.strike.includes(pi) && k.T >= o.strikeAt;
-    k.text(l, x + pad, ly, {size: 39, color: dead ? GREY : INK});
-    if (dead) { k.ctx.fillStyle = RED; k.ctx.fillRect(x + pad - 6, ly + 18, Math.min(w - 2 * pad + 12, k.measure(l, {size: 39}) + 12), 6); }
+    k.text(glyphs(l), x + pad, ly, {size: 39, color: dead ? '#B5524A' : INK});
+    if (dead) { k.ctx.fillStyle = RED; k.ctx.fillRect(x + pad - 6, ly + 15, Math.min(w - 2 * pad + 12, k.measure(glyphs(l), {size: 39}) + 12), 6); }
     if (o.priceAt != null && k.T >= o.priceAt && l.includes('[your price]')) {
-      const pre = l.slice(0, l.indexOf('[your price]')), px0 = x + pad + k.measure(pre, {size: 39}), pw = k.measure('[your price]', {size: 39});
+      const pre = glyphs(l).slice(0, l.indexOf('[your price]')), px0 = x + pad + k.measure(pre, {size: 39}), pw = k.measure('[your price]', {size: 39});
       k.sweep(px0 - 6, ly - 6, pw + 12, lh - 2, o.priceAt, {color: GOLD}); k.text('[your price]', px0, ly, {size: 39, color: INK, lint: false});
     }
   });
   return {x, y: y + fl, w, h, rows: n};
+};
+
+/* the save card (C3): a dark terminal-style PROMPT window. The lines type in as it lands (0.06 s a letter, all six in */
+/* about 1.2 s), a block cursor blinks at 2 a second after the last letter and the window floats 1 px, so it is never */
+/* flat (M1). A gold COPY THIS tab rides its top edge. o.red: line indexes lit red from o.redAt.                    */
+const promptBox = (k, t0, o = {}) => {
+  const T = k.T; if (T < t0) return null;
+  const x = 54, w = 900, lh = 72, pad = 36, y0 = 300, h = pad * 2 + PROMPT.length * lh - 6;
+  const q = eo(clamp((T - t0) / 0.25)), y = Math.round((y0 + (1 - q) * 60) / 3) * 3 + (T >= t0 + 1.6 ? bob2(T, t0 + 1.6) / 2 : 0);
+  k.ctx.fillStyle = INK; k.ctx.fillRect(x + 9, y + 9, w, h); k.ctx.fillRect(x - 6, y - 6, w + 12, h + 12);
+  k.ctx.fillStyle = '#0E1F2A'; k.ctx.fillRect(x, y, w, h);
+  k.ctx.fillStyle = '#16323F'; for (let yy = y; yy < y + h; yy += 12) k.ctx.fillRect(x, yy, w, 3);
+  k.ctx.fillStyle = TEAL; k.ctx.fillRect(x, y, 9, h);
+  const tab = 'COPY THIS PROMPT', tw2 = k.measure(tab, {size: 39}) + 36;
+  k.ctx.fillStyle = INK; k.ctx.fillRect(x + 24, y - 30, tw2 + 6, 48); k.ctx.fillStyle = GOLD; k.ctx.fillRect(x + 27, y - 27, tw2, 42);
+  k.text(tab, x + 45, y - 21, {size: 39, color: INK});
+  const per = 0.011, total = PROMPT.join('').length; let used = 0, lastX = x + pad + 18, lastY = y + pad;
+  const shown = Math.floor((T - t0 - 0.15) / per);
+  PROMPT.forEach((l, i) => {
+    const c = clamp(shown - used, 0, l.length); used += l.length;
+    const ly = y + pad + i * lh, red = o.red && o.red.includes(i) && T >= o.redAt;
+    if (red) { k.ctx.fillStyle = '#5A1F24'; k.ctx.fillRect(x + 18, ly - 9, w - 36, lh - 6); }
+    if (c > 0) { k.text(l.slice(0, c), x + pad + 18, ly, {size: 66, color: red ? '#FFB4A2' : CREAM}); lastX = x + pad + 18 + k.measure(l.slice(0, c), {size: 66}); lastY = ly; }
+  });
+  if (shown >= total && Math.floor(T * 2) % 2 === 0) { k.ctx.fillStyle = GOLD; k.ctx.fillRect(lastX + 9, lastY, 27, 60); }
+  return {x, y, w, h};
 };
 
 window.SCENE = {
@@ -140,8 +166,8 @@ window.SCENE = {
   host_name: 'Snow',
   hud: 'QUOTE REPLY',
   sendLine: 'Send this to whoever answers your quote requests.',
-  transitions: {usual: 'dissolve', guess: 'levelselect', fix: 'dissolve', check: 'dissolve', button: 'gameover'},
-  trauma: {'check': 0.6},
+  transitions: {usual: 'dissolve', guess: 'levelselect', fix: 'dissolve', check: 'dissolve', button: 'levelselect'},
+  trauma: {'check.cut': 0.6},
   sections: {
     /* ---- hook: three shots. Cover (frame 0, no host): the bedroom, the phone on the nightstand glowing with the     */
     /* customer's text, 11 PM, the plate. By 0.8 s cut in close on the phone: the bubble big, EXAMPLE. On "reply"  */
@@ -161,8 +187,8 @@ window.SCENE = {
         return host(k, T >= tWrong ? 'point' : null);
       }
       if (T >= tIn) {
-        const d = bedroom(k, {top: 330});
-        const s = bigPhone(k, d, 40, 150, 280, 330, {glow: true});
+        const d = bedroom(k, {top: 330, wide: true});
+        const s = bigPhone(k, d, 40, 156, 280, 324, {glow: true});
         d.P(s.x, s.y, s.w, 30, '#2F6F67'); k.text(`${n.night.shown} PM`, (s.x + 8) * 3, (s.y + 4) * 3, {size: 39, color: CREAM, lint: false});
         const ls = k.wrap(CUSTOMER, {size: 66}, (s.w - 24) * 3);
         d.P(s.x + 8, s.y + 40, s.w - 16, ls.length * 28 + 14, CREAM); d.P(s.x + 8, s.y + 40, s.w - 16, 1, '#FFFFFF');
@@ -171,8 +197,8 @@ window.SCENE = {
         hookPlate(k, d, n);
         return host(k);
       }
-      const d = bedroom(k, {top: 318});
-      const s = bigPhone(k, d, 96, 176, 168, 150, {glow: true, screen: '#253048'});
+      const d = bedroom(k, {top: 318, wide: true});
+      const s = bigPhone(k, d, 96, 182, 168, 144, {glow: true, screen: '#253048'});
       k.text(`${n.night.shown} PM`, 540, (s.y + 6) * 3, {size: 66, color: GOLD, align: 'center', drop: INK});
       d.P(s.x + 8, s.y + 34, s.w - 16, 62, CREAM); d.P(s.x + 8, s.y + 34, s.w - 16, 1, '#FFFFFF');
       ['Hi! Need a quote for', 'a move-out clean,', '2 bed 1 bath...'].forEach((l, i) => k.text(l, (s.x + 14) * 3, (s.y + 38 + i * 19) * 3, {size: 39, color: INK}));
@@ -203,10 +229,9 @@ window.SCENE = {
       const n = k.data.numbers, t0 = k.S('guess'), tStake = k.S('guess.stake');
       if (T >= tStake) {
         const tTwenty = wordT(k, 'guess.stake', /^twenty/i, 1.0);
-        k.sets.gauge({value: n.hourPct.value, max: 100, at: tTwenty - 0.25, dur: 1.0, zones: [[0, 40, RED], [40, 70, ORANGE], [70, 100, TEAL]], label: `REPLY IN ${n.hours.shown} HOUR`, suffix: '%'});
-        k.text('of cleaning businesses', 540, 800 + (T >= tTwenty + 1.2 ? bob2(T, tTwenty + 1.2) : 0), {size: 66, color: CREAM, align: 'center', drop: INK});
-        tag(k, 'Source: Jobber, 2026 Home Service Trends', 540, 880, {align: 'center'});
-        tag(k, `Report, ${n.owners.shown} owners, Dec ${n.year.shown}`, 540, 936, {align: 'center'});
+        k.sets.gauge({value: n.hourPct.value, max: 100, at: tTwenty - 0.25, dur: 1.0, zones: [[0, 40, RED], [40, 70, ORANGE], [70, 100, TEAL]], label: `CLEANING: REPLY IN ${n.hours.shown} HOUR`, suffix: '%'});
+        tag(k, 'Source: Jobber, 2026 Home Service Trends', 540, 908 + (T >= tTwenty + 1.2 ? bob2(T, tTwenty + 1.2) / 2 : 0), {align: 'center'});
+        tag(k, `Report, ${n.owners.shown} owners, Dec ${n.year.shown}`, 540, 958, {align: 'center'});
         return host(k, T >= tTwenty ? 'lean' : null);
       }
       const d = px(k), {P} = d;
@@ -238,17 +263,19 @@ window.SCENE = {
       P(0, 0, 360, 417, '#253048'); for (let y = 0; y < 417; y += 4) P(0, y, 360, 1, '#1F2A40'); P(0, 417, 360, 223, '#1B1420'); P(0, 417, 360, 2, '#3D2E45');
       if (T < tPr - 0.25) {
         const s = bigPhone(k, d, 100, 112, 160, 214, {screen: '#F7F7F7'});
-        k.page(s.x * 3, s.y * 3, s.w * 3, s.h * 3, 'gemini-app', {scroll: 380});
+        k.page(s.x * 3, s.y * 3, s.w * 3, s.h * 3, 'gemini-app', {scroll: 398});
         /* their text pastes into the box */
         const q = clamp((T - (t0 + 0.4)) / 0.4);
-        if (q > 0) { d.P(s.x + 6, s.y + s.h - 70, s.w - 12, 40, CREAM); k.text('Hi! Need a quote for a', (s.x + 12) * 3, (s.y + s.h - 66) * 3, {size: 39, color: INK}); k.text('move-out clean, 2 bed...', (s.x + 12) * 3, (s.y + s.h - 50) * 3, {size: 39, color: INK}); }
+        if (q > 0) { const sl = d.ease(t0 + 0.4, 6, 30), by = s.y + 92 + sl; d.P(s.x - 30, by, s.w + 60, 44, INK); d.P(s.x - 28, by + 2, s.w + 56, 40, CREAM);
+          k.text('Their text, pasted in:', (s.x - 22) * 3, (by + 5) * 3, {size: 39, color: '#4A4E5A'}); k.text('Hi! Need a quote for a move-out', (s.x - 22) * 3, (by + 22) * 3, {size: 39, color: INK});
+          tag(k, 'EXAMPLE', (s.x + s.w + 28) * 3, (by + 48) * 3, {align: 'right', color: ORANGE}); }
         tag(k, 'gemini.google.com, Nov 1, 2026', 540, 282, {align: 'center'});
         return host(k, 'point');
       }
-      k.itemGet({x: 60, y: 288, w: 870, at: tPr - 0.25, size: 66, lh: 74, pad: 36, title: 'ITEM GET! THE PROMPT', step: 0.7, lines: PROMPT});
+      promptBox(k, tPr - 0.25);
       if (T >= tFree - 0.25) {
         k.slam(`Free: ${n.free.shown}/ month`, 560, 812 + (T >= tFree + 0.2 ? bob2(T, tFree + 0.2) : 0), tFree - 0.25, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false});
-        tag(k, 'with a Google Account', 560, 894, {align: 'center'});
+        tag(k, 'with a Google Account (Flash-Lite model)', 560, 894, {align: 'center'});
         tag(k, 'gemini.google/subscriptions, Nov 1', 560, 946, {align: 'center'});
       }
       return host(k, 'point');
@@ -265,7 +292,7 @@ window.SCENE = {
       if (T < tOven - 0.25) {
         const tPr = k.S('fix.prompt'), d = px(k), {P} = d;
         P(0, 0, 360, 417, '#253048'); for (let y = 0; y < 417; y += 4) P(0, y, 360, 1, '#1F2A40'); P(0, 417, 360, 223, '#1B1420'); P(0, 417, 360, 2, '#3D2E45');
-        k.itemGet({x: 60, y: 288, w: 870, at: tPr - 0.25, size: 66, lh: 74, pad: 36, title: 'ITEM GET! THE PROMPT', step: 0.7, lines: PROMPT, bars: [null, null, null, null, T >= tTwo - 0.25 ? RED : null, T >= tTwo - 0.25 ? RED : null]});
+        promptBox(k, tPr - 0.25, {red: [4, 5], redAt: tTwo - 0.25});
         if (T >= tTwo - 0.25) stampBox(k, `IT ASKED ${n.asked.shown}`, 600, 880, tTwo - 0.25, {color: RED, size: 66});
         return host(k, 'lean');
       }
@@ -279,15 +306,18 @@ window.SCENE = {
       return host(k, T >= tCut ? 'point' : (T >= tTwo ? 'lean' : null));
     },
 
-    /* ---- button: the levelup set (the native move, M7): the bar fills, LEVEL UP on "question", perks PRICE and ONE    */
-    /* QUESTION; the rule in gold on "Send".                                                                            */
+    /* ---- button: the versus set: YOURS (price YES, question YES) against LUNCH (NO, NO), the work order's two boxes as */
+    /* stats; QUEST COMPLETE stamps on the winner on "question" (the native move, M7); the rule lands in gold on "Send". */
     button: (k, T) => {
-      const t0 = k.S('button'), tQ = wordT(k, 'button', /^question/i, 2.2), tRule = k.S('button.rule');
-      k.sets.levelup({from: 0, to: 100, max: 100, at: t0 + 0.1, dur: Math.max(0.6, tQ - t0 - 0.3), levelAt: tQ - 0.2, level: 2,
-        stats: [{text: 'A PRICE', at: wordT(k, 'button', /^price/i, 1.2) - 0.25}, {text: 'ONE QUESTION', at: tQ - 0.25}]});
+      const t0 = k.S('button'), tP = wordT(k, 'button', /^price/i, 1.2), tQ = wordT(k, 'button', /^question/i, 2.2), tRule = k.S('button.rule');
+      const n = k.data.numbers;
+      /* versus: the lunch reply against the fixed one, the two boxes of the work order as the stats (teal is the fix) */
+      k.sets.versus({a: {name: 'YOURS', icon: 'phone', stats: [{label: 'PRICE', value: 1, max: 1, text: 'YES'}, {label: 'QUESTION', value: 1, max: 1, text: 'YES'}]},
+        b: {name: 'LUNCH', icon: 'clock', stats: [{label: 'PRICE', value: 0, max: 1, text: 'NO'}, {label: 'QUESTION', value: 0, max: 1, text: 'NO'}]},
+        at: t0 - 0.4, vsAt: t0 + 0.2, winner: 'a', winAt: tQ - 0.2, winText: 'QUEST COMPLETE'});
       if (T >= tRule - 0.25) {
-        k.slam('Send it before', 540, 856, tRule - 0.25, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false});
-        k.slam('your first job.', 540, 940, tRule - 0.15, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false});
+        k.slam('Send it before', 540, 852, tRule - 0.25, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false});
+        k.slam('your first job.', 540, 932, tRule - 0.15, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false});
       }
       return host(k, T >= tRule + 1.0 ? 'wave' : 'point');
     },

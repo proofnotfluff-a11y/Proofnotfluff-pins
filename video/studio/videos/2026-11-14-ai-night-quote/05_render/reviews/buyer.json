@@ -1,0 +1,23 @@
+{
+  "gate": "buyer",
+  "round": 0,
+  "reviewer": "claude opus (fresh agent)",
+  "build": "e1ae980",
+  "pass": true,
+  "score": {
+    "stop": "yes",
+    "send": "yes",
+    "save": "yes",
+    "follow_or_link": "yes"
+  },
+  "reasons": [
+    "1. What it tells me (cleaning business owner, 9 pm): when a quote text lands late at night, paste it into free Gemini with this prompt, cut the draft to my price and one question, and send it myself that night instead of at lunch, because by lunch they've booked someone else.",
+    "2. Stop: yes. The first frame is a text I get every week ('Need a quote for a move-out clean, 2 bed 1 bath, before Friday') under '11 pm quote. Reply in 7 seconds.' It is my world and promises a result, not a topic.",
+    "3. Send: yes, to whoever answers my quote texts; the caption even asks for that. Save: yes, the exact prompt is in the caption word for word with a [your price] slot, and the 'price plus one question' rule is worth keeping. Follow or link: yes to follow (a trade-specific tip I can use tonight, no pitch); the link in bio ('Free tools for trade owners') is vague, so I would follow before I tapped it.",
+    "4. Hype, urgency, pitch, slop, robotic: none found. No 'game changer', no 'comment X', no product sell. Lines are short and spoken. The caption admits the 6.6 s reply came through Google's API and the free app will read differently, and tells me to read every line: that raises trust.",
+    "5. Unclear to a stranger, minor: (a) 00:04.2 'One thing's wrong.' then 00:05.6 'Yours goes out at lunch.' reads as if the thing wrong is my timing, not the AI reply; the answer only comes at 00:25.2 ('It wrote two questions'). Fix: 'One thing in it is wrong. Hold that.' or 'The AI got one thing wrong. Yours goes out at lunch.' (b) 00:07.5 'Hey, prices vary, give me a call.' only works if the screen marks it as MY lunch reply; in audio alone it could be heard as advice. Fix if not already on screen: label it 'Your reply' or say 'Yours says: prices vary, give me a call.' (c) The 'SNOW' name tag on the first frame means nothing to a first-time viewer; harmless.",
+    "6. Trust: yes. A sourced number (Jobber, survey of 1,050 owners, in the caption), a real model reply shown with its flaw, and 'send it yourself'. Small nit: the voice says 'only twenty-six percent' while the caption says that 26% is the fastest of the trades surveyed; not false, but 'only' leans on it. Optional fix at 00:16.1: 'Jobber says just twenty-six percent of cleaning businesses reply within an hour, and that's the best of the trades.'",
+    "7. The bar (standard.md). C1 stakes: yes, it costs a job ('They've booked someone else.', 00:10.2) and the first frame shows the object, the quote text; no dollar figure, but the standard allows showing the object. S1 mechanism: yes, 00:12.2 'No price, no question, so nothing to text back.' says why the lunch reply loses and why price plus one question works. C3 copy-and-do: yes, the prompt is given verbatim in the caption and the voice points to it on screen at 00:21.2 ('with this prompt'); I could not confirm from my inputs that the on-screen card holds 3 s, so the design gate should check it. S3 this week: yes, 00:35.7 'Send that reply before your first job.' is doable tomorrow morning in minutes.",
+    "Verdict: PASS. I would stop, save it for the prompt and send it to whoever handles my quotes. Optional polish: line 00:04.2 so 'one thing wrong' clearly points at the AI reply."
+  ]
+}

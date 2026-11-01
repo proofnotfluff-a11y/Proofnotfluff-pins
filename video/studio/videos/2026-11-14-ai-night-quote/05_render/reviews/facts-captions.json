@@ -1,0 +1,17 @@
+{
+ "gate": "facts-captions",
+ "round": 0,
+ "reviewer": "claude opus (fresh agent)",
+ "build": "e1ae980",
+ "pass": true,
+ "score": {"numbers": 14, "mismatches": 0},
+ "reasons": [],
+ "checked": [
+  "Quoted reply (Instagram, Facebook, YouTube) matches demos/out/2026-11-14-ai-night-quote-4/run.json text word for word, whitespace aside, curly apostrophe included; TikTok describes the reply (two questions) and quotes none of it. Model gemini-3.6-flash as 'Gemini 3.6 Flash through Google's API', date Nov 1, 2026 (run at 2026-11-01T16:19:19Z), 6.6 s all match run.json.",
+  "Prompt text in all four matches run.json prompt line 1 word for word; 'two questions, not one' checked against the reply.",
+  "Jobber page fetched live Nov 1, 2026: title, 'Cleaning businesses are the fastest responders (26% reply within an hour)', 1,050 home service business owners across the United States, Conjointly, December 2025 all confirmed; every caption names the report and the 1,050 owner survey, YouTube carries the full US qualifier and 'self-reported vendor survey'.",
+  "Gemini plan page fetched live: '$0/ month with a Google Account', 'Access to our Flash-Lite model' backs 'free' and 'the free app uses a lighter model'. 'Gemini says it can make mistakes' backed by the app shot listed in facts.json.",
+  "Rules: line 1 under 100 (82, 73, 88), YouTube title 60 with no hashtags and keyword first; hashtags IG 4, TikTok 4 with an owner question and keyword in first 70, Facebook 2, YouTube description 3; tags 8 with one misspelling; no link in IG or Facebook; YouTube site line is house-cleaning-price-calculator, live in docs/sitemap.xml; no AI voice line; no em or en dashes; AI label TikTok on, rest off; no homeowner or generic tags; no real private person, business or address.",
+  "Video consistency: the transcript and scene say nothing is 'in the caption'. captions_problems returned []; variety PASS."
+ ]
+}

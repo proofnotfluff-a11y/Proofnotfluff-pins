@@ -1,0 +1,37 @@
+{
+ "job": "2026-11-01-ravines-listing-qc",
+ "model": "k3.1-pro",
+ "at": "2026-11-01T16:56:09+00:00",
+ "status": "ok",
+ "kind": "second-opinion",
+ "slug": null,
+ "sources": [],
+ "prompt_chars": 13540,
+ "usage": {
+  "input_tokens": 3463,
+  "cache_read_input_tokens": 0,
+  "output_tokens": 6885
+ },
+ "result": {
+  "agree": [
+   "Facts: Sleeping arrangements, seasonal kayaks, wifi speed, EV charger, supplies, cameras and the 15-minute downtown drive are supported.",
+   "Rules: The summary is 438 characters. There are no links, contact details or book-direct offers. “No pets, no smoking or vaping, no parties or events” is clear and sourced.",
+   "Search fit: Riverfront A-frame, sleeps 12, five king bedrooms, private dock, family equipment, workspace, games and gym are easy to find."
+  ],
+  "disagree": [
+   "Deck wording: “on the deck over the river” says the deck is above the water. The source says it overlooks the river; use “on the deck overlooking the river.”",
+   "Outlandia wording: “a small collection of architect-designed homes in southern Wisconsin” is unsupported. The live listing only uses “Outlandia's Rock River Retreat”; delete the claim or verify every part with the host.",
+   "Fishing wording: “fishing from the dock” is more specific than the source, which supports fishing on the Rock River. Use “Summer paddling from the dock and fishing on the Rock River.”"
+  ],
+  "missing": [
+   "Search facts: “Entire cabin,” “Beloit, Wisconsin,” newly built, air conditioning, central heating, fire pit and long-term stays allowed were dropped. Several are useful search terms or differentiators.",
+   "Guest policies: No early check-ins and locking the front door at checkout by pressing the Yale icon were dropped; both prevent avoidable guest problems.",
+   "Drive-time check: The live listing variously says downtown Beloit is about 10 and 15 minutes away. Verify the correct time rather than adding another number."
+  ],
+  "top_three": [
+   "Old: “The Ravines is part of Outlandia, a small collection of architect-designed homes in southern Wisconsin.” New: “” (delete).",
+   "Old: “on the deck over the river” New: “on the deck overlooking the river” in both the summary and space.",
+   "Old: “Crib, high chair and kids' toys on hand.” New: “Crib, high chair and kids' toys on hand. Air conditioning and central heating are included.” This keeps the summary below 500 characters, at 489."
+  ]
+ }
+}

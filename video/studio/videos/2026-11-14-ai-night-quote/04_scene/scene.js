@@ -229,7 +229,7 @@ window.SCENE = {
       const n = k.data.numbers, t0 = k.S('guess'), tStake = k.S('guess.stake');
       if (T >= tStake) {
         const tTwenty = wordT(k, 'guess.stake', /^twenty/i, 1.0);
-        k.sets.gauge({value: n.hourPct.value, max: 100, at: tTwenty - 0.25, dur: 1.0, zones: [[0, 40, RED], [40, 70, ORANGE], [70, 100, TEAL]], label: `CLEANING: REPLY IN ${n.hours.shown} HOUR`, suffix: '%', readout: false, labels: false});
+        mute(k, (s2) => String(s2) === '0', () => k.sets.gauge({value: n.hourPct.value, max: 100, at: tTwenty - 0.25, dur: 1.0, zones: [[0, 40, RED], [40, 70, ORANGE], [70, 100, TEAL]], label: `CLEANING: REPLY IN ${n.hours.shown} HOUR`, suffix: '%', readout: false, labels: false}));
         if (T >= tTwenty - 0.25) chipText(k, n.hourPct.shown, 540, 640 + (T >= tTwenty + 1.2 ? bob2(T, tTwenty + 1.2) / 2 : 0), {size: 198, color: ORANGE, align: 'center', drop: INK});
         tag(k, 'Source: Jobber, 2026 Home Service Trends', 540, 908 + (T >= tTwenty + 1.2 ? bob2(T, tTwenty + 1.2) / 2 : 0), {align: 'center'});
         tag(k, `Report, ${n.owners.shown} owners, Dec ${n.year.shown}`, 540, 958, {align: 'center'});

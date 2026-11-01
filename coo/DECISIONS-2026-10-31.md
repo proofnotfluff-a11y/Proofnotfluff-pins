@@ -37,3 +37,7 @@
 - [stated] 8:18 pm: "Keep it at 4 and produce 4 - build a pipeline buffer of 2 videos"
 - Applied to the cloud task "PNF video studio: record and make": runs at 1:33 and 4:33 am added (6 a day, night runs make only); target 3 waiting (the next slot plus 2); one lesson a run, a second if the first queues within 75 minutes; unqueued lessons first, then IDEAS "Owed first"; a lesson with a commit in the last 90 minutes is left to the run working on it; the end message reports waiting and credits left.
 - Limit found: ElevenLabs credits 27,429 of 40,000 used, 12,571 left until Nov 15 (2:35 pm). A lesson uses about 900 to 1,500 with re-rolls, so about 8 to 14 lessons: 2 to 3 days at 4 a day. 4 a day for a month needs roughly 110,000 to 150,000. ElevenLabs lists Creator at $22 a month (121,000 credits, first month $11) and Pro at $99 (600,000). Buying waits on Todd (CONSTITUTION 1).
+
+## Voice plan (live chat, 8:51 pm)
+- [stated] 8:51 pm: "upgraded to creator because pro is $99/mo - way over budget" (ElevenLabs Creator, $22 a month, 121,000 credits a month).
+- Budget: 4 lessons a day x 30 = 120 a month, so about 1,000 credits a lesson including re-rolls (today's two used about 1,400 each). Applied: script gates (buyer and facts on the script) before any voice (stages/01_voice/CONTEXT.md step 3); one re-roll at most per take; 150 to 159 wpm is a note, not a re-roll (stages/02_transcript/CONTEXT.md); the record-and-make runs keep to about 4,000 credits a day and report credits left.

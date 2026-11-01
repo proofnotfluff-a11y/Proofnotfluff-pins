@@ -7,7 +7,9 @@
 2. The words are re-spelled from `script.md` (Whisper's spelling of a name or a number never wins), and every place
    the two disagree is flagged: a word the voice dropped, a word it added.
 3. Pace per take in words a minute, against `_shared/voice.md`: under 150 gets "rewrite as talk", over 200 gets
-   "give it a landing beat"; both re-roll that take.
+   "give it a landing beat"; both re-roll that take, once. 150 to 159 is a note, not a re-roll (credits, Oct 31).
+   A Whisper mishearing of a word the voice said right (a homophone) is fixed by a plainer word only if the take is
+   re-rolled for another reason; otherwise listen and re-roll once at most.
 4. Lip sync: `python3 video/studio/anim.py mouth <slug>` writes `02_transcript/mouth.js`, a mouth shape for every
    frame from the voice's loudness (stills, lint and render make it themselves when the voice is here). Commit it with
    the words; it is one of the fingerprints the gates pin.

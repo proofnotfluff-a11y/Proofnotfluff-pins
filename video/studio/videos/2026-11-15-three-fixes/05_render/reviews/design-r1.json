@@ -1,0 +1,36 @@
+{
+  "gate": "design",
+  "round": 1,
+  "reviewer": "claude opus (fresh agent)",
+  "bar": "4.61",
+  "bar_note": "One design FAIL so far (round 0), so the two-fail bar does not apply: no score under 4 and average 4.61 or more.",
+  "pass": false,
+  "score": {
+    "first": 5,
+    "hierarchy": 5,
+    "type": 4,
+    "color": 5,
+    "spacing": 4,
+    "polish": 4,
+    "trust": 5,
+    "average": 4.57
+  },
+  "reasons": [
+    "Host from 2.5 s to 29.2 s: still hostScale 0.55, Snow about 270 px tall (y 980 to 1250) against the style board target of 360 px. Round 0 asked for this and it did not land. Raise hostScale to about 0.75 in the blueprint (8.0 to 18.5 s) and item shop (21.0 to 29.2 s) scenes, keep his feet on y 1250 and his point aimed at the price row he is talking about. Spacing held at 4 for this.",
+    "24.4 to 24.6 s item shop card: a brown block wipe sweeps across the save card mid sentence (so they know you'll call back) while the room does not change, so it reads as a glitch on the card viewers save. Drop the section transition between text.card and button, since the card stays; keep only the in-room beats (the underline sweep and the line that lands at 26.0 s). Polish held at 4 for this.",
+    "19.0 to 21.0 s blueprint, $15/mo paid yearly tag under $19/mo: the tops of the letters are clipped by the $19/mo price block above it (the tag sits too high). Move the tag down so its box starts below the price baseline, with 2 low-res px of clear space, the same fix the COPY THESE WORDS tab got. Type held at 4 for this.",
+    "5.0 to 6.5 s leaderboard: the rows still stop at y 640 and y 650 to 940 is empty for 1.5 s until IT BOOKS? lands at 6.5 s. Show a blinking INSERT COIN or 3 ENTRIES line there from 5.0 s, then swap it for IT BOOKS? on the word books.",
+    "21.5 to 26.0 s item shop card: the band from y 800 to y 860 inside the card is empty until Call back inside the hour lands. Tighten the card bottom by that gap until 26.0 s, or let the line land on the first word of the text.card section."
+  ],
+  "landed_from_round_0": [
+    "0.75 s and 2.5 s: blinds open into the dash and back to the counter (no plain cut).",
+    "1.0 to 2.4 s: three missed-call rows fill the phone and $2,800 sits inside the phone width.",
+    "21.0 s: blinds and a menu drop with overshoot and settle bring in the item shop card.",
+    "COPY THESE WORDS tab: letters whole.",
+    "5.0 s: PERSON spelled in full; IT BOOKS? fills the table from 6.5 s.",
+    "8.0 s and 12.5 s: the label and price land with the section's first word.",
+    "28.4 s: the verdict is now an IF YOU CALL BACK stamp on the TEXT row with the kit stamp and a 0.5 trauma kick on button.win; accepted as the verdict kick."
+  ],
+  "freshness": "Sets differ from 2026-11-13-count-before-ai and 2026-11-14-ai-night-quote: storefront counter, truck dash, arcade leaderboard, blueprint grid and item shop menu are new. No freshness cap.",
+  "caps_checked": "Picture changes by 0.75 s, host on screen by 2.5 s (no first cap). Spoken words about 66 px, labels at or above 36 px (no type floor cap; type held at 4 for the clipped tag). End card with proofnotfluff.com from 29.2 s (no end card cap). qa.json flat passes. C3 item shop card readable and held about 8 s (no hierarchy cap). M4: room changes travel (blinds, dither wipe), entrances overshoot and settle, verdict has a kick (no M4 cap)."
+}

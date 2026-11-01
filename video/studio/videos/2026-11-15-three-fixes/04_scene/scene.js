@@ -50,7 +50,7 @@ const wordT = (k, id, re, dflt = 0) => {
   return w ? w.start : t0 + dflt;
 };
 const bob2 = (T, t0) => (T - t0 < 0.3 ? 0 : [0, 6, 0, -6][Math.floor((T - t0 - 0.3) / 0.15) % 4]);
-const host = (k, pose) => ({hostPose: pose || (k.talking() ? 'talk' : 'stand'), hostScale: 0.55, hostX: 150});
+const host = (k, pose, big) => ({hostPose: pose || (k.talking() ? 'talk' : 'stand'), hostScale: big ? 0.72 : 0.55, hostX: big ? 132 : 150});
 const plate = (d, x, y, w, h) => d.win(x, y, w, h, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
 /* a rubber stamp in a dark box with a coloured rim, landed with the kit's hit-stop */
 const stampBox = (k, s, cx, y, t0, o = {}) => {
@@ -106,9 +106,9 @@ const desk = (k) => {
 /* the page shot in a phone frame (left) with its address under it */
 const pagePhone = (k, d, name, addr, scroll, t0) => {
   const sl = d.ease(t0, 6, -40);
-  const s = bigPhone(k, d, 10 + sl, 96, 132, 196, {screen: '#FFFFFF'});
+  const s = bigPhone(k, d, 10 + sl, 110, 132, 182, {screen: '#FFFFFF'});
   k.page(s.x * 3, s.y * 3, s.w * 3, s.h * 3, name, {scroll});
-  tag(k, addr, (12 + sl) * 3, 298 * 3, {color: SAND});
+  tag(k, addr, (12 + sl) * 3, 93 * 3, {color: SAND});
   return s;
 };
 /* the right-hand column (x 150 to 314): each line slides in on its own word */
@@ -153,8 +153,8 @@ window.SCENE = {
   host_name: 'Snow',
   hud: 'CALL FIXES',
   sendLine: "Send this to whoever answers your phone when you can't.",
-  transitions: {guess: 'dissolve', person: 'levelselect', ai: 'dissolve', text: 'dissolve'},
-  trauma: {'button.win': 0.5},
+  transitions: {guess: 'dissolve', person: 'levelselect', ai: 'dissolve', text: 'dissolve'},   /* the card stays from text.card to the end: one section, no wipe */
+  trauma: {'text.win': 0.5},
   sections: {
     /* ---- hook: three shots. Cover (frame 0, no host): the counter (the metaphor), three tags, the plate $2,800 a  */
     /* month (EXAMPLE). By 0.8 s blinds open on the dash phone: missed-call rows drop in, $2,800 slams in (EXAMPLE).   */
@@ -197,6 +197,7 @@ window.SCENE = {
       const n = k.data.numbers, t0 = k.S('guess'), tA = wordT(k, 'guess', /^AI/i, 0.8), tB = wordT(k, 'guess', /^books/i, 1.4);
       mute(k, (x) => String(x) === 'SCORE', () => k.sets.scores({title: 'YOUR PICK', t0: t0 - 0.3, gap: 0.2, count: 0.5, rows: [{name: 'TEXT', value: n.text.value, prefix: '$', suffix: '/mo', rank: '?'}, {name: 'PERSON', value: n.person.value, prefix: '$', suffix: '/mo', rank: '?'}, {name: 'AI', value: n.ai.value, prefix: '$', suffix: '/mo', rank: '?', hi: tA - 0.25 <= T}]}));
       k.text('PRICE', 306 * 3, 126 * 3, {size: 39, color: TEAL, align: 'right'});
+      if (T < tB - 0.25 && Math.floor(T * 2) % 2 === 0) k.text('INSERT COIN', CX, 240 * 3, {size: 66, color: SAND, align: 'center'});
       if (T >= tB - 0.25) k.slam('IT BOOKS?', CX, 236 * 3, tB - 0.25, {size: 132, color: Math.floor((T - tB) * 4) % 2 ? RED : GOLD, align: 'center', from: 0.5, drop: INK, glint: false});
       return host(k, 'point');
     },
@@ -204,9 +205,9 @@ window.SCENE = {
     /* ---- person: PATLive's own page in the phone, its address; "$49/mo" and "+ $2.99/min" land on the words; a     */
     /* meter rolls 0 to 100 minutes and the bill to $348 (EXAMPLE, 100 minutes).                                        */
     person: (k, T) => {
-      const n = k.data.numbers, t0 = k.S('person'), tF = wordT(k, 'person', /^forty/i, 0.6), tP = wordT(k, 'person', /^plus/i, 1.6), tMin = wordT(k, 'person', /^minute/i, 3.2);
+      const n = k.data.numbers, t0 = k.S('person'), tF = wordT(k, 'person', /^forty/i, 0.6), tP = wordT(k, 'person', /^plus/i, 1.6), tMin = wordT(k, 'person', /^ninety/i, 2.8) - 0.2;
       const d = desk(k);
-      pagePhone(k, d, 'patlive', 'patlive.com/pricing, Nov 1', 0, t0);
+      pagePhone(k, d, 'patlive', 'patlive.com/pricing', 0, t0);
       k.text('A PERSON', RX * 3, 98 * 3, {size: 39, color: ORANGE});
       priceLines(k, d, [{s: `${n.person.shown}/mo`, y: 112, at: Math.min(tF, t0 + 0.35), size: 99, c: GOLD}, {s: `+${n.permin.shown}/min`, y: 152, at: tP}]);
       if (T >= tMin - 0.1) {
@@ -216,7 +217,7 @@ window.SCENE = {
         k.text(p >= 1 ? `${n.ptotal.shown}/mo` : `$${bill.toFixed(0)}`, (RX + 78) * 3, 222 * 3, {size: 99, color: p >= 1 ? RED : GOLD, align: 'center'});
         tag(k, 'EXAMPLE USE', (RX + 78) * 3, 280 * 3, {align: 'center', color: ORANGE});
       }
-      return host(k, T >= tP ? 'lean' : null);
+      return host(k, T >= tP ? 'lean' : null, true);
     },
 
     /* ---- ai: Rosie's own page in the phone with its address; "$49/mo" and "250 min" land; on "only" SENDS A LINK   */
@@ -224,7 +225,7 @@ window.SCENE = {
     ai: (k, T) => {
       const n = k.data.numbers, t0 = k.S('ai'), tF = wordT(k, 'ai', /^forty/i, 0.5), tM = wordT(k, 'ai', /^hundred|^two/i, 1.6), tO = wordT(k, 'ai', /^only/i, 3.6);
       const d = desk(k);
-      pagePhone(k, d, 'rosie', 'heyrosie.com/pricing, Nov 1', 230, t0);
+      pagePhone(k, d, 'rosie', 'heyrosie.com/pricing', 230, t0);
       k.text('AN AI', RX * 3, 98 * 3, {size: 39, color: '#C9A7F0'});
       priceLines(k, d, [{s: `${n.ai.shown}/mo`, y: 112, at: Math.min(tF, t0 + 0.35), size: 99, c: GOLD}, {s: `${n.aimin.shown} min`, y: 152, at: tM}]);
       if (T >= tO - 0.25) {
@@ -232,39 +233,35 @@ window.SCENE = {
         tag(k, 'This plan. Booking', (RX + 80) * 3, 236 * 3, {align: 'center'});
         tag(k, `is on its ${n.aibook.shown} plan.`, (RX + 80) * 3, 254 * 3, {align: 'center'});
       }
-      return host(k, T >= tO ? 'shrug' : null);
+      return host(k, T >= tO ? 'shrug' : null, true);
     },
 
     /* ---- text: Quo's own page in the phone (its yearly view) with its address; "$19/mo" lands, "$15 paid yearly"   */
     /* under it; a missed call buzzes and our example auto-reply pops back. On "It answers" the ITEM SHOP card.         */
     text: (k, T) => {
       const n = k.data.numbers, t0 = k.S('text'), tN = wordT(k, 'text', /^nineteen/i, 1.2), tCard = k.S('text.card');
-      if (T >= tCard - 0.25) { shopCard(k, tCard - 0.25); blinds(k, tCard - 0.25); return host(k, 'point'); }
+      if (T >= tCard - 0.25) {
+        const tW = wordT(k, 'text.win', /^worth/i, 0.6), c = shopCard(k, tCard - 0.25, {best: tW - 0.25});
+        if (T >= tCard + 0.35) k.slam('Call back inside the hour.', 918, (c.by + c.bh + 6) * 3, tCard + 0.35, {size: 66, color: GOLD, align: 'right', from: 0.4, drop: INK, glint: false});
+        if (T >= tW - 0.25) stampBox(k, 'IF YOU CALL BACK', 520, (c.Y + 6) * 3, tW - 0.25, {color: TEAL, size: 39});
+        blinds(k, tCard - 0.25);
+        return host(k, T >= tW + 0.8 ? 'wave' : 'point');
+      }
       const d = desk(k), {P} = d;
-      pagePhone(k, d, 'quo', 'quo.com/pricing, Nov 1', 190, t0);
+      pagePhone(k, d, 'quo', 'quo.com/pricing', 190, t0);
       k.text('MISSED-CALL TEXT', RX * 3, 98 * 3, {size: 39, color: TEAL});
       priceLines(k, d, [{s: `${n.text.shown}/mo`, y: 112, at: Math.min(tN, t0 + 0.35), size: 99, c: GOLD}]);
-      if (T >= t0 + 0.2) { tag(k, `${n.textyr.shown}/mo paid yearly`, RX * 3, 150 * 3, {color: SAND}); tag(k, '+ carrier fees', RX * 3, 162 * 3, {color: SAND}); }
+      if (T >= t0 + 0.2) { tag(k, `${n.textyr.shown}/mo paid yearly`, RX * 3, 154 * 3, {color: SAND}); tag(k, '+ carrier fees', RX * 3, 168 * 3, {color: SAND}); }
       const tBz = t0 + 0.3;
       if (T >= tBz) {
         const sh = T < tBz + 0.4 ? (Math.floor(T * 30) % 2 ? 2 : -2) : 0;
-        d.win(RX - 2 + sh, 176, 162, 28, {base: '#2B2033', hi: '#3D2E45', lo: INK, rule: RED});
-        k.text('MISSED CALL', (RX + 79 + sh) * 3, 184 * 3, {size: 39, color: RED, align: 'center'});
-        if (T >= tBz + 0.5) { const sl = d.ease(tBz + 0.5, 5, 20); P(RX, 208 + sl, 160, 56, CREAM); P(RX, 208 + sl, 160, 1, '#FFFFFF');
-          ['Sorry I missed you,', "I'm on a job..."].forEach((l, i) => k.text(l, (RX + 6) * 3, (214 + sl + i * 18) * 3, {size: 39, color: INK}));
-          tag(k, 'AUTO-REPLY, EXAMPLE', (RX + 80) * 3, 276 * 3, {align: 'center', color: ORANGE}); }
+        d.win(RX - 2 + sh, 184, 162, 28, {base: '#2B2033', hi: '#3D2E45', lo: INK, rule: RED});
+        k.text('MISSED CALL', (RX + 79 + sh) * 3, 192 * 3, {size: 39, color: RED, align: 'center'});
+        if (T >= tBz + 0.5) { const sl = d.ease(tBz + 0.5, 5, 20); P(RX, 218 + sl, 160, 50, CREAM); P(RX, 218 + sl, 160, 1, '#FFFFFF');
+          ['Sorry I missed you,', "I'm on a job..."].forEach((l, i) => k.text(l, (RX + 6) * 3, (223 + sl + i * 18) * 3, {size: 39, color: INK}));
+          tag(k, 'AUTO-REPLY, EXAMPLE', (RX + 80) * 3, 276 * 3 + 6, {align: 'center', color: ORANGE}); }
       }
-      return host(k, T >= tN ? 'lean' : null);
-    },
-
-    /* ---- button: the card stays; "Call back inside the hour." lands under the box; IF YOU CALL BACK stamps on the TEXT row (the rule, not a pick)   */
-    /* on "worth" (a game moment).                                                                   */
-    button: (k, T) => {
-      const tCard = k.S('text.card'), tW = wordT(k, 'button', /^worth/i, 3.6), tH = wordT(k, 'button', /^hour/i, 1.2);
-      const c = shopCard(k, tCard - 0.25, {best: tW - 0.25});
-      if (T >= tH - 0.25) k.slam('Call back inside the hour.', CX, (c.by + c.bh + 6) * 3, tH - 0.25, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false});
-      if (T >= tW - 0.25) stampBox(k, 'IF YOU CALL BACK', 520, (c.Y + 6) * 3, tW - 0.25, {color: TEAL, size: 39});
-      return host(k, T >= tW + 0.8 ? 'wave' : 'point');
+      return host(k, T >= tN ? 'lean' : null, true);
     },
   },
 };

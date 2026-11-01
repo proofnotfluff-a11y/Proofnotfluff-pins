@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-15-three-fixes",
- "mp4Sha256": "1eb27b92f9cd8b3de6111d950c9fa90048d10d80330efaab6a32aebf11850376",
+ "mp4Sha256": "6634f7a61742d7d675294fda1fffc288326ce8e575bdff6f8622943ab4451e07",
  "checks": [
   {
    "name": "length",
@@ -44,8 +44,8 @@
   {
    "name": "file",
    "value": {
-    "sha256": "1eb27b92f9cd8b3de6111d950c9fa90048d10d80330efaab6a32aebf11850376",
-    "bytes": 3823278
+    "sha256": "6634f7a61742d7d675294fda1fffc288326ce8e575bdff6f8622943ab4451e07",
+    "bytes": 3831410
    },
    "pass": true,
    "detail": "H.264 1080x1920 30 fps, AAC, 3.8 MB, decodes clean"
@@ -58,5 +58,5 @@
   }
  ],
  "pass": true,
- "at": "2026-11-01T15:04:16-05:00"
+ "at": "2026-11-01T15:16:35-05:00"
 }

@@ -1,0 +1,17 @@
+{
+  "gate": "render-critic",
+  "round": 2,
+  "reviewer": "claude opus (fresh agent)",
+  "pass": true,
+  "score": {"faults": 0},
+  "faults": [],
+  "reasons": [
+    "Round 0 fault re-checked: the COPY THESE WORDS tag in the item shop scene (f12 at 21.79 s, f14 at 28.39 s, timeline 21.5 to 29.0 s) shows full letters inside a gold tag that is tall enough, matching the EXAMPLE tag. Still fixed.",
+    "Round 1 fault re-checked: in the missed-call text scene (f11 at 19.25 s, an extracted frame at 20.3 s, timeline 19.0 to 20.5 s) $15/mo paid yearly and + carrier fees now sit on two separate plates under $19/mo (about y 455 to 545), clear of the digits above and of the MISSED CALL plate below (y 555 to 640). Both lines read in full. Fixed.",
+    "1 Hook: $2,800 a month. is on the shop plate from frame 0 (y about 470 to 560, with MISSED CALLS, EXAMPLE SHOP under it), and the dash phone shows $2,800 A MONTH LOST, EXAMPLE SHOP at 1.0 to 2.0 s while twenty-eight hundred is said (1.42 to 2.24 s). Pass.",
+    "2 Numbers: forty-nine (9.21 s) shows as $49/mo from 8.0 s; two ninety-nine a minute (10.37 s) as +$2.99/min from 10.0 s; forty-nine and two hundred fifty minutes (13.63 s, 14.61 s) as $49/mo and 250 min by 13.0 and 14.5 s; nineteen (19.89 s) as $19/mo from 19.0 s; nineteen dollar (27.29 s) as $19/mo on the TEXT row of the shop panel. All readable at about the moment said.",
+    "3 Layout: settled frames keep content between y 270 and y 1250 and words left of about x 920 (hook plate, MISSED CALL plate and shop panel borders reach about x 945 but carry no words). The host stands in front of scenery only. The partial OPEN sign behind the hook plate is scenery. IF YOU CALL BACK at 28.5 s sits between TEXT and $19/mo and hides nothing. The SENDS A LINK plate and the $149 note (16.5 to 18.0 s) and the 100 MIN $348/mo box with EXAMPLE USE (10.0 to 12.0 s) overlap nothing. Frames at 0.8 s, 2.5 s, 5.0 s, 18.5 s and 21.0 s are mid-transition and were not judged.",
+    "4 Audio end: last word it. ends at 29.11 s; video and audio streams both run 32.2 s, holding on the end card, so voice ends before the video and nothing is cut mid word. Pass.",
+    "5 Small text and flash: designed text is about 30 px tall or larger at 1080 wide (source captions, EXAMPLE USE, AUTO-REPLY, EXAMPLE, the item shop tags); the fine print inside the pricing screenshots is scenery. Transitions at about 1.0, 2.5, 5.0, 8.0, 12.5, 18.5, 21.0 and 29.5 s are single wipes, never more than 3 flashes a second. Pass."
+  ]
+}

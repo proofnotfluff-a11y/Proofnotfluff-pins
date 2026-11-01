@@ -1,0 +1,22 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "reviewer": "claude opus (fresh agent)",
+ "pass": true,
+ "score": {"numbers": 14, "mismatches": 0},
+ "reasons": [
+  "Advisory, no fix needed: the address tags now show only 'quo.com/pricing', 'patlive.com/pricing', 'heyrosie.com/pricing' with no date. The lane asks for the address on screen, which holds; each shot is page-1 to page-3.png from demos/out/2026-11-15-three-fixes-1/ (pages.json, Nov 1, 2026), and the read date lives in facts.json and the brief.",
+  "Advisory, no fix needed: 'INSERT COIN' in the guess scene blinks before 'IT BOOKS?' and is an arcade prop, not a claim or a number. The YOUR PICK rows count up through partial values ($35/mo, $44/mo at about 5.0 s) for a few frames and settle on $19, $49, $49; not a claim.",
+  "Advisory, no fix needed: the save card and the rule are now one section. Card rows '$19/mo', '$49+$2.99/min', '$49, 250 min' match data.js; 'COPY THESE WORDS' with 'EXAMPLE' carries EXTEXT word for word as the brief's example text; 'Call back inside the hour.' and the 'IF YOU CALL BACK' stamp on 'worth' keep the $19 text conditional on the callback, matching the voice rule.",
+  "Advisory, no fix needed: the PATLive meter passes 93 MIN $327 (49 + 93 x 2.99 = 327.07) and lands on 100 MIN $348/mo (49 + 299 = 348, checked) with 'EXAMPLE USE'. PATLive's page-2.png has a cookie banner over its prices, so the live page is the source: confirmed today.",
+  "Advisory, no fix needed: hook clock times (9:12 AM, 11:40 AM, 2:05 PM) and 'Call not answered' are story props under '$2,800' with 'A MONTH LOST, EXAMPLE SHOP'; the counter plate carries 'MISSED CALLS, EXAMPLE SHOP' and '$2,800 A MONTH, EXAMPLE'. The auto-reply on the Quo screen carries 'AUTO-REPLY, EXAMPLE'. None reads as data."
+ ],
+ "sources_checked": [
+  "https://www.quo.com/pricing: Starter $19 per user a month, $15 billed annually at $180; auto-replies 'Automatically respond to texts, missed calls, or voicemails with pre-defined messages' checked on Starter, Business and Scale; carrier fees $19.50 one-time and $1.50 to $3 a month. Matches '$19/mo', '$15/mo paid yearly', '+ carrier fees', voice 'nineteen a month. It answers right away'.",
+  "https://www.patlive.com/pricing/: Pay as you go 'Monthly $49', 'No included minutes', 'Additional min $2.99', 'Plus government taxes and fees', 'PATLive does not use AI to answer calls'. Matches 'A PERSON', '$49/mo', '+$2.99/min', card row and voice 'forty-nine a month plus two ninety-nine a minute'.",
+  "https://heyrosie.com/pricing: Professional $49 a month, 250 minutes, 'Send appointment links by text'; 'Book appointments directly on your calendar' on Scale $149 (and Growth $299). Matches '$49/mo', '250 min', 'SENDS A LINK', 'This plan. Booking is on its $149 plan.' and voice 'it only texts a booking link'.",
+  "https://www.contractormag.com/management/best-practices/article/55412284/the-missed-call-math-most-contractors-never-run: Oct 15, 2026, Keith Carpenter; 'an answering service or an AI receptionist' for after hours and 'Any call that does miss should get a text within one minute.' Trade press; used only as the sign owners ask. Lesson evidence is the trade vendors' own pages: trades first holds.",
+  "video/studio/demos/out/2026-11-15-three-fixes-1/pages.json: pages 1 to 3 (quo, patlive, rosie) shot Nov 1, 2026, each drawn in the phone frame with its address. No AI reply is shown or read, so no run.json check applies.",
+  "Ours, labeled: $2,800 (4 x $350 x 2, the count-before-ai example), $348 for 100 minutes, the auto-reply wording and clock times. data.js equals facts.json for all 13 keys; voice numbers (twenty-eight hundred, forty-nine, two ninety-nine, two hundred fifty, nineteen) match. Rendered frames (timeline-1 to 3, f11 to f13) show the same strings. No real private person, business or address; no em or en dashes in scene.js, script.md, brief.md, transcript.md, facts.json, data.js or cues.md."
+ ]
+}

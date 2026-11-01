@@ -1,0 +1,17 @@
+{
+ "gate": "golden",
+ "round": 2,
+ "reviewer": "claude opus (fresh agent)",
+ "pass": true,
+ "score": {"post_as_is": "yes"},
+ "reasons": [
+  "1. r1 must-fix 1 RESOLVED, 19.0 to 21.0 s (sheet f11 at 19.25 s, MP4 frame at 20.2 s, timeline 19.0 to 20.5 s): '$15/mo paid yearly' now sits on its own dark tag under $19/mo with its top fully visible, and '+ carrier fees' on the line below. The $15 reads clean. Polish only: in the pixel font the descenders of the 'p' in 'paid' and the first 'y' in 'yearly' are clipped by the tag's bottom edge, so enlarged it can read 'oaid vearly'. At phone size the line reads, and the number is intact; give the tag 2 to 4 px more bottom padding next time.",
+  "2. r0 must-fix 1 still RESOLVED, 1.0 to 2.4 s: no invented missed-call count. The phone shows three 'No answer' rows with times and $2,800 'A MONTH LOST, EXAMPLE SHOP', from facts.json example.monthValue.",
+  "3. r0 must-fix 2 still RESOLVED, 1.0 to 2.4 s: the phone screen is full (notification, missed-call rows, $2,800 and its tag).",
+  "4. r0 must-fix 3 RESOLVED, and r1 polish 4 now done, 11.0 to 12.4 s: the meter lands on 100 MIN, $348/mo, EXAMPLE USE by about 11.0 s and holds about 1.3 s before the cut to the AI at about 12.45 s. Matches facts person.exampleTotal (100 x $2.99 + $49).",
+  "5. r0 must-fix 4 still RESOLVED, 28.4 to 29.2 s: the stamp says 'IF YOU CALL BACK' on the TEXT row, tied to the voiced rule, no pick and no retailer name. Polish still open: the stamp is small and lands in the last second before the end card.",
+  "6. polish, still open, 8.0 to 29.2 s: the bottom third of the desk and card scenes is empty dark floor; the prices and the COPY THESE WORDS card could scale up into it for phones. Not a blocker: the card text is readable (checked at 28.8 s).",
+  "7. polish, still open, 5.1 to 12.5 s: transcript.md flags takes 02 (134 wpm) and 03 (148 wpm) as slow while qa.json voice shows 0 flags. 'You'd guess the AI. It books.' drags slightly, but it still sounds like a person; doubtful PASS on pace, not a FAIL.",
+  "8. noted, no change: what it says is clear and the screen matches the voice and facts.json ($2,800 example, person $49 plus $2.99 a minute, AI $49 for 250 minutes that only texts a booking link with booking on its $149 plan, text $19 with $15 yearly and carrier fees, and the rule: call back inside the hour). No contradictions. Every qa.json check passes (32.2 s, -14.1 LUFS, no black or flat stretches; the frozen 30.4 to 32.2 s is the end card). The hook ($2,800 a month, then the missed calls on the dash phone) earns the stop, the copy-these-words card is a reason to save, and the end card gives a reason to send. I would post it as it is."
+ ]
+}

@@ -78,7 +78,7 @@
    "text": "Quo's own pricing page (shot Nov 1) in the phone frame with its address; \"$19/mo\" lands, with \"$15 paid yearly\" under it with + carrier fees. A missed call buzzes and our example text pops back at once.",
    "t": 18.652,
    "word": 47,
-   "end": 24.614
+   "end": 32.214
   },
   {
    "id": "text.card",
@@ -93,8 +93,8 @@
    "end": 24.614
   },
   {
-   "id": "button",
-   "level": 0,
+   "id": "text.rule",
+   "level": 1,
    "quote": "Call missed calls back",
    "sfx": "whoosh",
    "shift": 0.0,
@@ -102,10 +102,10 @@
    "text": "The card stays; \"Call back inside the hour.\" lands under it.",
    "t": 24.614,
    "word": 64,
-   "end": 32.214
+   "end": 27.794
   },
   {
-   "id": "button.win",
+   "id": "text.win",
    "level": 1,
    "quote": "text is worth it",
    "sfx": "sting",

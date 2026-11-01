@@ -1,0 +1,15 @@
+{
+ "gate": "facts-captions",
+ "round": 1,
+ "reviewer": "claude opus (fresh agent)",
+ "pass": true,
+ "score": {"numbers": 10, "mismatches": 0},
+ "reasons": [],
+ "notes": [
+  "Round 0 problem 1 fixed: facebook line 1 is now 'For plumbing and HVAC business owners who miss calls on the job: three fixes and what each costs.' (97 characters, under 100; round 0 gave 85, which was a miscount), naming the trades with the trade phrase; hashtags #homeservicebusiness #contractorbusiness (2, within 2 to 3).",
+  "Round 0 problem 2 fixed: instagram hashtags are now '#homeservicebusiness #plumbingbusiness #hvacbusiness #missedcalls' (1 umbrella, 2 trade business, 1 topic, 4 total).",
+  "Prices checked again by WebFetch on Nov 1, 2026: Quo Starter $19 per user a month billed monthly, $15 billed annually ($180), carrier fees $19.50 one-time and $1.50 to $3 a month, auto-replies to missed calls on all plans; PATLive Pay as you go $49 a month, no included minutes, $2.99 a minute, plus government taxes and fees; Rosie Professional $49 a month, 250 minutes, 'Send appointment links by text', calendar booking on Scale $149 and Growth $299. Every platform text matches, and none promises that a vendor works.",
+  "$2,800 a month matches 2026-11-13-count-before-ai facts.json monthValue 2800 (partNo 1), labeled our example shop in Instagram and YouTube; Part 2 of 2 matches example.partNo and series. No number outside facts.json.",
+  "The voice never says anything is in the caption; captions agree with the voice (the AI only texts a booking link; the text answers right away; call back inside the hour). No AI voice line, no em or en dashes, no link in Instagram, TikTok or Facebook, no private person, business address or homeowner or generic tag. TikTok line 1 is 76 characters with the keyword in the first 70 and an owner question; 4 hashtags, AI label on. Instagram line 1 82 characters. YouTube title 71 characters, no hashtags, keyword early; description has sources, numbered steps, part line, site line https://proofnotfluff.com/missed-call-cost-calculator/ (in docs/sitemap.xml), 3 hashtags; 9 tags with one misspelling."
+ ]
+}

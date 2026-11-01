@@ -1,0 +1,31 @@
+{
+  "gate": "design",
+  "round": 2,
+  "reviewer": "claude opus (fresh agent)",
+  "bar": "4.50",
+  "bar_note": "Two design FAILs on this lesson (round 0 at 4.43, round 1 at 4.57), so the lowered bar applies: average 4.50 or more and no score under 4 (Todd, Oct 31, 2026, 4:19 pm).",
+  "pass": true,
+  "score": {
+    "first": 5,
+    "hierarchy": 5,
+    "type": 5,
+    "color": 5,
+    "spacing": 4,
+    "polish": 5,
+    "trust": 5,
+    "average": 4.86
+  },
+  "reasons": [
+    "21.0 to 29.2 s item shop card, host: Snow is still hostScale 0.55, about 270 px tall (y 980 to 1250), against the style board target of 360 px; the blueprint got the bigger host (0.72, about 350 px) but this scene did not. Shrink the card's bottom padding under Call back inside the hour by about 30 px and raise hostScale to 0.72 here too, feet on y 1250, arm pointed at the TEXT row. Spacing held at 4 for this.",
+    "12.5 to 16.5 s blueprint AI column: the right half under $49/mo (x 450 to 1020, y 520 to 880) stays empty for about 4 s until SENDS A LINK lands at 16.5 s. Land the 250 min line on the word fifty (about 14.5 s, as now) and bring the SENDS A LINK box in on the AI's first word with its label dimmed, then light it on the word only, so the column is never blank for more than 2 s."
+  ],
+  "landed_from_round_1": [
+    "Host scale: landed in the blueprint (8.0 to 18.5 s, hostScale 0.72, about 350 px); not in the item shop (still 0.55), carried above.",
+    "24.4 s: the block wipe over the save card is gone; text.card to the end is one section with no wipe, only in-room beats.",
+    "19.0 to 21.0 s: the $15/mo paid yearly tag now sits below the $19/mo baseline with letters whole.",
+    "5.0 to 6.5 s: a blinking INSERT COIN fills the empty board from 5.0 s and swaps to IT BOOKS? at 6.5 s.",
+    "21.5 s onward: Call back inside the hour is on the card from the first frames of text.card, so the y 800 to 860 band is no longer empty."
+  ],
+  "freshness": "Sets differ from 2026-11-13-count-before-ai (map, arcade cabinet, AI receptionist screen, calendar) and 2026-11-14-ai-night-quote (night window, phone, timer, split-flap board, work order): this lesson's storefront counter, truck dash phone, arcade leaderboard, blueprint grid and item shop menu are new. No freshness cap.",
+  "caps_checked": "Picture changes by 0.75 s and host on screen by 2.5 s (no first impression cap). Spoken words about 66 px, labels and sources at or above 36 px, no clipped type left (no type cap). End card with proofnotfluff.com from 29.2 s to 32.2 s (no end card cap). qa.json flat passes. C3 item shop card readable at phone size and held about 8 s with a moving underline sweep (no hierarchy cap). M4: room changes travel (blinds, dither wipe at 18.5 s, levelselect), entrances overshoot and settle, the IF YOU CALL BACK stamp on the TEXT row gets a kick at 28.4 s (no polish cap)."
+}

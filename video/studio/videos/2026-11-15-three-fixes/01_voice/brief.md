@@ -1,8 +1,8 @@
 # Brief: Three fixes for missed calls, priced (count-before-ai part 2 of 2; quick-math)
 
 IDEAS.md "Owed first" 1: the side-by-side count-before-ai (posted Oct 31, 7:19 pm) promised. Planned Nov 1, 2026 in the
-scheduled lunch run (cloud). It must stand alone: "Part 2 of 2" is a small tag on screen and a caption line only (part 1
-promised it); the voice never says it.
+scheduled lunch run (cloud). It must stand alone: "Part 2 of 2" is a caption line only (part 1 promised it); the voice and
+the screen never say it.
 
 - **Test:** length: the shortest lesson yet, quick-math at about 30 s with the end card (diagnosis rule 2, the middle,
   fired on 3 lessons in a row at 73 to 89 s; lsa-missed-calls held 36% at 50 s; the 45 s markup-margin held 56% on TikTok)

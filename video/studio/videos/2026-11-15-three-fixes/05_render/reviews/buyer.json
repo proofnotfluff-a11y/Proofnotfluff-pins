@@ -1,0 +1,21 @@
+{
+ "gate": "buyer",
+ "round": 0,
+ "reviewer": "claude opus (fresh agent)",
+ "pass": true,
+ "score": {
+  "stop": "yes",
+  "send": "yes",
+  "save": "yes",
+  "follow_or_link": "yes"
+ },
+ "reasons": [
+  "Viewer: plumbing shop owner, 9 pm. 1. What it says: missed calls cost a shop like mine about $2,800 a month, and of the three fixes (a person, an AI, a missed-call text) the $19 text is worth it as long as I call back inside the hour.",
+  "2. Stop: yes. The first spoken line is a dollar figure on my problem ('Missed calls cost this shop twenty-eight hundred a month') and by 2.0 s the screen shows three 'No answer' rows with times and a big $2,800 'A MONTH LOST, EXAMPLE SHOP'. That is my phone log. The 0.8 s frame is mid-transition (blinds) with only the 'CALL FIXES' bar readable, so the stop rests on the voice for the first second; by 2.0 s the picture carries it.",
+  "3. Send: yes, to my office person or my wife who picks up when I can't; the caption gives the exact text to set up and the prices side by side. Save: yes, the three priced options and the copy-ready text ('Sorry I missed you, I'm on a job. I'll call you back inside the hour. What do you need?') are something I'd come back to when I set it up. Follow or link: yes, it says up front 'one example of each kind, not a pick', reads like someone who checked the pricing pages, and it is part 2 of 2 so I'd want part 1 (the cost calculator).",
+  "4. Hype, urgency, pitch, slop, robotic: no hype, no fake urgency, no product pitch (it says 'not a pick' and tells me to test an AI myself before paying). One choppy spot: 'You'd guess the AI. It books.' The short 'It books.' can land as the narrator's own claim, then 'it only texts a booking link' sounds like a contradiction instead of a myth being busted. Fix (minor, not a fail): 'You'd guess the AI, because you think it books.'",
+  "5. Unclear to a stranger: 'forty-nine a month plus two ninety-nine a minute' can be heard as $299 a minute for a second; the caption clears it ($2.99), and an on-screen '$2.99/min' while it is said would remove the doubt. The product names (Quo, PATLive, Rosie) are only in the caption, which is fine for the voice. Otherwise clear.",
+  "6. Trust: yes. Prices are dated to the maker's own pages, fees and limits are stated (carrier fees, no minutes included, booking only on higher plans), the $2,800 is labeled an example shop, and the advice ends with me doing the work (calling back), not buying something.",
+  "7. The bar: C1 yes, the hook states the cost ($2,800 a month) and shows the missed calls. S1 yes, 'It answers right away, so they know you'll call back' is the why, and the caption adds 'your callback is what books the job'. C3 and S3 yes, one thing to do this week: turn on a $19 missed-call text with the given words and call every missed call back inside the hour, doable in under an hour. No line fails."
+ ]
+}

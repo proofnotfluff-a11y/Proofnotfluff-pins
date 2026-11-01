@@ -21,7 +21,7 @@ Quo's own pricing page (shot Nov 1) in the phone frame with its address; "$19/mo
 ## text.card "It answers right away," [sfx: chime]
 The save card (C3, the native move): an RPG ITEM SHOP menu: TEXT $19, PERSON $49 + $2.99/min, AI $49 for 250 min; under it a COPY THIS TEXT box with our example words, EXAMPLE. The cursor sits on TEXT and blinks; held through the button.
 
-## button "Call missed calls back" [sfx: whoosh]
+## text.rule "Call missed calls back" [sfx: whoosh]
 The card stays; "Call back inside the hour." lands under it.
-## button.win "text is worth it" [sfx: sting]
+## text.win "text is worth it" [sfx: sting]
 IF YOU CALL BACK stamps on the TEXT row with a kick (the rule, not a pick). Then the end card with the send line.

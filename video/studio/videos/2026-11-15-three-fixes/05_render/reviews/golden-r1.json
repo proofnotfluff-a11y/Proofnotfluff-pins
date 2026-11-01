@@ -1,0 +1,19 @@
+{
+ "gate": "golden",
+ "round": 1,
+ "reviewer": "claude opus (fresh agent)",
+ "pass": false,
+ "score": {"post_as_is": "no"},
+ "reasons": [
+  "1. must-fix, 19.0 to 21.0 s (sheet f11 at 19.25 s, timeline 19.5 and 20.5 s): the line under $19/mo, '$15/mo paid yearly', has its top half cut off by the $19/mo block above it. On a phone it reads as garbled glyphs ('$15/mo naid vearly'), a broken number right next to the voiced price. Move the tag down or give it its own line so the whole line shows, and keep '+ carrier fees' under it.",
+  "2. r0 must-fix 1 RESOLVED, 1.0 to 2.4 s: no '3 missed calls' count any more. The phone shows three 'No answer' rows with times (illustration, no number) and $2,800 with 'A MONTH LOST, EXAMPLE SHOP', which comes from facts.json example.monthValue.",
+  "3. r0 must-fix 2 RESOLVED, 1.0 to 2.4 s: the phone screen is filled (notification, three missed-call rows, the $2,800 slam and its tag). Only the small reply bar is empty, which reads as a real phone.",
+  "4. r0 must-fix 3 RESOLVED, with polish left, 11.25 to 12.45 s: the meter now lands on 100 MIN and $348/mo in red with EXAMPLE USE (frame at 12.0 s), matching facts person.exampleTotal. It holds only about 0.5 s before the cut to the AI at about 12.45 s, not the 1 s asked. Readable at that size, so polish: start the roll a beat earlier or hold the landing to about 1 s.",
+  "5. r0 must-fix 4 RESOLVED, 28.4 to 29.2 s: the stamp now says 'IF YOU CALL BACK' on the TEXT row, tied to the voiced rule, with no retailer name and no pick. Polish: it is small (about a third the height of the row text) and lands in the last second before the end card; a bigger stamp would carry the payoff better.",
+  "6. r0 polish 5 RESOLVED, 5.0 to 7.5 s: the table now reads PERSON and the column is PRICE.",
+  "7. r0 polish 6 RESOLVED, 0 to 2.0 s: $2,800 is shown steady on the plate, then slams in once on the phone (no count-up from $2,1xx), so it reads as a cut-in, not a glitch.",
+  "8. polish, still open, 8.0 to 29.2 s: the bottom third of every desk and card scene is empty dark floor, and the prices and the COPY THESE WORDS card stay small for a phone. Scale them up into that space.",
+  "9. polish, still open, 5.1 to 12.5 s: transcript.md still flags takes 02 (134 wpm) and 03 (148 wpm) as slow while qa.json voice reports 0 flags. 'You'd guess the AI. It books.' drags a little. Doubtful PASS on voice pace; otherwise it sounds like a person.",
+  "10. noted, no change: the story is clear and the spoken prices match the screen and facts.json ($19, $49 plus $2.99 a minute, $49 for 250 minutes that only texts a booking link, booking on its $149 plan). Every qa.json check passes; the frozen stretch 30.4 to 32.2 s is the end card. The hook (the $2,800 plate, then the missed calls on the dash phone) earns the stop, and the end card gives a clear reason to send. Fix item 1 and this posts."
+ ]
+}

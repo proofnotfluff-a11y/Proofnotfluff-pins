@@ -1,0 +1,24 @@
+{
+  "gate": "render-critic",
+  "round": 1,
+  "reviewer": "claude opus (fresh agent)",
+  "pass": false,
+  "score": {"faults": 1},
+  "faults": [
+    {
+      "kind": "overlap",
+      "at": 19.0,
+      "text": "$15/mo paid yearly",
+      "scene": "missed-call text (quo.com pricing, 18.5 s to 21.0 s)",
+      "what": "The small caption under $19/mo (about x 440 to 800, y 450 to 480) is covered on its bottom half by the + carrier fees plate below it, and its top touches the $19/mo digits, so $15/mo paid yearly is unreadable for the whole settled scene (seen at 19.0, 19.5, 19.8, 20.0, 20.5 and 20.6 s). Give the two caption lines their own space (move + carrier fees down or the pair up) so both lines show in full."
+    }
+  ],
+  "reasons": [
+    "Round 0 fault re-checked: the COPY THESE WORDS tag (item shop scene, f12 at 21.79 s and f14 at 28.39 s, and timeline 21.5 to 29.0 s) now shows full letters inside a taller gold tag, matching the EXAMPLE tag beside it. Fixed.",
+    "1 Hook: $2,800 a month. is on the shop plate from frame 0 (y about 470 to 560), and the dash screen shows $2,800 A MONTH LOST at 1.0 to 2.0 s while twenty-eight hundred is said (1.42 to 2.24 s). Pass.",
+    "2 Numbers: forty-nine (9.21 s) shows as $49/mo from 8.0 s; two ninety-nine a minute (10.37 s) as +$2.99/min from 10.0 s; forty-nine and two hundred fifty minutes (13.63 s, 14.61 s) as $49/mo and 250 min by 13.0 and 14.5 s; nineteen (19.89 s) as $19/mo from 19.0 s; nineteen dollar (27.29 s) as $19/mo on the shop panel. All readable at about the moment said. The unspoken $15/mo caption is the one hidden number (see faults).",
+    "3 Layout: settled frames keep content between y 270 and y 1250 and text left of about x 915; panel borders reach about x 945 but carry no words. The host stands in front of scenery only. The OPEN sign behind the hook plate is scenery. IF YOU CALL BACK on the TEXT row at 28.5 s hides nothing. One overlap: the $15/mo paid yearly caption (see faults). Frames at 0.8 s and 21.2 s are mid-transition and were not judged.",
+    "4 Audio end: last word it. ends at 29.11 s; voice.mp3 is 29.07 s and the video and audio streams run 32.2 s on the end card, so voice ends before the video and nothing is cut mid word. Pass.",
+    "5 Small text and flash: designed text is about 30 px tall or larger at 1080 wide (source captions, EXAMPLE USE, AUTO-REPLY, EXAMPLE); the fine print inside the pricing screenshots is scenery. Transitions at about 1.0, 2.5, 5.0, 8.0, 12.5, 16.0, 18.5, 21.0, 24.5 and 29.5 s are single wipes, never more than 3 flashes a second. Pass."
+  ]
+}

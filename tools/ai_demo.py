@@ -40,9 +40,15 @@ MAX_PAGES = 4
 
 def generate(prompt, *, key, model, call=W._call):
     payload = {"contents": [{"role": "user", "parts": [{"text": prompt}]}]}
-    _, body = call("POST", f"{W.API}/v1beta/models/{model}:generateContent", key,
-                   data=json.dumps(payload).encode("utf-8"), headers={"Content-Type": "application/json"},
-                   timeout=120.0)
+    for attempt in (1, 2):  # Nov 1: two read timeouts at 120 s in a row; one retry, 300 s each
+        try:
+            _, body = call("POST", f"{W.API}/v1beta/models/{model}:generateContent", key,
+                           data=json.dumps(payload).encode("utf-8"), headers={"Content-Type": "application/json"},
+                           timeout=300.0)
+            break
+        except W.GeminiError as e:
+            if attempt == 2 or e.category != "network":
+                raise
     data = W._json(body, key)
     cand = (data.get("candidates") or [{}])[0]
     parts = [p["text"] for p in (cand.get("content") or {}).get("parts", []) if p.get("text")]

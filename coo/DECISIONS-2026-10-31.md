@@ -32,3 +32,8 @@
 ## No series (live chat, 7:29 pm)
 - [stated] 7:29 pm: "I need help here - we probably shouldn't do multi part videos if we are not organized to do it"
 - count-before-ai posted 7:19 pm as part 1 of 2 (its caption promises part 2), so part 2 is owed and first in research/IDEAS.md "Owed first"; no other series (_shared/formats.md). missed-call-text made standalone (clinic): re-voiced, qa PASS; gates round 0: facts, render critic, golden PASS; buyer FAIL (no money stake in the hook), design FAIL 4.57, facts-captions FAIL (YouTube source line). Fix list in its reviews; the 9:33 pm run finishes it first. Variety fixes: held lessons no longer count in the line, posted lessons ordered by post time.
+
+## Four a day with a buffer (live chat, 8:18 pm)
+- [stated] 8:18 pm: "Keep it at 4 and produce 4 - build a pipeline buffer of 2 videos"
+- Applied to the cloud task "PNF video studio: record and make": runs at 1:33 and 4:33 am added (6 a day, night runs make only); target 3 waiting (the next slot plus 2); one lesson a run, a second if the first queues within 75 minutes; unqueued lessons first, then IDEAS "Owed first"; a lesson with a commit in the last 90 minutes is left to the run working on it; the end message reports waiting and credits left.
+- Limit found: ElevenLabs credits 27,429 of 40,000 used, 12,571 left until Nov 15 (2:35 pm). A lesson uses about 900 to 1,500 with re-rolls, so about 8 to 14 lessons: 2 to 3 days at 4 a day. 4 a day for a month needs roughly 110,000 to 150,000. ElevenLabs lists Creator at $22 a month (121,000 credits, first month $11) and Pro at $99 (600,000). Buying waits on Todd (CONSTITUTION 1).

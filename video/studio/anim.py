@@ -59,7 +59,7 @@ LIBRARY_VOICE = "iP95p4xoKVk53GoZ742B"   # Chris, ElevenLabs library voice, the 
 # clone-tight for a natural, even delivery (Todd, Oct 30, 2026, 4:01 pm: "go with your recommendation on everything").
 VOICE_SETTINGS = {"W3pJy9ibur1FKUihVxzY": {"stability": 0.7, "similarity_boost": 0.7}}
 MODEL = "eleven_v4"
-API = "https://api.elevenlabs.io/v1/text-to-speech/{voice}?output_format=mp3_44100_128"
+API = "https://api.elevenlabs.io/v1/text-to-speech/{voice}?output_format=mp3_44100_192"
 MAX_CHARS = 2400
 sys.path.insert(0, os.path.join(ROOT, "tools"))
 

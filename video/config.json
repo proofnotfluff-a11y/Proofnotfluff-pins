@@ -84,7 +84,7 @@
  },
  "voice": {
   "model": "eleven_v4",
-  "outputFormat": "mp3_44100_128",
+  "outputFormat": "mp3_44100_192",
   "approvedOct15": {
    "Chris": "iP95p4xoKVk53GoZ742B",
    "Roger": "CwhRBWXzGAHq8TQ4Fs17",

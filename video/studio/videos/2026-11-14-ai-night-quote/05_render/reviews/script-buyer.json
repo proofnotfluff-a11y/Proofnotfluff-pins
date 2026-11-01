@@ -1,0 +1,17 @@
+{
+ "gate": "buyer-script",
+ "round": 0,
+ "reviewer": "claude opus (fresh agent)",
+ "pass": true,
+ "score": {"stop": "yes", "send": "yes", "save": "yes", "follow_or_link": "no"},
+ "reasons": [
+  "1. What it tells me (residential cleaning owner): paste a late quote text into free Gemini with a short prompt, check the draft (it asked two questions), put my price in and send it before my first job instead of at lunch.",
+  "2. Stop: yes. A real 11 pm quote request with the reply already written is on screen by 2.5 s, the cover says '11 pm quote. / Reply in 7 seconds.' and 'One thing's wrong' gives me a reason to stay. That is my phone at night.",
+  "3. Send: yes, to whoever answers my quote texts; the reply card plus the prompt is something I would forward to my office person. Save: yes, the prompt is short, exact, has a [your price] slot, and is held on the ITEM GET card and repeated in the caption. Follow or link: no; one good tip, and 'Free tools for trade owners: link in bio' gives me no specific reason to tap.",
+  "4. Hype, urgency, pitch, slop, robotic: nothing that makes me scroll or distrust. Cost said (free, $0 plan page), time said (under seven seconds, model time, honest), one thing it got wrong said and answered at the end (two questions, cut one, send it yourself). No 'AI will book your jobs' claim. 'Gemini is AI and can make mistakes' backs 'send it yourself'.",
+  "5. Unclear to a stranger (not blocking, fix recommended): line 3 'Jobber says twenty-six percent of cleaning businesses reply within an hour.' Heard with no framing, I cannot tell if 26% is the bar, the warning, or a brag, and the action ('before your first job', about 8 hours after 11 pm) does not meet 'within an hour' either, so a sharp owner asks 'so I am still slow?'. Fix: 'Jobber says only twenty-six percent of cleaning businesses reply within an hour. Most are as slow as you.' (keeps the sourced number, makes it the stake, and fits a morning reply beating lunch). Check the word count stays at or under 100.",
+  "6. Trust: yes. The reply is labelled real with model and date, the flaw is shown not hidden, the price stays a slot, the example story is ours and labelled EXAMPLE.",
+  "7. The bar. C1 met: the hook shows the object (the 11 pm quote request) and line 2 says the cost, 'By then, they've booked someone' (a lost job). Optional sharpen on line 2: 'By then, they've booked someone else.' S1 met: line 3 'No price. No question, so nothing to text back.' is the why (a price and one question give them an easy reply). C3 met: the four-line prompt, word for word, on the held save card (brief: 4 s or more) and in the caption. S3 met: line 6 'Send that reply before your first job.' is doable this week in under an hour.",
+  "Minor, line 4 'Type this. Friendly, under fifty words, your price, one question.': spoken it is a summary, not the exact prompt; fine because the card holds the exact words, but the card must be on screen while this line is said so nobody types the summary."
+ ]
+}

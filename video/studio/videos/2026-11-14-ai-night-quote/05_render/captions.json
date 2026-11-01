@@ -1,0 +1,58 @@
+{
+ "schema": "pnf.studio.captions.v1",
+ "keywords": {
+  "primary": "cleaning business quote request reply",
+  "secondary": [
+   "cleaning business owner",
+   "home service business",
+   "ai for cleaning business"
+  ],
+  "trades": [
+   "cleaning",
+   "house cleaning",
+   "maid service"
+  ]
+ },
+ "instagram": {
+  "caption": "Cleaning business owners: how to answer an 11 pm quote request with a free AI app.\nJobber's 2026 Home Service Trends Report (survey of 1,050 owners, December 2025): 26% of cleaning businesses reply to leads within an hour, the fastest of the trades Jobber surveyed.\n\nThe prompt (paste their text under it):\nReply to this cleaning quote text for me. Friendly, under 50 words. My price: [your price]. Ask one question if anything's missing.\n\nThe real reply Gemini 3.6 Flash gave us through Google's API on Nov 1, 2026, in 6.6 seconds (the free app uses a lighter model, so your reply will read differently):\nHi! I’d love to help with your move-out clean. For a 2-bed, 1-bath, my rate is [your price].\nCould you let me know if you need the inside of the oven or fridge included?\nLet me know what day before Friday works best for you!\n\nWhat to fix before you send: it asked two questions, not one. Cut one, put your real price in, send it yourself. Gemini says it can make mistakes, so read every line.\n\nSend this to whoever answers your quote requests.\nFree tools for trade owners: link in bio.\n\n#homeservicebusiness #cleaningbusiness #housecleaningbusiness #aiforsmallbusiness",
+  "settings": {
+   "aiLabel": false,
+   "shareToFacebook": false
+  }
+ },
+ "tiktok": {
+  "caption": "House cleaning business tip: reply to a night quote request with free AI.\nJobber's 2026 Home Service Trends Report (survey of 1,050 owners, December 2025): 26% of cleaning businesses reply to leads within an hour, the fastest of the trades Jobber surveyed.\n\nThe prompt:\nReply to this cleaning quote text for me. Friendly, under 50 words. My price: [your price]. Ask one question if anything's missing.\n\nGemini's real reply (3.6 Flash through Google's API, Nov 1, 2026, 6.6 s; the free app uses a lighter model, so yours will read differently) asked two questions. Cut one, add your price, send it yourself.\n\nOwners: how fast do you answer a quote that comes in at night?\nSend this to whoever answers your quote requests.\n\n#cleaningbusiness #homeservicebusiness #housecleaningbusiness #aiforbusiness",
+  "settings": {
+   "aiLabel": true,
+   "commercial": false
+  }
+ },
+ "facebook": {
+  "caption": "For cleaning business owners: let a free AI app draft the reply to a late quote request.\nJobber's 2026 Home Service Trends Report (survey of 1,050 owners, December 2025): 26% of cleaning businesses reply to leads within an hour, the fastest of the trades Jobber surveyed.\n\nThe prompt:\nReply to this cleaning quote text for me. Friendly, under 50 words. My price: [your price]. Ask one question if anything's missing.\n\nGemini 3.6 Flash's real reply through Google's API, Nov 1, 2026 (the free app uses a lighter model, so yours will read differently):\nHi! I’d love to help with your move-out clean. For a 2-bed, 1-bath, my rate is [your price].\nCould you let me know if you need the inside of the oven or fridge included?\nLet me know what day before Friday works best for you!\n\nIt asked two questions. Cut one, add your price, send it yourself.\n\nSend this to whoever answers your quote requests.\n\n#cleaningbusiness #homeservicebusiness",
+  "settings": {
+   "aiLabel": false,
+   "visibility": "Public"
+  }
+ },
+ "youtube": {
+  "title": "Cleaning Quote Request at 11 PM? Let Free AI Draft the Reply",
+  "description": "Cleaning business owners: answer an after-hours quote request with a free AI app (Gemini).\nJobber, \"Blue Collar Strong: The 2026 Home Service Trends Report\" (https://www.getjobber.com/home-service-trends-report/): in a survey of 1,050 US home service business owners (Conjointly, December 2025), 26% of cleaning businesses said they reply to leads within an hour, the fastest of the trades Jobber surveyed. Self-reported vendor survey.\nGemini's plan page (https://gemini.google/subscriptions/, read Nov 1, 2026): Free, $0 a month with a Google Account.\n\nThe prompt:\nReply to this cleaning quote text for me. Friendly, under 50 words. My price: [your price]. Ask one question if anything's missing.\n\nThe real reply (Gemini 3.6 Flash through Google's API, Nov 1, 2026, 6.6 seconds; the free app uses a lighter model, so your reply will read differently):\nHi! I’d love to help with your move-out clean. For a 2-bed, 1-bath, my rate is [your price].\nCould you let me know if you need the inside of the oven or fridge included?\nLet me know what day before Friday works best for you!\n\nSteps:\n1. Paste the customer's text into Gemini under the prompt.\n2. Read the reply. Ours asked two questions; cut one.\n3. Put your real price where it says [your price].\n4. Send it yourself, before your first job.\n\nMore lessons for trade owners on the channel.\nSend this to whoever answers your quote requests.\nPrice a house cleaning job first: https://proofnotfluff.com/house-cleaning-price-calculator/\n#cleaningbusiness #homeservicebusiness #aiforsmallbusiness",
+  "tags": [
+   "cleaning business quote request",
+   "cleaning business owner",
+   "house cleaning business tips",
+   "how to respond to leads cleaning",
+   "ai for cleaning business",
+   "gemini for small business",
+   "home service business",
+   "cleaning buisness"
+  ],
+  "settings": {
+   "madeForKids": false,
+   "aiUse": false,
+   "category": "Education",
+   "language": "English",
+   "visibility": "Public"
+  }
+ }
+}

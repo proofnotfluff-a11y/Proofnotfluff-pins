@@ -1,0 +1,75 @@
+{
+ "about": "Every number and claim this lesson shows or says, with its source. AI lane (_shared/lanes.md): the reply on screen is the exact text the studio-ai-demo workflow got back from Gemini on Nov 1, 2026 (video/studio/demos/out/2026-11-14-ai-night-quote-4/run.json). Gemini's plan page and app page are phone shots taken by the same workflow on Nov 1, 2026 (demos/out/2026-11-14-ai-night-quote-1/page-1.png and -2/page-2.png). Jobber's report page was read Oct 29, 2026 for 2026-11-08-after-hours-reply and again Nov 1, 2026 by the fresh facts reviewers' web fetch (the workflow's browser timed out on it in job 1 and got a 403 bot check in job 2). The customer's text, the 11 pm and 7 am times and the owner's usual reply are ours (EXAMPLE on screen).",
+ "jobber": {
+  "title": "Blue Collar Strong: The 2026 Home Service Trends Report",
+  "publisher": "Jobber",
+  "published": "2026 (page modified March 25, 2026)",
+  "url": "https://www.getjobber.com/home-service-trends-report/",
+  "reread": "2026-11-01",
+  "cleaningWithinHourPct": 26,
+  "quote": "Cleaning businesses are the fastest responders (26% reply within an hour), while HVAC pros are the slowest.",
+  "fastestTrade": true,
+  "sampleOwners": 1050,
+  "method": "a survey of 1,050 home service business owners across the United States, conducted through Conjointly in December 2025, with a margin of error of plus or minus 3 percentage points at the 90% confidence level",
+  "fieldwork": "December 2025",
+  "fieldworkYear": 2025,
+  "reportYear": 2026,
+  "scope": "Self-reported by owners. The page does not give the cleaning subsample size. Descriptive survey data, not a correlation.",
+  "context": "The same page: 20% of all pros respond within the hour (not used in the video)."
+ },
+ "demo": {
+  "job": "video/studio/demos/jobs/2026-11-14-ai-night-quote-4.json",
+  "out": "video/studio/demos/out/2026-11-14-ai-night-quote-4/run.json",
+  "model": "gemini-3.6-flash",
+  "modelLabel": "Gemini 3.6 Flash (API)",
+  "modelAsked": "gemini-3.5-flash (the Gemini app's default as its page showed it Nov 1; the API returned modelVersion gemini-3.6-flash)",
+  "date": "2026-11-01",
+  "at": "2026-11-01T16:19:19+00:00",
+  "seconds": 6.6,
+  "secondsSaid": "under seven seconds",
+  "underSeven": 7,
+  "replyWords": 45,
+  "promptWordLimit": 50,
+  "promptLines": 4,
+  "prompt": "Reply to this cleaning quote text for me. Friendly, under 50 words. My price: [your price]. Ask one question if anything's missing.\n\nTheir text: \"Hi! Need a quote for a move-out clean, 2 bed 1 bath, before Friday. Thanks!\"",
+  "reply": "Hi! I’d love to help with your move-out clean. For a 2-bed, 1-bath, my rate is [your price]. \n\nCould you let me know if you need the inside of the oven or fridge included? \n\nLet me know what day before Friday works best for you!",
+  "questionsAsked": 2,
+  "questionsWanted": 1,
+  "questions": [
+   "Could you let me know if you need the inside of the oven or fridge included?",
+   "Let me know what day before Friday works best for you!"
+  ],
+  "gotWrong": "The prompt asked for one question if anything was missing; the reply asks two (oven or fridge, and what day). The owner cuts one, puts in a real price for [your price], and sends it.",
+  "where": "Run through Google's Gemini API on GitHub's machine (tools/ai_demo.py), not typed into the Gemini app; the reply is shown as the model returned it, labelled with the model and date. The free app plan runs Flash-Lite (plan page, Nov 1), so an owner's reply in the free app will read differently; the card says (API)."
+ },
+ "gemini": {
+  "plansUrl": "https://gemini.google/subscriptions/",
+  "plansShot": "video/studio/demos/out/2026-11-14-ai-night-quote-1/page-1.png",
+  "plansRead": "2026-11-01",
+  "freePrice": 0,
+  "confirms": [
+   "Free",
+   "Get everyday help from Google AI to tackle tasks at work, school or home.",
+   "$0/ month with a Google Account",
+   "Access to our Flash-Lite model"
+  ],
+  "appUrl": "https://gemini.google.com/app",
+  "appShot": "video/studio/demos/out/2026-11-14-ai-night-quote-2/page-2.png",
+  "appRead": "2026-11-01",
+  "appConfirms": [
+   "Gemini 3.5 Flas... (model picker)",
+   "Hi, I'm Gemini. Where should we start?",
+   "Gemini is AI and can make mistakes."
+  ]
+ },
+ "story": {
+  "source": "OURS: example story, labeled EXAMPLE on screen; not a real shop or customer",
+  "requestHour": 11,
+  "seenHour": 7,
+  "lunchHour": 12,
+  "beds": 2,
+  "baths": 1,
+  "customerText": "Hi! Need a quote for a move-out clean, 2 bed 1 bath, before Friday. Thanks!",
+  "usualReply": "Hey, prices vary, give me a call."
+ }
+}

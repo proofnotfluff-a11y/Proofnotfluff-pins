@@ -1,9 +1,9 @@
 # Transcript: 2026-11-12-missed-call-text
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 135 words, 50.0 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 135 words, 49.2 s of voice.
 
 ## Flags
-- 45.8 s heard 'part two turns' for 'you turn'
+none
 
 ## Pace per take (target 160 to 195 wpm)
 ```
@@ -11,7 +11,7 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 135 words, 50.0 s of voice.
   02     4.1 s  148 wpm  slow: rewrite it as talk, then speak --take 2
   03    21.5 s  167 wpm  
   04    31.6 s  169 wpm  
-  05    44.6 s  184 wpm  
+  05    44.6 s  210 wpm  fast: give it a landing beat, then speak --take 5
 ```
 
 ## Words
@@ -46,4 +46,4 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 135 words, 50.0 s of voice.
 
 `00:44.6` So count yours before you turn it on.
 
-`00:47.6` Keep it plain, and keep it under a hundred sixty.
+`00:46.9` Keep it plain, and keep it under a hundred sixty.

@@ -1,0 +1,18 @@
+[
+ {
+  "n": 1,
+  "url": "https://www.getjobber.com/home-service-trends-report/",
+  "at": "2026-11-01T16:05:38+00:00",
+  "final": "https://www.getjobber.com/home-service-trends-report/",
+  "status": 403,
+  "title": "Just a moment..."
+ },
+ {
+  "n": 2,
+  "url": "https://gemini.google.com/",
+  "at": "2026-11-01T16:06:28+00:00",
+  "final": "https://gemini.google.com/app",
+  "status": 200,
+  "title": "Google Gemini"
+ }
+]

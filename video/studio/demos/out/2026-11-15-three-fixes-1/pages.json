@@ -1,0 +1,34 @@
+[
+ {
+  "n": 1,
+  "url": "https://www.quo.com/pricing",
+  "at": "2026-11-01T18:50:15+00:00",
+  "final": "https://www.quo.com/pricing",
+  "status": 200,
+  "title": "Quo Pricing | Get started with a Free Trial"
+ },
+ {
+  "n": 2,
+  "url": "https://www.patlive.com/pricing/",
+  "at": "2026-11-01T18:50:21+00:00",
+  "final": "https://www.patlive.com/pricing/",
+  "status": 200,
+  "title": "Virtual Receptionist & Answering Service Pricing | PATLive"
+ },
+ {
+  "n": 3,
+  "url": "https://heyrosie.com/pricing",
+  "at": "2026-11-01T18:50:25+00:00",
+  "final": "https://heyrosie.com/pricing",
+  "status": 200,
+  "title": "Rosie AI Plans & Pricing | AI Answering Service"
+ },
+ {
+  "n": 4,
+  "url": "https://www.contractormag.com/management/best-practices/article/55412284/the-missed-call-math-most-contractors-never-run",
+  "at": "2026-11-01T18:50:30+00:00",
+  "final": "https://www.contractormag.com/management/best-practices/article/55412284/the-missed-call-math-most-contractors-never-run",
+  "status": 200,
+  "title": "The Missed Call Math Most Contractors Never Run | Contractor Magazine"
+ }
+]

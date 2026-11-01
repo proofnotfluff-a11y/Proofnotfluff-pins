@@ -509,6 +509,26 @@
     "runtime_pixfont": "a8557997756e"
    },
    "posts": {}
+  },
+  {
+   "slug": "2026-11-15-three-fixes",
+   "readyAt": "2026-11-01T15:23:26-05:00",
+   "commit": "ba8ee33352a090803191de808700bb84b678de47",
+   "fingerprints": {
+    "script": "046655e51bcc",
+    "takes": "d766a2c3c02c",
+    "words": "066c64e353f3",
+    "cues": "002448152a0f",
+    "scene": "56a940a0a85b",
+    "data": "f8293cd1763e",
+    "captions": "24fc45b98f66",
+    "mouth": "84794f062e7d",
+    "runtime_kit": "7533966669eb",
+    "runtime_player": "34cc933b308e",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

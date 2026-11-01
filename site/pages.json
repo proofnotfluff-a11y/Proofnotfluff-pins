@@ -7919,6 +7919,206 @@
    "published": "2026-10-31"
   },
   {
+   "slug": "google-local-services-ads-worth-it",
+   "kind": "question",
+   "city": "Chicago",
+   "product": "chicago-construction-cleaning-leads",
+   "data": "site/pages.json",
+   "stats": "lead_lsa",
+   "title": "Are Google Local Services Ads Worth It at $500 a Month? | ProofNotFluff",
+   "desc": "A pressure washer pays about $500 a month for Google Local Services Ads and turns down about half the leads as too small. How to tell if the ads pay, and what to change first.",
+   "card": "Google Local Services Ads at about $500 a month with half the leads too small to take: the lead cost per won job, and the settings to change before you cancel.",
+   "eyebrow": "Lead cost",
+   "updated": "Worked example from the free cost per lead calculator. Google's Local Services Ads help pages read Nov 1, 2026.",
+   "h1": "Google Local Services Ads cost me about $500 a month and about half the leads are small jobs. Are they still worth it?",
+   "answer": [
+    "Only if the jobs they win leave more than they cost. Judge them per won job, not per lead: divide the month's bill by the jobs you actually won, and set that against what one job leaves after labor and supplies. If the lead cost per won job is higher, the ads lost money that month, however cheap each lead looked.",
+    "At {bill} a month and the free calculator's example job ({avgJob} with {jobCost} of direct cost, so {perJob} left), the bill takes **{billJobs} won jobs** to cover. Turned down leads still cost you: Google charges for each valid lead, such as a call you answer, and no longer gives credits for leads for job types you don't service. If half your leads are jobs you refuse, each lead you can use costs double: {cpl} becomes **{halfCpl}** in the example. Before you cancel, turn off the job types you don't want and set a max per lead bid."
+   ],
+   "numbersTitle": "The worked example, in four numbers",
+   "tiles": [
+    [
+     "Lead cost per won job",
+     "{cpj}",
+     "{spend} of leads for {jobs} won jobs"
+    ],
+    [
+     "What a job leaves",
+     "{perJob}",
+     "a {avgJob} job less {jobCost} of labor, supplies and gas"
+    ],
+    [
+     "Won jobs to cover {bill}",
+     "{billJobs}",
+     "a month, at {perJob} left per job"
+    ],
+    [
+     "Cost per lead you can use",
+     "{halfCpl}",
+     "if half of {leads} leads are jobs you turn down"
+    ]
+   ],
+   "numbers": [
+    "From the free cost per lead calculator's example month: {spend} paid for {leads} leads, {quotes} quotes sent and {jobs} jobs won at {avgJob} each, with {jobCost} of labor, supplies and gas per job. That is {cpl} a lead, {cpq} a quote and {cpj} in leads for each job won. The jobs brought in {revenue} and cost {direct} to do, leaving {gross}, so after the {spend} lead bill the month lost {profitAbs}. Covering that bill took {breakEven} won jobs, not {jobs}.",
+    "If {halfLeads} of the {leads} leads were jobs you turned down, the same {spend} bought {halfLeads} leads you could use, at {halfCpl} each. These are the calculator's example numbers, a cleaning business's month, not the asker's: type your own bill, leads and jobs into the calculator."
+   ],
+   "tables": [
+    {
+     "title": "What {bill} a month of leads costs per won job",
+     "intro": [
+      "The asker's bill of {bill} a month, set against the example's {perJob} left per job before leads. Fewer than {billJobs} won jobs and the month loses money."
+     ],
+     "head": [
+      "Jobs won in the month",
+      "Lead cost per won job",
+      "Left per job after leads",
+      "Month after the lead bill"
+     ],
+     "rows": "jobRows",
+     "notes": [
+      "Computed with the free cost per lead calculator's model. Direct cost only: your own time, insurance and the truck payment stay out, so this is what the leads left you to cover them. Type your own average job and direct cost for your own break-even."
+     ]
+    }
+   ],
+   "stepsTitle": "How to tell if the ads pay, step by step",
+   "steps": [
+    [
+     "Count one month",
+     "From the Leads page in your Local Services Ads account and your own books: what you were charged, how many leads, how many you quoted and how many jobs you won."
+    ],
+    [
+     "Work out what a job leaves",
+     "Average job price less the labor, supplies and gas you spend only because you did it. In the example, {avgJob} less {jobCost} leaves {perJob}."
+    ],
+    [
+     "Set lead cost per won job against it",
+     "Divide the bill by the jobs won. In the example, {spend} and {jobs} jobs is {cpj} a won job, more than the {perJob} a job leaves, so each job came out {afterLeadAbs} short after its lead."
+    ],
+    [
+     "Turn off the job types you don't want",
+     "Google's help pages say to refine service areas, categories and service types in your settings if you get unwanted leads, with each job type toggled on or off by industry. Turning off every job type does not stop leads for the overall category; only pausing the ad does."
+    ],
+    [
+     "Cap what a lead can cost",
+     "With Max per lead bidding you set the most you'd pay for a lead. Google says it takes about 2 weeks to see accurate results. Rate each lead in the account: Google says the feedback helps it match leads. Low quality leads can be credited automatically."
+    ]
+   ],
+   "sections": [
+    [
+     "What the thread says",
+     [
+      "The question was posted May 3, 2026 on Pressure Washing Resource by an owner charged about $500 a month for Google Local Services Ads, who said this year brought lower end calls and that about half of them were turned down, such as cleaning only one side or a walkway for 10 minutes. The owner was thinking of cancelling, and later added that word of mouth was enough.",
+      "One reply, from a newer washer, reported one message at a $30 cost in 2 months, a recommended budget of $270 a week in a rural home county that went unused, while the recommended budget for the busier county next door was $3,500 a week. Another reply said not to use Local Services Ads because you can't add negative keywords, and to run a search campaign with long, specific keywords instead, saying a click on driveway cleaning may cost $20 or more where a more specific phrase may cost $2 to $3."
+     ]
+    ],
+    [
+     "What Google charges for, and what it credits",
+     [
+      "You pay for valid leads, not clicks. Google's help page lists what counts, such as a call you answer or return and speak with the customer, a text or email, or a voicemail. A lead's price can vary with your location, the job type, the type of lead and your bidding mode, and follow up contact with the same customer within 15 days is not charged again.",
+      "Leads judged invalid or low quality are not charged, and charged leads can be credited automatically if Google's models later find them low quality, in most cases within 30 days. Google says it no longer supports credits for job type not serviced and geo not serviced leads. So the fix for small jobs is in your settings, not in disputes."
+     ]
+    ],
+    [
+     "How the weekly budget works",
+     [
+      "Your average weekly budget is a target. Some weeks spend less and some more, but you never pass the monthly max, which Google sets at the weekly budget times 30.4, divided by 7. A {week} weekly budget, the recommended budget one reply gave for a rural county, allows up to {weekMax} in a month; the asker's {bill} a month is about {billWeek} a week.",
+      "Under Maximize leads, Google sets the bid and recommends a budget of at least 10 leads a week. Max per lead lets you set the bid yourself, which also changes how many leads your weekly budget buys."
+     ]
+    ],
+    [
+     "When cancelling makes sense",
+     [
+      "If word of mouth already fills your calendar, as the asker says, and the lead cost per won job stays above what a job leaves after you have changed the job types and the bid, the ads are costing you money. A search campaign, as the thread suggests, charges per click instead of per lead, and the reply that recommends it says the setup can take several days, plus a few hours a month of review."
+     ]
+    ]
+   ],
+   "calculator": [
+    "cost-per-lead-calculator",
+    "cost per lead calculator",
+    "Put in your own bill, leads, quotes and jobs in"
+   ],
+   "cta": {
+    "title": "Bigger jobs than a 10 minute walkway",
+    "text": "If you wash or clean buildings in Chicago, the Chicago Construction Cleaning Leads list sends every Monday the City's open building permits for apartment and commercial projects of $500,000 or more, the general contractor on each, and the ones with partial occupancy approved (near finish) marked. Nobody on it has asked for a quote, and you make the first contact. {price} a month, cancel any time."
+   },
+   "faq": [
+    [
+     "Are Google Local Services Ads worth it for a pressure washing business?",
+     "Only if the lead cost per won job is less than what a job leaves you. In the calculator's example, {spend} of leads won {jobs} jobs, {cpj} each, while a job left {perJob}, so each job came out {afterLeadAbs} short after its lead."
+    ],
+    [
+     "Do I pay for Local Services Ads leads I turn down?",
+     "A valid lead is charged, such as a call you answer. Google says it no longer gives credits for leads for job types you don't service, so turning a job down does not by itself get the lead back. Low quality leads can be credited automatically."
+    ],
+    [
+     "How do I stop getting small jobs from Local Services Ads?",
+     "In your settings, turn off the job types you don't want and refine your service areas. Turning off every job type does not stop leads for the overall category; only pausing the ad does."
+    ],
+    [
+     "How does the Local Services Ads budget work?",
+     "You set an average weekly budget. Some weeks spend more, but never past the monthly max, the weekly budget times 30.4 divided by 7. A {week} weekly budget allows up to {weekMax} in a month."
+    ]
+   ],
+   "related": [
+    [
+     "cost-per-lead-calculator",
+     "Free cost per lead calculator"
+    ],
+    [
+     "pressure-washing-price-calculator",
+     "Free pressure washing price calculator"
+    ],
+    [
+     "missed-call-cost-calculator",
+     "Free missed call cost calculator"
+    ]
+   ],
+   "sources": [
+    [
+     "Pressure Washing Resource, Google Local service ad (the question as asked)",
+     "https://pressurewashingresource.com/community/t/google-local-service-ad/40811",
+     "posted May 3, 2026, read Nov 1, 2026"
+    ],
+    [
+     "Google Local Services Ads Help, How leads work",
+     "https://support.google.com/localservices/answer/7195435",
+     "read Nov 1, 2026"
+    ],
+    [
+     "Google Local Services Ads Help, About automated lead credits",
+     "https://support.google.com/localservices/answer/15100654",
+     "read Nov 1, 2026"
+    ],
+    [
+     "Google Local Services Ads Help, Edit your industries, service areas, and job types",
+     "https://support.google.com/localservices/answer/12491364",
+     "read Nov 1, 2026"
+    ],
+    [
+     "Google Ads Help, Edit your ad or business information",
+     "https://support.google.com/adwords/answer/7435507",
+     "read Nov 1, 2026"
+    ],
+    [
+     "Google Local Services Ads Help, How bidding works",
+     "https://support.google.com/localservices/answer/10125017",
+     "read Nov 1, 2026"
+    ],
+    [
+     "Google Local Services Ads Help, How to edit your budget",
+     "https://support.google.com/localservices/answer/7434558",
+     "read Nov 1, 2026"
+    ],
+    [
+     "ProofNotFluff, cost per lead calculator (example inputs)",
+     "../cost-per-lead-calculator/",
+     "checked Nov 1, 2026"
+    ]
+   ],
+   "footnote": "The worked example uses the free cost per lead calculator's example inputs, with the bill set to the asker's $500 a month for the break-even table. Google's rules are quoted from its help pages read Nov 1, 2026 and can change. Owner figures are quoted from a public forum thread read Nov 1, 2026.",
+   "published": "2026-11-01"
+  },
+  {
    "slug": "chicago-construction-pipeline",
    "kind": "datapage",
    "module": "dp_pipeline",

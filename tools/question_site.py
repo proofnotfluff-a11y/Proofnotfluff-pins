@@ -285,6 +285,30 @@ def stats(kind, d):
                                                          else f" ({ties(x, x['most']['events'][tt])} winters)")])
         s["triggerRows"] = trig
         return s
+    if kind == "lead_lsa":   # pay-per-lead ad questions: the free cost per lead calculator's own model (PNF.leadCost) and defaults
+        import subprocess
+        c = next(x for x in d["pages"] if x["slug"] == "cost-per-lead-calculator")["defaults"]
+        bill, wk = 500, 270   # the asker's monthly LSA bill and a reply's recommended weekly budget (seo/BACKLOG.md C11 thread)
+        cases = {"base": {}, "half": {"leads": str(int(c["leads"]) // 2)}, "bill": {"spend": str(bill)}}
+        for n in range(1, 7):
+            cases[f"j{n}"] = {"spend": str(bill), "leads": "0", "quotes": "0", "jobs": str(n)}
+        js = ('const P=require(process.argv[1]);const b=JSON.parse(process.argv[2]),c=JSON.parse(process.argv[3]);const o={};'
+              'for(const k in c)o[k]=P.leadCost(Object.assign({},b,c[k]),[]);console.log(JSON.stringify(o));')
+        out = json.loads(subprocess.run(["node", "-e", js, os.path.join(ROOT, "docs", "assets", "pnf-calc.js"), json.dumps(c),
+                                         json.dumps(cases)], capture_output=True, text=True, check=True).stdout)
+        m = lambda v: ("-$" if v < -0.004 else "$") + (_n(round(abs(v))) if abs(abs(v) - round(abs(v))) < 0.005 else f"{abs(v):,.2f}")
+        m2 = lambda v: ("-$" if v < -0.004 else "$") + f"{abs(v):,.2f}"
+        b, h, bb = out["base"], out["half"], out["bill"]
+        s = {"spend": m(b["spend"]), "leads": str(b["leads"]), "quotes": str(b["quotes"]), "jobs": str(b["jobs"]),
+             "avgJob": m(float(c["avgJob"])), "jobCost": m(float(c["jobCost"])), "cpl": m2(b["cpl"]), "cpq": m2(b["cpq"]),
+             "cpj": m2(b["cpj"]), "perJob": m2(b["perJob"]), "afterLead": m2(b["afterLead"]), "afterLeadAbs": m2(abs(b["afterLead"])), "profitAbs": m(abs(b["profit"])), "profit": m(b["profit"]),
+             "gross": m(b["gross"]), "revenue": m(b["revenue"]), "direct": m(b["direct"]), "breakEven": str(b["breakEvenJobs"]),
+             "halfLeads": str(h["leads"]), "halfCpl": m2(h["cpl"]), "bill": m(bill), "billJobs": str(bb["breakEvenJobs"]),
+             "billCpj": m2(bb["cpj"]), "billProfit": m(bb["profit"]), "week": m(wk), "weekMax": m2(wk * 30.4 / 7),
+             "billWeek": m2(bill * 7 / 30.4)}
+        s["jobRows"] = [[str(n), m2(out[f"j{n}"]["cpj"]), m2(out[f"j{n}"]["perJob"] - out[f"j{n}"]["cpj"]), m(out[f"j{n}"]["profit"])]
+                        for n in range(1, 7)]
+        return s
     if kind == "rats":   # rat question pages: the free Rat Index's own weekly file (311 counts by community area, no addresses)
         import rodents_site as R
         ix = R.index(d, R.load_json(R.POP), None)

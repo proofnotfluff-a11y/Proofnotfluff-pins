@@ -3,9 +3,9 @@
 music: rooms bounce
 
 ## hook "Your missed-call text gets" [sfx: pop]
-Three shots. Cover, frame one, host and dialog box hidden: our own workbench in daylight, a tape measure pulled out across it, the blade's numbers big, the gold end hook resting on the 160 mark; one focal object, the hero number "160" above the tape; plate "160 characters" / "to book the job.", chip "PART 1 OF 3". By 0.8 s cut in close on the tape's hook at 160 (the blade's ticks big, a missed-call phone lying on the bench beside it); Snow and the dialog box come in. On "book" cut to the third shot: the phone close up, MISSED CALL on its screen, a blank text bubble with a cursor and "0 / 160" under it.
+Three shots. Cover, frame one, host and dialog box hidden: our own workbench in daylight, a tape measure pulled out across it, the blade's numbers big, the gold end hook resting on the 160 mark; one focal object, the hero number "160" above the tape; plate "160 characters" / "to book the job.", chip "MISSED-CALL TEXT". By 0.8 s cut in close on the tape's hook at 160 (the blade's ticks big, a missed-call phone lying on the bench beside it); Snow and the dialog box come in. On "book" cut to the third shot: the phone close up, MISSED CALL on its screen, a blank text bubble with a cursor and "0 / 160" under it.
 
-## usual "Part one of three," [sfx: whoosh]
+## usual "In June of last" [sfx: whoosh]
 The boss arena (r2; was street) under a night panel: ABOUT 1 IN 7 lands big on "about", seven phones pop in one a beat, the seventh rings red on "after" with "came after hours"; source tag "Source: ServiceTitan, June 2025" while it is said. On "gut" the panel lifts away: THE POLITE TEXT is the boss, our cream window over its menu types the usual paragraph. EXAMPLE tag.
 ## usual.polite "a polite paragraph," [sfx: blip]
 The paragraph finishes: "Thanks for calling, we value your business."
@@ -28,6 +28,6 @@ Row EMOJI 70 lands in red; row CURLY " 70 on "Curly".
 Under the table: "Sam's text plus an emoji:" and "2 PIECES, 2 BILLS" stamps on "piece".
 
 ## button "So count yours before" [sfx: whoosh]
-Back on the workbench, the tape out to 160, the clean text's 102 marked on the blade in teal. Card: "NEXT: PART 2, TURN IT ON."
+Back on the workbench, the tape out to 160, the clean text's 102 marked on the blade in teal. Card: "Count yours / before it goes on."
 ## button.rule "Keep it plain, and" [sfx: sting]
 The rule lands in gold: "Keep it plain. Under 160." Snow waves. Then the end card with the send line: "Send this to whoever answers your phones."

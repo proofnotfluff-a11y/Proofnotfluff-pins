@@ -1,5 +1,14 @@
 # Ideas: the video bank
 
+## Owed first (Todd, live chat, Oct 31, 2026, 7:29 pm: "we probably shouldn't do multi part videos if we are not organized to do it")
+1. count-before-ai part 2 of 2 (posted Oct 31, 7:19 pm, as "Part 1 of 2", promising "Part two tries three options side by
+   side"). Make it next, before any new idea: missed-call text-back vs a person answering vs an AI receptionist, side by
+   side, against the missed-job value from part 1 (what each costs a month, what it catches, what it misses). Say "part 2
+   of 2" only because part 1 promised it; it must also work alone. Format: two-shops or case. The last series we make.
+2. missed-call-text: built as "part 1 of 3" but never posted. Make it standalone (format clinic): no "Part 1 of 3" on
+   screen, in the voice or the captions, no "part two" in the button. Live chat doing this Oct 31, 7:35 pm; if it is not
+   queued when a run starts, finish it first.
+
 ## Depth bank (Oct 30, 2026; START HERE, outranks every list below)
 
 Todd, Oct 30, 2026, 4:01 pm: "go with your recommendation on everything. Drive this hard, and let's get real good videos

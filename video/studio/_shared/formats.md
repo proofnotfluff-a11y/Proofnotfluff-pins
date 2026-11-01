@@ -30,12 +30,17 @@ viewer sees and hears: a different shape, length, opening and payoff, each built
 | myth-three | 30 to 48 s | 75 to 115 | the claim most owners believe (0 to 3 s), three fast myth then fact cards, one source each, the rule | habits backed by trade data |
 | scenario | 42 to 62 s | 110 to 160 | "Picture this" moment, the small choice, what it costs over a month (counter on screen), the turn, the lesson line | a habit whose cost builds up |
 
-| playbook | 40 to 58 s | 100 to 150 | one part of a 3-part setup: "Part 1 of 3" on screen (0 to 3 s), the step, the exact thing to copy on screen and held (text, setting, prompt), the check that it worked, the button naming the next part | missed-call text-back, follow-up, anything with setup steps |
+| playbook | 40 to 58 s | 100 to 150 | one setup step, standing alone (no part numbers, Oct 31): the step, the exact thing to copy on screen and held (text, setting, prompt), the check that it worked, the button naming the next part | missed-call text-back, follow-up, anything with setup steps |
 | case | 70 to 92 s | 180 to 245 | one real setup end to end: before (the problem with its number), the setup step by step, the cost, after (the number), the rule | a real owner's setup we can source |
 
 Depth (Todd, Oct 30, 2026, 4:01 pm: "Drive this hard, and let's get real good videos out"; research/topics-2026-10-30.md):
 every lesson hands the owner something to do this week: the exact words, setting, prompt or steps, on screen. A definition
-plus another company's percentage is not a lesson. Playbook parts post one day apart with other lessons between them.
+plus another company's percentage is not a lesson.
+
+No series (Todd, live chat, Oct 31, 2026, 7:29 pm: "we probably shouldn't do multi part videos if we are not organized to
+do it"). Every lesson stands alone: no "Part X of Y" and no promise of a next part on screen, in the voice or in the
+captions. A playbook lesson teaches one setup step end to end on its own. The one exception is the part 2 that
+count-before-ai already promised (research/IDEAS.md "Owed first").
 
 Honesty in every format: a fix-this example is labeled "Example" on screen and is ours, never a real customer's words; a
 scenario is told as "picture this" and never as something that happened; every number still comes from facts.json.

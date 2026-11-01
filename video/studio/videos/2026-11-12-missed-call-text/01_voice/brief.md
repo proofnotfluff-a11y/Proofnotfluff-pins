@@ -4,9 +4,8 @@ Depth bank #2, part 1 (research/IDEAS.md; research/topics-2026-10-30.md, lesson 
 register the number), planned Oct 31, 2026 in the scheduled morning make run. Source read Oct 31, 2026 (Central):
 Twilio's "How long can a message be?" docs page; every line in facts.json quoted from the page that day.
 
-- **Format:** playbook (_shared/formats.md: 40 to 58 s, 100 to 150 words; one part of a 3-part setup, "Part 1 of 3" on
-  screen in the first 3 s, the step, the exact thing to copy on screen and held, the check that it worked, the button
-  naming the next part).
+- **Format:** clinic (_shared/formats.md: 40 to 55 s, 100 to 135 words; standalone since Todd, Oct 31, 2026, 7:29 pm: "we probably
+  shouldn't do multi part videos if we are not organized to do it"; built as playbook part 1 of 3, never posted).
 - **Where:** Instagram Reel, 9:16, then TikTok, Facebook, YouTube Shorts.
 - **Audience:** a solo or small-crew plumber, HVAC tech or electrician who misses calls on jobs and is about to set up a
   missed-call text-back.
@@ -71,10 +70,7 @@ Twilio's "How long can a message be?" docs page; every line in facts.json quoted
  "emoji": {"path": "twilio.ucs2Chars", "shown": "70"},
  "len": {"path": "example.textLength", "shown": "102"},
  "parts": {"path": "example.partCount", "shown": "3"},
- "part": {"path": "example.partNo", "shown": "1"},
- "series": {"path": "example.series", "shown": "3"},
  "segs": {"path": "example.withEmojiSegments", "shown": "2"},
- "next": {"path": "example.nextPart", "shown": "2"},
  "oneIn": {"path": "servicetitan.oneIn", "shown": "7"},
  "who": {"path": "example.whoLen", "shown": "29"},
  "sorry": {"path": "example.sorryLen", "shown": "26"},

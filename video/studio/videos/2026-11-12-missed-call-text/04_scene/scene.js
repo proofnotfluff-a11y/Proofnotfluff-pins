@@ -168,7 +168,6 @@ window.SCENE = {
       k.text(n.plain.shown, 924, 462, {size: 264, color: GOLD, align: 'right', drop: INK});
       d.line(t.x(n.plain.value) - 10, 230, t.x(n.plain.value) - 2, 244, GOLD, 2);
       hookPlate(k, d, HOOK(n));
-      partTag(k, d, n);
       return {host: false, speech: false};
     },
 
@@ -209,7 +208,7 @@ window.SCENE = {
         /* before "about": PART 1 OF 3 / THE WORDS lands on the cut, then JUNE 2025 on "June" (never an empty panel) */
         const tJune = wordT(k, 'usual', /^june/i, 2.6);
         if (T < tAbout - 0.25) {
-          if (T < tJune - 0.2) { k.slam(`PART ${n.part.shown} OF ${n.series.shown}`, 540, (108 + oy) * 3, t0 + 0.1, {size: 66, color: ORANGE, align: 'center', from: 0.4, drop: INK, glint: false});
+          if (T < tJune - 0.2) { k.slam('MISSED-CALL TEXT', 540, (108 + oy) * 3, t0 + 0.1, {size: 66, color: ORANGE, align: 'center', from: 0.4, drop: INK, glint: false});
             k.slam('THE WORDS', 540, (140 + oy) * 3, t0 + 0.25, {size: 132, color: CREAM, align: 'center', from: 0.5, drop: INK, glint: false}); }
           else { k.slam('JUNE 2025', 540, (118 + oy) * 3, tJune - 0.2, {size: 132, color: GOLD, align: 'center', from: 0.5, drop: INK, glint: false});
             k.text('home HVAC calls', 540, (176 + oy) * 3, {size: 66, color: SAND, align: 'center'}); }
@@ -306,7 +305,7 @@ window.SCENE = {
       if (run >= 1) k.slam(n.plain.shown, 920, 474, tSixty, {size: 66, color: GOLD, align: 'right', from: 0.4, drop: INK, glint: false});
       else if (T >= t0 + 0.7) k.text(n.plain.shown, 920, 474, {size: 66, color: GREY, align: 'right'});
       d.win(14, 84, 332, 70, {base: '#1B1420', hi: '#7A3442', lo: INK, rule: ORANGE});
-      if (T < tKeep) { k.slam(`NEXT: PART ${n.next.shown},`, 540, 280, t0 + 0.1, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false}); k.slam('TURN IT ON.', 540, 358, t0 + 0.16, {size: 66, color: ORANGE, align: 'center', from: 0.4, drop: INK, glint: false}); }
+      if (T < tKeep) { k.slam('Count yours', 540, 280, t0 + 0.1, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false}); k.slam('before it goes on.', 540, 358, t0 + 0.16, {size: 66, color: ORANGE, align: 'center', from: 0.4, drop: INK, glint: false}); }
       else { k.slam('Keep it plain.', 540, 280, tKeep, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false}); k.slam(`Under ${n.plain.shown}.`, 540, 358, tKeep + 0.1, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false}); k.sweep(540 - k.measure(`Under ${n.plain.shown}.`, {size: 66}) / 2, 432, k.measure(`Under ${n.plain.shown}.`, {size: 66}), 6, tKeep + 0.4, {color: 'accent'}); }
       return host(k, T >= tKeep + 0.8 ? 'wave' : (k.live('button') ? 'point' : null));
     },

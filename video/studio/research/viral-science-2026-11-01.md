@@ -73,3 +73,42 @@ Fundamental truths, each with its source:
   (strip); docs search uses Remotion's public Algolia key; voiceover example sends text to ElevenLabs only. No hidden
   characters, no rule-bending text. Real author, active today; Remotion license as already adopted. Not installed;
   ideas only, rewritten in our words. Scratch copy deleted.
+
+## Second pass, same day (Todd: "do some really good and extensive research")
+Two more Opus passes, run apart from this one; Kimi K3.1 Pro can't search the web through our route (no tools), so Todd
+has the full prompt to run in Kimi himself, and its answer gets checked and merged when it comes back.
+
+What the second pass changed:
+- Reach before shares. At 1K to 5K followers Instagram accounts average about 1 save a post and Reels about 580 views
+  (Socialinsider, 67.5M posts, 2026); shares are about 2% of engagement actions (Zannettou et al., CHI 2024). At our
+  few hundred views, 0 shares is chance, not a verdict. Content features explain little beyond follower count
+  (Paekivi and Karjus, 9,654 brand TikToks, arXiv Jun 2026; correlational).
+- Stay rate is the gate to reach: Shorts under 60% viewed-vs-swiped rarely did well, 70 to 90% did best (Paddy Galloway,
+  5,400 Shorts, 3.3B views, Apr 2023). Our best lesson sits at the line (71% stayed on IG); the others read 33 to 51% stayed.
+  So the hook still matters on most lessons.
+- Entertainment carries business lessons in the trades: skit and personality accounts are 10 to 100x the size of
+  business-advice ones (ServiceTitan plumbing and HVAC lists); humor and person-focused content go with more likes
+  (arXiv Jun 2026). None of the big ones are faceless; our host is the closest thing we have to a face.
+- No data found that a recurring character or a numbered series lifts follows (unverified either way).
+- Motion: nothing new outside our runtime beats drawing it ourselves. Remotion's new effects (light leaks, html-in-canvas)
+  are React and blur pixel art; Claude Motion is a Team-plan beta that exports a finished MP4 (no gates); Rive and Lottie
+  need outside art; Motion Canvas and Theatre.js are stale. HyperFrames 0.8.228 (Nov 1, Apache-2.0) has the best
+  written rules for seamless motion; we take the rules, not the renderer. Evidence for continuous camera lifting
+  retention: none found (vendor claims only). Captions lifted view time 12% in Facebook's own tests.
+
+## Revised ranking (both passes agree)
+1. Skit cold open with the host (formula test 1).
+2. A line worth sending at the end (formula test 2); a send reviewer in the gates waits on Todd's yes (a new gate).
+3. Hook stay rate to 70%+: context, lean, turn by 5 s (formula test 3); two hook versions as two trial reels per
+   lesson waits on Todd's yes (a posting change).
+4. Seamless world in the lab (IMPROVE 00b-1 to 00b-6).
+5. Proof from our own data after Nov 8 (formula test 4); then the outlier reference library in spare runs.
+
+## Skill checks, second pass
+- skill-check: HyperFrames motion-doctrine (heygen-com/hyperframes 5540f49) CAUTION, 1 high, 13 medium. The high hit is
+  seam-gate.mjs copying the environment to start a local preview server (localhost only, explained); it falls back to an
+  unpinned `npx --yes hyperframes` and drives Chrome over CDP for HyperFrames projects only. Rules text clean (no hidden
+  characters, no rule-bending lines). Taken: rules in our words (IMPROVE 00b-2). Not taken: both scripts.
+- skill-check: HyperFrames seam-craft (same commit) APPROVE, 0 high, 0 medium; HyperFrames-only render mechanics, nothing
+  for our runtime, not used.
+- Scratch copies deleted.

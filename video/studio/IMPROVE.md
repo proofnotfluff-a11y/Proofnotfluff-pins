@@ -29,6 +29,28 @@ the top one still open before anything below.
    beat's key word; the street sprite keeps 1 eye pixel. Breath = shoulders up 1 px.
 00a-7. Sound grammar: two near-silences of 0.4 s or more before the turn and the answer, the first sound after each one
    of the lesson's biggest; one J-cut (the next room's sound 0.3 s early) a lesson; text blips per speaker at low level.
+Seamless world (Nov 1, 2026: Todd, live chat: "whatever is cutting edge right now and is easily compatible with Claude,
+let's go ahead and employ it"; research/viral-science-2026-11-01.md). Lab items, after the 00a list; all in our own
+runtime, $0, no new dependency.
+00b-1. One continuous world: lay the rooms on one map; a section change is a whole-pixel camera pan while the host walks
+   or the van drives to the next room, with one dark foreground silhouette at 2x parallax (builds on 00a-4). Proof: the
+   mid-move still shows both rooms, every x offset a whole pixel, 0 swimming pixels on static tiles.
+00b-2. Seam rules, in our words from HyperFrames' motion-doctrine skill (Apache-2.0, heygen-com/hyperframes at 5540f49;
+   rules only, its scripts are not used: skill check CAUTION): the exit decides the entry (same axis, same direction,
+   cut while both sides still move); one main direction of travel a lesson, another only for a reason (up = the answer);
+   a carrier object crosses each cut; a reaction lands on the same frame as its cause; 0.3 to 0.75 s of stillness before
+   the big result; no idle wobble to fill time (a held card moves only with intent: cursor, counter, highlight). Proof:
+   the last frame of a section beside the first of the next shows the same carrier, same direction, within 1 px; then a
+   `lint` WARN.
+00b-3. Smear frames: on fast slams 2 or 3 dithered copies trail at peak speed, and a 1-frame whole-pixel squash on landing
+   (the pixel version of motion blur). Proof: the peak frame shows the trail; palette colour count unchanged.
+00b-4. Caused transitions: a pixel iris that closes on the host's head or the key number, and a whip-pan with streak lines,
+   beside level-select, dissolve and game-over; 2 or 3 kinds a lesson. Proof: at the halfway frame the iris is centred
+   on its cause, edge on the grid.
+00b-5. A hand-drawn pixel circle or underline that draws onto the key number as it is said (idea from Remotion's
+   rough-notation; skill check CAUTION, ideas only), and zooms eased on perceived size so a punch-in doesn't drag.
+00b-6. A sound for every move: whoosh or footsteps generated from camera travel (length by distance); `check` flags any
+   camera move with no sound within 2 frames (with 00s).
 000. End card: the last 3 to 5 s show the ProofNotFluff lockup and proofnotfluff.com, music only (Jake Van Clief's
    voice-driven-animation end card; the buyer gate answered follow_or_link "no" on lessons 1 and 8).
 00s. Sound effects from earshot's code bank (Todd, live chat, Oct 31, 2026: "Let's include these skills", on a reel naming

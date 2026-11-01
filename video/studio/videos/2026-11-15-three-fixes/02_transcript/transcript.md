@@ -1,6 +1,6 @@
 # Transcript: 2026-11-15-three-fixes
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 79 words, 29.0 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 79 words, 29.1 s of voice.
 
 ## Flags
 none
@@ -9,10 +9,10 @@ none
 ```
   01     0.0 s  177 wpm  
   02     5.1 s  134 wpm  slow: rewrite it as talk, then speak --take 2
-  03     8.1 s  151 wpm  
-  04    12.4 s  174 wpm  
-  05    18.6 s  181 wpm  
-  06    24.5 s  192 wpm  
+  03     8.1 s  148 wpm  slow: rewrite it as talk, then speak --take 3
+  04    12.5 s  174 wpm  
+  05    18.7 s  181 wpm  
+  06    24.6 s  192 wpm  
 ```
 
 ## Words
@@ -27,10 +27,10 @@ none
 
 `00:08.1` A person, forty-nine a month plus two ninety-nine a minute.
 
-`00:12.4` The AI, forty-nine a month for two hundred fifty minutes, and it only texts a booking link.
+`00:12.5` The AI, forty-nine a month for two hundred fifty minutes, and it only texts a booking link.
 
-`00:18.6` A missed-call text is nineteen a month.
+`00:18.7` A missed-call text is nineteen a month.
 
-`00:21.1` It answers right away, so they know you'll call back.
+`00:21.2` It answers right away, so they know you'll call back.
 
-`00:24.5` Call missed calls back inside the hour, and the nineteen dollar text is worth it.
+`00:24.6` Call missed calls back inside the hour, and the nineteen dollar text is worth it.

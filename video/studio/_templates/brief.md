@@ -2,6 +2,7 @@
 
 Planned with Todd in chat, <date>.
 
+- **Test:** <the one change this lesson tries, and why> (`_shared/formula.md`).
 - **Lane:** core (or ai: `_shared/lanes.md`; `anim.py lanes` names the lane to make next).
 - **Format:** v2 (Lead Clinic v2, `_shared/voice.md`: 40 to 50 s with the end card, 100 to 135 words).
 - **Where:** Instagram Reel, 9:16, then TikTok, Facebook, YouTube Shorts.

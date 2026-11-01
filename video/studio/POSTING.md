@@ -73,7 +73,7 @@ read only, post, and write each post to the scoreboard post log; the cloud task 
   read it back with `get`, then go on. A write that fails: stop posting and give Todd the link in the end message.
 - Before `anim.py next`, a PC run applies every log doc with `committed` not true to its own clone (`anim.py posted <slug>
   <platform> <url> <at>`, or `anim.py feedshared <slug> <at>`), never committing, so a post the recorder has not pushed
-  yet is never posted twice and counts toward four a day.
+  yet is never posted twice and counts toward the day's posts (two a day from Nov 1).
 - The recorder applies the same docs, runs `check_repo`, pushes, then sets each one's `committed` to true (pinned to the
   version it read) and appends any `note` to LEARNINGS.md. Applying a doc twice is harmless: same link, same time.
 - Numbers the evening and Monday PC runs read in Chrome go to collection `videometrics`, doc id `<slug>.<YYYY-MM-DD>`,

@@ -111,20 +111,12 @@
  "node": "22",
  "lanes": {"mode": "alternate", "until": "2026-11-08", "note": "Todd, live chat, Nov 1, 2026, 9:01 am: \"go with your recommendation\": 7-day test, 2 of 4 daily posts AI for trades (lane ai), 2 the current lessons (lane core), turn about in the posting line. Judged Nov 8 with `anim.py lanes`: ai at 2x core or better on shares + saves + follows per 1,000 views switches mode to ai (his go, same message); otherwise the numbers go to Todd. _shared/lanes.md."},
  "posting": {
-  "perDay": 4,
-  "note": "Todd, live chat, Oct 30, 2026: \"I want to switch to 3 posts per day on each platform\"; \"Schedule the 3 video releases each day based on when it will give us the best performance.\" Slots and evidence: video/studio/research/runs/2026-10-30-cadence.md. A slot moves only by research/PERFORMANCE.md's weekly rule, logged in coo/DECISIONS. Todd, live chat, Oct 31, 2026, 9:08 am: \"let\u2019s add a fourth to the morning time\" (morning 7:17 am: trade owners check phones before the first job; Facebook 8 AM to noon and Instagram 9 AM weekdays in Buffer's data).",
+  "perDay": 2,
+  "note": "Todd, live chat, Nov 1, 2026, 12:09 pm: \"Let's go down to 2 videos a day until we get the formula and structure correct to go viral. use the spare capacity to focus on developing quality videos\". Kept lunch (11:37, our best Instagram read so far, lsa-missed-calls) and evening (8:13 pm); the morning and end-of-day post tasks are turned off, not deleted. Earlier: 3 a day (Oct 30), 4 a day (Oct 31, 9:08 am). Slots and evidence: video/studio/research/runs/2026-10-30-cadence.md; _shared/formula.md.",
   "slots": [
-   {
-    "name": "morning",
-    "central": "07:17"
-   },
    {
     "name": "lunch",
     "central": "11:37"
-   },
-   {
-    "name": "end-of-day",
-    "central": "16:41"
    },
    {
     "name": "evening",

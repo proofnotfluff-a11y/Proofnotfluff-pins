@@ -2,8 +2,8 @@
 
 Todd, live chat, Nov 1, 2026, 8:41 am: "what do you think about pivoting into specifically focusing and purposing new AI
 innovations for tradespeople and their businesses?" ... "I feel like these videos are not really going anywhere".
-9:01 am: "go with your recommendation". The recommendation: a 7-day test, 2 of the 4 daily posts in the AI lane and 2 in
-the core lane, then switch all 4 to AI if it wins.
+9:01 am: "go with your recommendation". The recommendation: a 7-day test, half the daily posts in the AI lane and half in
+the core lane, then switch all to AI if it wins. From Nov 1, 12:09 pm, two posts a day: one AI, one core.
 
 Why: through Oct 31 the core lessons drew 2,662 views, 0 shares, 0 follows, 0 comments, 3 saves (`anim.py lanes`).
 People share what makes them look smart or helps a friend; a lesson on close rate reads as homework. An owner seeing a
@@ -14,7 +14,7 @@ clearer return on investment would get them to adopt (distributionstrategy.com, 
 ## The rule (code: `anim.py lanes`, `lane_problems` in `anim.py variety`)
 - brief.md names one lane: `- **Lane:** ai` or `core` (no line reads core).
 - video/config.json "lanes" mode "alternate": a new lesson is never the same lane as the lesson before it in line, so the
-  posting line runs AI, core, AI, core. `anim.py lanes` prints the lane to make next. Mode "ai": every new lesson is AI.
+  posting line runs AI, core, AI, core (one of each a day at 2 a day). `anim.py lanes` prints the lane to make next. Mode "ai": every new lesson is AI.
 - No series still holds (Oct 31): every AI lesson stands alone. The lane is a subject, not a part 1 and part 2.
 - Format rotation, the bar (_shared/standard.md) and every gate still apply to both lanes.
 

@@ -2107,6 +2107,9 @@ def length_band(slug):
     return (f["min_seconds"], f["max_seconds"]) if f else (45.0, HOOK["max_seconds"])
 
 
+CFG_VIDEO_END = json.load(open(os.path.join(HERE, "..", "config.json"), encoding="utf-8"))["video"].get("endCardMinSeconds", 3.5)
+
+
 def script_problems(slug, send_line=None):
     """The v2 script rules in code (_shared/voice.md, Lead Clinic v2). Returns a list of problems ([] for a v1 lesson)."""
     if not is_modern(slug):
@@ -2117,6 +2120,14 @@ def script_problems(slug, send_line=None):
     lo, hi = FORMATS[lesson_format(slug)]["words"]
     if not lo <= len(words) <= hi:
         out.append(f"{len(words)} spoken words ({lo} to {hi})")
+    # Length before any voice is made (Todd, Nov 1, 2026: the lunch slot went empty; ai-night-quote was voiced long and cut
+    # after). Our takes run 147 to 175 words a minute, gaps included (14 lessons, median about 159): at 160 the lesson plus
+    # the end card must fit its format's top length, or it is cut before any credits are spent.
+    top = FORMATS[lesson_format(slug)]["max_seconds"]
+    est = len(words) * 60 / 160 + CFG_VIDEO_END
+    if est > top:
+        out.append(f"about {est:.1f} s at 160 words a minute with the end card, over {lesson_format(slug)}'s {top:.0f} s;"
+                   f" cut about {int((est - top) * 160 / 60) + 1} words before voicing")
     text = " ".join(TAG.sub(" ", tk) for tk in takes)
     sents = [s.strip() for s in re.split(r"(?<=[.?!])\s+", " ".join(text.split())) if s.strip()]
     hook, n = [], 0

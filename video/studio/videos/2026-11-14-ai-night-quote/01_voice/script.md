@@ -8,6 +8,6 @@ No price, no question, so nothing to text back. [matter-of-fact] Jobber says onl
 
 Paste their text into Gemini with this prompt. It's free.
 
-It asked two questions, the oven and the day. Cut one, add your price, send it yourself.
+It wrote two questions, the oven and the day. Cut one, add your price, send it yourself.
 
 [confident] Every quote reply needs a price and one question. Send that reply before your first job.

@@ -26,7 +26,7 @@ The prompt as an ITEM GET window, THE PROMPT, word for word as run; the hand wal
 
 ## fix.free "It's free." [sfx: tick]
 Cut to Gemini's own plan page shot: "Free" and "$0/ month with a Google Account", tag "gemini.google/subscriptions, Nov 1, 2026".
-## check "It asked two questions," [sfx: whoosh]
+## check "It wrote two questions," [sfx: whoosh]
 The real reply card again, full text word for word, labelled with model and date. The two asks light red, "?1" and "?2" pop beside them; "2 QUESTIONS" stamps.
 ## check.cut "Cut one, add your" [sfx: stamp]
 The second ask greys and strikes through on "Cut"; "[your price]" lights gold on "price"; a SEND button presses on "yourself"; "Gemini is AI and can make mistakes." from its own page under it.

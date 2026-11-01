@@ -1,9 +1,9 @@
 # Transcript: 2026-11-14-ai-night-quote
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 92 words, 37.7 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 92 words, 37.6 s of voice.
 
 ## Flags
-- 25.3 s heard 'asks' for 'asked'
+none
 
 ## Pace per take (target 160 to 195 wpm)
 ```
@@ -11,8 +11,8 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 92 words, 37.7 s of voice.
   02     5.6 s  153 wpm  
   03    12.2 s  144 wpm  slow: rewrite it as talk, then speak --take 3
   04    21.2 s  165 wpm  
-  05    25.2 s  147 wpm  slow: rewrite it as talk, then speak --take 5
-  06    32.4 s  173 wpm  
+  05    25.2 s  149 wpm  slow: rewrite it as talk, then speak --take 5
+  06    32.3 s  173 wpm  
 ```
 
 ## Words
@@ -35,10 +35,10 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 92 words, 37.7 s of voice.
 
 `00:24.0` It's free.
 
-`00:25.2` It asked two questions, the oven and the day.
+`00:25.2` It wrote two questions, the oven and the day.
 
-`00:28.8` Cut one, add your price, send it yourself.
+`00:28.7` Cut one, add your price, send it yourself.
 
-`00:32.4` Every quote reply needs a price and one question.
+`00:32.3` Every quote reply needs a price and one question.
 
-`00:35.8` Send that reply before your first job.
+`00:35.7` Send that reply before your first job.

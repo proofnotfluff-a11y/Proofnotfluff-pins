@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-14-ai-night-quote",
- "mp4Sha256": "8f57b9bd8f6cf5cbfb1869325ee83b99dcd1c618b5bb474f4f39a0ee5cce9765",
+ "mp4Sha256": "9f05f72e39f86927c51d4196afb6c2b5e81112edee5ffe8aefc4a6b9fae80422",
  "checks": [
   {
    "name": "length",
@@ -44,8 +44,8 @@
   {
    "name": "file",
    "value": {
-    "sha256": "8f57b9bd8f6cf5cbfb1869325ee83b99dcd1c618b5bb474f4f39a0ee5cce9765",
-    "bytes": 4384980
+    "sha256": "9f05f72e39f86927c51d4196afb6c2b5e81112edee5ffe8aefc4a6b9fae80422",
+    "bytes": 4421411
    },
    "pass": true,
    "detail": "H.264 1080x1920 30 fps, AAC, 4.4 MB, decodes clean"
@@ -58,5 +58,5 @@
   }
  ],
  "pass": true,
- "at": "2026-11-01T13:05:26-05:00"
+ "at": "2026-11-01T13:20:36-05:00"
 }

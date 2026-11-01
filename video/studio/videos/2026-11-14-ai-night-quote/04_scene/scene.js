@@ -229,7 +229,8 @@ window.SCENE = {
       const n = k.data.numbers, t0 = k.S('guess'), tStake = k.S('guess.stake');
       if (T >= tStake) {
         const tTwenty = wordT(k, 'guess.stake', /^twenty/i, 1.0);
-        k.sets.gauge({value: n.hourPct.value, max: 100, at: tTwenty - 0.25, dur: 1.0, zones: [[0, 40, RED], [40, 70, ORANGE], [70, 100, TEAL]], label: `CLEANING: REPLY IN ${n.hours.shown} HOUR`, suffix: '%'});
+        k.sets.gauge({value: n.hourPct.value, max: 100, at: tTwenty - 0.25, dur: 1.0, zones: [[0, 40, RED], [40, 70, ORANGE], [70, 100, TEAL]], label: `CLEANING: REPLY IN ${n.hours.shown} HOUR`, suffix: '%', readout: false, labels: false});
+        if (T >= tTwenty - 0.25) chipText(k, n.hourPct.shown, 540, 640 + (T >= tTwenty + 1.2 ? bob2(T, tTwenty + 1.2) / 2 : 0), {size: 198, color: ORANGE, align: 'center', drop: INK});
         tag(k, 'Source: Jobber, 2026 Home Service Trends', 540, 908 + (T >= tTwenty + 1.2 ? bob2(T, tTwenty + 1.2) / 2 : 0), {align: 'center'});
         tag(k, `Report, ${n.owners.shown} owners, Dec ${n.year.shown}`, 540, 958, {align: 'center'});
         return host(k, T >= tTwenty ? 'lean' : null);
@@ -297,11 +298,13 @@ window.SCENE = {
         return host(k, 'lean');
       }
       bedroom(k, {top: 300});
+      const wipeF = px(k).fr(tOven - 0.25);   /* M4: blinds open over 12 frames into the reply room, not a plain cut */
       const c = replyCard(k, 60, 300, 870, {hi: {1: ['#F9D7CC', tOven - 0.25], 2: ['#F9D7CC', tDay - 0.25]}, strike: [2], strikeAt: tCut, priceAt: tPrice - 0.25, extra: 0, float: tOven});
+      if (wipeF >= 0 && wipeF < 12) { const dd = px(k); for (let x = 0; x < 360; x += 24) dd.P(x, 0, Math.round(24 * (1 - wipeF / 12)), 640, INK); }
       if (T < tCut) stampBox(k, `${n.asked.shown} QUESTIONS`, 600, c.y + c.h + 24, tOven - 0.25, {color: RED, size: 66});
       if (T >= tCut) {
         k.slam(`Ask ${n.wanted.shown}. Add your price.`, 540, c.y + c.h + 36, tCut, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false});
-        if (T >= tSelf - 0.25) { stampBox(k, 'SEND IT YOURSELF', 600, c.y + c.h + 110, tSelf - 0.25, {color: TEAL, size: 39}); }
+        if (T >= tSelf - 0.25) { stampBox(k, 'SEND IT YOURSELF', 540, c.y + c.h + 100, tSelf - 0.25, {color: TEAL, size: 66}); }
       }
       return host(k, T >= tCut ? 'point' : (T >= tTwo ? 'lean' : null));
     },
@@ -312,10 +315,11 @@ window.SCENE = {
       const t0 = k.S('button'), tP = wordT(k, 'button', /^price/i, 1.2), tQ = wordT(k, 'button', /^question/i, 2.2), tRule = k.S('button.rule');
       const n = k.data.numbers;
       /* versus: the lunch reply against the fixed one, the two boxes of the work order as the stats (teal is the fix) */
-      k.sets.versus({a: {name: 'YOURS', icon: 'phone', stats: [{label: 'PRICE', value: 1, max: 1, text: 'YES'}, {label: 'QUESTION', value: 1, max: 1, text: 'YES'}]},
+      k.sets.versus({a: {name: 'FIXED', icon: 'phone', stats: [{label: 'PRICE', value: 1, max: 1, text: 'YES'}, {label: 'QUESTION', value: 1, max: 1, text: 'YES'}]},
         b: {name: 'LUNCH', icon: 'clock', stats: [{label: 'PRICE', value: 0, max: 1, text: 'NO'}, {label: 'QUESTION', value: 0, max: 1, text: 'NO'}]},
-        at: t0 - 0.4, vsAt: t0 + 0.2, winner: 'a', winAt: tQ - 0.2, winText: 'QUEST COMPLETE'});
+        at: t0 - 0.4, vsAt: t0 + 0.2, winner: 'a', winAt: tQ - 0.2, winText: 'WINS'});
       if (T >= tRule - 0.25) {
+        k.ctx.fillStyle = INK; k.ctx.fillRect(126, 834, 828, 174); k.ctx.fillStyle = '#1B1420'; k.ctx.fillRect(132, 840, 816, 162);
         k.slam('Send it before', 540, 852, tRule - 0.25, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false});
         k.slam('your first job.', 540, 932, tRule - 0.15, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false});
       }

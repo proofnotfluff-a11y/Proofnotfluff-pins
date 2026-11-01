@@ -1,24 +1,17 @@
 {
   "gate": "render-critic",
-  "round": 0,
+  "round": 1,
   "reviewer": "claude opus (fresh agent)",
-  "build": "e1ae980",
-  "pass": false,
-  "score": {"faults": 1},
-  "faults": [
-    {
-      "kind": "overlap",
-      "at": 19.0,
-      "text": "of cleaning businesses",
-      "scene": "guess.stake",
-      "what": "Once the gauge settles on 26% (about 17.5 s to 21.0 s), the label 'of cleaning businesses' (about y 805 to 860) sits on the bottom of the dial ring. The orange arc and grey bezel cut through the label between 'of' and 'cleaning', and the teal arc and bezel run into the last 'es' of 'businesses'. The words still read, but a viewer sees the ring slicing the label. Move the label below the ring, or shrink the dial, so the label has clear space."
-    }
-  ],
+  "build": "3452b2b",
+  "pass": true,
+  "score": {"faults": 0},
+  "faults": [],
   "reasons": [
-    "1 hook: '11 pm quote. Reply in 7 seconds.' is on screen from 0.0 s, and the 11 PM message card is there from 0.0 s. Pass.",
-    "2 numbers: eleven pm shows as 11 PM (0 to 2 s); seven seconds shows as the 6.6 s timer and 'Reply in 7 seconds' (hook card until 2 s); one thing shows as '1 THING'S WRONG' at 4.5 s; twenty-six percent shows as 26% on the gauge at 17.0 to 17.5 s, as it is said; two questions shows as 'IT ASKED 2' and '2 QUESTIONS' at 25.5 to 28.5 s; cut one shows as 'Ask 1'; one question shows as '+ ONE QUESTION' at 34.5 s. Pass.",
-    "3 layout: content stays between y 270 and y 1250 and left of x 930. One fault: the gauge label overlaps the dial ring (above). Snow's speech bubble never covers a card. The REPLY OUT 12P flip board, the work order, the prompt card and the LEVEL UP card are clear once settled.",
-    "4 audio end: last word 'job.' ends at 37.65 s; the video and audio run to 40.73 s and the music fades out with nothing cut. Pass.",
-    "5 small text and flashes: the main text is readable on a phone. The only tiny text is the fine print inside the real Gemini screen at 21.8 s, which is part of the real screen and not content. The pixel wipes at 5.5 s, 12.0 s and 25.0 s and the dip to dark at about 21.2 s are single transitions, not flashes faster than 3 a second. Pass."
+    "Round 0 fault (overlap, guess.stake, 19.0 s, 'of cleaning businesses' cut by the dial ring) is gone. The gauge label is now 'CLEANING: REPLY IN 1 HOUR' above the dial, clear of the ring, and no label sits on the ring. The source lines under the dial ('Source: Jobber, 2026 Home Service Trends' / 'Report, 1,050 owners, Dec 2025') sit on a dark backing; only thin slivers of the bezel show in the gap between the two lines, and no letter is covered (checked on a full-size frame at 19.0 s).",
+    "1 hook: '11 pm quote. Reply in 7 seconds.' and the 11 PM message card are on screen from 0.0 s; the timer takes over at 2.0 s. Pass.",
+    "2 numbers: eleven pm (0.26 s) shows as 11 PM; seven seconds (2.4 s) shows as 'Reply in 7 seconds' to about 1.9 s, then the 6.6 s timer and 'under seven seconds' in Snow's bubble; one thing (4.2 s) shows as '1 THING'S WRONG' from 4.0 s; twenty-six percent (17.0 s) shows as 26% on the gauge from 17.0 s; two questions (25.3 s) shows as 'IT ASKED 2' from 25.5 s; cut one (28.9 s) shows as 'Ask 1. Add your price.' from 29.0 s; one question (34.4 s) shows as 'and one question.' in the bubble at 34.6 s, with QUESTION YES on the card. Pass.",
+    "3 layout: once settled, content stays between y 270 and y 1250. Checked the right edge against x 930 at 1.0, 4.6, 9.0, 14.5, 19.0, 22.0, 26.0, 29.5, 33.0 and 36.5 s: card frames and the small decorative side dial reach past it, but no word or number does (the nearest are 'EXAMPLE', the EMPTY tags and the LUNCH 'NO' values, all left of x 930). The versus divider passes beside 'Send it before your first job.' without covering a letter. Snow's bubble covers no card. No cutoffs at any edge.",
+    "4 audio end: last word 'job.' ends at 37.65 s; video and audio run to 40.73 s on the end card. Nothing cut mid-word. Pass.",
+    "5 small text and flashes: main text reads on a phone; the only tiny text is the fine print inside the real Gemini screen at 21.5 to 22.0 s. The pixel wipes at 5.5, 12.0 and 25.0 s, the dip to dark at 21.0 s and the slide at 32.5 s are single transitions, nothing flashes more than 3 times a second. Pass."
   ]
 }

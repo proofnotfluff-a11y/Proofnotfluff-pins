@@ -28,3 +28,7 @@
 ## lemo-opuscar (live chat, 4:28 pm)
 - [stated] 4:28 pm: "If this could help us step up our game, let's do it." (lemo-opuscar, a toolbox of film styles made in code)
 - Read at bebbbe1 (MIT). Adapted, not installed: its pixel RPG craft and director rules went into _shared/standard.md (M6 read time, M7 one native move) and IMPROVE "The bar first" 00a-2 and 00a-4 to 00a-7; notes in video/studio/research/opuscar-2026-10-31.md.
+
+## No series (live chat, 7:29 pm)
+- [stated] 7:29 pm: "I need help here - we probably shouldn't do multi part videos if we are not organized to do it"
+- count-before-ai posted 7:19 pm as part 1 of 2 (its caption promises part 2), so part 2 is owed and first in research/IDEAS.md "Owed first"; no other series (_shared/formats.md). missed-call-text made standalone (clinic): re-voiced, qa PASS; gates round 0: facts, render critic, golden PASS; buyer FAIL (no money stake in the hook), design FAIL 4.57, facts-captions FAIL (YouTube source line). Fix list in its reviews; the 9:33 pm run finishes it first. Variety fixes: held lessons no longer count in the line, posted lessons ordered by post time.

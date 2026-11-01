@@ -1,21 +1,12 @@
 {
-  "gate": "golden",
-  "round": 0,
-  "reviewer": "claude-opus fresh agent",
-  "mp4Sha256": "ed0e77f93907605bb1460847a3165ff3a28c601467637343ec8a832635b99b63",
-  "verdict": "PASS",
-  "pass": true,
-  "score": {"post_as_is": "yes"},
-  "must_fix": [],
-  "reasons": [
-    "1. What it says (trade owner on a phone): your missed-call text gets 160 characters; about 1 in 7 calls to home HVAC shops came after hours (ServiceTitan, June 2025); skip the polite paragraph, it has no name and no question; use three parts (who you are, sorry I missed your call, one question they can answer); an emoji or curly quote drops the limit to 70 and Twilio splits and bills each piece; keep it plain, under 160. Screen numbers match voice and facts.json: 160 plate, big 160 and tape (0.0 to 3.5 s); JUNE 2025, ABOUT 1 IN 7 with 7 phones, one lit, Source: ServiceTitan, June 2025 (7.0 to 14.5 s; 14.1%, oneIn 7, dataYear 2025); receipt WHO 29, SORRY 26, ASK 47, CHARS 102 and register 0, 29, 55, 102 (24.6 to 28.9 s); counter 0 to 102 / 160 on Sam's text (29.0 to 34.5 s); scoreboard PLAIN 160, EMOJI 70, CURLY 70 (36.0 to 46.4 s); Sam's text plus an emoji: 2 PIECES, 2 BILLS (46.5 s; withEmojiSegments 2); tape 102 / 160 to 53.0 s. No contradiction.",
-    "2. Name on it: yes. One consistent pixel look, motion in every scene (tape, missed-call phone, phone row lighting, typed usual text, monster with NO NAME and NO QUESTION hits, SKIP IT, receipt printing, register, counter, scoreboard rows, tape). Transitions at 4.0, 14.5, 24.5, 34.5 and 47.5 s are dither or wipe frames lasting a few frames; they read as transitions. Checked from the MP4: the render-critic round 1 fault is gone (register 102 at 28.5 s ends near x 915, inside the content line), and the design round 2 gap under the CURLY row is fixed (46.8 s, clear space above 'Sam's text plus an emoji'). Lower third stays plain background in every scene, which keeps the platform UI zone clear.",
-    "3. Numbers readable when said: 160 on screen from 0.0 s and on the tape while 'a hundred sixty' is said; 1 IN 7 lands at 8.5 s as 'one in seven' is said at 8.6 s; 160 at 36.0 s before 37.1 s; 70 from 39.5 s with 'seventy' at 41.0 s; all large and high contrast.",
-    "4. Sounds like a person: yes. 'Your gut says send a polite paragraph', 'There's nothing to answer', 'Curly quotes do it too' are plain talk; pace 157 to 194 wpm, no flags.",
-    "5. qa.json: every check PASS, sha matches this MP4 (ed0e77f9...). The frozen 54.6 to 55.6 s stretch is on the end card after 53.01 s, allowed. Length 56.0 s, -14.3 LUFS, true peak -3.2 dBTP. No doubtful PASS.",
-    "6. First 3 seconds: a hard number on the owner's own text (160) with a tape measure stops a trade owner; reason to send is on the end card and captions (send this to whoever answers your phones); reason to save is the copyable 102-character example. Part 1 of 3 gives a reason to follow.",
-    "7. Polish (not a FAIL), 3.0 to 4.0 s: the missed-call phone shows an empty blue bubble with a cursor that never types, so the beat reads as unfinished; type the first words of Sam's text or cut the phone.",
-    "8. Polish (not a FAIL), 0.0 to 4.0 s: the hook says 'to book the job' while the body only promises one question they can answer; fine as framing, but 'to get a reply' would match the rest of the claims more tightly next time.",
-    "9. Polish (not a FAIL), 47.7 s: 'So count yours before part two turns it on' is a little unclear ('it' could be the text or the limit); buyer gate flagged the same."
-  ]
+ "gate": "golden",
+ "round": 0,
+ "reviewer": "claude opus (fresh agent)",
+ "pass": true,
+ "score": {
+  "post_as_is": "yes"
+ },
+ "reasons": [
+  "Polish: scoreboard empty at 31.5 s; empty phone bubble at 3.0 s; 'SKIP IT.' reads as skip texting; take 5 fast at the close."
+ ]
 }

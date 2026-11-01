@@ -1,17 +1,17 @@
 {
-  "gate": "buyer",
-  "round": 0,
-  "reviewer": "claude-opus fresh agent",
-  "pass": true,
-  "score": {"stop": "yes", "send": "yes", "save": "yes", "follow_or_link": "yes"},
-  "reasons": [
-    "1. As an HVAC/plumbing owner: my missed-call text back should say who I am, sorry I missed you, and ask one question they can answer, and stay under 160 plain characters (no emoji, no curly quotes) so it is not split and billed in pieces.",
-    "2. Stop: yes, mostly. 'Your missed-call text gets a hundred sixty characters to book the job' names my problem (missed calls) and a stake (the job), and frame 0.8s shows a big 160 on a tape measure. A number I did not know plus my own phone problem is enough for 3 seconds.",
-    "3. Send: yes, the caption tells me to send it to whoever answers my phones and it is short enough to forward. Save: yes, the exact text (Hi, this is Sam the plumber. Sorry I missed your call. What do you need fixed, and when works for you?) is in the caption and on a clean card, ready to copy. Follow: yes, 'part one of three' and 'part two turns it on' give me a reason to follow for the next one. Link in bio is vague ('free tools') and would not get a tap on its own.",
-    "4. No hype, no fake urgency, no pitch. Sources are named in the voice (ServiceTitan, Twilio). Reads like a person, not slop.",
-    "5. Clear to a stranger. 'Curly quotes do it too' may lose some owners who do not know what a curly quote is; the caption covers it, acceptable.",
-    "6. Trust: yes. Specific, sourced, modest claims, and it admits the limit is about billing pieces rather than inventing a disaster.",
-    "7. Bar: C1 yes (stake is the job, backed by about one in seven calls coming after hours; Twilio billing each split piece is a direct cost). S1 yes ('there's no name and no question in it. There's nothing to answer' is the why). C3/S3 yes (one copyable text, three-part checklist, 'count yours' is a do-this-week action under an hour).",
-    "Minor, not a FAIL: the hook stake is implied, not counted. A future cut could put the after-hours share in the first 3 s (e.g. 'One in seven calls come after hours. Your text back gets 160 characters to book that job.') for a harder stop."
-  ]
+ "gate": "buyer",
+ "round": 0,
+ "reviewer": "claude opus (fresh agent)",
+ "pass": false,
+ "score": {
+  "stop": "no",
+  "send": "no",
+  "save": "yes",
+  "follow_or_link": "no"
+ },
+ "reasons": [
+  "C1 FAIL: the hook gives a character limit, not a lost job; lead with the job a bad text loses (after-hours calls go to the next shop) and put the missed call on screen.",
+  "The only cost named (Twilio bills per piece) is a fraction of a cent; 'curly quotes' and 'Twilio' are developer words; say whether it applies to Jobber, Housecall Pro or a phone.",
+  "Bridge the after-hours stat to the text ('nobody picks those up; your text is the only answer'); read the whole example text aloud over the held card; end on a concrete step (paste it into your missed-call text setting tonight)."
+ ]
 }

@@ -1,20 +1,14 @@
 {
  "gate": "facts",
- "round": 2,
- "reviewer": "claude opus (fresh agent; Kimi daily cap reached)",
+ "round": 0,
+ "reviewer": "claude opus (fresh agent)",
  "pass": true,
- "score": {"numbers": 13, "mismatches": 0},
+ "score": {
+  "numbers": 13,
+  "mismatches": 0
+ },
  "reasons": [
-  "No mismatches. Every number in voice (transcript), screen (data.js) and scene.js strings matches facts.json and the live source pages: 160, 70 (emoji and curly rows), 102 of 160, who 29 + sorry 26 + ask 47 = 102 (recounted in code), 3 parts, part 1 of 3, next part 2, 2 pieces (102 chars + emoji over 70, 67 per segment = 2), about 1 in 7 (14.1%, June 2025).",
-  "r1 reason 1 fixed: script take 3 and transcript now say 'one question they can answer'; no booking result is promised.",
-  "r1 reason 2 fixed: trades-first met. The stake is ServiceTitan's residential HVAC after-hours share, said with 'ServiceTitan found' and tagged 'Source: ServiceTitan, June 2025' on screen; scoped to home HVAC shops, not stretched to all trades. Twilio supports only the technical SMS limits, which apply to any SMS and need no non-trade caveat.",
-  "Claims in words hold: 'Twilio splits it and bills each piece' matches the page (split into segments, billed per segment); the video never says the customer sees two texts.",
-  "Story elements read as story: the usual paragraph is labeled THE USUAL (EXAMPLE), Sam's text is tagged EXAMPLE, the seven phones illustrate 1 in 7. No real private person or business; no em or en dashes in script, transcript, scene, facts or brief.",
-  "Optional polish, not a FAIL: the ServiceTitan figure is a vendor cohort 'not nationally representative'; the on-screen tag names the source but the video does not say so. Fair as said ('ServiceTitan found')."
- ],
- "sources_checked": [
-  "https://www.twilio.com/docs/glossary/what-sms-character-limit: fetched Oct 31, 2026; table GSM-7 160 single / 153 multi, UCS-2 70 single / 67 multi; emoji switches to UCS-2; curly or smart quotation mark is UCS-2 and 'reduces the single message character limit from 160 to 70'; messages split into segments and re-assembled; 'Twilio bills SMS per message segment sent.'",
-  "https://www.servicetitan.com/toolbox/state-of-the-trades/trends/hvac-summer-after-hours-call-spike: fetched Oct 31, 2026; dated June 3rd, 2026; 'In June 2025, 14.1% of inbound calls to residential HVAC shops arrived outside business hours'; October 9.8%; business hours Mon to Fri 8 a.m. to 5 p.m. local; tenant-weighted same-store cohort, 'not nationally representative'."
+  "Standalone render checked; optional: say 'it splits' (the page says SMS splits it); tidy the unused partTag and stale comments."
  ],
  "unconfirmed": []
 }

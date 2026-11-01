@@ -1,16 +1,13 @@
 {
-  "gate": "render-critic",
-  "round": 2,
-  "reviewer": "claude opus (fresh render-critic agent)",
-  "pass": true,
-  "score": {"faults": 0},
-  "faults": [],
-  "reasons": [
-    "Earlier round: round 1 fault (CHARS register total ending near x 945, right of x 930, from 24.6 to 29.0s) is gone. Measured full size at 25.5, 26.5, 27.5 and 28.5s: the teal digits of '0'/'29'/'55'/'102' now end at x 914 ('102' spans x 843 to 914), left of the x 930 line. The plate ends near y 440 and does not cover the screen; digits fully visible.",
-    "Hook: plate 'Your missed-call text gets 160 characters.' and big '160' on screen from 0.0s; '160' on the tape from 0.5s while 'a hundred sixty' is said (1.30 to 2.00s).",
-    "Numbers: 'Part one of three' (4.11s) shows 'PART 1 OF 3 / THE WORDS' from about 4.5s; 'June of last year' shows 'JUNE 2025' from 7.0s; 'one in seven' (8.61s) shows '1 IN 7' from 8.5s; 'Three parts' (24.62s) on the plate from 24.5s; 'a hundred sixty' (37.08s) big 160 and PLAIN 160 row from 36.0s; 'seventy' (41.02s) big 70 and EMOJI 70 row from 39.5s; 'part two' (48.95s) 'NEXT: PART 2' from 48.0s; 'a hundred sixty' (52.47s) 'Under 160.' and tape label 160 from 51.0s.",
-    "Layout: settled frames show no word or number hidden, covered or cut off. Plates, receipt, scoreboard, 102/160 counter, tape labels (160 ends near x 918) and bubbles sit between y 270 and y 1250 and left of x 930. Dither wipes at scene changes are mid transition and ignored.",
-    "Audio: last word 'sixty.' ends about 52.9s; video and audio run 56.0s with the end card from 53.0s; no word cut.",
-    "Small text and flash: smallest text (scoreboard source line, receipt rows, tape labels, end card lines) is about 24 to 30 px high, readable on a phone. One wipe per scene change, never more than 3 flashes a second."
-  ]
+ "gate": "render-critic",
+ "round": 0,
+ "reviewer": "claude opus (fresh agent)",
+ "pass": true,
+ "score": {
+  "faults": 0
+ },
+ "faults": [],
+ "reasons": [
+  "Standalone render: no PART or next-part promise on screen; layout, audio and flashes clean."
+ ]
 }

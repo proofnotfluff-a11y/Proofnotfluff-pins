@@ -1,10 +1,10 @@
 {
  "schema": "pnf.studio.takes.v1",
- "requestedAt": "2026-10-31T22:28:05-05:00",
+ "requestedAt": "2026-10-31T22:36:56-05:00",
  "voice": "W3pJy9ibur1FKUihVxzY",
  "model": "eleven_v4",
- "scriptSha256": "0df120640db2f8a8fb9a54a574fbb344fe177835bbee2a28af2852e431f7f903",
- "voiceSha256": "6a3c349ab2e2efdac30379bfd0a0a349d4a82ccc13bd40ab61947bddfc504a28",
+ "scriptSha256": "f6e4ace4cebefbdcbdc0f5f4424e2d8f9fe8857da110c93f931aff10d54fda4e",
+ "voiceSha256": "6e9f791cfa766c44585a42b67d1c79ef47bb30cd8bc99bee0581c29493c0a18f",
  "takes": [
   {
    "n": 1,
@@ -19,11 +19,11 @@
   {
    "n": 2,
    "file": "takes/02.mp3",
-   "sha256": "47dbec18ab8d9a5de997b27d7f5819a14ff44db00e56aa5926ee873f58828fda",
-   "seconds": 17.398,
-   "chars": 230,
+   "sha256": "f6b2a6533d925d2dfef313b1d4d6a644a94f5d9441a9e84823f2f0fcb9dc23d6",
+   "seconds": 17.476,
+   "chars": 233,
    "start": 4.996,
-   "end": 22.394,
+   "end": 22.472,
    "wpm": 148
   },
   {
@@ -32,8 +32,8 @@
    "sha256": "d7bab79cb2687817e3909f094853a0a4c253a5bed16a40478673cc5d5ba1fe8a",
    "seconds": 6.687,
    "chars": 88,
-   "start": 22.714,
-   "end": 29.401,
+   "start": 22.792,
+   "end": 29.479,
    "wpm": 153
   },
   {
@@ -42,8 +42,8 @@
    "sha256": "8b204d8a65441ca93c908259853fbb3a463770a97c3f51b5232c929d91dced97",
    "seconds": 6.348,
    "chars": 102,
-   "start": 29.721,
-   "end": 36.069,
+   "start": 29.799,
+   "end": 36.147,
    "wpm": 198
   },
   {
@@ -52,8 +52,8 @@
    "sha256": "a4939004fcbb2ed300a34dbe76f3fdf16652d6f1b98a532cd169189a1b775b07",
    "seconds": 9.718,
    "chars": 159,
-   "start": 36.389,
-   "end": 46.107,
+   "start": 36.467,
+   "end": 46.185,
    "wpm": 154
   },
   {
@@ -62,15 +62,15 @@
    "sha256": "3d10c3f4dceba88f6bd2304a3bec9f5bb8b7140585a69bb7aa647fd553515719",
    "seconds": 5.721,
    "chars": 110,
-   "start": 46.427,
-   "end": 52.148,
+   "start": 46.505,
+   "end": 52.226,
    "wpm": 168
   }
  ],
- "chars": 754,
- "at": "2026-10-31T22:34:34-05:00",
+ "chars": 757,
+ "at": "2026-10-31T22:43:27-05:00",
  "credits": {
-  "used": 632,
+  "used": 735,
   "limit": 133571,
   "tier": "creator",
   "resetsAt": 1796089820

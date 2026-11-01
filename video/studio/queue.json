@@ -489,6 +489,26 @@
      "at": "2026-11-01T08:36:14-05:00"
     }
    }
+  },
+  {
+   "slug": "2026-11-14-ai-night-quote",
+   "readyAt": "2026-11-01T13:40:10-05:00",
+   "commit": "cabde9b0408356ce03633289e894eee08796003e",
+   "fingerprints": {
+    "script": "ddd81d61adc5",
+    "takes": "a5fdf4153f81",
+    "words": "7a0822d3ffd7",
+    "cues": "109c45ca6473",
+    "scene": "019617277d6a",
+    "data": "171e29a1a96c",
+    "captions": "2e8ae9ede767",
+    "mouth": "b890cb32c884",
+    "runtime_kit": "7533966669eb",
+    "runtime_player": "34cc933b308e",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

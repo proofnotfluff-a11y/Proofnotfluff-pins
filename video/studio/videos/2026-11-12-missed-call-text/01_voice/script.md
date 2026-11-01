@@ -2,7 +2,7 @@
 
 Missed call at nine, and one short text can answer it. How short?
 
-In June of last year, about one in seven calls to the home HVAC shops ServiceTitan tracked came after hours. It says many who hit voicemail move on to another shop. Some send a polite line. No name. No question. Nothing to answer.
+In June of last year, about one in seven calls to home HVAC shops ServiceTitan tracked came after hours. Many who hit voicemail move on to another shop, it says. Some shops send a polite line. No name. No question. Nothing to answer.
 
 Three parts. Who you are. Sorry I missed your call. One question, so they can text back.
 

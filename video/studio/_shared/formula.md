@@ -23,18 +23,27 @@ research/viral-science-2026-11-01.md), so one lesson's 0 says little. Read the s
 viewed-vs-swiped under 60% rarely did well and 70 to 90% did best (Paddy Galloway, Apr 2023). Read shares + saves +
 follows per 1,000 pooled over the week, not per lesson.
 
-## Tests queued (Nov 1, 2026 research; take the first one not yet run, one a lesson)
-1. **Skit cold open** (core lane): the host acts out one owner moment for 10 to 15 s (a lowball bid, a no-show, "just
+## Tests queued (Nov 1, 2026 research, Opus and Kimi merged; take the first one not yet run, one a lesson)
+1. **Name one person to send it to:** the last line names who should get it ("send this to the partner who still quotes
+   from the truck") and a pain owners share, in words an owner would forward. Why: sends count most for people who don't
+   follow us (Mosseri, Jan 2025); people share what feels relevant to themselves and to someone they know (Cosme et al.,
+   PNAS Nexus, Jan 2025: news articles, over 2,500 people in the US and the Netherlands, intentions and real shares).
+2. **Context, lean, turn by 5 s, and the turn takes a side:** the topic is clear in the first line, a dollar stake pulls
+   the viewer in, and the common belief is said and flipped by second 5 with a side taken. Why: stay rate under 60%
+   rarely spreads, 70 to 90% does best (Galloway, 5,400 Shorts, 2023); anger, awe and anxiety raise sharing, sadness
+   lowers it (Berger and Milkman, 2012, news text). The side must pass the facts gate: no claim we can't source.
+3. **Skit cold open** (core lane): the host acts out one owner moment for 10 to 15 s (a lowball bid, a no-show, "just
    give me a ballpark") before the fix. Why: trade skit and personality accounts run 10 to 100x the size of
    business-advice accounts (ServiceTitan lists, 2025 to 2026), and humor goes with more likes (9,654 brand TikToks,
    arXiv Jun 2026). Our words and cast; no real customer.
-2. **A line worth sending:** the last line names a pain owners share in words an owner would forward to a partner or a
-   buddy. Why: sends count most for people who don't follow us (Mosseri, Jan 2025); a niche frustration put into words
-   drives shares (Socialinsider, May 2026).
-3. **Context, lean, turn by 5 s:** the topic is clear in the first line, a stake pulls the viewer in, and the wrong first
-   guess is said and flipped by second 5 (Kallaway, Dec 2024; no data behind it beyond his own views).
-4. **Proof from our own data** (after the AI lane test ends Nov 8): a lesson built on what only we hold (Chicago permits,
+4. **A save card worth a screenshot:** the 3 s card is a word-for-word script for one hard moment ("say exactly this when
+   they say you're too expensive") or a real number with its source. Why: practical value raises sharing (Berger and
+   Milkman); a generic tip gives no reason to keep it. Never an invented price or benchmark.
+5. **Proof from our own data** (after the AI lane test ends Nov 8): a lesson built on what only we hold (Chicago permits,
    inspections, 311): "we read every X; here's the number nobody tells you" (IDEAS.md row 22 is one).
+6. **A named, numbered run with the host** (after Nov 8): 5 lessons under one name in US dollars, each ending on the
+   next one's question. Why: the faceless channels that broke out kept one recognizable format (vendor lists, picked
+   for success, so weak); no data found that a series lifts follows. Read follows per 1,000 views.
 
 ## A run with 2 already waiting (no new lesson)
 In this order, one run's worth, each step logged:

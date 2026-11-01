@@ -112,3 +112,39 @@ What the second pass changed:
 - skill-check: HyperFrames seam-craft (same commit) APPROVE, 0 high, 0 medium; HyperFrames-only render mechanics, nothing
   for our runtime, not used.
 - Scratch copies deleted.
+
+## Kimi pass, same day (Todd ran our prompt in Kimi and sent the brief; checked here)
+Kimi's five, ranked: name one person to send it to; take sides with a dollar stake; a save card with a word-for-word
+script or benchmark; a named, numbered series; platform-native renders plus Trial Reels.
+
+Checked at the source:
+- Mosseri, Jan 2025 (watch time, likes per reach, sends per reach; sends weigh more for non-followers): holds, already
+  read via Social Media Today. Kimi cited it through two marketing blogs. Its "sends weigh 3 to 5x likes" is agency
+  talk with no primary source: dropped.
+- Cosme et al., PNAS Nexus, Jan 23, 2025 (doi 10.1093/pnasnexus/pgaf019): holds in outline (Annenberg's write-up: news
+  articles on climate and health, over 2,500 people in the US and the Netherlands, prompting people to think why it
+  matters to them or their community raised both intended and real sharing). Kimi cited it through a vendor blog; its
+  "18,780 observations" and p values could not be confirmed (the paper page sat behind a robot check). News text, not
+  video.
+- Instagram originality, Apr 30, 2026 (creators.instagram.com): extends the 2024 Reels rule to photos and carousels;
+  accounts that "primarily" post unoriginal work lose recommendations, judged on a rolling 30 days. Kimi's "10 or more
+  reposts in 30 days" is not on Instagram's page: dropped. Original means work you made; a watermark or border on
+  someone else's work doesn't make it yours.
+- Trial Reels (PetaPixel, Dec 13, 2024): shown to non-followers first, numbers after 24 h, optional auto-share to
+  followers on views in the first 72 h. Holds.
+- Leans on vendor and listicle sites for: the faceless channel numbers (autofeed, taletok, vlix; picked for success),
+  the +42% kinetic caption claim, HyperFrames vs Remotion comparisons, and a 21-day follower case study on a site that
+  sells followers (discarded). Its trades accounts (SB Mowing, Auri, Electrician U) are all face-led.
+- US fix: its series example used pounds; ours would be in dollars and only with a sourced figure.
+
+Cross-posting and the repost rule: no risk found. We upload our own master MP4 to each site (POSTING.md), "Share to
+Facebook" is off, and no other app's watermark is on the file. The rule is about posting other people's work; posting
+our own render on TikTok, Facebook and YouTube too is not addressed by it. Keep it that way: never upload a file saved
+back from TikTok (it carries TikTok's mark). Kimi #5 is therefore already in place: every Instagram lesson goes up as a
+trial reel and is shared to followers at 72 h.
+
+Where Kimi and the Opus passes agree (adopted): a send line naming one person, a hook that takes a side by second 5,
+proof only we hold. Where they differ: Kimi didn't test skits (Opus keeps the skit cold open; its own trades accounts
+are story and person led, not tips); Kimi ranks a series 4th on vendor lists, Opus found no data on series and follows,
+so it goes last as a cheap test after Nov 8; Kimi's save card idea sharpens what we do (a script, not a tip) and is
+added. Merged order is formula.md "Tests queued" 1 to 6.

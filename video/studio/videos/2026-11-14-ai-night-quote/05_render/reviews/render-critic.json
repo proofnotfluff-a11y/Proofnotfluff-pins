@@ -1,17 +1,17 @@
 {
   "gate": "render-critic",
-  "round": 1,
+  "round": 0,
   "reviewer": "claude opus (fresh agent)",
-  "build": "3452b2b",
+  "build": "b396998",
   "pass": true,
   "score": {"faults": 0},
   "faults": [],
   "reasons": [
-    "Round 0 fault (overlap, guess.stake, 19.0 s, 'of cleaning businesses' cut by the dial ring) is gone. The gauge label is now 'CLEANING: REPLY IN 1 HOUR' above the dial, clear of the ring, and no label sits on the ring. The source lines under the dial ('Source: Jobber, 2026 Home Service Trends' / 'Report, 1,050 owners, Dec 2025') sit on a dark backing; only thin slivers of the bezel show in the gap between the two lines, and no letter is covered (checked on a full-size frame at 19.0 s).",
-    "1 hook: '11 pm quote. Reply in 7 seconds.' and the 11 PM message card are on screen from 0.0 s; the timer takes over at 2.0 s. Pass.",
-    "2 numbers: eleven pm (0.26 s) shows as 11 PM; seven seconds (2.4 s) shows as 'Reply in 7 seconds' to about 1.9 s, then the 6.6 s timer and 'under seven seconds' in Snow's bubble; one thing (4.2 s) shows as '1 THING'S WRONG' from 4.0 s; twenty-six percent (17.0 s) shows as 26% on the gauge from 17.0 s; two questions (25.3 s) shows as 'IT ASKED 2' from 25.5 s; cut one (28.9 s) shows as 'Ask 1. Add your price.' from 29.0 s; one question (34.4 s) shows as 'and one question.' in the bubble at 34.6 s, with QUESTION YES on the card. Pass.",
-    "3 layout: once settled, content stays between y 270 and y 1250. Checked the right edge against x 930 at 1.0, 4.6, 9.0, 14.5, 19.0, 22.0, 26.0, 29.5, 33.0 and 36.5 s: card frames and the small decorative side dial reach past it, but no word or number does (the nearest are 'EXAMPLE', the EMPTY tags and the LUNCH 'NO' values, all left of x 930). The versus divider passes beside 'Send it before your first job.' without covering a letter. Snow's bubble covers no card. No cutoffs at any edge.",
-    "4 audio end: last word 'job.' ends at 37.65 s; video and audio run to 40.73 s on the end card. Nothing cut mid-word. Pass.",
-    "5 small text and flashes: main text reads on a phone; the only tiny text is the fine print inside the real Gemini screen at 21.5 to 22.0 s. The pixel wipes at 5.5, 12.0 and 25.0 s, the dip to dark at 21.0 s and the slide at 32.5 s are single transitions, nothing flashes more than 3 times a second. Pass."
+    "Context: the earlier file (build 3452b2b, round 1) listed no open faults; its old round 0 fault (gauge label cut by the dial ring near 19 s) is still gone on this build. 'CLEANING: REPLY IN 1 HOUR' sits above the dial and the source lines sit clear under it (checked full size at 19.0 s).",
+    "1 hook: '11 pm quote. Reply in 7 seconds.' and the 11 PM message card are on screen from 0.0 s. Pass.",
+    "2 numbers: eleven pm (0.26 s) shows as 11 PM from 0.0 s; seven seconds (2.4 s) shows as 'Reply in 7 seconds' to about 1.9 s, then the timer (6.3 s at 2.5 s, settles at 6.6 s) and 'under seven' in the bubble; one thing (4.18 s) shows as '1 THING'S WRONG' from 4.0 s; twenty-six percent (16.96 s) shows as 26% on the gauge from 16.5 s; two questions (25.8 s) shows as 'IT ASKED 2' from 25.5 s and '2 QUESTIONS' from 27.0 s; cut one (28.94 s) shows as 'Ask 1. Add your price.' from 29.0 s; one question (34.35 s) shows in the bubble and as QUESTION YES on the FIXED card. Pass.",
+    "3 layout: checked settled frames at 1.0, 2.5, 4.6, 8.5, 11.0, 14.5, 19.0, 22.0, 24.5, 26.0, 27.5, 29.5, 31.5, 34.0, 36.5 and 39.0 s. Content stays between y 270 and y 1250; only the timer box frame reaches near x 950, its '6.6 s' text and every other word or number stays left of x 930. Chips ('1 THING'S WRONG', 'BOOKED ELSEWHERE', 'IT ASKED 2', '2 QUESTIONS', 'SEND IT YOURSELF') sit clear of the SNOW tag and bubble. The 'Send it before your first job.' panel at 35.5 to 37.5 s sits under the versus cards' QUESTION rows without covering a letter. The 'Their text, pasted in' card on the Gemini screen covers only screen chrome, no words of the Gemini greeting. No cutoffs at any edge.",
+    "4 audio end: last word 'job.' ends at 37.65 s; video and audio both run to 40.73 s on the end card. Nothing cut mid-word. Pass.",
+    "5 small text and flashes: main text reads on a phone; the only tiny text is fine print inside the real Gemini screen at 21.5 to 22.0 s, which is not the message. Pixel wipes at 5.5, 12.0 and 25.0 s, the dip to dark at 21.0 s and the slide to versus at 32.5 s are single transitions; nothing flashes more than 3 times a second. Pass."
   ]
 }

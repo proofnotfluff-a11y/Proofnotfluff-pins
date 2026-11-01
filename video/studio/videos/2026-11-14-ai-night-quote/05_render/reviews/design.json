@@ -1,27 +1,23 @@
 {
   "gate": "design",
-  "round": 1,
+  "round": 2,
   "reviewer": "claude opus (fresh agent)",
-  "build": "3452b2b",
-  "bar": "no score under 4 and average 4.61 or more (second design round; only round 0 failed, so the 4.50 bar does not apply yet)",
-  "pass": false,
-  "score": {"first": 5, "hierarchy": 4, "type": 4, "color": 5, "spacing": 4, "polish": 4, "trust": 5, "average": 4.43},
-  "round0_changes": [
-    "LANDED 22.5-27.0 s prompt card: the ITEM GET cream card is gone; a 'COPY THIS PROMPT' terminal types the prompt with a moving cursor and highlights the question line, held about 4.5 s (C3 met). No longer matches 2026-11-12 at 30.40 s.",
-    "LANDED 0.0-1.5 s hook: opens on the night window wide with '11 pm quote. / Reply in 7 seconds.' in the window glow over the skyline; it no longer reads as the 11-12 or 11-13 cover banner.",
-    "LANDED 2.0-31.0 s reply card apostrophe: 'I'd' renders correctly.",
-    "LANDED 2.0-31.0 s reply card header: now two lines ('REAL REPLY: GEMINI 3.6 FLASH (API)' / 'NOV 1, 2026'), nothing clipped.",
-    "PARTLY 16.0-21.0 s gauge: the 'of cleaning businesses' overlap is gone (now in the title 'CLEANING: REPLY IN 1 HOUR'), but 26% is still a small pill readout (glyphs about 40 px tall, about a 55 px font), not the 160 px hero asked for.",
-    "PARTLY type floor: the prompt card is now about 43 px, but the reply card body is still about 35 px, the Jobber source about 29 px, and new labels (versus stats) are about 32 px.",
-    "LANDED 32.5-34.3 s empty band: LEVEL UP replaced by a versus set that fills the band from 32.5 s.",
-    "NOT LANDED (trust, minor) tag style: the Gemini screen at 21.8 s still uses a black URL tag while the reply card uses a teal header; not scored down this round."
+  "build": "b396998",
+  "bar": "no score under 4 and average 4.50 or more (third design round; rounds 0 and 1 were both FAILs, Todd Oct 31, 2026, 4:19 pm)",
+  "pass": true,
+  "score": {"first": 5, "hierarchy": 5, "type": 5, "color": 5, "spacing": 4, "polish": 4, "trust": 5, "average": 4.71},
+  "round1_changes": [
+    "LANDED 16.0-21.0 s gauge readout: '26%' is now the hero, 198 px in accent #F2A541 centered in the dial under the needle, the pill and the 0 label gone; it outranks the title and the source.",
+    "LANDED 26.8 s room change: blinds close over the navy prompt room and open over 12 frames into the wood-desk reply room (frames 26.8 to 27.2 s), no plain cut (M4 met).",
+    "LANDED type floor: scene.js sets the Jobber source, work order 'Job: quote reply', EMPTY stamps, reply card body and versus labels at 39 px font size (spoken words 66, prompt card 66), all over the 36 px label floor. Round 1 read glyph heights off the frames; the font sizes meet the spec, so type is not capped.",
+    "LANDED 31.0-32.4 s 'SEND IT YOURSELF': now a 66 px teal stamp centered under 'Ask 1. Add your price.', readable at phone size.",
+    "LANDED 34.5-37.7 s versus card: 'QUEST COMPLETE' replaced by 'WINS' over the phone icon with clear padding; the YOURS side is now FIXED, the LUNCH side dims as the loser.",
+    "LANDED 35.5-37.7 s rule: 'Send it before / your first job.' sits on a solid #1B1420 plate with an ink border; no divider line crosses the letters.",
+    "Freshness held: night window hook, flap quote board, work order, gauge, typed prompt terminal and versus set do not repeat the 11-12 (tape measure, polite-text boss, register) or 11-13 (map, AI receptionist, calendar) worlds."
   ],
   "reasons": [
-    "16.0-21.0 s gauge readout (hierarchy, round 0 change not landed): '26%' sits in a green pill with glyphs about 40 px tall, so the stat the section is about is smaller than the title and source. Make the readout the hero: 160 px or more in accent (#F2A541) inside the lower dial between the 0 and 100 ticks, with the pill widened to fit, keeping the needle above it.",
-    "26.8 s room change (polish cap, standard M4): the navy 'COPY THIS PROMPT' room cuts plain to the wood-desk reply-card room with no travel. Add a wipe or dissolve (12 frames, like the 5.5, 12.0, 21.0 and 25.0 s moves) starting on the first frame of 'the' (or of the word that starts the new beat).",
-    "Type floor (type at most 4): the Jobber source lines 16.0-21.0 s (about 29 px), the versus labels YOURS / LUNCH / PRICE / QUESTION / YES / NO 32.5-37.7 s (about 32 px), the reply card body 2.0-31.0 s (about 35 px), and the work order 'Job: quote reply' line and 'EMPTY' tags 12.0-16.0 s (about 28 px) are under the 36 px label floor. Raise each to 36 px; the reply card has room if the card grows down toward y 900.",
-    "31.0-32.4 s 'SEND IT YOURSELF' tag under 'Ask 1. Add your price.': about 20 px, unreadable at phone size. Raise to 36 px on its own line or drop it and let the voice carry it.",
-    "34.5-37.7 s 'QUEST COMPLETE' on the YOURS card (spacing and polish): the words fill the card edge to edge, touch its top and left border and crowd the phone icon. Stamp it as its own banner above or across the card with at least 16 px padding (or shorten to 'WIN' / 'CLEAR'), so the phone icon stays clear.",
-    "35.5-37.7 s rule 'Send it before / your first job.' (polish): the white slant divider runs through 'Send' and 'your'. Put the rule on a solid dark plate (#1B1420) that sits over the divider, centered in y 840 to 990, so no line crosses the letters."
+    "24.0-26.0 s price line (polish): 'Free: $0/ month' has a stray space after the slash. Change to 'Free: $0 a month' (or '$0/month') so it reads as one clean price.",
+    "16.7-21.0 s gauge source plate (spacing): the 'Source: Jobber, 2026 Home Service Trends' plate at y 908 sits on the gauge ring's lower ends, so the ring pokes out behind the plate edges. Move the two source lines down 24 px (to y 932 and 982) or shrink the dial 24 px so the plate clears the ring.",
+    "31.0-32.4 s 'SEND IT YOURSELF' stamp (spacing): the plate straddles the top edge of the wood desk, half on the dark wall and half on the wood. Lift it 30 px so it sits fully on the wall under 'Ask 1. Add your price.' with 16 px between them."
   ]
 }

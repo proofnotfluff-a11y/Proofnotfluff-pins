@@ -11,7 +11,8 @@ studio-ai-demo.yml runs it on GitHub's machine:
 
 and commits video/studio/demos/out/<name>/:
   run.json      the model id, the prompt, the reply as the model returned it (dashes shown as commas, the repo refuses
-                em and en dashes; "dashes" says how many), the time, the token count
+                em and en dashes; "dashes" says how many), the time, the token count, and the
+                seconds the model call took (wall time on GitHub's machine)
   page-<n>.png  each page as a phone shows it (430 x 932 at 3x), top of the page
   page-<n>-full.png  the whole page
   pages.json    each page's address, final address, title and time
@@ -26,6 +27,7 @@ import json
 import os
 import re
 import sys
+import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -100,7 +102,9 @@ def run(job_path, out_root, *, key, call=W._call, shooter=shoot):
     code = 0
     if job.get("prompt"):
         try:
+            t0 = time.monotonic()
             res = generate(job["prompt"], key=key, model=job.get("model") or DEFAULT_MODEL, call=call)
+            res["seconds"] = round(time.monotonic() - t0, 1)  # wall time of the model call, said as "took N seconds"
             res.update({"prompt": job["prompt"], "at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")})
             (out / "run.json").write_text(json.dumps(res, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
         except W.GeminiError as e:

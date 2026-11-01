@@ -23,6 +23,7 @@ def test_reply_kept_and_dashes_counted(tmp_path):
     assert code == 0 and out["model"] == "gemini-test-001" and out["dashes"] == 1
     assert "—" not in out["text"] and out["text"].startswith("Thanks for the note")
     assert out["prompt"] == "Write a reply to this review." and out["tokens"] == 42
+    assert isinstance(out["seconds"], float) and out["seconds"] >= 0
 
 
 def test_no_text_is_an_error(tmp_path):

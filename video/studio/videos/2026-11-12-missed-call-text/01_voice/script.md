@@ -2,12 +2,12 @@
 
 Missed call at nine, and one short text can answer it. How short?
 
-In June of last year, about one in seven calls to the home HVAC shops ServiceTitan tracked came after hours. Some shops text back a polite line. No name. No question. Nothing to answer.
+In June of last year, about one in seven calls to the home HVAC shops ServiceTitan tracked came after hours. It says many who hit voicemail move on to another shop. Some send a polite line. No name. No question. Nothing to answer.
 
-Three parts. Who you are. Sorry I missed your call. One question, so they have something to text back.
+Three parts. Who you are. Sorry I missed your call. One question, so they can text back.
 
 Hi, this is Sam the plumber. Sorry I missed your call. What do you need fixed, and when works for you?
 
 [matter-of-fact] Twilio says one plain text holds a hundred sixty characters. One emoji drops it to seventy. Past that, it splits, and Twilio bills each piece.
 
-[confident] Tonight, put yours in your missed-call auto-reply. No auto-reply yet? Set one up. Keep it short and plain, under a hundred sixty.
+[confident] Tonight, put yours in your missed-call auto-reply. Keep it short and plain, under a hundred sixty.

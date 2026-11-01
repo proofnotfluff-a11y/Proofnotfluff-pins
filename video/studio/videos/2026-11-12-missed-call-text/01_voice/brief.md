@@ -58,6 +58,7 @@ Twilio's "How long can a message be?" docs page; every line in facts.json quoted
 | Claim, as said | Source | URL |
 |---|---|---|
 | About one in seven calls to home HVAC shops came after hours in June of last year | ServiceTitan, When Summer HVAC Demand Spikes, After-Hours Calls Do Too, Jun 3, 2026, read Oct 31, 2026 (14.1% in June 2025; Mon to Fri 8 to 5 is business hours; vendor cohort, not nationally representative) | https://www.servicetitan.com/toolbox/state-of-the-trades/trends/hvac-summer-after-hours-call-spike |
+| It (ServiceTitan) says many who hit voicemail move on to another shop | ServiceTitan, same page, read Nov 1, 2026: "many will immediately move on and search for another provider" (its statement, not a measured share) | https://www.servicetitan.com/toolbox/state-of-the-trades/trends/hvac-summer-after-hours-call-spike |
 | One plain text holds 160 characters | Twilio docs, How long can a message be?, read Oct 31, 2026 | https://www.twilio.com/docs/glossary/what-sms-character-limit |
 | One emoji drops the limit to 70 | same (UCS-2 switch; 70 per single segment) | same |
 | Curly quotes do it too | same (curly quotation marks are UCS-2; 160 to 70) | same |

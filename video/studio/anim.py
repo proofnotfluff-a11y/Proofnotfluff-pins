@@ -2191,6 +2191,41 @@ def cmd_hook(slug):
 LABEL_FLOOR_PX = 36   # ink height in 1080-wide frame units; the design gate caps type at 4 under 36 px labels
 
 
+def accent_report(slug, first_seen, step=0.25):
+    """M3 (IMPROVE 00a-3): each scene text that shows a word the voice says near it (a 4+ letter word or a number) should
+    land 0.2 to 0.3 s before that word starts. Returns ([(text, word, lead)] for texts that show up a step or more after
+    the word began, count landing in time). lead = word start minus first shown; negative is late. Sampled at lint's step,
+    so a lead is good to about that step."""
+    wp = vdir(slug, "02_transcript", "words.json")
+    if not os.path.exists(wp):
+        return [], 0
+    wd = json.load(open(wp)); words = wd["words"] if isinstance(wd, dict) else wd
+    norm = lambda w: re.sub(r"[^a-z0-9]", "", str(w).lower())
+    spoken = [(norm(w["w"]), w["start"]) for w in words if norm(w["w"])]
+    late, ontime = [], 0
+    # a typed-in text shows as its growing prefixes: keep the whole text, timed from its first letters
+    full = {}
+    for s_, t0 in sorted(first_seen.items(), key=lambda kv: -len(kv[0])):
+        owner = next((f for f in full if f.startswith(s_)), None)
+        if owner:
+            full[owner] = min(full[owner], t0)
+        else:
+            full[s_] = t0
+    for s_, t0 in full.items():
+        toks = {norm(x) for x in re.split(r"[\s/,.:;!?()]+", s_)}
+        toks = {x for x in toks if len(x) >= 4 or x.isdigit()}
+        near = [(abs(st - t0), w, st) for w, st in spoken if w in toks and t0 - 3.0 <= st <= t0 + 1.0]
+        if not near:
+            continue
+        _, w, st = min(near)
+        lead = round(st - t0, 2)
+        if lead < -step - 1e-6:
+            late.append((s_, w, lead))
+        elif lead <= 0.6:
+            ontime += 1
+    return sorted(late, key=lambda x: x[2]), ontime
+
+
 def cmd_lint(slug, step=0.25):
     """The layout check in code, before a reviewer has to find it: every settled scene text inside the safe area
     (x 20 to 950, y 262 to 1250), not under the host, the dialog box or other text. Problems that last under 0.5 s
@@ -2204,7 +2239,7 @@ def cmd_lint(slug, step=0.25):
     hook, hook_bad = hook_report(slug, pg)   # before the world spy, on a clean page
     send_line = pg.evaluate("(window.SCENE && window.SCENE.sendLine) || ''") if is_modern(slug) else None
     pg.evaluate(WORLD_SPY)
-    t, worlds, steps, small = 0.0, {}, 0, {}
+    t, worlds, steps, small, first_seen = 0.0, {}, 0, {}, {}
     while t < cues["duration"]:
         bx, used = pg.evaluate(f"(() => {{ window.__boxes = []; window.__used = {{}}; drawAt({t:.3f}); const r = window.__boxes; window.__boxes = null; return [r, Object.keys(window.__used)]; }})()")
         steps += 1
@@ -2218,6 +2253,8 @@ def cmd_lint(slug, step=0.25):
             for o, name in [(h, "under the host") for h in host] + [(d, "under the dialog box") for d in dlg]:
                 if ov(x, o) > 0.08 * (x["x1"] - x["x0"]) * (x["y1"] - x["y0"]):
                     hits.setdefault((name, x["s"]), []).append(t)
+        for x in texts:   # M3 accent timing (IMPROVE 00a-3): when each scene text first shows
+            first_seen.setdefault(x["s"].strip(), t)
         for x in texts:   # the type floor (IMPROVE 00b): a label's tallest settled ink height, over the whole lesson
             k_ = x["s"].strip()[:40]
             small[k_] = max(small.get(k_, 0), round(x["y1"] - x["y0"]))
@@ -2245,6 +2282,10 @@ def cmd_lint(slug, step=0.25):
         for a0, a1 in runs:
             errors.append(f"ERROR lint {a0:5.2f} to {a1:5.2f} s: {kind}: {what[:70]}")
     print("hook: " + json.dumps(hook))
+    late, ontime = accent_report(slug, first_seen, step)
+    if late:   # a warning, not an ERROR (M3, _shared/standard.md): the design gate and render critic judge it
+        print(f"WARN lint accents: {len(late)} scene texts land after their spoken word (M3 wants 0.2 to 0.3 s before; "
+              f"{ontime} land in time): " + "; ".join(f"'{s_[:30]}' {lead:+.2f} s vs '{w_}'" for s_, w_, lead in late[:12]))
     small = {s_: h_ for s_, h_ in small.items() if h_ < LABEL_FLOOR_PX and any(c.isalnum() for c in s_)}
     if small:   # a warning, not an ERROR: lessons pinned before Oct 31 keep their labels; the design gate weighs them
         print(f"WARN lint type: {len(small)} scene labels under {LABEL_FLOOR_PX} px tall (IMPROVE 00b): "

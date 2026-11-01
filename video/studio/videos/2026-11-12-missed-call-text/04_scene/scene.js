@@ -310,8 +310,10 @@ window.SCENE = {
       if (run >= 1) k.slam(n.plain.shown, 920, 474, tSixty, {size: 66, color: GOLD, align: 'right', from: 0.4, drop: INK, glint: false});
       else if (T >= t0 + 0.7) k.text(n.plain.shown, 920, 474, {size: 66, color: CREAM, align: 'right'});
       d.win(14, 84, 332, 70, {base: '#1B1420', hi: '#7A3442', lo: INK, rule: ORANGE});
-      if (T < tKeep) { k.slam('Tonight: put yours', 540, 280, t0 + 0.1, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false}); k.slam('in your auto-reply.', 540, 358, t0 + 0.16, {size: 66, color: ORANGE, align: 'center', from: 0.4, drop: INK, glint: false}); }
-      else { k.slam('Short and plain.', 540, 280, tKeep, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false}); k.slam(`Under ${n.plain.shown}.`, 540, 358, tKeep + 0.1, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false}); k.sweep(540 - k.measure(`Under ${n.plain.shown}.`, {size: 66}) / 2, 432, k.measure(`Under ${n.plain.shown}.`, {size: 66}), 6, tKeep + 0.4, {color: 'accent'}); }
+      /* r3 (design r0, M6): the rule lands 0.6 s before "Keep" so it holds 2.8 s before the end card */
+      const tRule = tKeep - 0.6;
+      if (T < tRule) { k.slam('Tonight: put yours', 540, 280, t0 + 0.1, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false}); k.slam('in your auto-reply.', 540, 358, t0 + 0.16, {size: 66, color: ORANGE, align: 'center', from: 0.4, drop: INK, glint: false}); }
+      else { k.slam('Short and plain.', 540, 280, tRule, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false}); k.slam(`Under ${n.plain.shown}.`, 540, 358, tRule + 0.1, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false}); k.sweep(540 - k.measure(`Under ${n.plain.shown}.`, {size: 66}) / 2, 432, k.measure(`Under ${n.plain.shown}.`, {size: 66}), 6, tRule + 0.4, {color: 'accent'}); }
       return host(k, T >= tKeep + 0.8 ? 'wave' : (k.live('button') ? 'point' : null));
     },
   },

@@ -18,7 +18,7 @@ the top one still open before anything below.
 00a-2. Done Oct 31 (end-of-day run, k.itemGet). C3 save card as a game "ITEM GET" window: the copyable thing (text, setting path, checklist) in a menu window that
    slides in over 0.3 s (ease-out, whole pixels), a hand cursor bobbing 1 px at 4 fps down its lines (so it is never flat,
    M1), a short item fanfare, held 3 s or more. lsa-missed-calls had 0 saves at 2.7 h.
-00a-3. M3 accent words: the beat's key word slams on screen 0.2 to 0.3 s before it is spoken, from words.json timing
+00a-3. (Check done Nov 1, evening run: `lint` WARN accents; next: the scenes move each late text 0.2 to 0.3 s ahead of its word, then the WARN becomes an ERROR for new lessons.) M3 accent words: the beat's key word slams on screen 0.2 to 0.3 s before it is spoken, from words.json timing
    (replaces item 10 below).
 00a-4. M4 pixel-native travel and hits: rooms change by mosaic cross or a 4-step palette fade (never an alpha fade), a
    verdict stamp gets a 3-2-1 px screen shake over 8 frames, the camera pans in whole pixels with 2 to 3 parallax layers;
@@ -77,6 +77,15 @@ the top one still open before anything below.
 12. Visual: a seasonal touch per week (snow outside the half-built house in winter, leaves in fall).
 
 ## Done (newest first: date, item, what changed, proof)
+- 2026-11-01 (evening run of Oct 31, cloud): M3 accent check in `lint` (00a-3, first step). `accent_report` in anim.py
+  times when each scene text first shows (a typed-in text from its first letters) and finds the spoken word it carries
+  (a 4+ letter word or a number, within 3 s before to 1 s after); `lint` prints one WARN line naming every text that lands
+  a step (0.25 s) or more after its word, and how many land in time. A warning, not an ERROR, so pinned lessons keep
+  their place. Proof: lint on lesson 1 (first-reply): 2 late ('Homeowner' 2.49 s after the word, 'Can you quote a new
+  water heat...' 0.98 s), 17 in time (before the prefix grouping it listed 10, 8 of them the same typed lines); on
+  missed-call-text r3: 3 late, 17 in time; its scene's own accents (ASK on "question", the copy card's bars on each read
+  part, 2 PIECES, 2 BILLS on "splits") were moved onto their words this run. The 3 left are labels sharing the word
+  "text" or "emoji" with a line said earlier, not accents.
 - 2026-10-31 (end-of-day run, cloud): C3 save card as a game ITEM GET window (00a-2). New `k.itemGet` in _runtime/kit.js:
   the copyable thing in a cream menu window with a gold ITEM GET tab and an optional tag (EXAMPLE), sliding in from the
   right over 0.3 s on whole low-res pixels, a gold pointer that bobs 1 px at 4 fps and steps down a line every `step` s,

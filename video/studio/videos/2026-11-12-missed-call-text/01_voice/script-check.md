@@ -39,3 +39,8 @@ re-measured on the real words.json. The script gate should re-score it blind.
 - Script gates before voice (stages/01_voice step 3): buyer r2 PASS (stop, send, save yes), facts r2 0 mismatches in the
   script (its one FAIL was three captions' billing line, fixed to "Twilio bills each one").
 - Button: "Keep it short and plain, under a hundred sixty." echoes "short" from the drop-in.
+
+## r4 (Nov 1, evening run), after the render buyer gate's FAIL on C1 (no cost said)
+- Added the stake, sourced: "It says many who hit voicemail move on to another shop." (ServiceTitan's page, its statement,
+  not a measured share). Cut "No auto-reply yet? Set one up." and "have something to" to stay at 135 words.
+- Script gates before voice: buyer r4 PASS (stop, send, save yes; C1 yes), facts r4 PASS 0 mismatches.

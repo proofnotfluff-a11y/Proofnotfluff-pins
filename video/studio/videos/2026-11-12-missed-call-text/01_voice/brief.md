@@ -1,4 +1,4 @@
-# Brief: The missed-call text, part 1 of 3: the words
+# Brief: The missed-call text: the words (standalone)
 
 Depth bank #2, part 1 (research/IDEAS.md; research/topics-2026-10-30.md, lesson 2: P1 the text, P2 turn it on, P3
 register the number), planned Oct 31, 2026 in the scheduled morning make run. Source read Oct 31, 2026 (Central):
@@ -12,11 +12,13 @@ Twilio's "How long can a message be?" docs page; every line in facts.json quoted
 - **The one idea:** your missed-call text is three short parts and fits one plain text. (13 words)
 - **Do this week (on screen, held):** write the text: who you are, sorry I missed your call, one question that books it;
   count it under 160 characters, no emoji, no curly quotes.
-- **Shape:** hook (the tape measure out to 160: the text's whole budget) -> part 1 of 3, the usual way (a polite
-  paragraph, no name, no question: nobody answers it) -> the fix (three parts, each lands as a slot; then the exact
-  text, EXAMPLE, held on a big card with its count, 102 of 160) -> proof (Twilio's table: plain 160, with an emoji or
-  curly quotes 70; past that it splits and Twilio bills each piece) -> button (count yours before part two turns it on;
-  the rule echoes "a hundred sixty").
+- **Shape (r3, Nov 1, after the buyer gate):** hook (a missed call at 9 pm on the bench by the tape measure out to 160:
+  one short text can answer it; open loop "How short?", answered by Twilio's 160 at the proof) -> the stake (ServiceTitan: about one in seven HVAC calls after hours) and the
+  usual way (some shops text back a polite line, EXAMPLE, no name, no question: nothing to answer) -> the fix (three parts ring
+  up, and why: one question gives them something to text back) -> the exact text read aloud over the held card, EXAMPLE,
+  102 of 160 -> proof (Twilio's table: plain 160, one emoji 70; past that it splits and Twilio bills each piece) ->
+  button (tonight, put yours in your missed-call auto-reply, or set one up; the rule echoes "a hundred sixty").
+- **Cover line:** "Missed call, 9 pm. / One short text can answer it."
 - **Hook pattern:** object-number
 - **Treatment:** before-after
 - **Example:** sam-plumber-text-102
@@ -60,7 +62,7 @@ Twilio's "How long can a message be?" docs page; every line in facts.json quoted
 | One emoji drops the limit to 70 | same (UCS-2 switch; 70 per single segment) | same |
 | Curly quotes do it too | same (curly quotation marks are UCS-2; 160 to 70) | same |
 | Past that, Twilio splits it and bills each piece | same (split into 67-character segments; bills per segment) | same |
-| The example text, 102 characters (who 29, sorry 26, ask 47), 3 parts; part 1 of 3, next part 2 | ours (example, labeled; length counted in code) | n/a |
+| The example text, 102 characters (who 29, sorry 26, ask 47), 3 parts | ours (example, labeled; length counted in code) | n/a |
 
 ## Numbers on screen
 

@@ -2,13 +2,11 @@
  "gate": "facts-captions",
  "round": 0,
  "reviewer": "claude opus (fresh agent)",
- "pass": false,
+ "pass": true,
  "score": {
-  "numbers": 6,
-  "mismatches": 2
+  "numbers": 9,
+  "mismatches": 0
  },
- "reasons": [
-  "youtube: the ServiceTitan proof line needs its full source (title, date, URL, the same-store, not nationally representative note) as captions.md asks.",
-  "youtube: add a next-lesson line that promises no part 2, e.g. 'More lessons for trade owners on the channel.'"
- ]
+ "reasons": [],
+ "at": "2026-10-31T23:2x-05:00 (evening run, r4 render)"
 }

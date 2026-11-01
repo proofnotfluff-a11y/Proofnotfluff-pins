@@ -6,7 +6,7 @@
   "level": 0.16,
   "tune": "bounce"
  },
- "duration": 54.767,
+ "duration": 54.845,
  "cues": [
   {
    "id": "hook",
@@ -30,7 +30,7 @@
    "text": "The boss arena (r2; was street) under a night panel: ABOUT 1 IN 7 lands big on \"about\", seven phones pop in one a beat, the seventh rings red on \"after\" with \"came after hours\"; source tag \"Source: ServiceTitan, June 2025\" while it is said. On \"Some shops\" the panel lifts away: THE POLITE TEXT is the boss, our cream window over its menu types the usual paragraph. EXAMPLE tag.",
    "t": 4.996,
    "word": 13,
-   "end": 22.714
+   "end": 22.792
   },
   {
    "id": "usual.polite",
@@ -40,9 +40,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The paragraph finishes: \"Thanks for calling, we value your business.\"",
-   "t": 17.456,
+   "t": 17.736,
    "word": 46,
-   "end": 18.856
+   "end": 19.056
   },
   {
    "id": "usual.no",
@@ -52,9 +52,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "NO NAME hits the boss and stamps on \"name\"; NO QUESTION hits and stamps on \"question\".",
-   "t": 18.856,
+   "t": 19.056,
    "word": 49,
-   "end": 20.916
+   "end": 21.096
   },
   {
    "id": "usual.nobody",
@@ -64,9 +64,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The last hit on \"answer\": the boss breaks into pixels and SKIP IT. stamps in; Snow waves.",
-   "t": 20.916,
+   "t": 21.096,
    "word": 53,
-   "end": 22.714
+   "end": 22.792
   },
   {
    "id": "parts",
@@ -76,9 +76,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The register set: WHO 29 rings on \"Who\", SORRY 26 on \"Sorry\", ASK 47 on \"question\", CHARS 102 prints as the total; the plate says \"One question / to text back.\"",
-   "t": 22.714,
+   "t": 22.792,
    "word": 56,
-   "end": 29.721
+   "end": 29.799
   },
   {
    "id": "copy",
@@ -88,9 +88,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The text as an ITEM GET window (kit k.itemGet; the chime is its fanfare), EXAMPLE: \"Hi, this is Sam the plumber. Sorry I missed your call. What do you need fixed, and when works for you?\" Read aloud over the card: each part gets its slot colour bar as it is read; the counter under it counts up to 102 / 160, the tape strip fills to 102 under the 160 mark.",
-   "t": 29.721,
+   "t": 29.799,
    "word": 73,
-   "end": 36.389
+   "end": 36.467
   },
   {
    "id": "proof",
@@ -100,9 +100,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The scores set, title CHARS PER TEXT: row PLAIN 160 lands on \"plain\". Source tag up top while it is said: \"Twilio docs: How long can a message be?\".",
-   "t": 36.389,
+   "t": 36.467,
    "word": 94,
-   "end": 46.427
+   "end": 46.505
   },
   {
    "id": "proof.emoji",
@@ -112,9 +112,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Row EMOJI 70 lands in red; row CURLY 70 joins after \"seventy\" (the caption explains curly quotes).",
-   "t": 40.409,
+   "t": 40.487,
    "word": 104,
-   "end": 42.569
+   "end": 42.647
   },
   {
    "id": "proof.split",
@@ -124,9 +124,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Under the table: \"Sam's text plus an emoji:\" and \"2 PIECES, 2 BILLS\" stamps on \"splits\".",
-   "t": 42.569,
+   "t": 42.647,
    "word": 110,
-   "end": 46.427
+   "end": 46.505
   },
   {
    "id": "button",
@@ -136,9 +136,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Back on the workbench, the tape out to 160, the clean text's 102 marked on the blade in teal. Card: \"Tonight: put yours / in your auto-reply.\"",
-   "t": 46.427,
+   "t": 46.505,
    "word": 119,
-   "end": 54.767
+   "end": 54.845
   },
   {
    "id": "button.rule",
@@ -148,9 +148,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The rule lands in gold: \"Short and plain. / Under 160.\" Snow waves. Then the end card with the send line: \"Send this to whoever answers your phones.\"",
-   "t": 49.607,
+   "t": 49.685,
    "word": 126,
-   "end": 54.767
+   "end": 54.845
   }
  ]
 }

@@ -227,7 +227,10 @@ window.SCENE = {
           d.P(x + sh, y, 16, 26, INK); d.P(x + 1 + sh, y + 1, 14, 24, red ? RED : '#4A4E5A'); d.P(x + 3 + sh, y + 4, 10, 15, red ? '#FFF2B8' : '#253048');
           if (red) { const f = d.fr(tAfter - 0.2) % 12; [4, 8].forEach((r) => { if (f >= r - 4) { d.P(x + 18 + r - 4, y + 4, 1, 8, GOLD); d.P(x - 3 - (r - 4), y + 4, 1, 8, GOLD); } }); }
         }
-        if (T >= tAfter - 0.2) k.slam('came after hours', 540, (228 + oy) * 3, tAfter - 0.2, {size: 66, color: RED, align: 'center', from: 0.4, glint: false});
+        /* r4: the stake said (ServiceTitan: many who hit voicemail move on) lands on its word, in place of the row */
+        const tVm = wordT(k, 'usual', /^voicemail/i, 9.0);
+        if (T >= tVm - 0.25) k.slam('Voicemail? Many move on.', 540, (228 + oy) * 3 + (T >= tVm + 0.3 ? bob2(T, tVm + 0.3) : 0), tVm - 0.25, {size: 66, color: RED, align: 'center', from: 0.4, glint: false});
+        else if (T >= tAfter - 0.2) k.slam('came after hours', 540, (228 + oy) * 3, tAfter - 0.2, {size: 66, color: RED, align: 'center', from: 0.4, glint: false});
         if (T >= Math.min(tSrc, tAfter + 0.3)) k.text('Source: ServiceTitan, June 2025', 540, (255 + oy) * 3, {size: 39, color: SAND, align: 'center'});
       }
       return host(k, T >= tDef ? 'wave' : (T >= tName ? 'point' : (T >= tAfter - 0.2 && T < tGut ? 'lean' : null)));
@@ -241,14 +244,15 @@ window.SCENE = {
       /* r2 (render critic r1): the set right-aligns its display total at x 948, past the 930 content line; the total is */
       /* drawn again right-aligned at x 918 inside the display (same size, colour and height).                          */
       const moved = [];
-      mute(k, (s2, x, y, o) => { if (o && o.color === '#6FB7A8' && o.align === 'right' && x > 930) { moved.push([s2, y, o]); return true; } return false; }, () => k.sets.register({prefix: '', totalLabel: 'CHARS', displayLabel: 'CHARS', items: [
+      mute(k, (s2, x, y, o) => { if (String(s2) === '$') return true; /* r4 (facts r0): the till flag's $ read 29, 55, 102 as dollars */ if (o && o.color === '#6FB7A8' && o.align === 'right' && x > 930) { moved.push([s2, y, o]); return true; } return false; }, () => k.sets.register({prefix: '', totalLabel: 'CHARS', displayLabel: 'CHARS', items: [
         {label: 'WHO', amount: n.who.value, at: tWho}, {label: 'SORRY', amount: n.sorry.value, at: tSor}, {label: 'ASK', amount: n.ask.value, at: tQ - 0.25}],
         totalAt: tQ + 0.4}));
       moved.forEach(([s2, y, o]) => k.text(s2, 918, y, o));
       /* r2: the plate sits left of the register's display (design r1: the total was cut off under a full-width plate) */
       const say = T >= tQ - 0.25 ? ['One question', 'to text back.', tQ - 0.25] : T >= tSor ? ['Sorry I missed', 'your call.', tSor] : T >= tWho ? ['Who you are:', 'name, trade.', tWho] : ['Three parts.', 'Each rings up.', t0];
       const d = px(k); d.win(14, 84, 200, 62, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
-      k.slam(say[0], 72, 262, say[2], {size: 66, color: CREAM, from: 0.4, drop: INK, glint: false}); k.slam(say[1], 72, 336, say[2] + 0.06, {size: 66, color: GOLD, from: 0.4, drop: INK, glint: false});
+      const fl = T >= say[2] + 0.4 ? bob2(T, say[2] + 0.4) : 0;   /* r4 (check flat): the landed plate floats 2 px, never held still */
+      k.slam(say[0], 72, 262 + fl, say[2], {size: 66, color: CREAM, from: 0.4, drop: INK, glint: false}); k.slam(say[1], 72, 336 + fl, say[2] + 0.06, {size: 66, color: GOLD, from: 0.4, drop: INK, glint: false});
       return host(k, k.live('parts') && T >= tWho ? 'point' : null);
     },
 

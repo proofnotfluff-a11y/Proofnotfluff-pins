@@ -1,14 +1,16 @@
 {
  "gate": "facts",
- "round": 0,
+ "round": 1,
  "reviewer": "claude opus (fresh agent)",
  "pass": true,
  "score": {
-  "numbers": 13,
+  "numbers": 14,
   "mismatches": 0
  },
  "reasons": [
-  "Standalone render checked; optional: say 'it splits' (the page says SMS splits it); tidy the unused partTag and stale comments."
+  "Round 0 of the r4 render found the register's '$' flag over the character counts; muted in scene.js, confirmed gone in the MP4 at 24.25 s and 28.0 s.",
+  "Twilio and ServiceTitan pages re-read Nov 1, 2026: 160, 70, per-segment billing, 14.1% June 2025 (about one in seven), and 'many will immediately move on' credited with 'it says'.",
+  "Optional: '2 PIECES, 2 CHARGES' would match the page word for word; fair as is."
  ],
- "unconfirmed": []
+ "at": "2026-10-31T23:2x-05:00 (evening run, r4 render)"
 }

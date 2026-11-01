@@ -1,17 +1,17 @@
 {
  "gate": "buyer",
- "round": 0,
+ "round": 1,
  "reviewer": "claude opus (fresh agent)",
- "pass": false,
+ "pass": true,
  "score": {
-  "stop": "no",
-  "send": "no",
+  "stop": "yes",
+  "send": "yes",
   "save": "yes",
   "follow_or_link": "no"
  },
  "reasons": [
-  "C1 FAIL: the hook gives a character limit, not a lost job; lead with the job a bad text loses (after-hours calls go to the next shop) and put the missed call on screen.",
-  "The only cost named (Twilio bills per piece) is a fraction of a cent; 'curly quotes' and 'Twilio' are developer words; say whether it applies to Jobber, Housecall Pro or a phone.",
-  "Bridge the after-hours stat to the text ('nobody picks those up; your text is the only answer'); read the whole example text aloud over the held card; end on a concrete step (paste it into your missed-call text setting tonight)."
- ]
+  "Round 0 (r3 render) FAIL on C1: no cost said. r4 adds ServiceTitan's 'many who hit voicemail move on to another shop' (sourced) and the on-screen 'Voicemail? Many move on.'",
+  "C1, S1, C3, S3 met. Notes: 'it says' a little stiff; Twilio unknown to most owners; say where the auto-reply lives."
+ ],
+ "at": "2026-10-31T23:2x-05:00 (evening run, r4 render)"
 }

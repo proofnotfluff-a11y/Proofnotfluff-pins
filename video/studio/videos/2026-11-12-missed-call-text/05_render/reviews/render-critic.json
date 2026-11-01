@@ -6,8 +6,8 @@
  "score": {
   "faults": 0
  },
- "faults": [],
  "reasons": [
-  "Standalone render: no PART or next-part promise on screen; layout, audio and flashes clean."
- ]
+  "Hook on screen at 0 s; every spoken number on screen as said; no hidden or cut text; last word ends 51.75 s, video 54.83 s; no flashes."
+ ],
+ "at": "2026-10-31T23:2x-05:00 (evening run, r4 render)"
 }

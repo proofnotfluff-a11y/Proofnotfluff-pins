@@ -1,10 +1,10 @@
 {
  "schema": "pnf.studio.worlds.v1",
  "share": {
-  "set:icon": 0.368,
-  "set:boss": 0.323,
+  "set:icon": 0.359,
+  "set:boss": 0.327,
   "set:register": 0.127,
-  "set:hud": 0.123,
-  "set:scores": 0.182
+  "set:hud": 0.118,
+  "set:scores": 0.186
  }
 }

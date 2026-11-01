@@ -14,7 +14,6 @@ and commits video/studio/demos/out/<name>/:
                 em and en dashes; "dashes" says how many), the time, the token count, and the
                 seconds the model call took (wall time on GitHub's machine)
   page-<n>.png  each page as a phone shows it (430 x 932 at 3x), top of the page
-  page-<n>-full.png  the whole page
   pages.json    each page's address, final address, title and time
 
 What a lesson may show from this: the reply text exactly as run.json holds it, labelled with the model and date, and
@@ -57,7 +56,9 @@ def generate(prompt, *, key, model, call=W._call):
         reason = cand.get("finishReason") or (data.get("promptFeedback") or {}).get("blockReason")
         raise W.GeminiError("rejected", f"no answer text (reason {reason or 'none given'})")
     raw = "\n".join(parts).strip()
-    return {"model": data.get("modelVersion") or model, "text": W.plain(raw),
+    # a dash that opens a line (a sign-off) is dropped, not turned into a comma
+    text = W.plain(re.sub(r"(?m)^[ \t]*[\u2013\u2014][ \t]*", "", raw))
+    return {"model": data.get("modelVersion") or model, "text": text,
             "dashes": len(re.findall(r"[–—]", raw)),
             "tokens": (data.get("usageMetadata") or {}).get("totalTokenCount")}
 
@@ -92,7 +93,6 @@ def shoot(pages, out):
                     page.wait_for_timeout(3000)
                 page.wait_for_timeout(1500)
                 page.screenshot(path=str(out / f"page-{n}.png"))
-                page.screenshot(path=str(out / f"page-{n}-full.png"), full_page=True)
                 row.update({"final": page.url, "status": resp.status if resp else None, "title": page.title()})
             except Exception as e:  # a page that will not load is recorded, not guessed at
                 row["error"] = f"{type(e).__name__}: {str(e)[:200]}"

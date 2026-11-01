@@ -56,3 +56,11 @@ def test_key_never_in_errors():
                    call=lambda *a, **k: (_ for _ in ()).throw(W.GeminiError("auth", W._clean("bad SECRETKEY", "SECRETKEY"))))
     except W.GeminiError as e:
         assert "SECRETKEY" not in str(e)
+
+
+def test_signoff_dash_dropped(tmp_path):
+    job = tmp_path / "j5.json"
+    job.write_text(json.dumps({"prompt": "x"}))
+    A.run(job, tmp_path / "out", key="k", call=fake_call("We will make it right.\n\n\u2014 Sam, Owner"))
+    out = json.loads((tmp_path / "out" / "j5" / "run.json").read_text())
+    assert out["text"].endswith("We will make it right.\n\nSam, Owner") and out["dashes"] == 1

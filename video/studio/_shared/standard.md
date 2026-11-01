@@ -22,6 +22,8 @@ measures what code can (M1 now). A line a lesson misses is a FAIL with its numbe
 - C3 A screen worth saving. The exact thing to copy (the text, the setting path, the checklist, the prompt) on one
   clean card, held 3 s or more, readable at phone size. This is what earns saves and shares.
 - C4 An open loop. One question set in the first 5 s and answered after 60% of the runtime.
+- C5 The result on screen by 3 s (Todd, Nov 1, 2026: shares are 0; most viewers left by 4 to 8 s on TikTok): open on the
+  finished thing (the reply, the quote, the money saved), then show how. AI lane lessons also meet `_shared/lanes.md`.
 
 ## Script substance
 - S1 Mechanism, not just a fact: one line of why it works ("because the caller is already on the line").

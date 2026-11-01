@@ -1,0 +1,58 @@
+name: Studio AI demo
+# Real proof for AI lane lessons (Todd, live chat, Nov 1, 2026, 9:01 am: "go with your recommendation"; tools/ai_demo.py;
+# video/studio/_shared/lanes.md). A studio run commits video/studio/demos/jobs/<name>.json; this workflow runs the prompt
+# on Gemini with the GEMINI_API_KEY secret (never printed), shoots each public page on a phone-sized browser, and
+# commits video/studio/demos/out/<name>/. Public https pages only; nothing is signed in to, typed into or downloaded.
+on:
+  push:
+    branches: [main]
+    paths: ["video/studio/demos/jobs/*.json"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: studio-ai-demo
+  cancel-in-progress: false
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Self-test (offline)
+        run: |
+          pip install --quiet -c .github/ci-constraints.txt pytest
+          cd tools && python3 -m pytest -q -p no:cacheprovider test_ai_demo.py
+      - name: Browser
+        run: |
+          pip install --quiet playwright
+          python3 -m playwright install --with-deps chromium
+      - name: Run new jobs
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          mkdir -p video/studio/demos/out
+          for job in video/studio/demos/jobs/*.json; do
+            [ -e "$job" ] || continue
+            name=$(basename "$job" .json)
+            [ -d "video/studio/demos/out/$name" ] && continue
+            set +e
+            python3 tools/ai_demo.py "$job" 2> err.txt
+            code=$?
+            set -e
+            if [ "$code" -ne 0 ]; then
+              mkdir -p "video/studio/demos/out/$name"
+              { echo "Exit $code."; cat err.txt; } >> "video/studio/demos/out/$name/error.txt"
+            fi
+            echo "$name: exit $code"
+          done
+          rm -f err.txt
+      - name: Commit results
+        run: |
+          git config user.name "studio-ai-demo"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add video/studio/demos/out
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "studio-ai-demo: results"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 5; done
+          exit 1

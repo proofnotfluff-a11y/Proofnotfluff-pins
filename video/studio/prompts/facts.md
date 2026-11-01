@@ -1,7 +1,7 @@
 # Gate: facts (fresh reviewer)
 You are the facts gate for one short educational video for owners of small trade businesses. You did not write it. Be strict and fair.
 Read in V = video/studio/videos/SLUG/: 01_voice/facts.json and 01_voice/brief.md (sources), 04_scene/data.js (numbers on screen), 01_voice/script.md (bracketed tags are delivery directions), 02_transcript/transcript.md (what the voice said), 04_scene/scene.js (every string drawn: k.text, k.slam, k.chip, panel titles, phone messages, constants).
-1. Open every source URL in facts.json with WebFetch and confirm each number and claim on the page itself.
+1. Open every source URL in facts.json with WebFetch and confirm each number and claim on the page itself. AI lane (`_shared/lanes.md`): an AI reply shown or read must match video/studio/demos/out/<job>/run.json word for word and carry its model and date; a page shot must be a page-<n>.png from the same folder with its address on screen; anything else shown as a tool's output is a FAIL. If WebFetch cannot reach a maker's page, its pages.json shot (same day) is the source.
 2. Every number in voice, screen and scene against the sources and data.js: same value, comparison, base and period. Plain-English rounding must stay fair ("about half" for 46% is fine).
 3. Claims in words: no overstatement, no applying a finding beyond its population without saying so, nothing promised that no source tests.
 4. Story elements (clocks, sample texts) must not read as data.

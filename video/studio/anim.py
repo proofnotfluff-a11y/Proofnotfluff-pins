@@ -1923,6 +1923,7 @@ def queue_hook_problems(slug):
         if variety_of(other)["hook"] == me["hook"]:
             out.append(f"hook pattern '{me['hook']}' is also the next lesson in line's ({other})")
     out += format_rotation_problems(slug, order, posted)
+    out += lane_problems(slug, posted + [o for o in order])
     return out
 
 
@@ -1953,6 +1954,73 @@ def format_rotation_problems(slug, order, posted):
     if sum(1 for o in window if lesson_format(o) == me) > 2:
         out.append(f"format '{me}' fills more than 2 of the last 8 in line ({', '.join(window)})")
     return out
+
+
+# Lanes (Todd, live chat, Nov 1, 2026, 9:01 am: "go with your recommendation", on 8:41 am: "what do you think about pivoting
+# into specifically focusing and purposing new AI innovations for tradespeople and their businesses?"). brief.md names one
+# lane, `- **Lane:** ai` or `core` (no line reads core). video/config.json "lanes": mode "alternate" puts the two lanes
+# turn about in the posting line (2 of 4 a day each) for the test; mode "ai" or "core" makes every new lesson that lane.
+LANES = ("ai", "core")
+
+
+def lesson_lane(slug):
+    p = vdir(slug, "01_voice", "brief.md")
+    m = re.search(r"(?im)^- \*\*Lane:\*\*\s*`?([a-z]+)`?", open(p, encoding="utf-8").read()) if os.path.exists(p) else None
+    return m.group(1).lower() if m else "core"
+
+
+def lane_cfg():
+    return json.load(open(os.path.join(HERE, "..", "config.json"), encoding="utf-8")).get("lanes", {"mode": "core"})
+
+
+def lane_problems(slug, line):
+    p = vdir(slug, "01_voice", "brief.md")
+    txt = open(p, encoding="utf-8").read() if os.path.exists(p) else ""
+    if not re.search(r"(?im)^- \*\*Lane:\*\*", txt):
+        return []
+    me, mode = lesson_lane(slug), lane_cfg().get("mode", "core")
+    if me not in LANES:
+        return [f"lane '{me}' is not one of {', '.join(LANES)}"]
+    n = line.index(slug)
+    if mode == "alternate" and n > 0 and lesson_lane(line[n - 1]) == me:
+        return [f"lane '{me}' is also the lesson before it in line's ({line[n - 1]}); the lane test alternates"]
+    if mode in LANES and me != mode:
+        return [f"lane '{me}': video/config.json lanes mode is '{mode}'"]
+    return []
+
+
+def cmd_lanes():
+    """Which lane the next lesson is, then each lane's numbers from research/metrics (newest read per platform):
+    views, shares + saves + follows per 1,000 views, Facebook 3 s holds per 100 views, TikTok average watch."""
+    cfg = lane_cfg()
+    line = posting_line("__none__")[:-1]
+    last = line[-1] if line else None
+    mode = cfg.get("mode", "core")
+    nxt = mode if mode in LANES else ("core" if last and lesson_lane(last) == "ai" else "ai")
+    print(f"lanes: mode {mode}" + (f" until {cfg['until']}" if cfg.get("until") else "") + f"; make next: {nxt}"
+          + (f" (last in line {last}, {lesson_lane(last)})" if last else ""))
+    tot = {l: {"lessons": 0, "views": 0, "acts": 0, "fbv": 0, "fb3": 0, "tt": []} for l in LANES}
+    for f in sorted(glob.glob(os.path.join(HERE, "research", "metrics", "2*.json"))):
+        d = json.load(open(f, encoding="utf-8")); slug = d.get("slug") or os.path.basename(f)[:-5]
+        if not os.path.isdir(vdir(slug)):
+            continue
+        last_p = {}
+        for r in d.get("reads", []):
+            for pl, v in r.get("platforms", {}).items():
+                last_p.setdefault(pl, {}).update({k: x for k, x in v.items() if isinstance(x, (int, float))})
+        t = tot[lesson_lane(slug)]; t["lessons"] += 1
+        for pl, v in last_p.items():
+            t["views"] += v.get("views", 0); t["acts"] += sum(v.get(k, 0) for k in ("shares", "saves", "follows"))
+            if pl == "facebook" and "threeSecViews" in v:
+                t["fbv"] += v.get("views", 0); t["fb3"] += v["threeSecViews"]
+            if pl == "tiktok" and "avgWatchS" in v:
+                t["tt"].append(v["avgWatchS"])
+    for l, t in tot.items():
+        per = 1000 * t["acts"] / t["views"] if t["views"] else 0
+        hold = 100 * t["fb3"] / t["fbv"] if t["fbv"] else 0
+        tt = sum(t["tt"]) / len(t["tt"]) if t["tt"] else 0
+        print(f"lane {l}: {t['lessons']} lessons, {t['views']} views, shares+saves+follows {t['acts']} ({per:.1f} per 1,000),"
+              f" FB 3 s holds {hold:.0f} per 100, TikTok avg watch {tt:.1f} s")
 
 
 def cmd_tunes(slug=None):
@@ -2441,6 +2509,8 @@ def main():
         cmd_waiting()
     elif c == "variety":
         cmd_variety(a.slug)
+    elif c == "lanes":
+        cmd_lanes()
     elif c == "tunes":
         cmd_tunes(a.slug)
     elif c == "trials":

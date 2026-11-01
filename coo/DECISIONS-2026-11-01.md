@@ -1,0 +1,7 @@
+# Decisions, Nov 1, 2026
+
+## Video lanes: AI for trades test (live chat)
+- [stated] 8:41 am: "Should we do a video series on how the tradespeople can utilize Claude Cowork to manage their businesses or to optimize things like emails? Should we also talk about any really cool AI tools or free repos out there that the tradespeople can use to optimize their businesses?" ... "we have pretty good watch time and low skip rate, but all the other statistics are bad" ... "what do you think about pivoting into specifically focusing and purposing new AI innovations for tradespeople and their businesses?"
+- Recommended: one AI lane of standalone lessons (no series), one tool doing one real job per lesson with real proof, free repos only when they run in a browser with no setup, the result on screen by 3 s in both lanes, and a 7-day test: 2 of 4 daily posts AI, 2 core; on Nov 8 AI at 2x core or better on shares + saves + follows per 1,000 views switches all 4 to AI.
+- [stated] 9:01 am: "go with your recommendation".
+- Applied: video/studio/_shared/lanes.md; video/config.json "lanes" mode alternate until Nov 8; anim.py `lanes` (next lane and each lane's numbers) and `lane_problems` in variety; brief template Lane line; standard.md C5; prompts/facts.md AI proof rule; tools/ai_demo.py and .github/workflows/studio-ai-demo.yml (real Gemini replies and phone shots of public pages, since the studio sandbox cannot reach AI sites); the record and make task reads lanes.md and makes the lane `anim.py lanes` names.

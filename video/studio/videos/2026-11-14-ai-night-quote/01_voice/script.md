@@ -6,7 +6,7 @@ Yours goes out at lunch. Hey, prices vary, give me a call. They've booked someon
 
 No price, no question, so nothing to text back. [matter-of-fact] Jobber says only twenty-six percent of cleaning businesses reply within an hour.
 
-Paste their text into Gemini, it's free. Type this, friendly, under fifty words, your price, one question.
+Paste their text into Gemini with this prompt. It's free.
 
 It asked two questions, the oven and the day. Cut one, add your price, send it yourself.
 

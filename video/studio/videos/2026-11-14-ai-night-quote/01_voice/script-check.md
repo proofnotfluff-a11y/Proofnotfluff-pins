@@ -14,7 +14,7 @@ Why 1 is stronger: it opens on the finished thing (lanes.md 6, standard C5: thro
 - Specific: PASS. "Eleven pm" and "under seven seconds" in the first 2 lines; every claim keyed in facts.json (demo, gemini, jobber, story).
 - Sameness: PASS. First 4 words "Eleven pm quote request" differ from the last 6 lessons' openings (grep of their script.md line 3).
 - Do this week: PASS. Paste the next quote request into Gemini under the 4-line prompt; the prompt on the ITEM GET card, held 4 s or more.
-- Ear test: PASS. Every sentence one breath; `anim.py script` PASS (100 words, 6 takes, 2 tags).
+- Ear test: PASS. Every sentence one breath; `anim.py script` PASS (93 words, 6 takes, 2 tags).
 
 ## The 12-point check (_shared/voice.md, fix-this bands: 25 to 42 s, 60 to 100 words)
 1. Drop-in: PASS. "Eleven pm quote request. This reply took under seven seconds." 10 words, trade noun, no percent, no source, no call-out.
@@ -24,7 +24,7 @@ Why 1 is stronger: it opens on the finished thing (lanes.md 6, standard C5: thro
 5. Facts: PASS. 26% (jobber.cleaningWithinHourPct), under 7 s (demo.seconds 6.6), 2 questions (demo.questionsAsked), free (gemini.freePrice 0), 50 words (demo.promptWordLimit), 11 pm (story). Spoken forms match.
 6. Artifact: PASS (planned). The prompt card, word for word as run, from "Type this" (about 55% of the runtime) held 4 s or more.
 7. Proof: PASS. Jobber's 26% after the guess, with the source tag on screen while said; the real reply with model and date.
-8. Length: PASS. 100 words (band 60 to 100); target 37 to 41 s with the end card (band 25 to 42).
+8. Length: PASS. 93 words (band 60 to 100; cut from 100 after the first voice ran 43 s); target under 42 s with the end card (band 25 to 42).
 9. Talk test: PASS. Contractions ("thing's", "they've", "It's") and "you/your" across takes; no banned words; no dashes; longest 11 words.
 10. Voice markup: PASS. 2 tags ([matter-of-fact], [confident]), none soft; 0 CAPS words; no digits or symbols.
 11. No tail: PASS. No turn line, no spoken honest-note label, no spoken ask.

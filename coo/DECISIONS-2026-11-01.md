@@ -18,3 +18,9 @@
 - ElevenLabs: 1,524 of 133,571 credits used this cycle. preflight 0 errors.
 - Devin Seymour audio reel (Openverse, Real SFX, earshot): same three tools judged Oct 31; IMPROVE 00s stands behind "The bar first"; no change. Research Wiki stale Sources line fixed.
 - Open for Todd: Meta AI label (recommend on for Instagram and Facebook), Kimi Reddit prompt (given again), professional voice clone read-aloud script (offered).
+
+## Sunday review: stretch move and stale rows (live chat)
+- [stated] 5:43 pm, answering the Sunday review (coo/reviews/2026-11-01.md): "Go with your recommendations".
+- Stretch move, yes: Overture Places pest discovery for the pest seat list (to-do decide-add-overture-pest). Built as tools/pest_discovery.py (count mode, selftest of 13 planted places) and .github/workflows/pest-discovery-dryrun.yml (run by hand, read-only, counts only; CRM pest domains not in prospects/businesses.json are passed as 12-hex hash prefixes, never in clear). The count comes first; new companies then go through the prospect-matching "Pest seat" steps (two checkers read each site, own-site address only, Bouncer and MX) like any other.
+- Stale rows: approve-carousel-post-rule closed as done (the standing carousel post rule is in CONSTITUTION 2 since Oct 25, and the carousel was retired Oct 29); monday-cold-batch-oct26 closed (its date passed; Monday batches run under the standing send rule).
+- Next week's three commitments stay Todd's: the carousel rule is already done, so two remain (the 1 bounce notice in hello@ Spam, the free EIN).

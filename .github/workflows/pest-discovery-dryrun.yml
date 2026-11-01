@@ -1,0 +1,46 @@
+name: Pest discovery dry run
+# Counts-only dry run of Overture Places pest discovery for the pest seat list (tools/pest_discovery.py; Todd, live chat,
+# Nov 1, 2026: "Go with your recommendations", the Sunday review stretch move). Reads the open Overture bucket, counts
+# Chicago-area pest companies with their own website that we do not hold yet. Nothing is stored, committed or printed
+# except counts: no secrets are passed in, the job can only read the repo, and the log carries no names or websites.
+# Input exclude: 12-hex sha256 prefixes of CRM pest domains (python3 tools/pest_discovery.py --hashes <crm dir>).
+# Run by hand only.
+on:
+  workflow_dispatch:
+    inputs:
+      exclude:
+        description: "Comma list of 12-hex domain hash prefixes already in the CRM"
+        required: false
+        default: ""
+permissions:
+  contents: read
+concurrency:
+  group: pest-discovery-dryrun
+  cancel-in-progress: false
+jobs:
+  dryrun:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install --quiet -c .github/ci-constraints.txt duckdb
+      - run: python3 tools/pest_discovery.py --selftest
+      - name: Dry run (counts only)
+        env:
+          PEST_EXCLUDE: ${{ inputs.exclude }}
+        run: |
+          set -o pipefail
+          timeout 900 python3 tools/pest_discovery.py --count 2>/dev/null | tee dryrun.txt
+      - name: Counts as a notice (readable through the API without the log)
+        if: always()
+        run: |
+          [ -s dryrun.txt ] && echo "::notice title=Pest discovery dry run::$(cat dryrun.txt)" || true
+      - name: Summary
+        if: always()
+        run: |
+          { echo "### Pest discovery dry run (counts only)"; echo; sed 's/^/    /' dryrun.txt 2>/dev/null || echo "no output"; } >> "$GITHUB_STEP_SUMMARY"

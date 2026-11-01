@@ -1,4 +1,4 @@
-# Script check: 2026-11-12-missed-call-text (playbook; viral-script human test and the 12-point check in _shared/voice.md)
+# Script check: 2026-11-12-missed-call-text (r3, Nov 1: clinic, standalone; earlier rounds below; viral-script human test and the 12-point check in _shared/voice.md)
 
 Scored Oct 31, 2026 by the builder on script.md (125 words, 5 takes, 15 sentences; take 2 rewritten after it read 137 wpm on fragments) before the voice. Timing lines are
 re-measured on the real words.json. The script gate should re-score it blind.
@@ -27,3 +27,15 @@ re-measured on the real words.json. The script gate should re-score it blind.
 10 voice markup: PASS 2 tags ([matter-of-fact], [confident]), none soft; 0 CAPS words; no digits, $, %, / or & in the voice
 11 no tail: PASS no turn line, no honest note, no spoken send, save, like, follow or comment ask
 12 button: PASS last sentence "Keep it plain, and keep it under a hundred sixty." repeats "a hundred sixty" from the hook and names part two before it; SCENE.sendLine "Send this to whoever answers your phones."
+
+## r3 (Nov 1, 2026, evening run), after the buyer gate's r0 FAIL (stop no)
+- Read-aloud: PASS longest sentence 19 words (the ServiceTitan line, bar 20); 15 of 21 sentences 10 words or fewer (71%).
+- Owner words: PASS 0 banned words; trade nouns in the opening: "missed call", "text".
+- Specific: PASS "nine at night" and the missed call in line 1; every number has a facts.json key.
+- Sameness: PASS opening "Missed call at nine" differs from the last 6 openings.
+- Do this week: PASS put the three-part text in your missed-call auto-reply tonight (or set one up), under 160, plain; the
+  exact text read aloud over the ITEM GET card.
+- Ear test: PASS `anim.py script` PASS (135 words, 2 tags, "about" only before the rounded one in seven).
+- Script gates before voice (stages/01_voice step 3): buyer r2 PASS (stop, send, save yes), facts r2 0 mismatches in the
+  script (its one FAIL was three captions' billing line, fixed to "Twilio bills each one").
+- Button: "Keep it short and plain, under a hundred sixty." echoes "short" from the drop-in.

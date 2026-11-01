@@ -18,7 +18,7 @@ Twilio's "How long can a message be?" docs page; every line in facts.json quoted
   up, and why: one question gives them something to text back) -> the exact text read aloud over the held card, EXAMPLE,
   102 of 160 -> proof (Twilio's table: plain 160, one emoji 70; past that it splits and Twilio bills each piece) ->
   button (tonight, put yours in your missed-call auto-reply, or set one up; the rule echoes "a hundred sixty").
-- **Cover line:** "Missed call, 9 pm. / One short text can answer it."
+- **Cover line:** "Missed call, 9 pm. / One short text." (the plate)
 - **Hook pattern:** object-number
 - **Treatment:** before-after
 - **Example:** sam-plumber-text-102

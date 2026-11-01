@@ -1,4 +1,4 @@
-/* Scene: The missed-call text, part 1 of 3 (playbook, arcade; Depth bank #2). One function per top-level cue in        */
+/* Scene: The missed-call text, standalone (clinic, arcade; Depth bank #2).     One function per top-level cue in        */
 /* 03_cues/cues.md. Numbers only from k.data (brief.md -> data.js); every time from a cue start (k.S) or a spoken word   */
 /* (wordT), so a re-voiced take moves the picture with it.                                                              */
 /* Worlds: hook and button = our own workbench with a tape measure pulled out to the 160 mark (the text's whole budget), */
@@ -128,8 +128,9 @@ const hookPlate = (k, d, lines) => {
   k.text(lines[0], 540, 270, {size: 66, color: CREAM, align: 'center', drop: INK});
   k.text(lines[1], 540, 346, {size: 66, color: 'accent', align: 'center', drop: INK});
 };
-const HOOK = (n) => ['Your missed-call text', `gets ${n.plain.shown} characters.`];
-const partTag = (k, d, n) => { const s = `PART ${n.part.shown} OF ${n.series.shown}`, w = Math.ceil((k.measure(s, {size: 39}) + 36) / 3); d.P(20, 160, w + 2, 22, INK); d.P(21, 161, w, 20, ORANGE); k.text(s, (21 + w / 2) * 3, 486, {size: 39, color: INK, align: 'center'}); };
+const HOOK = (n) => ['Missed call, 9 pm.', 'One short text.'];
+/* a label on a dark chip, so it reads on the pegboard (design r0: 160 and 102 under 4.5:1 there) */
+const chipText = (k, s, x, y, o) => { const w = k.measure(String(s), {size: o.size}), x0 = o.align === 'right' ? x - w : o.align === 'center' ? x - w / 2 : x; k.ctx.fillStyle = INK; k.ctx.fillRect(Math.floor(x0 - 15), y - 9, Math.ceil(w + 30), Math.round(o.size * 1.2)); k.text(s, x, y, o); };
 
 window.SCENE = {
   look: 'arcade',
@@ -141,11 +142,11 @@ window.SCENE = {
   trauma: {'usual.no': 0.6},
   sections: {
     /* ---- hook: three shots. The cover: the bench, the tape out to 160 with the hero number over its hook, the plate    */
-    /* "Your missed-call text / gets 160 characters." and PART 1 OF 3 (no host). Cut in by 0.8 s to the tape's hook close */
-    /* up with the missed-call phone on the bench (Snow comes in). On "book" cut to the phone close up: a blank bubble.   */
+    /* "Missed call, 9 pm. / One short text." (no host; r3).                  Cut in by 0.8 s to the tape's hook close */
+    /* up with the missed-call phone on the bench (Snow comes in). On "short" cut to the phone close up: a blank bubble.   */
     hook: (k, T) => {
       const n = k.data.numbers;
-      const tIn = Math.min(0.8, Math.max(0.4, wordT(k, 'hook', /^text/i, 0.6))), tOut = Math.min(2.8, wordT(k, 'hook', /^book/i, 2.6));
+      const tIn = Math.min(0.8, Math.max(0.4, wordT(k, 'hook', /^nine/i, 0.6))), tOut = Math.min(2.8, wordT(k, 'hook', /^short/i, 2.2));
       if (T >= tOut) {
         const d = bench(k, {top: 330});
         phone(k, d, 112, 158, 136, 168, {screen: '#253048', missed: true, bubble: true});
@@ -179,7 +180,7 @@ window.SCENE = {
     usual: (k, T) => {
       const n = k.data.numbers, t0 = k.S('usual'), tPol = k.S('usual.polite');
       const tAbout = wordT(k, 'usual', /^about/i, 1.6), tAfter = wordT(k, 'usual', /^after/i, 3.4), tSrc = wordT(k, 'usual', /^service/i, 4.2);
-      const tGut = wordT(k, 'usual', /^gut/i, 5.6);
+      const tGut = wordT(k, 'usual', /^some/i, 5.6);   /* r3: the lift is on "Some shops" (was "gut") */
       const tName = wordT(k, 'usual.no', /^name/i, 0.5), tQ = wordT(k, 'usual.no', /^question/i, 1.1), tAns = wordT(k, 'usual.nobody', /^answer/i, 0.8);
       const tDef = tQ + 0.3, tGone = tDef + 0.4;
       mute(k, (s2) => /^-\d+$/.test(String(s2)) || String(s2) === 'ITS WORDS' || String(s2) === 'X', () => k.sets.boss({name: 'THE POLITE TEXT', hp: 100, t0: tGut, menu: 'ITS WORDS',
@@ -205,7 +206,7 @@ window.SCENE = {
         d.win(14, 84 + oy, 332, 196, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3B82C4'});
         d.disc(318, 104 + oy, 7, '#FFF2B8'); d.disc(321, 102 + oy, 6, '#1B1420');
         for (let i = 0; i < 14; i++) d.DOT(24 + Math.floor(hash(i * 2.1) * 280), 92 + oy + Math.floor(hash(i * 5.7) * 18), (Math.floor(d.F / 12) + i) % 4 === 0 ? GOLD : '#6B7080');
-        /* before "about": PART 1 OF 3 / THE WORDS lands on the cut, then JUNE 2025 on "June" (never an empty panel) */
+        /* before "about": MISSED-CALL TEXT / THE WORDS lands on the cut, then JUNE 2025 on "June" (never an empty panel) */
         const tJune = wordT(k, 'usual', /^june/i, 2.6);
         if (T < tAbout - 0.25) {
           if (T < tJune - 0.2) { k.slam('MISSED-CALL TEXT', 540, (108 + oy) * 3, t0 + 0.1, {size: 66, color: ORANGE, align: 'center', from: 0.4, drop: INK, glint: false});
@@ -236,15 +237,16 @@ window.SCENE = {
     /* as the total; the part's words land in the set's area.                                                         */
     parts: (k, T) => {
       const n = k.data.numbers, t0 = k.S('parts'), tWho = wordT(k, 'parts', /^who/i, 0.8), tSor = wordT(k, 'parts', /^sorry/i, 1.6), tEnd = k.S('copy');
+      const tQ = wordT(k, 'parts', /^question/i, 3.0);   /* r3: ASK rings on "question" (now said in this take) */
       /* r2 (render critic r1): the set right-aligns its display total at x 948, past the 930 content line; the total is */
       /* drawn again right-aligned at x 918 inside the display (same size, colour and height).                          */
       const moved = [];
       mute(k, (s2, x, y, o) => { if (o && o.color === '#6FB7A8' && o.align === 'right' && x > 930) { moved.push([s2, y, o]); return true; } return false; }, () => k.sets.register({prefix: '', totalLabel: 'CHARS', displayLabel: 'CHARS', items: [
-        {label: 'WHO', amount: n.who.value, at: tWho}, {label: 'SORRY', amount: n.sorry.value, at: tSor}, {label: 'ASK', amount: n.ask.value, at: Math.max(tSor + 0.6, tEnd - 0.9)}],
-        totalAt: Math.max(tSor + 0.9, tEnd - 0.5)}));
+        {label: 'WHO', amount: n.who.value, at: tWho}, {label: 'SORRY', amount: n.sorry.value, at: tSor}, {label: 'ASK', amount: n.ask.value, at: tQ - 0.25}],
+        totalAt: tQ + 0.4}));
       moved.forEach(([s2, y, o]) => k.text(s2, 918, y, o));
       /* r2: the plate sits left of the register's display (design r1: the total was cut off under a full-width plate) */
-      const say = T >= tSor ? ['Sorry I missed', 'your call.', tSor] : T >= tWho ? ['Who you are:', 'name, trade.', tWho] : ['Three parts.', 'Each rings up.', t0];
+      const say = T >= tQ - 0.25 ? ['One question', 'to text back.', tQ - 0.25] : T >= tSor ? ['Sorry I missed', 'your call.', tSor] : T >= tWho ? ['Who you are:', 'name, trade.', tWho] : ['Three parts.', 'Each rings up.', t0];
       const d = px(k); d.win(14, 84, 200, 62, {base: '#1B1420', hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
       k.slam(say[0], 72, 262, say[2], {size: 66, color: CREAM, from: 0.4, drop: INK, glint: false}); k.slam(say[1], 72, 336, say[2] + 0.06, {size: 66, color: GOLD, from: 0.4, drop: INK, glint: false});
       return host(k, k.live('parts') && T >= tWho ? 'point' : null);
@@ -257,7 +259,9 @@ window.SCENE = {
       /* r2: the text as an ITEM GET window (kit k.itemGet, IMPROVE 00a-2): slides in, the hand walks its lines (never   */
       /* flat), each part's slot bar lights as it is said; held the whole section (5 s and more).                       */
       const L = [['Hi, this is Sam the plumber.', TEAL], ['Sorry I missed your call.', ORANGE], ['What do you need fixed,', RED], ['and when works for you?', RED]];
-      const bars = L.map((g, i) => (T >= t0 + 0.3 + i * 0.37 ? g[1] : null));
+      const tS = wordT(k, 'copy', /^sorry/i, 1.6), tW = wordT(k, 'copy', /^what/i, 3.2), tA = wordT(k, 'copy', /^when/i, 4.6);
+      const lit = [t0, tS - 0.2, tW - 0.2, tA - 0.2];   /* r3: each part's bar lights as it is read aloud */
+      const bars = L.map((g, i) => (T >= lit[i] ? g[1] : null));
       k.itemGet({x: 84, y: 276, w: 954, at: t0 - 0.2, size: 66, lh: 84, pad: 48, title: 'ITEM GET! THE TEXT', tag: 'EXAMPLE', step: 0.9, lines: L.map((g) => g[0]), bars});
       /* the counter: hero 102, then / 160, counting up */
       const p = clamp((T - (t0 + 0.4)) / 1.2), v = Math.round(n.len.value * eo(p));
@@ -274,9 +278,9 @@ window.SCENE = {
     /* on "Curly"; the source on the screen the whole time it is said; 2 PIECES, 2 BILLS stamps on "bills".             */
     proof: (k, T) => {
       const n = k.data.numbers, t0 = k.S('proof'), tPl = wordT(k, 'proof', /^plain/i, 1.4), tEm = wordT(k, 'proof.emoji', /^emoji/i, 0.5);
-      const tCu = wordT(k, 'proof.emoji', /^curly/i, 2.4), tBill = wordT(k, 'proof.split', /^piece/i, 2.4);
-      k.sets.scores({title: 'CHARS PER TEXT', t0: tPl - 0.2, gap: 0, count: 0.6, rows: [
-        {name: 'PLAIN', value: n.plain.value, rank: ' '}]});
+      const tCu = wordT(k, 'proof.emoji', /^seventy/i, 1.4) + 0.4, tBill = wordT(k, 'proof.split', /^split/i, 0.6) - 0.2;   /* r3: CURLY joins after "seventy"; the stamp lands on "splits" (design r0: 1.1 s on screen) */
+      mute(k, (s2) => String(s2) === 'RANK', () => k.sets.scores({title: 'CHARS PER TEXT', t0: Math.min(tPl - 0.2, t0 + 0.4), gap: 0, count: 0.6, rows: [
+        {name: 'PLAIN', value: n.plain.value, rank: ' '}]}));   /* r3: no empty RANK column (design r0) */
       const d = px(k);
       /* rows 2 and 3 drawn on the table's grid (y 174, 198) as they are said, red: the drop */
       [[tEm, 'EMOJI', 174], [tCu, 'CURLY', 198]].forEach(([ti, name, y]) => { if (T < ti) return; const sl = d.ease(ti, 5, 40);
@@ -290,7 +294,7 @@ window.SCENE = {
       return host(k, k.live('proof.split') ? 'point' : null);
     },
 
-    /* ---- button: back on the bench, the tape out to 160, the clean text's 102 marked in teal. NEXT: PART 2, TURN IT ON; */
+    /* ---- button: back on the bench, the tape out to 160, the clean text's 102 marked in teal. TONIGHT: YOUR AUTO-REPLY;  */
     /* the rule lands in gold on "Keep".                                                                               */
     button: (k, T) => {
       const n = k.data.numbers, t0 = k.S('button'), tKeep = k.S('button.rule');
@@ -301,12 +305,13 @@ window.SCENE = {
       const L102 = Math.round(250 * n.len.value / n.plain.value), pull0 = clamp((T - (t0 + 0.1)) / 0.6);
       const run = clamp((T - tUnder) / Math.max(0.3, tSixty - tUnder)), lenNow = Math.max(30, Math.round(L102 * eo(pull0) + (250 - L102) * eo(run)));
       const t = tape(k, d, {x0: 84, y: 176, len: lenNow, h: 22, max: Math.max(1, Math.round(n.plain.value * lenNow / 250)), marks: [{v: n.len.value, c: TEAL, at: t0 + 0.7}]});
-      if (T >= t0 + 0.7) k.text(n.len.shown, t.x(n.len.value) * 3, 474, {size: 66, color: TEAL, align: 'center', drop: INK});
+      if (T >= t0 + 0.7) chipText(k, n.len.shown, t.x(n.len.value) * 3, 474, {size: 66, color: TEAL, align: 'center', drop: INK});
+      if (T >= t0 + 0.7) { const w160 = k.measure(n.plain.shown, {size: 66}); k.ctx.fillStyle = INK; k.ctx.fillRect(Math.floor(920 - w160 - 15), 465, Math.ceil(w160 + 30), 80); }
       if (run >= 1) k.slam(n.plain.shown, 920, 474, tSixty, {size: 66, color: GOLD, align: 'right', from: 0.4, drop: INK, glint: false});
-      else if (T >= t0 + 0.7) k.text(n.plain.shown, 920, 474, {size: 66, color: GREY, align: 'right'});
+      else if (T >= t0 + 0.7) k.text(n.plain.shown, 920, 474, {size: 66, color: CREAM, align: 'right'});
       d.win(14, 84, 332, 70, {base: '#1B1420', hi: '#7A3442', lo: INK, rule: ORANGE});
-      if (T < tKeep) { k.slam('Count yours', 540, 280, t0 + 0.1, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false}); k.slam('before it goes on.', 540, 358, t0 + 0.16, {size: 66, color: ORANGE, align: 'center', from: 0.4, drop: INK, glint: false}); }
-      else { k.slam('Keep it plain.', 540, 280, tKeep, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false}); k.slam(`Under ${n.plain.shown}.`, 540, 358, tKeep + 0.1, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false}); k.sweep(540 - k.measure(`Under ${n.plain.shown}.`, {size: 66}) / 2, 432, k.measure(`Under ${n.plain.shown}.`, {size: 66}), 6, tKeep + 0.4, {color: 'accent'}); }
+      if (T < tKeep) { k.slam('Tonight: put yours', 540, 280, t0 + 0.1, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false}); k.slam('in your auto-reply.', 540, 358, t0 + 0.16, {size: 66, color: ORANGE, align: 'center', from: 0.4, drop: INK, glint: false}); }
+      else { k.slam('Short and plain.', 540, 280, tKeep, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false}); k.slam(`Under ${n.plain.shown}.`, 540, 358, tKeep + 0.1, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false}); k.sweep(540 - k.measure(`Under ${n.plain.shown}.`, {size: 66}) / 2, 432, k.measure(`Under ${n.plain.shown}.`, {size: 66}), 6, tKeep + 0.4, {color: 'accent'}); }
       return host(k, T >= tKeep + 0.8 ? 'wave' : (k.live('button') ? 'point' : null));
     },
   },

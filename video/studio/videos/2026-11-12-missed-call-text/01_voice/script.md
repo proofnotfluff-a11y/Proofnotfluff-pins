@@ -1,6 +1,6 @@
 # Script: The missed-call text (clinic, standalone since Oct 31, 7:29 pm; was playbook part 1 of 3; Depth bank #2; Twilio's and ServiceTitan's pages read Oct 31, 2026; r3 Nov 1 after the buyer gate: the stake first, the example read aloud, a step for tonight)
 
-Missed call at nine at night. One short text can answer it. How short?
+Missed call at nine, and one short text can answer it. How short?
 
 In June of last year, about one in seven calls to the home HVAC shops ServiceTitan tracked came after hours. Some shops text back a polite line. No name. No question. Nothing to answer.
 

@@ -9,7 +9,7 @@ Three shots. Cover, frame one, host and dialog box hidden: our own workbench in 
 The boss arena (r2; was street) under a night panel: ABOUT 1 IN 7 lands big on "about", seven phones pop in one a beat, the seventh rings red on "after" with "came after hours"; source tag "Source: ServiceTitan, June 2025" while it is said. On "gut" the panel lifts away: THE POLITE TEXT is the boss, our cream window over its menu types the usual paragraph. EXAMPLE tag.
 ## usual.polite "a polite paragraph," [sfx: blip]
 The paragraph finishes: "Thanks for calling, we value your business."
-## usual.no "But there's no name" [sfx: stamp]
+## usual.no "No name. No question." [sfx: stamp]
 NO NAME hits the boss and stamps on "name"; NO QUESTION hits and stamps on "question".
 ## usual.nobody "There's nothing to answer." [sfx: tick]
 The last hit on "answer": the boss breaks into pixels and SKIP IT. stamps in; Snow waves.

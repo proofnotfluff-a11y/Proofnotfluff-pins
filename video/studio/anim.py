@@ -1834,7 +1834,7 @@ def posting_line(slug):
     """The posting line around a lesson: the last posted lesson (by its latest post time), then the unposted lessons in
     queue order, with a lesson not yet queued at the back."""
     items = load_queue()["items"]
-    order = [i["slug"] for i in items if not i["posts"] and os.path.isdir(vdir(i["slug"]))]
+    order = [i["slug"] for i in items if not i["posts"] and not i.get("hold") and os.path.isdir(vdir(i["slug"]))]
     if slug not in order:
         order.append(slug)
     posted = [i for i in items if i["posts"] and i["slug"] != slug and os.path.isdir(vdir(i["slug"]))]
@@ -1905,10 +1905,13 @@ def queue_hook_problems(slug):
     if out:
         return out
     items = load_queue()["items"]
-    order = [i["slug"] for i in items if not i["posts"] and os.path.isdir(vdir(i["slug"]))]
+    order = [i["slug"] for i in items if not i["posts"] and not i.get("hold") and os.path.isdir(vdir(i["slug"]))]   # held lessons never post (Oct 31)
     if slug not in order:
         order.append(slug)   # a new lesson joins the back of the line
-    posted = [i["slug"] for i in items if i["posts"] and i["slug"] != slug and os.path.isdir(vdir(i["slug"]))][-3:]
+    # the last 3 posted by when they went up, not by their place in queue.json (Oct 31: let-me-think, posted Oct 29, was
+    # read as posted today and blocked a lesson)
+    pt = lambda i: max((p.get("at", "") if isinstance(p, dict) else "") for p in i["posts"].values())
+    posted = [i["slug"] for i in sorted((i for i in items if i["posts"] and i["slug"] != slug and os.path.isdir(vdir(i["slug"]))), key=pt)][-3:]
     n = order.index(slug)
     for other in order[:n] + order[n + 1:] + posted:
         o = variety_of(other)

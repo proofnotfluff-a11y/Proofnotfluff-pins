@@ -2,7 +2,7 @@
 
 Your missed-call text gets a hundred sixty characters to book the job.
 
-In June of last year, about one in seven calls to home HVAC shops came after hours, ServiceTitan found. Your gut says send a polite paragraph, like thanks for calling, we value your business. But there's no name and no question in it. There's nothing to answer.
+In June of last year, about one in seven calls to home HVAC shops came after hours, ServiceTitan found. Your gut says send a polite paragraph, like thanks for calling, we value your business. No name. No question. There's nothing to answer.
 
 Three parts. Who you are. Sorry I missed your call. Then one question they can answer, like what do you need fixed, and when works for you?
 

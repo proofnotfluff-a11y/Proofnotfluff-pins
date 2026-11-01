@@ -30,12 +30,16 @@ mid: (k, T) => {
   clip, mail, star, coin, clock, horn, hammer), in low-res units.
 
 ## Transitions
-`SCENE.transitions = {sectionId: 'levelselect' | 'dissolve' | 'gameover'}` picks the move into that section (the
+`SCENE.transitions = {sectionId: 'levelselect' | 'dissolve' | 'gameover' | 'mosaic' | 'fade4'}` picks the move into that section (the
 player falls back to the room's own move, then blinds). All are 12 frames on the pixel grid like the room moves.
 - `levelselect`: square tiles grow out of nothing in a diagonal wave, gold-edged while they grow. Use into a "next level" section.
 - `dissolve`: a 4x4 ordered (Bayer) dither of 4-pixel blocks fills in and clears. Use between two calm sets.
 - `gameover`: black closes from top and bottom to a white line that shrinks to nothing (a CRT switching off). Use
   once, into the close or after "this is what loses the job".
+- `mosaic` (IMPROVE 00a-4, Nov 1): the room breaks into square blocks that double each step (2 to 32 grid pixels), the cut
+  lands under the biggest, the new room resolves back down. Use into a reveal (the answer, the real screen).
+- `fade4` (IMPROVE 00a-4, Nov 1): the room steps down to the darkest ink in four held steps and the new room steps back
+  up (the console palette fade, never an alpha ramp). Use into a time jump ("next morning", "a month later").
 
 ## The catalog
 Still references: the harness renders four moments of each (`sheet-<name>.jpg`; times in the table under each entry).

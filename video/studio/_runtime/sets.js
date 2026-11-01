@@ -947,6 +947,28 @@
       e.fill('#120D14', 0, 0, e.W, mid - h); e.fill('#120D14', 0, mid + h, e.W, e.H - mid - h);
       if (q > 0.75) { const w = Math.round((1 - (q - 0.75) / 0.25) * e.W / 6) * 3; e.fill('#120D14', 0, mid - 6, e.W, 12); if (w > 0) { e.fill('#BDE6F5', e.W / 2 - w - 6, mid - 6, 2 * w + 12, 12); e.fill('#FFF7EA', e.W / 2 - w, mid - 3, 2 * w, 6); } }
     },
+    // IMPROVE 00a-4 (Nov 1): a mosaic cross. The old room breaks into ever bigger square blocks (2, 4, 8, 16, 32 grid
+    // pixels, whole steps, never a blur), the cut lands under the biggest blocks, and the new room resolves back down.
+    // Each block takes the colour at its centre, so the palette is unchanged.
+    mosaic(ctx, q, e) {
+      const step = Math.min(5, Math.floor(q * 6)); if (step < 1) return;
+      const c = ctx.canvas, w = c.width, h = c.height, b = 1 << step, im = ctx.getImageData(0, 0, w, h), d = im.data;
+      for (let y = 0; y < h; y += b) for (let x = 0; x < w; x += b) {
+        const sx = Math.min(w - 1, x + (b >> 1)), sy = Math.min(h - 1, y + (b >> 1)), s = (sy * w + sx) * 4;
+        const r = d[s], g = d[s + 1], bl = d[s + 2];
+        for (let yy = y; yy < Math.min(h, y + b); yy++) for (let xx = x, i = (yy * w + x) * 4; xx < Math.min(w, x + b); xx++, i += 4) { d[i] = r; d[i + 1] = g; d[i + 2] = bl; d[i + 3] = 255; }
+      }
+      ctx.putImageData(im, 0, 0);
+    },
+    // IMPROVE 00a-4 (Nov 1): a 4-step palette fade (the NES way). The room steps down to the darkest ink in four whole
+    // steps (3/4, 1/2, 1/4, 0 of its light), the cut lands on the dark frame, and the new room steps back up. Never an
+    // alpha ramp: each step is held about 2 frames and the player snaps every pixel to the palette after it.
+    fade4(ctx, q, e) {
+      const step = Math.min(4, Math.floor(q * 5)); if (step < 1) return;
+      const f = 1 - step / 4, c = ctx.canvas, im = ctx.getImageData(0, 0, c.width, c.height), d = im.data, K = [18, 13, 20];
+      for (let i = 0; i < d.length; i += 4) { d[i] = K[0] + (d[i] - K[0]) * f; d[i + 1] = K[1] + (d[i + 1] - K[1]) * f; d[i + 2] = K[2] + (d[i + 2] - K[2]) * f; }
+      ctx.putImageData(im, 0, 0);
+    },
   };
 
   const SETS_KEY = '__sets';

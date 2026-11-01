@@ -20,7 +20,9 @@ the top one still open before anything below.
    M1), a short item fanfare, held 3 s or more. lsa-missed-calls had 0 saves at 2.7 h.
 00a-3. (Check done Nov 1, evening run: `lint` WARN accents. ERROR done Nov 1, lunch run: from lessons dated 2026-11-15 on, a text landing 0.5 s or more after its word fails `lint` (ACCENT_ERROR_FROM, ACCENT_ERROR_LATE); proven on stills: three-fixes failed 2 (1.69 s, 1.51 s) and passed after the fix, first-reply keeps its WARN. Next: tighten 0.5 s to 0.0 once two lessons pass at 0.5.) M3 accent words: the beat's key word slams on screen 0.2 to 0.3 s before it is spoken, from words.json timing
    (replaces item 10 below).
-00a-4. M4 pixel-native travel and hits: rooms change by mosaic cross or a 4-step palette fade (never an alpha fade), a
+00a-4. (Room moves done Nov 1, end-of-day run: `mosaic` and `fade4` in sets.js, proven on stills. Open: the 3-2-1 px
+   verdict shake over 8 frames, whole-pixel camera pans with 2 to 3 parallax layers, and a lint WARN for a lesson whose
+   room changes use no pixel-native move.) M4 pixel-native travel and hits: rooms change by mosaic cross or a 4-step palette fade (never an alpha fade), a
    verdict stamp gets a 3-2-1 px screen shake over 8 frames, the camera pans in whole pixels with 2 to 3 parallax layers;
    each hit at most once in 10 s (with item 2 below).
 00a-5. (Check done Nov 1, morning run: `lint` WARN read time; next: the scenes hold each short text, then the WARN becomes an ERROR for new lessons.) Read time lint: every on-screen text holds at least letters / 15 + 1.5 s after it finishes typing in, and the
@@ -99,6 +101,13 @@ runtime, $0, no new dependency.
 12. Visual: a seasonal touch per week (snow outside the half-built house in winter, leaves in fall).
 
 ## Done (newest first: date, item, what changed, proof)
+- 2026-11-01 (end-of-day run, cloud): 00a-4 room moves. Two new transitions in _runtime/sets.js, chosen per section with
+  SCENE.transitions: `mosaic` (blocks double 2 to 32 grid pixels, each the colour at its centre, cut under the biggest)
+  and `fade4` (four held steps down to #120D14 and back, the player's palette snap after). sets.js is not fingerprinted,
+  and no queued lesson names either move, so the two waiting lessons render as gated. Proof: frames -7 to +7 around a
+  section start in three-fixes (person, 8.09 s) and first-reply (signal, 27.04 s): colours per frame never above the
+  palette (36 and 37 at rest; 8 at the mosaic cut, 1 at the fade's dark frame), whole-pixel blocks, the new room clean
+  by +5 frames. Next lesson in line to pick one: the next AI lane build.
 - 2026-11-01 (lunch run, cloud): 00a-3 M3 accents now an ERROR for new lessons. `anim.py lint` fails a scene text that lands 0.5 s or more after its spoken word for lessons dated 2026-11-15 on; older lessons keep the WARN. Proof on stills: 2026-11-15-three-fixes lint FAIL ('COPY THIS TEXT' 1.69 s, 'EXAMPLE MONTH' 1.51 s late), PASS after the labels changed; 2026-10-28-first-reply lint unchanged (WARN only).
 - 2026-11-01 (morning run, cloud): M6 read-time check in `lint` (00a-5, first step). `read_time_report` in anim.py takes
   each scene text's first and last time on screen (a typed-in text from its first letters; a counting number, three or

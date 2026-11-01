@@ -5,6 +5,7 @@ Made Nov 1, 2026 in the scheduled morning record and make run (cloud). AI lane l
 (held Oct 30, "too thin") with a real run: the reply on screen is the exact text Gemini returned on Nov 1, 2026.
 
 - **Lane:** ai
+- **Test:** lane: the first AI lane lesson, a real Gemini reply on screen by 2 s and the exact prompt as the save card (the AI for trades test, _shared/lanes.md; core lessons drew 0 shares in 2,662 views). Added Nov 1 end-of-day run; brief.md is not fingerprinted.
 - **Format:** fix-this (_shared/formats.md: 25 to 42 s, 60 to 100 words: the reply to fix, read it, the beat to guess, the rewrite word for word, the button)
 - **Where:** Instagram Reel, 9:16, then TikTok, Facebook, YouTube Shorts.
 - **Audience:** the owner of a small residential cleaning company who answers quote requests between jobs, on a phone.

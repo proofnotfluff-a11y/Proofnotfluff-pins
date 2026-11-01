@@ -47,8 +47,9 @@ def generate(prompt, *, key, model, call=W._call):
                            timeout=300.0)
             break
         except W.GeminiError as e:
-            if attempt == 2 or e.category != "network":
+            if attempt == 2 or e.category not in ("network", "service"):
                 raise
+            time.sleep(20)  # a 503 "high demand" usually clears in seconds
     data = W._json(body, key)
     cand = (data.get("candidates") or [{}])[0]
     parts = [p["text"] for p in (cand.get("content") or {}).get("parts", []) if p.get("text")]

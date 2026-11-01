@@ -1,7 +1,7 @@
 {
  "started_at": "2026-10-17T18:19:43Z",
- "cash": 5.1228,
- "realized_pnl": -3.8068,
+ "cash": 16.5723,
+ "realized_pnl": -7.3573,
  "cohort": {
   "picked_at": "2026-10-31T18:42:11Z",
   "wallets": [
@@ -210,39 +210,39 @@
   }
  },
  "last_seen": {
-  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1793471956,
+  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1793494828,
   "0xcdcccd0f2d86e450d973da415ad2430e5cc7935a": 1792857432,
   "0x4f1d5ae26fc31472966e951af3183308736d8de2": 1793384107,
   "0x7c37b52eb226bcb9411375ec48b0169663fb6aeb": 1792261183,
   "0x924379a79c64b77ad5816ad362122a5f6228658e": 1793448003,
   "0x63cf8544631c31e9fcea0b02141dd24d01d6e4d0": 1792261183,
-  "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": 1793472129,
+  "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": 1793494843,
   "0x361b16e3ddfe1d415d41008daac2631d94ab74fe": 1793450797,
-  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1793472048,
-  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1793472070,
+  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1793494806,
+  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1793494636,
   "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d": 1793286674,
   "0xb0e74df9430a089aa102e2207af5fde1967439d2": 1792261183,
   "0x5fdd66ffd0325d4e8d1d86fbec50caa31770a747": 1793287201,
   "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c": 1792845297,
   "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": 1793450530,
-  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1793469340,
+  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1793493784,
   "0xd38b71f3e8ed1af71983e5c309eac3dfa9b35029": 1792818993,
-  "0x511f9c771449162349795d17becf8b37031acbe1": 1793472109,
+  "0x511f9c771449162349795d17becf8b37031acbe1": 1793494671,
   "0x0f6f76ced62a911bccef92f50faaff143854d977": 1792575788,
   "0xa2cced8bfae7d645f7f437fb76becf2fcbb70cbc": 1792834263,
   "0xe6ca6ebbec97e8a46ff3dbdb2a99d46254fbbff4": 1792866685,
-  "0x5a218c7ad04135830a45c41aaed7294df7809318": 1793472096,
-  "0x1387d145aaf01f6e33b66525dda6e1f51f6955f8": 1793472097,
+  "0x5a218c7ad04135830a45c41aaed7294df7809318": 1793494792,
+  "0x1387d145aaf01f6e33b66525dda6e1f51f6955f8": 1793494792,
   "0x57a85952044f2c8e4d31b475aab6987d2f98ebc2": 1793447691,
   "0x2b5920274740ca61745eeb077587bf5bb4ff9db6": 1793450595,
   "0x4868c31e81040e002b41984842b84bae8923a1c1": 1793446809,
-  "0xe9b710551dd82a44e79203c2394a2b10163ace7b": 1793472131,
+  "0xe9b710551dd82a44e79203c2394a2b10163ace7b": 1793492955,
   "0x03805a13a0b3e058f55f6c6af95389d4f431073d": 1793472131,
-  "0x821dab0565ebf5b327f51db06223fdcfe01acf16": 1793472131,
-  "0x7ad71d79a3bb90d0a87a06500fa0fe11663842aa": 1793472131,
-  "0x67542c3219b37fd1610aad290676ff91cdbfe3bc": 1793472131,
-  "0xb0c85813a7a4428f1139ff91d3118a92c391fe7f": 1793472131,
-  "0x684baa57c338c2549aec0aa3f034f695d72a8409": 1793472131
+  "0x821dab0565ebf5b327f51db06223fdcfe01acf16": 1793494851,
+  "0x7ad71d79a3bb90d0a87a06500fa0fe11663842aa": 1793477488,
+  "0x67542c3219b37fd1610aad290676ff91cdbfe3bc": 1793493421,
+  "0xb0c85813a7a4428f1139ff91d3118a92c391fe7f": 1793494839,
+  "0x684baa57c338c2549aec0aa3f034f695d72a8409": 1793494665
  },
  "positions": {
   "65139230827417363158752884968303867495725894165574887635816574090175320800482": {
@@ -287,8 +287,8 @@
    "shares": 17.8182,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.285,
-   "value": 5.0782
+   "last_price": 0.275,
+   "value": 4.9
   },
   "32481463316308414566870387925755631596964865686902270953857613599861973534909": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -302,8 +302,8 @@
    "shares": 6.7586,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.84,
-   "value": 5.6772
+   "last_price": 0.855,
+   "value": 5.7786
   },
   "34211495561850364902657006812472964732267678973593165677831288791451957431998": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -317,8 +317,8 @@
    "shares": 5.1363,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9265,
-   "value": 4.7588
+   "last_price": 0.9465,
+   "value": 4.8615
   },
   "8818882580258325166337837102966293982190018467620490556947006190938951037006": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -332,38 +332,8 @@
    "shares": 5.1336,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9525,
-   "value": 4.8898
-  },
-  "67556833911038516663762658580603672381492400838184408384897474335007438931935": {
-   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
-   "condition_id": "0xff98892eae3088f9a5a232548309ac22b84178ae000b2f14b7c144872f9a0092",
-   "title": "Will Xiaomi have the best Chinese AI model at the end of October 2026?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-18T13:40:02Z",
-   "leader_price": 0.383000174,
-   "entry_price": 0.3965,
-   "shares": 12.3581,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.0005,
-   "value": 0.0062
-  },
-  "51971221506050097243705792157899572281015127216972300934938845878155423445294": {
-   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
-   "condition_id": "0x7fce5d62233723da8ff6a95bdae8b9b70cdd30ce9356814c353bb41b5b70834c",
-   "title": "Will Alibaba have the best Chinese AI model at the end of October 2026?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-18T13:40:02Z",
-   "leader_price": 0.82,
-   "entry_price": 0.825,
-   "shares": 5.9394,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 1.0,
-   "value": 5.9394
+   "last_price": 0.943,
+   "value": 4.841
   },
   "108767173380374027732080104990699635190337878673564806647896154227197681002646": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -377,23 +347,8 @@
    "shares": 5.3552,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9095,
-   "value": 4.8706
-  },
-  "104332866126515956093450589750286954738111137415513428604932963328511192583801": {
-   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
-   "condition_id": "0xbdcdc14fd98134683503468026d53603a9765f917cdd7a3953b7ebc03e5cf40a",
-   "title": "Will Shas win 12 or more seats in the 2026 Knesset elections?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-19T06:45:31Z",
-   "leader_price": 0.96,
-   "entry_price": 0.94,
-   "shares": 5.2128,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.9965,
-   "value": 5.1946
+   "last_price": 0.9475,
+   "value": 5.0741
   },
   "66072327615726046499669264247360148320766479710839940112360677274067132727584": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -407,23 +362,8 @@
    "shares": 8.0328,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.014,
-   "value": 0.1125
-  },
-  "48363336280603988612943937623657599900834676634371552666346986109028055383864": {
-   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
-   "condition_id": "0xc855714184ac46005a7897c68f274147f0abf1fde791421541edb065fa65a1e4",
-   "title": "Will Likud win 30-34 seats in the 2026 Israeli legislative election?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-19T12:42:57Z",
-   "leader_price": 0.92,
-   "entry_price": 0.925,
-   "shares": 5.2973,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.9965,
-   "value": 5.2788
+   "last_price": 0.0325,
+   "value": 0.2611
   },
   "39228840575449881837568889168840039857058636039550121318060583610152400585337": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -452,8 +392,8 @@
    "shares": 9.0741,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.47,
-   "value": 4.2648
+   "last_price": 0.455,
+   "value": 4.1287
   },
   "74897964775279535413258818950960058718976813244965274421640138167280313090417": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -482,8 +422,8 @@
    "shares": 17.8182,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.355,
-   "value": 6.3255
+   "last_price": 0.36,
+   "value": 6.4146
   },
   "10229340737584154978359500415623156606488248988978412976257532327635966656733": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -497,8 +437,8 @@
    "shares": 5.6322,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.89,
-   "value": 5.0127
+   "last_price": 0.87,
+   "value": 4.9
   },
   "60186594918326728407185405226545526273084940240456698624096625852288751603361": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -512,8 +452,8 @@
    "shares": 12.6126,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.494,
-   "value": 6.2306
+   "last_price": 0.4225,
+   "value": 5.3288
   },
   "11128925845879348170706262358649886447119541463625558967934110995591843189690": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -527,8 +467,8 @@
    "shares": 5.8683,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.895,
-   "value": 5.2521
+   "last_price": 0.9,
+   "value": 5.2815
   },
   "108587038225191871355030577171066853142535232042155117887981453750193713427381": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -557,8 +497,8 @@
    "shares": 5.1042,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.951,
-   "value": 4.8541
+   "last_price": 0.9515,
+   "value": 4.8566
   },
   "86244383967682722276671267649138716350905219852788359298490648253439988317095": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -632,8 +572,8 @@
    "shares": 5.4204,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.887,
-   "value": 4.8079
+   "last_price": 0.885,
+   "value": 4.7971
   },
   "44228841638106976312311756070964931486206207912533799720886034328840862003816": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -662,8 +602,8 @@
    "shares": 16.3333,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.455,
-   "value": 7.4317
+   "last_price": 0.415,
+   "value": 6.7783
   },
   "35770751885924798388281446298756041002177848619471659098755120133048843736673": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -677,8 +617,8 @@
    "shares": 12.25,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.275,
-   "value": 3.3688
+   "last_price": 0.27,
+   "value": 3.3075
   },
   "45697952169290210733788647908439282215277461482653377209044144054693714912010": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -692,8 +632,8 @@
    "shares": 11.1364,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.445,
-   "value": 4.9557
+   "last_price": 0.45,
+   "value": 5.0114
   },
   "55011012091624538067652120718763362310144443266082668460306717828843512481106": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -707,8 +647,8 @@
    "shares": 5.2128,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.975,
-   "value": 5.0825
+   "last_price": 0.9745,
+   "value": 5.0799
   },
   "47942880964158617614279118228047750547985543191564455484169740327839925876869": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -752,8 +692,8 @@
    "shares": 15.0769,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.285,
-   "value": 4.2969
+   "last_price": 0.295,
+   "value": 4.4477
   },
   "25172545206000541692667496253531562288536270988826888609620735617040533835056": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -767,8 +707,8 @@
    "shares": 5.7102,
    "cost": 1.8937,
    "fee_in": 0.0379,
-   "last_price": 0.285,
-   "value": 1.6274
+   "last_price": 0.295,
+   "value": 1.6845
   },
   "85060150111866177952624671964550062315899025878231761291888147134512934130020": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -782,8 +722,8 @@
    "shares": 31.123,
    "cost": 4.6208,
    "fee_in": 0.0924,
-   "last_price": 0.0925,
-   "value": 2.8789
+   "last_price": 0.069,
+   "value": 2.1475
   },
   "92576281548134350814800877416860562553699794074017301653635964206220838638047": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -797,8 +737,8 @@
    "shares": 7.0504,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.745,
-   "value": 5.2525
+   "last_price": 0.74,
+   "value": 5.2173
   },
   "33156410999665902694791064431724433042010245771106314074312009703157423879038": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -829,6 +769,21 @@
    "fee_in": 0.0911,
    "last_price": 0.135,
    "value": 3.2581
+  },
+  "80727480162707694817992062873857913056698208056368499870278974630056151503113": {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0xa32317ba83c3c83dc43ef260c3744c22ed8000db53d30bc09372c45cff5fb07a",
+   "title": "Will Republicans lose the Alaska, Iowa, Kansas, Maine, Michigan, Ohio, and Texas Senate seats?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-11-01T01:00:47Z",
+   "leader_price": 0.74,
+   "entry_price": 0.755,
+   "shares": 6.4901,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.745,
+   "value": 4.8351
   }
  },
  "closed": [
@@ -2371,12 +2326,92 @@
    "fee_out": 0.0,
    "pnl": 0.1228,
    "reason": "resolved"
+  },
+  {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0xff98892eae3088f9a5a232548309ac22b84178ae000b2f14b7c144872f9a0092",
+   "title": "Will Xiaomi have the best Chinese AI model at the end of October 2026?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-18T13:40:02Z",
+   "leader_price": 0.383000174,
+   "entry_price": 0.3965,
+   "shares": 12.3581,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.0005,
+   "value": 0.0062,
+   "closed_at": "2026-11-01T01:00:56Z",
+   "exit_price": 0.0,
+   "fee_out": 0.0,
+   "pnl": -5.0,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x7fce5d62233723da8ff6a95bdae8b9b70cdd30ce9356814c353bb41b5b70834c",
+   "title": "Will Alibaba have the best Chinese AI model at the end of October 2026?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-18T13:40:02Z",
+   "leader_price": 0.82,
+   "entry_price": 0.825,
+   "shares": 5.9394,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 1.0,
+   "value": 5.9394,
+   "closed_at": "2026-11-01T01:00:56Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 0.9394,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0xbdcdc14fd98134683503468026d53603a9765f917cdd7a3953b7ebc03e5cf40a",
+   "title": "Will Shas win 12 or more seats in the 2026 Knesset elections?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-19T06:45:31Z",
+   "leader_price": 0.96,
+   "entry_price": 0.94,
+   "shares": 5.2128,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.9965,
+   "value": 5.1946,
+   "closed_at": "2026-11-01T01:00:56Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 0.2128,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0xc855714184ac46005a7897c68f274147f0abf1fde791421541edb065fa65a1e4",
+   "title": "Will Likud win 30-34 seats in the 2026 Israeli legislative election?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-19T12:42:57Z",
+   "leader_price": 0.92,
+   "entry_price": 0.925,
+   "shares": 5.2973,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.9965,
+   "value": 5.2788,
+   "closed_at": "2026-11-01T01:00:57Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 0.2973,
+   "reason": "resolved"
   }
  ],
  "signals": {
-  "buy": 116,
+  "buy": 117,
   "sell": 6,
-  "skipped": 40905,
+  "skipped": 41797,
   "fallback_price": 0
  },
  "errors": 0

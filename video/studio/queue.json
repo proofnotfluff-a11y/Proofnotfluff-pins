@@ -452,6 +452,26 @@
      "at": "2026-10-31T19:25:53-05:00"
     }
    }
+  },
+  {
+   "slug": "2026-11-12-missed-call-text",
+   "readyAt": "2026-10-31T23:05:29-05:00",
+   "commit": "5509fd79d8d30c6a4c325f005032df24f01930be",
+   "fingerprints": {
+    "script": "f6e4ace4cebe",
+    "takes": "e203a0c616f7",
+    "words": "3a1c3a2950dc",
+    "cues": "63c38f08531b",
+    "scene": "8d8be4aacfdb",
+    "data": "1af82fab2011",
+    "captions": "05077b11cb17",
+    "mouth": "00b320614889",
+    "runtime_kit": "7533966669eb",
+    "runtime_player": "34cc933b308e",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

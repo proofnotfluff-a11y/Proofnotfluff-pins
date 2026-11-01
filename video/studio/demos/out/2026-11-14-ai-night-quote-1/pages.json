@@ -1,0 +1,24 @@
+[
+ {
+  "n": 1,
+  "url": "https://gemini.google/subscriptions/",
+  "at": "2026-11-01T15:50:17+00:00",
+  "final": "https://gemini.google/subscriptions/",
+  "status": 200,
+  "title": "Google AI Pro & Ultra \u2014 get access to Gemini 4 Argon & more"
+ },
+ {
+  "n": 2,
+  "url": "https://www.getjobber.com/home-service-trends-report/",
+  "at": "2026-11-01T15:50:22+00:00",
+  "error": "TimeoutError: Page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://www.getjobber.com/home-service-trends-report/\", waiting until \"networkidle\"\n"
+ },
+ {
+  "n": 3,
+  "url": "https://support.google.com/gemini/answer/13594961",
+  "at": "2026-11-01T15:51:08+00:00",
+  "final": "https://support.google.com/gemini/answer/13594961",
+  "status": 200,
+  "title": "Gemini Apps Privacy Hub - Gemini Apps Help"
+ }
+]

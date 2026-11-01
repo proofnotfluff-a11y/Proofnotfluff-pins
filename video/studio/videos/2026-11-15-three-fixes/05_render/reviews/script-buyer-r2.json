@@ -1,0 +1,27 @@
+{
+  "gate": "buyer-script",
+  "round": 2,
+  "reviewer": "claude opus (fresh agent)",
+  "pass": true,
+  "score": {
+    "stop": "yes",
+    "send": "yes",
+    "save": "yes",
+    "follow_or_link": "yes"
+  },
+  "reasons": [
+    "Viewer: solo plumber, misses calls under a sink, 9 pm scroll.",
+    "1. One sentence: a missed-call auto text at $19 a month beats a $49 AI or a $49 plus $2.99 a minute answering service, as long as I call back inside the hour.",
+    "2. Stop: yes. The first frame shows three price tags I am already shopping ($19, $49, $49 labeled TEXT, PERSON, AI) and the plate puts real money on it ($2,800 a month, tagged EXAMPLE) with a question I want answered: which one is worth it.",
+    "3. Send: yes, to my wife who answers the office phone; the end card line fits her exactly and the text to copy is something she would set up. Save: yes, the held card has all three prices and the exact words to paste, which is the thing I would come back for when I set it up. Follow: yes, it priced three real products from their own pages in 30 seconds with no pitch, which is rare; Link in bio: no, nothing in the video gives me a reason to go there, the caption line is generic.",
+    "4. Hype, fake urgency, pitch, slop, robotic: none found. No hype words, no urgency, no DM ask, no product pushed (caption says one example of each kind, not a pick). Short lines read like a person talking. 'You'd guess the AI. It books.' is clipped but natural spoken.",
+    "5. Unclear to a stranger: three small things, listed as problems below ('two fifty minutes' can be heard as a time; the AI guess is never plainly corrected; the person price has no monthly total).",
+    "6. Trust: yes. Every price names its plan in the caption with the read date, the annual price and fees are disclosed, the $2,800 is tagged EXAMPLE, each price is shown on its maker's page with the address while said, and the rule is conditional rather than a promise.",
+    "7. The bar: C1 yes, line 1 'Missed calls cost this shop twenty-eight hundred a month' plus each fix's monthly price. S1 yes, 'It answers right away, so they know you saw it' plus the callback inside the hour is a why, not just a fact. C3 and S3 yes, the held save card (3 s or more) carries all three prices and the exact text to copy labeled EXAMPLE, and turning on a text plus calling back inside the hour is under an hour of work this week.",
+    "Problem (not blocking), line 'The AI is forty-nine a month for two fifty minutes': 'two fifty minutes' heard at speed can sound like 2:50, a time. Fix: say 'two hundred fifty minutes' (one word more).",
+    "Problem (not blocking), lines 'You'd guess the AI. It books.' and 'and it texts a booking link': the guess is never plainly corrected, so a stranger hears 'it texts a booking link' as 'yes, it books' and then wonders why the text wins. Fix: 'The AI is forty-nine a month for two hundred fifty minutes, and it only texts a booking link.'",
+    "Problem (not blocking), line 'A person is forty-nine a month plus two ninety-nine a minute': quick-math with no math; I cannot compare a per-minute price to $19 and $49 in my head. Fix: show one worked total on screen as EXAMPLE (for instance 100 minutes = $348 a month: 49 + 100 x 2.99 = 348), no extra spoken words needed.",
+    "Problem (not blocking), caption: the rule hangs on 'call back inside the hour' but never says what to do if I cannot. A skeptic will think 'if I could call back in an hour I would not be missing jobs.' Fix: add one caption line, 'If you cannot call back inside the hour, that is when a person or an AI earns its price.'",
+    "Verdict: PASS. I would save and send it, and nothing in 4 would make me scroll past or distrust it; the four fixes above sharpen it."
+  ]
+}

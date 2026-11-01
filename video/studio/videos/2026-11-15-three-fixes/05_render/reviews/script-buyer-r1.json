@@ -1,0 +1,23 @@
+{
+  "gate": "buyer-script",
+  "round": 1,
+  "reviewer": "claude opus (fresh agent)",
+  "pass": false,
+  "score": {"stop": "yes", "send": "no", "save": "yes", "follow_or_link": "no"},
+  "reasons": [
+    "Viewer: I run a two-truck plumbing shop, 9 pm, scrolling.",
+    "1. What it tells me: missed calls cost a shop like mine about $2,800 a month, and the cheap $19 missed-call text plus calling back fast beats paying for a person or an AI answering service.",
+    "2. Stop in 3 s: yes. Three price tags and '$2,800 a month. Which fix is worth it?' is my money and a choice I have been putting off. The EXAMPLE tag keeps it honest.",
+    "3. Send: no. Nothing in it makes me think of a person to send it to; the caption line 'send this to whoever answers your phone' is the only push and the video itself never says it. Save: yes, for the held price card, but only just (see C3 below). Follow: no, one comparison does not tell me what else this account does. Link in bio: no, 'free tools' is not tied to anything in this video.",
+    "4. Hype, urgency, pitch, slop, robotic: no hype, no fake urgency, no pitch; the caption names the plans, prices and the read date and says 'not a pick', which I trust. Mildly robotic: the beats are all short fragments in the same rhythm ('A missed-call text, nineteen a month. It texts them back. You still call.'), which reads like a list being read, not a person talking.",
+    "5. Unclear to a stranger: 'Test it on a mad customer' (test how? why?). 'Call missed calls back fast' (how fast is fast?). The person option is priced but never judged, so I do not know what it catches or misses until the card. 'Quick math' is promised by the format but no math is done: nobody puts $19 or $2.99 a minute against the $2,800.",
+    "6. Trust: yes, mostly. Real named plans with read dates in the caption, the AI setup ('You'd guess the AI. It books jobs.') is honestly undercut. I would trust it more if it told me why the cheap fix works instead of just asserting it.",
+    "7. Bar: C1 yes (hook: 'Missed calls cost this shop twenty-eight hundred a month.'). S1 FAIL. C3 FAIL. S3 yes (turn on a missed-call text and call back, doable in under an hour).",
+    "FAIL S1 (no mechanism). Line: 'Your callback books the job. Call missed calls back fast, and the nineteen dollar text is worth it.' It asserts the result but never says why. Fix: add one why line, for example after 'It texts them back. You still call.': 'The text holds them so they don't dial the next plumber, and the first one to call back gets the job.' (Keep only what facts.json can source; if the 'first to call back' claim has no source, state the hold mechanism alone.)",
+    "FAIL C3 (nothing exact to copy). The planned card says 'turn on a missed-call text; call every missed call back fast', which is an instruction, not a thing I can copy. Fix: put the actual auto-text wording on the held card (for example 'Sorry we missed you. This is [Shop]. We'll call you back within 10 minutes. Reply with what you need.') and give 'fast' a number in both the card and the script ('Call back inside ten minutes' or whatever time the brief can stand behind).",
+    "Problem (quick-math with no math). Line: 'A person, forty-nine a month plus two dollars ninety-nine a minute.' Fix: do one sum the viewer can feel, for example 'Twenty three-minute calls is about one hundred eighty dollars on top of the forty-nine.' (60 min x $2.99 = $179.40) and close with the comparison 'Nineteen dollars against twenty-eight hundred.' Check every figure in facts.json first.",
+    "Problem (unclear). Line: 'Test it on a mad customer.' Fix: 'Before you pay, call it yourself as an angry customer.' or cut it if no source says AI handles upset callers badly.",
+    "Problem (send). Nothing spoken gives me a reason to forward it. Fix: end on a line aimed at the person who answers the phone, for example 'Show this to whoever answers when you're under a sink.' (spoken, not only in the caption).",
+    "Problem (rhythm, minor). Every beat is a two-fragment list. Fix: join at least one pair into a normal sentence, for example 'A missed-call text is nineteen a month: it texts them back, but you still call.'"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "gate": "buyer-script",
+  "round": 3,
+  "reviewer": "claude opus (fresh agent)",
+  "pass": true,
+  "score": {"stop": "yes", "send": "yes", "save": "yes", "follow_or_link": "no"},
+  "reasons": [
+    "Viewer: solo plumber (the caption names plumbing and HVAC), scrolling at 9 pm, missing calls while on jobs.",
+    "1. What it tells me: missed calls cost a shop like mine about $2,800 a month, and if I call back inside the hour, a $19 a month auto text beats paying $49 plus for a person or an AI.",
+    "2. Stop: yes. The first frame is money ($2,800 a month) and three price tags with a plain question, which fix is worth it. I am shopping for exactly this, so I stop to see which tag wins. The EXAMPLE tag keeps the $2,800 honest without slowing me down.",
+    "3. Send: yes, to my wife who takes the calls I miss; the end card line points right at her, and the copy text is something she can turn on. Save: yes, the held card with all three prices and the exact text to copy is the thing I would want later when I sit down to set it up. Follow: no, one good price compare is not enough yet to follow a new account. Link in bio: no, 'Free tools for trade owners' is too vague to make me leave the app.",
+    "4. Hype, urgency, pitch, slop, robotic: nothing that makes me scroll. No urgency, no pitch, the winner is the cheapest option, which reads as honest. The rule is conditional ('call back inside the hour') so it does not oversell a text. Each price on screen with the maker's own page and address while said makes it checkable. The short clipped lines ('A person, forty nine a month plus two ninety nine a minute.') fit quick math and do not read robotic.",
+    "5. Unclear to a stranger: small, see fixes below. 'A person' does not say what that is (an answering service); 'It answers right away' could be heard as the text picking up the phone; 'The AI ... only texts a booking link' sounds like all AI receptionists, when it is one plan.",
+    "6. Trust: yes. Real prices with the vendor pages shown, the example flagged, no claim any product works or fails, and the cheap answer wins.",
+    "7. The bar: C1 yes, line 1 'Missed calls cost this shop twenty eight hundred a month.' S1 yes, 'It answers right away, so they know you'll call back.' plus the rule that the callback is what books it. C3 and S3 yes, the held save card with the three prices and the EXAMPLE text to copy, and the spoken action 'Call missed calls back inside the hour.' Finishable in under an hour.",
+    "Problem (minor, trust): 'The AI, forty nine a month for two hundred fifty minutes, and it only texts a booking link.' An owner who has seen an AI that books straight to a calendar will think this is wrong about AI in general. Fix: 'This AI, forty nine a month for two hundred fifty minutes. At that price it only texts a booking link.'",
+    "Problem (minor, clarity): 'A person, forty nine a month plus two ninety nine a minute.' A stranger may not know this means an answering service. Fix: 'An answering service, forty nine a month plus two ninety nine a minute.' or keep 'A person' and make sure the on screen label reads ANSWERING SERVICE while said.",
+    "Problem (minor, clarity): 'It answers right away' for a text could be heard as it picking up the call. Fix: 'It texts them back right away, so they know you'll call back.'",
+    "Problem (minor, save cue): the voice never points at the text to copy, so a viewer may not notice the save card is the thing to keep. Fix: have the save card land on the rule line with a visible 'COPY THIS' label over the EXAMPLE text, held 3 s or more as planned; no spoken save ask needed."
+  ]
+}

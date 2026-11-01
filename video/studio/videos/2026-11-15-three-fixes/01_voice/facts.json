@@ -1,0 +1,51 @@
+{
+ "about": "Every number this video shows or says. The three prices are read on each maker's own public pricing page on Nov 1, 2026 (the run that made this lesson); page shots in video/studio/demos/out/2026-11-15-three-fixes-1/. The $2,800 a month is OUR worked example from the lesson before (2026-11-13-count-before-ai), labeled EXAMPLE on screen. No vendor is recommended; each is one example of its kind.",
+ "textback": {
+  "kind": "missed-call text-back",
+  "vendor": "Quo (formerly OpenPhone), Starter plan",
+  "url": "https://www.quo.com/pricing",
+  "read": "2026-11-01",
+  "monthly": 19,
+  "monthlyNote": "$19 per user a month billed monthly ($15 billed annually); carrier fees extra: $19.50 one-time review and a messaging fee of $1.50 to $3 a month",
+  "annualMonthly": 15,
+  "feature": "Auto-replies on all plans: automatically respond to texts, missed calls, or voicemails with pre-defined messages.",
+  "catches": "the caller's number and a text back",
+  "misses": "the booking: you still call them back"
+ },
+ "person": {
+  "kind": "live answering service (a person)",
+  "vendor": "PATLive, Pay as you go plan",
+  "url": "https://www.patlive.com/pricing/",
+  "read": "2026-11-01",
+  "monthly": 49,
+  "perMinute": 2.99,
+  "includedMinutes": 0,
+  "note": "$49 a month billed monthly, no included minutes, additional minutes $2.99 each; taxes and fees extra; the page says it does not use AI to answer calls",
+  "catches": "the whole call, taken by a person",
+  "misses": "nothing on the call, but every minute is billed, so long calls cost more"
+ },
+ "ai": {
+  "kind": "AI receptionist",
+  "vendor": "Rosie (heyrosie.com), Professional plan",
+  "url": "https://heyrosie.com/pricing",
+  "read": "2026-11-01",
+  "monthly": 49,
+  "minutes": 250,
+  "note": "$49 per month, 250 minutes per month; 7-day free trial; English and Spanish",
+  "catches": "answers and books",
+  "misses": "test it on your own hard calls before you trust it"
+ },
+ "example": {
+  "source": "OURS: the worked example from 2026-11-13-count-before-ai (14 missed calls in 2 weeks, 4 real jobs, $350 cleared a job), labeled EXAMPLE on screen",
+  "monthValue": 2800,
+  "clearPerJob": 350,
+  "partNo": 2,
+  "series": 2,
+  "options": 3
+ },
+ "press": {
+  "source": "Contractor magazine, The Missed Call Math Most Contractors Never Run, Oct 15, 2026",
+  "url": "https://www.contractormag.com/management/best-practices/article/55412284/the-missed-call-math-most-contractors-never-run",
+  "note": "names an answering service or AI receptionist for after-hours gaps and a text soon after a missed call; used only as the sign owners are asking, not as a number"
+ }
+}

@@ -1,0 +1,22 @@
+{
+ "gate": "facts-script",
+ "round": 0,
+ "reviewer": "claude opus (fresh agent)",
+ "pass": false,
+ "score": {"numbers": 11, "mismatches": 2},
+ "reasons": [
+  "01_voice/script.md line 3 (hook) and line 11 (rule): 'fifteen, forty-nine and forty-nine bucks' and 'the fifteen dollar text' set Quo's yearly-billed price ($15, paid as $180 up front) against Rosie's and PATLive's month-to-month prices ($49). Different billing bases in one comparison, and the tilt favors the option the rule picks; Rosie also offers yearly billing ('2 months free'), not shown. Fix: put all three on the monthly base in voice: hook 'Three missed-call fixes, nineteen, forty-nine and forty-nine bucks a month.', line 5 'A missed-call text, nineteen a month, fifteen if you pay yearly.', rule 'If you call back fast, the nineteen dollar text is worth it.' Mirror in captions.json all four platforms: 'the $15 text is worth it' to 'the $19 text is worth it ($15 a month paid yearly)'. data.js already carries both text ($19) and textyr ($15); no data change needed.",
+  "01_voice/script.md line 9: 'The AI, forty-nine for two hundred fifty minutes' drops the period; the page says $49 per month and 250 minutes per month. Fix: 'The AI, forty-nine a month for two hundred fifty minutes.'",
+  "Note, no fix required: 'Your gut says the AI. It books.' is framed as the gut answer and is corrected on line 9 ('It texts a booking link'); Rosie Professional does not book on the calendar (only Scale $149 and Growth $299 do), so keep line 9 exactly as is and do not drop it in an edit.",
+  "Note, no fix required: carrier fees on Quo ($19.50 one-time, $1.50 to $3 a month) are not in the voice; captions say 'carrier fees extra' and facts.json records them; keep the card line '$19 billed monthly; carrier fees extra' on screen as the brief says."
+ ],
+ "sources_checked": [
+  "https://www.quo.com/pricing: Starter $19 per user a month billed monthly, $15 per user a month billed annually at $180; carrier review $19.50 one-time plus $1.50 to $3 a month messaging fee; auto-replies 'Automatically respond to texts, missed calls, or voicemails with pre-defined messages' checked on Starter, Business, Scale. Page shot page-1.png (Nov 1) shows Yearly toggle, $15, Billed annually at $180, Save $48/year. Matches facts.json textback and captions.",
+  "https://www.patlive.com/pricing/: Live Call Answering 'Pay as you go No included minutes Monthly $49 Additional min $2.99'; 'Plus government taxes and fees'; 'PATLive does not use AI to answer calls'; no annual billing. Page shot page-2.png has a cookie banner over prices; live fetch confirmed. Matches facts.json person, voice line 7 and captions.",
+  "https://heyrosie.com/pricing: Professional $49 per month (Pay Monthly default), 250 minutes per month, 'Send appointment links by text'; direct calendar booking only on Scale ($149) and Growth ($299); annual billing '2 months free'; 7-day free trial. Page shot page-3.png confirms $49, 250 minutes, Send appointment links by text. Supports 'It texts a booking link'.",
+  "https://www.contractormag.com/management/best-practices/article/55412284/the-missed-call-math-most-contractors-never-run: Oct 15, 2026; suggests 'an answering service or an AI receptionist that books the job on the spot' for after-hours and 'Any call that does miss should get a text within one minute'. Used only as the sign owners ask, as facts.json says; no number taken. Trade source.",
+  "video/studio/videos/2026-11-13-count-before-ai/01_voice/facts.json: example.monthValue 2800 and clearPerJob 350, labeled OURS and EXAMPLE; captions call it 'our example'. Story element, not data: OK.",
+  "04_scene/data.js: sha256 fc3cc0a1...6023236 matches facts.json on disk; all 10 values and shown strings match facts.json paths.",
+  "Checks: no en or em dashes in script, brief, facts, data.js, captions; no private person, business or address (vendor pricing pages and proofnotfluff.com only); main evidence is pricing of tools trade owners buy plus a trade magazine."
+ ]
+}

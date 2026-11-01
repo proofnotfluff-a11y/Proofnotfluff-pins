@@ -1,0 +1,26 @@
+{
+ "gate": "buyer-script",
+ "round": 0,
+ "reviewer": "claude opus (fresh agent)",
+ "pass": false,
+ "score": {"stop": 3, "send": 2, "save": 3, "follow_or_link": 1},
+ "scale": "1 to 5, 5 best; viewer is a plumbing shop owner, Reels at 9 pm",
+ "reasons": [
+  "1 What it tells me: there are three ways to catch missed calls (a $15 text back, a $49 live person plus $2.99 a minute, a $49 AI with 250 minutes), and if I call back fast the $15 text is enough.",
+  "2 Stop in 3 s: maybe. Three price tags and 'Which one's worth it?' is a little quiz I want to answer, and 'missed-call fixes' is said in the first second. But nothing says what missed calls cost me, so it reads as a price list for a tool I may not think I need. Weak yes.",
+  "3 Send: no from the video alone; the caption's send line (whoever answers your phone) is a good idea but the spoken script gives my office person nothing to do. Save: maybe; the caption lists all three prices with what each does, which is worth keeping when I shop, but there is no step to come back to. Follow: no, one comparison does not tell me what else I get. Link in bio: no, 'free tools for trade owners' is too vague to click.",
+  "4 Hype or slop: no hype, no fake urgency, no pitch; the caption's 'one example of each kind, not a pick' reads honest. Two lines feel clipped and robotic when heard: 'Your gut says the AI. It books.' and 'It grabs the number. You still call back.' They sound like notes, not a person talking.",
+  "5 Unclear to a stranger: 'Your gut says the AI. It books.' (books what? I did not think that). 'two ninety-nine a minute' heard fast can sound like $299; say 'two dollars ninety-nine a minute'. 'Test it on ugly calls' (what is an ugly call? a mad customer, a bad line, an emergency?). 'It grabs the number' does not say it texts the caller back, which is the whole point of that fix. No product names are spoken, fine for a script, but the caption has to carry them, and it does.",
+  "6 Trust: mostly yes. Prices are specific, dated and sourced in the caption, with the fine print (billed yearly, carrier fees, no minutes included). The verdict favors the cheapest option, which makes it feel like no one is selling me.",
+  "7 Bar: C1 FAIL, S1 FAIL, C3 PASS in the caption only (needs the brief's held save card to land on screen), S3 FAIL. Details below.",
+  "FAIL C1 (stakes), line 'Three missed-call fixes, fifteen, forty-nine and forty-nine bucks. Which one's worth it?': the hook prices the fixes but never says what a missed call costs me, so there is no reason to care which one I pick. Fix: put the money at risk in the hook, using the part 1 example already in facts.json, e.g. 'Missed calls cost our example shop $2,800 a month. Three fixes: fifteen, forty-nine and forty-nine bucks. Which one's worth it?' (keep it labeled as our example).",
+  "FAIL S1 (mechanism), line '[confident] If you call back fast, the fifteen dollar text is worth it.': it gives the rule but not why it works. Fix: add one because line, e.g. 'because the text answers in seconds, so the caller waits for you instead of calling the next plumber.' Only if that claim is sourced; otherwise state the plain mechanism the facts support.",
+  "FAIL S3 (do this week), whole script: there is no action I can finish this week in under an hour; the rule is a decision, not a step. The YouTube description has 'Turn on a missed-call text tonight' but the script and the instagram caption do not. Fix: end on the step, e.g. after the rule add 'This week: turn on a missed-call text, then call every one back within the hour.' and add the same two steps to the instagram caption above the send line.",
+  "C3 (screen worth saving): the instagram caption's numbered price list is the savable thing and it is good. The script never points to it; fix: one line before the rule, 'All three on one card, save it.' so the held card in the brief has a reason to be saved.",
+  "Clarity fix, line 'Your gut says the AI. It books.': rewrite as a full thought, e.g. 'You'd guess the AI, because it books the job for you.'",
+  "Clarity fix, line 'A missed-call text, fifteen a month, paid yearly. It grabs the number. You still call back.': say what it does, e.g. 'It texts the caller back right away. You still call back.'",
+  "Clarity fix, line '[matter-of-fact] A live person, forty-nine a month plus two ninety-nine a minute.': say 'plus two dollars ninety-nine a minute' so it is not heard as $299.",
+  "Clarity fix, line 'Test it on ugly calls.': name the call, e.g. 'Test it on a mad customer or a bad cell signal first.'",
+  "Verdict: FAIL. I would not send it and only maybe save it, and the bar misses C1, S1 and S3. Nothing distrustful; the fixes are the stake in the hook, one because line, and a this week step."
+ ]
+}

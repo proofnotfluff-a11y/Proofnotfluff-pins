@@ -1,0 +1,16 @@
+{
+ "gate": "facts-captions",
+ "round": 0,
+ "reviewer": "claude opus (fresh agent)",
+ "pass": false,
+ "score": {"numbers": 10, "mismatches": 0},
+ "reasons": [
+  "facebook: line 1 has no keyword phrase and names no trade ('For trade business owners who miss calls on the job: three fixes and what each costs.'), and no trade phrase appears anywhere in the caption (captions.md Shape 1 and Keywords: one trade phrase plus one umbrella). Fix: line 1 to 'For plumbing and HVAC business owners who miss calls on the job: three fixes and what each costs.' (85 characters).",
+  "instagram: hashtags carry two umbrellas (#homeservicebusiness and #contractorbusiness) and no topic tag; captions.md asks for 1 umbrella, 1 to 2 trade business tags, 1 topic. Fix: replace #contractorbusiness with a non-generic topic tag such as #missedcalls, giving '#homeservicebusiness #plumbingbusiness #hvacbusiness #missedcalls'."
+ ],
+ "notes": [
+  "All prices checked by WebFetch on each maker's page: Quo Starter $19 per user a month billed monthly, $15 billed annually ($180), carrier fees extra ($19.50 one-time, $1.50 to $3 a month), auto-replies to missed calls on all plans; PATLive Pay as you go $49 a month, no included minutes, $2.99 a minute, plus government taxes and fees; Rosie Professional $49 a month, 250 minutes, 'Send appointment links by text', calendar booking on Scale $149 and Growth $299. Every caption matches.",
+  "$2,800 a month matches 2026-11-13-count-before-ai facts.json example.monthValue (2800, partNo 1 of series 2), labeled our example shop in every caption that names it.",
+  "The video never says anything is 'in the caption'; caption content is consistent with the voice and the save card. No AI voice line, no em or en dashes, no link in Instagram, TikTok or Facebook, no private person or address. YouTube title 71 characters with no hashtags, 3 description hashtags, 9 tags with one misspelling, site line https://proofnotfluff.com/missed-call-cost-calculator/ is in docs/sitemap.xml. Line 1 lengths: Instagram 82, TikTok 76, Facebook 85."
+ ]
+}

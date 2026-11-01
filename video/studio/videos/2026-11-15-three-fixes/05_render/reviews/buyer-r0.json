@@ -1,0 +1,17 @@
+{
+  "gate": "buyer",
+  "round": 0,
+  "reviewer": "claude opus (fresh agent)",
+  "pass": true,
+  "score": {"stop": "yes", "send": "yes", "save": "yes", "follow_or_link": "no"},
+  "reasons": [
+    "1. As a plumber: missed calls are costing a shop like mine about $2,800 a month, and of the three fixes (a person, an AI, a missed-call text) the $19 text is the one worth it, as long as I call back inside the hour.",
+    "2. Stop: yes. The first line puts a dollar number on something that happened to me today (a missed call while under a sink), and the frame at 0.8 s shows a big A MONTH money plate on a phone in a truck dash, which reads as my world. 'Which fix is worth it?' at 3.6 s gives me a reason to stay to the end.",
+    "3. Send: yes, to whoever answers my phone; the caption names that person and the lesson is about their job. Save: yes, the caption holds the three prices side by side and the exact text to copy, which I would want next time a salesman pitches me an AI receptionist. Follow or link: no, 'Free tools for trade owners' is too vague to make me tap at 9 pm; one video is not enough for a follow.",
+    "4. No hype, no fake urgency, no pitch. Vendors are named in the caption with 'one example of each kind, not a pick', which reads honest. Only robotic spot: 'You'd guess the AI. It books.' is two clipped fragments and sounds read off a card.",
+    "5. Unclear to a stranger: (a) 00:06.7 'It books.' then 00:12.5 'it only texts a booking link' reads at first like the video contradicts itself; the turn works only if you catch that 'It books' is my guess. Fix: 'You'd guess the AI, because you think it books the job.' (b) 00:08.1 'two ninety-nine a minute' can be heard as two hundred ninety-nine. Fix: 'two dollars ninety-nine a minute' or 'about three bucks a minute'. (c) The frame at 0.8 s catches the counter mid count-up at $1,180 while the voice says twenty-eight hundred; anyone who pauses there sees a number that is in no fact. Fix: land the count on $2,800 by 0.8 s, or move the gate frame to after the count lands. The phone screen is also empty at that moment and the bottom third of the frame is a dark grille with nothing on it.",
+    "6. Trust: yes. Prices with the plan name and 'read Nov 1, 2026', the $2,800 labeled as our example shop, and a rule that tells me the cheap fix only works if I do my part. Nobody is selling me anything.",
+    "7. The bar. C1 yes: 'Missed calls cost this shop twenty-eight hundred a month' (00:00.0). S1 yes: 'It answers right away, so they know you'll call back' (00:21.2). C3 and S3 yes: this week, turn on a missed-call text with the given words and call every missed call back inside the hour, both under an hour of work; the words to copy are in the caption. Note: from what I am given the copyable text lives only in the caption, the voice never says it; the render gates should confirm a card with those exact words is on screen and held 3 s or more, or C3 fails on screen.",
+    "Verdict: PASS. I would save it and pass it to my office. Fix the 0.8 s frame number and the two spoken lines above before posting if the round allows."
+  ]
+}

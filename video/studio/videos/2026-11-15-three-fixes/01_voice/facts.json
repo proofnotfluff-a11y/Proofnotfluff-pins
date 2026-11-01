@@ -22,7 +22,10 @@
   "includedMinutes": 0,
   "note": "$49 a month billed monthly, no included minutes, additional minutes $2.99 each; taxes and fees extra; the page says it does not use AI to answer calls",
   "catches": "the whole call, taken by a person",
-  "misses": "nothing on the call, but every minute is billed, so long calls cost more"
+  "misses": "nothing on the call, but every minute is billed, so long calls cost more",
+  "exampleMinutes": 100,
+  "exampleTotal": 348,
+  "exampleNote": "OURS, labeled EXAMPLE on screen: 100 minutes in a month x $2.99 = $299, plus the $49 = $348 a month (checked in code)"
  },
  "ai": {
   "kind": "AI receptionist",
@@ -33,7 +36,9 @@
   "minutes": 250,
   "note": "$49 per month, 250 minutes per month; 7-day free trial; English and Spanish",
   "catches": "answers and books",
-  "misses": "test it on your own hard calls before you trust it"
+  "misses": "test it on your own hard calls before you trust it",
+  "bookingPlan": 149,
+  "bookingNote": "calendar booking is on the Scale plan, $149 a month (and Growth, $299), read Nov 1, 2026"
  },
  "example": {
   "source": "OURS: the worked example from 2026-11-13-count-before-ai (14 missed calls in 2 weeks, 4 real jobs, $350 cleared a job), labeled EXAMPLE on screen",

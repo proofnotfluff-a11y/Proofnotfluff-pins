@@ -2192,6 +2192,7 @@ def cmd_script(slug):
     if bad:
         sys.exit(1)
 HOOK_DIFF, HOOK_LEVEL, HOOK_MERGE, HOOK_FPS = 0.08, 40, 0.4, 15
+ACCENT_ERROR_FROM, ACCENT_ERROR_LATE = "2026-11-15", 0.5   # IMPROVE 00a-3: late accent texts fail lint from these lessons on
 HOOK_JS = """(t) => { window.__boxes = []; drawAt(t); const b = window.__boxes; window.__boxes = null;
   if (!window.__sm) { window.__sm = document.createElement('canvas'); window.__sm.width = 108; window.__sm.height = 192; }
   const g = window.__sm.getContext('2d'); g.imageSmoothingEnabled = true; g.drawImage(document.getElementById('c'), 0, 0, 108, 192);
@@ -2387,6 +2388,11 @@ def cmd_lint(slug, step=0.25):
             errors.append(f"ERROR lint {a0:5.2f} to {a1:5.2f} s: {kind}: {what[:70]}")
     print("hook: " + json.dumps(hook))
     late, ontime = accent_report(slug, first_seen, step)
+    # IMPROVE 00a-3 (Nov 1, lunch run): for lessons dated from ACCENT_ERROR_FROM on, a text that lands ACCENT_ERROR_LATE s
+    # or more after its spoken word is an ERROR (the scene moves it ahead of the word); smaller slips stay a WARN.
+    if os.path.basename(slug)[:10] >= ACCENT_ERROR_FROM:
+        errors += [f"ERROR lint accents: '{s_[:40]}' lands {-lead:.2f} s after '{w_}' (M3: 0.2 to 0.3 s before; move it ahead or rename it)"
+                   for s_, w_, lead in late if lead <= -ACCENT_ERROR_LATE]
     if late:   # a warning, not an ERROR (M3, _shared/standard.md): the design gate and render critic judge it
         print(f"WARN lint accents: {len(late)} scene texts land after their spoken word (M3 wants 0.2 to 0.3 s before; "
               f"{ontime} land in time): " + "; ".join(f"'{s_[:30]}' {lead:+.2f} s vs '{w_}'" for s_, w_, lead in late[:12]))

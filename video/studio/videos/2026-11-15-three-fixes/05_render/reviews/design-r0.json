@@ -1,0 +1,30 @@
+{
+  "gate": "design",
+  "round": 0,
+  "reviewer": "claude opus (fresh agent)",
+  "bar": "4.61",
+  "bar_note": "Round 0, no earlier design.json for this lesson: no score under 4 and average 4.61 or more.",
+  "pass": false,
+  "score": {
+    "first": 4,
+    "hierarchy": 5,
+    "type": 4,
+    "color": 5,
+    "spacing": 4,
+    "polish": 4,
+    "trust": 5,
+    "average": 4.43
+  },
+  "reasons": [
+    "0.75 s and about 2.4 s hook, counter to truck dash and back: both room changes are plain cuts (M4 fail, caps polish at 4). Give each a travel move that fits: a whip pan right into the dash on 0.75 s and a whip pan back to the counter on the word month, with the $2,800 A MONTH chip entering with overshoot and settle.",
+    "1.0 to 2.4 s dash phone: the chat screen is an empty cream panel from y 380 to y 800 under the 3 missed calls notice, and the $2,800 A MONTH chip hangs off the phone's left edge at x 90. Stack the three missed-call rows (time plus a red call icon) down the screen as they drop in, one per 0.3 s, and pin the chip inside the phone width (x 300 to 870) or center it on the dash under the phone. First impression held at 4 for this and the cut bounce.",
+    "21.0 s text.card, blueprint to item shop: another plain cut between rooms (M4). Bring the ITEM SHOP menu in with the levelselect tiles or a menu box that drops from the top with overshoot and settle, so the C3 card arrives as a game moment.",
+    "21.0 to 29.2 s item shop card, COPY THESE WORDS label: the tops of the letters are clipped by the gold tab (size 39 text in an 11 px low-res box). Make the tab 15 low-res px tall or drop the label to the next size that fits whole; it is the label on the card viewers save. Type held at 4 for this.",
+    "5.0 to 8.0 s leaderboard YOUR PICK: PERSN reads as a typo and the rows stop at y 640, leaving y 650 to 940 empty for 3 s. Spell PERSON in full (the column has room), and fill the empty half with the IT BOOKS? chip at full label size plus a blinking INSERT COIN or 3 ENTRIES line, or move the table down to center it in the screen.",
+    "8.0 to 8.5 s and 12.5 to 13.0 s blueprint, right column: the right half of the band (x 450 to 1020, y 340 to 900) is empty until the price lands. Land the A PERSON or AN AI label and the price with the section's first word, so the column is never blank for longer than 0.3 s.",
+    "Host from 2.5 s to the end: Snow stands about 270 px tall (y 980 to 1250) against the style board target of 360 px. Scale him up a step in the blueprint and item shop scenes, where the left column below the screenshot has room, and keep his point aimed at the price he is talking about.",
+    "28.5 s BEST BUY stamp on the TEXT row: it is the verdict; confirm the trauma kick lands on the stamp frame (the button kick at 0.5) and give the stamp a scale overshoot from 140 percent to 100 percent so the answer hits."
+  ],
+  "freshness": "Sets differ from 2026-11-13-count-before-ai (map, calendar, chalkboard, balance scale) and 2026-11-14-ai-night-quote (night window, split-flap board, gauge, work order, VS split): this lesson's storefront counter, truck dash, arcade leaderboard, blueprint grid and item shop menu are new. No freshness cap.",
+  "caps_checked": "Picture changes by 0.75 s and host on screen by about 2.4 s (no first impression cap). Spoken words about 66 px and labels and sources at or above 36 px (no type floor cap; type held at 4 for the clipped label). End card with proofnotfluff.com from 29.2 s (no end card cap). qa.json flat passes. C3 item shop card readable and held about 8 s with a moving underline sweep (no hierarchy cap). M4 fails on plain room cuts at 0.75 s, about 2.4 s and 21.0 s (polish capped at 4)."
+}

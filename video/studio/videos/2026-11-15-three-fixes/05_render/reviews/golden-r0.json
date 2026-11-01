@@ -1,0 +1,18 @@
+{
+ "gate": "golden",
+ "round": 0,
+ "reviewer": "claude opus (fresh agent)",
+ "pass": false,
+ "score": {"post_as_is": "no"},
+ "reasons": [
+  "1. must-fix, 1.0 to 2.4 s: the hook cut-in shows '3 missed calls' on the phone. That 3 is a hard-coded string in scene.js, not in facts.json or data.js, and the example shop is 14 missed calls in 2 weeks. An unchecked number in the first 3 seconds. Use a number from facts.json or drop the count.",
+  "2. must-fix, 1.0 to 2.4 s: the phone screen under the notification is a large blank cream panel with nothing in it. On a phone it looks unfinished, and it fills most of the frame in the stop-the-scroll seconds.",
+  "3. must-fix, 11.2 to 12.5 s: the PATLive EXAMPLE USE meter is still rolling (62 MIN $234, 95 MIN $333) when the scene cuts to the AI at about 12.5 s. The planned landing, 100 MIN $348 (facts person.exampleTotal), is not readable and the voice never says it. Land on 100 MIN $348 and hold it about 1 s, or cut the meter.",
+  "4. must-fix, 28.5 to 29.2 s: the 'BEST BUY' stamp on the TEXT row reads as a pick. That contradicts the captions ('one example of each kind, not a pick') and facts.json ('No vendor is recommended'), and it drops the voiced condition ('call missed calls back inside the hour'). It also uses a big retailer's name. Use a conditional label tied to the rule, such as 'IF YOU CALL BACK', or no stamp.",
+  "5. polish, 5.0 to 7.5 s: the YOUR PICK table says 'PERSN' and heads the price column 'SCORE'. On a phone that looks like a typo and a mislabel. Use PERSON and PRICE.",
+  "6. polish, 1.0 to 2.0 s: '$2,800 a month' is already shown as a finished number at 0 s, then counts up again from $2,1xx. Showing the number and then recounting it reads like a glitch. Either let it count once or hold it steady.",
+  "7. polish, all scenes: content sits in the top 60 percent of the frame and the bottom 40 percent is empty dark floor. Some of that is a safe zone for platform UI, but the price numbers and the copy-these-words card are small for a phone. Scale them up into the space.",
+  "8. polish, 5.1 to 12.5 s: transcript.md flags takes 02 (134 wpm) and 03 (148 wpm) as slow ('rewrite it as talk, then speak'), but qa.json voice reports 0 flags. 'You'd guess the AI. It books.' drags a little. Doubtful PASS on voice pace. Otherwise it sounds like a person.",
+  "9. noted, no change: the story is clear (text $19, person $49 plus $2.99 a minute, AI $49 for 250 minutes that only texts a booking link, and the $19 text is worth it if you call back inside the hour). Spoken prices match the screen and facts.json, the AI booking caveat ($149 plan) shows at 16.5 s, the hook earns the stop, and the end card gives a clear reason to send. The qa.json checks all PASS, and the end-card freeze at 30.4 to 32.2 s is allowed."
+ ]
+}

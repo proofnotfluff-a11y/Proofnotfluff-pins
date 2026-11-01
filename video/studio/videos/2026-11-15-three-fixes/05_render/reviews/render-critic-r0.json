@@ -1,0 +1,24 @@
+{
+  "gate": "render-critic",
+  "round": 0,
+  "reviewer": "claude opus (fresh agent)",
+  "pass": false,
+  "score": {"faults": 1},
+  "faults": [
+    {
+      "kind": "cutoff",
+      "at": 21.0,
+      "text": "COPY THESE WORDS",
+      "scene": "text (item shop, 21.0 s to 29.4 s)",
+      "what": "The gold tag above the script (about x 70 to 450, y 550 to 582) is shorter than its own letters: the tops and bottoms of COPY THESE WORDS are clipped by the tag box, so the label reads as cut off for the whole scene. Make the tag taller or the text smaller so the full letters show, like the EXAMPLE tag beside it."
+    }
+  ],
+  "reasons": [
+    "1 Hook: $2,800 a month. is on screen from frame 0 (y about 470 to 560); the dash shot counts up and lands on $2,800 A MONTH by about 1.5 s, before twenty-eight hundred is said at 1.42 to 2.24 s. Pass.",
+    "2 Numbers: forty-nine (9.21 s) and two ninety-nine a minute (10.37 s) show as $49/mo and +$2.99/min from about 9.0 s and 10.0 s; forty-nine and two hundred fifty minutes (13.63 s, 14.61 s) show as $49/mo and 250 min by 13.5 s and 14.5 s; nineteen (19.89 s) shows as $19/mo by 19.5 s; nineteen dollar (27.29 s) is on the shop panel as $19/mo. All readable at about the moment said. Pass.",
+    "3 Layout: settled frames keep words and numbers between y 270 and y 1250; text ends left of x 930 (the hook plate, item shop panel and end card borders reach about x 945 to 955 but no words sit past x 915). The $2,800 A MONTH banner at 0.8 to 2.4 s overlaps only the empty chat input bar of the phone (msgs empty), so no words are hidden. BEST BUY at 28.5 s sits in the gap of the TEXT row and hides nothing. One cutoff: the COPY THESE WORDS tag clips its own letters (see faults).",
+    "4 Audio end: last word it. ends at 29.11 s; the video runs 32.2 s on the end card, so voice ends before the video and nothing is cut mid word. Pass.",
+    "5 Small text and flash: smallest designed text (source captions, EXAMPLE USE, LOST, EXAMPLE SHOP tags) is about 30 px tall at 1080 wide, fine on a phone; the tiny copy inside the pricing page screenshots is the real page shown as scenery, not text the viewer must read. Scene changes at about 1.0, 2.5, 5.0, 8.0, 12.5, 18.5, 21.0 and 29.5 s are single transitions, never more than 3 flashes a second. Pass.",
+    "No earlier render-critic.json existed, so this is round 0 with nothing to re-check."
+  ]
+}

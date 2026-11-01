@@ -67,6 +67,7 @@ promised it); the voice never says it.
 | A person, forty-nine a month plus two ninety-nine a minute | PATLive pricing, Pay as you go, no included minutes, read Nov 1, 2026 | https://www.patlive.com/pricing/ |
 | The AI, forty-nine a month for two hundred fifty minutes, and it only texts a booking link | Rosie pricing, Professional, 250 minutes, "Send appointment links by text" (calendar booking on its $149 and $299 plans), read Nov 1, 2026 | https://heyrosie.com/pricing |
 | A missed-call text is nineteen a month. It answers right away | Quo pricing, Starter, $19 billed monthly ($15 billed annually at $180), auto-replies to missed calls on all plans, read Nov 1, 2026 | https://www.quo.com/pricing |
+| $348 a month for 100 minutes (screen only, EXAMPLE) | ours: 100 x $2.99 + $49 | n/a |
 | so they know you'll call back; call back inside the hour | ours: what an auto-reply does, and the promise in our example text (the owner's own promise) | n/a |
 
 ## Numbers on screen
@@ -82,6 +83,9 @@ promised it); the voice never says it.
  "month": {"path": "example.monthValue", "shown": "$2,800"},
  "part": {"path": "example.partNo", "shown": "2"},
  "series": {"path": "example.series", "shown": "2"},
- "opts": {"path": "example.options", "shown": "3"}
+ "opts": {"path": "example.options", "shown": "3"},
+ "pmins": {"path": "person.exampleMinutes", "shown": "100"},
+ "ptotal": {"path": "person.exampleTotal", "shown": "$348"},
+ "aibook": {"path": "ai.bookingPlan", "shown": "$149"}
 }}
 ```

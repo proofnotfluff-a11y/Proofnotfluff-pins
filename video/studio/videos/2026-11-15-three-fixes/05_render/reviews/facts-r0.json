@@ -1,0 +1,20 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "reviewer": "claude opus (fresh agent)",
+ "pass": true,
+ "score": {"numbers": 14, "mismatches": 0},
+ "reasons": [
+  "01_voice/brief.md Trust notes vs 04_scene/scene.js text(): the brief says Quo's carrier fees are 'on the card', but no frame draws them (only '$15/mo paid yearly'). Not a mismatch (PATLive's taxes and fees are also left off, so the $19 vs $49 list-price comparison is fair), but make the two agree: either add a small tag under '$19/mo' in text() such as tag(k, '+ carrier fees', RX * 3, 166 * 3) or strike 'carrier fees extra; both on the card' from the brief to read 'the $15 yearly price on the card; carrier fees in facts.json'. Advisory, not blocking.",
+  "04_scene/scene.js hookPlate(): dead code reading n.night and n.under, which are not in data.js; never called, nothing drawn. Advisory: delete it so a later edit cannot draw an undefined number.",
+  "Advisory, no fix needed: the PATLive page shot (page-2.png) shows the top of the page and a cookie banner, not the $49 or $2.99; the prices on screen come from the live page, which I confirmed today. The address tag 'patlive.com/pricing, Nov 1' is on screen while the price is said, so the S2 rule holds."
+ ],
+ "sources_checked": [
+  "https://www.quo.com/pricing: Starter $19 per user a month billed monthly, $15 billed annually ($180 a year); Auto-replies on Starter, Business and Scale, 'Automatically respond to texts, missed calls, or voicemails with pre-defined messages'; carrier fees $19.50 one-time and $1.50 to $3 a month. Matches facts.json textback, the $19/mo, the '$15/mo paid yearly' tag and 'it answers right away'.",
+  "https://www.patlive.com/pricing/: Pay as You Go $49 a month, no included minutes, additional minutes $2.99 each, 'Plus government taxes and fees', 'PATLive does not use AI to answer calls'. Matches facts.json person, the voice 'forty-nine a month plus two ninety-nine a minute' and the screen '$49/mo', '+$2.99/min'. $348 example: 100 x 2.99 = 299, + 49 = 348, correct, labeled EXAMPLE USE; count-up frames (62 MIN $234, 95 MIN $333) also compute right.",
+  "https://heyrosie.com/pricing: Professional $49 a month, 250 minutes, 'Send appointment links by text', no calendar booking; calendar booking on Scale $149 and Growth $299; 7-day free trial; English and Spanish. Matches the voice 'forty-nine a month for two hundred fifty minutes, and it only texts a booking link' and the screen '$49/mo', '250 min', 'SENDS A LINK', 'This plan. Booking is on its $149 plan.'",
+  "https://www.contractormag.com/management/best-practices/article/55412284/the-missed-call-math-most-contractors-never-run: Oct 15, 2026, Keith Carpenter; names 'an answering service or an AI receptionist' for after hours and 'Any call that does miss should get a text within one minute.' Trade press, used only as the sign owners ask; supports the text-back advice, so the lesson is trades first.",
+  "video/studio/demos/out/2026-11-15-three-fixes-1/: 04_scene/assets quo.png, patlive.png, rosie.png are byte-identical (md5) to page-1.png, page-2.png, page-3.png from pages.json (Nov 1, 2026); each is drawn with its address and date. No AI reply is shown, so no run.json check applies.",
+  "Ours, labeled: $2,800 a month (4 jobs x $350 x 2, the count-before-ai example) shown with 'MISSED CALLS, EXAMPLE SHOP', 'LOST, EXAMPLE SHOP' and '$2,800 A MONTH, EXAMPLE'; the auto-reply wording labeled 'AUTO-REPLY, EXAMPLE' and 'EXAMPLE' on the save card; the 9:12 clock and '3 missed calls' notification are story props and do not read as data. No real private person, business or address; no em or en dashes in script, transcript or scene strings. data.js values equal facts.json paths for all 13 keys."
+ ]
+}

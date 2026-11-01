@@ -18,7 +18,7 @@ the top one still open before anything below.
 00a-2. Done Oct 31 (end-of-day run, k.itemGet). C3 save card as a game "ITEM GET" window: the copyable thing (text, setting path, checklist) in a menu window that
    slides in over 0.3 s (ease-out, whole pixels), a hand cursor bobbing 1 px at 4 fps down its lines (so it is never flat,
    M1), a short item fanfare, held 3 s or more. lsa-missed-calls had 0 saves at 2.7 h.
-00a-3. (Check done Nov 1, evening run: `lint` WARN accents; next: the scenes move each late text 0.2 to 0.3 s ahead of its word, then the WARN becomes an ERROR for new lessons.) M3 accent words: the beat's key word slams on screen 0.2 to 0.3 s before it is spoken, from words.json timing
+00a-3. (Check done Nov 1, evening run: `lint` WARN accents. ERROR done Nov 1, lunch run: from lessons dated 2026-11-15 on, a text landing 0.5 s or more after its word fails `lint` (ACCENT_ERROR_FROM, ACCENT_ERROR_LATE); proven on stills: three-fixes failed 2 (1.69 s, 1.51 s) and passed after the fix, first-reply keeps its WARN. Next: tighten 0.5 s to 0.0 once two lessons pass at 0.5.) M3 accent words: the beat's key word slams on screen 0.2 to 0.3 s before it is spoken, from words.json timing
    (replaces item 10 below).
 00a-4. M4 pixel-native travel and hits: rooms change by mosaic cross or a 4-step palette fade (never an alpha fade), a
    verdict stamp gets a 3-2-1 px screen shake over 8 frames, the camera pans in whole pixels with 2 to 3 parallax layers;
@@ -77,6 +77,7 @@ the top one still open before anything below.
 12. Visual: a seasonal touch per week (snow outside the half-built house in winter, leaves in fall).
 
 ## Done (newest first: date, item, what changed, proof)
+- 2026-11-01 (lunch run, cloud): 00a-3 M3 accents now an ERROR for new lessons. `anim.py lint` fails a scene text that lands 0.5 s or more after its spoken word for lessons dated 2026-11-15 on; older lessons keep the WARN. Proof on stills: 2026-11-15-three-fixes lint FAIL ('COPY THIS TEXT' 1.69 s, 'EXAMPLE MONTH' 1.51 s late), PASS after the labels changed; 2026-10-28-first-reply lint unchanged (WARN only).
 - 2026-11-01 (morning run, cloud): M6 read-time check in `lint` (00a-5, first step). `read_time_report` in anim.py takes
   each scene text's first and last time on screen (a typed-in text from its first letters; a counting number, three or
   more texts of one shape, is skipped; texts still up in the end card's last 3.5 s are skipped) and `lint` prints one WARN

@@ -1,0 +1,9 @@
+{
+ "model": "gemini-3.6-flash",
+ "text": "Hi! I’d love to help with your move-out clean. For a 2-bed, 1-bath, my rate is [your price]. \n\nCould you let me know if you need the inside of the oven or fridge included? \n\nLet me know what day before Friday works best for you!",
+ "dashes": 0,
+ "tokens": 1119,
+ "seconds": 6.6,
+ "prompt": "Reply to this cleaning quote text for me. Friendly, under 50 words. My price: [your price]. Ask one question if anything's missing.\n\nTheir text: \"Hi! Need a quote for a move-out clean, 2 bed 1 bath, before Friday. Thanks!\"",
+ "at": "2026-11-01T16:19:19+00:00"
+}

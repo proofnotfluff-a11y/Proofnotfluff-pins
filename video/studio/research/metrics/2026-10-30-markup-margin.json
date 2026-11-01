@@ -22,6 +22,56 @@
      "views": 21
     }
    }
+  },
+  {
+   "date": "2026-10-31",
+   "readAt": "2026-11-01T01:20:37Z",
+   "age": "about 32 h",
+   "platforms": {
+    "facebook": {
+     "avgPctWatched": 8,
+     "avgWatchS": 4,
+     "comments": 0,
+     "follows": 0,
+     "reactions": 0,
+     "shares": 0,
+     "threeSecViews": 35,
+     "twentySecViewRatePct": 5.8,
+     "viewers": 195,
+     "views": 207
+    },
+    "instagram": {
+     "avgWatchS": "hidden",
+     "comments": 0,
+     "follows": 0,
+     "likes": 2,
+     "saves": 0,
+     "shares": 0,
+     "skipRate": "hidden",
+     "viewers": 111,
+     "views": 129
+    },
+    "tiktok": {
+     "avgWatchS": 25.58,
+     "comments": 0,
+     "follows": 0,
+     "likes": 2,
+     "saves": 0,
+     "shares": 0,
+     "views": 180,
+     "watchedFullPct": 2.1
+    },
+    "youtube": {
+     "avgWatchS": "hidden",
+     "comments": "hidden",
+     "likes": "hidden",
+     "shares": "hidden",
+     "subscribers": "hidden",
+     "viewedVsSwipedPct": "hidden",
+     "views": 21
+    }
+   },
+   "source": "videometrics 2026-10-30-markup-margin.2026-10-31 (evening PC run)"
   }
  ]
 }

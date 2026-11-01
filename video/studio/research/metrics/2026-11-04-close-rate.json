@@ -22,6 +22,55 @@
      "views": 30
     }
    }
+  },
+  {
+   "date": "2026-10-31",
+   "readAt": "2026-11-01T01:20:37Z",
+   "age": "about 30 h",
+   "platforms": {
+    "facebook": {
+     "avgPctWatched": 2,
+     "avgWatchS": 2,
+     "comments": 0,
+     "follows": 0,
+     "reactions": 0,
+     "shares": 0,
+     "threeSecViews": 2,
+     "viewers": 13,
+     "views": 13
+    },
+    "instagram": {
+     "avgWatchS": "hidden",
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 1,
+     "shares": 0,
+     "skipRate": "hidden",
+     "viewers": 104,
+     "views": 115
+    },
+    "tiktok": {
+     "avgWatchS": 3.42,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 87,
+     "watchedFullPct": 1.1
+    },
+    "youtube": {
+     "avgWatchS": "hidden",
+     "comments": "hidden",
+     "likes": "hidden",
+     "shares": "hidden",
+     "subscribers": "hidden",
+     "viewedVsSwipedPct": "hidden",
+     "views": 32
+    }
+   },
+   "source": "videometrics 2026-11-04-close-rate.2026-10-31 (evening PC run)"
   }
  ]
 }

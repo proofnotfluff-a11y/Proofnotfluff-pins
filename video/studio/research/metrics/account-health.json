@@ -1,0 +1,16 @@
+{
+ "slug": "account-health",
+ "reads": [
+  {
+   "date": "2026-10-31",
+   "readAt": "2026-11-01T01:20:37Z",
+   "platforms": {
+    "facebook": "hidden",
+    "instagram": 0,
+    "tiktok": "hidden",
+    "youtube": 0
+   },
+   "source": "videometrics account-health.2026-10-31 (evening PC run)"
+  }
+ ]
+}

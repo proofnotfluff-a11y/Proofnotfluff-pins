@@ -22,6 +22,55 @@
      "views": 12
     }
    }
+  },
+  {
+   "date": "2026-10-31",
+   "readAt": "2026-11-01T01:20:37Z",
+   "age": "about 25 h",
+   "platforms": {
+    "facebook": {
+     "avgPctWatched": 1,
+     "avgWatchS": 1,
+     "comments": 0,
+     "follows": 0,
+     "reactions": 0,
+     "shares": 0,
+     "threeSecViews": 1,
+     "viewers": 31,
+     "views": 31
+    },
+    "instagram": {
+     "avgWatchS": "hidden",
+     "comments": 0,
+     "follows": 0,
+     "likes": 1,
+     "saves": 1,
+     "shares": 0,
+     "skipRate": "hidden",
+     "viewers": 105,
+     "views": 111
+    },
+    "tiktok": {
+     "avgWatchS": 7.84,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 1,
+     "shares": 0,
+     "views": 97,
+     "watchedFullPct": 1
+    },
+    "youtube": {
+     "avgWatchS": "hidden",
+     "comments": "hidden",
+     "likes": "hidden",
+     "shares": "hidden",
+     "subscribers": "hidden",
+     "viewedVsSwipedPct": "hidden",
+     "views": 15
+    }
+   },
+   "source": "videometrics 2026-10-31-three-prices.2026-10-31 (evening PC run)"
   }
  ]
 }

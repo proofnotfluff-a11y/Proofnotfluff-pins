@@ -19,6 +19,57 @@
      "views": 13
     }
    }
+  },
+  {
+   "date": "2026-10-31",
+   "readAt": "2026-11-01T01:20:37Z",
+   "age": "about 72 h",
+   "platforms": {
+    "facebook": {
+     "avgPctWatched": 4,
+     "avgWatchS": 4,
+     "clicks": 1,
+     "comments": 0,
+     "follows": 0,
+     "reactions": 0,
+     "shares": 0,
+     "threeSecViews": 6,
+     "twentySecViewRatePct": 2.8,
+     "viewers": 31,
+     "views": 38
+    },
+    "instagram": {
+     "avgWatchS": "hidden",
+     "comments": 0,
+     "follows": 0,
+     "likes": 1,
+     "saves": 0,
+     "shares": 0,
+     "skipRate": "hidden",
+     "viewers": 107,
+     "views": 114
+    },
+    "tiktok": {
+     "avgWatchS": 4.17,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 121,
+     "watchedFullPct": 0
+    },
+    "youtube": {
+     "avgWatchS": "hidden",
+     "comments": "hidden",
+     "likes": "hidden",
+     "shares": "hidden",
+     "subscribers": "hidden",
+     "viewedVsSwipedPct": "hidden",
+     "views": 13
+    }
+   },
+   "source": "videometrics 2026-10-28-first-reply.2026-10-31 (evening PC run)"
   }
  ]
 }

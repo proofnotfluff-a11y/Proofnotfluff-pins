@@ -135,7 +135,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 3,Uptown,2023-06,4,2,2,0,17,0,14
 3,Uptown,2023-07,11,1,0,2,10,0,16
 3,Uptown,2023-08,9,1,0,0,26,0,18
-3,Uptown,2023-09,4,1,2,0,13,3,34
+3,Uptown,2023-09,4,1,2,0,13,3,36
 3,Uptown,2023-10,4,0,0,4,24,0,30
 3,Uptown,2023-11,7,0,4,3,18,1,18
 3,Uptown,2023-12,0,1,0,2,25,0,7
@@ -318,7 +318,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 6,Lake View,2024-03,13,6,3,5,43,0,45
 6,Lake View,2024-04,6,1,4,4,38,2,77
 6,Lake View,2024-05,2,1,1,0,7,0,25
-6,Lake View,2024-06,6,0,4,3,36,1,29
+6,Lake View,2024-06,6,0,4,3,37,1,29
 6,Lake View,2024-07,2,1,2,0,18,0,28
 6,Lake View,2024-08,4,4,0,0,16,1,32
 6,Lake View,2024-09,11,2,9,0,19,0,28
@@ -391,7 +391,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 7,Lincoln Park,2025-06,18,2,6,1,3,0,36
 7,Lincoln Park,2025-07,6,4,24,0,0,0,47
 7,Lincoln Park,2025-08,5,5,1,2,0,4,32
-7,Lincoln Park,2025-09,1,4,0,0,7,0,18
+7,Lincoln Park,2025-09,1,4,0,0,7,0,19
 7,Lincoln Park,2025-10,1,0,0,3,1,0,16
 7,Lincoln Park,2025-11,3,0,1,2,2,0,10
 7,Lincoln Park,2025-12,6,1,5,1,9,0,3
@@ -667,7 +667,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 12,Forest Glen,2024-04,2,0,0,4,0,0,9
 12,Forest Glen,2024-05,1,0,0,0,0,0,13
 12,Forest Glen,2024-06,3,0,0,6,0,0,4
-12,Forest Glen,2024-07,0,0,1,1,6,2,16
+12,Forest Glen,2024-07,0,0,1,1,6,2,15
 12,Forest Glen,2024-08,1,0,0,2,0,1,14
 12,Forest Glen,2024-09,0,0,1,0,0,0,6
 12,Forest Glen,2024-10,0,0,0,0,2,1,2
@@ -1441,7 +1441,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 25,Austin,2025-12,13,6,45,34,15,4,45
 25,Austin,2026-01,7,3,31,50,2,1,94
 25,Austin,2026-02,19,0,43,16,6,1,56
-25,Austin,2026-03,41,7,29,1,27,14,66
+25,Austin,2026-03,44,7,29,1,27,14,65
 25,Austin,2026-04,11,2,20,1,4,3,46
 25,Austin,2026-05,14,6,0,0,2,6,44
 25,Austin,2026-06,11,3,5,2,14,3,33
@@ -1511,7 +1511,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 27,East Garfield Park,2022-02,4,2,2,0,0,0,15
 27,East Garfield Park,2022-03,7,6,21,1,22,7,27
 27,East Garfield Park,2022-04,9,4,3,0,1,4,37
-27,East Garfield Park,2022-05,9,2,11,0,19,2,22
+27,East Garfield Park,2022-05,9,2,11,0,19,2,21
 27,East Garfield Park,2022-06,22,12,0,0,6,1,33
 27,East Garfield Park,2022-07,7,5,6,4,8,2,14
 27,East Garfield Park,2022-08,14,3,0,6,7,0,33
@@ -2185,7 +2185,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 38,Grand Boulevard,2025-02,0,2,0,2,17,2,7
 38,Grand Boulevard,2025-03,4,1,0,0,9,5,14
 38,Grand Boulevard,2025-04,13,11,32,1,8,8,82
-38,Grand Boulevard,2025-05,8,9,1,0,8,1,38
+38,Grand Boulevard,2025-05,8,9,1,0,8,1,40
 38,Grand Boulevard,2025-06,7,1,0,9,6,0,16
 38,Grand Boulevard,2025-07,0,0,2,6,0,0,7
 38,Grand Boulevard,2025-08,0,0,0,2,0,0,5
@@ -2246,7 +2246,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 39,Kenwood,2025-05,3,1,0,0,3,0,2
 39,Kenwood,2025-06,1,1,0,0,0,0,7
 39,Kenwood,2025-07,6,1,0,3,1,0,13
-39,Kenwood,2025-08,0,0,11,3,8,0,4
+39,Kenwood,2025-08,0,0,11,3,8,0,5
 39,Kenwood,2025-09,5,1,4,0,0,0,9
 39,Kenwood,2025-10,3,1,2,0,5,2,22
 39,Kenwood,2025-11,1,0,2,0,0,0,17
@@ -2256,7 +2256,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 39,Kenwood,2026-03,7,1,3,0,0,1,26
 39,Kenwood,2026-04,5,0,0,2,1,0,28
 39,Kenwood,2026-05,7,4,2,7,13,0,37
-39,Kenwood,2026-06,1,4,8,0,0,1,44
+39,Kenwood,2026-06,1,4,8,0,0,1,48
 39,Kenwood,2026-07,1,2,0,4,6,1,15
 39,Kenwood,2026-08,4,1,6,1,8,0,28
 39,Kenwood,2026-09,1,0,2,0,8,0,27
@@ -2292,7 +2292,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 40,Washington Park,2024-05,7,6,22,0,8,14,47
 40,Washington Park,2024-06,8,3,0,0,7,0,21
 40,Washington Park,2024-07,3,0,1,2,0,0,12
-40,Washington Park,2024-08,7,6,11,0,0,2,53
+40,Washington Park,2024-08,7,6,11,0,0,2,54
 40,Washington Park,2024-09,3,6,4,2,0,2,39
 40,Washington Park,2024-10,3,5,12,2,0,6,38
 40,Washington Park,2024-11,11,8,8,3,0,6,32
@@ -2391,16 +2391,16 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 42,Woodlawn,2022-12,10,7,2,5,1,2,31
 42,Woodlawn,2023-01,20,7,26,6,0,7,61
 42,Woodlawn,2023-02,11,3,2,2,0,3,34
-42,Woodlawn,2023-03,15,13,2,2,1,1,39
-42,Woodlawn,2023-04,10,4,6,0,0,1,30
+42,Woodlawn,2023-03,15,13,1,2,1,1,39
+42,Woodlawn,2023-04,10,4,6,0,0,1,29
 42,Woodlawn,2023-05,11,8,22,0,0,1,49
 42,Woodlawn,2023-06,14,11,8,8,1,0,61
 42,Woodlawn,2023-07,7,10,6,0,0,2,55
-42,Woodlawn,2023-08,17,6,28,4,2,16,81
+42,Woodlawn,2023-08,17,6,28,4,2,16,80
 42,Woodlawn,2023-09,10,4,27,0,0,6,51
-42,Woodlawn,2023-10,1,1,4,3,7,2,2
+42,Woodlawn,2023-10,1,1,4,3,7,2,1
 42,Woodlawn,2023-11,13,9,30,0,7,14,44
-42,Woodlawn,2023-12,6,9,14,6,2,1,45
+42,Woodlawn,2023-12,6,9,14,6,2,1,44
 42,Woodlawn,2024-01,7,4,16,12,2,1,52
 42,Woodlawn,2024-02,8,6,15,3,0,4,62
 42,Woodlawn,2024-03,7,4,7,6,0,1,44
@@ -2409,7 +2409,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 42,Woodlawn,2024-06,23,12,3,0,1,7,65
 42,Woodlawn,2024-07,8,6,3,4,4,4,59
 42,Woodlawn,2024-08,17,9,8,2,6,1,68
-42,Woodlawn,2024-09,24,17,4,5,0,1,58
+42,Woodlawn,2024-09,24,17,4,5,0,1,57
 42,Woodlawn,2024-10,7,7,9,2,7,1,65
 42,Woodlawn,2024-11,17,8,3,0,11,7,74
 42,Woodlawn,2024-12,11,4,13,4,6,1,64
@@ -3288,7 +3288,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 57,Archer Heights,2025-03,0,0,0,7,0,3,9
 57,Archer Heights,2025-04,3,0,0,3,1,0,13
 57,Archer Heights,2025-05,4,0,0,0,0,3,7
-57,Archer Heights,2025-06,1,1,0,0,0,0,9
+57,Archer Heights,2025-06,2,1,0,0,0,0,8
 57,Archer Heights,2025-07,0,0,0,5,0,0,9
 57,Archer Heights,2025-08,0,0,0,2,0,0,1
 57,Archer Heights,2025-09,4,3,0,0,0,0,14
@@ -3521,7 +3521,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 61,New City,2025-04,14,13,18,5,6,15,91
 61,New City,2025-05,17,8,9,2,4,3,108
 61,New City,2025-06,5,5,1,0,7,0,28
-61,New City,2025-07,6,8,4,19,0,2,55
+61,New City,2025-07,6,8,5,19,0,2,57
 61,New City,2025-08,20,8,11,2,0,1,86
 61,New City,2025-09,0,2,0,10,0,0,14
 61,New City,2025-10,6,4,3,1,5,3,50
@@ -3802,7 +3802,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 66,Chicago Lawn,2024-07,16,4,11,5,2,3,58
 66,Chicago Lawn,2024-08,8,4,2,0,0,0,64
 66,Chicago Lawn,2024-09,4,6,10,3,11,0,28
-66,Chicago Lawn,2024-10,9,2,25,0,0,1,38
+66,Chicago Lawn,2024-10,9,2,25,0,0,1,37
 66,Chicago Lawn,2024-11,5,1,6,2,0,0,21
 66,Chicago Lawn,2024-12,10,1,31,10,0,4,44
 66,Chicago Lawn,2025-01,3,1,8,16,3,5,23
@@ -3878,7 +3878,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 67,West Englewood,2026-01,10,2,35,5,2,11,43
 67,West Englewood,2026-02,2,3,17,0,2,1,43
 67,West Englewood,2026-03,4,4,7,2,2,4,75
-67,West Englewood,2026-04,26,14,54,0,0,10,117
+67,West Englewood,2026-04,26,14,51,0,0,10,108
 67,West Englewood,2026-05,6,9,24,4,6,6,37
 67,West Englewood,2026-06,9,2,0,0,0,2,42
 67,West Englewood,2026-07,8,3,48,2,1,0,36
@@ -3961,7 +3961,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 69,Greater Grand Crossing,2023-04,20,9,11,0,2,4,52
 69,Greater Grand Crossing,2023-05,19,9,8,5,3,1,55
 69,Greater Grand Crossing,2023-06,25,10,7,3,3,3,79
-69,Greater Grand Crossing,2023-07,31,12,7,16,2,14,88
+69,Greater Grand Crossing,2023-07,31,12,7,16,2,14,91
 69,Greater Grand Crossing,2023-08,15,8,28,4,9,3,74
 69,Greater Grand Crossing,2023-09,6,8,38,6,5,9,107
 69,Greater Grand Crossing,2023-10,19,7,76,7,2,33,78
@@ -3988,7 +3988,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 69,Greater Grand Crossing,2025-07,7,6,44,10,15,7,48
 69,Greater Grand Crossing,2025-08,32,11,21,0,64,7,140
 69,Greater Grand Crossing,2025-09,11,9,25,0,2,10,96
-69,Greater Grand Crossing,2025-10,15,10,16,9,3,5,74
+69,Greater Grand Crossing,2025-10,15,10,29,9,3,11,75
 69,Greater Grand Crossing,2025-11,16,9,11,7,0,4,76
 69,Greater Grand Crossing,2025-12,9,1,43,10,1,7,92
 69,Greater Grand Crossing,2026-01,7,7,6,10,7,1,76
@@ -4096,7 +4096,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 71,Auburn Gresham,2024-11,15,5,16,4,1,4,100
 71,Auburn Gresham,2024-12,21,5,19,21,1,4,72
 71,Auburn Gresham,2025-01,51,16,20,22,5,5,102
-71,Auburn Gresham,2025-02,7,7,9,6,0,6,58
+71,Auburn Gresham,2025-02,7,7,9,6,0,6,59
 71,Auburn Gresham,2025-03,30,8,7,2,4,12,115
 71,Auburn Gresham,2025-04,23,16,16,7,0,8,125
 71,Auburn Gresham,2025-05,12,7,34,9,2,6,99

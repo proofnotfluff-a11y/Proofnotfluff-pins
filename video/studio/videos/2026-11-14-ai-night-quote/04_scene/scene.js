@@ -193,7 +193,7 @@ window.SCENE = {
         const s = 'Hey, prices vary, give me a call.', sh = Math.floor(clamp((T - (tHey - 0.25)) / 1.4) * s.length);
         k.wrap(s.slice(0, sh) || ' ', {size: 66}, 840).forEach((l, i) => k.text(l, 120, 618 + i * 84, {size: 66, color: INK}));
       }
-      if (T >= tLost - 0.25) stampBox(k, 'BOOKED ELSEWHERE', 540, 860, tLost - 0.25, {color: RED, size: 66});
+      if (T >= tLost - 0.25) stampBox(k, 'BOOKED ELSEWHERE', 540, 860 + (T >= tLost + 0.3 ? bob2(T, tLost + 0.3) : 0), tLost - 0.25, {color: RED, size: 66});
       return host(k, T >= tLost ? 'shrug' : null);
     },
 
@@ -204,7 +204,7 @@ window.SCENE = {
       if (T >= tStake) {
         const tTwenty = wordT(k, 'guess.stake', /^twenty/i, 1.0);
         k.sets.gauge({value: n.hourPct.value, max: 100, at: tTwenty - 0.25, dur: 1.0, zones: [[0, 40, RED], [40, 70, ORANGE], [70, 100, TEAL]], label: `REPLY IN ${n.hours.shown} HOUR`, suffix: '%'});
-        k.text('of cleaning businesses', 540, 800, {size: 66, color: CREAM, align: 'center', drop: INK});
+        k.text('of cleaning businesses', 540, 800 + (T >= tTwenty + 1.2 ? bob2(T, tTwenty + 1.2) : 0), {size: 66, color: CREAM, align: 'center', drop: INK});
         tag(k, 'Source: Jobber, 2026 Home Service Trends', 540, 880, {align: 'center'});
         tag(k, `Report, ${n.owners.shown} owners, Dec ${n.year.shown}`, 540, 936, {align: 'center'});
         return host(k, T >= tTwenty ? 'lean' : null);
@@ -238,7 +238,7 @@ window.SCENE = {
       P(0, 0, 360, 417, '#253048'); for (let y = 0; y < 417; y += 4) P(0, y, 360, 1, '#1F2A40'); P(0, 417, 360, 223, '#1B1420'); P(0, 417, 360, 2, '#3D2E45');
       if (T < tPr - 0.25) {
         const s = bigPhone(k, d, 100, 112, 160, 214, {screen: '#F7F7F7'});
-        k.page(s.x * 3, s.y * 3, s.w * 3, s.h * 3, 'gemini-app', {scroll: 560});
+        k.page(s.x * 3, s.y * 3, s.w * 3, s.h * 3, 'gemini-app', {scroll: 380});
         /* their text pastes into the box */
         const q = clamp((T - (t0 + 0.4)) / 0.4);
         if (q > 0) { d.P(s.x + 6, s.y + s.h - 70, s.w - 12, 40, CREAM); k.text('Hi! Need a quote for a', (s.x + 12) * 3, (s.y + s.h - 66) * 3, {size: 39, color: INK}); k.text('move-out clean, 2 bed...', (s.x + 12) * 3, (s.y + s.h - 50) * 3, {size: 39, color: INK}); }
@@ -270,7 +270,7 @@ window.SCENE = {
         return host(k, 'lean');
       }
       bedroom(k, {top: 300});
-      const c = replyCard(k, 60, 300, 870, {hi: {1: ['#F9D7CC', tOven - 0.25], 2: ['#F9D7CC', tDay - 0.25]}, strike: [2], strikeAt: tCut, priceAt: tPrice - 0.25, extra: 0});
+      const c = replyCard(k, 60, 300, 870, {hi: {1: ['#F9D7CC', tOven - 0.25], 2: ['#F9D7CC', tDay - 0.25]}, strike: [2], strikeAt: tCut, priceAt: tPrice - 0.25, extra: 0, float: tOven});
       if (T < tCut) stampBox(k, `${n.asked.shown} QUESTIONS`, 600, c.y + c.h + 24, tOven - 0.25, {color: RED, size: 66});
       if (T >= tCut) {
         k.slam(`Ask ${n.wanted.shown}. Add your price.`, 540, c.y + c.h + 36, tCut, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false});
@@ -286,8 +286,8 @@ window.SCENE = {
       k.sets.levelup({from: 0, to: 100, max: 100, at: t0 + 0.1, dur: Math.max(0.6, tQ - t0 - 0.3), levelAt: tQ - 0.2, level: 2,
         stats: [{text: 'A PRICE', at: wordT(k, 'button', /^price/i, 1.2) - 0.25}, {text: 'ONE QUESTION', at: tQ - 0.25}]});
       if (T >= tRule - 0.25) {
-        k.slam('Send it before', 540, 800, tRule - 0.25, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false});
-        k.slam('your first job.', 540, 884, tRule - 0.15, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false});
+        k.slam('Send it before', 540, 856, tRule - 0.25, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false});
+        k.slam('your first job.', 540, 940, tRule - 0.15, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false});
       }
       return host(k, T >= tRule + 1.0 ? 'wave' : 'point');
     },

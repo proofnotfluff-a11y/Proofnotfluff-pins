@@ -2294,6 +2294,30 @@ def accent_report(slug, first_seen, step=0.25):
     return sorted(late, key=lambda x: x[2]), ontime
 
 
+def read_time_report(first_seen, last_seen, duration, step=0.25):
+    """M6 (IMPROVE 00a-5): every on-screen text holds letters / 15 + 1.5 s. A typed-in text counts from its first letters
+    to the last time its whole text shows; texts still up at the end card (they leave with the lesson) are not judged.
+    Returns [(text, held, need)] for the ones that leave early, worst first. Sampled at lint's step."""
+    out = []
+    shape = lambda x: re.sub(r"\d+(\.\d+)?", "#", x)   # a counter shows a new number each frame: one shape, many texts
+    shapes = {}
+    for s_ in last_seen:
+        shapes[shape(s_)] = shapes.get(shape(s_), 0) + 1
+    for s_, t1 in last_seen.items():
+        if shapes[shape(s_)] >= 3:   # a counting number (k.count, a stopwatch): judged as one moving text, not here
+            continue
+        if t1 >= duration - 3.5 - step:   # on screen into the end card's last 3.5 s: it leaves with the lesson
+            continue
+        t0 = min([first_seen[p] for p in first_seen if s_.startswith(p) and len(p) >= 3] + [first_seen.get(s_, t1)])
+        letters = sum(c.isalnum() for c in s_)
+        if letters < 3 or any(o != s_ and o.startswith(s_) for o in last_seen):   # a typing prefix of a longer text
+            continue
+        held, need = t1 - t0 + step, letters / 15 + 1.5
+        if held + step < need:
+            out.append((s_, held, need))
+    return sorted(out, key=lambda x: x[1] - x[2])
+
+
 def cmd_lint(slug, step=0.25):
     """The layout check in code, before a reviewer has to find it: every settled scene text inside the safe area
     (x 20 to 950, y 262 to 1250), not under the host, the dialog box or other text. Problems that last under 0.5 s
@@ -2307,7 +2331,7 @@ def cmd_lint(slug, step=0.25):
     hook, hook_bad = hook_report(slug, pg)   # before the world spy, on a clean page
     send_line = pg.evaluate("(window.SCENE && window.SCENE.sendLine) || ''") if is_modern(slug) else None
     pg.evaluate(WORLD_SPY)
-    t, worlds, steps, small, first_seen = 0.0, {}, 0, {}, {}
+    t, worlds, steps, small, first_seen, last_seen = 0.0, {}, 0, {}, {}, {}
     while t < cues["duration"]:
         bx, used = pg.evaluate(f"(() => {{ window.__boxes = []; window.__used = {{}}; drawAt({t:.3f}); const r = window.__boxes; window.__boxes = null; return [r, Object.keys(window.__used)]; }})()")
         steps += 1
@@ -2323,6 +2347,7 @@ def cmd_lint(slug, step=0.25):
                     hits.setdefault((name, x["s"]), []).append(t)
         for x in texts:   # M3 accent timing (IMPROVE 00a-3): when each scene text first shows
             first_seen.setdefault(x["s"].strip(), t)
+            last_seen[x["s"].strip()] = t   # M6 read time (IMPROVE 00a-5): when it was last on screen
         for x in texts:   # the type floor (IMPROVE 00b): a label's tallest settled ink height, over the whole lesson
             k_ = x["s"].strip()[:40]
             small[k_] = max(small.get(k_, 0), round(x["y1"] - x["y0"]))
@@ -2354,6 +2379,10 @@ def cmd_lint(slug, step=0.25):
     if late:   # a warning, not an ERROR (M3, _shared/standard.md): the design gate and render critic judge it
         print(f"WARN lint accents: {len(late)} scene texts land after their spoken word (M3 wants 0.2 to 0.3 s before; "
               f"{ontime} land in time): " + "; ".join(f"'{s_[:30]}' {lead:+.2f} s vs '{w_}'" for s_, w_, lead in late[:12]))
+    short = read_time_report(first_seen, last_seen, cues["duration"], step)
+    if short:   # a warning, not an ERROR (M6, _shared/standard.md): the design gate and render critic judge it
+        print(f"WARN lint read time: {len(short)} scene texts leave before a viewer can read them (M6: letters / 15 + 1.5 s): "
+              + "; ".join(f"'{s_[:30]}' {held:.1f} of {need:.1f} s" for s_, held, need in short[:12]))
     small = {s_: h_ for s_, h_ in small.items() if h_ < LABEL_FLOOR_PX and any(c.isalnum() for c in s_)}
     if small:   # a warning, not an ERROR: lessons pinned before Oct 31 keep their labels; the design gate weighs them
         print(f"WARN lint type: {len(small)} scene labels under {LABEL_FLOOR_PX} px tall (IMPROVE 00b): "

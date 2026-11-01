@@ -1,0 +1,180 @@
+{
+ "schema": "pnf.studio.cues.v1",
+ "source": "whisper medium.en int8, re-spelled from script.md",
+ "music": {
+  "id": "rooms",
+  "level": 0.16,
+  "tune": "night"
+ },
+ "duration": 40.746,
+ "cues": [
+  {
+   "id": "hook",
+   "level": 0,
+   "quote": "This eleven pm quote",
+   "sfx": "pop",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Three shots. Cover, frame one, no host: the chat set at night, the dash phone with the customer's text (EXAMPLE), the clock 11 PM; plate \"11 pm quote. / Reply in 7 seconds.\". By 0.8 s cut in close on the phone: the text bubble big, typing dots under it. On \"reply\" cut to the result: the real reply card, \"REAL REPLY, GEMINI 3.6 FLASH (API), NOV 1, 2026\", the reply's first lines, a stopwatch 6.6 S; Snow comes in.",
+   "t": 0.0,
+   "word": 0,
+   "end": 5.571
+  },
+  {
+   "id": "hook.wrong",
+   "level": 1,
+   "quote": "One thing's wrong.",
+   "sfx": "stamp",
+   "shift": 0.0,
+   "pin": null,
+   "text": "A red \"1 THING'S WRONG\" stamp lands on the card's corner.",
+   "t": 4.18,
+   "word": 9,
+   "end": 5.571
+  },
+  {
+   "id": "usual",
+   "level": 0,
+   "quote": "Yours goes out at",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The flaps board, QUOTE BOARD (EXAMPLE): QUOTE IN 11 PM flips in, REPLY OUT 12 PM flips in on \"lunch\" in red.",
+   "t": 5.571,
+   "word": 12,
+   "end": 12.16
+  },
+  {
+   "id": "usual.reply",
+   "level": 1,
+   "quote": "Hey, prices vary, give",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Our window over the board types the usual reply: \"Hey, prices vary, give me a call.\" EXAMPLE.",
+   "t": 7.531,
+   "word": 17,
+   "end": 10.211
+  },
+  {
+   "id": "usual.lost",
+   "level": 1,
+   "quote": "They've booked someone else.",
+   "sfx": "stamp",
+   "shift": 0.0,
+   "pin": null,
+   "text": "BOOKED ELSEWHERE stamps across the board in red.",
+   "t": 10.211,
+   "word": 24,
+   "end": 12.16
+  },
+  {
+   "id": "guess",
+   "level": 0,
+   "quote": "No price. No question,",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The work order (the metaphor): WORK ORDER, QUOTE REPLY, two boxes, PRICE and QUESTION. EMPTY stamps on PRICE on \"price\", on QUESTION on \"question\"; \"nothing to text back\" lands under it.",
+   "t": 12.16,
+   "word": 28,
+   "end": 21.231
+  },
+  {
+   "id": "guess.stake",
+   "level": 1,
+   "quote": "Jobber says only twenty-six",
+   "sfx": "tick",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The gauge: the needle to 26%, label \"REPLY IN 1 HOUR\", \"cleaning businesses\"; source tag \"Jobber 2026 Home Service Trends Report, 1,050 owners, Dec 2025\".",
+   "t": 16.12,
+   "word": 37,
+   "end": 21.231
+  },
+  {
+   "id": "fix",
+   "level": 0,
+   "quote": "Paste their text into",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "A phone frame with Gemini's own start screen (page shot, Nov 1), the address tag \"gemini.google.com\" and the customer's text sliding into the box.",
+   "t": 21.231,
+   "word": 49,
+   "end": 25.182
+  },
+  {
+   "id": "fix.prompt",
+   "level": 1,
+   "quote": "with this prompt",
+   "sfx": "chime",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The prompt as an ITEM GET window, THE PROMPT, word for word as run; the hand walks its lines; held into the next section.",
+   "t": 22.751,
+   "word": 54,
+   "end": 23.951
+  },
+  {
+   "id": "fix.free",
+   "level": 1,
+   "quote": "It's free.",
+   "sfx": "tick",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Cut to Gemini's own plan page shot: \"Free\" and \"$0/ month with a Google Account\", tag \"gemini.google/subscriptions, Nov 1, 2026\".",
+   "t": 23.951,
+   "word": 57,
+   "end": 25.182
+  },
+  {
+   "id": "check",
+   "level": 0,
+   "quote": "It wrote two questions,",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The real reply card again, full text word for word, labelled with model and date. The two asks light red, \"?1\" and \"?2\" pop beside them; \"2 QUESTIONS\" stamps.",
+   "t": 25.182,
+   "word": 59,
+   "end": 32.346
+  },
+  {
+   "id": "check.cut",
+   "level": 1,
+   "quote": "Cut one, add your",
+   "sfx": "stamp",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The second ask greys and strikes through on \"Cut\"; \"[your price]\" lights gold on \"price\"; a SEND button presses on \"yourself\"; \"Gemini is AI and can make mistakes.\" from its own page under it.",
+   "t": 28.682,
+   "word": 68,
+   "end": 32.346
+  },
+  {
+   "id": "button",
+   "level": 0,
+   "quote": "Every quote reply needs",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The levelup set: the bar fills, LEVEL UP on \"question\", perks PRICE and ONE QUESTION land; the work order's boxes ticked.",
+   "t": 32.346,
+   "word": 76,
+   "end": 40.746
+  },
+  {
+   "id": "button.rule",
+   "level": 1,
+   "quote": "Send that reply before",
+   "sfx": "sting",
+   "shift": 0.0,
+   "pin": null,
+   "text": "\"Send it before / your first job.\" in gold. Snow waves. Then the end card with the send line.",
+   "t": 35.746,
+   "word": 85,
+   "end": 40.746
+  }
+ ]
+}

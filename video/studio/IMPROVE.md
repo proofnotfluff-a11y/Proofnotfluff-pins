@@ -23,7 +23,7 @@ the top one still open before anything below.
 00a-4. M4 pixel-native travel and hits: rooms change by mosaic cross or a 4-step palette fade (never an alpha fade), a
    verdict stamp gets a 3-2-1 px screen shake over 8 frames, the camera pans in whole pixels with 2 to 3 parallax layers;
    each hit at most once in 10 s (with item 2 below).
-00a-5. Read time lint: every on-screen text holds at least letters / 15 + 1.5 s after it finishes typing in, and the
+00a-5. (Check done Nov 1, morning run: `lint` WARN read time; next: the scenes hold each short text, then the WARN becomes an ERROR for new lessons.) Read time lint: every on-screen text holds at least letters / 15 + 1.5 s after it finishes typing in, and the
    dialog box at least 1.8 s and the spoken line + 0.6 s (`lint`, from words.json and scene text).
 00a-6. M5 host face: a 32x32 portrait in the dialog box with 4 expressions (calm, shock, lean-in, grin) switched on the
    beat's key word; the street sprite keeps 1 eye pixel. Breath = shoulders up 1 px.
@@ -77,6 +77,15 @@ the top one still open before anything below.
 12. Visual: a seasonal touch per week (snow outside the half-built house in winter, leaves in fall).
 
 ## Done (newest first: date, item, what changed, proof)
+- 2026-11-01 (morning run, cloud): M6 read-time check in `lint` (00a-5, first step). `read_time_report` in anim.py takes
+  each scene text's first and last time on screen (a typed-in text from its first letters; a counting number, three or
+  more texts of one shape, is skipped; texts still up in the end card's last 3.5 s are skipped) and `lint` prints one WARN
+  line naming every text that leaves before letters / 15 + 1.5 s. A WARN for now, like the accent check. Proof on
+  stills and lint of today's lesson (2026-11-14-ai-night-quote: 16 short texts, worst the plan page's address 1.5 of 3.4 s
+  and the hook's close-up bubble 1.0 of 2.9 s) and lesson 1 (2026-10-28-first-reply: 3, worst the Fiverr source tag 2.5
+  of 3.6 s; the first try flagged 65 "N min" counter ticks, so counters are skipped). Also in tools/ai_demo.py (the AI
+  lane's real runs): the call's seconds are recorded (said as "took under seven seconds"), a page that never goes idle is
+  shot once loaded, and a network timeout or a 503 is retried once.
 - 2026-11-01 (evening run of Oct 31, cloud): M3 accent check in `lint` (00a-3, first step). `accent_report` in anim.py
   times when each scene text first shows (a typed-in text from its first letters) and finds the spoken word it carries
   (a 4+ letter word or a number, within 3 s before to 1 s after); `lint` prints one WARN line naming every text that lands

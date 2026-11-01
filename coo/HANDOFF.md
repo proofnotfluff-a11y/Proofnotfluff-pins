@@ -12,6 +12,6 @@
 - Credits plan (DECISIONS-2026-10-25): burst Nov 2. Area seats live Oct 26, 6 open.
 - Oct 26: TRAFFIC FIRST; no builder outreach. Kimi R8 kept.
 - Oct 27: trade owners only; free plan waits (DECISIONS-2026-10-27). Trades News (Mon, Wed, Fri 6:32), maps, templates live. R10: 11 free data pages and redesign live (/chicago-data/, site/datahub.json); inspections by area, Quarterly open (W).
-- Nov 1: 2 posts/day (lunch, eve), 2 waiting, spare runs on formula.md; AI lane test to Nov 8. Open: Meta label, Kimi (DECISIONS-2026-11-01).
+- Nov 1: 2/day (lunch, eve), 2 wait, spare runs: formula.md; AI lane test to Nov 8. Open: Meta label, Kimi, PVC script (DECISIONS-2026-11-01).
 - Oct 25: Chief of Staff live (DECISIONS-2026-10-25): sweep (PC, sole reply-status writer), brief, Sun review.
 - Oct 30 usage audit, 7:46 video fix: coo/USAGE.md. Next: Todd pauses API lister, strips connectors. Artcraft: watch.

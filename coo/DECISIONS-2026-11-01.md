@@ -11,3 +11,10 @@
 - Cause: a make run finishes about one lesson in 2 to 2.5 hours (3 to 5 voice rounds, gate fix rounds), so 4 runs a day make at most 4 and the buffer never builds; the Oct 31 cut from 6 to 4 runs removed the slack. Weekly usage at 78% on Sunday rules out adding runs.
 - [stated] 12:09 pm: "Let's go down to 2 videos a day until we get the formula and structure correct to go viral. use the spare capacity to focus on developing quality videos".
 - Applied: morning and end-of-day post tasks turned off (not deleted); video/config.json posting 2 a day (lunch 11:37, evening 8:13 pm); CONSTITUTION 2 amendment line; _shared/formula.md (one test a lesson, research/FORMULA.md log, what a run does when 2 already wait); brief template Test line; lanes.md one AI and one core a day; anim.py `script` now estimates length at 160 words a minute before any voice (14 lessons measured, median about 159 including gaps); record and make prompt updated.
+
+## 2 pm check (live chat)
+- Evening 8:13 pm: 2026-11-14-ai-night-quote (AI) queued 1:40 pm, `anim.py next` names it, 0 of 4 platforms; evening post task on. Lunch post task on, morning off. Today's lunch slot posted nothing (no lesson ready).
+- 2026-11-15-three-fixes (core, quick-math, test: length about 30 s): script PASS 79 words, script gates PASS round 3, 6 takes voiced, words 1:47 pm; cues, scene, render and gates still to do. Owed for Monday lunch 11:37.
+- ElevenLabs: 1,524 of 133,571 credits used this cycle. preflight 0 errors.
+- Devin Seymour audio reel (Openverse, Real SFX, earshot): same three tools judged Oct 31; IMPROVE 00s stands behind "The bar first"; no change. Research Wiki stale Sources line fixed.
+- Open for Todd: Meta AI label (recommend on for Instagram and Facebook), Kimi Reddit prompt (given again), professional voice clone read-aloud script (offered).

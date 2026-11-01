@@ -101,6 +101,26 @@ def query(release):
     return used, [{"name": n, "lat": la, "lon": lo, "websites": list(w or []), "status": st or "open"} for n, la, lo, w, st in rows]
 
 
+def probe(release):
+    """Category values only (no place data): which values near 'pest' exist in the metro box, and how many places."""
+    import duckdb
+    con = duckdb.connect()
+    con.execute("INSTALL httpfs; LOAD httpfs; SET s3_region='us-west-2';")
+    src = f"read_parquet('s3://{phones.BUCKET}/release/{release}/theme=places/type=place/*', hive_partitioning=1)"
+    cols = sorted(r[0] for r in con.execute(f"DESCRIBE SELECT * FROM {src}").fetchall())
+    x0, y0, x1, y1 = METRO_BBOX
+    box = f"bbox.xmin BETWEEN {x0} AND {x1} AND bbox.ymin BETWEEN {y0} AND {y1}"
+    out = {"release": release, "columns": cols, "placesInBox": con.execute(f"SELECT count(*) FROM {src} WHERE {box}").fetchone()[0]}
+    for expr in ("basic_category", "taxonomy.primary", "categories.primary"):
+        try:
+            rows = con.execute(f"SELECT {expr}, count(*) FROM {src} WHERE {box} AND lower(CAST({expr} AS VARCHAR)) LIKE '%pest%' "
+                               f"GROUP BY 1 ORDER BY 2 DESC LIMIT 15").fetchall()
+            out[expr] = [[str(v), n] for v, n in rows]
+        except Exception as e:
+            out[expr] = type(e).__name__
+    print(json.dumps(out))
+
+
 def crm_hashes(crm_dir):
     held = known_domains()
     out = set()
@@ -151,6 +171,8 @@ if __name__ == "__main__":
         out = {"release": rel, "categoryField": used, "metroBox": METRO_BBOX, "excludeHashes": len(exclude)}
         out.update(count(places, known_domains(), exclude))
         print(json.dumps(out))
+    elif a[:1] == ["--probe"]:
+        probe(a[a.index("--release") + 1] if "--release" in a else phones.latest_release())
     elif a[:1] == ["--hashes"] and len(a) == 2:
         print(crm_hashes(a[1]))
     else:

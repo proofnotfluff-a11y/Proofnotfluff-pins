@@ -30,6 +30,12 @@ jobs:
           python-version: "3.13"
       - run: pip install --quiet -c .github/ci-constraints.txt duckdb
       - run: python3 tools/pest_discovery.py --selftest
+      - name: Category probe (category values and counts only)
+        run: timeout 600 python3 tools/pest_discovery.py --probe 2>&1 | tail -5 | tee probe.txt || true
+      - name: Probe as a notice
+        if: always()
+        run: |
+          [ -s probe.txt ] && echo "::notice title=Pest category probe::$(tr '\n' ' ' < probe.txt)" || true
       - name: Dry run (counts only)
         env:
           PEST_EXCLUDE: ${{ inputs.exclude }}

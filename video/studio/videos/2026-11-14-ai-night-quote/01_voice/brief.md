@@ -51,7 +51,9 @@ Made Nov 1, 2026 in the scheduled morning record and make run (cloud). AI lane l
  "night": {"path": "story.requestHour", "shown": "11"},
  "lunch": {"path": "story.lunchHour", "shown": "12"},
  "beds": {"path": "story.beds", "shown": "2"},
- "baths": {"path": "story.baths", "shown": "1"}
+ "baths": {"path": "story.baths", "shown": "1"},
+ "year": {"path": "jobber.fieldworkYear", "shown": "2025"},
+ "hours": {"path": "jobber.withinHours", "shown": "1"}
 }}
 ```
 

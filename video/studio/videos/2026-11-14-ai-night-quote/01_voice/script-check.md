@@ -1,7 +1,7 @@
 # Script check: 2026-11-14-ai-night-quote (fix-this, AI lane; Nov 1, 2026)
 
 ## Five openings (viral-script step 4), read aloud at pace
-1. "Eleven pm quote request. This reply took under seven seconds. One thing's wrong." (11 words to "wrong" is 12 with "One thing's") KEPT: the result first (C5), a number, and an open loop the lesson answers at about 70%.
+1. "This eleven pm quote reply took under seven seconds. One thing's wrong." (r2, Nov 1: the first voice of "Eleven pm quote request, this reply took under seven seconds" ended at 4.1 s, past the 3.6 s bar, so the hook is one 9-word sentence with no pause) KEPT: the result first (C5), a number, and an open loop the lesson answers at about 70%.
 2. "A move-out quote came in at eleven. You saw it at seven." (stuck moment; the held after-hours-reply's own opening, which Todd held as too thin)
 3. "What's wrong with this reply? Hey, prices vary, give me a call." (fix-this classic, but no result by 3 s)
 4. "Free AI wrote this quote reply in six seconds." (result, no moment, reads as hype)
@@ -12,12 +12,12 @@ Why 1 is stronger: it opens on the finished thing (lanes.md 6, standard C5: thro
 - Read-aloud: PASS. Longest sentence 11 words (bar 20); 16 of 17 sentences (94%) 10 words or fewer (bar 60%).
 - Owner words: PASS. 0 banned words; trade noun in the opening: "quote request".
 - Specific: PASS. "Eleven pm" and "under seven seconds" in the first 2 lines; every claim keyed in facts.json (demo, gemini, jobber, story).
-- Sameness: PASS. First 4 words "Eleven pm quote request" differ from the last 6 lessons' openings (grep of their script.md line 3).
+- Sameness: PASS. First 4 words "This eleven pm quote" differ from the last 6 lessons' openings (grep of their script.md line 3).
 - Do this week: PASS. Paste the next quote request into Gemini under the 4-line prompt; the prompt on the ITEM GET card, held 4 s or more.
 - Ear test: PASS. Every sentence one breath; `anim.py script` PASS (93 words, 6 takes, 2 tags).
 
 ## The 12-point check (_shared/voice.md, fix-this bands: 25 to 42 s, 60 to 100 words)
-1. Drop-in: PASS. "Eleven pm quote request. This reply took under seven seconds." 10 words, trade noun, no percent, no source, no call-out.
+1. Drop-in: PASS. "This eleven pm quote reply took under seven seconds." 9 words, trade noun, no percent, no source, no call-out.
 2. On-screen hook: PASS (planned). "11 pm quote. / Reply in 7 seconds." 7 words on the cover plate at frame 0, held to 3.2 s, in the safe area (lint and hook check it after cues).
 3. One idea: PASS. "Every quote reply needs a price and one question." (9 words); every beat serves it.
 4. Acted: PASS. The usual lunch reply types into the phone and the customer's "booked" tick lands; the work order's two empty boxes stamp.

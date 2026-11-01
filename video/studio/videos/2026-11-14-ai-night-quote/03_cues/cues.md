@@ -2,8 +2,8 @@
 
 music: rooms night
 
-## hook "Eleven pm quote request." [sfx: pop]
-Three shots. Cover, frame one, no host: the chat set at night, the dash phone with the customer's text (EXAMPLE), the clock 11:02 PM; plate "11 pm quote. / Reply in 7 seconds.". By 0.8 s cut in close on the phone: the text bubble big, typing dots under it. On "reply" cut to the result: the real reply card, "REAL REPLY, GEMINI 3.6 FLASH (API), NOV 1, 2026", the reply's first lines, a stopwatch 6.6 S; Snow comes in.
+## hook "This eleven pm quote" [sfx: pop]
+Three shots. Cover, frame one, no host: the chat set at night, the dash phone with the customer's text (EXAMPLE), the clock 11 PM; plate "11 pm quote. / Reply in 7 seconds.". By 0.8 s cut in close on the phone: the text bubble big, typing dots under it. On "reply" cut to the result: the real reply card, "REAL REPLY, GEMINI 3.6 FLASH (API), NOV 1, 2026", the reply's first lines, a stopwatch 6.6 S; Snow comes in.
 ## hook.wrong "One thing's wrong." [sfx: stamp]
 A red "1 THING'S WRONG" stamp lands on the card's corner.
 
@@ -21,11 +21,11 @@ The gauge: the needle to 26%, label "REPLY IN 1 HOUR", "cleaning businesses"; so
 
 ## fix "Paste their text into" [sfx: whoosh]
 A phone frame with Gemini's own start screen (page shot, Nov 1), the address tag "gemini.google.com" and the customer's text sliding into the box.
-## fix.free "It's free." [sfx: tick]
-Cut to Gemini's own plan page shot: "Free" and "$0/ month with a Google Account", tag "gemini.google/subscriptions, Nov 1, 2026".
-## fix.prompt "with this prompt." [sfx: chime]
+## fix.prompt "with this prompt" [sfx: chime]
 The prompt as an ITEM GET window, THE PROMPT, word for word as run; the hand walks its lines; held into the next section.
 
+## fix.free "It's free." [sfx: tick]
+Cut to Gemini's own plan page shot: "Free" and "$0/ month with a Google Account", tag "gemini.google/subscriptions, Nov 1, 2026".
 ## check "It asked two questions," [sfx: whoosh]
 The real reply card again, full text word for word, labelled with model and date. The two asks light red, "?1" and "?2" pop beside them; "2 QUESTIONS" stamps.
 ## check.cut "Cut one, add your" [sfx: stamp]

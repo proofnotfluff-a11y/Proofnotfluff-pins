@@ -1,6 +1,6 @@
 # Script: The 11 pm quote request (AI lane, fix-this; Gemini run and plan page read Nov 1, 2026; Jobber read Oct 29 and Nov 1, 2026)
 
-Eleven pm quote request, this reply took under seven seconds. One thing's wrong.
+This eleven pm quote reply took under seven seconds. One thing's wrong.
 
 Yours goes out at lunch. Hey, prices vary, give me a call. They've booked someone else.
 

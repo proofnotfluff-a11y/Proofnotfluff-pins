@@ -15,7 +15,8 @@
   "fieldworkYear": 2025,
   "reportYear": 2026,
   "scope": "Self-reported by owners. The page does not give the cleaning subsample size. Descriptive survey data, not a correlation.",
-  "context": "The same page: 20% of all pros respond within the hour (not used in the video)."
+  "context": "The same page: 20% of all pros respond within the hour (not used in the video).",
+  "withinHours": 1
  },
  "demo": {
   "job": "video/studio/demos/jobs/2026-11-14-ai-night-quote-4.json",

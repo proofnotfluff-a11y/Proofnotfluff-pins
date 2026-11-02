@@ -1,4 +1,4 @@
-# Handoff (Layer 1), Oct 30
+# Handoff (Layer 1), Nov 2
 
 - [stated] Todd, Oct 22, 7:57 pm: "Let's do all of this as you recommend." Decisions: coo/DECISIONS-2026-10-2*.md.
 - Step 1 live Oct 22: trial and Monday Kit forms on Chicago and Austin pages. Tasks: Monday email (Mon 8:50 am, drafts), Wednesday trial offer (Wed 9:50 am; first about Nov 11).
@@ -13,5 +13,6 @@
 - Oct 26: TRAFFIC FIRST; no builder outreach. Kimi R8 kept.
 - Oct 27: trade owners only; free plan waits (DECISIONS-2026-10-27). Trades News (Mon, Wed, Fri 6:32), maps, templates live. R10: 11 free data pages and redesign live (/chicago-data/, site/datahub.json); inspections by area, Quarterly open (W).
 - Nov 1-2: 2/day, 2 wait; AI lane test to Nov 8; story desk feeds it (DECISIONS-2026-11-02). Open: Meta label, Kimi, PVC.
-- Oct 25: Chief of Staff live (DECISIONS-2026-10-25): sweep (PC, sole reply-status writer), brief, Sun review.
+- Oct 25: Chief of Staff live (DECISIONS-2026-10-25).
 - Oct 30 usage audit, 7:46 video fix: coo/USAGE.md. Next: Todd pauses API lister, strips connectors. Artcraft: watch.
+- Nov 2: build Restaurant Radar v1 next (launches/chicago-restaurant-radar.md).

@@ -1,0 +1,35 @@
+{
+ "gate": "render-critic",
+ "round": 0,
+ "reviewer": "fresh opus agent",
+ "pass": true,
+ "score": {
+  "faults": 0
+ },
+ "faults": [],
+ "reasons": [
+  "Checked the MP4 rendered 20:39 UTC (newer than the sheets at 20:34), so frames were also pulled from the MP4 itself at 0.0, 2.5, 17.3, 21.0, 29.7, 36.8, 38.9, 42.5, 45.2, 47.3, 47.6 and 49.0 s, plus the gate timelines at 2 frames a second.",
+  "Earlier round fault (FREE WORK stamp over Ceiling and Doors) is still gone: at 21.0 s the stamp sits at about y 790 to 935, below Patch, on the empty row where NO RAILING was; Walls, Ceiling, Doors and Patch all read in full.",
+  "1 hook: PASS. 'Make AI flag what you never priced.' and the $0 EXAMPLE tag on screen from 0.0 s; 'PAINTED FOR FREE?' by 2.0 s.",
+  "2 numbers: PASS. 'ten pm' said 17.0 to 17.4 s with 10 PM on the quote header from 13.5 s; 'Gemini is free' at 38.1 s with $0 / month on the plan card from 38.5 s; 'painter one' and 'painter two' labeled in their scenes; the speech bubble also shows each word as said.",
+  "3 layout: PASS. Settled text stays left of about x 930 (prompt card and setup card edges reach about x 920 to 940, their words end before that) and within y 270 to 1250 apart from the hook banner and the FREE WORK HP label starting a few px above 270, neither hidden nor cut. Host in front of scenery and the JOB 2 sign on a house are scenery. Transition frames at 3.5, 6.0, 22.0, 31.0, 38.0, 44.4 and 47.5 s ignored.",
+  "4 audio end: PASS. Last word 'railing.' ends 47.54 s; video and audio both run 50.63 s with the end card; music fades to silence at 50.1 s; nothing cut mid-word.",
+  "5 small text and flash: PASS. Smallest text (reply excerpt lines, plan caption, setup steps, prompt card) about 28 to 34 px tall at 1080 wide. Boss hit flashes at 44.6, 46.5 and 47.3 s (at most 2 in any second); scene cuts are single dips, not repeated flashes."
+ ],
+ "earlier": [
+  {
+   "round": 1,
+   "pass": false,
+   "score": {
+    "faults": 1
+   }
+  },
+  {
+   "round": 2,
+   "pass": true,
+   "score": {
+    "faults": 0
+   }
+  }
+ ]
+}

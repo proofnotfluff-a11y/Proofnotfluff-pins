@@ -1,0 +1,49 @@
+{
+ "gate": "send",
+ "round": 0,
+ "reviewer": "fresh opus agent",
+ "pass": true,
+ "score": {
+  "person": "my brother-in-law who runs a three-man painting crew and writes his quotes at the kitchen table at night",
+  "line": "Painter one quotes at ten pm from memory, and the railing never makes it.",
+  "gain": "helps",
+  "feeling": "anger",
+  "thanks": "yes",
+  "send_line_fits": "yes"
+ },
+ "reasons": [
+  "1. Yes, one person: my brother-in-law who runs a three-man painting crew and quotes late at night from memory. I have watched him eat a missed line item more than once.",
+  "2. \"Painter one quotes at ten pm from memory, and the railing never makes it.\" Backed by \"He paints it free.\" That is his exact habit, which is why I would send it to him and not just save it.",
+  "3. Helps: it fixes a problem I know he has (items left off late-night quotes, then done for free), and the fix costs him nothing: a phone note, one prompt and the free Gemini app. He does not have to buy anything.",
+  "4. Anger at a shared problem: painting a stair railing for free because it never made the quote. Every owner has had that happen. The $0 railing hook and the FREE WORK stamp over painter one's quote make it sting.",
+  "5. Thanks. It reads as a tip from someone who knows the trade, not an ad. Nothing is for sale, the caption gives the prompt word for word, and \"He does, and checks every line\" keeps the owner in charge, so a skeptic of AI is not being lectured.",
+  "6. End card \"Send this to your painter who still quotes from memory.\" points straight at him (a painter who quotes from memory), and it matches the caption. Optional tweak, not needed to pass: \"your painter\" can read as a hired hand or a homeowner's contractor, so \"Send this to the painter you know who quotes from memory.\" (11 words) would be clearer.",
+  "Risk to watch, not a FAIL: lines 3 to 4 (\"Gemini flagged it instead of guessing.\" / \"You'd think AI makes prices up.\") lean on AI early. The send comes from the railing story, so the railing should stay first in the hook, as it does now."
+ ],
+ "earlier": [
+  {
+   "round": 1,
+   "pass": true,
+   "score": {
+    "person": "my buddy from the old crew who now runs his own two-man painting outfit and writes his quotes at night from memory",
+    "line": "Painter one quotes at ten pm from memory, and the railing never makes it.",
+    "gain": "helps",
+    "feeling": "recognition of a shared problem (anger at the free railing, with relief that there is a fix)",
+    "thanks": "yes",
+    "send_line_fits": "yes"
+   }
+  },
+  {
+   "round": 0,
+   "pass": true,
+   "score": {
+    "person": "my old crew lead who now runs his own two-man painting outfit and writes his quotes at the kitchen table at night",
+    "line": "Painter one quotes at ten pm from memory, and the railing never makes it.",
+    "gain": "helps",
+    "feeling": "anger",
+    "thanks": "yes",
+    "send_line_fits": "yes"
+   }
+  }
+ ]
+}

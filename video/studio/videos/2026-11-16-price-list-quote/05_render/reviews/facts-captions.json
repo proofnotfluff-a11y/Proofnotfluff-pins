@@ -1,0 +1,36 @@
+{
+ "gate": "facts-captions",
+ "round": 0,
+ "reviewer": "fresh opus agent",
+ "pass": true,
+ "score": {
+  "numbers": 10,
+  "mismatches": 0
+ },
+ "reasons": [
+  "all: 0 mismatches. Every reply line on Instagram, Facebook and YouTube matches run.json word for word (stars, ruler and warning sign left out, as facts.json replyShown notes); TikTok's quoted flag line is exact. Four quote lines, one flag, 1 room walls, 1 room ceiling, 2 doors, 1 patch, 4 steps, Gemini 3.8 Flash, API, Nov 1, 2026 (run.json at 2026-11-02T03:51:39Z = 9:51 pm Central Nov 1) all match facts.json and run.json.",
+  "youtube: 'Free, $0 a month with a Google Account' confirmed on the same run's plan page shot (page-1.png: 'Free ... $0/ month with a Google Account'; pages.json status 200, 2026-11-02T03:51:40Z). WebFetch of https://gemini.google/subscriptions/ was blocked (permission not answered), so the shot was used. Site line https://proofnotfluff.com/chicago-crew-cost/painters/ is in docs/sitemap.xml and docs/chicago-crew-cost/painters/index.html exists.",
+  "all: every platform says it is one run, not a promise it always flags, and to check every line; every platform discloses the API run and that the free app may run another model. No study finding, so no population qualifier needed. Setup steps match facts.json setup.card (captions name Gemini where the card says 'the chat', as cardNote allows).",
+  "rules: line 1 under 100 on all four (IG 97, TikTok 99, FB 95, YT description 85); TikTok keyword at the start and an owner question, no #fyp; hashtags IG 4, TikTok 4, FB 2, YT 3, no generic or homeowner tags; YouTube title 80 characters, no hashtags, 8 tags with one misspelling; link only on YouTube; no AI voice line; no em or en dashes anywhere; AI labels TikTok on, the rest off.",
+  "video: the voice names nothing as 'in the caption', so nothing to carry; captions agree with the voice (free, flagged the railing, didn't price it, check every line). No real private person, business or address; the painters and railing are the example story.",
+  "polish only (not a FAIL), all four: the nested parentheses '(Gemini 3.8 Flash through Google's API, Nov 1, 2026 (the free app may run another model, so yours will read differently))' read awkwardly; optional fix: '(Gemini 3.8 Flash through Google's API, Nov 1, 2026. The free app may run another model, so yours will read differently.)'"
+ ],
+ "earlier": [
+  {
+   "round": 1,
+   "pass": true,
+   "score": {
+    "numbers": 10,
+    "mismatches": 0
+   }
+  },
+  {
+   "round": 0,
+   "pass": true,
+   "score": {
+    "numbers": 10,
+    "mismatches": 0
+   }
+  }
+ ]
+}

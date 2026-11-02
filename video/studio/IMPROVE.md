@@ -20,8 +20,8 @@ the top one still open before anything below.
    M1), a short item fanfare, held 3 s or more. lsa-missed-calls had 0 saves at 2.7 h.
 00a-3. (Check done Nov 1, evening run: `lint` WARN accents. ERROR done Nov 1, lunch run: from lessons dated 2026-11-15 on, a text landing 0.5 s or more after its word fails `lint` (ACCENT_ERROR_FROM, ACCENT_ERROR_LATE); proven on stills: three-fixes failed 2 (1.69 s, 1.51 s) and passed after the fix, first-reply keeps its WARN. Next: tighten 0.5 s to 0.0 once two lessons pass at 0.5.) M3 accent words: the beat's key word slams on screen 0.2 to 0.3 s before it is spoken, from words.json timing
    (replaces item 10 below).
-00a-4. (Room moves done Nov 1, end-of-day run: `mosaic` and `fade4` in sets.js, proven on stills. Open: the 3-2-1 px
-   verdict shake over 8 frames and whole-pixel camera pans with 2 to 3 parallax layers. The lint WARN for room changes with
+00a-4. (Room moves done Nov 1, end-of-day run: `mosaic` and `fade4` in sets.js, proven on stills. Verdict kick done Nov 2, lunch run. Open:
+   whole-pixel camera pans with 2 to 3 parallax layers. The lint WARN for room changes with
    no pixel-native move is done Nov 1, evening run.) M4 pixel-native travel and hits: rooms change by mosaic cross or a 4-step palette fade (never an alpha fade), a
    verdict stamp gets a 3-2-1 px screen shake over 8 frames, the camera pans in whole pixels with 2 to 3 parallax layers;
    each hit at most once in 10 s (with item 2 below).
@@ -101,6 +101,7 @@ runtime, $0, no new dependency.
 12. Visual: a seasonal touch per week (snow outside the half-built house in winter, leaves in fall).
 
 ## Done (newest first: date, item, what changed, proof)
+- 2026-11-02 (lunch run, cloud): 00a-4 verdict kick. The stamp named in SCENE.trauma now shakes on a fixed 3-2-1 low-res pixel pattern over 8 frames (right, left, down, up, right, left, down, still) after its hit-stop, instead of the noise shake (`_runtime/player.js` verdictKick; window.STUDIO.verdictKick for checks). Proof: price-list-quote's FREE WORK stamp (one.free, 20.62 s), whole-frame offsets measured on the MP4 frame by frame: 9, -9, 0/6, 0/-6, 6, -3, 0/3, 0 px (3 frame px = 1 low-res px); lesson 1 (2026-10-28-first-reply, no SCENE.trauma) stills render unchanged (28 frames). Open in 00a-4: whole-pixel camera pans with 2 to 3 parallax layers.
 - 2026-11-01 (evening run, cloud): 00a-4 lint WARN room moves. `anim.py lint` reads SCENE.sections and SCENE.transitions
   and prints "WARN lint room moves" naming every section after the first whose move is not one of sets.js's pixel-grid
   moves (levelselect, dissolve, gameover, mosaic, fade4), so a plain cut or the blinds fallback shows before the design

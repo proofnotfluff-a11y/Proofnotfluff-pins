@@ -83,10 +83,10 @@ const tag = (k, s, x, y, o = {}) => chipText(k, s, x, y, Object.assign({size: 39
 const QUOTE = ['Walls (Living Room): 1 room, [my price]', 'Ceiling (Living Room): 1 room, [my price]', 'Doors: 2, 2x [my price]', 'Drywall patch: 1 patch, [my price]'];
 const FLAG = 'FLAGGED ITEM (Not on price list):';
 const RAIL = 'Stair railing (painting): This item is not on your price list. A custom price is needed.';
-const LABEL = ['REAL REPLY: GEMINI 3.8 FLASH (API)', 'NOV 1, 2026'];
+const LABEL = ['REAL REPLY: GEMINI 3.8 FLASH (API)', 'NOV 1, 2026 (EXCERPT)'];
 /* the prompt's rule line, word for word, and the setup the lesson teaches (facts.json setup.card) */
-const STEPS = [['1. Type your price list in a', 'phone note. Once.'], ['2. Put this prompt at the top.'], ['3. After each walkthrough, add', 'your notes, paste it all in the chat.'], ['4. Price the flags. Check every', 'line. Then send.']];
-const RULE = ['Turn my walkthrough notes into', 'quote lines. Use only my price list.', 'Flag anything that is not on it.', 'Never guess a price.'];
+const STEPS = [['1. Type your price list in a phone note. Once.'], ['2. Put this prompt at the top.'], ['3. After each walkthrough, add your notes,', '    paste it all in the chat.'], ['4. Price the flags. Check every line.', '    Then send.']];
+const RULE = ['Turn my walkthrough notes into', 'quote lines.', 'Use only my price list.', 'Flag anything that is not on it.', 'Never guess a price.'];
 
 /* the reply card: cream, the label on a teal band, the four quote lines, then the flag and the railing line. */
 /* o.lit (time) lights the railing rows red; o.float bobs it; returns the railing rows' top y and the card box.   */
@@ -105,7 +105,7 @@ const replyCard = (k, x, y, w, o = {}) => {
     const ly = y + 120 + i * lh + fl, lit = kind > 0 && o.lit != null && k.T >= o.lit;
     if (lit) { k.ctx.fillStyle = kind === 1 ? '#E2633B' : '#F9D7CC'; k.ctx.fillRect(x + 12, ly - 6, w - 24, lh - 2); }
     if (kind === 2 && railY == null) railY = ly;
-    k.text(l, x + pad, ly, {size: 39, color: lit && kind === 1 ? CREAM : (kind === 0 && o.dim ? '#9A8F86' : INK)});
+    k.text(l, x + pad, ly, {size: 39, color: lit && kind === 1 ? CREAM : (kind === 0 && o.dim ? '#6E5B4F' : INK)});
   });
   return {x, y: y + fl, w, h, railY};
 };
@@ -114,6 +114,8 @@ const hookPlate = (k) => {
   k.text('Make AI flag', 540, 276, {size: 66, color: CREAM, align: 'center', drop: INK});
   k.text('what you never priced.', 540, 352, {size: 66, color: GOLD, align: 'center', drop: INK});
 };
+/* a room change that travels (M4): 8 frames of vertical blinds in ink closing over the new room from the left */
+const blinds = (k, t0) => { const f = Math.floor((k.T - t0) * 30 + 0.005); if (f < 0 || f >= 8) return; k.ctx.fillStyle = INK; for (let x = 0; x < 1080; x += 72) k.ctx.fillRect(x, 0, Math.round(72 * (1 - f / 8) / 3) * 3, 1920); };
 /* our living room with the stair: a wall, a window, the stairs rising right with a white railing (EXAMPLE) */
 const livingRoom = (k, o = {}) => {
   const d = px(k), {P, dith, line} = d;
@@ -132,9 +134,9 @@ const livingRoom = (k, o = {}) => {
 const priceTag = (k, d, x, y, s, t0) => {
   const sw = [0, 2, 3, 2, 0, -2, -3, -2][Math.floor(Math.max(0, k.T - t0) * 7.5) % 8];
   d.line(x, y, x + sw, y + 20, INK, 1);
-  const tx0 = x + sw - 26, ty0 = y + 20;
-  d.P(tx0 - 1, ty0 - 1, 54, 32, INK); d.P(tx0, ty0, 52, 30, GOLD); d.P(tx0 + 4, ty0 + 4, 4, 4, INK);
-  k.text(s, (tx0 + 30) * 3, (ty0 + 5) * 3, {size: 66, color: INK, align: 'center'});
+  const tx0 = x + sw - 40, ty0 = y + 20;
+  d.P(tx0 - 2, ty0 - 2, 84, 60, INK); d.P(tx0, ty0, 80, 56, GOLD); d.P(tx0 + 5, ty0 + 5, 5, 5, INK);
+  k.text(s, (tx0 + 44) * 3, (ty0 + 6) * 3, {size: 132, color: INK, align: 'center'});
 };
 
 window.SCENE = {
@@ -143,7 +145,7 @@ window.SCENE = {
   host_name: 'Snow',
   hud: 'PRICE LIST',
   sendLine: 'Send this to your painter who still quotes from memory.',
-  transitions: {turn: 'mosaic', one: 'fade4', two: 'dissolve', why: 'levelselect', check: 'dissolve', button: 'gameover'},
+  transitions: {turn: 'mosaic', one: 'levelselect', two: 'dissolve', why: 'levelselect', check: 'dissolve', button: 'gameover'},
   trauma: {'one.free': 0.6},
   sections: {
     /* ---- hook: three shots. Cover (frame 0, no host): the real reply card, the railing lit red, the plate. On       */
@@ -159,19 +161,25 @@ window.SCENE = {
         stampBox(k, 'FLAGGED', 540, c.y + c.h + 18, tFlag - 0.25, {color: RED, size: 66});
         const tG = wordT(k, 'hook.flag', /^guessing/i, 1.4) - 0.25;
         if (T >= tG) k.slam('NO PRICE GUESSED', 540, c.y + c.h + 136, tG, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false});
+        blinds(k, tFlag - 0.25);
         return host(k, 'point');
       }
-      if (T >= tRoom) {
+      const room = (cover) => {
         const d = livingRoom(k);
-        priceTag(k, d, 250, 150, n.free.shown, tRoom);
-        k.ctx.fillStyle = INK; k.ctx.fillRect(0, 264, 1080, 108); k.ctx.fillStyle = '#1B1420'; k.ctx.fillRect(0, 270, 1080, 96);
+        priceTag(k, d, 250, 150, n.railing.shown, cover ? 0 : tRoom);
+        k.ctx.fillStyle = INK; k.ctx.fillRect(0, 258, 1080, cover ? 186 : 114); k.ctx.fillStyle = '#1B1420'; k.ctx.fillRect(0, 264, 1080, cover ? 174 : 102);
+        tag(k, 'EXAMPLE', 920, cover ? 470 : 396, {align: 'right', color: ORANGE, size: 66});
+        return d;
+      };
+      if (T >= tRoom) {
+        room(false);
         k.slam('PAINTED FOR FREE?', 480, 282, tRoom + 0.1, {size: 66, color: GOLD, align: 'center', from: 0.4, drop: INK, glint: false});
-        tag(k, 'EXAMPLE', 920, 396, {align: 'right', color: ORANGE});
+        blinds(k, tRoom);
         return host(k, 'shrug');
       }
-      const d = px(k); d.P(0, 0, 360, 640, '#1B1420'); for (let y = 0; y < 640; y += 6) d.P(0, y, 360, 1, '#1F1726');
       if (T >= tClose) {
-        /* the close-up: the flagged line big on the cream card */
+        const d = px(k); d.P(0, 0, 360, 640, '#1B1420'); for (let y = 0; y < 640; y += 6) d.P(0, y, 360, 1, '#1F1726');
+        /* the close-up: the result, the flagged line big on the cream card */
         const x = 60, y = 450, w = 870, ls = k.wrap(RAIL, {size: 66}, w - 60);
         k.ctx.fillStyle = INK; k.ctx.fillRect(x - 6, y - 6, w + 12, 130 + ls.length * 84); k.ctx.fillStyle = CREAM; k.ctx.fillRect(x, y, w, 118 + ls.length * 84);
         k.ctx.fillStyle = RED; k.ctx.fillRect(x, y, w, 96); k.text(FLAG, x + 24, y + 30, {size: 39, color: CREAM});
@@ -181,9 +189,10 @@ window.SCENE = {
         ls.forEach((l, i) => k.text(l, x + 30, y + 120 + i * 84, {size: 66, color: INK}));
         tag(k, LABEL[0], 495, y + 150 + ls.length * 84, {align: 'center'}); tag(k, LABEL[1], 495, y + 200 + ls.length * 84, {align: 'center'});
         hookPlate(k);
-        return {host: false, speech: false};
+        return host(k, 'point');
       }
-      replyCard(k, 60, 456, 960, {lit: 0, dim: true});
+      /* the cover (frame 0, no host): the stake object, our railing with its $0 tag, under the plate */
+      room(true);
       hookPlate(k);
       return {host: false, speech: false};
     },
@@ -194,7 +203,7 @@ window.SCENE = {
       const t0 = k.S('turn'), tUp = wordT(k, 'turn', /^up/i, 1.6), tList = k.S('turn.list'), tLoop = k.S('turn.loop');
       k.sets.slots({t0: t0 + 0.1, stops: [tUp - 0.5, tUp - 0.25, tUp], symbols: ['?', '?', '?'], label: T >= tList ? 'YOUR LIST' : 'AI PRICES', win: false, idle: ['$', '?', '$']});
       if (T < tList) { if (T >= tUp) k.slam('MADE UP?', 510, 760, tUp, {size: 66, color: RED, align: 'center', from: 0.4, drop: INK, glint: false}); }
-      else if (T < tLoop) stampBox(k, 'STUCK TO YOUR LIST', 510, 738, tList - 0.1, {color: TEAL, size: 66});
+      else if (T < tLoop) stampBox(k, 'STUCK TO YOUR LIST', 510, 738 + (T >= tList + 0.3 ? bob2(T, tList + 0.3) : 0), tList - 0.1, {color: TEAL, size: 66});
       else {
         k.ctx.fillStyle = INK; k.ctx.fillRect(84, 714, 852, 174); k.ctx.fillStyle = '#1B1420'; k.ctx.fillRect(90, 720, 840, 162);
         k.slam('What happens to', 510, 732, tLoop - 0.1, {size: 66, color: CREAM, align: 'center', from: 0.4, drop: INK, glint: false});
@@ -212,16 +221,16 @@ window.SCENE = {
       /* the clock on the wall, the hand stepping */
       disc(300, 108, 18, INK); disc(300, 108, 16, CREAM); d.line(300, 108, 300, 96, INK, 2); d.line(300, 108, 290 + (Math.floor(T * 2) % 2), 112, INK, 2);
       k.text(`${n.late.shown} PM`, 750, 300, {size: 66, color: GOLD, align: 'center', drop: INK});
-      tag(k, 'PAINTER ONE (EXAMPLE)', 60, 306, {color: ORANGE});
+      tag(k, 'PAINTER ONE: EXAMPLE', 60, 300, {color: ORANGE, size: 66});
       /* the table and the laptop with its quote */
       P(0, 330, 360, 10, '#8C5A33'); P(0, 330, 360, 2, '#B07A47'); P(0, 340, 360, 77, '#5A3720');
       const X = 30, Y = 120, W = 300, H = 200;
       P(X - 2, Y - 2, W + 4, H + 4, INK); P(X, Y, W, H, '#3D2E45'); P(X + 6, Y + 6, W - 12, H - 12, CREAM); P(X - 20, Y + H + 2, W + 40, 8, '#9AA0AD'); P(X - 20, Y + H + 2, W + 40, 1, '#C9CCD3');
-      k.text('QUOTE', (X + 14) * 3, (Y + 12) * 3, {size: 66, color: INK});
-      const lines = ['Walls', 'Ceiling', 'Doors', 'Patch'], at = [t0 + 0.4, tTen - 0.2, tMem - 0.25, tMem + 0.4];
+      k.text('QUOTE', (X + 14) * 3, (Y + 12) * 3, {size: 66, color: INK}); for (let i = 0; i < 5; i++) P(X + 14, Y + 66 + i * 30, W - 28, 1, '#E6D3BC');
+      const lines = ['Walls', 'Ceiling', 'Doors', 'Patch'], at = [t0 + 0.1, t0 + 1.0, tTen - 0.2, tMem - 0.25];
       lines.forEach((l, i) => { if (T >= at[i]) { const sh = Math.floor(clamp((T - at[i]) / 0.3) * l.length); k.text(l.slice(0, Math.max(1, sh)), (X + 16) * 3, (Y + 44 + i * 30) * 3, {size: 66, color: INK}); } });
       if (T >= tNever - 0.25 && T < tFree - 0.25) { k.slam('NO RAILING', 540, 840, tNever - 0.25, {size: 66, color: RED, align: 'center', from: 0.4, drop: INK, glint: false}); }
-      if (T >= tFree - 0.25) stampBox(k, 'FREE WORK', 540, 560 + (T >= tFree + 0.3 ? bob2(T, tFree + 0.3) : 0), tFree - 0.25, {color: RED, size: 132});
+      if (T >= tFree - 0.25) stampBox(k, 'FREE WORK', 540, 846 + (T >= tFree + 0.3 ? bob2(T, tFree + 0.3) : 0), tFree - 0.25, {color: RED, size: 132});
       dith(0, 417, 360, 4, '#2B2033');
       return host(k, T >= tFree ? 'shrug' : (T >= tNever ? 'lean' : null));
     },
@@ -231,9 +240,9 @@ window.SCENE = {
     two: (k, T) => {
       const t0 = k.S('two'), tDrive = wordT(k, 'two', /^driveway/i, 3.2), tPaste = k.S('two.paste'), tGem = wordT(k, 'two.paste', /^gemini/i, 2.9);
       k.sets.street({t0: t0 - 0.2, speed: 1, stopAt: tDrive - 0.6, stopDur: 0.8, sign: 'JOB 2'});
-      tag(k, 'PAINTER TWO (EXAMPLE)', 60, 282, {color: ORANGE});
+      tag(k, 'PAINTER TWO', 60, 282, {color: ORANGE, size: 66}); tag(k, 'EXAMPLE', 60, 366, {color: ORANGE, size: 66});
       /* the phone note, top right */
-      const x = 588, y = 300, w = 420, d = px(k);
+      const x = 588, y = 300 + (T >= t0 + 0.6 ? bob2(T, t0 + 0.6) : 0), w = 420, d = px(k);
       const items = T < tPaste ? ['MY PRICES', 'Walls [my price]', 'Ceiling [my price]', 'Door [my price]', 'Patch [my price]'] : ['+ THIS PROMPT', `MY PRICES (${k.data.numbers.items.shown})`, '+ MY NOTES:', 'walls, ceiling,', '2 doors, patch,', 'stair railing'];
       if (T >= tGem - 0.3) items.push('PASTE IN GEMINI');
       const h = 40 + items.length * 54;
@@ -250,11 +259,13 @@ window.SCENE = {
       if (T < tFl) {
         const it = (name, icon) => ({icon, name, stats: [{label: 'PRICE', value: 1, max: 1, text: 'MINE'}]});
         k.sets.inventory({title: 'MY PRICE LIST', slots: 8, items: [it('WALLS', 'hammer'), it('CEILING', 'hammer'), it('DOOR', 'wrench'), it('PATCH', 'clip')],
-          select: [{slot: 0, at: t0 + 0.2}, {slot: 1, at: t0 + 0.8}, {slot: 2, at: tOnly - 0.2}, {slot: 3, at: tOnly + 0.4}], footer: 'USE ONLY MY LIST'});
+          select: [{slot: 0, at: t0 + 0.2}, {slot: 1, at: t0 + 0.8}, {slot: 2, at: tOnly - 0.2}, {slot: 3, at: tOnly + 0.4}], footer: ''});
+        k.slam('USE ONLY MY LIST', 96, 642, t0 + 0.3, {size: 66, color: TEAL, from: 0.4, drop: INK, glint: false});
         return host(k, 'point');
       }
       const d = px(k); d.P(0, 0, 360, 640, '#1B1420'); for (let y = 0; y < 640; y += 6) d.P(0, y, 360, 1, '#1F1726');
       const c = replyCard(k, 60, 270, 960, {lit: tFl, float: tFl + 0.4});
+      blinds(k, tFl);
       if (T >= tFlagged - 0.25) stampBox(k, 'FLAGGED', 540, c.y + c.h + 24, tFlagged - 0.25, {color: RED, size: 66});
       return host(k, T >= tFlagged ? 'point' : 'lean');
     },
@@ -273,8 +284,8 @@ window.SCENE = {
         return host(k, 'point');
       }
       const lines = [];
-      STEPS.forEach((s, i) => { s.forEach((l) => lines.push(i === 3 && T >= tYou - 0.25 ? [l, '#B5522A'] : l)); if (i === 1) RULE.forEach((l) => lines.push(['   ' + l, '#2F6F67'])); });
-      k.itemGet({at: tCard, lines, size: 39, lh: 50, pad: 42, x: 42, y: 300, w: 996, title: `SETUP: ${k.data.numbers.steps.shown} STEPS`, tag: 'COPY THIS', step: 0.9});
+      STEPS.forEach((s, i) => { s.forEach((l) => lines.push(i === 3 && T >= tYou - 0.25 ? [l, '#B5522A'] : l)); if (i === 1) RULE.forEach((l) => lines.push(['    ' + l, '#2F6F67'])); });
+      k.itemGet({at: tCard, lines, size: 39, lh: 52, pad: 36, x: 96, y: 300, w: 900, title: `SETUP: ${k.data.numbers.steps.shown} STEPS`, tag: 'COPY THIS', step: 0.9});
       return host(k, T >= tYou ? 'point' : 'talk');
     },
 

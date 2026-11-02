@@ -1,0 +1,37 @@
+{
+ "gate": "golden",
+ "round": 0,
+ "reviewer": "fresh opus agent",
+ "pass": true,
+ "score": {
+  "post_as_is": "yes"
+ },
+ "reasons": [
+  "Summary (owner on a phone): AI can make up prices, but if you paste your own price list, your notes and a prompt that says use only my list, it quotes from the list and flags what is not on it, here the stair railing. You price the flag and check every line. The screens match the voice: the $0 railing tag (0 to 3 s), the real Gemini reply excerpt with 4 lines and 1 flagged item, labelled API and dated Nov 1, 2026 (3.5 to 5.5 s, 34 to 38 s), the quote missing the railing (19 to 21.5 s), Gemini's $0 plan page (38.5 to 39.5 s) and the 4-step card (39.5 to 44 s). Every number on screen (the $0, 10 PM, 2 doors, 4 lines, 1 flag) agrees with facts.json, and nothing contradicts anything else.",
+  "Hook: the first 3 s show the stair railing with the $0 EXAMPLE tag and the title 'Make AI flag what you never priced', over the line 'This whole stair railing almost got painted for free.' The real reply cut in at 1 s backs it up. It earns the stop. The reason to send is the end card and captions, 'Send this to your painter who still quotes from memory', and the reason to save is the copyable prompt and 4 steps in the caption.",
+  "It sounds like a person: short spoken lines at 151 to 171 wpm, a two-painter story and a plain rule at the end ('Your list prices the job. You price the railing.'). It teaches without hype and gives honest limits: the captions say it is one run, the free app may run another model, and you should check every line.",
+  "qa.json: every check passes and none is doubtful. The length is 50.6 s, loudness is -14.2 LUFS, no black stretch, no frozen stretch before the end card and no flat stretch. The only frozen stretch, 49 to 50 s, is inside the end card.",
+  "1. Polish, 20.5 to 21.5 s: the FREE WORK stamp covers the 'NO RAILING' line on painter one's quote. It shows clearly from 19 to 20 s, so the point still lands.",
+  "2. Polish, 44.5 to 47.5 s: the boss-fight metaphor ('FREE WORK' HP bar, MOVES 'MY LIST / I PRICE IT', '-50') is the most gimmicky beat, and the -50 is a number nobody says or explains. It is short, moves well and fits the voice, so it is not a must-fix.",
+  "3. Polish, 6.0 s and 22.0 s: the zoom and dither transitions show an abstract blob or a noisy frame for about one frame. They read as motion and are not broken.",
+  "4. Polish, 3.5 to 5.5 s, 34 to 38 s and 39.5 to 44 s: the reply card and the 4-step card use small text on a phone. They stay up long enough to read or pause on, and the full text is in every caption.",
+  "5. Polish, about 47.5 s: during the move into the end card, the line 'still quotes from memory' slides past the top edge for a moment.",
+  "No must-fix. I would post it as is."
+ ],
+ "earlier": [
+  {
+   "round": 1,
+   "pass": true,
+   "score": {
+    "post_as_is": "yes"
+   }
+  },
+  {
+   "round": 0,
+   "pass": true,
+   "score": {
+    "post_as_is": "yes"
+   }
+  }
+ ]
+}

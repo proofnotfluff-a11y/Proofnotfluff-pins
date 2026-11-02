@@ -1,0 +1,42 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "reviewer": "fresh opus agent",
+ "pass": true,
+ "score": {
+  "numbers": 12,
+  "mismatches": 0
+ },
+ "reasons": [
+  "Checked and fine: 01_voice/facts.json demo.reply and demo.prompt equal run.json text and prompt exactly; every line in demo.replyShown and the scene.js QUOTE, FLAG and RAIL strings is in run.json text word for word once the markdown stars are removed. The reply card label 'REAL REPLY: GEMINI 3.8 FLASH (API)' and 'NOV 1, 2026 (EXCERPT)' matches model gemini-3.8-flash and at 2026-11-02T03:51:39Z (Nov 1, 2026, 9:51 pm Central). The stars, ruler line and warning sign are left out and the card says EXCERPT, so the AI lane rule holds.",
+  "Checked and fine: the plan page shot in the check beat is the same run's page-1.png (pages.json n 1, status 200, 2026-11-02T03:51:40Z) with its address 'gemini.google/subscriptions' and 'read Nov 1, 2026' on screen. WebFetch of https://gemini.google/subscriptions/ today also confirms Free, '$0/ month with a Google Account' and 'Get everyday help from Google AI to tackle tasks at work, school or home.'",
+  "Checked and fine: data.js sha256 6d523ce6... equals sha256 of 01_voice/facts.json (last commit 382560c). Every number shown matches its data path: flags 1, items 4 ('MY PRICES (4)'), doors 2 ('2 doors' in the notes, 'Doors: 2' in the reply), free $0 (the plan page shot), steps 4 ('SETUP: 4 STEPS'), painters 2 ('Two painters'), late 10 ('10 PM', 'ten pm'), railing $0 (the EXAMPLE tag on the cover and the first room shot). '1 room', '1 patch' and '2x' are the run's own words.",
+  "Checked and fine: the claims in words keep to one run. 'Gemini flagged it instead of guessing', 'NO PRICE GUESSED' and 'it didn't price the railing' match the flagged line 'This item is not on your price list. A custom price is needed.' 'This time the AI stuck to your list' is limited to this run, and the setup card and voice say the owner checks every line. The setup card (STEPS) and prompt rule (RULE) match facts.json setup.card and the run's prompt word for word.",
+  "Checked and fine: 'he pastes the list, his notes and this prompt into Gemini' and 'Gemini is free' describe the free app, while the run used the API. The card is labelled (API), and facts.json says the captions cover the difference. That is left to the facts-captions gate and is not a mismatch here.",
+  "Checked and fine: the story parts (two painters, 10 PM, the kitchen table, the living room, the driveway, the stair railing, the $0 tag, FREE WORK, PAID) carry EXAMPLE chips or read as acted, not as data. 'You'd think AI makes prices up' is framed as a belief. Trades first: the core evidence is a real run on a painting walkthrough quote. There is no real private person, business or address. No em or en dashes in facts.json, brief.md, script.md, transcript.md, scene.js, data.js or captions.json. This is not a story format, so item 7 does not apply."
+ ],
+ "sources_checked": [
+  "https://gemini.google/subscriptions/: WebFetch worked today and confirms the Free plan, '$0/ month with a Google Account' and its description. It matches the same run's shot video/studio/demos/out/2026-11-16-price-list-quote-1/page-1.png (pages.json status 200, 2026-11-02T03:51:40Z).",
+  "video/studio/demos/out/2026-11-16-price-list-quote-1/run.json: model gemini-3.8-flash, at 2026-11-02T03:51:39Z. Its prompt and reply are identical to facts.json: 4 quote lines from the list, each left as [my price], and the stair railing flagged with no price given.",
+  "video/studio/demos/out/2026-11-16-price-list-quote-1/pages.json: page 1 is gemini.google/subscriptions and page 2 is the Gems help page, both status 200 in the same run. The Gems claim is not on screen or in the voice.",
+  "video/studio/videos/2026-11-16-price-list-quote/05_render/gates/frame-0s.png and timeline-1 to timeline-4.jpg: the drawn strings match scene.js and the voice matches 02_transcript/transcript.md."
+ ],
+ "earlier": [
+  {
+   "round": 1,
+   "pass": false,
+   "score": {
+    "numbers": 12,
+    "mismatches": 1
+   }
+  },
+  {
+   "round": 2,
+   "pass": true,
+   "score": {
+    "numbers": 12,
+    "mismatches": 0
+   }
+  }
+ ]
+}

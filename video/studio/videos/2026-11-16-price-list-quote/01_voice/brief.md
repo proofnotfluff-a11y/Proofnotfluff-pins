@@ -14,7 +14,7 @@ Nov 1, 2026 (demos/out/2026-11-16-price-list-quote-1/run.json).
 - **The one idea:** keep your price list in a note with one prompt on top, and AI turns any walkthrough into quote lines and flags what you never priced.
 - **The system (lanes.md):** starts when a walkthrough ends; the tool is the free Gemini app; the setting is the phone note (price list plus the prompt on top, made once); the result lands in the chat as quote lines and flags; the one check is to price every flag and read every line before it goes out.
 - **Do this week (on screen, held):** the setup card, 4 numbered steps with the prompt word for word, held 3 s or more (C3).
-- **Shape:** result first (0 to 3.6 s: the real reply with the railing FLAGGED, "Real reply, Gemini 3.8 Flash (API), Nov 1, 2026"; "This stair railing almost got painted for free") -> the turn by 5 s ("You'd think AI makes prices up. This time it stuck to your list.") and the loop ("So what happens to the railing?") -> painter one (10 pm, from memory, the railing missing, FREE WORK) -> painter two (the phone note: list, prompt, notes, pasted in the driveway) -> mechanism and the real reply (the prompt says use only his list; the railing is not on it, so Gemini flagged it; four quote lines, one flag) -> the honest check, answering the loop at about 75% (free; it didn't price the railing; he does, and checks every line) -> button (your list prices the job; you price the railing).
+- **Shape:** the stake object on the cover (our railing with a $0 tag under the plate), the result by 0.8 s (the real reply's FLAGGED line, "Real reply, Gemini 3.8 Flash (API), Nov 1, 2026"; "This whole stair railing almost got painted for free") -> the turn by 5 s ("You'd think AI makes prices up. This time it stuck to your list.") and the loop ("So what happens to the railing?") -> painter one (10 pm, from memory, the railing missing, FREE WORK) -> painter two (the phone note: list, prompt, notes, pasted in the driveway) -> mechanism and the real reply (the prompt says use only his list; the railing is not on it, so Gemini flagged it; four quote lines, one flag) -> the honest check, answering the loop at about 75% (free; it didn't price the railing; he does, and checks every line) -> button (your list prices the job; you price the railing).
 - **Cover line:** "Make AI flag / what you never priced." (plate; the Nov 2 facts script gate: "AI won't guess" promised more than one run shows)
 - **Hook pattern:** result-first
 - **Treatment:** steps
@@ -49,7 +49,8 @@ Nov 1, 2026 (demos/out/2026-11-16-price-list-quote-1/run.json).
  "free": {"path": "gemini.freePrice", "shown": "$0"},
  "steps": {"path": "setup.steps", "shown": "4"},
  "painters": {"path": "story.painters", "shown": "2"},
- "late": {"path": "story.typingHour", "shown": "10"}
+ "late": {"path": "story.typingHour", "shown": "10"},
+ "railing": {"path": "story.railingPaid", "shown": "$0"}
 }}
 ```
 

@@ -21,7 +21,7 @@
    "FLAGGED ITEM (Not on price list):",
    "Stair railing (painting): This item is not on your price list. A custom price is needed."
   ],
-  "replyShownNote": "Shown without the markdown stars, the ruler line and the warning sign (the pixel font has no emoji); every word as returned.",
+  "replyShownNote": "Shown as an excerpt (labelled EXCERPT on screen): the opening sentence 'Here are your quote lines based on your notes and price list:' and the 'Quote Lines:' header are left out, as are the markdown stars, the ruler line and the warning sign (the pixel font has no emoji); every line shown is word for word as returned.",
   "quoteLines": 4,
   "flagged": 1,
   "flaggedItem": "Stair railing (painting)",
@@ -61,6 +61,8 @@
   "painters": 2,
   "typingHour": 10,
   "room": "living room",
-  "item": "stair railing"
+  "item": "stair railing",
+  "railingPaid": 0,
+  "railingPaidNote": "OURS: the example story's cost, the $0 tag on the railing painter one painted free (acted, not a finding)"
  }
 }

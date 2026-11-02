@@ -110,10 +110,10 @@
   "foodWordPermits": 743,
   "inspectionsAtAddresses": 15334
  },
- "ranAt": "2026-11-02T16:29:33-06:00",
+ "ranAt": "2026-11-02T17:03:00-06:00",
  "rowsUpdatedAt": {
   "licenses": "2026-10-30T10:10:39+00:00",
-  "inspections": "2026-11-02T21:57:46+00:00",
+  "inspections": "2026-11-02T22:37:35+00:00",
   "permits": "2026-11-02T13:17:47+00:00"
  }
 }

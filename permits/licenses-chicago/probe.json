@@ -1,6 +1,6 @@
 {
- "ranAt": "2026-10-29T23:18:05+00:00",
- "since": "2026-09-17",
+ "ranAt": "2026-11-02T12:34:54+00:00",
+ "since": "2026-09-21",
  "columns": [
   "id",
   "license_id",
@@ -45,39 +45,39 @@
   ":@computed_region_bdys_3d7i",
   ":@computed_region_43wa_7qmu"
  ],
- "rows": 842,
+ "rows": 810,
  "byLicense": [
   [
    "Limited Business License",
-   194
+   187
   ],
   [
    "Pop-Up Retail User",
-   125
+   121
   ],
   [
    "Retail Food Establishment",
-   109
+   108
   ],
   [
    "Regulated Business License",
-   95
+   93
   ],
   [
    "Special Event Food",
-   66
+   61
   ],
   [
    "Peddler License",
-   33
+   32
   ],
   [
    "Pharmaceutical Representative",
-   30
+   29
   ],
   [
    "Consumption on Premises - Incidental Activity",
-   19
+   17
   ],
   [
    "Shared Kitchen User (Long Term)",
@@ -85,7 +85,7 @@
   ],
   [
    "Tobacco",
-   15
+   14
   ],
   [
    "Shared Housing Unit Operator",
@@ -96,39 +96,35 @@
    12
   ],
   [
-   "Special Event Liquor",
-   12
-  ],
-  [
    "Video Gaming Location",
    11
+  ],
+  [
+   "Raffles",
+   8
   ],
   [
    "Animal Care License",
    8
   ],
   [
-   "Motor Vehicle Services License",
-   8
+   "Children's Services Facility License",
+   7
   ],
   [
    "Public Place of Amusement",
    7
   ],
   [
-   "Children's Services Facility License",
+   "Special Event Liquor",
    7
   ],
   [
+   "Motor Vehicle Services License",
+   6
+  ],
+  [
    "Video Gaming Terminal",
-   5
-  ],
-  [
-   "Filling Station",
-   5
-  ],
-  [
-   "Outdoor Patio",
    5
   ],
   [
@@ -136,11 +132,7 @@
    5
   ],
   [
-   "Raffles",
-   5
-  ],
-  [
-   "Caterer's Liquor License",
+   "Indoor Special Event",
    4
   ],
   [
@@ -156,11 +148,15 @@
    4
   ],
   [
-   "Mobile Food License",
+   "Outdoor Patio",
    4
   ],
   [
-   "Wholesale Food Establishment",
+   "Caterer's Liquor License",
+   3
+  ],
+  [
+   "Filling Station",
    3
   ],
   [
@@ -168,12 +164,20 @@
    3
   ],
   [
-   "Indoor Special Event",
+   "Mobile Food License",
    3
   ],
   [
    "Private Booting Registration",
    3
+  ],
+  [
+   "Secondhand Dealer",
+   2
+  ],
+  [
+   "Wholesale Food Establishment",
+   2
   ],
   [
    "Shared Kitchen User (Short Term)",
@@ -186,10 +190,6 @@
   [
    "Pawnbroker",
    1
-  ],
-  [
-   "Secondhand Dealer",
-   1
   ]
  ],
  "byActivity": [
@@ -199,23 +199,23 @@
   ],
   [
    "5 Day Single Event  - Special Event Food",
-   41
+   36
   ],
   [
    "Organizer of Event with Retail Vendors (1-5 Day Show)",
-   37
+   32
   ],
   [
    "Markets / Promotes Pharmaceuticals to Health Care Professionals and Conducts Bus",
-   30
-  ],
-  [
-   "Preparation of Food and Dining on Premises With Seating",
    29
   ],
   [
+   "Preparation of Food and Dining on Premises With Seating",
+   28
+  ],
+  [
    "Sale of Food Prepared Onsite With Dining Area",
-   26
+   27
   ],
   [
    "180 Day Multiple Events - Special Event Food",
@@ -223,14 +223,14 @@
   ],
   [
    "Retail Sales of General Merchandise",
-   22
+   23
+  ],
+  [
+   "Retail Sales of General Merchandise and Non-Perishable Food",
+   15
   ],
   [
    "Consumption of Liquor on Premises",
-   17
-  ],
-  [
-   "Peddler- Retail Sales of General Merchandise, Whole Uncut Fruits/Vegetables, Flo",
    15
   ],
   [
@@ -242,15 +242,15 @@
    14
   ],
   [
+   "Peddler- Retail Sales of General Merchandise, Whole Uncut Fruits/Vegetables, Flo",
+   14
+  ],
+  [
    "Sale of Food Prepared Onsite Without Dining Area",
    13
   ],
   [
    "Shared Housing Operator - Host of More Than One Shared Housing Unit",
-   13
-  ],
-  [
-   "Retail Sales of General Merchandise and Non-Perishable Food",
    13
   ],
   [
@@ -262,6 +262,10 @@
    12
   ],
   [
+   "Retail Sales of Flavored Tobacco Products | Retail Sales of Tobacco Products and",
+   11
+  ],
+  [
    "Provide Video Gaming Terminals for Customer Use",
    11
   ],
@@ -270,16 +274,16 @@
    10
   ],
   [
-   "Retail Sales of Flavored Tobacco Products | Retail Sales of Tobacco Products and",
-   10
-  ],
-  [
    "Professional Consulting (Home Based Business)",
    10
   ],
   [
+   "Not-For-Profit Selling Raffles for Prizes of $50 or More",
+   8
+  ],
+  [
    "Nail Services",
-   9
+   8
   ],
   [
    "Street Performer, Moving Along the Public Way",
@@ -291,27 +295,19 @@
   ],
   [
    "Operation of an Administrative Commercial Office",
-   7
-  ],
-  [
-   "Miscellaneous Commercial Services",
-   7
+   6
   ],
   [
    "Charges a Fee for Entertainment or Amusements or Recreational Activities",
    6
   ],
   [
-   "Sale of Food Prepared Onsite With Dining Area | Preparation and Sale of Coffee a",
+   "Miscellaneous Commercial Services",
    6
   ],
   [
-   "Special Event Beer & Wine",
-   6
-  ],
-  [
-   "Special Event Beer, Wine & Spirits",
-   6
+   "Retail Sales of Clothing / Accessories / Shoes",
+   5
   ],
   [
    "Own, Service, or Maintain Video Gaming Terminals for Placement in Licensed Estab",
@@ -322,7 +318,7 @@
    5
   ],
   [
-   "Sale of Liquor Outdoors on Private Property",
+   "Sale of Food Prepared Onsite With Dining Area | Preparation and Sale of Coffee a",
    5
   ],
   [
@@ -334,15 +330,7 @@
    5
   ],
   [
-   "Not-For-Profit Selling Raffles for Prizes of $50 or More",
-   5
-  ],
-  [
-   "Vacation Rental Building Containing Five or More Dwelling Units For Transient Oc",
-   5
-  ],
-  [
-   "Catering of Liquor To Events",
+   "Indoor Special Event",
    4
   ],
   [
@@ -350,15 +338,7 @@
    4
   ],
   [
-   "Retail Sales of Clothing / Accessories / Shoes",
-   4
-  ],
-  [
    "Residential Cleaning (Home Based Business)",
-   4
-  ],
-  [
-   "Hair Services | Retail Sales of General Merchandise",
    4
   ],
   [
@@ -366,7 +346,7 @@
    4
   ],
   [
-   "Preparation and Sale of Food (ONLY) from a Mobile Food Truck (Mobile Food Prepar",
+   "Sale of Liquor Outdoors on Private Property",
    4
   ],
   [
@@ -374,16 +354,24 @@
    4
   ],
   [
-   "Retail Sales of Tobacco Products and Accessories (Less Than 80% Gross Revenue of",
+   "Special Event Beer, Wine & Spirits",
    4
   ],
   [
-   "Sale of Vehicle Parts and Accessories",
+   "Vacation Rental Building Containing Five or More Dwelling Units For Transient Oc",
    4
   ],
   [
-   "Home Repair Services",
-   4
+   "Preparation and Sale of Coffee and/or Drinks",
+   3
+  ],
+  [
+   "Supervision of, and Care for, Children 0-6 Years of Age, During the Day between ",
+   3
+  ],
+  [
+   "Catering of Liquor To Events",
+   3
   ],
   [
    "Peddler (Over 65 Years of Age) - Retail Sales of General Merchandise, Whole Uncu",
@@ -418,24 +406,36 @@
    3
   ],
   [
-   "Operation of a Fuel Filling Station",
-   3
-  ],
-  [
    "Retail Sales of Packaged Liquor",
-   3
-  ],
-  [
-   "Indoor Special Event",
    3
   ],
   [
    "Heating, Ventilation and Air Conditioning Services - Residential",
    3
+  ],
+  [
+   "Hair Services | Retail Sales of General Merchandise",
+   3
+  ],
+  [
+   "Hair Services | Skincare Services",
+   3
+  ],
+  [
+   "Preparation and Sale of Food (ONLY) from a Mobile Food Truck (Mobile Food Prepar",
+   3
+  ],
+  [
+   "Private Booting Registration",
+   3
+  ],
+  [
+   "Motor Vehicle Repair -  Engine and Transmission Work",
+   3
   ]
  ],
  "byStatus": {
-  "AAI": 840,
+  "AAI": 808,
   "AAC": 2
  }
 }

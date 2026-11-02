@@ -1,79 +1,83 @@
 {
- "licensedFood": 467,
+ "licensedFood": 339,
  "licenseToInspection": {
-  "matched": 432,
-  "pct": 92.5,
+  "matched": 322,
+  "pct": 95.0,
   "key": "license number (the inspection's license_ field)"
  },
  "licenseToPermit": {
-  "matched": 138,
-  "pct": 29.6,
-  "foodWorded": 94,
-  "foodWordedPct": 20.1,
+  "matched": 145,
+  "pct": 42.8,
+  "foodWorded": 86,
+  "foodWordedPct": 25.4,
   "key": "address (house number, direction, street, suffix; no unit)",
   "lookback": "540 days before the first record"
  },
  "licenseToRoutine": {
-  "matched": 22,
-  "pct": 4.7
+  "matched": 17,
+  "pct": 5.0
  },
  "allThree": {
-  "matched": 133,
-  "pct": 28.5
+  "matched": 142,
+  "pct": 41.9
  },
  "inspectedNoLicense": {
-  "n": 156,
-  "withPermit": 35
+  "n": 102,
+  "withPermit": 34
  },
- "permitOnly": 95,
- "sharedBuildings": 95,
+ "permitOnly": 101,
+ "sharedBuildings": 15,
  "order": {
-  "inspection on or before the license": 430,
+  "inspection on or before the license": 320,
   "inspection after the license": 2
  },
  "daysBetween": {
   "first license inspection to license": {
-   "median": 20.0,
-   "n": 432
+   "median": 18.0,
+   "n": 322
   },
   "permit to first license inspection": {
-   "median": 103.5,
-   "n": 120
+   "median": 69,
+   "n": 133
   },
   "license to first routine inspection": {
-   "median": 49.5,
-   "n": 22
+   "median": 55,
+   "n": 17
   }
  },
  "byStage": {
-  "permitted": 95,
-  "licensed": 113,
-  "inspected": 156,
-  "open": 354
+  "open": 258,
+  "permitted": 101,
+  "licensed": 81,
+  "inspected": 102
  },
  "openBy": {
-  "routine": 21,
-  "rule": 333
+  "rule": 241,
+  "routine": 17
  },
  "byKind": {
-  "restaurant": 461,
-  "bakery": 10,
+  "restaurant": 358,
+  "other": 56,
+  "grocery": 78,
   "coffee": 20,
-  "other": 68,
-  "grocery": 97,
-  "catering": 23,
-  "bar": 36,
-  "liquor": 3
+  "bakery": 10,
+  "bar": 8,
+  "catering": 11,
+  "liquor": 1
  },
  "leftOut": {
+  "the same business was already inspected at this address under an earlier license (a relicense, not an opening)": 49,
+  "held this license type at this site before (a relicense, not an opening)": 55,
+  "added a license at a site it already held one (an existing business, not an opening)": 67,
   "license already issued (before the window, a renewal, or not a food license)": 226,
   "inspected more than 120 days ago with no license since": 49,
   "left out by the license rules (person-like name, home, event or person-held license)": 137,
-  "name could be a person's": 42,
-  "school, care or health site": 16,
+  "name could be a person's": 43,
+  "school, care or health site": 17,
   "mobile food, no fixed site": 1,
-  "a current food license already at the site (a remodel, not a new business)": 53,
-  "a home's kitchen, not a food business": 1
+  "another license number of a business already listed at the same address (listed once)": 14,
+  "a current food license already at the site (a remodel, not a new business)": 70,
+  "a home's kitchen, not a food business": 3
  },
  "window": {
   "from": "2026-05-06",
@@ -100,14 +104,15 @@
  "pulled": {
   "licenseRows": 3991,
   "inspectionRows": 887,
-  "licenseInspectionRows": 1520,
-  "permitsAtAddresses": 18226,
-  "foodWordPermits": 743
+  "licenseInspectionRows": 1533,
+  "permitsAtAddresses": 18234,
+  "foodWordPermits": 743,
+  "inspectionsAtAddresses": 15334
  },
- "ranAt": "2026-11-02T15:36:55-06:00",
+ "ranAt": "2026-11-02T16:00:49-06:00",
  "rowsUpdatedAt": {
   "licenses": "2026-10-30T10:10:39+00:00",
-  "inspections": "2026-10-30T09:13:52+00:00",
+  "inspections": "2026-11-02T21:57:46+00:00",
   "permits": "2026-11-02T13:17:47+00:00"
  }
 }

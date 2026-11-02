@@ -1,0 +1,113 @@
+{
+ "licensedFood": 467,
+ "licenseToInspection": {
+  "matched": 432,
+  "pct": 92.5,
+  "key": "license number (the inspection's license_ field)"
+ },
+ "licenseToPermit": {
+  "matched": 138,
+  "pct": 29.6,
+  "foodWorded": 94,
+  "foodWordedPct": 20.1,
+  "key": "address (house number, direction, street, suffix; no unit)",
+  "lookback": "540 days before the first record"
+ },
+ "licenseToRoutine": {
+  "matched": 22,
+  "pct": 4.7
+ },
+ "allThree": {
+  "matched": 133,
+  "pct": 28.5
+ },
+ "inspectedNoLicense": {
+  "n": 156,
+  "withPermit": 35
+ },
+ "permitOnly": 95,
+ "sharedBuildings": 95,
+ "order": {
+  "inspection on or before the license": 430,
+  "inspection after the license": 2
+ },
+ "daysBetween": {
+  "first license inspection to license": {
+   "median": 20.0,
+   "n": 432
+  },
+  "permit to first license inspection": {
+   "median": 103.5,
+   "n": 120
+  },
+  "license to first routine inspection": {
+   "median": 49.5,
+   "n": 22
+  }
+ },
+ "byStage": {
+  "permitted": 95,
+  "licensed": 113,
+  "inspected": 156,
+  "open": 354
+ },
+ "openBy": {
+  "routine": 21,
+  "rule": 333
+ },
+ "byKind": {
+  "restaurant": 461,
+  "bakery": 10,
+  "coffee": 20,
+  "other": 68,
+  "grocery": 97,
+  "catering": 23,
+  "bar": 36,
+  "liquor": 3
+ },
+ "leftOut": {
+  "license already issued (before the window, a renewal, or not a food license)": 226,
+  "inspected more than 120 days ago with no license since": 49,
+  "left out by the license rules (person-like name, home, event or person-held license)": 137,
+  "name could be a person's": 42,
+  "school, care or health site": 16,
+  "mobile food, no fixed site": 1,
+  "a current food license already at the site (a remodel, not a new business)": 53,
+  "a home's kitchen, not a food business": 1
+ },
+ "window": {
+  "from": "2026-05-06",
+  "to": "2026-11-02",
+  "days": 180
+ },
+ "licenseChecks": {
+  "buildings": true,
+  "history": true,
+  "foodInspections": true
+ },
+ "licenseLeftOut": {
+  "issued outside the window": 165,
+  "license for one person's own work, work away from a fixed site, or an event or season": 1754,
+  "site outside Chicago": 91,
+  "home or apartment address": 141,
+  "second license at the same site (listed once)": 152,
+  "name could be a person's": 376,
+  "license not active (cancelled or revoked)": 13,
+  "not a new license (renewal or change)": 13,
+  "virtual office or mailbox address": 6,
+  "on the do-not-list (asked to be left out, or a likely home)": 1
+ },
+ "pulled": {
+  "licenseRows": 3991,
+  "inspectionRows": 887,
+  "licenseInspectionRows": 1520,
+  "permitsAtAddresses": 18226,
+  "foodWordPermits": 743
+ },
+ "ranAt": "2026-11-02T15:36:55-06:00",
+ "rowsUpdatedAt": {
+  "licenses": "2026-10-30T10:10:39+00:00",
+  "inspections": "2026-10-30T09:13:52+00:00",
+  "permits": "2026-11-02T13:17:47+00:00"
+ }
+}

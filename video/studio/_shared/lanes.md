@@ -39,6 +39,19 @@ clearer return on investment would get them to adopt (distributionstrategy.com, 
 First candidates (held Oct 30 as too thin; rebuild in the AI lane with real runs): 2026-11-08-after-hours-reply,
 2026-11-10-notes-to-quote, 2026-11-03-review-replies, then IDEAS.md "Owed first".
 
+## Systems, not tricks (from Nov 1, 2026, 9:17 pm)
+Todd, live chat, Nov 1, 2026, 9:17 pm: "Right now, our video substance is lacking. We should be helping trades people set
+up ai systems to automate and improve."
+- Every AI lane lesson sets up a system the owner keeps running, not a one-off trick: what starts it (a missed call, a new
+  review, a quote sent 3 days ago, a voicemail), the tool that does the work, the exact prompt or setting, where the result
+  lands (his phone, his inbox, the customer) and the one thing he checks each time. "One tool, one real job" (item 1) now
+  means one system.
+- The save card (C3) is the setup card: at most 5 numbered steps with the setting path and the prompt, readable on a
+  phone, held 3 s or more. Reference: research/FORMULA.md, charlieautomates (Nov 1).
+- An owner finishes the setup in under 30 minutes with no code and no installs, on a free tier or a tool he already pays
+  for (item 2). Anything that needs code, a server or a terminal is out.
+- Shown working end to end with real runs (item 3): the trigger, the real reply, and where it lands.
+
 ## Judging (Nov 8, the evening run's diagnosis)
 `anim.py lanes` on the lessons posted Nov 1 to Nov 8. AI at twice core or better on shares + saves + follows per 1,000
 views: set lanes mode "ai" (Todd's go, Nov 1, 9:01 am) and tell him with the numbers. Otherwise send him both lanes'

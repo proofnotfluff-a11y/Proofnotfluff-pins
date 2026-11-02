@@ -404,7 +404,7 @@ details.me[open] summary::after{transform:rotate(-135deg)}
 .rbox label.big{display:block;font:600 15px var(--body);margin:0 0 8px}
 .rin{display:flex;gap:10px}
 @media(max-width:600px){.rin{flex-direction:column}.rin input{flex:none;width:100%;height:52px;font-size:16px}.rin .btn{width:100%}}
-.rin input{flex:1;min-width:0;height:52px;padding:0 16px;border:1px solid var(--field);border-radius:12px;font-size:17px;background:#fff;color:var(--ink)}
+.rin input{flex:1 1 auto;min-width:0;height:52px;padding:0 16px;border:1px solid var(--field);border-radius:12px;font-size:17px;background:#fff;color:var(--ink)}
 .rin input:focus{outline:none;box-shadow:var(--focus);border-color:var(--blue)}
 .rin .btn{height:52px}
 .rhelp{margin:10px 0 0;font-size:13.5px;color:var(--muted)}
@@ -567,7 +567,7 @@ const idx=STAGES.indexOf(b.s);
 const evAll=b.ev.slice().reverse();const evHtml=evAll.map((e,i)=>{let det="";
 if(e.t==="permit")det=`<p>${esc(e.type||"")}${e.scope?": "+esc(e.scope):""}</p>`;
 else if(e.t==="license")det=`<p>${esc(e.type||b.lt)}${b.ac?". "+esc(b.ac):""}</p>`;
-else det=`<p>${esc(e.type||"")}. City result: <span class="res">${esc(e.result||"not given")}</span></p>`;
+else det=`<p>${esc(e.type||"")}${b.li.length>1&&e.lic?" under license "+esc(e.lic):""}. City result: <span class="res">${esc(e.result||"not given")}</span></p>`;
 return `<li class="${e.t}"${i>=5?" hidden":""}><span class="dot" aria-hidden="true"></span><div class="hd"><b>${esc(EV[e.t])}</b><span class="d">${esc(day(e.d))}</span></div>${det}<a class="src" href="${esc(e.link)}" target="_blank" rel="noopener">${ico("ext","s")}The City's record<span class="sr"> for this ${esc(EV[e.t].toLowerCase())} (opens in a new tab)</span></a></li>`;}).join("");
 const facts=[["Type",V.kindLabel[b.k]],["License",b.lt?(b.lt+(b.ot.length?" (also "+b.ot.join(", ")+")":"")):""],["License number",b.li.join(", ")],["City history",{first:"First license on the City's record for this business",site:"A new site for a business licensed elsewhere in Chicago",added:"A new license at a site where it already held one",relicensed:"Held this license type at this site before"}[b.hi]||""],["ZIP",b.z]].filter(x=>x[1]);
 $("#app").innerHTML=`<a class="back" href="#/" id="back">${ico("back")}Back</a>
@@ -577,11 +577,14 @@ $("#app").innerHTML=`<a class="back" href="#/" id="back">${ico("back")}Back</a>
 ${b.ev.length>5?`<div class="more" style="padding-top:0"><button class="btn sm" type="button" id="allEv">Show all ${b.ev.length} records</button></div>`:""}
 ${b.sh?`<p class="note2">Two or more food businesses share this address, so only a permit whose own text names food work is linked here.</p>`:""}
 <dl class="facts2">${facts.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl></section>
-<section class="panel" aria-labelledby="lH"><div class="sec-h"><h2 id="lH">First letter</h2></div><div class="ltr" id="ltr"></div></section></div>`;
+<section class="panel" aria-labelledby="lH"><div class="sec-h"><h2 id="lH">First letter</h2></div><div class="ltr" id="ltr"></div></section></div>
+${nextBiz(b)}`;
 $("#back").onclick=e=>{e.preventDefault();history.length>1?history.back():go("#/");};
 if($("#allEv"))$("#allEv").onclick=()=>{document.querySelectorAll("#evs li[hidden]").forEach(li=>li.hidden=false);$("#allEv").parentNode.remove();document.querySelectorAll("#evs li")[5].querySelector("a").focus();};
 $("#toL").onclick=e=>{e.preventDefault();const t=$("#lH");t.scrollIntoView({behavior:"smooth",block:"start"});t.setAttribute("tabindex","-1");t.focus({preventScroll:true});};
 drawLetter(b);stickIfShort($("#recP"));}
+function nextBiz(b){const L=D.biz.filter(x=>x.s!=="open").sort((x,y)=>y.sd.localeCompare(x.sd)||y.id.localeCompare(x.id));const i=L.findIndex(x=>x.id===b.id);const n=L[i+1]||L[0];
+return n&&n.id!==b.id?`<section class="next"><p>Next on the radar: <b>${esc(title(n))}</b>, ${esc(SL[n.s].toLowerCase())} ${esc(dayShort(n.sd))}</p><a class="btn pri" href="#/b/${esc(n.id)}">Open the next business</a></section>`:"";}
 function stickIfShort(el){if(el&&window.innerWidth>1020&&el.offsetHeight<window.innerHeight-100)el.classList.add("stick");}
 function drawLetter(b){const t=trade(),m=me();const L=letterFor(b,t,m,LT);const box=$("#ltr");
 const show=s=>esc(s).replace(/\{\{(\w+)\}\}/g,(_,k)=>`<span class="fl">${esc(ME_LABEL[k])}</span>`);

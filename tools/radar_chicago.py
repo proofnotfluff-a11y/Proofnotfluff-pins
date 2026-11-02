@@ -151,7 +151,7 @@ def permit_event(p, food):
 def insp_event(x):
     t = rl.type_title(x.get("inspection_type"))
     return {"t": "linsp" if t.upper().startswith("LICENSE") else "routine", "d": day(x.get("inspection_date")), "id": str(x.get("inspection_id") or ""),
-            "type": t, "result": (x.get("results") or "").strip(), "link": RECORD["inspection"] + str(x.get("inspection_id") or "")}
+            "type": t, "result": (x.get("results") or "").strip(), "lic": lic_num(x.get("license_")), "link": RECORD["inspection"] + str(x.get("inspection_id") or "")}
 
 
 def stage_of(b, today):

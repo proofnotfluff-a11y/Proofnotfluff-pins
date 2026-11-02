@@ -21,8 +21,8 @@ the top one still open before anything below.
 00a-3. (Check done Nov 1, evening run: `lint` WARN accents. ERROR done Nov 1, lunch run: from lessons dated 2026-11-15 on, a text landing 0.5 s or more after its word fails `lint` (ACCENT_ERROR_FROM, ACCENT_ERROR_LATE); proven on stills: three-fixes failed 2 (1.69 s, 1.51 s) and passed after the fix, first-reply keeps its WARN. Next: tighten 0.5 s to 0.0 once two lessons pass at 0.5.) M3 accent words: the beat's key word slams on screen 0.2 to 0.3 s before it is spoken, from words.json timing
    (replaces item 10 below).
 00a-4. (Room moves done Nov 1, end-of-day run: `mosaic` and `fade4` in sets.js, proven on stills. Open: the 3-2-1 px
-   verdict shake over 8 frames, whole-pixel camera pans with 2 to 3 parallax layers, and a lint WARN for a lesson whose
-   room changes use no pixel-native move.) M4 pixel-native travel and hits: rooms change by mosaic cross or a 4-step palette fade (never an alpha fade), a
+   verdict shake over 8 frames and whole-pixel camera pans with 2 to 3 parallax layers. The lint WARN for room changes with
+   no pixel-native move is done Nov 1, evening run.) M4 pixel-native travel and hits: rooms change by mosaic cross or a 4-step palette fade (never an alpha fade), a
    verdict stamp gets a 3-2-1 px screen shake over 8 frames, the camera pans in whole pixels with 2 to 3 parallax layers;
    each hit at most once in 10 s (with item 2 below).
 00a-5. (Check done Nov 1, morning run: `lint` WARN read time; next: the scenes hold each short text, then the WARN becomes an ERROR for new lessons.) Read time lint: every on-screen text holds at least letters / 15 + 1.5 s after it finishes typing in, and the
@@ -101,6 +101,14 @@ runtime, $0, no new dependency.
 12. Visual: a seasonal touch per week (snow outside the half-built house in winter, leaves in fall).
 
 ## Done (newest first: date, item, what changed, proof)
+- 2026-11-01 (evening run, cloud): 00a-4 lint WARN room moves. `anim.py lint` reads SCENE.sections and SCENE.transitions
+  and prints "WARN lint room moves" naming every section after the first whose move is not one of sets.js's pixel-grid
+  moves (levelselect, dissolve, gameover, mosaic, fade4), so a plain cut or the blinds fallback shows before the design
+  gate (M4). A WARN, not an ERROR, so no queued lesson changes. Proof (lint steps every cue at 0.25 s): lesson 1,
+  2026-10-28-first-reply, WARNs "no room change uses a pixel-native move ... plain: study, signal, tt, catch, build,
+  close"; 2026-11-15-three-fixes, the newest lesson, prints no WARN and still PASSes. Today's lesson
+  (2026-11-16-price-list-quote) has no scene yet (held at the script stage, below in LEARNINGS.md). Next: an ERROR for
+  new lessons once two lessons in a row pass without the WARN.
 - 2026-11-01 (end-of-day run, cloud): 00a-4 room moves. Two new transitions in _runtime/sets.js, chosen per section with
   SCENE.transitions: `mosaic` (blocks double 2 to 32 grid pixels, each the colour at its centre, cut under the biggest)
   and `fade4` (four held steps down to #120D14 and back, the player's palette snap after). sets.js is not fingerprinted,

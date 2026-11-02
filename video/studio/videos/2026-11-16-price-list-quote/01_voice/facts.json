@@ -1,0 +1,49 @@
+{
+ "about": "Every number and claim this lesson shows or says, with its source. AI lane (_shared/lanes.md, Systems, not tricks): the reply on screen is the exact text the studio-ai-demo workflow got back from Gemini on Nov 1, 2026, 9:51 pm Central (video/studio/demos/out/2026-11-16-price-list-quote-1/run.json, at 2026-11-02T03:51:39Z). Gemini's plan page is a phone shot taken by the same workflow in the same run (page-1.png). The price list items, the walkthrough notes, the two painters, the 10 pm and the stair railing are ours (EXAMPLE on screen); no price is shown anywhere ([my price] stays a slot).",
+ "demo": {
+  "job": "video/studio/demos/jobs/2026-11-16-price-list-quote-1.json",
+  "out": "video/studio/demos/out/2026-11-16-price-list-quote-1/run.json",
+  "model": "gemini-3.8-flash",
+  "modelLabel": "Gemini 3.8 Flash (API)",
+  "date": "2026-11-01",
+  "at": "2026-11-02T03:51:39+00:00",
+  "atCentral": "Nov 1, 2026, 9:51 pm",
+  "seconds": 90.2,
+  "secondsNote": "wall time of the API call on GitHub's machine, including the wait; not said in the voice (an owner's app run is a different path)",
+  "prompt": "Turn my walkthrough notes into quote lines. Use only my price list. Flag anything that is not on it. Never guess a price.\n\nMy price list:\nWalls, per room: [my price]\nCeiling, per room: [my price]\nDoor, each: [my price]\nDrywall patch, each: [my price]\n\nMy notes: living room walls and ceiling, two doors, patch the hole by the window, they also want the stair railing painted.",
+  "promptRule": "Turn my walkthrough notes into quote lines. Use only my price list. Flag anything that is not on it. Never guess a price.",
+  "reply": "Here are your quote lines based on your notes and price list:\n\n**Quote Lines:**\n* **Walls (Living Room):** 1 room, [my price]\n* **Ceiling (Living Room):** 1 room, [my price]\n* **Doors:** 2, 2x [my price]\n* **Drywall patch:** 1 patch, [my price]\n\n---\n\n⚠️ **FLAGGED ITEM (Not on price list):**\n* **Stair railing (painting):** This item is not on your price list. A custom price is needed.",
+  "replyShown": ["Walls (Living Room): 1 room, [my price]", "Ceiling (Living Room): 1 room, [my price]", "Doors: 2, 2x [my price]", "Drywall patch: 1 patch, [my price]", "FLAGGED ITEM (Not on price list):", "Stair railing (painting): This item is not on your price list. A custom price is needed."],
+  "replyShownNote": "Shown without the markdown stars, the ruler line and the warning sign (the pixel font has no emoji); every word as returned.",
+  "quoteLines": 4,
+  "flagged": 1,
+  "flaggedItem": "Stair railing (painting)",
+  "listItems": 4,
+  "doors": 2,
+  "pricesGuessed": 0,
+  "gotRight": "Four lines, each from the list, each left as [my price]; the railing flagged, not priced.",
+  "ownerMustCheck": "The model never prices the railing: the owner prices the flag and checks every line before it goes out. One run, not a promise it always flags; the captions say check every line.",
+  "where": "Run through Google's Gemini API on GitHub's machine (tools/ai_demo.py), not typed into the Gemini app; labelled (API). The free app may run a different model, so an owner's reply will read differently; the captions say so."
+ },
+ "gemini": {
+  "plansUrl": "https://gemini.google/subscriptions/",
+  "plansShot": "video/studio/demos/out/2026-11-16-price-list-quote-1/page-1.png",
+  "plansRead": "2026-11-01",
+  "plansReadAt": "2026-11-02T03:51:40Z",
+  "freePrice": 0,
+  "confirms": ["Free", "Get everyday help from Google AI to tackle tasks at work, school or home.", "$0/ month with a Google Account"],
+  "gemsNote": "Not used: Google's Gems help page (support.google.com/gemini/answer/15146780, read Nov 1, 2026) says 'Starting in November 2026, Gems will go away on personal Google accounts and automatically transition to skills.' So the setup is a phone note pasted into a chat, not a Gem."
+ },
+ "setup": {
+  "source": "OURS: the system the lesson teaches, built from the prompt that was run; every step is something the run itself did (list, prompt, notes, paste, check)",
+  "steps": 4,
+  "card": ["1. Type your price list in a phone note. Once.", "2. Put this prompt at the top.", "3. After each walkthrough, add your notes and paste it all into Gemini.", "4. Price the flags. Check every line. Then send."]
+ },
+ "story": {
+  "source": "OURS: example story, labeled EXAMPLE on screen; not a real shop or customer",
+  "painters": 2,
+  "typingHour": 10,
+  "room": "living room",
+  "item": "stair railing"
+ }
+}

@@ -2529,6 +2529,27 @@ def read_time_report(first_seen, last_seen, duration, step=0.25):
     return sorted(out, key=lambda x: x[1] - x[2])
 
 
+PIXEL_MOVES = ("levelselect", "dissolve", "gameover", "mosaic", "fade4")   # sets.js room moves on the pixel grid (_shared/sets.md)
+
+
+def room_move_report(moves):
+    """IMPROVE 00a-4 (Nov 1, evening run): M4 wants room changes that travel on the pixel grid, never a plain cut. Every
+    section after the first changes room; SCENE.transitions names its move, else the player falls back to the room's
+    own move, then blinds. Returns a WARN line, or '' when every change uses a pixel-native move."""
+    secs = (moves or {}).get("s") or []
+    tr = (moves or {}).get("t") or {}
+    changes = secs[1:]
+    if not changes:
+        return ""
+    plain = [x for x in changes if tr.get(x) not in PIXEL_MOVES]
+    if not plain:
+        return ""
+    used = sorted({tr[x] for x in changes if tr.get(x) in PIXEL_MOVES})
+    lead = "no room change uses a pixel-native move" if len(plain) == len(changes) else f"{len(plain)} of {len(changes)} room changes use no pixel-native move"
+    return (f"{lead} (M4: SCENE.transitions = {{section: {' | '.join(PIXEL_MOVES)}}}; "
+            f"plain: {', '.join(plain)}" + (f"; used: {', '.join(used)}" if used else "") + ")")
+
+
 def cmd_lint(slug, step=0.25):
     """The layout check in code, before a reviewer has to find it: every settled scene text inside the safe area
     (x 20 to 950, y 262 to 1250), not under the host, the dialog box or other text. Problems that last under 0.5 s
@@ -2541,6 +2562,7 @@ def cmd_lint(slug, step=0.25):
         return max(0, w) * max(0, h)
     hook, hook_bad = hook_report(slug, pg)   # before the world spy, on a clean page
     send_line = pg.evaluate("(window.SCENE && window.SCENE.sendLine) || ''") if is_modern(slug) else None
+    moves = pg.evaluate("(() => { const S = window.SCENE || {}; return {t: S.transitions || {}, s: Object.keys(S.sections || {})}; })()")
     pg.evaluate(WORLD_SPY)
     t, worlds, steps, small, first_seen, last_seen = 0.0, {}, 0, {}, {}, {}
     while t < cues["duration"]:
@@ -2600,6 +2622,9 @@ def cmd_lint(slug, step=0.25):
     if short:   # a warning, not an ERROR (M6, _shared/standard.md): the design gate and render critic judge it
         print(f"WARN lint read time: {len(short)} scene texts leave before a viewer can read them (M6: letters / 15 + 1.5 s): "
               + "; ".join(f"'{s_[:30]}' {held:.1f} of {need:.1f} s" for s_, held, need in short[:12]))
+    plain = room_move_report(moves)
+    if plain:   # a warning, not an ERROR (M4, _shared/standard.md; IMPROVE 00a-4): the design gate judges the travel
+        print("WARN lint room moves: " + plain)
     small = {s_: h_ for s_, h_ in small.items() if h_ < LABEL_FLOOR_PX and any(c.isalnum() for c in s_)}
     if small:   # a warning, not an ERROR: lessons pinned before Oct 31 keep their labels; the design gate weighs them
         print(f"WARN lint type: {len(small)} scene labels under {LABEL_FLOOR_PX} px tall (IMPROVE 00b): "

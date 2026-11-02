@@ -3,6 +3,11 @@
 ## Lessons
 | Lesson | Lane | Test | Read | 3 s hold (FB) | TikTok avg watch / full | IG skip | Shares+saves+follows per 1,000 |
 |---|---|---|---|---|---|---|---|
+| 2026-11-11-lsa-missed-calls | core | none named (before formula.md) | 33 h, Nov 1 8:36 pm, list views (IG 1,288, TT 289, FB 57, YT 51) | not read | hidden | 29.1% at 2.7 h (Oct 31) | hidden (0 shares, 0 saves at 2.7 h) |
+| 2026-11-13-count-before-ai | core | none named (before formula.md) | 25 h, list views (139, 182, 3, 28) | not read | hidden | hidden | hidden |
+| 2026-10-29-quote-revive | core | none named (before formula.md) | 35 h, list views (115, 92, 7, 31) | not read | hidden | hidden | hidden |
+| 2026-11-12-missed-call-text | core | none named (before formula.md) | 12 h, list views (121, 280, 19, 1,296); 24 h read due | not read | hidden | hidden | hidden |
+| 2026-11-14-ai-night-quote | ai | lane (first AI lesson, real reply by 2 s, prompt as the save card) | posted Nov 1 9:24 pm; no read yet (24 h due Nov 2 9:24 pm) | | | | |
 
 ## References
 (Each: platform, link, the counts on the page and the date, then what the first 3 s, the beats, the save moment and the

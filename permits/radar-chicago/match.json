@@ -6,8 +6,8 @@
   "key": "license number (the inspection's license_ field)"
  },
  "licenseToPermit": {
-  "matched": 145,
-  "pct": 42.8,
+  "matched": 128,
+  "pct": 37.8,
   "foodWorded": 86,
   "foodWordedPct": 25.4,
   "key": "address (house number, direction, street, suffix; no unit)",
@@ -18,15 +18,15 @@
   "pct": 5.0
  },
  "allThree": {
-  "matched": 142,
-  "pct": 41.9
+  "matched": 125,
+  "pct": 36.9
  },
  "inspectedNoLicense": {
   "n": 102,
   "withPermit": 34
  },
- "permitOnly": 101,
- "sharedBuildings": 15,
+ "permitOnly": 49,
+ "sharedBuildings": 84,
  "order": {
   "inspection on or before the license": 320,
   "inspection after the license": 2
@@ -37,8 +37,8 @@
    "n": 322
   },
   "permit to first license inspection": {
-   "median": 69,
-   "n": 133
+   "median": 77.0,
+   "n": 118
   },
   "license to first routine inspection": {
    "median": 55,
@@ -46,21 +46,21 @@
   }
  },
  "byStage": {
-  "open": 258,
-  "permitted": 101,
+  "permitted": 49,
   "licensed": 81,
-  "inspected": 102
+  "inspected": 102,
+  "open": 258
  },
  "openBy": {
-  "rule": 241,
-  "routine": 17
+  "routine": 17,
+  "rule": 241
  },
  "byKind": {
-  "restaurant": 358,
-  "other": 56,
-  "grocery": 78,
-  "coffee": 20,
-  "bakery": 10,
+  "restaurant": 324,
+  "other": 31,
+  "grocery": 93,
+  "coffee": 17,
+  "bakery": 5,
   "bar": 8,
   "catering": 11,
   "liquor": 1
@@ -76,8 +76,9 @@
   "school, care or health site": 17,
   "mobile food, no fixed site": 1,
   "another license number of a business already listed at the same address (listed once)": 14,
-  "a current food license already at the site (a remodel, not a new business)": 70,
-  "a home's kitchen, not a food business": 3
+  "work at a food place already there (a repair, remodel or sign), not a new business": 106,
+  "a current food license already at the site (a remodel, not a new business)": 18,
+  "a home's kitchen, not a food business": 1
  },
  "window": {
   "from": "2026-05-06",
@@ -109,7 +110,7 @@
   "foodWordPermits": 743,
   "inspectionsAtAddresses": 15334
  },
- "ranAt": "2026-11-02T16:00:49-06:00",
+ "ranAt": "2026-11-02T16:29:33-06:00",
  "rowsUpdatedAt": {
   "licenses": "2026-10-30T10:10:39+00:00",
   "inspections": "2026-11-02T21:57:46+00:00",

@@ -525,7 +525,7 @@ def holdout_rows(client, picks):
     out = []
     for b in picks:
         w = b["address"].upper().split()
-        num = w[0] if w else ""
+        num = re.match(r"\d+", w[0]).group(0) if w and re.match(r"\d+", w[0]) else ""   # "8235-8237" is house 8235
         dirn = w[1] if len(w) > 2 and w[1] in ("N", "S", "E", "W") else ""
         main = ((w[2] if dirn else w[1]) if len(w) > 1 else "").replace("'", "''")
         def q(ds, sel, where):

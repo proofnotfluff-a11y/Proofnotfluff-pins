@@ -1,4 +1,4 @@
-# Spec: Chicago Restaurant Radar (planned Nov 2, 2026; not built)
+# Spec: Chicago Restaurant Radar (built Nov 2, 2026; private preview, waiting on Todd's go)
 
 Todd, live chat, Nov 2, 2026, about 1:30 pm, after the New Home Radar reel teardown
 (video/studio/research/runs/2026-11-02-new-home-radar-reel.md), picked "Both, restaurants first": build a Radar on our
@@ -54,3 +54,24 @@ Not active until Todd picks a tool and plan and the CONSTITUTION line is written
 sources; manychat.com was blocked from the cloud session): ManyChat's free plan fell to 25 active contacts on Mar 2, 2026,
 Essential from $14 a month billed yearly for 250, Pro from $29; Inro's free plan lists 100 active contacts. Recheck on the
 vendors' own pages before Todd decides.
+
+## Build record, Nov 2, 2026 (live session; major under CONSTITUTION 2: nothing on proofnotfluff.com, no price, nothing sent)
+- Code: tools/radar_chicago.py (the join, runner only), .github/workflows/radar-chicago.yml (dispatch or push; seals the list to
+  permits/radar-chicago/radar-seal.pub.pem, commits counts-only match.json), tools/radar_letters.py (7 trade letters, one source),
+  tools/copy_gate.py --radar-templates and --radar-live, tools/radar_app.py (Today, One business, Rules, Trades, Terms; preview or
+  encrypted build). The private key that opens list.sealed.json stayed with the live session; a new session makes a new key pair
+  (one commit of the .pub.pem) and reruns the workflow.
+- Real order of the City's records: the pre-opening license inspection comes before the license (320 of 322), so the stages run
+  Permitted, Inspected, Licensed, Open.
+- Join (run of Nov 2, 4:30 pm): 339 new food licenses in 180 days; 322 (95.0%) to their license inspection by license number; 128
+  (37.8%) to a permit at the address, 86 (25.4%) whose text names food work; 125 (36.9%) all three. Plus 102 inspected with no license
+  yet and 49 food build-out permits for a new place. 490 businesses, 232 not open yet. Open: 17 by a routine City inspection, 241 by
+  our 30-day rule (labelled). Left out: relicenses and existing businesses (49 same name inspected here before, 55 relicensed, 67
+  added a license), 106 permits for work at a place already there, 18 sites with a current food license.
+- Gates: copy gate PASS (3,430 live letters, 490 x 7); holdout PASS 5 of 5 on round 3 (rounds 1 and 2 failed and were fixed: Express
+  permits, relicenses, one row per business, shared addresses, repair permits); 10 typed rules read as planted; verify_site PASS
+  (6 of 6, flow 22 of 22 at 390 and 1280); axe WCAG 2.1 AA 0 violations on 9 screens at 390 and 1280; design director rounds
+  3.29, 3.86, 3.86, 4.57, then PASS 4.71 on round 5 (no score under 4); its last polish notes applied after.
+- Before go: Todd's look and word; Legal desk (the three datasets' terms, the letters' CAN-SPAM lines); a RADAR_PASSWORD secret
+  only Todd adds; a price inside PLAN V2; then the members' build and the free page through make_site.py.
+

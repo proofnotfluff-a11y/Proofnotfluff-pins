@@ -94,13 +94,28 @@ def subject_name(name, street):
     return name if len(R.words(name)) <= SUBJECT_NAME_WORDS else "your space on " + street
 
 
+LEGAL_TAIL = re.compile(r"[\s,]+(?:L\.?\s?L\.?\s?C\.?|INC\.?|INCORPORATED|CORP\.?|CORPORATION|CO\.|LTD\.?|L\.?L\.?P\.?|P\.?C\.?)\s*$", re.I)
+
+
+def letter_name(name):
+    """The business name as a person writes it in a greeting (design director round 3): no Inc., LLC or Corp, no store
+    number, the first of several names joined by "/". "La Michoacana Premium Express Inc." gives "La Michoacana Premium
+    Express"; "Panda Express #5005" gives "Panda Express"; "Wing It On/Fresh Brothers/Tain" gives "Wing It On"."""
+    n = re.sub(r"\s+", " ", (name or "").split("/")[0]).strip(" ,")
+    for _ in range(3):
+        n = LEGAL_TAIL.sub("", n).strip(" ,")
+    n = re.sub(r"\s*#\s*\d+[A-Z]?$", "", n).strip(" ,")
+    n = re.sub(r"\s+(?:No\.?|Store)\s*\d+$", "", n, flags=re.I).strip(" ,")
+    return n or (name or "").strip()
+
+
 def fill(b, trade, me):
     """(subject, body, sign-off, stop line) for business b (the app's record: name, address, licenseType, events) and the
     member's own details me {me, company, phone, companyAddress}."""
     t = TRADE[trade]
     ev = pick_record(b["events"])
     street = street_of(b["address"])
-    name = b.get("name") or ""
+    name = letter_name(b.get("name") or "")
     who = f"{name} team" if name else "there"
     rec = RECORD_LINE[ev["t"]].format(licenseType=(ev.get("type") or b.get("licenseType") or "").strip() or "food", street=street,
                                       date=R.date_display(ev["d"]))
@@ -113,7 +128,7 @@ def problems(subject, body, sign, stop, b, trade, me):
     """Everything wrong with one filled letter. [] means it passes."""
     p, s = [], subject or ""
     ev = pick_record(b["events"])
-    name = b.get("name") or ""
+    name = letter_name(b.get("name") or "")
     mask = lambda t: re.sub(re.escape(name), "Name", t, flags=re.I) if name else t
     mine = lambda t: re.sub("|".join(re.escape(v) for v in me.values() if v), " ", t)
     n = len(R.words(body))
@@ -214,6 +229,10 @@ def selftest():
     assert body2.startswith("Hi there,") and "building permit for S Ashland Ave on Oct 1." in body2 and s2 == "Hood cleaning for the new space on S Ashland Ave"
     _, body3, _, _ = fill(FIXTURES[3], "signs", FIXTURE_ME)
     assert "Dr Martin Luther King Jr Dr" in body3 and not problems(*fill(FIXTURES[3], "signs", FIXTURE_ME), FIXTURES[3], "signs", FIXTURE_ME), "a business name with 'Open' is City text, not a claim"
+    for raw, want in [("La Michoacana Premium Express Inc.", "La Michoacana Premium Express"), ("Panda Express #5005", "Panda Express"),
+                      ("Wing It On/Fresh Brothers/Tain", "Wing It On"), ("Taqueria Misantla Ver, Inc.", "Taqueria Misantla Ver"),
+                      ("Acme Holdings LLC", "Acme Holdings"), ("Sol Cafe", "Sol Cafe"), ("7-Eleven Store 1234", "7-Eleven"), ("", "")]:
+        assert letter_name(raw) == want, (raw, letter_name(raw))
     assert street_of("1046 1/2 W Argyle St") == "W Argyle St" and fill(FIXTURES[6], "pos", FIXTURE_ME)[0] == "Point of sale for your space on S Pulaski Rd"
     hb = FIXTURES[4]
     s4, b4, g4, t4 = fill(hb, "pest", FIXTURE_ME)

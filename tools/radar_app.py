@@ -118,6 +118,14 @@ def vocab(zips, areas):
             "stageLabel": dict(RC.STAGE_LABEL, notopen="Not open yet"), "aliases": {" ".join(norm(k)): v for k, v in ALIASES.items()}}
 
 
+def undash(v):
+    """The City's own text with its en and em dashes made plain ("PERMIT \u2013 EXPRESS PERMIT PROGRAM" shows as "Express Permit Program")."""
+    if not isinstance(v, str):
+        return v
+    v = re.sub(r"^(?:Permit|PERMIT)\s*[\u2013\u2014-]\s*", "", v)
+    return re.sub(r"\s*[\u2013\u2014]\s*", " - ", v)
+
+
 def payload(full):
     o = geo_map.outline()
     proj = o["project"]
@@ -127,12 +135,12 @@ def payload(full):
         x = y = None
         if b.get("lat") and b.get("lon"):
             x, y = proj(b["lon"], b["lat"])
-        biz.append({"id": b["id"], "n": b["name"], "a": b["address"], "z": b.get("zip") or "", "ar": b.get("area") or "", "lat": b.get("lat"), "lon": b.get("lon"),
+        biz.append({"id": b["id"], "n": b["name"], "a": re.sub(r"(?<=\w) And (?=\w)", " and ", b["address"]), "z": b.get("zip") or "", "ar": b.get("area") or "", "lat": b.get("lat"), "lon": b.get("lon"),
                     "x": None if x is None else round(x, 1), "y": None if y is None else round(y, 1), "k": b["kind"], "s": b["stage"], "sd": b["stageDate"],
                     "ob": b.get("openBy") or "", "lt": b.get("licenseType") or "", "ot": b.get("otherTypes") or [], "ac": b.get("activity") or "",
                     "hi": b.get("history") or "", "sh": bool(b.get("shared")), "li": b.get("lics") or [], "f": b["first"], "l": b["last"],
-                    "st": RL.street_of(b["address"]), "rec": {"t": rec["t"], "d": rec["d"], "ty": rec.get("type") or ""} if rec else None,
-                    "ev": [{k: v for k, v in e.items() if v not in (None, "", False)} for e in b["events"]]})
+                    "st": RL.street_of(b["address"]), "ln": RL.letter_name(b["name"]), "rec": {"t": rec["t"], "d": rec["d"], "ty": rec.get("type") or ""} if rec else None,
+                    "ev": [{k: undash(v) for k, v in e.items() if v not in (None, "", False)} for e in b["events"]]})
     zips = full.get("zips") or {}
     centers = area_centers()
     return {"asOf": full["asOf"], "window": full["window"], "biz": biz, "source": full["source"], "match": {k: full["match"].get(k) for k in ("byStage", "licensedFood")},
@@ -144,12 +152,16 @@ def letters_json():
             "rules": LETTER_RULES}
 
 
+FOOT = ("Public City of Chicago records as of __ASOF__. ProofNotFluff is not affiliated with or endorsed by the City of Chicago. "
+        "Made with AI assistance. Read the Terms of Use.")
+
+
 def legal_html():
-    """Two paragraphs: the City's records and its disclaimer word for word, then ours."""
-    assert LEGAL.count(TERMS_LINK) == 1 and LEGAL.count(CITY_DISCLAIMER) == 1
-    cut = LEGAL.index(CITY_DISCLAIMER) + len(CITY_DISCLAIMER)
-    a, b = LEGAL[:cut], LEGAL[cut:].strip()
-    return f"<p>{_esc(a)}</p><p>" + _esc(b).replace(TERMS_LINK, f'<a href="#/terms">{TERMS_LINK}</a>') + "</p>"
+    """The footer: one line (with the Terms link), then the City's disclaimer word for word. Our full notice (LEGAL) is on
+    the Terms screen."""
+    assert FOOT.count(TERMS_LINK) == 1 and LEGAL.count(CITY_DISCLAIMER) == 1
+    return f"<p>" + _esc(FOOT).replace(TERMS_LINK, f'<a href="#/terms">{TERMS_LINK}</a>') + f'</p><p class="cd">{_esc(CITY_DISCLAIMER)}</p>'
+
 
 
 def as_of_text(iso):
@@ -170,6 +182,7 @@ def build_html(full, password=None):
     return (PAGE.replace("__BASECSS__", base_css()).replace("__GMCSS__", re.search(r"<style>(.*?)</style>", geo_map.CSS, re.S).group(1))
             .replace("__BOOT__", boot).replace("__LETTERS__", js(letters_json())).replace("__GRAMMAR__", GRAMMAR_JS).replace("__LETTERJS__", LETTER_JS)
             .replace("__STAGEHELP__", js(STAGE_HELP)).replace("__CITY__", js(CITY_DISCLAIMER)).replace("__LEGAL__", legal_html())
+            .replace("__NOTICE__", js(LEGAL.replace("__ASOF__", asof).replace(" Read the Terms of Use.", "")))
             .replace("__ASOF__", asof).replace("__PREVIEWCLASS__", "" if password else " preview"))
 
 
@@ -249,7 +262,7 @@ const L_MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","
 function lDate(iso){const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(iso||"");return m?L_MON[+m[2]-1]+" "+(+m[3]):"";}
 function lFmt(t,o){return t.replace(/\{(\w+)\}/g,(_,k)=>o[k]??"");}
 function letterFor(b,trade,me,LT){const t=LT.trades.find(x=>x.key===trade);const r=b.rec;if(!t||!r)return null;
-const name=b.n||"";const who=name?name+" team":"there";
+const name=b.ln||"";const who=name?name+" team":"there";
 const rec=lFmt(LT.record[r.t],{licenseType:(r.ty||b.lt||"").trim()||"food",street:b.st,date:lDate(r.d)});
 const nw=(name.match(/[A-Za-z0-9$][A-Za-z0-9$'.,%-]*/g)||[]).length;const subject=lFmt(t.subject,{name:!name?"the new space on "+b.st:nw<=LT.subjectWords?name:"your space on "+b.st});
 const body=[lFmt(LT.open,Object.assign({who},me)),rec,t.offer,t.ask].join(" ");
@@ -281,21 +294,34 @@ __GMCSS__
 .sc .n{font:700 34px/1 var(--head);letter-spacing:-.02em;margin:4px 0 6px;font-variant-numeric:tabular-nums}
 .sc .t{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px}.sc .t .ar{margin-left:auto;color:var(--muted)}
 .sc .w{font-size:13.5px;color:var(--muted)}.sc .w .nt{display:inline-block;padding:1px 7px;border-radius:6px;background:var(--paper2);color:var(--ink);font-weight:700;font-size:12.5px;margin-right:2px}
-.sc.open{background:#F7F5F0;box-shadow:none}.sc.open .n{font-size:26px;margin:8px 0 8px}
-.ph.hero{align-items:flex-end}.cta{min-height:48px;padding:0 20px;font-size:15.5px;white-space:nowrap}
+
+.ph.hero{align-items:flex-end}.cta{min-height:48px;padding:0 20px;font-size:15.5px;white-space:nowrap;margin:16px 0 0}
 @media(max-width:700px){.ph.hero .cta{width:100%}}
 @media(min-width:1021px){.stick{position:sticky;top:76px;align-self:start}}
 .next{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;margin:24px 0 0;padding:18px 20px;border-radius:var(--r);background:#fff;border:1px dashed #D8CFBE}
 .next p{margin:0;font-weight:600;color:var(--ink2)}
 @media(max-width:600px){.next .btn{width:100%}}
-.foot-legal p{max-width:720px;font-size:13px;margin:0 0 10px}
+.foot-legal p{max-width:720px;font-size:13px;margin:0 0 8px}.foot-legal .cd{font-size:12px}
 .sec-h.wrap{flex-wrap:wrap}
 .fbar select,.mfind select{appearance:none;-webkit-appearance:none;height:44px;border-radius:10px;padding:0 38px 0 12px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%231D2433' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 14px center;cursor:pointer}
 .fbar select:focus-visible,.mfind select:focus-visible{outline:none;box-shadow:var(--focus);border-color:var(--blue)}
 .to{margin:14px 0 8px;font-size:14px;color:var(--ink2)}.to b{color:var(--ink)}
 .cpn{margin:8px 0 0;font-size:13px;color:var(--muted)}
-#cp[aria-disabled=true]{opacity:.6}
-.terms{max-width:820px;margin:0 auto}.terms .tx p{max-width:none}
+details.how,details.srules{margin:12px 0 0}details.how summary,details.srules summary{display:inline-flex;align-items:center;gap:8px;min-height:44px;cursor:pointer;color:var(--blue);font-weight:600;font-size:14px;list-style:none}
+details.how summary::-webkit-details-marker,details.srules summary::-webkit-details-marker{display:none}
+details.how summary::after,details.srules summary::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px)}
+details.how[open] summary::after,details.srules[open] summary::after{transform:rotate(-135deg)}
+.btn.quiet{border-color:var(--line);color:var(--ink2);font-weight:600}
+@media(max-width:600px){.lacts .btn{flex:1 1 100%}.rc{min-height:44px}.rc button{width:44px;height:44px}
+ .ph+.tsw{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px 14px;padding:0 44px 0 16px;-webkit-mask-image:linear-gradient(90deg,#000 80%,transparent);mask-image:linear-gradient(90deg,#000 80%,transparent)}
+ .ph+.tsw::-webkit-scrollbar{display:none}.ph+.tsw button{flex:none}
+ .ltr .tsw{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -20px 14px;padding:0 44px 0 20px;-webkit-mask-image:linear-gradient(90deg,#000 80%,transparent);mask-image:linear-gradient(90deg,#000 80%,transparent)}
+ .ltr .tsw::-webkit-scrollbar{display:none}.ltr .tsw button{flex:none}.tl3 .top a{flex-basis:100%}}
+.terms{max-width:820px;margin:0}@media(max-width:600px){.terms .tx{padding:0 16px 16px}}
+@media(min-width:701px){table.rt{table-layout:fixed}table.rt th:nth-child(1){width:42%}table.rt th.c-ar{width:21%}table.rt th.c-mi{width:9%}table.rt th.c-st{width:14%}}
+.rt .bn{text-wrap:balance}
+#cp[aria-disabled=true],.tl3 [aria-disabled=true]{background:#fff;border-color:var(--line);color:var(--muted);opacity:1}
+.terms .tx p{max-width:none}
 .sc .h{font-size:13px;color:var(--muted);margin:8px 0 0;line-height:1.4}
 .sc[aria-current=true]{background:var(--ink);border-color:var(--ink);color:#fff;border-top-color:var(--c)}.sc[aria-current=true] .w,.sc[aria-current=true] .h,.sc[aria-current=true] .t .ar{color:#C9CFDB}.sc[aria-current=true] .w b{color:#F7B9A5}
 @media(hover:hover){.sc:hover .t span{text-decoration:underline;text-underline-offset:3px}}
@@ -307,13 +333,19 @@ __GMCSS__
 .fbar{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:center;padding:0 20px 14px}
 .fbar .seg{border-color:var(--line)}
 .fbar select{height:44px;padding:0 36px 0 12px;border:1px solid var(--field);border-radius:10px;background:#fff;font-weight:600;font-size:14.5px;max-width:100%}
+.mapj{display:none}@media(max-width:1020px){.mapj{display:inline-flex}}
+@media(max-width:600px){.fbar select{width:100%}}.mapj{align-items:center;gap:6px;text-decoration:none}
+.mleg{gap:6px 10px}@media(max-width:600px){.mleg{font-size:12.5px;gap:4px 10px}}
+.ph .lede{font-size:17px;color:var(--ink2);margin:8px 0 0}.ph .src{font-size:14px;margin:6px 0 0}
+@media(max-width:600px){.sec-h.wrap,.sec-h:has(#tH){flex-wrap:wrap}.sec-h:has(#tH) a{margin:0;flex-basis:100%}}
+.tl3 .btn{min-height:44px}
 .clr{border:0;background:none;color:var(--blue);font-weight:600;font-size:14px;min-height:44px;padding:0 6px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 table.rt{width:100%;border-collapse:collapse;font-size:14.5px}
 .rt th{text-align:left;font-size:12.5px;font-weight:700;color:var(--muted);padding:10px 12px;border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);background:#FBFAF7;white-space:nowrap}
 .rt th:first-child,.rt td:first-child{padding-left:20px}.rt th:last-child,.rt td:last-child{padding-right:20px}
 .rt td{padding:12px;border-bottom:1px solid var(--line2);vertical-align:top}
 .rt tr:hover td{background:#FBFAF7}
-.rt .bn{font:700 15.5px/1.3 var(--head);color:var(--ink);text-decoration:none}
+.rt .bn{font:700 15.5px/1.3 var(--body);color:var(--ink);text-decoration:none}
 .rt .bn:hover{text-decoration:underline;text-underline-offset:3px}
 
 .rt .sub{display:block;color:var(--muted);font-size:13px;margin-top:2px}
@@ -336,17 +368,17 @@ table.rt{width:100%;border-collapse:collapse;font-size:14.5px}
 .rmap .gm-a path.sel{stroke:var(--ink);stroke-width:2.5}
 .rmap .gm-a path:hover{stroke:var(--ink);stroke-width:1.6}
 .rmap .gm-a path{cursor:pointer}
-.rmap .dots circle{stroke:#fff;stroke-width:.8;pointer-events:none}
-.rmap .dots .permitted{fill:var(--s-permitted)}.rmap .dots .inspected{fill:#B88A1E}.rmap .dots .licensed{fill:var(--s-licensed)}.rmap .dots .open{fill:#6B6E7E}
+.dots circle,.dots rect,.dots polygon{stroke:#fff;stroke-width:.8;pointer-events:none}.mleg svg.dots *{stroke:none}
+.dots .permitted{fill:var(--s-permitted)}.dots .inspected{fill:#B88A1E}.dots .licensed{fill:var(--s-licensed)}.dots .open{fill:#6B6E7E}
 .mleg{display:flex;flex-wrap:wrap;gap:6px 14px;margin:10px 2px 0;font-size:13px;color:var(--ink2)}
 .mleg span{display:inline-flex;align-items:center;gap:6px}.mleg i{width:10px;height:10px;border-radius:50%;display:inline-block}
 .mleg .scale{gap:0}.mleg .scale i{border-radius:2px;width:16px;margin:0}.mleg .scale i:last-of-type{margin-right:6px}
 .mfind{display:grid;gap:4px;margin:0 0 10px;font-size:12.5px;font-weight:700;color:var(--muted)}
 .mfind select{height:44px;padding:0 12px;border:1px solid var(--field);border-radius:10px;background:#fff;font-weight:600;font-size:14.5px;color:var(--ink)}
 .mtop{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:2px}
-.mtop button{display:flex;width:100%;align-items:center;gap:10px;min-height:44px;padding:0 10px;border:0;border-radius:8px;background:none;font-size:14.5px;cursor:pointer;color:var(--ink);text-align:left}
+.mtop button{display:grid;grid-template-columns:minmax(0,150px) minmax(0,1fr) 36px;width:100%;align-items:center;gap:10px;min-height:44px;padding:0 10px;border:0;border-radius:8px;background:none;font-size:14.5px;cursor:pointer;color:var(--ink);text-align:left}
 .mtop button:hover{background:var(--paper)}.mtop button b{margin-left:auto;font-variant-numeric:tabular-nums}
-.mtop .bar2{flex:0 0 90px;height:8px;border-radius:4px;background:var(--paper2);overflow:hidden}.mtop .bar2 i{display:block;height:100%;background:var(--accent)}
+.mtop button span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.mtop button b{text-align:right}.mtop .bar2{height:8px;border-radius:4px;background:var(--paper2);overflow:hidden}.mtop .bar2 i{display:block;height:100%;background:var(--accent)}
 /* business page */
 .bh{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px 20px;margin:0 0 18px}
 .bh h1{font-size:30px}@media(max-width:600px){.bh h1{font-size:24px}}
@@ -361,7 +393,8 @@ table.rt{width:100%;border-collapse:collapse;font-size:14.5px}
 .steps4 li.permitted{--c:var(--s-permitted)}.steps4 li.inspected{--c:#B88A1E}.steps4 li.licensed{--c:var(--s-licensed)}.steps4 li.open{--c:#6B6E7E}
 @media(max-width:600px){.steps4{grid-template-columns:minmax(0,1fr);padding:12px 16px}.steps4 li{padding:0 0 14px 30px}.steps4 li::before{left:7px;right:auto;top:20px;bottom:0;width:3px;height:auto}.steps4 li:last-child::before{display:none}.steps4 li b{margin:0 0 2px}}
 .bg2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:20px;align-items:start}
-@media(max-width:1020px){.bg2{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:1020px){.bg2{grid-template-columns:minmax(0,1fr)}.bg2>section:last-child{order:-1}.jl{display:none!important}}
+@media(max-width:700px){.bh{flex-direction:column;align-items:flex-start;gap:10px}}
 .tl2{list-style:none;margin:0;padding:4px 20px 12px}
 .tl2>li{position:relative;padding:0 0 18px 28px}
 .tl2>li::before{content:"";position:absolute;left:6px;top:20px;bottom:-2px;width:2px;background:var(--line)}
@@ -370,9 +403,9 @@ table.rt{width:100%;border-collapse:collapse;font-size:14.5px}
 .tl2 li.permit{--c:var(--s-permitted)}.tl2 li.linsp{--c:#B88A1E}.tl2 li.license{--c:var(--s-licensed)}.tl2 li.routine{--c:#6B6E7E}
 .tl2 .hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}.tl2 .hd b{font-size:15px}.tl2 .hd .d{color:var(--muted);font-size:14px;font-variant-numeric:tabular-nums}
 .tl2 p{margin:4px 0 0;font-size:14px;color:var(--ink2)}
-.tl2 .res{display:inline-block;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:6px;background:var(--paper);color:var(--ink2);margin-left:2px}
+.tl2 .rl{margin-top:6px}.tl2 .res{display:inline-block;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:6px;background:var(--paper);color:var(--ink2);margin-left:2px}
 .tl2 a.src{display:inline-flex;align-items:center;gap:6px;min-height:44px;margin:-6px 0 -10px;font-size:14px;font-weight:600}
-.jl{display:none!important}@media(max-width:1020px){.jl{display:inline-flex!important}}
+.jl{display:none!important}
 #lH{scroll-margin-top:calc(var(--bar-h) + 12px)}
 .facts2{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 16px;margin:0;padding:4px 20px 18px;font-size:14.5px}
 .facts2 dt{color:var(--muted);font-weight:600}.facts2 dd{margin:0;color:var(--ink)}
@@ -403,9 +436,9 @@ details.me[open] summary::after{transform:rotate(-135deg)}
 .rbox{padding:20px}
 .rbox label.big{display:block;font:600 15px var(--body);margin:0 0 8px}
 .rin{display:flex;gap:10px}
-@media(max-width:600px){.rin{flex-direction:column}.rin input{flex:none;width:100%;height:52px;font-size:16px}.rin .btn{width:100%}}
-.rin input{flex:1 1 auto;min-width:0;height:52px;padding:0 16px;border:1px solid var(--field);border-radius:12px;font-size:17px;background:#fff;color:var(--ink)}
-.rin input:focus{outline:none;box-shadow:var(--focus);border-color:var(--blue)}
+@media(max-width:600px){.rin{flex-direction:column}.rin textarea{flex:none;width:100%;font-size:16px}.rin .btn{width:100%}}
+.rin textarea{flex:1 1 auto;min-width:0;min-height:52px;padding:13px 16px;border:1px solid var(--field);border-radius:12px;font:17px/1.4 var(--body);background:#fff;color:var(--ink);resize:none;overflow:hidden}
+.rin textarea:focus{outline:none;box-shadow:var(--focus);border-color:var(--blue)}
 .rin .btn{height:52px}
 .rhelp{margin:10px 0 0;font-size:13.5px;color:var(--muted)}
 .exs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
@@ -417,9 +450,8 @@ details.me[open] summary::after{transform:rotate(-135deg)}
 .rc .k{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;opacity:.8}
 .rc button{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;border:0;background:transparent;color:inherit;cursor:pointer}
 .rc button:hover{background:rgba(29,36,51,.08)}
-.rc.trade{background:#EFE9F7;border-color:#D9CCEB;color:#4B3577}.rc.stage{background:var(--s-licensed-bg);border-color:#B9D6D1;color:#1E4C48}
-.rc.kind{background:#FBEAE4;border-color:#EFC9BB;color:#7E2E17}.rc.place{background:var(--s-permitted-bg);border-color:#C3D3E8;color:#23497A}
-.rc.time{background:#F6EDD5;border-color:#E6D3A3;color:#5E450D}.rc.order{background:#ECE6DA;border-color:#D8CFBE;color:#3A4152}
+.rc.trade,.rc.stage,.rc.kind,.rc.place,.rc.time,.rc.order{background:#fff;border-color:#CFC8BB;color:var(--ink)}
+.rc .k{color:var(--muted);opacity:1}
 .rc.no{background:var(--warn-bg);border-color:#EBC9A2;color:var(--warn);border-style:dashed;padding-right:12px}
 .nohint{margin:0;font-size:13.5px;color:var(--warn)}
 .rres{margin:20px 0 0}
@@ -432,12 +464,14 @@ details.me[open] summary::after{transform:rotate(-135deg)}
 /* trades */
 .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;padding:0 0 18px}
 .tl3{list-style:none;margin:0;padding:0}
+@media(min-width:1100px){.tl3{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line2)}.tl3 li{border-top:0;border-bottom:1px solid var(--line2)}.tl3 li:nth-child(odd){border-right:1px solid var(--line2)}.tl3 .lp{max-width:none}}
 .tl3 li{padding:14px 20px;border-top:1px solid var(--line2)}
-.tl3 .top{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}.tl3 .top a{font:700 15.5px var(--head);color:var(--ink)}
+.tl3 .top{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}.tl3 .top a{font:700 15.5px var(--body);color:var(--ink)}
 .tl3 .top .sub{color:var(--muted);font-size:13.5px}
 .tl3 .lp{margin:8px 0 0;padding:10px 12px;border-radius:8px;background:#FFFEFB;border:1px solid var(--line2);font-size:14px;color:var(--ink2)}
 .tl3 .lp{max-width:72ch}.tl3 .lp b{color:var(--ink)}.tl3 .lp .fl{background:#FCEEDD;color:#5B3A0C;border-radius:4px;padding:0 2px;font-weight:600}
-.tl3 .la{display:flex;gap:8px;margin:8px 0 0}
+.tme{padding:0 20px 14px}.tme details.me{margin:0}
+.tl3 .la{display:flex;gap:8px;margin:8px 0 0}.tnote{margin:-6px 20px 12px}
 .terms .tx{padding:0 20px 18px}.terms .tx p{margin:0 0 10px}
 </style></head><body class="__PREVIEWCLASS__">
 <a class="skip" href="#app" id="skip">Skip to main content</a>
@@ -468,6 +502,7 @@ __BOOT__
 const LT=__LETTERS__;
 const STAGE_HELP=__STAGEHELP__;
 const CITY=__CITY__;
+const NOTICE=__NOTICE__;
 __GRAMMAR__
 __LETTERJS__
 const $=s=>document.querySelector(s);
@@ -482,7 +517,7 @@ const EV={permit:"Building permit",linsp:"Food license inspection",license:"New 
 const sp=(s,lg)=>`<span class="sp ${s}${lg?" lg":""}"><i aria-hidden="true"></i>${SL[s]}</span>`;
 const I={home:'<path d="M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>',rule:'<path d="M4 6h16M4 12h10M4 18h7"/><circle cx="18" cy="16" r="3"/><path d="m20.2 18.2 1.8 1.8"/>',
 trade:'<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/>',back:'<path d="M15 18l-6-6 6-6"/>',x:'<path d="M6 6l12 12M18 6 6 18"/>',
-ext:'<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',copy:'<path d="M9 9h11v11H9z"/><path d="M5 15V5a1 1 0 0 1 1-1h9"/>',chev:'<path d="m9 6 6 6-6 6"/>'};
+map:'<path d="M9 4 3 6.5v13.5L9 17.5l6 2.5 6-2.5V4l-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/>',ext:'<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',copy:'<path d="M9 9h11v11H9z"/><path d="M5 15V5a1 1 0 0 1 1-1h9"/>',chev:'<path d="m9 6 6 6-6 6"/>'};
 const ico=(n,c)=>`<svg class="ico${c?" "+c:""}" viewBox="0 0 24 24" aria-hidden="true">${I[n]}</svg>`;
 function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("on"),2600);}
 function say(t){const el=$("#live");el.textContent="";setTimeout(()=>{el.textContent=t;},60);}
@@ -518,32 +553,33 @@ setNav(nav);window.scrollTo(0,0);const h=$("#app h1");if(h&&route.ready){h.setAt
 
 /* ---------- Today ---------- */
 const stageOk=(b,st)=>!st||(st==="moving"?b.s!=="open":b.s===st);
-function viewToday(q){const st=q.get("s")||"",ar=q.get("ar")||"",wd=+(q.get("w")||0),n=+(q.get("n")||40);
+function viewToday(q){const st0=q.get("s")||"",st=st0==="all"?"":(st0||"moving"),ar=q.get("ar")||"",wd=+(q.get("w")||0),n=+(q.get("n")||40);
 const all=D.biz,moving=all.filter(b=>b.s!=="open");const wk=weekFrom();
 document.title="Today | Chicago Restaurant Radar";
 const cnt={};for(const s of STAGES){const r=all.filter(b=>b.s===s);cnt[s]={n:r.length,w:r.filter(b=>b.sd>=wk).length};}
 const wf=wd?addDays(D.asOf,-(wd-1)):"";let rows=all.filter(b=>stageOk(b,st)&&(!ar||b.ar===ar)&&(!wf||b.sd>=wf));rows.sort((a,b)=>b.sd.localeCompare(a.sd)||b.id.localeCompare(a.id));
 const thisWeek=moving.filter(b=>b.sd>=wk).length;
-const href=(o)=>{const p=new URLSearchParams();const s2=o.s??st,a2=o.ar??ar,w2=o.w??wd;if(s2)p.set("s",s2);if(a2)p.set("ar",a2);if(+w2)p.set("w",w2);if(o.n)p.set("n",o.n);const t=p.toString();return "#/"+(t?"?"+t:"");};
+const href=(o)=>{const p=new URLSearchParams();const s2=o.s??(st||"all"),a2=o.ar??ar,w2=o.w??wd;if(s2&&s2!=="moving")p.set("s",s2);if(a2)p.set("ar",a2);if(+w2)p.set("w",w2);if(o.n)p.set("n",o.n);const t=p.toString();return "#/"+(t?"?"+t:"");};
 const areas=[...new Set(all.map(b=>b.ar).filter(Boolean))].sort();
 $("#app").innerHTML=`<div class="ph hero"><div><p class="eyebrow">Chicago Restaurant Radar</p><h1>${int(moving.length)} Chicago food businesses moving toward opening</h1>
-<p>From the City of Chicago's building permits, food inspections and business licenses, ${esc(day(D.window.from))} to ${esc(day(D.asOf))}. Each one sits in the furthest stage its City records reach.</p></div>
-<a class="btn pri cta" href="#/?s=moving&w=7">See this week's ${int(thisWeek)}</a></div>
-<nav class="stg" aria-label="Stages">${STAGES.map(s=>`<a class="sc ${s}" href="${href({s:st===s?"":s,w:0,n:0})}"${st===s?' aria-current="true"':""}><span class="t"><span>${SL[s]}</span>${ico("chev","s ar")}</span><span class="n">${int(cnt[s].n)}</span>
+<p class="lede">Who to reach this week, with a first letter written for your trade, from the City's own records.</p>
+<p class="src">Building permits, food inspections and business licenses, ${esc(day(D.window.from))} to ${esc(day(D.asOf))}. Each business sits in the furthest stage its City records reach.</p>
+<a class="btn pri cta" href="#/?s=moving&w=7">See this week's ${int(thisWeek)}</a></div></div>
+<nav class="stg" aria-label="Stages">${STAGES.map(s=>`<a class="sc ${s}" href="${href({s:st===s?"moving":s,w:0,n:0})}"${st===s?' aria-current="true"':""}><span class="t"><span>${SL[s]}</span>${ico("chev","s ar")}</span><span class="n">${int(cnt[s].n)}</span>
 <span class="w">${cnt[s].w?`<span class="nt">${int(cnt[s].w)} new</span> this week`:"none new this week"}</span><span class="h">${esc(STAGE_HELP[s])}</span></a>`).join("")}</nav>
-<div class="tdy"><section class="panel" aria-labelledby="tH"><div class="sec-h"><h2 id="tH">${st||ar||wd?int(rows.length)+" match, newest first":"All "+int(rows.length)+", newest first"}</h2><a href="#/rules">Write a rule</a></div>
-<div class="fbar"><label class="sr" for="fs">Stage</label><select id="fs"><option value="">All stages</option><option value="moving"${st==="moving"?" selected":""}>Not open yet</option>${STAGES.map(s=>`<option value="${s}"${s===st?" selected":""}>${SL[s]}</option>`).join("")}</select>
+<div class="tdy"><section class="panel" aria-labelledby="tH"><div class="sec-h"><h2 id="tH">${st==="moving"&&!ar&&!wd?int(rows.length)+" not open yet, newest first":!st&&!ar&&!wd?"All "+int(rows.length)+", newest first":int(rows.length)+" match, newest first"}</h2>${st==="moving"?`<a href="${href({s:"all",n:0})}">Include ${int(cnt.open.n)} open</a>`:`<a href="#/rules">Write a rule</a>`}</div>
+<div class="fbar"><label class="sr" for="fs">Stage</label><select id="fs"><option value="all"${!st?" selected":""}>All stages</option><option value="moving"${st==="moving"?" selected":""}>Not open yet</option>${STAGES.map(s=>`<option value="${s}"${s===st?" selected":""}>${SL[s]}</option>`).join("")}</select>
 <label class="sr" for="fa">Community area</label><select id="fa"><option value="">All community areas</option>${areas.map(a=>`<option${a===ar?" selected":""}>${esc(a)}</option>`).join("")}</select>
 <label class="sr" for="fw">Reached the stage</label><select id="fw"><option value="0">Any time</option><option value="7"${wd===7?" selected":""}>New this week</option><option value="30"${wd===30?" selected":""}>Last 30 days</option></select>
-${st||ar||wd?`<button class="clr" type="button" id="clr">Clear filters</button>`:""}</div>
+${(st&&st!=="moving")||ar||wd?`<button class="clr" type="button" id="clr">Clear filters</button>`:""}<button class="clr mapj" type="button" id="mapj">${ico("map","s")}Show the map</button></div>
 ${rowsTable(rows.slice(0,n),false)}${rows.length>n?`<div class="more"><a class="btn" href="${href({n:n+40})}">Show ${int(Math.min(40,rows.length-n))} more</a></div>`:""}</section>
 <section class="panel stick" aria-labelledby="mH"><div class="sec-h"><h2 id="mH">Where they are</h2></div><div class="rmap">${mapHtml(all.filter(b=>stageOk(b,st)),ar)}</div></section></div>
 <section class="next"><p>Sell to one trade? Type it once and the radar keeps your list.</p><a class="btn pri" href="#/rules">Write a rule</a></section>`;
 $("#fs").onchange=e=>go(href({s:e.target.value,n:0}));$("#fa").onchange=e=>go(href({ar:e.target.value,n:0}));$("#fw").onchange=e=>go(href({w:e.target.value,n:0}));
-if($("#clr"))$("#clr").onclick=()=>go("#/");
+if($("#clr"))$("#clr").onclick=()=>go("#/");$("#mapj").onclick=()=>{const h=$("#mH");h.scrollIntoView({behavior:"smooth",block:"start"});h.setAttribute("tabindex","-1");h.focus({preventScroll:true});};
 wireMap(href);}
 function rowsTable(rows,dist){if(!rows.length)return `<p class="empty">No businesses match. Clear a filter or a chip to see more.</p>`;
-return `<table class="rt"><thead><tr><th scope="col">Business</th><th scope="col">Community area</th>${dist?'<th scope="col">Miles</th>':""}<th scope="col">Stage</th><th scope="col">Reached the stage</th></tr></thead><tbody>${rows.map(b=>{const e=stageEv(b);
+return `<table class="rt"><thead><tr><th scope="col">Business</th><th scope="col" class="c-ar">Community area</th>${dist?'<th scope="col" class="c-mi">Miles</th>':""}<th scope="col" class="c-st">Stage</th><th scope="col">Reached the stage</th></tr></thead><tbody>${rows.map(b=>{const e=stageEv(b);
 return `<tr><td class="c-b"><a class="bn${b.n?"":" np"}" href="#/b/${esc(b.id)}">${esc(title(b))}</a><span class="sub">${esc(V.kindLabel[b.k])}</span></td><td class="c-a">${esc(b.ar||"Area not on record")}</td>${dist?`<td class="c-m mi">${b._mi==null?"":b._mi.toFixed(1)+" mi"}</td>`:""}<td class="c-s">${sp(b.s)}</td><td class="c-d dt">${esc(dayShort(b.sd))}<small>${esc(e)}</small></td></tr>`;}).join("")}</tbody></table>`;}
 function stageEv(b){if(b.s==="open")return b.ob==="rule"?"30 days after license":"Routine inspection";return {permitted:"Building permit",inspected:"Food license inspection",licensed:"New license"}[b.s];}
 function mapHtml(rows,sel){const M=D.map;const by={};for(const b of rows)if(b.ar)by[b.ar]=(by[b.ar]||0)+1;const mx=Math.max(1,...Object.values(by));
@@ -552,22 +588,29 @@ const top=Object.entries(by).sort((a,b)=>b[1]-a[1]).slice(0,6);
 return `<label class="mfind">Community area<select id="mf"><option value="">Whole city</option>${M.areas.map(a=>a.name).sort().map(n=>`<option${n===sel?" selected":""}>${esc(n)}</option>`).join("")}</select></label>
 <div class="gm-stage"><svg viewBox="0 0 ${M.w} ${M.h}" role="img" aria-labelledby="mT"><title id="mT">Map of Chicago community areas with a dot for each business, colored by stage</title>
 <g class="gm-a">${M.areas.map(a=>`<path data-a="${esc(a.name)}" class="${cls(by[a.name])}${a.name===sel?" sel":""}" d="${a.d}"><title>${esc(a.name)}: ${int(by[a.name]||0)}</title></path>`).join("")}</g>
-<g class="dots">${rows.filter(b=>b.x!=null).map(b=>`<circle class="${b.s}" cx="${b.x}" cy="${b.y}" r="2.6"/>`).join("")}</g></svg></div>
-<div class="mleg" aria-hidden="true">${STAGES.map(s=>`<span><i class="lg-${s}"></i>${SL[s]}</span>`).join("")}</div>
+<g class="dots">${rows.filter(b=>b.x!=null).map(b=>mark(b.s,b.x,b.y,4.2)).join("")}</g></svg></div>
+<div class="mleg" aria-hidden="true">${STAGES.map(s=>`<span><svg viewBox="-6 -6 12 12" width="12" height="12" class="dots">${mark(s,0,0,4.6)}</svg>${SL[s]}</span>`).join("")}</div>
 <ul class="mtop" aria-label="Community areas with the most businesses">${top.map(([n,c])=>`<li><button type="button" data-a="${esc(n)}"><span>${esc(n)}</span><span class="bar2" aria-hidden="true"><i style="width:${Math.round(100*c/mx)}%"></i></span><b>${int(c)}</b></button></li>`).join("")}</ul>`;}
+function mark(s,x,y,r){if(s==="inspected")return `<rect class="${s}" x="${(x-r*.85).toFixed(1)}" y="${(y-r*.85).toFixed(1)}" width="${(r*1.7).toFixed(1)}" height="${(r*1.7).toFixed(1)}"/>`;
+if(s==="licensed")return `<polygon class="${s}" points="${x},${(y-r*1.1).toFixed(1)} ${(x+r).toFixed(1)},${(y+r*.75).toFixed(1)} ${(x-r).toFixed(1)},${(y+r*.75).toFixed(1)}"/>`;
+if(s==="open")return `<polygon class="${s}" points="${x},${(y-r).toFixed(1)} ${(x+r).toFixed(1)},${y} ${x},${(y+r).toFixed(1)} ${(x-r).toFixed(1)},${y}"/>`;
+return `<circle class="${s}" cx="${x}" cy="${y}" r="${r}"/>`;}
 function wireMap(href){const pick=a=>go(href({ar:a,n:0}));const f=$("#mf");if(f)f.onchange=e=>pick(e.target.value);
 document.querySelectorAll(".rmap .gm-a path").forEach(p=>p.addEventListener("click",()=>pick(p.dataset.a===parse().q.get("ar")?"":p.dataset.a)));
 document.querySelectorAll(".mtop button").forEach(b=>b.onclick=()=>pick(b.dataset.a));
-document.querySelectorAll(".mleg i[class^=lg-]").forEach(i=>{const s=i.className.replace("lg-","");i.style.background=s==="inspected"?"#B88A1E":s==="open"?"#6B6E7E":`var(--s-${s})`;});}
+}
 
 /* ---------- One business ---------- */
 function viewBiz(b){document.title=title(b)+" | Chicago Restaurant Radar";
-const first=t=>b.ev.find(e=>e.t===t);const steps=[["permitted",first("permit"),"No permit found at this address"],["inspected",first("linsp"),b.li.length&&first("license")?"None in the 150 days before the license":"No license inspection on record"],["licensed",first("license"),"No license issued yet"],["open",b.s==="open"?{d:b.sd}:null,"Not on the City's records yet"]];
+const first=t=>b.ev.find(e=>e.t===t);const firstOther=(b.ev.find(e=>e.t!=="permit")||{}).d||"9999";
+const buildPermit=b.ev.find(e=>e.t==="permit"&&e.d<=firstOther);
+const laterPermit=b.ev.find(e=>e.t==="permit");
+const steps=[["permitted",buildPermit,laterPermit?"Permit came later ("+day(laterPermit.d)+")":"No permit found at this address"],["inspected",first("linsp"),b.li.length&&first("license")?"None in the 150 days before the license":"No license inspection on record"],["licensed",first("license"),"No license issued yet"],["open",b.s==="open"?{d:b.sd}:null,"Not on the City's records yet"]];
 const idx=STAGES.indexOf(b.s);
 const evAll=b.ev.slice().reverse();const evHtml=evAll.map((e,i)=>{let det="";
 if(e.t==="permit")det=`<p>${esc(e.type||"")}${e.scope?": "+esc(e.scope):""}</p>`;
 else if(e.t==="license")det=`<p>${esc(e.type||b.lt)}${b.ac?". "+esc(b.ac):""}</p>`;
-else det=`<p>${esc(e.type||"")}${b.li.length>1&&e.lic?" under license "+esc(e.lic):""}. City result: <span class="res">${esc(e.result||"not given")}</span></p>`;
+else det=`<p>${esc(e.type||"")}${b.li.length>1&&e.lic?" under license "+esc(e.lic):""}</p><p class="rl">City result <span class="res">${esc(e.result||"not given")}</span></p>`;
 return `<li class="${e.t}"${i>=5?" hidden":""}><span class="dot" aria-hidden="true"></span><div class="hd"><b>${esc(EV[e.t])}</b><span class="d">${esc(day(e.d))}</span></div>${det}<a class="src" href="${esc(e.link)}" target="_blank" rel="noopener">${ico("ext","s")}The City's record<span class="sr"> for this ${esc(EV[e.t].toLowerCase())} (opens in a new tab)</span></a></li>`;}).join("");
 const facts=[["Type",V.kindLabel[b.k]],["License",b.lt?(b.lt+(b.ot.length?" (also "+b.ot.join(", ")+")":"")):""],["License number",b.li.join(", ")],["City history",{first:"First license on the City's record for this business",site:"A new site for a business licensed elsewhere in Chicago",added:"A new license at a site where it already held one",relicensed:"Held this license type at this site before"}[b.hi]||""],["ZIP",b.z]].filter(x=>x[1]);
 $("#app").innerHTML=`<a class="back" href="#/" id="back">${ico("back")}Back</a>
@@ -583,6 +626,10 @@ $("#back").onclick=e=>{e.preventDefault();history.length>1?history.back():go("#/
 if($("#allEv"))$("#allEv").onclick=()=>{document.querySelectorAll("#evs li[hidden]").forEach(li=>li.hidden=false);$("#allEv").parentNode.remove();document.querySelectorAll("#evs li")[5].querySelector("a").focus();};
 $("#toL").onclick=e=>{e.preventDefault();const t=$("#lH");t.scrollIntoView({behavior:"smooth",block:"start"});t.setAttribute("tabindex","-1");t.focus({preventScroll:true});};
 drawLetter(b);stickIfShort($("#recP"));}
+function meForm(m){const missing=Object.keys(m).filter(k=>!m[k]);
+return `<details class="me"${missing.length?" open":""}><summary>Your details${missing.length?` (${missing.length} to fill)`:" (saved on this device)"}</summary><div class="mef">${Object.keys(ME_LABEL).map(k=>`<label>${esc(ME_LABEL[k])}<input data-k="${k}" value="${esc(m[k])}" autocomplete="${{me:"name",company:"organization",phone:"tel",companyAddress:"street-address"}[k]}"></label>`).join("")}</div></details>`;}
+function wireMe(after){document.querySelectorAll(".mef input").forEach(i=>i.onchange=()=>{const s=store.get("me",{});s[i.dataset.k]=i.value.trim();store.set("me",s);const k=i.dataset.k;after();
+const d=document.querySelector("details.me");if(d)d.open=true;const all=[...document.querySelectorAll(".mef input")];const n=all.find(x=>x.dataset.k===k);const nx=all[all.indexOf(n)+1];(nx&&!nx.value?nx:n).focus();});}
 function nextBiz(b){const L=D.biz.filter(x=>x.s!=="open").sort((x,y)=>y.sd.localeCompare(x.sd)||y.id.localeCompare(x.id));const i=L.findIndex(x=>x.id===b.id);const n=L[i+1]||L[0];
 return n&&n.id!==b.id?`<section class="next"><p>Next on the radar: <b>${esc(title(n))}</b>, ${esc(SL[n.s].toLowerCase())} ${esc(dayShort(n.sd))}</p><a class="btn pri" href="#/b/${esc(n.id)}">Open the next business</a></section>`:"";}
 function stickIfShort(el){if(el&&window.innerWidth>1020&&el.offsetHeight<window.innerHeight-100)el.classList.add("stick");}
@@ -595,9 +642,10 @@ box.innerHTML=`<div class="tsw" role="group" aria-label="Your trade">${LT.trades
 <details class="me"${missing.length?" open":""}><summary>Your details${missing.length?` (${missing.length} to fill)`:" (saved on this device)"}</summary><div class="mef">${Object.keys(ME_LABEL).map(k=>`<label>${esc(ME_LABEL[k])}<input data-k="${k}" value="${esc(m[k])}" autocomplete="${{me:"name",company:"organization",phone:"tel",companyAddress:"street-address"}[k]}"></label>`).join("")}</div></details>
 <p class="to"><b>Send to:</b> ${esc(b.n||"The food business")}, ${esc(b.a)}, Chicago, IL${b.z?" "+esc(b.z):""}</p>
 <article class="paper" aria-label="Letter for ${esc(title(b))}"><p class="sj"><b>Subject:</b> ${esc(L.subject)}</p><p>${show(Ls.body)}</p><p class="sg">${show(Ls.sign)}</p><p class="st">${show(Ls.stop)}</p></article>
-<div class="lacts"><button class="btn pri" type="button" id="cp"${missing.length?" aria-disabled=\"true\"":""} aria-describedby="cpn">${ico("copy","s")}Copy letter</button><a class="btn" href="#/trade?t=${t}">This letter for all ${int(nm)}</a></div>
+<div class="lacts"><button class="btn pri" type="button" id="cp"${missing.length?" aria-disabled=\"true\"":""} aria-describedby="cpn">${ico("copy","s")}Copy letter</button><a class="btn" href="#/trade?t=${t}">This letter for every business</a></div>
 <p class="cpn" id="cpn">${missing.length?`Fill your ${missing.length} detail${missing.length===1?"":"s"} above first, so the letter is complete.`:"Copies the subject, letter, sign-off and stop line."}</p>
-<ul class="lrules">${LT.rules.map(r=>`<li>${esc(r)}</li>`).join("")}</ul>`;
+<details class="srules"><summary>Sending rules (${LT.rules.length})</summary><ul class="lrules">${LT.rules.map(r=>`<li>${esc(r)}</li>`).join("")}</ul></details>`;
+const on=box.querySelector(".tsw [aria-pressed=true]");if(on&&window.innerWidth<=600){const row=on.parentNode;row.scrollLeft=Math.max(0,on.offsetLeft-20);}
 box.querySelectorAll(".tsw button").forEach(x=>x.onclick=()=>{setTrade(x.dataset.t);drawLetter(b);box.querySelector(`.tsw button[data-t="${x.dataset.t}"]`).focus();say(LT.trades.find(y=>y.key===x.dataset.t).label+" letter");});
 box.querySelectorAll(".mef input").forEach(i=>i.onchange=()=>{const s=store.get("me",{});s[i.dataset.k]=i.value.trim();store.set("me",s);const k=i.dataset.k;drawLetter(b);const d=box.querySelector("details.me");d.open=true;const n=box.querySelector(`.mef input[data-k="${k}"]`);const all=[...box.querySelectorAll(".mef input")];const nx=all[all.indexOf(n)+1];if(nx&&!nx.value)nx.focus();});
 $("#cp").onclick=async()=>{const now=letterFor(b,trade(),me(),LT);if(Object.values(me()).some(v=>!v)){const d=box.querySelector("details.me");d.open=true;const f=[...box.querySelectorAll(".mef input")].find(x=>!x.value);(f||box.querySelector(".mef input")).focus();toast("Fill your details first, so the letter is complete");return;}
@@ -606,17 +654,19 @@ const ok=await copyText("Subject: "+now.subject+"\n\n"+now.body+"\n\n"+now.sign+
 /* ---------- Rules ---------- */
 const EXAMPLES=["pest control, within 3 miles of 60631, licensed or inspected, newest first","hood cleaning restaurants in Logan Square not open yet","grease trap within 2 miles of 60614 inspected this week","POS bakeries and coffee shops licensed last 30 days"];
 function viewRules(q){const text=q.get("q")||"";document.title="Rules | Chicago Restaurant Radar";
-$("#app").innerHTML=`<div class="ph"><div><p class="eyebrow">Rules</p><h1>Say who you want to reach</h1><p>Type it in plain English. A fixed word list reads it right here in your browser: no AI, no cost per search. Each part it reads becomes a chip you can remove. Words it can't read are shown, never guessed.</p></div></div>
-<section class="panel rbox"><form id="rf" role="search"><label class="big" for="rq">Your rule</label><div class="rin"><input id="rq" type="text" value="${esc(text)}" autocomplete="off" spellcheck="false" placeholder="pest control within 3 miles of 60631, licensed or inspected, newest first" aria-describedby="rhelp"><button class="btn pri" type="submit">Read my rule</button></div>
-<p class="rhelp" id="rhelp">It reads a trade, a stage (permitted, inspected, licensed, open, not open yet), a type of food business, a ZIP or a community area (with "within 2 miles of"), a time (this week, last 30 days) and an order (newest, oldest, closest first). Miles are as the crow flies.</p></form>
-<p class="rhelp" id="exH" style="margin-top:14px">Try one:</p><div class="exs" role="group" aria-labelledby="exH">${EXAMPLES.map(e=>`<button type="button" data-e="${esc(e)}">${esc(e)}</button>`).join("")}</div>
+$("#app").innerHTML=`<div class="ph"><div><p class="eyebrow">Rules</p><h1>Say who you want to reach</h1><p>Type who you sell to, in your own words. Each part becomes a chip you can remove. Words it can't read are shown, not guessed.</p></div></div>
+<section class="panel rbox"><form id="rf" role="search"><label class="big" for="rq">Your rule</label><div class="rin"><textarea id="rq" rows="1" autocomplete="off" spellcheck="false" placeholder="pest control within 3 miles of 60631, licensed or inspected, newest first" aria-describedby="rhelp">${esc(text)}</textarea><button class="btn pri" type="submit">Read my rule</button></div>
+<details class="how"${text?"":" open"}><summary>How rules work</summary><p class="rhelp" id="rhelp">It reads a trade, a stage (permitted, inspected, licensed, open, not open yet), a type of food business, a ZIP or a community area (with "within 2 miles of"), a time (this week, last 30 days) and an order (newest, oldest, closest first). Miles are as the crow flies. It reads in your browser from a fixed word list, so every search is instant and free.</p>
+<p class="rhelp" id="exH" style="margin-top:14px">Try one:</p><div class="exs" role="group" aria-labelledby="exH">${EXAMPLES.map(e=>`<button type="button" data-e="${esc(e)}">${esc(e)}</button>`).join("")}</div></details></form>
 <div class="read" id="read"></div></section>
 <section class="panel rres" aria-labelledby="resH" id="res"></section>
 <section class="panel rres" aria-labelledby="svH" id="sv"></section>
-<section class="next"><p>Found your list? Every business has a first letter for your trade.</p><a class="btn pri" href="#/trade">Open the letters</a></section>`;
+<section class="next"><p>Found your list? Every business has a first letter for your trade.</p><a class="btn pri" id="toLetters" href="#/trade">Open the letters</a></section>`;
 const run=(t,push)=>{if(push)history.replaceState(null,"","#/rules"+(t?"?q="+encodeURIComponent(t):""));drawRule(t);};
 $("#rf").onsubmit=e=>{e.preventDefault();run($("#rq").value,true);say(drawRule.last);};
-let tm;$("#rq").oninput=()=>{clearTimeout(tm);tm=setTimeout(()=>run($("#rq").value,true),250);};
+const grow=()=>{const r=$("#rq");r.style.height="auto";r.style.height=Math.max(52,r.scrollHeight+2)+"px";};
+let tm;$("#rq").oninput=()=>{grow();clearTimeout(tm);tm=setTimeout(()=>run($("#rq").value,true),250);};
+$("#rq").onkeydown=e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();run($("#rq").value,true);say(drawRule.last);}};setTimeout(grow,0);
 document.querySelectorAll(".exs button").forEach(b=>b.onclick=()=>{$("#rq").value=b.dataset.e;run(b.dataset.e,true);say(drawRule.last);});
 drawRule(text);drawSaved();}
 function drawRule(text){const P=parseRule(text,V);const R=applyRule(D.biz,P.f,D.asOf);if(P.f.trade)setTrade(P.f.trade);
@@ -630,8 +680,9 @@ history.replaceState(null,"","#/rules"+(t?"?q="+encodeURIComponent(t):""));drawR
 const n=R.rows.length,dist=!!(P.f.place&&P.f.place.type==="radius");
 drawRule.last=`${int(n)} business${n===1?"":"es"} match`;
 const t=trade();
-$("#res").innerHTML=`<div class="sec-h wrap"><h2 id="resH">${int(n)} ${n===1?"business matches":"businesses match"}</h2><a href="#/trade?t=${t}&q=${encodeURIComponent(text)}">Letters for these</a></div>
-${R.notes.length?`<p class="notes">${R.notes.map(esc).join(". ")}.</p>`:""}${text.trim()?`<div class="fbar"><button class="btn sm" type="button" id="save">Save this rule</button></div>`:""}${rowsTable(R.rows.slice(0,60),dist)}${n>60?`<p class="notes">Showing the first 60. Add a place or a stage to narrow it.</p>`:""}`;
+$("#res").innerHTML=`<div class="sec-h wrap"><h2 id="resH">${int(n)} ${n===1?"business matches":"businesses match"}</h2>${text.trim()?`<button class="btn sm quiet" type="button" id="save">Save this rule</button>`:""}</div>
+${R.notes.length?`<p class="notes">${R.notes.map(esc).join(". ")}.</p>`:""}${rowsTable(R.rows.slice(0,60),dist)}${n>60?`<p class="notes">Showing the first 60. Add a place or a stage to narrow it.</p>`:""}`;
+const tl=$("#toLetters");if(tl)tl.href="#/trade?t="+t+(text.trim()?"&q="+encodeURIComponent(text):"");
 if($("#save"))$("#save").onclick=()=>{const s=store.get("rules",[]);if(!s.includes(text.trim())){s.unshift(text.trim());store.set("rules",s.slice(0,12));}drawSaved();toast("Rule saved on this device");};}
 function hintFor(u){if(u.some(x=>x.hint==="near"))return "\"near\" has no distance, so it is not used. Try \"within 2 miles of 60631\" or \"in Logan Square\".";
 const z=u.find(x=>x.note);if(z)return z.note+".";if(u.some(x=>x.hint==="place"))return "A distance needs a ZIP or a community area after it, like \"within 3 miles of 60622\", up to 30 miles.";
@@ -641,7 +692,7 @@ el.innerHTML=`<div class="sec-h"><h2 id="svH">Saved rules</h2></div><ul class="s
 el.querySelectorAll("button").forEach(b=>b.onclick=()=>{const s2=store.get("rules",[]);s2.splice(+b.dataset.i,1);store.set("rules",s2);drawSaved();toast("Rule deleted");});}
 
 /* ---------- Trade switch ---------- */
-function viewTrade(q){const t=LT.trades.some(x=>x.key===q.get("t"))?q.get("t"):trade();setTrade(t);const text=q.get("q")||"";const lim=+(q.get("n")||30);
+function viewTrade(q){const t=LT.trades.some(x=>x.key===q.get("t"))?q.get("t"):trade();setTrade(t);const text=q.get("q")||"";const lim=+(q.get("n")||40);
 document.title="Trades | Chicago Restaurant Radar";
 const P=parseRule(text,V);if(P.f.trade)P.f.trade=t;let rows=applyRule(D.biz,P.f,D.asOf).rows;if(!text)rows=rows.filter(b=>b.s!=="open");
 const m=me();const filled={};for(const k in m)filled[k]=m[k]||`{{${k}}}`;
@@ -649,11 +700,13 @@ const show=x=>esc(x).replace(/\{\{(\w+)\}\}/g,(_,k)=>`<span class="fl">${esc(ME_
 $("#app").innerHTML=`<div class="ph"><div><p class="eyebrow">Trades</p><h1>Same businesses, your trade's letter</h1><p>Pick your trade. The businesses stay the same; the first letter changes to fit what you sell.${text?` Showing your rule: <b>${esc(text)}</b>.`:" Showing every business not open yet, newest first."}</p></div></div>
 <div class="tsw" role="group" aria-label="Your trade">${LT.trades.map(x=>`<button type="button" data-t="${x.key}" aria-pressed="${x.key===t}">${esc(x.label)}</button>`).join("")}</div>
 <section class="panel" aria-labelledby="trH"><div class="sec-h"><h2 id="trH">${esc(LT.trades.find(x=>x.key===t).label)}<span class="cnt">${int(rows.length)}</span></h2>${text?`<a href="#/rules?q=${encodeURIComponent(text)}">Edit the rule</a>`:`<a href="#/rules">Write a rule</a>`}</div>
+<div class="tme">${meForm(m)}</div>
 <ul class="tl3">${rows.slice(0,lim).map(b=>{const L=letterFor(b,t,filled,LT);return `<li><div class="top"><a href="#/b/${esc(b.id)}">${esc(title(b))}</a><span class="sub">${esc(b.ar||"")}</span>${sp(b.s)}</div>
-<p class="lp"><b>${esc(L.subject)}</b><br>${show(L.body)}</p><div class="la"><button class="btn sm" type="button" data-cp="${esc(b.id)}">${ico("copy","s")}Copy letter</button><a class="btn sm" href="#/b/${esc(b.id)}">Open the business</a></div></li>`;}).join("")||`<li class="empty">No businesses match.</li>`}</ul>
-${rows.length>lim?`<div class="more"><button class="btn" type="button" id="tmore">Show ${int(Math.min(30,rows.length-lim))} more</button></div>`:""}</section>
+<p class="lp"><b>${esc(L.subject)}</b><br>${show(L.body)}</p><div class="la"><button class="btn sm" type="button" data-cp="${esc(b.id)}"${Object.values(m).some(v=>!v)?' aria-disabled="true"':""}>${ico("copy","s")}Copy letter</button><a class="btn sm" href="#/b/${esc(b.id)}">Open the business</a></div></li>`;}).join("")||`<li class="empty">No businesses match.</li>`}</ul>
+${rows.length>lim?`<div class="more"><button class="btn" type="button" id="tmore">Show ${int(Math.min(40,rows.length-lim))} more</button></div>`:""}</section>
 <section class="next"><p>Want fewer, closer businesses? Narrow the list with a rule.</p><a class="btn pri" href="#/rules">Write a rule</a></section>`;
-if($("#tmore"))$("#tmore").onclick=()=>{const p=new URLSearchParams();p.set("t",t);if(text)p.set("q",text);p.set("n",lim+30);history.replaceState(null,"","#/trade?"+p.toString());const y=window.scrollY;viewTrade(p);window.scrollTo(0,y);const li=document.querySelectorAll(".tl3 li")[lim];if(li)li.querySelector("a").focus({preventScroll:true});};
+wireMe(()=>{const y=window.scrollY;viewTrade(new URLSearchParams(location.hash.split("?")[1]||""));window.scrollTo(0,y);});
+if($("#tmore"))$("#tmore").onclick=()=>{const p=new URLSearchParams();p.set("t",t);if(text)p.set("q",text);p.set("n",lim+40);history.replaceState(null,"","#/trade?"+p.toString());const y=window.scrollY;viewTrade(p);window.scrollTo(0,y);const li=document.querySelectorAll(".tl3 li")[lim];if(li)li.querySelector("a").focus({preventScroll:true});};
 document.querySelectorAll("[data-cp]").forEach(x=>x.onclick=async()=>{const mm=me();if(Object.values(mm).some(v=>!v)){toast("Add your details on any business page first, so the letter is complete");return;}
 const L=letterFor(BY[x.dataset.cp],t,mm,LT);const ok=await copyText("Subject: "+L.subject+"\n\n"+L.body+"\n\n"+L.sign+"\n"+L.stop);toast(ok?"Letter copied":"Copy did not work. Open the business to select the text.");});
 document.querySelectorAll(".tsw button").forEach(x=>x.onclick=()=>{const p=new URLSearchParams();p.set("t",x.dataset.t);if(text)p.set("q",text);history.replaceState(null,"","#/trade?"+p.toString());viewTrade(p);
@@ -661,10 +714,12 @@ document.querySelector(`.tsw button[data-t="${x.dataset.t}"]`).focus();say(LT.tr
 
 /* ---------- Terms ---------- */
 function viewTerms(){document.title="Terms of Use | Chicago Restaurant Radar";
-$("#app").innerHTML=`<a class="back" href="#/">${ico("back")}Back</a><div class="ph"><div><h1>Terms of Use</h1></div></div>
-<div class="terms"><section class="panel" aria-labelledby="th1"><div class="sec-h"><h2 id="th1">City of Chicago data</h2></div><div class="tx"><p>${esc(CITY)}</p><p><a href="${esc(D.source.terms)}" target="_blank" rel="noopener">City of Chicago Data Terms of Use<span class="sr"> (opens in a new tab)</span></a></p>
+$("#app").innerHTML=`<div class="terms"><a class="back" href="#/">${ico("back")}Back</a><div class="ph"><div><h1>Terms of Use</h1></div></div>
+<section class="panel" aria-labelledby="th1"><div class="sec-h"><h2 id="th1">City of Chicago data</h2></div><div class="tx"><p>${esc(CITY)}</p><p><a href="${esc(D.source.terms)}" target="_blank" rel="noopener">City of Chicago Data Terms of Use<span class="sr"> (opens in a new tab)</span></a></p>
 <p>Sources: ${Object.keys(D.source.pages).map(k=>`<a href="${esc(D.source.pages[k])}" target="_blank" rel="noopener">${esc(D.source.names[k])}<span class="sr"> (opens in a new tab)</span></a>`).join(", ")}.</p><p>${esc(D.source.modified)}</p></div></section>
-<section class="panel" aria-labelledby="th2" style="margin-top:16px"><div class="sec-h"><h2 id="th2">How stages are set</h2></div><div class="tx">${STAGES.map(s=>`<p><b>${SL[s]}.</b> ${esc(STAGE_HELP[s])}.</p>`).join("")}<p>Records are joined on the street address (house number, direction, street and suffix, without the unit) and on the license number the inspection carries. A build-out with no license yet shows only permits whose own text names food work. A business the City already inspected at the same address under the same name and an earlier license is a relicense, not an opening, and is left out.</p></div></section></div>`;}
+<section class="panel" aria-labelledby="th3" style="margin-top:16px"><div class="sec-h"><h2 id="th3">ProofNotFluff</h2></div><div class="tx"><p>${esc(NOTICE)}</p></div></section>
+<section class="panel" aria-labelledby="th2" style="margin-top:16px"><div class="sec-h"><h2 id="th2">How stages are set</h2></div><div class="tx">${STAGES.map(s=>`<p><b>${SL[s]}.</b> ${esc(STAGE_HELP[s])}.</p>`).join("")}<p>Records are joined on the street address (house number, direction, street and suffix, without the unit) and on the license number the inspection carries. A build-out with no license yet shows only permits whose own text names food work. A business the City already inspected at the same address under the same name and an earlier license is a relicense, not an opening, and is left out.</p></div></section>
+<section class="next"><p>Back to the businesses moving toward opening this week.</p><a class="btn pri" href="#/">Open Today</a></section></div>`;}
 
 function start(d){prep(d);$("#gateView").hidden=true;$("#app").hidden=false;$("#appLegal").hidden=false;$("#tabs").hidden=false;$("#bnav").hidden=false;document.body.classList.add("in");
 window.addEventListener("hashchange",route);route();}
@@ -728,6 +783,7 @@ def selftest():
     box = json.loads(re.search(r"const BOX=(\{.*?\});", html).group(1))
     assert box["rounds"] == 250_000 and box["kdf"] == "PBKDF2-SHA256"
     d = json.loads(decrypt("correct horse battery", box))
+    assert undash("PERMIT \u2013 EXPRESS PERMIT PROGRAM") == "EXPRESS PERMIT PROGRAM" and undash("a \u2014 b") == "a - b"
     assert [b["id"] for b in d["biz"]] == ["L101", "I201", "P9101", "L102"] and d["biz"][0]["st"] == "W Chicago Ave"
     assert all(b["x"] is not None for b in d["biz"]), "every planted business lands on the map"
     try:
@@ -754,7 +810,7 @@ def selftest():
     pay = payload(full)
     script = (GRAMMAR_JS + LETTER_JS + "\nconst V=" + json.dumps(V) + ";const ROWS=" + json.dumps(pay["biz"]) + ";const LT=" + json.dumps(letters_json())
               + ";const CASES=" + json.dumps([c[0] for c in RULE_CASES]) + ";const ME=" + json.dumps(RL.FIXTURE_ME) + ";const FX=" + json.dumps(
-                  [{"n": b["name"], "st": RL.street_of(b["address"]), "lt": b.get("licenseType") or "", "rec": (lambda r: {"t": r["t"], "d": r["d"], "ty": r.get("type") or ""})(RL.pick_record(b["events"]))} for b in RL.FIXTURES])
+                  [{"n": b["name"], "ln": RL.letter_name(b["name"]), "st": RL.street_of(b["address"]), "lt": b.get("licenseType") or "", "rec": (lambda r: {"t": r["t"], "d": r["d"], "ty": r.get("type") or ""})(RL.pick_record(b["events"]))} for b in RL.FIXTURES])
               + ";\nconst out=CASES.map(t=>{const P=parseRule(t,V);const R=applyRule(ROWS,P.f,'2026-11-02');return {chips:P.chips.map(c=>c.cat+':'+c.label),unread:P.unread.map(u=>u.w),ids:R.rows.map(b=>b.id)};});"
               "\nconst lets=[];for(const b of FX)for(const t of LT.trades)lets.push(letterFor(b,t.key,ME,LT));console.log(JSON.stringify({out,lets}));")
     with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False) as fh:

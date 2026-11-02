@@ -207,6 +207,21 @@ class City:
         like = " OR ".join(f"upper(work_description) like '%{w}%'" for w in words)
         return self.c.pull(PERMITS, select=self.PERMIT_COLS, where=f"issue_date >= '{since}' AND ({like})", order="id", key="id")
 
+    def zip_centers(self):
+        """{zip: [lat, lon, n]}: the average point of every Chicago business license on record in each ZIP (the City's own
+        points), the center a rule like "within 3 miles of 60631" measures from."""
+        rows = self.c.rows(LIC, select="zip_code,avg(latitude) AS lat,avg(longitude) AS lon,count(*) AS n",
+                           where="city='CHICAGO' AND latitude IS NOT NULL AND zip_code IS NOT NULL", group="zip_code", limit=5000)
+        out = {}
+        for r in rows:
+            z = (r.get("zip_code") or "")[:5]
+            try:
+                if re.fullmatch(r"606\d\d|608\d\d", z) and int(r["n"]) >= 25:
+                    out[z] = [round(float(r["lat"]), 5), round(float(r["lon"]), 5), int(r["n"])]
+            except (KeyError, TypeError, ValueError):
+                continue
+        return out
+
     def food_licenses_at(self, keys_numbers):
         """Current food licenses at these street numbers (a permit-only row at a site that already holds one is a remodel,
         not a business on its way to opening)."""
@@ -433,7 +448,11 @@ def holdout_rows(client, picks):
         num = w[0] if w else ""
         dirn = w[1] if len(w) > 2 and w[1] in ("N", "S", "E", "W") else ""
         main = ((w[2] if dirn else w[1]) if len(w) > 1 else "").replace("'", "''")
-        q = lambda ds, sel, where: client.rows(ds, select=sel, where=where, limit=200, order=":id")
+        def q(ds, sel, where):
+            try:
+                return client.rows(ds, select=sel, where=where, limit=200, order=":id")
+            except Exception as e:          # a failed hand-check query is recorded, never fatal to the list
+                return [{"_queryFailed": str(e)[-160:], "_where": where}]
         lics = [l for l in b["lics"] if l.isdigit()]
         since = (dt.date.fromisoformat(b["first"]) - dt.timedelta(days=PERMIT_BACK)).isoformat()
         out.append({"id": b["id"], "shown": {k: b.get(k) for k in ("name", "address", "area", "kind", "stage", "stageDate", "openBy", "licenseType")},
@@ -441,8 +460,8 @@ def holdout_rows(client, picks):
                     "cityLicenses": q(LIC, "license_number,doing_business_as_name,address,license_description,application_type,date_issued,license_status",
                                       f"license_number in({','.join(lics)})") if lics else [],
                     "cityInspectionsByLicense": q(FOOD, City.INSP_COLS, f"license_ in({','.join(lics)})") if lics else [],
-                    "cityInspectionsByAddress": q(FOOD, City.INSP_COLS, f"starts_with(upper(address), '{num} {dirn + ' ' if dirn else ''}{main}')") if num and main else [],
-                    "cityPermitsAtAddress": q(PERMITS, City.PERMIT_COLS, f"street_number='{num}' AND upper(street_name) like '%{main}%' AND issue_date >= '{since}'") if num and main else []})
+                    "cityInspectionsByAddress": q(FOOD, City.INSP_COLS, f"starts_with(address, '{num} {dirn + ' ' if dirn else ''}{main}')") if num and main else [],
+                    "cityPermitsAtAddress": q(PERMITS, City.PERMIT_COLS, f"street_number='{num}' AND street_name like '%{main}%' AND issue_date >= '{since}'") if num and main else []})
     return out
 
 
@@ -473,6 +492,7 @@ def run(a):
         p["_area"] = lc.area_of(p.get("latitude"), p.get("longitude"), areas)
     site_lics = city.food_licenses_at({permit_key(p).split(" ")[0] for p in food_permits if permit_key(p)})
     biz, reasons = build(today, lic_recs, left, insp, pend, pend_lic_rows, permits, food_permits, site_lics)
+    zips = city.zip_centers()
     # the permit-only rows' community area comes from the permit's own point
     source = {"names": {"licenses": "City of Chicago Data Portal, Business Licenses", "inspections": "City of Chicago Data Portal, Food Inspections",
                         "permits": "City of Chicago Data Portal, Building Permits"},
@@ -494,11 +514,11 @@ def run(a):
         b.pop("key", None)
         b.pop("ftype", None)
     if a.full:
-        json.dump({"source": source, "asOf": today.isoformat(), "window": extra["window"], "match": m, "businesses": biz}, open(a.full, "w"), indent=1)
+        json.dump({"source": source, "asOf": today.isoformat(), "window": extra["window"], "match": m, "zips": zips, "businesses": biz}, open(a.full, "w"), indent=1)
+    print(json.dumps({k: m[k] for k in ("licensedFood", "licenseToInspection", "licenseToPermit", "inspectedNoLicense", "permitOnly", "byStage", "order")}))
     if a.holdout:
         picks = holdout_pick(biz, 5, seed=os.environ.get("GITHUB_RUN_ID") or now.isoformat())
         json.dump({"pickedAt": now.isoformat(timespec="seconds"), "picks": holdout_rows(chi, picks)}, open(a.holdout, "w"), indent=1)
-    print(json.dumps({k: m[k] for k in ("licensedFood", "licenseToInspection", "licenseToPermit", "inspectedNoLicense", "permitOnly", "byStage", "order")}))
 
 
 # ---------------------------------------------------------------- planted cases (invented businesses, real City field names)

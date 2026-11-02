@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["tools/radar_chicago.py", ".github/workflows/radar-chicago.yml"]
+    paths: ["tools/radar_chicago.py", "tools/radar_letters.py", ".github/workflows/radar-chicago.yml"]
 permissions:
   contents: write
 concurrency:
@@ -28,6 +28,8 @@ jobs:
           python3 tools/radar_chicago.py --selftest
           python3 tools/licenses_chicago.py --selftest
           python3 tools/rest_seal.py --selftest
+          python3 tools/radar_letters.py --selftest
+          python3 tools/radar_app.py --selftest
       - name: Join the City's records
         run: python3 tools/radar_chicago.py --full "$RUNNER_TEMP/radar-full.json" --match permits/radar-chicago/match.json --holdout "$RUNNER_TEMP/radar-holdout.json"
       - name: Seal the list and the hand-check rows (public-key box)
@@ -43,3 +45,5 @@ jobs:
           git commit -m "Chicago Restaurant Radar join $(TZ=America/Chicago date +%Y-%m-%d)"
           for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done
           exit 1
+      - name: Every trade's letter for every business passes the copy gate (after the commit, so a failed letter never loses the join)
+        run: python3 tools/copy_gate.py --radar-live "$RUNNER_TEMP/radar-full.json"

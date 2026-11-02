@@ -44,6 +44,9 @@ permit checks above are unchanged):
        python3 tools/copy_gate.py --signal [data/work/signal_drafts.json] --leads data/work/signal_leads.json
                                   [--prospects ...] [--matches ...] [--send-day YYYY-MM-DD]
            signal drafts (pnf.signal_draft.v1) against a validated signal lead file; follow-ups with --matches ''.
+Restaurant Radar letters (Todd, Nov 2, 2026, launches/chicago-restaurant-radar.md: "letters must pass the copy gate"):
+       python3 tools/copy_gate.py --radar-templates         every trade's letter (tools/radar_letters.py) on fixture businesses
+       python3 tools/copy_gate.py --radar-live LIST.json    the same, plus every business in an unsealed radar list
 Pest seat email (Todd, Oct 24, 2026, Legal fix 13: subject "{n} Chicago restaurant inspections with a pest violation this week", {n} the 7-day
 count only, never the daily file's total; "extend the copy gate to check that"):
        python3 tools/copy_gate.py --pest-templates
@@ -1003,7 +1006,26 @@ def main():
     ap.add_argument("--lic-templates", action="store_true", help="check email/L2-COMMISSION.md on this week's files")
     ap.add_argument("--lic", nargs="?", const=LIC_DRAFTS, default=None, help="check license count drafts (pnf.lic_draft.v1)")
     ap.add_argument("--seat-templates", action="store_true", help="check email/S1-AREA-SEAT.md (tools/seat_gate.py)")
+    ap.add_argument("--radar-templates", action="store_true", help="Restaurant Radar letters (tools/radar_letters.py) on fixture businesses")
+    ap.add_argument("--radar-live", default=None, help="Restaurant Radar letters on every business in an unsealed list (JSON with businesses)")
     a = ap.parse_args()
+    if a.radar_templates or a.radar_live:   # Chicago Restaurant Radar (Todd, Nov 2, 2026: "letters must pass the copy gate")
+        import radar_letters as RL
+        problems = RL.check_fixtures()
+        n = len(RL.FIXTURES) * len(RL.TRADES)
+        live = ""
+        if a.radar_live:
+            biz = json.load(open(a.radar_live, encoding="utf-8"))["businesses"]
+            nl, more = RL.check_live(biz)
+            problems += more
+            live = f"; {nl} live renders ({len(biz)} businesses x {len(RL.TRADES)} trades)"
+        for p in problems[:60]:
+            print(f"ERROR copy: {p}")
+        if problems:
+            print(f"copy: FAIL, {len(problems)} problems")
+            sys.exit(1)
+        print(f"OK copy: {len(RL.TRADES)} radar letters pass on {len(RL.FIXTURES)} fixture businesses ({n} renders){live}")
+        sys.exit(0)
     if a.seat_templates:   # area seats for construction cleaning (Todd, Oct 26, 2026)
         import seat_gate
         problems, nt, planted, live = seat_gate.check_seat_templates(today=chicago_today())

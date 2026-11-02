@@ -182,6 +182,12 @@
     for (const e of shakes) { if (e.t > T) break; tr = Math.min(1, Math.max(0, tr - 3 * (e.t - tl)) + e.a); tl = e.t; }
     return Math.max(0, tr - 3 * (T - tl));
   }
+  // the 3-2-1 verdict kick: 8 frames after the big stamp's freeze, offsets in low-res pixels (x, y); null outside them
+  const KICK = [[3, 0], [-3, 0], [0, 2], [0, -2], [2, 0], [-1, 0], [0, 1], [0, 0]];
+  function verdictKick(T) {
+    for (const e of shakes) { if (!e.big) continue; const f = Math.floor((T - e.t) * FPS + 0.005); if (f >= 0 && f < KICK.length) return KICK[f]; }
+    return null;
+  }
   // the scene's clock: it stops for 3 frames when a stamp lands (the hit-stop) and shivers 1 low-res pixel
   function sceneClock(T, sec) {
     for (const c of stamps) { const f = (T - c.t) * FPS + 0.005; if (c.t >= sec.t && f >= 0 && f < FREEZE) return {Ts: c.t, shiver: Math.floor(f) % 2 ? -1 : 1}; }
@@ -361,6 +367,9 @@
       // the trauma shake: smooth noise, whole low-res pixels, at most 3
       const tr = trauma(T), amp = 3 * U * tr * tr;
       if (amp > 0) { sx = vnoise(T * 14, 1) * amp; sy = vnoise(T * 14, 2) * amp; }
+      // the verdict kick (IMPROVE 00a-4, M4): the stamp named in SCENE.trauma shakes on a fixed 3-2-1 low-res pixel
+      // pattern over 8 frames (right, left, up, down, getting smaller), the console way, instead of the noise shake
+      const vk = verdictKick(T); if (vk) { sx = vk[0] * U; sy = vk[1] * U; }
       sx += shiver * U;
     }
     // the camera, its position on whole low-res pixels so the grid never swims
@@ -423,7 +432,7 @@
     if (M && M.levels) env.mouth = (t) => { const i = Math.floor(t * (M.fps || FPS) + 0.005); return i >= 0 && i < M.levels.length ? +M.levels[i] : 0; };
     stamps = cues.filter((c) => c.sfx === 'stamp').sort((a, b) => a.t - b.t);
     let lastShake = -1e9; const big = window.SCENE.trauma || {};
-    stamps.forEach((c) => { if (c.t - lastShake >= SHAKE_GAP) { shakes.push({t: c.t + FREEZE / FPS, a: big[c.id] || 0.5}); lastShake = c.t; } });
+    stamps.forEach((c) => { if (c.t - lastShake >= SHAKE_GAP) { shakes.push({t: c.t + FREEZE / FPS, a: big[c.id] || 0.5, big: c.id in big}); lastShake = c.t; } });
     const c = document.getElementById('c'); c.width = W; c.height = H;
     if (look.scale !== 1) { lowCanvas = document.createElement('canvas'); lowCanvas.width = Math.round(W * look.scale); lowCanvas.height = Math.round(H * look.scale); }
     for (const n of (window.SCENE.images || [])) {
@@ -436,7 +445,7 @@
     if (words.length) END_T = words[words.length - 1].end + 0.1;   // after the fonts load, so the line breaks match what is drawn; 0.1 s after the last word, so the card is up for the last 3 s (style board, Oct 29)
     window.DURATION = window.CUES.duration;
     survey = runSurvey();
-    window.STUDIO = {env, survey, trauma, look, camera, phrases};   // for checks: blinks, pose runs, rooms, the shake, the dialog pages
+    window.STUDIO = {env, survey, trauma, verdictKick, look, camera, phrases};   // for checks: blinks, pose runs, rooms, the shake, the dialog pages
     window.READY = true;
     if (q.get('play')) { const t0 = performance.now(); const tick = () => { const t = (performance.now() - t0) / 1000; drawAt(t % window.DURATION); requestAnimationFrame(tick); }; tick(); }
     else drawAt(Number(q.get('t') || 0));

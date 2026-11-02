@@ -85,7 +85,7 @@ const FLAG = 'FLAGGED ITEM (Not on price list):';
 const RAIL = 'Stair railing (painting): This item is not on your price list. A custom price is needed.';
 const LABEL = ['REAL REPLY: GEMINI 3.8 FLASH (API)', 'NOV 1, 2026'];
 /* the prompt's rule line, word for word, and the setup the lesson teaches (facts.json setup.card) */
-const STEPS = [['1. Type your price list in a', 'phone note. Once.'], ['2. Put this prompt at the top.'], ['3. After each walkthrough, add', 'your notes, paste it all in Gemini.'], ['4. Price the flags. Check every', 'line. Then send.']];
+const STEPS = [['1. Type your price list in a', 'phone note. Once.'], ['2. Put this prompt at the top.'], ['3. After each walkthrough, add', 'your notes, paste it all in the chat.'], ['4. Price the flags. Check every', 'line. Then send.']];
 const RULE = ['Turn my walkthrough notes into', 'quote lines. Use only my price list.', 'Flag anything that is not on it.', 'Never guess a price.'];
 
 /* the reply card: cream, the label on a teal band, the four quote lines, then the flag and the railing line. */
@@ -144,7 +144,7 @@ window.SCENE = {
   hud: 'PRICE LIST',
   sendLine: 'Send this to your painter who still quotes from memory.',
   transitions: {turn: 'mosaic', one: 'fade4', two: 'dissolve', why: 'levelselect', check: 'dissolve', button: 'gameover'},
-  trauma: {'why.flag': 0.6},
+  trauma: {'one.free': 0.6},
   sections: {
     /* ---- hook: three shots. Cover (frame 0, no host): the real reply card, the railing lit red, the plate. On       */
     /* "railing" cut in close on the flagged line. On "painted" cut to our living room: the white stair railing and a  */
@@ -175,6 +175,9 @@ window.SCENE = {
         const x = 60, y = 450, w = 870, ls = k.wrap(RAIL, {size: 66}, w - 60);
         k.ctx.fillStyle = INK; k.ctx.fillRect(x - 6, y - 6, w + 12, 130 + ls.length * 84); k.ctx.fillStyle = CREAM; k.ctx.fillRect(x, y, w, 118 + ls.length * 84);
         k.ctx.fillStyle = RED; k.ctx.fillRect(x, y, w, 96); k.text(FLAG, x + 24, y + 30, {size: 39, color: CREAM});
+        /* never frozen (M1): a red marker sweeps under each line in turn while it is read, whole pixels */
+        const sp = clamp((T - tClose) / Math.max(0.6, tRoom - tClose - 0.1)) * ls.length;
+        ls.forEach((l, i) => { const lw = k.measure(l, {size: 66}), q = clamp(sp - i); if (q > 0) { k.ctx.fillStyle = RED; k.ctx.fillRect(x + 30, y + 120 + i * 84 + 66, Math.round(lw * q / 3) * 3, 9); } });
         ls.forEach((l, i) => k.text(l, x + 30, y + 120 + i * 84, {size: 66, color: INK}));
         tag(k, LABEL[0], 495, y + 150 + ls.length * 84, {align: 'center'}); tag(k, LABEL[1], 495, y + 200 + ls.length * 84, {align: 'center'});
         hookPlate(k);
@@ -266,7 +269,7 @@ window.SCENE = {
         const x = 90, y = 330, w = 900, h = Math.round(w * 650 / 1180);
         k.ctx.fillStyle = INK; k.ctx.fillRect(x - 9, y - 9, w + 18, h + 18);
         k.page(x, y, w, h, 'gemini-free', {scroll: 0});
-        tag(k, 'Plan page: gemini.google/subscriptions', 540, y + h + 30, {align: 'center'}); tag(k, 'read Nov 1, 2026', 540, y + h + 80, {align: 'center'});
+        tag(k, "Gemini's plan: gemini.google/subscriptions", 500, y + h + 30, {align: 'center'}); tag(k, 'read Nov 1, 2026', 540, y + h + 80, {align: 'center'});
         return host(k, 'point');
       }
       const lines = [];
@@ -278,7 +281,7 @@ window.SCENE = {
     /* ---- button: the boss FREE WORK (the native move, M7): hits on "list" (MY LIST), "job" (QUOTE LINES), "price"     */
     /* (I PRICE IT); it breaks on "railing" and PAID stamps.                                                            */
     button: (k, T) => {
-      const tL = wordT(k, 'button', /^list/i, 0.3), tJ = wordT(k, 'button', /^job/i, 1.1), tP = wordT(k, 'button', /^price/i, 2.2), tR = wordT(k, 'button', /^railing/i, 2.8);
+      const tL = wordT(k, 'button', /^list/i, 0.3), tJ = wordT(k, 'button', /^job/i, 1.1), tP = wordT(k, 'button', /^price$/i, 2.2), tR = wordT(k, 'button', /^railing/i, 2.8);
       k.sets.boss({name: 'FREE WORK', hp: 100, t0: k.S('button') - 0.3, menu: 'MOVES', hits: [{at: tL - 0.1, dmg: 50, label: 'MY LIST'}, {at: tP - 0.1, dmg: 50, label: 'I PRICE IT'}], defeatAt: tR, winText: 'PAID'});
       return host(k, T >= tR + 0.6 ? 'wave' : 'point');
     },

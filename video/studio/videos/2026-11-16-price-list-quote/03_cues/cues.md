@@ -9,7 +9,7 @@ Back to the reply card; FLAGGED stamps on the railing line; "NO PRICE GUESSED" u
 
 ## turn "You'd think AI makes" [sfx: whoosh]
 The slot machine: AI PRICES, reels spinning question marks.
-## turn.list "This time it stuck" [sfx: chime]
+## turn.list "This time the AI" [sfx: chime]
 The reels stop left to right on L, I, S, T; label "IT STUCK TO YOUR LIST".
 ## turn.loop "So what happens to" [sfx: blip]
 "What happens to / the railing?" lands in the crown.
@@ -21,7 +21,7 @@ FREE WORK stamps in red across the quote; Snow shrugs.
 
 ## two "Painter two keeps his" [sfx: whoosh]
 The street: painter two's van drives and parks in the driveway on "driveway"; in the sky a phone note, MY PRICES: Walls, Ceiling, Door, Patch, each [my price].
-## two.paste "he pastes it, this" [sfx: blip]
+## two.paste "he pastes the list," [sfx: blip]
 The note gets the prompt on top and NOTES under it; a PASTE INTO GEMINI arrow.
 
 ## why "The prompt says use" [sfx: whoosh]
@@ -29,7 +29,7 @@ The tool belt (the metaphor): MY PRICE LIST, four items (Walls, Ceiling, Door, P
 ## why.flag "The railing's in his" [sfx: whoosh]
 Mosaic into the real reply card, word for word: four lines, then FLAGGED ITEM, the railing line lit red; FLAGGED stamps on "flagged".
 
-## check "Gemini's free, and it" [sfx: chime]
+## check "Gemini is free, and" [sfx: chime]
 Gemini's own plan page, Free, $0/ month with a Google Account, tag "gemini.google/subscriptions, Nov 1, 2026"; then the setup card (ITEM GET, SETUP 4 STEPS) slides in: the four steps, held, the hand cursor stepping down.
 ## check.you "He does, and checks" [sfx: tick]
 Step 4 lights gold.

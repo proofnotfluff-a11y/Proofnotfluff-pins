@@ -1,0 +1,143 @@
+{
+ "schema": "pnf.opportunity.v1",
+ "slug": "austin-new-business-permits",
+ "name": "Austin New Businesses Weekly",
+ "status": "new",
+ "addedAt": "2026-11-02",
+ "pitch": "Each Monday, the businesses that just got a Texas sales tax permit for an outlet in Austin, sorted by trade, for Austin commercial cleaners, pest control and other vendors who sell to a business in its first months; the same model as our Chicago New Business Licenses list.",
+ "categories": [
+  "commercial cleaning",
+  "janitorial",
+  "pest control",
+  "hood cleaning",
+  "new businesses"
+ ],
+ "provenAbroad": [
+  {
+   "what": "DFW New Business Leads on Getly: a weekly CSV of new Texas sales tax permit outlets in eight Dallas Fort Worth counties, from the same Comptroller dataset, $29 for one week or $79 for 28 days; the Oct 12, 2026 file held 4,533 locations for Sep 12 to Oct 10. No phones, emails or websites. No Austin version.",
+   "url": "https://www.getly.store/product/dfw-new-business-leads-weekly-csv-of-newly-permitted-dallas-fort-worth-businesse-mv5g0dxe",
+   "date": "2026-10-12"
+  },
+  {
+   "what": "Our own Chicago New Business Licenses list, live at $29 a month since Oct 22, 2026, sells new City business licenses to the same cleaning and pest buyers (0 payers so far, so not yet proof)",
+   "url": "https://proofnotfluff.gumroad.com/l/chicago-new-business-licenses",
+   "date": "2026-10-22"
+  }
+ ],
+ "buyer": {
+  "who": "commercial cleaning and janitorial companies and pest control companies in Austin",
+  "count": null,
+  "countSource": {
+   "url": "https://naicslist.com/company-profile/wendt-cleaning-inc-austin-tx-78728",
+   "date": "2026-11-02",
+   "note": "Not counted in this run. This directory page for one Austin janitorial firm lists 20 other janitorial establishments within 7 miles, which shows the buyers exist but is not an Austin count. The only sourced number read is Texas statewide: 5,561 janitorial establishments (NAICS 561720, BLS QCEW 2024) at https://smbdensity.sitesbytiff.workers.dev/industry/561720. Count to run: the same jrea-zgmq dataset, active outlets with NAICS 561720 or 561710 and outlet city AUSTIN, or the BLS QCEW 2024 row for area 48453 (Travis County), NAICS 561720 (data.bls.gov was not reachable from this run)."
+  },
+  "reach": "each cleaning or pest company's own website and business inbox; the repo's CRM already holds Austin cleaning companies from the Austin Construction Cleaning Leads outreach",
+  "reachSource": {
+   "url": "https://naicslist.com/company-profile/wendt-cleaning-inc-austin-tx-78728",
+   "date": "2026-11-02"
+  }
+ },
+ "price": {
+  "monthly": 29,
+  "reason": "Our floor price and the price of the Chicago sister list; well under Texas Business Leads ($126 for a region with phones) and the Getly DFW file ($79 for 28 days), and it has to beat a free state export plus an Apify feed at half a cent a row",
+  "competitors": [
+   {
+    "name": "Texas Business Leads, Region plan (one of four Texas regions, 400 to 600 new businesses a week with phone numbers, Monday delivery; names Austin as an available metro; site is on a staging domain)",
+    "monthly": 126,
+    "url": "https://tbl-staging.duckdns.org/subscribe",
+    "date": "2026-11-02",
+    "richer": true
+   },
+   {
+    "name": "Texas Business Leads, Industry plan (25 to 350 leads a week, with phone numbers)",
+    "monthly": 126,
+    "url": "https://tbl-staging.duckdns.org/subscribe",
+    "date": "2026-11-02",
+    "richer": true
+   },
+   {
+    "name": "Apify Texas New Business Leads (new sales tax permits daily from jrea-zgmq, NAICS, intent score; the owner's name for sole proprietors and optional phone and website enrichment; $0.005 a lead, the page estimates about $68 a month for all of Texas daily, so an Austin-only filter costs far less)",
+    "monthly": 68,
+    "url": "https://apify.com/deadwood_data_solutions/texas-new-business-leads",
+    "date": "2026-09-08",
+    "richer": true
+   },
+   {
+    "name": "DFW New Business Leads on Getly (same Comptroller data, Dallas Fort Worth only, 28 days of weekly files)",
+    "monthly": 79,
+    "url": "https://www.getly.store/product/dfw-new-business-leads-weekly-csv-of-newly-permitted-dallas-fort-worth-businesse-mv5g0dxe",
+    "date": "2026-10-12",
+    "richer": false
+   }
+  ],
+  "freeSubstitute": {
+   "note": "The Comptroller publishes Recent Active Sales Tax Permit Holders (permits issued in the last week) free on its own site with a download button, and the full Active Sales Tax Permit Holders dataset (jrea-zgmq) is free to query and export on data.texas.gov with outlet city, NAICS and permit issue date",
+   "url": "https://comptroller.texas.gov/transparency/open-data/recent-sales-tax-permits",
+   "date": "2026-11-02"
+  }
+ },
+ "demand": {
+  "searchQueries": [],
+  "aiQueries": [
+   {
+    "q": "Someone planning a commercial cleaning business (Toronto) asks what the best way is to secure commercial leads",
+    "url": "https://reddit.sentinel-team.org/posts/1ravp8f/snapshots/2026-02-22T21%3A47%3A09.720919Z",
+    "date": "2026-02-22"
+   }
+  ]
+ },
+ "data": {
+  "publisher": "Texas Comptroller of Public Accounts (Texas Open Data Portal; also federated on the City of Austin portal)",
+  "dataset": "Active Sales Tax Permit Holders (jrea-zgmq)",
+  "subject": "a business outlet holding a new Texas sales tax permit (taxpayer name, outlet name and address, NAICS, organization type, permit issue date, first sales date, inside or outside city limits). The taxpayer can be a sole proprietor named as a person: about 21% of a 400-lead sample per the Apify page.",
+  "url": "https://data.texas.gov/Government-and-Taxes/Active-Sales-Tax-Permit-Holders/jrea-zgmq/about_data",
+  "apiUrl": "https://data.texas.gov/resource/jrea-zgmq.json",
+  "cadence": "weekly",
+  "lastUpdated": "2026-10-24",
+  "lastUpdatedSource": {
+   "url": "https://catalog.data.gov/dataset/active-sales-tax-permit-holders",
+   "date": "2026-11-02",
+   "note": "data.gov harvest of jrea-zgmq shows last modified Oct 24, 2026; the Apify page says the Comptroller refreshes about weekly"
+  },
+  "recordsPerMonth": null,
+  "recordsSource": null,
+  "countQuery": "https://data.texas.gov/resource/jrea-zgmq.json?$select=count(*)&$where=upper(outlet_city)='AUSTIN' AND outlet_permit_issue_date >= '2026-10-01T00:00:00' AND outlet_permit_issue_date < '2026-11-01T00:00:00'  (column API names inferred from the Comptroller's labels Outlet City and Outlet Permit Issue Date, not verified; also run with outlet_county_code='227' for Travis County, code to confirm, and once more adding taxpayer_organization_type not sole proprietor to see what survives the person rule)",
+  "countNote": "Not counted: data.texas.gov was refused by the cloud proxy (curl 403) and WebFetch permission for data.texas.gov, data.austintexas.gov and data.bls.gov was not granted in this run. Context only, not our count: the Apify page measured about 13,519 new permits statewide in 30 days (July 2026), and the Getly DFW file held 4,533 locations in 8 DFW counties for Sep 12 to Oct 10, 2026.",
+  "apiStable": true,
+  "license": {
+   "commercialUse": "unclear",
+   "url": "https://comptroller.texas.gov/transparency/open-data/recent-sales-tax-permits",
+   "date": "2026-11-02",
+   "note": "Neither the Comptroller page nor the data.gov record states a license (data.gov: no license information provided). The data.texas.gov terms page and the City of Austin Open Data Terms page were not reachable in this run. Resellers call it public domain or published for public reuse, and the City of Austin terms our Austin list runs under say public domain, but that covers City data, not the Comptroller's; Legal must read the portal terms."
+  }
+ },
+ "build": {
+  "days": 4,
+  "maintHoursMonth": 2,
+  "reuses": [
+   "tools/socrata.py",
+   "tools/licenses_chicago.py",
+   "tools/lic_app.py",
+   "tools/lic_xlsx.py"
+  ]
+ },
+ "fit": {
+  "samePortal": false,
+  "existingTools": [
+   "tools/socrata.py",
+   "tools/licenses_chicago.py",
+   "tools/lic_app.py",
+   "tools/lic_xlsx.py"
+  ],
+  "sameBuyerTypes": true
+ },
+ "overlap": "chicago-new-business-licenses (same model and buyers, other city: launches/chicago-new-business-licenses.md) and austin-construction-cleaning-leads (same city and the same Austin cleaning buyers in the CRM: launches/austin-construction-cleaning-leads.md).",
+ "risks": [
+  "K5: sole proprietors file under their own name (about 21% of a sample per the Apify page); the list must keep only organization types that are entities and apply the Chicago person-name rule to the outlet name, or the subject becomes private people.",
+  "Many new permits are home-based or online sellers whose outlet is a home address; they need no commercial cleaning and are a home address we will not print. Keep only outlets inside city limits at a commercial address, and judge the share after the first count.",
+  "Strong free substitute: the Comptroller's own weekly Recent permits page and the free jrea-zgmq export carry the same rows, and an Apify actor resells them at half a cent a lead with owner names and phones optional.",
+  "Paid competitor with phones (Texas Business Leads, $126 a month a region, Austin named) sits on a staging domain, so its status is uncertain.",
+  "No counted Austin volume and no counted Austin buyer pool in this run; both must be counted (probe workflow) before review."
+ ]
+}

@@ -1,0 +1,235 @@
+{
+ "schema": "pnf.aivis.v1",
+ "date": "2026-11-02",
+ "asked": 12,
+ "mentioned": 0,
+ "cited": 0,
+ "byProduct": {
+  "austin-construction-cleaning-leads": {
+   "asked": 3,
+   "mentioned": 0,
+   "cited": 0
+  },
+  "chicago-construction-cleaning-leads": {
+   "asked": 3,
+   "mentioned": 0,
+   "cited": 0
+  },
+  "chicago-restaurant-inspection-leads": {
+   "asked": 3,
+   "mentioned": 0,
+   "cited": 0
+  },
+  "chicago-new-business-licenses": {
+   "asked": 3,
+   "mentioned": 0,
+   "cited": 0
+  }
+ },
+ "topDomains": [
+  {
+   "domain": "catalog.data.gov",
+   "answers": 6
+  },
+  {
+   "domain": "help.chicagocityscape.com",
+   "answers": 4
+  },
+  {
+   "domain": "cmmonline.com",
+   "answers": 3
+  },
+  {
+   "domain": "community.getjobber.com",
+   "answers": 3
+  },
+  {
+   "domain": "pbcchicago.com",
+   "answers": 3
+  },
+  {
+   "domain": "logomakershop.com",
+   "answers": 2
+  },
+  {
+   "domain": "apify.com",
+   "answers": 2
+  },
+  {
+   "domain": "chicago.gov",
+   "answers": 2
+  }
+ ],
+ "measured": [
+  "claude-web"
+ ],
+ "notMeasured": {
+  "chatgpt": "OpenAI's terms bar automated use of ChatGPT; no free web-search API",
+  "perplexity": "Perplexity's terms bar automated queries of its app; its API is paid",
+  "gemini": "the free Gemini key has search grounding off, so it cannot show citations",
+  "google-ai-overviews": "no API; Search Console does not split AI Overview clicks out"
+ },
+ "answers": [
+  {
+   "id": "ac-1",
+   "product": "austin-construction-cleaning-leads",
+   "assistant": "claude-web",
+   "mentioned": false,
+   "cited": false,
+   "domains": [
+    "cmmonline.com",
+    "community.getjobber.com",
+    "logomakershop.com",
+    "salesforge.ai"
+   ]
+  },
+  {
+   "id": "ac-2",
+   "product": "austin-construction-cleaning-leads",
+   "assistant": "claude-web",
+   "mentioned": false,
+   "cited": false,
+   "domains": [
+    "cmmonline.com",
+    "gocanvas.com",
+    "logomakershop.com",
+    "prioritycommerce.com"
+   ]
+  },
+  {
+   "id": "ac-3",
+   "product": "austin-construction-cleaning-leads",
+   "assistant": "claude-web",
+   "mentioned": false,
+   "cited": false,
+   "domains": [
+    "apify.com",
+    "catalog.data.gov",
+    "permitmint.com",
+    "zabalist.com"
+   ]
+  },
+  {
+   "id": "cc-1",
+   "product": "chicago-construction-cleaning-leads",
+   "assistant": "claude-web",
+   "mentioned": false,
+   "cited": false,
+   "domains": [
+    "constructionbidsource.com",
+    "csk.cm201u.org",
+    "help.chicagocityscape.com",
+    "pbcchicago.com",
+    "projects.constructconnect.com"
+   ]
+  },
+  {
+   "id": "cc-2",
+   "product": "chicago-construction-cleaning-leads",
+   "assistant": "claude-web",
+   "mentioned": false,
+   "cited": false,
+   "domains": [
+    "cmmonline.com",
+    "help.chicagocityscape.com",
+    "levelset.com",
+    "pbcchicago.com"
+   ]
+  },
+  {
+   "id": "cc-3",
+   "product": "chicago-construction-cleaning-leads",
+   "assistant": "claude-web",
+   "mentioned": false,
+   "cited": false,
+   "domains": [
+    "chicagocityscape.com",
+    "help.chicagocityscape.com",
+    "pbcchicago.com",
+    "therealdeal.com"
+   ]
+  },
+  {
+   "id": "cr-1",
+   "product": "chicago-restaurant-inspection-leads",
+   "assistant": "claude-web",
+   "mentioned": false,
+   "cited": false,
+   "domains": [
+    "catalog.data.gov",
+    "exhaustclean.com",
+    "findhoodcleaner.com",
+    "hoodzinternational.com",
+    "kitchenguard.com",
+    "marmicfire.com"
+   ]
+  },
+  {
+   "id": "cr-2",
+   "product": "chicago-restaurant-inspection-leads",
+   "assistant": "claude-web",
+   "mentioned": false,
+   "cited": false,
+   "domains": [
+    "ajservices.us",
+    "catalog.data.gov",
+    "cleannetusa.com",
+    "morfincleaning.com",
+    "restaurantcleaningchicago.com",
+    "thumbtack.com"
+   ]
+  },
+  {
+   "id": "cr-3",
+   "product": "chicago-restaurant-inspection-leads",
+   "assistant": "claude-web",
+   "mentioned": false,
+   "cited": false,
+   "domains": [
+    "catalog.data.gov",
+    "chispections.com",
+    "data.cityofchicago.org",
+    "kitchenchecked.com"
+   ]
+  },
+  {
+   "id": "nl-1",
+   "product": "chicago-new-business-licenses",
+   "assistant": "claude-web",
+   "mentioned": false,
+   "cited": false,
+   "domains": [
+    "catalog.data.gov",
+    "community.getjobber.com",
+    "insights.workwave.com",
+    "learn.sweptworks.com"
+   ]
+  },
+  {
+   "id": "nl-2",
+   "product": "chicago-new-business-licenses",
+   "assistant": "claude-web",
+   "mentioned": false,
+   "cited": false,
+   "domains": [
+    "chicago.gov",
+    "community.getjobber.com",
+    "youraspire.com"
+   ]
+  },
+  {
+   "id": "nl-3",
+   "product": "chicago-new-business-licenses",
+   "assistant": "claude-web",
+   "mentioned": false,
+   "cited": false,
+   "domains": [
+    "announcekit.app",
+    "apify.com",
+    "catalog.data.gov",
+    "chicago.gov",
+    "help.chicagocityscape.com"
+   ]
+  }
+ ]
+}

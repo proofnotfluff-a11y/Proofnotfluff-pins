@@ -1,6 +1,6 @@
 {
  "schema": "pnf.opportunities.v1",
- "scoredAt": "2026-10-26",
+ "scoredAt": "2026-11-02",
  "goal": "$1000 month by 2027-01-31",
  "assumptions": {
   "conversion": {
@@ -18,18 +18,20 @@
   {
    "slug": "nyc-restaurant-pest-citations",
    "name": "NYC Restaurant Pest Citations",
-   "score": 94,
+   "score": 79,
    "factors": {
     "buyer": 5,
     "pay": 5,
     "demand": 5,
-    "data": 5,
+    "data": 0,
     "license": 5,
     "effort": 4,
     "speed": 5,
     "fit": 3
    },
-   "notes": {},
+   "notes": {
+    "data": "stale: last update 2026-10-22 for a daily source"
+   },
    "kills": [],
    "status": "todd",
    "why": [
@@ -37,25 +39,25 @@
    ],
    "money": {
     "netPerMember": 41.88,
-    "emailsByJan": 331,
+    "emailsByJan": 291,
     "payers": {
-     "low": 0.8,
-     "likely": 2.5,
-     "high": 6.6
+     "low": 0.7,
+     "likely": 2.2,
+     "high": 5.8
     },
     "janNet": {
-     "low": 35,
-     "likely": 104,
-     "high": 277
+     "low": 30,
+     "likely": 91,
+     "high": 244
     },
     "shareOfGoal": {
-     "low": 0.04,
-     "likely": 0.1,
-     "high": 0.28
+     "low": 0.03,
+     "likely": 0.09,
+     "high": 0.24
     }
    },
    "confidence": "medium",
-   "firstDollar": "2026-12-02",
+   "firstDollar": "2026-12-09",
    "price": 49,
    "buyer": "small structural and rodent pest control businesses in New York City",
    "source": "https://data.cityofnewyork.us/Health/DOHMH-New-York-City-Restaurant-Inspection-Results/43nn-pn8j"
@@ -85,44 +87,191 @@
    ],
    "money": {
     "netPerMember": 24.46,
-    "emailsByJan": 331,
+    "emailsByJan": 291,
     "payers": {
-     "low": 0.8,
-     "likely": 2.5,
-     "high": 6.6
+     "low": 0.7,
+     "likely": 2.2,
+     "high": 5.8
     },
     "janNet": {
-     "low": 20,
-     "likely": 61,
-     "high": 162
+     "low": 18,
+     "likely": 53,
+     "high": 142
     },
     "shareOfGoal": {
      "low": 0.02,
-     "likely": 0.06,
-     "high": 0.16
+     "likely": 0.05,
+     "high": 0.14
     }
    },
    "confidence": "medium",
-   "firstDollar": "2026-12-02",
+   "firstDollar": "2026-12-09",
    "price": 29,
    "buyer": "Label printers and packaging suppliers that serve wineries and distilleries",
    "source": "https://www.ttb.gov/public-information/foia/list-of-permittees"
   },
   {
+   "slug": "chicago-commercial-building-sales",
+   "name": "Chicago Commercial Building Sales Weekly",
+   "score": 48,
+   "factors": {
+    "buyer": 5,
+    "pay": 2,
+    "demand": 0,
+    "data": 1,
+    "license": 0,
+    "effort": 4,
+    "speed": 5,
+    "fit": 3
+   },
+   "notes": {
+    "pay": "a free equivalent exists: The Assessor's Parcel Sales dataset is a free, no-login export and API with clas",
+    "demand": "no dated search or question evidence",
+    "data": "monthly volume not counted from the source",
+    "license": "license unclear: the data and legal reviewer reads the terms"
+   },
+   "kills": [],
+   "status": "parked",
+   "why": [
+    "code score 48 under the review floor 60"
+   ],
+   "money": {
+    "netPerMember": 41.88,
+    "emailsByJan": 291,
+    "payers": {
+     "low": 0.7,
+     "likely": 2.2,
+     "high": 5.8
+    },
+    "janNet": {
+     "low": 30,
+     "likely": 91,
+     "high": 244
+    },
+    "shareOfGoal": {
+     "low": 0.03,
+     "likely": 0.09,
+     "high": 0.24
+    }
+   },
+   "confidence": "low",
+   "firstDollar": "2026-12-09",
+   "price": 49,
+   "buyer": "commercial snow removal, landscaping and janitorial firms serving Chicago commercial buildings",
+   "source": "https://catalog.data.gov/dataset/assessor-parcel-sales"
+  },
+  {
+   "slug": "austin-new-business-permits",
+   "name": "Austin New Businesses Weekly",
+   "score": 46,
+   "factors": {
+    "buyer": 0,
+    "pay": 2,
+    "demand": 1,
+    "data": 3,
+    "license": 2,
+    "effort": 4,
+    "speed": 5,
+    "fit": 3
+   },
+   "notes": {
+    "buyer": "no counted, dated buyer source",
+    "pay": "a free equivalent exists: The Comptroller publishes Recent Active Sales Tax Permit Holders (permits issued",
+    "data": "monthly volume not counted from the source",
+    "license": "license unclear: the data and legal reviewer reads the terms"
+   },
+   "kills": [],
+   "status": "parked",
+   "why": [
+    "code score 46 under the review floor 60"
+   ],
+   "money": {
+    "netPerMember": 24.46,
+    "emailsByJan": 0,
+    "payers": {
+     "low": 0.0,
+     "likely": 0.0,
+     "high": 0.0
+    },
+    "janNet": {
+     "low": 0,
+     "likely": 0,
+     "high": 0
+    },
+    "shareOfGoal": {
+     "low": 0.0,
+     "likely": 0.0,
+     "high": 0.0
+    }
+   },
+   "confidence": "medium",
+   "firstDollar": "2026-12-09",
+   "price": 29,
+   "buyer": "commercial cleaning and janitorial companies and pest control companies in Austin",
+   "source": "https://data.texas.gov/Government-and-Taxes/Active-Sales-Tax-Permit-Holders/jrea-zgmq/about_data"
+  },
+  {
+   "slug": "fmcsa-insurance-cancellations",
+   "name": "Truck Insurance Cancellations by State",
+   "score": 81,
+   "factors": {
+    "buyer": 5,
+    "pay": 5,
+    "demand": 3,
+    "data": 4,
+    "license": 5,
+    "effort": 3,
+    "speed": 5,
+    "fit": 2
+   },
+   "notes": {},
+   "kills": [],
+   "status": "dropped",
+   "why": [
+    "Dropped Oct 26 after demand FAIL 2 and red team FAIL 2 on the offer itself: a competitor sells real-time cancellation alerts with insurer, phone and email from $49 with a trial, a weekly file is stale when the carrier must refile within days, and Motus was reported in Sept 2026 to mark replaced filings wrongly, so cancelled-and-not-replaced cannot be promised. Data-legal PASS 4."
+   ],
+   "money": {
+    "netPerMember": 41.88,
+    "emailsByJan": 268,
+    "payers": {
+     "low": 0.7,
+     "likely": 2.0,
+     "high": 5.4
+    },
+    "janNet": {
+     "low": 28,
+     "likely": 84,
+     "high": 224
+    },
+    "shareOfGoal": {
+     "low": 0.03,
+     "likely": 0.08,
+     "high": 0.22
+    }
+   },
+   "confidence": "medium",
+   "firstDollar": "2026-12-13",
+   "price": 49,
+   "buyer": "Independent insurance agencies that write commercial truck insurance (a subset of the 37,000 US independent P&C agencies; the trucking share is not counted)",
+   "source": "https://data.transportation.gov/d/3uet-3z4i"
+  },
+  {
    "slug": "fmcsa-new-trucking-companies",
    "name": "New Trucking Companies by State",
-   "score": 92,
+   "score": 77,
    "factors": {
     "buyer": 5,
     "pay": 5,
     "demand": 5,
-    "data": 5,
+    "data": 0,
     "license": 5,
     "effort": 4,
     "speed": 5,
     "fit": 2
    },
-   "notes": {},
+   "notes": {
+    "data": "stale: last update 2026-10-23 for a daily source"
+   },
    "kills": [],
    "status": "dropped",
    "why": [
@@ -130,25 +279,25 @@
    ],
    "money": {
     "netPerMember": 24.46,
-    "emailsByJan": 320,
+    "emailsByJan": 280,
     "payers": {
-     "low": 0.8,
-     "likely": 2.4,
-     "high": 6.4
+     "low": 0.7,
+     "likely": 2.1,
+     "high": 5.6
     },
     "janNet": {
-     "low": 20,
-     "likely": 59,
-     "high": 157
+     "low": 17,
+     "likely": 51,
+     "high": 137
     },
     "shareOfGoal": {
      "low": 0.02,
-     "likely": 0.06,
-     "high": 0.16
+     "likely": 0.05,
+     "high": 0.14
     }
    },
    "confidence": "medium",
-   "firstDollar": "2026-12-04",
+   "firstDollar": "2026-12-11",
    "price": 29,
    "buyer": "Independent insurance agencies that write commercial truck insurance (a subset of the 37,000 US independent P&C agencies; the trucking share is not counted), plus freight factoring and dispatch firms",
    "source": "https://data.transportation.gov/Trucking-and-Motorcoaches/Company-Census-File/az4n-8mr2"
@@ -156,18 +305,20 @@
   {
    "slug": "colorado-new-business-entities",
    "name": "Colorado New Business Filings",
-   "score": 86,
+   "score": 71,
    "factors": {
     "buyer": 5,
     "pay": 4,
     "demand": 4,
-    "data": 5,
+    "data": 0,
     "license": 5,
     "effort": 4,
     "speed": 5,
     "fit": 2
    },
-   "notes": {},
+   "notes": {
+    "data": "stale: last update 2026-10-22 for a daily source"
+   },
    "kills": [],
    "status": "dropped",
    "why": [
@@ -175,44 +326,93 @@
    ],
    "money": {
     "netPerMember": 24.46,
-    "emailsByJan": 331,
+    "emailsByJan": 291,
     "payers": {
-     "low": 0.8,
-     "likely": 2.5,
-     "high": 6.6
+     "low": 0.7,
+     "likely": 2.2,
+     "high": 5.8
     },
     "janNet": {
-     "low": 20,
-     "likely": 61,
-     "high": 162
+     "low": 18,
+     "likely": 53,
+     "high": 142
     },
     "shareOfGoal": {
      "low": 0.02,
-     "likely": 0.06,
-     "high": 0.16
+     "likely": 0.05,
+     "high": 0.14
     }
    },
    "confidence": "medium",
-   "firstDollar": "2026-12-02",
+   "firstDollar": "2026-12-09",
    "price": 29,
    "buyer": "licensed public accounting firms in Colorado",
    "source": "https://data.colorado.gov/Business/Business-Entities-in-Colorado/4ykn-tg5h"
   },
   {
+   "slug": "osha-inspection-leads",
+   "name": "New OSHA Inspections and Citations by State",
+   "score": 71,
+   "factors": {
+    "buyer": 5,
+    "pay": 5,
+    "demand": 5,
+    "data": 0,
+    "license": 5,
+    "effort": 3,
+    "speed": 5,
+    "fit": 0
+   },
+   "notes": {
+    "data": "stale: last update 2026-06-03 for a daily source"
+   },
+   "kills": [],
+   "status": "dropped",
+   "why": [
+    "Dropped Oct 26 after demand FAIL 2 and red team FAIL 2 on the offer itself: OSHA's own search is free by state and date, an incumbent sells the same weekly state list at $29 with a free tier, an Apify actor sells the rows at $3.50 per 1,000, and citations post about 30 days after the employer gets them. Data-legal PASS 3."
+   ],
+   "money": {
+    "netPerMember": 24.46,
+    "emailsByJan": 257,
+    "payers": {
+     "low": 0.6,
+     "likely": 1.9,
+     "high": 5.1
+    },
+    "janNet": {
+     "low": 16,
+     "likely": 47,
+     "high": 126
+    },
+    "shareOfGoal": {
+     "low": 0.02,
+     "likely": 0.05,
+     "high": 0.13
+    }
+   },
+   "confidence": "medium",
+   "firstDollar": "2026-12-15",
+   "price": 29,
+   "buyer": "Independent occupational safety consulting firms",
+   "source": "https://catalog.data.gov/dataset/dol-enforcement-data-inspection"
+  },
+  {
    "slug": "nyc-facade-unsafe-filings",
    "name": "NYC Unsafe Facade Filings",
-   "score": 83,
+   "score": 68,
    "factors": {
     "buyer": 3,
     "pay": 5,
     "demand": 4,
-    "data": 5,
+    "data": 0,
     "license": 5,
     "effort": 4,
     "speed": 5,
     "fit": 2
    },
-   "notes": {},
+   "notes": {
+    "data": "stale: last update 2026-10-21 for a daily source"
+   },
    "kills": [],
    "status": "dropped",
    "why": [
@@ -238,7 +438,7 @@
     }
    },
    "confidence": "medium",
-   "firstDollar": "2026-12-03",
+   "firstDollar": "2026-12-10",
    "price": 99,
    "buyer": "facade restoration and masonry contractors working on NYC buildings over six stories",
    "source": "https://data.cityofnewyork.us/Housing-Development/DOB-NOW-Safety-Facades-Compliance-Filings/xubg-57si"
@@ -246,18 +446,19 @@
   {
    "slug": "nyc-liquor-license-applications",
    "name": "NYC New Liquor License Applications",
-   "score": 82,
+   "score": 67,
    "factors": {
     "buyer": 4,
     "pay": 5,
     "demand": 4,
-    "data": 5,
+    "data": 0,
     "license": 2,
     "effort": 4,
     "speed": 5,
     "fit": 3
    },
    "notes": {
+    "data": "stale: last update 2026-10-22 for a daily source",
     "license": "license unclear: the data and legal reviewer reads the terms"
    },
    "kills": [],
@@ -285,112 +486,20 @@
     }
    },
    "confidence": "medium",
-   "firstDollar": "2026-12-02",
+   "firstDollar": "2026-12-09",
    "price": 39,
    "buyer": "FDNY certified commercial kitchen exhaust cleaning companies serving NYC",
    "source": "https://data.ny.gov/Economic-Development/Current-SLA-Pending-Licenses/f8i8-k2gm"
   },
   {
-   "slug": "fmcsa-insurance-cancellations",
-   "name": "Truck Insurance Cancellations by State",
-   "score": 81,
-   "factors": {
-    "buyer": 5,
-    "pay": 5,
-    "demand": 3,
-    "data": 4,
-    "license": 5,
-    "effort": 3,
-    "speed": 5,
-    "fit": 2
-   },
-   "notes": {},
-   "kills": [],
-   "status": "dropped",
-   "why": [
-    "Dropped Oct 26 after demand FAIL 2 and red team FAIL 2 on the offer itself: a competitor sells real-time cancellation alerts with insurer, phone and email from $49 with a trial, a weekly file is stale when the carrier must refile within days, and Motus was reported in Sept 2026 to mark replaced filings wrongly, so cancelled-and-not-replaced cannot be promised. Data-legal PASS 4."
-   ],
-   "money": {
-    "netPerMember": 41.88,
-    "emailsByJan": 308,
-    "payers": {
-     "low": 0.8,
-     "likely": 2.3,
-     "high": 6.2
-    },
-    "janNet": {
-     "low": 32,
-     "likely": 97,
-     "high": 258
-    },
-    "shareOfGoal": {
-     "low": 0.03,
-     "likely": 0.1,
-     "high": 0.26
-    }
-   },
-   "confidence": "medium",
-   "firstDollar": "2026-12-06",
-   "price": 49,
-   "buyer": "Independent insurance agencies that write commercial truck insurance (a subset of the 37,000 US independent P&C agencies; the trucking share is not counted)",
-   "source": "https://data.transportation.gov/d/3uet-3z4i"
-  },
-  {
-   "slug": "osha-inspection-leads",
-   "name": "New OSHA Inspections and Citations by State",
-   "score": 71,
-   "factors": {
-    "buyer": 5,
-    "pay": 5,
-    "demand": 5,
-    "data": 0,
-    "license": 5,
-    "effort": 3,
-    "speed": 5,
-    "fit": 0
-   },
-   "notes": {
-    "data": "stale: last update 2026-06-03 for a daily source"
-   },
-   "kills": [],
-   "status": "dropped",
-   "why": [
-    "Dropped Oct 26 after demand FAIL 2 and red team FAIL 2 on the offer itself: OSHA's own search is free by state and date, an incumbent sells the same weekly state list at $29 with a free tier, an Apify actor sells the rows at $3.50 per 1,000, and citations post about 30 days after the employer gets them. Data-legal PASS 3."
-   ],
-   "money": {
-    "netPerMember": 24.46,
-    "emailsByJan": 297,
-    "payers": {
-     "low": 0.7,
-     "likely": 2.2,
-     "high": 5.9
-    },
-    "janNet": {
-     "low": 18,
-     "likely": 54,
-     "high": 145
-    },
-    "shareOfGoal": {
-     "low": 0.02,
-     "likely": 0.05,
-     "high": 0.14
-    }
-   },
-   "confidence": "medium",
-   "firstDollar": "2026-12-08",
-   "price": 29,
-   "buyer": "Independent occupational safety consulting firms",
-   "source": "https://catalog.data.gov/dataset/dol-enforcement-data-inspection"
-  },
-  {
    "slug": "chicago-storefront-sign-leads",
    "name": "Chicago Storefront Sign Leads",
-   "score": 65,
+   "score": 50,
    "factors": {
     "buyer": 4,
     "pay": 2,
     "demand": 0,
-    "data": 5,
+    "data": 0,
     "license": 2,
     "effort": 5,
     "speed": 5,
@@ -399,6 +508,7 @@
    "notes": {
     "pay": "a free equivalent exists: The City's Business Licenses dataset is free to query and export with no login; ",
     "demand": "no dated search or question evidence",
+    "data": "stale: last update 2026-10-24 for a daily source",
     "license": "license unclear: the data and legal reviewer reads the terms"
    },
    "kills": [],
@@ -425,8 +535,8 @@
      "high": 0.26
     }
    },
-   "confidence": "medium",
-   "firstDollar": "2026-12-01",
+   "confidence": "low",
+   "firstDollar": "2026-12-08",
    "price": 79,
    "buyer": "sign companies that install storefront signs in Chicago",
    "source": "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr"

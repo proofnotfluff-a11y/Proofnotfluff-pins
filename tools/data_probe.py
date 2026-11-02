@@ -41,12 +41,23 @@ PROBES = {
     "nyc_live_pest_places_by_code_sep2026": ("https://data.cityofnewyork.us/resource/43nn-pn8j.json",
         {"$select": "violation_code,count(distinct camis) AS places", "$where": "violation_code in('04K','04L','04M','04N','08A') AND "
          "inspection_date>='2026-09-01T00:00:00' AND inspection_date<'2026-10-01T00:00:00'", "$group": "violation_code", "$limit": 10}),
+    # Radar scout (Nov 2): field names guessed from labels; the columns block below confirms them. A wrong name is recorded as an error.
+    "texas_sales_tax_permits_austin_by_org_type": ("https://data.texas.gov/resource/jrea-zgmq.json",
+        {"$select": "taxpayer_organization_type,count(*)", "$where": f"upper(outlet_city)='AUSTIN' AND outlet_permit_issue_date>='{SINCE}'",
+         "$group": "taxpayer_organization_type", "$order": "count(*) DESC", "$limit": 20}),
+    "cook_parcel_sales_chicago_commercial_by_month": ("https://datacatalog.cookcountyil.gov/resource/wvhk-k5uv.json",
+        {"$select": "date_trunc_ym(sale_date) AS month,count(distinct doc_no) AS sales", "$where": "sale_date>='2025-10-01T00:00:00' AND "
+         "township_code in('70','71','72','73','74','75','76','77') AND class in('516','517','522','523','527','528','529','530','531',"
+         "'532','591','592','597','599','583','587','589','593')", "$group": "month", "$order": "month", "$limit": 24}),
+    "cook_parcel_sales_newest": ("https://datacatalog.cookcountyil.gov/resource/wvhk-k5uv.json", {"$select": "max(sale_date) AS newest"}),
 }
 COLUMNS = {
     "chicago_food_inspections": "https://data.cityofchicago.org/api/views/4ijn-s7e5.json",
     "chicago_business_licenses": "https://data.cityofchicago.org/api/views/r5kz-chrr.json",
     "austin_permits": "https://data.austintexas.gov/api/views/3syk-w9eu.json",
     "seattle_permits": "https://data.seattle.gov/api/views/76t5-zqzr.json",
+    "texas_sales_tax_permits": "https://data.texas.gov/api/views/jrea-zgmq.json",
+    "cook_parcel_sales": "https://datacatalog.cookcountyil.gov/api/views/wvhk-k5uv.json",
 }
 
 

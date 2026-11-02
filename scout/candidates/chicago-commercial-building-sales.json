@@ -1,0 +1,171 @@
+{
+ "schema": "pnf.opportunity.v1",
+ "slug": "chicago-commercial-building-sales",
+ "name": "Chicago Commercial Building Sales Weekly",
+ "status": "new",
+ "addedAt": "2026-11-02",
+ "pitch": "Each week, the commercial and industrial buildings in Chicago (Cook County class 5 parcels) that the Assessor's open data shows just changed hands, by address and class, for janitorial, snow, landscaping and building service firms; a new owner often rebids service contracts.",
+ "categories": [
+  "commercial cleaning",
+  "janitorial",
+  "snow removal",
+  "commercial landscaping",
+  "property management",
+  "building services"
+ ],
+ "provenAbroad": [
+  {
+   "what": "Apify actor resells the same Cook County Assessor parcel sales (with buyer and seller names, class, PIN) at about $0.03 per 1,000 records; proves the raw feed is packaged and sold, not that trades pay for a filtered list",
+   "url": "https://apify.com/j0401/cook-parcel-sales",
+   "date": "2026-11-02"
+  },
+  {
+   "what": "Apify actor sells Cook County Assessor sales, values, permits and appeals at $3.00 per 1,000 records, with a class code filter",
+   "url": "https://apify.com/jserle/cook-county-property-sales-values",
+   "date": "2026-11-02"
+  }
+ ],
+ "buyer": {
+  "who": "commercial snow removal, landscaping and janitorial firms serving Chicago commercial buildings",
+  "count": 764,
+  "countSource": {
+   "url": "https://prod.bbb.org/us/il/chicago/category/commercial-snow-removal-service",
+   "date": "2026-11-02",
+   "note": "BBB header: 764 results for Commercial Snow Removal Services near Chicago, IL. A metro directory search, not a Chicago-only roster: it includes suburban firms, residential crossover and accredited or not. BOMA/Chicago's member directory lists only 9 janitorial member firms (https://members.bomachicago.org/member-directory/Search/janitorial-256502); BBB shows 2,176 Janitor Service results near Chicago (https://nginx-legacy.prod.bbb.org/us/il/chicago/category/janitor-service), mostly residential cleaners. The firms that sell to commercial owners are a small slice of these counts."
+  },
+  "reach": "each firm's own website and phone; BOMA/Chicago's member directory gives a website link for all 9 janitorial members and a phone for 7",
+  "reachSource": {
+   "url": "https://members.bomachicago.org/member-directory/Search/janitorial-256502",
+   "date": "2026-11-02"
+  }
+ },
+ "price": {
+  "monthly": 49,
+  "reason": "Under PropertyShark's $59.95 and well under Cityscape's $125 and PropertyRadar's $119 Solo; anything higher has to beat the County's free export and Apify feeds at cents per 1,000 rows. One won commercial snow or janitorial contract pays years of it, but only if the list arrives while the new owner is still choosing vendors.",
+  "competitors": [
+   {
+    "name": "PropertyRadar Solo: nationwide property data with transaction history, property alerts on saved criteria, and 250 pre-matched owner phones and emails a month (commercial coverage implied by its commercial plays, not stated)",
+    "monthly": 119,
+    "url": "https://propertyradar.com/pricing?hsLang=en",
+    "date": "2026-11-02",
+    "richer": true
+   },
+   {
+    "name": "Chicago Cityscape (Cook County property sales from Illinois Department of Revenue transfer filings, buyer and seller counts per area; owner names only)",
+    "monthly": 125,
+    "url": "https://www.chicagocityscape.com/vs/propertyshark",
+    "date": "2026-11-02",
+    "richer": false
+   },
+   {
+    "name": "PropertyShark (owner records, names only, per Cityscape's comparison page)",
+    "monthly": 59.95,
+    "url": "https://www.chicagocityscape.com/vs/propertyshark",
+    "date": "2026-11-02",
+    "richer": false
+   },
+   {
+    "name": "Crain's Chicago Business: reports the large Chicago commercial deals as news, not a list",
+    "monthly": 18,
+    "url": "https://www.axios.com/local/chicago/2026/02/05/news-local-subscriptions-2026-tribune-sun-times-paywall",
+    "date": "2026-02-05",
+    "richer": false
+   },
+   {
+    "name": "Convex: commercial cleaning prospecting platform naming ownership transfers among its public record inputs, with facility manager emails and phones; price by demo only",
+    "monthly": null,
+    "url": "https://www.convex.com/blog/office-building-cleaning-leads-property-intelligence-decision-makers",
+    "date": "2025-09-29",
+    "richer": true
+   }
+  ],
+  "freeSubstitute": {
+   "note": "The Assessor's Parcel Sales dataset is a free, no-login export and API with class and township on every row; filtering to Chicago class 5 sales takes one query. The Clerk's recordings search is also free to the public.",
+   "url": "https://catalog.data.gov/dataset/assessor-parcel-sales",
+   "date": "2026-10-20"
+  }
+ },
+ "demand": {
+  "searchQueries": [],
+  "aiQueries": [
+   {
+    "q": "A commercial cleaning prospecting vendor lists ownership transfers among the public records used to find office building cleaning leads (vendor content, not a buyer asking)",
+    "url": "https://www.convex.com/blog/office-building-cleaning-leads-property-intelligence-decision-makers",
+    "date": "2025-09-29"
+   }
+  ]
+ },
+ "data": {
+  "publisher": "Cook County Assessor's Office (Cook County Open Data portal)",
+  "dataset": "Assessor - Parcel Sales (wvhk-k5uv)",
+  "subject": "a recorded sale of one Cook County parcel (PIN), with class code, township, sale date, price, deed type and document number",
+  "url": "https://catalog.data.gov/dataset/assessor-parcel-sales",
+  "apiUrl": "https://datacatalog.cookcountyil.gov/api/v3/views/wvhk-k5uv/query.json?accessType=DOWNLOAD",
+  "cadence": "monthly",
+  "cadenceNote": "data.gov metadata (modified 2026-10-20): 'the Data Department will upload what it has access to semi-monthly, sales are reported on a lag, with many records not populating until months after their official recording date.' Scored as monthly because the lag, not the upload rhythm, sets how fresh a week's list can be.",
+  "lastUpdated": "2026-10-20",
+  "lag": {
+   "summary": "Weeks to months. On Aug 23, 2026 the newest sale in the dataset was dated Jul 14, 2026 (40 days behind), and many sales arrive months after recording; a second reseller measured content about two and a half months behind its probe date. A weekly list would mostly carry sales 6 to 10 weeks old, after a new owner has often already picked vendors.",
+   "sources": [
+    {
+     "url": "https://catalog.data.gov/dataset/assessor-parcel-sales",
+     "date": "2026-10-20"
+    },
+    {
+     "url": "https://apify.com/jserle/cook-county-property-sales-values",
+     "date": "2026-11-02"
+    },
+    {
+     "url": "https://apify.com/j0401/cook-parcel-sales",
+     "date": "2026-11-02"
+    }
+   ],
+   "lagQuery": "https://datacatalog.cookcountyil.gov/resource/wvhk-k5uv.json?%24select=max%28sale_date%29+as+newest_sale%2C+count%28%2A%29+as+rows&%24where=township_code+in+%28%2770%27%2C%2771%27%2C%2772%27%2C%2773%27%2C%2774%27%2C%2775%27%2C%2776%27%2C%2777%27%29+AND+sale_date+%3E%3D+%272026-01-01T00%3A00%3A00%27"
+  },
+  "fields": "PIN, year, township code, neighborhood, class, sale date, sale price, document number, deed type, seller name, buyer name, multi-sale flags and three Assessor sale filter flags (per the reseller page https://apify.com/j0401/cook-parcel-sales; the portal's own column list could not be fetched this run)",
+  "commercialClasses": {
+   "note": "Class 5A commercial: 5-16 hotel, 5-17 one-story commercial, 5-22 garage, 5-23 gas station, 5-27 theatre, 5-28 bank, 5-29 motel, 5-30 supermarket, 5-31 shopping center, 5-32 bowling alley, 5-91 commercial over three stories, 5-92 two or three story retail or commercial, 5-97 special commercial, 5-99 commercial condo unit; class 5B industrial: 5-83, 5-87, 5-89 condo, 5-93 industrial building. Excluded: 5-00 and 5-50 land, 5-90 and 5-80 minor improvements, 2-12 and 3-18 mixed use with apartments.",
+   "url": "https://www.lincolninst.edu/sites/default/files/gwipp/upload/sources/Illinois/2018/il_cook_county_assessor_def_of_classes_apr_2018.pdf",
+   "date": "2018-04-01"
+  },
+  "recordsPerMonth": null,
+  "recordsSource": {},
+  "countQuery": "https://datacatalog.cookcountyil.gov/resource/wvhk-k5uv.json?%24select=date_trunc_ym%28sale_date%29+as+month%2C+count%28distinct+doc_no%29+as+sales&%24where=sale_date+%3E%3D+%272025-10-01T00%3A00%3A00%27+AND+sale_date+%3C+%272026-10-01T00%3A00%3A00%27+AND+township_code+in+%28%2770%27%2C%2771%27%2C%2772%27%2C%2773%27%2C%2774%27%2C%2775%27%2C%2776%27%2C%2777%27%29+AND+class+in+%28%27516%27%2C%27517%27%2C%27522%27%2C%27523%27%2C%27527%27%2C%27528%27%2C%27529%27%2C%27530%27%2C%27531%27%2C%27532%27%2C%27591%27%2C%27592%27%2C%27597%27%2C%27599%27%2C%27583%27%2C%27587%27%2C%27589%27%2C%27593%27%29+AND+sale_filter_less_than_10k+%3D+false+AND+sale_filter_deed_type+%3D+false&%24group=month&%24order=month",
+  "countQueryNote": "Not run: the cloud shell's proxy refuses datacatalog.cookcountyil.gov and WebFetch to the portal was not approved this run. Field names (sale_date, township_code, class, doc_no, sale_filter_less_than_10k, sale_filter_deed_type) and Chicago township codes 70 to 77 must be confirmed against the dataset's column list before the probe trusts the result. Counts distinct document numbers so a multi-parcel sale counts once.",
+  "apiStable": true,
+  "license": {
+   "commercialUse": "unclear",
+   "url": "https://www.cookcountyil.gov/news/county-eliminates-charge-gis-data",
+   "date": "2013-12-09",
+   "note": "data.gov lists the dataset as 'License not specified'. The only County reuse terms found are the 2013 open GIS data ordinance news release: free to noncommercial users, and commercial users 'authorized to utilize the Open GIS Data to further their commercial enterprise' when combined with other data. Whether that ordinance covers Assessor sales is not stated. The portal's own terms page was not read this run."
+  }
+ },
+ "build": {
+  "days": 4,
+  "maintHoursMonth": 3,
+  "reuses": [
+   "tools/socrata.py",
+   "tools/chicago_geo.py",
+   "tools/leads_xlsx.py",
+   "tools/data_probe.py",
+   ".github/workflows/data-probe.yml (the cloud cannot reach the County portal, so pulls run in Actions)"
+  ]
+ },
+ "fit": {
+  "samePortal": false,
+  "existingTools": [
+   "tools/socrata.py",
+   "tools/chicago_geo.py",
+   "tools/leads_xlsx.py"
+  ],
+  "sameBuyerTypes": true
+ },
+ "overlap": "Touches the buyers of Chicago Construction Cleaning Leads and its area seats (launches/chicago-cleaning-area-seats.md: one cleaning company per area, $149) since commercial cleaners are a target buyer; different source and trigger (a sale, not a permit). Does not touch launches/chicago-construction-pipeline.md (counts of open $500,000+ permits, no addresses).",
+ "risks": [
+  "Lag (critical): sales reach the dataset 6 weeks to months after the sale, so a 'this week' list is really a two to three month old list; a new owner usually lines up vendors at or before closing.",
+  "K5: every row carries buyer and seller names, and many buyers of small class 5 buildings (5-17, 5-92, 5-99 condo units) are individuals or land trusts; the product must drop both name fields and name only the building (address, class). The class filter excludes homes and apartment classes, but a class 5-92 storefront with a flat upstairs is still someone's building; whether a sale of a privately owned storefront makes a person the subject is for the data-legal reviewer.",
+  "Non-arms-length: the dataset says sales are filtered only loosely and include non-arms-length transfers (deeds into trusts, related-party moves) that are not real new owners; the deed type and sale filter flags remove some, not all.",
+  "Free substitute: the County export is free and filters by class in one query, and Apify resells it for cents.",
+  "Volume unknown: Chicago class 5 sales per month not counted this run; the count query is above."
+ ]
+}

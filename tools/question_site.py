@@ -285,6 +285,39 @@ def stats(kind, d):
                                                          else f" ({ties(x, x['most']['events'][tt])} winters)")])
         s["triggerRows"] = trig
         return s
+    if kind == "snow_truck":   # a plow on a truck you already own: the same model, read as owner pay, plow payback and subcontract rates
+        import math
+        s = stats("snow_choice", d)
+        c = next(x for x in d["pages"] if x["slug"] == "snow-removal-pricing-calculator")["defaults"]
+        r2 = lambda v: round(v + 1e-9, 2)
+        m = lambda v: ("-$" if v < -0.004 else "$") + (_n(round(abs(v))) if abs(abs(v) - round(abs(v))) < 0.005 else f"{r2(abs(v)):,.2f}")
+        hrs = (float(c["pushMin"]) + float(c["driveMin"])) / 60
+        rate, equip, people = float(c["rate"]), float(c["equip"]), int(c["people"])
+        q = float(s["quote"].strip("$").replace(",", ""))
+        cost = float(s["cost"].strip("$").replace(",", ""))
+        profit = q - cost
+        pay = hrs * rate * people
+        truck = hrs * equip
+        own = pay + profit
+        perK = math.ceil(1000 / profit - 1e-9)
+        sd = {"low": int(s["low"]), "mid": int(s["mid"]), "high": int(s["high"])}
+        s |= {"visitMin": f"{hrs * 60:.0f}", "ownPay": m(pay), "truckCost": m(truck), "takeHome": m(own), "perK": str(perK),
+              "hourCost": m(people * rate + equip), "hourLeft": m(profit / hrs), "hourPrice": m(q / hrs),
+              "midSeason": m(own * sd["mid"]), "midProfit": m(profit * sd["mid"]),
+              "drivesMid": str(math.ceil(perK / sd["mid"])), "drivesLow": str(math.ceil(perK / sd["low"])),
+              "drivesHigh": str(math.ceil(perK / sd["high"]))}
+        rows = []
+        for label, k in (("Light winter", sd["low"]), ("Middle winter", sd["mid"]), ("Heavy winter", sd["high"])):
+            rows.append([label, str(k), m(own * k), m(profit * k), str(math.ceil(perK / k))])
+        s["paybackRows"] = rows
+        hc = people * rate + equip
+        sub = [("Subcontract at $75 an hour (thread, 2009)", 75), ("Subcontract at $85 an hour (thread, 2009)", 85),
+               ("Own accounts at $125 an hour (thread, 2009)", 125)]
+        s["subRows"] = [[lab, m(v), m(hc), m(v - hc)] for lab, v in sub] + \
+                       [["Your own driveways at the example price", m(q / hrs), m(cost / hrs), m(profit / hrs)]]
+        s["hourOwnCost"] = m(cost / hrs)
+        s["subLeft75"] = m(75 - hc)
+        return s
     if kind == "lead_lsa":   # pay-per-lead ad questions: the free cost per lead calculator's own model (PNF.leadCost) and defaults
         import subprocess
         c = next(x for x in d["pages"] if x["slug"] == "cost-per-lead-calculator")["defaults"]

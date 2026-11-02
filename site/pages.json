@@ -8179,6 +8179,202 @@
      "Not on this free page, which shows counts only. Our paid Chicago construction cleaning leads list gives the address, the builder and the stage of open apartment and commercial jobs of $500,000 or more permitted in the last 24 months."
     ]
    ]
+  },
+  {
+   "slug": "snow-plow-on-your-own-truck-worth-it",
+   "kind": "question",
+   "city": "Chicago",
+   "product": "chicago-construction-cleaning-leads",
+   "data": "site/pages.json",
+   "stats": "snow_truck",
+   "draft": true,
+   "title": "Is a Snow Plow on Your Own Truck Worth It? | ProofNotFluff",
+   "desc": "A Northern Illinois roofer asks if a plow on his own truck pays for residential drives, and what to avoid. Payback, subcontract rates and 28 Chicago winters.",
+   "card": "Whether a plow on the truck you already own pays for driveways, how many drives earn back the plow, and the pitfalls plowers name.",
+   "eyebrow": "Snow removal pricing",
+   "updated": "Worked example from the free snow removal pricing calculator and NOAA daily snowfall at {station}. Checked Nov 2, 2026.",
+   "h1": "Is putting a snow plow on the truck you already own worth it, and what are the pitfalls?",
+   "answer": [
+    "It can be, because the truck is already paid for, so the plow is the main new cost. Whether it pays back turns on two numbers: what each push leaves you after the truck and the salt, and how many pushes a Chicago winter gives you. Work out both before you buy the blade.",
+    "In the worked example a driveway prices at **{quote}** a push. Of that, **{takeHome}** is yours: {ownPay} for your own {visitMin} minutes and {profit} on top. At {profit} a push, every $1,000 you spend on a plow and mount takes **{perK}** pushes to earn back. In a middle winter at {station} ({mid} days with {trigger} or more of new snow), that is **{drivesMid}** driveways for each $1,000; in a light winter it is {drivesLow}."
+   ],
+   "numbersTitle": "The worked example, in four numbers",
+   "tiles": [
+    [
+     "Price per push",
+     "{quote}",
+     "{pushMin} minutes on site, {driveMin} minutes of drive, {salt} of salt"
+    ],
+    [
+     "Yours per push",
+     "{takeHome}",
+     "{ownPay} for your time plus {profit} profit"
+    ],
+    [
+     "Pushes per $1,000 of plow",
+     "{perK}",
+     "at {profit} of profit a push"
+    ],
+    [
+     "Driveways per $1,000",
+     "{drivesMid}",
+     "in a middle winter of {mid} pushes"
+    ]
+   ],
+   "numbers": [
+    "From the free calculator's example inputs: {pushMin} minutes on site, {driveMin} minutes of drive from the stop before, {people} person at {rate} an hour, the truck and plow at {equip} an hour, {salt} of salt a visit and a {margin} margin. One visit costs {cost}: {ownPay} of labor, {truckCost} of truck time and {salt} of salt. It prices at {quote}, rounded up to the next $5, so it leaves {profit}.",
+    "When you plow yourself, the labor line is your own pay, so a push puts {takeHome} in your pocket and the {truckCost} of truck time goes to fuel, wear and repairs. The plow payback counts only the {profit} of profit, so your pay is never spent twice. Your own minutes, truck cost and plow price give your own numbers."
+   ],
+   "tables": [
+    {
+     "title": "How many driveways earn back each $1,000 of plow",
+     "intro": [
+      "One driveway at the example's {quote} a push, one push for each day with {trigger} or more of new snow at {station}. Light, middle and heavy are past winters, not a forecast."
+     ],
+     "head": [
+      "Winter",
+      "Pushes a driveway",
+      "Yours a driveway",
+      "Profit a driveway",
+      "Driveways per $1,000 of plow"
+     ],
+     "rows": "paybackRows",
+     "notes": [
+      "Days counted from NOAA's daily snowfall at {station}, the last {n} complete winters, {firstWinter} to {lastWinter} (the free snow season board). Light is the winter one fifth of the way up from the fewest, middle the median, heavy four fifths of the way up. Yours is your pay plus the profit; the payback column uses the profit only. A deep storm takes longer and the calculator prices it higher, at {deepQuote}."
+     ]
+    },
+    {
+     "title": "Subcontract by the hour or sign your own driveways",
+     "intro": [
+      "The reply with numbers named what a truck earned by the hour. Here they sit next to the example's cost an hour, {hourCost} for a driver and truck ({rate} of labor plus {equip} of truck)."
+     ],
+     "head": [
+      "How you plow",
+      "Pays an hour",
+      "Cost an hour",
+      "Left over an hour"
+     ],
+     "rows": "subRows",
+     "notes": [
+      "Hourly rates are quoted from a December 2009 forum reply, for the replier's own area, not today's Chicago rates. Your own driveways count each push and its drive at the example price; their cost includes {salt} of salt a push, which a subcontract hour does not."
+     ]
+    }
+   ],
+   "stepsTitle": "How to decide before you buy the plow",
+   "steps": [
+    [
+     "Price one push from your own minutes",
+     "Time a driveway like the ones you would sign, walk included, plus the drive from the stop before. At your labor and truck cost an hour plus salt, that is the cost of a push. Divide by one less your margin for the price: {cost} at {margin} is {quote}."
+    ],
+    [
+     "Count the pushes a winter gives you",
+     "At {station}, the middle of the last {n} winters had {mid} days with {trigger} or more of new snow, a light one {low} and a heavy one {high}. Set your trigger in writing and use its count."
+    ],
+    [
+     "Work out the plow payback",
+     "Divide the plow, mount and wiring price by your profit a push, then by the pushes in a light winter. In the example each $1,000 takes {perK} pushes, or {drivesLow} driveways in a light winter."
+    ],
+    [
+     "Call your insurance agent first",
+     "Plowing for pay can change what your policies cover and cost. Ask before the first push, and get the answer in writing."
+    ],
+    [
+     "Sign every driveway",
+     "Put the trigger, the push price, salt and when you get paid in a signed agreement, the same way you would for a roof."
+    ]
+   ],
+   "sections": [
+    [
+     "What the thread says",
+     [
+      "The question was posted Dec 21, 2009 on the RoofersCoffeeShop forum by a roofer in Northern Illinois with an '05 F350 Super Duty 4x4, his main roofing truck. He planned to plow mostly residential driveways and asked whether there was money in it or too much competition, which plow to buy, and which pitfalls to avoid.",
+      "One reply came from a plower of about 10 years with 3 trucks and a skid steer, working mostly as a subcontractor for a large landscaping company. He called plowing a very profitable venture if you already own the truck. He quoted $75 to $85 an hour per truck as a subcontractor and about $125 an hour per truck on his own accounts, and suggested a V plow, commercial lots, and the plow brand whose dealer is closest and keeps good hours. In a second reply he said he signs a contract with plow clients the same as with roofing customers, has never had trouble getting paid, and does not work for anyone whose place he cannot find."
+     ]
+    ],
+    [
+     "The pitfalls owners name",
+     [
+      "Insurance and claims. A 2016 article for contractors by the accounting firm Withum says plowing can raise general liability and workers compensation premiums, that insurers have begun using standard exclusions, and that claims pile up from damage to the property being plowed and from later slip and fall claims. It says snow contracts put most of the responsibility on the contractor and suggests an attorney read them.",
+      "Wear and waiting. The same article names extra wear on equipment and standby time when storms land on weekends or forecasts miss. A 2022 piece by HindSite Software, from its survey of snow businesses, says storms come at any hour, weeks can pass with nothing and then two days run straight, and asks whether you can pay the repairs and equipment insurance a second line of work brings. In the example, {truckCost} of every push goes to the truck for that reason."
+     ]
+    ],
+    [
+     "Driveways or commercial lots",
+     [
+      "The roofer planned driveways; the reply pointed him to commercial lots, on his own or as a subcontractor. Subcontracting needs no customers of your own, but at $75 an hour the example's driver and truck cost of {hourCost} leaves {subLeft75} above your own {rate} of pay and the truck. Your own driveways at the example price leave {hourLeft} an hour after salt and truck, before you count the time to sell and bill them.",
+      "HindSite's survey says only 4% of the snow businesses it surveyed did snow removal only, and about 60% said snow was less than 30% of their annual revenue. Most of the businesses it surveyed run snow next to other work, the way the roofer in the thread would."
+     ]
+    ]
+   ],
+   "calculator": [
+    "snow-removal-pricing-calculator",
+    "snow removal pricing calculator",
+    "Put in your own minutes, truck cost and salt in"
+   ],
+   "cta": {
+    "title": "Line up spring work while you plow",
+    "text": "If you also clean or finish buildings in Chicago, the Chicago Construction Cleaning Leads list sends every Monday the open projects of $500,000 or more and the builder on each, with the ones near finish marked. {price} a month, cancel any time."
+   },
+   "faq": [
+    [
+     "Is it worth putting a plow on my truck?",
+     "It can be when the truck is already yours. In the example a push at {quote} leaves {takeHome} for you, and each $1,000 of plow takes {perK} pushes of profit to earn back: {drivesMid} driveways in a middle Chicago winter, {drivesLow} in a light one."
+    ],
+    [
+     "How many pushes does it take to pay back a plow?",
+     "At {profit} of profit a push in the example, each $1,000 of plow, mount and wiring takes {perK} pushes. With a push for each day of {trigger} or more at {station}, that is {drivesLow} driveways in a light winter, {drivesMid} in a middle one and {drivesHigh} in a heavy one."
+    ],
+    [
+     "Should I subcontract or find my own driveways?",
+     "Subcontracting needs no customers but pays by the hour. A 2009 forum reply quoted $75 to $85 an hour per truck as a subcontractor and about $125 on its own accounts. At the example's {hourCost} an hour for driver and truck, $75 leaves {subLeft75} above your own pay and the truck."
+    ],
+    [
+     "What should I check before my first push?",
+     "Call your insurance agent about plowing for pay, sign an agreement with the trigger, price and payment terms, and know where the nearest plow dealer is and its hours during storms."
+    ]
+   ],
+   "related": [
+    [
+     "snow-removal-pricing-calculator",
+     "Free snow removal pricing calculator"
+    ],
+    [
+     "chicago-snow-season",
+     "Chicago snow season board for plow owners"
+    ],
+    [
+     "snow-plowing-seasonal-or-per-push",
+     "Seasonal contract or per push for snow plowing"
+    ]
+   ],
+   "sources": [
+    [
+     "RoofersCoffeeShop forum, Does anybody snowplow for extra winter dough? (the question as asked)",
+     "https://www.rooferscoffeeshop.com/forum/topic/does-anybody-snowplow-for-extra-winter-dough",
+     "posted Dec 21, 2009, read Nov 2, 2026"
+    ],
+    [
+     "Withum, To Plow or Not to Plow?",
+     "https://www.withum.com/resources/plow-not-plow/",
+     "Feb 25, 2016, read Nov 2, 2026"
+    ],
+    [
+     "HindSite Software, 4 Tips to Turn Snow Plowing into a Profitable Side Business",
+     "https://www.agriculture-xprt.com/articles/4-tips-to-turn-snow-plowing-into-a-profitable-side-business-1090358",
+     "Nov 22, 2022, read Nov 2, 2026"
+    ],
+    [
+     "NOAA NCEI, Global Historical Climatology Network daily (GHCN-Daily), daily snowfall at {station}",
+     "https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily",
+     "winters {firstWinter} to {lastWinter}, counted on the ProofNotFluff snow season board"
+    ],
+    [
+     "ProofNotFluff, snow removal pricing calculator (example inputs)",
+     "../snow-removal-pricing-calculator/",
+     "checked Nov 2, 2026"
+    ]
+   ],
+   "footnote": "The worked example uses the free snow removal pricing calculator's example inputs. Snow days are counted from NOAA daily records of past winters, not a forecast. Hourly plowing rates are quoted from a public forum thread posted in 2009 and read Nov 2, 2026. This page is not insurance or legal advice."
   }
- ]
+]
 }

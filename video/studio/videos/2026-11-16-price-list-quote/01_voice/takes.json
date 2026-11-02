@@ -1,10 +1,10 @@
 {
  "schema": "pnf.studio.takes.v1",
- "requestedAt": "2026-11-02T14:07:33-05:00",
+ "requestedAt": "2026-11-02T14:17:44-05:00",
  "voice": "W3pJy9ibur1FKUihVxzY",
  "model": "eleven_v4",
- "scriptSha256": "10003bf5e7e4066a5eee3a99022a64e5285fee0c27bbfd0d7c83c97a3eadd804",
- "voiceSha256": "7be3357d4165897e2127af75155aff085af594cb552e322b5dbc15162059865b",
+ "scriptSha256": "885148ca0d1922148d1bb7bd6a93b7b24681ffeaabfe1fde55b68686e0258a63",
+ "voiceSha256": "809153a3887801f2fdd1b15c8b5e6794a1bfee2dfa32f102e3413d945cc97ec7",
  "takes": [
   {
    "n": 1,
@@ -29,12 +29,12 @@
   {
    "n": 3,
    "file": "takes/03.mp3",
-   "sha256": "99228ca444ce6b75e7ef52766f15d5a8937ea50f31e0f99c5d3a27fc42073ddf",
-   "seconds": 8.594,
-   "chars": 121,
+   "sha256": "1102fc4d646ff4aaaaedd1862f16a086f7c5f44a6148ba623394fb678a331100",
+   "seconds": 8.438,
+   "chars": 124,
    "start": 12.578,
-   "end": 21.172,
-   "wpm": 147
+   "end": 21.016,
+   "wpm": 156
   },
   {
    "n": 4,
@@ -42,8 +42,8 @@
    "sha256": "b959bfda798eb7905a4ae9991491c75ef1f424006a79041522245c8cc0da08f0",
    "seconds": 8.046,
    "chars": 115,
-   "start": 21.492,
-   "end": 29.538,
+   "start": 21.336,
+   "end": 29.382,
    "wpm": 164
   },
   {
@@ -52,19 +52,19 @@
    "sha256": "f58cea873cafe7a7dd34329166a6241151dc75f481f328948be5a2a7d3e47d0b",
    "seconds": 9.953,
    "chars": 146,
-   "start": 29.858,
-   "end": 39.811,
+   "start": 29.702,
+   "end": 39.655,
    "wpm": 151
   },
   {
    "n": 6,
    "file": "takes/06.mp3",
-   "sha256": "0e6fcf4d0d5ec2850994ac1958daca00bb7652ff53e769e8e45281dd866d323b",
-   "seconds": 5.642,
-   "chars": 75,
-   "start": 40.131,
-   "end": 45.773,
-   "wpm": 138
+   "sha256": "4219df2b5ed18e9be4098252440dd9b95920adfde12b8237d7543e63c9c8820a",
+   "seconds": 5.878,
+   "chars": 79,
+   "start": 39.975,
+   "end": 45.853,
+   "wpm": 143
   },
   {
    "n": 7,
@@ -72,15 +72,15 @@
    "sha256": "660166f2fb50fb84b24116fd37557437c582cfd22849904299df8e092f3d6a61",
    "seconds": 3.474,
    "chars": 60,
-   "start": 46.093,
-   "end": 49.567,
+   "start": 46.173,
+   "end": 49.647,
    "wpm": 155
   }
  ],
- "chars": 699,
- "at": "2026-11-02T14:15:30-05:00",
+ "chars": 706,
+ "at": "2026-11-02T14:25:16-05:00",
  "credits": {
-  "used": 1831,
+  "used": 1921,
   "limit": 133571,
   "tier": "creator",
   "resetsAt": 1796089820

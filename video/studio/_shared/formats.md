@@ -32,6 +32,7 @@ viewer sees and hears: a different shape, length, opening and payoff, each built
 
 | playbook | 40 to 58 s | 100 to 150 | one setup step, standing alone (no part numbers, Oct 31): the step, the exact thing to copy on screen and held (text, setting, prompt), the check that it worked, the button naming the next part | missed-call text-back, follow-up, anything with setup steps |
 | case | 70 to 92 s | 180 to 245 | one real setup end to end: before (the problem with its number), the setup step by step, the cost, after (the number), the rule | a real owner's setup we can source |
+| dispatch | 45 to 70 s | 115 to 180 | the lede with its document on screen (0 to 3 s), the nut (by 8 s), two or three receipts with source tags, the other side, the setup card held, the kicker echoing the lede (_shared/investigative.md) | a documented story from research/STORIES.md (AI lane; hook pattern receipt) |
 
 Depth (Todd, Oct 30, 2026, 4:01 pm: "Drive this hard, and let's get real good videos out"; research/topics-2026-10-30.md):
 every lesson hands the owner something to do this week: the exact words, setting, prompt or steps, on screen. A definition

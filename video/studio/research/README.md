@@ -9,6 +9,7 @@ quotes, emails, texts, reviews, the whole process. Every claim a script makes co
 | `KNOWLEDGE.md` | verified claims: the claim in plain words, the number, the source, the year, confidence, the safe way to say it | the research run, a live session |
 | `EXPERTS.md` | the practitioners and channels we learn from (public figures and businesses only), what each is good for | the research run |
 | `IDEAS.md` | the video idea bank, ranked, with the one idea and the hook | the research run, a live session |
+| `STORIES.md`, `stories/` | the story desk's bank and dossiers (.claude/skills/story-desk/SKILL.md) | the story desk |
 | `LOG.md` | one line per research run: date, what changed | the research run |
 | `runs/<date>-<topic>.md` | the full notes from one research brief, with every URL | the research run |
 

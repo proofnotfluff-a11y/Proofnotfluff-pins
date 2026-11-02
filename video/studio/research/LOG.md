@@ -5,3 +5,4 @@
 - 2026-10-28: run captions (Todd, 3:07 pm: right description and tags): runs/2026-10-28-captions.md; rules in _shared/captions.md.
 - 2026-10-28: runs topic-bank (40 ranked lessons, 10 briefs), script-playbook, animation-sound filed (Todd, 3:43 pm: overdrive).
 - 2026-10-28: run trades-insights (Todd, evening: trades-first lessons from trade creators, trade sources only): runs/2026-10-28-trades-insights.md; 21 ranked lessons, review of the 8 made lessons (1, 4, 6, 7 rest on non-trade studies); KNOWLEDGE trades-first rows T1 to T19, EXPERTS trade teachers, IDEAS trades-first bank on top.
+- 2026-11-02: story desk first run (live chat): 3 beat reporters, 9 leads, 2 verified to Ready (lsa-to-google-ai, chatgpt-finds-contractors), 2 leads, 6 killed

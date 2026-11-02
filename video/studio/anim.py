@@ -1985,7 +1985,7 @@ def variety_problems(slug, share):
 # Rules for a lesson against the other unposted lessons in the queue: its example is its own (also against the last 3
 # posted lessons that name one); no other unposted lesson has the same hook pattern and treatment; and the lessons right
 # before and after it in posting order do not open on the same hook pattern.
-HOOK_PATTERNS = {"stuck-moment", "two-shops", "object-number", "which-pick", "your-move", "problem-question", "result-first", "myth"}
+HOOK_PATTERNS = {"stuck-moment", "two-shops", "object-number", "which-pick", "your-move", "problem-question", "result-first", "myth", "receipt"}
 TREATMENTS = {"story", "myth-fact", "steps", "before-after", "math-board", "copy-this"}
 VARIETY_FIELDS = (("hook", "Hook pattern"), ("treatment", "Treatment"), ("example", "Example"))
 
@@ -2283,6 +2283,9 @@ FORMATS = {
     # one real setup end to end.
     "playbook":   {"min_seconds": 40.0, "max_seconds": 58.0, "words": (100, 150)},
     "case":       {"min_seconds": 70.0, "max_seconds": 92.0, "words": (180, 245)},
+    # The story desk (Todd, live chat, Nov 2, 2026, 12:28 pm: "find really, really interesting new stories about trades in AI
+    # software implementation"; _shared/investigative.md): one documented story, receipts on screen, a setup card.
+    "dispatch":   {"min_seconds": 45.0, "max_seconds": 70.0, "words": (115, 180)},
 }
 FORMAT_ALIASES = {"v2": "clinic"}
 

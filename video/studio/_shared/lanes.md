@@ -36,6 +36,9 @@ clearer return on investment would get them to adopt (distributionstrategy.com, 
 7. Facts gate: every price, plan, feature and limit read on the maker's own page the day the lesson is made, with the
    date; a feature that is "rolling out" is said that way or left out.
 
+Story desk first (Todd, Nov 2, 2026, 12:28 pm; .claude/skills/story-desk/SKILL.md): a Ready story in research/STORIES.md
+is made (format dispatch) before any other AI idea.
+
 First candidates (held Oct 30 as too thin; rebuild in the AI lane with real runs): 2026-11-08-after-hours-reply,
 2026-11-10-notes-to-quote, 2026-11-03-review-replies, then IDEAS.md "Owed first".
 

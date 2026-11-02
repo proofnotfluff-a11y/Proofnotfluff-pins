@@ -86,10 +86,12 @@ def query(release):
     con.execute("INSTALL httpfs; LOAD httpfs; SET s3_region='us-west-2';")
     src = f"read_parquet('s3://{phones.BUCKET}/release/{release}/theme=places/type=place/*', hive_partitioning=1)"
     cols = {r[0] for r in con.execute(f"DESCRIBE SELECT * FROM {src}").fetchall()}
-    if "basic_category" in cols:
-        cat, used = "basic_category", "basic_category"
-    elif "taxonomy" in cols:
+    # Release 2026-10-21.0 carries the leaf value in taxonomy.primary (395 in the metro box); basic_category holds a broader
+    # group there (probe, Nov 1), so taxonomy.primary goes first and basic_category is the fallback.
+    if "taxonomy" in cols:
         cat, used = "taxonomy.primary", "taxonomy.primary"
+    elif "basic_category" in cols:
+        cat, used = "basic_category", "basic_category"
     else:
         cat, used = "categories.primary", "categories.primary"
     status = "operating_status" if "operating_status" in cols else "NULL"

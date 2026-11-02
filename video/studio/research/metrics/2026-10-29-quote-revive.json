@@ -22,6 +22,41 @@
      "views": 22
     }
    }
+  },
+  {
+   "date": "2026-11-01",
+   "readAt": "2026-11-02T02:36:50Z",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": "hidden",
+     "views": 7
+    },
+    "instagram": {
+     "avgWatchS": "hidden",
+     "comments": "hidden",
+     "likes": "hidden",
+     "saves": "hidden",
+     "shares": "hidden",
+     "skipRate": "hidden",
+     "views": 115
+    },
+    "tiktok": {
+     "avgWatchS": "hidden",
+     "comments": 0,
+     "likes": 0,
+     "saves": "hidden",
+     "shares": "hidden",
+     "views": 92
+    },
+    "youtube": {
+     "comments": 0,
+     "likes": "hidden",
+     "viewedVsSwipedPct": "hidden",
+     "views": 31
+    }
+   },
+   "source": "videometrics 2026-10-29-quote-revive.2026-11-01T20 (evening PC run, list views only)",
+   "docId": "2026-10-29-quote-revive.2026-11-01T20"
   }
  ]
 }

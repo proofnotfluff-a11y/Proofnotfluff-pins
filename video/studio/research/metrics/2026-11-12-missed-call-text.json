@@ -1,0 +1,40 @@
+{
+ "slug": "2026-11-12-missed-call-text",
+ "reads": [
+  {
+   "date": "2026-11-01",
+   "readAt": "2026-11-02T02:36:50Z",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": "hidden",
+     "views": 19
+    },
+    "instagram": {
+     "avgWatchS": "hidden",
+     "comments": "hidden",
+     "likes": "hidden",
+     "saves": "hidden",
+     "shares": "hidden",
+     "skipRate": "hidden",
+     "views": 121
+    },
+    "tiktok": {
+     "avgWatchS": "hidden",
+     "comments": 0,
+     "likes": 4,
+     "saves": "hidden",
+     "shares": "hidden",
+     "views": 280
+    },
+    "youtube": {
+     "comments": 0,
+     "likes": "hidden",
+     "viewedVsSwipedPct": "hidden",
+     "views": 1296
+    }
+   },
+   "source": "videometrics 2026-11-12-missed-call-text.2026-11-01T20 (evening PC run, list views only)",
+   "docId": "2026-11-12-missed-call-text.2026-11-01T20"
+  }
+ ]
+}

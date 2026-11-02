@@ -508,7 +508,24 @@
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {
+    "instagram": {
+     "url": "https://www.instagram.com/proofnotfluff/reel/DfOOaYjBX7Z/",
+     "at": "2026-11-01T21:24:12-05:00"
+    },
+    "tiktok": {
+     "url": "https://www.tiktok.com/@proofnotfluff/video/7703395025039658270",
+     "at": "2026-11-01T21:27:27-05:00"
+    },
+    "facebook": {
+     "url": "https://www.facebook.com/reel/28883456747993235/",
+     "at": "2026-11-01T21:32:36-05:00"
+    },
+    "youtube": {
+     "url": "https://youtube.com/shorts/N6iWaDCHPAY",
+     "at": "2026-11-01T21:34:49-05:00"
+    }
+   }
   },
   {
    "slug": "2026-11-15-three-fixes",

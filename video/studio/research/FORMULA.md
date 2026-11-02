@@ -8,6 +8,10 @@
 | 2026-10-29-quote-revive | core | none named (before formula.md) | 35 h, list views (115, 92, 7, 31) | not read | hidden | hidden | hidden |
 | 2026-11-12-missed-call-text | core | none named (before formula.md) | 12 h, list views (121, 280, 19, 1,296); 24 h read due | not read | hidden | hidden | hidden |
 | 2026-11-14-ai-night-quote | ai | lane (first AI lesson, real reply by 2 s, prompt as the save card) | posted Nov 1 9:24 pm; no read yet (24 h due Nov 2 9:24 pm) | | | | |
+| 2026-11-14-ai-night-quote | ai | lane | 15 h, Nov 2 12:19 pm, list views (IG 122, TT 129, FB 37, YT 10) | not read | hidden | hidden | hidden |
+| 2026-11-15-three-fixes | core | length (about 29 s, quick-math) | posted Nov 2 12:07 pm (Instagram as a normal reel: the web uploader shows no Trial option); no read yet | | | | |
+| 2026-11-12-missed-call-text | core | none named | 28 h, list views (121, 280, 19, 1,299): YT stalled after 12 h | not read | hidden | hidden | hidden |
+| 2026-11-11-lsa-missed-calls | core | none named | 49 h, list views (1,288, 289, 58, 87): IG stalled after 33 h | not read | hidden | 29.1% at 2.7 h | hidden |
 
 ## References
 (Each: platform, link, the counts on the page and the date, then what the first 3 s, the beats, the save moment and the
@@ -19,3 +23,4 @@ length do, in our words.)
 - Nov 2 Monday research run: 2 Shorts outliers (to watch) not found. YouTube Short pages fetched return the page shell with no views or channel counts, direct requests to YouTube and third-party counters are blocked from the cloud run, and the text sources that print counts (vidIQ channel stats, vuela.ai weekly AI Shorts table, HomePros News) had no trade or small business Short with both its count and its channel's usual. Next try: Todd reads two in the YouTube app (the Short's views against the channel's Shorts tab) and sends screenshots. Details: runs/2026-11-02-ai-systems.md.
 
 ## Kept and dropped
+- Weekly read, Nov 2 (Monday lunch run, cloud): nothing can be kept or dropped yet. Three tests have run or are running (lane, ai-night-quote; length, three-fixes; turn by 5 s with a side, price-list-quote, made this run) and none has a 3 s hold, a watch number or a share count filed: every read since Oct 31 is list views only. Retest all three once the PC runs file watch numbers. What the list views do say: the two breakouts (lsa-missed-calls on IG, missed-call-text on YT) both led with a money stake and the missed call, and both stalled within a day. Next tests in order: 4 (a save card worth a screenshot, core lane), 3 (skit cold open, core), 1 when a send line can be on screen only. Two openings per lesson can't run yet: instagram.com's web uploader shows no Trial option (PC run note, Nov 2 lunch).

@@ -9,6 +9,21 @@
    screen, in the voice or the captions, no "part two" in the button. Live chat doing this Oct 31, 7:35 pm; if it is not
    queued when a run starts, finish it first.
 
+## Ranked by the recorded numbers (Nov 2, 2026, Monday lunch run; newest list views, all four platforms)
+What the numbers say about topics: the missed call with a money stake is the only topic that broke out (twice, on two platforms). Ideas on the missed call, the after-hours lead and money lost to a forgotten item rank first; long v1 cuts and topics with no stake rank last.
+1. 2026-11-11-lsa-missed-calls: 1,722 views (IG 1288, TT 289, FB 58, YT 87)
+2. 2026-11-12-missed-call-text: 1,719 views (IG 121, TT 280, FB 19, YT 1299)
+3. 2026-10-30-markup-margin: 544 views (IG 129, TT 180, FB 210, YT 25)
+4. 2026-11-13-count-before-ai: 359 views (IG 139, TT 183, FB 4, YT 33)
+5. 2026-11-14-ai-night-quote: 298 views (IG 122, TT 129, FB 37, YT 10)
+6. 2026-10-28-first-reply: 288 views (IG 114, TT 121, FB 40, YT 13)
+7. 2026-10-31-three-prices: 267 views (IG 111, TT 97, FB 33, YT 26)
+8. 2026-11-04-close-rate: 255 views (IG 115, TT 89, FB 14, YT 37)
+9. 2026-11-07-let-me-think: 249 views (IG 103, TT 130, FB 13, YT 3)
+10. 2026-10-29-quote-revive: 249 views (IG 115, TT 92, FB 7, YT 35)
+11. 2026-11-05-book-the-call: 223 views (IG 14, TT 85, FB 113, YT 11)
+No lesson is due a re-cut (`anim.py recuts`: the first is due Jan 26, 2027).
+
 ## Depth bank (Oct 30, 2026; START HERE, outranks every list below)
 
 Todd, Oct 30, 2026, 4:01 pm: "go with your recommendation on everything. Drive this hard, and let's get real good videos

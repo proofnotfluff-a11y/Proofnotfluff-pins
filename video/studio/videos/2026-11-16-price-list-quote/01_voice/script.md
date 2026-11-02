@@ -8,7 +8,7 @@ Two painters, same walkthrough. Painter one quotes at ten pm from memory, and th
 
 Painter two keeps his prices in a phone note. In the driveway, he pastes it, this prompt and his notes into Gemini.
 
-[matter-of-fact] The prompt says use only his list. His notes say railing. It's not on the list, so Gemini flagged it. Four quote lines, one flag.
+[matter-of-fact] The prompt says use only his list. The railing's in his notes, not his list, so Gemini flagged it.
 
 Gemini's free, and it didn't price the railing. He does, and checks every line.
 

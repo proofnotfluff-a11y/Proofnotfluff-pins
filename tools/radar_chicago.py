@@ -67,6 +67,13 @@ FOOD_WORDS = re.compile(r"RESTAURANT|RESTAURNT|\bCAFE\b|\bCAFÉ\b|COFFEE|BAKERY|
                         r"BAGEL|SUSHI|RAMEN|BAR (?:AND|&) GRILL|\bBAR/RESTAURANT|FOOD SERVICE|FOOD ESTABLISHMENT|FOOD HALL|"
                         r"COMMERCIAL KITCHEN|CATERING|TYPE (?:I|1|ONE) HOOD|KITCHEN HOOD|EXHAUST HOOD|HOOD (?:AND|&) DUCT|GREASE (?:TRAP|INTERCEPTOR)|"
                         r"CARRY[- ]?OUT|TAKE[- ]?OUT|FAST FOOD|\bEATERY|\bDINER\b|\bBISTRO|\bGRILL\b|KITCHEN EXHAUST|WALK[- ]IN (?:COOLER|FREEZER)", re.I)
+# a permit-only row must read as a new food business moving in, not work at one already open (round 2 of the hand check)
+NEW_PLACE = re.compile(r"\bNEW\b[^.;]{0,50}\b(?:RESTAURANT|CAFE|COFFEE|BAKERY|GROCERY|TAVERN|BAR|ICE CREAM|CUSTARD|TAKE[- ]?OUT|CARRY[- ]?OUT|FOOD|PIZZ|"
+                       r"TENANT|OPERATOR|USE|SHOP|STORE|KITCHEN|DELI|TAQUER|EATERY|FRANCHISE)|BUILD[- ]?OUT|BUILDOUT|FIT[- ]?OUT|FITOUT|TENANT IMPROVEMENT|"
+                       r"CHANGE OF USE|CONVER(?:T|SION)\b[^.;]{0,80}\b(?:RESTAURANT|CAFE|COFFEE|BAKERY|GROCERY|FOOD|TAKE|CARRY)|TO ESTABLISH|"
+                       r"\bERECT|CONSTRUCT (?:A|AN|NEW)\b|NEW CONSTRUCTION|INITIAL|\bTO ?NEW\b|(?:PERMIT|BUILDING) FOR (?:1|A|ONE|AN) (?:NEW )?(?:RESTAURANT|CAFE|BAKERY|GROCERY)", re.I)
+NOT_NEW = re.compile(r"FIRE (?:&|AND) WATER|FIRE[- ]DAMAGE|IN[- ]KIND|STRUCTURAL REPAIR|REPLACEMENT ONLY|SAME USE|NO CHANGE IN USE|"
+                     r"FROM (?:A |AN )?(?:RESTAURANT|CAFE|BAR|TAVERN)\b[^.;]{0,30}\bTO\b|\bSHELTER\b|\bKENNEL|\bOFFICE SUITE\b", re.I)
 NOT_FOOD = re.compile(r"GRAB BARS?|REBAR|\bBAR JOISTS?|TOWEL BAR", re.I)
 
 KINDS = [  # key, label: the type of food business a rule can name
@@ -388,8 +395,17 @@ def build(today, lic_recs, left, insp_rows, pending_rows, pending_license_rows, 
     for p in permits:
         if BUILD_TYPES.search(p.get("permit_type") or ""):
             by_key[permit_key(p)].append(p)
-    shared = collections.Counter(b["key"] for b in biz)
+    ours = collections.Counter(b["key"] for b in biz)
+
+    def is_shared(b):
+        """Another food business at the same address: on the radar, or on the City's inspection records there (a hotel's
+        restaurant, a food court; round 2 of the hand check)."""
+        first = (dt.date.fromisoformat(min(e["d"] for e in b["events"])) - dt.timedelta(days=180)).isoformat()   # open side by side
+        return ours[b["key"]] > 1 or any(not same_name(x.get("dba_name"), b["name"]) and not same_name(x.get("aka_name"), b["name"])
+                                         and lic_num(x.get("license_")) not in b["lics"] and day(x.get("inspection_date")) >= first
+                                         and (x.get("results") or "").upper() != "OUT OF BUSINESS" for x in prior.get(b["key"], []))
     for b in biz:
+        shared = is_shared(b)
         first = min(e["d"] for e in b["events"])
         lo = (dt.date.fromisoformat(first) - dt.timedelta(days=PERMIT_BACK)).isoformat()
         for p in sorted(by_key.get(b["key"], []), key=lambda p: p.get("issue_date") or ""):
@@ -397,10 +413,10 @@ def build(today, lic_recs, left, insp_rows, pending_rows, pending_license_rows, 
             if not (lo <= d <= today.isoformat()):
                 continue
             food = permit_is_food(p, b["name"])
-            if shared[b["key"]] > 1 and not food:
+            if shared and not food:
                 continue                       # two food businesses in one building: only a permit that names food work links
             b["events"].append(permit_event(p, food))
-        b["shared"] = shared[b["key"]] > 1
+        b["shared"] = shared
     # 4. permit only: a food build-out permit at a site with no current food license, no license inspection, nothing else
     known = {b["key"] for b in biz}
     current = collections.defaultdict(list)
@@ -412,6 +428,11 @@ def build(today, lic_recs, left, insp_rows, pending_rows, pending_license_rows, 
         d, k = day(p.get("issue_date")), permit_key(p)
         desc = NOT_FOOD.sub(" ", (p.get("work_description") or "").upper())
         if d < since or not k or not BUILD_TYPES.search(p.get("permit_type") or "") or not FOOD_WORDS.search(desc):
+            continue
+        if re.search(r"SIGNS", p.get("permit_type") or "", re.I) or not NEW_PLACE.search(desc) or NOT_NEW.search(desc):
+            if k not in known and k not in seen_keys:
+                reasons["work at a food place already there (a repair, remodel or sign), not a new business"] += 1
+                seen_keys.add(k)
             continue
         if k in known or k in seen_keys:
             continue
@@ -437,7 +458,8 @@ def build(today, lic_recs, left, insp_rows, pending_rows, pending_license_rows, 
         b["events"].sort(key=lambda e: (e["d"], ["permit", "linsp", "license", "routine"].index(e["t"])))
         b["stage"], b["stageDate"], b["openBy"] = stage_of(b, today)
         scopes = " ".join(e.get("scope", "") for e in b["events"] if e["t"] == "permit" and e.get("food"))
-        b["kind"] = food_kind(b["activity"], " ".join([b["licenseType"]] + b["otherTypes"]), b.get("ftype"), scopes, b["name"])
+        grocer = "Grocery" if re.search(r"GROCERY", b.get("ftype") or "", re.I) else ""   # the City's own facility type for a store
+        b["kind"] = food_kind(grocer, b["activity"], " ".join([b["licenseType"]] + b["otherTypes"]), b.get("ftype"), scopes, b["name"])
         b["first"] = b["events"][0]["d"]
         b["last"] = max(e["d"] for e in b["events"])
     biz = [b for b in biz if b["last"] >= since]
@@ -640,10 +662,15 @@ def selftest():
                     per("9102", "2026-10-01", "NEW KITCHEN HOOD IN SINGLE FAMILY RESIDENCE", num="7100", name="ASHLAND AVE"),
                     per("9103", "2026-10-02", "NEW RESTAURANT BUILD OUT", num="7200", name="ASHLAND AVE"),                  # current license there: remodel
                     per("9104", "2026-10-03", "RESTAURANT BUILD OUT", num="1000", name="CHICAGO AVE"),                      # site already on radar
-                    per("9105", "2026-10-04", "INSTALL GRAB BARS", num="7300", name="ASHLAND AVE")]
+                    per("9105", "2026-10-04", "INSTALL GRAB BARS", num="7300", name="ASHLAND AVE"),
+                    per("9106", "2026-10-05", "INTERIOR REPAIR OF FIRE & WATER DAMAGED KITCHEN EXHAUST SYSTEMS", num="7400", name="ASHLAND AVE"),
+                    per("9107", "2026-10-05", "INTERIOR RENOVATION OF EXISTING RESTAURANT, NO CHANGE IN USE", num="7500", name="ASHLAND AVE")]
     site = [{"address": "7200 W ASHLAND AVE", "license_description": "Retail Food Establishment", "expiration_date": "2027-05-15T00:00:00"}]
     prior = [ins("90", "77", "2025-08-08", "Canvass", "Pass", addr="8000 S CICERO AVE", name="WING SPOT RESTAURANT"),
              ins("91", "78", "2025-08-08", "Canvass", "Pass", addr="8100 S CICERO AVE", name="OLD DINER")]
+    prior.append(ins("92", "55", "2026-10-01", "Canvass", "Pass", addr="6000 N SHERIDAN RD", name="HOTEL BAR"))   # another food business there
+    prior.append(ins("93", "56", "2025-01-01", "Canvass", "Pass", addr="1000 W CHICAGO AVE", name="OLD TACO SPOT"))  # closed long before: not shared
+    permits.append(per("9008", "2026-09-02", "TEMPORARY SCAFFOLDING", num="6000", name="SHERIDAN RD", dr="N", typ="PERMIT - EXPRESS PERMIT PROGRAM"))
     biz, reasons = build(today, lic_recs, [], insp, pend, pend_lic, permits, food_permits, site, rest_dnl=set(), prior_rows=prior)
     by = {b["id"]: b for b in biz}
     assert set(by) == {"L101", "L102", "L103", "L104", "L105", "L108", "I201", "P9101"}, sorted(by)
@@ -658,10 +685,12 @@ def selftest():
     assert [e["id"] for e in by["L104"]["events"] if e["t"] == "permit"] == ["9005"] and by["L104"]["shared"]
     assert by["L101"]["lics"] == ["101", "301"] and any(e.get("id") == "26" for e in by["L101"]["events"]) and by["I201"]["lics"] == ["201", "206"]
     assert reasons["another license number of a business already listed at the same address (listed once)"] == 2
+    assert not by["L101"]["shared"] and by["I201"]["shared"] and "9008" not in [e.get("id") for e in by["I201"]["events"]], "a scaffold permit never links at a shared address"
     assert by["I201"]["stage"] == "inspected" and by["I201"]["name"] == "New Noodle Bar" and [e["id"] for e in by["I201"]["events"] if e["t"] == "permit"] == ["9006"]
     assert by["P9101"]["stage"] == "permitted" and by["P9101"]["name"] == "" and by["P9101"]["kind"] == "bakery"
     assert reasons["the City recorded it out of business"] == 1 and reasons["name could be a person's"] == 1 and reasons["school, care or health site"] == 1
     assert reasons["license already issued (before the window, a renewal, or not a food license)"] == 1 and reasons[f"inspected more than {PENDING} days ago with no license since"] == 1
+    assert reasons["work at a food place already there (a repair, remodel or sign), not a new business"] == 2
     assert reasons["a home's kitchen, not a food business"] == 1 and reasons["a current food license already at the site (a remodel, not a new business)"] == 1
     assert biz[0]["last"] >= biz[-1]["last"]
     m = match_counts(biz, reasons, {})

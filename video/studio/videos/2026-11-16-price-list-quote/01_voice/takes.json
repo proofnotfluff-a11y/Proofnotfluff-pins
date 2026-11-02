@@ -1,10 +1,10 @@
 {
  "schema": "pnf.studio.takes.v1",
- "requestedAt": "2026-11-02T14:39:18-05:00",
+ "requestedAt": "2026-11-02T14:55:13-05:00",
  "voice": "W3pJy9ibur1FKUihVxzY",
  "model": "eleven_v4",
- "scriptSha256": "ab68ab5742b61ed6d02efb869b80addcf4a953b37672df3cc883f5a58a208e6a",
- "voiceSha256": "77faaa7cfdc2be1b73fb63e6950b94107dca26b928ab5f74137499cbad602269",
+ "scriptSha256": "30042b9b79af9554c3fa51c81aad40708b902f186c3099adc743dbf9cf4c8afa",
+ "voiceSha256": "ca5de49dac0969380b490a84200f52657d3b9e7e89ead5447ce5ca1b3f5d1cf6",
  "takes": [
   {
    "n": 1,
@@ -19,12 +19,12 @@
   {
    "n": 2,
    "file": "takes/02.mp3",
-   "sha256": "16d0d121007d233573fae7d2f6e5e883da428a9772f8c183a855131a2a4d3731",
-   "seconds": 6.609,
-   "chars": 96,
+   "sha256": "ab8a0ff6a7725979fa5da2ff55fed3d30415ae43810c4d519400fb67774adfca",
+   "seconds": 7.001,
+   "chars": 100,
    "start": 6.198,
-   "end": 12.807,
-   "wpm": 172
+   "end": 13.199,
+   "wpm": 171
   },
   {
    "n": 3,
@@ -32,19 +32,19 @@
    "sha256": "1102fc4d646ff4aaaaedd1862f16a086f7c5f44a6148ba623394fb678a331100",
    "seconds": 8.438,
    "chars": 124,
-   "start": 13.127,
-   "end": 21.565,
+   "start": 13.519,
+   "end": 21.957,
    "wpm": 156
   },
   {
    "n": 4,
    "file": "takes/04.mp3",
-   "sha256": "b959bfda798eb7905a4ae9991491c75ef1f424006a79041522245c8cc0da08f0",
-   "seconds": 8.046,
-   "chars": 115,
-   "start": 21.885,
-   "end": 29.931,
-   "wpm": 164
+   "sha256": "8acb8bf2e88ec581aee370303a9a27b7893bf588e530fcaefecde4c479c54901",
+   "seconds": 8.359,
+   "chars": 121,
+   "start": 22.277,
+   "end": 30.636,
+   "wpm": 165
   },
   {
    "n": 5,
@@ -52,19 +52,19 @@
    "sha256": "31fef5a7aefbec83bdac1c8ba509cbf83472a5979e1e9a42eb813e79e198fe61",
    "seconds": 6.844,
    "chars": 115,
-   "start": 30.251,
-   "end": 37.095,
+   "start": 30.956,
+   "end": 37.8,
    "wpm": 167
   },
   {
    "n": 6,
    "file": "takes/06.mp3",
-   "sha256": "d8797ce7087ac88dabf317dc1df1bd0b94c0ebdff1e69e87fdb4c17730a81375",
-   "seconds": 5.721,
-   "chars": 79,
-   "start": 37.415,
-   "end": 43.136,
-   "wpm": 147
+   "sha256": "ffcdccbe9c7e8fe04b7f18149d5cad6dbf13ce7574cb118996531b760b222af9",
+   "seconds": 5.956,
+   "chars": 80,
+   "start": 38.12,
+   "end": 44.076,
+   "wpm": 151
   },
   {
    "n": 7,
@@ -72,15 +72,15 @@
    "sha256": "660166f2fb50fb84b24116fd37557437c582cfd22849904299df8e092f3d6a61",
    "seconds": 3.474,
    "chars": 60,
-   "start": 43.456,
-   "end": 46.93,
+   "start": 44.396,
+   "end": 47.87,
    "wpm": 155
   }
  ],
- "chars": 681,
- "at": "2026-11-02T14:47:15-05:00",
+ "chars": 692,
+ "at": "2026-11-02T15:03:14-05:00",
  "credits": {
-  "used": 2089,
+  "used": 2221,
   "limit": 133571,
   "tier": "creator",
   "resetsAt": 1796089820

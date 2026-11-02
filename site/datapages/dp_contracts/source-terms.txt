@@ -1,5 +1,5 @@
 Source: https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html
-Fetched: 2026-11-01T06:41:51-06:00
+Fetched: 2026-11-02T15:35:48-06:00
 
 Data Terms of Use
 Home
@@ -82,13 +82,16 @@ More services
 Home
 Disclaimer
 Privacy Policy
-Web Standards
+Digital Accessibility
 Site Credits
 Site Map
 Contact Us
 Press Room
 City of Chicago
 Copyright © 2010 - 2026 City of Chicago
+Facebook (opens in new tab)
+Twitter (opens in new tab)
+YouTube (opens in new tab)
 Video Title
 Close
 Image Title

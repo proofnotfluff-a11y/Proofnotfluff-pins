@@ -12,6 +12,8 @@
 | 2026-11-15-three-fixes | core | length (about 29 s, quick-math) | posted Nov 2 12:07 pm (Instagram as a normal reel: the web uploader shows no Trial option); no read yet | | | | |
 | 2026-11-12-missed-call-text | core | none named | 28 h, list views (121, 280, 19, 1,299): YT stalled after 12 h | not read | hidden | hidden | hidden |
 | 2026-11-11-lsa-missed-calls | core | none named | 49 h, list views (1,288, 289, 58, 87): IG stalled after 33 h | not read | hidden | 29.1% at 2.7 h | hidden |
+| 2026-11-15-three-fixes | core | length (about 29 s, quick-math) | 5.5 h at the Nov 2 end-of-day run: no read filed yet (the 12:19 pm read came before it was 2 h old) | not read | hidden | hidden | hidden |
+| 2026-11-04-close-rate | core | none named (before formula.md) | 70 h, Nov 2 12:19 pm, list views (115, 89, 14, 37): under 300 everywhere, its last read | not read | hidden | hidden | hidden |
 
 ## References
 (Each: platform, link, the counts on the page and the date, then what the first 3 s, the beats, the save moment and the

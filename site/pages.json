@@ -8375,6 +8375,210 @@
    ],
    "footnote": "The worked example uses the free snow removal pricing calculator's example inputs. Snow days are counted from NOAA daily records of past winters, not a forecast. Hourly plowing rates are quoted from a public forum thread posted in 2009 and read Nov 2, 2026. This page is not insurance or legal advice.",
    "published": "2026-11-02"
+  },
+  {
+   "slug": "trade-association-hood-cleaning-jobs",
+   "kind": "question",
+   "city": "Chicago",
+   "product": "chicago-restaurant-inspection-leads",
+   "data": "permits/inspections-chicago/rest-sample.json",
+   "stats": "hood_assoc",
+   "draft": true,
+   "title": "Will a Trade Association Get You Hood Cleaning Jobs? | ProofNotFluff",
+   "desc": "A new hood cleaner asks if a paid trade association will bring kitchen exhaust cleaning jobs. What IKECA, PWNA and PWRA list for members, what dues cost in visits, and where the work is.",
+   "card": "Whether paying association dues brings kitchen exhaust cleaning work: what each membership lists, its first year cost in hood cleaning visits, and where restaurant jobs start.",
+   "eyebrow": "Hood cleaning associations",
+   "updated": "Membership pages read Nov 2, 2026. City records through {through}, pulled {asOf}. Worked example from the free hood cleaning price calculator.",
+   "h1": "Will joining a paid trade association get me kitchen exhaust cleaning jobs?",
+   "answer": [
+    "Not on its own. None of the three membership pages we read on Nov 2, 2026 promises a number of jobs: IKECA's membership rules list a directory listing and the logo, PWNA's contractor page a national listing and training, and PWRA's signup page a members map and an RFP service. Treat dues as a marketing cost and count them in visits. In the free hood cleaning calculator's example a visit leaves **{hProfit}** of profit, so IKECA's first year at {ikecaFirst} takes **{ikecaVisits} visits** to cover, PWNA's $350 takes {pwnaVisits}.",
+    "The jobs come from restaurants that need a cleaner now. In the 30 days through {through}, **{hood}** Chicago food businesses failed or passed with conditions with a hood or exhaust violation, and **{opening}** had a license inspection, in the City's public records."
+   ],
+   "numbersTitle": "The worked example, in four numbers",
+   "tiles": [
+    [
+     "Profit per visit",
+     "{hProfit}",
+     "a {hQuote} visit that costs {hCost}"
+    ],
+    [
+     "IKECA first year",
+     "{ikecaFirst}",
+     "{ikecaVisits} visits of profit to cover"
+    ],
+    [
+     "Hood or exhaust",
+     "{hood}",
+     "Chicago, failed or conditional, 30 days"
+    ],
+    [
+     "License inspections",
+     "{opening}",
+     "Chicago, 30 days through {through}"
+    ]
+   ],
+   "numbers": [
+    "From the free hood cleaning price calculator's example inputs: {hHoods} hoods and {hCrew} crew hours in a high volume kitchen, priced at a {hMargin} margin. A visit prices at {hQuote} and costs {hCost} in labor, drive and supplies, so it leaves {hProfit}. At {hVisits} visits a year the account bills {hYear} and leaves {hYearProfit}, so IKECA's first year takes {ikecaAccounts} such accounts to cover.",
+    "The City counts are this week's free sample of the Chicago restaurant inspection list. A record repeats the City's result on that date; it does not say a kitchen has a problem today. Places are never named on this page."
+   ],
+   "tables": [
+    {
+     "title": "What each membership costs, in hood cleaning visits",
+     "intro": [
+      "First year cost from each association's own page, read Nov 2, 2026, set against the calculator example's {hProfit} of profit a visit. What it lists is what the page offers members. Only the PWRA page names lead tools, a members map and an RFP service, and none of the three promises a number of jobs."
+     ],
+     "head": [
+      "Membership",
+      "First year cost",
+      "What its page lists",
+      "Visits to cover"
+     ],
+     "rows": "duesRows",
+     "notes": [
+      "IKECA: Membership Policies and Procedures, amended Aug 27, 2026; the Introductory dues are printed there as $575.00.00, read here as $575. PWNA: contractor membership page, which also shows a first year discount code. PWRA: the $199 offer on its signup page. Visits are rounded up. Prices can change; check each page before you pay."
+     ]
+    },
+    {
+     "title": "Where this week's restaurant list is",
+     "head": [
+      "Community area",
+      "Places on the list"
+     ],
+     "rows": "areaRows",
+     "notes": [
+      "The five community areas with the most places on this week's Chicago list: a failed or conditional result in our four categories, a license inspection, or a repeat. Records through {through}."
+     ]
+    }
+   ],
+   "stepsTitle": "How to decide before you pay dues",
+   "steps": [
+    [
+     "Price one account first",
+     "Put your own hoods, crew hours, rate and margin into the free hood cleaning calculator. The profit a visit is the number every membership has to beat."
+    ],
+    [
+     "Turn the dues into visits",
+     "Divide the first year cost by your profit a visit. In the example IKECA's {ikecaFirst} is {ikecaVisits} visits, the Introductory {introFirst} is {introVisits}, PWNA's $350 is {pwnaVisits} and PWRA's $199 is {pwraVisits}."
+    ],
+    [
+     "Ask what work it has sent members near you",
+     "The 2014 reply in the thread said the association's bid postings may not be concentrated enough in one area to bring work right away. Before you join, ask how many postings or directory requests came from your city last year."
+    ],
+    [
+     "Join when a buyer or a city asks for it",
+     "A kitchen or its city may ask for a certified cleaner. Boston, for one, requires certification under a 2008 city ordinance. If a buyer you want asks for it, the dues buy that job; if no one asks, they buy a listing."
+    ],
+    [
+     "Spend the first months on dated needs",
+     "A fresh hood or exhaust citation or a license inspection is a public record with a date. Call or visit soon after, name the record, and offer a visit schedule."
+    ]
+   ],
+   "sections": [
+    [
+     "What the thread says",
+     [
+      "The question was posted Nov 26, 2014 on Pressure Washing Resource by someone who had read that the site's association could get members work, and asked whether joining would bring kitchen exhaust cleaning jobs.",
+      "The one answer that evening said the association regularly posts jobs that are put out for bid, one of several member benefits, but warned the postings may not be concentrated enough in a given area to produce work right away. It suggested a marketing firm that books on-site appointments to talk about bidding on hood cleaning instead. The asker replied that this sealed the deal and planned to join."
+     ]
+    ],
+    [
+     "What a membership can do for you",
+     [
+      "A listing helps when buyers search a directory. IKECA lists Active members in its directory and lets them use the logo; branch listings cost $150 each. Active North American members must show at least $2,000,000 of liability and completed operations insurance, workers compensation, and at least one CECS or CESI certified employee, so the listing tells a buyer something.",
+      "IKECA's rules also limit what you can claim: PECT is a designation, not a certification, an Introductory member may not use the logo, and the logo comes off every website, card and sticker when membership ends. PWNA's contractor page lists safety training and a national listing, with certification courses at extra cost."
+     ]
+    ],
+    [
+     "When certification is what buyers ask for",
+     [
+      "IKECA's Boston handbook, revised October 2026, quotes a Boston City Council ordinance passed in 2008: anyone cleaning commercial cooking hood systems there must be certified. The Boston cleaning exam costs $315. Where a city or an insurer asks for it, certification is part of the price of the job.",
+      "Rules differ by city. Before you pay for an exam, ask the fire department in the city you work in, and the kitchens you want, what they require."
+     ]
+    ]
+   ],
+   "calculator": [
+    "hood-cleaning-price-calculator",
+    "hood cleaning price calculator",
+    "Find your own profit a visit with"
+   ],
+   "cta": {
+    "title": "The restaurants that need a cleaner this week",
+    "text": "Every place on the Chicago list, named, with its address, community area, the City's result and date, our violation category with the City's codes, and its 24 month inspection history, in a members' web app and an Excel file, every Monday. {price} a month, cancel any time."
+   },
+   "faq": [
+    [
+     "Does joining IKECA get you hood cleaning jobs?",
+     "Not directly. IKECA's membership rules list a directory listing and logo use for Active members, not leads or referrals. The listing can help when a buyer asks for a member or a certified cleaner."
+    ],
+    [
+     "How much does IKECA membership cost?",
+     "Per its Membership Policies and Procedures, amended Aug 27, 2026: $995 a year plus a $250 application fee for Active North American members, and a one time Introductory year at $575 plus a $100 fee."
+    ],
+    [
+     "Is a cheaper association worth it for a new hood cleaner?",
+     "Count it in visits. In the calculator's example a visit leaves {hProfit}, so PWNA's $350 a year is {pwnaVisits} visits and PWRA's $199 is {pwraVisits}. Ask what work it sent members in your city before you pay."
+    ],
+    [
+     "Where do new hood cleaners find restaurant jobs?",
+     "Start with dated public records. In the 30 days through {through}, {hood} Chicago food businesses failed or passed with conditions with a hood or exhaust violation and {opening} had a license inspection."
+    ]
+   ],
+   "related": [
+    [
+     "hood-cleaning-price-calculator",
+     "Free hood cleaning price calculator"
+    ],
+    [
+     "chicago-hood-cleaning-first-restaurant-clients",
+     "How to get your first hood cleaning jobs in Chicago"
+    ],
+    [
+     "chicago-restaurant-inspection-leads",
+     "Chicago restaurant inspection leads: this week's free sample"
+    ],
+    [
+     "cost-per-lead-calculator",
+     "Free cost per lead calculator"
+    ]
+   ],
+   "sources": [
+    [
+     "Pressure Washing Resource, Kitchen exhaust cleaning (the question as asked)",
+     "https://pressurewashingresource.com/community/t/kitchen-exhaust-cleaning/4318",
+     "posted Nov 26, 2014, read Nov 2, 2026"
+    ],
+    [
+     "IKECA, Membership Policies and Procedures",
+     "https://cdn.ymaws.com/www.ikeca.org/resource/resmgr/membership/membership_policies_and_proc.pdf",
+     "amended Aug 27, 2026, read Nov 2, 2026"
+    ],
+    [
+     "IKECA, Boston Certification Candidate Handbook",
+     "https://cdn.ymaws.com/www.ikeca.org/resource/resmgr/certifications/Boston_Handbook.pdf",
+     "Rev. October 2026, read Nov 2, 2026"
+    ],
+    [
+     "PWNA, Contractor Membership",
+     "https://www.pwna.org/pwna-contractor-membership",
+     "read Nov 2, 2026"
+    ],
+    [
+     "Pressure Washing Resource Association, signup page",
+     "https://pressurewashingresource.chargify.com/h/3330604/subscriptions/new",
+     "read Nov 2, 2026"
+    ],
+    [
+     "City of Chicago Data Portal, Food Inspections (4ijn-s7e5)",
+     "{datasetUrl}",
+     "pulled {asOf}"
+    ],
+    [
+     "ProofNotFluff, hood cleaning price calculator (example inputs)",
+     "../hood-cleaning-price-calculator/",
+     "checked Nov 2, 2026"
+    ]
+   ],
+   "footnote": "Membership prices and terms are quoted from each association's own page, read Nov 2, 2026, and can change. The worked example uses the free hood cleaning price calculator's example inputs. City numbers from the City of Chicago Data Portal, Food Inspections, records through {through}, pulled {asOf}; categories are our reading of the City's violation codes. ProofNotFluff is not affiliated with IKECA, PWNA or PWRA."
   }
 ]
 }

@@ -82,6 +82,35 @@ def stats(kind, d):
                 "areaRows": [[a, _n(n)] for a, n in c["areas"][:5]],
                 "catRows": [["Pests", _n(b["pests"])], ["Hood or exhaust", _n(b["hood"])], ["Grease trap or drain", _n(b["drain"])],
                             ["Kitchen cleaning", _n(b["clean"])]]}
+    if kind == "hood_assoc":   # paid association or not: this week's restaurant sample, the free hood calculator's model (PNF.hoodQuote) and defaults
+        import math, subprocess
+        s = stats("chicago_restaurant", d)
+        c = next(x for x in json.load(open(os.path.join(ROOT, "site", "pages.json"), encoding="utf-8"))["pages"]
+                 if x["slug"] == "hood-cleaning-price-calculator")["defaults"]
+        js = ('const P=require(process.argv[1]);console.log(JSON.stringify(P.hoodQuote(JSON.parse(process.argv[2]))));')
+        h = json.loads(subprocess.run(["node", "-e", js, os.path.join(ROOT, "docs", "assets", "pnf-calc.js"), json.dumps(c)],
+                                      capture_output=True, text=True, check=True).stdout)
+        m = lambda v: ("-$" if v < -0.004 else "$") + (_n(round(abs(v))) if abs(abs(v) - round(abs(v))) < 0.005 else f"{abs(v):,.2f}")
+        # first-year cost of each membership, from its own page read Nov 2, 2026 (sources on the page):
+        # IKECA Membership Policies and Procedures (amended Aug 27, 2026): Active North American $995 dues + $250 application;
+        # Introductory (one time, first-time members) $575 + $100. PWNA contractor membership: $350 a year. PWRA signup page: $199 one time.
+        fees = [("IKECA, Active North American member", 995 + 250, "$995 dues plus a $250 application fee",
+                 "A directory listing and the logo; needs a CECS or CESI certified employee and $2 million of liability insurance"),
+                ("IKECA, Introductory member (one time)", 575 + 100, "$575 dues plus a $100 application fee",
+                 "A directory listing, no logo; needs the same insurance and an employee with at least the PECT designation"),
+                ("PWNA, contractor member", 350, "$350 a year",
+                 "A national listing on PWNA.org and safety training; certification courses cost extra"),
+                ("PWRA (Pressure Washing Resource Association)", 199, "$199, the signup page's special offer; no renewal price shown",
+                 "Marketing templates, discounts, a members map and an RFP service")]
+        prof, yprof = h["profit"], h["yearProfit"]
+        s |= {"hQuote": m(h["quote"]), "hCost": m(h["cost"]), "hProfit": m(prof), "hVisits": str(h["visits"]), "hYear": m(h["year"]),
+              "hYearProfit": m(yprof), "hHoods": c["hoods"], "hCrew": f'{h["crewHrs"]:g}', "hMargin": c["margin"] + "%",
+              "ikecaFirst": m(fees[0][1]), "ikecaVisits": str(math.ceil(fees[0][1] / prof - 1e-9)),
+              "ikecaAccounts": str(math.ceil(fees[0][1] / yprof - 1e-9)), "introFirst": m(fees[1][1]),
+              "introVisits": str(math.ceil(fees[1][1] / prof - 1e-9)), "pwnaVisits": str(math.ceil(fees[2][1] / prof - 1e-9)),
+              "pwraVisits": str(math.ceil(fees[3][1] / prof - 1e-9))}
+        s["duesRows"] = [[name, m(v) + " (" + how + ")", gets, str(math.ceil(v / prof - 1e-9))] for name, v, how, gets in fees]
+        return s
     if kind == "kit_cashflow":   # the kit's question pages: the free calculator's own defaults (workbook example 1, week 1)
         c = next(x for x in d["pages"] if x["slug"] == "ecommerce-13-week-cash-flow-calculator")["defaults"]
         num = lambda k: int(c[k].replace(",", ""))

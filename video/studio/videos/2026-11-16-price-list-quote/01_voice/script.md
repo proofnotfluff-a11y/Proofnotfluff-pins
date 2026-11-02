@@ -1,6 +1,6 @@
 # Script: The price list prompt (AI lane, two-shops; Gemini run and plan page read Nov 1, 2026)
 
-This stair railing almost got painted for free. Gemini flagged it instead of guessing.
+This whole stair railing almost got painted for free. Gemini flagged it instead of guessing.
 
 You'd think AI makes prices up. This time it stuck to your list. So what happens to the railing?
 

@@ -1,0 +1,9 @@
+{
+ "schema": "pnf.studio.worlds.v1",
+ "share": {
+  "set:slots": 0.137,
+  "set:street": 0.168,
+  "set:inventory": 0.056,
+  "set:boss": 0.127
+ }
+}

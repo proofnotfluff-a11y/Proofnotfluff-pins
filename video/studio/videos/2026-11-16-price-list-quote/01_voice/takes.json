@@ -1,0 +1,88 @@
+{
+ "schema": "pnf.studio.takes.v1",
+ "requestedAt": "2026-11-02T14:07:33-05:00",
+ "voice": "W3pJy9ibur1FKUihVxzY",
+ "model": "eleven_v4",
+ "scriptSha256": "10003bf5e7e4066a5eee3a99022a64e5285fee0c27bbfd0d7c83c97a3eadd804",
+ "voiceSha256": "7be3357d4165897e2127af75155aff085af594cb552e322b5dbc15162059865b",
+ "takes": [
+  {
+   "n": 1,
+   "file": "takes/01.mp3",
+   "sha256": "cf1ea136a8b17446e7c8441c5363bb199442425deb4108a876d56d91f663ab9c",
+   "seconds": 5.251,
+   "chars": 86,
+   "start": 0.0,
+   "end": 5.251,
+   "wpm": 160
+  },
+  {
+   "n": 2,
+   "file": "takes/02.mp3",
+   "sha256": "d0d132819af245311feecd98fb4741ca89e795c38f2e7c24504f45a71462da54",
+   "seconds": 6.687,
+   "chars": 96,
+   "start": 5.571,
+   "end": 12.258,
+   "wpm": 170
+  },
+  {
+   "n": 3,
+   "file": "takes/03.mp3",
+   "sha256": "99228ca444ce6b75e7ef52766f15d5a8937ea50f31e0f99c5d3a27fc42073ddf",
+   "seconds": 8.594,
+   "chars": 121,
+   "start": 12.578,
+   "end": 21.172,
+   "wpm": 147
+  },
+  {
+   "n": 4,
+   "file": "takes/04.mp3",
+   "sha256": "b959bfda798eb7905a4ae9991491c75ef1f424006a79041522245c8cc0da08f0",
+   "seconds": 8.046,
+   "chars": 115,
+   "start": 21.492,
+   "end": 29.538,
+   "wpm": 164
+  },
+  {
+   "n": 5,
+   "file": "takes/05.mp3",
+   "sha256": "f58cea873cafe7a7dd34329166a6241151dc75f481f328948be5a2a7d3e47d0b",
+   "seconds": 9.953,
+   "chars": 146,
+   "start": 29.858,
+   "end": 39.811,
+   "wpm": 151
+  },
+  {
+   "n": 6,
+   "file": "takes/06.mp3",
+   "sha256": "0e6fcf4d0d5ec2850994ac1958daca00bb7652ff53e769e8e45281dd866d323b",
+   "seconds": 5.642,
+   "chars": 75,
+   "start": 40.131,
+   "end": 45.773,
+   "wpm": 138
+  },
+  {
+   "n": 7,
+   "file": "takes/07.mp3",
+   "sha256": "660166f2fb50fb84b24116fd37557437c582cfd22849904299df8e092f3d6a61",
+   "seconds": 3.474,
+   "chars": 60,
+   "start": 46.093,
+   "end": 49.567,
+   "wpm": 155
+  }
+ ],
+ "chars": 699,
+ "at": "2026-11-02T14:15:30-05:00",
+ "credits": {
+  "used": 1831,
+  "limit": 133571,
+  "tier": "creator",
+  "resetsAt": 1796089820
+ }
+}

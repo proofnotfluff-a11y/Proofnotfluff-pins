@@ -3,24 +3,24 @@
  "source": {
   "dataset": "ydr8-5enu",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
-  "fetchedAt": "2026-10-29T16:48:02-05:00",
-  "rowsUpdatedAt": "2026-10-29T07:07:54-05:00",
+  "fetchedAt": "2026-11-02T06:41:08-06:00",
+  "rowsUpdatedAt": "2026-10-31T07:12:57-05:00",
   "since": "2021-01-01",
   "minCost": 500000
  },
- "asOf": "2026-10-29",
- "week": "2026-10-26",
+ "asOf": "2026-11-02",
+ "week": "2026-11-02",
  "city": {
-  "open": 768,
-  "b0": 256,
-  "b1": 150,
-  "b2": 206,
+  "open": 770,
+  "b0": 257,
+  "b1": 156,
+  "b2": 202,
   "b3": 106,
-  "partial": 50,
-  "new": 346,
-  "reno": 422,
+  "partial": 49,
+  "new": 347,
+  "reno": 423,
   "noArea": 1,
-  "deadLeftOut": 300
+  "deadLeftOut": 301
  },
  "areas": [
   {
@@ -37,8 +37,8 @@
   },
   {
    "open": 15,
-   "b0": 5,
-   "b1": 2,
+   "b0": 4,
+   "b1": 3,
    "b2": 6,
    "b3": 2,
    "partial": 0,
@@ -102,20 +102,20 @@
    "b2": 6,
    "b3": 2,
    "partial": 1,
-   "new": 18,
-   "reno": 14,
+   "new": 19,
+   "reno": 13,
    "n": 7,
    "name": "Lincoln Park"
   },
   {
-   "open": 68,
+   "open": 69,
    "b0": 24,
-   "b1": 14,
+   "b1": 15,
    "b2": 18,
    "b3": 9,
    "partial": 3,
    "new": 17,
-   "reno": 51,
+   "reno": 52,
    "n": 8,
    "name": "Near North Side"
   },
@@ -133,8 +133,8 @@
   },
   {
    "open": 3,
-   "b0": 2,
-   "b1": 0,
+   "b0": 1,
+   "b1": 1,
    "b2": 1,
    "b3": 0,
    "partial": 0,
@@ -277,8 +277,8 @@
   },
   {
    "open": 27,
-   "b0": 11,
-   "b1": 5,
+   "b0": 10,
+   "b1": 6,
    "b2": 9,
    "b3": 1,
    "partial": 1,
@@ -301,10 +301,10 @@
   },
   {
    "open": 60,
-   "b0": 24,
-   "b1": 9,
-   "b2": 20,
-   "b3": 3,
+   "b0": 23,
+   "b1": 10,
+   "b2": 19,
+   "b3": 4,
    "partial": 4,
    "new": 40,
    "reno": 20,
@@ -337,8 +337,8 @@
   },
   {
    "open": 18,
-   "b0": 2,
-   "b1": 6,
+   "b0": 1,
+   "b1": 7,
    "b2": 8,
    "b3": 2,
    "partial": 0,
@@ -348,14 +348,14 @@
    "name": "East Garfield Park"
   },
   {
-   "open": 85,
-   "b0": 36,
+   "open": 88,
+   "b0": 39,
    "b1": 8,
    "b2": 14,
    "b3": 8,
    "partial": 19,
-   "new": 28,
-   "reno": 57,
+   "new": 30,
+   "reno": 58,
    "n": 28,
    "name": "Near West Side"
   },
@@ -384,24 +384,24 @@
    "name": "South Lawndale"
   },
   {
-   "open": 27,
+   "open": 26,
    "b0": 3,
    "b1": 11,
-   "b2": 6,
+   "b2": 5,
    "b3": 6,
    "partial": 1,
-   "new": 14,
+   "new": 13,
    "reno": 13,
    "n": 31,
    "name": "Lower West Side"
   },
   {
    "open": 62,
-   "b0": 24,
-   "b1": 16,
+   "b0": 26,
+   "b1": 15,
    "b2": 10,
    "b3": 4,
-   "partial": 8,
+   "partial": 7,
    "new": 2,
    "reno": 60,
    "n": 32,
@@ -471,8 +471,8 @@
    "open": 18,
    "b0": 6,
    "b1": 3,
-   "b2": 3,
-   "b3": 4,
+   "b2": 2,
+   "b3": 5,
    "partial": 2,
    "new": 12,
    "reno": 6,
@@ -480,14 +480,14 @@
    "name": "Grand Boulevard"
   },
   {
-   "open": 8,
+   "open": 7,
    "b0": 2,
    "b1": 1,
    "b2": 2,
-   "b3": 3,
+   "b3": 2,
    "partial": 0,
    "new": 1,
-   "reno": 7,
+   "reno": 6,
    "n": 39,
    "name": "Kenwood"
   },
@@ -504,14 +504,14 @@
    "name": "Washington Park"
   },
   {
-   "open": 8,
-   "b0": 4,
+   "open": 10,
+   "b0": 6,
    "b1": 1,
    "b2": 0,
    "b3": 3,
    "partial": 0,
    "new": 2,
-   "reno": 6,
+   "reno": 8,
    "n": 41,
    "name": "Hyde Park"
   },
@@ -565,8 +565,8 @@
   },
   {
    "open": 7,
-   "b0": 3,
-   "b1": 1,
+   "b0": 2,
+   "b1": 2,
    "b2": 2,
    "b3": 1,
    "partial": 0,
@@ -601,8 +601,8 @@
   },
   {
    "open": 3,
-   "b0": 1,
-   "b1": 0,
+   "b0": 0,
+   "b1": 1,
    "b2": 2,
    "b3": 0,
    "partial": 0,
@@ -612,14 +612,14 @@
    "name": "Roseland"
   },
   {
-   "open": 4,
+   "open": 3,
    "b0": 1,
    "b1": 0,
-   "b2": 3,
+   "b2": 2,
    "b3": 0,
    "partial": 0,
    "new": 2,
-   "reno": 2,
+   "reno": 1,
    "n": 50,
    "name": "Pullman"
   },
@@ -660,14 +660,14 @@
    "name": "West Pullman"
   },
   {
-   "open": 0,
-   "b0": 0,
+   "open": 1,
+   "b0": 1,
    "b1": 0,
    "b2": 0,
    "b3": 0,
    "partial": 0,
    "new": 0,
-   "reno": 0,
+   "reno": 1,
    "n": 54,
    "name": "Riverdale"
   },
@@ -744,14 +744,14 @@
    "name": "Bridgeport"
   },
   {
-   "open": 12,
+   "open": 11,
    "b0": 4,
-   "b1": 5,
+   "b1": 4,
    "b2": 2,
    "b3": 1,
    "partial": 0,
    "new": 7,
-   "reno": 5,
+   "reno": 4,
    "n": 61,
    "name": "New City"
   },
@@ -888,13 +888,13 @@
    "name": "Beverly"
   },
   {
-   "open": 3,
+   "open": 2,
    "b0": 1,
    "b1": 0,
    "b2": 0,
-   "b3": 2,
+   "b3": 1,
    "partial": 0,
-   "new": 1,
+   "new": 0,
    "reno": 2,
    "n": 73,
    "name": "Washington Heights"
@@ -992,12 +992,12 @@
    "year": 2024,
    "new": {
     "path": 159,
-    "co": 101,
+    "co": 102,
     "share": 64
    },
    "reno": {
     "path": 277,
-    "co": 187,
+    "co": 188,
     "share": 68
    }
   },
@@ -1005,8 +1005,8 @@
    "year": 2025,
    "new": {
     "path": 176,
-    "co": 39,
-    "share": 22
+    "co": 40,
+    "share": 23
    },
    "reno": {
     "path": 325,
@@ -1017,13 +1017,13 @@
   {
    "year": 2026,
    "new": {
-    "path": 148,
+    "path": 151,
     "co": 3,
     "share": 2
    },
    "reno": {
-    "path": 249,
-    "co": 29,
+    "path": 253,
+    "co": 30,
     "share": 12
    }
   }
@@ -1038,6 +1038,20 @@
    "b3": 106,
    "partial": 50,
    "moves": null
+  },
+  {
+   "week": "2026-11-02",
+   "open": 770,
+   "b0": 257,
+   "b1": 156,
+   "b2": 202,
+   "b3": 106,
+   "partial": 49,
+   "moves": {
+    "gotCo": 4,
+    "toPartial": 0,
+    "newOnPath": 10
+   }
   }
  ]
 }

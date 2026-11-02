@@ -152,7 +152,7 @@
     "value": "6 days",
     "label": "for half of Chicago building permits to be issued, last 12 months"
    },
-   "pageUpdated": "2026-10-29",
+   "pageUpdated": "2026-11-02",
    "downloads": [
     "https://proofnotfluff.com/chicago-permit-wait-times/chicago-permit-wait-times.csv"
    ]
@@ -175,10 +175,10 @@
    "source": "City of Chicago",
    "schedule": "Updated every Monday",
    "headline": {
-    "value": "59",
+    "value": "49",
     "label": "wrecking and demolition permits in the last 30 days"
    },
-   "pageUpdated": "2026-10-29",
+   "pageUpdated": "2026-11-02",
    "downloads": []
   },
   {

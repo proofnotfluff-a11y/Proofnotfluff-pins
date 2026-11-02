@@ -4,17 +4,16 @@
   "name": "Building Permits",
   "dataset": "ydr8-5enu",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
-  "fetchedAt": "2026-10-29T16:47:48-0500",
-  "rowsUpdatedAt": "2026-10-29T12:07:54+00:00",
+  "fetchedAt": "2026-11-02T06:40:46-0600",
+  "rowsUpdatedAt": "2026-10-31T12:12:57+00:00",
   "field": "processing_time",
   "fieldMeans": "Number of days between APPLICATION_START_DATE and ISSUE_DATE"
  },
  "window": {
-  "from": "2024-10-01",
-  "to": "2026-10-28",
-  "from12": "2025-10-29",
+  "from": "2024-11-01",
+  "to": "2026-11-01",
+  "from12": "2025-11-02",
   "months": [
-   "2024-10",
    "2024-11",
    "2024-12",
    "2025-01",
@@ -37,17 +36,18 @@
    "2026-06",
    "2026-07",
    "2026-08",
-   "2026-09"
+   "2026-09",
+   "2026-10"
   ],
   "recent3": [
-   "2026-07",
    "2026-08",
-   "2026-09"
+   "2026-09",
+   "2026-10"
   ],
   "year3": [
-   "2025-07",
    "2025-08",
-   "2025-09"
+   "2025-09",
+   "2025-10"
   ]
  },
  "rules": {
@@ -56,38 +56,28 @@
   "percentile": "nearest rank"
  },
  "counts": {
-  "rows": 66033,
-  "kept": 66032,
-  "last12": 31605,
+  "rows": 63093,
+  "kept": 63092,
+  "last12": 31349,
   "dropped": {
    "noDays": 1,
    "negative": 0,
    "outside": 0
   },
-  "checkedAgainstDates": 66032,
-  "matchesDates": 66032
+  "checkedAgainstDates": 63092,
+  "matchesDates": 63092
  },
  "all": {
   "last12": {
-   "n": 31605,
+   "n": 31349,
    "med": 6,
    "p80": 42,
-   "p90": 90,
-   "sameDay": 23.72,
+   "p90": 91,
+   "sameDay": 23.73,
    "over90": 10.0,
    "over365": 0.8
   },
   "monthly": [
-   {
-    "n": 3155,
-    "med": 8,
-    "p80": 33,
-    "p90": 71,
-    "sameDay": 24.22,
-    "over90": 7.5,
-    "over365": 1.0,
-    "m": "2024-10"
-   },
    {
     "n": 2231,
     "med": 8,
@@ -317,167 +307,177 @@
     "over90": 8.5,
     "over365": 0.8,
     "m": "2026-09"
+   },
+   {
+    "n": 2751,
+    "med": 6,
+    "p80": 41,
+    "p90": 91,
+    "sameDay": 24.57,
+    "over90": 10.1,
+    "over365": 1.0,
+    "m": "2026-10"
    }
   ],
   "trend": {
    "months": [
-    "2026-07",
     "2026-08",
-    "2026-09"
+    "2026-09",
+    "2026-10"
    ],
    "yearMonths": [
-    "2025-07",
     "2025-08",
-    "2025-09"
+    "2025-09",
+    "2025-10"
    ],
    "now": {
-    "n": 9145,
+    "n": 8973,
     "med": 6,
-    "p80": 45,
-    "p90": 92,
-    "sameDay": 22.52,
-    "over90": 10.4,
+    "p80": 43,
+    "p90": 91,
+    "sameDay": 23.11,
+    "over90": 10.1,
     "over365": 1.0
    },
    "then": {
-    "n": 8899,
-    "med": 5,
+    "n": 9045,
+    "med": 6,
     "p80": 35,
-    "p90": 81,
-    "sameDay": 27.0,
-    "over90": 8.9,
-    "over365": 0.9
+    "p90": 79,
+    "sameDay": 26.07,
+    "over90": 8.6,
+    "over365": 0.8
    }
   },
   "areas": [
    {
-    "n": 301,
+    "n": 298,
     "med": 7,
     "p80": 38,
-    "p90": 92,
-    "sameDay": 22.92,
-    "over90": 10.6,
+    "p90": 96,
+    "sameDay": 22.48,
+    "over90": 10.7,
     "over365": 0.3,
     "a": 1,
     "name": "Rogers Park"
    },
    {
-    "n": 441,
+    "n": 434,
     "med": 6,
-    "p80": 49,
-    "p90": 102,
-    "sameDay": 22.45,
-    "over90": 10.9,
+    "p80": 51,
+    "p90": 103,
+    "sameDay": 22.58,
+    "over90": 11.1,
     "over365": 1.4,
     "a": 2,
     "name": "West Ridge"
    },
    {
-    "n": 432,
+    "n": 439,
     "med": 7,
     "p80": 49,
-    "p90": 105,
-    "sameDay": 21.06,
-    "over90": 12.7,
+    "p90": 111,
+    "sameDay": 21.18,
+    "over90": 12.8,
     "over365": 0.5,
     "a": 3,
     "name": "Uptown"
    },
    {
-    "n": 475,
+    "n": 472,
     "med": 8,
     "p80": 57,
-    "p90": 99,
-    "sameDay": 21.89,
-    "over90": 10.7,
+    "p90": 100,
+    "sameDay": 22.03,
+    "over90": 11.0,
     "over365": 1.3,
     "a": 4,
     "name": "Lincoln Square"
    },
    {
-    "n": 507,
-    "med": 15,
-    "p80": 57,
+    "n": 493,
+    "med": 13,
+    "p80": 59,
     "p90": 106,
-    "sameDay": 20.91,
-    "over90": 11.8,
+    "sameDay": 21.7,
+    "over90": 12.2,
     "over365": 0.8,
     "a": 5,
     "name": "North Center"
    },
    {
-    "n": 1177,
-    "med": 10,
+    "n": 1170,
+    "med": 9,
     "p80": 51,
-    "p90": 103,
-    "sameDay": 21.24,
-    "over90": 11.0,
+    "p90": 100,
+    "sameDay": 21.45,
+    "over90": 10.9,
     "over365": 1.0,
     "a": 6,
     "name": "Lake View"
    },
    {
-    "n": 1028,
+    "n": 1021,
     "med": 11,
-    "p80": 62,
-    "p90": 118,
-    "sameDay": 16.54,
-    "over90": 14.1,
+    "p80": 63,
+    "p90": 119,
+    "sameDay": 16.26,
+    "over90": 14.3,
     "over365": 1.3,
     "a": 7,
     "name": "Lincoln Park"
    },
    {
-    "n": 2397,
+    "n": 2389,
     "med": 7,
-    "p80": 32,
-    "p90": 69,
-    "sameDay": 16.44,
-    "over90": 6.8,
+    "p80": 33,
+    "p90": 70,
+    "sameDay": 16.24,
+    "over90": 6.9,
     "over365": 0.3,
     "a": 8,
     "name": "Near North Side"
    },
    {
     "n": 109,
-    "med": 10,
-    "p80": 60,
-    "p90": 116,
-    "sameDay": 25.69,
-    "over90": 14.7,
+    "med": 12,
+    "p80": 65,
+    "p90": 121,
+    "sameDay": 24.77,
+    "over90": 15.6,
     "over365": 0.0,
     "a": 9,
     "name": "Edison Park"
    },
    {
-    "n": 396,
+    "n": 389,
     "med": 5,
-    "p80": 37,
+    "p80": 39,
     "p90": 66,
-    "sameDay": 30.05,
-    "over90": 7.1,
+    "sameDay": 29.82,
+    "over90": 7.2,
     "over365": 0.8,
     "a": 10,
     "name": "Norwood Park"
    },
    {
-    "n": 237,
+    "n": 236,
     "med": 5,
-    "p80": 34,
-    "p90": 62,
-    "sameDay": 32.49,
-    "over90": 6.3,
+    "p80": 28,
+    "p90": 57,
+    "sameDay": 32.63,
+    "over90": 5.5,
     "over365": 0.8,
     "a": 11,
     "name": "Jefferson Park"
    },
    {
-    "n": 248,
+    "n": 243,
     "med": 6,
     "p80": 58,
     "p90": 125,
-    "sameDay": 32.26,
-    "over90": 12.9,
+    "sameDay": 32.1,
+    "over90": 13.2,
     "over365": 0.8,
     "a": 12,
     "name": "Forest Glen"
@@ -487,124 +487,124 @@
     "med": 4,
     "p80": 36,
     "p90": 97,
-    "sameDay": 33.77,
+    "sameDay": 34.42,
     "over90": 11.0,
     "over365": 0.6,
     "a": 13,
     "name": "North Park"
    },
    {
-    "n": 306,
+    "n": 303,
     "med": 7,
     "p80": 46,
     "p90": 112,
-    "sameDay": 25.49,
-    "over90": 11.8,
+    "sameDay": 25.08,
+    "over90": 11.9,
     "over365": 0.7,
     "a": 14,
     "name": "Albany Park"
    },
    {
-    "n": 572,
+    "n": 567,
     "med": 4,
     "p80": 29,
     "p90": 63,
-    "sameDay": 29.9,
-    "over90": 7.0,
+    "sameDay": 30.34,
+    "over90": 7.1,
     "over365": 0.5,
     "a": 15,
     "name": "Portage Park"
    },
    {
-    "n": 515,
+    "n": 516,
     "med": 7,
     "p80": 52,
     "p90": 96,
-    "sameDay": 25.63,
+    "sameDay": 25.78,
     "over90": 10.5,
     "over365": 1.0,
     "a": 16,
     "name": "Irving Park"
    },
    {
-    "n": 272,
+    "n": 268,
     "med": 4,
     "p80": 21,
-    "p90": 54,
-    "sameDay": 31.25,
-    "over90": 7.0,
+    "p90": 60,
+    "sameDay": 31.34,
+    "over90": 7.5,
     "over365": 1.5,
     "a": 17,
     "name": "Dunning"
    },
    {
-    "n": 115,
-    "med": 8,
+    "n": 108,
+    "med": 7,
     "p80": 24,
-    "p90": 86,
-    "sameDay": 23.48,
-    "over90": 8.7,
+    "p90": 90,
+    "sameDay": 24.07,
+    "over90": 9.3,
     "over365": 0.9,
     "a": 18,
     "name": "Montclare"
    },
    {
-    "n": 371,
+    "n": 365,
     "med": 3,
-    "p80": 27,
+    "p80": 26,
     "p90": 64,
-    "sameDay": 35.31,
-    "over90": 6.2,
+    "sameDay": 35.62,
+    "over90": 6.0,
     "over365": 0.5,
     "a": 19,
     "name": "Belmont Cragin"
    },
    {
-    "n": 135,
+    "n": 134,
     "med": 6,
-    "p80": 46,
-    "p90": 97,
-    "sameDay": 30.37,
-    "over90": 13.3,
+    "p80": 48,
+    "p90": 126,
+    "sameDay": 29.85,
+    "over90": 14.2,
     "over365": 1.5,
     "a": 20,
     "name": "Hermosa"
    },
    {
-    "n": 294,
+    "n": 287,
     "med": 13,
-    "p80": 68,
-    "p90": 137,
-    "sameDay": 20.07,
-    "over90": 16.0,
-    "over365": 2.0,
+    "p80": 63,
+    "p90": 139,
+    "sameDay": 20.56,
+    "over90": 15.7,
+    "over365": 2.1,
     "a": 21,
     "name": "Avondale"
    },
    {
-    "n": 811,
+    "n": 808,
     "med": 12,
     "p80": 70,
     "p90": 125,
-    "sameDay": 20.96,
-    "over90": 16.4,
+    "sameDay": 20.67,
+    "over90": 16.3,
     "over365": 1.2,
     "a": 22,
     "name": "Logan Square"
    },
    {
-    "n": 512,
+    "n": 510,
     "med": 8,
     "p80": 71,
     "p90": 133,
-    "sameDay": 23.05,
-    "over90": 15.2,
+    "sameDay": 23.14,
+    "over90": 15.3,
     "over365": 1.2,
     "a": 23,
     "name": "Humboldt Park"
    },
    {
-    "n": 1264,
+    "n": 1252,
     "med": 13,
     "p80": 70,
     "p90": 138,
@@ -615,101 +615,101 @@
     "name": "West Town"
    },
    {
-    "n": 906,
+    "n": 899,
     "med": 7,
     "p80": 51,
-    "p90": 115,
-    "sameDay": 23.29,
-    "over90": 12.9,
+    "p90": 118,
+    "sameDay": 23.8,
+    "over90": 13.1,
     "over365": 0.9,
     "a": 25,
     "name": "Austin"
    },
    {
-    "n": 205,
+    "n": 206,
     "med": 7,
     "p80": 60,
     "p90": 101,
-    "sameDay": 20.0,
+    "sameDay": 19.9,
     "over90": 11.7,
     "over365": 1.5,
     "a": 26,
     "name": "West Garfield Park"
    },
    {
-    "n": 283,
-    "med": 12,
-    "p80": 73,
+    "n": 281,
+    "med": 11,
+    "p80": 72,
     "p90": 120,
-    "sameDay": 19.08,
-    "over90": 15.5,
+    "sameDay": 19.22,
+    "over90": 15.3,
     "over365": 2.8,
     "a": 27,
     "name": "East Garfield Park"
    },
    {
-    "n": 1588,
+    "n": 1583,
     "med": 6,
     "p80": 41,
     "p90": 91,
-    "sameDay": 22.98,
+    "sameDay": 23.12,
     "over90": 10.1,
     "over365": 0.8,
     "a": 28,
     "name": "Near West Side"
    },
    {
-    "n": 445,
-    "med": 13,
+    "n": 446,
+    "med": 12,
     "p80": 71,
-    "p90": 111,
-    "sameDay": 14.61,
-    "over90": 14.2,
+    "p90": 110,
+    "sameDay": 14.57,
+    "over90": 13.7,
     "over365": 0.7,
     "a": 29,
     "name": "North Lawndale"
    },
    {
-    "n": 395,
-    "med": 8,
-    "p80": 51,
+    "n": 384,
+    "med": 7,
+    "p80": 52,
     "p90": 115,
-    "sameDay": 21.77,
-    "over90": 13.2,
+    "sameDay": 22.14,
+    "over90": 13.0,
     "over365": 1.8,
     "a": 30,
     "name": "South Lawndale"
    },
    {
-    "n": 368,
+    "n": 366,
     "med": 11,
-    "p80": 75,
-    "p90": 141,
-    "sameDay": 20.65,
-    "over90": 17.7,
+    "p80": 72,
+    "p90": 139,
+    "sameDay": 21.04,
+    "over90": 17.2,
     "over365": 3.0,
     "a": 31,
     "name": "Lower West Side"
    },
    {
-    "n": 2400,
+    "n": 2374,
     "med": 4,
     "p80": 15,
     "p90": 34,
-    "sameDay": 23.29,
+    "sameDay": 23.34,
     "over90": 3.2,
     "over365": 0.2,
     "a": 32,
     "name": "Loop"
    },
    {
-    "n": 364,
+    "n": 358,
     "med": 3,
-    "p80": 27,
+    "p80": 25,
     "p90": 77,
-    "sameDay": 20.88,
-    "over90": 9.1,
-    "over365": 0.5,
+    "sameDay": 20.67,
+    "over90": 8.7,
+    "over365": 0.6,
     "a": 33,
     "name": "Near South Side"
    },
@@ -725,210 +725,210 @@
     "name": "Armour Square"
    },
    {
-    "n": 140,
-    "med": 8,
-    "p80": 43,
-    "p90": 140,
-    "sameDay": 25.0,
-    "over90": 14.3,
-    "over365": 2.1,
+    "n": 139,
+    "med": 7,
+    "p80": 45,
+    "p90": 153,
+    "sameDay": 25.18,
+    "over90": 14.4,
+    "over365": 2.2,
     "a": 35,
     "name": "Douglas"
    },
    {
-    "n": 46,
+    "n": 45,
     "med": 3,
     "p80": 13,
     "p90": 65,
-    "sameDay": 17.39,
-    "over90": 4.3,
+    "sameDay": 17.78,
+    "over90": 4.4,
     "over365": 0.0,
     "a": 36,
     "name": "Oakland"
    },
    {
-    "n": 57,
+    "n": 55,
     "med": 7,
-    "p80": 58,
-    "p90": 151,
-    "sameDay": 19.3,
-    "over90": 15.8,
+    "p80": 43,
+    "p90": 105,
+    "sameDay": 20.0,
+    "over90": 12.7,
     "over365": 0.0,
     "a": 37,
     "name": "Fuller Park"
    },
    {
-    "n": 312,
+    "n": 311,
     "med": 8,
     "p80": 68,
     "p90": 121,
-    "sameDay": 19.23,
-    "over90": 14.7,
+    "sameDay": 19.29,
+    "over90": 14.8,
     "over365": 1.9,
     "a": 38,
     "name": "Grand Boulevard"
    },
    {
-    "n": 195,
+    "n": 191,
     "med": 11,
     "p80": 52,
     "p90": 108,
-    "sameDay": 12.82,
-    "over90": 13.8,
+    "sameDay": 12.57,
+    "over90": 14.1,
     "over365": 0.0,
     "a": 39,
     "name": "Kenwood"
    },
    {
-    "n": 133,
-    "med": 18,
+    "n": 132,
+    "med": 17,
     "p80": 94,
     "p90": 148,
-    "sameDay": 14.29,
-    "over90": 21.8,
+    "sameDay": 14.39,
+    "over90": 22.0,
     "over365": 0.8,
     "a": 40,
     "name": "Washington Park"
    },
    {
-    "n": 350,
+    "n": 351,
     "med": 6,
-    "p80": 27,
-    "p90": 56,
-    "sameDay": 17.14,
-    "over90": 5.4,
+    "p80": 28,
+    "p90": 58,
+    "sameDay": 17.09,
+    "over90": 5.7,
     "over365": 0.3,
     "a": 41,
     "name": "Hyde Park"
    },
    {
-    "n": 324,
+    "n": 321,
     "med": 9,
     "p80": 58,
     "p90": 112,
-    "sameDay": 19.14,
-    "over90": 13.0,
+    "sameDay": 19.31,
+    "over90": 13.4,
     "over365": 1.2,
     "a": 42,
     "name": "Woodlawn"
    },
    {
-    "n": 449,
+    "n": 444,
     "med": 6,
     "p80": 35,
     "p90": 83,
-    "sameDay": 21.83,
-    "over90": 9.1,
+    "sameDay": 21.62,
+    "over90": 9.2,
     "over365": 0.9,
     "a": 43,
     "name": "South Shore"
    },
    {
-    "n": 320,
+    "n": 318,
     "med": 6,
     "p80": 35,
-    "p90": 65,
-    "sameDay": 22.19,
+    "p90": 67,
+    "sameDay": 22.64,
     "over90": 6.9,
-    "over365": 1.2,
+    "over365": 1.3,
     "a": 44,
     "name": "Chatham"
    },
    {
-    "n": 188,
+    "n": 187,
     "med": 5,
     "p80": 28,
-    "p90": 85,
-    "sameDay": 34.57,
-    "over90": 9.0,
+    "p90": 83,
+    "sameDay": 34.76,
+    "over90": 8.6,
     "over365": 1.6,
     "a": 45,
     "name": "Avalon Park"
    },
    {
-    "n": 307,
+    "n": 306,
     "med": 5,
     "p80": 40,
     "p90": 91,
-    "sameDay": 24.1,
+    "sameDay": 23.86,
     "over90": 10.1,
     "over365": 1.0,
     "a": 46,
     "name": "South Chicago"
    },
    {
-    "n": 34,
+    "n": 33,
     "med": 6,
     "p80": 47,
     "p90": 48,
-    "sameDay": 29.41,
-    "over90": 5.9,
+    "sameDay": 30.3,
+    "over90": 6.1,
     "over365": 0.0,
     "a": 47,
     "name": "Burnside"
    },
    {
-    "n": 190,
+    "n": 187,
     "med": 1,
     "p80": 10,
-    "p90": 20,
-    "sameDay": 40.53,
+    "p90": 21,
+    "sameDay": 41.18,
     "over90": 3.2,
     "over365": 0.0,
     "a": 48,
     "name": "Calumet Heights"
    },
    {
-    "n": 496,
+    "n": 494,
     "med": 5,
     "p80": 26,
-    "p90": 69,
-    "sameDay": 31.25,
-    "over90": 7.1,
+    "p90": 68,
+    "sameDay": 31.17,
+    "over90": 6.9,
     "over365": 0.2,
     "a": 49,
     "name": "Roseland"
    },
    {
-    "n": 130,
+    "n": 129,
     "med": 10,
     "p80": 73,
     "p90": 125,
-    "sameDay": 26.15,
-    "over90": 18.5,
+    "sameDay": 26.36,
+    "over90": 17.8,
     "over365": 0.0,
     "a": 50,
     "name": "Pullman"
    },
    {
-    "n": 158,
+    "n": 159,
     "med": 5,
     "p80": 30,
     "p90": 38,
-    "sameDay": 27.22,
-    "over90": 7.0,
+    "sameDay": 25.79,
+    "over90": 6.9,
     "over365": 0.0,
     "a": 51,
     "name": "South Deering"
    },
    {
-    "n": 138,
+    "n": 136,
     "med": 4,
-    "p80": 22,
+    "p80": 21,
     "p90": 44,
-    "sameDay": 31.88,
-    "over90": 5.8,
+    "sameDay": 32.35,
+    "over90": 5.9,
     "over365": 0.7,
     "a": 52,
     "name": "East Side"
    },
    {
-    "n": 349,
-    "med": 5,
-    "p80": 20,
+    "n": 343,
+    "med": 6,
+    "p80": 21,
     "p90": 59,
-    "sameDay": 29.23,
-    "over90": 6.3,
+    "sameDay": 28.57,
+    "over90": 6.4,
     "over365": 0.9,
     "a": 53,
     "name": "West Pullman"
@@ -945,34 +945,34 @@
     "name": "Riverdale"
    },
    {
-    "n": 96,
-    "med": 2,
-    "p80": 10,
-    "p90": 16,
-    "sameDay": 16.67,
-    "over90": 6.2,
+    "n": 87,
+    "med": 3,
+    "p80": 13,
+    "p90": 17,
+    "sameDay": 18.39,
+    "over90": 6.9,
     "over365": 0.0,
     "a": 55,
     "name": "Hegewisch"
    },
    {
-    "n": 408,
+    "n": 401,
     "med": 4,
-    "p80": 24,
-    "p90": 58,
-    "sameDay": 36.03,
-    "over90": 4.4,
+    "p80": 23,
+    "p90": 49,
+    "sameDay": 36.16,
+    "over90": 4.5,
     "over365": 0.5,
     "a": 56,
     "name": "Garfield Ridge"
    },
    {
-    "n": 112,
+    "n": 111,
     "med": 5,
     "p80": 33,
     "p90": 62,
-    "sameDay": 22.32,
-    "over90": 7.1,
+    "sameDay": 22.52,
+    "over90": 7.2,
     "over365": 1.8,
     "a": 57,
     "name": "Archer Heights"
@@ -980,10 +980,10 @@
    {
     "n": 227,
     "med": 7,
-    "p80": 54,
+    "p80": 56,
     "p90": 111,
     "sameDay": 23.35,
-    "over90": 12.8,
+    "over90": 13.2,
     "over365": 0.4,
     "a": 58,
     "name": "Brighton Park"
@@ -1000,55 +1000,55 @@
     "name": "McKinley Park"
    },
    {
-    "n": 265,
+    "n": 266,
     "med": 9,
     "p80": 56,
     "p90": 130,
-    "sameDay": 21.89,
+    "sameDay": 22.56,
     "over90": 12.8,
     "over365": 1.1,
     "a": 60,
     "name": "Bridgeport"
    },
    {
-    "n": 411,
+    "n": 413,
     "med": 8,
-    "p80": 52,
+    "p80": 54,
     "p90": 129,
-    "sameDay": 20.44,
-    "over90": 14.1,
-    "over365": 1.5,
+    "sameDay": 20.58,
+    "over90": 14.3,
+    "over365": 1.7,
     "a": 61,
     "name": "New City"
    },
    {
-    "n": 89,
-    "med": 7,
+    "n": 87,
+    "med": 8,
     "p80": 55,
     "p90": 76,
-    "sameDay": 23.6,
-    "over90": 9.0,
+    "sameDay": 24.14,
+    "over90": 9.2,
     "over365": 0.0,
     "a": 62,
     "name": "West Elsdon"
    },
    {
-    "n": 189,
+    "n": 190,
     "med": 6,
-    "p80": 50,
-    "p90": 116,
-    "sameDay": 24.87,
-    "over90": 12.2,
+    "p80": 49,
+    "p90": 101,
+    "sameDay": 24.74,
+    "over90": 12.1,
     "over365": 0.0,
     "a": 63,
     "name": "Gage Park"
    },
    {
-    "n": 158,
+    "n": 155,
     "med": 3,
-    "p80": 15,
+    "p80": 14,
     "p90": 40,
-    "sameDay": 36.08,
+    "sameDay": 36.77,
     "over90": 3.2,
     "over365": 0.0,
     "a": 64,
@@ -1066,11 +1066,11 @@
     "name": "West Lawn"
    },
    {
-    "n": 337,
+    "n": 338,
     "med": 4,
-    "p80": 26,
+    "p80": 27,
     "p90": 64,
-    "sameDay": 31.16,
+    "sameDay": 31.07,
     "over90": 8.3,
     "over365": 0.9,
     "a": 66,
@@ -1088,34 +1088,34 @@
     "name": "West Englewood"
    },
    {
-    "n": 345,
+    "n": 340,
     "med": 10,
-    "p80": 67,
+    "p80": 68,
     "p90": 121,
-    "sameDay": 19.42,
-    "over90": 15.4,
-    "over365": 1.4,
+    "sameDay": 18.82,
+    "over90": 15.6,
+    "over365": 1.5,
     "a": 68,
     "name": "Englewood"
    },
    {
-    "n": 345,
+    "n": 343,
     "med": 5,
     "p80": 45,
     "p90": 93,
-    "sameDay": 20.87,
-    "over90": 10.1,
+    "sameDay": 20.41,
+    "over90": 10.2,
     "over365": 0.6,
     "a": 69,
     "name": "Greater Grand Crossing"
    },
    {
-    "n": 438,
+    "n": 436,
     "med": 3,
     "p80": 14,
     "p90": 26,
-    "sameDay": 36.07,
-    "over90": 2.7,
+    "sameDay": 36.24,
+    "over90": 2.8,
     "over365": 0.2,
     "a": 70,
     "name": "Ashburn"
@@ -1123,105 +1123,95 @@
    {
     "n": 585,
     "med": 5,
-    "p80": 29,
-    "p90": 82,
+    "p80": 31,
+    "p90": 83,
     "sameDay": 28.38,
-    "over90": 8.7,
+    "over90": 8.9,
     "over365": 0.7,
     "a": 71,
     "name": "Auburn Gresham"
    },
    {
-    "n": 266,
+    "n": 260,
     "med": 5,
     "p80": 27,
-    "p90": 81,
-    "sameDay": 27.82,
-    "over90": 9.0,
+    "p90": 77,
+    "sameDay": 28.46,
+    "over90": 8.8,
     "over365": 0.8,
     "a": 72,
     "name": "Beverly"
    },
    {
-    "n": 419,
+    "n": 416,
     "med": 4,
     "p80": 24,
     "p90": 76,
-    "sameDay": 29.83,
-    "over90": 8.1,
+    "sameDay": 29.57,
+    "over90": 8.2,
     "over365": 0.7,
     "a": 73,
     "name": "Washington Heights"
    },
    {
-    "n": 167,
+    "n": 168,
     "med": 7,
     "p80": 56,
     "p90": 69,
-    "sameDay": 28.14,
-    "over90": 7.8,
+    "sameDay": 27.98,
+    "over90": 7.7,
     "over365": 0.6,
     "a": 74,
     "name": "Mount Greenwood"
    },
    {
-    "n": 312,
+    "n": 305,
     "med": 4,
     "p80": 23,
     "p90": 89,
-    "sameDay": 31.73,
-    "over90": 9.6,
+    "sameDay": 31.8,
+    "over90": 9.8,
     "over365": 0.3,
     "a": 75,
     "name": "Morgan Park"
    },
    {
-    "n": 405,
+    "n": 397,
     "med": 0,
     "p80": 7,
-    "p90": 26,
-    "sameDay": 54.32,
-    "over90": 4.7,
+    "p90": 24,
+    "sameDay": 53.9,
+    "over90": 4.5,
     "over365": 0.0,
     "a": 76,
     "name": "O'Hare"
    },
    {
-    "n": 509,
+    "n": 504,
     "med": 7,
     "p80": 51,
     "p90": 90,
-    "sameDay": 24.75,
-    "over90": 9.6,
+    "sameDay": 24.01,
+    "over90": 9.7,
     "over365": 0.2,
     "a": 77,
     "name": "Edgewater"
    }
   ],
-  "noArea12": 302
+  "noArea12": 296
  },
  "reviews": [
   {
    "last12": {
-    "n": 20392,
+    "n": 20236,
     "med": 3,
     "p80": 12,
     "p90": 21,
-    "sameDay": 29.08,
-    "over90": 1.0,
+    "sameDay": 29.12,
+    "over90": 0.9,
     "over365": 0.0
    },
    "monthly": [
-    {
-     "n": 2072,
-     "med": 6,
-     "p80": 15,
-     "p90": 25,
-     "sameDay": 27.22,
-     "over90": 0.8,
-     "over365": 0.0,
-     "m": "2024-10"
-    },
     {
      "n": 1366,
      "med": 5,
@@ -1451,100 +1441,110 @@
      "over90": 0.9,
      "over365": 0.0,
      "m": "2026-09"
+    },
+    {
+     "n": 1827,
+     "med": 2,
+     "p80": 12,
+     "p90": 23,
+     "sameDay": 31.03,
+     "over90": 1.1,
+     "over365": 0.0,
+     "m": "2026-10"
     }
    ],
    "trend": {
     "months": [
-     "2026-07",
      "2026-08",
-     "2026-09"
+     "2026-09",
+     "2026-10"
     ],
     "yearMonths": [
-     "2025-07",
      "2025-08",
-     "2025-09"
+     "2025-09",
+     "2025-10"
     ],
     "now": {
-     "n": 6010,
+     "n": 5954,
      "med": 3,
      "p80": 13,
-     "p90": 23,
-     "sameDay": 27.8,
-     "over90": 0.8,
+     "p90": 24,
+     "sameDay": 28.7,
+     "over90": 1.0,
      "over365": 0.0
     },
     "then": {
-     "n": 5687,
+     "n": 5924,
      "med": 2,
-     "p80": 11,
-     "p90": 19,
-     "sameDay": 32.71,
-     "over90": 0.5,
+     "p80": 12,
+     "p90": 20,
+     "sameDay": 30.96,
+     "over90": 0.6,
      "over365": 0.0
     }
    },
    "areas": [
     {
-     "n": 202,
+     "n": 199,
      "med": 3,
      "p80": 14,
      "p90": 28,
-     "sameDay": 30.2,
+     "sameDay": 29.65,
      "over90": 0.5,
      "over365": 0.0,
      "a": 1,
      "name": "Rogers Park"
     },
     {
-     "n": 301,
+     "n": 294,
      "med": 3,
      "p80": 12,
      "p90": 20,
-     "sameDay": 28.24,
-     "over90": 1.3,
+     "sameDay": 28.57,
+     "over90": 1.4,
      "over365": 0.0,
      "a": 2,
      "name": "West Ridge"
     },
     {
-     "n": 270,
+     "n": 274,
      "med": 4,
      "p80": 13,
      "p90": 21,
-     "sameDay": 23.33,
+     "sameDay": 23.72,
      "over90": 0.4,
      "over365": 0.0,
      "a": 3,
      "name": "Uptown"
     },
     {
-     "n": 271,
+     "n": 270,
      "med": 2,
      "p80": 13,
      "p90": 22,
-     "sameDay": 29.52,
-     "over90": 1.8,
+     "sameDay": 30.0,
+     "over90": 1.9,
      "over365": 0.0,
      "a": 4,
      "name": "Lincoln Square"
     },
     {
-     "n": 231,
+     "n": 229,
      "med": 1,
      "p80": 8,
      "p90": 17,
-     "sameDay": 34.2,
+     "sameDay": 34.93,
      "over90": 0.0,
      "over365": 0.0,
      "a": 5,
      "name": "North Center"
     },
     {
-     "n": 615,
+     "n": 617,
      "med": 3,
      "p80": 14,
-     "p90": 21,
-     "sameDay": 27.32,
+     "p90": 22,
+     "sameDay": 27.39,
      "over90": 0.3,
      "over365": 0.0,
      "a": 6,
@@ -1554,63 +1554,63 @@
      "n": 600,
      "med": 4,
      "p80": 17,
-     "p90": 34,
-     "sameDay": 19.83,
+     "p90": 35,
+     "sameDay": 19.67,
      "over90": 4.2,
      "over365": 0.0,
      "a": 7,
      "name": "Lincoln Park"
     },
     {
-     "n": 1444,
+     "n": 1438,
      "med": 5,
      "p80": 17,
      "p90": 28,
-     "sameDay": 16.76,
+     "sameDay": 16.55,
      "over90": 1.0,
      "over365": 0.0,
      "a": 8,
      "name": "Near North Side"
     },
     {
-     "n": 66,
+     "n": 65,
      "med": 1,
      "p80": 13,
      "p90": 18,
-     "sameDay": 39.39,
+     "sameDay": 38.46,
      "over90": 0.0,
      "over365": 0.0,
      "a": 9,
      "name": "Edison Park"
     },
     {
-     "n": 286,
+     "n": 280,
      "med": 1,
      "p80": 10,
      "p90": 17,
-     "sameDay": 39.51,
+     "sameDay": 39.29,
      "over90": 0.7,
      "over365": 0.0,
      "a": 10,
      "name": "Norwood Park"
     },
     {
-     "n": 177,
+     "n": 178,
      "med": 1,
      "p80": 11,
-     "p90": 19,
-     "sameDay": 42.37,
+     "p90": 17,
+     "sameDay": 42.13,
      "over90": 0.6,
      "over365": 0.0,
      "a": 11,
      "name": "Jefferson Park"
     },
     {
-     "n": 174,
+     "n": 169,
      "med": 1,
      "p80": 10,
      "p90": 28,
-     "sameDay": 44.25,
+     "sameDay": 44.38,
      "over90": 0.6,
      "over365": 0.0,
      "a": 12,
@@ -1621,150 +1621,150 @@
      "med": 1,
      "p80": 7,
      "p90": 18,
-     "sameDay": 42.45,
+     "sameDay": 43.4,
      "over90": 1.9,
      "over365": 0.0,
      "a": 13,
      "name": "North Park"
     },
     {
-     "n": 211,
+     "n": 209,
      "med": 3,
      "p80": 13,
-     "p90": 21,
-     "sameDay": 31.75,
+     "p90": 23,
+     "sameDay": 31.58,
      "over90": 0.5,
      "over365": 0.0,
      "a": 14,
      "name": "Albany Park"
     },
     {
-     "n": 400,
+     "n": 397,
      "med": 1,
      "p80": 8,
      "p90": 15,
-     "sameDay": 39.25,
-     "over90": 0.2,
+     "sameDay": 39.8,
+     "over90": 0.3,
      "over365": 0.0,
      "a": 15,
      "name": "Portage Park"
     },
     {
-     "n": 315,
+     "n": 316,
      "med": 2,
      "p80": 11,
-     "p90": 18,
-     "sameDay": 36.19,
+     "p90": 19,
+     "sameDay": 36.39,
      "over90": 0.0,
      "over365": 0.0,
      "a": 16,
      "name": "Irving Park"
     },
     {
-     "n": 227,
+     "n": 222,
      "med": 2,
-     "p80": 10,
+     "p80": 9,
      "p90": 21,
-     "sameDay": 34.36,
+     "sameDay": 34.68,
      "over90": 0.9,
      "over365": 0.0,
      "a": 17,
      "name": "Dunning"
     },
     {
-     "n": 87,
+     "n": 82,
      "med": 5,
      "p80": 14,
      "p90": 23,
-     "sameDay": 27.59,
-     "over90": 2.3,
+     "sameDay": 28.05,
+     "over90": 2.4,
      "over365": 0.0,
      "a": 18,
      "name": "Montclare"
     },
     {
-     "n": 272,
+     "n": 267,
      "med": 1,
-     "p80": 8,
+     "p80": 7,
      "p90": 17,
-     "sameDay": 40.81,
+     "sameDay": 41.2,
      "over90": 0.4,
      "over365": 0.0,
      "a": 19,
      "name": "Belmont Cragin"
     },
     {
-     "n": 90,
+     "n": 89,
      "med": 2,
-     "p80": 11,
-     "p90": 18,
-     "sameDay": 40.0,
+     "p80": 12,
+     "p90": 22,
+     "sameDay": 39.33,
      "over90": 0.0,
      "over365": 0.0,
      "a": 20,
      "name": "Hermosa"
     },
     {
-     "n": 167,
+     "n": 166,
      "med": 3,
      "p80": 14,
-     "p90": 25,
-     "sameDay": 29.94,
-     "over90": 1.8,
+     "p90": 24,
+     "sameDay": 30.12,
+     "over90": 1.2,
      "over365": 0.0,
      "a": 21,
      "name": "Avondale"
     },
     {
-     "n": 451,
+     "n": 450,
      "med": 3,
      "p80": 15,
      "p90": 24,
-     "sameDay": 29.27,
+     "sameDay": 28.67,
      "over90": 0.7,
      "over365": 0.0,
      "a": 22,
      "name": "Logan Square"
     },
     {
-     "n": 296,
+     "n": 294,
      "med": 2,
      "p80": 10,
      "p90": 19,
-     "sameDay": 31.42,
+     "sameDay": 31.63,
      "over90": 0.7,
      "over365": 0.0,
      "a": 23,
      "name": "Humboldt Park"
     },
     {
-     "n": 629,
+     "n": 624,
      "med": 3,
      "p80": 14,
      "p90": 21,
-     "sameDay": 24.32,
+     "sameDay": 24.36,
      "over90": 0.6,
      "over365": 0.0,
      "a": 24,
      "name": "West Town"
     },
     {
-     "n": 622,
+     "n": 618,
      "med": 3,
-     "p80": 14,
+     "p80": 13,
      "p90": 29,
-     "sameDay": 27.49,
-     "over90": 1.1,
+     "sameDay": 28.16,
+     "over90": 1.0,
      "over365": 0.0,
      "a": 25,
      "name": "Austin"
     },
     {
-     "n": 133,
+     "n": 135,
      "med": 5,
      "p80": 15,
      "p90": 27,
-     "sameDay": 19.55,
+     "sameDay": 19.26,
      "over90": 1.5,
      "over365": 0.0,
      "a": 26,
@@ -1782,33 +1782,33 @@
      "name": "East Garfield Park"
     },
     {
-     "n": 838,
+     "n": 833,
      "med": 2,
      "p80": 10,
      "p90": 20,
-     "sameDay": 29.71,
+     "sameDay": 30.01,
      "over90": 1.1,
      "over365": 0.0,
      "a": 28,
      "name": "Near West Side"
     },
     {
-     "n": 258,
+     "n": 260,
      "med": 5,
-     "p80": 19,
+     "p80": 18,
      "p90": 30,
-     "sameDay": 15.5,
-     "over90": 1.6,
+     "sameDay": 15.38,
+     "over90": 0.8,
      "over365": 0.0,
      "a": 29,
      "name": "North Lawndale"
     },
     {
-     "n": 230,
+     "n": 228,
      "med": 3,
-     "p80": 12,
-     "p90": 23,
-     "sameDay": 26.52,
+     "p80": 13,
+     "p90": 24,
+     "sameDay": 26.32,
      "over90": 0.4,
      "over365": 0.0,
      "a": 30,
@@ -1816,33 +1816,33 @@
     },
     {
      "n": 202,
-     "med": 4,
+     "med": 3,
      "p80": 12,
      "p90": 22,
-     "sameDay": 27.23,
+     "sameDay": 27.72,
      "over90": 1.5,
      "over365": 0.0,
      "a": 31,
      "name": "Lower West Side"
     },
     {
-     "n": 1482,
+     "n": 1457,
      "med": 2,
      "p80": 8,
      "p90": 14,
-     "sameDay": 28.68,
+     "sameDay": 28.89,
      "over90": 0.3,
      "over365": 0.0,
      "a": 32,
      "name": "Loop"
     },
     {
-     "n": 220,
+     "n": 215,
      "med": 2,
      "p80": 8,
      "p90": 16,
-     "sameDay": 21.82,
-     "over90": 0.5,
+     "sameDay": 21.4,
+     "over90": 0.0,
      "over365": 0.0,
      "a": 33,
      "name": "Near South Side"
@@ -1859,12 +1859,12 @@
      "name": "Armour Square"
     },
     {
-     "n": 86,
+     "n": 85,
      "med": 6,
      "p80": 18,
      "p90": 34,
-     "sameDay": 17.44,
-     "over90": 2.3,
+     "sameDay": 17.65,
+     "over90": 2.4,
      "over365": 0.0,
      "a": 35,
      "name": "Douglas"
@@ -1903,11 +1903,11 @@
      "name": "Grand Boulevard"
     },
     {
-     "n": 125,
-     "med": 7,
+     "n": 121,
+     "med": 8,
      "p80": 19,
      "p90": 25,
-     "sameDay": 11.2,
+     "sameDay": 10.74,
      "over90": 0.0,
      "over365": 0.0,
      "a": 39,
@@ -1925,100 +1925,100 @@
      "name": "Washington Park"
     },
     {
-     "n": 210,
+     "n": 211,
      "med": 4,
      "p80": 13,
      "p90": 17,
-     "sameDay": 19.52,
+     "sameDay": 19.43,
      "over90": 0.5,
      "over365": 0.0,
      "a": 41,
      "name": "Hyde Park"
     },
     {
-     "n": 178,
+     "n": 175,
      "med": 4,
      "p80": 13,
-     "p90": 26,
-     "sameDay": 23.6,
+     "p90": 24,
+     "sameDay": 24.0,
      "over90": 0.6,
      "over365": 0.0,
      "a": 42,
      "name": "Woodlawn"
     },
     {
-     "n": 336,
+     "n": 334,
      "med": 4,
      "p80": 15,
      "p90": 27,
-     "sameDay": 20.83,
+     "sameDay": 20.66,
      "over90": 1.5,
      "over365": 0.0,
      "a": 43,
      "name": "South Shore"
     },
     {
-     "n": 240,
+     "n": 238,
      "med": 4,
      "p80": 14,
      "p90": 22,
-     "sameDay": 25.42,
+     "sameDay": 26.05,
      "over90": 0.4,
      "over365": 0.0,
      "a": 44,
      "name": "Chatham"
     },
     {
-     "n": 149,
+     "n": 150,
      "med": 3,
      "p80": 12,
      "p90": 19,
-     "sameDay": 42.28,
+     "sameDay": 42.0,
      "over90": 1.3,
      "over365": 0.0,
      "a": 45,
      "name": "Avalon Park"
     },
     {
-     "n": 225,
+     "n": 224,
      "med": 3,
-     "p80": 11,
+     "p80": 12,
      "p90": 22,
-     "sameDay": 25.78,
+     "sameDay": 25.45,
      "over90": 0.4,
      "over365": 0.0,
      "a": 46,
      "name": "South Chicago"
     },
     {
-     "n": 24,
+     "n": 23,
      "med": 1,
      "p80": 7,
      "p90": 11,
-     "sameDay": 37.5,
+     "sameDay": 39.13,
      "over90": 0.0,
      "over365": 0.0,
      "a": 47,
      "name": "Burnside"
     },
     {
-     "n": 175,
+     "n": 172,
      "med": 1,
      "p80": 8,
-     "p90": 13,
-     "sameDay": 42.86,
+     "p90": 12,
+     "sameDay": 43.6,
      "over90": 0.0,
      "over365": 0.0,
      "a": 48,
      "name": "Calumet Heights"
     },
     {
-     "n": 373,
+     "n": 374,
      "med": 3,
      "p80": 14,
      "p90": 21,
-     "sameDay": 33.78,
-     "over90": 1.1,
+     "sameDay": 33.69,
+     "over90": 0.8,
      "over365": 0.0,
      "a": 49,
      "name": "Roseland"
@@ -2035,33 +2035,33 @@
      "name": "Pullman"
     },
     {
-     "n": 117,
+     "n": 118,
      "med": 3,
      "p80": 9,
      "p90": 17,
-     "sameDay": 30.77,
-     "over90": 0.9,
+     "sameDay": 28.81,
+     "over90": 0.8,
      "over365": 0.0,
      "a": 51,
      "name": "South Deering"
     },
     {
-     "n": 112,
+     "n": 111,
      "med": 3,
-     "p80": 14,
+     "p80": 12,
      "p90": 26,
-     "sameDay": 33.93,
+     "sameDay": 34.23,
      "over90": 1.8,
      "over365": 0.0,
      "a": 52,
      "name": "East Side"
     },
     {
-     "n": 272,
+     "n": 267,
      "med": 3,
      "p80": 9,
      "p90": 15,
-     "sameDay": 31.99,
+     "sameDay": 31.46,
      "over90": 0.7,
      "over365": 0.0,
      "a": 53,
@@ -2073,44 +2073,44 @@
      "name": "Riverdale"
     },
     {
-     "n": 86,
+     "n": 77,
      "med": 2,
-     "p80": 7,
+     "p80": 9,
      "p90": 15,
-     "sameDay": 18.6,
+     "sameDay": 20.78,
      "over90": 0.0,
      "over365": 0.0,
      "a": 55,
      "name": "Hegewisch"
     },
     {
-     "n": 327,
+     "n": 324,
      "med": 1,
      "p80": 13,
      "p90": 22,
-     "sameDay": 43.12,
+     "sameDay": 42.9,
      "over90": 0.6,
      "over365": 0.0,
      "a": 56,
      "name": "Garfield Ridge"
     },
     {
-     "n": 82,
+     "n": 81,
      "med": 2,
      "p80": 10,
      "p90": 19,
-     "sameDay": 26.83,
+     "sameDay": 27.16,
      "over90": 0.0,
      "over365": 0.0,
      "a": 57,
      "name": "Archer Heights"
     },
     {
-     "n": 154,
+     "n": 153,
      "med": 3,
      "p80": 12,
      "p90": 25,
-     "sameDay": 27.92,
+     "sameDay": 28.1,
      "over90": 0.0,
      "over365": 0.0,
      "a": 58,
@@ -2128,77 +2128,77 @@
      "name": "McKinley Park"
     },
     {
-     "n": 165,
+     "n": 166,
      "med": 4,
      "p80": 15,
      "p90": 35,
-     "sameDay": 25.45,
+     "sameDay": 26.51,
      "over90": 1.8,
      "over365": 0.0,
      "a": 60,
      "name": "Bridgeport"
     },
     {
-     "n": 252,
+     "n": 253,
      "med": 3,
-     "p80": 13,
+     "p80": 14,
      "p90": 26,
-     "sameDay": 22.62,
+     "sameDay": 22.92,
      "over90": 1.2,
      "over365": 0.0,
      "a": 61,
      "name": "New City"
     },
     {
-     "n": 63,
+     "n": 61,
      "med": 2,
      "p80": 19,
      "p90": 31,
-     "sameDay": 30.16,
+     "sameDay": 31.15,
      "over90": 0.0,
      "over365": 0.0,
      "a": 62,
      "name": "West Elsdon"
     },
     {
-     "n": 131,
+     "n": 132,
      "med": 2,
      "p80": 12,
      "p90": 20,
-     "sameDay": 32.06,
+     "sameDay": 31.82,
      "over90": 1.5,
      "over365": 0.0,
      "a": 63,
      "name": "Gage Park"
     },
     {
-     "n": 138,
+     "n": 135,
      "med": 3,
-     "p80": 9,
+     "p80": 8,
      "p90": 15,
-     "sameDay": 39.13,
+     "sameDay": 40.0,
      "over90": 0.7,
      "over365": 0.0,
      "a": 64,
      "name": "Clearing"
     },
     {
-     "n": 177,
-     "med": 3,
+     "n": 178,
+     "med": 2,
      "p80": 9,
      "p90": 18,
-     "sameDay": 31.64,
+     "sameDay": 32.02,
      "over90": 0.0,
      "over365": 0.0,
      "a": 65,
      "name": "West Lawn"
     },
     {
-     "n": 270,
+     "n": 271,
      "med": 2,
      "p80": 10,
-     "p90": 18,
-     "sameDay": 36.67,
+     "p90": 20,
+     "sameDay": 36.53,
      "over90": 0.0,
      "over365": 0.0,
      "a": 66,
@@ -2216,33 +2216,33 @@
      "name": "West Englewood"
     },
     {
-     "n": 205,
+     "n": 203,
      "med": 5,
      "p80": 16,
      "p90": 28,
-     "sameDay": 19.51,
-     "over90": 2.4,
+     "sameDay": 19.21,
+     "over90": 2.5,
      "over365": 0.0,
      "a": 68,
      "name": "Englewood"
     },
     {
-     "n": 242,
+     "n": 241,
      "med": 3,
      "p80": 12,
      "p90": 24,
-     "sameDay": 21.9,
+     "sameDay": 21.58,
      "over90": 1.2,
      "over365": 0.0,
      "a": 69,
      "name": "Greater Grand Crossing"
     },
     {
-     "n": 385,
+     "n": 384,
      "med": 2,
      "p80": 9,
      "p90": 15,
-     "sameDay": 40.0,
+     "sameDay": 40.1,
      "over90": 0.0,
      "over365": 0.0,
      "a": 70,
@@ -2260,97 +2260,87 @@
      "name": "Auburn Gresham"
     },
     {
-     "n": 219,
+     "n": 214,
      "med": 4,
-     "p80": 14,
-     "p90": 25,
-     "sameDay": 30.59,
+     "p80": 13,
+     "p90": 23,
+     "sameDay": 31.31,
      "over90": 2.3,
      "over365": 0.0,
      "a": 72,
      "name": "Beverly"
     },
     {
-     "n": 351,
+     "n": 348,
      "med": 3,
      "p80": 12,
      "p90": 21,
-     "sameDay": 31.91,
+     "sameDay": 31.61,
      "over90": 2.0,
      "over365": 0.0,
      "a": 73,
      "name": "Washington Heights"
     },
     {
-     "n": 103,
+     "n": 104,
      "med": 2,
      "p80": 8,
      "p90": 13,
-     "sameDay": 38.83,
+     "sameDay": 38.46,
      "over90": 0.0,
      "over365": 0.0,
      "a": 74,
      "name": "Mount Greenwood"
     },
     {
-     "n": 243,
+     "n": 237,
      "med": 2,
      "p80": 11,
-     "p90": 19,
-     "sameDay": 37.04,
+     "p90": 20,
+     "sameDay": 37.13,
      "over90": 0.8,
      "over365": 0.0,
      "a": 75,
      "name": "Morgan Park"
     },
     {
-     "n": 320,
+     "n": 314,
      "med": 0,
      "p80": 3,
-     "p90": 7,
-     "sameDay": 62.19,
+     "p90": 8,
+     "sameDay": 61.46,
      "over90": 0.0,
      "over365": 0.0,
      "a": 76,
      "name": "O'Hare"
     },
     {
-     "n": 319,
+     "n": 315,
      "med": 3,
      "p80": 12,
      "p90": 24,
-     "sameDay": 31.35,
+     "sameDay": 30.79,
      "over90": 1.6,
      "over365": 0.0,
      "a": 77,
      "name": "Edgewater"
     }
    ],
-   "noArea12": 295,
+   "noArea12": 289,
    "key": "EXPRESS PERMIT PROGRAM",
    "label": "Express Permit Program"
   },
   {
    "last12": {
-    "n": 3552,
+    "n": 3544,
     "med": 90,
-    "p80": 180,
+    "p80": 179,
     "p90": 262,
-    "sameDay": 1.32,
-    "over90": 49.9,
+    "sameDay": 1.35,
+    "over90": 50.0,
     "over365": 4.8
    },
    "monthly": [
-    {
-     "n": 406,
-     "med": 56,
-     "p80": 132,
-     "p90": 214,
-     "sameDay": 0.0,
-     "over90": 32.3,
-     "over365": 4.2,
-     "m": "2024-10"
-    },
     {
      "n": 287,
      "med": 66,
@@ -2580,36 +2570,46 @@
      "over90": 43.9,
      "over365": 5.3,
      "m": "2026-09"
+    },
+    {
+     "n": 321,
+     "med": 99,
+     "p80": 188,
+     "p90": 287,
+     "sameDay": 1.87,
+     "over90": 53.0,
+     "over365": 7.2,
+     "m": "2026-10"
     }
    ],
    "trend": {
     "months": [
-     "2026-07",
      "2026-08",
-     "2026-09"
+     "2026-09",
+     "2026-10"
     ],
     "yearMonths": [
-     "2025-07",
      "2025-08",
-     "2025-09"
+     "2025-09",
+     "2025-10"
     ],
     "now": {
-     "n": 1014,
-     "med": 83,
-     "p80": 174,
-     "p90": 254,
-     "sameDay": 2.66,
-     "over90": 47.5,
-     "over365": 5.2
+     "n": 979,
+     "med": 89,
+     "p80": 176,
+     "p90": 262,
+     "sameDay": 2.04,
+     "over90": 49.4,
+     "over365": 6.0
     },
     "then": {
-     "n": 1062,
-     "med": 71,
-     "p80": 154,
-     "p90": 231,
-     "sameDay": 2.35,
-     "over90": 41.2,
-     "over365": 4.8
+     "n": 989,
+     "med": 77,
+     "p80": 160,
+     "p90": 250,
+     "sameDay": 2.33,
+     "over90": 44.2,
+     "over365": 5.4
     }
    },
    "areas": [
@@ -2636,12 +2636,12 @@
      "name": "West Ridge"
     },
     {
-     "n": 56,
+     "n": 57,
      "med": 93,
      "p80": 166,
      "p90": 206,
      "sameDay": 0.0,
-     "over90": 51.8,
+     "over90": 52.6,
      "over365": 1.8,
      "a": 3,
      "name": "Uptown"
@@ -2669,62 +2669,62 @@
      "name": "North Center"
     },
     {
-     "n": 148,
-     "med": 68,
-     "p80": 164,
+     "n": 144,
+     "med": 67,
+     "p80": 165,
      "p90": 269,
-     "sameDay": 4.05,
-     "over90": 41.9,
-     "over365": 2.7,
+     "sameDay": 4.17,
+     "over90": 41.0,
+     "over365": 2.8,
      "a": 6,
      "name": "Lake View"
     },
     {
-     "n": 116,
-     "med": 83,
-     "p80": 149,
+     "n": 115,
+     "med": 88,
+     "p80": 150,
      "p90": 211,
-     "sameDay": 1.72,
-     "over90": 48.3,
-     "over365": 3.4,
+     "sameDay": 2.61,
+     "over90": 48.7,
+     "over365": 3.5,
      "a": 7,
      "name": "Lincoln Park"
     },
     {
-     "n": 129,
+     "n": 132,
      "med": 72,
-     "p80": 165,
-     "p90": 210,
-     "sameDay": 3.1,
-     "over90": 40.3,
+     "p80": 160,
+     "p90": 206,
+     "sameDay": 3.03,
+     "over90": 40.9,
      "over365": 2.3,
      "a": 8,
      "name": "Near North Side"
     },
     {
-     "n": 17,
+     "n": 18,
      "a": 9,
      "name": "Edison Park"
     },
     {
-     "n": 39,
+     "n": 38,
      "med": 73,
      "p80": 153,
      "p90": 322,
      "sameDay": 0.0,
-     "over90": 41.0,
-     "over365": 7.7,
+     "over90": 42.1,
+     "over365": 7.9,
      "a": 10,
      "name": "Norwood Park"
     },
     {
-     "n": 32,
-     "med": 55,
-     "p80": 139,
-     "p90": 239,
-     "sameDay": 3.12,
-     "over90": 31.2,
-     "over365": 6.2,
+     "n": 30,
+     "med": 50,
+     "p80": 138,
+     "p90": 208,
+     "sameDay": 3.33,
+     "over90": 26.7,
+     "over365": 6.7,
      "a": 11,
      "name": "Jefferson Park"
     },
@@ -2762,12 +2762,12 @@
      "name": "Albany Park"
     },
     {
-     "n": 51,
+     "n": 50,
      "med": 77,
      "p80": 159,
      "p90": 199,
      "sameDay": 0.0,
-     "over90": 47.1,
+     "over90": 48.0,
      "over365": 0.0,
      "a": 15,
      "name": "Portage Park"
@@ -2784,13 +2784,13 @@
      "name": "Irving Park"
     },
     {
-     "n": 22,
-     "med": 106,
+     "n": 23,
+     "med": 130,
      "p80": 271,
      "p90": 570,
      "sameDay": 0.0,
-     "over90": 63.6,
-     "over365": 18.2,
+     "over90": 65.2,
+     "over365": 17.4,
      "a": 17,
      "name": "Dunning"
     },
@@ -2811,29 +2811,29 @@
      "name": "Belmont Cragin"
     },
     {
-     "n": 17,
+     "n": 18,
      "a": 20,
      "name": "Hermosa"
     },
     {
-     "n": 50,
-     "med": 133,
+     "n": 49,
+     "med": 135,
      "p80": 262,
-     "p90": 378,
+     "p90": 404,
      "sameDay": 0.0,
-     "over90": 66.0,
-     "over365": 12.0,
+     "over90": 65.3,
+     "over365": 12.2,
      "a": 21,
      "name": "Avondale"
     },
     {
-     "n": 128,
+     "n": 126,
      "med": 119,
-     "p80": 221,
+     "p80": 220,
      "p90": 289,
      "sameDay": 0.0,
-     "over90": 67.2,
-     "over365": 4.7,
+     "over90": 67.5,
+     "over365": 4.8,
      "a": 22,
      "name": "Logan Square"
     },
@@ -2860,34 +2860,34 @@
      "name": "West Town"
     },
     {
-     "n": 103,
+     "n": 104,
      "med": 103,
-     "p80": 197,
-     "p90": 301,
+     "p80": 209,
+     "p90": 311,
      "sameDay": 0.0,
-     "over90": 57.3,
-     "over365": 7.8,
+     "over90": 57.7,
+     "over365": 7.7,
      "a": 25,
      "name": "Austin"
     },
     {
-     "n": 37,
+     "n": 36,
      "med": 86,
      "p80": 236,
      "p90": 314,
      "sameDay": 0.0,
-     "over90": 48.6,
-     "over365": 8.1,
+     "over90": 50.0,
+     "over365": 8.3,
      "a": 26,
      "name": "West Garfield Park"
     },
     {
      "n": 68,
-     "med": 79,
-     "p80": 168,
+     "med": 78,
+     "p80": 166,
      "p90": 253,
      "sameDay": 0.0,
-     "over90": 42.6,
+     "over90": 41.2,
      "over365": 5.9,
      "a": 27,
      "name": "East Garfield Park"
@@ -2904,45 +2904,45 @@
      "name": "Near West Side"
     },
     {
-     "n": 92,
+     "n": 93,
      "med": 91,
      "p80": 190,
      "p90": 243,
-     "sameDay": 1.09,
-     "over90": 51.1,
+     "sameDay": 1.08,
+     "over90": 50.5,
      "over365": 2.2,
      "a": 29,
      "name": "North Lawndale"
     },
     {
-     "n": 68,
+     "n": 65,
      "med": 115,
-     "p80": 247,
+     "p80": 245,
      "p90": 330,
      "sameDay": 0.0,
-     "over90": 63.2,
-     "over365": 8.8,
+     "over90": 63.1,
+     "over365": 9.2,
      "a": 30,
      "name": "South Lawndale"
     },
     {
-     "n": 69,
-     "med": 105,
-     "p80": 256,
-     "p90": 384,
+     "n": 71,
+     "med": 101,
+     "p80": 253,
+     "p90": 367,
      "sameDay": 0.0,
-     "over90": 53.6,
-     "over365": 11.6,
+     "over90": 52.1,
+     "over365": 11.3,
      "a": 31,
      "name": "Lower West Side"
     },
     {
-     "n": 137,
+     "n": 138,
      "med": 6,
-     "p80": 75,
+     "p80": 76,
      "p90": 105,
-     "sameDay": 10.22,
-     "over90": 14.6,
+     "sameDay": 10.14,
+     "over90": 14.5,
      "over365": 0.7,
      "a": 32,
      "name": "Loop"
@@ -2969,7 +2969,7 @@
      "name": "Douglas"
     },
     {
-     "n": 4,
+     "n": 3,
      "a": 36,
      "name": "Oakland"
     },
@@ -2979,13 +2979,13 @@
      "name": "Fuller Park"
     },
     {
-     "n": 59,
+     "n": 58,
      "med": 106,
      "p80": 186,
      "p90": 288,
      "sameDay": 0.0,
-     "over90": 54.2,
-     "over365": 6.8,
+     "over90": 55.2,
+     "over365": 6.9,
      "a": 38,
      "name": "Grand Boulevard"
     },
@@ -3012,12 +3012,12 @@
      "name": "Washington Park"
     },
     {
-     "n": 45,
+     "n": 46,
      "med": 51,
      "p80": 139,
      "p90": 159,
      "sameDay": 0.0,
-     "over90": 28.9,
+     "over90": 30.4,
      "over365": 0.0,
      "a": 41,
      "name": "Hyde Park"
@@ -3028,7 +3028,7 @@
      "p80": 133,
      "p90": 227,
      "sameDay": 1.37,
-     "over90": 43.8,
+     "over90": 45.2,
      "over365": 4.1,
      "a": 42,
      "name": "Woodlawn"
@@ -3056,13 +3056,13 @@
      "name": "Chatham"
     },
     {
-     "n": 22,
-     "med": 104,
+     "n": 21,
+     "med": 125,
      "p80": 167,
      "p90": 211,
      "sameDay": 0.0,
-     "over90": 59.1,
-     "over365": 4.5,
+     "over90": 57.1,
+     "over365": 4.8,
      "a": 45,
      "name": "Avalon Park"
     },
@@ -3099,7 +3099,7 @@
      "name": "Roseland"
     },
     {
-     "n": 17,
+     "n": 16,
      "a": 50,
      "name": "Pullman"
     },
@@ -3109,7 +3109,7 @@
      "name": "South Deering"
     },
     {
-     "n": 7,
+     "n": 6,
      "a": 52,
      "name": "East Side"
     },
@@ -3151,12 +3151,12 @@
      "name": "Archer Heights"
     },
     {
-     "n": 30,
+     "n": 31,
      "med": 98,
      "p80": 201,
      "p90": 227,
      "sameDay": 0.0,
-     "over90": 56.7,
+     "over90": 58.1,
      "over365": 0.0,
      "a": 58,
      "name": "Brighton Park"
@@ -3228,8 +3228,8 @@
     {
      "n": 61,
      "med": 119,
-     "p80": 233,
-     "p90": 282,
+     "p80": 230,
+     "p90": 277,
      "sameDay": 0.0,
      "over90": 65.6,
      "over365": 6.6,
@@ -3237,13 +3237,13 @@
      "name": "West Englewood"
     },
     {
-     "n": 61,
-     "med": 109,
+     "n": 62,
+     "med": 108,
      "p80": 174,
      "p90": 338,
      "sameDay": 0.0,
-     "over90": 63.9,
-     "over365": 8.2,
+     "over90": 62.9,
+     "over365": 8.1,
      "a": 68,
      "name": "Englewood"
     },
@@ -3259,29 +3259,29 @@
      "name": "Greater Grand Crossing"
     },
     {
-     "n": 18,
+     "n": 17,
      "a": 70,
      "name": "Ashburn"
     },
     {
-     "n": 60,
+     "n": 61,
      "med": 84,
      "p80": 154,
      "p90": 246,
      "sameDay": 0.0,
-     "over90": 46.7,
-     "over365": 5.0,
+     "over90": 47.5,
+     "over365": 4.9,
      "a": 71,
      "name": "Auburn Gresham"
     },
     {
-     "n": 26,
-     "med": 104,
+     "n": 25,
+     "med": 115,
      "p80": 178,
      "p90": 294,
      "sameDay": 0.0,
-     "over90": 61.5,
-     "over365": 7.7,
+     "over90": 60.0,
+     "over365": 8.0,
      "a": 72,
      "name": "Beverly"
     },
@@ -3308,13 +3308,13 @@
      "name": "Mount Greenwood"
     },
     {
-     "n": 34,
-     "med": 96,
+     "n": 33,
+     "med": 97,
      "p80": 164,
      "p90": 288,
      "sameDay": 0.0,
-     "over90": 58.8,
-     "over365": 2.9,
+     "over90": 60.6,
+     "over365": 3.0,
      "a": 75,
      "name": "Morgan Park"
     },
@@ -3341,25 +3341,15 @@
   },
   {
    "last12": {
-    "n": 3006,
+    "n": 2995,
     "med": 32,
     "p80": 72,
-    "p90": 114,
+    "p90": 115,
     "sameDay": 0.67,
-    "over90": 14.9,
+    "over90": 15.0,
     "over365": 0.8
    },
    "monthly": [
-    {
-     "n": 275,
-     "med": 25,
-     "p80": 67,
-     "p90": 121,
-     "sameDay": 1.09,
-     "over90": 13.8,
-     "over365": 1.1,
-     "m": "2024-10"
-    },
     {
      "n": 199,
      "med": 37,
@@ -3589,36 +3579,46 @@
      "over90": 13.8,
      "over365": 0.3,
      "m": "2026-09"
+    },
+    {
+     "n": 265,
+     "med": 35,
+     "p80": 81,
+     "p90": 165,
+     "sameDay": 0.0,
+     "over90": 18.1,
+     "over365": 1.1,
+     "m": "2026-10"
     }
    ],
    "trend": {
     "months": [
-     "2026-07",
      "2026-08",
-     "2026-09"
+     "2026-09",
+     "2026-10"
     ],
     "yearMonths": [
-     "2025-07",
      "2025-08",
-     "2025-09"
+     "2025-09",
+     "2025-10"
     ],
     "now": {
-     "n": 860,
-     "med": 37,
+     "n": 835,
+     "med": 35,
      "p80": 77,
-     "p90": 116,
-     "sameDay": 0.35,
-     "over90": 17.1,
+     "p90": 128,
+     "sameDay": 0.24,
+     "over90": 17.6,
      "over365": 0.6
     },
     "then": {
-     "n": 799,
+     "n": 836,
      "med": 36,
-     "p80": 74,
-     "p90": 107,
-     "sameDay": 0.13,
-     "over90": 15.0,
-     "over365": 0.9
+     "p80": 78,
+     "p90": 113,
+     "sameDay": 0.12,
+     "over90": 15.7,
+     "over365": 0.8
     }
    },
    "areas": [
@@ -3639,35 +3639,35 @@
      "name": "West Ridge"
     },
     {
-     "n": 28,
-     "med": 35,
-     "p80": 112,
-     "p90": 151,
+     "n": 30,
+     "med": 42,
+     "p80": 104,
+     "p90": 138,
      "sameDay": 0.0,
-     "over90": 25.0,
+     "over90": 23.3,
      "over365": 0.0,
      "a": 3,
      "name": "Uptown"
     },
     {
      "n": 72,
-     "med": 43,
-     "p80": 76,
+     "med": 44,
+     "p80": 77,
      "p90": 107,
      "sameDay": 1.39,
-     "over90": 13.9,
+     "over90": 15.3,
      "over365": 0.0,
      "a": 4,
      "name": "Lincoln Square"
     },
     {
-     "n": 97,
+     "n": 98,
      "med": 44,
      "p80": 71,
      "p90": 124,
      "sameDay": 0.0,
-     "over90": 16.5,
-     "over365": 2.1,
+     "over90": 16.3,
+     "over365": 2.0,
      "a": 5,
      "name": "North Center"
     },
@@ -3683,18 +3683,18 @@
      "name": "Lake View"
     },
     {
-     "n": 128,
-     "med": 43,
-     "p80": 82,
-     "p90": 123,
+     "n": 129,
+     "med": 44,
+     "p80": 84,
+     "p90": 126,
      "sameDay": 0.0,
-     "over90": 17.2,
+     "over90": 17.8,
      "over365": 0.8,
      "a": 7,
      "name": "Lincoln Park"
     },
     {
-     "n": 311,
+     "n": 310,
      "med": 18,
      "p80": 36,
      "p90": 50,
@@ -3795,23 +3795,23 @@
      "name": "Hermosa"
     },
     {
-     "n": 38,
+     "n": 37,
      "med": 45,
      "p80": 63,
      "p90": 92,
      "sameDay": 0.0,
-     "over90": 10.5,
+     "over90": 10.8,
      "over365": 0.0,
      "a": 21,
      "name": "Avondale"
     },
     {
-     "n": 111,
-     "med": 43,
+     "n": 110,
+     "med": 42,
      "p80": 95,
      "p90": 126,
      "sameDay": 0.0,
-     "over90": 20.7,
+     "over90": 20.9,
      "over365": 0.9,
      "a": 22,
      "name": "Logan Square"
@@ -3828,12 +3828,12 @@
      "name": "Humboldt Park"
     },
     {
-     "n": 145,
-     "med": 45,
+     "n": 143,
+     "med": 44,
      "p80": 96,
      "p90": 173,
      "sameDay": 0.0,
-     "over90": 24.1,
+     "over90": 23.8,
      "over365": 1.4,
      "a": 24,
      "name": "West Town"
@@ -3866,34 +3866,34 @@
      "name": "East Garfield Park"
     },
     {
-     "n": 243,
+     "n": 244,
      "med": 19,
      "p80": 49,
      "p90": 84,
-     "sameDay": 2.47,
+     "sameDay": 2.46,
      "over90": 8.6,
      "over365": 0.0,
      "a": 28,
      "name": "Near West Side"
     },
     {
-     "n": 53,
-     "med": 49,
+     "n": 51,
+     "med": 53,
      "p80": 81,
      "p90": 100,
      "sameDay": 0.0,
-     "over90": 17.0,
-     "over365": 1.9,
+     "over90": 17.6,
+     "over365": 2.0,
      "a": 29,
      "name": "North Lawndale"
     },
     {
-     "n": 42,
-     "med": 45,
+     "n": 40,
+     "med": 46,
      "p80": 71,
      "p90": 92,
      "sameDay": 0.0,
-     "over90": 11.9,
+     "over90": 12.5,
      "over365": 0.0,
      "a": 30,
      "name": "South Lawndale"
@@ -3912,7 +3912,7 @@
     {
      "n": 428,
      "med": 8,
-     "p80": 20,
+     "p80": 21,
      "p90": 30,
      "sameDay": 2.34,
      "over90": 1.9,
@@ -3974,12 +3974,12 @@
      "name": "Kenwood"
     },
     {
-     "n": 9,
+     "n": 8,
      "a": 40,
      "name": "Washington Park"
     },
     {
-     "n": 41,
+     "n": 40,
      "med": 20,
      "p80": 37,
      "p90": 45,
@@ -4001,13 +4001,7 @@
      "name": "Woodlawn"
     },
     {
-     "n": 20,
-     "med": 66,
-     "p80": 145,
-     "p90": 272,
-     "sameDay": 0.0,
-     "over90": 40.0,
-     "over365": 0.0,
+     "n": 18,
      "a": 43,
      "name": "South Shore"
     },
@@ -4017,7 +4011,7 @@
      "name": "Chatham"
     },
     {
-     "n": 7,
+     "n": 6,
      "a": 45,
      "name": "Avalon Park"
     },
@@ -4037,12 +4031,12 @@
      "name": "Calumet Heights"
     },
     {
-     "n": 27,
+     "n": 26,
      "med": 41,
      "p80": 94,
      "p90": 106,
      "sameDay": 0.0,
-     "over90": 22.2,
+     "over90": 23.1,
      "over365": 0.0,
      "a": 49,
      "name": "Roseland"
@@ -4162,12 +4156,12 @@
      "name": "West Englewood"
     },
     {
-     "n": 27,
-     "med": 30,
+     "n": 26,
+     "med": 26,
      "p80": 70,
      "p90": 164,
      "sameDay": 0.0,
-     "over90": 14.8,
+     "over90": 15.4,
      "over365": 0.0,
      "a": 68,
      "name": "Englewood"
@@ -4220,10 +4214,10 @@
      "name": "Morgan Park"
     },
     {
-     "n": 26,
+     "n": 25,
      "med": 5,
      "p80": 8,
-     "p90": 36,
+     "p90": 18,
      "sameDay": 0.0,
      "over90": 0.0,
      "over365": 0.0,
@@ -4231,12 +4225,12 @@
      "name": "O'Hare"
     },
     {
-     "n": 46,
+     "n": 47,
      "med": 37,
      "p80": 63,
      "p90": 100,
      "sameDay": 0.0,
-     "over90": 13.0,
+     "over90": 12.8,
      "over365": 0.0,
      "a": 77,
      "name": "Edgewater"
@@ -4248,25 +4242,15 @@
   },
   {
    "last12": {
-    "n": 2071,
+    "n": 2016,
     "med": 38,
-    "p80": 89,
-    "p90": 141,
+    "p80": 92,
+    "p90": 143,
     "sameDay": 0.0,
-    "over90": 19.8,
-    "over365": 1.4
+    "over90": 20.1,
+    "over365": 1.5
    },
    "monthly": [
-    {
-     "n": 155,
-     "med": 46,
-     "p80": 91,
-     "p90": 215,
-     "sameDay": 0.0,
-     "over90": 20.6,
-     "over365": 7.1,
-     "m": "2024-10"
-    },
     {
      "n": 197,
      "med": 33,
@@ -4496,36 +4480,46 @@
      "over90": 16.7,
      "over365": 3.4,
      "m": "2026-09"
+    },
+    {
+     "n": 138,
+     "med": 32,
+     "p80": 69,
+     "p90": 88,
+     "sameDay": 0.0,
+     "over90": 9.4,
+     "over365": 0.7,
+     "m": "2026-10"
     }
    ],
    "trend": {
     "months": [
-     "2026-07",
      "2026-08",
-     "2026-09"
+     "2026-09",
+     "2026-10"
     ],
     "yearMonths": [
-     "2025-07",
      "2025-08",
-     "2025-09"
+     "2025-09",
+     "2025-10"
     ],
     "now": {
-     "n": 536,
-     "med": 49,
-     "p80": 110,
-     "p90": 181,
+     "n": 528,
+     "med": 44,
+     "p80": 91,
+     "p90": 125,
      "sameDay": 0.0,
-     "over90": 25.9,
+     "over90": 20.1,
      "over365": 3.2
     },
     "then": {
-     "n": 665,
-     "med": 33,
-     "p80": 98,
-     "p90": 163,
+     "n": 614,
+     "med": 35,
+     "p80": 86,
+     "p90": 168,
      "sameDay": 0.0,
-     "over90": 22.0,
-     "over365": 2.4
+     "over90": 19.2,
+     "over365": 2.0
     }
    },
    "areas": [
@@ -4563,56 +4557,56 @@
      "name": "Uptown"
     },
     {
-     "n": 31,
+     "n": 30,
      "med": 41,
      "p80": 63,
      "p90": 85,
      "sameDay": 0.0,
-     "over90": 9.7,
+     "over90": 10.0,
      "over365": 0.0,
      "a": 4,
      "name": "Lincoln Square"
     },
     {
-     "n": 62,
-     "med": 37,
+     "n": 49,
+     "med": 51,
      "p80": 57,
-     "p90": 75,
+     "p90": 83,
      "sameDay": 0.0,
-     "over90": 4.8,
+     "over90": 6.1,
      "over365": 0.0,
      "a": 5,
      "name": "North Center"
     },
     {
-     "n": 115,
+     "n": 110,
      "med": 33,
      "p80": 63,
      "p90": 119,
      "sameDay": 0.0,
-     "over90": 12.2,
-     "over365": 4.3,
+     "over90": 12.7,
+     "over365": 4.5,
      "a": 6,
      "name": "Lake View"
     },
     {
-     "n": 73,
-     "med": 41,
+     "n": 71,
+     "med": 39,
      "p80": 77,
      "p90": 120,
      "sameDay": 0.0,
-     "over90": 15.1,
+     "over90": 15.5,
      "over365": 0.0,
      "a": 7,
      "name": "Lincoln Park"
     },
     {
-     "n": 218,
+     "n": 216,
      "med": 46,
      "p80": 124,
      "p90": 189,
      "sameDay": 0.0,
-     "over90": 26.1,
+     "over90": 26.4,
      "over365": 0.5,
      "a": 8,
      "name": "Near North Side"
@@ -4654,13 +4648,13 @@
      "name": "Albany Park"
     },
     {
-     "n": 54,
+     "n": 53,
      "med": 22,
      "p80": 49,
      "p90": 87,
      "sameDay": 0.0,
-     "over90": 9.3,
-     "over365": 3.7,
+     "over90": 9.4,
+     "over365": 3.8,
      "a": 15,
      "name": "Portage Park"
     },
@@ -4681,34 +4675,28 @@
      "name": "Dunning"
     },
     {
-     "n": 12,
+     "n": 10,
      "a": 18,
      "name": "Montclare"
     },
     {
-     "n": 33,
+     "n": 32,
      "med": 28,
      "p80": 48,
      "p90": 49,
      "sameDay": 0.0,
-     "over90": 6.1,
+     "over90": 3.1,
      "over365": 0.0,
      "a": 19,
      "name": "Belmont Cragin"
     },
     {
-     "n": 13,
+     "n": 12,
      "a": 20,
      "name": "Hermosa"
     },
     {
-     "n": 22,
-     "med": 48,
-     "p80": 89,
-     "p90": 141,
-     "sameDay": 0.0,
-     "over90": 18.2,
-     "over365": 0.0,
+     "n": 18,
      "a": 21,
      "name": "Avondale"
     },
@@ -4729,23 +4717,23 @@
      "name": "Humboldt Park"
     },
     {
-     "n": 166,
+     "n": 163,
      "med": 33,
-     "p80": 71,
+     "p80": 70,
      "p90": 113,
      "sameDay": 0.0,
-     "over90": 14.5,
+     "over90": 14.1,
      "over365": 0.6,
      "a": 24,
      "name": "West Town"
     },
     {
-     "n": 60,
-     "med": 126,
+     "n": 56,
+     "med": 167,
      "p80": 173,
      "p90": 173,
      "sameDay": 0.0,
-     "over90": 53.3,
+     "over90": 58.9,
      "over365": 0.0,
      "a": 25,
      "name": "Austin"
@@ -4756,17 +4744,17 @@
      "name": "West Garfield Park"
     },
     {
-     "n": 9,
+     "n": 7,
      "a": 27,
      "name": "East Garfield Park"
     },
     {
-     "n": 196,
+     "n": 195,
      "med": 47,
      "p80": 99,
      "p90": 141,
      "sameDay": 0.0,
-     "over90": 26.0,
+     "over90": 26.2,
      "over365": 1.5,
      "a": 28,
      "name": "Near West Side"
@@ -4777,24 +4765,24 @@
      "name": "North Lawndale"
     },
     {
-     "n": 29,
-     "med": 32,
+     "n": 25,
+     "med": 35,
      "p80": 62,
      "p90": 100,
      "sameDay": 0.0,
-     "over90": 10.3,
-     "over365": 3.4,
+     "over90": 12.0,
+     "over365": 4.0,
      "a": 30,
      "name": "South Lawndale"
     },
     {
-     "n": 22,
+     "n": 20,
      "med": 33,
-     "p80": 140,
-     "p90": 168,
+     "p80": 46,
+     "p90": 140,
      "sameDay": 0.0,
-     "over90": 27.3,
-     "over365": 4.5,
+     "over90": 20.0,
+     "over365": 5.0,
      "a": 31,
      "name": "Lower West Side"
     },
@@ -4830,7 +4818,7 @@
      "name": "Oakland"
     },
     {
-     "n": 5,
+     "n": 3,
      "a": 37,
      "name": "Fuller Park"
     },
@@ -4931,10 +4919,10 @@
      "name": "Hegewisch"
     },
     {
-     "n": 27,
-     "med": 28,
-     "p80": 49,
-     "p90": 65,
+     "n": 23,
+     "med": 21,
+     "p80": 42,
+     "p90": 43,
      "sameDay": 0.0,
      "over90": 0.0,
      "over365": 0.0,
@@ -4962,13 +4950,13 @@
      "name": "Bridgeport"
     },
     {
-     "n": 33,
+     "n": 34,
      "med": 17,
-     "p80": 35,
+     "p80": 47,
      "p90": 219,
      "sameDay": 0.0,
-     "over90": 12.1,
-     "over365": 0.0,
+     "over90": 14.7,
+     "over365": 2.9,
      "a": 61,
      "name": "New City"
     },
@@ -5015,7 +5003,7 @@
      "name": "West Englewood"
     },
     {
-     "n": 9,
+     "n": 8,
      "a": 68,
      "name": "Englewood"
     },
@@ -5036,7 +5024,7 @@
      "name": "Ashburn"
     },
     {
-     "n": 14,
+     "n": 13,
      "a": 71,
      "name": "Auburn Gresham"
     },
@@ -5095,25 +5083,15 @@
   },
   {
    "last12": {
-    "n": 1132,
+    "n": 1121,
     "med": 0,
     "p80": 5,
     "p90": 7,
-    "sameDay": 74.29,
+    "sameDay": 74.4,
     "over90": 0.2,
     "over365": 0.0
    },
    "monthly": [
-    {
-     "n": 98,
-     "med": 0,
-     "p80": 0,
-     "p90": 5,
-     "sameDay": 81.63,
-     "over90": 0.0,
-     "over365": 0.0,
-     "m": "2024-10"
-    },
     {
      "n": 82,
      "med": 0,
@@ -5343,35 +5321,45 @@
      "over90": 0.0,
      "over365": 0.0,
      "m": "2026-09"
+    },
+    {
+     "n": 102,
+     "med": 0,
+     "p80": 2,
+     "p90": 5,
+     "sameDay": 79.41,
+     "over90": 0.0,
+     "over365": 0.0,
+     "m": "2026-10"
     }
    ],
    "trend": {
     "months": [
-     "2026-07",
      "2026-08",
-     "2026-09"
+     "2026-09",
+     "2026-10"
     ],
     "yearMonths": [
-     "2025-07",
      "2025-08",
-     "2025-09"
+     "2025-09",
+     "2025-10"
     ],
     "now": {
-     "n": 304,
+     "n": 303,
      "med": 0,
-     "p80": 5,
-     "p90": 7,
-     "sameDay": 76.32,
+     "p80": 1,
+     "p90": 6,
+     "sameDay": 79.21,
      "over90": 0.0,
      "over365": 0.0
     },
     "then": {
-     "n": 270,
+     "n": 279,
      "med": 0,
-     "p80": 5,
+     "p80": 7,
      "p90": 7,
-     "sameDay": 75.56,
-     "over90": 0.0,
+     "sameDay": 70.25,
+     "over90": 1.1,
      "over365": 0.0
     }
    },
@@ -5424,11 +5412,11 @@
      "name": "Lincoln Park"
     },
     {
-     "n": 229,
+     "n": 227,
      "med": 0,
      "p80": 7,
      "p90": 8,
-     "sameDay": 58.95,
+     "sameDay": 58.59,
      "over90": 0.4,
      "over365": 0.0,
      "a": 8,
@@ -5510,11 +5498,11 @@
      "name": "Humboldt Park"
     },
     {
-     "n": 52,
+     "n": 50,
      "med": 0,
      "p80": 7,
      "p90": 14,
-     "sameDay": 59.62,
+     "sameDay": 60.0,
      "over90": 0.0,
      "over365": 0.0,
      "a": 24,
@@ -5557,16 +5545,16 @@
      "name": "South Lawndale"
     },
     {
-     "n": 10,
+     "n": 8,
      "a": 31,
      "name": "Lower West Side"
     },
     {
-     "n": 177,
+     "n": 175,
      "med": 0,
      "p80": 6,
      "p90": 7,
-     "sameDay": 55.93,
+     "sameDay": 56.0,
      "over90": 0.0,
      "over365": 0.0,
      "a": 32,
@@ -5635,7 +5623,7 @@
      "name": "Woodlawn"
     },
     {
-     "n": 8,
+     "n": 7,
      "a": 43,
      "name": "South Shore"
     },
@@ -5745,7 +5733,7 @@
      "name": "Clearing"
     },
     {
-     "n": 3,
+     "n": 2,
      "a": 65,
      "name": "West Lawn"
     },
@@ -5805,11 +5793,11 @@
      "name": "O'Hare"
     },
     {
-     "n": 26,
+     "n": 25,
      "med": 0,
      "p80": 6,
      "p90": 7,
-     "sameDay": 57.69,
+     "sameDay": 56.0,
      "over90": 0.0,
      "over365": 0.0,
      "a": 77,
@@ -5822,25 +5810,15 @@
   },
   {
    "last12": {
-    "n": 669,
-    "med": 47,
-    "p80": 86,
+    "n": 659,
+    "med": 48,
+    "p80": 89,
     "p90": 121,
-    "sameDay": 33.03,
-    "over90": 18.8,
+    "sameDay": 32.17,
+    "over90": 19.1,
     "over365": 0.0
    },
    "monthly": [
-    {
-     "n": 68,
-     "med": 0,
-     "p80": 0,
-     "p90": 0,
-     "sameDay": 92.65,
-     "over90": 1.5,
-     "over365": 0.0,
-     "m": "2024-10"
-    },
     {
      "n": 48,
      "med": 0,
@@ -6070,46 +6048,56 @@
      "over90": 27.5,
      "over365": 0.0,
      "m": "2026-09"
+    },
+    {
+     "n": 54,
+     "med": 59,
+     "p80": 120,
+     "p90": 162,
+     "sameDay": 0.0,
+     "over90": 25.9,
+     "over365": 0.0,
+     "m": "2026-10"
     }
    ],
    "trend": {
     "months": [
-     "2026-07",
      "2026-08",
-     "2026-09"
+     "2026-09",
+     "2026-10"
     ],
     "yearMonths": [
-     "2025-07",
      "2025-08",
-     "2025-09"
+     "2025-09",
+     "2025-10"
     ],
     "now": {
-     "n": 183,
-     "med": 70,
-     "p80": 116,
-     "p90": 136,
-     "sameDay": 3.28,
-     "over90": 33.9,
+     "n": 170,
+     "med": 62,
+     "p80": 105,
+     "p90": 138,
+     "sameDay": 1.76,
+     "over90": 27.6,
      "over365": 0.0
     },
     "then": {
-     "n": 206,
+     "n": 194,
      "med": 0,
      "p80": 0,
      "p90": 0,
-     "sameDay": 97.57,
-     "over90": 1.5,
+     "sameDay": 96.91,
+     "over90": 0.5,
      "over365": 0.0
     }
    },
    "change": {
     "from": "2026-03",
     "since": {
-     "n": 447,
-     "med": 62,
+     "n": 448,
+     "med": 61,
      "p80": 104,
      "p90": 133,
-     "sameDay": 9.4,
+     "sameDay": 9.38,
      "over90": 27.7,
      "over365": 0.0
     }
@@ -6158,12 +6146,12 @@
      "name": "Lake View"
     },
     {
-     "n": 48,
-     "med": 51,
-     "p80": 125,
+     "n": 43,
+     "med": 58,
+     "p80": 126,
      "p90": 139,
-     "sameDay": 37.5,
-     "over90": 29.2,
+     "sameDay": 32.56,
+     "over90": 32.6,
      "over365": 0.0,
      "a": 7,
      "name": "Lincoln Park"
@@ -6199,7 +6187,7 @@
      "name": "North Park"
     },
     {
-     "n": 5,
+     "n": 4,
      "a": 14,
      "name": "Albany Park"
     },
@@ -6245,12 +6233,12 @@
      "name": "Avondale"
     },
     {
-     "n": 28,
+     "n": 29,
      "med": 47,
      "p80": 91,
      "p90": 117,
-     "sameDay": 32.14,
-     "over90": 25.0,
+     "sameDay": 31.03,
+     "over90": 24.1,
      "over365": 0.0,
      "a": 22,
      "name": "Logan Square"
@@ -6392,12 +6380,12 @@
      "name": "Calumet Heights"
     },
     {
-     "n": 32,
+     "n": 30,
      "med": 14,
      "p80": 68,
      "p90": 72,
-     "sameDay": 46.88,
-     "over90": 6.2,
+     "sameDay": 46.67,
+     "over90": 6.7,
      "over365": 0.0,
      "a": 49,
      "name": "Roseland"
@@ -6418,13 +6406,7 @@
      "name": "East Side"
     },
     {
-     "n": 20,
-     "med": 48,
-     "p80": 70,
-     "p90": 71,
-     "sameDay": 30.0,
-     "over90": 5.0,
-     "over365": 0.0,
+     "n": 19,
      "a": 53,
      "name": "West Pullman"
     },
@@ -6505,12 +6487,12 @@
      "name": "West Englewood"
     },
     {
-     "n": 27,
+     "n": 25,
      "med": 43,
      "p80": 66,
      "p90": 77,
-     "sameDay": 40.74,
-     "over90": 7.4,
+     "sameDay": 36.0,
+     "over90": 8.0,
      "over365": 0.0,
      "a": 68,
      "name": "Englewood"
@@ -6567,25 +6549,15 @@
   },
   {
    "last12": {
-    "n": 456,
+    "n": 453,
     "med": 0,
     "p80": 0,
     "p90": 0,
-    "sameDay": 95.18,
+    "sameDay": 95.14,
     "over90": 0.7,
     "over365": 0.2
    },
    "monthly": [
-    {
-     "n": 53,
-     "med": 0,
-     "p80": 0,
-     "p90": 0,
-     "sameDay": 98.11,
-     "over90": 0.0,
-     "over365": 0.0,
-     "m": "2024-10"
-    },
     {
      "n": 28,
      "med": 0,
@@ -6809,34 +6781,44 @@
      "over90": 0.0,
      "over365": 0.0,
      "m": "2026-09"
+    },
+    {
+     "n": 24,
+     "med": 0,
+     "p80": 0,
+     "p90": 0,
+     "sameDay": 91.67,
+     "over90": 0.0,
+     "over365": 0.0,
+     "m": "2026-10"
     }
    ],
    "trend": {
     "months": [
-     "2026-07",
      "2026-08",
-     "2026-09"
+     "2026-09",
+     "2026-10"
     ],
     "yearMonths": [
-     "2025-07",
      "2025-08",
-     "2025-09"
+     "2025-09",
+     "2025-10"
     ],
     "now": {
-     "n": 125,
+     "n": 107,
      "med": 0,
      "p80": 0,
      "p90": 0,
-     "sameDay": 96.0,
-     "over90": 0.8,
+     "sameDay": 93.46,
+     "over90": 0.9,
      "over365": 0.0
     },
     "then": {
-     "n": 114,
+     "n": 118,
      "med": 0,
      "p80": 0,
      "p90": 0,
-     "sameDay": 97.37,
+     "sameDay": 97.46,
      "over90": 0.0,
      "over365": 0.0
     }
@@ -6858,7 +6840,7 @@
      "name": "Uptown"
     },
     {
-     "n": 5,
+     "n": 4,
      "a": 4,
      "name": "Lincoln Square"
     },
@@ -7201,7 +7183,7 @@
      "name": "Englewood"
     },
     {
-     "n": 7,
+     "n": 6,
      "a": 69,
      "name": "Greater Grand Crossing"
     },
@@ -7241,7 +7223,7 @@
      "name": "O'Hare"
     },
     {
-     "n": 4,
+     "n": 3,
      "a": 77,
      "name": "Edgewater"
     }
@@ -7252,25 +7234,15 @@
   },
   {
    "last12": {
-    "n": 323,
+    "n": 321,
     "med": 113,
     "p80": 210,
     "p90": 384,
     "sameDay": 0.0,
-    "over90": 61.9,
-    "over365": 10.8
+    "over90": 61.7,
+    "over365": 10.9
    },
    "monthly": [
-    {
-     "n": 26,
-     "med": 118,
-     "p80": 245,
-     "p90": 308,
-     "sameDay": 0.0,
-     "over90": 69.2,
-     "over365": 7.7,
-     "m": "2024-10"
-    },
     {
      "n": 24,
      "med": 84,
@@ -7476,36 +7448,46 @@
      "over90": 62.1,
      "over365": 6.9,
      "m": "2026-09"
+    },
+    {
+     "n": 20,
+     "med": 136,
+     "p80": 181,
+     "p90": 255,
+     "sameDay": 0.0,
+     "over90": 65.0,
+     "over365": 0.0,
+     "m": "2026-10"
     }
    ],
    "trend": {
     "months": [
-     "2026-07",
      "2026-08",
-     "2026-09"
+     "2026-09",
+     "2026-10"
     ],
     "yearMonths": [
-     "2025-07",
      "2025-08",
-     "2025-09"
+     "2025-09",
+     "2025-10"
     ],
     "now": {
-     "n": 113,
-     "med": 116,
-     "p80": 224,
-     "p90": 502,
+     "n": 97,
+     "med": 113,
+     "p80": 194,
+     "p90": 289,
      "sameDay": 0.0,
-     "over90": 64.6,
-     "over365": 14.2
+     "over90": 62.9,
+     "over365": 7.2
     },
     "then": {
-     "n": 94,
-     "med": 104,
-     "p80": 172,
-     "p90": 287,
+     "n": 89,
+     "med": 110,
+     "p80": 167,
+     "p90": 268,
      "sameDay": 0.0,
-     "over90": 58.5,
-     "over365": 5.3
+     "over90": 57.3,
+     "over365": 2.2
     }
    },
    "areas": [
@@ -7700,7 +7682,7 @@
      "name": "Loop"
     },
     {
-     "n": 16,
+     "n": 15,
      "a": 33,
      "name": "Near South Side"
     },
@@ -7915,7 +7897,7 @@
      "name": "Morgan Park"
     },
     {
-     "n": 8,
+     "n": 7,
      "a": 76,
      "name": "O'Hare"
     },
@@ -7934,10 +7916,6 @@
     "n": 4
    },
    "monthly": [
-    {
-     "n": 2,
-     "m": "2024-10"
-    },
     {
      "n": 0,
      "m": "2024-11"
@@ -8029,18 +8007,22 @@
     {
      "n": 0,
      "m": "2026-09"
+    },
+    {
+     "n": 0,
+     "m": "2026-10"
     }
    ],
    "trend": {
     "months": [
-     "2026-07",
      "2026-08",
-     "2026-09"
+     "2026-09",
+     "2026-10"
     ],
     "yearMonths": [
-     "2025-07",
      "2025-08",
-     "2025-09"
+     "2025-09",
+     "2025-10"
     ],
     "now": {
      "n": 0
@@ -8444,25 +8426,15 @@
  "types": [
   {
    "last12": {
-    "n": 20392,
+    "n": 20236,
     "med": 3,
     "p80": 12,
     "p90": 21,
-    "sameDay": 29.08,
-    "over90": 1.0,
+    "sameDay": 29.12,
+    "over90": 0.9,
     "over365": 0.0
    },
    "monthly": [
-    {
-     "n": 2072,
-     "med": 6,
-     "p80": 15,
-     "p90": 25,
-     "sameDay": 27.22,
-     "over90": 0.8,
-     "over365": 0.0,
-     "m": "2024-10"
-    },
     {
      "n": 1366,
      "med": 5,
@@ -8692,100 +8664,110 @@
      "over90": 0.9,
      "over365": 0.0,
      "m": "2026-09"
+    },
+    {
+     "n": 1827,
+     "med": 2,
+     "p80": 12,
+     "p90": 23,
+     "sameDay": 31.03,
+     "over90": 1.1,
+     "over365": 0.0,
+     "m": "2026-10"
     }
    ],
    "trend": {
     "months": [
-     "2026-07",
      "2026-08",
-     "2026-09"
+     "2026-09",
+     "2026-10"
     ],
     "yearMonths": [
-     "2025-07",
      "2025-08",
-     "2025-09"
+     "2025-09",
+     "2025-10"
     ],
     "now": {
-     "n": 6010,
+     "n": 5954,
      "med": 3,
      "p80": 13,
-     "p90": 23,
-     "sameDay": 27.8,
-     "over90": 0.8,
+     "p90": 24,
+     "sameDay": 28.7,
+     "over90": 1.0,
      "over365": 0.0
     },
     "then": {
-     "n": 5687,
+     "n": 5924,
      "med": 2,
-     "p80": 11,
-     "p90": 19,
-     "sameDay": 32.71,
-     "over90": 0.5,
+     "p80": 12,
+     "p90": 20,
+     "sameDay": 30.96,
+     "over90": 0.6,
      "over365": 0.0
     }
    },
    "areas": [
     {
-     "n": 202,
+     "n": 199,
      "med": 3,
      "p80": 14,
      "p90": 28,
-     "sameDay": 30.2,
+     "sameDay": 29.65,
      "over90": 0.5,
      "over365": 0.0,
      "a": 1,
      "name": "Rogers Park"
     },
     {
-     "n": 301,
+     "n": 294,
      "med": 3,
      "p80": 12,
      "p90": 20,
-     "sameDay": 28.24,
-     "over90": 1.3,
+     "sameDay": 28.57,
+     "over90": 1.4,
      "over365": 0.0,
      "a": 2,
      "name": "West Ridge"
     },
     {
-     "n": 270,
+     "n": 274,
      "med": 4,
      "p80": 13,
      "p90": 21,
-     "sameDay": 23.33,
+     "sameDay": 23.72,
      "over90": 0.4,
      "over365": 0.0,
      "a": 3,
      "name": "Uptown"
     },
     {
-     "n": 271,
+     "n": 270,
      "med": 2,
      "p80": 13,
      "p90": 22,
-     "sameDay": 29.52,
-     "over90": 1.8,
+     "sameDay": 30.0,
+     "over90": 1.9,
      "over365": 0.0,
      "a": 4,
      "name": "Lincoln Square"
     },
     {
-     "n": 231,
+     "n": 229,
      "med": 1,
      "p80": 8,
      "p90": 17,
-     "sameDay": 34.2,
+     "sameDay": 34.93,
      "over90": 0.0,
      "over365": 0.0,
      "a": 5,
      "name": "North Center"
     },
     {
-     "n": 615,
+     "n": 617,
      "med": 3,
      "p80": 14,
-     "p90": 21,
-     "sameDay": 27.32,
+     "p90": 22,
+     "sameDay": 27.39,
      "over90": 0.3,
      "over365": 0.0,
      "a": 6,
@@ -8795,63 +8777,63 @@
      "n": 600,
      "med": 4,
      "p80": 17,
-     "p90": 34,
-     "sameDay": 19.83,
+     "p90": 35,
+     "sameDay": 19.67,
      "over90": 4.2,
      "over365": 0.0,
      "a": 7,
      "name": "Lincoln Park"
     },
     {
-     "n": 1444,
+     "n": 1438,
      "med": 5,
      "p80": 17,
      "p90": 28,
-     "sameDay": 16.76,
+     "sameDay": 16.55,
      "over90": 1.0,
      "over365": 0.0,
      "a": 8,
      "name": "Near North Side"
     },
     {
-     "n": 66,
+     "n": 65,
      "med": 1,
      "p80": 13,
      "p90": 18,
-     "sameDay": 39.39,
+     "sameDay": 38.46,
      "over90": 0.0,
      "over365": 0.0,
      "a": 9,
      "name": "Edison Park"
     },
     {
-     "n": 286,
+     "n": 280,
      "med": 1,
      "p80": 10,
      "p90": 17,
-     "sameDay": 39.51,
+     "sameDay": 39.29,
      "over90": 0.7,
      "over365": 0.0,
      "a": 10,
      "name": "Norwood Park"
     },
     {
-     "n": 177,
+     "n": 178,
      "med": 1,
      "p80": 11,
-     "p90": 19,
-     "sameDay": 42.37,
+     "p90": 17,
+     "sameDay": 42.13,
      "over90": 0.6,
      "over365": 0.0,
      "a": 11,
      "name": "Jefferson Park"
     },
     {
-     "n": 174,
+     "n": 169,
      "med": 1,
      "p80": 10,
      "p90": 28,
-     "sameDay": 44.25,
+     "sameDay": 44.38,
      "over90": 0.6,
      "over365": 0.0,
      "a": 12,
@@ -8862,150 +8844,150 @@
      "med": 1,
      "p80": 7,
      "p90": 18,
-     "sameDay": 42.45,
+     "sameDay": 43.4,
      "over90": 1.9,
      "over365": 0.0,
      "a": 13,
      "name": "North Park"
     },
     {
-     "n": 211,
+     "n": 209,
      "med": 3,
      "p80": 13,
-     "p90": 21,
-     "sameDay": 31.75,
+     "p90": 23,
+     "sameDay": 31.58,
      "over90": 0.5,
      "over365": 0.0,
      "a": 14,
      "name": "Albany Park"
     },
     {
-     "n": 400,
+     "n": 397,
      "med": 1,
      "p80": 8,
      "p90": 15,
-     "sameDay": 39.25,
-     "over90": 0.2,
+     "sameDay": 39.8,
+     "over90": 0.3,
      "over365": 0.0,
      "a": 15,
      "name": "Portage Park"
     },
     {
-     "n": 315,
+     "n": 316,
      "med": 2,
      "p80": 11,
-     "p90": 18,
-     "sameDay": 36.19,
+     "p90": 19,
+     "sameDay": 36.39,
      "over90": 0.0,
      "over365": 0.0,
      "a": 16,
      "name": "Irving Park"
     },
     {
-     "n": 227,
+     "n": 222,
      "med": 2,
-     "p80": 10,
+     "p80": 9,
      "p90": 21,
-     "sameDay": 34.36,
+     "sameDay": 34.68,
      "over90": 0.9,
      "over365": 0.0,
      "a": 17,
      "name": "Dunning"
     },
     {
-     "n": 87,
+     "n": 82,
      "med": 5,
      "p80": 14,
      "p90": 23,
-     "sameDay": 27.59,
-     "over90": 2.3,
+     "sameDay": 28.05,
+     "over90": 2.4,
      "over365": 0.0,
      "a": 18,
      "name": "Montclare"
     },
     {
-     "n": 272,
+     "n": 267,
      "med": 1,
-     "p80": 8,
+     "p80": 7,
      "p90": 17,
-     "sameDay": 40.81,
+     "sameDay": 41.2,
      "over90": 0.4,
      "over365": 0.0,
      "a": 19,
      "name": "Belmont Cragin"
     },
     {
-     "n": 90,
+     "n": 89,
      "med": 2,
-     "p80": 11,
-     "p90": 18,
-     "sameDay": 40.0,
+     "p80": 12,
+     "p90": 22,
+     "sameDay": 39.33,
      "over90": 0.0,
      "over365": 0.0,
      "a": 20,
      "name": "Hermosa"
     },
     {
-     "n": 167,
+     "n": 166,
      "med": 3,
      "p80": 14,
-     "p90": 25,
-     "sameDay": 29.94,
-     "over90": 1.8,
+     "p90": 24,
+     "sameDay": 30.12,
+     "over90": 1.2,
      "over365": 0.0,
      "a": 21,
      "name": "Avondale"
     },
     {
-     "n": 451,
+     "n": 450,
      "med": 3,
      "p80": 15,
      "p90": 24,
-     "sameDay": 29.27,
+     "sameDay": 28.67,
      "over90": 0.7,
      "over365": 0.0,
      "a": 22,
      "name": "Logan Square"
     },
     {
-     "n": 296,
+     "n": 294,
      "med": 2,
      "p80": 10,
      "p90": 19,
-     "sameDay": 31.42,
+     "sameDay": 31.63,
      "over90": 0.7,
      "over365": 0.0,
      "a": 23,
      "name": "Humboldt Park"
     },
     {
-     "n": 629,
+     "n": 624,
      "med": 3,
      "p80": 14,
      "p90": 21,
-     "sameDay": 24.32,
+     "sameDay": 24.36,
      "over90": 0.6,
      "over365": 0.0,
      "a": 24,
      "name": "West Town"
     },
     {
-     "n": 622,
+     "n": 618,
      "med": 3,
-     "p80": 14,
+     "p80": 13,
      "p90": 29,
-     "sameDay": 27.49,
-     "over90": 1.1,
+     "sameDay": 28.16,
+     "over90": 1.0,
      "over365": 0.0,
      "a": 25,
      "name": "Austin"
     },
     {
-     "n": 133,
+     "n": 135,
      "med": 5,
      "p80": 15,
      "p90": 27,
-     "sameDay": 19.55,
+     "sameDay": 19.26,
      "over90": 1.5,
      "over365": 0.0,
      "a": 26,
@@ -9023,33 +9005,33 @@
      "name": "East Garfield Park"
     },
     {
-     "n": 838,
+     "n": 833,
      "med": 2,
      "p80": 10,
      "p90": 20,
-     "sameDay": 29.71,
+     "sameDay": 30.01,
      "over90": 1.1,
      "over365": 0.0,
      "a": 28,
      "name": "Near West Side"
     },
     {
-     "n": 258,
+     "n": 260,
      "med": 5,
-     "p80": 19,
+     "p80": 18,
      "p90": 30,
-     "sameDay": 15.5,
-     "over90": 1.6,
+     "sameDay": 15.38,
+     "over90": 0.8,
      "over365": 0.0,
      "a": 29,
      "name": "North Lawndale"
     },
     {
-     "n": 230,
+     "n": 228,
      "med": 3,
-     "p80": 12,
-     "p90": 23,
-     "sameDay": 26.52,
+     "p80": 13,
+     "p90": 24,
+     "sameDay": 26.32,
      "over90": 0.4,
      "over365": 0.0,
      "a": 30,
@@ -9057,33 +9039,33 @@
     },
     {
      "n": 202,
-     "med": 4,
+     "med": 3,
      "p80": 12,
      "p90": 22,
-     "sameDay": 27.23,
+     "sameDay": 27.72,
      "over90": 1.5,
      "over365": 0.0,
      "a": 31,
      "name": "Lower West Side"
     },
     {
-     "n": 1482,
+     "n": 1457,
      "med": 2,
      "p80": 8,
      "p90": 14,
-     "sameDay": 28.68,
+     "sameDay": 28.89,
      "over90": 0.3,
      "over365": 0.0,
      "a": 32,
      "name": "Loop"
     },
     {
-     "n": 220,
+     "n": 215,
      "med": 2,
      "p80": 8,
      "p90": 16,
-     "sameDay": 21.82,
-     "over90": 0.5,
+     "sameDay": 21.4,
+     "over90": 0.0,
      "over365": 0.0,
      "a": 33,
      "name": "Near South Side"
@@ -9100,12 +9082,12 @@
      "name": "Armour Square"
     },
     {
-     "n": 86,
+     "n": 85,
      "med": 6,
      "p80": 18,
      "p90": 34,
-     "sameDay": 17.44,
-     "over90": 2.3,
+     "sameDay": 17.65,
+     "over90": 2.4,
      "over365": 0.0,
      "a": 35,
      "name": "Douglas"
@@ -9144,11 +9126,11 @@
      "name": "Grand Boulevard"
     },
     {
-     "n": 125,
-     "med": 7,
+     "n": 121,
+     "med": 8,
      "p80": 19,
      "p90": 25,
-     "sameDay": 11.2,
+     "sameDay": 10.74,
      "over90": 0.0,
      "over365": 0.0,
      "a": 39,
@@ -9166,100 +9148,100 @@
      "name": "Washington Park"
     },
     {
-     "n": 210,
+     "n": 211,
      "med": 4,
      "p80": 13,
      "p90": 17,
-     "sameDay": 19.52,
+     "sameDay": 19.43,
      "over90": 0.5,
      "over365": 0.0,
      "a": 41,
      "name": "Hyde Park"
     },
     {
-     "n": 178,
+     "n": 175,
      "med": 4,
      "p80": 13,
-     "p90": 26,
-     "sameDay": 23.6,
+     "p90": 24,
+     "sameDay": 24.0,
      "over90": 0.6,
      "over365": 0.0,
      "a": 42,
      "name": "Woodlawn"
     },
     {
-     "n": 336,
+     "n": 334,
      "med": 4,
      "p80": 15,
      "p90": 27,
-     "sameDay": 20.83,
+     "sameDay": 20.66,
      "over90": 1.5,
      "over365": 0.0,
      "a": 43,
      "name": "South Shore"
     },
     {
-     "n": 240,
+     "n": 238,
      "med": 4,
      "p80": 14,
      "p90": 22,
-     "sameDay": 25.42,
+     "sameDay": 26.05,
      "over90": 0.4,
      "over365": 0.0,
      "a": 44,
      "name": "Chatham"
     },
     {
-     "n": 149,
+     "n": 150,
      "med": 3,
      "p80": 12,
      "p90": 19,
-     "sameDay": 42.28,
+     "sameDay": 42.0,
      "over90": 1.3,
      "over365": 0.0,
      "a": 45,
      "name": "Avalon Park"
     },
     {
-     "n": 225,
+     "n": 224,
      "med": 3,
-     "p80": 11,
+     "p80": 12,
      "p90": 22,
-     "sameDay": 25.78,
+     "sameDay": 25.45,
      "over90": 0.4,
      "over365": 0.0,
      "a": 46,
      "name": "South Chicago"
     },
     {
-     "n": 24,
+     "n": 23,
      "med": 1,
      "p80": 7,
      "p90": 11,
-     "sameDay": 37.5,
+     "sameDay": 39.13,
      "over90": 0.0,
      "over365": 0.0,
      "a": 47,
      "name": "Burnside"
     },
     {
-     "n": 175,
+     "n": 172,
      "med": 1,
      "p80": 8,
-     "p90": 13,
-     "sameDay": 42.86,
+     "p90": 12,
+     "sameDay": 43.6,
      "over90": 0.0,
      "over365": 0.0,
      "a": 48,
      "name": "Calumet Heights"
     },
     {
-     "n": 373,
+     "n": 374,
      "med": 3,
      "p80": 14,
      "p90": 21,
-     "sameDay": 33.78,
-     "over90": 1.1,
+     "sameDay": 33.69,
+     "over90": 0.8,
      "over365": 0.0,
      "a": 49,
      "name": "Roseland"
@@ -9276,33 +9258,33 @@
      "name": "Pullman"
     },
     {
-     "n": 117,
+     "n": 118,
      "med": 3,
      "p80": 9,
      "p90": 17,
-     "sameDay": 30.77,
-     "over90": 0.9,
+     "sameDay": 28.81,
+     "over90": 0.8,
      "over365": 0.0,
      "a": 51,
      "name": "South Deering"
     },
     {
-     "n": 112,
+     "n": 111,
      "med": 3,
-     "p80": 14,
+     "p80": 12,
      "p90": 26,
-     "sameDay": 33.93,
+     "sameDay": 34.23,
      "over90": 1.8,
      "over365": 0.0,
      "a": 52,
      "name": "East Side"
     },
     {
-     "n": 272,
+     "n": 267,
      "med": 3,
      "p80": 9,
      "p90": 15,
-     "sameDay": 31.99,
+     "sameDay": 31.46,
      "over90": 0.7,
      "over365": 0.0,
      "a": 53,
@@ -9314,44 +9296,44 @@
      "name": "Riverdale"
     },
     {
-     "n": 86,
+     "n": 77,
      "med": 2,
-     "p80": 7,
+     "p80": 9,
      "p90": 15,
-     "sameDay": 18.6,
+     "sameDay": 20.78,
      "over90": 0.0,
      "over365": 0.0,
      "a": 55,
      "name": "Hegewisch"
     },
     {
-     "n": 327,
+     "n": 324,
      "med": 1,
      "p80": 13,
      "p90": 22,
-     "sameDay": 43.12,
+     "sameDay": 42.9,
      "over90": 0.6,
      "over365": 0.0,
      "a": 56,
      "name": "Garfield Ridge"
     },
     {
-     "n": 82,
+     "n": 81,
      "med": 2,
      "p80": 10,
      "p90": 19,
-     "sameDay": 26.83,
+     "sameDay": 27.16,
      "over90": 0.0,
      "over365": 0.0,
      "a": 57,
      "name": "Archer Heights"
     },
     {
-     "n": 154,
+     "n": 153,
      "med": 3,
      "p80": 12,
      "p90": 25,
-     "sameDay": 27.92,
+     "sameDay": 28.1,
      "over90": 0.0,
      "over365": 0.0,
      "a": 58,
@@ -9369,77 +9351,77 @@
      "name": "McKinley Park"
     },
     {
-     "n": 165,
+     "n": 166,
      "med": 4,
      "p80": 15,
      "p90": 35,
-     "sameDay": 25.45,
+     "sameDay": 26.51,
      "over90": 1.8,
      "over365": 0.0,
      "a": 60,
      "name": "Bridgeport"
     },
     {
-     "n": 252,
+     "n": 253,
      "med": 3,
-     "p80": 13,
+     "p80": 14,
      "p90": 26,
-     "sameDay": 22.62,
+     "sameDay": 22.92,
      "over90": 1.2,
      "over365": 0.0,
      "a": 61,
      "name": "New City"
     },
     {
-     "n": 63,
+     "n": 61,
      "med": 2,
      "p80": 19,
      "p90": 31,
-     "sameDay": 30.16,
+     "sameDay": 31.15,
      "over90": 0.0,
      "over365": 0.0,
      "a": 62,
      "name": "West Elsdon"
     },
     {
-     "n": 131,
+     "n": 132,
      "med": 2,
      "p80": 12,
      "p90": 20,
-     "sameDay": 32.06,
+     "sameDay": 31.82,
      "over90": 1.5,
      "over365": 0.0,
      "a": 63,
      "name": "Gage Park"
     },
     {
-     "n": 138,
+     "n": 135,
      "med": 3,
-     "p80": 9,
+     "p80": 8,
      "p90": 15,
-     "sameDay": 39.13,
+     "sameDay": 40.0,
      "over90": 0.7,
      "over365": 0.0,
      "a": 64,
      "name": "Clearing"
     },
     {
-     "n": 177,
-     "med": 3,
+     "n": 178,
+     "med": 2,
      "p80": 9,
      "p90": 18,
-     "sameDay": 31.64,
+     "sameDay": 32.02,
      "over90": 0.0,
      "over365": 0.0,
      "a": 65,
      "name": "West Lawn"
     },
     {
-     "n": 270,
+     "n": 271,
      "med": 2,
      "p80": 10,
-     "p90": 18,
-     "sameDay": 36.67,
+     "p90": 20,
+     "sameDay": 36.53,
      "over90": 0.0,
      "over365": 0.0,
      "a": 66,
@@ -9457,33 +9439,33 @@
      "name": "West Englewood"
     },
     {
-     "n": 205,
+     "n": 203,
      "med": 5,
      "p80": 16,
      "p90": 28,
-     "sameDay": 19.51,
-     "over90": 2.4,
+     "sameDay": 19.21,
+     "over90": 2.5,
      "over365": 0.0,
      "a": 68,
      "name": "Englewood"
     },
     {
-     "n": 242,
+     "n": 241,
      "med": 3,
      "p80": 12,
      "p90": 24,
-     "sameDay": 21.9,
+     "sameDay": 21.58,
      "over90": 1.2,
      "over365": 0.0,
      "a": 69,
      "name": "Greater Grand Crossing"
     },
     {
-     "n": 385,
+     "n": 384,
      "med": 2,
      "p80": 9,
      "p90": 15,
-     "sameDay": 40.0,
+     "sameDay": 40.1,
      "over90": 0.0,
      "over365": 0.0,
      "a": 70,
@@ -9501,73 +9483,73 @@
      "name": "Auburn Gresham"
     },
     {
-     "n": 219,
+     "n": 214,
      "med": 4,
-     "p80": 14,
-     "p90": 25,
-     "sameDay": 30.59,
+     "p80": 13,
+     "p90": 23,
+     "sameDay": 31.31,
      "over90": 2.3,
      "over365": 0.0,
      "a": 72,
      "name": "Beverly"
     },
     {
-     "n": 351,
+     "n": 348,
      "med": 3,
      "p80": 12,
      "p90": 21,
-     "sameDay": 31.91,
+     "sameDay": 31.61,
      "over90": 2.0,
      "over365": 0.0,
      "a": 73,
      "name": "Washington Heights"
     },
     {
-     "n": 103,
+     "n": 104,
      "med": 2,
      "p80": 8,
      "p90": 13,
-     "sameDay": 38.83,
+     "sameDay": 38.46,
      "over90": 0.0,
      "over365": 0.0,
      "a": 74,
      "name": "Mount Greenwood"
     },
     {
-     "n": 243,
+     "n": 237,
      "med": 2,
      "p80": 11,
-     "p90": 19,
-     "sameDay": 37.04,
+     "p90": 20,
+     "sameDay": 37.13,
      "over90": 0.8,
      "over365": 0.0,
      "a": 75,
      "name": "Morgan Park"
     },
     {
-     "n": 320,
+     "n": 314,
      "med": 0,
      "p80": 3,
-     "p90": 7,
-     "sameDay": 62.19,
+     "p90": 8,
+     "sameDay": 61.46,
      "over90": 0.0,
      "over365": 0.0,
      "a": 76,
      "name": "O'Hare"
     },
     {
-     "n": 319,
+     "n": 315,
      "med": 3,
      "p80": 12,
      "p90": 24,
-     "sameDay": 31.35,
+     "sameDay": 30.79,
      "over90": 1.6,
      "over365": 0.0,
      "a": 77,
      "name": "Edgewater"
     }
    ],
-   "noArea12": 295,
+   "noArea12": 289,
    "key": "PERMIT - EXPRESS PERMIT PROGRAM",
    "label": "Express Permit Program",
    "slug": "express-permit-program",
@@ -9575,25 +9557,15 @@
    "reviews": [
     {
      "last12": {
-      "n": 20392,
+      "n": 20236,
       "med": 3,
       "p80": 12,
       "p90": 21,
-      "sameDay": 29.08,
-      "over90": 1.0,
+      "sameDay": 29.12,
+      "over90": 0.9,
       "over365": 0.0
      },
      "monthly": [
-      {
-       "n": 2072,
-       "med": 6,
-       "p80": 15,
-       "p90": 25,
-       "sameDay": 27.22,
-       "over90": 0.8,
-       "over365": 0.0,
-       "m": "2024-10"
-      },
       {
        "n": 1366,
        "med": 5,
@@ -9823,35 +9795,45 @@
        "over90": 0.9,
        "over365": 0.0,
        "m": "2026-09"
+      },
+      {
+       "n": 1827,
+       "med": 2,
+       "p80": 12,
+       "p90": 23,
+       "sameDay": 31.03,
+       "over90": 1.1,
+       "over365": 0.0,
+       "m": "2026-10"
       }
      ],
      "trend": {
       "months": [
-       "2026-07",
        "2026-08",
-       "2026-09"
+       "2026-09",
+       "2026-10"
       ],
       "yearMonths": [
-       "2025-07",
        "2025-08",
-       "2025-09"
+       "2025-09",
+       "2025-10"
       ],
       "now": {
-       "n": 6010,
+       "n": 5954,
        "med": 3,
        "p80": 13,
-       "p90": 23,
-       "sameDay": 27.8,
-       "over90": 0.8,
+       "p90": 24,
+       "sameDay": 28.7,
+       "over90": 1.0,
        "over365": 0.0
       },
       "then": {
-       "n": 5687,
+       "n": 5924,
        "med": 2,
-       "p80": 11,
-       "p90": 19,
-       "sameDay": 32.71,
-       "over90": 0.5,
+       "p80": 12,
+       "p90": 20,
+       "sameDay": 30.96,
+       "over90": 0.6,
        "over365": 0.0
       }
      },
@@ -9862,25 +9844,15 @@
   },
   {
    "last12": {
-    "n": 5331,
+    "n": 5305,
     "med": 59,
-    "p80": 142,
+    "p80": 143,
     "p90": 211,
     "sameDay": 0.41,
-    "over90": 36.0,
+    "over90": 36.1,
     "over365": 3.2
    },
    "monthly": [
-    {
-     "n": 597,
-     "med": 36,
-     "p80": 107,
-     "p90": 182,
-     "sameDay": 0.67,
-     "over90": 24.1,
-     "over365": 3.2,
-     "m": "2024-10"
-    },
     {
      "n": 428,
      "med": 49,
@@ -10110,36 +10082,46 @@
      "over90": 33.0,
      "over365": 3.3,
      "m": "2026-09"
+    },
+    {
+     "n": 441,
+     "med": 67,
+     "p80": 165,
+     "p90": 230,
+     "sameDay": 0.0,
+     "over90": 38.1,
+     "over365": 5.2,
+     "m": "2026-10"
     }
    ],
    "trend": {
     "months": [
-     "2026-07",
      "2026-08",
-     "2026-09"
+     "2026-09",
+     "2026-10"
     ],
     "yearMonths": [
-     "2025-07",
      "2025-08",
-     "2025-09"
+     "2025-09",
+     "2025-10"
     ],
     "now": {
-     "n": 1475,
+     "n": 1420,
      "med": 62,
-     "p80": 145,
-     "p90": 208,
-     "sameDay": 0.2,
+     "p80": 144,
+     "p90": 206,
+     "sameDay": 0.14,
      "over90": 37.0,
-     "over365": 3.7
+     "over365": 4.0
     },
     "then": {
-     "n": 1480,
+     "n": 1466,
      "med": 58,
      "p80": 127,
-     "p90": 194,
+     "p90": 199,
      "sameDay": 0.14,
-     "over90": 32.6,
-     "over365": 3.3
+     "over90": 33.3,
+     "over365": 3.1
     }
    },
    "areas": [
@@ -10166,23 +10148,23 @@
      "name": "West Ridge"
     },
     {
-     "n": 69,
+     "n": 71,
      "med": 74,
      "p80": 138,
-     "p90": 194,
+     "p90": 187,
      "sameDay": 0.0,
-     "over90": 42.0,
+     "over90": 42.3,
      "over365": 0.0,
      "a": 3,
      "name": "Uptown"
     },
     {
-     "n": 107,
+     "n": 106,
      "med": 61,
      "p80": 135,
      "p90": 207,
-     "sameDay": 0.93,
-     "over90": 29.0,
+     "sameDay": 0.94,
+     "over90": 29.2,
      "over365": 4.7,
      "a": 4,
      "name": "Lincoln Square"
@@ -10199,45 +10181,45 @@
      "name": "North Center"
     },
     {
-     "n": 217,
-     "med": 57,
+     "n": 213,
+     "med": 56,
      "p80": 144,
      "p90": 224,
-     "sameDay": 0.46,
-     "over90": 35.0,
-     "over365": 1.8,
+     "sameDay": 0.47,
+     "over90": 34.3,
+     "over365": 1.9,
      "a": 6,
      "name": "Lake View"
     },
     {
-     "n": 195,
-     "med": 65,
-     "p80": 132,
+     "n": 193,
+     "med": 67,
+     "p80": 134,
      "p90": 211,
      "sameDay": 0.0,
-     "over90": 39.5,
-     "over365": 5.1,
+     "over90": 39.9,
+     "over365": 5.2,
      "a": 7,
      "name": "Lincoln Park"
     },
     {
-     "n": 418,
-     "med": 29,
+     "n": 419,
+     "med": 30,
      "p80": 77,
      "p90": 139,
      "sameDay": 0.24,
-     "over90": 17.0,
+     "over90": 17.4,
      "over365": 0.7,
      "a": 8,
      "name": "Near North Side"
     },
     {
-     "n": 27,
+     "n": 28,
      "med": 79,
      "p80": 134,
      "p90": 273,
      "sameDay": 0.0,
-     "over90": 44.4,
+     "over90": 46.4,
      "over365": 0.0,
      "a": 9,
      "name": "Edison Park"
@@ -10254,13 +10236,13 @@
      "name": "Norwood Park"
     },
     {
-     "n": 36,
+     "n": 35,
      "med": 55,
      "p80": 138,
      "p90": 239,
      "sameDay": 0.0,
-     "over90": 30.6,
-     "over365": 5.6,
+     "over90": 28.6,
+     "over365": 5.7,
      "a": 11,
      "name": "Jefferson Park"
     },
@@ -10298,12 +10280,12 @@
      "name": "Albany Park"
     },
     {
-     "n": 90,
+     "n": 89,
      "med": 53,
-     "p80": 121,
-     "p90": 158,
+     "p80": 134,
+     "p90": 159,
      "sameDay": 0.0,
-     "over90": 27.8,
+     "over90": 28.1,
      "over365": 0.0,
      "a": 15,
      "name": "Portage Park"
@@ -10320,13 +10302,13 @@
      "name": "Irving Park"
     },
     {
-     "n": 27,
+     "n": 28,
      "med": 74,
      "p80": 197,
      "p90": 373,
      "sameDay": 0.0,
-     "over90": 44.4,
-     "over365": 11.1,
+     "over90": 46.4,
+     "over365": 10.7,
      "a": 17,
      "name": "Dunning"
     },
@@ -10347,34 +10329,34 @@
      "name": "Belmont Cragin"
     },
     {
-     "n": 22,
+     "n": 23,
      "med": 97,
      "p80": 217,
      "p90": 236,
      "sameDay": 0.0,
-     "over90": 59.1,
-     "over365": 4.5,
+     "over90": 60.9,
+     "over365": 4.3,
      "a": 20,
      "name": "Hermosa"
     },
     {
-     "n": 70,
+     "n": 69,
      "med": 65,
      "p80": 171,
-     "p90": 262,
+     "p90": 275,
      "sameDay": 0.0,
-     "over90": 45.7,
-     "over365": 5.7,
+     "over90": 44.9,
+     "over365": 5.8,
      "a": 21,
      "name": "Avondale"
     },
     {
-     "n": 193,
+     "n": 191,
      "med": 85,
      "p80": 172,
      "p90": 236,
      "sameDay": 0.0,
-     "over90": 48.2,
+     "over90": 48.7,
      "over365": 3.1,
      "a": 22,
      "name": "Logan Square"
@@ -10391,7 +10373,7 @@
      "name": "Humboldt Park"
     },
     {
-     "n": 244,
+     "n": 242,
      "med": 81,
      "p80": 178,
      "p90": 266,
@@ -10403,34 +10385,34 @@
     },
     {
      "n": 143,
-     "med": 69,
+     "med": 70,
      "p80": 161,
-     "p90": 225,
+     "p90": 227,
      "sameDay": 0.0,
-     "over90": 42.7,
+     "over90": 43.4,
      "over365": 4.9,
      "a": 25,
      "name": "Austin"
     },
     {
-     "n": 42,
-     "med": 74,
+     "n": 41,
+     "med": 79,
      "p80": 160,
      "p90": 246,
      "sameDay": 0.0,
-     "over90": 35.7,
-     "over365": 4.8,
+     "over90": 36.6,
+     "over365": 4.9,
      "a": 26,
      "name": "West Garfield Park"
     },
     {
-     "n": 48,
+     "n": 47,
      "med": 83,
      "p80": 189,
      "p90": 276,
      "sameDay": 0.0,
-     "over90": 43.8,
-     "over365": 6.2,
+     "over90": 42.6,
+     "over365": 6.4,
      "a": 27,
      "name": "East Garfield Park"
     },
@@ -10457,45 +10439,45 @@
      "name": "North Lawndale"
     },
     {
-     "n": 96,
-     "med": 71,
-     "p80": 183,
-     "p90": 272,
+     "n": 91,
+     "med": 74,
+     "p80": 174,
+     "p90": 267,
      "sameDay": 0.0,
-     "over90": 46.9,
-     "over365": 6.2,
+     "over90": 47.3,
+     "over365": 6.6,
      "a": 30,
      "name": "South Lawndale"
     },
     {
-     "n": 74,
+     "n": 75,
      "med": 82,
-     "p80": 234,
+     "p80": 227,
      "p90": 360,
      "sameDay": 0.0,
-     "over90": 50.0,
-     "over365": 9.5,
+     "over90": 49.3,
+     "over365": 9.3,
      "a": 31,
      "name": "Lower West Side"
     },
     {
-     "n": 498,
+     "n": 499,
      "med": 11,
-     "p80": 36,
-     "p90": 71,
-     "sameDay": 2.21,
+     "p80": 37,
+     "p90": 72,
+     "sameDay": 2.2,
      "over90": 7.0,
      "over365": 0.4,
      "a": 32,
      "name": "Loop"
     },
     {
-     "n": 53,
-     "med": 76,
+     "n": 52,
+     "med": 72,
      "p80": 160,
      "p90": 191,
      "sameDay": 0.0,
-     "over90": 45.3,
+     "over90": 44.2,
      "over365": 1.9,
      "a": 33,
      "name": "Near South Side"
@@ -10511,7 +10493,7 @@
      "name": "Douglas"
     },
     {
-     "n": 7,
+     "n": 6,
      "a": 36,
      "name": "Oakland"
     },
@@ -10521,13 +10503,13 @@
      "name": "Fuller Park"
     },
     {
-     "n": 44,
+     "n": 43,
      "med": 112,
      "p80": 238,
      "p90": 408,
      "sameDay": 0.0,
-     "over90": 59.1,
-     "over365": 11.4,
+     "over90": 60.5,
+     "over365": 11.6,
      "a": 38,
      "name": "Grand Boulevard"
     },
@@ -10555,34 +10537,34 @@
     },
     {
      "n": 75,
-     "med": 36,
-     "p80": 84,
+     "med": 37,
+     "p80": 85,
      "p90": 148,
      "sameDay": 0.0,
-     "over90": 18.7,
+     "over90": 20.0,
      "over365": 0.0,
      "a": 41,
      "name": "Hyde Park"
     },
     {
-     "n": 70,
+     "n": 69,
      "med": 56,
-     "p80": 132,
+     "p80": 133,
      "p90": 227,
      "sameDay": 0.0,
-     "over90": 35.7,
+     "over90": 36.2,
      "over365": 2.9,
      "a": 42,
      "name": "Woodlawn"
     },
     {
-     "n": 70,
-     "med": 83,
-     "p80": 193,
-     "p90": 292,
+     "n": 68,
+     "med": 84,
+     "p80": 209,
+     "p90": 316,
      "sameDay": 0.0,
-     "over90": 47.1,
-     "over365": 4.3,
+     "over90": 48.5,
+     "over365": 4.4,
      "a": 43,
      "name": "South Shore"
     },
@@ -10598,13 +10580,13 @@
      "name": "Chatham"
     },
     {
-     "n": 28,
+     "n": 26,
      "med": 76,
      "p80": 147,
      "p90": 200,
      "sameDay": 0.0,
-     "over90": 42.9,
-     "over365": 3.6,
+     "over90": 42.3,
+     "over365": 3.8,
      "a": 45,
      "name": "Avalon Park"
     },
@@ -10630,18 +10612,18 @@
      "name": "Calumet Heights"
     },
     {
-     "n": 61,
+     "n": 60,
      "med": 76,
      "p80": 152,
      "p90": 162,
      "sameDay": 0.0,
-     "over90": 45.9,
-     "over365": 1.6,
+     "over90": 46.7,
+     "over365": 1.7,
      "a": 49,
      "name": "Roseland"
     },
     {
-     "n": 15,
+     "n": 14,
      "a": 50,
      "name": "Pullman"
     },
@@ -10651,7 +10633,7 @@
      "name": "South Deering"
     },
     {
-     "n": 13,
+     "n": 12,
      "a": 52,
      "name": "East Side"
     },
@@ -10699,13 +10681,13 @@
      "name": "Archer Heights"
     },
     {
-     "n": 36,
+     "n": 37,
      "med": 98,
      "p80": 217,
      "p90": 287,
      "sameDay": 0.0,
-     "over90": 55.6,
-     "over365": 2.8,
+     "over90": 56.8,
+     "over365": 2.7,
      "a": 58,
      "name": "Brighton Park"
     },
@@ -10782,8 +10764,8 @@
     {
      "n": 87,
      "med": 101,
-     "p80": 230,
-     "p90": 351,
+     "p80": 221,
+     "p90": 315,
      "sameDay": 0.0,
      "over90": 52.9,
      "over365": 6.9,
@@ -10813,35 +10795,35 @@
      "name": "Greater Grand Crossing"
     },
     {
-     "n": 25,
-     "med": 78,
-     "p80": 151,
+     "n": 24,
+     "med": 72,
+     "p80": 178,
      "p90": 233,
      "sameDay": 0.0,
-     "over90": 44.0,
+     "over90": 45.8,
      "over365": 0.0,
      "a": 70,
      "name": "Ashburn"
     },
     {
-     "n": 95,
+     "n": 96,
      "med": 84,
      "p80": 147,
      "p90": 201,
      "sameDay": 0.0,
-     "over90": 46.3,
-     "over365": 3.2,
+     "over90": 46.9,
+     "over365": 3.1,
      "a": 71,
      "name": "Auburn Gresham"
     },
     {
-     "n": 34,
-     "med": 91,
+     "n": 33,
+     "med": 100,
      "p80": 178,
      "p90": 281,
      "sameDay": 0.0,
-     "over90": 52.9,
-     "over365": 5.9,
+     "over90": 51.5,
+     "over365": 6.1,
      "a": 72,
      "name": "Beverly"
     },
@@ -10868,23 +10850,23 @@
      "name": "Mount Greenwood"
     },
     {
-     "n": 30,
-     "med": 77,
-     "p80": 137,
-     "p90": 223,
+     "n": 29,
+     "med": 79,
+     "p80": 140,
+     "p90": 348,
      "sameDay": 0.0,
-     "over90": 43.3,
-     "over365": 3.3,
+     "over90": 44.8,
+     "over365": 3.4,
      "a": 75,
      "name": "Morgan Park"
     },
     {
-     "n": 46,
+     "n": 45,
      "med": 9,
      "p80": 105,
      "p90": 159,
-     "sameDay": 2.17,
-     "over90": 26.1,
+     "sameDay": 2.22,
+     "over90": 26.7,
      "over365": 0.0,
      "a": 76,
      "name": "O'Hare"
@@ -10909,25 +10891,15 @@
    "reviews": [
     {
      "last12": {
-      "n": 2642,
+      "n": 2632,
       "med": 104,
       "p80": 189,
-      "p90": 275,
+      "p90": 276,
       "sameDay": 0.0,
-      "over90": 56.9,
+      "over90": 57.0,
       "over365": 5.1
      },
      "monthly": [
-      {
-       "n": 343,
-       "med": 55,
-       "p80": 132,
-       "p90": 214,
-       "sameDay": 0.0,
-       "over90": 31.2,
-       "over365": 4.4,
-       "m": "2024-10"
-      },
       {
        "n": 247,
        "med": 64,
@@ -11157,36 +11129,46 @@
        "over90": 54.1,
        "over365": 6.1,
        "m": "2026-09"
+      },
+      {
+       "n": 223,
+       "med": 113,
+       "p80": 214,
+       "p90": 348,
+       "sameDay": 0.0,
+       "over90": 59.2,
+       "over365": 9.0,
+       "m": "2026-10"
       }
      ],
      "trend": {
       "months": [
-       "2026-07",
        "2026-08",
-       "2026-09"
+       "2026-09",
+       "2026-10"
       ],
       "yearMonths": [
-       "2025-07",
        "2025-08",
-       "2025-09"
+       "2025-09",
+       "2025-10"
       ],
       "now": {
-       "n": 695,
+       "n": 683,
        "med": 106,
-       "p80": 184,
-       "p90": 282,
+       "p80": 186,
+       "p90": 295,
        "sameDay": 0.0,
-       "over90": 58.4,
-       "over365": 5.8
+       "over90": 58.1,
+       "over365": 7.2
       },
       "then": {
-       "n": 769,
-       "med": 90,
-       "p80": 175,
+       "n": 734,
+       "med": 93,
+       "p80": 174,
        "p90": 271,
        "sameDay": 0.0,
-       "over90": 49.5,
-       "over365": 5.6
+       "over90": 51.5,
+       "over365": 5.4
       }
      },
      "key": "STANDARD PLAN REVIEW",
@@ -11194,25 +11176,15 @@
     },
     {
      "last12": {
-      "n": 2482,
+      "n": 2467,
       "med": 27,
       "p80": 63,
       "p90": 102,
       "sameDay": 0.81,
-      "over90": 12.1,
+      "over90": 12.2,
       "over365": 0.6
      },
      "monthly": [
-      {
-       "n": 238,
-       "med": 23,
-       "p80": 59,
-       "p90": 115,
-       "sameDay": 1.26,
-       "over90": 11.3,
-       "over365": 1.3,
-       "m": "2024-10"
-      },
       {
        "n": 169,
        "med": 33,
@@ -11442,36 +11414,46 @@
        "over90": 9.8,
        "over365": 0.4,
        "m": "2026-09"
+      },
+      {
+       "n": 207,
+       "med": 31,
+       "p80": 74,
+       "p90": 144,
+       "sameDay": 0.0,
+       "over90": 14.5,
+       "over365": 1.4,
+       "m": "2026-10"
       }
      ],
      "trend": {
       "months": [
-       "2026-07",
        "2026-08",
-       "2026-09"
+       "2026-09",
+       "2026-10"
       ],
       "yearMonths": [
-       "2025-07",
        "2025-08",
-       "2025-09"
+       "2025-09",
+       "2025-10"
       ],
       "now": {
-       "n": 701,
-       "med": 32,
+       "n": 673,
+       "med": 30,
        "p80": 68,
-       "p90": 105,
-       "sameDay": 0.43,
-       "over90": 13.3,
-       "over365": 0.4
+       "p90": 115,
+       "sameDay": 0.3,
+       "over90": 13.7,
+       "over365": 0.7
       },
       "then": {
-       "n": 659,
-       "med": 32,
-       "p80": 67,
-       "p90": 100,
+       "n": 688,
+       "med": 31,
+       "p80": 71,
+       "p90": 104,
        "sameDay": 0.15,
-       "over90": 11.8,
-       "over365": 0.8
+       "over90": 12.9,
+       "over365": 0.7
       }
      },
      "key": "SELF CERT",
@@ -11479,19 +11461,15 @@
     },
     {
      "last12": {
-      "n": 204,
+      "n": 203,
       "med": 102,
       "p80": 188,
       "p90": 290,
       "sameDay": 0.0,
-      "over90": 55.9,
-      "over365": 9.3
+      "over90": 55.7,
+      "over365": 9.4
      },
      "monthly": [
-      {
-       "n": 15,
-       "m": "2024-10"
-      },
       {
        "n": 12,
        "m": "2024-11"
@@ -11595,36 +11573,40 @@
       {
        "n": 19,
        "m": "2026-09"
+      },
+      {
+       "n": 11,
+       "m": "2026-10"
       }
      ],
      "trend": {
       "months": [
-       "2026-07",
        "2026-08",
-       "2026-09"
+       "2026-09",
+       "2026-10"
       ],
       "yearMonths": [
-       "2025-07",
        "2025-08",
-       "2025-09"
+       "2025-09",
+       "2025-10"
       ],
       "now": {
-       "n": 79,
-       "med": 111,
-       "p80": 265,
-       "p90": 623,
+       "n": 64,
+       "med": 103,
+       "p80": 168,
+       "p90": 274,
        "sameDay": 0.0,
-       "over90": 59.5,
-       "over365": 13.9
+       "over90": 57.8,
+       "over365": 4.7
       },
       "then": {
-       "n": 50,
+       "n": 42,
        "med": 85,
        "p80": 166,
-       "p90": 259,
+       "p90": 287,
        "sameDay": 0.0,
-       "over90": 48.0,
-       "over365": 2.0
+       "over90": 50.0,
+       "over365": 2.4
       }
      },
      "key": "DIRECT DEVELOPER SERVICES",
@@ -11635,10 +11617,6 @@
       "n": 3
      },
      "monthly": [
-      {
-       "n": 1,
-       "m": "2024-10"
-      },
       {
        "n": 0,
        "m": "2024-11"
@@ -11730,18 +11708,22 @@
       {
        "n": 0,
        "m": "2026-09"
+      },
+      {
+       "n": 0,
+       "m": "2026-10"
       }
      ],
      "trend": {
       "months": [
-       "2026-07",
        "2026-08",
-       "2026-09"
+       "2026-09",
+       "2026-10"
       ],
       "yearMonths": [
-       "2025-07",
        "2025-08",
-       "2025-09"
+       "2025-09",
+       "2025-10"
       ],
       "now": {
        "n": 0
@@ -11757,25 +11739,15 @@
   },
   {
    "last12": {
-    "n": 2071,
+    "n": 2016,
     "med": 38,
-    "p80": 89,
-    "p90": 141,
+    "p80": 92,
+    "p90": 143,
     "sameDay": 0.0,
-    "over90": 19.8,
-    "over365": 1.4
+    "over90": 20.1,
+    "over365": 1.5
    },
    "monthly": [
-    {
-     "n": 155,
-     "med": 46,
-     "p80": 91,
-     "p90": 215,
-     "sameDay": 0.0,
-     "over90": 20.6,
-     "over365": 7.1,
-     "m": "2024-10"
-    },
     {
      "n": 197,
      "med": 33,
@@ -12005,36 +11977,46 @@
      "over90": 16.7,
      "over365": 3.4,
      "m": "2026-09"
+    },
+    {
+     "n": 138,
+     "med": 32,
+     "p80": 69,
+     "p90": 88,
+     "sameDay": 0.0,
+     "over90": 9.4,
+     "over365": 0.7,
+     "m": "2026-10"
     }
    ],
    "trend": {
     "months": [
-     "2026-07",
      "2026-08",
-     "2026-09"
+     "2026-09",
+     "2026-10"
     ],
     "yearMonths": [
-     "2025-07",
      "2025-08",
-     "2025-09"
+     "2025-09",
+     "2025-10"
     ],
     "now": {
-     "n": 536,
-     "med": 49,
-     "p80": 110,
-     "p90": 181,
+     "n": 528,
+     "med": 44,
+     "p80": 91,
+     "p90": 125,
      "sameDay": 0.0,
-     "over90": 25.9,
+     "over90": 20.1,
      "over365": 3.2
     },
     "then": {
-     "n": 665,
-     "med": 33,
-     "p80": 98,
-     "p90": 163,
+     "n": 614,
+     "med": 35,
+     "p80": 86,
+     "p90": 168,
      "sameDay": 0.0,
-     "over90": 22.0,
-     "over365": 2.4
+     "over90": 19.2,
+     "over365": 2.0
     }
    },
    "areas": [
@@ -12072,56 +12054,56 @@
      "name": "Uptown"
     },
     {
-     "n": 31,
+     "n": 30,
      "med": 41,
      "p80": 63,
      "p90": 85,
      "sameDay": 0.0,
-     "over90": 9.7,
+     "over90": 10.0,
      "over365": 0.0,
      "a": 4,
      "name": "Lincoln Square"
     },
     {
-     "n": 62,
-     "med": 37,
+     "n": 49,
+     "med": 51,
      "p80": 57,
-     "p90": 75,
+     "p90": 83,
      "sameDay": 0.0,
-     "over90": 4.8,
+     "over90": 6.1,
      "over365": 0.0,
      "a": 5,
      "name": "North Center"
     },
     {
-     "n": 115,
+     "n": 110,
      "med": 33,
      "p80": 63,
      "p90": 119,
      "sameDay": 0.0,
-     "over90": 12.2,
-     "over365": 4.3,
+     "over90": 12.7,
+     "over365": 4.5,
      "a": 6,
      "name": "Lake View"
     },
     {
-     "n": 73,
-     "med": 41,
+     "n": 71,
+     "med": 39,
      "p80": 77,
      "p90": 120,
      "sameDay": 0.0,
-     "over90": 15.1,
+     "over90": 15.5,
      "over365": 0.0,
      "a": 7,
      "name": "Lincoln Park"
     },
     {
-     "n": 218,
+     "n": 216,
      "med": 46,
      "p80": 124,
      "p90": 189,
      "sameDay": 0.0,
-     "over90": 26.1,
+     "over90": 26.4,
      "over365": 0.5,
      "a": 8,
      "name": "Near North Side"
@@ -12163,13 +12145,13 @@
      "name": "Albany Park"
     },
     {
-     "n": 54,
+     "n": 53,
      "med": 22,
      "p80": 49,
      "p90": 87,
      "sameDay": 0.0,
-     "over90": 9.3,
-     "over365": 3.7,
+     "over90": 9.4,
+     "over365": 3.8,
      "a": 15,
      "name": "Portage Park"
     },
@@ -12190,34 +12172,28 @@
      "name": "Dunning"
     },
     {
-     "n": 12,
+     "n": 10,
      "a": 18,
      "name": "Montclare"
     },
     {
-     "n": 33,
+     "n": 32,
      "med": 28,
      "p80": 48,
      "p90": 49,
      "sameDay": 0.0,
-     "over90": 6.1,
+     "over90": 3.1,
      "over365": 0.0,
      "a": 19,
      "name": "Belmont Cragin"
     },
     {
-     "n": 13,
+     "n": 12,
      "a": 20,
      "name": "Hermosa"
     },
     {
-     "n": 22,
-     "med": 48,
-     "p80": 89,
-     "p90": 141,
-     "sameDay": 0.0,
-     "over90": 18.2,
-     "over365": 0.0,
+     "n": 18,
      "a": 21,
      "name": "Avondale"
     },
@@ -12238,23 +12214,23 @@
      "name": "Humboldt Park"
     },
     {
-     "n": 166,
+     "n": 163,
      "med": 33,
-     "p80": 71,
+     "p80": 70,
      "p90": 113,
      "sameDay": 0.0,
-     "over90": 14.5,
+     "over90": 14.1,
      "over365": 0.6,
      "a": 24,
      "name": "West Town"
     },
     {
-     "n": 60,
-     "med": 126,
+     "n": 56,
+     "med": 167,
      "p80": 173,
      "p90": 173,
      "sameDay": 0.0,
-     "over90": 53.3,
+     "over90": 58.9,
      "over365": 0.0,
      "a": 25,
      "name": "Austin"
@@ -12265,17 +12241,17 @@
      "name": "West Garfield Park"
     },
     {
-     "n": 9,
+     "n": 7,
      "a": 27,
      "name": "East Garfield Park"
     },
     {
-     "n": 196,
+     "n": 195,
      "med": 47,
      "p80": 99,
      "p90": 141,
      "sameDay": 0.0,
-     "over90": 26.0,
+     "over90": 26.2,
      "over365": 1.5,
      "a": 28,
      "name": "Near West Side"
@@ -12286,24 +12262,24 @@
      "name": "North Lawndale"
     },
     {
-     "n": 29,
-     "med": 32,
+     "n": 25,
+     "med": 35,
      "p80": 62,
      "p90": 100,
      "sameDay": 0.0,
-     "over90": 10.3,
-     "over365": 3.4,
+     "over90": 12.0,
+     "over365": 4.0,
      "a": 30,
      "name": "South Lawndale"
     },
     {
-     "n": 22,
+     "n": 20,
      "med": 33,
-     "p80": 140,
-     "p90": 168,
+     "p80": 46,
+     "p90": 140,
      "sameDay": 0.0,
-     "over90": 27.3,
-     "over365": 4.5,
+     "over90": 20.0,
+     "over365": 5.0,
      "a": 31,
      "name": "Lower West Side"
     },
@@ -12339,7 +12315,7 @@
      "name": "Oakland"
     },
     {
-     "n": 5,
+     "n": 3,
      "a": 37,
      "name": "Fuller Park"
     },
@@ -12440,10 +12416,10 @@
      "name": "Hegewisch"
     },
     {
-     "n": 27,
-     "med": 28,
-     "p80": 49,
-     "p90": 65,
+     "n": 23,
+     "med": 21,
+     "p80": 42,
+     "p90": 43,
      "sameDay": 0.0,
      "over90": 0.0,
      "over365": 0.0,
@@ -12471,13 +12447,13 @@
      "name": "Bridgeport"
     },
     {
-     "n": 33,
+     "n": 34,
      "med": 17,
-     "p80": 35,
+     "p80": 47,
      "p90": 219,
      "sameDay": 0.0,
-     "over90": 12.1,
-     "over365": 0.0,
+     "over90": 14.7,
+     "over365": 2.9,
      "a": 61,
      "name": "New City"
     },
@@ -12524,7 +12500,7 @@
      "name": "West Englewood"
     },
     {
-     "n": 9,
+     "n": 8,
      "a": 68,
      "name": "Englewood"
     },
@@ -12545,7 +12521,7 @@
      "name": "Ashburn"
     },
     {
-     "n": 14,
+     "n": 13,
      "a": 71,
      "name": "Auburn Gresham"
     },
@@ -12606,25 +12582,15 @@
    "reviews": [
     {
      "last12": {
-      "n": 2071,
+      "n": 2016,
       "med": 38,
-      "p80": 89,
-      "p90": 141,
+      "p80": 92,
+      "p90": 143,
       "sameDay": 0.0,
-      "over90": 19.8,
-      "over365": 1.4
+      "over90": 20.1,
+      "over365": 1.5
      },
      "monthly": [
-      {
-       "n": 155,
-       "med": 46,
-       "p80": 91,
-       "p90": 215,
-       "sameDay": 0.0,
-       "over90": 20.6,
-       "over365": 7.1,
-       "m": "2024-10"
-      },
       {
        "n": 197,
        "med": 33,
@@ -12854,36 +12820,46 @@
        "over90": 16.7,
        "over365": 3.4,
        "m": "2026-09"
+      },
+      {
+       "n": 138,
+       "med": 32,
+       "p80": 69,
+       "p90": 88,
+       "sameDay": 0.0,
+       "over90": 9.4,
+       "over365": 0.7,
+       "m": "2026-10"
       }
      ],
      "trend": {
       "months": [
-       "2026-07",
        "2026-08",
-       "2026-09"
+       "2026-09",
+       "2026-10"
       ],
       "yearMonths": [
-       "2025-07",
        "2025-08",
-       "2025-09"
+       "2025-09",
+       "2025-10"
       ],
       "now": {
-       "n": 536,
-       "med": 49,
-       "p80": 110,
-       "p90": 181,
+       "n": 528,
+       "med": 44,
+       "p80": 91,
+       "p90": 125,
        "sameDay": 0.0,
-       "over90": 25.9,
+       "over90": 20.1,
        "over365": 3.2
       },
       "then": {
-       "n": 665,
-       "med": 33,
-       "p80": 98,
-       "p90": 163,
+       "n": 614,
+       "med": 35,
+       "p80": 86,
+       "p90": 168,
        "sameDay": 0.0,
-       "over90": 22.0,
-       "over365": 2.4
+       "over90": 19.2,
+       "over365": 2.0
       }
      },
      "key": "SIGN PERMIT",
@@ -12893,25 +12869,15 @@
   },
   {
    "last12": {
-    "n": 1554,
+    "n": 1559,
     "med": 55,
-    "p80": 139,
-    "p90": 211,
-    "sameDay": 3.02,
-    "over90": 32.5,
-    "over365": 3.9
+    "p80": 138,
+    "p90": 210,
+    "sameDay": 3.08,
+    "over90": 32.4,
+    "over365": 3.8
    },
    "monthly": [
-    {
-     "n": 112,
-     "med": 62,
-     "p80": 132,
-     "p90": 219,
-     "sameDay": 0.89,
-     "over90": 38.4,
-     "over365": 2.7,
-     "m": "2024-10"
-    },
     {
      "n": 82,
      "med": 75,
@@ -13141,36 +13107,46 @@
      "over90": 25.5,
      "over365": 2.5,
      "m": "2026-09"
+    },
+    {
+     "n": 165,
+     "med": 60,
+     "p80": 170,
+     "p90": 202,
+     "sameDay": 3.64,
+     "over90": 38.2,
+     "over365": 1.8,
+     "m": "2026-10"
     }
    ],
    "trend": {
     "months": [
-     "2026-07",
      "2026-08",
-     "2026-09"
+     "2026-09",
+     "2026-10"
     ],
     "yearMonths": [
-     "2025-07",
      "2025-08",
-     "2025-09"
+     "2025-09",
+     "2025-10"
     ],
     "now": {
-     "n": 512,
-     "med": 46,
-     "p80": 119,
-     "p90": 194,
-     "sameDay": 5.27,
-     "over90": 30.5,
-     "over365": 3.9
+     "n": 491,
+     "med": 49,
+     "p80": 126,
+     "p90": 202,
+     "sameDay": 4.07,
+     "over90": 33.8,
+     "over365": 2.9
     },
     "then": {
-     "n": 477,
-     "med": 45,
-     "p80": 119,
-     "p90": 173,
-     "sameDay": 5.24,
-     "over90": 27.3,
-     "over365": 2.9
+     "n": 450,
+     "med": 52,
+     "p80": 134,
+     "p90": 201,
+     "sameDay": 5.11,
+     "over90": 29.1,
+     "over365": 3.6
     }
    },
    "areas": [
@@ -13191,35 +13167,35 @@
      "name": "West Ridge"
     },
     {
-     "n": 24,
+     "n": 25,
      "med": 99,
-     "p80": 190,
+     "p80": 189,
      "p90": 305,
      "sameDay": 0.0,
-     "over90": 58.3,
-     "over365": 8.3,
+     "over90": 56.0,
+     "over365": 8.0,
      "a": 3,
      "name": "Uptown"
     },
     {
-     "n": 29,
+     "n": 30,
      "med": 63,
-     "p80": 183,
-     "p90": 223,
+     "p80": 146,
+     "p90": 207,
      "sameDay": 0.0,
-     "over90": 37.9,
-     "over365": 3.4,
+     "over90": 40.0,
+     "over365": 3.3,
      "a": 4,
      "name": "Lincoln Square"
     },
     {
-     "n": 61,
+     "n": 62,
      "med": 54,
      "p80": 125,
      "p90": 182,
-     "sameDay": 4.92,
-     "over90": 26.2,
-     "over365": 3.3,
+     "sameDay": 4.84,
+     "over90": 25.8,
+     "over365": 3.2,
      "a": 5,
      "name": "North Center"
     },
@@ -13235,24 +13211,24 @@
      "name": "Lake View"
     },
     {
-     "n": 72,
+     "n": 74,
      "med": 37,
-     "p80": 104,
-     "p90": 154,
-     "sameDay": 2.78,
-     "over90": 25.0,
-     "over365": 4.2,
+     "p80": 113,
+     "p90": 158,
+     "sameDay": 4.05,
+     "over90": 25.7,
+     "over365": 4.1,
      "a": 7,
      "name": "Lincoln Park"
     },
     {
-     "n": 60,
+     "n": 61,
      "med": 6,
      "p80": 104,
      "p90": 182,
-     "sameDay": 6.67,
-     "over90": 21.7,
-     "over365": 5.0,
+     "sameDay": 6.56,
+     "over90": 21.3,
+     "over365": 4.9,
      "a": 8,
      "name": "Near North Side"
     },
@@ -13262,12 +13238,12 @@
      "name": "Edison Park"
     },
     {
-     "n": 15,
+     "n": 14,
      "a": 10,
      "name": "Norwood Park"
     },
     {
-     "n": 13,
+     "n": 12,
      "a": 11,
      "name": "Jefferson Park"
     },
@@ -13323,18 +13299,18 @@
      "name": "Hermosa"
     },
     {
-     "n": 18,
+     "n": 17,
      "a": 21,
      "name": "Avondale"
     },
     {
-     "n": 58,
+     "n": 57,
      "med": 68,
-     "p80": 157,
+     "p80": 146,
      "p90": 298,
      "sameDay": 0.0,
-     "over90": 41.4,
-     "over365": 5.2,
+     "over90": 40.4,
+     "over365": 5.3,
      "a": 22,
      "name": "Logan Square"
     },
@@ -13361,13 +13337,13 @@
      "name": "West Town"
     },
     {
-     "n": 31,
-     "med": 90,
+     "n": 32,
+     "med": 87,
      "p80": 195,
      "p90": 300,
      "sameDay": 0.0,
-     "over90": 48.4,
-     "over365": 3.2,
+     "over90": 46.9,
+     "over365": 3.1,
      "a": 25,
      "name": "Austin"
     },
@@ -13377,34 +13353,34 @@
      "name": "West Garfield Park"
     },
     {
-     "n": 61,
+     "n": 62,
      "med": 63,
      "p80": 113,
      "p90": 224,
      "sameDay": 0.0,
-     "over90": 27.9,
-     "over365": 8.2,
+     "over90": 27.4,
+     "over365": 8.1,
      "a": 27,
      "name": "East Garfield Park"
     },
     {
-     "n": 102,
-     "med": 35,
+     "n": 103,
+     "med": 37,
      "p80": 116,
      "p90": 199,
-     "sameDay": 0.98,
-     "over90": 26.5,
+     "sameDay": 0.97,
+     "over90": 26.2,
      "over365": 3.9,
      "a": 28,
      "name": "Near West Side"
     },
     {
-     "n": 66,
-     "med": 64,
+     "n": 65,
+     "med": 69,
      "p80": 100,
      "p90": 137,
-     "sameDay": 1.52,
-     "over90": 27.3,
+     "sameDay": 1.54,
+     "over90": 27.7,
      "over365": 0.0,
      "a": 29,
      "name": "North Lawndale"
@@ -13415,13 +13391,13 @@
      "name": "South Lawndale"
     },
     {
-     "n": 39,
+     "n": 40,
      "med": 72,
-     "p80": 191,
-     "p90": 316,
+     "p80": 155,
+     "p90": 268,
      "sameDay": 0.0,
-     "over90": 46.2,
-     "over365": 7.7,
+     "over90": 45.0,
+     "over365": 7.5,
      "a": 31,
      "name": "Lower West Side"
     },
@@ -13484,13 +13460,13 @@
      "name": "Kenwood"
     },
     {
-     "n": 37,
+     "n": 36,
      "med": 71,
      "p80": 128,
      "p90": 182,
      "sameDay": 0.0,
-     "over90": 32.4,
-     "over365": 2.7,
+     "over90": 33.3,
+     "over365": 2.8,
      "a": 40,
      "name": "Washington Park"
     },
@@ -13500,13 +13476,13 @@
      "name": "Hyde Park"
     },
     {
-     "n": 36,
-     "med": 52,
-     "p80": 112,
+     "n": 37,
+     "med": 55,
+     "p80": 124,
      "p90": 160,
-     "sameDay": 2.78,
-     "over90": 36.1,
-     "over365": 5.6,
+     "sameDay": 2.7,
+     "over90": 37.8,
+     "over365": 5.4,
      "a": 42,
      "name": "Woodlawn"
     },
@@ -13682,17 +13658,17 @@
      "name": "Morgan Park"
     },
     {
-     "n": 9,
+     "n": 8,
      "a": 76,
      "name": "O'Hare"
     },
     {
-     "n": 22,
+     "n": 23,
      "med": 58,
      "p80": 126,
      "p90": 168,
-     "sameDay": 13.64,
-     "over90": 27.3,
+     "sameDay": 13.04,
+     "over90": 26.1,
      "over365": 0.0,
      "a": 77,
      "name": "Edgewater"
@@ -13706,25 +13682,15 @@
    "reviews": [
     {
      "last12": {
-      "n": 910,
-      "med": 44,
-      "p80": 138,
-      "p90": 209,
-      "sameDay": 5.16,
-      "over90": 29.8,
+      "n": 912,
+      "med": 43,
+      "p80": 137,
+      "p90": 207,
+      "sameDay": 5.26,
+      "over90": 29.6,
       "over365": 3.7
      },
      "monthly": [
-      {
-       "n": 63,
-       "med": 64,
-       "p80": 132,
-       "p90": 182,
-       "sameDay": 0.0,
-       "over90": 38.1,
-       "over365": 3.2,
-       "m": "2024-10"
-      },
       {
        "n": 40,
        "med": 75,
@@ -13954,36 +13920,46 @@
        "over90": 18.5,
        "over365": 3.3,
        "m": "2026-09"
+      },
+      {
+       "n": 98,
+       "med": 50,
+       "p80": 168,
+       "p90": 202,
+       "sameDay": 6.12,
+       "over90": 38.8,
+       "over365": 3.1,
+       "m": "2026-10"
       }
      ],
      "trend": {
       "months": [
-       "2026-07",
        "2026-08",
-       "2026-09"
+       "2026-09",
+       "2026-10"
       ],
       "yearMonths": [
-       "2025-07",
        "2025-08",
-       "2025-09"
+       "2025-09",
+       "2025-10"
       ],
       "now": {
-       "n": 319,
-       "med": 12,
-       "p80": 110,
-       "p90": 190,
-       "sameDay": 8.46,
-       "over90": 23.8,
-       "over365": 4.1
+       "n": 296,
+       "med": 24,
+       "p80": 123,
+       "p90": 193,
+       "sameDay": 6.76,
+       "over90": 29.4,
+       "over365": 3.4
       },
       "then": {
-       "n": 293,
-       "med": 9,
-       "p80": 89,
-       "p90": 145,
-       "sameDay": 8.53,
-       "over90": 19.5,
-       "over365": 2.7
+       "n": 255,
+       "med": 11,
+       "p80": 112,
+       "p90": 177,
+       "sameDay": 9.02,
+       "over90": 23.1,
+       "over365": 5.1
       }
      },
      "key": "STANDARD PLAN REVIEW",
@@ -13991,25 +13967,15 @@
     },
     {
      "last12": {
-      "n": 524,
+      "n": 528,
       "med": 56,
       "p80": 112,
-      "p90": 167,
+      "p90": 168,
       "sameDay": 0.0,
-      "over90": 28.2,
+      "over90": 28.4,
       "over365": 1.9
      },
      "monthly": [
-      {
-       "n": 37,
-       "med": 45,
-       "p80": 104,
-       "p90": 194,
-       "sameDay": 0.0,
-       "over90": 29.7,
-       "over365": 0.0,
-       "m": "2024-10"
-      },
       {
        "n": 30,
        "med": 57,
@@ -14239,35 +14205,45 @@
        "over90": 30.9,
        "over365": 0.0,
        "m": "2026-09"
+      },
+      {
+       "n": 58,
+       "med": 56,
+       "p80": 153,
+       "p90": 216,
+       "sameDay": 0.0,
+       "over90": 31.0,
+       "over365": 0.0,
+       "m": "2026-10"
       }
      ],
      "trend": {
       "months": [
-       "2026-07",
        "2026-08",
-       "2026-09"
+       "2026-09",
+       "2026-10"
       ],
       "yearMonths": [
-       "2025-07",
        "2025-08",
-       "2025-09"
+       "2025-09",
+       "2025-10"
       ],
       "now": {
-       "n": 159,
-       "med": 57,
+       "n": 162,
+       "med": 56,
        "p80": 106,
-       "p90": 157,
+       "p90": 191,
        "sameDay": 0.0,
        "over90": 34.0,
-       "over365": 1.3
+       "over365": 0.0
       },
       "then": {
-       "n": 140,
-       "med": 61,
-       "p80": 103,
-       "p90": 190,
+       "n": 148,
+       "med": 63,
+       "p80": 124,
+       "p90": 221,
        "sameDay": 0.0,
-       "over90": 30.0,
+       "over90": 28.4,
        "over365": 1.4
       }
      },
@@ -14276,19 +14252,15 @@
     },
     {
      "last12": {
-      "n": 119,
+      "n": 118,
       "med": 135,
       "p80": 224,
       "p90": 502,
       "sameDay": 0.0,
-      "over90": 72.3,
-      "over365": 13.4
+      "over90": 72.0,
+      "over365": 13.6
      },
      "monthly": [
-      {
-       "n": 11,
-       "m": "2024-10"
-      },
       {
        "n": 12,
        "m": "2024-11"
@@ -14380,36 +14352,40 @@
       {
        "n": 10,
        "m": "2026-09"
+      },
+      {
+       "n": 9,
+       "m": "2026-10"
       }
      ],
      "trend": {
       "months": [
-       "2026-07",
        "2026-08",
-       "2026-09"
+       "2026-09",
+       "2026-10"
       ],
       "yearMonths": [
-       "2025-07",
        "2025-08",
-       "2025-09"
+       "2025-09",
+       "2025-10"
       ],
       "now": {
-       "n": 34,
-       "med": 143,
-       "p80": 224,
-       "p90": 418,
+       "n": 33,
+       "med": 124,
+       "p80": 205,
+       "p90": 405,
        "sameDay": 0.0,
-       "over90": 76.5,
-       "over365": 14.7
+       "over90": 72.7,
+       "over365": 12.1
       },
       "then": {
-       "n": 44,
-       "med": 136,
-       "p80": 231,
-       "p90": 338,
+       "n": 47,
+       "med": 133,
+       "p80": 167,
+       "p90": 262,
        "sameDay": 0.0,
-       "over90": 70.5,
-       "over365": 9.1
+       "over90": 63.8,
+       "over365": 2.1
       }
      },
      "key": "DIRECT DEVELOPER SERVICES",
@@ -14420,10 +14396,6 @@
       "n": 1
      },
      "monthly": [
-      {
-       "n": 1,
-       "m": "2024-10"
-      },
       {
        "n": 0,
        "m": "2024-11"
@@ -14515,18 +14487,22 @@
       {
        "n": 0,
        "m": "2026-09"
+      },
+      {
+       "n": 0,
+       "m": "2026-10"
       }
      ],
      "trend": {
       "months": [
-       "2026-07",
        "2026-08",
-       "2026-09"
+       "2026-09",
+       "2026-10"
       ],
       "yearMonths": [
-       "2025-07",
        "2025-08",
-       "2025-09"
+       "2025-09",
+       "2025-10"
       ],
       "now": {
        "n": 0
@@ -14542,25 +14518,15 @@
   },
   {
    "last12": {
-    "n": 1132,
+    "n": 1121,
     "med": 0,
     "p80": 5,
     "p90": 7,
-    "sameDay": 74.29,
+    "sameDay": 74.4,
     "over90": 0.2,
     "over365": 0.0
    },
    "monthly": [
-    {
-     "n": 98,
-     "med": 0,
-     "p80": 0,
-     "p90": 5,
-     "sameDay": 81.63,
-     "over90": 0.0,
-     "over365": 0.0,
-     "m": "2024-10"
-    },
     {
      "n": 82,
      "med": 0,
@@ -14790,35 +14756,45 @@
      "over90": 0.0,
      "over365": 0.0,
      "m": "2026-09"
+    },
+    {
+     "n": 102,
+     "med": 0,
+     "p80": 2,
+     "p90": 5,
+     "sameDay": 79.41,
+     "over90": 0.0,
+     "over365": 0.0,
+     "m": "2026-10"
     }
    ],
    "trend": {
     "months": [
-     "2026-07",
      "2026-08",
-     "2026-09"
+     "2026-09",
+     "2026-10"
     ],
     "yearMonths": [
-     "2025-07",
      "2025-08",
-     "2025-09"
+     "2025-09",
+     "2025-10"
     ],
     "now": {
-     "n": 304,
+     "n": 303,
      "med": 0,
-     "p80": 5,
-     "p90": 7,
-     "sameDay": 76.32,
+     "p80": 1,
+     "p90": 6,
+     "sameDay": 79.21,
      "over90": 0.0,
      "over365": 0.0
     },
     "then": {
-     "n": 270,
+     "n": 279,
      "med": 0,
-     "p80": 5,
+     "p80": 7,
      "p90": 7,
-     "sameDay": 75.56,
-     "over90": 0.0,
+     "sameDay": 70.25,
+     "over90": 1.1,
      "over365": 0.0
     }
    },
@@ -14871,11 +14847,11 @@
      "name": "Lincoln Park"
     },
     {
-     "n": 229,
+     "n": 227,
      "med": 0,
      "p80": 7,
      "p90": 8,
-     "sameDay": 58.95,
+     "sameDay": 58.59,
      "over90": 0.4,
      "over365": 0.0,
      "a": 8,
@@ -14957,11 +14933,11 @@
      "name": "Humboldt Park"
     },
     {
-     "n": 52,
+     "n": 50,
      "med": 0,
      "p80": 7,
      "p90": 14,
-     "sameDay": 59.62,
+     "sameDay": 60.0,
      "over90": 0.0,
      "over365": 0.0,
      "a": 24,
@@ -15004,16 +14980,16 @@
      "name": "South Lawndale"
     },
     {
-     "n": 10,
+     "n": 8,
      "a": 31,
      "name": "Lower West Side"
     },
     {
-     "n": 177,
+     "n": 175,
      "med": 0,
      "p80": 6,
      "p90": 7,
-     "sameDay": 55.93,
+     "sameDay": 56.0,
      "over90": 0.0,
      "over365": 0.0,
      "a": 32,
@@ -15082,7 +15058,7 @@
      "name": "Woodlawn"
     },
     {
-     "n": 8,
+     "n": 7,
      "a": 43,
      "name": "South Shore"
     },
@@ -15192,7 +15168,7 @@
      "name": "Clearing"
     },
     {
-     "n": 3,
+     "n": 2,
      "a": 65,
      "name": "West Lawn"
     },
@@ -15252,11 +15228,11 @@
      "name": "O'Hare"
     },
     {
-     "n": 26,
+     "n": 25,
      "med": 0,
      "p80": 6,
      "p90": 7,
-     "sameDay": 57.69,
+     "sameDay": 56.0,
      "over90": 0.0,
      "over365": 0.0,
      "a": 77,
@@ -15271,25 +15247,15 @@
    "reviews": [
     {
      "last12": {
-      "n": 1132,
+      "n": 1121,
       "med": 0,
       "p80": 5,
       "p90": 7,
-      "sameDay": 74.29,
+      "sameDay": 74.4,
       "over90": 0.2,
       "over365": 0.0
      },
      "monthly": [
-      {
-       "n": 98,
-       "med": 0,
-       "p80": 0,
-       "p90": 5,
-       "sameDay": 81.63,
-       "over90": 0.0,
-       "over365": 0.0,
-       "m": "2024-10"
-      },
       {
        "n": 82,
        "med": 0,
@@ -15519,35 +15485,45 @@
        "over90": 0.0,
        "over365": 0.0,
        "m": "2026-09"
+      },
+      {
+       "n": 102,
+       "med": 0,
+       "p80": 2,
+       "p90": 5,
+       "sameDay": 79.41,
+       "over90": 0.0,
+       "over365": 0.0,
+       "m": "2026-10"
       }
      ],
      "trend": {
       "months": [
-       "2026-07",
        "2026-08",
-       "2026-09"
+       "2026-09",
+       "2026-10"
       ],
       "yearMonths": [
-       "2025-07",
        "2025-08",
-       "2025-09"
+       "2025-09",
+       "2025-10"
       ],
       "now": {
-       "n": 304,
+       "n": 303,
        "med": 0,
-       "p80": 5,
-       "p90": 7,
-       "sameDay": 76.32,
+       "p80": 1,
+       "p90": 6,
+       "sameDay": 79.21,
        "over90": 0.0,
        "over365": 0.0
       },
       "then": {
-       "n": 270,
+       "n": 279,
        "med": 0,
-       "p80": 5,
+       "p80": 7,
        "p90": 7,
-       "sameDay": 75.56,
-       "over90": 0.0,
+       "sameDay": 70.25,
+       "over90": 1.1,
        "over365": 0.0
       }
      },
@@ -15558,25 +15534,15 @@
   },
   {
    "last12": {
-    "n": 669,
-    "med": 47,
-    "p80": 86,
+    "n": 659,
+    "med": 48,
+    "p80": 89,
     "p90": 121,
-    "sameDay": 33.03,
-    "over90": 18.8,
+    "sameDay": 32.17,
+    "over90": 19.1,
     "over365": 0.0
    },
    "monthly": [
-    {
-     "n": 68,
-     "med": 0,
-     "p80": 0,
-     "p90": 0,
-     "sameDay": 92.65,
-     "over90": 1.5,
-     "over365": 0.0,
-     "m": "2024-10"
-    },
     {
      "n": 48,
      "med": 0,
@@ -15806,46 +15772,56 @@
      "over90": 27.5,
      "over365": 0.0,
      "m": "2026-09"
+    },
+    {
+     "n": 54,
+     "med": 59,
+     "p80": 120,
+     "p90": 162,
+     "sameDay": 0.0,
+     "over90": 25.9,
+     "over365": 0.0,
+     "m": "2026-10"
     }
    ],
    "trend": {
     "months": [
-     "2026-07",
      "2026-08",
-     "2026-09"
+     "2026-09",
+     "2026-10"
     ],
     "yearMonths": [
-     "2025-07",
      "2025-08",
-     "2025-09"
+     "2025-09",
+     "2025-10"
     ],
     "now": {
-     "n": 183,
-     "med": 70,
-     "p80": 116,
-     "p90": 136,
-     "sameDay": 3.28,
-     "over90": 33.9,
+     "n": 170,
+     "med": 62,
+     "p80": 105,
+     "p90": 138,
+     "sameDay": 1.76,
+     "over90": 27.6,
      "over365": 0.0
     },
     "then": {
-     "n": 206,
+     "n": 194,
      "med": 0,
      "p80": 0,
      "p90": 0,
-     "sameDay": 97.57,
-     "over90": 1.5,
+     "sameDay": 96.91,
+     "over90": 0.5,
      "over365": 0.0
     }
    },
    "change": {
     "from": "2026-03",
     "since": {
-     "n": 447,
-     "med": 62,
+     "n": 448,
+     "med": 61,
      "p80": 104,
      "p90": 133,
-     "sameDay": 9.4,
+     "sameDay": 9.38,
      "over90": 27.7,
      "over365": 0.0
     }
@@ -15894,12 +15870,12 @@
      "name": "Lake View"
     },
     {
-     "n": 48,
-     "med": 51,
-     "p80": 125,
+     "n": 43,
+     "med": 58,
+     "p80": 126,
      "p90": 139,
-     "sameDay": 37.5,
-     "over90": 29.2,
+     "sameDay": 32.56,
+     "over90": 32.6,
      "over365": 0.0,
      "a": 7,
      "name": "Lincoln Park"
@@ -15935,7 +15911,7 @@
      "name": "North Park"
     },
     {
-     "n": 5,
+     "n": 4,
      "a": 14,
      "name": "Albany Park"
     },
@@ -15981,12 +15957,12 @@
      "name": "Avondale"
     },
     {
-     "n": 28,
+     "n": 29,
      "med": 47,
      "p80": 91,
      "p90": 117,
-     "sameDay": 32.14,
-     "over90": 25.0,
+     "sameDay": 31.03,
+     "over90": 24.1,
      "over365": 0.0,
      "a": 22,
      "name": "Logan Square"
@@ -16128,12 +16104,12 @@
      "name": "Calumet Heights"
     },
     {
-     "n": 32,
+     "n": 30,
      "med": 14,
      "p80": 68,
      "p90": 72,
-     "sameDay": 46.88,
-     "over90": 6.2,
+     "sameDay": 46.67,
+     "over90": 6.7,
      "over365": 0.0,
      "a": 49,
      "name": "Roseland"
@@ -16154,13 +16130,7 @@
      "name": "East Side"
     },
     {
-     "n": 20,
-     "med": 48,
-     "p80": 70,
-     "p90": 71,
-     "sameDay": 30.0,
-     "over90": 5.0,
-     "over365": 0.0,
+     "n": 19,
      "a": 53,
      "name": "West Pullman"
     },
@@ -16241,12 +16211,12 @@
      "name": "West Englewood"
     },
     {
-     "n": 27,
+     "n": 25,
      "med": 43,
      "p80": 66,
      "p90": 77,
-     "sameDay": 40.74,
-     "over90": 7.4,
+     "sameDay": 36.0,
+     "over90": 8.0,
      "over365": 0.0,
      "a": 68,
      "name": "Englewood"
@@ -16305,25 +16275,15 @@
    "reviews": [
     {
      "last12": {
-      "n": 669,
-      "med": 47,
-      "p80": 86,
+      "n": 659,
+      "med": 48,
+      "p80": 89,
       "p90": 121,
-      "sameDay": 33.03,
-      "over90": 18.8,
+      "sameDay": 32.17,
+      "over90": 19.1,
       "over365": 0.0
      },
      "monthly": [
-      {
-       "n": 68,
-       "med": 0,
-       "p80": 0,
-       "p90": 0,
-       "sameDay": 92.65,
-       "over90": 1.5,
-       "over365": 0.0,
-       "m": "2024-10"
-      },
       {
        "n": 48,
        "med": 0,
@@ -16553,46 +16513,56 @@
        "over90": 27.5,
        "over365": 0.0,
        "m": "2026-09"
+      },
+      {
+       "n": 54,
+       "med": 59,
+       "p80": 120,
+       "p90": 162,
+       "sameDay": 0.0,
+       "over90": 25.9,
+       "over365": 0.0,
+       "m": "2026-10"
       }
      ],
      "trend": {
       "months": [
-       "2026-07",
        "2026-08",
-       "2026-09"
+       "2026-09",
+       "2026-10"
       ],
       "yearMonths": [
-       "2025-07",
        "2025-08",
-       "2025-09"
+       "2025-09",
+       "2025-10"
       ],
       "now": {
-       "n": 183,
-       "med": 70,
-       "p80": 116,
-       "p90": 136,
-       "sameDay": 3.28,
-       "over90": 33.9,
+       "n": 170,
+       "med": 62,
+       "p80": 105,
+       "p90": 138,
+       "sameDay": 1.76,
+       "over90": 27.6,
        "over365": 0.0
       },
       "then": {
-       "n": 206,
+       "n": 194,
        "med": 0,
        "p80": 0,
        "p90": 0,
-       "sameDay": 97.57,
-       "over90": 1.5,
+       "sameDay": 96.91,
+       "over90": 0.5,
        "over365": 0.0
       }
      },
      "change": {
       "from": "2026-03",
       "since": {
-       "n": 447,
-       "med": 62,
+       "n": 448,
+       "med": 61,
        "p80": 104,
        "p90": 133,
-       "sameDay": 9.4,
+       "sameDay": 9.38,
        "over90": 27.7,
        "over365": 0.0
       }
@@ -16604,25 +16574,15 @@
   },
   {
    "last12": {
-    "n": 456,
+    "n": 453,
     "med": 0,
     "p80": 0,
     "p90": 0,
-    "sameDay": 95.18,
+    "sameDay": 95.14,
     "over90": 0.7,
     "over365": 0.2
    },
    "monthly": [
-    {
-     "n": 51,
-     "med": 0,
-     "p80": 0,
-     "p90": 0,
-     "sameDay": 98.04,
-     "over90": 0.0,
-     "over365": 0.0,
-     "m": "2024-10"
-    },
     {
      "n": 26,
      "med": 0,
@@ -16846,34 +16806,44 @@
      "over90": 0.0,
      "over365": 0.0,
      "m": "2026-09"
+    },
+    {
+     "n": 24,
+     "med": 0,
+     "p80": 0,
+     "p90": 0,
+     "sameDay": 91.67,
+     "over90": 0.0,
+     "over365": 0.0,
+     "m": "2026-10"
     }
    ],
    "trend": {
     "months": [
-     "2026-07",
      "2026-08",
-     "2026-09"
+     "2026-09",
+     "2026-10"
     ],
     "yearMonths": [
-     "2025-07",
      "2025-08",
-     "2025-09"
+     "2025-09",
+     "2025-10"
     ],
     "now": {
-     "n": 125,
+     "n": 107,
      "med": 0,
      "p80": 0,
      "p90": 0,
-     "sameDay": 96.0,
-     "over90": 0.8,
+     "sameDay": 93.46,
+     "over90": 0.9,
      "over365": 0.0
     },
     "then": {
-     "n": 114,
+     "n": 118,
      "med": 0,
      "p80": 0,
      "p90": 0,
-     "sameDay": 97.37,
+     "sameDay": 97.46,
      "over90": 0.0,
      "over365": 0.0
     }
@@ -16895,7 +16865,7 @@
      "name": "Uptown"
     },
     {
-     "n": 5,
+     "n": 4,
      "a": 4,
      "name": "Lincoln Square"
     },
@@ -17238,7 +17208,7 @@
      "name": "Englewood"
     },
     {
-     "n": 7,
+     "n": 6,
      "a": 69,
      "name": "Greater Grand Crossing"
     },
@@ -17278,7 +17248,7 @@
      "name": "O'Hare"
     },
     {
-     "n": 4,
+     "n": 3,
      "a": 77,
      "name": "Edgewater"
     }
@@ -17291,25 +17261,15 @@
    "reviews": [
     {
      "last12": {
-      "n": 456,
+      "n": 453,
       "med": 0,
       "p80": 0,
       "p90": 0,
-      "sameDay": 95.18,
+      "sameDay": 95.14,
       "over90": 0.7,
       "over365": 0.2
      },
      "monthly": [
-      {
-       "n": 51,
-       "med": 0,
-       "p80": 0,
-       "p90": 0,
-       "sameDay": 98.04,
-       "over90": 0.0,
-       "over365": 0.0,
-       "m": "2024-10"
-      },
       {
        "n": 26,
        "med": 0,
@@ -17533,34 +17493,44 @@
        "over90": 0.0,
        "over365": 0.0,
        "m": "2026-09"
+      },
+      {
+       "n": 24,
+       "med": 0,
+       "p80": 0,
+       "p90": 0,
+       "sameDay": 91.67,
+       "over90": 0.0,
+       "over365": 0.0,
+       "m": "2026-10"
       }
      ],
      "trend": {
       "months": [
-       "2026-07",
        "2026-08",
-       "2026-09"
+       "2026-09",
+       "2026-10"
       ],
       "yearMonths": [
-       "2025-07",
        "2025-08",
-       "2025-09"
+       "2025-09",
+       "2025-10"
       ],
       "now": {
-       "n": 125,
+       "n": 107,
        "med": 0,
        "p80": 0,
        "p90": 0,
-       "sameDay": 96.0,
-       "over90": 0.8,
+       "sameDay": 93.46,
+       "over90": 0.9,
        "over365": 0.0
       },
       "then": {
-       "n": 114,
+       "n": 118,
        "med": 0,
        "p80": 0,
        "p90": 0,
-       "sameDay": 97.37,
+       "sameDay": 97.46,
        "over90": 0.0,
        "over365": 0.0
       }
@@ -17575,10 +17545,6 @@
     "n": 0
    },
    "monthly": [
-    {
-     "n": 2,
-     "m": "2024-10"
-    },
     {
      "n": 2,
      "m": "2024-11"
@@ -17670,18 +17636,22 @@
     {
      "n": 0,
      "m": "2026-09"
+    },
+    {
+     "n": 0,
+     "m": "2026-10"
     }
    ],
    "trend": {
     "months": [
-     "2026-07",
      "2026-08",
-     "2026-09"
+     "2026-09",
+     "2026-10"
     ],
     "yearMonths": [
-     "2025-07",
      "2025-08",
-     "2025-09"
+     "2025-09",
+     "2025-10"
     ],
     "now": {
      "n": 0
@@ -18109,12 +18079,12 @@
    "name": "West Ridge"
   },
   {
-   "n": 56,
+   "n": 57,
    "med": 93,
    "p80": 166,
    "p90": 206,
    "sameDay": 0.0,
-   "over90": 51.8,
+   "over90": 52.6,
    "over365": 1.8,
    "a": 3,
    "name": "Uptown"
@@ -18142,62 +18112,62 @@
    "name": "North Center"
   },
   {
-   "n": 148,
-   "med": 68,
-   "p80": 164,
+   "n": 144,
+   "med": 67,
+   "p80": 165,
    "p90": 269,
-   "sameDay": 4.05,
-   "over90": 41.9,
-   "over365": 2.7,
+   "sameDay": 4.17,
+   "over90": 41.0,
+   "over365": 2.8,
    "a": 6,
    "name": "Lake View"
   },
   {
-   "n": 116,
-   "med": 83,
-   "p80": 149,
+   "n": 115,
+   "med": 88,
+   "p80": 150,
    "p90": 211,
-   "sameDay": 1.72,
-   "over90": 48.3,
-   "over365": 3.4,
+   "sameDay": 2.61,
+   "over90": 48.7,
+   "over365": 3.5,
    "a": 7,
    "name": "Lincoln Park"
   },
   {
-   "n": 129,
+   "n": 132,
    "med": 72,
-   "p80": 165,
-   "p90": 210,
-   "sameDay": 3.1,
-   "over90": 40.3,
+   "p80": 160,
+   "p90": 206,
+   "sameDay": 3.03,
+   "over90": 40.9,
    "over365": 2.3,
    "a": 8,
    "name": "Near North Side"
   },
   {
-   "n": 17,
+   "n": 18,
    "a": 9,
    "name": "Edison Park"
   },
   {
-   "n": 39,
+   "n": 38,
    "med": 73,
    "p80": 153,
    "p90": 322,
    "sameDay": 0.0,
-   "over90": 41.0,
-   "over365": 7.7,
+   "over90": 42.1,
+   "over365": 7.9,
    "a": 10,
    "name": "Norwood Park"
   },
   {
-   "n": 32,
-   "med": 55,
-   "p80": 139,
-   "p90": 239,
-   "sameDay": 3.12,
-   "over90": 31.2,
-   "over365": 6.2,
+   "n": 30,
+   "med": 50,
+   "p80": 138,
+   "p90": 208,
+   "sameDay": 3.33,
+   "over90": 26.7,
+   "over365": 6.7,
    "a": 11,
    "name": "Jefferson Park"
   },
@@ -18235,12 +18205,12 @@
    "name": "Albany Park"
   },
   {
-   "n": 51,
+   "n": 50,
    "med": 77,
    "p80": 159,
    "p90": 199,
    "sameDay": 0.0,
-   "over90": 47.1,
+   "over90": 48.0,
    "over365": 0.0,
    "a": 15,
    "name": "Portage Park"
@@ -18257,13 +18227,13 @@
    "name": "Irving Park"
   },
   {
-   "n": 22,
-   "med": 106,
+   "n": 23,
+   "med": 130,
    "p80": 271,
    "p90": 570,
    "sameDay": 0.0,
-   "over90": 63.6,
-   "over365": 18.2,
+   "over90": 65.2,
+   "over365": 17.4,
    "a": 17,
    "name": "Dunning"
   },
@@ -18284,29 +18254,29 @@
    "name": "Belmont Cragin"
   },
   {
-   "n": 17,
+   "n": 18,
    "a": 20,
    "name": "Hermosa"
   },
   {
-   "n": 50,
-   "med": 133,
+   "n": 49,
+   "med": 135,
    "p80": 262,
-   "p90": 378,
+   "p90": 404,
    "sameDay": 0.0,
-   "over90": 66.0,
-   "over365": 12.0,
+   "over90": 65.3,
+   "over365": 12.2,
    "a": 21,
    "name": "Avondale"
   },
   {
-   "n": 128,
+   "n": 126,
    "med": 119,
-   "p80": 221,
+   "p80": 220,
    "p90": 289,
    "sameDay": 0.0,
-   "over90": 67.2,
-   "over365": 4.7,
+   "over90": 67.5,
+   "over365": 4.8,
    "a": 22,
    "name": "Logan Square"
   },
@@ -18333,34 +18303,34 @@
    "name": "West Town"
   },
   {
-   "n": 103,
+   "n": 104,
    "med": 103,
-   "p80": 197,
-   "p90": 301,
+   "p80": 209,
+   "p90": 311,
    "sameDay": 0.0,
-   "over90": 57.3,
-   "over365": 7.8,
+   "over90": 57.7,
+   "over365": 7.7,
    "a": 25,
    "name": "Austin"
   },
   {
-   "n": 37,
+   "n": 36,
    "med": 86,
    "p80": 236,
    "p90": 314,
    "sameDay": 0.0,
-   "over90": 48.6,
-   "over365": 8.1,
+   "over90": 50.0,
+   "over365": 8.3,
    "a": 26,
    "name": "West Garfield Park"
   },
   {
    "n": 68,
-   "med": 79,
-   "p80": 168,
+   "med": 78,
+   "p80": 166,
    "p90": 253,
    "sameDay": 0.0,
-   "over90": 42.6,
+   "over90": 41.2,
    "over365": 5.9,
    "a": 27,
    "name": "East Garfield Park"
@@ -18377,45 +18347,45 @@
    "name": "Near West Side"
   },
   {
-   "n": 92,
+   "n": 93,
    "med": 91,
    "p80": 190,
    "p90": 243,
-   "sameDay": 1.09,
-   "over90": 51.1,
+   "sameDay": 1.08,
+   "over90": 50.5,
    "over365": 2.2,
    "a": 29,
    "name": "North Lawndale"
   },
   {
-   "n": 68,
+   "n": 65,
    "med": 115,
-   "p80": 247,
+   "p80": 245,
    "p90": 330,
    "sameDay": 0.0,
-   "over90": 63.2,
-   "over365": 8.8,
+   "over90": 63.1,
+   "over365": 9.2,
    "a": 30,
    "name": "South Lawndale"
   },
   {
-   "n": 69,
-   "med": 105,
-   "p80": 256,
-   "p90": 384,
+   "n": 71,
+   "med": 101,
+   "p80": 253,
+   "p90": 367,
    "sameDay": 0.0,
-   "over90": 53.6,
-   "over365": 11.6,
+   "over90": 52.1,
+   "over365": 11.3,
    "a": 31,
    "name": "Lower West Side"
   },
   {
-   "n": 137,
+   "n": 138,
    "med": 6,
-   "p80": 75,
+   "p80": 76,
    "p90": 105,
-   "sameDay": 10.22,
-   "over90": 14.6,
+   "sameDay": 10.14,
+   "over90": 14.5,
    "over365": 0.7,
    "a": 32,
    "name": "Loop"
@@ -18442,7 +18412,7 @@
    "name": "Douglas"
   },
   {
-   "n": 4,
+   "n": 3,
    "a": 36,
    "name": "Oakland"
   },
@@ -18452,13 +18422,13 @@
    "name": "Fuller Park"
   },
   {
-   "n": 59,
+   "n": 58,
    "med": 106,
    "p80": 186,
    "p90": 288,
    "sameDay": 0.0,
-   "over90": 54.2,
-   "over365": 6.8,
+   "over90": 55.2,
+   "over365": 6.9,
    "a": 38,
    "name": "Grand Boulevard"
   },
@@ -18485,12 +18455,12 @@
    "name": "Washington Park"
   },
   {
-   "n": 45,
+   "n": 46,
    "med": 51,
    "p80": 139,
    "p90": 159,
    "sameDay": 0.0,
-   "over90": 28.9,
+   "over90": 30.4,
    "over365": 0.0,
    "a": 41,
    "name": "Hyde Park"
@@ -18501,7 +18471,7 @@
    "p80": 133,
    "p90": 227,
    "sameDay": 1.37,
-   "over90": 43.8,
+   "over90": 45.2,
    "over365": 4.1,
    "a": 42,
    "name": "Woodlawn"
@@ -18529,13 +18499,13 @@
    "name": "Chatham"
   },
   {
-   "n": 22,
-   "med": 104,
+   "n": 21,
+   "med": 125,
    "p80": 167,
    "p90": 211,
    "sameDay": 0.0,
-   "over90": 59.1,
-   "over365": 4.5,
+   "over90": 57.1,
+   "over365": 4.8,
    "a": 45,
    "name": "Avalon Park"
   },
@@ -18572,7 +18542,7 @@
    "name": "Roseland"
   },
   {
-   "n": 17,
+   "n": 16,
    "a": 50,
    "name": "Pullman"
   },
@@ -18582,7 +18552,7 @@
    "name": "South Deering"
   },
   {
-   "n": 7,
+   "n": 6,
    "a": 52,
    "name": "East Side"
   },
@@ -18624,12 +18594,12 @@
    "name": "Archer Heights"
   },
   {
-   "n": 30,
+   "n": 31,
    "med": 98,
    "p80": 201,
    "p90": 227,
    "sameDay": 0.0,
-   "over90": 56.7,
+   "over90": 58.1,
    "over365": 0.0,
    "a": 58,
    "name": "Brighton Park"
@@ -18701,8 +18671,8 @@
   {
    "n": 61,
    "med": 119,
-   "p80": 233,
-   "p90": 282,
+   "p80": 230,
+   "p90": 277,
    "sameDay": 0.0,
    "over90": 65.6,
    "over365": 6.6,
@@ -18710,13 +18680,13 @@
    "name": "West Englewood"
   },
   {
-   "n": 61,
-   "med": 109,
+   "n": 62,
+   "med": 108,
    "p80": 174,
    "p90": 338,
    "sameDay": 0.0,
-   "over90": 63.9,
-   "over365": 8.2,
+   "over90": 62.9,
+   "over365": 8.1,
    "a": 68,
    "name": "Englewood"
   },
@@ -18732,29 +18702,29 @@
    "name": "Greater Grand Crossing"
   },
   {
-   "n": 18,
+   "n": 17,
    "a": 70,
    "name": "Ashburn"
   },
   {
-   "n": 60,
+   "n": 61,
    "med": 84,
    "p80": 154,
    "p90": 246,
    "sameDay": 0.0,
-   "over90": 46.7,
-   "over365": 5.0,
+   "over90": 47.5,
+   "over365": 4.9,
    "a": 71,
    "name": "Auburn Gresham"
   },
   {
-   "n": 26,
-   "med": 104,
+   "n": 25,
+   "med": 115,
    "p80": 178,
    "p90": 294,
    "sameDay": 0.0,
-   "over90": 61.5,
-   "over365": 7.7,
+   "over90": 60.0,
+   "over365": 8.0,
    "a": 72,
    "name": "Beverly"
   },
@@ -18781,13 +18751,13 @@
    "name": "Mount Greenwood"
   },
   {
-   "n": 34,
-   "med": 96,
+   "n": 33,
+   "med": 97,
    "p80": 164,
    "p90": 288,
    "sameDay": 0.0,
-   "over90": 58.8,
-   "over365": 2.9,
+   "over90": 60.6,
+   "over365": 3.0,
    "a": 75,
    "name": "Morgan Park"
   },
@@ -18810,66 +18780,66 @@
  ],
  "areaExp": [
   {
-   "n": 202,
+   "n": 199,
    "med": 3,
    "p80": 14,
    "p90": 28,
-   "sameDay": 30.2,
+   "sameDay": 29.65,
    "over90": 0.5,
    "over365": 0.0,
    "a": 1,
    "name": "Rogers Park"
   },
   {
-   "n": 301,
+   "n": 294,
    "med": 3,
    "p80": 12,
    "p90": 20,
-   "sameDay": 28.24,
-   "over90": 1.3,
+   "sameDay": 28.57,
+   "over90": 1.4,
    "over365": 0.0,
    "a": 2,
    "name": "West Ridge"
   },
   {
-   "n": 270,
+   "n": 274,
    "med": 4,
    "p80": 13,
    "p90": 21,
-   "sameDay": 23.33,
+   "sameDay": 23.72,
    "over90": 0.4,
    "over365": 0.0,
    "a": 3,
    "name": "Uptown"
   },
   {
-   "n": 271,
+   "n": 270,
    "med": 2,
    "p80": 13,
    "p90": 22,
-   "sameDay": 29.52,
-   "over90": 1.8,
+   "sameDay": 30.0,
+   "over90": 1.9,
    "over365": 0.0,
    "a": 4,
    "name": "Lincoln Square"
   },
   {
-   "n": 231,
+   "n": 229,
    "med": 1,
    "p80": 8,
    "p90": 17,
-   "sameDay": 34.2,
+   "sameDay": 34.93,
    "over90": 0.0,
    "over365": 0.0,
    "a": 5,
    "name": "North Center"
   },
   {
-   "n": 615,
+   "n": 617,
    "med": 3,
    "p80": 14,
-   "p90": 21,
-   "sameDay": 27.32,
+   "p90": 22,
+   "sameDay": 27.39,
    "over90": 0.3,
    "over365": 0.0,
    "a": 6,
@@ -18879,63 +18849,63 @@
    "n": 600,
    "med": 4,
    "p80": 17,
-   "p90": 34,
-   "sameDay": 19.83,
+   "p90": 35,
+   "sameDay": 19.67,
    "over90": 4.2,
    "over365": 0.0,
    "a": 7,
    "name": "Lincoln Park"
   },
   {
-   "n": 1444,
+   "n": 1438,
    "med": 5,
    "p80": 17,
    "p90": 28,
-   "sameDay": 16.76,
+   "sameDay": 16.55,
    "over90": 1.0,
    "over365": 0.0,
    "a": 8,
    "name": "Near North Side"
   },
   {
-   "n": 66,
+   "n": 65,
    "med": 1,
    "p80": 13,
    "p90": 18,
-   "sameDay": 39.39,
+   "sameDay": 38.46,
    "over90": 0.0,
    "over365": 0.0,
    "a": 9,
    "name": "Edison Park"
   },
   {
-   "n": 286,
+   "n": 280,
    "med": 1,
    "p80": 10,
    "p90": 17,
-   "sameDay": 39.51,
+   "sameDay": 39.29,
    "over90": 0.7,
    "over365": 0.0,
    "a": 10,
    "name": "Norwood Park"
   },
   {
-   "n": 177,
+   "n": 178,
    "med": 1,
    "p80": 11,
-   "p90": 19,
-   "sameDay": 42.37,
+   "p90": 17,
+   "sameDay": 42.13,
    "over90": 0.6,
    "over365": 0.0,
    "a": 11,
    "name": "Jefferson Park"
   },
   {
-   "n": 174,
+   "n": 169,
    "med": 1,
    "p80": 10,
    "p90": 28,
-   "sameDay": 44.25,
+   "sameDay": 44.38,
    "over90": 0.6,
    "over365": 0.0,
    "a": 12,
@@ -18946,150 +18916,150 @@
    "med": 1,
    "p80": 7,
    "p90": 18,
-   "sameDay": 42.45,
+   "sameDay": 43.4,
    "over90": 1.9,
    "over365": 0.0,
    "a": 13,
    "name": "North Park"
   },
   {
-   "n": 211,
+   "n": 209,
    "med": 3,
    "p80": 13,
-   "p90": 21,
-   "sameDay": 31.75,
+   "p90": 23,
+   "sameDay": 31.58,
    "over90": 0.5,
    "over365": 0.0,
    "a": 14,
    "name": "Albany Park"
   },
   {
-   "n": 400,
+   "n": 397,
    "med": 1,
    "p80": 8,
    "p90": 15,
-   "sameDay": 39.25,
-   "over90": 0.2,
+   "sameDay": 39.8,
+   "over90": 0.3,
    "over365": 0.0,
    "a": 15,
    "name": "Portage Park"
   },
   {
-   "n": 315,
+   "n": 316,
    "med": 2,
    "p80": 11,
-   "p90": 18,
-   "sameDay": 36.19,
+   "p90": 19,
+   "sameDay": 36.39,
    "over90": 0.0,
    "over365": 0.0,
    "a": 16,
    "name": "Irving Park"
   },
   {
-   "n": 227,
+   "n": 222,
    "med": 2,
-   "p80": 10,
+   "p80": 9,
    "p90": 21,
-   "sameDay": 34.36,
+   "sameDay": 34.68,
    "over90": 0.9,
    "over365": 0.0,
    "a": 17,
    "name": "Dunning"
   },
   {
-   "n": 87,
+   "n": 82,
    "med": 5,
    "p80": 14,
    "p90": 23,
-   "sameDay": 27.59,
-   "over90": 2.3,
+   "sameDay": 28.05,
+   "over90": 2.4,
    "over365": 0.0,
    "a": 18,
    "name": "Montclare"
   },
   {
-   "n": 272,
+   "n": 267,
    "med": 1,
-   "p80": 8,
+   "p80": 7,
    "p90": 17,
-   "sameDay": 40.81,
+   "sameDay": 41.2,
    "over90": 0.4,
    "over365": 0.0,
    "a": 19,
    "name": "Belmont Cragin"
   },
   {
-   "n": 90,
+   "n": 89,
    "med": 2,
-   "p80": 11,
-   "p90": 18,
-   "sameDay": 40.0,
+   "p80": 12,
+   "p90": 22,
+   "sameDay": 39.33,
    "over90": 0.0,
    "over365": 0.0,
    "a": 20,
    "name": "Hermosa"
   },
   {
-   "n": 167,
+   "n": 166,
    "med": 3,
    "p80": 14,
-   "p90": 25,
-   "sameDay": 29.94,
-   "over90": 1.8,
+   "p90": 24,
+   "sameDay": 30.12,
+   "over90": 1.2,
    "over365": 0.0,
    "a": 21,
    "name": "Avondale"
   },
   {
-   "n": 451,
+   "n": 450,
    "med": 3,
    "p80": 15,
    "p90": 24,
-   "sameDay": 29.27,
+   "sameDay": 28.67,
    "over90": 0.7,
    "over365": 0.0,
    "a": 22,
    "name": "Logan Square"
   },
   {
-   "n": 296,
+   "n": 294,
    "med": 2,
    "p80": 10,
    "p90": 19,
-   "sameDay": 31.42,
+   "sameDay": 31.63,
    "over90": 0.7,
    "over365": 0.0,
    "a": 23,
    "name": "Humboldt Park"
   },
   {
-   "n": 629,
+   "n": 624,
    "med": 3,
    "p80": 14,
    "p90": 21,
-   "sameDay": 24.32,
+   "sameDay": 24.36,
    "over90": 0.6,
    "over365": 0.0,
    "a": 24,
    "name": "West Town"
   },
   {
-   "n": 622,
+   "n": 618,
    "med": 3,
-   "p80": 14,
+   "p80": 13,
    "p90": 29,
-   "sameDay": 27.49,
-   "over90": 1.1,
+   "sameDay": 28.16,
+   "over90": 1.0,
    "over365": 0.0,
    "a": 25,
    "name": "Austin"
   },
   {
-   "n": 133,
+   "n": 135,
    "med": 5,
    "p80": 15,
    "p90": 27,
-   "sameDay": 19.55,
+   "sameDay": 19.26,
    "over90": 1.5,
    "over365": 0.0,
    "a": 26,
@@ -19107,33 +19077,33 @@
    "name": "East Garfield Park"
   },
   {
-   "n": 838,
+   "n": 833,
    "med": 2,
    "p80": 10,
    "p90": 20,
-   "sameDay": 29.71,
+   "sameDay": 30.01,
    "over90": 1.1,
    "over365": 0.0,
    "a": 28,
    "name": "Near West Side"
   },
   {
-   "n": 258,
+   "n": 260,
    "med": 5,
-   "p80": 19,
+   "p80": 18,
    "p90": 30,
-   "sameDay": 15.5,
-   "over90": 1.6,
+   "sameDay": 15.38,
+   "over90": 0.8,
    "over365": 0.0,
    "a": 29,
    "name": "North Lawndale"
   },
   {
-   "n": 230,
+   "n": 228,
    "med": 3,
-   "p80": 12,
-   "p90": 23,
-   "sameDay": 26.52,
+   "p80": 13,
+   "p90": 24,
+   "sameDay": 26.32,
    "over90": 0.4,
    "over365": 0.0,
    "a": 30,
@@ -19141,33 +19111,33 @@
   },
   {
    "n": 202,
-   "med": 4,
+   "med": 3,
    "p80": 12,
    "p90": 22,
-   "sameDay": 27.23,
+   "sameDay": 27.72,
    "over90": 1.5,
    "over365": 0.0,
    "a": 31,
    "name": "Lower West Side"
   },
   {
-   "n": 1482,
+   "n": 1457,
    "med": 2,
    "p80": 8,
    "p90": 14,
-   "sameDay": 28.68,
+   "sameDay": 28.89,
    "over90": 0.3,
    "over365": 0.0,
    "a": 32,
    "name": "Loop"
   },
   {
-   "n": 220,
+   "n": 215,
    "med": 2,
    "p80": 8,
    "p90": 16,
-   "sameDay": 21.82,
-   "over90": 0.5,
+   "sameDay": 21.4,
+   "over90": 0.0,
    "over365": 0.0,
    "a": 33,
    "name": "Near South Side"
@@ -19184,12 +19154,12 @@
    "name": "Armour Square"
   },
   {
-   "n": 86,
+   "n": 85,
    "med": 6,
    "p80": 18,
    "p90": 34,
-   "sameDay": 17.44,
-   "over90": 2.3,
+   "sameDay": 17.65,
+   "over90": 2.4,
    "over365": 0.0,
    "a": 35,
    "name": "Douglas"
@@ -19228,11 +19198,11 @@
    "name": "Grand Boulevard"
   },
   {
-   "n": 125,
-   "med": 7,
+   "n": 121,
+   "med": 8,
    "p80": 19,
    "p90": 25,
-   "sameDay": 11.2,
+   "sameDay": 10.74,
    "over90": 0.0,
    "over365": 0.0,
    "a": 39,
@@ -19250,100 +19220,100 @@
    "name": "Washington Park"
   },
   {
-   "n": 210,
+   "n": 211,
    "med": 4,
    "p80": 13,
    "p90": 17,
-   "sameDay": 19.52,
+   "sameDay": 19.43,
    "over90": 0.5,
    "over365": 0.0,
    "a": 41,
    "name": "Hyde Park"
   },
   {
-   "n": 178,
+   "n": 175,
    "med": 4,
    "p80": 13,
-   "p90": 26,
-   "sameDay": 23.6,
+   "p90": 24,
+   "sameDay": 24.0,
    "over90": 0.6,
    "over365": 0.0,
    "a": 42,
    "name": "Woodlawn"
   },
   {
-   "n": 336,
+   "n": 334,
    "med": 4,
    "p80": 15,
    "p90": 27,
-   "sameDay": 20.83,
+   "sameDay": 20.66,
    "over90": 1.5,
    "over365": 0.0,
    "a": 43,
    "name": "South Shore"
   },
   {
-   "n": 240,
+   "n": 238,
    "med": 4,
    "p80": 14,
    "p90": 22,
-   "sameDay": 25.42,
+   "sameDay": 26.05,
    "over90": 0.4,
    "over365": 0.0,
    "a": 44,
    "name": "Chatham"
   },
   {
-   "n": 149,
+   "n": 150,
    "med": 3,
    "p80": 12,
    "p90": 19,
-   "sameDay": 42.28,
+   "sameDay": 42.0,
    "over90": 1.3,
    "over365": 0.0,
    "a": 45,
    "name": "Avalon Park"
   },
   {
-   "n": 225,
+   "n": 224,
    "med": 3,
-   "p80": 11,
+   "p80": 12,
    "p90": 22,
-   "sameDay": 25.78,
+   "sameDay": 25.45,
    "over90": 0.4,
    "over365": 0.0,
    "a": 46,
    "name": "South Chicago"
   },
   {
-   "n": 24,
+   "n": 23,
    "med": 1,
    "p80": 7,
    "p90": 11,
-   "sameDay": 37.5,
+   "sameDay": 39.13,
    "over90": 0.0,
    "over365": 0.0,
    "a": 47,
    "name": "Burnside"
   },
   {
-   "n": 175,
+   "n": 172,
    "med": 1,
    "p80": 8,
-   "p90": 13,
-   "sameDay": 42.86,
+   "p90": 12,
+   "sameDay": 43.6,
    "over90": 0.0,
    "over365": 0.0,
    "a": 48,
    "name": "Calumet Heights"
   },
   {
-   "n": 373,
+   "n": 374,
    "med": 3,
    "p80": 14,
    "p90": 21,
-   "sameDay": 33.78,
-   "over90": 1.1,
+   "sameDay": 33.69,
+   "over90": 0.8,
    "over365": 0.0,
    "a": 49,
    "name": "Roseland"
@@ -19360,33 +19330,33 @@
    "name": "Pullman"
   },
   {
-   "n": 117,
+   "n": 118,
    "med": 3,
    "p80": 9,
    "p90": 17,
-   "sameDay": 30.77,
-   "over90": 0.9,
+   "sameDay": 28.81,
+   "over90": 0.8,
    "over365": 0.0,
    "a": 51,
    "name": "South Deering"
   },
   {
-   "n": 112,
+   "n": 111,
    "med": 3,
-   "p80": 14,
+   "p80": 12,
    "p90": 26,
-   "sameDay": 33.93,
+   "sameDay": 34.23,
    "over90": 1.8,
    "over365": 0.0,
    "a": 52,
    "name": "East Side"
   },
   {
-   "n": 272,
+   "n": 267,
    "med": 3,
    "p80": 9,
    "p90": 15,
-   "sameDay": 31.99,
+   "sameDay": 31.46,
    "over90": 0.7,
    "over365": 0.0,
    "a": 53,
@@ -19398,44 +19368,44 @@
    "name": "Riverdale"
   },
   {
-   "n": 86,
+   "n": 77,
    "med": 2,
-   "p80": 7,
+   "p80": 9,
    "p90": 15,
-   "sameDay": 18.6,
+   "sameDay": 20.78,
    "over90": 0.0,
    "over365": 0.0,
    "a": 55,
    "name": "Hegewisch"
   },
   {
-   "n": 327,
+   "n": 324,
    "med": 1,
    "p80": 13,
    "p90": 22,
-   "sameDay": 43.12,
+   "sameDay": 42.9,
    "over90": 0.6,
    "over365": 0.0,
    "a": 56,
    "name": "Garfield Ridge"
   },
   {
-   "n": 82,
+   "n": 81,
    "med": 2,
    "p80": 10,
    "p90": 19,
-   "sameDay": 26.83,
+   "sameDay": 27.16,
    "over90": 0.0,
    "over365": 0.0,
    "a": 57,
    "name": "Archer Heights"
   },
   {
-   "n": 154,
+   "n": 153,
    "med": 3,
    "p80": 12,
    "p90": 25,
-   "sameDay": 27.92,
+   "sameDay": 28.1,
    "over90": 0.0,
    "over365": 0.0,
    "a": 58,
@@ -19453,77 +19423,77 @@
    "name": "McKinley Park"
   },
   {
-   "n": 165,
+   "n": 166,
    "med": 4,
    "p80": 15,
    "p90": 35,
-   "sameDay": 25.45,
+   "sameDay": 26.51,
    "over90": 1.8,
    "over365": 0.0,
    "a": 60,
    "name": "Bridgeport"
   },
   {
-   "n": 252,
+   "n": 253,
    "med": 3,
-   "p80": 13,
+   "p80": 14,
    "p90": 26,
-   "sameDay": 22.62,
+   "sameDay": 22.92,
    "over90": 1.2,
    "over365": 0.0,
    "a": 61,
    "name": "New City"
   },
   {
-   "n": 63,
+   "n": 61,
    "med": 2,
    "p80": 19,
    "p90": 31,
-   "sameDay": 30.16,
+   "sameDay": 31.15,
    "over90": 0.0,
    "over365": 0.0,
    "a": 62,
    "name": "West Elsdon"
   },
   {
-   "n": 131,
+   "n": 132,
    "med": 2,
    "p80": 12,
    "p90": 20,
-   "sameDay": 32.06,
+   "sameDay": 31.82,
    "over90": 1.5,
    "over365": 0.0,
    "a": 63,
    "name": "Gage Park"
   },
   {
-   "n": 138,
+   "n": 135,
    "med": 3,
-   "p80": 9,
+   "p80": 8,
    "p90": 15,
-   "sameDay": 39.13,
+   "sameDay": 40.0,
    "over90": 0.7,
    "over365": 0.0,
    "a": 64,
    "name": "Clearing"
   },
   {
-   "n": 177,
-   "med": 3,
+   "n": 178,
+   "med": 2,
    "p80": 9,
    "p90": 18,
-   "sameDay": 31.64,
+   "sameDay": 32.02,
    "over90": 0.0,
    "over365": 0.0,
    "a": 65,
    "name": "West Lawn"
   },
   {
-   "n": 270,
+   "n": 271,
    "med": 2,
    "p80": 10,
-   "p90": 18,
-   "sameDay": 36.67,
+   "p90": 20,
+   "sameDay": 36.53,
    "over90": 0.0,
    "over365": 0.0,
    "a": 66,
@@ -19541,33 +19511,33 @@
    "name": "West Englewood"
   },
   {
-   "n": 205,
+   "n": 203,
    "med": 5,
    "p80": 16,
    "p90": 28,
-   "sameDay": 19.51,
-   "over90": 2.4,
+   "sameDay": 19.21,
+   "over90": 2.5,
    "over365": 0.0,
    "a": 68,
    "name": "Englewood"
   },
   {
-   "n": 242,
+   "n": 241,
    "med": 3,
    "p80": 12,
    "p90": 24,
-   "sameDay": 21.9,
+   "sameDay": 21.58,
    "over90": 1.2,
    "over365": 0.0,
    "a": 69,
    "name": "Greater Grand Crossing"
   },
   {
-   "n": 385,
+   "n": 384,
    "med": 2,
    "p80": 9,
    "p90": 15,
-   "sameDay": 40.0,
+   "sameDay": 40.1,
    "over90": 0.0,
    "over365": 0.0,
    "a": 70,
@@ -19585,66 +19555,66 @@
    "name": "Auburn Gresham"
   },
   {
-   "n": 219,
+   "n": 214,
    "med": 4,
-   "p80": 14,
-   "p90": 25,
-   "sameDay": 30.59,
+   "p80": 13,
+   "p90": 23,
+   "sameDay": 31.31,
    "over90": 2.3,
    "over365": 0.0,
    "a": 72,
    "name": "Beverly"
   },
   {
-   "n": 351,
+   "n": 348,
    "med": 3,
    "p80": 12,
    "p90": 21,
-   "sameDay": 31.91,
+   "sameDay": 31.61,
    "over90": 2.0,
    "over365": 0.0,
    "a": 73,
    "name": "Washington Heights"
   },
   {
-   "n": 103,
+   "n": 104,
    "med": 2,
    "p80": 8,
    "p90": 13,
-   "sameDay": 38.83,
+   "sameDay": 38.46,
    "over90": 0.0,
    "over365": 0.0,
    "a": 74,
    "name": "Mount Greenwood"
   },
   {
-   "n": 243,
+   "n": 237,
    "med": 2,
    "p80": 11,
-   "p90": 19,
-   "sameDay": 37.04,
+   "p90": 20,
+   "sameDay": 37.13,
    "over90": 0.8,
    "over365": 0.0,
    "a": 75,
    "name": "Morgan Park"
   },
   {
-   "n": 320,
+   "n": 314,
    "med": 0,
    "p80": 3,
-   "p90": 7,
-   "sameDay": 62.19,
+   "p90": 8,
+   "sameDay": 61.46,
    "over90": 0.0,
    "over365": 0.0,
    "a": 76,
    "name": "O'Hare"
   },
   {
-   "n": 319,
+   "n": 315,
    "med": 3,
    "p80": 12,
    "p90": 24,
-   "sameDay": 31.35,
+   "sameDay": 30.79,
    "over90": 1.6,
    "over365": 0.0,
    "a": 77,

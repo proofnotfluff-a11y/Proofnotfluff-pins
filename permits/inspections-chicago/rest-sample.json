@@ -1,44 +1,44 @@
 {
  "product": "Chicago Restaurant Inspection Leads",
- "asOf": "2026-10-29",
- "asOfText": "Oct 29, 2026",
- "through": "2026-10-28",
- "throughText": "Oct 28, 2026",
+ "asOf": "2026-11-02",
+ "asOfText": "Nov 2, 2026",
+ "through": "2026-10-29",
+ "throughText": "Oct 29, 2026",
  "window": {
-  "from": "2026-09-29",
-  "to": "2026-10-28",
-  "newFrom": "2026-10-22",
-  "repeatFrom": "2026-07-31"
+  "from": "2026-09-30",
+  "to": "2026-10-29",
+  "newFrom": "2026-10-23",
+  "repeatFrom": "2026-08-01"
  },
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-10-30T03:23:12+00:00",
-  "rowsUpdatedAt": "2026-10-29T09:08:12+00:00",
+  "fetchedAt": "2026-11-02T12:25:07+00:00",
+  "rowsUpdatedAt": "2026-10-30T09:13:52+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "places": 269,
-  "flagged": 136,
+  "places": 267,
+  "flagged": 134,
   "opening": 138,
-  "repeat": 20,
-  "new": 40,
+  "repeat": 19,
+  "new": 39,
   "byCat": {
-   "pests": 94,
+   "pests": 92,
    "hood": 29,
-   "drain": 18,
-   "clean": 103
+   "drain": 17,
+   "clean": 100
   },
-  "flaggedFail": 102,
+  "flaggedFail": 98,
   "openingPassed": 104,
   "excluded": {
    "business name is a person's name": 2,
-   "school, day care, hospital, senior or mobile vendor": 54,
+   "school, day care, hospital, senior or mobile vendor": 50,
    "the City's latest result is out of business or not located": 3
   },
-  "rowsRead": 1201,
-  "historyRead": 738,
+  "rowsRead": 1098,
+  "historyRead": 639,
   "areas": [
    [
     "Loop",
@@ -65,32 +65,24 @@
     10
    ],
    [
+    "Gage Park",
+    9
+   ],
+   [
+    "South Lawndale",
+    9
+   ],
+   [
     "Albany Park",
+    9
+   ],
+   [
+    "Near North Side",
     8
    ],
    [
     "Brighton Park",
     8
-   ],
-   [
-    "Gage Park",
-    8
-   ],
-   [
-    "South Lawndale",
-    8
-   ],
-   [
-    "Humboldt Park",
-    8
-   ],
-   [
-    "West Ridge",
-    8
-   ],
-   [
-    "Near North Side",
-    7
    ],
    [
     "Uptown",
@@ -109,11 +101,19 @@
     7
    ],
    [
+    "Humboldt Park",
+    7
+   ],
+   [
     "Lower West Side",
     7
    ],
    [
     "Lincoln Park",
+    6
+   ],
+   [
+    "West Ridge",
     6
    ],
    [
@@ -123,10 +123,6 @@
    [
     "Lincoln Square",
     5
-   ],
-   [
-    "Auburn Gresham",
-    4
    ],
    [
     "Greater Grand Crossing",
@@ -139,6 +135,14 @@
    [
     "Hyde Park",
     4
+   ],
+   [
+    "Auburn Gresham",
+    4
+   ],
+   [
+    "Chicago Lawn",
+    3
    ],
    [
     "Douglas",
@@ -166,10 +170,6 @@
    ],
    [
     "Dunning",
-    3
-   ],
-   [
-    "Roseland",
     3
    ],
    [
@@ -205,7 +205,7 @@
     2
    ],
    [
-    "Kenwood",
+    "Roseland",
     2
    ],
    [
@@ -215,14 +215,6 @@
    [
     "South Deering",
     2
-   ],
-   [
-    "Near South Side",
-    2
-   ],
-   [
-    "Chicago Lawn",
-    1
    ],
    [
     "Woodlawn",
@@ -242,6 +234,10 @@
    ],
    [
     "Edison Park",
+    1
+   ],
+   [
+    "Kenwood",
     1
    ],
    [
@@ -270,10 +266,6 @@
    ],
    [
     "Mount Greenwood",
-    1
-   ],
-   [
-    "Chatham",
     1
    ]
   ]
@@ -308,35 +300,34 @@
   "flagged": [
    {
     "type": "Grocery Store",
-    "area": "Woodlawn",
-    "date": "2026-10-27",
-    "result": "Fail",
-    "inspectionType": "Complaint",
-    "categories": [
-     "Pests"
-    ]
-   },
-   {
-    "type": "Restaurant",
-    "area": "Albany Park",
-    "date": "2026-10-27",
-    "result": "Fail",
+    "area": "Chicago Lawn",
+    "date": "2026-10-29",
+    "result": "Pass w/ Conditions",
     "inspectionType": "Canvass",
     "categories": [
      "Pests",
-     "Hood and exhaust",
-     "Grease trap and drains",
      "Cleaning"
     ]
    },
    {
     "type": "Restaurant",
-    "area": "Avalon Park",
-    "date": "2026-10-27",
+    "area": "Gage Park",
+    "date": "2026-10-29",
     "result": "Pass w/ Conditions",
     "inspectionType": "Canvass",
     "categories": [
-     "Pests"
+     "Cleaning"
+    ]
+   },
+   {
+    "type": "Restaurant",
+    "area": "Albany Park",
+    "date": "2026-10-28",
+    "result": "Fail",
+    "inspectionType": "Canvass Re-Inspection",
+    "categories": [
+     "Pests",
+     "Cleaning"
     ]
    }
   ],
@@ -378,29 +369,29 @@
   ],
   "opening": [
    {
-    "name": "Barney Callaghan's Pub",
-    "address": "10618 S Western Ave",
-    "area": "Beverly",
-    "type": "Liquor",
-    "date": "2026-10-27",
+    "name": "Night Heron",
+    "address": "5499 S Cornell Ave",
+    "area": "Hyde Park",
+    "type": "Restaurant",
+    "date": "2026-10-29",
     "result": "Pass",
     "inspectionType": "License"
    },
    {
-    "name": "Centennial Crafted Beer & Eatery",
-    "address": "733 N La Salle",
+    "name": "Suitsupply",
+    "address": "945 N Rush St",
     "area": "Near North Side",
-    "type": "Restaurant",
-    "date": "2026-10-27",
+    "type": "Suit Store",
+    "date": "2026-10-29",
     "result": "Pass",
     "inspectionType": "License"
    },
    {
-    "name": "Cha-Chin",
-    "address": "407 N Clark St",
+    "name": "Rest + Recreation",
+    "address": "1359 N Wells",
     "area": "Near North Side",
     "type": "Restaurant",
-    "date": "2026-10-27",
+    "date": "2026-10-28",
     "result": "Pass",
     "inspectionType": "License"
    }

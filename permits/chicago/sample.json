@@ -2,36 +2,36 @@
  "source": {
   "name": "City of Chicago Data Portal, Building Permits",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
-  "rowsUpdatedAt": "2026-10-29T12:07:54+00:00",
-  "fetchedAt": "2026-10-29T21:55:58+00:00",
+  "rowsUpdatedAt": "2026-10-31T12:12:57+00:00",
+  "fetchedAt": "2026-11-02T12:05:26+00:00",
   "modified": "Filtered by ProofNotFluff: permits issued in the last 24 months, new construction or renovation, reported cost $500,000 or more, still open (City status Active or Phased Permitting; complete, suspended, cancelled, revoked and expired permits left out), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs a construction clean under its permit (foundation, superstructure, caisson, demolition, roof, facade, mechanical, equipment or site work only) left out; cleaning companies listed as contractor left out; a revision of a permit already on the list counted once; only project-level and business fields kept.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
  "window": {
-  "from": "2024-10-29",
-  "to": "2026-10-29"
+  "from": "2024-11-02",
+  "to": "2026-11-02"
  },
  "counts": {
-  "fetched": 3087,
-  "kept": 1137,
+  "fetched": 3064,
+  "kept": 1134,
   "excluded": {
-   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 249,
    "house or 2 to 3 flat": 599,
+   "one home inside a larger building": 41,
+   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 249,
+   "no commercial or apartment wording": 82,
    "no interior finish work or new building named": 39,
-   "no commercial or apartment wording": 83,
-   "one home inside a larger building": 40,
    "common areas only, no homes worked on": 7,
    "apartment building with no unit count (could be a 2 or 3 flat)": 8,
    "no business listed as general contractor": 5,
-   "closed, complete or suspended": 905,
-   "revision or second listing of a permit already listed": 15
+   "closed, complete or suspended": 887,
+   "revision or second listing of a permit already listed": 13
   },
   "keptByType": {
-   "New construction": 337,
-   "Renovation": 800
+   "New construction": 335,
+   "Renovation": 799
   },
-  "keptCost": 9108692744,
-  "keptUnits": 6231,
+  "keptCost": 8579332489,
+  "keptUnits": 6213,
   "topAreas": [
    [
     "Loop",
@@ -39,7 +39,7 @@
    ],
    [
     "Near North Side",
-    138
+    139
    ],
    [
     "Near West Side",
@@ -47,7 +47,7 @@
    ],
    [
     "West Town",
-    71
+    69
    ],
    [
     "Lincoln Park",
@@ -55,7 +55,7 @@
    ],
    [
     "Lake View",
-    40
+    39
    ],
    [
     "Logan Square",
@@ -63,19 +63,14 @@
    ],
    [
     "Uptown",
-    26
+    27
    ]
   ],
   "topGCs": [
    {
     "name": "Skender Construction LLC",
-    "projects": 25,
-    "cost": 664540133
-   },
-   {
-    "name": "Executive Construction, Inc.",
-    "projects": 23,
-    "cost": 63080400
+    "projects": 24,
+    "cost": 659040133
    },
    {
     "name": "JC Anderson Inc",
@@ -88,9 +83,14 @@
     "cost": 362960308
    },
    {
+    "name": "Executive Construction, Inc.",
+    "projects": 22,
+    "cost": 62480400
+   },
+   {
     "name": "Bulley & Andrews, L.L.C.",
-    "projects": 21,
-    "cost": 164987361
+    "projects": 20,
+    "cost": 163975924
    },
    {
     "name": "Leopardo Construction Inc",
@@ -103,6 +103,11 @@
     "cost": 25799000
    },
    {
+    "name": "Clune Construction Company, L.P.",
+    "projects": 15,
+    "cost": 50716760
+   },
+   {
     "name": "Development Solutions, Inc",
     "projects": 15,
     "cost": 48036520
@@ -111,11 +116,6 @@
     "name": "Redmond Construction Corp.",
     "projects": 14,
     "cost": 71125690
-   },
-   {
-    "name": "Clune Construction Company, L.P.",
-    "projects": 14,
-    "cost": 49802408
    },
    {
     "name": "Reed Construction LLC",
@@ -128,7 +128,7 @@
     "cost": 59609486
    }
   ],
-  "nearFinish": 18
+  "nearFinish": 17
  },
  "projects": [
   {
@@ -204,42 +204,6 @@
    "lon": -87.646301
   },
   {
-   "permit": "101039784",
-   "issued": "2024-10-29",
-   "type": "Renovation",
-   "scope": "Phase 3 of 3 interior & exterior alterations to existing 17-story office building to include installation of new exterior window wall system",
-   "units": null,
-   "sleeping": null,
-   "cost": 292000000,
-   "address": "171 N La Salle St",
-   "communityArea": "Loop",
-   "status": "Phased Permitting",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "Clark Construction Group Chicago LLC"
-   ],
-   "lat": 41.885127,
-   "lon": -87.632278
-  },
-  {
-   "permit": "101061630",
-   "issued": "2024-10-29",
-   "type": "New construction",
-   "scope": "Trad. Ds - 2019 cbc: interior fit out phase for proposed 8 story (above grade) medical center. Occupancy: i - instit and b - business, accessory...",
-   "units": null,
-   "sleeping": null,
-   "cost": 263000000,
-   "address": "5644 S Drexel Ave",
-   "communityArea": "Hyde Park",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "Turner Construction Company"
-   ],
-   "lat": 41.79185,
-   "lon": -87.603901
-  },
-  {
    "permit": "101083648",
    "issued": "2026-05-28",
    "type": "Renovation",
@@ -286,7 +250,7 @@
    "address": "1904 W Adams St",
    "communityArea": "Near West Side",
    "status": "Active",
-   "milestone": "Permit Issued (Fee Due)",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "James McHugh Construction Co"
    ],
@@ -340,7 +304,7 @@
    "address": "400 S La Salle St",
    "communityArea": "Loop",
    "status": "Active",
-   "milestone": "Inspections",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
    "gc": [
     "Arco/Murray National Construction Company LLC"
    ],
@@ -580,6 +544,42 @@
    ],
    "lat": 41.722481,
    "lon": -87.583076
+  },
+  {
+   "permit": "101067603",
+   "issued": "2025-09-11",
+   "type": "Renovation",
+   "scope": "Interior alterations to existing 24-story office building to convert floors 4-24 to residential apartments (252 dwelling units) to include window...",
+   "units": 252,
+   "sleeping": null,
+   "cost": 51000000,
+   "address": "65 E Wacker Pl",
+   "communityArea": "Loop",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "James McHugh Construction Co"
+   ],
+   "lat": 41.886704,
+   "lon": -87.625496
+  },
+  {
+   "permit": "101077075",
+   "issued": "2026-03-16",
+   "type": "Renovation",
+   "scope": "Interior alterations to levels b2, b1, l1, and l2 for building shared amenity space...",
+   "units": null,
+   "sleeping": null,
+   "cost": 50118593,
+   "address": "100 W Randolph St",
+   "communityArea": "Loop",
+   "status": "Active",
+   "milestone": "Inspections (Certificate Of Occupancy Required)",
+   "gc": [
+    "Skender Construction LLC"
+   ],
+   "lat": 41.884586,
+   "lon": -87.63101
   }
  ],
  "nearFinish": [
@@ -600,24 +600,6 @@
    ],
    "lat": 41.895898,
    "lon": -87.620773
-  },
-  {
-   "permit": "101076229",
-   "issued": "2026-03-09",
-   "type": "Renovation",
-   "scope": "Existing office tenant alterations on floors 43, 45 and expansion to the entire 44th floor to include new conveniance stair from the 43rd floor thru...",
-   "units": null,
-   "sleeping": null,
-   "cost": 5500000,
-   "address": "181 W Madison St",
-   "communityArea": "Loop",
-   "status": "Active",
-   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
-   "gc": [
-    "Skender Construction LLC"
-   ],
-   "lat": 41.881841,
-   "lon": -87.633255
   },
   {
    "permit": "101053170",
@@ -762,6 +744,24 @@
    ],
    "lat": 41.878582,
    "lon": -87.638579
+  },
+  {
+   "permit": "101066773",
+   "issued": "2025-06-05",
+   "type": "New construction",
+   "scope": "Erect new 4 story, 3-unit apartment building w/stair penthouse and private roof deck, ground floor retail space and attached 2 car garage with...",
+   "units": 3,
+   "sleeping": null,
+   "cost": 900000,
+   "address": "1412 W Belmont Ave",
+   "communityArea": "Lake View",
+   "status": "Active",
+   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
+   "gc": [
+    "Desmond Builders"
+   ],
+   "lat": 41.939865,
+   "lon": -87.664396
   }
  ]
 }

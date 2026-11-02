@@ -432,9 +432,10 @@ def run_check():
             if len(tp) < 2:
                 lines.append(f"{city} {tr}: {len(tp)} fresh leads, no issue")
                 continue
+            avail = min(3, len(tp))   # a week with only 2 fresh leads sends 2 (the gate allows 2 or 3); flag only leads the word cap drops (Todd's go, live chat, Nov 2, 2026)
             ts_, tb_, tp, tip = build_issue(city, tp, sp, sent=sent_ids(city, trade=tr), trade=tr, first=True)
             probs += [f"{city} {tr} first issue: {x}" for x in tip]
-            if len(tp) < 3:
+            if len(tp) < avail:
                 probs.append(f"{city} {tr} first issue fits only {len(tp)} leads under {ISSUE_MAX} words")
         ts, tb = trial(city, 9)
         probs += [f"{city} trial: {x}" for x in trial_problems(ts, tb, city, sp)]

@@ -54,7 +54,11 @@ PERMIT_BACK = 540     # days: a permit up to 18 months before the business's fir
 OPEN_RULE_DAYS = 30
 STAGES = ["permitted", "inspected", "licensed", "open"]
 STAGE_LABEL = {"permitted": "Permitted", "inspected": "Inspected", "licensed": "Licensed", "open": "Open"}
-BUILD_TYPES = re.compile(r"RENOVATION|ALTERATION|NEW CONSTRUCTION|EASY PERMIT|SIGNS", re.I)
+BUILD_TYPES = re.compile(r"RENOVATION|ALTERATION|NEW CONSTRUCTION|EASY PERMIT|EXPRESS PERMIT|SIGNS", re.I)   # Express replaced Easy, Nov 6, 2023
+PRIOR_DAYS = 730      # days: the same name inspected here under another license this recently means a relicense, not an opening
+NOT_OPENING = {"relicensed": "held this license type at this site before (a relicense, not an opening)",
+               "added": "added a license at a site it already held one (an existing business, not an opening)"}
+PRIOR_REASON = "the same business was already inspected at this address under an earlier license (a relicense, not an opening)"
 PASSED = {"PASS", "PASS W/ CONDITIONS"}
 
 # words in a permit's work text that tie it to a food business (a kitchen alone is any home's kitchen)
@@ -153,7 +157,7 @@ def stage_of(b, today):
         routine = sorted(e for e in ((e["d"], e["result"].upper()) for e in ev if e["t"] == "routine") if e[0] >= issued and e[1] in PASSED)
         if routine:
             return "open", routine[0][0], "routine"
-        passed = [e["d"] for e in li if e["result"].upper() in PASSED]
+        passed = [e["d"] for e in li if e["result"].upper() in PASSED and e["d"] <= issued]   # the pre-opening one, not a later second license's
         if passed and (today - dt.date.fromisoformat(max(issued, max(passed)))).days >= OPEN_RULE_DAYS:
             d = (dt.date.fromisoformat(max(issued, max(passed))) + dt.timedelta(days=OPEN_RULE_DAYS)).isoformat()
             return "open", d, "rule"
@@ -207,6 +211,15 @@ class City:
         like = " OR ".join(f"upper(work_description) like '%{w}%'" for w in words)
         return self.c.pull(PERMITS, select=self.PERMIT_COLS, where=f"issue_date >= '{since}' AND ({like})", order="id", key="id")
 
+    def inspections_at(self, numbers, since):
+        """Every food inspection at these house numbers since a date (any street; the join keeps the same building)."""
+        out = []
+        nums = sorted({n for n in numbers if n.isdigit()}, key=int)
+        for i in range(0, len(nums), 80):
+            where = " OR ".join(f"starts_with(address, '{n} ')" for n in nums[i:i + 80])
+            out += self.c.pull(FOOD, select=self.INSP_COLS, where=f"({where}) AND inspection_date >= '{since}'", order="inspection_id", key="inspection_id")
+        return out
+
     def zip_centers(self):
         """{zip: [lat, lon, n]}: the average point of every Chicago business license on record in each ZIP (the City's own
         points), the center a rule like "within 3 miles of 60631" measures from."""
@@ -251,8 +264,19 @@ def licensed_food(today, licenses_rows, areas, checks_fn):
     return food, reasons, left, checks
 
 
+def same_name(a, b):
+    """licenses_chicago's rule: the same name, or one is the other's first whole words with at least 5 letters."""
+    ta, tb = lc.name_words(a), lc.name_words(b)
+    if not ta or not tb:
+        return False
+    if ta == tb:
+        return True
+    short, long_ = (ta, tb) if len(ta) <= len(tb) else (tb, ta)
+    return len("".join(short)) >= 5 and long_[:len(short)] == short
+
+
 def build(today, lic_recs, left, insp_rows, pending_rows, pending_license_rows, permits, food_permit_rows, site_food_licenses,
-          rest_dnl=None, lic_dnl=None):
+          rest_dnl=None, lic_dnl=None, prior_rows=()):
     """The joined businesses and the counts. Every argument is already fetched, so the selftest drives this with planted rows."""
     since = (today - dt.timedelta(days=WINDOW)).isoformat()
     rest_dnl = rl.dnl_load() if rest_dnl is None else rest_dnl
@@ -264,8 +288,19 @@ def build(today, lic_recs, left, insp_rows, pending_rows, pending_license_rows, 
         if n and all(x.get("inspection_id") != y.get("inspection_id") for y in insp_by_lic[n]):
             insp_by_lic[n].append(x)
     biz = []
+    prior = collections.defaultdict(list)          # every City food inspection at each building, any license
+    for x in prior_rows:
+        prior[building(x.get("address"))].append(x)
+
+    def operated_before(b, first):
+        lo = (dt.date.fromisoformat(first) - dt.timedelta(days=PRIOR_DAYS)).isoformat()
+        return any(lic_num(x.get("license_")) not in b["lics"] and lo <= day(x.get("inspection_date")) < first
+                   and (same_name(x.get("dba_name"), b["name"]) or same_name(x.get("aka_name"), b["name"])) for x in prior.get(b["key"], []))
     # 1. licensed food businesses
     for r in lic_recs:
+        if r.get("history") in NOT_OPENING:
+            reasons[NOT_OPENING[r["history"]]] += 1
+            continue
         b = {"id": "L" + r["license"], "name": r["business"], "address": r["address"], "zip": r["zip"], "area": r["communityArea"],
              "lat": r["lat"], "lon": r["lon"], "licenseType": r["licenseType"], "otherTypes": r.get("otherTypes") or [], "activity": r["activity"],
              "history": r.get("history") or "", "lics": list(r["lics"]), "key": building(r.get("acct_addr") or r["address"]), "events": []}
@@ -282,6 +317,9 @@ def build(today, lic_recs, left, insp_rows, pending_rows, pending_license_rows, 
             b.setdefault("ftype", x.get("facility_type") or "")
         if any((e.get("result") or "").upper() == "OUT OF BUSINESS" for e in b["events"]):
             reasons["the City recorded it out of business"] += 1
+            continue
+        if operated_before(b, min(e["d"] for e in b["events"])):
+            reasons[PRIOR_REASON] += 1
             continue
         biz.append(b)
     have = {n for r in lic_recs for n in r["lics"]}        # every new food license, kept or not, is never "not issued yet"
@@ -324,7 +362,27 @@ def build(today, lic_recs, left, insp_rows, pending_rows, pending_license_rows, 
              "area": last.get("_area") or "", "lat": rl._f(last.get("latitude")), "lon": rl._f(last.get("longitude")), "licenseType": "",
              "otherTypes": [], "activity": "", "history": "", "lics": [n], "key": building(last.get("address")), "ftype": last.get("facility_type") or "",
              "events": [insp_event(x) for x in rows]}
+        if operated_before(b, min(e["d"] for e in b["events"])):
+            reasons[PRIOR_REASON] += 1
+            continue
         biz.append(b)
+    # one row per business and address: a site's second license number (a liquor or second food license, a hotel's bars)
+    # joins the first, whichever was issued (the Blackstone Hotel's 7 license numbers at 636 S Michigan Ave are one row)
+    first_of, kept = {}, []
+    for b in sorted(biz, key=lambda b: (b["id"][0] != "L", b["id"])):
+        k = (b["key"], lc.name_key(b["name"])) if b["name"] and b["key"] else None
+        t = first_of.get(k) if k else None
+        if t is None:
+            if k:
+                first_of[k] = b
+            kept.append(b)
+            continue
+        t["lics"] += [n for n in b["lics"] if n not in t["lics"]]
+        seen = {(e["t"], e.get("id")) for e in t["events"]}
+        t["events"] += [e for e in b["events"] if (e["t"], e.get("id")) not in seen]
+        t["ftype"] = t.get("ftype") or b.get("ftype")
+        reasons["another license number of a business already listed at the same address (listed once)"] += 1
+    biz = kept
     # 3. a building permit at the address, before or after the other records
     by_key = collections.defaultdict(list)
     for p in permits:
@@ -379,7 +437,7 @@ def build(today, lic_recs, left, insp_rows, pending_rows, pending_license_rows, 
         b["events"].sort(key=lambda e: (e["d"], ["permit", "linsp", "license", "routine"].index(e["t"])))
         b["stage"], b["stageDate"], b["openBy"] = stage_of(b, today)
         scopes = " ".join(e.get("scope", "") for e in b["events"] if e["t"] == "permit" and e.get("food"))
-        b["kind"] = food_kind(b["activity"], " ".join([b["licenseType"]] + b["otherTypes"]), b.get("ftype"), scopes)
+        b["kind"] = food_kind(b["activity"], " ".join([b["licenseType"]] + b["otherTypes"]), b.get("ftype"), scopes, b["name"])
         b["first"] = b["events"][0]["d"]
         b["last"] = max(e["d"] for e in b["events"])
     biz = [b for b in biz if b["last"] >= since]
@@ -491,7 +549,8 @@ def run(a):
     for p in permits + food_permits:
         p["_area"] = lc.area_of(p.get("latitude"), p.get("longitude"), areas)
     site_lics = city.food_licenses_at({permit_key(p).split(" ")[0] for p in food_permits if permit_key(p)})
-    biz, reasons = build(today, lic_recs, left, insp, pend, pend_lic_rows, permits, food_permits, site_lics)
+    prior = city.inspections_at(keys_numbers, (today - dt.timedelta(days=WINDOW + PRE_LICENSE + PRIOR_DAYS)).isoformat())
+    biz, reasons = build(today, lic_recs, left, insp, pend, pend_lic_rows, permits, food_permits, site_lics, prior_rows=prior)
     zips = city.zip_centers()
     # the permit-only rows' community area comes from the permit's own point
     source = {"names": {"licenses": "City of Chicago Data Portal, Business Licenses", "inspections": "City of Chicago Data Portal, Food Inspections",
@@ -503,7 +562,8 @@ def run(a):
                            "permit contact names are never kept.")}
     extra = {"window": {"from": since, "to": today.isoformat(), "days": WINDOW}, "licenseChecks": checks,
              "licenseLeftOut": dict(lic_reasons), "pulled": {"licenseRows": len(rows), "inspectionRows": len(insp), "licenseInspectionRows": len(pend),
-                                                              "permitsAtAddresses": len(permits), "foodWordPermits": len(food_permits)}}
+                                                              "permitsAtAddresses": len(permits), "foodWordPermits": len(food_permits),
+                                                              "inspectionsAtAddresses": len(prior)}}
     m = match_counts(biz, reasons, extra)
     m["ranAt"] = now.isoformat(timespec="seconds")
     m["rowsUpdatedAt"] = upd
@@ -552,7 +612,10 @@ def selftest():
                     act="Preparation and Sale of Coffee and/or Drinks"),                                  # licensed, no inspection on file
                 lic("103", "Old Bakery", "3000 N CLARK ST", "2026-08-01", act="Bakery"),                  # 30-day rule
                 lic("104", "Two Doors A", "4000 N BROADWAY", "2026-10-01"), lic("105", "Two Doors B", "4000 N BROADWAY", "2026-10-02"),
-                lic("106", "Gone Grill", "5000 S HALSTED ST", "2026-09-01")]
+                lic("106", "Gone Grill", "5000 S HALSTED ST", "2026-09-01"),
+                lic("107", "Wing Spot", "8000 S CICERO AVE", "2026-08-24"),                                 # same name here under license 77: out
+                lic("108", "New Owner Cafe", "8100 S CICERO AVE", "2026-08-24"),                            # another name here before: kept
+                dict(lic("109", "Corner Tap", "8200 S CICERO AVE", "2026-08-24"), history="relicensed")]   # licenses_chicago says relicensed: out
     insp = [ins("1", "101", "2026-09-01", "License", "Fail"), ins("2", "101", "2026-09-08", "License Re-Inspection", "Pass"),
             ins("3", "101", "2026-10-15", "Canvass", "Pass"), ins("4", "101", "2026-08-01", "Canvass", "Pass"),   # a canvass before the license is not routine-after
             ins("5", "103", "2026-07-25", "License", "Pass", addr="3000 N CLARK ST", name="OLD BAKERY"),
@@ -562,7 +625,9 @@ def selftest():
             ins("22", "203", "2026-10-25", "License", "Pass", addr="6200 N SHERIDAN RD", name="BRIGHT KIDS ACADEMY", ft="Children's Services Facility"),
             ins("23", "204", "2026-10-25", "License", "Pass", addr="6300 N SHERIDAN RD", name="OLDER SPOT"),         # issued long ago: out
             ins("24", "205", "2026-05-01", "License", "Pass", addr="6400 N SHERIDAN RD", name="STALE SPOT"),         # stale: out
-            ins("2", "101", "2026-09-08", "License Re-Inspection", "Pass")]                                          # already licensed (same row)
+            ins("2", "101", "2026-09-08", "License Re-Inspection", "Pass"),                                          # already licensed (same row)
+            ins("26", "301", "2026-10-26", "License", "Pass"),                                                        # Luna Tacos' liquor license number
+            ins("27", "206", "2026-10-26", "License", "Pass", addr="6000 N SHERIDAN RD", name="NEW NOODLE BAR")]      # a second number, same place
     pend_lic = [{"license_number": "204", "application_type": "ISSUE", "date_issued": "2019-01-01T00:00:00"}]
     permits = [per("9001", "2026-05-01", "INTERIOR BUILD OUT FOR NEW RESTAURANT, TYPE I HOOD"),
                per("9002", "2026-06-01", "REPLACE ROOF", typ="PERMIT - EASY PERMIT PROCESS"),
@@ -577,16 +642,22 @@ def selftest():
                     per("9104", "2026-10-03", "RESTAURANT BUILD OUT", num="1000", name="CHICAGO AVE"),                      # site already on radar
                     per("9105", "2026-10-04", "INSTALL GRAB BARS", num="7300", name="ASHLAND AVE")]
     site = [{"address": "7200 W ASHLAND AVE", "license_description": "Retail Food Establishment", "expiration_date": "2027-05-15T00:00:00"}]
-    biz, reasons = build(today, lic_recs, [], insp, pend, pend_lic, permits, food_permits, site, rest_dnl=set())
+    prior = [ins("90", "77", "2025-08-08", "Canvass", "Pass", addr="8000 S CICERO AVE", name="WING SPOT RESTAURANT"),
+             ins("91", "78", "2025-08-08", "Canvass", "Pass", addr="8100 S CICERO AVE", name="OLD DINER")]
+    biz, reasons = build(today, lic_recs, [], insp, pend, pend_lic, permits, food_permits, site, rest_dnl=set(), prior_rows=prior)
     by = {b["id"]: b for b in biz}
-    assert set(by) == {"L101", "L102", "L103", "L104", "L105", "I201", "P9101"}, sorted(by)
+    assert set(by) == {"L101", "L102", "L103", "L104", "L105", "L108", "I201", "P9101"}, sorted(by)
+    assert reasons[PRIOR_REASON] == 1 and reasons[NOT_OPENING["relicensed"]] == 1
+    assert same_name("WING SPOT RESTAURANT", "Wing Spot") and not same_name("OLD DINER", "New Owner Cafe") and not same_name("CAFE", "CAFE ONE")
     L = by["L101"]
-    assert [e["t"] for e in L["events"]] == ["permit", "permit", "linsp", "linsp", "license", "routine"], [e["t"] for e in L["events"]]
+    assert [e["t"] for e in L["events"]] == ["permit", "permit", "linsp", "linsp", "license", "routine", "linsp"], [e["t"] for e in L["events"]]
     assert L["stage"] == "open" and L["stageDate"] == "2026-10-15" and L["openBy"] == "routine"
     assert all(e["link"].startswith(PORTAL) for e in L["events"]) and L["events"][0]["food"] and not L["events"][1]["food"]
     assert by["L102"]["stage"] == "licensed" and by["L102"]["kind"] == "coffee" and [e["t"] for e in by["L102"]["events"]] == ["license"]
     assert by["L103"]["stage"] == "open" and by["L103"]["openBy"] == "rule" and by["L103"]["stageDate"] == "2026-08-31" and by["L103"]["kind"] == "bakery"
     assert [e["id"] for e in by["L104"]["events"] if e["t"] == "permit"] == ["9005"] and by["L104"]["shared"]
+    assert by["L101"]["lics"] == ["101", "301"] and any(e.get("id") == "26" for e in by["L101"]["events"]) and by["I201"]["lics"] == ["201", "206"]
+    assert reasons["another license number of a business already listed at the same address (listed once)"] == 2
     assert by["I201"]["stage"] == "inspected" and by["I201"]["name"] == "New Noodle Bar" and [e["id"] for e in by["I201"]["events"] if e["t"] == "permit"] == ["9006"]
     assert by["P9101"]["stage"] == "permitted" and by["P9101"]["name"] == "" and by["P9101"]["kind"] == "bakery"
     assert reasons["the City recorded it out of business"] == 1 and reasons["name could be a person's"] == 1 and reasons["school, care or health site"] == 1
@@ -594,8 +665,8 @@ def selftest():
     assert reasons["a home's kitchen, not a food business"] == 1 and reasons["a current food license already at the site (a remodel, not a new business)"] == 1
     assert biz[0]["last"] >= biz[-1]["last"]
     m = match_counts(biz, reasons, {})
-    assert m["licensedFood"] == 5 and m["licenseToInspection"]["matched"] == 2 and m["licenseToPermit"]["matched"] == 3
-    assert m["order"] == {"inspection on or before the license": 2} and m["inspectedNoLicense"] == {"n": 1, "withPermit": 1}
+    assert m["licensedFood"] == 6 and m["licenseToInspection"]["matched"] == 2 and m["licenseToPermit"]["matched"] == 3
+    assert m["order"] == {"inspection on or before the license": 2} and m["inspectedNoLicense"] == {"n": 1, "withPermit": 1}, m["order"]
     txt = json.dumps(m)
     assert "Luna" not in txt and "CHICAGO AVE" not in txt.upper(), "match counts carry no names or addresses"
     assert "violations" not in City.INSP_COLS and "contact" not in City.PERMIT_COLS and "inspector" not in City.INSP_COLS

@@ -140,7 +140,7 @@ def payload(full):
 
 
 def letters_json():
-    return {"trades": RL.TRADES, "record": RL.RECORD_LINE, "open": RL.OPEN, "sign": RL.SIGN, "stop": RL.STOP,
+    return {"trades": RL.TRADES, "record": RL.RECORD_LINE, "open": RL.OPEN, "sign": RL.SIGN, "stop": RL.STOP, "subjectWords": RL.SUBJECT_NAME_WORDS,
             "rules": LETTER_RULES}
 
 
@@ -247,7 +247,7 @@ function lFmt(t,o){return t.replace(/\{(\w+)\}/g,(_,k)=>o[k]??"");}
 function letterFor(b,trade,me,LT){const t=LT.trades.find(x=>x.key===trade);const r=b.rec;if(!t||!r)return null;
 const name=b.n||"";const who=name?name+" team":"there";
 const rec=lFmt(LT.record[r.t],{licenseType:(r.ty||b.lt||"").trim()||"food",street:b.st,date:lDate(r.d)});
-const subject=lFmt(t.subject,{name:name||("the new space on "+b.st)});
+const nw=(name.match(/[A-Za-z0-9$][A-Za-z0-9$'.,%-]*/g)||[]).length;const subject=lFmt(t.subject,{name:!name?"the new space on "+b.st:nw<=LT.subjectWords?name:"your space on "+b.st});
 const body=[lFmt(LT.open,Object.assign({who},me)),rec,t.offer,t.ask].join(" ");
 return {subject,body,sign:lFmt(LT.sign,me),stop:lFmt(LT.stop,me)};}
 """
@@ -320,7 +320,7 @@ table.rt{width:100%;border-collapse:collapse;font-size:14.5px}
 .rmap .dots .permitted{fill:var(--s-permitted)}.rmap .dots .inspected{fill:#B88A1E}.rmap .dots .licensed{fill:var(--s-licensed)}.rmap .dots .open{fill:#6B6E7E}
 .mleg{display:flex;flex-wrap:wrap;gap:6px 14px;margin:10px 2px 0;font-size:13px;color:var(--ink2)}
 .mleg span{display:inline-flex;align-items:center;gap:6px}.mleg i{width:10px;height:10px;border-radius:50%;display:inline-block}
-.mleg .scale i{border-radius:2px;width:16px}
+.mleg .scale{gap:0}.mleg .scale i{border-radius:2px;width:16px;margin:0}.mleg .scale i:last-of-type{margin-right:6px}
 .mfind{display:grid;gap:4px;margin:0 0 10px;font-size:12.5px;font-weight:700;color:var(--muted)}
 .mfind select{height:44px;padding:0 12px;border:1px solid var(--field);border-radius:10px;background:#fff;font-weight:600;font-size:14.5px;color:var(--ink)}
 .mtop{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:2px}
@@ -495,24 +495,25 @@ else{viewToday(q);nav="today";}
 setNav(nav);window.scrollTo(0,0);const h=$("#app h1");if(h&&route.ready){h.setAttribute("tabindex","-1");h.focus({preventScroll:true});}route.ready=true;}
 
 /* ---------- Today ---------- */
-function viewToday(q){const st=q.get("s")||"",ar=q.get("ar")||"",n=+(q.get("n")||40);
+function viewToday(q){const st=q.get("s")||"",ar=q.get("ar")||"",wd=+(q.get("w")||0),n=+(q.get("n")||40);
 const all=D.biz,moving=all.filter(b=>b.s!=="open");const wk=weekFrom();
 document.title="Today | Chicago Restaurant Radar";
 const cnt={};for(const s of STAGES){const r=all.filter(b=>b.s===s);cnt[s]={n:r.length,w:r.filter(b=>b.sd>=wk).length};}
-let rows=all.filter(b=>(!st||b.s===st)&&(!ar||b.ar===ar));rows.sort((a,b)=>b.l.localeCompare(a.l)||b.id.localeCompare(a.id));
-const href=(o)=>{const p=new URLSearchParams();const s2=o.s??st,a2=o.ar??ar;if(s2)p.set("s",s2);if(a2)p.set("ar",a2);if(o.n)p.set("n",o.n);const t=p.toString();return "#/"+(t?"?"+t:"");};
+const wf=wd?addDays(D.asOf,-(wd-1)):"";let rows=all.filter(b=>(!st||b.s===st)&&(!ar||b.ar===ar)&&(!wf||b.sd>=wf));rows.sort((a,b)=>b.l.localeCompare(a.l)||b.id.localeCompare(a.id));
+const href=(o)=>{const p=new URLSearchParams();const s2=o.s??st,a2=o.ar??ar,w2=o.w??wd;if(s2)p.set("s",s2);if(a2)p.set("ar",a2);if(+w2)p.set("w",w2);if(o.n)p.set("n",o.n);const t=p.toString();return "#/"+(t?"?"+t:"");};
 const areas=[...new Set(all.map(b=>b.ar).filter(Boolean))].sort();
 $("#app").innerHTML=`<div class="ph"><div><p class="eyebrow">Chicago Restaurant Radar</p><h1>${int(moving.length)} Chicago food businesses moving toward opening</h1>
 <p>From the City of Chicago's building permits, food inspections and business licenses, ${esc(day(D.window.from))} to ${esc(day(D.asOf))}. Each one is in the stage its newest City record shows.</p></div></div>
-<nav class="stg" aria-label="Stages">${STAGES.map(s=>`<a class="sc ${s}" href="${href({s:st===s?"":s,n:0})}"${st===s?' aria-current="true"':""}><span class="t"><span>${SL[s]}</span>${ico("chev","s ar")}</span><span class="n">${int(cnt[s].n)}</span>
+<nav class="stg" aria-label="Stages">${STAGES.map(s=>`<a class="sc ${s}" href="${href({s:st===s?"":s,w:0,n:0})}"${st===s?' aria-current="true"':""}><span class="t"><span>${SL[s]}</span>${ico("chev","s ar")}</span><span class="n">${int(cnt[s].n)}</span>
 <span class="w">${cnt[s].w?`<b>${int(cnt[s].w)} new</b> this week`:"none new this week"}</span><span class="h">${esc(STAGE_HELP[s])}</span></a>`).join("")}</nav>
 <div class="tdy"><section class="panel" aria-labelledby="tH"><div class="sec-h"><h2 id="tH">Newest first<span class="cnt">${int(rows.length)}</span></h2><a href="#/rules">Write a rule</a></div>
 <div class="fbar"><label class="sr" for="fs">Stage</label><select id="fs"><option value="">All stages</option>${STAGES.map(s=>`<option value="${s}"${s===st?" selected":""}>${SL[s]}</option>`).join("")}</select>
 <label class="sr" for="fa">Community area</label><select id="fa"><option value="">All community areas</option>${areas.map(a=>`<option${a===ar?" selected":""}>${esc(a)}</option>`).join("")}</select>
-${st||ar?`<button class="clr" type="button" id="clr">Clear filters</button>`:""}</div>
+<label class="sr" for="fw">Reached the stage</label><select id="fw"><option value="0">Any time</option><option value="7"${wd===7?" selected":""}>New this week</option><option value="30"${wd===30?" selected":""}>Last 30 days</option></select>
+${st||ar||wd?`<button class="clr" type="button" id="clr">Clear filters</button>`:""}</div>
 ${rowsTable(rows.slice(0,n),false)}${rows.length>n?`<div class="more"><a class="btn" href="${href({n:n+40})}">Show ${int(Math.min(40,rows.length-n))} more</a></div>`:""}</section>
 <section class="panel" aria-labelledby="mH"><div class="sec-h"><h2 id="mH">Where they are</h2></div><div class="rmap">${mapHtml(all.filter(b=>!st||b.s===st),ar)}</div></section></div>`;
-$("#fs").onchange=e=>go(href({s:e.target.value,n:0}));$("#fa").onchange=e=>go(href({ar:e.target.value,n:0}));
+$("#fs").onchange=e=>go(href({s:e.target.value,n:0}));$("#fa").onchange=e=>go(href({ar:e.target.value,n:0}));$("#fw").onchange=e=>go(href({w:e.target.value,n:0}));
 if($("#clr"))$("#clr").onclick=()=>go("#/");
 wireMap(href);}
 function rowsTable(rows,dist){if(!rows.length)return `<p class="empty">No businesses match. Clear a filter or a chip to see more.</p>`;
@@ -525,12 +526,12 @@ return `<label class="mfind">Community area<select id="mf"><option value="">Whol
 <div class="gm-stage"><svg viewBox="0 0 ${M.w} ${M.h}" role="img" aria-labelledby="mT"><title id="mT">Map of Chicago community areas, shaded by how many businesses are in each, with a dot for each business colored by stage</title>
 <g class="gm-a">${M.areas.map(a=>`<path data-a="${esc(a.name)}" class="${cls(by[a.name])}${a.name===sel?" sel":""}" d="${a.d}"><title>${esc(a.name)}: ${int(by[a.name]||0)}</title></path>`).join("")}</g>
 <g class="dots">${rows.filter(b=>b.x!=null).map(b=>`<circle class="${b.s}" cx="${b.x}" cy="${b.y}" r="2.6"/>`).join("")}</g></svg></div>
-<div class="mleg" aria-hidden="true">${STAGES.map(s=>`<span><i style="background:var(--s-${s==="inspected"?"x":s})" class="lg-${s}"></i>${SL[s]}</span>`).join("")}</div>
+<div class="mleg" aria-hidden="true">${STAGES.map(s=>`<span><i class="lg-${s}"></i>${SL[s]}</span>`).join("")}<span class="scale"><i style="background:var(--gm1)"></i><i style="background:var(--gm3)"></i>More businesses in the area</span></div>
 <ul class="mtop" aria-label="Community areas with the most businesses">${top.map(([n,c])=>`<li><button type="button" data-a="${esc(n)}"><span>${esc(n)}</span><span class="bar2" aria-hidden="true"><i style="width:${Math.round(100*c/mx)}%"></i></span><b>${int(c)}</b></button></li>`).join("")}</ul>`;}
 function wireMap(href){const pick=a=>go(href({ar:a,n:0}));const f=$("#mf");if(f)f.onchange=e=>pick(e.target.value);
 document.querySelectorAll(".rmap .gm-a path").forEach(p=>p.addEventListener("click",()=>pick(p.dataset.a===parse().q.get("ar")?"":p.dataset.a)));
 document.querySelectorAll(".mtop button").forEach(b=>b.onclick=()=>pick(b.dataset.a));
-document.querySelectorAll(".mleg i").forEach(i=>{const s=i.className.replace("lg-","");i.style.background=s==="inspected"?"#B88A1E":s==="open"?"#6B6E7E":`var(--s-${s})`;});}
+document.querySelectorAll(".mleg i[class^=lg-]").forEach(i=>{const s=i.className.replace("lg-","");i.style.background=s==="inspected"?"#B88A1E":s==="open"?"#6B6E7E":`var(--s-${s})`;});}
 
 /* ---------- One business ---------- */
 function viewBiz(b){document.title=title(b)+" | Chicago Restaurant Radar";
@@ -544,7 +545,7 @@ return `<li class="${e.t}"><span class="dot" aria-hidden="true"></span><div clas
 const facts=[["Type",V.kindLabel[b.k]],["License",b.lt?(b.lt+(b.ot.length?" (also "+b.ot.join(", ")+")":"")):""],["License number",b.li.join(", ")],["City history",{first:"First license on the City's record for this business",site:"A new site for a business licensed elsewhere in Chicago",added:"A new license at a site where it already held one",relicensed:"Held this license type at this site before"}[b.hi]||""],["ZIP",b.z]].filter(x=>x[1]);
 $("#app").innerHTML=`<a class="back" href="#/" id="back">${ico("back")}Back</a>
 <div class="bh"><div><p class="eyebrow">${esc(V.kindLabel[b.k])}${b.ar?" · "+esc(b.ar):""}</p><h1>${esc(title(b))}</h1><p class="ad">${esc(b.a)}</p></div>${sp(b.s,1)}</div>
-<ol class="steps4 panel" aria-label="Stages">${steps.map(([s,e,none],i)=>`<li class="${s}${e?" done":" none"}${i===idx?" now":""}"${i===idx?' aria-current="step"':""}><span class="sr">${i<=idx||e?"Reached: ":"Not reached: "}</span><b>${SL[s]}</b>${e?esc(day(e.d))+(s==="open"&&b.ob==="rule"?" (our 30-day rule)":s==="open"?" (routine inspection passed)":""):esc(none)}</li>`).join("")}</ol>
+<ol class="steps4 panel" aria-label="Stages">${steps.map(([s,e,none],i)=>`<li class="${s}${e?" done":" none"}${i===idx?" now":""}"${i===idx?' aria-current="step"':""}><span class="sr">${e?"On record: ":i<idx?"No record, later stage reached: ":"Not reached: "}</span><b>${SL[s]}</b>${e?esc(day(e.d))+(s==="open"&&b.ob==="rule"?" (our 30-day rule)":s==="open"?" (routine inspection passed)":""):esc(none)}</li>`).join("")}</ol>
 <div class="bg2"><section class="panel" aria-labelledby="rH"><div class="sec-h"><h2 id="rH">The City's records<span class="cnt">${b.ev.length}</span></h2></div><ol class="tl2">${evHtml}</ol>
 ${b.sh?`<p class="note2">Two or more food businesses share this address, so only a permit whose own text names food work is linked here.</p>`:""}
 <dl class="facts2">${facts.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl></section>
@@ -620,7 +621,7 @@ function viewTerms(){document.title="Terms of Use | Chicago Restaurant Radar";
 $("#app").innerHTML=`<a class="back" href="#/">${ico("back")}Back</a><div class="ph"><div><h1>Terms of Use</h1></div></div>
 <div class="terms"><section class="panel" aria-labelledby="th1"><div class="sec-h"><h2 id="th1">City of Chicago data</h2></div><div class="tx"><p>${esc(CITY)}</p><p><a href="${esc(D.source.terms)}" target="_blank" rel="noopener">City of Chicago Data Terms of Use<span class="sr"> (opens in a new tab)</span></a></p>
 <p>Sources: ${Object.keys(D.source.pages).map(k=>`<a href="${esc(D.source.pages[k])}" target="_blank" rel="noopener">${esc(D.source.names[k])}<span class="sr"> (opens in a new tab)</span></a>`).join(", ")}.</p><p>${esc(D.source.modified)}</p></div></section>
-<section class="panel" aria-labelledby="th2" style="margin-top:16px"><div class="sec-h"><h2 id="th2">How stages are set</h2></div><div class="tx">${STAGES.map(s=>`<p><b>${SL[s]}.</b> ${esc(STAGE_HELP[s])}.</p>`).join("")}<p>Records are joined on the street address (house number, direction, street and suffix, without the unit) and on the license number the inspection carries.</p></div></section></div>`;}
+<section class="panel" aria-labelledby="th2" style="margin-top:16px"><div class="sec-h"><h2 id="th2">How stages are set</h2></div><div class="tx">${STAGES.map(s=>`<p><b>${SL[s]}.</b> ${esc(STAGE_HELP[s])}.</p>`).join("")}<p>Records are joined on the street address (house number, direction, street and suffix, without the unit) and on the license number the inspection carries. A build-out with no license yet shows only permits whose own text names food work. A business the City already inspected at the same address under the same name and an earlier license is a relicense, not an opening, and is left out.</p></div></section></div>`;}
 
 function start(d){prep(d);$("#gateView").hidden=true;$("#app").hidden=false;$("#appLegal").hidden=false;$("#tabs").hidden=false;$("#bnav").hidden=false;document.body.classList.add("in");
 window.addEventListener("hashchange",route);route();}

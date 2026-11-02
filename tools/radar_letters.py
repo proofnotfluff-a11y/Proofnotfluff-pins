@@ -29,7 +29,7 @@ TRADES = [
      "offer": "We set food businesses up with a pest service plan and leave a dated service record after every visit.",
      "ask": "Would a visit this week work for you?"},
     {"key": "hood", "label": "Hood and exhaust cleaning", "short": "Hood",
-     "subject": "Hood and exhaust cleaning for {name}",
+     "subject": "Hood cleaning for {name}",
      "offer": "We clean kitchen hoods, filters and exhaust ducts and leave a dated service label after each cleaning.",
      "ask": "Could I send you a quote for a first cleaning?"},
     {"key": "grease", "label": "Grease trap service", "short": "Grease trap",
@@ -81,7 +81,17 @@ def pick_record(events):
 
 
 def street_of(address):
-    return R.street_display(R.signal_address(address)) or R.street_display(address)
+    a = re.sub(r"^\s*(\d+)\s+1/2\s+", r"\1 ", address or "")      # "1046 1/2 W Argyle St" is house 1046 on W Argyle St
+    return R.street_display(R.signal_address(a)) or R.street_display(a)
+
+
+SUBJECT_NAME_WORDS = 6    # a longer name ("... Market and Maxwell Street BBQ") makes the subject "... for your space on <street>"
+
+
+def subject_name(name, street):
+    if not name:
+        return "the new space on " + street
+    return name if len(R.words(name)) <= SUBJECT_NAME_WORDS else "your space on " + street
 
 
 def fill(b, trade, me):
@@ -94,7 +104,7 @@ def fill(b, trade, me):
     who = f"{name} team" if name else "there"
     rec = RECORD_LINE[ev["t"]].format(licenseType=(ev.get("type") or b.get("licenseType") or "").strip() or "food", street=street,
                                       date=R.date_display(ev["d"]))
-    subject = t["subject"].format(name=name or ("the new space on " + street))
+    subject = t["subject"].format(name=subject_name(name, street))
     body = " ".join([OPEN.format(who=who, **me), rec, t["offer"], t["ask"]])
     return subject, body, SIGN.format(**me), STOP.format(**me)
 
@@ -135,7 +145,9 @@ def problems(subject, body, sign, stop, b, trade, me):
         p.append(f"body does not name the street ({street!r})")
     house = (re.match(r"^\s*(\d+)", b["address"] or "") or [None, None])[1]
     rest = mask(mine(s + "\n" + body))
-    if house and re.search(r"(?<![\d$.,])%s(?![\d,%%])" % re.escape(house), rest):
+    want_date = R.date_display(ev["d"]) if ev else ""
+    no_date = rest.replace(want_date, " ") if want_date else rest      # "Sep 10" is the City's date, not house number 10
+    if house and re.search(r"(?<![\d$.,])%s(?![\d,%%])" % re.escape(house), no_date):
         p.append(f"letter gives the house number {house}; name the street only")
     want = R.date_display(ev["d"]) if ev else ""
     if not ev:
@@ -165,6 +177,10 @@ FIXTURES = [
     {"name": "New Noodle Bar", "address": "6000 N Sheridan Rd", "events": [{"t": "permit", "d": "2026-09-01"}, {"t": "linsp", "d": "2026-10-25"}]},
     {"name": "", "address": "7000 S Ashland Ave", "events": [{"t": "permit", "d": "2026-10-01"}]},
     {"name": "The Open Door Cafe", "address": "3509 S Dr Martin Luther King Jr Dr 2", "events": [{"t": "license", "d": "2026-10-20", "type": "Tavern"}]},
+    {"name": "Hotel Ten", "address": "10-16 S Wabash Ave", "events": [{"t": "linsp", "d": "2026-09-10"}]},          # Sep 10 at house 10
+    {"name": "Garuda", "address": "1046 1/2 W Argyle St", "events": [{"t": "license", "d": "2026-05-22", "type": "Retail Food Establishment"}]},
+    {"name": "Duwells Catfish and Seafood Market and Maxwell Street BBQ", "address": "617 S Pulaski Rd 1st",
+     "events": [{"t": "license", "d": "2026-10-02", "type": "Retail Food Establishment"}]},
 ]
 
 
@@ -195,9 +211,13 @@ def selftest():
     s, body, sign, stop = fill(b, "pest", FIXTURE_ME)
     assert s == "Pest control for Luna Tacos" and "Hi Luna Tacos team," in body and "W Chicago Ave on Sep 10" in body and "1000" not in body, body
     s2, body2, _, _ = fill(FIXTURES[2], "hood", FIXTURE_ME)
-    assert body2.startswith("Hi there,") and "building permit for S Ashland Ave on Oct 1." in body2 and s2 == "Hood and exhaust cleaning for the new space on S Ashland Ave"
+    assert body2.startswith("Hi there,") and "building permit for S Ashland Ave on Oct 1." in body2 and s2 == "Hood cleaning for the new space on S Ashland Ave"
     _, body3, _, _ = fill(FIXTURES[3], "signs", FIXTURE_ME)
     assert "Dr Martin Luther King Jr Dr" in body3 and not problems(*fill(FIXTURES[3], "signs", FIXTURE_ME), FIXTURES[3], "signs", FIXTURE_ME), "a business name with 'Open' is City text, not a claim"
+    assert street_of("1046 1/2 W Argyle St") == "W Argyle St" and fill(FIXTURES[6], "pos", FIXTURE_ME)[0] == "Point of sale for your space on S Pulaski Rd"
+    hb = FIXTURES[4]
+    s4, b4, g4, t4 = fill(hb, "pest", FIXTURE_ME)
+    assert not problems(s4, b4, g4, t4, hb, "pest", FIXTURE_ME) and any("house number 10" in x for x in problems(s4, b4.replace("S Wabash", "10 S Wabash"), g4, t4, hb, "pest", FIXTURE_ME))
     planted = [  # (what to change, the problem it must raise)
         (lambda t: t.replace("Sep 10", "Sep 11"), "states 'Sep 11'"), (lambda t: t.replace("W Chicago Ave", "1000 W Chicago Ave"), "house number"),
         (lambda t: t + " We saw you failed.", "says 'failed'"), (lambda t: t.replace("?", "."), "end with a question"),

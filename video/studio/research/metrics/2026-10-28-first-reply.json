@@ -105,6 +105,41 @@
    },
    "source": "videometrics 2026-10-28-first-reply.2026-11-01T20 (evening PC run, list views only)",
    "docId": "2026-10-28-first-reply.2026-11-01T20"
+  },
+  {
+   "date": "2026-11-02",
+   "readAt": "2026-11-02T18:19:48Z",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": "hidden",
+     "views": 40
+    },
+    "instagram": {
+     "avgWatchS": "hidden",
+     "comments": "hidden",
+     "likes": "hidden",
+     "saves": "hidden",
+     "shares": "hidden",
+     "skipRate": "hidden",
+     "views": 114
+    },
+    "tiktok": {
+     "avgWatchS": "hidden",
+     "comments": 0,
+     "likes": 0,
+     "saves": "hidden",
+     "shares": "hidden",
+     "views": 121
+    },
+    "youtube": {
+     "comments": 0,
+     "likes": "hidden",
+     "viewedVsSwipedPct": "hidden",
+     "views": 13
+    }
+   },
+   "source": "videometrics 2026-10-28-first-reply.2026-11-02T12 (Monday lunch PC run, list views only)",
+   "docId": "2026-10-28-first-reply.2026-11-02T12"
   }
  ]
 }

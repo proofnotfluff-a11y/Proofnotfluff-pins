@@ -1,0 +1,58 @@
+{
+ "schema": "pnf.studio.captions.v1",
+ "keywords": {
+  "primary": "painting business quote from price list",
+  "secondary": [
+   "painting business owner",
+   "how to price a painting job",
+   "home service business"
+  ],
+  "trades": [
+   "painting",
+   "house painting",
+   "painting contractor"
+  ]
+ },
+ "instagram": {
+  "caption": "Painting business owners: make AI quote from your own price list, and flag what you never priced.\n\nThe prompt (put it on top of your price list in a phone note):\nTurn my walkthrough notes into quote lines. Use only my price list. Flag anything that is not on it. Never guess a price.\n\nThe real reply (Gemini 3.8 Flash through Google's API, Nov 1, 2026 (the free app may run another model, so yours will read differently)):\nWalls (Living Room): 1 room, [my price]\nCeiling (Living Room): 1 room, [my price]\nDoors: 2, 2x [my price]\nDrywall patch: 1 patch, [my price]\nFLAGGED ITEM (Not on price list):\nStair railing (painting): This item is not on your price list. A custom price is needed.\n\nOne run: four lines, one flag, no price guessed. Not a promise it always flags. The railing is yours to price. Check every line before it goes out.\n\n1. Type your price list in a phone note. Once.\n2. Put this prompt at the top.\n3. After each walkthrough, add your notes and paste it all into Gemini.\n4. Price the flags. Check every line. Then send.\n\nSend this to your painter who still quotes from memory.\nFree tools for trade owners: link in bio.\n\n#homeservicebusiness #paintingbusiness #paintingcontractor #aiforsmallbusiness",
+  "settings": {
+   "aiLabel": false,
+   "shareToFacebook": false
+  }
+ },
+ "tiktok": {
+  "caption": "Painting business tip: a prompt that tells AI to quote from YOUR price list and flag what's not on it.\n\nThe prompt:\nTurn my walkthrough notes into quote lines. Use only my price list. Flag anything that is not on it. Never guess a price.\n\nGemini's real reply (Gemini 3.8 Flash through Google's API, Nov 1, 2026 (the free app may run another model, so yours will read differently)): four quote lines from the list, and the stair railing flagged: \"This item is not on your price list. A custom price is needed.\" One run, not a promise it always flags: you price the flag and check every line.\n\nPainters: what's the job you forget to put on the quote?\nSend this to your painter who still quotes from memory.\n\n#paintingbusiness #homeservicebusiness #paintingcontractor #aiforbusiness",
+  "settings": {
+   "aiLabel": true,
+   "commercial": false
+  }
+ },
+ "facebook": {
+  "caption": "For painting business owners: turn walkthrough notes into quote lines from your own price list.\nKeep the list in a phone note and paste it into a free AI app.\n\nThe prompt:\nTurn my walkthrough notes into quote lines. Use only my price list. Flag anything that is not on it. Never guess a price.\n\nThe real reply (Gemini 3.8 Flash through Google's API, Nov 1, 2026 (the free app may run another model, so yours will read differently)):\nWalls (Living Room): 1 room, [my price]\nCeiling (Living Room): 1 room, [my price]\nDoors: 2, 2x [my price]\nDrywall patch: 1 patch, [my price]\nFLAGGED ITEM (Not on price list):\nStair railing (painting): This item is not on your price list. A custom price is needed.\n\nIn this one run it flagged the railing instead of guessing a price. You price it, and check every line before it goes out.\n\nSend this to your painter who still quotes from memory.\n\n#paintingbusiness #homeservicebusiness",
+  "settings": {
+   "aiLabel": false,
+   "visibility": "Public"
+  }
+ },
+ "youtube": {
+  "title": "Painting Quote From Your Own Price List: Make Free AI Flag What You Never Priced",
+  "description": "Painting business owners: turn walkthrough notes into quote lines from your own price list with a free AI app (Gemini).\nGemini's plan page (https://gemini.google/subscriptions/, read Nov 1, 2026): Free, $0 a month with a Google Account.\n\nThe prompt:\nTurn my walkthrough notes into quote lines. Use only my price list. Flag anything that is not on it. Never guess a price.\n\nThe real reply (Gemini 3.8 Flash through Google's API, Nov 1, 2026 (the free app may run another model, so yours will read differently)):\nWalls (Living Room): 1 room, [my price]\nCeiling (Living Room): 1 room, [my price]\nDoors: 2, 2x [my price]\nDrywall patch: 1 patch, [my price]\nFLAGGED ITEM (Not on price list):\nStair railing (painting): This item is not on your price list. A custom price is needed.\n\nSteps:\n1. Type your price list in a phone note. Once.\n2. Put this prompt at the top.\n3. After each walkthrough, add your notes and paste it all into Gemini.\n4. Price the flags. Check every line. Then send.\n\nOne run, not a promise it always flags: check every line.\nMore lessons for trade owners on the channel.\nSend this to your painter who still quotes from memory.\nWhat a painting crew costs in Chicago: https://proofnotfluff.com/chicago-crew-cost/painters/\n#paintingbusiness #homeservicebusiness #aiforsmallbusiness",
+  "tags": [
+   "painting business quote",
+   "painting business owner",
+   "how to price a painting job",
+   "painting contractor estimate",
+   "ai for painting business",
+   "gemini for small business",
+   "home service business",
+   "paintng business"
+  ],
+  "settings": {
+   "madeForKids": false,
+   "aiUse": false,
+   "category": "Education",
+   "language": "English",
+   "visibility": "Public"
+  }
+ }
+}

@@ -4,7 +4,7 @@
 window.SCENE = {
   look: 'clean',
   images: [],
-  sendLine: 'Send this to whoever <role>.',   // the end card's send line (Lead Clinic v2: no spoken call to action)
+  sendLine: 'Send this to your painter who still quotes from memory.',   // the end card's send line (Lead Clinic v2: no spoken call to action)
   sections: {
     hook: (k, T) => {
       k.title('Replace me', 320);

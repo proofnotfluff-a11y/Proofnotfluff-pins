@@ -1,0 +1,29 @@
+[
+ {
+  "gate": "script-facts",
+  "round": 1,
+  "pass": false,
+  "reviewer": "fresh opus agent, Nov 2 lunch run",
+  "reasons": [
+   "0 mismatches; 'anything new gets flagged', 'It won't price', 'Not off your list', the YouTube title and cover line promised more than one run"
+  ]
+ },
+ {
+  "gate": "script-facts",
+  "round": 2,
+  "pass": false,
+  "reviewer": "fresh opus agent, Nov 2 lunch run",
+  "reasons": [
+   "TikTok line 1 promised the behavior in general; brief Shape carried old wording"
+  ]
+ },
+ {
+  "gate": "script-facts",
+  "round": 3,
+  "pass": true,
+  "reviewer": "fresh opus agent, Nov 2 lunch run",
+  "reasons": [
+   "11 numbers, 0 mismatches"
+  ]
+ }
+]

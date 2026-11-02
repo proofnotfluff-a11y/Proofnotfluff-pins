@@ -154,3 +154,13 @@ the solar effect is 0.78 percentage points, not 78%; the 1986 price study is fai
 | T5 | Put a monthly payment next to the price | financed jobs have a 64% higher median ticket (ServiceTitan, Jul 2026; correlation) |
 | T9 | Every job sells the street | +0.78 percentage points per nearby install (Bollinger and Gillingham, Marketing Science 2012) |
 | T10 | Count your cash buffer days | median small business 27 days of cash; construction 20 (JPMorgan Chase Institute 2016) |
+
+## AI lane bank (Nov 2, 2026 research run)
+
+Each a system set up in under 30 minutes, no code; needs its real run before a script (lanes.md item 3). Sources, prices read Nov 2, 2026, and owner threads: runs/2026-11-02-ai-systems.md.
+
+- **unknown-caller-screen:** the iPhone asks an unknown caller who he is and why before it rings (Settings > Apps > Phone > Screen Unknown Callers > Ask Reason for Calling; free). Hook: "My phone sorted a real lead from a spam call before it rang." Sources: runs/2026-11-02-ai-systems.md
+- **rain-day-check:** a ChatGPT scheduled task reads the week's forecast every Sunday and flags the days his outdoor jobs can't run (Plus, $20/month). Hook: "Sunday 6 pm, my phone told me Thursday's exterior is a rain day." Sources: runs/2026-11-02-ai-systems.md
+- **supplier-price-watch:** every supplier invoice goes into one ChatGPT project that lists each price that moved against his price sheet (Free works). Hook: "My supplier raised prices on this invoice. AI caught every line before I quoted." (any count said comes from the real run) Sources: runs/2026-11-02-ai-systems.md
+- **manual-desk:** a Claude project loaded with the maker's manuals answers a tech's question with the page number, or says it isn't in the manual (Free, up to 5 projects). Hook: "Error code answered, with the manual page, while my tech stood at the unit." Sources: runs/2026-11-02-ai-systems.md
+- **money-monday:** the same three money questions to Jobber AI every Monday: past-due invoices, quotes with no answer, last week's invoicing (in beta, all Jobber plans). Hook: "Monday, 8 am: who owes me, oldest first, in one question." Sources: runs/2026-11-02-ai-systems.md

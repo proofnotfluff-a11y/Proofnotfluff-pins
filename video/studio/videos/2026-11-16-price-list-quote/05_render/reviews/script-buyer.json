@@ -1,0 +1,20 @@
+[
+ {
+  "gate": "script-buyer",
+  "round": 1,
+  "pass": false,
+  "reviewer": "fresh opus agent, Nov 2 lunch run",
+  "reasons": [
+   "stop yes, send no, save yes: opener read as the AI failing; 'Not off your list' unclear; the notes gap"
+  ]
+ },
+ {
+  "gate": "script-buyer",
+  "round": 2,
+  "pass": true,
+  "reviewer": "fresh opus agent, Nov 2 lunch run",
+  "reasons": [
+   "stop, send, save, follow all yes"
+  ]
+ }
+]

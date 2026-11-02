@@ -11,6 +11,8 @@ used; an address may only ever come from the business's own site, through the pr
 Usage (runner only; the cloud shell cannot reach the Overture bucket):
   python3 tools/pest_discovery.py --count [--release R]   counts only. Env PEST_EXCLUDE: comma list of 12-hex sha256
                                                            prefixes of domains already in the CRM (from --hashes)
+  python3 tools/pest_discovery.py --extract OUT.json [--release R]   the new companies (business, website, address,
+                                                           inCity) for sealing with tools/data_box.py; counts to the log
   python3 tools/pest_discovery.py --hashes CRM_DIR         local: the PEST_EXCLUDE value for the CRM pest domains not
                                                            already in prospects/businesses.json (hashes only)
   python3 tools/pest_discovery.py --selftest
@@ -55,6 +57,11 @@ def inside(p, box):
 
 def count(places, known=frozenset(), exclude=frozenset()):
     """Counts only. places: [{name, lat, lon, websites, status}] already in the category and the metro box."""
+    return sift(places, known, exclude)[0]
+
+
+def sift(places, known=frozenset(), exclude=frozenset()):
+    """(counts, new) where new maps each new own-site domain to its first place."""
     c = collections.Counter(inCategory=len(places))
     live = [p for p in places if (p.get("status") or "open") in ("open", "operating", "")]
     c["open"] = len(live)
@@ -77,7 +84,15 @@ def count(places, known=frozenset(), exclude=frozenset()):
     c["newInCity"] = sum(1 for p in new.values() if inside(p, phones.BBOX))
     for k in ("droppedChain", "droppedWildlifeOnly"):
         c.setdefault(k, 0)
-    return dict(c)
+    return dict(c), new
+
+
+def candidates(new, release):
+    """The sealed hand-off for the prospect-matching run: business-level fields only, from Overture (no phone, no email)."""
+    rows = [{"business": p.get("name") or "", "website": "https://" + d + "/", "address": p.get("address") or "",
+             "inCity": inside(p, phones.BBOX), "source": "overture:" + release}
+            for d, p in sorted(new.items(), key=lambda kv: (not inside(kv[1], phones.BBOX), kv[0]))]
+    return {"schema": "pnf.pest_candidates.v1", "release": release, "count": len(rows), "candidates": rows}
 
 
 def query(release):
@@ -96,11 +111,13 @@ def query(release):
         cat, used = "categories.primary", "categories.primary"
     status = "operating_status" if "operating_status" in cols else "NULL"
     x0, y0, x1, y1 = METRO_BBOX
-    rows = con.execute(f"""SELECT names.primary, (bbox.ymin + bbox.ymax) / 2, (bbox.xmin + bbox.xmax) / 2, websites, {status}
+    rows = con.execute(f"""SELECT names.primary, (bbox.ymin + bbox.ymax) / 2, (bbox.xmin + bbox.xmax) / 2, websites, {status},
+                                  addresses[1].freeform
                            FROM {src}
                            WHERE bbox.xmin BETWEEN {x0} AND {x1} AND bbox.ymin BETWEEN {y0} AND {y1}
                              AND {cat} = '{CATEGORY}' AND names.primary IS NOT NULL""").fetchall()
-    return used, [{"name": n, "lat": la, "lon": lo, "websites": list(w or []), "status": st or "open"} for n, la, lo, w, st in rows]
+    return used, [{"name": n, "lat": la, "lon": lo, "websites": list(w or []), "status": st or "open", "address": a or ""}
+                  for n, la, lo, w, st, a in rows]
 
 
 def probe(release):
@@ -158,6 +175,9 @@ def selftest():
             "alreadyHeld": 2, "new": 2, "newInCity": 1}
     assert c == want, c
     assert not any(isinstance(v, str) for v in c.values()), "a string in the counts"
+    doc = candidates(sift(places, known={"heldpest.com"}, exclude={h12("hashedpest.com")})[1], "2026-10-21.0")
+    assert [r["website"] for r in doc["candidates"]] == ["https://southsidepest.com/", "https://naperbug.com/"], doc
+    assert all(set(r) == {"business", "website", "address", "inCity", "source"} for r in doc["candidates"]), "a field beyond business level"
     print("pest_discovery selftest ok (13 planted places: chain by name and by shared domain, closed, listing site, no site, "
           "held, hashed, wildlife only, one company on two pins)")
 
@@ -173,6 +193,13 @@ if __name__ == "__main__":
         out = {"release": rel, "categoryField": used, "metroBox": METRO_BBOX, "excludeHashes": len(exclude)}
         out.update(count(places, known_domains(), exclude))
         print(json.dumps(out))
+    elif a[:1] == ["--extract"] and len(a) >= 2:
+        rel = a[a.index("--release") + 1] if "--release" in a else phones.latest_release()
+        exclude = {x.strip() for x in os.environ.get("PEST_EXCLUDE", "").split(",") if re.fullmatch(r"[0-9a-f]{12}", x.strip())}
+        used, places = query(rel)
+        c, new = sift(places, known_domains(), exclude)
+        json.dump(candidates(new, rel), open(a[1], "w"), indent=1)
+        print(json.dumps({"release": rel, "categoryField": used, **c}))     # counts only in the log
     elif a[:1] == ["--probe"]:
         probe(a[a.index("--release") + 1] if "--release" in a else phones.latest_release())
     elif a[:1] == ["--hashes"] and len(a) == 2:

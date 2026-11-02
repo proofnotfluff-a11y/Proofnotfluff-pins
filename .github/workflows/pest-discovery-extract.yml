@@ -1,0 +1,49 @@
+name: Pest discovery extract (sealed)
+# Hand-off of new Chicago-area pest companies from Overture Places to the prospect-matching run (Todd, live chat, Nov 1,
+# 2026: "Go with your recommendations"; the count-only dry run found 132 new companies with their own website, 47 in the
+# city). Business-level fields only (business, website, address, inCity), sealed with PNF_DATA_KEY (tools/data_box.py)
+# to prospects/pest_candidates.sealed.json; nothing in the clear is committed or logged, counts only. No email or phone is
+# taken from Overture: an address only ever comes from the business's own site, through the prospect-matching checkers.
+# Input exclude: 12-hex sha256 prefixes of CRM pest domains (python3 tools/pest_discovery.py --hashes <crm dir>).
+# Run by hand only.
+on:
+  workflow_dispatch:
+    inputs:
+      exclude:
+        description: "Comma list of 12-hex domain hash prefixes already in the CRM"
+        required: false
+        default: ""
+permissions:
+  contents: write
+concurrency:
+  group: pest-discovery-extract
+  cancel-in-progress: false
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install --quiet -c .github/ci-constraints.txt duckdb cryptography
+      - run: python3 tools/pest_discovery.py --selftest && python3 tools/data_box.py --selftest
+      - name: Extract and seal (counts only in the log)
+        env:
+          PEST_EXCLUDE: ${{ inputs.exclude }}
+          PNF_DATA_KEY: ${{ secrets.PNF_DATA_KEY }}
+        run: |
+          set -o pipefail
+          timeout 900 python3 tools/pest_discovery.py --extract "$RUNNER_TEMP/pest.json" 2>/dev/null | tee counts.txt
+          python3 tools/data_box.py seal "$RUNNER_TEMP/pest.json" prospects/pest_candidates.sealed.json >/dev/null
+          rm -f "$RUNNER_TEMP/pest.json"
+          echo "::notice title=Pest discovery extract::$(cat counts.txt)"
+      - name: Commit the sealed box
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add prospects/pest_candidates.sealed.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Pest discovery candidates (sealed) $(date -u +%F)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 5; done

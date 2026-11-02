@@ -1,58 +1,53 @@
 [
  {
-  "permit_class": "C- 324 Office, Bank & Professional Bldgs",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [PULBLIC PROJECT] New Construction of Austin Convention Center - Area 2."
+  "permit_class": "C- 327 Stores & Customer Services",
+  "work_class": "Shell",
+  "description": "NOT FOR OCCUPANCY - Ground up construction of a cold dark shell building demised into two spaces for future tenant use Unit 161 and Unit 162"
+ },
+ {
+  "permit_class": "C- 437 Addn, Alter, Convn-NonRes",
+  "work_class": "Addition and Remodel",
+  "description": "ePlan: Commercial Expedited Review - Change of Use and Interior Remodel to create Research Services. Phase I BOH Storage Freezer New Exterior Stair and Accessible Route."
  },
  {
   "permit_class": "C- 329 Com Structures Other Than Bldg",
   "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - New Construction of Sports Facility - Transformer Pad."
- },
- {
-  "permit_class": "C- 324 Office, Bank & Professional Bldgs",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [PULBLIC PROJECT] New Construction of Austin Convention Center - Area 3."
- },
- {
-  "permit_class": "C- 324 Office, Bank & Professional Bldgs",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [PULBLIC PROJECT] New Construction of Austin Convention Center - Area 1."
- },
- {
-  "permit_class": "C- 324 Office, Bank & Professional Bldgs",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [PULBLIC PROJECT] New Construction of Austin Convention Center - Area 4."
- },
- {
-  "permit_class": "C-1000 Commercial Remodel",
-  "work_class": "Remodel",
-  "description": "TPO Roof Overlay. Adding 1/2 Coverboard and TPO Membrane over Existing Roof. Existing warehouse."
+  "description": "New construction of a 588 square foot commercial indoor swimming pool on level 3 for multi-family use at the 6th & Blanco hotel."
  },
  {
   "permit_class": "C- 329 Com Structures Other Than Bldg",
   "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [SMART HOUSING] New Construction of Dumpster Enclosure."
+  "description": "New commercial construction of an 128 sq ft natural pool (outdoor) 168 sq ft hot tub (indoor) 265 sq ft flotation pool (indoor) and 53 sq ft cold plunge (indoor) all on level 1 for multi-family use at 6th & Blanco Hotel."
+ },
+ {
+  "permit_class": "C- 329 Com Structures Other Than Bldg",
+  "work_class": "New",
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of Pool Pavillion (945 SF)."
  },
  {
   "permit_class": "C- 105 Five or More Family Bldgs",
   "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [SMART HOUSING] Redevelopment of Existing Site. New Construction of 4- Story Affordable Housing to Include 2 Connected Fire Areas and associated site improvements. Fire Area 1: Includes 90 new dwelling units leasing office and learning center."
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments (24946 SF)."
+ },
+ {
+  "permit_class": "C- 328 Commercial Other Nonresident Bldg",
+  "work_class": "New",
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New club Building- Also Contains Leasing Mail Finess and Co- Work (8953 SF)."
  },
  {
   "permit_class": "C- 329 Com Structures Other Than Bldg",
   "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [SMART HOUSING] New Construction of Dumpster Enclosure."
- },
- {
-  "permit_class": "C- 329 Com Structures Other Than Bldg",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [SMART HOUSING] New Construction of Dumpster Enclosure."
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction Trash enclosure (1620 SF)."
  },
  {
   "permit_class": "C- 105 Five or More Family Bldgs",
   "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [SMART HOUSING] Redevelopment of Existing Site. New Construction of 4- Story Affordable Housing to Include 2 Connected Fire Areas and associated site improvements. Fire Area 2: Includes 20 new dwelling units."
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments (38582 SF)."
+ },
+ {
+  "permit_class": "C- 104 Three & Four Family Bldgs",
+  "work_class": "New",
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of Multi Family Buildings with Private Garages (8781 SF)."
  },
  {
   "permit_class": "C- 105 Five or More Family Bldgs",
@@ -60,19 +55,19 @@
   "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments with Private Garages (38520 SF)."
  },
  {
-  "permit_class": "C- 328 Commercial Other Nonresident Bldg",
+  "permit_class": "C- 105 Five or More Family Bldgs",
   "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Maintenance and Dog Spa Building (1416 SF)."
- },
- {
-  "permit_class": "C- 329 Com Structures Other Than Bldg",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of Lift Station enclosure (780SF)."
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of Multi Family Apartments (24992 SF)."
  },
  {
   "permit_class": "C- 105 Five or More Family Bldgs",
   "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments (38582 SF)."
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments with Private Garages (38520 SF)."
+ },
+ {
+  "permit_class": "C- 105 Five or More Family Bldgs",
+  "work_class": "New",
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments (24992 SF)."
  },
  {
   "permit_class": "C- 105 Five or More Family Bldgs",
@@ -87,37 +82,7 @@
  {
   "permit_class": "C- 105 Five or More Family Bldgs",
   "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments with Private Garages (13218 SF)."
- },
- {
-  "permit_class": "C- 328 Commercial Other Nonresident Bldg",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New club Building- Also Contains Leasing Mail Finess and Co- Work (8953 SF)."
- },
- {
-  "permit_class": "C- 104 Three & Four Family Bldgs",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of Multi Family Buildings with Private Garages (8781 SF)."
- },
- {
-  "permit_class": "C- 104 Three & Four Family Bldgs",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of Multi Family Buildings with Private Garages (8781 SF)."
- },
- {
-  "permit_class": "C- 105 Five or More Family Bldgs",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of Multi Family Apartments (24992 SF)."
- },
- {
-  "permit_class": "C- 329 Com Structures Other Than Bldg",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of Pool Pavillion (945 SF)."
- },
- {
-  "permit_class": "C- 437 Addn, Alter, Convn-NonRes",
-  "work_class": "Addition and Remodel",
-  "description": "ePlan: Commercial Expedited Review - Interior Remodel and Addition to Existing Building (2640 SF) ."
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments (24946 SF)."
  },
  {
   "permit_class": "C- 105 Five or More Family Bldgs",
@@ -127,57 +92,7 @@
  {
   "permit_class": "C- 105 Five or More Family Bldgs",
   "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments (24946 SF)."
- },
- {
-  "permit_class": "C- 105 Five or More Family Bldgs",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments with Private Garages (38520SF)."
- },
- {
-  "permit_class": "C- 105 Five or More Family Bldgs",
-  "work_class": "New",
   "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments (38582 SF)."
- },
- {
-  "permit_class": "C- 324 Office, Bank & Professional Bldgs",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - New Construction of 3 Story Admin Office Building (13000 SF)."
- },
- {
-  "permit_class": "C- 105 Five or More Family Bldgs",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments (24946 SF)."
- },
- {
-  "permit_class": "C- 105 Five or More Family Bldgs",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments with Private Garages (13218 SF)."
- },
- {
-  "permit_class": "C- 104 Three & Four Family Bldgs",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments with Private Garages (8781SF)."
- },
- {
-  "permit_class": "C- 329 Com Structures Other Than Bldg",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction Trash enclosure (1620 SF)."
- },
- {
-  "permit_class": "C- 105 Five or More Family Bldgs",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments (38582 SF)."
- },
- {
-  "permit_class": "C- 329 Com Structures Other Than Bldg",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of Lift Station enclosure (780 SF)."
- },
- {
-  "permit_class": "C- 105 Five or More Family Bldgs",
-  "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments with Private Garages (38520 SF)."
  },
  {
   "permit_class": "C- 329 Com Structures Other Than Bldg",
@@ -187,7 +102,12 @@
  {
   "permit_class": "C- 105 Five or More Family Bldgs",
   "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments (24992 SF)."
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments with Private Garages (13218 SF)."
+ },
+ {
+  "permit_class": "C- 105 Five or More Family Bldgs",
+  "work_class": "New",
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments (38582 SF)."
  },
  {
   "permit_class": "C- 105 Five or More Family Bldgs",
@@ -195,8 +115,88 @@
   "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of Multi Family Building (24946 SF)."
  },
  {
+  "permit_class": "C- 328 Commercial Other Nonresident Bldg",
+  "work_class": "New",
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Maintenance and Dog Spa Building (1416 SF)."
+ },
+ {
+  "permit_class": "C- 105 Five or More Family Bldgs",
+  "work_class": "New",
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments with Private Garages (13218 SF)."
+ },
+ {
+  "permit_class": "C- 104 Three & Four Family Bldgs",
+  "work_class": "New",
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of Multi Family Buildings with Private Garages (8781 SF)."
+ },
+ {
+  "permit_class": "C- 104 Three & Four Family Bldgs",
+  "work_class": "New",
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments with Private Garages (8781SF)."
+ },
+ {
+  "permit_class": "C- 105 Five or More Family Bldgs",
+  "work_class": "New",
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of New Apartments with Private Garages (38520SF)."
+ },
+ {
   "permit_class": "C- 329 Com Structures Other Than Bldg",
   "work_class": "New",
-  "description": "ePlan: Commercial Expedited Review - New Construction of Sports Facility Covered Field Building - Prefab metal building. Outdoor Covered Field Structure."
+  "description": "ePlan: BAUS Review - [CONCURRENT] Installation of New 120/240 V Electrical Service Feeding: ARFF Gate Equipment Racks Roadway and Site Lighting for Midfield TWY Project."
+ },
+ {
+  "permit_class": "C- 329 Com Structures Other Than Bldg",
+  "work_class": "New",
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of Lift Station enclosure (780 SF)."
+ },
+ {
+  "permit_class": "C- 106 Mixed Use",
+  "work_class": "New",
+  "description": "Site electric for private street lighting including light pole bases. No building structures. Approx 300000 SF site work. Site plan and AE designs included for reference. Darrell Bellinghausen instructed us to apply via 7 Business Day Review."
+ },
+ {
+  "permit_class": "C- 329 Com Structures Other Than Bldg",
+  "work_class": "New",
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction West Cistern. Water is Captured for Irrigation only. No tie into potable supply (452 SF)."
+ },
+ {
+  "permit_class": "C- 328 Commercial Other Nonresident Bldg",
+  "work_class": "New",
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of an Accessory Restroom Building (2605 SF)."
+ },
+ {
+  "permit_class": "C- 328 Commercial Other Nonresident Bldg",
+  "work_class": "New",
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of Accessory Building for Landscape Viewing (1530 SF)."
+ },
+ {
+  "permit_class": "C- 437 Addn, Alter, Convn-NonRes",
+  "work_class": "Addition and Remodel",
+  "description": "ePlan: Commercial Expedited Review - Interior Remodel and Change of Use From Motel to Restaurant (4449SF)."
+ },
+ {
+  "permit_class": "C- 329 Com Structures Other Than Bldg",
+  "work_class": "New",
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction Accessory Pavilion/Cave Exhibit (6507 SF)."
+ },
+ {
+  "permit_class": "C- 437 Addn, Alter, Convn-NonRes",
+  "work_class": "Addition and Remodel",
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] Addition and Remodel to Existing Admin Office Building to Create Visitors Center and Office (42552 SF)."
+ },
+ {
+  "permit_class": "C- 329 Com Structures Other Than Bldg",
+  "work_class": "New",
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of South Cistern Water is Captured for Irrigation only. No tie into potable supply. (380 SF)"
+ },
+ {
+  "permit_class": "C- 329 Com Structures Other Than Bldg",
+  "work_class": "New",
+  "description": "ePlan: Commercial Expedited Review - [APPROVED] New Construction of North Cistern. Water is Captured for Irrigation only. No tie into potable supply (153 SF)"
+ },
+ {
+  "permit_class": "C- 329 Com Structures Other Than Bldg",
+  "work_class": "New",
+  "description": "ePlan: Commercial Expedited Review - New Construction of Sports Facility - Transformer Pad."
  }
 ]

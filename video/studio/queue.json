@@ -563,6 +563,26 @@
      "at": "2026-11-02T13:17:34-05:00"
     }
    }
+  },
+  {
+   "slug": "2026-11-16-price-list-quote",
+   "readyAt": "2026-11-02T15:50:41-05:00",
+   "commit": "9f68746ade9bc6e9cfb8a9475d12165b948ddc07",
+   "fingerprints": {
+    "script": "30042b9b79af",
+    "takes": "3f4eede0c74b",
+    "words": "1ceb0a30e675",
+    "cues": "493dc93d1e37",
+    "scene": "408e07936ad1",
+    "data": "027b6d9917c6",
+    "captions": "e5d572c0855b",
+    "mouth": "2b59618018c5",
+    "runtime_kit": "7533966669eb",
+    "runtime_player": "0247e61a6184",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

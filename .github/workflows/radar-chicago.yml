@@ -1,0 +1,45 @@
+name: Chicago Restaurant Radar
+# Chicago Restaurant Radar v1 (launches/chicago-restaurant-radar.md; Todd, live chat, Nov 2, 2026). The cloud agents cannot
+# reach data.cityofchicago.org, so this runner joins the City's Building Permits, Food Inspections and Business Licenses on
+# the address and license number (tools/radar_chicago.py says what is kept) and commits only:
+#   permits/radar-chicago/match.json       counts only (how the join landed), public
+#   permits/radar-chicago/list.sealed.json  the joined list, sealed to radar-seal.pub.pem (the private key is never in the repo)
+#   permits/radar-chicago/holdout.sealed.json  the City's own rows for 5 businesses picked at random, for the hand check
+# Nothing goes to docs/: the app is a private preview until Todd's go (CONSTITUTION 2, major).
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/radar_chicago.py", ".github/workflows/radar-chicago.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: radar-chicago
+  cancel-in-progress: false
+jobs:
+  join:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install --quiet -c .github/ci-constraints.txt cryptography openpyxl
+      - name: Self-checks (planted cases)
+        run: |
+          python3 tools/radar_chicago.py --selftest
+          python3 tools/licenses_chicago.py --selftest
+          python3 tools/rest_seal.py --selftest
+      - name: Join the City's records
+        run: python3 tools/radar_chicago.py --full "$RUNNER_TEMP/radar-full.json" --match permits/radar-chicago/match.json --holdout "$RUNNER_TEMP/radar-holdout.json"
+      - name: Seal the list and the hand-check rows (public-key box)
+        run: |
+          python3 tools/rest_seal.py seal "$RUNNER_TEMP/radar-full.json" permits/radar-chicago/list.sealed.json --key permits/radar-chicago/radar-seal.pub.pem
+          python3 tools/rest_seal.py seal "$RUNNER_TEMP/radar-holdout.json" permits/radar-chicago/holdout.sealed.json --key permits/radar-chicago/radar-seal.pub.pem
+      - name: Commit
+        run: |
+          git config user.name "proofnotfluff-bot"
+          git config user.email "proofnotfluff-bot@users.noreply.github.com"
+          git add permits/radar-chicago
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "Chicago Restaurant Radar join $(TZ=America/Chicago date +%Y-%m-%d)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 10; done
+          exit 1

@@ -15,4 +15,4 @@
 - Nov 1-2: 2/day, 2 wait; AI lane test to Nov 8; story desk feeds it (DECISIONS-2026-11-02). Open: Meta label, Kimi, PVC.
 - Oct 25: Chief of Staff live (DECISIONS-2026-10-25).
 - Oct 30 usage audit, 7:46 video fix: coo/USAGE.md. Next: Todd pauses API lister, strips connectors. Artcraft: watch.
-- Nov 2: Radar v1 built, waits on Todd (launches/chicago-restaurant-radar.md).
+- Radar v1 preview; redesign Wed Nov 4 10:01 pm (launches/radar-design-brief.md).

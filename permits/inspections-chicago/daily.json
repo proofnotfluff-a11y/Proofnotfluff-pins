@@ -1,22 +1,22 @@
 {
  "product": "Chicago Restaurant Daily List",
- "asOf": "2026-11-02",
- "asOfText": "Nov 2, 2026",
+ "asOf": "2026-11-03",
+ "asOfText": "Nov 3, 2026",
  "through": "2026-10-29",
  "throughText": "Oct 29, 2026",
  "recentFrom": "2026-10-16",
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-11-02T20:53:06+00:00",
-  "rowsUpdatedAt": "2026-10-30T09:13:52+00:00",
+  "fetchedAt": "2026-11-03T18:41:52+00:00",
+  "rowsUpdatedAt": "2026-11-03T10:19:25+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "pests": 0,
-  "hood": 0,
-  "places": 0
+  "pests": 6,
+  "hood": 2,
+  "places": 6
  },
  "history": [
   {
@@ -98,9 +98,43 @@
    "hood": 0,
    "places": 0,
    "withPhone": 0
+  },
+  {
+   "asOf": "2026-11-03",
+   "through": "2026-10-29",
+   "pests": 6,
+   "hood": 2,
+   "places": 6,
+   "withPhone": 5
   }
  ],
- "examples": [],
+ "examples": [
+  {
+   "area": "West Town",
+   "type": "Restaurant",
+   "result": "Pass w/ Conditions",
+   "trades": [
+    "pests"
+   ]
+  },
+  {
+   "area": "Lake View",
+   "type": "Restaurant",
+   "result": "Fail",
+   "trades": [
+    "pests",
+    "hood and exhaust"
+   ]
+  },
+  {
+   "area": "Austin",
+   "type": "Restaurant",
+   "result": "Fail",
+   "trades": [
+    "pests"
+   ]
+  }
+ ],
  "pestByDate": [
   {
    "date": "2026-10-16",
@@ -134,7 +168,7 @@
   },
   {
    "date": "2026-10-22",
-   "pests": 4,
+   "pests": 5,
    "restaurant": 3
   },
   {
@@ -164,40 +198,45 @@
   },
   {
    "date": "2026-10-28",
-   "pests": 2,
-   "restaurant": 2
+   "pests": 6,
+   "restaurant": 6
   },
   {
    "date": "2026-10-29",
-   "pests": 1,
-   "restaurant": 0
+   "pests": 2,
+   "restaurant": 1
   }
  ],
  "pestLast7": {
   "from": "2026-10-23",
   "to": "2026-10-29",
-  "inspections": 10,
-  "restaurantInspections": 8,
+  "inspections": 15,
+  "restaurantInspections": 13,
   "areas": [
    "Albany Park",
+   "Austin",
    "Avalon Park",
    "Brighton Park",
+   "Lake View",
+   "Loop",
+   "Near West Side",
    "O'Hare",
-   "South Shore"
+   "South Shore",
+   "West Town"
   ]
  },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
  "phones": {
-  "rows": 0,
-  "withPhone": 0,
-  "coverage": 0.0
+  "rows": 6,
+  "withPhone": 5,
+  "coverage": 83.3
  },
  "seat": {
-  "asOf": "2026-11-02",
-  "places14": 40,
-  "new": 0,
-  "withPhone14": 27,
-  "coverage14": 67.5,
+  "asOf": "2026-11-03",
+  "places14": 45,
+  "new": 6,
+  "withPhone14": 31,
+  "coverage14": 68.9,
   "phonesChecked": true
  }
 }

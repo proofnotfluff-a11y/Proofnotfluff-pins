@@ -141,6 +141,41 @@
    },
    "source": "videometrics 2026-11-04-close-rate.2026-11-02T12 (Monday lunch PC run, list views only)",
    "docId": "2026-11-04-close-rate.2026-11-02T12"
+  },
+  {
+   "date": "2026-11-02",
+   "readAt": "2026-11-03T02:31:00Z",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": "hidden",
+     "views": 14
+    },
+    "instagram": {
+     "avgWatchS": "hidden",
+     "comments": "hidden",
+     "likes": "hidden",
+     "saves": "hidden",
+     "shares": "hidden",
+     "skipRate": "hidden",
+     "views": 115
+    },
+    "tiktok": {
+     "avgWatchS": "hidden",
+     "comments": 0,
+     "likes": 0,
+     "saves": "hidden",
+     "shares": "hidden",
+     "views": 89
+    },
+    "youtube": {
+     "comments": 0,
+     "likes": "hidden",
+     "viewedVsSwipedPct": "hidden",
+     "views": 38
+    }
+   },
+   "source": "videometrics 2026-11-04-close-rate.2026-11-02T20 (evening PC run, list views only)",
+   "docId": "2026-11-04-close-rate.2026-11-02T20"
   }
  ]
 }

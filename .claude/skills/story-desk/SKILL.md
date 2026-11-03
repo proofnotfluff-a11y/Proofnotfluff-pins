@@ -8,6 +8,7 @@ really interesting." Runs inside the record-and-make task's spare runs (no runs 
 lane (_shared/lanes.md). Craft and standards: video/studio/_shared/investigative.md (binding).
 
 ## Inputs (Reads)
+- video/studio/PRINCIPLES.md first (Todd, Nov 2, 8:49 pm; it outranks every rule below).
 - video/studio/_shared/investigative.md (story test, beats, verification, script craft), _shared/lanes.md, _shared/standard.md,
   _shared/voice.md, _shared/formats.md (dispatch), research/STORIES.md (the bank, killed list included), research/PERFORMANCE.md.
 

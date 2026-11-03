@@ -10,3 +10,14 @@
 - Todd shared the joebrunner.ai New Home Radar reel and a screen recording: "Please learn from this and engineer this for PNF". Teardown: video/studio/research/runs/2026-11-02-new-home-radar-reel.md.
 - [stated] Asked which Radar to build first, Todd picked "Both, restaurants first". Spec: launches/chicago-restaurant-radar.md (restaurants on data we pull; homeowner version waits on his CONSTITUTION 4 change and the Legal desk).
 - [stated] Asked whether to drop our rule against a "comment a word" ask and DMs, Todd picked "Allow it". Not active: the CONSTITUTION 2 line is written only once he picks a comment-to-DM tool and plan in a live chat (price notes in the spec).
+
+## Video principles (live chat, 8:49 pm)
+- Todd watched a posted lesson (price-list-quote) and called the videos "incoherent slop", choppy and confusing; asked
+  whether we agree (we do: 8 to 9 s average watch, 60 to 67% skip, 0 shares, yet every AI gate passed).
+- [stated] Three guiding principles, word for word in video/studio/PRINCIPLES.md: research what owners and the AI-for-trades
+  gurus are saying and distill it; quality over rules ("relax restrictions on number of words", "Storytelling is the most
+  important skill"); the journalist finds and writes the story, the engine turns it into a gripping video. "These are our
+  guiding principles that we should always follow." He left the sequencing, files, skills and repos to us.
+- Done in the live chat: PRINCIPLES.md, pointers in video/studio/CLAUDE.md and the story-desk skill. The rebuild of the
+  pipeline and the gates is planned in video/studio/REBUILD.md.
+

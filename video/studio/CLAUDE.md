@@ -1,5 +1,7 @@
 # Studio (the video engine's gold standard)
 
+Read PRINCIPLES.md first: Todd's three guiding principles (Nov 2, 2026) outrank every rule below.
+
 Voice in, explainer out: 9:16 Reels (1080 x 1920, 30 fps) timed to the spoken words. Todd, Oct 28, 2026, 11:51 am:
 "We need to use this as our gold standard." The method is Jake Van Clief's five-stage studio (coo/DECISIONS-2026-10-28.md):
 record the voice first, time every word, storyboard against the words, draw the animation as code, render. Each stage is

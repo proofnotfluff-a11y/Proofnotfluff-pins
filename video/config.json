@@ -1,7 +1,7 @@
 {
  "about": "Video engine Phase 0 settings (the MVP). Pinned by the PNF Video Engine Blueprint, MVP build spec (https://claude.ai/artifact/3ssi8yGEKVxiL7JTD87kzS); changing a value here is a logged decision in coo/DECISIONS-<date>.md, never a call made mid-run.",
- "stop": false,
- "stopNote": "Set true by any live chat that hears Todd say \"stop videos\" (blueprint, Publishing operations: the kill switch); every run checks it first.",
+ "stop": true,
+ "stopNote": "Set true Nov 2, 2026, 9:00 pm in a live chat: Todd chose \"Hold all 6\" (\"Nothing posts until a video made on the new line passes your watch-through\") after setting the video principles (video/studio/PRINCIPLES.md). Posting, making and the lab pause; the build run on Thu Nov 5, 10:01 pm builds the new line (video/studio/REBUILD.md) and sends Todd one preview. Only Todd's word after that watch-through sets this back to false. Earlier meaning kept: set true by any live chat that hears Todd say \"stop videos\".",
  "data": "permits/rodents-chicago/weekly.json",
  "freshDays": 8,
  "mvp": {
@@ -109,7 +109,11 @@
  },
  "remotion": "4.0.539",
  "node": "22",
- "lanes": {"mode": "alternate", "until": "2026-11-08", "note": "Todd, live chat, Nov 1, 2026, 9:01 am: \"go with your recommendation\": 7-day test, 2 of 4 daily posts AI for trades (lane ai), 2 the current lessons (lane core), turn about in the posting line. Judged Nov 8 with `anim.py lanes`: ai at 2x core or better on shares + saves + follows per 1,000 views switches mode to ai (his go, same message); otherwise the numbers go to Todd. _shared/lanes.md."},
+ "lanes": {
+  "mode": "alternate",
+  "until": "2026-11-08",
+  "note": "Todd, live chat, Nov 1, 2026, 9:01 am: \"go with your recommendation\": 7-day test, 2 of 4 daily posts AI for trades (lane ai), 2 the current lessons (lane core), turn about in the posting line. Judged Nov 8 with `anim.py lanes`: ai at 2x core or better on shares + saves + follows per 1,000 views switches mode to ai (his go, same message); otherwise the numbers go to Todd. _shared/lanes.md."
+ },
  "posting": {
   "perDay": 2,
   "note": "Todd, live chat, Nov 1, 2026, 12:09 pm: \"Let's go down to 2 videos a day until we get the formula and structure correct to go viral. use the spare capacity to focus on developing quality videos\". Kept lunch (11:37, our best Instagram read so far, lsa-missed-calls) and evening (8:13 pm); the morning and end-of-day post tasks are turned off, not deleted. Earlier: 3 a day (Oct 30), 4 a day (Oct 31, 9:08 am). Slots and evidence: video/studio/research/runs/2026-10-30-cadence.md; _shared/formula.md.",

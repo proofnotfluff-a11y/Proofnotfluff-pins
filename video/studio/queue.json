@@ -169,8 +169,8 @@
    },
    "posts": {},
    "hold": {
-    "reason": "Held Oct 30 (Todd, 4:01 pm): too thin; rebuild from research/topics-2026-10-30.md or drop",
-    "at": "2026-10-30T16:02:13-05:00"
+    "reason": "Todd, live chat, Nov 2, 2026, 8:58 pm: hold every video made under the old gates until the rebuilt line passes his watch-through (video/studio/PRINCIPLES.md, REBUILD.md)",
+    "at": "2026-11-02T22:13:02-05:00"
    }
   },
   {
@@ -267,8 +267,8 @@
    },
    "posts": {},
    "hold": {
-    "reason": "Held Oct 30 (Todd, 4:01 pm): too thin; rebuild from research/topics-2026-10-30.md or drop",
-    "at": "2026-10-30T16:02:13-05:00"
+    "reason": "Todd, live chat, Nov 2, 2026, 8:58 pm: hold every video made under the old gates until the rebuilt line passes his watch-through (video/studio/PRINCIPLES.md, REBUILD.md)",
+    "at": "2026-11-02T22:13:02-05:00"
    }
   },
   {
@@ -327,8 +327,8 @@
    },
    "posts": {},
    "hold": {
-    "reason": "Held Oct 30 (Todd, 4:01 pm): too thin; rebuild from research/topics-2026-10-30.md or drop",
-    "at": "2026-10-30T16:02:13-05:00"
+    "reason": "Todd, live chat, Nov 2, 2026, 8:58 pm: hold every video made under the old gates until the rebuilt line passes his watch-through (video/studio/PRINCIPLES.md, REBUILD.md)",
+    "at": "2026-11-02T22:13:02-05:00"
    }
   },
   {
@@ -351,8 +351,8 @@
    },
    "posts": {},
    "hold": {
-    "reason": "Held Oct 30 (Todd, 4:01 pm): too thin; rebuild from research/topics-2026-10-30.md or drop",
-    "at": "2026-10-30T16:02:13-05:00"
+    "reason": "Todd, live chat, Nov 2, 2026, 8:58 pm: hold every video made under the old gates until the rebuilt line passes his watch-through (video/studio/PRINCIPLES.md, REBUILD.md)",
+    "at": "2026-11-02T22:13:03-05:00"
    }
   },
   {
@@ -375,8 +375,8 @@
    },
    "posts": {},
    "hold": {
-    "reason": "Held Oct 30 (Todd, 4:01 pm): too thin; rebuild from research/topics-2026-10-30.md or drop",
-    "at": "2026-10-30T16:02:13-05:00"
+    "reason": "Todd, live chat, Nov 2, 2026, 8:58 pm: hold every video made under the old gates until the rebuilt line passes his watch-through (video/studio/PRINCIPLES.md, REBUILD.md)",
+    "at": "2026-11-02T22:13:03-05:00"
    }
   },
   {
@@ -582,7 +582,11 @@
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {},
+   "hold": {
+    "reason": "Todd, live chat, Nov 2, 2026, 8:58 pm: hold every video made under the old gates until the rebuilt line passes his watch-through (video/studio/PRINCIPLES.md, REBUILD.md)",
+    "at": "2026-11-02T22:13:03-05:00"
+   }
   }
  ]
 }

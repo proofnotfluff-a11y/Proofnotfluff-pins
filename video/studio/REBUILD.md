@@ -30,4 +30,5 @@ variety checks stay only where they stop repeats.
    sent to Todd as a preview.
 2. Second run: three more videos on that line; Todd watches them.
 3. Then back to 2 a day on the new line; the evening read compares each new video with the old ones.
-Open for Todd: whether queued videos made under the old gates still post, and when the build run happens.
+Todd, Nov 2, 9:00 pm: the 6 queued videos are held (anim.py hold) and video/config.json stop is true (no posting, making or
+lab runs); the build run is Thu Nov 5, 10:01 pm. Posting resumes only on his word after he watches the new video.

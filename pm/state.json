@@ -1,7 +1,7 @@
 {
  "started_at": "2026-10-17T18:19:43Z",
- "cash": 49.9264,
- "realized_pnl": -22.7798,
+ "cash": 13.809,
+ "realized_pnl": -18.9708,
  "cohort": {
   "picked_at": "2026-10-31T18:42:11Z",
   "wallets": [
@@ -210,56 +210,41 @@
   }
  },
  "last_seen": {
-  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1793799499,
+  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1793835171,
   "0xcdcccd0f2d86e450d973da415ad2430e5cc7935a": 1792857432,
-  "0x4f1d5ae26fc31472966e951af3183308736d8de2": 1793801928,
+  "0x4f1d5ae26fc31472966e951af3183308736d8de2": 1793835109,
   "0x7c37b52eb226bcb9411375ec48b0169663fb6aeb": 1792261183,
   "0x924379a79c64b77ad5816ad362122a5f6228658e": 1793448003,
   "0x63cf8544631c31e9fcea0b02141dd24d01d6e4d0": 1792261183,
   "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": 1793632656,
   "0x361b16e3ddfe1d415d41008daac2631d94ab74fe": 1793450797,
-  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1793802064,
-  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1793802039,
+  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1793834853,
+  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1793835285,
   "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d": 1793286674,
   "0xb0e74df9430a089aa102e2207af5fde1967439d2": 1792261183,
-  "0x5fdd66ffd0325d4e8d1d86fbec50caa31770a747": 1793798238,
+  "0x5fdd66ffd0325d4e8d1d86fbec50caa31770a747": 1793822158,
   "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c": 1792845297,
   "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": 1793450530,
-  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1793775520,
+  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1793835009,
   "0xd38b71f3e8ed1af71983e5c309eac3dfa9b35029": 1792818993,
-  "0x511f9c771449162349795d17becf8b37031acbe1": 1793801073,
+  "0x511f9c771449162349795d17becf8b37031acbe1": 1793834961,
   "0x0f6f76ced62a911bccef92f50faaff143854d977": 1792575788,
   "0xa2cced8bfae7d645f7f437fb76becf2fcbb70cbc": 1792834263,
   "0xe6ca6ebbec97e8a46ff3dbdb2a99d46254fbbff4": 1792866685,
-  "0x5a218c7ad04135830a45c41aaed7294df7809318": 1793802118,
-  "0x1387d145aaf01f6e33b66525dda6e1f51f6955f8": 1793801961,
+  "0x5a218c7ad04135830a45c41aaed7294df7809318": 1793835169,
+  "0x1387d145aaf01f6e33b66525dda6e1f51f6955f8": 1793835262,
   "0x57a85952044f2c8e4d31b475aab6987d2f98ebc2": 1793447691,
   "0x2b5920274740ca61745eeb077587bf5bb4ff9db6": 1793450595,
   "0x4868c31e81040e002b41984842b84bae8923a1c1": 1793446809,
   "0xe9b710551dd82a44e79203c2394a2b10163ace7b": 1793735866,
   "0x03805a13a0b3e058f55f6c6af95389d4f431073d": 1793472131,
-  "0x821dab0565ebf5b327f51db06223fdcfe01acf16": 1793802129,
+  "0x821dab0565ebf5b327f51db06223fdcfe01acf16": 1793835363,
   "0x7ad71d79a3bb90d0a87a06500fa0fe11663842aa": 1793650485,
   "0x67542c3219b37fd1610aad290676ff91cdbfe3bc": 1793735598,
-  "0xb0c85813a7a4428f1139ff91d3118a92c391fe7f": 1793802109,
-  "0x684baa57c338c2549aec0aa3f034f695d72a8409": 1793801571
+  "0xb0c85813a7a4428f1139ff91d3118a92c391fe7f": 1793835376,
+  "0x684baa57c338c2549aec0aa3f034f695d72a8409": 1793835204
  },
  "positions": {
-  "89524111316754281233016446935787527194216234343076592935555965327756401377156": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0x5554740293afa7aafd5fed10fd2de43a898e2884c1f98bd65185e703f371b9db",
-   "title": "Will an independent win the Nebraska Senate race in 2026?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-10-18T13:39:54Z",
-   "leader_price": 0.71,
-   "entry_price": 0.725,
-   "shares": 6.7586,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 1.0,
-   "value": 6.7586
-  },
   "38274379050640062523611849065721372699838119672720475300345842413156391540232": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
    "condition_id": "0x19d2ff72e389d190c183e6b114817301d29eba651d67d75a38ee201a05188fd9",
@@ -272,8 +257,8 @@
    "shares": 17.8182,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.1435,
-   "value": 2.5569
+   "last_price": 0.0745,
+   "value": 1.3275
   },
   "32481463316308414566870387925755631596964865686902270953857613599861973534909": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -302,8 +287,8 @@
    "shares": 5.1363,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.956,
-   "value": 4.9103
+   "last_price": 0.984,
+   "value": 5.0541
   },
   "8818882580258325166337837102966293982190018467620490556947006190938951037006": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -317,8 +302,8 @@
    "shares": 5.1336,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.971,
-   "value": 4.9847
+   "last_price": 0.983,
+   "value": 5.0463
   },
   "108767173380374027732080104990699635190337878673564806647896154227197681002646": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -332,8 +317,8 @@
    "shares": 5.3552,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.929,
-   "value": 4.975
+   "last_price": 0.9835,
+   "value": 5.2668
   },
   "39228840575449881837568889168840039857058636039550121318060583610152400585337": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -362,8 +347,8 @@
    "shares": 9.0741,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.56,
-   "value": 5.0815
+   "last_price": 0.575,
+   "value": 5.2176
   },
   "74897964775279535413258818950960058718976813244965274421640138167280313090417": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -377,8 +362,8 @@
    "shares": 5.2406,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.984,
-   "value": 5.1568
+   "last_price": 0.9835,
+   "value": 5.1541
   },
   "38699476815399395356989015877555458187892757628739181486012435043187939472631": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -392,8 +377,8 @@
    "shares": 17.8182,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.355,
-   "value": 6.3255
+   "last_price": 0.365,
+   "value": 6.5036
   },
   "10229340737584154978359500415623156606488248988978412976257532327635966656733": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -407,8 +392,8 @@
    "shares": 5.6322,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.665,
-   "value": 3.7454
+   "last_price": 0.58,
+   "value": 3.2667
   },
   "60186594918326728407185405226545526273084940240456698624096625852288751603361": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -422,8 +407,8 @@
    "shares": 12.6126,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.5675,
-   "value": 7.1577
+   "last_price": 0.649,
+   "value": 8.1856
   },
   "11128925845879348170706262358649886447119541463625558967934110995591843189690": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -437,8 +422,8 @@
    "shares": 5.8683,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.525,
-   "value": 3.0809
+   "last_price": 0.545,
+   "value": 3.1982
   },
   "66525581428615379722785141552215127605605884303864880542181853788943488083291": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -497,8 +482,8 @@
    "shares": 6.0123,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.77,
-   "value": 4.6295
+   "last_price": 0.775,
+   "value": 4.6595
   },
   "54949287641954727970495527675829776321290963944233443017122215153125602528873": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -512,8 +497,8 @@
    "shares": 5.2406,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.945,
-   "value": 4.9524
+   "last_price": 0.935,
+   "value": 4.9
   },
   "7390346044733703673979810981713454788217262553112973580159592257689325355057": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -557,23 +542,8 @@
    "shares": 5.2128,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.968,
-   "value": 5.046
-  },
-  "92576281548134350814800877416860562553699794074017301653635964206220838638047": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0x71e9f5312aac62bdc9b87fa8d171fa929eca6243d815298c4c7d61303f7d53dd",
-   "title": "Will the Republicans win the Nebraska Senate race in 2026?",
-   "outcome": "Yes",
-   "outcome_index": 0,
-   "opened_at": "2026-10-30T06:53:22Z",
-   "leader_price": 0.68,
-   "entry_price": 0.695,
-   "shares": 7.0504,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 1.0,
-   "value": 7.0504
+   "last_price": 0.996,
+   "value": 5.1919
   },
   "75380520575699614146969771004200063966336258265950378178665003767694841394115": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -602,8 +572,8 @@
    "shares": 6.4901,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.1415,
-   "value": 0.9183
+   "last_price": 0.0705,
+   "value": 0.4576
   },
   "41043206768994117315408986073890237720698622570620160528749805535590323561189": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -617,8 +587,8 @@
    "shares": 9.703,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.445,
-   "value": 4.3178
+   "last_price": 0.53,
+   "value": 5.1426
   },
   "14751936626058551916885010650555189965585566527102309901960110741008241893896": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -647,8 +617,158 @@
    "shares": 1.6023,
    "cost": 1.3636,
    "fee_in": 0.0273,
-   "last_price": 0.8015,
-   "value": 1.2842
+   "last_price": 0.807,
+   "value": 1.2931
+  },
+  "112510317284381102224537373099287666408936752336182074312930242202464693422512": {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0x4e14101792372d8c16dae3092acf0f825ca206475de2d1c76c7ded8c208f9762",
+   "title": "Spread: Celtics (-11.5)",
+   "outcome": "Celtics",
+   "outcome_index": 0,
+   "opened_at": "2026-11-04T23:34:35Z",
+   "leader_price": 0.5,
+   "entry_price": 0.525,
+   "shares": 9.3333,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.515,
+   "value": 4.8066
+  },
+  "70071592420137476676935286377781779672157004436137616627487590484756055232944": {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0x74dba1ce1ae9dd535414e85f2d9ab5ea32c0fb1acc9b7130b67e6d91217e24e1",
+   "title": "Will Jon Ossoff win the 2028 Democratic presidential nomination?",
+   "outcome": "Yes",
+   "outcome_index": 0,
+   "opened_at": "2026-11-04T23:34:36Z",
+   "leader_price": 0.2499736934,
+   "entry_price": 0.2735,
+   "shares": 17.9159,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.2635,
+   "value": 4.7208
+  },
+  "54520498526556790913156146225923215143488287603057383739874469158361646270296": {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0xfbc4f3cf084838e953bee99f5efe0ad0ed25320184c94885a2ffdd5e406af730",
+   "title": "Spread: Pelicans (-4.5)",
+   "outcome": "Jazz",
+   "outcome_index": 1,
+   "opened_at": "2026-11-04T23:34:36Z",
+   "leader_price": 0.48,
+   "entry_price": 0.495,
+   "shares": 9.899,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.485,
+   "value": 4.801
+  },
+  "14129207197856251304282387420047895552816939607518553843760339455740847052837": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x8c7db0d1f8e74f773dc0c3097fdcbb24317ca67ee5cf66367e11175581b3a826",
+   "title": "Will the Democrats win Alaska in the 2028 Presidential Election?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-11-04T23:34:37Z",
+   "leader_price": 0.71,
+   "entry_price": 0.68,
+   "shares": 7.2059,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.67,
+   "value": 4.828
+  },
+  "106315214733524668532958147533018185276513692312241040969430995133679793870998": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0xee3e32c755cfbfdabf66b73a457820dd0cd93680529765ffbb8d94211fb15915",
+   "title": "Will the Republicans win Texas in the 2028 Presidential Election?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-11-04T23:34:38Z",
+   "leader_price": 0.4,
+   "entry_price": 0.33,
+   "shares": 14.8485,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.365,
+   "value": 5.4197
+  },
+  "39336637741644171218363271064968879251277244260484205167787073451562614228683": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x51543321541399b789bf5abd1f724a69419c681bea38076e66c8f512080e6bbe",
+   "title": "Will Chromagraph Camera be #1 Paid App in the US Apple App Store on November 6?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-11-04T23:34:40Z",
+   "leader_price": 0.87,
+   "entry_price": 0.655,
+   "shares": 7.4809,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.53,
+   "value": 3.9649
+  },
+  "26827166677342648165250897994024619581536918565841046789326491157855091459784": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x9e66af0122f61920637ac3430accd435ee14eb607a2c470e4631f24e56ad6ccd",
+   "title": "Will the median home value in the Chicago Metro be between $308,000 and $313,000 on December 31?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-11-04T23:34:40Z",
+   "leader_price": 0.95,
+   "entry_price": 0.9415,
+   "shares": 5.2045,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.9315,
+   "value": 4.848
+  },
+  "68091399488696827885455394610729982636267181280880038194003261528839863543534": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x51c27584b74a3aa96462bb70d0eee1803cdc6e28cbc9e6e43443dc649434adf1",
+   "title": "Will the median home value in the Chicago Metro be between $318,000 and $323,000 on December 31?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-11-04T23:34:40Z",
+   "leader_price": 0.655,
+   "entry_price": 0.679,
+   "shares": 7.2165,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.669,
+   "value": 4.8278
+  },
+  "36482444891053126047532756210642726582101813282564872776001779846993676486682": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x47ba29e6d3f59c20daaa51304f771c89bf6c43baf9de5d3dfd8fa8b8e6ea2341",
+   "title": "Will the median home value in the Chicago Metro be between $313,000 and $318,000 on December 31?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-11-04T23:34:41Z",
+   "leader_price": 0.62,
+   "entry_price": 0.595,
+   "shares": 8.2353,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.585,
+   "value": 4.8177
+  },
+  "66639388383139222998681691093505447093794542392313030774365943188286221060594": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x419aaddbdd2928f6b5231e30ec5a2b3be329acbdc2f550bc114c7e8053dd5966",
+   "title": "Will Mai Vang win the CA-07 House seat?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-11-04T23:34:42Z",
+   "leader_price": 0.93,
+   "entry_price": 0.9455,
+   "shares": 5.1062,
+   "cost": 4.9264,
+   "fee_in": 0.0985,
+   "last_price": 0.9395,
+   "value": 4.7973
   }
  },
  "closed": [
@@ -2591,12 +2711,52 @@
    "fee_out": 0.0,
    "pnl": -5.0,
    "reason": "resolved"
+  },
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0x5554740293afa7aafd5fed10fd2de43a898e2884c1f98bd65185e703f371b9db",
+   "title": "Will an independent win the Nebraska Senate race in 2026?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-10-18T13:39:54Z",
+   "leader_price": 0.71,
+   "entry_price": 0.725,
+   "shares": 6.7586,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 1.0,
+   "value": 6.7586,
+   "closed_at": "2026-11-04T23:37:27Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 1.7586,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0x71e9f5312aac62bdc9b87fa8d171fa929eca6243d815298c4c7d61303f7d53dd",
+   "title": "Will the Republicans win the Nebraska Senate race in 2026?",
+   "outcome": "Yes",
+   "outcome_index": 0,
+   "opened_at": "2026-10-30T06:53:22Z",
+   "leader_price": 0.68,
+   "entry_price": 0.695,
+   "shares": 7.0504,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 1.0,
+   "value": 7.0504,
+   "closed_at": "2026-11-04T23:37:38Z",
+   "exit_price": 1.0,
+   "fee_out": 0.0,
+   "pnl": 2.0504,
+   "reason": "resolved"
   }
  ],
  "signals": {
-  "buy": 124,
+  "buy": 134,
   "sell": 7,
-  "skipped": 49575,
+  "skipped": 50404,
   "fallback_price": 0
  },
  "errors": 0

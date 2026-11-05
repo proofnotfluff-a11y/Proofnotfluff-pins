@@ -1,7 +1,7 @@
 {
  "started_at": "2026-10-17T18:19:43Z",
- "cash": 13.809,
- "realized_pnl": -18.9708,
+ "cash": 0.0,
+ "realized_pnl": -33.7609,
  "cohort": {
   "picked_at": "2026-10-31T18:42:11Z",
   "wallets": [
@@ -210,39 +210,39 @@
   }
  },
  "last_seen": {
-  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1793835171,
+  "0xf0318c32136c2db7fec88b84869aee6a1106c80c": 1793854203,
   "0xcdcccd0f2d86e450d973da415ad2430e5cc7935a": 1792857432,
-  "0x4f1d5ae26fc31472966e951af3183308736d8de2": 1793835109,
+  "0x4f1d5ae26fc31472966e951af3183308736d8de2": 1793859952,
   "0x7c37b52eb226bcb9411375ec48b0169663fb6aeb": 1792261183,
   "0x924379a79c64b77ad5816ad362122a5f6228658e": 1793448003,
   "0x63cf8544631c31e9fcea0b02141dd24d01d6e4d0": 1792261183,
   "0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7": 1793632656,
   "0x361b16e3ddfe1d415d41008daac2631d94ab74fe": 1793450797,
-  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1793834853,
-  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1793835285,
+  "0x111f73e91f85b6fe4de1ddec3de2fe32122e355b": 1793860230,
+  "0x5268527977f700f9bf9b6d5cd843859e4e70135d": 1793858410,
   "0x1f3a646ce5cbe2c70270e7a46161d89b7c7b895d": 1793286674,
   "0xb0e74df9430a089aa102e2207af5fde1967439d2": 1792261183,
   "0x5fdd66ffd0325d4e8d1d86fbec50caa31770a747": 1793822158,
   "0x076daa87c4fe1a85402a9b6b8e0a866224388d4c": 1792845297,
   "0xbc43c8bfbc4d77c2fc9011adad38ba43b88996d3": 1793450530,
-  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1793835009,
+  "0x96489abcb9f583d6835c8ef95ffc923d05a86825": 1793860219,
   "0xd38b71f3e8ed1af71983e5c309eac3dfa9b35029": 1792818993,
-  "0x511f9c771449162349795d17becf8b37031acbe1": 1793834961,
+  "0x511f9c771449162349795d17becf8b37031acbe1": 1793859498,
   "0x0f6f76ced62a911bccef92f50faaff143854d977": 1792575788,
   "0xa2cced8bfae7d645f7f437fb76becf2fcbb70cbc": 1792834263,
   "0xe6ca6ebbec97e8a46ff3dbdb2a99d46254fbbff4": 1792866685,
-  "0x5a218c7ad04135830a45c41aaed7294df7809318": 1793835169,
-  "0x1387d145aaf01f6e33b66525dda6e1f51f6955f8": 1793835262,
+  "0x5a218c7ad04135830a45c41aaed7294df7809318": 1793860159,
+  "0x1387d145aaf01f6e33b66525dda6e1f51f6955f8": 1793860251,
   "0x57a85952044f2c8e4d31b475aab6987d2f98ebc2": 1793447691,
   "0x2b5920274740ca61745eeb077587bf5bb4ff9db6": 1793450595,
   "0x4868c31e81040e002b41984842b84bae8923a1c1": 1793446809,
-  "0xe9b710551dd82a44e79203c2394a2b10163ace7b": 1793735866,
+  "0xe9b710551dd82a44e79203c2394a2b10163ace7b": 1793847090,
   "0x03805a13a0b3e058f55f6c6af95389d4f431073d": 1793472131,
-  "0x821dab0565ebf5b327f51db06223fdcfe01acf16": 1793835363,
+  "0x821dab0565ebf5b327f51db06223fdcfe01acf16": 1793860318,
   "0x7ad71d79a3bb90d0a87a06500fa0fe11663842aa": 1793650485,
   "0x67542c3219b37fd1610aad290676ff91cdbfe3bc": 1793735598,
-  "0xb0c85813a7a4428f1139ff91d3118a92c391fe7f": 1793835376,
-  "0x684baa57c338c2549aec0aa3f034f695d72a8409": 1793835204
+  "0xb0c85813a7a4428f1139ff91d3118a92c391fe7f": 1793860140,
+  "0x684baa57c338c2549aec0aa3f034f695d72a8409": 1793860108
  },
  "positions": {
   "38274379050640062523611849065721372699838119672720475300345842413156391540232": {
@@ -257,8 +257,8 @@
    "shares": 17.8182,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.0745,
-   "value": 1.3275
+   "last_price": 0.0515,
+   "value": 0.9176
   },
   "32481463316308414566870387925755631596964865686902270953857613599861973534909": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -302,8 +302,8 @@
    "shares": 5.1336,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.983,
-   "value": 5.0463
+   "last_price": 0.9835,
+   "value": 5.0489
   },
   "108767173380374027732080104990699635190337878673564806647896154227197681002646": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -377,8 +377,8 @@
    "shares": 17.8182,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.365,
-   "value": 6.5036
+   "last_price": 0.38,
+   "value": 6.7709
   },
   "10229340737584154978359500415623156606488248988978412976257532327635966656733": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -407,8 +407,8 @@
    "shares": 12.6126,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.649,
-   "value": 8.1856
+   "last_price": 0.719,
+   "value": 9.0685
   },
   "11128925845879348170706262358649886447119541463625558967934110995591843189690": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -542,8 +542,8 @@
    "shares": 5.2128,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.996,
-   "value": 5.1919
+   "last_price": 0.998,
+   "value": 5.2024
   },
   "75380520575699614146969771004200063966336258265950378178665003767694841394115": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -560,21 +560,6 @@
    "last_price": 0.125,
    "value": 3.0168
   },
-  "80727480162707694817992062873857913056698208056368499870278974630056151503113": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0xa32317ba83c3c83dc43ef260c3744c22ed8000db53d30bc09372c45cff5fb07a",
-   "title": "Will Republicans lose the Alaska, Iowa, Kansas, Maine, Michigan, Ohio, and Texas Senate seats?",
-   "outcome": "No",
-   "outcome_index": 1,
-   "opened_at": "2026-11-01T01:00:47Z",
-   "leader_price": 0.74,
-   "entry_price": 0.755,
-   "shares": 6.4901,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.0705,
-   "value": 0.4576
-  },
   "41043206768994117315408986073890237720698622570620160528749805535590323561189": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
    "condition_id": "0xf40c67e698f10b78e6c9cd9f7e2c36fb2b48d865d9de97ac250443923c7f6ff0",
@@ -587,8 +572,8 @@
    "shares": 9.703,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.53,
-   "value": 5.1426
+   "last_price": 0.45,
+   "value": 4.3663
   },
   "14751936626058551916885010650555189965585566527102309901960110741008241893896": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -617,23 +602,8 @@
    "shares": 1.6023,
    "cost": 1.3636,
    "fee_in": 0.0273,
-   "last_price": 0.807,
-   "value": 1.2931
-  },
-  "112510317284381102224537373099287666408936752336182074312930242202464693422512": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0x4e14101792372d8c16dae3092acf0f825ca206475de2d1c76c7ded8c208f9762",
-   "title": "Spread: Celtics (-11.5)",
-   "outcome": "Celtics",
-   "outcome_index": 0,
-   "opened_at": "2026-11-04T23:34:35Z",
-   "leader_price": 0.5,
-   "entry_price": 0.525,
-   "shares": 9.3333,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.515,
-   "value": 4.8066
+   "last_price": 0.8415,
+   "value": 1.3483
   },
   "70071592420137476676935286377781779672157004436137616627487590484756055232944": {
    "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
@@ -647,23 +617,8 @@
    "shares": 17.9159,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.2635,
-   "value": 4.7208
-  },
-  "54520498526556790913156146225923215143488287603057383739874469158361646270296": {
-   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
-   "condition_id": "0xfbc4f3cf084838e953bee99f5efe0ad0ed25320184c94885a2ffdd5e406af730",
-   "title": "Spread: Pelicans (-4.5)",
-   "outcome": "Jazz",
-   "outcome_index": 1,
-   "opened_at": "2026-11-04T23:34:36Z",
-   "leader_price": 0.48,
-   "entry_price": 0.495,
-   "shares": 9.899,
-   "cost": 5.0,
-   "fee_in": 0.1,
-   "last_price": 0.485,
-   "value": 4.801
+   "last_price": 0.261,
+   "value": 4.676
   },
   "14129207197856251304282387420047895552816939607518553843760339455740847052837": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -677,8 +632,8 @@
    "shares": 7.2059,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.67,
-   "value": 4.828
+   "last_price": 0.78,
+   "value": 5.6206
   },
   "106315214733524668532958147533018185276513692312241040969430995133679793870998": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -692,8 +647,8 @@
    "shares": 14.8485,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.365,
-   "value": 5.4197
+   "last_price": 0.31,
+   "value": 4.603
   },
   "39336637741644171218363271064968879251277244260484205167787073451562614228683": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -707,8 +662,8 @@
    "shares": 7.4809,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.53,
-   "value": 3.9649
+   "last_price": 0.585,
+   "value": 4.3763
   },
   "26827166677342648165250897994024619581536918565841046789326491157855091459784": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -722,8 +677,8 @@
    "shares": 5.2045,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.9315,
-   "value": 4.848
+   "last_price": 0.933,
+   "value": 4.8558
   },
   "68091399488696827885455394610729982636267181280880038194003261528839863543534": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -737,8 +692,8 @@
    "shares": 7.2165,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.669,
-   "value": 4.8278
+   "last_price": 0.664,
+   "value": 4.7918
   },
   "36482444891053126047532756210642726582101813282564872776001779846993676486682": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -752,8 +707,8 @@
    "shares": 8.2353,
    "cost": 5.0,
    "fee_in": 0.1,
-   "last_price": 0.585,
-   "value": 4.8177
+   "last_price": 0.66,
+   "value": 5.4353
   },
   "66639388383139222998681691093505447093794542392313030774365943188286221060594": {
    "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
@@ -767,8 +722,53 @@
    "shares": 5.1062,
    "cost": 4.9264,
    "fee_in": 0.0985,
-   "last_price": 0.9395,
-   "value": 4.7973
+   "last_price": 0.858,
+   "value": 4.3811
+  },
+  "104165260671253778225262572541836653578234644079490423856279685423162071719581": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x901379fb8c22c487980577ee91ea3d288245157102ecdc318d8cf2ecc288fb3c",
+   "title": "Will the Republican Party win the CA-23 House seat?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-11-05T06:30:49Z",
+   "leader_price": 0.201,
+   "entry_price": 0.1385,
+   "shares": 35.3791,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.1285,
+   "value": 4.5462
+  },
+  "108940382439115011847429549202497903609327017930484498906365156082965866053858": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0x9acae6e6c573f0df1e82f613f2c41b739c28767ea230553bce76557393ac4864",
+   "title": "Will the Republicans win Arizona in the 2028 Presidential Election?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-11-05T06:30:49Z",
+   "leader_price": 0.76,
+   "entry_price": 0.745,
+   "shares": 6.5772,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.735,
+   "value": 4.8342
+  },
+  "19401674945624252527955342497023291856931556590871739818454381411583441776378": {
+   "leader": "0x4f1d5ae26fc31472966e951af3183308736d8de2",
+   "condition_id": "0xc9e72c14f5ca7fceddcb619aefdd779bd54960acb6b416c426dc11b99c206565",
+   "title": "Will the Democratic Party win the CA-23 House seat?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-11-05T06:30:50Z",
+   "leader_price": 0.872,
+   "entry_price": 0.877,
+   "shares": 4.4909,
+   "cost": 4.0189,
+   "fee_in": 0.0804,
+   "last_price": 0.867,
+   "value": 3.8936
   }
  },
  "closed": [
@@ -2751,12 +2751,72 @@
    "fee_out": 0.0,
    "pnl": 2.0504,
    "reason": "resolved"
+  },
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0xa32317ba83c3c83dc43ef260c3744c22ed8000db53d30bc09372c45cff5fb07a",
+   "title": "Will Republicans lose the Alaska, Iowa, Kansas, Maine, Michigan, Ohio, and Texas Senate seats?",
+   "outcome": "No",
+   "outcome_index": 1,
+   "opened_at": "2026-11-01T01:00:47Z",
+   "leader_price": 0.74,
+   "entry_price": 0.755,
+   "shares": 6.4901,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.0705,
+   "value": 0.4576,
+   "closed_at": "2026-11-05T06:30:48Z",
+   "exit_price": 0.032999999999999995,
+   "fee_out": 0.0043,
+   "pnl": -4.7901,
+   "reason": "leader sold"
+  },
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0x4e14101792372d8c16dae3092acf0f825ca206475de2d1c76c7ded8c208f9762",
+   "title": "Spread: Celtics (-11.5)",
+   "outcome": "Celtics",
+   "outcome_index": 0,
+   "opened_at": "2026-11-04T23:34:35Z",
+   "leader_price": 0.5,
+   "entry_price": 0.525,
+   "shares": 9.3333,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.515,
+   "value": 4.8066,
+   "closed_at": "2026-11-05T06:33:20Z",
+   "exit_price": 0.0,
+   "fee_out": 0.0,
+   "pnl": -5.0,
+   "reason": "resolved"
+  },
+  {
+   "leader": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "condition_id": "0xfbc4f3cf084838e953bee99f5efe0ad0ed25320184c94885a2ffdd5e406af730",
+   "title": "Spread: Pelicans (-4.5)",
+   "outcome": "Jazz",
+   "outcome_index": 1,
+   "opened_at": "2026-11-04T23:34:36Z",
+   "leader_price": 0.48,
+   "entry_price": 0.495,
+   "shares": 9.899,
+   "cost": 5.0,
+   "fee_in": 0.1,
+   "last_price": 0.485,
+   "value": 4.801,
+   "closed_at": "2026-11-05T06:33:21Z",
+   "exit_price": 0.0,
+   "fee_out": 0.0,
+   "pnl": -5.0,
+   "reason": "resolved"
   }
  ],
  "signals": {
-  "buy": 134,
-  "sell": 7,
-  "skipped": 50404,
+  "buy": 137,
+  "sell": 8,
+  "skipped": 51094,
   "fallback_price": 0
  },
  "errors": 0

@@ -112,9 +112,9 @@ const helpCard = (k, d, lines, t0, o = {}) => {
   win(14, 84 + up, 332, o.h || 150, {base: CREAM, hi: '#FFFFFF', lo: SAND, rule: false});
   P(14, 84 + up, 332, 20, '#3B82C4'); k.text('GOOGLE ADS HELP', 72, 258 + up * 3, {size: 39, color: CREAM});
   if (up) return;
-  let n = Math.max(0, Math.floor((k.T - t0 - 0.25) * 34));
+  let n = Math.max(0, Math.floor((k.T - t0 - 0.2) * 60));
   lines.forEach((s, i) => { const m = Math.min(s.length, n); n -= m; if (m) k.text(s.slice(0, m), 72, 336 + i * 64, {size: 52, color: INK}); });
-  k.text('Google Ads Help, read Nov 6, 2026', 72, (84 + (o.h || 150) - 18) * 3, {size: 36, color: '#4A4E5A'});
+  k.text('Source: Ads Help, read Nov 6, 2026', 72, (84 + (o.h || 150) - 18) * 3, {size: 36, color: '#4A4E5A'});
 };
 /* our own pixel camera flash: white for 2 frames at t, then a frame */
 const flash = (k, d, t) => { const f = d.fr(t); if (f >= 0 && f < 2) d.P(0, 0, 360, 417, '#FFFFFF'); };
@@ -131,12 +131,13 @@ window.SCENE = {
     /* ---- hook: scene one, the box (cover, no host): our ad screen, the cursor in the MAX PER LEAD box; on "type" it   */
     /* fills gold. Scene two on "Then": the new screen, the box crumbles on "gone", BOX GONE stamps.                      */
     hook: (k, T) => {
-      const tIn = Math.min(0.9, Math.max(0.5, wordT(k, 'hook', /^open/i, 0.4) + 0.2)), tType = wordT(k, 'hook', /^type/i, 1.6) - 0.05, tTwo = k.S('hook.gone'), tGone = wordT(k, 'hook.gone', /^gone/i, 2.4);
+      const tIn = Math.min(0.9, Math.max(0.5, wordT(k, 'hook', /^open/i, 0.4) + 0.2)), tType = wordT(k, 'hook', /^type/i, 1.6) - 0.05, tTwo = k.S('hook.gone'), tGone = wordT(k, 'hook.gone', /^moves?$/i, 1.0) + 0.3;
       if (T >= tTwo) {
         const d = monitor(k, {box: 'gone', goneAt: tGone - 0.3, newScreen: true});
         topPlate(k, d, 'One day:', 'the box is gone.', tTwo + 0.02);
+        if (T >= tGone + 0.6) { const b = [0, -1, -2, -1][(d.F >> 3) % 4]; k.text('?', 756, 549 + b * 3, {size: 66, color: GOLD, align: 'center', lint: false}); loopSweep(k, 540 - k.measure('the box is gone.', {size: 66}) / 2, 410, k.measure('the box is gone.', {size: 66}), tGone + 0.6, 1.0); }
         if (T >= tGone) stampBox(k, 'BOX GONE', 540, 820, tGone, {color: RED, freeze: 4});
-        exampleTag(d, 254, 296);
+        exampleTag(d, 230, 296);
         return host(k, T >= tGone ? 'shrug' : null);
       }
       if (T >= tIn) {
@@ -149,26 +150,26 @@ window.SCENE = {
           const n = fill ? Math.min(8, Math.floor((T - tType) * 30)) : 0; if (n) k.text('YOUR MAX'.slice(0, n), 168, 642, {size: 99, color: GOLD});
           if ((d.F >> 4) % 2 === 0) P(fill ? bx + 16 + Math.round(k.measure('YOUR MAX'.slice(0, n), {size: 99}) / 3) + 4 : bx + 14, by + 10, 4, 36, CREAM); }
         topPlate(k, d, 'Your max per lead:', 'going away.', -1);
-        exampleTag(d, 254, 296);
+        exampleTag(d, 230, 296);
         P(0, 417, 360, 223, NIGHT);
         return host(k);
       }
       const d = monitor(k, {box: 'empty'});
       topPlate(k, d, 'Your max per lead:', 'going away.', -1);
-      exampleTag(d, 254, 296);
+      exampleTag(d, 230, 296);
       return {host: false, speech: false};
     },
 
     /* ---- move: our own street, a van carrying the LOCAL SERVICES ADS sign drives into the GOOGLE ADS building. On      */
     /* "waves" the wave strip: three tiles, a wave rolls along them; on "truck" a van drops on LATE 2026: YOUR WAVE.      */
     move: (k, T) => {
-      const t0 = k.S('move'), tW = k.S('move.waves'), tTruck = wordT(k, 'move.waves', /^truck/i, 3.2), tLate = wordT(k, 'move.waves', /^late/i, 4.5);
+      const t0 = k.S('move'), tW = k.S('move.waves'), tTruck = wordT(k, 'move.waves', /^truck/i, 3.2), tWave = wordT(k, 'move.waves', /^wave$/i, 7.0) - 0.45, tLate = wordT(k, 'move.waves', /^late/i, 4.5);
       if (T < tW) {
         const d = px(k), {P, dith, F} = d;
         P(0, 0, 360, 417, SKY); for (let i = 0; i < 3; i++) { const cx = ((i * 140 - Math.floor(F / 5)) % 480 + 480) % 480 - 60; d.disc(cx, 60 + i * 10, 10, CREAM); d.disc(cx + 12, 56 + i * 10, 12, CREAM); }
         /* the building */
-        P(200, 130, 150, 287, '#C9CCD3'); for (let y = 150; y < 400; y += 26) for (let x = 212; x < 340; x += 30) P(x, y, 18, 16, '#253048');
-        P(200, 120, 150, 26, '#3B82C4'); k.text('GOOGLE ADS', 825, 372, {size: 48, color: CREAM, align: 'center'});
+        P(200, 186, 150, 231, '#C9CCD3'); for (let y = 222; y < 350; y += 26) for (let x = 212; x < 340; x += 30) P(x, y, 18, 16, '#253048');
+        P(200, 160, 150, 26, '#3B82C4'); k.text('GOOGLE ADS', 825, 492, {size: 48, color: CREAM, align: 'center'});
         P(250, 360, 50, 57, INK); P(254, 364, 42, 53, '#4A4E5A');
         P(0, 417, 360, 223, '#2B2033'); P(0, 417, 360, 3, '#4A4E5A');
         /* the van with its sign */
@@ -180,15 +181,15 @@ window.SCENE = {
       const d = px(k), {P, dith, win, F} = d;
       P(0, 0, 360, 417, '#245752'); for (let y = 0; y < 417; y += 4) dith(0, y, 360, 1, '#2F6F67', (y / 4) % 2);
       k.text('THE MOVE, IN WAVES', 72, 264, {size: 48, color: GOLD});
-      const tiles = [['AUG 2026', 'FIRST WAVE', tW + 0.2], ['LATE 2026', 'NO STOREFRONT', tLate - 0.3], ['2027', 'THE REST', tLate + 0.4]];
+      const tiles = [['AUG 2026', 'FIRST WAVE', wordT(k, 'move.waves', /^august/i, 2.0) - 0.3], ['LATE 2026', 'NO STOREFRONT', tLate - 0.3], ['2027', 'THE REST', tLate + 0.4]];
       tiles.forEach(([a, b, ti], i) => { const x = 18 + i * 110, lit = T >= ti, mine = i === 1 && T >= tTruck;
         win(x, 104, 102, 120, {base: mine ? '#4A3A1A' : (lit ? '#253048' : NIGHT), hi: mine ? GOLD : '#3B82C4', lo: INK, rule: mine ? GOLD : false});
-        k.text(a, (x + 51) * 3, 360, {size: 39, color: lit ? CREAM : GREY, align: 'center'});
-        k.text(b, (x + 51) * 3, 420, {size: 30, color: lit ? SAND : GREY, align: 'center'}); });
+        k.text(a, (x + 51) * 3, 354, {size: 48, color: lit ? CREAM : GREY, align: 'center'});
+        k.text(b, (x + 51) * 3, 420, {size: 36, color: lit ? SAND : GREY, align: 'center'}); });
       /* the wave: a crest rolling along under the tiles */
       { const q = ((T - tW) * 0.5) % 1, cx = Math.round(18 + q * 330); for (let i = -20; i <= 20; i++) { const h = Math.round(6 * Math.cos(i / 20 * Math.PI / 2)); P(cx + i, 236 - h, 1, h + 2, SKY); } P(0, 238, 360, 4, '#3B82C4'); }
-      if (T >= tTruck) { const dy = d.ease(tTruck, 5, 30); k.sets.van(140, 182 - dy, {wheel: F}); if (!dy) k.slam('YOUR WAVE', 495, 700, tTruck + 0.1, {size: 48, color: GOLD, align: 'center', from: 0.4}); }
-      plate(d, 98, 290, 248, 30); k.text('Google Ads Help, read Nov 6, 2026', 312, 900, {size: 36, color: SAND});
+      if (T >= tTruck) { const dy = d.ease(tTruck, 5, 30); k.sets.van(140, 182 - dy, {wheel: F}); if (!dy && T >= tWave) k.slam('YOUR WAVE', 495, 744, tWave, {size: 66, color: GOLD, align: 'center', from: 0.4}); }
+      plate(d, 98, 290, 248, 30); k.text('Source: Ads Help, read Nov 6, 2026', 312, 900, {size: 36, color: SAND});
       return host(k, T >= tTruck ? 'point' : null);
     },
 
@@ -196,8 +197,8 @@ window.SCENE = {
     now: (k, T) => {
       const t0 = k.S('now'), tRep = wordT(k, 'now', /^reports?/i, 1.4) - 0.2;
       const d = monitor(k, {box: 'filled', report: tRep});
-      topPlate(k, d, 'Until your move:', 'you set your max.', t0 + 0.05);
-      exampleTag(d, 254, 296);
+      topPlate(k, d, 'Until the move:', 'you set the max.', t0 - 0.3);
+      exampleTag(d, 230, 296);
       loopSweep(k, 588, 444, k.measure('YOUR MAX', {size: 39}), t0 + 0.4, 1.0, 6);
       return host(k);
     },
@@ -205,7 +206,7 @@ window.SCENE = {
     /* ---- rule: mosaic to Google's help page line, typed on; NO MAX stamps. Then the split: OLD reports on the left    */
     /* try to cross into GOOGLE ADS and bounce back: STAYS BEHIND, with the page's line.                                  */
     rule: (k, T) => {
-      const t0 = k.S('rule'), tR = k.S('rule.reports'), tMax = wordT(k, 'rule', /^max/i, 2.6);
+      const t0 = k.S('rule'), tR = k.S('rule.reports'), tMax = wordT(k, 'rule', /^won/i, 2.2) - 0.1;
       if (T < tR) {
         const d = px(k), {P, dith} = d;
         P(0, 0, 360, 417, '#253048'); { const sc = Math.floor(d.F / 2) % 8; for (let y = -8; y < 417; y += 8) dith(0, y + sc, 360, 2, '#1F2A40', 0); }
@@ -220,7 +221,8 @@ window.SCENE = {
       /* the empty shelf on the right */
       P(206, 200, 130, 4, '#4A2E1B'); P(206, 150, 130, 4, '#4A2E1B');
       /* three report papers: they slide toward the line, hit it and bounce back */
-      for (let i = 0; i < 3; i++) { const ph = T - tR - i * 0.12, push = ph < 0 ? 0 : (T < tBack ? Math.min(1, ph / 0.7) : Math.max(0, 1 - (T - tBack) / 0.25));
+      const cyc = T < tBack + 0.25 ? 0 : (T - tBack - 0.25) % 1.4, again = T >= tBack + 0.25 ? (cyc < 0.5 ? cyc / 0.5 * 0.35 : Math.max(0, 0.35 - (cyc - 0.5) / 0.2 * 0.35)) : 0;
+      for (let i = 0; i < 3; i++) { const ph = T - tR - i * 0.12, push = ph < 0 ? 0 : (T < tBack ? Math.min(1, ph / 0.7) : Math.max(again, 1 - (T - tBack) / 0.25));
         const x = 40 + i * 40 + Math.round(push * (150 - (40 + i * 40) - 30 + i * 4)), y = 150 + (i % 2) * 18;
         P(x + 2, y + 2, 30, 40, INK); P(x, y, 30, 40, CREAM); for (let r = 0; r < 4; r++) P(x + 4, y + 8 + r * 7, 22 - (r % 2) * 6, 2, '#9AA0AD'); P(x + 4, y + 34, 10, 3, ORANGE); }
       if (T >= tBack) stampBox(k, 'STAYS BEHIND', 540, 670, tBack, {color: GOLD, size: 48, freeze: 4});
@@ -243,16 +245,16 @@ window.SCENE = {
         const q = ((T - t0) * 0.45) % 1, w = Math.round(30 + 60 * Math.sin(q * Math.PI));
         P(40, 200, 280, 14, INK); P(42, 202, w, 10, ORANGE);
         const on = Math.floor((T - t0) * 2) % 2 === 0; k.text('COMING SOON', 540, 690, {size: 66, color: on ? GOLD : '#7A6A3A', align: 'center', drop: INK});
-        plate(d, 98, 290, 248, 30); k.text('Google Ads Help, read Nov 6, 2026', 312, 900, {size: 36, color: SAND});
+        plate(d, 98, 290, 248, 30); k.text('Source: Ads Help, read Nov 6, 2026', 312, 900, {size: 36, color: SAND});
         return host(k);
       }
       /* the camera */
-      P(40, 110, 120, 80, INK); P(44, 114, 112, 72, '#4A4E5A'); d.disc(100, 150, 26, INK); d.disc(100, 150, 22, '#253048'); d.disc(100, 150, 12, '#3B82C4'); d.disc(94, 144, 4, CREAM); P(130, 104, 20, 10, INK); P(132, 106, 16, 8, GOLD);
+      P(24, 118, 84, 60, INK); P(27, 121, 78, 54, '#4A4E5A'); d.disc(66, 148, 20, INK); d.disc(66, 148, 16, '#253048'); d.disc(66, 148, 8, '#3B82C4'); d.disc(62, 144, 3, CREAM); P(86, 112, 16, 8, INK); P(88, 114, 12, 6, GOLD);
       flash(k, d, tShot + 0.05); flash(k, d, tTake);
-      win(176, 96, 170, 120, {base: CREAM, hi: '#FFFFFF', lo: SAND, rule: false});
-      k.text('Need them now?', 564, 312, {size: 48, color: '#4A4E5A'});
-      if (T >= tTake) { k.slam('"take screenshots', 564, 400, tTake, {size: 52, color: INK, from: 0.3}); k.slam('of them before', 564, 460, tTake + 0.08, {size: 52, color: INK, from: 0.3}); k.slam('migrating."', 564, 520, tTake + 0.16, {size: 52, color: INK, from: 0.3}); }
-      plate(d, 98, 290, 248, 30); k.text('Google Ads Help, read Nov 6, 2026', 312, 900, {size: 36, color: SAND});
+      win(116, 96, 230, 130, {base: CREAM, hi: '#FFFFFF', lo: SAND, rule: false});
+      k.text('Need them now?', 384, 312, {size: 48, color: '#4A4E5A'});
+      if (T >= tTake) { k.slam('"take screenshots', 384, 400, tTake, {size: 52, color: INK, from: 0.3}); k.slam('of them before', 384, 460, tTake + 0.08, {size: 52, color: INK, from: 0.3}); k.slam('migrating."', 384, 520, tTake + 0.16, {size: 52, color: INK, from: 0.3}); }
+      plate(d, 98, 290, 248, 30); k.text('Source: Ads Help, read Nov 6, 2026', 312, 900, {size: 36, color: SAND});
       return host(k, T >= tTake ? 'point' : null);
     },
 
@@ -278,13 +280,15 @@ window.SCENE = {
         return host(k, 'point');
       }
       const tEnv = wordT(k, 'setup.email', /^fourteen/i, 2.6) - 0.25;
-      const c = k.sets.calendar({month: 'YOUR MOVE', days: 28, start: 0, numbersTo: 28,
+      const c = k.sets.calendar({month: 'THE MOVE', days: 28, start: 0, numbersTo: 28,
         fills: [{day: 28, at: tE - 0.3, mark: 'fill', c: RED}, {day: 28 - n14, at: tEnv, mark: 'fill', c: GOLD}],
-        run: {from: 28 - n14 + 1, to: 27, at: tEnv + 0.2, every: 0.05, c: '#F4E6D3', mark: 'check', mc: '#2F6F67'}});
+        run: {from: 28 - n14 + 1, to: 27, at: tEnv + 0.2, every: 0.05, c: '#F4E6D3', mark: 'check', mc: '#2F6F67'},
+        weeks: Array.from({length: Math.max(1, Math.ceil((tEnv - 0.2 - tE) / 0.5))}, (_, i) => ({row: 3 - (i % 4), at: tE + i * 0.5})).concat([{row: 1, at: tEnv - 0.2}])});
       const d = px(k), {P} = d;
       { const [x, y] = c.cell ? c.cell(28 - n14) : [0, 0]; if (T >= tEnv + 0.1 && c.cell) { const dy = d.ease(tEnv + 0.1, 5, 16); P(x + 10, y + 6 - dy, 24, 16, INK); P(x + 11, y + 7 - dy, 22, 14, CREAM); d.line(x + 11, y + 7 - dy, x + 22, y + 15 - dy, '#9AA0AD'); d.line(x + 33, y + 7 - dy, x + 22, y + 15 - dy, '#9AA0AD'); } }
       plate(d, 98, 290, 248, 34);
       k.slam(`${n14} DAYS OUT: ADMIN EMAIL`, 312, 870, tEnv, {size: 39, color: GOLD, from: 0.3});
+      if (T >= tInbox + 0.4) loopSweep(k, 312, 960, k.measure('3. Admin email: an inbox you read', {size: 36}), tInbox + 0.4, 0.9, 4);
       const lit3 = T >= tInbox - 0.3; k.slam('3. Admin email: an inbox you read', 312, 918, Math.min(tInbox - 0.3, tE + 0.6), {size: 36, color: lit3 ? CREAM : GREY, from: 0.3});
       return host(k, 'point');
     },
@@ -292,22 +296,20 @@ window.SCENE = {
     /* ---- button: the monitor, the box crumbled; on "Grab" the save slot fills: SAVED, the screenshots inside. Snow    */
     /* points. Then the end card with the send line.                                                                    */
     button: (k, T) => {
-      const t0 = k.S('button'), tGrab = wordT(k, 'button', /^grab/i, 1.6);
-      if (T < tGrab) {
+      const t0 = k.S('button'), tSave = wordT(k, 'button', /^save/i, 1.6), tMove = wordT(k, 'button', /^move/i, 2.4);
+      if (T < tSave - 0.3) {
         const d = monitor(k, {box: 'gone', goneAt: t0 - 1, newScreen: true});
-        topPlate(k, d, 'The box is going,', 'whatever you do.', t0 + 0.05);
-        exampleTag(d, 254, 296);
+        topPlate(k, d, 'The box is going,', 'whatever you do.', t0 - 0.3);
+        exampleTag(d, 230, 296);
         return host(k, 'shrug');
       }
-      const d = px(k), {P, dith, win, F} = d;
-      P(0, 0, 360, 417, '#120D14'); for (let i = 0; i < 40; i++) d.DOT(Math.floor(hash(i * 3.7) * 360), Math.floor(hash(i * 9.1) * 300), (Math.floor(F / 15) + i) % 5 === 0 ? GOLD : '#4A4E5A');
-      k.text('SAVE SLOT 1', 540, 270, {size: 52, color: GOLD, align: 'center'});
-      win(30, 110, 300, 150, {base: NIGHT, hi: '#3B82C4', lo: INK, rule: '#3B82C4'});
-      for (let i = 0; i < 4; i++) { const ti = tGrab + 0.1 + i * 0.15; if (T < ti) continue; const dy = d.ease(ti, 4, 20), x = 50 + i * 66; P(x + 2, 134 - dy + 2, 52, 66, INK); P(x, 134 - dy, 52, 66, CREAM); P(x + 4, 138 - dy, 44, 34, '#253048'); for (let r = 0; r < 3; r++) P(x + 8 + r * 12, 162 - dy - r * 6, 8, 8 + r * 6, ORANGE); }
-      const tSaved = tGrab + 0.8; if (T >= tSaved) stampBox(k, 'SAVED', 540, 640, tSaved, {color: TEAL, freeze: 4});
-      P(0, 417, 360, 223, NIGHT);
-      plate(d, 98, 290, 248, 34); k.slam('Grab your numbers this week.', 312, 876, tGrab + 0.1, {size: 48, color: GOLD, from: 0.4});
-      return host(k, T >= tSaved + 0.6 ? 'wave' : 'point');
+      /* the save game: the XP bar fills as the numbers go in; SAVED stamps on "move" (our game move at the close) */
+      k.sets.levelup({from: 0, to: 100, max: 100, at: tSave - 0.3, dur: Math.max(0.8, tMove - tSave + 0.1), levelAt: tMove, level: 1, text: 'SAVED',
+        stats: [{text: 'REPORTS: SCREENSHOTS', at: tSave}, {text: 'MAX PER LEAD: NOTED', at: tSave + 0.4}]});
+      const d = px(k);
+      d.P(14, 84, 332, 40, NIGHT); k.text('SAVE FILE: YOUR NUMBERS', 540, 264, {size: 48, color: GOLD, align: 'center'});
+      plate(d, 98, 290, 248, 34); k.slam('Before you move.', 312, 876, tMove - 0.3, {size: 48, color: GOLD, from: 0.4});
+      return host(k, T >= tMove + 0.6 ? 'wave' : 'point');
     },
   },
 };

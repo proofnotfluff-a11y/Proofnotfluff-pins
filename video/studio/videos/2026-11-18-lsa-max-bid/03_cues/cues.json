@@ -1,0 +1,156 @@
+{
+ "schema": "pnf.studio.cues.v1",
+ "source": "whisper medium.en int8, re-spelled from script.md",
+ "music": {
+  "id": "rooms",
+  "level": 0.16,
+  "tune": "quest"
+ },
+ "duration": 81.031,
+ "cues": [
+  {
+   "id": "hook",
+   "level": 0,
+   "quote": "You open Google's Local",
+   "sfx": "pop",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Cover, frame one, no host: our own drawn ad screen on a desk monitor (EXAMPLE, never Google's UI): LEAD ADS, a row MAX PER LEAD with a box; the cursor blinks in it; on \"type\" the box fills and turns gold. Plate \"Your max per lead\" / \"Going away.\" Snow comes in.",
+   "t": 0.0,
+   "word": 0,
+   "end": 10.586
+  },
+  {
+   "id": "hook.gone",
+   "level": 1,
+   "quote": "Then one day Google",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Scene two: the same monitor, a new screen; the row is there, the box is a dashed outline that crumbles away on \"gone\"; BOX GONE stamps.",
+   "t": 5.74,
+   "word": 18,
+   "end": 10.586
+  },
+  {
+   "id": "move",
+   "level": 0,
+   "quote": "That's because Google is",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Our own street: a little sign LOCAL SERVICES ADS drives on a van into a big building GOOGLE ADS.",
+   "t": 10.586,
+   "word": 33,
+   "end": 26.214
+  },
+  {
+   "id": "move.waves",
+   "level": 1,
+   "quote": "But not all at",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The wave strip: three tiles AUG 2026 FIRST WAVE (lit), LATE 2026 NO STOREFRONT, 2027 THE REST; a wave rolls along; on \"truck\" a van icon drops on LATE 2026 with YOUR WAVE. Tag Google Ads Help, read Nov 6, 2026.",
+   "t": 15.026,
+   "word": 44,
+   "end": 26.214
+  },
+  {
+   "id": "now",
+   "level": 0,
+   "quote": "Until then, you set",
+   "sfx": "tick",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Back on the monitor: the box with YOUR MAX lit, and a report card under it, SPENT bars growing (EXAMPLE).",
+   "t": 26.214,
+   "word": 78,
+   "end": 30.74
+  },
+  {
+   "id": "rule",
+   "level": 0,
+   "quote": "But Google's help page",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Mosaic to the help page card: GOOGLE ADS HELP; the line types in: \"Manual bidding (such as setting a maximum cost-per-lead) is no longer supported in Google Ads.\" NO MAX stamps.",
+   "t": 30.74,
+   "word": 91,
+   "end": 43.729
+  },
+  {
+   "id": "rule.reports",
+   "level": 1,
+   "quote": "Worse, your old spend",
+   "sfx": "stamp",
+   "shift": 0.0,
+   "pin": null,
+   "text": "A split: left OLD (the report papers), right GOOGLE ADS (empty shelf); the papers try to cross and bounce back: STAYS BEHIND; the line \"performance reports will not transition\" with its tag.",
+   "t": 36.12,
+   "word": 109,
+   "end": 43.729
+  },
+  {
+   "id": "download",
+   "level": 0,
+   "quote": "Google says you'll be",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "A download screen: DOWNLOAD OLD REPORTS button greyed, a loading bar that never fills, COMING SOON blinking (2 a second); tag \"Google Ads Help, read Nov 6, 2026\".",
+   "t": 43.729,
+   "word": 130,
+   "end": 55.595
+  },
+  {
+   "id": "download.shot",
+   "level": 1,
+   "quote": "Need them now? It",
+   "sfx": "chime",
+   "shift": 0.0,
+   "pin": null,
+   "text": "A camera flash; the quote card: \"take screenshots of them before migrating\".",
+   "t": 51.589,
+   "word": 154,
+   "end": 55.595
+  },
+  {
+   "id": "setup",
+   "level": 0,
+   "quote": "So I'd do it",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The save screen (ITEM GET / SAVE FILE): SAVE YOUR NUMBERS, step 1 \"Screenshot every report\" lights, step 2 \"Write your max beside them\".",
+   "t": 55.595,
+   "word": 164,
+   "end": 72.111
+  },
+  {
+   "id": "setup.email",
+   "level": 1,
+   "quote": "Google does send a",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The calendar: the move day marked MOVE; fourteen days back an envelope lands on the day ADMIN EMAIL; step 3 \"Admin email: an inbox you read\" lights on the save card under it.",
+   "t": 62.035,
+   "word": 183,
+   "end": 72.111
+  },
+  {
+   "id": "button",
+   "level": 0,
+   "quote": "The box is going,",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The monitor again, the box crumbled; then the save file slot fills: SAVED with the screenshots inside; Snow points. Then the end card with the send line.",
+   "t": 72.111,
+   "word": 212,
+   "end": 81.031
+  }
+ ]
+}

@@ -5777,6 +5777,204 @@
    "published": "2026-10-26"
   },
   {
+   "slug": "amazon-holding-funds-pay-production",
+   "kind": "question",
+   "product": "ecommerce-13-week-cash-flow",
+   "data": "site/pages.json",
+   "stats": "kit_hold",
+   "title": "Amazon Holding Funds: How to Pay for Production | ProofNotFluff",
+   "desc": "Amazon holds your sales but production bills come now. Work out the cash you need, why every jump in sales needs more, and five ways to close the gap.",
+   "card": "How much cash it takes to keep paying for production while Amazon holds your sales, and why growth needs more.",
+   "eyebrow": "E-commerce cash flow",
+   "updated": "Worked example from the free Amazon DD+7 payout calculator's model. Checked Nov 6, 2026.",
+   "h1": "How do you pay for production while Amazon holds your funds?",
+   "answer": [
+    "Treat the hold as a cash gap you fund once, then grow only as fast as that fund allows. The gap is roughly what you spend on production each day times the days from order to money in your bank. Request your payout every day to shorten those days, and push production bills later where a supplier or a card you clear each month allows.",
+    "For a seller paid **{sales}** a day with **{prod}** a day going to production, that comes to **{dailyNeed}** with a daily payout request and **{baseNeed}** on the 14-day payout. Each extra {stepBy} a day of sales needs another {stepDailyNeed} to {stepNeed} up front, which is why a good sales week can leave the bank account empty."
+   ],
+   "numbersTitle": "The example, in four numbers",
+   "tiles": [
+    [
+     "Cash needed, daily request",
+     "{dailyNeed}",
+     "{dailyFast} days from order to bank, low point on day {dailyLowDay}"
+    ],
+    [
+     "Cash needed, 14-day payout",
+     "{baseNeed}",
+     "{baseFast} to {baseSlow} days from order to bank"
+    ],
+    [
+     "Sales jump to {jumpTo} a day",
+     "{jumpDailyNeed}",
+     "more cash up front, daily request"
+    ],
+    [
+     "Each extra {stepBy} a day",
+     "{stepDailyNeed}",
+     "more cash up front, daily request"
+    ]
+   ],
+   "numbers": [
+    "The example uses round numbers from a seller's post in the Amazon Seller Forums: about {sales} a day in sales, about half of it going to production, and funds held 15 days or more. It treats {sales} as the amount Amazon pays out a day and {prod} a day as the production spend, with no other costs and {zero} of spare cash at the start. Everything else is the free DD+7 calculator's example: fulfilled by Amazon, delivered {deliver} days after the order, the next 14-day payout 14 days away, and Express Payout landing {bank} day after release. Following Amazon's own example, money becomes available the day after the 7-day reserve ends.",
+    "With a daily request, as long as each day's payout covers that day's production, the cash needed depends only on the production spend and the days, not on the size of the payout: nothing arrives until day {dailyFirst}, so {dailyLowDay} days of production go out first. On the 14-day payout, Amazon's referral and FBA fees make each real payout smaller than sales, so the real figure is higher than the one shown."
+   ],
+   "tables": [
+    {
+     "title": "Cash needed for each setup",
+     "intro": [
+      "The same seller, one setting changed at a time. Cash needed is the deepest the bank balance goes before payouts catch up, starting from {zero}."
+     ],
+     "head": [
+      "Setup",
+      "Order to bank",
+      "Sales held at most",
+      "Cash needed (day)"
+     ],
+     "rows": "holdRows",
+     "notes": [
+      "Run through the free DD+7 calculator's model, with production at half of each day's sales in every row. Without valid tracking, Amazon dates the order from the latest estimated delivery date, {edd} days after the order here instead of {deliver}. 5 days to the bank stands in for a payout without Express Payout, which Amazon puts at 3 to 5 business days."
+     ]
+    }
+   ],
+   "stepsTitle": "How to close the gap",
+   "steps": [
+    [
+     "Work out your own number",
+     "Take what you spend on production per day and multiply it by the days from order to bank. With a daily request that is {prod} times {dailyFast} days, or {dailyNeed}. Look up your own days in Seller Central: the Deferred filter in your transactions lists each held order and the date Amazon expects to release it."
+    ],
+    [
+     "Request your payout every day",
+     "Disburse on Demand lets you request your available balance once every 24 hours, so money no longer waits for the next 14-day payout day. In the example it cuts the cash needed by {needDiff}. In the forum thread, sellers disagreed on whether every account has the button; one with an account from 2020 said it works. Check the Payments page in your own account."
+    ],
+    [
+     "Get production billed later",
+     "The first reply in the thread suggests trade accounts with suppliers that give 30 days to pay. If a production bill falls due 30 days after the sales it made, and money reaches your bank {dailyFast} days after each order, the payout lands before the bill does. The asker said their suppliers do not offer terms, so ask again once you have a record of paying on time."
+    ],
+    [
+     "Use a card only if you clear it",
+     "Two replies suggest putting production on a credit card, paid down as payouts land. One adds a limit: only if it is paid in full every month. A balance carried past the due date usually costs interest."
+    ],
+    [
+     "Grow in steps your cash covers",
+     "Every extra {stepBy} a day of sales needs about {stepDailyNeed} more on hand with a daily request, and {stepNeed} on the 14-day payout. Before a promotion or a bigger order, set that cash aside first. The asker turns on vacation mode when sales rise; one reply says to let stock run out instead."
+    ],
+    [
+     "Keep valid tracking on orders you ship",
+     "Without valid tracking from an integrated carrier, Amazon waits for the latest estimated delivery date. In the example that stretches order to bank from {dailyFast} to {mfnDailyFast} days and lifts the cash needed to {mfnDailyNeed}."
+    ]
+   ],
+   "sections": [
+    [
+     "Why more sales leave you with less cash",
+     [
+      "In the example, production goes out the day you sell, and the money for that sale comes back {dailyFast} days or more later. Sell more and more goes out before anything comes back. In the example, a jump from {sales} to {jumpTo} a day needs {jumpDailyNeed} more with a daily request and {jumpNeed} more on the 14-day payout. The extra cash comes back only when sales fall again, so a business that keeps growing keeps needing more.",
+      "This is the gap a profitable seller can still fall into. One reply in the thread puts it plainly: profitable businesses still fail when cash runs short."
+     ]
+    ],
+    [
+     "When Amazon holds more than 7 days",
+     [
+      "Amazon can extend the 7-day reserve period after a review of risk and past performance, and can hold an account level reserve for A-to-z claims, chargebacks or an account review. One reply says DD+7 applies whatever your history. If your Deferred list shows release dates well past delivery plus 7, use your own days in the sum above."
+     ]
+    ],
+    [
+     "If the gap is bigger than your cash",
+     [
+      "Replies in the thread suggest a business line of credit or a loan, and one warns against business loans when starting out, since terms tend to be short and rates high for new businesses. Any borrowing has a cost, so set its terms against your own numbers before you sign. This page is not financial advice."
+     ]
+    ]
+   ],
+   "calculator": [
+    "amazon-dd7-payout-calculator",
+    "Amazon DD+7 payout calculator",
+    "Type your own daily payout, production spend and payout schedule into"
+   ],
+   "cta": {
+    "title": "Put production and payouts in the same 13 weeks",
+    "text": "The 13-Week E-commerce Cash Flow workbook lines up Amazon's payout lag with your other channels, up to six purchase orders as deposit plus balance and freight, a credit line, side-by-side scenarios and a PO planner, so you see the lowest week before you order. Excel and Google Sheets, {price} one time."
+   },
+   "faq": [
+    [
+     "How much cash do I need while Amazon holds my funds?",
+     "About your daily production spend times the days from order to bank. In the example, {prod} a day needs {dailyNeed} with a daily payout request and {baseNeed} on the 14-day payout."
+    ],
+    [
+     "Why do I run out of cash when sales go up?",
+     "Production for the extra sales goes out now and the payout comes back later. In the example, each extra {stepBy} a day of sales needs {stepDailyNeed} to {stepNeed} more cash before payouts catch up."
+    ],
+    [
+     "How long does Amazon hold funds?",
+     "Under DD+7, until 7 days after delivery, then the money waits for your payout and your bank. In the example that is {dailyFast} days from order to bank with a daily request and {baseFast} to {baseSlow} days on the 14-day payout."
+    ],
+    [
+     "Can I get paid by Amazon every day?",
+     "Disburse on Demand lets you request your available balance once every 24 hours. It skips the wait for the payout day, not the 7-day reserve."
+    ],
+    [
+     "Is this financial advice?",
+     "No. It is a planning estimate from round numbers and Amazon's published rules."
+    ]
+   ],
+   "related": [
+    [
+     "amazon-dd7-payout-calculator",
+     "Free Amazon DD+7 payout calculator"
+    ],
+    [
+     "amazon-dd7-cash-flow-hit",
+     "How do you handle the cash flow hit from Amazon DD+7?"
+    ],
+    [
+     "shopify-payouts-supplier-deposits-cash-gap",
+     "How do you plan the cash gap between Shopify payouts and supplier deposits?"
+    ],
+    [
+     "ecommerce-13-week-cash-flow-calculator",
+     "Free 13 week cash flow calculator"
+    ]
+   ],
+   "sources": [
+    [
+     "Amazon Seller Forums, the question as asked (How do you survive with funds being held so long)",
+     "https://sellercentral.amazon.com/seller-forums/discussions/t/6356130d-825f-46e6-a529-94021f76293d",
+     "posted about 2 years before Nov 6, 2026, read Nov 6, 2026"
+    ],
+    [
+     "Amazon Seller Central help, Payments based on delivery date",
+     "https://sellercentral.amazon.com/help/hub/reference/external/G202124090",
+     "read Oct 24, 2026"
+    ],
+    [
+     "Amazon Seller Central help, Disburse on Demand",
+     "https://sellercentral.amazon.com/help/hub/reference/external/GSCWUZNYQRY4LEZH",
+     "read Oct 24, 2026"
+    ],
+    [
+     "Amazon Seller Central help, Express Payout frequently asked questions",
+     "https://sellercentral.amazon.com/help/hub/reference/external/GA24UN79VBPKXZXX",
+     "read Oct 24, 2026"
+    ],
+    [
+     "Amazon Seller Central help, Deferred transactions for accounting and payment reconciliation",
+     "https://sellercentral.amazon.com/help/hub/reference/external/GLRNLZDAKHDBBVBY",
+     "read Oct 24, 2026"
+    ],
+    [
+     "Amazon Seller Central help, What is account level reserve?",
+     "https://sellercentral.amazon.com/help/hub/reference/external/G200136810",
+     "read Oct 24, 2026"
+    ],
+    [
+     "ProofNotFluff, Amazon DD+7 payout calculator (model and example inputs)",
+     "../amazon-dd7-payout-calculator/",
+     "checked Nov 6, 2026"
+    ]
+   ],
+   "footnote": "The worked example uses round numbers from a public forum post, the free Amazon DD+7 payout calculator's model and example inputs, and Amazon's US help pages as read Oct 24, 2026.",
+   "published": "2026-11-06"
+  },
+  {
    "slug": "christmas-light-installation-price-per-foot",
    "kind": "question",
    "city": "Chicago",

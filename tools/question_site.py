@@ -155,6 +155,37 @@ def stats(kind, d):
                           row("Merchant fulfilled, no valid tracking, 14-day payout", "mfn"),
                           row("Merchant fulfilled, no valid tracking, daily request", "mfnDaily")]
         return s
+    if kind == "kit_hold":   # funding production while Amazon holds payouts: the DD+7 calculator's model (PNF.payoutGap) with the
+        # asker's round numbers (seo/BACKLOG.md B1: about $1,200 a day in sales, about half to production), $0 cash on hand,
+        # every other input the calculator's own default
+        import subprocess
+        c = next(x for x in d["pages"] if x["slug"] == "amazon-dd7-payout-calculator")["defaults"]
+        base = {k: float(str(v).replace(",", "")) for k, v in c.items()} | {"sales": 1200, "costs": 600, "cash": 0}
+        cases = {"base": {}, "daily": {"schedule": 1}, "step": {"sales": 100, "costs": 50}, "stepDaily": {"sales": 100, "costs": 50, "schedule": 1},
+                 "jump": {"sales": 600, "costs": 300}, "jumpDaily": {"sales": 600, "costs": 300, "schedule": 1},
+                 "slowBank": {"schedule": 1, "bankDays": 5}, "mfnDaily": {"fulfil": 1, "tracked": 0, "schedule": 1}}
+        js = ('const P=require(process.argv[1]);const b=JSON.parse(process.argv[2]),c=JSON.parse(process.argv[3]);const o={};'
+              'for(const k in c)o[k]=P.payoutGap(Object.assign({},b,c[k]));console.log(JSON.stringify(o));')
+        out = json.loads(subprocess.run(["node", "-e", js, os.path.join(ROOT, "docs", "assets", "pnf-calc.js"), json.dumps(base),
+                                         json.dumps(cases)], capture_output=True, text=True, check=True).stdout)
+        m = lambda v: ("-$" if v < 0 else "$") + _n(abs(round(v)))
+        s = {"sales": m(base["sales"]), "prod": m(base["costs"]), "deliver": str(int(base["deliverDays"])), "edd": str(int(base["eddDays"])),
+             "bank": str(int(base["bankDays"])), "jumpTo": m(base["sales"] + cases["jump"]["sales"]), "jumpBy": m(cases["jump"]["sales"]),
+             "stepBy": m(cases["step"]["sales"]), "stepProd": m(cases["step"]["costs"]), "zero": m(base["cash"])}
+        for k, r in out.items():
+            s |= {k + "Held": m(r["heldMax"]), k + "HeldMin": m(r["heldMin"]), k + "Fast": str(r["fastest"]), k + "Slow": str(r["slowest"]),
+                  k + "LowDay": str(r["lowDay"]), k + "Need": m(r["need"]), k + "First": str(r["first"])}
+        # the rule of thumb the page states: production paid per day times the days from order to bank, checked against the model
+        assert round(out["daily"]["need"]) == base["costs"] * out["daily"]["fastest"], "rule of thumb no longer matches the model"
+        s["needDiff"] = m(out["base"]["need"] - out["daily"]["need"])
+        row = lambda label, k: [label, s[k + "Fast"] + (" to " + s[k + "Slow"] if s[k + "Fast"] != s[k + "Slow"] else "") + " days",
+                                s[k + "Held"], s[k + "Need"] + " (day " + s[k + "LowDay"] + ")"]
+        s["holdRows"] = [row(f"{s['sales']} a day, 14-day scheduled payout", "base"), row(f"{s['sales']} a day, payout requested every day", "daily"),
+                         row(f"{s['sales']} a day, daily request, 5 days to the bank", "slowBank"),
+                         row(f"{s['sales']} a day shipped yourself, no valid tracking, daily request", "mfnDaily"),
+                         row(f"Sales jump by {s['jumpBy']} a day, 14-day payout", "jump"), row(f"Sales jump by {s['jumpBy']} a day, daily request", "jumpDaily"),
+                         row(f"Each extra {s['stepBy']} a day, 14-day payout", "step"), row(f"Each extra {s['stepBy']} a day, daily request", "stepDaily")]
+        return s
     if kind == "lights":   # Christmas light question pages: the free lights calculator's own model (PNF.lightsQuote) and defaults
         import subprocess
         c = next(x for x in d["pages"] if x["slug"] == "christmas-light-installation-pricing-calculator")["defaults"]

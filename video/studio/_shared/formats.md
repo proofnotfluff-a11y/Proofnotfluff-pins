@@ -34,6 +34,13 @@ viewer sees and hears: a different shape, length, opening and payoff, each built
 | case | 70 to 92 s | 180 to 245 | one real setup end to end: before (the problem with its number), the setup step by step, the cost, after (the number), the rule | a real owner's setup we can source |
 | dispatch | 45 to 70 s | 115 to 180 | the lede with its document on screen (0 to 3 s), the nut (by 8 s), two or three receipts with source tags, the other side, the setup card held, the kicker echoing the lede (_shared/investigative.md) | a documented story from research/STORIES.md (AI lane; hook pattern receipt) |
 
+| story | 40 to 90 s | 110 to 230 (a guide) | the story desk's story.md told whole: an opening from storycraft.md, the setup, the problem with its proof, the cost, the turn, the payoff card, the kicker | every new-line lesson from Nov 5, 2026 (REBUILD.md); rotates on its brief.md Shape line |
+
+Relaxed for the new line (Todd, live chat, Nov 2, 2026, 8:49 pm, PRINCIPLES.md: "We can elaborate more and relax
+restrictions on number of words"; REBUILD.md): for a story lesson the word band, the spoken hook's length, the drop-in rules
+and the echo are guides printed as NOTE by `anim.py script`, `hook` and `lint`; the retell and read-aloud gates judge the
+story. Length stays a hard band (90 s ceiling) and every honesty, voice-markup and safe-area rule stays an error.
+
 Depth (Todd, Oct 30, 2026, 4:01 pm: "Drive this hard, and let's get real good videos out"; research/topics-2026-10-30.md):
 every lesson hands the owner something to do this week: the exact words, setting, prompt or steps, on screen. A definition
 plus another company's percentage is not a lesson.

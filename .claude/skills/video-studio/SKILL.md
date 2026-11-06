@@ -1,6 +1,6 @@
 # video-studio (post, make, learn; slots in video/config.json "posting")
 
-Each run: post the next gated lesson on four platforms, make one, learn. Todd, Nov 1, 2026: 2 a day, queue first, each unique (CONSTITUTION 2). The prompt names the slot. "stop videos" in any chat halts it (video/config.json stop).
+Each run: post the next gated lesson on four platforms, make one, learn. 2 a day, queue first, each unique (CONSTITUTION 2). "stop videos" halts it (video/config.json stop).
 
 ## Inputs (Reads)
 - video/studio/CLAUDE.md, CONTEXT.md, stages/*/CONTEXT.md, _shared/*.md, POSTING.md, IMPROVE.md, LEARNINGS.md, prompts/, queue.json, research/IDEAS.md, KNOWLEDGE.md, PERFORMANCE.md, the last lesson as the pattern.
@@ -11,7 +11,8 @@ Each run: post the next gated lesson on four platforms, make one, learn. Todd, N
 2. Post: `anim.py next`, then `anim.py postcopy <slug>` (renders its gated commit). Follow POSTING.md for each missing platform (Claude in Chrome): Instagram as a trial reel, then `anim.py trials` and share each due trial to followers (POSTING.md). A refused upload is a path problem, not "no Chrome": upload postcopy's path. Chrome unreachable or a stop condition: skip posting, tell Todd one line, go on to 3.
 3. Every run: diagnosis (research/PERFORMANCE.md, Real time). Mondays (lunch): research run by research/README.md (fresh agent, opus), then read each posted lesson's numbers in Chrome (views, average watch, shares, saves) into research/metrics/<slug>.json; rank IDEAS.md by them; `anim.py recuts` and add an IDEAS.md re-cut line for each due top-third lesson (POSTING.md).
 4. Queue rule first: after step 2, `anim.py waiting`. 9 or more listed (3 days): make no new lesson this run; rebuild the first listed on today's runtime instead (`fetch`, `stills` and read the sheets, `lint`, `render`, `check`, `gatepack`), then step 5 with every gate fresh; `ready <slug>` keeps its place in line. A gate's second FAIL there: `git checkout -- video/studio/videos/<slug>` (its old pin still posts), log "rebuild held: <slug>" in LEARNINGS.md and skip it in later rebuilds. Fewer than 9: make.
-   Make: next idea from IDEAS.md's Trades-first bank (top one not made), script by viral-script, format by _shared/formats.md. Trade evidence only, no other-industry studies; each lesson its own worlds from _shared/sets.md (lint fails reused scenery). Slug <date>-<words>. Stages 01 to 05 by their contracts:
+   Make: next Ready story-desk story (REBUILD.md); else:
+   next idea from IDEAS.md's Trades-first bank (top one not made), script by viral-script, format by _shared/formats.md. Trade evidence only, no other-industry studies; each lesson its own worlds from _shared/sets.md (lint fails reused scenery). Slug <date>-<words>. Stages 01 to 05 by their contracts:
    - brief.md and facts.json: every number re-read on its source page today; numbers block; `anim.py data`.
    - brief.md's Hook pattern, Treatment, Example and Music lines: `anim.py variety <slug>` PASS before `speak` (a rebuild keeps its example; change the hook pattern if it fails). Music: a tune the lessons before and after it in line do not play (`anim.py tunes <slug>`; _shared/sound.md); cues.md says `music: rooms <tune>`, and a rebuild picks a free tune the same way.
    - script.md by viral-script (bands in _shared/formats.md), held to _shared/standard.md.

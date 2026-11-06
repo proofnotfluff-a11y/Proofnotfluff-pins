@@ -1,0 +1,111 @@
+{
+ "gate": "read-aloud",
+ "round": 5,
+ "stage": "script",
+ "reviewer": "fresh opus agent",
+ "pass": true,
+ "score": {
+  "sentences": 21,
+  "and_then_pairs": 0,
+  "unset_terms": 0,
+  "choppy_runs": 0,
+  "breath_fails": 0,
+  "order": "ok"
+ },
+ "reasons": [
+  "Every pair linked by but, because or therefore; nothing unset; one voice; not choppy; every sentence one breath; setup, problem, fix in order.",
+  "Judged the 234-word r5; the voiced script then cut 4 words ('started pitching ... your phone' to 'pitched ... answer', 'phone carrier' to 'carrier') with no change to links."
+ ],
+ "earlier": [
+  {
+   "round": 4,
+   "pass": false,
+   "score": {
+    "sentences": 21,
+    "and_then_pairs": 1,
+    "unset_terms": 1,
+    "choppy_runs": 0,
+    "breath_fails": 0,
+    "order": "ok"
+   },
+   "reasons": [
+    "16-17 'And tell callers it's AI anyway' is a tacked-on tip; 'anyway' leans on a line ten sentences back",
+    "19 'that greeting' was never set up",
+    "Everything else clean"
+   ]
+  },
+  {
+   "round": 3,
+   "pass": false,
+   "score": {
+    "sentences": 21,
+    "and_then_pairs": 2,
+    "unset_terms": 0,
+    "choppy_runs": 0,
+    "breath_fails": 0,
+    "order": "ok"
+   },
+   "reasons": [
+    "16-17 'And don't hide what it is.' is a checklist item and collides with 'hardly anyone stays'",
+    "18-19 'Then write the greeting' is the next step of a list",
+    "Set-up, voice, choppy, breath, order: clean"
+   ]
+  },
+  {
+   "round": 2,
+   "pass": false,
+   "score": {
+    "sentences": 20,
+    "and_then_pairs": 1,
+    "unset_terms": 1,
+    "choppy_runs": 1,
+    "breath_fails": 0,
+    "order": "ok"
+   },
+   "reasons": [
+    "16-17 'Jobber sells one...' jumps from routing to a product fact and seems to contradict 'hardly anyone stays'",
+    "'That same owner' has no clear referent after 'owner after owner'",
+    "Choppy: three 6 to 7 word sentences to open"
+   ]
+  },
+  {
+   "round": 1,
+   "pass": false,
+   "score": {
+    "sentences": 22,
+    "and_then_pairs": 4,
+    "unset_terms": 1,
+    "choppy_runs": 0,
+    "breath_fails": 0,
+    "order": "ok"
+   },
+   "reasons": [
+    "4-5 the pitch arrives as plain sequence; tense clash",
+    "6-7 no join before the forum line",
+    "17-18 and 19-20 the fix paragraph reads as a list; 'it' before the owner has one",
+    "'call back tonight' clashes with 'call it tonight'",
+    "'AI at night, a person by day' reads like a slide"
+   ]
+  },
+  {
+   "round": 0,
+   "pass": false,
+   "score": {
+    "sentences": 24,
+    "and_then_pairs": 3,
+    "unset_terms": 2,
+    "choppy_runs": 0,
+    "breath_fails": 0,
+    "order": "ok"
+   },
+   "reasons": [
+    "S2-S3 jump: 'Your AI receptionist works great' then plain voicemail with no time marker. Fix: 'For years it went like this.'",
+    "S8-S9: 'Few callers stay' then 'not just a few grumpy callers' flips 'few'. Fix: 'And that's not just forum grumbling.'",
+    "S7 unset: Jobber never introduced. Fix: 'the job software a lot of you run'.",
+    "S20 unset: that Jobber sells an AI receptionist was never said. Fix: 'Jobber sells one of these'.",
+    "S18-S22: and-then pairs, the fix jumps timing, disclosure, timing, greeting; four commands read like a checklist. Fix: reorder with So, but, Then.",
+    "S5: the slogan has no cue. Fix: 'selling one promise: never miss a call again.'"
+   ]
+  }
+ ]
+}

@@ -14,6 +14,9 @@ lessons (research/PERFORMANCE.md). Still 0 shares and 0 saves: C3 below is the n
 Every lesson meets every line. The script gate checks C and S, the design gate and render critic check M, `check`
 measures what code can (M1 now). A line a lesson misses is a FAIL with its number, not a note.
 
+Relaxed for story lessons (REBUILD.md, Nov 5, 2026; PRINCIPLES.md outranks this file): C4's timing and C5 (the result by
+3 s) are options for a story lesson, not FAILs; C2's metaphor only if it earns its place. C1, C3, S1 to S4 and M1 to M7 hold.
+
 ## Content
 - C1 Stakes. The problem costs the owner money or a job this month, and the hook says how much or shows the object
   (a bill, a missed call, a lost quote). A topic with no stake is the next idea's turn.

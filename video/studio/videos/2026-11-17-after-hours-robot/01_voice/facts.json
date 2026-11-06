@@ -1,0 +1,76 @@
+{
+ "about": "Every number and claim this lesson shows or says, with its source, all re-opened Nov 5, 2026 (video/studio/videos/2026-11-17-after-hours-robot/00_story/story.md, Receipts). The roof, the 2 pm call, the no-heat test call and the greeting wording are ours (EXAMPLE on screen where shown). No hang-up rate is claimed anywhere: no source measured one.",
+ "survey": {
+  "comfortableBooking": 36,
+  "shown": "36%",
+  "said": "thirty-six percent",
+  "what": "share of homeowners comfortable with AI scheduling appointments or answering basic questions (one listed use)",
+  "noneComfortable": 24,
+  "noneShown": "24%",
+  "homeowners": 782,
+  "homeownersShown": "782",
+  "fielded": "Apr 24 to May 19, 2026",
+  "sponsor": "myCLEARopinion Insights Hub for BNP Media, parent company of ACHR News",
+  "publisher": "ACHR News",
+  "date": "2026-10-20",
+  "url": "https://www.achrnews.com/articles/166872-36-of-homeowners-draw-the-line-at-ai-replacing-hvac-expertise",
+  "opened": "2026-11-05"
+ },
+ "jobber": {
+  "addonMonthly": 29,
+  "addonShown": "$29 a month",
+  "conversations": 30,
+  "conversationsShown": "30 conversations",
+  "overEach": 0.79,
+  "overShown": "$0.79 each after",
+  "atLimit": "Continue and pay overages, or Pause Receptionist (paused: takes messages, cannot book)",
+  "greeting": "read exactly as written",
+  "disclosure": "'We encourage you to let callers know that your phone is answered by AI.' Not required.",
+  "afterHoursOnly": "set with your phone carrier's call forwarding (outside business hours or after a number of rings), not in Jobber",
+  "publisher": "Jobber help",
+  "updated": "2026-10-28",
+  "url": "https://help.getjobber.com/en/articles/receptionistpowered-by-jobber-ai/",
+  "opened": "2026-11-05",
+  "plan": "an add-on on select plans; included with unlimited use on the Plus plan"
+ },
+ "forum": {
+  "rural": {
+   "what": "a small rural business misses many calls and asks whether customers will distrust an AI receptionist; a long-time user replies it is hit and miss, few callers stay on the line once they hear it is AI, and uses it after hours as a better voicemail",
+   "phrase": "better voicemail",
+   "age": "about Nov 4, 2026 (page shows 1 day ago on Nov 5)",
+   "url": "https://community.getjobber.com/discussions/operations-forum/what-do-customers-think-about-jobbers-ai-receptionist/9584",
+   "opened": "2026-11-05",
+   "who": "a Jobber Ambassador (a long-time user), replying in thread 9584; the same person says few callers stay and calls it a better voicemail",
+   "quote": "hardly anyone stays in the call longer than hearing it's AI",
+   "alsoSays": "has it tell callers it's AI and may turn that off"
+  },
+  "treeService": {
+   "what": "a tree service turned the AI receptionist off after it mismatched existing clients, created odd tasks and confused older clients, and went back to voicemail with transcripts (CallRail); the reply has no date, the thread's first post shows 5 months ago",
+   "age": "about Jun 2026 (5 months ago)",
+   "url": "https://community.getjobber.com/discussions/operations-forum/ai-receptionist-vs-outsourced-vs-owners/7842",
+   "opened": "2026-11-05"
+  },
+  "backflow": {
+   "what": "a backflow company buried in AI receptionist pitches; advice: after hours only, a person is better for now",
+   "age": "about Oct 16, 2026 (20 days ago)",
+   "url": "https://community.getjobber.com/discussions/operations-forum/finally-made-the-jump-to-jobber%e2%80%a6-now-what-about-ai-receptionists/15510",
+   "opened": "2026-11-05"
+  },
+  "consensus": {
+   "what": "across threads 7842 and 15510 and the reply in 9584, owners land on AI at night (after hours, days off) and a person by day",
+   "urls": [
+    "https://community.getjobber.com/discussions/operations-forum/what-do-customers-think-about-jobbers-ai-receptionist/9584",
+    "https://community.getjobber.com/discussions/operations-forum/ai-receptionist-vs-outsourced-vs-owners/7842",
+    "https://community.getjobber.com/discussions/operations-forum/finally-made-the-jump-to-jobber%e2%80%a6-now-what-about-ai-receptionists/15510"
+   ],
+   "opened": "2026-11-05"
+  }
+ },
+ "example": {
+  "callTime": "2 PM",
+  "callTimeSaid": "two in the afternoon",
+  "testCall": "a no-heat call",
+  "greeting": "You've reached us after hours. I'm our AI assistant. I can book you for tomorrow or take the details now.",
+  "label": "EXAMPLE"
+ }
+}

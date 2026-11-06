@@ -1,0 +1,48 @@
+{
+ "gate": "retell",
+ "round": 2,
+ "stage": "script",
+ "reviewer": "fresh opus agent (answers 1 to 4 written before the message line was opened)",
+ "pass": true,
+ "score": {
+  "retold": "Callers hang up on AI receptionists during the day, so use one only after hours as a better voicemail, and say it's AI.",
+  "action": "carrier sends only after-hours calls to the AI, say it's AI, write the greeting, test-call tonight as a no-heat customer",
+  "lost_at": "none",
+  "new_to_me": "36% comfort figure; Jobber sells one and still says to tell callers",
+  "matches_message": "same"
+ },
+ "reasons": [
+  "Same message, concrete action, never lost. Wobble: 'hardly anyone stays' then the owner keeps his on; 'better voicemail' resolves it. Its suggested fix ('at least during the day') would be false (his remark was about after-hours callers), so not taken."
+ ],
+ "earlier": [
+  {
+   "round": 1,
+   "pass": true,
+   "score": {
+    "retold": "Use an AI receptionist only after hours and be honest it's AI, because daytime callers want you and hang up.",
+    "action": "carrier sends calls to the AI only after hours, write the greeting so it says it's AI, test call tonight as a no-heat customer",
+    "lost_at": "none",
+    "new_to_me": "36% comfortable with AI booking or basic questions; Jobber encourages telling callers it's AI",
+    "matches_message": "same"
+   },
+   "reasons": [
+    "Same message; concrete action; never lost; one stumble on 'send calls to it' before the owner has one (fixed in r2)."
+   ]
+  },
+  {
+   "round": 0,
+   "pass": false,
+   "score": {
+    "retold": "Callers during the workday hang up on an AI receptionist because they want you, so only let it answer after hours and say it's AI.",
+    "action": "carrier forwarding after hours only, write the greeting, test-call it tonight as a no-heat customer",
+    "lost_at": "That's been fine for years.",
+    "new_to_me": "36 percent of homeowners comfortable with AI booking; Jobber recommends telling callers it's AI",
+    "matches_message": "same"
+   },
+   "reasons": [
+    "Message: same. Action: concrete.",
+    "Lost at the opening: 'Your AI receptionist works great' then plain voicemail with no AI, so the jump back to life before AI is never flagged. Fix: mark the switch ('Here's how it used to go')."
+   ]
+  }
+ ]
+}

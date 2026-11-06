@@ -7,8 +7,17 @@ V/05_render/reviews/<gate>.json with the gate, round, pass, score and reasons. F
 (Todd, live chat, Oct 31, 2026, 4:19 pm: "Please change the rule so it keeps going until the design is fixed. After two
 fails lower the threshold to 4.5"); nothing is held for Todd on a FAIL count. A gate rerun because another gate's fix changed its input starts at round 0.
 
-Order: facts, facts-captions (after the script and captions exist), then after the render: render-critic, buyer, send,
-design, golden. Pass bars: facts and facts-captions no mismatch; render-critic 0 faults; buyer stop and send or save yes;
+The new line (REBUILD.md, build run Nov 5, 2026; PRINCIPLES.md outranks every bar here). Order: before any voice, on
+script.md: retell, read-aloud, facts. After the voice: retell and read-aloud again on the transcript (the voice can change
+the words), facts-captions. After the render: render-critic, design, send, compare. Bars: retell matches the story's
+message line with a concrete action and no lost spot (retell.md); read-aloud no "and then" pair, no unset term, nothing
+choppy, setup before payoff (read-aloud.md); compare top 2 on follow and top 2 on stop or understand against the gurus.md
+compare set (compare.md). Compare replaces buyer and golden in the plan, but CONSTITUTION 2 (the standing video post rule)
+still names buyer and golden among the gates a lesson must pass to post; until Todd amends that line in a live chat, a
+lesson that is to post also runs them. Preview-only runs (nothing posts) skip them.
+
+Old line order (lessons made before Nov 5): facts, facts-captions (after the script and captions exist), then after the
+render: render-critic, buyer, send, design, golden. Pass bars: facts and facts-captions no mismatch; render-critic 0 faults; buyer stop and send or save yes;
 send names one person by role and tie, a real line, a gain beyond "useful", a feeling, and thanks (send.md; Todd, live
 chat, Nov 1, 2026, 4:35 pm: "Do both"); design no score under 4 and average 4.61 or more (4.50 from the third round,
 after two FAILs); golden "post as is" (polish alone is not a FAIL).

@@ -1,0 +1,19 @@
+{
+ "gate": "story-retell",
+ "round": 0,
+ "reviewer": "fresh opus agent (words only, two steps)",
+ "pass": false,
+ "score": {
+  "retold": "Don't put the AI receptionist on your daytime line, because callers want you. Use it after hours only, where it just has to beat voicemail.",
+  "action": "carrier forwarding after hours, own honest greeting, test call tonight, pick the limit setting",
+  "lost_at": "In a survey ACHR News' parent company ran this spring",
+  "new_to_me": "the $29 add-on covers about thirty conversations a month",
+  "matches_message": "same"
+ },
+ "reasons": [
+  "Message: same. Action: concrete, four steps.",
+  "Lost at the survey line: an unfamiliar letter string, a possessive and 'parent company' before the number, then 782 in the same breath. Fix: lead with plain words, split into two sentences.",
+  "Minor: 'Now the turn.' reads like a script note."
+ ],
+ "fixed": "story.md: 'This spring, the publisher of a heating and cooling trade magazine asked 782 homeowners about AI. Only thirty-six percent were comfortable...'; 'Now the turn.' cut. Re-judged on the script and the transcript."
+}

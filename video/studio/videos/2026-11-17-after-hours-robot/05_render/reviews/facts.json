@@ -1,0 +1,69 @@
+{
+ "gate": "facts",
+ "round": 4,
+ "stage": "script",
+ "reviewer": "fresh opus agent (pages re-opened)",
+ "pass": true,
+ "score": {
+  "claims_checked": 14,
+  "mismatches": 0
+ },
+ "reasons": [
+  "All claims confirmed; 'says the same' backed by four voices across three threads; disclosure line fair to 'We encourage you to let callers know'."
+ ],
+ "earlier": [
+  {
+   "round": 3,
+   "pass": false,
+   "score": {
+    "claims_checked": 11,
+    "mismatches": 1
+   },
+   "reasons": [
+    "'Owner after owner does the same': only one owner is on record running it after hours; the rest advise it. Fix: 'says the same'.",
+    "All other changed lines confirmed, including the after-hours context of 'hardly anyone stays'."
+   ]
+  },
+  {
+   "round": 2,
+   "pass": true,
+   "score": {
+    "claims_checked": 16,
+    "mismatches": 0
+   },
+   "reasons": [
+    "All 16 claims confirmed, round 0 and 1 fixes in.",
+    "Context note the desk acted on: the 'hardly anyone stays' line is about that owner's OFF-HOURS callers; r2 used it next to the daytime argument. r3 says it was after hours and lets the survey and the owners' consensus carry the daytime point."
+   ]
+  },
+  {
+   "round": 1,
+   "pass": false,
+   "score": {
+    "claims_checked": 16,
+    "mismatches": 2
+   },
+   "reasons": [
+    "'one long-time user': Jobber Ambassadors are invited owners; nothing says long-time. Fix: 'one owner who uses it'.",
+    "'pitching a robot that answers every call': the pitches on record are 'better, faster, smarter, cheaper'. Fix: 'a robot to answer your phone'.",
+    "Round 0 fixes 1, 2, 4, 5, 6 confirmed in."
+   ]
+  },
+  {
+   "round": 0,
+   "pass": false,
+   "score": {
+    "claims_checked": 16,
+    "mismatches": 6
+   },
+   "reasons": [
+    "'they keep saying the same thing. Few callers stay...': one person (a Jobber Ambassador, thread 9584) says it; the many-voice claim is AI at night, a person by day. Fix: one long-time user put it bluntly.",
+    "'works great': no source says so. Fix: 'can earn its keep'.",
+    "'selling never miss a call again': no receipt for the slogan. Fix: describe, don't quote.",
+    "'comfortable with AI booking appointments': the item is 'scheduling appointments or answering basic questions'. Fix: say both.",
+    "'went back to plain voicemail' after the hang-up line: voicemail with transcripts, and the reason was mixed-up clients, not hang-ups. Fix: 'turned theirs off after it mixed up clients, and went back to voicemail.'",
+    "'didn't make it sound more human': untested, and the main witness is thinking of turning the AI announcement off. Fix: drop it; keep 'they changed when it answers' as the consensus."
+   ]
+  }
+ ]
+}

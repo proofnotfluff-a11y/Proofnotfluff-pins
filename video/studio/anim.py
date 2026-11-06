@@ -2130,6 +2130,17 @@ def queue_hook_problems(slug):
 # _shared/formats.md). Held only for lessons planned after the rule (brief.md carries a named format other than v2), so
 # the lessons already gated keep their place: the lesson before it in line is not the same format, and no format fills
 # more than 2 of the 6 lessons around it in line (3 a day: no format twice in a posting day, at most twice in two days).
+def rotation_shape(slug):
+    """What rotates: a story lesson's '- **Shape:**' line (moment, receipt, two-shops, myth-three, scenario, case, ...),
+    any other lesson's format."""
+    f = lesson_format(slug)
+    if f in GUIDE_FORMATS:
+        p = vdir(slug, "01_voice", "brief.md")
+        m = re.search(r"(?im)^- \*\*Shape:\*\*\s*`?([a-z0-9-]+)`?", open(p, encoding="utf-8").read()) if os.path.exists(p) else None
+        return "story:" + (m.group(1).lower() if m else "unnamed")
+    return f
+
+
 def format_rotation_problems(slug, order, posted):
     p = vdir(slug, "01_voice", "brief.md")
     txt = open(p, encoding="utf-8").read() if os.path.exists(p) else ""
@@ -2142,15 +2153,18 @@ def format_rotation_problems(slug, order, posted):
     line = posted + [o for o in order]
     n = line.index(slug)
     out = []
-    if n > 0 and lesson_format(line[n - 1]) == me:
+    # A story lesson (REBUILD.md: "formats become a menu, not a cage"; "variety checks stay only where they stop repeats")
+    # rotates on its Shape line (the skeleton the engine picked for this story), not on "story", which every new-line lesson is.
+    me = rotation_shape(slug)
+    if n > 0 and rotation_shape(line[n - 1]) == me:
         out.append(f"format '{me}' is also the lesson before it in line's ({line[n - 1]})")
     # four a day (Todd, Oct 31, 2026, 9:08 am; 11:58 am: "put measures in place to mitigate those risks"): no format
     # twice in a posting day (the last 4 in line) and at most twice in two days (the last 8)
     day = line[max(0, n - 3):n + 1]
-    if sum(1 for o in day if lesson_format(o) == me) > 1:
+    if sum(1 for o in day if rotation_shape(o) == me) > 1:
         out.append(f"format '{me}' is twice in one posting day ({', '.join(day)})")
     window = line[max(0, n - 7):n + 1]
-    if sum(1 for o in window if lesson_format(o) == me) > 2:
+    if sum(1 for o in window if rotation_shape(o) == me) > 2:
         out.append(f"format '{me}' fills more than 2 of the last 8 in line ({', '.join(window)})")
     return out
 
@@ -2286,7 +2300,14 @@ FORMATS = {
     # The story desk (Todd, live chat, Nov 2, 2026, 12:28 pm: "find really, really interesting new stories about trades in AI
     # software implementation"; _shared/investigative.md): one documented story, receipts on screen, a setup card.
     "dispatch":   {"min_seconds": 45.0, "max_seconds": 70.0, "words": (115, 180)},
+    # The new line (Todd, live chat, Nov 2, 2026, 8:49 pm, PRINCIPLES.md: "We can elaborate more and relax restrictions on
+    # number of words. Storytelling is the most important skill"; REBUILD.md "Relaxed"): a story from the story desk
+    # (00_story/story.md), told whole. Its word band, the spoken hook's length and the opening rules are guides (NOTE lines),
+    # not gates; the retell and read-aloud gates judge it. Length stays a hard band: 90 s is the ceiling.
+    "story":      {"min_seconds": 40.0, "max_seconds": 90.0, "words": (110, 230)},
 }
+# Formats whose word band, spoken hook length and drop-in rules are guides, not errors (REBUILD.md "Relaxed").
+GUIDE_FORMATS = {"story"}
 FORMAT_ALIASES = {"v2": "clinic"}
 
 
@@ -2312,16 +2333,20 @@ def length_band(slug):
 CFG_VIDEO_END = json.load(open(os.path.join(HERE, "..", "config.json"), encoding="utf-8"))["video"].get("endCardMinSeconds", 3.5)
 
 
-def script_problems(slug, send_line=None):
-    """The v2 script rules in code (_shared/voice.md, Lead Clinic v2). Returns a list of problems ([] for a v1 lesson)."""
+def script_problems(slug, send_line=None, notes=None):
+    """The v2 script rules in code (_shared/voice.md, Lead Clinic v2). Returns a list of problems ([] for a v1 lesson).
+    For a GUIDE_FORMATS lesson the craft rules that used to squeeze sentences (word band, drop-in, echo) go to `notes`
+    (a list the caller prints as NOTE) instead of the problems; the voice and honesty rules stay errors."""
     if not is_modern(slug):
         return []
     takes = takes_of(slug)
     words = [w for tk in takes for w in spoken_words(tk)]
     out = []
+    guide = notes if notes is not None else []
+    soft = guide if lesson_format(slug) in GUIDE_FORMATS else out
     lo, hi = FORMATS[lesson_format(slug)]["words"]
     if not lo <= len(words) <= hi:
-        out.append(f"{len(words)} spoken words ({lo} to {hi})")
+        soft.append(f"{len(words)} spoken words ({lo} to {hi})")
     # Length before any voice is made (Todd, Nov 1, 2026: the lunch slot went empty; ai-night-quote was voiced long and cut
     # after). Our takes run 147 to 175 words a minute, gaps included (14 lessons, median about 159): at 160 the lesson plus
     # the end card must fit its format's top length, or it is cut before any credits are spent.
@@ -2347,9 +2372,9 @@ def script_problems(slug, send_line=None):
                 sources |= {norm(k)} | ({norm(v["publisher"].split()[0])} if v.get("publisher") else set())
     bad = sorted((hw & (V2_SOURCEWORDS | sources)) - {""})
     if bad:
-        out.append(f"the drop-in names a percent or a source ({', '.join(bad)}): open on a moment, the proof comes later")
+        soft.append(f"the drop-in names a percent or a source ({', '.join(bad)}): open on a moment, the proof comes later")
     if V2_CALLOUT.search(hook_text):
-        out.append("the drop-in opens on an audience call-out: put the trade inside the scene")
+        soft.append("the drop-in opens on an audience call-out: put the trade inside the scene")
     for rx, what in V2_TAIL:
         m = re.search(rx, text)
         if m:
@@ -2357,7 +2382,7 @@ def script_problems(slug, send_line=None):
     stop = {"that", "this", "with", "your", "they", "them", "have", "what", "when", "then", "about", "there", "their", "just", "from", "into", "says"}
     last = {norm(w) for w in sents[-1].split()} if sents else set()
     if not {w for w in hw & last if len(w) >= 4 and w not in stop}:
-        out.append("the button does not echo the drop-in (repeat one of its words in the last sentence)")
+        soft.append("the button does not echo the drop-in (repeat one of its words in the last sentence)")
     # Sound human (Todd, Oct 30, 2026, 1:12 pm: the price-a-job voice "starts whispering"; "about sixteen sixty-seven"
     # sounds weird; 4:01 pm: "go with your recommendation on everything"). Tags must be something a listener hears: a
     # staging or softness tag makes Eleven v4 go quiet (ElevenLabs tag guidance). Two tags a script at most. An exact
@@ -2385,9 +2410,12 @@ def cmd_script(slug):
     if os.path.exists(sj):
         m = re.search(r"sendLine:\s*'([^']*)'", open(sj, encoding="utf-8").read())
         sl = m.group(1) if m else ""
-    bad = script_problems(slug, sl)
+    notes = []
+    bad = script_problems(slug, sl, notes)
     takes = takes_of(slug)
     nw = sum(len(spoken_words(tk)) for tk in takes)
+    for x in notes:
+        print("NOTE script (a guide, not a gate; REBUILD.md Relaxed): " + x)
     for x in bad:
         print("ERROR script: " + x)
     print("script: " + ("FAIL" if bad else "PASS") + f" v2, {nw} words in {len(takes)} takes" + ("" if sl is None else f", end card send line {sl!r}"))
@@ -2450,10 +2478,11 @@ def hook_report(slug, pg=None):
         bad.append(f"{len(events)} picture change(s) in the first {HOOK['changes_in']:.0f} s (at least {HOOK['changes_min']})")
     if host_at is None or host_at > HOOK["host_by"]:
         bad.append(f"the host is not on screen by {HOOK['host_by']:.0f} s")
+    soft = rep.setdefault("notes", []) if lesson_format(slug) in GUIDE_FORMATS else bad
     if not HOOK["words"][0] <= n <= HOOK["words"][1]:
-        bad.append(f"the spoken hook is {n} words ({HOOK['words'][0]} to {HOOK['words'][1]})")
+        soft.append(f"the spoken hook is {n} words ({HOOK['words'][0]} to {HOOK['words'][1]})")
     if said > HOOK["said_by"]:
-        bad.append(f"the spoken hook ends at {said:.2f} s (by {HOOK['said_by']} s)")
+        soft.append(f"the spoken hook ends at {said:.2f} s (by {HOOK['said_by']} s)")
     lo, hi = length_band(slug)
     if cues["duration"] > hi or (is_modern(slug) and cues["duration"] < lo):
         bad.append(f"the lesson runs {cues['duration']:.1f} s ({lo:.0f} to {hi:.0f} s for a {lesson_format(slug)} lesson, end card included)")
@@ -2463,6 +2492,8 @@ def hook_report(slug, pg=None):
 def cmd_hook(slug):
     rep, bad = hook_report(slug)
     print(json.dumps(rep))
+    for x in rep.get("notes", []):
+        print("NOTE hook (a guide, not a gate; REBUILD.md Relaxed): " + x)
     for x in bad:
         print("ERROR hook: " + x)
     print("hook: " + ("FAIL" if bad else "PASS") + f" first change {rep['first_change']} s, {rep['changes_by_3s']} changes by 3 s, host {rep['host_at']} s, "
@@ -2596,7 +2627,10 @@ def cmd_lint(slug, step=0.25):
     b.close(); pw.stop()
     errors = [f"ERROR lint captions: {x}" for x in captions_problems(slug)] if os.path.exists(vdir(slug, "05_render", "captions.json")) and not slug.endswith(HOOKB_SUFFIX) else []
     errors += [f"ERROR lint hook: {x}" for x in hook_bad]
-    errors += [f"ERROR lint script: {x}" for x in script_problems(slug, send_line)]
+    lint_notes = []
+    errors += [f"ERROR lint script: {x}" for x in script_problems(slug, send_line, lint_notes)]
+    for x in lint_notes + hook.get("notes", []):
+        print("NOTE lint (a guide, not a gate; REBUILD.md Relaxed): " + x)
     if not slug.endswith(HOOKB_SUFFIX):   # a second opening is its lesson after the hook: the lesson passed variety
         errors += [f"ERROR lint variety: {x}" for x in variety_problems(slug, {w: round(n / max(1, steps), 3) for w, n in worlds.items()})]
         errors += [f"ERROR lint queue variety: {x}" for x in queue_variety_problems(slug)]

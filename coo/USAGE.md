@@ -28,6 +28,7 @@ Todd's ask, live chat, Oct 30, 8:29 am: "audit the existing system and determine
 - [stated] On A4: "I'll leave Chrome open" (7:46 am posting stays; Todd keeps the PC awake with Chrome and the Claude extension on).
 - Done: trades news Mon, Wed, Fri 6:32 am; product builder Tuesdays 11:10 am. Saves 7 runs a week.
 - Open: the API lister lives in another thread, so update_trigger can't reach it (not found). Todd pauses it there or in its settings (14 runs a week). A5 connectors are Todd's (task settings).
+- A5 closed Nov 6, 2026: a scheduled task's Connectors tab lists the account's connectors with no way to remove one per task (Todd's screenshot, live chat, 11:10 am: "there is no way for me to remove the connectors from each scheduled task"). Their tools load on demand (only names ride along), so the cost is small. Never ask Todd for this again.
 
 ## A4 root cause, found 9:20 am
 - Not Chrome: the 7:20 am inbox sweep reached both inboxes through Chrome today (meta/inbox ok true).

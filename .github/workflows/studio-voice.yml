@@ -17,7 +17,7 @@ concurrency:
 jobs:
   voice:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 75   # was 40; Nov 6, 2026: the runner's apt install of ffmpeg took 38 min and the job was cut off mid-speak
     steps:
       - uses: actions/checkout@v4
       - name: Tools

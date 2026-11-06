@@ -1,0 +1,88 @@
+{
+ "schema": "pnf.studio.takes.v1",
+ "requestedAt": "2026-11-05T23:42:56-05:00",
+ "voice": "W3pJy9ibur1FKUihVxzY",
+ "model": "eleven_v4",
+ "scriptSha256": "4d22955fffa312f7e2ae8206716d3a6ac550d13771d71cfbbb56de449b6d305d",
+ "voiceSha256": "d26f50404b3dfd85d92c7a30d3aa0d52b2e1ce2762ce2f90dfaa1b136c82ff0b",
+ "takes": [
+  {
+   "n": 1,
+   "file": "takes/01.mp3",
+   "sha256": "77ed4add2e45bcd898391d6b04aa29bb7cbe71618cd01e19fe048223bc71c763",
+   "seconds": 11.964,
+   "chars": 191,
+   "start": 0.0,
+   "end": 11.964,
+   "wpm": 191
+  },
+  {
+   "n": 2,
+   "file": "takes/02.mp3",
+   "sha256": "927f0c83867b6375978400ec9470366fd4fc75602f330640c3fe8e8f620baad0",
+   "seconds": 14.916,
+   "chars": 209,
+   "start": 12.284,
+   "end": 27.2,
+   "wpm": 157
+  },
+  {
+   "n": 3,
+   "file": "takes/03.mp3",
+   "sha256": "accff097fc3bc04c03f10205eddef8b32252e4113a33e92c811a9b91a4f5ab97",
+   "seconds": 13.087,
+   "chars": 201,
+   "start": 27.52,
+   "end": 40.607,
+   "wpm": 128
+  },
+  {
+   "n": 4,
+   "file": "takes/04.mp3",
+   "sha256": "fc83077fd6857340d753b52fab7b1d821ff54f8bb5d191c7839dd7b9d923090d",
+   "seconds": 7.889,
+   "chars": 120,
+   "start": 40.927,
+   "end": 48.816,
+   "wpm": 190
+  },
+  {
+   "n": 5,
+   "file": "takes/05.mp3",
+   "sha256": "ab79c3a9cdeae2b5988d8d6135dced55213234cb0af201c4c9cdd419b02b10d5",
+   "seconds": 10.919,
+   "chars": 180,
+   "start": 49.136,
+   "end": 60.055,
+   "wpm": 176
+  },
+  {
+   "n": 6,
+   "file": "takes/06.mp3",
+   "sha256": "f4cc5ebec3340d386cd4e63f9344b234941b81b4604e50ece344c6a5d5bce5f4",
+   "seconds": 17.319,
+   "chars": 269,
+   "start": 60.375,
+   "end": 77.694,
+   "wpm": 177
+  },
+  {
+   "n": 7,
+   "file": "takes/07.mp3",
+   "sha256": "447dc933c502f7476640e90b247b34fa6819574fe7343545d49c4ba5d0c7ff1b",
+   "seconds": 5.251,
+   "chars": 93,
+   "start": 78.014,
+   "end": 83.265,
+   "wpm": 194
+  }
+ ],
+ "chars": 1263,
+ "at": "2026-11-05T23:53:50-05:00",
+ "credits": {
+  "used": 2776,
+  "limit": 133571,
+  "tier": "creator",
+  "resetsAt": 1796089820
+ }
+}

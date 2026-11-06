@@ -20,3 +20,8 @@
 ## Shorter local testing (live chat, 10:34 am)
 - [stated] "Start leaning on delivery and a lot faster. We're burning through cloud usage really, really quickly. I'm not sure we can afford 2 weeks of shadow. We'll probably need to reduce the testing period. Because, practically speaking, we really need to find a way to make this hardware investment worthwhile."
 - Changed: video/studio/_shared/local.md, a 3-rung ladder (shadow, local first, spot check) on 3 clean comparisons in a row instead of two weeks. Retell and read-aloud move to local pre-checks now (the Opus gates run only after the local check passes and still decide). Trial model judged after 3 twin comparisons per job kind.
+
+## Back Office demo, roofing (live chat, 10:32 am)
+- Todd shared a screen recording of the joebrunner.ai "Insane custom roofing CRM" reel and asked whether PNF could build something like it, better, and market it the same way. The live session's answer: no full CRM (crowded and cheap, needs accounts and support we lack); build the back-office slice (morning list of drafted messages, quoted against spent, who still owes, leads in, export) as a demo on labeled sample data.
+- [stated] Offered A (the slice), B (full CRM) or C (park): "Let's go with A"
+- Spec: launches/back-office-demo.md (roofing first, the session's call; sample data rules for invariant 6; reel, 5 owner calls and price each wait on Todd). Wiki: Research Wiki Sources and Decisions, Nov 6.

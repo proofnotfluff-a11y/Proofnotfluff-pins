@@ -15,5 +15,5 @@
 - Videos Nov 6: 3 a day, story line, one story gate; 6 old held. Studio is Code task trig_01DQgwhps (both repos), Chat task off (DECISIONS).
 - Oct 30 usage audit: coo/USAGE.md. Next: Todd pauses API lister. Artcraft: watch.
 - Radar redesign: launches/radar-design-brief.md.
-- Nov 6 Back Office demo (A): launches/back-office-demo.md
+- Nov 6: Back Office parked; asset scan next (DECISIONS)
 - Grid-down library: DECISIONS Nov 6.

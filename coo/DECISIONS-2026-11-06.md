@@ -43,3 +43,8 @@
 - Todd made a Claude Code task, "PNF video studio: record and make (code)" (trig_01DQgwhpsSPXrcejNQm9xg1L), with both repos attached, the same prompt plus one line (if the lane is refused, carry on without the box and say so), 9:33, 12:33, 17:33, 21:33 Central, Opus 5.5. He turned the old task (trig_014GCfsTDTXDmRRbYUMBbDyL) off; nothing deleted.
 - [stated] "all tasks done. go"
 - First check: the 5:33 pm run's local box line.
+
+## Pivot rule: owned IP, no time sold (live chat, 3:08 to 3:19 pm)
+- Asked for an objective look, the live session recommended pivoting from building to selling Todd's finance expertise. Todd rejected that: "The last thing I want to do is sell my time. I don't want to become a consultant." He wants IP that sells and scales without him in front of people (digital product, physical product, system, app, faceless content, affiliate).
+- [stated] "Yes, let's park the back office demo and let's do a fresh chat and dive into this because we need to figure out where the pivot needs to go."
+- Changed: launches/back-office-demo.md marked parked. Next, in a new chat: score candidates on six tests (self-serve purchase, a channel we own without a face, zero work per sale, near-zero support, Todd's edge built in, compounds over time), with review mining first, including ways to monetize the video engine (community, audience, affiliate). Top 3 to Todd; nothing built until he picks.

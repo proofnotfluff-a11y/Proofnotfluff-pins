@@ -1,4 +1,6 @@
-# Spec: Back Office demo, roofing (decided Nov 6, 2026; build not started)
+# Spec: Back Office demo, roofing (PARKED Nov 6, 2026, 3:19 pm; never built)
+
+Parked by Todd: "Yes, let's park the back office demo". It fails his rule that PNF must be owned IP that earns without his time (custom setup and support per roofer is a service). Kept for the record only; no run builds from it.
 
 Todd, live chat, Nov 6, 2026, 10:32 am: "Let's go with A". Option A, as offered in that chat: a clickable demo on labeled
 sample data (about 1 to 2 weeks of build runs), then one demo reel and 5 owner calls. Not a full CRM. Major under

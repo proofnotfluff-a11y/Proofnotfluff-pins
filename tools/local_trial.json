@@ -3,5 +3,5 @@
  "until": "2026-11-13",
  "what": "Qwen3.8-27B UD-Q4_K_XL (unsloth), shadow only, side by side with workhorse and fast",
  "why": "Todd, live chat, Nov 6, 2026, 9:53 am: \"Let's do that and test out the better model. We should be constantly tinkering and finding the best solutions out there.\"",
- "judge": "each twin is scored on the same checks as its day-one job; the trial model replaces workhorse or fast only if it wins on most jobs with no new invented people or facts"
+ "judge": "after 3 twin comparisons per job kind (Todd, Nov 6, 10:34 am: shorter testing); the trial model replaces workhorse or fast only if it wins on most of them with no invented people or facts; the until date is the outer limit"
 }

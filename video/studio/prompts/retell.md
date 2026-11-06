@@ -22,5 +22,5 @@ Do not edit files. JSON only: {"pass": bool, "score": {"retold": "<your sentence
 
 Running it: two steps so the listener never sees the message line early. Step 1 sends questions 1 to 4 with the words only;
 step 2 sends the agent's step 1 answer plus the message line for question 5. The local model (tools/local_job.py, kind
-retell, workhorse) runs the same two steps in shadow mode from Nov 5, 2026; nothing local is used until it earns its rung
-(Local AI architecture doc, quality ladder).
+retell, workhorse) runs the same two steps as a pre-check first on every round from Nov 6, 2026 (_shared/local.md, rung 2); this Opus gate
+runs once the local check passes, and this gate decides.

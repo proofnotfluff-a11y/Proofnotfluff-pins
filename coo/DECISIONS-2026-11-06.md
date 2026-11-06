@@ -16,3 +16,7 @@
 ## Trial model (live chat, 9:53 am)
 - [stated] "Let's do that and test out the better model. We should be constantly tinkering and finding the best solutions out there. Let me know what you need from me to make it happen"
 - Qwen3.8-27B (unsloth UD-Q4_K_XL, 17.6 GB, Apache 2.0) runs beside workhorse and fast until Nov 13, shadow only: tools/local_trial.json makes tools/local_job.py send every job a twin named trial-<name>. Box step: pnf-local-jobs scripts/add-trial-qwen38.sh, run once by Todd with sudo (download checked against two checksums, every change backed up, any failed test puts it all back).
+
+## Shorter local testing (live chat, 10:34 am)
+- [stated] "Start leaning on delivery and a lot faster. We're burning through cloud usage really, really quickly. I'm not sure we can afford 2 weeks of shadow. We'll probably need to reduce the testing period. Because, practically speaking, we really need to find a way to make this hardware investment worthwhile."
+- Changed: video/studio/_shared/local.md, a 3-rung ladder (shadow, local first, spot check) on 3 clean comparisons in a row instead of two weeks. Retell and read-aloud move to local pre-checks now (the Opus gates run only after the local check passes and still decide). Trial model judged after 3 twin comparisons per job kind.

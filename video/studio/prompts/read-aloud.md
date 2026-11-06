@@ -23,5 +23,5 @@ PASS only when 1 has no faulty pair, 2 is empty, 3 and 4 find nothing, 5 finds n
 with each fault, its sentence number, the line (under 15 words) and a rewrite in the same voice.
 Do not edit files. JSON only: {"pass": bool, "score": {"sentences": n, "and_then_pairs": n, "unset_terms": n, "choppy_runs": n, "breath_fails": n, "order": "ok|broken"}, "reasons": ["<the chain table in one line, then each fault with its number, line and rewrite>"]}
 
-The local model (tools/local_job.py, kind read-aloud, workhorse) runs this same check in shadow mode from Nov 5, 2026; the
-Claude gate decides until the local job earns its rung (Local AI architecture doc, quality ladder).
+The local model (tools/local_job.py, kind read-aloud, workhorse) runs this same check as a pre-check first on every round from
+Nov 6, 2026 (_shared/local.md, rung 2); this Opus gate runs once the local check passes, and this gate decides.

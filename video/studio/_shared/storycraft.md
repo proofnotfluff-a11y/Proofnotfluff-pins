@@ -78,7 +78,7 @@ Any no goes back to the desk. The engine never fixes a broken story with motion 
   draft, model workhorse, input story.md's message line, cost, turn and receipts only; it returns five openings, each
   tagged moment, receipt, owners' words or result. Write your own five as well, then log under "Local shadow" in brief.md:
   how many of its five are usable (true to the receipts, no invented person, under 15 words) and whether one beat yours.
-  Nothing local is used until two weeks with 3 or more of 5 usable each time. No answer in 15 minutes: carry on without it.
+  After 3 clean lessons it moves to local first (_shared/local.md). No answer in 15 minutes: carry on without it.
 - Step 5 numbers are guides: a sentence that needs 18 words to make sense keeps them. Coherence beats compression.
 - Keep the story whole: the setup, the turn and the payoff all reach the script; no claim story.md lacks.
 - Step 8: the human-test numbers are NOTES; read-aloud then retell on script.md (fresh agents) and facts gate it before

@@ -26,7 +26,7 @@ for trades owners." Built Nov 5, 2026 (video/studio/REBUILD.md, build run). Feed
    (`python3 tools/local_job.py send <job> --wait`; model fast; schema: items with problem, trade, quote_under_10_words,
    url, plus unplaced: the ids of items it left out; each why is one whole sentence, up to 300 characters, never cut off;
    Nov 6 fix). From Nov 5, 2026 this job is in shadow mode: do the extraction yourself as well, compare, and log the difference
-   rate in research/pulse/<date>.md "Local shadow". Nothing local is used until two weeks under 10% difference. No answer
+   rate in research/pulse/<date>.md "Local shadow". After 3 clean pulses it moves to local first (_shared/local.md). No answer
    in 15 minutes or a status other than ok: do it on Claude and note it.
 4. Group into problems and rank them by: how many separate threads (a problem in 3+ places beats a loud single thread),
    how fresh, and how much money or time it moves for an owner this month.

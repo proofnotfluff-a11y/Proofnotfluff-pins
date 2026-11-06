@@ -28,7 +28,7 @@ prose, from what owners are saying (desk 1, trade-pulse); the engine (viral-scri
    payoff, kicker, receipts. No word cap: tell it whole. Length is the engine's job.
    A first draft may come from the box (Local AI architecture doc, routing table: "viral-script and story-desk: script
    first draft, local (workhorse)"): `tools/local_job.py`, kind draft, model workhorse, input the pulse items and receipts
-   only. From Nov 5, 2026 that job runs in shadow mode: write your own story.md as well, compare, and note the difference
+   only. From Nov 5, 2026 that job runs in shadow mode (ladder: _shared/local.md): write your own story.md as well, compare, and note the difference
    at the bottom of story.md ("Local shadow"). The story that goes to the engine is always Claude's.
 5. **Test it** (storycraft.md "The test before handing a story to the engine"): read it aloud, answer the four questions at
    the bottom of story.md. Then the retell gate (video/studio/prompts/retell.md) on story.md's prose, a fresh agent that

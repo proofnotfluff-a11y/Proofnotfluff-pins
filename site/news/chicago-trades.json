@@ -1,7 +1,104 @@
 {
  "about": "Chicago Trades News, our own words with the source of each item linked. Built by the trades-news run; checked by tools/news_site.py.",
- "updated": "2026-10-29",
+ "updated": "2026-11-06",
  "items": [
+  {
+   "id": "irs-2027-inflation-section-179",
+   "date": "2026-11-05",
+   "effective": "2027-01-01",
+   "checked": "2026-11-06",
+   "stage": "announced",
+   "category": "Tax and pay",
+   "trades": [
+    "All trades"
+   ],
+   "headline": "IRS sets 2027 tax numbers: Section 179 expensing limit rises to $2,640,000",
+   "what": "The IRS released its tax year 2027 inflation adjustments on November 5. The Section 179 expensing limit rises to $2,640,000 from $2,560,000, and the cap for SUVs to $33,100 from $32,000. The monthly limit for tax free transit and parking benefits goes to $350, and the health FSA limit to $3,500.",
+   "why": "If you plan truck, tool or equipment buys for 2027, check with your tax preparer how the new Section 179 limit and SUV cap apply. If you offer parking, transit or a health FSA, check that payroll uses the new limits from January.",
+   "sources": [
+    {
+     "name": "IRS, tax inflation adjustments for tax year 2027",
+     "url": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2027-taxpayers-continue-to-benefit-from-the-working-families-tax-cuts"
+    },
+    {
+     "name": "The Tax Adviser, inflation adjustments for tax year 2027",
+     "url": "https://www.thetaxadviser.com/news/2026/nov/irs-announces-inflation-adjustments-for-tax-year-2027/"
+    }
+   ]
+  },
+  {
+   "id": "music-hall-1901-project-permit",
+   "date": "2026-11-03",
+   "effective": null,
+   "checked": "2026-11-06",
+   "stage": "under way",
+   "category": "Jobs and projects",
+   "trades": [
+    "General contractors",
+    "Electrical",
+    "Plumbing",
+    "HVAC",
+    "Roofing",
+    "Painting"
+   ],
+   "headline": "1901 Project Music Hall near the United Center gets its full building permit",
+   "what": "A full building permit was issued for the Music Hall at 1901 W. Madison, a 6,000 guest venue and the first phase of the $7 billion 1901 Project on 55 acres around the United Center. McHugh Construction is the general contractor. An earlier foundation permit was already issued, and the venue is expected to open in 2028.",
+   "why": "Trade packages follow a full building permit. If you want work on the job, check with McHugh Construction on how it takes subcontractor bids and what prequalification it requires.",
+   "sources": [
+    {
+     "name": "Urbanize Chicago, full building permit for 1901 Project Music Hall",
+     "url": "https://chicago.urbanize.city/post/full-building-permit-issued-1901-project-music-hall"
+    }
+   ]
+  },
+  {
+   "id": "illinois-menopause-accommodations",
+   "date": "2026-08-07",
+   "effective": "2027-01-01",
+   "checked": "2026-11-06",
+   "stage": "passed",
+   "category": "Rules and permits",
+   "trades": [
+    "All trades"
+   ],
+   "headline": "Illinois employers with 4 or more workers must accommodate menopause from 2027",
+   "what": "The Menopause Equity and Care Act, HB 5284, signed August 7, 2026, adds menopause related conditions to the pregnancy accommodation rules of the Illinois Human Rights Act from January 1, 2027, for employers with 4 or more employees. Employers must make reasonable accommodations, such as flexible schedules or temperature adjusted workspaces, and must post a notice of these rights.",
+   "why": "Check that your workplace postings and new hire packets include the new notice before January. Check how you would handle a request for a schedule change or a cooler work area on a hot jobsite or in a kitchen.",
+   "sources": [
+    {
+     "name": "National Law Review, Menopause Equity and Care Act",
+     "url": "https://natlawreview.com/article/illinois-menopause-equity-and-care-act-expands-employment-protections"
+    },
+    {
+     "name": "Kilpatrick Townsend, new menopause accommodation",
+     "url": "https://ktslaw.com/en/insights/alert/2026/8/illinois%20employers%20should%20prepare%20for%20new%20menopause%20accommodation"
+    }
+   ]
+  },
+  {
+   "id": "north-center-affordable-3959-lincoln",
+   "date": "2026-11-03",
+   "effective": null,
+   "checked": "2026-11-06",
+   "stage": "under way",
+   "category": "Jobs and projects",
+   "trades": [
+    "General contractors",
+    "Electrical",
+    "Plumbing",
+    "HVAC",
+    "Painting"
+   ],
+   "headline": "$60 million affordable building with 64 units breaks ground at 3959 N. Lincoln",
+   "what": "Ravine Park, Orchard Development and Brinshore Development broke ground on a $60 million affordable building at 3959 N. Lincoln in North Center: a five story addition wrapped around the old bank building, with 64 units and an 18 car garage. Work should take about 20 months, and the team plans a market rate building at 3950 N. Damen next spring.",
+   "why": "That is about 20 months of construction, including mechanical, electrical, plumbing and finish work, with a second building to follow. The article names no general contractor, so check with the developers on who is building it and how they take sub bids.",
+   "sources": [
+    {
+     "name": "Chicago YIMBY, affordable development in North Center",
+     "url": "https://chicagoyimby.com/2026/11/groundbreaking-held-for-affordable-development-in-north-center.html"
+    }
+   ]
+  },
   {
    "id": "fire-stadium-enclosure-permit",
    "date": "2026-10-26",
@@ -483,36 +580,6 @@
     {
      "name": "City of Chicago, Winter Snow Clearing",
      "url": "https://chicago.gov/city/en/depts/streets/provdrs/street/svcs/snow_clearing.html"
-    }
-   ]
-  },
-  {
-   "id": "chicago-trade-shows-winter",
-   "date": "2026-10-27",
-   "effective": "2026-10-28",
-   "checked": "2026-10-27",
-   "stage": "announced",
-   "category": "Jobs and projects",
-   "trades": [
-    "All trades",
-    "Roofing",
-    "HVAC"
-   ],
-   "headline": "Trade shows ahead: Chicago Build this week, roofing and HVAC shows in January",
-   "what": "Chicago Build runs October 28 and 29 at McCormick Place, with new HVAC, fire safety and AI areas. The Chicago Roofing Contractors Association show is January 20 to 22, 2027 in Oakbrook Terrace, and the AHR Expo for heating and cooling is in Chicago January 25 to 27, 2027.",
-   "why": "Shows let you see new products and meet suppliers and builders, and some offer seminars and workshops. Chicago Build is this week and lists free tickets, so check its site if you want to go.",
-   "sources": [
-    {
-     "name": "Plant and Equipment, Chicago Build listing",
-     "url": "https://www.plantandequipment.com/exhibitions/chicago-build-28-10-2026"
-    },
-    {
-     "name": "Greenroofs.com, CRCA trade show 2027",
-     "url": "https://www.greenroofs.com/event/chicago-roofing-contractors-association-trade-show-2027/"
-    },
-    {
-     "name": "AHR Expo",
-     "url": "https://ahrexpo.com/"
     }
    ]
   },

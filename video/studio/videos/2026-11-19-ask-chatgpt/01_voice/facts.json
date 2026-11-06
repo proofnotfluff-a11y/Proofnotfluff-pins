@@ -1,0 +1,46 @@
+{
+ "about": "Every number and claim this lesson shows or says, with its source, all re-opened Nov 6, 2026 (00_story/story.md, Receipts). The 9 pm furnace scene and the homeowner typing are ours (EXAMPLE on screen). No rate of ChatGPT getting a business wrong is claimed anywhere: no source measured one.",
+ "survey": {
+  "aiReviews": 37,
+  "aiShown": "37%",
+  "aiSaid": "thirty-seven percent",
+  "aiWhat": "share of homeowners who said they would seek reviews of HVAC contractors through AI tools such as ChatGPT",
+  "yelp": 38,
+  "yelpShown": "38%",
+  "googleBusiness": 54,
+  "websites": 45,
+  "facebook": 35,
+  "contractorsNoAI": 50,
+  "homeowners": 782,
+  "contractors": 205,
+  "fielded": "Apr 24 to May 19, 2026",
+  "sponsor": "myCLEARopinion Insights Hub for BNP Media, parent company of ACHR News",
+  "publisher": "ACHR News",
+  "date": "2026-10-20",
+  "url": "https://www.achrnews.com/articles/166872-36-of-homeowners-draw-the-line-at-ai-replacing-hvac-expertise",
+  "opened": "2026-11-06"
+ },
+ "column": {
+  "chatgptRevenueShare": 1,
+  "chatgptRevenueShown": "about 1%",
+  "chatgptRevenueSaid": "about one percent",
+  "gbpRevenueShare": 67,
+  "gbpTicket": 3441,
+  "chatgptTicket": 11500,
+  "chatgptTicketShown": "$11,500",
+  "chatgptTicketSaid": "eleven and a half grand",
+  "dataSource": "SearchLight data, as read by the column's author (founder of a reputation-marketing firm); method not published",
+  "whatAIReads": "AI tools interpret and reassemble structured business data: name, address, phone number, website content, reviews, Google Posts",
+  "publisher": "ACHR News (guest column)",
+  "date": "2026-03-18",
+  "url": "https://www.achrnews.com/articles/165972-before-you-chase-ai-leads-fix-your-google-business-profile",
+  "opened": "2026-11-06"
+ },
+ "forum": {
+  "fourCustomers": 4,
+  "what": "an owner (a Jobber community coach) says at least 4 people in the last month told them ChatGPT is how they found the company, and that they did nothing there to promote themselves",
+  "where": "Jobber Community, marketing forum, thread 15769, shown as 3 days old on Nov 6, 2026",
+  "url": "https://community.getjobber.com/discussions/marketing-forum/is-your-business-showing-up-in-ai-search-%F0%9F%94%8D%E2%9C%A8/15769",
+  "opened": "2026-11-06"
+ }
+}

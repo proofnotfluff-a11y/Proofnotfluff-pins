@@ -2352,7 +2352,9 @@ def script_problems(slug, send_line=None, notes=None):
     # the end card must fit its format's top length, or it is cut before any credits are spent.
     top = FORMATS[lesson_format(slug)]["max_seconds"]
     est = len(words) * 60 / 160 + CFG_VIDEO_END
-    if est > top:
+    wp = vdir(slug, "02_transcript", "words.json")
+    voiced = os.path.exists(wp) and json.load(open(wp)).get("source", "estimate") != "estimate"
+    if est > top and not voiced:   # once the voice exists, its real length is judged by hook and check, not this estimate
         out.append(f"about {est:.1f} s at 160 words a minute with the end card, over {lesson_format(slug)}'s {top:.0f} s;"
                    f" cut about {int((est - top) * 160 / 60) + 1} words before voicing")
     text = " ".join(TAG.sub(" ", tk) for tk in takes)

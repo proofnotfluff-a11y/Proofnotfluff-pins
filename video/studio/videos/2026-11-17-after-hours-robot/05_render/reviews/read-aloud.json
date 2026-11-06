@@ -1,22 +1,40 @@
 {
  "gate": "read-aloud",
- "round": 5,
- "stage": "script",
+ "round": 6,
+ "stage": "transcript",
  "reviewer": "fresh opus agent",
- "pass": true,
+ "pass": false,
  "score": {
-  "sentences": 21,
+  "sentences": 20,
   "and_then_pairs": 0,
-  "unset_terms": 0,
+  "unset_terms": 2,
   "choppy_runs": 0,
-  "breath_fails": 0,
+  "breath_fails": 1,
   "order": "ok"
  },
  "reasons": [
-  "Every pair linked by but, because or therefore; nothing unset; one voice; not choppy; every sentence one breath; setup, problem, fix in order.",
-  "Judged the 234-word r5; the voiced script then cut 4 words ('started pitching ... your phone' to 'pitched ... answer', 'phone carrier' to 'carrier') with no change to links."
+  "S5 'one owner who runs it after hours': the nearest noun is Jobber. Fix: 'runs an AI line after hours'.",
+  "S15 'carrier': to an HVAC owner Carrier is a furnace brand, next to 'no heat'. Fix: 'phone company'.",
+  "S8 (take 3 as re-voiced) runs 25 words with a nested clause, reads like a survey summary. Fix: two sentences."
  ],
  "earlier": [
+  {
+   "round": 5,
+   "stage": "script",
+   "pass": true,
+   "score": {
+    "sentences": 21,
+    "and_then_pairs": 0,
+    "unset_terms": 0,
+    "choppy_runs": 0,
+    "breath_fails": 0,
+    "order": "ok"
+   },
+   "reasons": [
+    "Every pair linked by but, because or therefore; nothing unset; one voice; not choppy; every sentence one breath; setup, problem, fix in order.",
+    "Judged the 234-word r5; the voiced script then cut 4 words ('started pitching ... your phone' to 'pitched ... answer', 'phone carrier' to 'carrier') with no change to links."
+   ]
+  },
   {
    "round": 4,
    "pass": false,

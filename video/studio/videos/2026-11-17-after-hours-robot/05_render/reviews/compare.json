@@ -1,0 +1,19 @@
+{
+ "gate": "compare",
+ "round": 0,
+ "reviewer": "fresh opus agent (against gurus.md compare set and Gemini watch notes)",
+ "pass": false,
+ "score": {
+  "stop_rank": 3,
+  "understand_rank": 3,
+  "follow_rank": 2,
+  "best_move_missing": "open on the result as a moment: the 11 pm no-heat call the AI books, then the 2 pm caller who hears 'AI' and hangs up; make the claim after the viewer has seen both",
+  "ours_better_at": "the only one with a dated, sourced rule plus a setup and a test call to do tonight; 'the robot only has to beat a beep' is a line worth repeating"
+ },
+ "reasons": [
+  "Stop 3 of 4: the first 5 s is an argument (title, robot box, clock), not a moment.",
+  "Understand 3 of 4: trust leaks: the key owner line is a paraphrase; 'owner after owner' is asserted; the survey doesn't split day from night; 0% on the gauge; the robot is never shown on a call.",
+  "Follow 2 of 4: a soft 2, for the tip, not for a person.",
+  "Fix: the two-call opening; cut 'For years it's been the same' and 'not just forum grumbling'; start the gauge at its value."
+ ]
+}

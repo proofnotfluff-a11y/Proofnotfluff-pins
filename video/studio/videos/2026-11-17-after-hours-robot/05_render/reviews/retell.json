@@ -1,20 +1,35 @@
 {
  "gate": "retell",
- "round": 2,
- "stage": "script",
- "reviewer": "fresh opus agent (answers 1 to 4 written before the message line was opened)",
+ "round": 3,
+ "stage": "transcript",
+ "reviewer": "fresh opus agent (answers 1 to 4 before the message line)",
  "pass": true,
  "score": {
-  "retold": "Callers hang up on AI receptionists during the day, so use one only after hours as a better voicemail, and say it's AI.",
-  "action": "carrier sends only after-hours calls to the AI, say it's AI, write the greeting, test-call tonight as a no-heat customer",
+  "retold": "AI phone answering loses daytime callers who expect you, so only use it after hours as a better voicemail, and say it's AI.",
+  "action": "carrier routes calls to the AI only after hours, a greeting that says it's AI, a test call tonight as a no-heat customer",
   "lost_at": "none",
-  "new_to_me": "36% comfort figure; Jobber sells one and still says to tell callers",
+  "new_to_me": "36% comfort figure; Jobber encourages disclosing",
   "matches_message": "same"
  },
  "reasons": [
-  "Same message, concrete action, never lost. Wobble: 'hardly anyone stays' then the owner keeps his on; 'better voicemail' resolves it. Its suggested fix ('at least during the day') would be false (his remark was about after-hours callers), so not taken."
+  "Same message, concrete action, never lost; one bump on 'hardly anyone stays' (night) cleared by 'keeps his on anyway, at night'."
  ],
  "earlier": [
+  {
+   "round": 2,
+   "stage": "script",
+   "pass": true,
+   "score": {
+    "retold": "Callers hang up on AI receptionists during the day, so use one only after hours as a better voicemail, and say it's AI.",
+    "action": "carrier sends only after-hours calls to the AI, say it's AI, write the greeting, test-call tonight as a no-heat customer",
+    "lost_at": "none",
+    "new_to_me": "36% comfort figure; Jobber sells one and still says to tell callers",
+    "matches_message": "same"
+   },
+   "reasons": [
+    "Same message, concrete action, never lost. Wobble: 'hardly anyone stays' then the owner keeps his on; 'better voicemail' resolves it. Its suggested fix ('at least during the day') would be false (his remark was about after-hours callers), so not taken."
+   ]
+  },
   {
    "round": 1,
    "pass": true,

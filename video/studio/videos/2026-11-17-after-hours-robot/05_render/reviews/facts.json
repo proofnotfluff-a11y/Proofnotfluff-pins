@@ -1,17 +1,33 @@
 {
  "gate": "facts",
- "round": 4,
- "stage": "script",
- "reviewer": "fresh opus agent (pages re-opened)",
- "pass": true,
+ "round": 5,
+ "stage": "render",
+ "reviewer": "fresh opus agent (frames and pages)",
+ "pass": false,
  "score": {
-  "claims_checked": 14,
-  "mismatches": 0
+  "claims_checked": 21,
+  "mismatches": 4
  },
  "reasons": [
-  "All claims confirmed; 'says the same' backed by four voices across three threads; disclosure line fair to 'We encourage you to let callers know'."
+  "Gauge label says booking only; the item is booking or basic questions.",
+  "Gauge shows 0% for 5 s before the count: reads as '0% comfortable'.",
+  "Hook close-up (0.4 to 2.8 s) has no EXAMPLE tag.",
+  "Closing '2 PM: they want you.' has no EXAMPLE tag.",
+  "17 other items confirmed (36%, 782, ACHR date, forum paraphrase labeled, Jobber help quote, greeting, pitches and flap board tagged, no names, no dashes)."
  ],
  "earlier": [
+  {
+   "round": 4,
+   "stage": "script",
+   "pass": true,
+   "score": {
+    "claims_checked": 14,
+    "mismatches": 0
+   },
+   "reasons": [
+    "All claims confirmed; 'says the same' backed by four voices across three threads; disclosure line fair to 'We encourage you to let callers know'."
+   ]
+  },
   {
    "round": 3,
    "pass": false,

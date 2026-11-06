@@ -1,0 +1,26 @@
+{
+ "gate": "design",
+ "round": 0,
+ "reviewer": "fresh opus agent",
+ "pass": false,
+ "score": {
+  "first": 4,
+  "hierarchy": 4,
+  "type": 4,
+  "color": 4,
+  "spacing": 4,
+  "polish": 4,
+  "trust": 5,
+  "average": 4.14
+ },
+ "reasons": [
+  "Gauge: strike-through line and needle over the readout; 0% for 5 s.",
+  "Labels at about 30 px (the pixel body font has one size under 52; the display font starts at 52).",
+  "Pitch phone mostly empty.",
+  "Forum card static, quote and CALLER LEFT small, empty lower band.",
+  "Versus: bars never fill, WIN tiny.",
+  "Hook close-up royal blue off palette; robot barely moves.",
+  "Greeting card lower third empty.",
+  "Host small; no reaction on the 36%."
+ ]
+}

@@ -1,0 +1,18 @@
+{
+ "gate": "send",
+ "round": 0,
+ "reviewer": "fresh opus agent",
+ "pass": true,
+ "score": {
+  "person": "my wife, who takes the after-hours calls for our two-truck HVAC shop",
+  "line": "At night, the robot only has to beat a beep.",
+  "gain": "helps",
+  "feeling": "relief",
+  "thanks": "yes",
+  "send_line_fits": "yes"
+ },
+ "reasons": [
+  "Would send to the person who answers after hours; the end card's send line names exactly that person.",
+  "Optional: 'Send this to whoever picks up when you can't.' also reaches shops where nights go to voicemail."
+ ]
+}

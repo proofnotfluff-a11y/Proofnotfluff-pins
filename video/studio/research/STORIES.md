@@ -8,7 +8,7 @@ implementation". The AI lane makes a Ready story before any other AI idea. A Rea
 | Date | Story | Score | Dossier |
 |---|---|---|---|
 | Nov 5 | AI receptionists: owners say callers hang up on the robot; the ones who keep it run it after hours (made: 2026-11-17-after-hours-robot, preview, not queued) | 10 | videos/2026-11-17-after-hours-robot/00_story/story.md |
-| Nov 2 | Google moves Local Services Ads into its AI ad system; max cost per lead goes away | 9 | stories/2026-11-02-lsa-to-google-ai.md |
+| Nov 2 | Google moves Local Services Ads into its AI ad system; max cost per lead goes away (in the making: 2026-11-18-lsa-max-bid, story retell PASS r7, script gates PASS, receipts re-opened Nov 6) | 9 | stories/2026-11-02-lsa-to-google-ai.md |
 | Nov 2 | Homeowners would ask ChatGPT for a contractor almost as often as Yelp | 9 | stories/2026-11-02-chatgpt-finds-contractors.md |
 
 ## Leads (scored by a reporter, not yet verified; verify before Ready)

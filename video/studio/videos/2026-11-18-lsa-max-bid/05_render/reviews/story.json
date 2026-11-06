@@ -1,0 +1,33 @@
+{
+ "gate": "story",
+ "stage": "script.md before voice",
+ "round": 7,
+ "reviewer": "fresh opus agents (run as the separate retell and read-aloud gates of the Nov 6, 7:15 am line; the merged story gate of 10:54 am landed mid-run)",
+ "pass": true,
+ "parts": {
+  "retell": {
+   "pass": true,
+   "score": {
+    "retold": "Google is moving Local Services Ads into Google Ads, your max-per-lead box and old reports won't come, so screenshot them this week.",
+    "action": "screenshot every report, write the max beside them, check the admin inbox",
+    "lost_at": "none",
+    "matches_message": "same"
+   }
+  },
+  "read_aloud": {
+   "pass": true,
+   "score": {
+    "sentences": 20,
+    "and_then_pairs": 0,
+    "unset_terms": 0,
+    "choppy_runs": 0,
+    "breath_fails": 0,
+    "order": "ok"
+   }
+  },
+  "compare": "not yet"
+ },
+ "reasons": [
+  "read-aloud FAILed r0 to r6 (see 01_voice/script-check.md), PASS at r7; retell PASS every round; facts PASS r8 on the same text."
+ ]
+}

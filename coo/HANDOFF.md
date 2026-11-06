@@ -12,8 +12,8 @@
 - Oct 25: Chief of Staff live, credits burst Nov 2 (DECISIONS-2026-10-25). Area seats live Oct 26, 6 open.
 - Oct 26: TRAFFIC FIRST; no builder outreach.
 - Oct 27: trade owners only; free plan waits (DECISIONS-2026-10-27). Trades News (Mon, Wed, Fri 6:32), maps, templates live. R10: 11 free data pages and redesign live (/chicago-data/, site/datahub.json); inspections by area, Quarterly open (W).
-- Videos back Nov 6: 3 a day, story line (REBUILD.md), one story gate; lane test over; 6 old held (DECISIONS-2026-11-06).
+- Videos Nov 6: 3 a day, story line, one story gate; 6 old held. Studio is Code task trig_01DQgwhps (both repos), Chat task off (DECISIONS).
 - Oct 30 usage audit: coo/USAGE.md. Next: Todd pauses API lister. Artcraft: watch.
-- Radar v1 preview; redesign Nov 4 (launches/radar-design-brief.md).
+- Radar redesign: launches/radar-design-brief.md.
 - Nov 6 Back Office demo (A): launches/back-office-demo.md
 - Grid-down library: DECISIONS Nov 6.

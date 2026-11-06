@@ -37,3 +37,9 @@
 - Chosen: the lean build over Project NOMAD (NOMAD's AI searches uploaded files only and has no login). The GEEKOM becomes the stay-at-home offline library and AI; this replaces the Nov 5 line "Project NOMAD stays separate". Plan of record: the architecture doc, section "Grid-down mode and the offline library" (contents, power, outage Wi-Fi, portable /srv/offline package, guards, build order).
 - Guards: /srv/offline outside backups; downloads 11 pm to 7 am, speed-capped; shutdown only on a dead Deco cable; every install through skill-security-check; no Docker.
 - Open: Todd's internet data cap; Todd plugs the box in through the station.
+
+## Studio task moved so runs reach the local box (live chat, 1:34 to 2:09 pm)
+- Cause: "PNF video studio: record and make" was a Chat-type scheduled task, which has no repository setting, so runs could not clone or push the private lane pnf-local-jobs.
+- Todd made a Claude Code task, "PNF video studio: record and make (code)" (trig_01DQgwhpsSPXrcejNQm9xg1L), with both repos attached, the same prompt plus one line (if the lane is refused, carry on without the box and say so), 9:33, 12:33, 17:33, 21:33 Central, Opus 5.5. He turned the old task (trig_014GCfsTDTXDmRRbYUMBbDyL) off; nothing deleted.
+- [stated] "all tasks done. go"
+- First check: the 5:33 pm run's local box line.

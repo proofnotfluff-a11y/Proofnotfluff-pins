@@ -4,7 +4,7 @@ An AI receptionist can earn its keep. Just not at two in the afternoon. For year
 
 So AI companies pitched a robot to answer instead, and owners tried it. On the forum for Jobber, the job software, one owner who runs it after hours said it plainly. Hardly anyone stays once they hear it's AI.
 
-That's not just forum grumbling. This spring, a trade magazine's publisher asked homeowners about AI. Only thirty-six percent were comfortable with AI booking appointments or answering basic questions.
+That's not just forum grumbling, either. This spring, when a trade magazine's publisher asked homeowners about AI, only thirty-six percent were comfortable with AI booking appointments or answering basic questions.
 
 So at two in the afternoon, when the customer expects you, a robot is a gamble. They can hang up and call the next shop.
 

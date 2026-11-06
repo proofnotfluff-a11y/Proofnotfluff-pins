@@ -12,3 +12,7 @@
 ## Local box jobs (live chat, 7:49 am)
 - [stated] Asked whether the local model helps with the grunt work on the videos, and shown the four shadow results (pulse grouping 38% off, story draft 3 faults, retell 3 of 3, read-aloud 2 of 3): "ok go with your rec".
 - Changed: trade-pulse SKILL step 3 (the extract job lists unplaced items and keeps each why whole), storycraft.md "For the engine" step 4 (a new shadow job for the five openings). Still shadow only: nothing local reaches a video.
+
+## Trial model (live chat, 9:53 am)
+- [stated] "Let's do that and test out the better model. We should be constantly tinkering and finding the best solutions out there. Let me know what you need from me to make it happen"
+- Qwen3.8-27B (unsloth UD-Q4_K_XL, 17.6 GB, Apache 2.0) runs beside workhorse and fast until Nov 13, shadow only: tools/local_trial.json makes tools/local_job.py send every job a twin named trial-<name>. Box step: pnf-local-jobs scripts/add-trial-qwen38.sh, run once by Todd with sudo (download checked against two checksums, every change backed up, any failed test puts it all back).

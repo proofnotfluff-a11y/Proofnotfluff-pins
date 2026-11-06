@@ -6,8 +6,8 @@
     python3 tools/local_job.py health
 
 The lane is the private repo proofnotfluff-a11y/pnf-local-jobs, cloned at $PNF_LOCAL_JOBS (default
-/home/claude/pnf-local-jobs). A job file is named <slug>-<kind>-<date>-r<round>.json and holds kind, model (workhorse or
-fast), prompt, input, schema (required) and optional system, max_tokens, think, checks. `send` copies each file into
+/home/claude/pnf-local-jobs). A job file is named <slug>-<kind>-<date>-r<round>.json and holds kind, model (workhorse,
+fast or trial), prompt, input, schema (required) and optional system, max_tokens, think, checks. `send` copies each file into
 jobs/, commits and pushes; the poller on the box answers in answers/<same name>.json (status ok, bad_json, error,
 timeout). `wait` fetches every --every seconds until each answer is on the remote, pulls once and prints
 "<name>: <status> <seconds>s". Exit 0 when every answer came back, 2 on timeout.
@@ -21,6 +21,7 @@ import argparse, json, os, re, shutil, subprocess, sys, time
 
 LANE = os.environ.get("PNF_LOCAL_JOBS", "/home/claude/pnf-local-jobs")
 NAME = re.compile(r"^[a-z0-9][a-z0-9-]*-[a-z-]+-\d{4}-\d{2}-\d{2}(-\d{4})?-r\d+$")
+TRIAL = os.path.join(os.path.dirname(os.path.abspath(__file__)), "local_trial.json")
 PERSON = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]+|\(?\b\d{3}\)?[ .-]\d{3}[ .-]\d{4}\b")
 
 
@@ -39,12 +40,21 @@ def problems(job, name):
     for k in ("kind", "model", "prompt", "input", "schema"):
         if k not in job:
             out.append(f"missing {k}")
-    if job.get("model") not in ("workhorse", "fast"):
-        out.append("model must be workhorse or fast")
+    if job.get("model") not in ("workhorse", "fast", "trial"):
+        out.append("model must be workhorse, fast or trial")
     blob = json.dumps(job)
     if PERSON.search(blob):
         out.append("an email address or phone number is in the job: the lane carries business fields only")
     return out
+
+
+def trial_model():
+    """A model on trial (tools/local_trial.json, until a date): every job also goes to it as a twin named trial-<name>,
+    so each shadow job compares the day-one model, the trial model and Claude on the same input (Todd, Nov 6, 2026)."""
+    if not os.path.exists(TRIAL):
+        return None
+    t = json.load(open(TRIAL, encoding="utf-8"))
+    return t.get("model") if time.strftime("%Y-%m-%d") <= t.get("until", "") else None
 
 
 def send(paths):
@@ -67,6 +77,13 @@ def send(paths):
         shutil.copyfile(p, dst)
         git("add", dst)
         names.append(name)
+        tm = trial_model()
+        if tm and job["model"] != tm and not name.startswith("trial-"):
+            twin = os.path.join(LANE, "jobs", "trial-" + name + ".json")
+            if not os.path.exists(twin):
+                json.dump(dict(job, model=tm), open(twin, "w", encoding="utf-8"), indent=1)
+                git("add", twin)
+                names.append("trial-" + name)
     r = git("commit", "-q", "-m", "jobs: " + ", ".join(names))
     if r.returncode:
         print("local_job: commit failed: " + (r.stderr or r.stdout).strip()[:200])

@@ -7,9 +7,10 @@
   survey with sponsor and sample, owner threads opened today), actionable 2 (four steps, under 30 minutes) = 10.
 
 ## ABT line
-Owners miss calls on the job, AND AI receptionists promise to answer every one, BUT owners who tried them say callers hang
-up when they hear a robot, and only about a third of homeowners are comfortable with AI booking them, THEREFORE put the
-robot on nights and weekends, where it beats voicemail, and keep a person on the daytime phone.
+Owners miss calls on the job, AND AI companies are pitching robots to answer the phone, BUT an owner who runs one says
+hardly anyone stays once they hear it's AI, and only 36% of homeowners are comfortable with AI booking appointments or
+answering basic questions, THEREFORE put the robot on nights and weekends, where it beats voicemail, and keep a person on
+the daytime phone.
 
 ## Message line
 Put the AI receptionist on after hours, where it beats voicemail, and keep a person on the daytime phone.

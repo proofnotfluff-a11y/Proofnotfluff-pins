@@ -30,3 +30,10 @@
 - [stated] "Go with your rec", to: the box reads forum and trade press pages itself, and retell, read-aloud and compare merge into one Opus reviewer.
 - Changed: video/studio/prompts/story.md and anim.py STORY_GATES (one story gate, same three bars, two turns so the listener never sees the message line early); CONSTITUTION 2 amended; tools/local_job.py fetch; trade-pulse SKILL step 3; the page reader (pnf-local-jobs scripts/fetcher.py and add-fetcher.sh: https only, allowlisted sites, robots.txt respected, page text never leaves the box). Box step: Todd runs add-fetcher.sh once.
 - Todd's own step: remove unused connectors from each PNF scheduled task (USAGE.md A5). Withdrawn 11:10 am: tasks can't drop connectors one by one (USAGE.md A5 closed).
+
+## Grid-down access and offline library (live chat, 12:56 to 1:07 pm)
+- [stated] Owns an EcoFlow DELTA 3 Classic (1,024 Wh) with a 220 W panel ("I have this"), the battery for the GEEKOM in an outage.
+- [stated] "Let's do lean but also add maps and khan academy - let's also add anything else you think might be useful in a blackout. Can this be packaged so once I get a powerful portable laptop we could migrate it over at some point?"
+- Chosen: the lean build over Project NOMAD (NOMAD's AI searches uploaded files only and has no login). The GEEKOM becomes the stay-at-home offline library and AI; this replaces the Nov 5 line "Project NOMAD stays separate". Plan of record: the architecture doc, section "Grid-down mode and the offline library" (contents, power, outage Wi-Fi, portable /srv/offline package, guards, build order).
+- Guards: /srv/offline outside backups; downloads 11 pm to 7 am, speed-capped; shutdown only on a dead Deco cable; every install through skill-security-check; no Docker.
+- Open: Todd's internet data cap; Todd plugs the box in through the station.

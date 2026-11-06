@@ -1,0 +1,13 @@
+{
+ "gate": "facts-captions",
+ "round": 0,
+ "reviewer": "fresh opus agent",
+ "pass": true,
+ "score": {
+  "numbers": 5,
+  "mismatches": 0
+ },
+ "reasons": [
+  "tiktok, facebook (non-blocking): 'Route it calls only after hours' reworded to 'Have your phone company send it calls only after hours' (applied)"
+ ]
+}

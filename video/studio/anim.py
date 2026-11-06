@@ -1462,6 +1462,13 @@ def cmd_remix(slug):
 QUEUE = os.path.join(HERE, "queue.json")
 PLATFORMS = ("instagram", "tiktok", "facebook", "youtube")
 GATES = ("qa", "facts", "facts-captions", "render-critic", "buyer", "send", "design", "golden")
+# The new line (Todd, live chat, Nov 6, 2026, 7:15 am: "Go with you recommendations", the gate list amendment in
+# coo/CONSTITUTION.md): story lessons swap buyer and golden for retell, read-aloud and compare (prompts/README.md).
+STORY_GATES = ("qa", "facts", "facts-captions", "render-critic", "retell", "read-aloud", "compare", "send", "design")
+
+
+def gates_for(slug):
+    return STORY_GATES if lesson_format(slug) == "story" else GATES
 # Two openings per lesson as two Instagram trial reels (Todd, live chat, Nov 1, 2026, 4:35 pm: "Do both", to two hook
 # versions per lesson as Instagram trial reels and a send reviewer gate). The second opening is the same lesson after the
 # hook (hookb_drift proves it), so it reruns only the gates its new opening can change; send and golden judge the whole
@@ -1492,7 +1499,7 @@ def save_queue(q):
 def cmd_ready(slug):
     rev = vdir(slug, "05_render", "reviews")
     bad = []
-    for g in GATES:
+    for g in gates_for(slug):
         f = vdir(slug, "05_render", "qa.json") if g == "qa" else os.path.join(rev, f"{g}.json")
         if not os.path.exists(f):
             bad.append(f"{g}: no file"); continue

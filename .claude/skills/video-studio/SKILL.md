@@ -1,6 +1,6 @@
 # video-studio (post, make, learn; slots in video/config.json "posting")
 
-Each run: post the next gated lesson on four platforms, make one, learn. 2 a day, queue first, each unique (CONSTITUTION 2). "stop videos" halts it (video/config.json stop).
+Each run: post the next gated lesson on four platforms, make one, learn. 3 a day, queue first, each unique (CONSTITUTION 2). "stop videos" halts it (video/config.json stop).
 
 ## Inputs (Reads)
 - video/studio/CLAUDE.md, CONTEXT.md, stages/*/CONTEXT.md, _shared/*.md, POSTING.md, IMPROVE.md, LEARNINGS.md, prompts/, queue.json, research/IDEAS.md, KNOWLEDGE.md, PERFORMANCE.md, the last lesson as the pattern.

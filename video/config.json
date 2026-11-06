@@ -1,7 +1,7 @@
 {
  "about": "Video engine Phase 0 settings (the MVP). Pinned by the PNF Video Engine Blueprint, MVP build spec (https://claude.ai/artifact/3ssi8yGEKVxiL7JTD87kzS); changing a value here is a logged decision in coo/DECISIONS-<date>.md, never a call made mid-run.",
- "stop": true,
- "stopNote": "Set true Nov 2, 2026, 9:00 pm in a live chat: Todd chose \"Hold all 6\" (\"Nothing posts until a video made on the new line passes your watch-through\") after setting the video principles (video/studio/PRINCIPLES.md). Posting, making and the lab pause; the build run on Thu Nov 5, 10:01 pm builds the new line (video/studio/REBUILD.md) and sends Todd one preview. Only Todd's word after that watch-through sets this back to false. Earlier meaning kept: set true by any live chat that hears Todd say \"stop videos\".",
+ "stop": false,
+ "stopNote": "Set false Nov 6, 2026, 7:15 am in a live chat, after Todd watched the first video made on the new line (2026-11-17-after-hours-robot, review page in coo/HANDOFF.md): \"The new video is so much better. Go with you recommendations. Let's bump to 3 posts per day. start with the one I just watched this morning.\" Earlier: set true Nov 2, 9:00 pm (\"Hold all 6\"); the 6 old-gate lessons stay held in queue.json. Set true again by any live chat that hears Todd say \"stop videos\".",
  "data": "permits/rodents-chicago/weekly.json",
  "freshDays": 8,
  "mvp": {
@@ -110,17 +110,20 @@
  "remotion": "4.0.539",
  "node": "22",
  "lanes": {
-  "mode": "alternate",
-  "until": "2026-11-08",
-  "note": "Todd, live chat, Nov 1, 2026, 9:01 am: \"go with your recommendation\": 7-day test, 2 of 4 daily posts AI for trades (lane ai), 2 the current lessons (lane core), turn about in the posting line. Judged Nov 8 with `anim.py lanes`: ai at 2x core or better on shares + saves + follows per 1,000 views switches mode to ai (his go, same message); otherwise the numbers go to Todd. _shared/lanes.md."
+  "mode": "off",
+  "note": "Lane test ended early Nov 6, 2026 on Todd's word in a live chat, 7:15 am: \"The new video is so much better. Go with you recommendations. Let's bump to 3 posts per day. start with the one I just watched this morning.\" (recommendation 3: the story line replaces the ai and core turn-about; every lesson now comes from the trade pulse and the story desk). Earlier: alternate, Nov 1 to 8 (_shared/lanes.md). A Lane line on a brief is kept as a label only."
  },
  "posting": {
-  "perDay": 2,
-  "note": "Todd, live chat, Nov 1, 2026, 12:09 pm: \"Let's go down to 2 videos a day until we get the formula and structure correct to go viral. use the spare capacity to focus on developing quality videos\". Kept lunch (11:37, our best Instagram read so far, lsa-missed-calls) and evening (8:13 pm); the morning and end-of-day post tasks are turned off, not deleted. Earlier: 3 a day (Oct 30), 4 a day (Oct 31, 9:08 am). Slots and evidence: video/studio/research/runs/2026-10-30-cadence.md; _shared/formula.md.",
+  "perDay": 3,
+  "note": "Todd, live chat, Nov 6, 2026, 7:15 am: \"The new video is so much better. Go with you recommendations. Let's bump to 3 posts per day. start with the one I just watched this morning.\" Lunch 11:37, end of day 16:41 and evening 20:13 Central (the Oct 30 three-a-day slots, video/studio/research/runs/2026-10-30-cadence.md). Earlier: 2 a day (Nov 1, 12:09 pm), 4 a day (Oct 31), 3 a day (Oct 30).",
   "slots": [
    {
     "name": "lunch",
     "central": "11:37"
+   },
+   {
+    "name": "end-of-day",
+    "central": "16:41"
    },
    {
     "name": "evening",

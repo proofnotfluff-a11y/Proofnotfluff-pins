@@ -57,6 +57,9 @@ Relaxed (Todd, Nov 2): the result-first opening and the 5-second turn are option
   service books jobs they can't do.").
 - **The result:** the finished thing first, then how (old C5), when the result itself is the surprise.
 Whatever the opening, the setup still comes next: one line of "every day" before the problem pays off.
+Round 2 on (Todd, Nov 6, 2026, 7:15 am: "Go with you recommendations"): open on the moment as two short scenes when the
+lesson is a before and after (after-hours-robot's compare fix: the 11 pm no-heat call the AI books, then the 2 pm caller
+who hears "AI" and hangs up), and make the claim only after the viewer has seen both.
 
 ## The test before handing a story to the engine
 Read story.md aloud, start to finish. Then answer in writing at the bottom:

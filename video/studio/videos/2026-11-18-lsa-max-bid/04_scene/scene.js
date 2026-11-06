@@ -97,7 +97,7 @@ const boxRow = (k, d, x, y, o = {}, s = 1) => {
   const bx = x + 156 * s - (s - 1) * 40, by = y, bw = 112 * s - (s - 1) * 60, bh = 26 * s;
   if (state === 'empty' || state === 'filled') {
     P(bx - s, by - s, bw + 2 * s, bh + 2 * s, state === 'filled' ? GOLD : SKY); P(bx, by, bw, bh, state === 'filled' ? '#4A3A1A' : NIGHT);
-    if (state === 'filled') d.tx('YOUR MAX', bx + 6 * s, by + 4 * s, {size: 39 * s, color: GOLD, lint: false});
+    if (state === 'filled') d.tx('$45', bx + 6 * s, by + 4 * s, {size: 39 * s, color: GOLD, lint: false});
     if ((F >> 4) % 2 === 0) P(state === 'filled' ? bx + bw - 10 * s : bx + 6 * s, by + 5 * s, 2 * s, 16 * s, CREAM);
   } else if (state === 'gone') {
     const q = clamp((k.T - (o.goneAt || 0)) / 0.6);
@@ -125,7 +125,7 @@ window.SCENE = {
   host_name: 'Snow',
   hud: 'SAVE YOUR NUMBERS',
   sendLine: 'Send this to whoever runs your Google ads.',
-  transitions: {move: 'dissolve', now: 'dissolve', rule: 'mosaic', download: 'mosaic', setup: 'levelselect', button: 'gameover'},
+  transitions: {move: 'dissolve', now: 'blinds', rule: 'door', download: 'iris', setup: 'levelselect', button: 'gameover'},   /* r3: the dissolve's black frame and the mosaic blocks read as glitches (story gate r1) */
   trauma: {'hook.gone': 0.6},
   sections: {
     /* ---- hook: scene one, the box (cover, no host): our ad screen, the cursor in the MAX PER LEAD box; on "type" it   */
@@ -152,8 +152,8 @@ window.SCENE = {
         const fill = T >= tType, gold = T >= tGold;
         if (gold) k.burst(540, 650, tGold, {n: 14, r: 240});
         P(bx - 2, by + 22, bw + 4, bh + 4, gold ? GOLD : SKY); P(bx, by + 24, bw, bh, gold ? '#4A3A1A' : NIGHT);
-        const n = fill ? Math.min(8, Math.floor((T - tType) * 30)) : 0; if (n) k.text('YOUR MAX'.slice(0, n), 168, 708, {size: 99, color: GOLD});
-        if ((d.F >> 4) % 2 === 0) P(fill ? bx + 16 + Math.round(k.measure('YOUR MAX'.slice(0, n), {size: 99}) / 3) + 4 : bx + 14, by + 34, 4, 36, CREAM);
+        const n = fill ? Math.min(3, Math.floor((T - tType) * 10)) : 0; if (n) k.text('$45'.slice(0, n), 168, 708, {size: 99, color: GOLD});   /* r3: an EXAMPLE dollar max, so the stake is concrete (story gate r1) */
+        if ((d.F >> 4) % 2 === 0) P(fill ? bx + 16 + Math.round(k.measure('$45'.slice(0, n), {size: 99}) / 3) + 4 : bx + 14, by + 34, 4, 36, CREAM);
         topPlate(k, d, 'Your max per lead:', 'going away.', -1);
         exampleTag(d, 230, 296);
         if (T < tIn) return {host: false, speech: false};
@@ -192,11 +192,12 @@ window.SCENE = {
       const d = px(k), {P, dith, win, F} = d;
       P(0, 0, 360, 417, '#245752'); for (let y = 0; y < 417; y += 4) dith(0, y, 360, 1, '#2F6F67', (y / 4) % 2);
       k.text('THE MOVE, IN WAVES', 72, 264, {size: 48, color: GOLD});
-      const tiles = [['AUG 2026', 'FIRST WAVE', wordT(k, 'move.waves', /^august/i, 2.0) - 0.3], ['LATE 2026', 'NO STOREFRONT', tLate - 0.3], ['2027', 'THE REST', tLate + 0.4]];
+      const tiles = [['AUG 2026', 'FIRST WAVE', wordT(k, 'move.waves', /^august/i, 2.0) - 0.3], ['LATE 2026', 'STOREFRONT', tLate - 0.3], ['2027', 'THE REST', tLate + 0.4]];
       tiles.forEach(([a, b, ti], i) => { const x = 14 + i * 98, lit = T >= ti, mine = i === 1 && T >= tTruck;
         win(x, 104, 92, 120, {base: mine ? '#4A3A1A' : (lit ? '#253048' : NIGHT), hi: mine ? GOLD : '#3B82C4', lo: INK, rule: mine ? GOLD : false});
         k.text(a, (x + 46) * 3, 354, {size: 48, color: lit ? CREAM : SAND, align: 'center'});
-        k.text(b, (x + 46) * 3, 420, {size: i === 1 ? 30 : 36, color: lit ? SAND : '#C9B8A6', align: 'center'});
+        if (i === 1) k.text('NO', (x + 46) * 3, 404, {size: 36, color: lit ? SAND : '#C9B8A6', align: 'center'});   /* r3: NO STOREFRONT in two lines, inside its tile (render critic r2) */
+        k.text(b, (x + 46) * 3, i === 1 ? 446 : 420, {size: i === 1 ? 30 : 36, color: lit ? SAND : '#C9B8A6', align: 'center'});
         if (i !== 1 && lit) { const dy = d.ease(ti, 5, 20); k.sets.icon(i === 0 ? 'star' : 'clock', x + 34, 168 - dy, 2); } });
       /* the wave: a crest rolling along under the tiles */
       { const q = ((T - tW) * 0.5) % 1, cx = Math.round(18 + q * 330); for (let i = -20; i <= 20; i++) { const h = Math.round(6 * Math.cos(i / 20 * Math.PI / 2)); P(cx + i, 236 - h, 1, h + 2, SKY); } P(0, 238, 360, 4, '#3B82C4'); }
@@ -211,7 +212,7 @@ window.SCENE = {
       const d = monitor(k, {box: 'filled', report: tRep});
       topPlate(k, d, 'Until the move:', 'you set the max.', t0 - 0.3);
       exampleTag(d, 230, 296);
-      loopSweep(k, 588, 444, k.measure('YOUR MAX', {size: 39}), t0 + 0.4, 1.0, 6);
+      loopSweep(k, 588, 444, k.measure('$45', {size: 39}), t0 + 0.4, 1.0, 6);
       return host(k);
     },
 

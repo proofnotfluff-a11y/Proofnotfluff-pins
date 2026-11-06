@@ -1,15 +1,25 @@
 {
  "gate": "facts",
- "round": 0,
+ "round": 1,
  "reviewer": "fresh opus agent",
  "pass": true,
  "score": {
-  "numbers": 7,
+  "numbers": 6,
   "mismatches": 0
  },
- "reasons": [
-  "advisory: phase2Shown LATER to LATE (fixed)",
-  "advisory: EXAMPLE on the drawn download screen (added)",
-  "advisory: the other side, leads move (added on the copy screen)"
- ]
+ "earlier": {
+  "gate": "facts",
+  "round": 0,
+  "reviewer": "fresh opus agent",
+  "pass": true,
+  "score": {
+   "numbers": 7,
+   "mismatches": 0
+  },
+  "reasons": [
+   "advisory: phase2Shown LATER to LATE (fixed)",
+   "advisory: EXAMPLE on the drawn download screen (added)",
+   "advisory: the other side, leads move (added on the copy screen)"
+  ]
+ }
 }

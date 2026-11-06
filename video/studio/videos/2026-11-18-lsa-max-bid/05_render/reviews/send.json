@@ -1,14 +1,27 @@
 {
  "gate": "send",
  "round": 0,
- "reviewer": "fresh opus agent",
+ "reviewer": "fresh opus agent (rerun on the round 1 render)",
  "pass": true,
  "score": {
-  "person": "the office manager at my two-van plumbing shop who set up our Local Services Ads",
-  "line": "Worse, your old spend reports stay behind, so unless you save them, you'll have nothing to check the new costs against.",
+  "person": "the spouse who keeps the books and runs Local Services Ads for a two-truck plumbing shop",
   "gain": "helps",
   "feeling": "surprise",
   "thanks": "yes",
   "send_line_fits": "yes"
+ },
+ "earlier": {
+  "gate": "send",
+  "round": 0,
+  "reviewer": "fresh opus agent",
+  "pass": true,
+  "score": {
+   "person": "the office manager at my two-van plumbing shop who set up our Local Services Ads",
+   "line": "Worse, your old spend reports stay behind, so unless you save them, you'll have nothing to check the new costs against.",
+   "gain": "helps",
+   "feeling": "surprise",
+   "thanks": "yes",
+   "send_line_fits": "yes"
+  }
  }
 }

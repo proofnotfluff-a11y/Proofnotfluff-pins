@@ -18,7 +18,7 @@ Back on the monitor: the box with YOUR MAX lit, and a report card under it, SPEN
 
 ## rule "But Google's help page" [sfx: whoosh]
 Mosaic to the help page card: GOOGLE ADS HELP; the line types in: "Manual bidding (such as setting a maximum cost-per-lead) is no longer supported in Google Ads." NO MAX stamps.
-## rule.reports "Worse, your old spend" [sfx: stamp]
+## rule.reports "So once you move," [sfx: stamp]
 A split: left OLD (the report papers), right GOOGLE ADS (empty shelf); the papers try to cross and bounce back: STAYS BEHIND; the line "performance reports will not transition" with its tag.
 
 ## download "Google says you'll be" [sfx: blip]

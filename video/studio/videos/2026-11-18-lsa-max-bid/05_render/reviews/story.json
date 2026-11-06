@@ -1,33 +1,61 @@
 {
  "gate": "story",
- "stage": "script.md before voice",
- "round": 7,
- "reviewer": "fresh opus agents (run as the separate retell and read-aloud gates of the Nov 6, 7:15 am line; the merged story gate of 10:54 am landed mid-run)",
- "pass": true,
+ "stage": "transcript after voice and render (round 0)",
+ "round": 0,
+ "reviewer": "fresh opus agent, two turns",
+ "pass": false,
  "parts": {
   "retell": {
-   "pass": true,
-   "score": {
-    "retold": "Google is moving Local Services Ads into Google Ads, your max-per-lead box and old reports won't come, so screenshot them this week.",
-    "action": "screenshot every report, write the max beside them, check the admin inbox",
-    "lost_at": "none",
-    "matches_message": "same"
-   }
+   "pass": false,
+   "matches_message": "close"
   },
   "read_aloud": {
-   "pass": true,
-   "score": {
-    "sentences": 20,
-    "and_then_pairs": 0,
-    "unset_terms": 0,
-    "choppy_runs": 0,
-    "breath_fails": 0,
-    "order": "ok"
-   }
+   "pass": false,
+   "and_then_pairs": 1
   },
-  "compare": "not yet"
+  "compare": {
+   "pass": true,
+   "stop_rank": 3,
+   "understand_rank": 1,
+   "follow_rank": 2
+  }
  },
  "reasons": [
-  "read-aloud FAILed r0 to r6 (see 01_voice/script-check.md), PASS at r7; retell PASS every round; facts PASS r8 on the same text."
- ]
+  "retell close: the box led, the reports came second via 'Worse'",
+  "s8-9 and-then ('Worse')"
+ ],
+ "fixed": "take 4: 'So once you move, you'll want your old reports to check the new costs against, and those stay behind.'; take 7: 'Screenshot the reports before you move, so they don't go with the box.' Re-voiced.",
+ "earlier": {
+  "gate": "story",
+  "stage": "script.md before voice",
+  "round": 7,
+  "reviewer": "fresh opus agents (run as the separate retell and read-aloud gates of the Nov 6, 7:15 am line; the merged story gate of 10:54 am landed mid-run)",
+  "pass": true,
+  "parts": {
+   "retell": {
+    "pass": true,
+    "score": {
+     "retold": "Google is moving Local Services Ads into Google Ads, your max-per-lead box and old reports won't come, so screenshot them this week.",
+     "action": "screenshot every report, write the max beside them, check the admin inbox",
+     "lost_at": "none",
+     "matches_message": "same"
+    }
+   },
+   "read_aloud": {
+    "pass": true,
+    "score": {
+     "sentences": 20,
+     "and_then_pairs": 0,
+     "unset_terms": 0,
+     "choppy_runs": 0,
+     "breath_fails": 0,
+     "order": "ok"
+    }
+   },
+   "compare": "not yet"
+  },
+  "reasons": [
+   "read-aloud FAILed r0 to r6 (see 01_voice/script-check.md), PASS at r7; retell PASS every round; facts PASS r8 on the same text."
+  ]
+ }
 }

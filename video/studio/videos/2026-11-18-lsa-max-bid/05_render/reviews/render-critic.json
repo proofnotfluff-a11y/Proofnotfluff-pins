@@ -1,14 +1,29 @@
 {
  "gate": "render-critic",
- "round": 0,
+ "round": 1,
  "reviewer": "fresh opus agent",
  "pass": false,
  "score": {
-  "faults": 2
+  "faults": 3
  },
  "reasons": [
-  "11.8 s truck sign hidden behind the host and bubble",
-  "15.6 s 'THE REST' past x 930"
+  "rule.reports line clipped by the quote box",
+  "the quote past x 930",
+  "NO STOREFRONT touching its tile"
  ],
- "fixed": "street replaced by the dispatch board; wave tiles narrowed to x 906"
+ "fixed": "quote moved into slot 2 at 33 px from x 84; hero line alone in the band; NO STOREFRONT at 30 px",
+ "earlier": {
+  "gate": "render-critic",
+  "round": 0,
+  "reviewer": "fresh opus agent",
+  "pass": false,
+  "score": {
+   "faults": 2
+  },
+  "reasons": [
+   "11.8 s truck sign hidden behind the host and bubble",
+   "15.6 s 'THE REST' past x 930"
+  ],
+  "fixed": "street replaced by the dispatch board; wave tiles narrowed to x 906"
+ }
 }

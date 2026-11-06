@@ -1,0 +1,14 @@
+{
+ "gate": "render-critic",
+ "round": 0,
+ "reviewer": "fresh opus agent",
+ "pass": false,
+ "score": {
+  "faults": 2
+ },
+ "reasons": [
+  "11.8 s truck sign hidden behind the host and bubble",
+  "15.6 s 'THE REST' past x 930"
+ ],
+ "fixed": "street replaced by the dispatch board; wave tiles narrowed to x 906"
+}

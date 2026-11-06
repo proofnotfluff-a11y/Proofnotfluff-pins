@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-18-lsa-max-bid",
- "mp4Sha256": "cd86e324bf13dbfdaef1fef721568228e24631f641e769cbebe8b1bab9bbe172",
+ "mp4Sha256": "5eabbe96f2f5616617de93c736942e5db381e96e084864129851e9b2d1930c4d",
  "checks": [
   {
    "name": "length",
@@ -44,11 +44,11 @@
   {
    "name": "file",
    "value": {
-    "sha256": "cd86e324bf13dbfdaef1fef721568228e24631f641e769cbebe8b1bab9bbe172",
-    "bytes": 6634245
+    "sha256": "5eabbe96f2f5616617de93c736942e5db381e96e084864129851e9b2d1930c4d",
+    "bytes": 6652668
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 6.6 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 6.7 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -58,5 +58,5 @@
   }
  ],
  "pass": true,
- "at": "2026-11-06T13:03:51-05:00"
+ "at": "2026-11-06T13:27:13-05:00"
 }

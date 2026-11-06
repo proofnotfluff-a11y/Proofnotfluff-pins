@@ -1,0 +1,14 @@
+{
+ "gate": "facts-captions",
+ "round": 0,
+ "reviewer": "fresh opus agent",
+ "pass": false,
+ "score": {
+  "numbers": 8,
+  "mismatches": 1
+ },
+ "reasons": [
+  "youtube: site line pointed at the missed-call calculator, off topic"
+ ],
+ "fixed": "https://proofnotfluff.com/google-local-services-ads-worth-it/"
+}

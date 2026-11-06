@@ -1,0 +1,26 @@
+{
+ "gate": "design",
+ "round": 0,
+ "reviewer": "fresh opus agent",
+ "pass": false,
+ "score": {
+  "first": 3,
+  "hierarchy": 4,
+  "type": 4,
+  "color": 4,
+  "spacing": 4,
+  "polish": 4,
+  "trust": 4,
+  "average": 3.86
+ },
+ "reasons": [
+  "freshness: hook monitor, sky street with van, two-colour split and the SAVE FILE card echoed after-hours-robot",
+  "labels under 36 px under the calendar, on the stat screen and 'Need them now?'",
+  "SAVE FILE card lacked step 3; dim grey unlit lines",
+  "two black-out transitions",
+  "camera card and help card blank too long",
+  "host small, no reaction at the turns",
+  "GOOGLE ADS half looked unfinished"
+ ],
+ "fixed": "hook: arcade ENTER YOUR MAX cover, the field breaks into pixels on 'moves'; move: dispatch board route from the LOCAL SERVICES ADS pin to GOOGLE ADS; rule.reports: COPY SAVE DATA, slot 2 NO DATA glitch, 'Leads move. Reports stay behind.'; all three steps on the save card in sand, not grey; calendar and stat lines at 48; one black-out; quote card types from the cue; help card types at 90 a second."
+}

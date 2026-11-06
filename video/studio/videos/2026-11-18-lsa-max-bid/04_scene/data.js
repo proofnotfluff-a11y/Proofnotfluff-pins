@@ -1,1 +1,1 @@
-window.DATA = {"file": "video/studio/videos/2026-11-18-lsa-max-bid/01_voice/facts.json", "commit": "", "sha256": "94853186147e194821a975031ddffba8203951cbd1338c6243fae6a3c03e5749", "numbers": {"notice": {"value": 14, "shown": "14", "path": "move.noticeDays"}}, "pull": {}};
+window.DATA = {"file": "video/studio/videos/2026-11-18-lsa-max-bid/01_voice/facts.json", "commit": "ce6cf3a", "sha256": "9a179e3aaaca7ec896ef1aa1918d2701a257a9ed53aeab0632c70477dfe5bbee", "numbers": {"notice": {"value": 14, "shown": "14", "path": "move.noticeDays"}}, "pull": {}};

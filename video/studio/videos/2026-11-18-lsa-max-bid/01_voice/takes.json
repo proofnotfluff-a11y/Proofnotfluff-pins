@@ -1,10 +1,10 @@
 {
  "schema": "pnf.studio.takes.v1",
- "requestedAt": "2026-11-06T12:35:33-05:00",
+ "requestedAt": "2026-11-06T13:36:09-05:00",
  "voice": "W3pJy9ibur1FKUihVxzY",
  "model": "eleven_v4",
- "scriptSha256": "041ed01f63c39b4616ff25273ce728847b247e370c858e05bde775860ecb4127",
- "voiceSha256": "e21d6b185900422f6973e2b9256a4b34505704fa252056a74a72062b09c46771",
+ "scriptSha256": "eb3e2ddbfb1655794758a269254231aff75f44da233989f8fbc850d1fd4dbb93",
+ "voiceSha256": "41cc390d350f8c8e6da37c2fdbad219694635e9515d368f5c48ebdc6e6742ed9",
  "takes": [
   {
    "n": 1,
@@ -39,12 +39,12 @@
   {
    "n": 4,
    "file": "takes/04.mp3",
-   "sha256": "0bf8c1e657985a138720eb61c24bec157ed5aae46c1c6f6f03393fe6f4cb23ca",
-   "seconds": 12.669,
-   "chars": 205,
+   "sha256": "6d26ebf98637f6a81b76c6ed4ca54ff68511f54e077079dd8f2a525480879af2",
+   "seconds": 11.651,
+   "chars": 187,
    "start": 30.74,
-   "end": 43.409,
-   "wpm": 185
+   "end": 42.391,
+   "wpm": 191
   },
   {
    "n": 5,
@@ -52,8 +52,8 @@
    "sha256": "f633bfb8327904cd839d03dcfe0ad13988a3bed2fbb7a56b4844cf7ec3b0f914",
    "seconds": 11.546,
    "chars": 204,
-   "start": 43.729,
-   "end": 55.275,
+   "start": 42.711,
+   "end": 54.257,
    "wpm": 177
   },
   {
@@ -62,25 +62,25 @@
    "sha256": "bd929b3c273ca0fb618a3be4b8314677c6aad24bc03d8c55e578870100f3e8a6",
    "seconds": 16.196,
    "chars": 254,
-   "start": 55.595,
-   "end": 71.791,
+   "start": 54.577,
+   "end": 70.773,
    "wpm": 178
   },
   {
    "n": 7,
    "file": "takes/07.mp3",
-   "sha256": "7b31a7a0583fc42eb85ef405648a618373763c0b8b036bb8cc380269f63d01f4",
-   "seconds": 6.113,
-   "chars": 111,
-   "start": 72.111,
-   "end": 78.224,
-   "wpm": 196
+   "sha256": "9330f9120ead438abc06b010482aa965a2d7d0223bb10809bc0fe1b5758d768b",
+   "seconds": 6.687,
+   "chars": 117,
+   "start": 71.093,
+   "end": 77.78,
+   "wpm": 179
   }
  ],
- "chars": 1236,
- "at": "2026-11-06T12:42:32-05:00",
+ "chars": 1224,
+ "at": "2026-11-06T13:43:06-05:00",
  "credits": {
-  "used": 4522,
+  "used": 4655,
   "limit": 133571,
   "tier": "creator",
   "resetsAt": 1796089820

@@ -1,6 +1,6 @@
 # Transcript: 2026-11-18-lsa-max-bid
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 232 words, 77.9 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 230 words, 77.5 s of voice.
 
 ## Flags
 none
@@ -10,10 +10,10 @@ none
   01     0.0 s  193 wpm  
   02    10.6 s  176 wpm  
   03    26.2 s  185 wpm  
-  04    30.7 s  185 wpm  
-  05    43.7 s  177 wpm  
-  06    55.6 s  178 wpm  
-  07    72.1 s  196 wpm  
+  04    30.7 s  191 wpm  
+  05    42.7 s  177 wpm  
+  06    54.6 s  178 wpm  
+  07    71.1 s  179 wpm  
 ```
 
 ## Words
@@ -34,26 +34,26 @@ none
 
 `00:30.7` But Google's help page for the move says Google Ads won't let you set a max per lead.
 
-`00:36.1` Worse, your old spend reports stay behind, so unless you save them, you'll have nothing to check the new costs against.
+`00:36.1` So once you move, you'll want your old reports to check the new costs against, and those stay behind.
 
-`00:43.7` Google says you'll be able to download your old reports.
+`00:42.7` Google says you'll be able to download your old reports.
 
-`00:47.0` But when I checked this month, its help page still just said coming soon.
+`00:45.6` But when I checked this month, its help page still just said coming soon.
 
-`00:51.6` Need them now?
+`00:50.6` Need them now?
 
-`00:52.7` It says take screenshots before you move.
+`00:51.7` It says take screenshots before you move.
 
-`00:55.6` So I'd do it this week.
+`00:54.6` So I'd do it this week.
 
-`00:57.3` Screenshot every report you have, and write your max per lead beside them.
+`00:56.3` Screenshot every report you have, and write your max per lead beside them.
 
-`01:02.0` Google does send a warning first, but don't wait for it.
+`01:01.0` Google does send a warning first, but don't wait for it.
 
-`01:05.6` It emails the account admin fourteen days before your move.
+`01:04.6` It emails the account admin fourteen days before your move.
 
-`01:09.4` So make sure that's an inbox you read.
+`01:08.4` So make sure that's an inbox you read.
 
-`01:12.1` The box is going, whatever you do.
+`01:11.1` The box is going, whatever you do.
 
-`01:14.8` Save the numbers before you move, so they don't go with the box.
+`01:13.9` Screenshot the reports before you move, so they don't go with the box.

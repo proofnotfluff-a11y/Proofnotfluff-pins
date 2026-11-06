@@ -24,7 +24,8 @@ for trades owners." Built Nov 5, 2026 (video/studio/REBUILD.md, build run). Feed
    Local first pass (Local AI architecture doc, routing table: "trade-pulse ... Local reads forums and comments, extracts
    problems in owners' words"): send the page text you opened to the box as one `extract` job per batch of pages
    (`python3 tools/local_job.py send <job> --wait`; model fast; schema: items with problem, trade, quote_under_10_words,
-   url). From Nov 5, 2026 this job is in shadow mode: do the extraction yourself as well, compare, and log the difference
+   url, plus unplaced: the ids of items it left out; each why is one whole sentence, up to 300 characters, never cut off;
+   Nov 6 fix). From Nov 5, 2026 this job is in shadow mode: do the extraction yourself as well, compare, and log the difference
    rate in research/pulse/<date>.md "Local shadow". Nothing local is used until two weeks under 10% difference. No answer
    in 15 minutes or a status other than ok: do it on Claude and note it.
 4. Group into problems and rank them by: how many separate threads (a problem in 3+ places beats a loud single thread),
@@ -46,7 +47,7 @@ Pages opened: n. Refused or unreadable: <list>.
 ## Story leads (for story-desk)
 1. <the document behind a problem> | <URL> | <the one surprising sentence>
 ## Local shadow
-- job <name>: status, seconds; items local n, Claude n, matched n; difference rate n%
+- job <name>: status, seconds; items local n, Claude n, matched n; difference rate n%; items unplaced and not listed n
 ```
 - Never: a person's name or username, a small business's name, a quote over 10 words, a claim no opened page supports,
   a post, comment, sign-up or log-in anywhere.

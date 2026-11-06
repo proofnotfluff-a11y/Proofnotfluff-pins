@@ -8,3 +8,7 @@
 - Recommendation 2, CONSTITUTION 2's gate list for story lessons: retell, read-aloud and compare replace buyer and golden (anim.py STORY_GATES; prompts/README.md). The 6 lessons held since Nov 2 keep the old gates and stay held.
 - Recommendation 3, the ai and core lane test ends early: video/config.json lanes mode off. Every lesson now comes from the trade pulse and the story desk.
 - stop set to false (video/config.json stopNote quotes him). "stop videos" in any chat still halts it.
+
+## Local box jobs (live chat, 7:49 am)
+- [stated] Asked whether the local model helps with the grunt work on the videos, and shown the four shadow results (pulse grouping 38% off, story draft 3 faults, retell 3 of 3, read-aloud 2 of 3): "ok go with your rec".
+- Changed: trade-pulse SKILL step 3 (the extract job lists unplaced items and keeps each why whole), storycraft.md "For the engine" step 4 (a new shadow job for the five openings). Still shadow only: nothing local reaches a video.

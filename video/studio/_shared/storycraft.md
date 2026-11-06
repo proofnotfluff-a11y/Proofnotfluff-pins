@@ -74,6 +74,11 @@ Any no goes back to the desk. The engine never fixes a broken story with motion 
 - Step 3 picks a Shape (brief.md `- **Shape:**`): moment, receipt, two-shops, myth-three, scenario, case, or another that
   fits. It rotates (`anim.py variety`); "story" itself never does.
 - Step 4: five openings from "Openings that respect the story" above. Result-first and a turn by 5 s are options.
+  Local first pass in shadow (Todd, Nov 6, 2026, 7:49 am: "ok go with your rec"): one `tools/local_job.py` job, kind
+  draft, model workhorse, input story.md's message line, cost, turn and receipts only; it returns five openings, each
+  tagged moment, receipt, owners' words or result. Write your own five as well, then log under "Local shadow" in brief.md:
+  how many of its five are usable (true to the receipts, no invented person, under 15 words) and whether one beat yours.
+  Nothing local is used until two weeks with 3 or more of 5 usable each time. No answer in 15 minutes: carry on without it.
 - Step 5 numbers are guides: a sentence that needs 18 words to make sense keeps them. Coherence beats compression.
 - Keep the story whole: the setup, the turn and the payoff all reach the script; no claim story.md lacks.
 - Step 8: the human-test numbers are NOTES; read-aloud then retell on script.md (fresh agents) and facts gate it before

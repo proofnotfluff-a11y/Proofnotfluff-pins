@@ -1,9 +1,9 @@
 # Transcript: 2026-11-18-lsa-max-bid
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 228 words, 76.8 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 232 words, 77.9 s of voice.
 
 ## Flags
-- 60.1 s heard 'Macs' for 'max'
+none
 
 ## Pace per take (target 160 to 195 wpm)
 ```
@@ -12,8 +12,8 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 228 words, 76.8 s of voice.
   03    26.2 s  185 wpm  
   04    30.7 s  185 wpm  
   05    43.7 s  177 wpm  
-  06    55.6 s  176 wpm  
-  07    71.6 s  203 wpm  fast: give it a landing beat, then speak --take 7
+  06    55.6 s  178 wpm  
+  07    72.1 s  196 wpm  
 ```
 
 ## Words
@@ -38,7 +38,7 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 228 words, 76.8 s of voice.
 
 `00:43.7` Google says you'll be able to download your old reports.
 
-`00:46.6` But when I checked this month, its help page still just said coming soon.
+`00:47.0` But when I checked this month, its help page still just said coming soon.
 
 `00:51.6` Need them now?
 
@@ -46,14 +46,14 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 228 words, 76.8 s of voice.
 
 `00:55.6` So I'd do it this week.
 
-`00:57.6` Screenshot every report you have, and write your max beside them.
+`00:57.3` Screenshot every report you have, and write your max per lead beside them.
 
-`01:01.6` Google does send a warning first, but don't wait for it.
+`01:02.0` Google does send a warning first, but don't wait for it.
 
-`01:05.2` It emails the account admin fourteen days before your move.
+`01:05.6` It emails the account admin fourteen days before your move.
 
-`01:09.0` So make sure that's an inbox you read.
+`01:09.4` So make sure that's an inbox you read.
 
-`01:11.6` The box is going, whatever you do.
+`01:12.1` The box is going, whatever you do.
 
-`01:14.3` Grab your numbers this week, so they don't go with it.
+`01:14.8` Save the numbers before you move, so they don't go with the box.

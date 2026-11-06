@@ -21,27 +21,27 @@ customers like that a real person picks up. So do they turn on the AI receptioni
 Here's what normal looks like for most shops. You're on a roof or under a sink, the phone rings, it goes to voicemail, and
 you call back at the end of the day. That's been fine for years.
 
-But the robot vendors are selling something else: never miss a call again. And the owners who actually turned it on are
-saying the same thing in thread after thread. A long-time user answered that rural owner: reactions are hit and miss, and
-few callers stay on the line once they hear it's AI. A tree service turned theirs off entirely after it mixed up existing
-customers and made odd tasks, and went back to voicemail with transcripts.
+But AI companies are pitching a robot to answer instead, and owners are trying it. An owner who runs one after hours
+answered that rural owner: reactions are hit and miss, and hardly anyone stays on the line once they hear it's AI. A tree
+service turned theirs off after it mixed up existing customers and made odd tasks, and went back to voicemail with
+transcripts.
 
-That's not just a few grumpy callers. This spring, the publisher of a heating and cooling trade magazine asked 782
-homeowners about AI. Only thirty-six percent were comfortable with AI booking appointments or answering basic questions.
-Almost a quarter weren't comfortable with any of the AI uses on the list.
+That's not just forum grumbling. This spring, the publisher of a heating and cooling trade magazine asked 782 homeowners
+about AI. Only thirty-six percent were comfortable with AI booking appointments or answering basic questions. Almost a
+quarter weren't comfortable with any of the AI uses on the list.
 
-So here's what it costs you if you put the robot on your daytime line. The customer who calls at two in the afternoon
-expects you. They hear a robot, a lot of them hang up, and that call goes to whoever answers next. And on Jobber's $29
-add-on you get thirty conversations a month, about one a day; run every daytime miss through it and you'll hit the limit
-before the month is out.
+So here's what it can cost you on your daytime line. The customer who calls at two in the afternoon expects you. They
+hear a robot, and they can hang up and call the next shop. And on Jobber's $29 add-on you get thirty conversations a
+month, about one a day; run every daytime miss through it and you'll hit the limit before the month is out.
 
-The owners who kept it didn't make it sound more human. They changed when it answers. The same long-time
-user calls it a better voicemail: it picks up after hours, takes the details, logs them in Jobber. And the fix some owners
-reach for, hiding that it's AI, goes the wrong way. Jobber's own help page recommends telling callers it's AI, and it reads
-your greeting exactly as you write it. At night the robot isn't up against you. It's up against a beep.
+The turn: that same owner keeps his on anyway, at night. He calls it a better voicemail: it picks up after hours, takes
+the details, logs them in Jobber. Owner after owner in those threads says the same: the AI takes the night, a person takes
+the day. And the fix some owners reach for, hiding that it's AI, goes the wrong way. Jobber's own help page encourages
+telling callers it's AI, and it reads your greeting exactly as you write it. At night the robot isn't up against you.
+It's up against a beep.
 
 What to do this week, in under thirty minutes:
-1. Call your phone carrier and set forwarding to the AI only outside business hours (most carriers do it with a dial code;
+1. Call your phone company and set forwarding to the AI only outside business hours (most carriers do it with a dial code;
    in Jobber it's set with your carrier, not in the app).
 2. Write the after-hours greeting yourself. Say it's your AI assistant and what it can do: "You've reached us after hours.
    I'm our AI assistant. I can book you for tomorrow or take the details now."
@@ -51,7 +51,7 @@ What to do this week, in under thirty minutes:
 Kicker: Daytime, they want you. At night, the robot only has to beat a beep.
 
 ## Receipts (all opened Nov 5, 2026)
-1. Rural owner's question and the long-time user's reply: after hours, "better voicemail", few callers stay once they hear AI,
+1. Rural owner's question and the reply of an owner who runs it after hours (a Jobber Ambassador): after hours, "better voicemail", few callers stay once they hear AI,
    considering turning off the AI announcement | https://community.getjobber.com/discussions/operations-forum/what-do-customers-think-about-jobbers-ai-receptionist/9584 | Jobber Community, about Nov 4, 2026 (page shows "1 day ago")
 2. Tree service turned it off (mismatched clients, odd tasks), back to voicemail with transcripts; most replies say AI at
    night and people by day | https://community.getjobber.com/discussions/operations-forum/ai-receptionist-vs-outsourced-vs-owners/7842 | Jobber Community, about Jun 2026 ("5 months ago")
@@ -74,7 +74,7 @@ rate. We never claim a hang-up percentage; no source measured one.
    hang up, BECAUSE homeowners aren't comfortable, THEREFORE daytime costs you, BUT the owners who kept it moved it to
    nights, THEREFORE the four steps.
 3. A stranger could say the message line back: yes; the likely miss is "AI receptionists are bad", which the turn answers.
-4. The turn: the fix is timing, not a more human voice, and hiding the AI is the wrong move per the vendor's own page.
+4. The turn: the owner who saw callers bail keeps it on at night anyway, because there it only has to beat a beep; hiding the AI is the wrong move per the vendor's own page.
 
 ## Local shadow
 Job ai-receptionist-draft-2026-11-05-r1 (workhorse, Qwen3.5-122B): status ok, 15.9 s, 301 tokens at 21 a second, same five

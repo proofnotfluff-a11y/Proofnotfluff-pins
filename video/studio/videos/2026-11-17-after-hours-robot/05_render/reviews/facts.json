@@ -1,21 +1,33 @@
 {
  "gate": "facts",
- "round": 5,
+ "round": 6,
  "stage": "render",
  "reviewer": "fresh opus agent (frames and pages)",
- "pass": false,
+ "pass": true,
  "score": {
-  "claims_checked": 21,
-  "mismatches": 4
+  "claims_checked": 23,
+  "mismatches": 0
  },
  "reasons": [
-  "Gauge label says booking only; the item is booking or basic questions.",
-  "Gauge shows 0% for 5 s before the count: reads as '0% comfortable'.",
-  "Hook close-up (0.4 to 2.8 s) has no EXAMPLE tag.",
-  "Closing '2 PM: they want you.' has no EXAMPLE tag.",
-  "17 other items confirmed (36%, 782, ACHR date, forum paraphrase labeled, Jobber help quote, greeting, pitches and flap board tagged, no names, no dashes)."
+  "All 4 round 5 fixes confirmed; 23 claims in voice and on screen confirmed against facts.json and the pages."
  ],
  "earlier": [
+  {
+   "round": 5,
+   "stage": "render",
+   "pass": false,
+   "score": {
+    "claims_checked": 21,
+    "mismatches": 4
+   },
+   "reasons": [
+    "Gauge label says booking only; the item is booking or basic questions.",
+    "Gauge shows 0% for 5 s before the count: reads as '0% comfortable'.",
+    "Hook close-up (0.4 to 2.8 s) has no EXAMPLE tag.",
+    "Closing '2 PM: they want you.' has no EXAMPLE tag.",
+    "17 other items confirmed (36%, 782, ACHR date, forum paraphrase labeled, Jobber help quote, greeting, pitches and flap board tagged, no names, no dashes)."
+   ]
+  },
   {
    "round": 4,
    "stage": "script",

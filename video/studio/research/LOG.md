@@ -7,3 +7,5 @@
 - 2026-10-28: run trades-insights (Todd, evening: trades-first lessons from trade creators, trade sources only): runs/2026-10-28-trades-insights.md; 21 ranked lessons, review of the 8 made lessons (1, 4, 6, 7 rest on non-trade studies); KNOWLEDGE trades-first rows T1 to T19, EXPERTS trade teachers, IDEAS trades-first bank on top.
 - 2026-11-02: story desk first run (live chat): 3 beat reporters, 9 leads, 2 verified to Ready (lsa-to-google-ai, chatgpt-finds-contractors), 2 leads, 6 killed
 - 2026-11-02: Monday research run (cloud lunch): runs/2026-11-02-ai-systems.md; 5 AI lane system ideas added to IDEAS.md "AI lane bank" (unknown-caller-screen, rain-day-check, supplier-price-watch, manual-desk, money-monday), prices read on makers' pages Nov 2; no Shorts outlier could be shown (YouTube pages print no counts to the fetch tool), FORMULA.md References notes the block.
+
+- 2026-11-05 build run (live): first trade pulse (research/pulse/2026-11-05.md, about 65 pages, Reddit refused), gurus.md first pass, story 2026-11-17-after-hours-robot made to preview; gates: retell, read-aloud, facts, render critic, design, send PASS; compare FAIL (r0).

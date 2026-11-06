@@ -1,20 +1,25 @@
 {
  "gate": "render-critic",
- "round": 0,
+ "round": 2,
  "reviewer": "fresh opus agent",
- "pass": false,
+ "pass": true,
  "score": {
-  "faults": 1
+  "faults": 0
  },
- "faults": [
-  {
-   "kind": "overlap",
-   "at": 35.5,
-   "text": "36%",
-   "what": "needle and a horizontal orange bar cross the 36% readout; looks struck through"
-  }
- ],
+ "faults": [],
  "reasons": [
-  "Hook text by 0.0 s, numbers readable on time, voice ends 83.5 s before the end card, no flashes. One overlap on the gauge."
+  "Round 0 and 1 faults gone; hook by 0.0 s; numbers on time; nothing cut; no flashes."
+ ],
+ "earlier": [
+  {
+   "round": 0,
+   "pass": false,
+   "score": {
+    "faults": 1
+   },
+   "reasons": [
+    "Hook text by 0.0 s, numbers readable on time, voice ends 83.5 s before the end card, no flashes. One overlap on the gauge."
+   ]
+  }
  ]
 }

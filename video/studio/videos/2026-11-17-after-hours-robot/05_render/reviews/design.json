@@ -1,26 +1,46 @@
 {
  "gate": "design",
- "round": 0,
+ "round": 1,
  "reviewer": "fresh opus agent",
- "pass": false,
+ "pass": true,
  "score": {
-  "first": 4,
-  "hierarchy": 4,
+  "first": 5,
+  "hierarchy": 5,
   "type": 4,
-  "color": 4,
-  "spacing": 4,
+  "color": 5,
+  "spacing": 5,
   "polish": 4,
   "trust": 5,
-  "average": 4.14
+  "average": 4.71
  },
  "reasons": [
-  "Gauge: strike-through line and needle over the readout; 0% for 5 s.",
-  "Labels at about 30 px (the pixel body font has one size under 52; the display font starts at 52).",
-  "Pitch phone mostly empty.",
-  "Forum card static, quote and CALLER LEFT small, empty lower band.",
-  "Versus: bars never fill, WIN tiny.",
-  "Hook close-up royal blue off palette; robot barely moves.",
-  "Greeting card lower third empty.",
-  "Host small; no reaction on the 36%."
+  "Bar 4.61 (round 1). 6 of 8 round 0 changes landed; type capped at 4 by the bitmap font's single small size.",
+  "Polish: EXAMPLE tag over 'again?' (fixed after this round: moved to the corner); WIN over ROBOT (fixed: render critic round 2); greeting card lower band still empty; gauge readout touches the arc."
+ ],
+ "earlier": [
+  {
+   "round": 0,
+   "pass": false,
+   "score": {
+    "first": 4,
+    "hierarchy": 4,
+    "type": 4,
+    "color": 4,
+    "spacing": 4,
+    "polish": 4,
+    "trust": 5,
+    "average": 4.14
+   },
+   "reasons": [
+    "Gauge: strike-through line and needle over the readout; 0% for 5 s.",
+    "Labels at about 30 px (the pixel body font has one size under 52; the display font starts at 52).",
+    "Pitch phone mostly empty.",
+    "Forum card static, quote and CALLER LEFT small, empty lower band.",
+    "Versus: bars never fill, WIN tiny.",
+    "Hook close-up royal blue off palette; robot barely moves.",
+    "Greeting card lower third empty.",
+    "Host small; no reaction on the 36%."
+   ]
+  }
  ]
 }

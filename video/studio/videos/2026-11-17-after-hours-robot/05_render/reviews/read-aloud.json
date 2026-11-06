@@ -1,23 +1,40 @@
 {
  "gate": "read-aloud",
- "round": 6,
+ "round": 7,
  "stage": "transcript",
  "reviewer": "fresh opus agent",
- "pass": false,
+ "pass": true,
  "score": {
-  "sentences": 20,
+  "sentences": 21,
   "and_then_pairs": 0,
-  "unset_terms": 2,
+  "unset_terms": 0,
   "choppy_runs": 0,
-  "breath_fails": 1,
+  "breath_fails": 0,
   "order": "ok"
  },
  "reasons": [
-  "S5 'one owner who runs it after hours': the nearest noun is Jobber. Fix: 'runs an AI line after hours'.",
-  "S15 'carrier': to an HVAC owner Carrier is a furnace brand, next to 'no heat'. Fix: 'phone company'.",
-  "S8 (take 3 as re-voiced) runs 25 words with a nested clause, reads like a survey summary. Fix: two sentences."
+  "All pairs linked; nothing unset; one voice; not choppy; one breath each; setup, problem, fix in order.",
+  "Notes: 'no heat' leans HVAC after a roofer opening; the night remark applied to daytime is covered by 'when the customer expects you'."
  ],
  "earlier": [
+  {
+   "round": 6,
+   "stage": "transcript",
+   "pass": false,
+   "score": {
+    "sentences": 20,
+    "and_then_pairs": 0,
+    "unset_terms": 2,
+    "choppy_runs": 0,
+    "breath_fails": 1,
+    "order": "ok"
+   },
+   "reasons": [
+    "S5 'one owner who runs it after hours': the nearest noun is Jobber. Fix: 'runs an AI line after hours'.",
+    "S15 'carrier': to an HVAC owner Carrier is a furnace brand, next to 'no heat'. Fix: 'phone company'.",
+    "S8 (take 3 as re-voiced) runs 25 words with a nested clause, reads like a survey summary. Fix: two sentences."
+   ]
+  },
   {
    "round": 5,
    "stage": "script",

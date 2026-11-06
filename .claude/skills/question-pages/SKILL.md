@@ -9,6 +9,7 @@ One job: draft one question page from seo/BACKLOG.md, gate it, and publish it if
 
 ## Process (Executes)
 1. Date from bash. `python3 tools/check_repo.py --preflight question-pages`. Re-fetch the row's URL (WebFetch) and confirm the question still reads as recorded; if not, skip the row with a note.
+1a. Hand-offs (Todd, Nov 6, 2026): each pending scoreboard "handoffs" record, oldest first, through `python3 tools/apply_handoff.py` (steps in its header). Exit 1: leave it pending, tell Todd why. Mark applied only after the push.
 1b. Refill: add one new row to seo/BACKLOG.md, to the group with the fewest unused rows: a real question a buyer asked in public, fetched and read today (forums such as Jobber Community, The Grime Scene, Pressure Washing Resource, Seller Central; not Reddit, which the fetch tool can't read), mapped to one paid product, with URL and posted date, and not a repeat of any row or live page.
 2. Search wording: no autocomplete fetches (coo/PIVOT.md bars them). WebSearch the question two or three ways and take the wording from the buyer's own post and the top results' titles for the title (under 60 characters before " | ProofNotFluff"), the H1 and the FAQ questions. Search the main wording (WebSearch) and read the top 3 results; note what each answers and misses.
 3. Write a spec in site/pages.json, kind "question", "draft": true (the three Oct 22 specs are the model): the answer in the first 100 words; "tables" built from the data (stats rows such as gcRows, areaRows, catRows) or a dated primary source; "sections" for the subtopics the top results and suggestions cover; one worked example with real numbers as {placeholders} from the product's data (tools/question_site.py stats) or a dated primary source named in "sources"; one table or tiles block; one link to the paid product and one to a free calculator ("calculator"); the byline is built in. Length is what the question needs. No em or en dashes, no banned words (tools/legal_scan.py), no invented people, numbers or claims, no named failed restaurant.
@@ -19,8 +20,8 @@ One job: draft one question page from seo/BACKLOG.md, gate it, and publish it if
    c. `python3 tools/question_overlap.py <slug>` exits 0 (no other question page shares over 30 percent of its words in 8-word runs), and the search gate also compares the page with every live question page: same main search wording as a live page, or a thin rewrite of one, is a FAIL.
    One fix round per gate; a second FAIL stops the page and goes to Todd.
 6. All of a, b and c pass: remove "draft", set "published" to today (YYYY-MM-DD), rebuild, check_repo exits 0, commit, push to main (pull --rebase once on a reject; never force). Add the row to seo/QUESTIONS.md with its group letter and one line to seo/RESULTS.md: date, slug, "published, gates PASS". If the built-in browser is reachable, ask Search Console (URL property https://proofnotfluff.com/) to index the new URL with URL inspection, Request indexing; else note "indexing not requested".
-7. Fridays: the Search Console lines (impressions, clicks, average position, 28 days, per live question page) and the indexing requests are written by .claude/skills/index-request/SKILL.md, which runs at 7:40 am on Todd's PC in the built-in browser. This run does not read Search Console.
+7. Fridays: Search Console lines come from index-request (Todd's PC) via step 1a; never read here.
 
 ## Outputs (Writes)
-- site/pages.json (one spec), docs/ through tools/make_site.py only, seo/QUESTIONS.md, seo/RESULTS.md.
+- site/pages.json (one spec), docs/ through tools/make_site.py only, seo/QUESTIONS.md, seo/RESULTS.md, 1a.
 - Message to Todd only on a second FAIL, a blocked source, or a failed check.

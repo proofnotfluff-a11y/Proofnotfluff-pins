@@ -1,0 +1,521 @@
+{
+ "date": "2026-11-06",
+ "pages": {
+  "amazon-dd7-cash-flow-hit": {
+   "clicks": 0,
+   "impressions": 5,
+   "position": 75.8
+  },
+  "austin-construction-cleaning-leads": {
+   "clicks": 0,
+   "impressions": 3,
+   "position": 9.3
+  },
+  "austin-post-construction-cleanup-contacts": {
+   "clicks": 0,
+   "impressions": 6,
+   "position": 4.3
+  },
+  "calculators": {
+   "clicks": 0,
+   "impressions": 11,
+   "position": 55
+  },
+  "chicago-city-contractsdemolition": {
+   "clicks": 0,
+   "impressions": 8,
+   "position": 6.2
+  },
+  "chicago-city-contractshauling": {
+   "clicks": 0,
+   "impressions": 13,
+   "position": 11
+  },
+  "chicago-city-contractshvac": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 5
+  },
+  "chicago-city-contractsjanitorial": {
+   "clicks": 0,
+   "impressions": 2,
+   "position": 6.5
+  },
+  "chicago-city-contractslandscaping": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 10
+  },
+  "chicago-city-contractspressure-washing": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 2
+  },
+  "chicago-city-contractssnow-removal": {
+   "clicks": 1,
+   "impressions": 10,
+   "position": 1.8
+  },
+  "chicago-construction-pipeline": {
+   "clicks": 0,
+   "impressions": 5,
+   "position": 4.2
+  },
+  "chicago-crew-costconstruction-helpers": {
+   "clicks": 0,
+   "impressions": 4,
+   "position": 10
+  },
+  "chicago-crew-costconstruction-laborers": {
+   "clicks": 0,
+   "impressions": 30,
+   "position": 15.2
+  },
+  "chicago-crew-costelectricians": {
+   "clicks": 0,
+   "impressions": 8,
+   "position": 55.8
+  },
+  "chicago-crew-costhvac-techs": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 9
+  },
+  "chicago-crew-costjanitors": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 7
+  },
+  "chicago-crew-costlandscapers": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 6
+  },
+  "chicago-crew-costmaids-and-housekeepers": {
+   "clicks": 0,
+   "impressions": 7,
+   "position": 7.4
+  },
+  "chicago-crew-costpainters": {
+   "clicks": 0,
+   "impressions": 3,
+   "position": 9.3
+  },
+  "chicago-crew-costpest-control-workers": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 9
+  },
+  "chicago-crew-costroofers": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 68
+  },
+  "chicago-new-business-licenses": {
+   "clicks": 0,
+   "impressions": 4,
+   "position": 6.8
+  },
+  "chicago-permit-wait-timesnew-construction": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 7
+  },
+  "chicago-permit-wait-timesreinstated-revoked-permits": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 10
+  },
+  "chicago-post-construction-cleaning-bid-sites": {
+   "clicks": 0,
+   "impressions": 4,
+   "position": 14.2
+  },
+  "chicago-post-construction-cleaning-contracts": {
+   "clicks": 0,
+   "impressions": 2,
+   "position": 27.5
+  },
+  "chicago-public-way-permit-costs": {
+   "clicks": 0,
+   "impressions": 4,
+   "position": 5.2
+  },
+  "chicago-rat-complaintsalbany-park": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 9
+  },
+  "chicago-rat-complaintsavondale": {
+   "clicks": 0,
+   "impressions": 2,
+   "position": 8
+  },
+  "chicago-rat-complaintschicago-lawn": {
+   "clicks": 0,
+   "impressions": 2,
+   "position": 38.5
+  },
+  "chicago-rat-complaintsclearing": {
+   "clicks": 0,
+   "impressions": 3,
+   "position": 28.3
+  },
+  "chicago-rat-complaintseast-side": {
+   "clicks": 1,
+   "impressions": 7,
+   "position": 6.9
+  },
+  "chicago-rat-complaintsenglewood": {
+   "clicks": 0,
+   "impressions": 4,
+   "position": 8.5
+  },
+  "chicago-rat-complaintsgarfield-ridge": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 10
+  },
+  "chicago-rat-complaintsgreater-grand-crossing": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 85
+  },
+  "chicago-rat-complaintshumboldt-park": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 8
+  },
+  "chicago-rat-complaintshyde-park": {
+   "clicks": 0,
+   "impressions": 4,
+   "position": 4.8
+  },
+  "chicago-rat-complaintslake-view": {
+   "clicks": 1,
+   "impressions": 3,
+   "position": 32.3
+  },
+  "chicago-rat-complaintslincoln-square": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 37
+  },
+  "chicago-rat-complaintslogan-square": {
+   "clicks": 0,
+   "impressions": 11,
+   "position": 6.3
+  },
+  "chicago-rat-complaintsloop": {
+   "clicks": 0,
+   "impressions": 2,
+   "position": 2.5
+  },
+  "chicago-rat-complaintsnear-north-side": {
+   "clicks": 1,
+   "impressions": 4,
+   "position": 7.8
+  },
+  "chicago-rat-complaintsnear-south-side": {
+   "clicks": 0,
+   "impressions": 4,
+   "position": 5
+  },
+  "chicago-rat-complaintsnew-city": {
+   "clicks": 0,
+   "impressions": 3,
+   "position": 29
+  },
+  "chicago-rat-complaintsnorth-center": {
+   "clicks": 0,
+   "impressions": 3,
+   "position": 57.7
+  },
+  "chicago-rat-complaintsnorth-park": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 9
+  },
+  "chicago-rat-complaintsnorwood-park": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 7
+  },
+  "chicago-rat-complaintsoakland": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 49
+  },
+  "chicago-rat-complaintsohare": {
+   "clicks": 0,
+   "impressions": 2,
+   "position": 4
+  },
+  "chicago-rat-complaintsportage-park": {
+   "clicks": 0,
+   "impressions": 2,
+   "position": 4
+  },
+  "chicago-rat-complaintsrogers-park": {
+   "clicks": 0,
+   "impressions": 3,
+   "position": 1
+  },
+  "chicago-rat-complaintsuptown": {
+   "clicks": 1,
+   "impressions": 2,
+   "position": 1.5
+  },
+  "chicago-rat-complaintswashington-park": {
+   "clicks": 0,
+   "impressions": 4,
+   "position": 39.2
+  },
+  "chicago-rat-complaintswest-englewood": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 19
+  },
+  "chicago-rat-complaintswest-garfield-park": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 1
+  },
+  "chicago-rat-complaintswest-lawn": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 2
+  },
+  "chicago-rat-complaintswest-ridge": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 3
+  },
+  "chicago-rat-complaintswest-town": {
+   "clicks": 0,
+   "impressions": 3,
+   "position": 6.3
+  },
+  "chicago-repair-demand": {
+   "clicks": 0,
+   "impressions": 2,
+   "position": 5
+  },
+  "chicago-restaurant-inspection-leads": {
+   "clicks": 0,
+   "impressions": 3,
+   "position": 8.3
+  },
+  "chicago-trade-licensescleaning": {
+   "clicks": 0,
+   "impressions": 5,
+   "position": 8.4
+  },
+  "chicago-trade-licenseselectrical": {
+   "clicks": 0,
+   "impressions": 11,
+   "position": 36.2
+  },
+  "chicago-trade-licensesgeneral-contractor": {
+   "clicks": 0,
+   "impressions": 7,
+   "position": 38
+  },
+  "chicago-trade-licenseslandscaping-pesticides": {
+   "clicks": 0,
+   "impressions": 3,
+   "position": 7
+  },
+  "chicago-trade-licensespainting": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 19
+  },
+  "chicago-trade-licensespressure-washing": {
+   "clicks": 0,
+   "impressions": 3,
+   "position": 7.3
+  },
+  "chicago-trade-licensessnow-removal": {
+   "clicks": 0,
+   "impressions": 2,
+   "position": 15.5
+  },
+  "christmas-light-installation-pricing-calculator": {
+   "clicks": 0,
+   "impressions": 35,
+   "position": 83.4
+  },
+  "christmas-lights-charge-by-foot-or-hour": {
+   "clicks": 0,
+   "impressions": 4,
+   "position": 71.2
+  },
+  "go": {
+   "clicks": 0,
+   "impressions": 2,
+   "position": 7
+  },
+  "home": {
+   "clicks": 0,
+   "impressions": 9,
+   "position": 3.6
+  },
+  "hood-cleaning-price-calculator": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 77
+  },
+  "house-cleaning-price-calculator": {
+   "clicks": 0,
+   "impressions": 2,
+   "position": 53.5
+  },
+  "keep-rats-out-of-garden-chicago": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 10
+  },
+  "markup-calculator": {
+   "clicks": 0,
+   "impressions": 9,
+   "position": 8.3
+  },
+  "material-price-changes": {
+   "clicks": 0,
+   "impressions": 12,
+   "position": 7.2
+  },
+  "material-price-changesaluminum-mill-shapes": {
+   "clicks": 0,
+   "impressions": 6,
+   "position": 5.3
+  },
+  "material-price-changesasphalt-felts-and-coatings": {
+   "clicks": 0,
+   "impressions": 2,
+   "position": 6
+  },
+  "material-price-changesbrick-and-clay-tile": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 10
+  },
+  "material-price-changescement": {
+   "clicks": 0,
+   "impressions": 5,
+   "position": 6.4
+  },
+  "material-price-changesdiesel-fuel": {
+   "clicks": 0,
+   "impressions": 3,
+   "position": 7
+  },
+  "material-price-changesgypsum-products": {
+   "clicks": 0,
+   "impressions": 2,
+   "position": 5.5
+  },
+  "material-price-changeslumber": {
+   "clicks": 0,
+   "impressions": 2,
+   "position": 6.5
+  },
+  "material-price-changesmidwest-ready-mix-concrete": {
+   "clicks": 0,
+   "impressions": 2,
+   "position": 6
+  },
+  "material-price-changesplumbing-fixtures-and-fittings": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 9
+  },
+  "material-price-changesplywood": {
+   "clicks": 0,
+   "impressions": 2,
+   "position": 4
+  },
+  "material-price-changesready-mixed-concrete": {
+   "clicks": 0,
+   "impressions": 7,
+   "position": 6.4
+  },
+  "material-price-changessand-gravel-crushed-stone": {
+   "clicks": 0,
+   "impressions": 3,
+   "position": 8.3
+  },
+  "material-price-changessteel-mill-products": {
+   "clicks": 0,
+   "impressions": 3,
+   "position": 11
+  },
+  "material-price-changessteel-pipe-and-tube": {
+   "clicks": 0,
+   "impressions": 7,
+   "position": 23.6
+  },
+  "missed-call-cost-calculator": {
+   "clicks": 0,
+   "impressions": 18,
+   "position": 75.2
+  },
+  "new-in-chicago": {
+   "clicks": 0,
+   "impressions": 13,
+   "position": 13.4
+  },
+  "post-construction-cleaning-bid-calculator": {
+   "clicks": 0,
+   "impressions": 8,
+   "position": 57.5
+  },
+  "pressure-washing-price-per-square-foot-calculator": {
+   "clicks": 0,
+   "impressions": 2,
+   "position": 83
+  },
+  "price-increase-calculator": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 6
+  },
+  "price-post-construction-cleaning-bid": {
+   "clicks": 0,
+   "impressions": 6,
+   "position": 73.7
+  },
+  "privacy": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 6
+  },
+  "questions": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 7
+  },
+  "shop": {
+   "clicks": 0,
+   "impressions": 1,
+   "position": 8
+  },
+  "snow-removal-pricing-calculator": {
+   "clicks": 0,
+   "impressions": 11,
+   "position": 81.3
+  },
+  "when-to-start-advertising-christmas-light-installation": {
+   "clicks": 0,
+   "impressions": 8,
+   "position": 36.9
+  },
+  "window-cleaning-price-calculator": {
+   "clicks": 0,
+   "impressions": 6,
+   "position": 36.8
+  }
+ },
+ "window": "7 days"
+}

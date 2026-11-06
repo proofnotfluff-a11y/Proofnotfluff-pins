@@ -1,4 +1,4 @@
-# Script: The box where you set your max is going away (story; 00_story/story.md; r9; read-aloud r7 PASS, retell r3 PASS, facts r7 fix)
+# Script: The box where you set your max is going away (story; 00_story/story.md; r10 after voice: take 7 reworded (end card accent clash, 203 wpm), take 6 'max per lead' (Whisper heard 'Macs'))
 
 You open Google's Local Services Ads and type the most you'll pay for a lead into a box. Then one day Google moves you to a new screen, and the box is gone.
 
@@ -10,6 +10,6 @@ But Google's help page for the move says Google Ads won't let you set a max per 
 
 [matter-of-fact] Google says you'll be able to download your old reports. But when I checked this month, its help page still just said coming soon. Need them now? It says take screenshots before you move.
 
-So I'd do it this week. Screenshot every report you have, and write your max beside them. Google does send a warning first, but don't wait for it. It emails the account admin fourteen days before your move. So make sure that's an inbox you read.
+So I'd do it this week. Screenshot every report you have, and write your max per lead beside them. Google does send a warning first, but don't wait for it. It emails the account admin fourteen days before your move. So make sure that's an inbox you read.
 
-[confident] The box is going, whatever you do. Grab your numbers this week, so they don't go with it.
+[confident] The box is going, whatever you do. Save the numbers before you move, so they don't go with the box.

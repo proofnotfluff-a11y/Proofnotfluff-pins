@@ -604,6 +604,26 @@
     "reason": "Todd, live chat, Nov 2, 2026, 8:58 pm: hold every video made under the old gates until the rebuilt line passes his watch-through (video/studio/PRINCIPLES.md, REBUILD.md)",
     "at": "2026-11-02T22:13:03-05:00"
    }
+  },
+  {
+   "slug": "2026-11-17-after-hours-robot",
+   "readyAt": "2026-11-06T08:32:09-05:00",
+   "commit": "c0cd8f72d03039813798a7850e869d53251dc485",
+   "fingerprints": {
+    "script": "91d04814c486",
+    "takes": "ea5cd057b57e",
+    "words": "a9cc90ca2b8e",
+    "cues": "034f6146d26d",
+    "scene": "b47293803fba",
+    "data": "56e5e121387c",
+    "captions": "f319bbf31f14",
+    "mouth": "0b8429178789",
+    "runtime_kit": "7533966669eb",
+    "runtime_player": "0247e61a6184",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

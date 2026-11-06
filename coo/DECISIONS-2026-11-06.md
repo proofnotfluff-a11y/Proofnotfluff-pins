@@ -25,3 +25,8 @@
 - Todd shared a screen recording of the joebrunner.ai "Insane custom roofing CRM" reel and asked whether PNF could build something like it, better, and market it the same way. The live session's answer: no full CRM (crowded and cheap, needs accounts and support we lack); build the back-office slice (morning list of drafted messages, quoted against spent, who still owes, leads in, export) as a demo on labeled sample data.
 - [stated] Offered A (the slice), B (full CRM) or C (park): "Let's go with A"
 - Spec: launches/back-office-demo.md (roofing first, the session's call; sample data rules for invariant 6; reel, 5 owner calls and price each wait on Todd). Wiki: Research Wiki Sources and Decisions, Nov 6.
+
+## Usage cuts (live chat, 10:54 am)
+- [stated] "Go with your rec", to: the box reads forum and trade press pages itself, and retell, read-aloud and compare merge into one Opus reviewer.
+- Changed: video/studio/prompts/story.md and anim.py STORY_GATES (one story gate, same three bars, two turns so the listener never sees the message line early); CONSTITUTION 2 amended; tools/local_job.py fetch; trade-pulse SKILL step 3; the page reader (pnf-local-jobs scripts/fetcher.py and add-fetcher.sh: https only, allowlisted sites, robots.txt respected, page text never leaves the box). Box step: Todd runs add-fetcher.sh once.
+- Todd's own step: remove unused connectors from each PNF scheduled task (USAGE.md A5).

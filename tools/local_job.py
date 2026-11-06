@@ -3,6 +3,7 @@
 
     python3 tools/local_job.py send <job.json> [<job.json> ...] [--wait] [--timeout 900] [--every 30]
     python3 tools/local_job.py wait <name> [<name> ...] [--timeout 900] [--every 30]
+    python3 tools/local_job.py fetch <job.json> [...] [--wait]   (job has urls instead of input: the box reads the pages)
     python3 tools/local_job.py health
 
 The lane is the private repo proofnotfluff-a11y/pnf-local-jobs, cloned at $PNF_LOCAL_JOBS (default
@@ -37,9 +38,12 @@ def problems(job, name):
     out = []
     if not NAME.match(name):
         out.append(f"name {name!r} is not <slug>-<kind>-<date>-r<round>")
-    for k in ("kind", "model", "prompt", "input", "schema"):
+    for k in ("kind", "model", "prompt", "urls" if "urls" in job else "input", "schema"):
         if k not in job:
             out.append(f"missing {k}")
+    if "urls" in job and not (isinstance(job["urls"], list) and 1 <= len(job["urls"]) <= 8
+                              and all(str(u).startswith("https://") for u in job["urls"])):
+        out.append("urls must be 1 to 8 https pages")
     if job.get("model") not in ("workhorse", "fast", "trial"):
         out.append("model must be workhorse, fast or trial")
     blob = json.dumps(job)
@@ -57,7 +61,7 @@ def trial_model():
     return t.get("model") if time.strftime("%Y-%m-%d") <= t.get("until", "") else None
 
 
-def send(paths):
+def send(paths, folder="jobs"):
     git("pull", "-q", "--rebase", "--autostash")
     if stopped():
         print("local_job: control/stop is set (stop local): do the work on Claude")
@@ -70,7 +74,11 @@ def send(paths):
         if bad:
             print(f"local_job: {name} refused: " + "; ".join(bad))
             return 1
-        dst = os.path.join(LANE, "jobs", name + ".json")
+        if (folder == "fetch") != ("urls" in job):
+            print(f"local_job: {name} refused: a job with urls goes through fetch, one with input through send")
+            return 1
+        dst = os.path.join(LANE, folder, name + ".json")
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
         if os.path.exists(dst) or os.path.exists(os.path.join(LANE, "answers", name + ".json")):
             print(f"local_job: {name} already sent (a new round is a new name)")
             return 1
@@ -79,7 +87,7 @@ def send(paths):
         names.append(name)
         tm = trial_model()
         if tm and job["model"] != tm and not name.startswith("trial-"):
-            twin = os.path.join(LANE, "jobs", "trial-" + name + ".json")
+            twin = os.path.join(LANE, folder, "trial-" + name + ".json")
             if not os.path.exists(twin):
                 json.dump(dict(job, model=tm), open(twin, "w", encoding="utf-8"), indent=1)
                 git("add", twin)
@@ -125,7 +133,7 @@ def wait(names, timeout, every):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["send", "wait", "health"])
+    ap.add_argument("cmd", choices=["send", "fetch", "wait", "health"])
     ap.add_argument("items", nargs="*")
     ap.add_argument("--wait", action="store_true")
     ap.add_argument("--timeout", type=int, default=900)
@@ -136,8 +144,8 @@ def main():
         print(open(os.path.join(LANE, "status", "health.json"), encoding="utf-8").read().strip())
         print("stop local: " + ("ON" if stopped() else "off"))
         return 0
-    if a.cmd == "send":
-        r = send(a.items)
+    if a.cmd in ("send", "fetch"):
+        r = send(a.items, "jobs" if a.cmd == "send" else "fetch")
         if isinstance(r, int):
             return r
         return wait(r[1], a.timeout, a.every) if a.wait else 0

@@ -12,7 +12,8 @@ script.md: retell, read-aloud, facts. After the voice: retell and read-aloud aga
 the words), facts-captions. After the render: render-critic, design, send, compare. Bars: retell matches the story's
 message line with a concrete action and no lost spot (retell.md); read-aloud no "and then" pair, no unset term, nothing
 choppy, setup before payoff (read-aloud.md); compare top 2 on follow and top 2 on stop or understand against the gurus.md
-compare set (compare.md). These replace buyer and golden for story lessons: CONSTITUTION 2
+compare set (compare.md). From Nov 6, 2026, 10:54 am the three run as ONE fresh reviewer in two turns (story.md; Todd:
+"Go with your rec"), after the local box pre-checks retell and read-aloud (_shared/local.md). These replace buyer and golden for story lessons: CONSTITUTION 2
 was amended by Todd in a live chat, Nov 6, 2026, 7:15 am ("Go with you recommendations"); anim.py STORY_GATES. Buyer and
 golden stay only for the held old-line lessons.
 

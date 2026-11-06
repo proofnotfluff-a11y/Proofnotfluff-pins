@@ -1464,11 +1464,18 @@ PLATFORMS = ("instagram", "tiktok", "facebook", "youtube")
 GATES = ("qa", "facts", "facts-captions", "render-critic", "buyer", "send", "design", "golden")
 # The new line (Todd, live chat, Nov 6, 2026, 7:15 am: "Go with you recommendations", the gate list amendment in
 # coo/CONSTITUTION.md): story lessons swap buyer and golden for retell, read-aloud and compare (prompts/README.md).
-STORY_GATES = ("qa", "facts", "facts-captions", "render-critic", "retell", "read-aloud", "compare", "send", "design")
+STORY_GATES = ("qa", "facts", "facts-captions", "render-critic", "story", "send", "design")
+# story = retell + read-aloud + compare in one fresh reviewer (prompts/story.md; Todd, live chat, Nov 6, 2026, 10:54 am:
+# "Go with your rec"). A lesson gated before that with the three separate files still passes on them:
+STORY_GATES_NOV6 = ("qa", "facts", "facts-captions", "render-critic", "retell", "read-aloud", "compare", "send", "design")
 
 
 def gates_for(slug):
-    return STORY_GATES if lesson_format(slug) == "story" else GATES
+    if lesson_format(slug) != "story":
+        return GATES
+    rev = vdir(slug, "05_render", "reviews")
+    return STORY_GATES if os.path.exists(os.path.join(rev, "story.json")) or not os.path.exists(os.path.join(rev, "retell.json")) \
+        else STORY_GATES_NOV6
 # Two openings per lesson as two Instagram trial reels (Todd, live chat, Nov 1, 2026, 4:35 pm: "Do both", to two hook
 # versions per lesson as Instagram trial reels and a send reviewer gate). The second opening is the same lesson after the
 # hook (hookb_drift proves it), so it reruns only the gates its new opening can change; send and golden judge the whole

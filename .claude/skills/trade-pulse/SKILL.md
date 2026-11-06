@@ -22,8 +22,9 @@ for trades owners." Built Nov 5, 2026 (video/studio/REBUILD.md, build run). Feed
 3. Extract each item: the problem in an owner's plain words (our paraphrase, at most 10 quoted words), the trade, the URL
    opened, the date, the place (forum, sub, publication). Never a person's name or username, never a small business's name.
    Local first pass (Local AI architecture doc, routing table: "trade-pulse ... Local reads forums and comments, extracts
-   problems in owners' words"): send the page text you opened to the box as one `extract` job per batch of pages
-   (`python3 tools/local_job.py send <job> --wait`; model fast; schema: items with problem, trade, quote_under_10_words,
+   problems in owners' words"): the box reads the pages itself (Nov 6): one `extract` job per 5 to 8 page URLs, with
+   urls in place of input (`python3 tools/local_job.py fetch <job> --wait`; model fast; allowed sites: the reader's list,
+   no Reddit or YouTube; a page it can't read comes back with its status, and you open only those yourself; schema: items with problem, trade, quote_under_10_words,
    url, plus unplaced: the ids of items it left out; each why is one whole sentence, up to 300 characters, never cut off;
    Nov 6 fix). From Nov 5, 2026 this job is in shadow mode: do the extraction yourself as well, compare, and log the difference
    rate in research/pulse/<date>.md "Local shadow". After 3 clean pulses it moves to local first (_shared/local.md). No answer

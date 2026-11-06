@@ -1,0 +1,18 @@
+{
+ "gate": "story-retell",
+ "round": 7,
+ "reviewer": "fresh opus agents (words only, story prose); r0 to r6 one listener each",
+ "pass": true,
+ "score": {
+  "retold": "Google is folding Local Services Ads into Google Ads, and your old reports won't come over, so screenshot them before your account moves.",
+  "action": "screenshot each trade's reports, write down max per lead and weekly budget, check the admin email",
+  "lost_at": "none",
+  "new_to_me": "the max cost per lead box goes away for good, and spend history and weekly reports don't carry over",
+  "matches_message": "same"
+ },
+ "reasons": [
+  "r0 to r5 FAIL, lost at: the one-target-across-trades line (r0, r1: cut), the liaison contradiction line (r2, r3: rewritten, the liaison sentence cut), 'service-area businesses' (r4: 'If you work out of your truck instead of a storefront'), 'needs nothing from you, with one exception' (r5: plain words).",
+  "r6 lost nowhere but retold close, not same: the message line asked for 'write down what each trade's leads cost', which the story never centres; the message line was rewritten to the point the story carries.",
+  "r7 PASS: same, concrete action, lost nowhere."
+ ]
+}

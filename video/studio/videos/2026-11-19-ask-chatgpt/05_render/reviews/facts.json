@@ -1,51 +1,67 @@
 {
  "pass": true,
- "stage": "script.md before voice (r10 wording)",
- "round": 5,
+ "stage": "script.md before voice (r11 trims)",
+ "round": 6,
  "score": {
-  "numbers": 7,
+  "numbers": 4,
   "mismatches": 0
  },
- "fixcheck": true,
- "earlier_faults_fixed": "5 of 5",
+ "judged": "changed lines only",
  "reasons": [
-  "Advisory: 782 and the Apr 24 to May 19 dates rest on the Nov 6 opened record; the scene gate re-confirms the tag text.",
-  "Advisory: the brief's claims row for the survey sponsor is stale (sponsor now on the tag).",
-  "Advisory: the forum card keeps 'told them' wording.",
+  "Advisory: 'to get there' is a fair paraphrase of the owner's hedge.",
+  "Advisory: 'That same firm' points back to the marketing firm; made explicit as 'That marketing firm'.",
   "Advisory: the kicker stays at 'Some'."
  ],
- "sources": "achrnews.com pages through the box's word-for-word re-reads of Nov 7 (ask-chatgpt-facts-2026-11-07-r1 and trial twin); Jobber thread on the Nov 6 record.",
- "not_yet": [
-  "transcript",
-  "scene.js strings",
-  "render",
-  "AI-lane run.json"
- ],
+ "sources": "box re-reads of Nov 7 for achrnews; Nov 6 record for the Jobber thread",
  "earlier": {
-  "pass": false,
-  "stage": "script.md before voice (r9 wording)",
-  "round": 4,
+  "pass": true,
+  "stage": "script.md before voice (r10 wording)",
+  "round": 5,
   "score": {
    "numbers": 7,
-   "mismatches": 1
+   "mismatches": 0
   },
+  "fixcheck": true,
+  "earlier_faults_fixed": "5 of 5",
   "reasons": [
-   "survey line: 'published' in spring is wrong (fielded Apr 24 to May 19, published Oct 20) and hides the sponsor. Fix: say who asked or keep the sponsor on the tag.",
-   "forum line: 'But they'd never done a thing on ChatGPT' drops the owner's hedge. Fix: 'they said they didn't think they'd done a thing on ChatGPT to get there'.",
-   "'homeowners are asking' states intent as behavior. Fix: 'homeowners say they'd ask it'.",
-   "37% applied beyond HVAC. Fix: 'a heating and cooling company's reviews'.",
-   "'that call never rings, and you never find out' is absolute. Fix: 'may never ring, and you'd never know'."
+   "Advisory: 782 and the Apr 24 to May 19 dates rest on the Nov 6 opened record; the scene gate re-confirms the tag text.",
+   "Advisory: the brief's claims row for the survey sponsor is stale (sponsor now on the tag).",
+   "Advisory: the forum card keeps 'told them' wording.",
+   "Advisory: the kicker stays at 'Some'."
   ],
-  "sources": "achrnews.com and community.getjobber.com did not resolve in the cloud; achrnews pages re-read word for word by the box (ask-chatgpt-facts-2026-11-07-r1, fast, and its trial twin); the Jobber page rests on the Nov 6 opened record.",
+  "sources": "achrnews.com pages through the box's word-for-word re-reads of Nov 7 (ask-chatgpt-facts-2026-11-07-r1 and trial twin); Jobber thread on the Nov 6 record.",
+  "not_yet": [
+   "transcript",
+   "scene.js strings",
+   "render",
+   "AI-lane run.json"
+  ],
   "earlier": {
-   "pass": true,
-   "stage": "script.md before voice (r3 wording)",
-   "round": 3,
+   "pass": false,
+   "stage": "script.md before voice (r9 wording)",
+   "round": 4,
    "score": {
     "numbers": 7,
-    "mismatches": 0
+    "mismatches": 1
    },
-   "note": "r0 to r2 FAIL on scope and attribution (HVAC-only survey, 'mostly', the firm's numbers said as fact, the forum hedge, 'your customers are already asking', 'for years', 'same week', sponsor wording); r3 PASS with advisories. r4 to r6 changed the attribution line, the survey line and the kicker: re-run facts on r6 before voice. Skipped pre-voice: transcript, scene strings (EXAMPLE tag on the 9 pm scene, forum card, column tag with SearchLight data), render, AI-lane run.json (any drawn ChatGPT answer must be a real run)."
+   "reasons": [
+    "survey line: 'published' in spring is wrong (fielded Apr 24 to May 19, published Oct 20) and hides the sponsor. Fix: say who asked or keep the sponsor on the tag.",
+    "forum line: 'But they'd never done a thing on ChatGPT' drops the owner's hedge. Fix: 'they said they didn't think they'd done a thing on ChatGPT to get there'.",
+    "'homeowners are asking' states intent as behavior. Fix: 'homeowners say they'd ask it'.",
+    "37% applied beyond HVAC. Fix: 'a heating and cooling company's reviews'.",
+    "'that call never rings, and you never find out' is absolute. Fix: 'may never ring, and you'd never know'."
+   ],
+   "sources": "achrnews.com and community.getjobber.com did not resolve in the cloud; achrnews pages re-read word for word by the box (ask-chatgpt-facts-2026-11-07-r1, fast, and its trial twin); the Jobber page rests on the Nov 6 opened record.",
+   "earlier": {
+    "pass": true,
+    "stage": "script.md before voice (r3 wording)",
+    "round": 3,
+    "score": {
+     "numbers": 7,
+     "mismatches": 0
+    },
+    "note": "r0 to r2 FAIL on scope and attribution (HVAC-only survey, 'mostly', the firm's numbers said as fact, the forum hedge, 'your customers are already asking', 'for years', 'same week', sponsor wording); r3 PASS with advisories. r4 to r6 changed the attribution line, the survey line and the kicker: re-run facts on r6 before voice. Skipped pre-voice: transcript, scene strings (EXAMPLE tag on the 9 pm scene, forum card, column tag with SearchLight data), render, AI-lane run.json (any drawn ChatGPT answer must be a real run)."
+   }
   }
  }
 }

@@ -27,6 +27,7 @@ often as Yelp" (research/stories/2026-11-02-chatgpt-finds-contractors.md), re-re
   reassemble structured business data" with its tag (ACHR News guest column, Mar 18, 2026, SearchLight data).
 - **Do this week (on screen, held):** the check card: the exact question to type, what to write down, what to fix, ask
   again in two weeks. Held 4 s or more.
+- **Send:** whoever runs your Google profile: the check card, the exact question to type into ChatGPT and the fix if you are not named
 - **End card send line:** "Send this to whoever runs your Google profile."
 - **Asked by owners:** Jobber Community thread 15769 (about Nov 3, 2026) and thread 10191 (Nov 6, 2026); pulse 2026-11-05
   problem 8, "the phone just got quieter".

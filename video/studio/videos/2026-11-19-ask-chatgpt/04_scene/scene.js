@@ -122,13 +122,12 @@ const checkCard = (k, d, t1, t2, t0, o = {}) => {
   d.clip(0, 0, 360, 330, () => { win(14, 84 + up, 332, 196, {base: '#253048', hi: '#3B82C4', lo: INK, rule: false}); P(14, 84 + up, 332, 20, GOLD); });
   if (up) return;
   k.text('THE CHECK: DO IT TONIGHT', 72, 258, {size: 39, color: INK});
-  const rows = [['1. Ask ChatGPT:', '"Who\'s the best [your', 'trade] near me?"', t1], ['2. Not you? Fix your', 'Google profile first.', '', t2]];
-  rows.forEach(([a, b, c, ti], i) => { const lit = k.T >= ti - 0.25, y = 324 + i * 230;
-    k.slam(a, 72, y, Math.min(ti - 0.25, t0 + 0.3 + i * 0.1), {size: 56, color: lit ? GOLD : SAND, from: 0.3});
-    k.slam(b, 72, y + 66, Math.min(ti - 0.2, t0 + 0.35 + i * 0.1), {size: 56, color: lit ? CREAM : SAND, from: 0.3});
-    if (c) k.slam(c, 72, y + 132, Math.min(ti - 0.2, t0 + 0.4), {size: 56, color: lit ? CREAM : SAND, from: 0.3}); });
-  if (k.T < t2 - 0.25 && (d.F >> 4) % 2 === 0) P(24, 112, 4, 18, CREAM);
-  loopSweep(k, 72, k.T >= t2 - 0.25 ? 670 : 590, k.measure(k.T >= t2 - 0.25 ? 'Google profile first.' : 'trade] near me?"', {size: 56}), t1 + 0.5, 1.0, 6);
+  const rows = [['1. Ask ChatGPT:', '"Who\'s the best [your', 'trade] near me?"'], ['2. Not you? Fix your', 'Google profile first.', '']];
+  /* the send moment (Todd, Nov 7, 9:27 am): every line lands once in the first half second, then nothing moves over the card */
+  rows.forEach(([a, b, c], i) => { const y = 324 + i * 230, ti = t0 + 0.25 + i * 0.12, col = i ? GOLD : CREAM;
+    k.slam(a, 72, y, ti, {size: 56, color: GOLD, from: 0.3});
+    k.slam(b, 72, y + 66, ti + 0.04, {size: 56, color: col, from: 0.3});
+    if (c) k.slam(c, 72, y + 132, ti + 0.08, {size: 56, color: col, from: 0.3}); });
 };
 
 window.SCENE = {
@@ -234,9 +233,9 @@ window.SCENE = {
       return host(k, T >= tB + 0.6 ? 'point' : null);
     },
 
-    /* ---- small: a revenue bar, a sliver lit, ABOUT 1%; on "big" the ticket slams.                                      */
+    /* ---- small: a revenue bar, a sliver lit, ABOUT 1%; on "average" the ticket slams.                                      */
     small: (k, T) => {
-      const t0 = k.S('small'), tP = wordT(k, 'small', /^percent/i, 3.0) - 0.3, tBig = wordT(k, 'small', /^big/i, 5.0) - 0.2, r1 = k.data.numbers.rev1.shown, tk = k.data.numbers.ticket.shown;
+      const t0 = k.S('small'), tP = wordT(k, 'small', /^percent/i, 3.0) - 0.3, tBig = wordT(k, 'small', /^average/i, 5.0) - 0.2, r1 = k.data.numbers.rev1.shown, tk = k.data.numbers.ticket.shown;
       const d = px(k), {P, dith} = d;
       P(0, 0, 360, 417, '#2B2033'); for (let y = 0; y < 417; y += 4) dith(0, y, 360, 1, '#3D2E45', (y / 4) % 2);
       d.win(14, 84, 332, 196, {base: NIGHT, hi: '#3D2E45', lo: INK, rule: '#3D2E45'});

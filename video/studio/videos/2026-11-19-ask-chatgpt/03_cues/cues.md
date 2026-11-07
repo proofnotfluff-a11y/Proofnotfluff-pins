@@ -19,10 +19,9 @@ The same card; a second line: "Didn't think I'd done a thing there." A "?" bobs 
 The kitchen phone again, then a shop phone on a truck dash: it stays dark, a call bar that never fills; on "never" the
 counter reads CALLS: 0 and a NO RING stamp lands.
 
-## check "So tonight, ask it" [sfx: stamp]
-THE CHECK (the send moment, held to screenshot): a save-screen card, step 1 lights on "ask": 'Ask ChatGPT: "Who's the best
-[your trade] near me?"'; step 2 on "isn't": "Not you? Fix your Google profile first."; a cursor blinks on step 1. Held
-through "first".
+## check "So tonight, ask it" [sfx: stamp] [send]
+THE CHECK (the send moment, held to screenshot): a save-screen card, both steps land in the first half second and then nothing moves over it (held to screenshot):
+'1. Ask ChatGPT: "Who's the best [your trade] near me?"' and "2. Not you? Fix your Google profile first."
 
 ## why "Why the Google profile?" [sfx: whoosh]
 The column card: WHAT IT READS, three rows tick in on their words: YOUR NAME, YOUR WEBSITE, YOUR REVIEWS. Tag "ACHR News
@@ -32,7 +31,7 @@ guest column, Mar 18, 2026 (SearchLight data)".
 The survey bars grow on "Thirty-seven": AI TOOLS 37%, YELP 38% beside it, close. Tag "Survey by myCLEARopinion for BNP Media,
 owner of ACHR News, Apr to May 2026, 782 homeowners, HVAC companies".
 
-## small "Work that comes from" [sfx: blip]
+## small "That marketing firm says" [sfx: blip]
 A revenue bar: a sliver lights, ABOUT 1%; on "big" the ticket slams: $11,500 A TICKET (the firm's average). Same column tag.
 
 ## button "Some homeowners are already" [sfx: whoosh]

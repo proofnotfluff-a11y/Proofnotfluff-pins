@@ -1715,6 +1715,82 @@ def cmd_waiting():
     print(json.dumps([i["slug"] for i in load_queue()["items"] if not i["posts"] and not i.get("hold")]))
 
 
+# Story gate noise rule (Todd, live chat, Nov 6, 2026, 6:04 pm: "Yes", to: a "lost at" line counts only when two fresh
+# reviewers flag the same moment, and a lesson that fails the story gate 3 rounds in a row goes to the back of the line).
+# Before it, lsa-max-bid ran 24 script rounds: every reviewer retold the message "same", each named a different lost line.
+STORY_RULE = "lost-at-twice"
+
+
+def _sentences(text):
+    text = re.sub(r"\[[^\]]*\]", " ", text)                       # [bracket] voice tags
+    text = re.sub(r"(?m)^\s*(#.*|NOTE.*|\|.*)$", " ", text)          # headings, notes, tables
+    return [x.strip() for x in re.split(r"(?<=[.!?])\s+|\n{2,}", text) if len(x.strip().split()) >= 2]
+
+
+def _toks(t):
+    return set(re.findall(r"[a-z0-9$']+", t.lower()))
+
+
+def lost_line(slug, quote):
+    """The index and text of the sentence a reviewer's "lost at" quote points to, in the words the gate read
+    (transcript.md once it exists, else script.md)."""
+    for rel in (("02_transcript", "transcript.md"), ("01_voice", "script.md")):
+        f = vdir(slug, *rel)
+        if not os.path.exists(f):
+            continue
+        sents = _sentences(open(f, encoding="utf-8").read())
+        q = _toks(quote)
+        if not sents or not q:
+            continue
+        best = max(range(len(sents)), key=lambda i: (len(q & _toks(sents[i])) / len(q),
+                                                     difflib.SequenceMatcher(None, quote.lower(), sents[i].lower()).ratio()))
+        if len(q & _toks(sents[best])) / len(q) >= 0.5:
+            return best, sents[best], "/".join(rel)
+    return None, None, None
+
+
+def cmd_lostmatch(slug, a, b):
+    """Do two fresh reviewers' "lost at" quotes point at the same moment? SAME: the line counts and gets fixed.
+    DIFFERENT (or either is none): the retell's lost-at part passes (STORY_RULE). Run on the same words both read."""
+    none = lambda x: not x or x.strip().lower() in ("none", "no", "nowhere", "n/a")
+    if none(a) or none(b):
+        print(json.dumps({"verdict": "DIFFERENT", "why": "one reviewer was lost nowhere", "rule": STORY_RULE})); return
+    ia, sa, src = lost_line(slug, a); ib, sb, _ = lost_line(slug, b)
+    if ia is None or ib is None:
+        raise SystemExit("ERROR lostmatch: a quote is not in the words (check the quote against " + (src or "script.md") + ")")
+    same = abs(ia - ib) <= 1 and (ia == ib or len(_toks(a) & _toks(b)) >= 2)
+    print(json.dumps({"verdict": "SAME" if same else "DIFFERENT", "a": {"line": ia, "text": sa}, "b": {"line": ib, "text": sb},
+                      "words": src, "rule": STORY_RULE}, ensure_ascii=False))
+
+
+def story_fails_in_row(slug):
+    """Story gate FAILs in a row, newest first, counting only rounds judged under STORY_RULE."""
+    f = vdir(slug, "05_render", "reviews", "story.json")
+    n, d = 0, json.load(open(f)) if os.path.exists(f) else None
+    while isinstance(d, dict) and d.get("rule") == STORY_RULE:
+        if d.get("pass") or d.get("override"):
+            break
+        n, d = n + 1, d.get("earlier")
+    return n
+
+
+def cmd_tomake():
+    """Lessons built but not queued, in the order a run works them: oldest first, except that a lesson with 3 or more
+    story FAILs in a row goes to the back (STORY_RULE), so one stuck lesson can't empty the queue."""
+    queued = {i["slug"] for i in load_queue()["items"]}
+    rows = []
+    for d in sorted(os.listdir(VIDEOS)):
+        if d in queued or d.endswith(HOOKB_SUFFIX) or not os.path.exists(vdir(d, "01_voice", "brief.md")):
+            continue
+        if lesson_format(d) != "story":
+            continue                                         # the 6 old-line lessons stay held (REBUILD.md)
+        rows.append({"slug": d, "story_fails_in_row": story_fails_in_row(d)})
+    rows.sort(key=lambda r: r["story_fails_in_row"] >= 3)    # stable: oldest first inside each group
+    for r in rows:
+        r["place"] = "back of line: 3 story FAILs in a row" if r["story_fails_in_row"] >= 3 else "in line"
+    print(json.dumps(rows, indent=1))
+
+
 def cmd_hold(slug, reason, off=False):
     """Take a lesson out of the posting line (Todd, Oct 30, 2026, 4:01 pm: too thin to post; rebuild or drop it).
     A held lesson is skipped by next and not counted by waiting. `unhold` puts it back."""
@@ -2836,6 +2912,10 @@ def main():
         cmd_postcaptions(a.slug)
     elif c == "waiting":
         cmd_waiting()
+    elif c == "lostmatch":
+        cmd_lostmatch(a.slug, *(a.rest + ["", ""])[:2])
+    elif c == "tomake":
+        cmd_tomake()
     elif c == "variety":
         cmd_variety(a.slug)
     elif c == "lanes":

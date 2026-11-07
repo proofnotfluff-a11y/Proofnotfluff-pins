@@ -17,7 +17,7 @@ Then, and only then, the runner gives you the message line from story.md and you
    (the who, the problem and the fix can be worded differently). A narrower or vaguer version is not the same.
 
 PASS only when 5 is "same", 2 names a concrete action, and 3 finds no place a listener gets lost. Otherwise FAIL, with the
-line that caused it and a plain fix.
+line that caused it and a plain fix. (The runner, not you, then checks a lost line against a second listener: story.md.)
 Do not edit files. JSON only: {"pass": bool, "score": {"retold": "<your sentence>", "action": "<your words or none>", "lost_at": "<quote or none>", "new_to_me": "<it or no>", "matches_message": "same|close|different"}, "reasons": ["<answers, then each problem with its line and a fix>"]}
 
 Running it: two steps so the listener never sees the message line early. Step 1 sends questions 1 to 4 with the words only;

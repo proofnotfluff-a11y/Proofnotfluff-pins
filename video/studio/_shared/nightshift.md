@@ -9,11 +9,11 @@ done, and every night job is one more comparison toward the next rung (local.md)
 
 ## Evening slot (the 21:33 run): queue the night batch, last step before the end message
 Spend at most 10 minutes on this. Never wait for an answer (`send` and `fetch` without --wait).
-1. `python3 tools/local_job.py health`: alive_at within the last 30 minutes and stop local off, or skip the batch and say
-   so in one line.
+1. `python3 tools/local_job.py health`: stop local off and alive_at within the last 24 hours (the box writes it only when it
+   answers), or skip the batch and say so in one line. A box that is down just leaves the jobs waiting; the morning sees "none".
 2. Leads: each row under "## Leads" in research/STORIES.md (at most 3). Its primary record: when the page's host is on the
    box reader's list (pnf-local-jobs scripts/fetcher.py ALLOWED), a `fetch` job with urls; otherwise read it here with
-   WebFetch and pass the page text as input to a `send` job, with every email address, phone number and person's name cut
+   WebFetch (prompt: the page text word for word) and pass it as input to a `send` job, with every email address, phone number and person's name cut
    out first (the lane carries business fields only). Per lead, two jobs, model workhorse:
    - `extract`: every fact, number, date and quote under 10 words the story would need, each with the sentence it came
      from; schema items [{fact, kind, from_sentence}], plus missing: what the page does not say.

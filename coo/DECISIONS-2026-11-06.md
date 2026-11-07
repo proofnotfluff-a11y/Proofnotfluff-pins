@@ -59,3 +59,9 @@
 - [stated] "Go with your recommendations for all"
 - Changed: prompts/README.md ("Smoother line"), anim.py `readcheck`, `storysnap`, `storycarry`, `shelve`, the shelf in `tomake` and the cadence in `next`, the Tools step of studio-voice, studio-build, studio-postcopy and video-render (man-db rebuild skipped, 8 min cap, two tries), CONSTITUTION 2. Tested on copies and made-up queues: carry true on unchanged words and false with the one changed sentence listed; cadence holds a second lesson with 2 waiting, posts with 3, always finishes a started lesson; readcheck PASS on the three story lessons; the run counter reads history back to its start date. Not yet proven live: the workflow install fix (next voice run) and the fix-check rounds (next gate rounds).
 - Expected, not measured: most lessons in 1 or 2 runs instead of 4 to 6. Measure on the next 3 lessons: runs and gate calls each.
+
+## Site refreshes every 2 weeks (live chat, 7:30 pm)
+- [stated] "Let's also not waste a bunch of usage on the website. If we're not getting that much traffic right now, I don't think we should be refreshing everything so frequently. Maybe let's refresh everything on the site once every 2 weeks."
+- Why it fits the numbers: seo/traffic/history.json, week of Oct 26: 1 visit from search, 0 upgrades.
+- Changed (the four Claude site tasks, now 6:32 to 9:31 am Central on the 1st and 15th): question pages trig_01UHJ2MuXNGTV9teS1GVbN9z (was daily), trades news trig_01Q5KFoNfsiAXZdEykMo5UPP (was Mon, Wed, Fri; news window 3 days to 16, in its prompt and SKILL), index request trig_01TSoXrR7sqNfgjM3GbPM8t8 (was Fridays), radar trig_01M4jbuiVgbx7iV6cerLBRGh (was Mondays). About 12 runs a week down to about 2 a month each. First runs Nov 15.
+- Left as is: the traffic report (Mondays, about 1 minute, the yardstick for speeding back up) and the GitHub data workflows (they use no Claude usage; they keep the free data pages current).

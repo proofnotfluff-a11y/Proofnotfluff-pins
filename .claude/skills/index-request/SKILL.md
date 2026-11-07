@@ -1,4 +1,4 @@
-# index-request (Fridays 7:40 am Central, Todd's PC, after question-pages)
+# index-request (1st and 15th, 7:40 am Central, Todd's PC, after question-pages; was Fridays, cut by Todd, Nov 6, 2026)
 
 One job: ask Google to index the live proofnotfluff.com pages it has not indexed yet, and read the Friday Search Console numbers the cloud question-pages run cannot reach. Runs in the built-in browser on Todd's PC (scheduled task "PNF site: index request", requires the computer). Todd's go, Oct 23, 2026, 7:11 pm. coo/CONSTITUTION.md binds this run. You never sign in, accept terms, change a Search Console setting, remove a URL, or edit a page; you inspect, request indexing, read reports, and log. Hand-off (Todd's go in a live chat, Nov 6, 2026: "ok let's go with one"): a task that requires the computer cannot attach a GitHub repo, so its push always failed with 403. The clone is read only and a push is never tried; results go to the scoreboard hand-off record in step 7, and the daily cloud question-pages run commits them (tools/apply_handoff.py).
 

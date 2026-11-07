@@ -1,10 +1,10 @@
-# trades-news (Mon, Wed, Fri 6:32 am Central, task PNF site: trades news (Mon, Wed, Fri), cloud; Todd, Oct 27, 2026: "let's refresh news daily"; cut to 3 a week by Todd in chat, Oct 30, 2026)
+# trades-news (1st and 15th, 6:32 am Central, task PNF site: trades news (1st and 15th), cloud; cut from Mon, Wed, Fri (Todd, live chat, Nov 6, 2026, 7:30 pm: "refresh everything on the site once every 2 weeks"); Todd, Oct 27, 2026: "let's refresh news daily"; cut to 3 a week by Todd in chat, Oct 30, 2026)
 
 One job: refresh Chicago Trades News (site/news/chicago-trades.json, page /chicago-trades-news/, built by tools/news_site.py), gate it, and publish it if every gate passes. A daily data refresh is a minor change under coo/CONSTITUTION.md section 2; a new page type, layout or email capture is major and goes to Todd. Todd's brief (Oct 27, 2026): "any major news impacting the trades in Chicago. New regulations, news events, tax related news, etc. Anything that would be useful to workers in the trades."
 
 ## Inputs (Reads)
 - site/news/chicago-trades.json (the items on the page), site/pages.json kind "tradesnews", seo/RESULTS.md.
-- Beats, one fresh Agent subagent each (model opus), run in parallel: (1) rules, codes, permits, licensing, safety; (2) tax, pay, wage rates, utility rates; (3) projects, bids, programs, weather, events. Window: news since the last run (the file's "updated" date, at most 3 days back), or anything taking effect in the next 120 days not yet on the page.
+- Beats, one fresh Agent subagent each (model opus), run in parallel: (1) rules, codes, permits, licensing, safety; (2) tax, pay, wage rates, utility rates; (3) projects, bids, programs, weather, events. Window: news since the last run (the file's "updated" date, at most 16 days back), or anything taking effect in the next 120 days not yet on the page.
 
 ## Process (Executes)
 1. Date from bash. `python3 tools/check_repo.py --preflight trades-news`.

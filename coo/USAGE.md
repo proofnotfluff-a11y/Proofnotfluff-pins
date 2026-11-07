@@ -35,3 +35,6 @@ Todd's ask, live chat, Oct 30, 8:29 am: "audit the existing system and determine
 - Cause 1: `anim.py ready` pinned the local commit before push; `git pull --rebase` then gave it a new id, so markup-margin's pin (f9e92d86) was never on GitHub and postcopy could not fetch it. 8 other waiting pins were fine.
 - Cause 2: postcopy wrote the upload copy to /mnt/user-data/outputs, which Chrome refuses (LEARNINGS Oct 28); the live chats that posted used the repo path.
 - Fixed: markup-margin re-pinned to 7cef77c6 (on main, all 12 fingerprints match, same second as its readyAt); postcopy PASS 3.9 MB, 45.67 s, 1080x1920. `ready` now refuses an unpushed commit; postcopy names a missing pin plainly and writes the upload copy to videos/<slug>/05_render/<slug>-post.mp4; POSTING.md and the skill say upload that path.
+
+## Nov 6, 7:30 pm: site tasks every 2 weeks
+- [stated] Todd: "Maybe let's refresh everything on the site once every 2 weeks." Question pages, trades news, index request and radar now run on the 1st and 15th (DECISIONS-2026-11-06). Saves about 11 runs a week.

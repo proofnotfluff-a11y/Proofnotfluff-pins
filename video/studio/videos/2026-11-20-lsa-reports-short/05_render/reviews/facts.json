@@ -1,0 +1,31 @@
+{
+ "gate": "facts",
+ "reviewer": "fresh opus agent",
+ "round": 1,
+ "pass": true,
+ "score": {
+  "numbers": 0,
+  "mismatches": 0
+ },
+ "reasons": [
+  "earlier fault fixed: the cover is the TO GOOGLE ADS board (LEADS MOVE, SPEND STAYS, CLICKS STAY), true to the page",
+  "note: 'lead reports' left in the cues.md title and a scene.js comment (never drawn)",
+  "note: a header like MOVING TO GOOGLE ADS? would read cleaner"
+ ],
+ "sources_checked": [
+  "https://support.google.com/google-ads/answer/17213585: every on-screen and spoken line confirmed Nov 7, 2026"
+ ],
+ "earlier": {
+  "gate": "facts",
+  "round": 0,
+  "reviewer": "fresh opus agent",
+  "pass": false,
+  "score": {
+   "numbers": 0,
+   "mismatches": 0
+  },
+  "reasons": [
+   "04_scene/scene.js hook cover: 'Your old lead reports: / not coming with you.' contradicts the source (lead history moves; performance reports stay). Fix: 'old ad reports', and brief.md and script.md titles too."
+  ]
+ }
+}

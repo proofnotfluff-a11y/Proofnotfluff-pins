@@ -1,0 +1,51 @@
+{
+ "gate": "design",
+ "reviewer": "fresh opus agent",
+ "round": 1,
+ "pass": true,
+ "bar": "average 4.61, no score under 4 (round 1 after one FAIL)",
+ "score": {
+  "first": 5,
+  "hierarchy": 5,
+  "type": 5,
+  "color": 4,
+  "spacing": 4,
+  "polish": 5,
+  "trust": 5,
+  "average": 4.71
+ },
+ "reasons": [
+  "faults 1, 2, 3, 4, 6, 8 fixed",
+  "fault 5 not fixed (spacing 4): inventory lower third empty",
+  "fault 7 not fixed (color 4): calendar Sunday numbers orange on cream, no day marked",
+  "note: hold the cover about 1.5 s",
+  "note: the nomax to button wipe passes 2 near-black frames",
+  "note: the help card is mostly empty 1.0 to 2.0 s while it types"
+ ],
+ "earlier": {
+  "gate": "design",
+  "round": 0,
+  "reviewer": "fresh opus agent",
+  "pass": false,
+  "score": {
+   "first": 4,
+   "hierarchy": 4,
+   "type": 5,
+   "color": 4,
+   "spacing": 4,
+   "polish": 4,
+   "trust": 5,
+   "average": 4.29
+  },
+  "reasons": [
+   "4.45 to 5.6 s flaps board never readable before the wipe",
+   "19.05 s plain cut calendar to the Manual bidding card (M4): give it its own room move, mosaic",
+   "14.0 s fade4 goes fully black",
+   "send card: a dark block cuts the top right of the blue header",
+   "inventory: bottom 40% empty, 6 of 8 slots blank",
+   "host about 270 px tall; hostScale about 0.75 in hook and send",
+   "calendar Sunday numbers orange on cream about 3.3:1; no day marked",
+   "cover and NO MAX card repeat the parent's compositions; open on a new composition"
+  ]
+ }
+}

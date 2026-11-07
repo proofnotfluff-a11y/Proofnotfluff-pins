@@ -1,4 +1,4 @@
-# Script: Screenshot your old lead reports before the move (short of 2026-11-18-lsa-max-bid; r1, Nov 7; send card before half; last line after facts r0's clarity note, no 'your' next to the end card)
+# Script: Screenshot your old ad reports before the move (short of 2026-11-18-lsa-max-bid; r1, Nov 7; send card before half; last line after facts r0's clarity note, no 'your' next to the end card)
 
 Google's help page says your old Local Services Ads reports won't come with you to Google Ads.
 

@@ -43,7 +43,7 @@ const wordT = (k, id, re, dflt = 0) => {
   const w = WS().find((x) => x.start >= t0 - 0.05 && re.test(x.w));
   return w ? w.start : t0 + dflt;
 };
-const host = (k, pose) => ({hostPose: pose || (k.talking() ? 'talk' : 'stand'), hostScale: 0.55, hostX: 150});
+const host = (k, pose, sc = 0.55) => ({hostPose: pose || (k.talking() ? 'talk' : 'stand'), hostScale: sc, hostX: 150});
 const plate = (d, x, y, w, h) => d.win(x, y, w, h, {base: NIGHT, hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
 /* the two-line title plate at the top of the band (frame y 252 to 444) */
 const topPlate = (k, d, a, b, t0, o = {}) => {
@@ -110,11 +110,11 @@ const boxRow = (k, d, x, y, o = {}, s = 1) => {
 const helpCard = (k, d, lines, t0, o = {}) => {
   const {P, win} = d, up = d.ease(t0, 6, 30);
   win(14, 84 + up, 332, o.h || 150, {base: CREAM, hi: '#FFFFFF', lo: SAND, rule: false});
-  P(14, 84 + up, 332, 20, '#3B82C4'); k.text('GOOGLE ADS HELP', 72, 258 + up * 3, {size: 39, color: CREAM});
+  P(14, 84 + up, 332, 20, '#3B82C4'); k.text('GOOGLE ADS SUPPORT', 72, 258 + up * 3, {size: 39, color: CREAM});
   if (up) return;
   let n = Math.max(0, Math.floor((k.T - t0 - 0.15) * 90));
   lines.forEach((s, i) => { const m = Math.min(s.length, n); n -= m; if (m) k.text(s.slice(0, m), 72, 336 + i * 64, {size: 52, color: INK}); });
-  k.text('Source: Ads Help, read Nov 7, 2026', 72, (84 + (o.h || 150) - 18) * 3, {size: 36, color: '#4A4E5A'});
+  k.text('Source: support.google.com, read Nov 7, 2026', 72, (84 + (o.h || 150) - 18) * 3, {size: 36, color: '#4A4E5A'});
 };
 /* our own pixel camera flash: white for 2 frames at t, then a frame */
 const flash = (k, d, t) => { const f = d.fr(t); if (f >= 0 && f < 2) d.P(0, 0, 360, 417, '#FFFFFF'); };
@@ -125,36 +125,26 @@ window.SCENE = {
   host_name: 'Snow',
   hud: 'SAVE YOUR NUMBERS',
   sendLine: 'Send this to whoever runs your Google ads.',
-  transitions: {send: 'levelselect', catch: 'fade4', button: 'gameover'},
+  transitions: {send: 'levelselect', catch: 'dissolve', nomax: 'mosaic', button: 'gameover'},   /* r1: no fade4 black frame (design r0) */
   trauma: {},
   sections: {
     /* ---- hook (receipt): the cover is the plate and the help card already up; on "reports" the line types on; on     */
     /* "won't" STAYS BEHIND stamps. The host steps in at 0.6 s.                                                           */
     hook: (k, T) => {
-      const tLine = clamp(wordT(k, 'hook', /^help/i, 0.4) - 0.3, 0.15, 0.7), tF = k.S('hook.flaps'), tStamp = Math.min(2.6, wordT(k, 'hook', /^reports/i, 1.6) - 0.1);
-      if (T >= tF) {
-        /* the departures board: what goes to Google Ads and what stays (the page: lead history moves; impressions, */
-        /* clicks and weekly spend don't)                                                                            */
-        k.sets.flaps({title: 'TO GOOGLE ADS', cols: 12, rows: [{label: 'LEADS', value: 'MOVE', at: tF + 0.05}, {label: 'SPEND', value: 'STAYS', at: tF + 0.35, hi: true}, {label: 'CLICKS', value: 'STAY', at: tF + 0.65, hi: true}]});
-        return host(k, 'point');
+      /* the cover (round 1, design and facts r0): the departures board, settled on frame 0 with the host in frame: what */
+      /* goes to Google Ads and what stays (the page: lead history moves; impressions, clicks and weekly spend don't).  */
+      const tLine = 0.9, tStamp = Math.min(2.6, wordT(k, 'hook', /^reports/i, 1.6) - 0.1);
+      if (T < tLine) {
+        k.sets.flaps({title: 'TO GOOGLE ADS', cols: 12, rows: [{label: 'LEADS', value: 'MOVE', at: -1}, {label: 'SPEND', value: 'STAYS', at: -1, hi: true}, {label: 'CLICKS', value: 'STAY', at: -1, hi: true}]});
+        return host(k, 'point', 0.75);
       }
-      const d = px(k), {P, dith} = d;
-      const red = T >= tStamp;   /* the receipt lands: the band turns alarm red (lint hook: the second picture change by 3 s) */
+      const d = px(k), {P, dith} = d, red = T >= tStamp;   /* the receipt lands: the band turns alarm red */
       P(0, 0, 360, 417, red ? '#5A1F22' : '#253048'); { const sc = Math.floor(d.F / 2) % 8; for (let y = -8; y < 417; y += 8) dith(0, y + sc, 360, 2, red ? '#3E1518' : '#1F2A40', 0); }
       P(0, 417, 360, 223, NIGHT);
-      if (T < tLine) {
-        /* the cover: the plate, our report card, a big pixel arrow toward a closed door */
-        topPlate(k, d, 'Your old lead reports:', 'not coming with you.', -1);
-        d.win(40, 170, 120, 110, {base: CREAM, hi: '#FFFFFF', lo: SAND, rule: false});
-        for (let r = 0; r < 5; r++) P(54, 190 + r * 14, 92 - (r % 2) * 24, 4, GREY);
-        P(200, 214, 50, 12, GOLD); for (let i = 0; i < 12; i++) P(250 + i, 208 + i, 2, 24 - 2 * i, GOLD);
-        P(286, 160, 50, 124, '#4A2E1B'); P(290, 164, 42, 116, '#8C5A33'); d.disc(324, 222, 3, GOLD);
-        return {host: false, speech: false};
-      }
       helpCard(k, d, ['"Your Local Services Ads', 'performance reports will', 'not transition to', 'Google Ads."'], tLine, {h: 176});
       if (T >= tStamp + 0.6) loopSweep(k, 72, 528, k.measure('not transition to', {size: 52}), tStamp + 0.6, 0.8, 8);
       if (T >= tStamp) stampBox(k, 'STAYS BEHIND', 600, 830, tStamp, {color: RED, freeze: 4});
-      return host(k, T >= tStamp ? 'point' : null);
+      return host(k, T >= tStamp ? 'point' : null, 0.75);
     },
 
     /* ---- send: the save file, SLOT 1: YOUR NUMBERS; step 1 lights on "screenshot", step 2 on "max". After that the card */
@@ -164,34 +154,40 @@ window.SCENE = {
       const d = px(k), {P, dith, win} = d;
       P(0, 0, 360, 417, '#3D2E45'); for (let y = 0; y < 417; y += 4) dith(0, y, 360, 1, '#2B2033', (y / 4) % 2); P(0, 417, 360, 223, NIGHT);
       const up = d.ease(t0 + 0.02, 5, 160);
-      d.clip(0, 0, 360, 340, () => { win(14, 84 + up, 332, 166, {base: '#253048', hi: '#3B82C4', lo: INK, rule: false}); P(14, 84 + up, 332, 20, '#3B82C4'); P(316, 84 + up, 30, 10, '#120D14'); });
-      if (up !== 0) return host(k);
-      k.text('SLOT 1: YOUR NUMBERS', 72, 258, {size: 48, color: CREAM});
+      d.clip(0, 0, 360, 340, () => { win(14, 84 + up, 332, 166, {base: '#253048', hi: '#3B82C4', lo: INK, rule: false}); P(14, 84 + up, 332, 20, '#3B82C4'); });
+      if (up !== 0) return host(k, null, 0.75);
+      k.text('FOR WHOEVER RUNS THE ADS', 72, 260, {size: 39, color: CREAM});   /* the send gate r0: the screenshot says who it is for */
       [['1. Screenshot every', 'report you have', tShot], ['2. Write your max', 'per lead beside them', tMax]].forEach(([a, b, ti], i) => {
         const lit = T >= ti - 0.3, y = 330 + i * 196;
         k.slam(a, 72, y, Math.min(ti - 0.3, t0 + 0.2 + i * 0.1), {size: 66, color: lit ? GOLD : SAND, from: 0.3});
         k.slam(b, 72, y + 76, Math.min(ti - 0.3, t0 + 0.25 + i * 0.1), {size: 66, color: lit ? CREAM : SAND, from: 0.3});
         if (lit && T < ti + 0.6) k.sweep(72, y + 150, k.measure(b, {size: 66}), 6, ti - 0.25, {color: 'accent'}); });
-      return host(k, 'point');
+      return host(k, 'point', 0.75);
     },
 
     /* ---- catch: our download screen, the button greyed, SOON blinking (the page's word); then on "after" the help line */
     /* on the max, typed on, NO MAX stamps on "no".                                                                        */
     catch: (k, T) => {
-      const t0 = k.S('catch'), tN = k.S('catch.nomax'), tNo = wordT(k, 'catch.nomax', /^no$/i, 1.6) - 0.1;
-      const d = px(k), {P, dith, win} = d;
+      const t0 = k.S('catch');
+      /* the calendar: the gold week frame looks row to row for the download date and finds none: SOON */
+      const c = k.sets.calendar({month: 'DOWNLOAD DAY', days: 30, start: 0, fills: [],
+        weeks: [0, 1, 2, 3, 4].map((r) => ({row: r, at: t0 + 0.1 + r * 0.7}))});
+      const a = c.area || {x: 300, y: 900, w: 600, h: 200}, tSoon = wordT(k, 'catch', /^soon/i, 3.6) - 0.3;
+      if (T >= tSoon) stampBox(k, 'SOON', a.x + a.w / 2, a.y + 6, tSoon, {color: GOLD, size: 66, freeze: 4});   /* the page's own word, over the month with no date */
+      k.text('Source: Ads Help, read Nov 7, 2026', a.x + a.w / 2, a.y + 120, {size: 36, color: SAND, align: 'center'});
+      return host(k);
+    },
+
+    /* ---- nomax (its own room since round 1, design r0: a mosaic into the real line): Google's help line on the max */
+    /* typed on; NO MAX stamps on "no".                                                                              */
+    nomax: (k, T) => {
+      const tN = k.S('nomax'), tNo = wordT(k, 'nomax', /^no$/i, 1.3) - 0.1;
+      const d = px(k), {P, dith} = d;
       P(0, 0, 360, 417, '#1F2A40'); for (let y = 0; y < 417; y += 4) dith(0, y, 360, 1, '#253048', (y / 4) % 2); P(0, 417, 360, 223, NIGHT);
-      if (T < tN) {
-        /* the calendar: the gold week frame looks row to row for the download date and finds none: SOON */
-        const c = k.sets.calendar({month: 'DOWNLOAD DAY', days: 30, start: 0, fills: [],
-          weeks: [0, 1, 2, 3, 4].map((r) => ({row: r, at: t0 + 0.1 + r * 0.7}))});
-        const on = Math.floor((T - t0) * 2) % 2 === 0, a = c.area || {x: 300, y: 900, w: 600, h: 200};
-        k.text('SOON', a.x + a.w / 2, a.y + 10, {size: 66, color: on ? GOLD : '#7A6A3A', align: 'center', drop: INK});
-        k.text('Source: Ads Help, read Nov 7, 2026', a.x + a.w / 2, a.y + 96, {size: 36, color: SAND, align: 'center'});
-        return host(k);
-      }
       helpCard(k, d, ['"Manual bidding (such as', 'setting a maximum cost-per-', 'lead) is no longer', 'supported in Google Ads."'], tN - 0.3, {h: 176});
-      if (T >= tNo) stampBox(k, 'NO MAX', 640, 830, tNo, {color: RED, freeze: 5});
+      /* r1: the NO MAX stamp left (it sat on the bar's label); the bar draining to empty on "no" carries it */
+      /* the max you used to set, as a bar that drains to nothing after the move (our picture, no number) */
+      k.sets.hud({bar: {x: 112, y: 300, w: 216, label: 'MAX PER LEAD', from: 100, to: 0, at: tN + 0.2, dur: Math.max(1.0, tNo - tN), max: 100, c: GOLD}});
       return host(k, T >= tNo ? 'shrug' : null);
     },
 

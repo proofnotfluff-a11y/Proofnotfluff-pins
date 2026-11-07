@@ -1,4 +1,4 @@
-# Brief: Screenshot your old lead reports before the move (short of 2026-11-18-lsa-max-bid)
+# Brief: Screenshot your old ad reports before the move (short of 2026-11-18-lsa-max-bid)
 
 Made Nov 7, 2026 in the studio chat run (Todd's 9:27 am prompt; record-and-make step 3, order 2: a short for the newest
 queued story lesson with none). ask-chatgpt was left to the 9:33 am scheduled run working on it.

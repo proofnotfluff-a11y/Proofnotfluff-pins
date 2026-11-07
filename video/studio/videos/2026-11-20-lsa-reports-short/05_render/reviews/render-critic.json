@@ -1,0 +1,26 @@
+{
+ "gate": "render-critic",
+ "reviewer": "fresh opus agent",
+ "round": 1,
+ "pass": true,
+ "score": {
+  "faults": 0
+ },
+ "faults": [],
+ "reasons": [
+  "earlier fault fixed: the board is settled from frame 0",
+  "note: 22.5 to 22.8 s the block wipe is mostly black about 0.3 s (under the 0.5 s threshold)"
+ ],
+ "earlier": {
+  "gate": "render-critic",
+  "round": 0,
+  "reviewer": "fresh opus agent",
+  "pass": false,
+  "score": {
+   "faults": 1
+  },
+  "reasons": [
+   "cutoff 5.6 s hook.flaps: the TO GOOGLE ADS board never settles before the wipe; CLICKS STAY never on screen; stray digits in the scramble. Fix: start the flaps earlier or hold until all rows settle about 1 s."
+  ]
+ }
+}

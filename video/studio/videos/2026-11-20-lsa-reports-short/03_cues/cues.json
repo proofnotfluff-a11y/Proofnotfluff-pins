@@ -1,12 +1,12 @@
 {
  "schema": "pnf.studio.cues.v1",
- "source": "estimate",
+ "source": "whisper medium.en int8, re-spelled from script.md",
  "music": {
   "id": "rooms",
   "level": 0.16,
   "tune": "chase"
  },
- "duration": 32.844,
+ "duration": 29.714,
  "cues": [
   {
    "id": "hook",
@@ -15,22 +15,10 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "Cover, frame one, no host: plate \"Your old lead reports:\" / \"not coming with you.\"; our report card, an arrow, a closed door. Just before \"help\" Google's help card types the reports line.",
+   "text": "Cover, frame one (round 1): the departures board settled, TO GOOGLE ADS: LEADS MOVE, SPEND STAYS, CLICKS STAY, the host in frame pointing. At 0.9 s Google's help card types the reports line; STAYS BEHIND stamps and the band turns red on \"reports\".",
    "t": 0.0,
    "word": 0,
-   "end": 6.716
-  },
-  {
-   "id": "hook.flaps",
-   "level": 1,
-   "quote": "won't come with you",
-   "sfx": "blip",
-   "shift": 0.0,
-   "pin": null,
-   "text": "The departures board (flaps), TO GOOGLE ADS: LEADS MOVE, SPEND STAYS, CLICKS STAY (the page: lead history moves, past impressions, clicks and spend don't).",
-   "t": 3.85,
-   "word": 10,
-   "end": 6.716
+   "end": 5.806
   },
   {
    "id": "send",
@@ -39,11 +27,11 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "The save file (levelselect): SLOT 1: YOUR NUMBERS; step 1 lights on \"screenshot\", step 2 on \"max\"; then the card holds still while the voice names who to send it to. The send card.",
+   "text": "The save file (levelselect): FOR WHOEVER RUNS YOUR GOOGLE ADS; step 1 lights on \"screenshot\", step 2 on \"max\"; then the card holds still while the voice names who to send it to. The send card.",
    "send": true,
-   "t": 6.716,
+   "t": 5.806,
    "word": 17,
-   "end": 16.124
+   "end": 14.25
   },
   {
    "id": "catch",
@@ -53,21 +41,21 @@
    "shift": 0.0,
    "pin": null,
    "text": "The calendar (EXAMPLE): DOWNLOAD DAY, the gold week frame slides row to row and finds no date; SOON; tag Ads Help, read Nov 7, 2026.",
-   "t": 16.124,
+   "t": 14.25,
    "word": 41,
-   "end": 25.17
+   "end": 19.09
   },
   {
-   "id": "catch.nomax",
-   "level": 1,
+   "id": "nomax",
+   "level": 0,
    "quote": "And after the move",
    "sfx": "stamp",
    "shift": 0.0,
    "pin": null,
    "text": "Google's help line on the max typed on; NO MAX stamps on \"no\".",
-   "t": 21.018,
+   "t": 19.09,
    "word": 54,
-   "end": 25.17
+   "end": 22.694
   },
   {
    "id": "button",
@@ -77,9 +65,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The tool belt (inventory), YOUR NUMBERS: SCREENSHOTS picked, then YOUR MAX. Then the end card with the send line.",
-   "t": 25.17,
+   "t": 22.694,
    "word": 65,
-   "end": 32.844
+   "end": 29.714
   }
  ]
 }

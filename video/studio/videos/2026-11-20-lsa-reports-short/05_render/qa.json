@@ -1,0 +1,62 @@
+{
+ "schema": "pnf.studio.qa.v1",
+ "slug": "2026-11-20-lsa-reports-short",
+ "mp4Sha256": "f74e6e7489b696b3f47867e403d0702f6f9f3153bcf67cf0484fb7acc174901a",
+ "checks": [
+  {
+   "name": "length",
+   "value": 29.7,
+   "pass": true,
+   "detail": "29.70 s (18.0 to 35.0, short lesson, end card included)"
+  },
+  {
+   "name": "loudness",
+   "value": {
+    "lufs": -14.2,
+    "truePeak": -3.3
+   },
+   "pass": true,
+   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -3.3 dBTP (at most -1.5)"
+  },
+  {
+   "name": "black",
+   "value": [],
+   "pass": true,
+   "detail": "0 black stretch(es) of 0.5 s or more"
+  },
+  {
+   "name": "frozen",
+   "value": [
+    [
+     27.6,
+     29.0
+    ]
+   ],
+   "pass": true,
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 26.71 s"
+  },
+  {
+   "name": "flat",
+   "value": [],
+   "pass": true,
+   "detail": "0 flat stretch(es) of 1.2 s or more under 0.1 before the end card at 26.71 s"
+  },
+  {
+   "name": "file",
+   "value": {
+    "sha256": "f74e6e7489b696b3f47867e403d0702f6f9f3153bcf67cf0484fb7acc174901a",
+    "bytes": 3328255
+   },
+   "pass": true,
+   "detail": "H.264 1080x1920 30 fps, AAC, 3.3 MB, decodes clean"
+  },
+  {
+   "name": "voice",
+   "value": "whisper medium.en int8, re-spelled from script.md",
+   "pass": true,
+   "detail": "whisper medium.en int8, re-spelled from script.md, 0 flag(s)"
+  }
+ ],
+ "pass": true,
+ "at": "2026-11-07T12:14:24-05:00"
+}

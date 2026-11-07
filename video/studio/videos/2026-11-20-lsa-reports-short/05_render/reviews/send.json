@@ -1,0 +1,39 @@
+{
+ "gate": "send",
+ "reviewer": "fresh opus agent",
+ "round": 0,
+ "pass": true,
+ "score": {
+  "person": "whoever runs the ads",
+  "tie": "the freelancer who runs our plumbing shop's Google ads",
+  "thing": "a two-step checklist: \"FOR WHOEVER RUNS THE ADS / 1. Screenshot every report you have / 2. Write your max per lead beside them\"",
+  "held_at": "6.0s to 13.5s",
+  "line": "If someone else runs your Google ads, send them this.",
+  "gain": "helps",
+  "feeling": "surprise",
+  "thanks": "yes",
+  "send_line_fits": "yes"
+ },
+ "reasons": [
+  "rerun at round 0: round 1 changed the card header",
+  "note: put 'this week' on card line 1 and a footer saying why (old LSA reports won't move), so a forwarded screenshot carries the urgency and the reason"
+ ],
+ "earlier": {
+  "gate": "send",
+  "round": 0,
+  "reviewer": "fresh opus agent",
+  "pass": true,
+  "score": {
+   "person": "whoever runs your Google ads",
+   "thing": "the two-step save checklist: SLOT 1: YOUR NUMBERS / 1. Screenshot every report you have / 2. Write your max per lead beside them",
+   "held_at": "6.0s to 13.5s",
+   "gain": "helps",
+   "feeling": "surprise",
+   "thanks": "yes",
+   "send_line_fits": "yes"
+  },
+  "reasons": [
+   "minor: card header names no one, so a screenshot loses the recipient; applied r1: FOR WHOEVER RUNS THE ADS"
+  ]
+ }
+}

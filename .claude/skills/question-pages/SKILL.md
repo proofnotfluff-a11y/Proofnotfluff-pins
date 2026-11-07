@@ -1,4 +1,4 @@
-# question-pages (daily 7:10 am; Todd kept it daily, Nov 6)
+# question-pages (daily 7:10 am; Todd, Nov 6)
 
 One job: draft one question page from seo/BACKLOG.md, gate it, and publish it if every gate passes. A minor change under coo/CONSTITUTION.md section 2 (Todd, Oct 22): no go needed when every gate passes; anything a gate flags goes to Todd instead. You never touch Gumroad, Kit, prices, the home, shop or lead page layouts, or message anyone but Todd.
 

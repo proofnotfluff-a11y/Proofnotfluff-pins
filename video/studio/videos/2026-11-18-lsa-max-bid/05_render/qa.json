@@ -1,22 +1,22 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-18-lsa-max-bid",
- "mp4Sha256": "fca3d870f234be0e21c0595bf35f5e73e00a11d164718b128e45d82870bcd67b",
+ "mp4Sha256": "c8857c77760eb853530aa6d01758b762041b8c7bd553911411ea220c798bbe84",
  "checks": [
   {
    "name": "length",
-   "value": 80.6,
+   "value": 69.267,
    "pass": true,
-   "detail": "80.60 s (40.0 to 90.0, story lesson, end card included)"
+   "detail": "69.27 s (40.0 to 90.0, story lesson, end card included)"
   },
   {
    "name": "loudness",
    "value": {
     "lufs": -14.2,
-    "truePeak": -3.1
+    "truePeak": -3.2
    },
    "pass": true,
-   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -3.1 dBTP (at most -1.5)"
+   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -3.2 dBTP (at most -1.5)"
   },
   {
    "name": "black",
@@ -28,27 +28,27 @@
    "name": "frozen",
    "value": [
     [
-     78.5667,
-     79.8
+     67.2333,
+     68.6333
     ]
    ],
    "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 77.61 s"
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 66.26 s"
   },
   {
    "name": "flat",
    "value": [],
    "pass": true,
-   "detail": "0 flat stretch(es) of 1.2 s or more under 0.1 before the end card at 77.61 s"
+   "detail": "0 flat stretch(es) of 1.2 s or more under 0.1 before the end card at 66.26 s"
   },
   {
    "name": "file",
    "value": {
-    "sha256": "fca3d870f234be0e21c0595bf35f5e73e00a11d164718b128e45d82870bcd67b",
-    "bytes": 6815901
+    "sha256": "c8857c77760eb853530aa6d01758b762041b8c7bd553911411ea220c798bbe84",
+    "bytes": 6142364
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 6.8 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 6.1 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -58,5 +58,5 @@
   }
  ],
  "pass": true,
- "at": "2026-11-06T14:04:58-05:00"
+ "at": "2026-11-06T23:51:49-05:00"
 }

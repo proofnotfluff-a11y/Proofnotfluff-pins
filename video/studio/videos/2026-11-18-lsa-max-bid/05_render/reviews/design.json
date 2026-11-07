@@ -1,8 +1,9 @@
 {
  "gate": "design",
- "round": 2,
- "bar": "4.50 after two FAILs",
- "reviewer": "fresh opus agent",
+ "round": 3,
+ "bar": "4.50",
+ "on": "r28 render, build a6a4d0358e36",
+ "reviewer": "fresh opus agent, fix-check round (round 2 scores carried for unchanged frames)",
  "pass": true,
  "score": {
   "first": 5,
@@ -15,58 +16,83 @@
   "average": 4.57
  },
  "reasons": [
-  "notes: NO STOREFRONT to 36 on two lines; slot 2 quote to 39 on two lines; dim placeholder icons in the wave tiles; the dissolve at 26 s closes to black; the notch on the SLOT 1 card reads as a glitch; COMING SOON blinks to low contrast; host small"
+  "18.0-22.5 s wave tile labels: raise to 36 px or more",
+  "3.0-4.5 s SPENT, BY WEEK: 30 to 36 px",
+  "51.5-57.5 s SLOT 1 header notch: fill with header blue",
+  "39.5-46.5 s SOON dim phase: keep at accent 60% or more",
+  "3.0-4.5 s report card: bars to about 70% of card height",
+  "51.5-57.5 s save card: trim the empty lower 80 px"
  ],
  "earlier": {
   "gate": "design",
-  "round": 1,
+  "round": 2,
+  "bar": "4.50 after two FAILs",
   "reviewer": "fresh opus agent",
-  "pass": false,
+  "pass": true,
   "score": {
-   "first": 4,
-   "hierarchy": 4,
+   "first": 5,
+   "hierarchy": 5,
    "type": 4,
    "color": 5,
    "spacing": 4,
    "polish": 4,
    "trust": 5,
-   "average": 4.29
+   "average": 4.57
   },
   "reasons": [
-   "empty hook field for 2 s",
-   "'Leads move. Reports stay behind.' small and clipped",
-   "wave tiles half empty",
-   "host small",
-   "calendar caption box blank on the cut",
-   "SAVE FILE card echoed after-hours-robot's ITEM GET",
-   "no kick on NO MAX; black frame at 26 s"
+   "notes: NO STOREFRONT to 36 on two lines; slot 2 quote to 39 on two lines; dim placeholder icons in the wave tiles; the dissolve at 26 s closes to black; the notch on the SLOT 1 card reads as a glitch; COMING SOON blinks to low contrast; host small"
   ],
-  "fixed": "typing starts on 'open', gold rim and burst on 'type'; 'Reports stay behind.' at 56 px in the band, LEADS: MOVED in slot 2; icons land in the wave tiles; calendar plate lands with its text; the save card is now SLOT 1: YOUR NUMBERS in the slot look. Host size and the NO MAX kick not changed.",
   "earlier": {
    "gate": "design",
-   "round": 0,
+   "round": 1,
    "reviewer": "fresh opus agent",
    "pass": false,
    "score": {
-    "first": 3,
+    "first": 4,
     "hierarchy": 4,
     "type": 4,
-    "color": 4,
+    "color": 5,
     "spacing": 4,
     "polish": 4,
-    "trust": 4,
-    "average": 3.86
+    "trust": 5,
+    "average": 4.29
    },
    "reasons": [
-    "freshness: hook monitor, sky street with van, two-colour split and the SAVE FILE card echoed after-hours-robot",
-    "labels under 36 px under the calendar, on the stat screen and 'Need them now?'",
-    "SAVE FILE card lacked step 3; dim grey unlit lines",
-    "two black-out transitions",
-    "camera card and help card blank too long",
-    "host small, no reaction at the turns",
-    "GOOGLE ADS half looked unfinished"
+    "empty hook field for 2 s",
+    "'Leads move. Reports stay behind.' small and clipped",
+    "wave tiles half empty",
+    "host small",
+    "calendar caption box blank on the cut",
+    "SAVE FILE card echoed after-hours-robot's ITEM GET",
+    "no kick on NO MAX; black frame at 26 s"
    ],
-   "fixed": "hook: arcade ENTER YOUR MAX cover, the field breaks into pixels on 'moves'; move: dispatch board route from the LOCAL SERVICES ADS pin to GOOGLE ADS; rule.reports: COPY SAVE DATA, slot 2 NO DATA glitch, 'Leads move. Reports stay behind.'; all three steps on the save card in sand, not grey; calendar and stat lines at 48; one black-out; quote card types from the cue; help card types at 90 a second."
+   "fixed": "typing starts on 'open', gold rim and burst on 'type'; 'Reports stay behind.' at 56 px in the band, LEADS: MOVED in slot 2; icons land in the wave tiles; calendar plate lands with its text; the save card is now SLOT 1: YOUR NUMBERS in the slot look. Host size and the NO MAX kick not changed.",
+   "earlier": {
+    "gate": "design",
+    "round": 0,
+    "reviewer": "fresh opus agent",
+    "pass": false,
+    "score": {
+     "first": 3,
+     "hierarchy": 4,
+     "type": 4,
+     "color": 4,
+     "spacing": 4,
+     "polish": 4,
+     "trust": 4,
+     "average": 3.86
+    },
+    "reasons": [
+     "freshness: hook monitor, sky street with van, two-colour split and the SAVE FILE card echoed after-hours-robot",
+     "labels under 36 px under the calendar, on the stat screen and 'Need them now?'",
+     "SAVE FILE card lacked step 3; dim grey unlit lines",
+     "two black-out transitions",
+     "camera card and help card blank too long",
+     "host small, no reaction at the turns",
+     "GOOGLE ADS half looked unfinished"
+    ],
+    "fixed": "hook: arcade ENTER YOUR MAX cover, the field breaks into pixels on 'moves'; move: dispatch board route from the LOCAL SERVICES ADS pin to GOOGLE ADS; rule.reports: COPY SAVE DATA, slot 2 NO DATA glitch, 'Leads move. Reports stay behind.'; all three steps on the save card in sand, not grey; calendar and stat lines at 48; one black-out; quote card types from the cue; help card types at 90 a second."
+   }
   }
  }
 }

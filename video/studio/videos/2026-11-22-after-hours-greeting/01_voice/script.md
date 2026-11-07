@@ -1,4 +1,4 @@
-# Script: The message that plays after five (proven, r3, Nov 7; facts r1 fixes: no promise, 'if she texts'; facts r0 fixes: weekends named, ServiceTitan customers, 'lowest month'; our own words for research/PROVEN.md row 7)
+# Script: The message that plays after five (proven, r3, Nov 7; voice r0 take 5 ran 230 wpm: a landing beat, take 5 re-rolled; facts r1 fixes: no promise, 'if she texts'; facts r0 fixes: weekends named, ServiceTitan customers, 'lowest month'; our own words for research/PROVEN.md row 7)
 
 [conversational] It's ten to seven on a weeknight. Her furnace just died, so she calls your shop. Four rings, then your voicemail says you're closed. That's all it says.
 
@@ -8,4 +8,4 @@ So here's a job for your office manager. Change the after-hours message to the o
 
 A message that only says closed gives her no next step, so she might try the next shop on her list. This one does, and if she texts, you have the job details before you even call.
 
-So the next time your phone rings at ten to seven, she hears what to do next.
+So the next time your phone rings at ten to seven... she hears what to do next.

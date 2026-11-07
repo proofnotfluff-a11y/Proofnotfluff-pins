@@ -3,7 +3,7 @@
 Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 192 words, 72.6 s of voice.
 
 ## Flags
-- 40.1 s added '–': not in the script
+- 40.1 s added 'en dash' (a pause Whisper wrote as a dash): not in the script
 
 ## Pace per take (target 160 to 195 wpm)
 ```

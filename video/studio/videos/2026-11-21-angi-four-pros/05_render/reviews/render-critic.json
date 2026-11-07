@@ -1,0 +1,1 @@
+{"gate": "render-critic", "round": 2, "pass": true, "score": {"faults": 0}, "faults": [], "reasons": ["Earlier faults gone; hook, numbers, layout, audio end, text size and flashes PASS."]}

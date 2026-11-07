@@ -1,0 +1,85 @@
+{
+ "schema": "pnf.studio.cues.v1",
+ "source": "whisper medium.en int8, re-spelled from script.md",
+ "music": {
+  "id": "rooms",
+  "level": 0.16,
+  "tune": "bounce"
+ },
+ "duration": 50.314,
+ "cues": [
+  {
+   "id": "hook",
+   "level": 0,
+   "quote": "Two in the afternoon, you're",
+   "sfx": "pop",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Cover, frame one: a roof under a blue sky, the plate CHARGED BEFORE / YOU EVEN LOOKED, tag ANGI LEADS FAQ. At 0.9 s a cut in close to the phone on the shingles: NEW ANGI LEAD buzzes. At 2.4 s back out wide: Snow on the roof, the phone buzzing beside him (EXAMPLE, 2:00 PM). On \"charged\" the sky turns alarm red and CHARGED stamps over the phone.",
+   "t": 0.0,
+   "word": 0,
+   "end": 8.836
+  },
+  {
+   "id": "receipt",
+   "level": 0,
+   "quote": "That's on Angi's own help",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Mosaic into Angi's own help lines, typed on, with the source tag. On \"four\" four vans pop in under the card, one by one.",
+   "t": 8.836,
+   "word": 30,
+   "end": 18.247
+  },
+  {
+   "id": "send",
+   "level": 0,
+   "quote": "So here's a card for",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The card (levelselect): FOR WHOEVER ANSWERS THE PHONES / NEW LEAD? CALL IT BACK FIRST / NO ANSWER? TEXT THIS: and the text in a bubble, EXAMPLE. It goes up whole, then holds still while the voice reads it. The send card.",
+   "send": true,
+   "t": 18.247,
+   "word": 58,
+   "end": 29.486
+  },
+  {
+   "id": "race",
+   "level": 0,
+   "quote": "Because you didn't buy a",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The dispatch board: four pins drop around one house and four routes draw toward it, a van at each head; UP TO 4 PROS, then ONE HOMEOWNER.",
+   "t": 29.486,
+   "word": 93,
+   "end": 35.926
+  },
+  {
+   "id": "fast",
+   "level": 0,
+   "quote": "The charge is already done",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The street: our van rolls; the sky reads HOW FAST / YOU CALL BACK; it brakes at the job sign on \"fast\".",
+   "t": 35.926,
+   "word": 114,
+   "end": 41.274
+  },
+  {
+   "id": "button",
+   "level": 0,
+   "quote": "So next time it buzzes",
+   "sfx": "chime",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The level-up: the bar fills, CARD READY stamps on \"ground\", the two lines of the card land as perks. Then the end card with the send line.",
+   "t": 41.274,
+   "word": 129,
+   "end": 50.314
+  }
+ ]
+}

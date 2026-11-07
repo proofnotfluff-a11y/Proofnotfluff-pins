@@ -1,0 +1,63 @@
+{
+ "schema": "pnf.studio.captions.v1",
+ "keywords": {
+  "primary": "Angi leads for contractors",
+  "secondary": [
+   "how to respond to leads",
+   "home service business"
+  ],
+  "trades": [
+   "roofing",
+   "plumbing",
+   "HVAC"
+  ]
+ },
+ "instagram": {
+  "caption": "Angi leads get charged before you even look, roofing, plumbing and HVAC business owners.\nAngi's help page says you're charged for each new lead as soon as it's sent, and it connects a customer with up to 4 service pros (Angi Leads FAQ, read Nov 7, 2026).\n\nThe card for whoever answers your phones:\n1. New lead? Call it back first.\n2. No answer? Text: \"Hi, it's [shop] about your [job]. Call or text me back here.\"\nSend this to whoever answers the phones.\nFree missed call cost calculator: link in bio.\n\n#homeservicebusiness #roofingbusiness #plumbingbusiness #angileads",
+  "settings": {
+   "aiLabel": false,
+   "shareToFacebook": false
+  }
+ },
+ "tiktok": {
+  "caption": "Paid for that Angi lead already? Roofing, plumbing and HVAC owners:\nAngi's help page says you're charged for each new lead as soon as it's sent, and a customer gets connected with up to 4 pros (Angi Leads FAQ, read Nov 7, 2026).\nCall it back first. No answer? Send one text with your shop and their job. Who answers your phones?\nSend this to whoever answers the phones.\nFree missed call cost calculator: link in bio.\n#homeservicebusiness #roofingbusiness #plumbingbusiness #angileads",
+  "settings": {
+   "aiGenerated": true,
+   "commercialDisclosure": false,
+   "suggestKeywords": [
+    "angi leads",
+    "how to respond to leads",
+    "home service business"
+   ]
+  }
+ },
+ "facebook": {
+  "caption": "Every Angi lead is charged the moment it's sent, roofing, plumbing and HVAC business owners.\nAngi's help page says you're charged for each new lead as soon as it's sent, and a customer is connected with up to 4 service pros (Angi Leads FAQ, read Nov 7, 2026).\nNew lead? Call it back first. No answer? Send one text with your shop name and their job.\nSend this to whoever answers the phones.\nFree missed call cost calculator: link in bio.\n#homeservicebusiness #angileads",
+  "settings": {
+   "aiLabel": false,
+   "audience": "Public"
+  }
+ },
+ "youtube": {
+  "title": "Angi Charges for the Lead Before You Call Back (Roofing, Plumbing, HVAC Business)",
+  "description": "Angi leads for contractors: you're charged before you call back.\nAngi's help page says you'll be charged for each new lead as soon as it's sent, and that Angi uses the project details to connect customers with up to 4 service professionals (\"Angi Leads: Frequently Asked Questions,\" Angi help center, read Nov 7, 2026).\n\nThe card for whoever answers your phones:\n1. New lead? Call it back first.\n2. No answer? Text: \"Hi, it's [shop] about your [job]. Call or text me back here.\"\n\nSend this to whoever answers the phones.\nNext lesson: another owner problem from the trade forums, told start to finish.\nFree missed call cost calculator for trade owners: https://proofnotfluff.com/missed-call-cost-calculator/\n#homeservicebusiness #contractorbusiness #angileads",
+  "tags": [
+   "angi leads",
+   "angi leads for contractors",
+   "how to respond to leads",
+   "roofing business owner",
+   "plumbing business tips",
+   "hvac business owner",
+   "home service business",
+   "contractor business tips",
+   "angie leads"
+  ],
+  "settings": {
+   "madeForKids": false,
+   "aiUse": false,
+   "category": "Education",
+   "language": "English",
+   "visibility": "Public"
+  }
+ }
+}

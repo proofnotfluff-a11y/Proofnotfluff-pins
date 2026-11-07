@@ -12,7 +12,10 @@ Mosaic into Angi's own help lines, typed on, with the source tag. On "four" four
 The card (levelselect): FOR WHOEVER ANSWERS THE PHONES / NEW LEAD? CALL IT BACK FIRST / NO ANSWER? TEXT THIS: and the text in a bubble, EXAMPLE. It goes up whole, then holds still while the voice reads it. The send card.
 
 ## race "Because you didn't buy a" [sfx: whoosh]
-The street: our van in the race, the sky reads UP TO 4 PROS / ONE HOMEOWNER; it brakes at the job sign on "fast".
+The dispatch board: four pins drop around one house and four routes draw toward it, a van at each head; UP TO 4 PROS, then ONE HOMEOWNER.
+
+## fast "The charge is already done" [sfx: whoosh]
+The street: our van rolls; the sky reads HOW FAST / YOU CALL BACK; it brakes at the job sign on "fast".
 
 ## button "So next time it buzzes" [sfx: chime]
-The roof again, the phone buzzing; down on the ground the desk with the card pinned up. Then the end card with the send line.
+The level-up: the bar fills, CARD READY stamps on "ground", the two lines of the card land as perks. Then the end card with the send line.

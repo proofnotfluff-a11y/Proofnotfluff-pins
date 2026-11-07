@@ -51,3 +51,4 @@ Phone cluster: rows 2 and 7. Row 2 is the strongest phone pattern.
 ## Made from this bank
 | Date | Lesson | Row | Lane check |
 |---|---|---|---|
+| 2026-11-07 | 2026-11-21-angi-four-pros (Angi charges each lead when sent; up to 4 pros) | 2 | copy PASS: 0 shared 6-word runs, 0% of 3-word runs |

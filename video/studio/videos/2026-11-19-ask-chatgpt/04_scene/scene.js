@@ -136,7 +136,7 @@ window.SCENE = {
   host_name: 'Snow',
   hud: 'ASK THE CHAT',
   sendLine: 'Send this to whoever runs your Google profile.',
-  transitions: {forum: 'door', stakes: 'dissolve', check: 'levelselect', why: 'iris', survey: 'door', small: 'dissolve', button: 'gameover'},
+  transitions: {forum: 'door', stakes: 'dissolve', check: 'levelselect', why: 'iris', small: 'door', button: 'gameover'},
   trauma: {stakes: 0.4},
   sections: {
     /* ---- hook: scene one (cover, no host): the kitchen at night, her phone lit; the question plate. On "quits" the    */
@@ -217,20 +217,6 @@ window.SCENE = {
       }
       tag(k, d, 'ACHR News column, Mar 18, 2026 (SearchLight data)', 290);
       return host(k, 'point');
-    },
-
-    /* ---- survey: AI TOOLS 37% beside YELP 38% grow on "Thirty-seven"; the sponsor on the tag.                          */
-    survey: (k, T) => {
-      const t0 = k.S('survey'), tB = wordT(k, 'survey', /^thirty/i, 4.0) - 0.2, a = k.data.numbers.ai37, y = k.data.numbers.yelp38, n = k.data.numbers.homeowners.shown;
-      const d = px(k), {P, dith} = d;
-      P(0, 0, 360, 417, '#245752'); for (let yy = 0; yy < 417; yy += 4) dith(0, yy, 360, 1, '#2F6F67', (yy / 4) % 2);
-      d.win(14, 84, 332, 196, {base: NIGHT, hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
-      k.text("WHERE THEY'D CHECK", 72, 270, {size: 39, color: GOLD}); k.text("A HEATING CO'S REVIEWS", 72, 320, {size: 39, color: GOLD});
-      [['AI TOOLS', a, GOLD], ['YELP', y, SKY]].forEach(([s, v, c], i) => { const g = T >= tB ? clamp((T - tB - i * 0.15) / 0.6) : 0, yy = 140 + i * 56, w = Math.round(200 * v.value / 40 * eo(g));
-        k.text(s, 72, yy * 3 + 6, {size: 44, color: CREAM}); P(30, yy + 22, 200, 18, '#253048'); if (w) P(30, yy + 22, w, 18, c);
-        if (g >= 1) k.text(v.shown, (30 + w + 8) * 3, (yy + 20) * 3, {size: 56, color: c}); });
-      plate(d, 14, 288, 332, 46); k.text('Survey: myCLEARopinion for BNP Media', 60, 878, {size: 30, color: SAND}); k.text(`(owns ACHR News), Apr to May 2026, ${n} homeowners`, 60, 924, {size: 30, color: SAND});
-      return host(k, T >= tB + 0.6 ? 'point' : null);
     },
 
     /* ---- small: a revenue bar, a sliver lit, ABOUT 1%; on "average" the ticket slams.                                      */

@@ -27,13 +27,9 @@ THE CHECK (the send moment, held to screenshot): a save-screen card, both steps 
 The column card: WHAT IT READS, three rows tick in on their words: YOUR NAME, YOUR WEBSITE, YOUR REVIEWS. Tag "ACHR News
 guest column, Mar 18, 2026 (SearchLight data)".
 
-## survey "That matters, because homeowners" [sfx: whoosh]
-The survey bars grow on "Thirty-seven": AI TOOLS 37%, YELP 38% beside it, close. Tag "Survey by myCLEARopinion for BNP Media,
-owner of ACHR News, Apr to May 2026, 782 homeowners, HVAC companies".
-
-## small "That marketing firm says" [sfx: blip]
+## small "The same firm says" [sfx: blip]
 A revenue bar: a sliver lights, ABOUT 1%; on "big" the ticket slams: $11,500 A TICKET (the firm's average). Same column tag.
 
-## button "Some homeowners are already" [sfx: whoosh]
+## button "Some homeowners already ask" [sfx: whoosh]
 The kitchen phone, the question still on it; THE CHECK card slides back in small; plate "Ask it" / "before they do."; Snow
 points at step 1. Then the end card with the send line.

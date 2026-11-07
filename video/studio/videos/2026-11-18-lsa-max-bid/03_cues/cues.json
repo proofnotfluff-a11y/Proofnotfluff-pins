@@ -6,7 +6,7 @@
   "level": 0.16,
   "tune": "quest"
  },
- "duration": 70.365,
+ "duration": 69.257,
  "cues": [
   {
    "id": "hook",
@@ -18,7 +18,7 @@
    "text": "Cover, frame one, no host: our own drawn ad screen on a desk monitor (EXAMPLE, never Google's UI): LEAD ADS, a row MAX PER LEAD with a box; the cursor blinks in it; on \"type\" the box fills and turns gold. Plate \"Your max per lead\" / \"Going away.\" Snow comes in.",
    "t": 0.0,
    "word": 0,
-   "end": 13.938
+   "end": 13.44
   },
   {
    "id": "hook.gone",
@@ -28,9 +28,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Scene two: the same monitor, a new screen; the row is there, the box is a dashed outline that crumbles away on \"gone\"; BOX GONE stamps.",
-   "t": 9.08,
+   "t": 9.12,
    "word": 29,
-   "end": 13.938
+   "end": 13.44
   },
   {
    "id": "move",
@@ -40,9 +40,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Our own dispatch board: a pin for LOCAL SERVICES ADS, a route drawn into GOOGLE ADS.",
-   "t": 13.938,
+   "t": 13.44,
    "word": 44,
-   "end": 24.229
+   "end": 22.838
   },
   {
    "id": "move.waves",
@@ -52,9 +52,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The wave strip: three tiles AUG 2026 FIRST WAVE (lit), LATE 2026 NO STOREFRONT, 2027 THE REST; a wave rolls along; on \"truck\" a van icon drops on LATE 2026, on \"late\" YOUR WAVE. Tag Google Ads Help, read Nov 6, 2026.",
-   "t": 18.338,
+   "t": 17.58,
    "word": 55,
-   "end": 24.229
+   "end": 22.838
   },
   {
    "id": "rule",
@@ -64,9 +64,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Google's help page card: the line types in: \"Manual bidding (such as setting a maximum cost-per-lead) is no longer supported in Google Ads.\" NO MAX stamps on \"won't\".",
-   "t": 24.229,
+   "t": 22.838,
    "word": 74,
-   "end": 40.588
+   "end": 39.197
   },
   {
    "id": "rule.reports",
@@ -76,9 +76,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The save-data copy: SLOT 1 LOCAL SERVICES ADS with the report papers, SLOT 2 GOOGLE ADS; the copy fails: NO DATA, LEADS: MOVED; the page line \"performance reports will not transition\"; on \"reports\" Reports stay behind.",
-   "t": 31.649,
+   "t": 30.258,
    "word": 97,
-   "end": 40.588
+   "end": 39.197
   },
   {
    "id": "download",
@@ -88,9 +88,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A download screen: DOWNLOAD greyed, a loading bar that never fills, SOON blinking (2 a second; the page's own word); tag \"Google Ads Help, read Nov 6, 2026\".",
-   "t": 40.588,
+   "t": 39.197,
    "word": 127,
-   "end": 52.219
+   "end": 51.168
   },
   {
    "id": "download.shot",
@@ -100,9 +100,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A camera flash; the quote card: \"Need them now?\" and \"take screenshots of them before migrating\".",
-   "t": 47.828,
+   "t": 46.617,
    "word": 150,
-   "end": 52.219
+   "end": 51.168
   },
   {
    "id": "setup",
@@ -112,9 +112,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The save screen (SAVE FILE): SLOT 1 YOUR NUMBERS, step 1 \"Screenshot every report you have\" lights, step 2 \"Write your max per lead beside them\".",
-   "t": 52.219,
+   "t": 51.168,
    "word": 162,
-   "end": 58.965
+   "end": 58.097
   },
   {
    "id": "button",
@@ -124,9 +124,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The monitor again, the box crumbled; plate \"Your old reports\" / \"stay behind.\"; on \"screenshot\" the save file slot fills: REPORTS: SCREENSHOTS, MAX PER LEAD: NOTED; SAVED on \"count\"; Before you move. Snow points. Then the end card with the send line.",
-   "t": 58.965,
+   "t": 58.097,
    "word": 181,
-   "end": 70.365
+   "end": 69.257
   }
  ]
 }

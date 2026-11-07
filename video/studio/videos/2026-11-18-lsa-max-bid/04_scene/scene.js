@@ -253,7 +253,7 @@ window.SCENE = {
       P(0, 0, 360, 417, '#1F2A40'); for (let y = 0; y < 417; y += 4) dith(0, y, 360, 1, '#253048', (y / 4) % 2); P(0, 417, 360, 223, NIGHT);
       if (T < tShot) {
         win(14, 84, 332, 200, {base: NIGHT, hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
-        k.text('YOUR OLD REPORTS', 72, 276, {size: 48, color: CREAM});
+        k.text('DOWNLOAD PAGE', 72, 276, {size: 48, color: CREAM});
         P(40, 140, 280, 40, '#4A4E5A'); P(42, 142, 276, 36, '#6B7080'); k.text('DOWNLOAD', 540, 444, {size: 52, color: '#9AA0AD', align: 'center'});
         const q = ((T - t0) * 0.45) % 1, w = Math.round(30 + 60 * Math.sin(q * Math.PI));
         P(40, 200, 280, 14, INK); P(42, 202, w, 10, ORANGE);
@@ -329,3 +329,8 @@ window.SCENE = {
     },
   },
 };
+
+/* r28 (code QA r1: 4 flat stretches under 0.15): a faint dither drifts down the empty lower band of every scene, below the */
+/* host and every text, so no stretch goes still. Drawn after each section; the end card is the runtime's own.            */
+const drift = (k) => { const d = px(k), off = Math.floor(k.T * 30) % 16; for (let y = 418 - 16 + off; y < 640; y += 16) { const y0 = Math.max(418, y), y1 = Math.min(640, y + 8); if (y1 > y0) d.P(0, y0, 360, y1 - y0, '#2B2033'); } };
+for (const [n, f] of Object.entries(window.SCENE.sections)) window.SCENE.sections[n] = (k, T) => { const r = f(k, T); drift(k); return r; };

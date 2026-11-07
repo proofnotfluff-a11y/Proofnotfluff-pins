@@ -1,0 +1,3 @@
+{"gate": "facts", "stage": "script.md and captions before voice", "round": 0, "reviewer": "fresh opus agent", "pass": true, "score": {"numbers": 0, "mismatches": 0},
+ "reasons": ["advisory: 'Until then' after the no-max line could read as until the move; applied in r1: 'Until that download shows up'"],
+ "sources_checked": ["https://support.google.com/google-ads/answer/17213585: read live Nov 7, 2026; reports will not transition; download soon, no date; screenshots before migrating; manual bidding no longer supported; first wave lists HVAC, roofing, pest control"]}

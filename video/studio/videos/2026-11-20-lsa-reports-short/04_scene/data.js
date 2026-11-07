@@ -1,0 +1,1 @@
+window.DATA = {"file": "video/studio/videos/2026-11-20-lsa-reports-short/01_voice/facts.json", "commit": "", "sha256": "25a67a048b5d728976dc5c77735851c3ea308d883637166f64bf6cb002168c1c", "numbers": {}, "pull": {}};

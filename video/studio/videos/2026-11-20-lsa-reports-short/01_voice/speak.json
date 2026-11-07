@@ -1,0 +1,12 @@
+{
+ "schema": "pnf.studio.speak.v1",
+ "voice": "W3pJy9ibur1FKUihVxzY",
+ "model": "eleven_v4",
+ "takes": "all",
+ "settings": {
+  "stability": 0.7,
+  "similarity_boost": 0.7
+ },
+ "scriptSha256": "81c8f9f02f9446e8ae36f3ce974271b9c34d3f94153da0e5c1ca0017da311193",
+ "requestedAt": "2026-11-07T11:21:23-05:00"
+}

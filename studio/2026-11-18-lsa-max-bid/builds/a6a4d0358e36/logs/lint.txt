@@ -1,0 +1,8 @@
+NOTE lint (a guide, not a gate; REBUILD.md Relaxed): the spoken hook is 29 words (9 to 12)
+NOTE lint (a guide, not a gate; REBUILD.md Relaxed): the spoken hook ends at 8.44 s (by 3.6 s)
+hook: {"first_change": 0.53, "changes_by_3s": 2, "changes": [0.53, 2.67], "share": [0.327, 0.18], "host_at": 0.5333333333333333, "hook_words": 29, "hook_said_by": 8.44, "seconds": 69.26, "notes": ["the spoken hook is 29 words (9 to 12)", "the spoken hook ends at 8.44 s (by 3.6 s)"]}
+WARN lint read time: 3 scene texts leave before a viewer can read them (M6: letters / 15 + 1.5 s): 'ENTER YOUR MAX' 0.5 of 2.3 s; 'LAST WEEK'S REPORT' 1.8 of 2.5 s; 'SPENT, BY WEEK' 1.8 of 2.2 s
+WARN lint room moves: 2 of 5 room changes use no pixel-native move (M4: SCENE.transitions = {section: levelselect | dissolve | gameover | mosaic | fade4}; plain: rule, download; used: dissolve, gameover, levelselect)
+WARN lint type: 30 scene labels under 36 px tall (IMPROVE 00b): 'EXAMPLE' 30 px; 'LAST WEEK'S REPORT' 30 px; 'SPENT, BY WEEK' 30 px; 'LOCAL SERVICES ADS' 30 px; 'GOOGLE ADS' 30 px; 'THE MOVE, IN WAVES' 30 px; 'AUG 2026' 30 px; 'FIRST WAVE' 30 px; 'LATE 2026' 30 px; 'NO' 30 px; 'STOREFRONT' 30 px; '2027' 30 px
+lint: PASS 0 layout problems (69.3 s at 0.25 s steps); hook PASS (first change 0.53 s, 2 by 3 s, host 0.5333333333333333 s, spoken hook 29 words by 8.44 s)
+exit 0

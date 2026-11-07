@@ -1,0 +1,9 @@
+{
+ "schema": "pnf.studio.worlds.v1",
+ "share": {
+  "set:dispatch": 0.061,
+  "set:van": 0.065,
+  "set:icon": 0.05,
+  "set:levelup": 0.083
+ }
+}

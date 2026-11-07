@@ -1,0 +1,2 @@
+stills: 17 frames, 2 sheet(s) in /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-11-18-lsa-max-bid/05_render/sheets; contact sheet 05_render/sheet.jpg
+exit 0

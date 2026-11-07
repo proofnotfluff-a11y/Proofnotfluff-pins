@@ -1,0 +1,10 @@
+  300/2078 frames, 43 s
+  600/2078 frames, 85 s
+  900/2078 frames, 128 s
+  1200/2078 frames, 168 s
+  1500/2078 frames, 211 s
+  1800/2078 frames, 254 s
+mix: rooms (quest, 108 BPM) framing 0.00 s
+mix: voice -23.1 LUFS, bed -21.6 LUFS after EQ; bed gain -19.5 dB under speech, -11.5 dB in pauses, 10 phrases
+render: /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-11-18-lsa-max-bid/05_render/2026-11-18-lsa-max-bid.mp4 (2078 frames, 69.27 s, voice, 304 s)
+exit 0

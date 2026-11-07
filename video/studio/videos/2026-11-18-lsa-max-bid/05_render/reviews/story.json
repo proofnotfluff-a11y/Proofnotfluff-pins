@@ -1,9 +1,9 @@
 {
  "gate": "story",
- "round": 27,
+ "round": 28,
  "rule": "lost-at-twice",
- "on": "01_voice/script.md (r27 words, before the voice): fix-check round after facts r3 changed s4, s5, s7, s11",
- "reviewer": "fresh opus agent, two turns (prompts/story.md); read-aloud judged only the changed sentences (prompts/README.md, Smoother line 2)",
+ "on": "02_transcript/transcript.md (r27 voice, takes 1 to 3 re-rolled once)",
+ "reviewer": "anim.py storycarry: carry true, 0 changed sentences; retell and read-aloud carried from r27 (prompts/README.md, Smoother line 2); compare runs after the render",
  "pass": true,
  "parts": {
   "retell": {
@@ -42,255 +42,276 @@
  "local_precheck": "r27: workhorse retell lost nowhere; read-aloud flagged s3-4 'And' (taken: 'But the box won't come back once you move'), the rest over-flags.",
  "earlier": {
   "gate": "story",
-  "round": 26,
+  "round": 27,
   "rule": "lost-at-twice",
-  "on": "01_voice/script.md (r26 words, before the voice)",
-  "reviewer": "fresh opus agent, two turns (prompts/story.md), fix-check round",
+  "on": "01_voice/script.md (r27 words, before the voice): fix-check round after facts r3 changed s4, s5, s7, s11",
+  "reviewer": "fresh opus agent, two turns (prompts/story.md); read-aloud judged only the changed sentences (prompts/README.md, Smoother line 2)",
   "pass": true,
   "parts": {
    "retell": {
     "pass": true,
     "score": {
-     "retold": "Google is moving my Local Services Ads into Google Ads, my old reports and max-per-lead box won't come along, so screenshot them now.",
-     "action": "This week, screenshot every Local Services Ads report I have and write down my max per lead next to them, before Google moves me.",
+     "retold": "Google is moving my Local Services Ads into Google Ads, my max per lead box goes away, and my old reports stay behind, so screenshot them now.",
+     "action": "This week, open Local Services Ads, screenshot every report I have, and write my max per lead next to them, so later I can tell if leads cost more.",
      "lost_at": "none",
-     "new_to_me": "Google Ads won't let me set a max per lead, and my old reports don't carry over when I'm moved.",
+     "new_to_me": "Google Ads won't let me set a max per lead, and my old reports don't come with me when I'm moved.",
      "matches_message": "same"
     }
    },
    "read_aloud": {
     "pass": true,
-    "score": {
-     "sentences": 11,
-     "and_then_pairs": 1,
-     "unset_terms": 0,
-     "order": "ok"
-    },
-    "earlier_faults": {
-     "a": "fixed",
-     "b": "fixed",
-     "c": "fixed",
-     "d": "fixed"
+    "judged": [
+     "S4",
+     "S5",
+     "S7",
+     "S11"
+    ],
+    "links": {
+     "S3-S4": "but",
+     "S4-S5": "therefore",
+     "S5-S6": "therefore",
+     "S6-S7": "but",
+     "S7-S8": "therefore",
+     "S10-S11": "because"
     },
     "notes": [
-     "Pair 3-4 joined only by 'And' (judged no blocker: it picks up the box from s2). Try 'But the box won't come back once you move'.",
-     "Close partly repeats s6."
+     "S4 colon: a period would breathe easier (not a fault)."
     ]
    },
    "compare": "not yet"
   },
   "reasons": [],
-  "local_precheck": "r26: workhorse retell lost nowhere with the screenshot fix in its retold line; read-aloud flagged s3-4 (fixed: 'And the box won't come back'), 'max' and 'lead' unset (over-flag: both set in s1); trial retell gave no answer, trial read-aloud over-flagged.",
+  "local_precheck": "r27: workhorse retell lost nowhere; read-aloud flagged s3-4 'And' (taken: 'But the box won't come back once you move'), the rest over-flags.",
   "earlier": {
    "gate": "story",
-   "round": 25,
+   "round": 26,
    "rule": "lost-at-twice",
-   "on": "01_voice/script.md (r24 words)",
-   "reviewer": "fresh opus agent, two turns (prompts/story.md); second listener fresh opus, turn 1 only",
-   "pass": false,
-   "score": null,
+   "on": "01_voice/script.md (r26 words, before the voice)",
+   "reviewer": "fresh opus agent, two turns (prompts/story.md), fix-check round",
+   "pass": true,
    "parts": {
     "retell": {
-     "pass": false,
+     "pass": true,
      "score": {
-      "retold": "Google is moving Local Services Ads into Google Ads, my max-per-lead box disappears, and my old reports won't carry over.",
-      "action": "This week, screenshot every Local Services Ads report I have and write my current max per lead next to them, before Google moves my account.",
-      "lost_at": "the only way to tell if your leads cost more is to check your old reports",
-      "new_to_me": "Google Ads won't let me set a max per lead, and my old Local Services reports don't move over with me.",
-      "matches_message": "close"
-     },
-     "second": {
-      "retold": "Google is moving Local Services Ads into Google Ads, your max-per-lead box disappears, and your old reports won't carry over.",
+      "retold": "Google is moving my Local Services Ads into Google Ads, my old reports and max-per-lead box won't come along, so screenshot them now.",
+      "action": "This week, screenshot every Local Services Ads report I have and write down my max per lead next to them, before Google moves me.",
       "lost_at": "none",
-      "lostmatch": "DIFFERENT (one reviewer was lost nowhere)"
+      "new_to_me": "Google Ads won't let me set a max per lead, and my old reports don't carry over when I'm moved.",
+      "matches_message": "same"
      }
     },
     "read_aloud": {
-     "pass": false,
+     "pass": true,
      "score": {
       "sentences": 11,
       "and_then_pairs": 1,
-      "unset_terms": 1,
+      "unset_terms": 0,
       "order": "ok"
-     }
+     },
+     "earlier_faults": {
+      "a": "fixed",
+      "b": "fixed",
+      "c": "fixed",
+      "d": "fixed"
+     },
+     "notes": [
+      "Pair 3-4 joined only by 'And' (judged no blocker: it picks up the box from s2). Try 'But the box won't come back once you move'.",
+      "Close partly repeats s6."
+     ]
     },
     "compare": "not yet"
    },
-   "reasons": [
-    "retell: matches_message close (the retold point is the box going and reports not carrying over; the fix 'screenshot them' is missing from the point). Fix: close on the reports and the screenshot, not the box.",
-    "read_aloud: s3-4 and then ('If you work out of your truck...'): joined into s3.",
-    "read_aloud: s5-6 non-sequitur, old reports not set up as the yardstick: s1 now checks the reports for last week's spend; s6 says compare with what you spent before.",
-    "read_aloud: s11 tagline: rewritten as a because line on the reports and the screenshot.",
-    "local pre-check r25: workhorse retell same and lost nowhere; read-aloud flagged and-then on 3-4, 7-8, 8-9 and s3 off voice (7-8 and 8-9 judged over-flags; 3-4 matched Opus); trial read-aloud flagged every line off voice (not usable)."
-   ],
+   "reasons": [],
+   "local_precheck": "r26: workhorse retell lost nowhere with the screenshot fix in its retold line; read-aloud flagged s3-4 (fixed: 'And the box won't come back'), 'max' and 'lead' unset (over-flag: both set in s1); trial retell gave no answer, trial read-aloud over-flagged.",
    "earlier": {
     "gate": "story",
-    "stage": "script.md before re-voice, r24",
-    "round": "r24",
-    "reviewer": "fresh opus agent, turn 1 only",
+    "round": 25,
+    "rule": "lost-at-twice",
+    "on": "01_voice/script.md (r24 words)",
+    "reviewer": "fresh opus agent, two turns (prompts/story.md); second listener fresh opus, turn 1 only",
     "pass": false,
+    "score": null,
     "parts": {
      "retell": {
       "pass": false,
-      "matches_message": "turn 2 not sent: lost_at already fails it",
-      "lost_at": "the only way to tell if your leads cost more"
+      "score": {
+       "retold": "Google is moving Local Services Ads into Google Ads, my max-per-lead box disappears, and my old reports won't carry over.",
+       "action": "This week, screenshot every Local Services Ads report I have and write my current max per lead next to them, before Google moves my account.",
+       "lost_at": "the only way to tell if your leads cost more is to check your old reports",
+       "new_to_me": "Google Ads won't let me set a max per lead, and my old Local Services reports don't move over with me.",
+       "matches_message": "close"
+      },
+      "second": {
+       "retold": "Google is moving Local Services Ads into Google Ads, your max-per-lead box disappears, and your old reports won't carry over.",
+       "lost_at": "none",
+       "lostmatch": "DIFFERENT (one reviewer was lost nowhere)"
+      }
      },
-     "read_aloud": "not run this round",
+     "read_aloud": {
+      "pass": false,
+      "score": {
+       "sentences": 11,
+       "and_then_pairs": 1,
+       "unset_terms": 1,
+       "order": "ok"
+      }
+     },
      "compare": "not yet"
     },
     "reasons": [
-     "retell: lost at s4's reason clause; held here (Nov 6 end-of-day run): six fresh reviewers r19 to r24 retold the message the same way and each named a different lost line; no fix converges"
+     "retell: matches_message close (the retold point is the box going and reports not carrying over; the fix 'screenshot them' is missing from the point). Fix: close on the reports and the screenshot, not the box.",
+     "read_aloud: s3-4 and then ('If you work out of your truck...'): joined into s3.",
+     "read_aloud: s5-6 non-sequitur, old reports not set up as the yardstick: s1 now checks the reports for last week's spend; s6 says compare with what you spent before.",
+     "read_aloud: s11 tagline: rewritten as a because line on the reports and the screenshot.",
+     "local pre-check r25: workhorse retell same and lost nowhere; read-aloud flagged and-then on 3-4, 7-8, 8-9 and s3 off voice (7-8 and 8-9 judged over-flags; 3-4 matched Opus); trial read-aloud flagged every line off voice (not usable)."
     ],
-    "note": "Held unqueued at r24 for Todd's word. Not voiced; takes.json unchanged.",
     "earlier": {
      "gate": "story",
-     "stage": "script.md before re-voice, r23",
-     "round": "r23",
+     "stage": "script.md before re-voice, r24",
+     "round": "r24",
      "reviewer": "fresh opus agent, turn 1 only",
      "pass": false,
      "parts": {
       "retell": {
        "pass": false,
        "matches_message": "turn 2 not sent: lost_at already fails it",
-       "lost_at": "your old reports are your record of what a lead cost you"
+       "lost_at": "the only way to tell if your leads cost more"
       },
       "read_aloud": "not run this round",
       "compare": "not yet"
      },
      "reasons": [
-      "retell: the reason the old reports matter was never said; r24 says it (to tell if your leads cost more)"
+      "retell: lost at s4's reason clause; held here (Nov 6 end-of-day run): six fresh reviewers r19 to r24 retold the message the same way and each named a different lost line; no fix converges"
      ],
+     "note": "Held unqueued at r24 for Todd's word. Not voiced; takes.json unchanged.",
      "earlier": {
       "gate": "story",
-      "stage": "script.md before re-voice, r22",
-      "round": "r22",
-      "reviewer": "fresh opus agent, turn 1 only (local pre-checks r22 first: retell lost at none)",
+      "stage": "script.md before re-voice, r23",
+      "round": "r23",
+      "reviewer": "fresh opus agent, turn 1 only",
       "pass": false,
       "parts": {
        "retell": {
         "pass": false,
         "matches_message": "turn 2 not sent: lost_at already fails it",
-        "lost_at": "So until then, you still set your max, and your reports still show"
+        "lost_at": "your old reports are your record of what a lead cost you"
        },
        "read_aloud": "not run this round",
        "compare": "not yet"
       },
       "reasons": [
-       "retell: lost at the until-then line (r19 reviewer stalled at the same line); cut as r23"
+       "retell: the reason the old reports matter was never said; r24 says it (to tell if your leads cost more)"
       ],
       "earlier": {
        "gate": "story",
-       "stage": "script.md before re-voice, r21",
-       "round": "r21",
-       "reviewer": "fresh opus agent, turn 1 only (local pre-checks r20 first)",
+       "stage": "script.md before re-voice, r22",
+       "round": "r22",
+       "reviewer": "fresh opus agent, turn 1 only (local pre-checks r22 first: retell lost at none)",
        "pass": false,
        "parts": {
         "retell": {
          "pass": false,
-         "matches_message": "same (turn 2 not sent: lost_at already fails it)",
-         "lost_at": "It does: it emails whoever is listed as admin on your account"
+         "matches_message": "turn 2 not sent: lost_at already fails it",
+         "lost_at": "So until then, you still set your max, and your reports still show"
         },
         "read_aloud": "not run this round",
         "compare": "not yet"
        },
        "reasons": [
-        "retell: lost at the admin email aside; cut it (one problem rule, LEARNINGS Nov 6 afternoon) as r22"
+        "retell: lost at the until-then line (r19 reviewer stalled at the same line); cut as r23"
        ],
        "earlier": {
         "gate": "story",
-        "stage": "script.md before re-voice, r19",
-        "round": "r19",
-        "reviewer": "fresh opus agent, two turns (local retell and read-aloud pre-checks first, r18 and r19)",
+        "stage": "script.md before re-voice, r21",
+        "round": "r21",
+        "reviewer": "fresh opus agent, turn 1 only (local pre-checks r20 first)",
         "pass": false,
         "parts": {
          "retell": {
           "pass": false,
-          "matches_message": "same",
-          "lost_at": "So until your wave comes, nothing changes."
+          "matches_message": "same (turn 2 not sent: lost_at already fails it)",
+          "lost_at": "It does: it emails whoever is listed as admin on your account"
          },
-         "read_aloud": {
-          "pass": false,
-          "sentences": 16,
-          "and_then_pairs": 2,
-          "unset_terms": 1,
-          "choppy_runs": 0,
-          "breath_fails": 1,
-          "order": "ok"
-         },
+         "read_aloud": "not run this round",
          "compare": "not yet"
         },
         "reasons": [
-         "retell: lost at s5; merge s5 and s6",
-         "read_aloud: s5-6 and-then; s12-13 no link; 'admin' unset at s13; s4 too long for one breath",
-         "fixes applied as r20"
+         "retell: lost at the admin email aside; cut it (one problem rule, LEARNINGS Nov 6 afternoon) as r22"
         ],
         "earlier": {
          "gate": "story",
-         "stage": "script.md before re-voice, r17",
-         "round": "r17",
-         "reviewer": "fresh opus agent, two turns (local retell and read-aloud pre-checks first)",
+         "stage": "script.md before re-voice, r19",
+         "round": "r19",
+         "reviewer": "fresh opus agent, two turns (local retell and read-aloud pre-checks first, r18 and r19)",
          "pass": false,
          "parts": {
           "retell": {
            "pass": false,
-           "matches_message": "same"
+           "matches_message": "same",
+           "lost_at": "So until your wave comes, nothing changes."
           },
           "read_aloud": {
            "pass": false,
+           "sentences": 16,
            "and_then_pairs": 2,
-           "unset_terms": 1
+           "unset_terms": 1,
+           "choppy_runs": 0,
+           "breath_fails": 1,
+           "order": "ok"
           },
           "compare": "not yet"
          },
          "reasons": [
-          "lost at 'proof'; s4-6 and-then; s9-10 jump; fixes applied as r18, not yet gated"
+          "retell: lost at s5; merge s5 and s6",
+          "read_aloud: s5-6 and-then; s12-13 no link; 'admin' unset at s13; s4 too long for one breath",
+          "fixes applied as r20"
          ],
          "earlier": {
           "gate": "story",
-          "stage": "script.md before re-voice, r16",
-          "round": "r16",
+          "stage": "script.md before re-voice, r17",
+          "round": "r17",
           "reviewer": "fresh opus agent, two turns (local retell and read-aloud pre-checks first)",
           "pass": false,
           "parts": {
            "retell": {
             "pass": false,
-            "matches_message": "close"
+            "matches_message": "same"
            },
            "read_aloud": {
             "pass": false,
             "and_then_pairs": 2,
-            "unset_terms": 0
+            "unset_terms": 1
            },
            "compare": "not yet"
           },
           "reasons": [
-           "reports land second to the box; 'here's the catch' ad line; email line unlinked"
+           "lost at 'proof'; s4-6 and-then; s9-10 jump; fixes applied as r18, not yet gated"
           ],
           "earlier": {
            "gate": "story",
-           "stage": "script.md before re-voice, r15",
-           "round": "r15",
+           "stage": "script.md before re-voice, r16",
+           "round": "r16",
            "reviewer": "fresh opus agent, two turns (local retell and read-aloud pre-checks first)",
            "pass": false,
            "parts": {
             "retell": {
              "pass": false,
-             "matches_message": "same"
+             "matches_message": "close"
             },
             "read_aloud": {
              "pass": false,
-             "and_then_pairs": 1,
-             "unset_terms": 2
+             "and_then_pairs": 2,
+             "unset_terms": 0
             },
             "compare": "not yet"
            },
            "reasons": [
-            "lost at s11 (two ideas); 'It' unset; s11 breath"
+            "reports land second to the box; 'here's the catch' ad line; email line unlinked"
            ],
            "earlier": {
             "gate": "story",
-            "stage": "script.md before re-voice, r14",
-            "round": "r14",
+            "stage": "script.md before re-voice, r15",
+            "round": "r15",
             "reviewer": "fresh opus agent, two turns (local retell and read-aloud pre-checks first)",
             "pass": false,
             "parts": {
@@ -300,154 +321,176 @@
              },
              "read_aloud": {
               "pass": false,
-              "and_then_pairs": 2,
-              "unset_terms": 1
+              "and_then_pairs": 1,
+              "unset_terms": 2
              },
              "compare": "not yet"
             },
             "reasons": [
-             "lost at 'To compare what a lead costs'; s6-7 restart; s9-10 jump; 'a download' unset"
+             "lost at s11 (two ideas); 'It' unset; s11 breath"
             ],
             "earlier": {
              "gate": "story",
-             "stage": "script.md before re-voice, r13",
-             "round": "r13",
+             "stage": "script.md before re-voice, r14",
+             "round": "r14",
              "reviewer": "fresh opus agent, two turns (local retell and read-aloud pre-checks first)",
              "pass": false,
              "parts": {
               "retell": {
-               "pass": true,
+               "pass": false,
                "matches_message": "same"
               },
               "read_aloud": {
                "pass": false,
-               "and_then_pairs": 1,
-               "unset_terms": 2
+               "and_then_pairs": 2,
+               "unset_terms": 1
               },
               "compare": "not yet"
              },
              "reasons": [
-              "retell PASS; s9-10 missing why; 'max' and 'its' unset; s16-19 choppy"
+              "lost at 'To compare what a lead costs'; s6-7 restart; s9-10 jump; 'a download' unset"
              ],
              "earlier": {
               "gate": "story",
-              "stage": "script.md before re-voice, r12 (after local pre-check)",
-              "round": "r12",
+              "stage": "script.md before re-voice, r13",
+              "round": "r13",
               "reviewer": "fresh opus agent, two turns (local retell and read-aloud pre-checks first)",
               "pass": false,
               "parts": {
                "retell": {
-                "pass": false,
-                "matches_message": "close"
+                "pass": true,
+                "matches_message": "same"
                },
                "read_aloud": {
                 "pass": false,
                 "and_then_pairs": 1,
-                "unset_terms": 0
+                "unset_terms": 2
                },
                "compare": "not yet"
               },
               "reasons": [
-               "lost at 'Google says you'll be able to download'; s1-2 and-then; s20-21 'Either way' unlinked; close led by the box"
+               "retell PASS; s9-10 missing why; 'max' and 'its' unset; s16-19 choppy"
               ],
               "earlier": {
                "gate": "story",
-               "stage": "transcript after re-voice and render",
-               "round": 1,
-               "reviewer": "fresh opus agent, two turns",
+               "stage": "script.md before re-voice, r12 (after local pre-check)",
+               "round": "r12",
+               "reviewer": "fresh opus agent, two turns (local retell and read-aloud pre-checks first)",
                "pass": false,
                "parts": {
                 "retell": {
                  "pass": false,
-                 "matches_message": "close",
-                 "lost_at": "you'll want your old reports to check the new costs against"
+                 "matches_message": "close"
                 },
                 "read_aloud": {
                  "pass": false,
                  "and_then_pairs": 1,
-                 "unset_terms": 1
+                 "unset_terms": 0
                 },
-                "compare": {
-                 "pass": false,
-                 "stop_rank": 3,
-                 "understand_rank": 1,
-                 "follow_rank": 3
-                }
+                "compare": "not yet"
                },
                "reasons": [
-                "s9 is a jump: no line says the cost per lead is no longer capped, so 'the new costs' is unset. Fix: 'So once you move, no box caps what one lead costs you. To check it, you'll want your old reports, and those stay behind.' (facts: budgets still cap monthly spend; say 'one lead', never 'nothing caps')",
-                "s15-16 and-then: 'Google does send a warning first, but don't wait for it.' Fix: 'You might think Google will warn you first. It does, but don't wait for it.'",
-                "retell close: the box frames the open and the close, so listeners remember the box over the reports. Fix the close: 'The box is going. The reports don't have to, if you screenshot them before you move.' (no 'your' or 'this' in the last 3 s: the end card's send line clashes in lint accents)",
-                "compare: stop 3 and follow 3 of 4. Fix: an EXAMPLE dollar max typed into the box in the first 3 s so the stake is concrete; clean the dissolve black frame at 26.0 s and the mosaic blocks at 30.5 and 42.5 s."
+                "lost at 'Google says you'll be able to download'; s1-2 and-then; s20-21 'Either way' unlinked; close led by the box"
                ],
                "earlier": {
                 "gate": "story",
-                "stage": "transcript after voice and render (round 0)",
-                "round": 0,
+                "stage": "transcript after re-voice and render",
+                "round": 1,
                 "reviewer": "fresh opus agent, two turns",
                 "pass": false,
                 "parts": {
                  "retell": {
                   "pass": false,
-                  "matches_message": "close"
+                  "matches_message": "close",
+                  "lost_at": "you'll want your old reports to check the new costs against"
                  },
                  "read_aloud": {
                   "pass": false,
-                  "and_then_pairs": 1
+                  "and_then_pairs": 1,
+                  "unset_terms": 1
                  },
                  "compare": {
-                  "pass": true,
+                  "pass": false,
                   "stop_rank": 3,
                   "understand_rank": 1,
-                  "follow_rank": 2
+                  "follow_rank": 3
                  }
                 },
                 "reasons": [
-                 "retell close: the box led, the reports came second via 'Worse'",
-                 "s8-9 and-then ('Worse')"
+                 "s9 is a jump: no line says the cost per lead is no longer capped, so 'the new costs' is unset. Fix: 'So once you move, no box caps what one lead costs you. To check it, you'll want your old reports, and those stay behind.' (facts: budgets still cap monthly spend; say 'one lead', never 'nothing caps')",
+                 "s15-16 and-then: 'Google does send a warning first, but don't wait for it.' Fix: 'You might think Google will warn you first. It does, but don't wait for it.'",
+                 "retell close: the box frames the open and the close, so listeners remember the box over the reports. Fix the close: 'The box is going. The reports don't have to, if you screenshot them before you move.' (no 'your' or 'this' in the last 3 s: the end card's send line clashes in lint accents)",
+                 "compare: stop 3 and follow 3 of 4. Fix: an EXAMPLE dollar max typed into the box in the first 3 s so the stake is concrete; clean the dissolve black frame at 26.0 s and the mosaic blocks at 30.5 and 42.5 s."
                 ],
-                "fixed": "take 4: 'So once you move, you'll want your old reports to check the new costs against, and those stay behind.'; take 7: 'Screenshot the reports before you move, so they don't go with the box.' Re-voiced.",
                 "earlier": {
                  "gate": "story",
-                 "stage": "script.md before voice",
-                 "round": 7,
-                 "reviewer": "fresh opus agents (run as the separate retell and read-aloud gates of the Nov 6, 7:15 am line; the merged story gate of 10:54 am landed mid-run)",
-                 "pass": true,
+                 "stage": "transcript after voice and render (round 0)",
+                 "round": 0,
+                 "reviewer": "fresh opus agent, two turns",
+                 "pass": false,
                  "parts": {
                   "retell": {
-                   "pass": true,
-                   "score": {
-                    "retold": "Google is moving Local Services Ads into Google Ads, your max-per-lead box and old reports won't come, so screenshot them this week.",
-                    "action": "screenshot every report, write the max beside them, check the admin inbox",
-                    "lost_at": "none",
-                    "matches_message": "same"
-                   }
+                   "pass": false,
+                   "matches_message": "close"
                   },
                   "read_aloud": {
-                   "pass": true,
-                   "score": {
-                    "sentences": 20,
-                    "and_then_pairs": 0,
-                    "unset_terms": 0,
-                    "choppy_runs": 0,
-                    "breath_fails": 0,
-                    "order": "ok"
-                   }
+                   "pass": false,
+                   "and_then_pairs": 1
                   },
-                  "compare": "not yet"
+                  "compare": {
+                   "pass": true,
+                   "stop_rank": 3,
+                   "understand_rank": 1,
+                   "follow_rank": 2
+                  }
                  },
                  "reasons": [
-                  "read-aloud FAILed r0 to r6 (see 01_voice/script-check.md), PASS at r7; retell PASS every round; facts PASS r8 on the same text."
-                 ]
+                  "retell close: the box led, the reports came second via 'Worse'",
+                  "s8-9 and-then ('Worse')"
+                 ],
+                 "fixed": "take 4: 'So once you move, you'll want your old reports to check the new costs against, and those stay behind.'; take 7: 'Screenshot the reports before you move, so they don't go with the box.' Re-voiced.",
+                 "earlier": {
+                  "gate": "story",
+                  "stage": "script.md before voice",
+                  "round": 7,
+                  "reviewer": "fresh opus agents (run as the separate retell and read-aloud gates of the Nov 6, 7:15 am line; the merged story gate of 10:54 am landed mid-run)",
+                  "pass": true,
+                  "parts": {
+                   "retell": {
+                    "pass": true,
+                    "score": {
+                     "retold": "Google is moving Local Services Ads into Google Ads, your max-per-lead box and old reports won't come, so screenshot them this week.",
+                     "action": "screenshot every report, write the max beside them, check the admin inbox",
+                     "lost_at": "none",
+                     "matches_message": "same"
+                    }
+                   },
+                   "read_aloud": {
+                    "pass": true,
+                    "score": {
+                     "sentences": 20,
+                     "and_then_pairs": 0,
+                     "unset_terms": 0,
+                     "choppy_runs": 0,
+                     "breath_fails": 0,
+                     "order": "ok"
+                    }
+                   },
+                   "compare": "not yet"
+                  },
+                  "reasons": [
+                   "read-aloud FAILed r0 to r6 (see 01_voice/script-check.md), PASS at r7; retell PASS every round; facts PASS r8 on the same text."
+                  ]
+                 }
                 }
                }
               }
              }
             }
            }
-          }
-         },
-         "note": "Nov 6 afternoon run (15:03 Central): 6 script rounds, each fresh reviewer found new read-aloud faults; held at r18 (r17's fixes applied, not yet gated) to save cloud usage. Next run: local pre-checks, then one fresh story gate on r18, then re-voice takes 1, 2, 4, 5, 6, 7."
+          },
+          "note": "Nov 6 afternoon run (15:03 Central): 6 script rounds, each fresh reviewer found new read-aloud faults; held at r18 (r17's fixes applied, not yet gated) to save cloud usage. Next run: local pre-checks, then one fresh story gate on r18, then re-voice takes 1, 2, 4, 5, 6, 7."
+         }
         }
        }
       }
@@ -455,5 +498,6 @@
     }
    }
   }
- }
+ },
+ "carried": true
 }

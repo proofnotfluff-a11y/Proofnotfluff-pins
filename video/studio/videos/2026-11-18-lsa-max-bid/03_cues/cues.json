@@ -6,7 +6,7 @@
   "level": 0.16,
   "tune": "quest"
  },
- "duration": 80.613,
+ "duration": 70.365,
  "cues": [
   {
    "id": "hook",
@@ -18,19 +18,19 @@
    "text": "Cover, frame one, no host: our own drawn ad screen on a desk monitor (EXAMPLE, never Google's UI): LEAD ADS, a row MAX PER LEAD with a box; the cursor blinks in it; on \"type\" the box fills and turns gold. Plate \"Your max per lead\" / \"Going away.\" Snow comes in.",
    "t": 0.0,
    "word": 0,
-   "end": 10.586
+   "end": 13.938
   },
   {
    "id": "hook.gone",
    "level": 1,
-   "quote": "Then one day Google",
+   "quote": "But one day Google",
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
    "text": "Scene two: the same monitor, a new screen; the row is there, the box is a dashed outline that crumbles away on \"gone\"; BOX GONE stamps.",
-   "t": 5.74,
-   "word": 18,
-   "end": 10.586
+   "t": 9.08,
+   "word": 29,
+   "end": 13.938
   },
   {
    "id": "move",
@@ -39,82 +39,70 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "Our own street: a little sign LOCAL SERVICES ADS drives on a van into a big building GOOGLE ADS.",
-   "t": 10.586,
-   "word": 33,
-   "end": 26.214
+   "text": "Our own dispatch board: a pin for LOCAL SERVICES ADS, a route drawn into GOOGLE ADS.",
+   "t": 13.938,
+   "word": 44,
+   "end": 24.229
   },
   {
    "id": "move.waves",
    "level": 1,
-   "quote": "But not all at",
+   "quote": "and if you work",
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "The wave strip: three tiles AUG 2026 FIRST WAVE (lit), LATE 2026 NO STOREFRONT, 2027 THE REST; a wave rolls along; on \"truck\" a van icon drops on LATE 2026 with YOUR WAVE. Tag Google Ads Help, read Nov 6, 2026.",
-   "t": 15.026,
-   "word": 44,
-   "end": 26.214
-  },
-  {
-   "id": "now",
-   "level": 0,
-   "quote": "Until then, you set",
-   "sfx": "tick",
-   "shift": 0.0,
-   "pin": null,
-   "text": "Back on the monitor: the box with YOUR MAX lit, and a report card under it, SPENT bars growing (EXAMPLE).",
-   "t": 26.214,
-   "word": 78,
-   "end": 30.74
+   "text": "The wave strip: three tiles AUG 2026 FIRST WAVE (lit), LATE 2026 NO STOREFRONT, 2027 THE REST; a wave rolls along; on \"truck\" a van icon drops on LATE 2026, on \"late\" YOUR WAVE. Tag Google Ads Help, read Nov 6, 2026.",
+   "t": 18.338,
+   "word": 55,
+   "end": 24.229
   },
   {
    "id": "rule",
    "level": 0,
-   "quote": "But Google's help page",
+   "quote": "But the box won't",
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "Mosaic to the help page card: GOOGLE ADS HELP; the line types in: \"Manual bidding (such as setting a maximum cost-per-lead) is no longer supported in Google Ads.\" NO MAX stamps.",
-   "t": 30.74,
-   "word": 91,
-   "end": 42.711
+   "text": "Google's help page card: the line types in: \"Manual bidding (such as setting a maximum cost-per-lead) is no longer supported in Google Ads.\" NO MAX stamps on \"won't\".",
+   "t": 24.229,
+   "word": 74,
+   "end": 40.588
   },
   {
    "id": "rule.reports",
    "level": 1,
-   "quote": "So once you move,",
+   "quote": "So to tell if",
    "sfx": "stamp",
    "shift": 0.0,
    "pin": null,
-   "text": "A split: left OLD (the report papers), right GOOGLE ADS (empty shelf); the papers try to cross and bounce back: STAYS BEHIND; the line \"performance reports will not transition\" with its tag.",
-   "t": 36.08,
-   "word": 109,
-   "end": 42.711
+   "text": "The save-data copy: SLOT 1 LOCAL SERVICES ADS with the report papers, SLOT 2 GOOGLE ADS; the copy fails: NO DATA, LEADS: MOVED; the page line \"performance reports will not transition\"; on \"reports\" Reports stay behind.",
+   "t": 31.649,
+   "word": 97,
+   "end": 40.588
   },
   {
    "id": "download",
    "level": 0,
-   "quote": "Google says you'll be",
+   "quote": "Google says a way",
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "A download screen: DOWNLOAD OLD REPORTS button greyed, a loading bar that never fills, COMING SOON blinking (2 a second); tag \"Google Ads Help, read Nov 6, 2026\".",
-   "t": 42.711,
-   "word": 128,
-   "end": 54.577
+   "text": "A download screen: DOWNLOAD greyed, a loading bar that never fills, SOON blinking (2 a second; the page's own word); tag \"Google Ads Help, read Nov 6, 2026\".",
+   "t": 40.588,
+   "word": 127,
+   "end": 52.219
   },
   {
    "id": "download.shot",
    "level": 1,
-   "quote": "Need them now? It",
+   "quote": "For now, Google's help",
    "sfx": "chime",
    "shift": 0.0,
    "pin": null,
-   "text": "A camera flash; the quote card: \"take screenshots of them before migrating\".",
-   "t": 50.571,
-   "word": 152,
-   "end": 54.577
+   "text": "A camera flash; the quote card: \"Need them now?\" and \"take screenshots of them before migrating\".",
+   "t": 47.828,
+   "word": 150,
+   "end": 52.219
   },
   {
    "id": "setup",
@@ -123,34 +111,22 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "The save screen (ITEM GET / SAVE FILE): SAVE YOUR NUMBERS, step 1 \"Screenshot every report\" lights, step 2 \"Write your max beside them\".",
-   "t": 54.577,
+   "text": "The save screen (SAVE FILE): SLOT 1 YOUR NUMBERS, step 1 \"Screenshot every report you have\" lights, step 2 \"Write your max per lead beside them\".",
+   "t": 52.219,
    "word": 162,
-   "end": 71.093
-  },
-  {
-   "id": "setup.email",
-   "level": 1,
-   "quote": "Google does send a",
-   "sfx": "blip",
-   "shift": 0.0,
-   "pin": null,
-   "text": "The calendar: the move day marked MOVE; fourteen days back an envelope lands on the day ADMIN EMAIL; step 3 \"Admin email: an inbox you read\" lights on the save card under it.",
-   "t": 61.017,
-   "word": 181,
-   "end": 71.093
+   "end": 58.965
   },
   {
    "id": "button",
    "level": 0,
-   "quote": "The box is going,",
+   "quote": "Because once Google moves",
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "The monitor again, the box crumbled; then the save file slot fills: SAVED with the screenshots inside; Snow points. Then the end card with the send line.",
-   "t": 71.093,
-   "word": 210,
-   "end": 80.613
+   "text": "The monitor again, the box crumbled; plate \"Your old reports\" / \"stay behind.\"; on \"screenshot\" the save file slot fills: REPORTS: SCREENSHOTS, MAX PER LEAD: NOTED; SAVED on \"count\"; Before you move. Snow points. Then the end card with the send line.",
+   "t": 58.965,
+   "word": 181,
+   "end": 70.365
   }
  ]
 }

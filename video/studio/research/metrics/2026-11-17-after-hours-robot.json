@@ -36,6 +36,35 @@
    },
    "source": "videometrics 2026-11-17-after-hours-robot.2026-11-06T20 (evening PC run, list views only)",
    "docId": "2026-11-17-after-hours-robot.2026-11-06T20"
+  },
+  {
+   "date": "2026-11-07",
+   "readAt": "2026-11-07T15:23:00Z",
+   "age": "about 20.6 h",
+   "depth": "deep",
+   "source": "Instagram Reel insights screenshots Todd sent in a live chat, Nov 7, 2026, 9:24 am",
+   "platforms": {
+    "instagram": {
+     "views": 1282,
+     "viewers": 1115,
+     "avgWatchS": 29,
+     "lengthS": 87.6,
+     "avgPctWatched": 33,
+     "skipRate": 26.0,
+     "skipRateLabel": "Lower",
+     "shareRate": 0.1,
+     "likeRate": 1.8,
+     "saveRate": 0.1,
+     "repostRate": 0.0,
+     "likes": 20,
+     "comments": 0,
+     "reposts": 0,
+     "shares": 1,
+     "saves": 1,
+     "follows": 0,
+     "curve": "near typical to about 2 h, steady climb to about 12 h, a step to about 1,250 by about 14 h, flat after"
+    }
+   }
   }
  ]
 }

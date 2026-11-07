@@ -1,0 +1,1 @@
+window.DATA = {"file": "video/studio/videos/2026-11-21-angi-four-pros/01_voice/facts.json", "commit": "", "sha256": "8f9de287db1b08c4e59adbebfb77d0a834de65ce4dca4eb9894ca571aa02c8c4", "numbers": {"pros4": {"value": 4, "shown": "4", "path": "angi.matchUpTo"}}, "pull": {}};

@@ -1,0 +1,31 @@
+{
+ "about": "Every number and claim this lesson shows or says, with its source. Angi's help article 'Angi Leads: Frequently Asked Questions' (intercom.help/angi, article 6207184, 'Updated over a year ago', no date) re-read Nov 7, 2026 (Central) with WebFetch in the proven lane build chat; both quoted lines were on it that day. HomeAdvisor's 'Leads: Frequently Asked Questions' (prohelp.homeadvisor.com/leads-faq, no date) read the same day backs the meaning (charged whether or not you open or respond) and is not said or shown. The 2 pm roof call, the shop and the card's text are ours (EXAMPLE on screen). We never say how much a lead costs, how many pros call back, or that the first caller wins: no source here gives any of those.",
+ "angi": {
+  "title": "Angi Leads: Frequently Asked Questions",
+  "publisher": "Angi",
+  "date": "no date on the page ('Updated over a year ago')",
+  "url": "https://intercom.help/angi/en/articles/6207184-angi-leads-frequently-asked-questions",
+  "reread": "2026-11-07",
+  "matchUpTo": 4,
+  "matchUpToShown": "4",
+  "matchUpToSaid": "four",
+  "charged": "You'll be charged for each new lead as soon as it's sent, and it's up to you to reach out to the customer and win the job.",
+  "confirms": [
+   "Angi then uses the project details to connect customers with up to 4 service professionals to help complete their project.",
+   "You'll be charged for each new lead as soon as it's sent, and it's up to you to reach out to the customer and win the job."
+  ]
+ },
+ "homeadvisor": {
+  "title": "Leads: Frequently Asked Questions",
+  "publisher": "Angi Leads (formerly HomeAdvisor Pro)",
+  "url": "https://prohelp.homeadvisor.com/leads-faq",
+  "reread": "2026-11-07",
+  "confirms": ["You are charged for a Market Match or Exact Match lead whether or not you open or respond to it."],
+  "use": "backs the meaning only; not said or shown"
+ },
+ "example": {
+  "time": "two in the afternoon",
+  "timeShown": "2:00 PM",
+  "what": "ours: a roofer on a roof when an Angi lead comes in; the card and its text are ours, labeled EXAMPLE"
+ }
+}

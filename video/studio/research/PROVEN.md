@@ -19,7 +19,9 @@ are. We take the pattern (topic, opening move, structure, length, what's on scre
   and feeds through web fetch (no view counts; the feed is closed to automated readers), TikTok profiles through web fetch
   (closed), Reddit through web fetch and through Chrome (both refused), the GEEKOM box (its lane was not attached to this
   chat). So this bank has no Reddit threads. A weekly refresh needs Chrome on Todd's PC (a PC-bound task) or a source of
-  per-Short views a cloud run can read.
+  per-Short views a cloud run can read. Since Nov 7, 2:45 pm (Todd: "key added"): that source is the official
+  YouTube Data API, run Sundays by .github/workflows/yt-outliers.yml into research/outliers.json (channels by ID in
+  research/proven-channels.json), and transcripts come from watch-video jobs marked "sourceprint" (no words committed).
 - Sourceprints: research/proven/<video id>.json holds salted hashes of the source's word runs, never its words; the copy
   check (`anim.py copycheck`) reads it. Made for rows 2, 4, 5 and 7 (whole text read). A row without one can't be made
   until a run reads its whole transcript or on-screen text and runs `anim.py sourceprint`.

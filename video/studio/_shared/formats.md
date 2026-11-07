@@ -88,8 +88,13 @@ story took up to 28 script rounds a lesson; faceless channels grow by making the
 Ideas and formats aren't owned; words, footage and art are. Our edge is the version: made for trade owners, one checked
 number, our pixel style, the send moment.
 - **Pick** a row of research/PROVEN.md that has a sourceprint (research/proven/<id>.json), phone cluster first while it
-  leads. A row with no print: read its whole transcript (watch-video skill, or the page itself) into a file under data/
-  and run `anim.py sourceprint <link> <file> <how>`; never commit the source's words.
+  leads. A row with no print: queue a watch-video job with `"sourceprint": true` (the workflow hashes Gemini's
+  transcript and commits no words; Todd, Nov 7, 2:45 pm) and build it the next run, or in a live chat read the words
+  into a file under data/ and run `anim.py sourceprint <link> <file> <how>`; never commit the source's words.
+- **Refresh** (tools/yt_outliers.py, Sundays, official YouTube Data API): research/outliers.json lists every Short at
+  5x its channel's typical. When every row is used, add the top unbanked outlier that fits (a business lesson an owner
+  can act on; no ad, meme or skit about a real person) as a PROVEN.md row, labeled by business name or a plain
+  description, and queue its sourceprint job.
 - **brief.md**: `- **Format:** proven`, `- **Source:** <link>`, `- **Started:** <YYYY-MM-DD HH:MM Central>`, a Shape
   (rotation reads it), Send, Hook pattern, Treatment, Example, Music, and the claims table. No Story or Test score, no
   second-source bar.

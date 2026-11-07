@@ -1,0 +1,38 @@
+name: YouTube outliers (proven lane)
+# The proven idea lane's weekly outlier finder (Todd, live chat, Nov 7, 2026, 12:08 pm: "Go"; 2:45 pm: "key added").
+# Reads public YouTube data through the official YouTube Data API v3 with the YOUTUBE_API_KEY secret (never printed;
+# tools/yt_outliers.py scrubs it from errors) and commits counts and video ids to video/studio/research/outliers.json.
+# Read only: nothing is posted or changed anywhere. Standard library only, so nothing is installed.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/yt_outliers.py", "video/studio/research/proven-channels.json", ".github/workflows/yt-outliers.yml"]
+  schedule:
+    - cron: "17 13 * * 0"   # Sundays, about 7:17 am Chicago time in standard time
+permissions:
+  contents: write
+concurrency:
+  group: yt-outliers
+  cancel-in-progress: false
+jobs:
+  find:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Self-check (planted cases)
+        run: python3 tools/yt_outliers.py --selftest
+      - name: Find outliers
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: python3 tools/yt_outliers.py
+      - name: Commit
+        run: |
+          git config user.name "yt-outliers"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add video/studio/research/outliers.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "yt-outliers: weekly outliers"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 5; done
+          exit 1

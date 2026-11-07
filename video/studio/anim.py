@@ -1722,6 +1722,10 @@ STORY_RULE = "lost-at-twice"
 
 
 def _sentences(text):
+    if "\n## Words" in text:                                          # transcript.md: only the spoken words
+        text = text.split("\n## Words", 1)[1]
+    text = re.sub(r"(?s)```.*?```", " ", text)                        # pace tables
+    text = re.sub(r"`\d+:\d+(\.\d+)?`", " ", text)                     # word times
     text = re.sub(r"\[[^\]]*\]", " ", text)                       # [bracket] voice tags
     text = re.sub(r"(?m)^\s*(#.*|NOTE.*|\|.*)$", " ", text)          # headings, notes, tables
     return [x.strip() for x in re.split(r"(?<=[.!?])\s+|\n{2,}", text) if len(x.strip().split()) >= 2]
@@ -1774,21 +1778,110 @@ def story_fails_in_row(slug):
     return n
 
 
+# Smoother line (Todd, live chat, Nov 6, 2026, 7:14 pm: "Go with your recommendations for all"): a lesson not queued
+# after 3 runs is shelved, so cloud stops sinking into one video. Runs counted from that word on.
+SHELF_SINCE = "2026-11-07T01:14:00Z"
+SHELF_RUNS = 3
+
+
+_HISTORY = []
+
+
+def _history_since():
+    """Runs clone shallow (depth 1), which hides the commits the count needs: fetch back to SHELF_SINCE once."""
+    if not _HISTORY:
+        _HISTORY.append(1)
+        if sh(["git", "-C", ROOT, "rev-parse", "--is-shallow-repository"], check=False).stdout.strip() == "true":
+            sh(["git", "-C", ROOT, "fetch", "-q", f"--shallow-since={SHELF_SINCE}", "origin", "main"], check=False)
+
+
+def runs_on(slug):
+    """Distinct run sessions with a commit touching the lesson since SHELF_SINCE (from the Claude-Session trailer)."""
+    _history_since()
+    r = sh(["git", "-C", ROOT, "log", f"--since={SHELF_SINCE}", "--format=%B%x00", "--", os.path.relpath(vdir(slug), ROOT)],
+           check=False)
+    return len({m for m in re.findall(r"Claude-Session: (\S+)", r.stdout or "")})
+
+
 def cmd_tomake():
-    """Lessons built but not queued, in the order a run works them: oldest first, except that a lesson with 3 or more
-    story FAILs in a row goes to the back (STORY_RULE), so one stuck lesson can't empty the queue."""
+    """Lessons built but not queued, in the order a run works them: oldest first; a lesson with 3 or more story FAILs
+    in a row goes to the back (STORY_RULE); one with SHELF_RUNS runs since SHELF_SINCE and still not queued is shelved
+    (not worked; its story goes back to Ready in research/STORIES.md for a clean rebuild under a new slug)."""
     queued = {i["slug"] for i in load_queue()["items"]}
     rows = []
     for d in sorted(os.listdir(VIDEOS)):
         if d in queued or d.endswith(HOOKB_SUFFIX) or not os.path.exists(vdir(d, "01_voice", "brief.md")):
             continue
-        if lesson_format(d) != "story":
-            continue                                         # the 6 old-line lessons stay held (REBUILD.md)
-        rows.append({"slug": d, "story_fails_in_row": story_fails_in_row(d)})
-    rows.sort(key=lambda r: r["story_fails_in_row"] >= 3)    # stable: oldest first inside each group
+        if lesson_format(d) != "story" or os.path.exists(vdir(d, "SHELVED")):
+            continue                                         # the 6 old-line lessons stay held (REBUILD.md); shelved stay out
+        rows.append({"slug": d, "story_fails_in_row": story_fails_in_row(d), "runs": runs_on(d)})
     for r in rows:
-        r["place"] = "back of line: 3 story FAILs in a row" if r["story_fails_in_row"] >= 3 else "in line"
+        r["place"] = ("shelve: %d runs, not queued" % r["runs"]) if r["runs"] >= SHELF_RUNS else \
+            "back of line: 3 story FAILs in a row" if r["story_fails_in_row"] >= 3 else "in line"
+    rows.sort(key=lambda r: (r["place"].startswith("shelve"), r["story_fails_in_row"] >= 3))
     print(json.dumps(rows, indent=1))
+
+
+def cmd_shelve(slug, reason):
+    """Mark a lesson shelved (videos/<slug>/SHELVED). The run also moves its story back to Ready in STORIES.md."""
+    if not reason:
+        raise SystemExit("ERROR shelve: give a reason")
+    open(vdir(slug, "SHELVED"), "w").write(f"{now()} {reason}\n")
+    print(f"shelved: {slug}")
+
+
+# Read-aloud counts in code (same Todd word): what a script can count, code decides the same way every time, before any
+# AI reads it. The AI read-aloud keeps the judgment parts (the chain, set-up, one voice, order).
+BREATH_WORDS = 32
+
+
+def cmd_readcheck(slug, which=""):
+    """script.md by default (before the voice); `readcheck <slug> transcript` after it. Exit 1 on a fault."""
+    f = vdir(slug, "02_transcript", "transcript.md") if which == "transcript" else vdir(slug, "01_voice", "script.md")
+    sents = _sentences(open(f, encoding="utf-8").read())
+    n = [len(x.split()) for x in sents]
+    breath = [(i + 1, x) for i, x in enumerate(sents) if n[i] > BREATH_WORDS]
+    choppy, i = [], 0
+    while i < len(n):
+        j = i
+        while j < len(n) and n[j] <= 4:
+            j += 1
+        if j - i >= 3:
+            choppy.append((i + 1, " / ".join(sents[i:j])))
+        i = max(j, i + 1)
+    andthen = [(i + 1, x) for i, x in enumerate(sents) if re.match(r"(?i)^(and then|and so then|then)\b", x)]
+    out = {"words": os.path.relpath(f, VIDEOS), "sentences": len(sents), "breath_fails": len(breath),
+           "choppy_runs": len(choppy), "and_then_starts": len(andthen),
+           "faults": [f"breath s{i} ({len(x.split())} words): {x[:90]}" for i, x in breath] +
+                     [f"choppy from s{i}: {x[:90]}" for i, x in choppy] +
+                     [f"and-then s{i}: {x[:90]}" for i, x in andthen]}
+    out["pass"] = not out["faults"]
+    print(json.dumps(out, indent=1, ensure_ascii=False))
+    if not out["pass"]:
+        raise SystemExit(1)
+
+
+# Words that already passed are not re-judged (same Todd word): when the story gate passes on script.md, `storysnap`
+# keeps those words; after the voice, `storycarry` lists only the sentences that changed, and the after-voice story
+# check reads only those (in context). No changed sentence: retell and read-aloud carry over; compare still runs after
+# the render.
+def cmd_storysnap(slug):
+    src = vdir(slug, "01_voice", "script.md")
+    shutil.copy(src, vdir(slug, "05_render", "reviews", "story-passed-words.md"))
+    print("snapshot: words that passed the story gate kept")
+
+
+def cmd_storycarry(slug):
+    snap = vdir(slug, "05_render", "reviews", "story-passed-words.md")
+    tr = vdir(slug, "02_transcript", "transcript.md")
+    if not os.path.exists(snap) or not os.path.exists(tr):
+        raise SystemExit("ERROR storycarry: needs story-passed-words.md (storysnap after a pass) and transcript.md")
+    old = _sentences(open(snap, encoding="utf-8").read()); new = _sentences(open(tr, encoding="utf-8").read())
+    norm = lambda x: " ".join(re.findall(r"[a-z0-9$']+", x.lower()))
+    changed = [(i + 1, x) for i, x in enumerate(new)
+               if max((difflib.SequenceMatcher(None, norm(x), norm(o)).ratio() for o in old), default=0) < 0.9]
+    out = {"carry": not changed, "changed": [f"s{i}: {x}" for i, x in changed], "sentences": len(new)}
+    print(json.dumps(out, indent=1, ensure_ascii=False))
 
 
 def cmd_hold(slug, reason, off=False):
@@ -1808,12 +1901,30 @@ def cmd_hold(slug, reason, off=False):
     print(f"{'unheld' if off else 'held'}: {slug}")
 
 
+# Post what we can make (Todd, live chat, Nov 6, 2026, 7:14 pm: "Go with your recommendations for all"): 1 lesson a
+# day until 3 are waiting, then up to 3 a day again. A lesson already started today always finishes its platforms.
+def started_today(items):
+    from zoneinfo import ZoneInfo
+    tz = ZoneInfo("America/Chicago"); today = dt.datetime.now(tz).date()
+    n = 0
+    for i in items:
+        ats = [p.get("at") for p in i.get("posts", {}).values() if isinstance(p, dict) and p.get("at")]
+        if ats and min(dt.datetime.fromisoformat(a).astimezone(tz).date() for a in ats) == today:
+            n += 1
+    return n
+
+
 def cmd_next():
-    for i in load_queue()["items"]:
+    items = load_queue()["items"]
+    waiting = [i for i in items if not i["posts"] and not i.get("hold")]
+    for i in items:
         if i.get("hold") and not i["posts"]:
             continue
         missing = [p for p in PLATFORMS if p not in i["posts"]]
         if missing:
+            if not i["posts"] and started_today(items) >= 1 and len(waiting) < 3:
+                print(json.dumps({"slug": None, "why": f"cadence: 1 a day while fewer than 3 wait ({len(waiting)} waiting)"}))
+                return
             print(json.dumps({"slug": i["slug"], "missing": missing, "commit": i.get("commit")}))
             return
     print(json.dumps({"slug": None}))
@@ -2916,6 +3027,14 @@ def main():
         cmd_lostmatch(a.slug, *(a.rest + ["", ""])[:2])
     elif c == "tomake":
         cmd_tomake()
+    elif c == "shelve":
+        cmd_shelve(a.slug, " ".join(a.rest))
+    elif c == "readcheck":
+        cmd_readcheck(a.slug, (a.rest or [""])[0])
+    elif c == "storysnap":
+        cmd_storysnap(a.slug)
+    elif c == "storycarry":
+        cmd_storycarry(a.slug)
     elif c == "variety":
         cmd_variety(a.slug)
     elif c == "lanes":

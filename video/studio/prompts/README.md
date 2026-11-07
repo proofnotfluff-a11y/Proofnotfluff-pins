@@ -31,3 +31,25 @@ Kimi (Todd, Oct 29, 2026, 6:20 pm): facts and facts-captions run on Kimi first (
 pastes these prompts with the files and source excerpts, since Kimi has no tools). Claude checks every Kimi FAIL reason and
 confirms every "unconfirmed" item on its source page; the review JSON names the reviewer. Cap, error or no answer: the fresh
 opus agent as before. Render critic, buyer, design and golden stay on Claude.
+
+## Smoother line (Todd, live chat, Nov 6, 2026, 7:14 pm: "Go with your recommendations for all")
+Why: on Nov 6 four runs queued 0 new lessons. Every round a new reviewer judged from scratch and found something new, so
+fixes never converged (lsa-max-bid: 24 script rounds). These rules make a fix round converge. Every bar above stands.
+1. Fix-check rounds. From round 1 on, any judgment gate (story, design, render-critic, send, compare) gets the faults from
+   the last FAIL (its reviews/<gate>.json "reasons") in its prompt: "Earlier faults to check: ...". The reviewer confirms
+   each one is fixed and may FAIL on something new only when it is a blocker: a wrong fact, unreadable or covered text, a
+   broken or frozen scene, or the message lost. Any other new note is written as "note" (not a fault) and goes to
+   LEARNINGS.md. Design: earlier scores carry for frames that did not change; a lower score needs a named visible fault.
+2. Words that passed are not re-judged. When the story gate passes on script.md, run `anim.py storysnap <slug>`. After
+   the voice, `anim.py storycarry <slug>`: carry true means retell and read-aloud carry over (write story.json with
+   "carried": true and the snapshot's verdict); otherwise the story check reads the whole transcript but judges only the
+   sentences it lists. Compare still runs after the render.
+3. Counts in code first. `anim.py readcheck <slug>` (before the voice; `readcheck <slug> transcript` after) decides breath
+   (over 32 words), choppy runs (3 or more sentences of 1 to 4 words) and "and then" starts. Fix every fault it prints
+   before any AI gate; the AI read-aloud then judges only the chain, set-up, one voice and order, and does not count
+   breath or choppy again.
+4. Order of work: `anim.py tomake` (oldest first; 3 story FAILs in a row, back of line; 3 runs since Nov 6 without a
+   queue spot, shelve it with `anim.py shelve <slug> "<reason>"`, set its story back to Ready in research/STORIES.md and
+   take the next lesson). A shelved story is rebuilt later under a new slug.
+5. Posting: `anim.py next` names no lesson when one already started posting today and fewer than 3 wait; 3 waiting lifts
+   it back to 3 a day. A lesson started today always finishes its platforms.

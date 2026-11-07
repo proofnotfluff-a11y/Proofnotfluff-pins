@@ -22,8 +22,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Tools
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg > /dev/null
+          # Nov 6, 2026 (Todd: "Go with your recommendations for all"): an apt install once took 38 min. Skip the slow
+          # man page rebuild, cap each try at 8 min and try twice, then fail loudly instead of hanging.
+          echo 'set man-db/auto-update false' | sudo debconf-communicate > /dev/null 2>&1 || true
+          sudo rm -f /var/lib/man-db/auto-update
+          for i in 1 2; do timeout 480 sudo apt-get update -qq && timeout 480 sudo apt-get install -y -qq ffmpeg > /dev/null && break; echo "apt try $i failed or timed out"; done
+          command -v ffmpeg && command -v ffprobe
           pip install --quiet -c .github/ci-constraints.txt faster-whisper numpy
       - name: Speak, transcribe, publish
         env:

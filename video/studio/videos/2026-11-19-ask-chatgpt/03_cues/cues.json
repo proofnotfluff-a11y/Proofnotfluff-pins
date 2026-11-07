@@ -1,0 +1,121 @@
+{
+ "schema": "pnf.studio.cues.v1",
+ "source": "whisper medium.en int8, re-spelled from script.md",
+ "music": {
+  "id": "rooms",
+  "level": 0.16,
+  "tune": "sunny"
+ },
+ "duration": 62.376,
+ "cues": [
+  {
+   "id": "hook",
+   "level": 0,
+   "quote": "Nine at night, her",
+   "sfx": "pop",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Cover, frame one, no host: our own drawn kitchen at night (EXAMPLE): the furnace closet, a thermostat reading COLD, frost on the window, a phone glowing on the counter. Plate \"Who does ChatGPT\" / \"send her to?\". On \"quits\" the furnace light goes out.",
+   "t": 0.0,
+   "word": 0,
+   "end": 6.589
+  },
+  {
+   "id": "hook.ask",
+   "level": 1,
+   "quote": "She asks ChatGPT who",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The phone close: our own drawn chat box (EXAMPLE, never a real ChatGPT screen and no reply shown); the question types in: \"Who should I hire to fix my furnace near me?\" A send arrow; three dots pulse. No answer is drawn.",
+   "t": 3.92,
+   "word": 10,
+   "end": 6.589
+  },
+  {
+   "id": "forum",
+   "level": 0,
+   "quote": "That's already happening. On",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Scene two: our own forum card (paraphrase, no names): \"Owner forum (Jobber)\"; the line types in: \"At least 4 people last month told me ChatGPT is how they found us.\" A counter 1 to 4 on \"four\". Tag \"Jobber Community, Nov 2026, paraphrased\".",
+   "t": 6.589,
+   "word": 16,
+   "end": 19.657
+  },
+  {
+   "id": "forum.hedge",
+   "level": 1,
+   "quote": "But they said they",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The same card; a second line: \"Didn't think I'd done a thing there.\" A \"?\" bobs over a blank ChatGPT row.",
+   "t": 16.009,
+   "word": 41,
+   "end": 19.657
+  },
+  {
+   "id": "stakes",
+   "level": 0,
+   "quote": "If it names someone",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The kitchen phone again, then a shop phone on a truck dash: it stays dark, a call bar that never fills; on \"never\" the counter reads CALLS: 0 and a NO RING stamp lands.",
+   "t": 19.657,
+   "word": 54,
+   "end": 24.717
+  },
+  {
+   "id": "check",
+   "level": 0,
+   "quote": "So tonight, ask it",
+   "sfx": "stamp",
+   "shift": 0.0,
+   "pin": null,
+   "text": "THE CHECK (the send moment, held to screenshot): a save-screen card, both steps land in the first half second and then nothing moves over it (held to screenshot): '1. Ask ChatGPT: \"Who's the best [your trade] near me?\"' and \"2. Not you? Fix your Google profile first.\"",
+   "send": true,
+   "t": 24.717,
+   "word": 68,
+   "end": 33.691
+  },
+  {
+   "id": "why",
+   "level": 0,
+   "quote": "Why the Google profile?",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The column card: WHAT IT READS, three rows tick in on their words: YOUR NAME, YOUR WEBSITE, YOUR REVIEWS. Tag \"ACHR News guest column, Mar 18, 2026 (SearchLight data)\".",
+   "t": 33.691,
+   "word": 90,
+   "end": 43.885
+  },
+  {
+   "id": "small",
+   "level": 0,
+   "quote": "The same firm says",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "A revenue bar: a sliver lights, ABOUT 1%; on \"big\" the ticket slams: $11,500 A TICKET (the firm's average). Same column tag.",
+   "t": 43.885,
+   "word": 116,
+   "end": 54.576
+  },
+  {
+   "id": "button",
+   "level": 0,
+   "quote": "Some homeowners already ask",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The kitchen phone, the question still on it; THE CHECK card slides back in small; plate \"Ask it\" / \"before they do.\"; Snow points at step 1. Then the end card with the send line.",
+   "t": 54.576,
+   "word": 147,
+   "end": 62.376
+  }
+ ]
+}

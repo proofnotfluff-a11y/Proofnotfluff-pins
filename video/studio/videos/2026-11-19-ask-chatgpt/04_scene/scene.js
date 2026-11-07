@@ -72,7 +72,7 @@ const exampleTag = (d, x, y) => { d.P(x, y, 80, 22, INK); d.P(x + 1, y + 1, 78, 
 /* o.outAt), the counter, her phone lit on it. Everything above y 300 (low-res) so the band under it stays the host's. */
 const kitchen = (k, o = {}) => {
   const d = px(k), {P, dith, disc, F} = d, out = o.outAt !== undefined && k.T >= o.outAt;
-  P(0, 0, 360, 417, '#1B1420'); for (let y = 0; y < 417; y += 4) dith(0, y, 360, 1, '#241A2B', (y / 4) % 2);
+  P(0, 0, 360, 417, o.moon ? '#0B1220' : '#5A4A60'); for (let y = 0; y < 417; y += 4) dith(0, y, 360, 1, o.moon ? '#121B2E' : '#6A5A70', (y / 4) % 2);
   /* the window: night sky, frost creeping in the corners */
   P(196, 150, 130, 96, INK); P(200, 154, 122, 88, '#16233A'); P(259, 154, 4, 88, INK); P(200, 196, 122, 4, INK);
   for (let i = 0; i < 18; i++) d.DOT(204 + Math.floor(hash(i * 4.1) * 112), 158 + Math.floor(hash(i * 9.3) * 30), CREAM);
@@ -110,7 +110,8 @@ const srcCard = (k, d, head, t0, o = {}) => {
   P(14, 84 + up, 332, 20, o.hc || '#3B82C4'); k.text(head, 72, 258 + up * 3, {size: 39, color: CREAM});
   return up;
 };
-const tag = (k, d, s, y = 290) => { plate(d, 14, y, 332, 30); k.text(s, 72, y * 3 + 24, {size: 33, color: SAND}); };
+const flash = (k, d, t) => { const f = d.fr(t); if (f >= 0 && f < 2) d.P(0, 0, 360, 417, '#FFFFFF'); };
+const tag = (k, d, s, y = 290, s2) => { plate(d, 14, y, 332, s2 ? 46 : 30); k.text(s, 72, y * 3 + 24, {size: 33, color: SAND}); if (s2) k.text(s2, 72, y * 3 + 72, {size: 33, color: SAND}); };
 
 /* the check card (the send moment): two steps, lit on their words, held to screenshot */
 const checkCard = (k, d, t1, t2, t0, o = {}) => {
@@ -136,61 +137,57 @@ window.SCENE = {
   host_name: 'Snow',
   hud: 'ASK THE CHAT',
   sendLine: 'Send this to whoever runs your Google profile.',
-  transitions: {forum: 'door', stakes: 'dissolve', check: 'levelselect', why: 'iris', small: 'door', button: 'gameover'},
+  transitions: {forum: 'mosaic', stakes: 'dissolve', check: 'levelselect', why: 'fade4', small: 'mosaic', button: 'gameover'},
   trauma: {stakes: 0.4},
   sections: {
-    /* ---- hook: scene one (cover, no host): the kitchen at night, her phone lit; the question plate. On "quits" the    */
-    /* furnace light goes out. On "asks": her phone close, the question types into our own chat box; no reply drawn.     */
+    /* ---- hook: scene one (cover, no host): the kitchen at night, her phone lit; the question plate. Change 1 when the  */
+    /* host comes on: the moonlight drops (the wall goes blue). Change 2 on "quits": a flash, the furnace light goes out,  */
+    /* NO HEAT. On "asks": her phone in the truck-dash chat set (our own app, EXAMPLE); her question goes up, no reply.     */
     hook: (k, T) => {
-      const tIn = Math.min(0.9, Math.max(0.5, wordT(k, 'hook', /^furnace/i, 0.6) - 0.3)), tOut = wordT(k, 'hook', /^quits/i, 1.4), tAsk = k.S('hook.ask');
-      if (T < tAsk) {
-        const d = kitchen(k, {outAt: tOut});
+      const tIn = Math.min(0.9, Math.max(0.5, wordT(k, 'hook', /^furnace/i, 0.6) - 0.3)), tOut = Math.min(2.6, wordT(k, 'hook', /^quits/i, 1.4) - 0.1), tAsk = k.S('hook.ask'), tChat = Math.max(tOut + 0.6, wordT(k, 'hook', /^doesn/i, 2.4) - 0.2);   /* her phone from "doesn't call around": the chat set holds over 5% of the runtime */
+      if (T < tChat) {
+        const d = kitchen(k, {outAt: tOut, moon: T >= tIn});
+        flash(k, d, tOut);
         topPlate(k, d, 'Who does ChatGPT', 'send her to?', -1);
-        if (T >= tOut) stampBox(k, 'NO HEAT', 270, 780, tOut, {color: '#3B82C4', freeze: 3});
-        exampleTag(d, 260, 128);
+        if (T >= tOut) stampBox(k, 'NO HEAT', 400, 640, tOut, {color: '#3B82C4', freeze: 3});
+        exampleTag(d, 150, 256);   /* render critic r0: off the plate, it covered the '?' of the hook line */
         if (T < tIn) return {host: false, speech: false};
         return host(k, T >= tOut ? 'shock' : null);
       }
-      const d = px(k), {P, dith} = d;
-      P(0, 0, 360, 417, '#16233A'); for (let y = 0; y < 417; y += 4) dith(0, y, 360, 1, '#1B1420', (y / 4) % 2);
-      chatBox(k, d, ['Who should I hire to', 'fix my furnace', 'near me?'], tAsk + 0.25);
-      topPlate(k, d, '9 PM. No heat.', 'She asks the chat.', tAsk);
-      exampleTag(d, 260, 128);
+      k.sets.chat({who: 'CHAT (EXAMPLE)', clock: '9:02 PM', msgs: [{me: true, text: 'Who should I hire to fix my heat tonight?', at: tAsk - 0.25}]});
       return host(k);
     },
 
-    /* ---- forum: scene two, the owner's side: our forum card, the owner's report paraphrased; a counter to 4 on "four". */
-    /* forum.hedge: the second line and a "?" over a blank row.                                                          */
+    /* ---- forum: scene two, the owner's side: our forum card, the owner's report paraphrased, each line on its words; a  */
+    /* counter to 4 on "four". forum.hedge: the hedge line and a "?" bobbing.                                            */
     forum: (k, T) => {
-      const t0 = k.S('forum'), tH = k.S('forum.hedge'), tFour = wordT(k, 'forum', /^four/i, 3.0) - 0.2, four = k.data.numbers.four.value;
+      const t0 = k.S('forum'), tH = k.S('forum.hedge'), tFour = wordT(k, 'forum', /^four/i, 3.0) - 0.25, tLeast = wordT(k, 'forum', /^least/i, 2.8) - 0.25, tPeople = wordT(k, 'forum', /^people/i, 3.4) - 0.25, tChat = wordT(k, 'forum', /^chatgpt/i, 5.0) - 0.25, four = k.data.numbers.four.value;
       const d = px(k), {P, dith} = d;
       P(0, 0, 360, 417, '#2B2033'); for (let y = 0; y < 417; y += 4) dith(0, y, 360, 1, '#3D2E45', (y / 4) % 2);
       const up = srcCard(k, d, 'OWNER FORUM (JOBBER)', t0 + 0.05, {h: 190, hc: '#2F6F67'});
       if (!up) {
         k.text('One owner, paraphrased:', 72, 330, {size: 39, color: '#4A4E5A'});
-        k.text('At least', 72, 400, {size: 52, color: INK});
-        const n = T >= tFour ? Math.min(four, 1 + Math.floor((T - tFour) * 8)) : 0;
-        if (n) k.slam(String(n), 330, 380, tFour, {size: 99, color: RED, from: 0.4});
-        k.text('people last month told', 72, 470, {size: 52, color: INK}); k.text('them ChatGPT sent them.', 72, 534, {size: 52, color: INK});
-        if (T >= tH) { k.slam("But: didn't think they'd", 72, 618, tH + 0.1, {size: 52, color: '#2F6F67', from: 0.3}); k.slam('done a thing there.', 72, 682, tH + 0.15, {size: 52, color: '#2F6F67', from: 0.3});
-          const b = [0, -1, -2, -1][(d.F >> 3) % 4]; k.text('?', 930, 600 + b * 3, {size: 99, color: GOLD, align: 'center', lint: false}); }
+        if (T >= tLeast) { k.slam(`At least ${four}`, 72, 392, tLeast, {size: 66, color: RED, from: 0.4}); }
+        if (T >= tPeople) k.slam('people last month told', 72, 480, tPeople, {size: 52, color: INK, from: 0.3});
+        if (T >= tChat) k.slam('them ChatGPT sent them.', 72, 544, tChat, {size: 52, color: INK, from: 0.3});
+        if (T >= tH) { k.slam("But: didn't think they'd", 72, 628, tH - 0.25, {size: 52, color: '#2F6F67', from: 0.3}); k.slam('done a thing there.', 72, 692, tH - 0.2, {size: 52, color: '#2F6F67', from: 0.3});
+          const b = [0, -1, -2, -1][(d.F >> 3) % 4]; k.text('?', 900, 610 + b * 3, {size: 99, color: GOLD, align: 'center', lint: false}); }
       }
       tag(k, d, 'Jobber Community, Nov 2026, paraphrased', 290);
       return host(k, T >= tH ? 'shrug' : null);
     },
 
-    /* ---- stakes: the shop phone on a truck dash stays dark; the call bar never fills; CALLS: 0, NO RING on "never".    */
+    /* ---- stakes: the shop phone on a truck dash stays dark; the call bar never fills; NO RING on "never".              */
     stakes: (k, T) => {
-      const t0 = k.S('stakes'), tNever = wordT(k, 'stakes', /^never$/i, 1.6);
+      const t0 = k.S('stakes'), tNever = wordT(k, 'stakes', /^never$/i, 1.6) - 0.25;
       const d = px(k), {P, dith, F} = d;
       P(0, 0, 360, 417, '#1F2A40'); for (let y = 0; y < 417; y += 4) dith(0, y, 360, 1, '#253048', (y / 4) % 2);
-      /* the dash and the phone mount */
       P(0, 250, 360, 50, '#2B2033'); P(0, 250, 360, 3, '#4A4E5A'); P(30, 262, 60, 24, INK); disc4(d, 60, 274);
-      P(150, 140, 70, 120, INK); P(154, 144, 62, 112, '#120D14'); P(174, 260, 22, 10, INK);
-      const q = ((T - t0) * 0.6) % 1; P(160, 236, 50, 6, '#253048'); P(160, 236, Math.round(50 * (0.15 + 0.2 * Math.sin(q * Math.PI))), 6, GREY);
+      P(150, 140, 70, 108, INK); P(154, 144, 62, 100, '#120D14'); P(174, 248, 22, 6, INK);
+      const q = ((T - t0) * 0.6) % 1; P(160, 228, 50, 6, '#253048'); P(160, 228, Math.round(50 * (0.15 + 0.2 * Math.sin(q * Math.PI))), 6, GREY);
       k.text('WAITING', 555, 560, {size: 33, color: GREY, align: 'center', lint: false});
-      topPlate(k, d, 'It names someone else.', 'Your phone stays dark.', t0 + 0.02);
-      if (T >= tNever) { k.slam('CALLS: 0', 690, 760, tNever, {size: 66, color: RED, from: 0.4}); stampBox(k, 'NO RING', 270, 1000, tNever + 0.2, {color: RED, freeze: 4}); }
+      topPlate(k, d, 'It names someone else.', 'Your phone may stay dark.', t0 + 0.02);
+      if (T >= tNever) stampBox(k, 'NO RING', 720, 600, tNever, {color: RED, freeze: 4});
       return host(k, T >= tNever ? 'shrug' : null);
     },
 
@@ -203,33 +200,30 @@ window.SCENE = {
       return host(k, 'point');
     },
 
-    /* ---- why: the column's card, WHAT IT READS: name, website, reviews tick in on their words.                        */
+    /* ---- why: what the chat reads, as an RPG tool belt (inventory set): the cursor lands on NAME, WEBSITE, REVIEWS   */
+    /* on their words; the source tag under it.                                                                         */
     why: (k, T) => {
-      const t0 = k.S('why'), ts = [wordT(k, 'why', /^name/i, 3.0), wordT(k, 'why', /^website/i, 3.6), wordT(k, 'why', /^reviews/i, 4.2)];
-      const d = px(k), {P, dith} = d;
-      P(0, 0, 360, 417, '#253048'); for (let y = 0; y < 417; y += 4) dith(0, y, 360, 1, '#1F2A40', (y / 4) % 2);
-      const up = srcCard(k, d, 'WHAT THE CHAT READS', t0 + 0.05, {h: 190});
-      if (!up) {
-        k.text('Its answer is built from', 72, 330, {size: 44, color: '#4A4E5A'}); k.text("what's already out there:", 72, 386, {size: 44, color: '#4A4E5A'});
-        ['YOUR NAME', 'YOUR WEBSITE', 'YOUR REVIEWS'].forEach((s, i) => { const on = T >= ts[i] - 0.25, y = 470 + i * 70;
-          P(24, Math.round(y / 3) + 2, 14, 14, on ? '#2F6F67' : SAND); if (on) { d.line(27, Math.round(y / 3) + 9, 30, Math.round(y / 3) + 12, CREAM, 2); d.line(30, Math.round(y / 3) + 12, 35, Math.round(y / 3) + 5, CREAM, 2); }
-          k.text(s, 132, y, {size: 52, color: on ? INK : '#9AA0AD'}); });
-      }
-      tag(k, d, 'ACHR News column, Mar 18, 2026 (SearchLight data)', 290);
+      const t0 = k.S('why'), ts = [wordT(k, 'why', /^name/i, 6.0) - 0.25, wordT(k, 'why', /^website/i, 6.6) - 0.25, wordT(k, 'why', /^reviews/i, 7.2) - 0.25];
+      k.sets.inventory({title: 'WHAT THE CHAT READS', items: [{icon: 'clip', name: 'NAME', stats: []}, {icon: 'phone', name: 'WEBSITE', stats: []}, {icon: 'star', name: 'REVIEWS', stats: []}],
+        select: [{slot: 0, at: Math.min(ts[0], t0 + 0.3)}, {slot: 1, at: ts[1]}, {slot: 2, at: ts[2]}], footer: 'FROM WHAT IS OUT THERE'});
+      const d = px(k); tag(k, d, 'ACHR News column, Mar 18, 2026', 290, '(SearchLight data)');
       return host(k, 'point');
     },
 
-    /* ---- small: a revenue bar, a sliver lit, ABOUT 1%; on "average" the ticket slams.                                      */
+    /* ---- small: ABOUT 1% on "about"; then the till rings up one job from the chat at the firm's average ticket.        */
     small: (k, T) => {
-      const t0 = k.S('small'), tP = wordT(k, 'small', /^percent/i, 3.0) - 0.3, tBig = wordT(k, 'small', /^average/i, 5.0) - 0.2, r1 = k.data.numbers.rev1.shown, tk = k.data.numbers.ticket.shown;
-      const d = px(k), {P, dith} = d;
-      P(0, 0, 360, 417, '#2B2033'); for (let y = 0; y < 417; y += 4) dith(0, y, 360, 1, '#3D2E45', (y / 4) % 2);
-      d.win(14, 84, 332, 196, {base: NIGHT, hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
-      k.text('WORK FROM CHATGPT', 72, 270, {size: 39, color: GOLD}); k.text('Share of revenue, most shops', 72, 330, {size: 36, color: SAND});
-      P(30, 128, 300, 24, '#253048'); if (T >= tP) { P(30, 128, 4, 24, GOLD); k.slam(`ABOUT ${r1}`, 132, 480, tP, {size: 66, color: GOLD, from: 0.4}); }
-      if (T >= tBig) { k.slam(`${tk} A TICKET`, 72, 620, tBig, {size: 80, color: CREAM, from: 0.4}); k.text("(the firm's average)", 72, 720, {size: 36, color: SAND}); }
-      tag(k, d, 'ACHR News column, Mar 18, 2026 (SearchLight data)', 290);
-      return host(k, T >= tBig ? 'shock' : null);
+      const t0 = k.S('small'), tP = wordT(k, 'small', /^about$/i, 2.4) - 0.25, tAvg = wordT(k, 'small', /^average/i, 6.0) - 0.4, r1 = k.data.numbers.rev1.shown, tk = k.data.numbers.ticket;
+      if (T < tAvg) {
+        const d = px(k), {P, dith} = d;
+        P(0, 0, 360, 417, '#2B2033'); for (let y = 0; y < 417; y += 4) dith(0, y, 360, 1, '#3D2E45', (y / 4) % 2);
+        d.win(14, 84, 332, 196, {base: NIGHT, hi: '#3D2E45', lo: INK, rule: '#3D2E45'});
+        k.text('JOBS FROM CHATGPT', 72, 270, {size: 39, color: GOLD}); k.text('Share of revenue, most shops', 72, 330, {size: 36, color: SAND});
+        P(30, 128, 300, 24, '#253048'); if (T >= tP) { P(30, 128, 4, 24, GOLD); k.slam(`ABOUT ${r1}`, 132, 480, tP, {size: 66, color: GOLD, from: 0.4}); }
+        tag(k, d, 'ACHR News column, Mar 18, 2026', 290, '(SearchLight data)');
+        return host(k);
+      }
+      k.sets.register({items: [{label: 'CHAT JOB', amount: tk.value, at: tAvg + 0.1}], prefix: '$', totalAt: tAvg + 0.5, openAt: tAvg + 0.9, totalLabel: 'AVG TICKET', displayLabel: 'AVG'});
+      return host(k, 'shock');
     },
 
     /* ---- button: the kitchen phone, the question still on it; THE CHECK small; plate on the close; Snow points.         */
@@ -248,5 +242,5 @@ window.SCENE = {
 function disc4(d, x, y) { d.disc(x, y, 8, '#3D2E45'); d.disc(x, y, 3, INK); }
 
 /* the drift from lsa-max-bid r28 (code QA: no flat stretch): a faint dither moves down the empty lower band. */
-const drift = (k) => { const d = px(k), off = Math.floor(k.T * 30) % 16; for (let y = 418 - 16 + off; y < 640; y += 16) { const y0 = Math.max(418, y), y1 = Math.min(640, y + 8); if (y1 > y0) d.P(0, y0, 360, y1 - y0, '#2B2033'); } };
+const drift = (k) => { const d = px(k), off = Math.floor(k.T * 30) % 16; for (let y = 418 - 16 + off; y < 640; y += 16) { const y0 = Math.max(418, y), y1 = Math.min(640, y + 8); if (y1 > y0) d.P(0, y0, 360, y1 - y0, '#3D2E45'); } };   /* lighter than every floor here, so it reads as motion (code QA: flat in the forum) */
 for (const [n, f] of Object.entries(window.SCENE.sections)) window.SCENE.sections[n] = (k, T) => { const r = f(k, T); drift(k); return r; };

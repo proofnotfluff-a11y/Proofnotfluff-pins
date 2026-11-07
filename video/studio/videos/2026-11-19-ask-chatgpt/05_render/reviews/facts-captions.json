@@ -1,0 +1,11 @@
+{
+ "gate": "facts-captions",
+ "round": 0,
+ "pass": true,
+ "score": {
+  "numbers": 9,
+  "mismatches": 0
+ },
+ "reasons": [],
+ "reviewer": "fresh opus agent; achrnews via the box re-reads of Nov 7, Jobber thread on the Nov 6 record"
+}

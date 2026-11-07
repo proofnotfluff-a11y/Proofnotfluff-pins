@@ -1,0 +1,18 @@
+{
+ "gate": "render-critic",
+ "round": 0,
+ "pass": false,
+ "score": {
+  "faults": 1
+ },
+ "faults": [
+  {
+   "kind": "overlap",
+   "at": 2.0,
+   "text": "send her to?",
+   "what": "the EXAMPLE badge covers the question mark of the hook line from 0.0 to 2.4 s"
+  }
+ ],
+ "fixed_in_working_tree": "badge moved to the wall under the plate (scene.js); needs a re-render and the fix-check round",
+ "reviewer": "fresh opus agent"
+}

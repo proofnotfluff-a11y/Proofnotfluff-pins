@@ -1,0 +1,8 @@
+{
+ "schema": "pnf.studio.worlds.v1",
+ "share": {
+  "set:chat": 0.068,
+  "set:inventory": 0.164,
+  "set:register": 0.056
+ }
+}

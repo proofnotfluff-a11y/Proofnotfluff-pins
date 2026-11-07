@@ -1,0 +1,32 @@
+{
+ "about": "Every number and claim this lesson shows or says, with its source. ServiceTitan's State of the Trades article 'When Summer HVAC Demand Spikes, After-Hours Calls Do Too' (June 3, 2026) re-read Nov 7, 2026 (Central) with WebFetch in the proven lane build chat; the quoted lines were on it that day. 9.8% is said as 'call it one in ten' (a rounding, flagged). The ten-to-seven weeknight call, the furnace, the four rings, the closed message, the new message and the text back are ours (EXAMPLE on screen). We never say how many callers hang up, call a competitor or how much a call is worth: no source here gives those.",
+ "servicetitan": {
+  "title": "When Summer HVAC Demand Spikes, After-Hours Calls Do Too",
+  "publisher": "ServiceTitan (State of the Trades)",
+  "date": "2026-06-03",
+  "url": "https://www.servicetitan.com/toolbox/state-of-the-trades/trends/hvac-summer-after-hours-call-spike",
+  "reread": "2026-11-07",
+  "dataYear": 2025,
+  "octPct": 9.8,
+  "octShown": "9.8%",
+  "octSaid": "call it one in ten",
+  "junePct": 14.1,
+  "population": "participating ServiceTitan customers, residential HVAC inbound calls, same-store cohort active all 12 months of 2025; the page says not nationally representative",
+  "offHours": "weekdays before 8 a.m. or after 5 p.m., plus all weekend hours",
+  "octWeekdayPct": 6.8,
+  "octWeekendPct": 2.95,
+  "hours": "Monday through Friday, 8 a.m. to 5 p.m. in each contractor's local time zone",
+  "confirms": [
+   "In June 2025, 14.1% of inbound calls to residential HVAC shops arrived outside business hours.",
+   "During October, that figure fell to 9.8%, the lowest point of the year.",
+   "standard business hours were defined as Monday through Friday, 8 a.m. to 5 p.m. in each contractor's local time zone."
+  ]
+ },
+ "example": {
+  "time": "ten to seven on a weeknight",
+  "timeShown": "6:50 PM",
+  "rings": 4,
+  "openAt": "7 am",
+  "what": "ours: a homeowner's furnace quits and she calls an HVAC shop after hours; the messages are ours, labeled EXAMPLE"
+ }
+}

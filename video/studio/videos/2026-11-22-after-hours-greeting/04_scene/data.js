@@ -1,0 +1,1 @@
+window.DATA = {"file": "video/studio/videos/2026-11-22-after-hours-greeting/01_voice/facts.json", "commit": "", "sha256": "3da4df265457577d3edb5c99bbef8c3cb9b9001341f32fc4e339b3258ae3cdf7", "numbers": {"oct": {"value": 9.8, "shown": "9.8%", "path": "servicetitan.octPct"}}, "pull": {}};

@@ -18,7 +18,9 @@ check. A gate that stops catching a planted failure turns every run red: tell To
   studio send     video/studio/anim.py selftest: the send moment and the shorter middle (Todd, live chat, Nov 7, 2026,
                   9:27 am): no Send line, a group or the viewer as the person, a vague thing, an end card naming someone
                   else, no or two [send] cues, a send cue under 2.5 s, a card that moves, a payoff at or after halfway,
-                  a reviewer naming another person or thing, a story over 70 s
+                  a reviewer naming another person or thing, a story over 70 s; the proven lane's copy check (Todd, live
+                  chat, Nov 7, 2026, 12:08 pm: "Go"): a 6-word run, close wording, a copied opening or caption, no
+                  sourceprint or Source line, the 2-in-3 rotation and the 50 to 65 s band
 
 Usage: python3 tools/test_video_gates.py [--fast]     --fast skips video_qa's clips (about 25 s)
 """

@@ -146,5 +146,17 @@
    }
   ],
   "cadenceNote": "Todd, live chat, Nov 7, 2026, 8:33 am: \"Go\", to the social engine audit (coo/DECISIONS-2026-11-07.md): 3 a day when 6 or more lessons wait, 2 a day at 3 to 5, 1 a day at 1 or 2, counted on this morning's line (waiting now plus started today). Replaces Nov 6's 1 a day until 3 wait. perDay stays the ceiling."
+ },
+ "laneTest": {
+  "mode": "on",
+  "from": "2026-11-07 12:08",
+  "until": "2026-11-14",
+  "pattern": [
+   "proven",
+   "proven",
+   "story"
+  ],
+  "verdict": "2026-11-14",
+  "note": "Todd, live chat, Nov 7, 2026, 12:08 pm: \"Go\", to the proven idea lane (11:58 am: \"We can find what is actually working out there and create our own videos based on that.\"). For 7 days 2 of every 3 new lessons come from the proven lane and 1 from the story lane (anim.py nextlane counts brief.md Started lines, Central time); shorts do not count. Verdict Nov 14 beside the shorts verdict, by views, sends per reach and follows on the deep reads (_shared/formats.md \"Proven\"). Set mode off when the verdict is written."
  }
 }

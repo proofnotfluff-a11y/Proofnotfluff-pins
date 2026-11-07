@@ -36,6 +36,8 @@ viewer sees and hears: a different shape, length, opening and payoff, each built
 
 | story | 40 to 70 s, aim 50 to 65 | 110 to 175 (a guide) | the story desk's story.md told whole: an opening from storycraft.md, the setup, the problem with its proof, the turn, the send card (before half the runtime), the cost, the kicker | every new-line lesson from Nov 5, 2026 (REBUILD.md); rotates on its brief.md Shape line |
 
+| proven | 50 to 65 s (hard) | 120 to 170 (a guide) | our own version of a research/PROVEN.md pattern: opens on the moment, the send card before half, one checked number, the rule | brief.md `- **Format:** proven`, `- **Source:** <link>` ("Proven" below) |
+
 | short | 18 to 35 s | 45 to 95 (a guide) | one fix from a queued story lesson: the moment in one line, the send card (the fix, held 2.5 s, before half), the check that it worked, the button | brief.md `- **Derived from:** <parent slug>` |
 
 Relaxed for the new line (Todd, live chat, Nov 2, 2026, 8:49 pm, PRINCIPLES.md: "We can elaborate more and relax
@@ -79,6 +81,33 @@ scenario is told as "picture this" and never as something that happened; every n
 - Tune: `anim.py tunes` (already a rule). Pace: quick-math runs fast (185 to 195 wpm), scenario calm (160 to 170).
 - End card: the same lockup is fine (YouTube allows a shared intro and outro when the body differs); the send line names a
   different role each time.
+
+## Proven (Todd, live chat, Nov 7, 2026, 12:08 pm: "Go", to the proven idea lane)
+Todd, 11:58 am: "We can find what is actually working out there and create our own videos based on that." Why: a reported
+story took up to 28 script rounds a lesson; faceless channels grow by making their own version of what already works.
+Ideas and formats aren't owned; words, footage and art are. Our edge is the version: made for trade owners, one checked
+number, our pixel style, the send moment.
+- **Pick** a row of research/PROVEN.md that has a sourceprint (research/proven/<id>.json), phone cluster first while it
+  leads. A row with no print: read its whole transcript (watch-video skill, or the page itself) into a file under data/
+  and run `anim.py sourceprint <link> <file> <how>`; never commit the source's words.
+- **brief.md**: `- **Format:** proven`, `- **Source:** <link>`, `- **Started:** <YYYY-MM-DD HH:MM Central>`, a Shape
+  (rotation reads it), Send, Hook pattern, Treatment, Example, Music, and the claims table. No Story or Test score, no
+  second-source bar.
+- **Script** (viral-script SKILL, "A proven lesson"): our own words to a trade owner; the pattern's topic and move, never
+  its lines; an opening worded differently from the source's; it opens on the moment (storycraft.md, Openings); one number,
+  re-read on its own source page today (facts.json, facts gate); never the source's own numbers or results unless we read
+  their source; the send moment ("The send moment" above); 50 to 65 s with the end card.
+- **Copy check** (`anim.py copycheck`, gate `copy`; `ready` runs it again): fails on any run of 6 or more words shared with
+  the source, 15% or more of our 3-word runs in the source or 25% or more of its in ours, an opening sharing a 4-word run
+  or a third of its 3-word runs with the source's first 25 words, or a caption with a 6-word run. Planted cases in
+  `anim.py selftest`. Never edit it to pass: rewrite the line.
+- **Gates** (`anim.py` PROVEN_GATES): code QA, facts, facts on captions, render critic, send, design, copy; every one a
+  fresh opus reviewer except copy, which is code. `anim.py readcheck` still runs.
+- **The test** (video/config.json laneTest; `anim.py nextlane`): Nov 7 to 14, 2 of every 3 new lessons from this lane and
+  1 from the story lane, counted by brief.md Started lines (shorts don't count; when the lane due has nothing to make, take
+  the other and say so). Verdict Nov 14 beside the shorts verdict, on the deep reads: median views at 48 h, sends (shares)
+  per 1,000 reached, and follows per lesson, proven against story. Keep the lane that wins two of the three; tell Todd with
+  the numbers. Fewer than 2 of either read by Nov 14: the verdict waits until 2 are.
 
 ## Short (Todd, live chat, Nov 7, 2026, 8:33 am: "Go", to the social engine audit's recommendation 3)
 Why: one story lesson costs several runs, so 3 a day needs a second, cheaper post per story. A short is not a re-upload:

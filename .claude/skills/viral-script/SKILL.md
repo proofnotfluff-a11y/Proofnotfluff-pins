@@ -1,10 +1,11 @@
 # viral-script (write a lesson script that sounds like a person and is built the way niche winners are built)
 
 Todd, live chat, Oct 30, 2026: "Develop a skill so the scripts sound human and are structured on how the most viral videos
-succeed in this niche." Used at stage 01: writes brief.md's Format, Hook pattern, Treatment lines and script.md.
+succeed in this niche."
 
-## A story lesson (Nov 5; REBUILD.md)
-Format story: use 00_story/story.md and _shared/storycraft.md "For the engine" (overrides steps 0, 1, 8).
+## Story, proven
+Format story (Nov 5; REBUILD.md): 00_story/story.md and _shared/storycraft.md "For the engine" (overrides steps 0, 1, 8).
+Format proven (Nov 7, 12:08 pm): skip steps 0 to 2; _shared/formats.md "Proven", our words only, `anim.py copycheck`.
 
 ## Inputs (Reads)
 - video/studio/_shared/voice.md (voice rules, 12-point check), _shared/formats.md (the six formats).
@@ -26,15 +27,15 @@ Format story: use 00_story/story.md and _shared/storycraft.md "For the engine" (
    brief.md exists). The fix is a line to say: clinic. A number: quick-math. A text or reply: fix-this. Speed or process:
    two-shops. A belief: myth-three. A habit that adds up: scenario.
 4. **Write the first 3 seconds first,** and write five. The opening is 9 to 12 words, a moment or an object with a number,
-   never a percent, a source or "trade owners,". Read each aloud at speaking pace; keep the one a busy owner would not
-   scroll past. Our own numbers (PERFORMANCE.md) set the bar: 60% of viewers left in the first 3 s on our first lessons.
+   never a percent, a source or "trade owners,". Read each aloud; keep the one a busy owner would not
+   scroll past. The bar: 60% left in the first 3 s on our first lessons (PERFORMANCE.md).
 5. **Write it as talk.** Tell it to one owner across a tailgate. Contractions. Short sentences, one aside. Say "you".
    Plain trade words (call, quote, truck, homeowner, callback), never marketing words (leverage, funnel, optimize,
    pipeline, game-changer, unlock, secret, hack). Numbers said the way a person says them: money as owners say it
    ("a thousand bucks", "two grand"), an exact figure plainly, a rounded one flagged ("call it"), never "about" before
    an exact figure. Say the viewer's wrong first guess out loud, then correct it. Average sentence under 12 words, at
-   least 3 fragments of 1 to 3 words, one idea a sentence, no sentence with more than two numbers. Same key words all the
-   way through. No AI tells: no staged run-ups ("Here's the thing"), no lists of three for rhythm, at most one "not X,
+   least 3 fragments of 1 to 3 words, one idea a sentence, no sentence with more than two numbers. Same key words
+   throughout. No AI tells: no staged run-ups ("Here's the thing"), no lists of three for rhythm, at most one "not X,
    it's Y". Tags: two a script, sounds only, open with none or `[conversational]` (_shared/voice.md).
 6. **Make the middle earn the watch.** Every 3 to 4 seconds a new fact, a turn or a picture change. Show it acted, not
    explained. One open question set in the opening and answered late.
@@ -50,6 +51,6 @@ Format story: use 00_story/story.md and _shared/storycraft.md "For the engine" (
    - Then the 12-point check in _shared/voice.md with the format's own bands.
 
 ## Outputs (Writes)
-- brief.md lines: Format, Hook pattern, Treatment, Example, Asked by owners, Model videos; script.md; script-check.md.
+- Stage 01. brief.md lines: Format, Hook pattern, Treatment, Example, Asked by owners, Model videos; script.md; script-check.md.
 - Never: a quote over 15 words from anyone's video, a real customer's words, an invented story told as true, a number
   not in facts.json, em or en dashes.

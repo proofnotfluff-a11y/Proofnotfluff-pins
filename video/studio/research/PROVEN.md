@@ -1,0 +1,53 @@
+# Proven patterns (the proven idea lane's bank)
+
+Todd, live chat, Nov 7, 2026, 11:58 am: "Can't we examine top performing videos on youtube shorts and make our own
+variation? ... We can find what is actually working out there and create our own videos based on that."; 12:08 pm: "Go".
+Rules for making a lesson from a row: _shared/formats.md "Proven". Ideas and formats aren't owned; words, footage and art
+are. We take the pattern (topic, opening move, structure, length, what's on screen) and never a line, a shot or a script.
+
+## How this bank was read (Nov 7, 2026, live chat, about 12:50 to 1:40 pm Central)
+- Channels: 35 real YouTube channels found by 15 YouTube searches (trade business owners, home service marketing, AI for
+  small business); 33 had a Shorts tab. For each, the newest 48 Shorts and their views from the public channel page.
+- Typical views = the median of those 48. An outlier = 5x the median or more. Each row's exact views, length and date
+  come from its own public watch page, read the same day.
+- Kept: business lessons a trade owner can act on, 1,000 views or more, not a paid ad. Dropped: a meme set to a trending
+  song (_DSkrhfDvGk, 385,504 views, 67.6x), career advice off our topic (HSU189Hzedo, 16,651, 12.8x), and Housecall Pro's
+  four TikTok outliers (23,600 to 185,700 views), which are paid free-trial ads.
+- Read honestly: three rows come from small channels (typical 48 to 58 views), so their ratios are large on 1,000 to 4,400
+  views. They show what an owner audience stops for, not reach we can expect.
+- Route: Todd's Chrome, public pages only, read only, nothing signed into or changed. Not reachable: YouTube channel pages
+  and feeds through web fetch (no view counts; the feed is closed to automated readers), TikTok profiles through web fetch
+  (closed), Reddit through web fetch and through Chrome (both refused), the GEEKOM box (its lane was not attached to this
+  chat). So this bank has no Reddit threads. A weekly refresh needs Chrome on Todd's PC (a PC-bound task) or a source of
+  per-Short views a cloud run can read.
+- Sourceprints: research/proven/<video id>.json holds salted hashes of the source's word runs, never its words; the copy
+  check (`anim.py copycheck`) reads it. Made for rows 2, 4, 5 and 7 (whole text read). A row without one can't be made
+  until a run reads its whole transcript or on-screen text and runs `anim.py sourceprint`.
+
+## Top 10 (views against the channel's typical; read Nov 7, 2026)
+
+| # | Source | Views vs typical | Topic | Opening move | Structure | Length | On screen | Who an owner forwards it to | Print |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Roofing Insights, https://www.youtube.com/shorts/zQiyPFqazDg (Oct 20, 2026) | 10,000,039 vs 5,700 (1,754x); its sister skit 0Yq52oaZeio 624,905 (110x) | the homeowner who won't pay after the job is done | a one-line POV caption states the conflict before a word is said | staged skit: the job is done, the payment call, the refusal, the crew undoes the work | 91 s | live-action skit, big caption box over it | the partner who chases payments | no |
+| 2 | Phlash Consulting, https://www.youtube.com/shorts/O0BsFpqQ9uw (Oct 31, 2026) | 4,390 vs 48 (91x) | paying for leads, then missing the calls | an accusation about money the viewer already spends | claim, one shop's result, "no new ads, no new techs", the cause (missed calls), the fix (every missed, after-hours and weekend call answered), why it's urgent, the rule, a question back to the viewer | 5 s | one still social-post card over muted b-roll; the whole lesson is the card | whoever answers the phones, or the partner who pays for leads | yes |
+| 3 | Roofing Insights, https://www.youtube.com/shorts/1xb3Cz8A74M (Oct 19, 2026) | 423,503 vs 5,700 (74x) | is it damage or not: the viewer judges | a question caption over raw job footage | footage only, no voice; the question asks the viewer to call it; the comments argue | 20 s | phone footage on a roof, one caption line | a tech or the estimator | no |
+| 4 | a plumbing shop owner's pricing channel, https://www.youtube.com/shorts/wHS7oI5Ld8I (Oct 19, 2026) | 376,578 vs 10,000 (37.7x) | memberships: get paid every month | a famous business's cheap price everyone knows | the famous fact, the hidden money model behind it, "if you're a plumber, do the same", the payoff line | 24 s | podcast clip, two-word punch captions | the partner or spouse who does the books | yes |
+| 5 | Phlash Consulting, https://www.youtube.com/shorts/1nMFGmek1XM (Nov 1, 2026) | 1,620 vs 48 (33.8x) | reviews: hope versus a system | two numbers that don't match (revenue against review count) | the mismatch, the excuse owners give, the stakes (no reviews, no leads), a five-step system as a list, the rule | 5 s | one still social-post card | the techs, or the office manager | yes |
+| 6 | Profitable Tradie, https://www.youtube.com/shorts/PozbgSSz4kU (Oct 24, 2026) | 1,170 vs 54 (21.7x) | price objections | one bold quote card over job b-roll | the line alone; the title asks owners what they say back, so the comments carry it | 7 s | panel wiring b-roll, one quote card | the partner who gives the quotes | no |
+| 7 | a one-person contractor marketing channel, https://www.youtube.com/shorts/P42-f-ouoSU (Oct 20, 2026) | 1,225 vs 58 (21.1x) | leads that come in after hours | a "quick question" naming three exact off-hours times | the question, the honest bad answer (nothing happens until Monday), a pointer to the longer video | 18 s | face to camera, title bar, burned-in captions | the office manager, or whoever answers the phones | yes |
+| 8 | a plumbing education channel, https://www.youtube.com/shorts/7cOPDgfcSig (Nov 2, 2026) | 11K vs 1,100 (10x) | a cost that moved this month (diesel) | today's price and how far it moved in a year | the number, who says it stays high, what to plan or price in | 17 s | talking head, the number in a title box | the partner who sets prices | no |
+| 9 | a remodeling contractor's channel, https://www.youtube.com/shorts/ABKKpu8Z7c8 (Oct 13, 2025) | 8,186 vs 996 (8.2x) | how contractors should use AI now | an interview question | the question, practical uses (estimate from your last 10 jobs, ask what you might be forgetting), the caveat: don't take it as gospel | 86 s | interview two-shot, word-by-word captions | the estimator | no |
+| 10 | a plumbing shop owner's pricing channel, https://www.youtube.com/shorts/Ca8ppBrIOyI (Oct 26, 2026) | 62,383 vs 10,000 (6.2x) | your real hourly rate | a speed promise ("in under a minute") | whiteboard math, one step at a time, each step a number, ending on the rate to bill | 69 s | whiteboard, big numbers, captions | the partner who builds the price book | no |
+
+Phone cluster: rows 2 and 7. Row 2 is the strongest phone pattern.
+
+## What the ten share (for the script)
+- The opening names the viewer's money or the viewer's moment, never the topic ("You're paying for...", "What happens when
+  someone calls at 7 pm on a Tuesday...").
+- Five of ten are 24 s or under, and three are one still card or one line of text: the screenshot is the lesson. That is our
+  send moment, already proven.
+- Each one hands over one thing (a rule, a list, a number) and stops. None ends on a pitch.
+
+## Made from this bank
+| Date | Lesson | Row | Lane check |
+|---|---|---|---|

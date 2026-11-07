@@ -17,6 +17,10 @@ compare set (compare.md). From Nov 6, 2026, 10:54 am the three run as ONE fresh 
 was amended by Todd in a live chat, Nov 6, 2026, 7:15 am ("Go with you recommendations"); anim.py STORY_GATES. Buyer and
 golden stay only for the held old-line lessons.
 
+Proven lessons (Todd, live chat, Nov 7, 2026, 12:08 pm: "Go"; _shared/formats.md "Proven"; anim.py PROVEN_GATES): no story
+gate. Before any voice: `anim.py copycheck` (code, gate copy) and facts on script.md. After the voice: facts-captions.
+After the render: render-critic, design, send, then `anim.py copycheck` again. The reviewers never see the source video.
+
 Old line order (lessons made before Nov 5): facts, facts-captions (after the script and captions exist), then after the
 render: render-critic, buyer, send, design, golden. Pass bars: facts and facts-captions no mismatch; render-critic 0 faults; buyer stop and send or save yes;
 send names one person by role and tie, a real line, a gain beyond "useful", a feeling, and thanks (send.md; Todd, live

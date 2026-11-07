@@ -53,7 +53,11 @@ fresh reviewer checks before the next stage runs.
   sendcheck SLUG           the send moment in code (Todd, Nov 7): brief.md's Send line, the end card names that person, one
                            cue marked [send] that runs 2.5 s or more and starts before half the runtime, and (after the send
                            gate) the reviewer named the same person and thing; lint adds the measured still hold
-  selftest                 planted cases for the send and length checks (tools/test_video_gates.py runs it)
+  copycheck SLUG           the proven lane's copy check (Todd, Nov 7, 12:08 pm): no 6-word run shared with the source, wording
+                           not close overall, a different opening, captions too; writes 05_render/reviews/copy.json
+  sourceprint URL FILE HOW hash a source's words (FILE under data/, never committed) into research/proven/<id>.json
+  nextlane                 the lane the next new lesson takes in the 7-day test (proven, proven, story; config laneTest)
+  selftest                 planted cases for the send, length, copy and lane checks (tools/test_video_gates.py runs it)
   status SLUG              what exists
 """
 import argparse, base64, datetime as dt, difflib, glob, hashlib, json, math, os, re, shutil, subprocess, sys, tempfile, time, urllib.request, urllib.error, wave
@@ -1486,11 +1490,16 @@ STORY_GATES_NOV6 = ("qa", "facts", "facts-captions", "render-critic", "retell", 
 # lesson, 18 to 35 s, its own opening and voice, the parent's scenes and facts. It has no story arc to retell, so the story
 # gate drops; read-aloud counts still run in code (anim.py readcheck). Every other gate stays.
 SHORT_GATES = ("qa", "facts", "facts-captions", "render-critic", "send", "design")
+# A proven lesson (Format proven; Todd, live chat, Nov 7, 2026, 12:08 pm: "Go", to the proven idea lane): no story score or
+# second-source bar; the copy check (copy, code: copy_problems, written by `anim.py copycheck`) joins the short's gates.
+PROVEN_GATES = ("qa", "facts", "facts-captions", "render-critic", "send", "design", "copy")
 
 
 def gates_for(slug):
     if lesson_format(slug) == "short":
         return SHORT_GATES
+    if lesson_format(slug) == "proven":
+        return PROVEN_GATES
     if lesson_format(slug) != "story":
         return GATES
     rev = vdir(slug, "05_render", "reviews")
@@ -1537,6 +1546,8 @@ def cmd_ready(slug):
         bad.append("captions.json: missing")
     bad += [f"variety: {x}" for x in queue_variety_problems(slug)]
     bad += [f"send: {x}" for x in send_problems(slug, review=True)]   # Todd, Nov 7, 9:27 am (the hold is lint's)
+    if lesson_format(slug) == "proven":   # Todd, Nov 7, 12:08 pm: the copy check runs again on the files being pinned
+        bad += [f"copy: {x}" for x in proven_problems(slug)[0]]
     if bad:
         raise SystemExit("ERROR ready: " + "; ".join(bad))
     # the gated files must be committed: the queue pins that commit, and posting renders from it (so later runtime
@@ -1833,7 +1844,7 @@ def cmd_tomake():
     for d in sorted(os.listdir(VIDEOS)):
         if d in queued or d.endswith(HOOKB_SUFFIX) or not os.path.exists(vdir(d, "01_voice", "brief.md")):
             continue
-        if lesson_format(d) != "story" or os.path.exists(vdir(d, "SHELVED")):
+        if lesson_format(d) not in ("story", "proven") or os.path.exists(vdir(d, "SHELVED")):
             continue                                         # the 6 old-line lessons stay held (REBUILD.md); shelved stay out
         rows.append({"slug": d, "story_fails_in_row": story_fails_in_row(d), "runs": runs_on(d)})
     for r in rows:
@@ -2665,9 +2676,13 @@ FORMATS = {
     # A short (Todd, live chat, Nov 7, 2026, 8:33 am: "Go", recommendation 3): one fix cut from a queued story lesson,
     # brief.md "- **Derived from:** `<parent slug>`". 7-day test to Nov 14 (_shared/formats.md "Short").
     "short":      {"min_seconds": 18.0, "max_seconds": 35.0, "words": (45, 95)},
+    # The proven idea lane (Todd, live chat, Nov 7, 2026, 11:58 am: "We can find what is actually working out there and
+    # create our own videos based on that."; 12:08 pm: "Go"): our own version of an outlier pattern in research/PROVEN.md,
+    # 50 to 65 s (a hard band), with the send moment and the copy check (_shared/formats.md "Proven").
+    "proven":     {"min_seconds": 50.0, "max_seconds": 65.0, "words": (120, 170)},
 }
 # Formats whose word band, spoken hook length and drop-in rules are guides, not errors (REBUILD.md "Relaxed").
-GUIDE_FORMATS = {"story", "short"}
+GUIDE_FORMATS = {"story", "short", "proven"}
 FORMAT_ALIASES = {"v2": "clinic"}
 
 
@@ -2953,6 +2968,192 @@ def story_aim_note(slug, seconds):
     return ""
 
 
+# ---------------------------------------------------------------- the proven idea lane and its copy check
+# Todd, live chat, Nov 7, 2026, 11:58 am: "Can't we examine top performing videos on youtube shorts and make our own
+# variation? ... We can find what is actually working out there and create our own videos based on that."; 12:08 pm: "Go".
+# Ideas and formats aren't owned; words, footage and art are. So a proven lesson takes an outlier's pattern from
+# research/PROVEN.md and says it in our own words: no run of COPY_RUN words shared with the source, its overall wording not
+# close, and an opening worded differently. The source's words never enter the repo: research/proven/<id>.json keeps only
+# salted hashes of its word runs (a sourceprint), made from the transcript or on-screen text the run read itself.
+PROVEN_DIR = os.path.join(HERE, "research", "proven")
+COPY_RUN = 6                      # any shared run of 6 or more words fails
+COPY_SHARE, COPY_COVER = 0.15, 0.25   # too close overall: 15% of our 3-word runs in the source, or 25% of its in ours
+OPEN_WORDS, SRC_OPEN_WORDS, OPEN_SHARE = 15, 25, 0.34   # the opening: no shared 4-word run, under a third of 3-word runs
+SOURCE_LINE = re.compile(r"(?im)^- \*\*Source:\*\*[ \t]*`?(\S+?)`?[ \t]*$")
+STARTED_LINE = re.compile(r"(?im)^- \*\*Started:\*\*[ \t]*`?(\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2})")
+_SALT = "pnf-proven|"
+
+
+def _ctoks(text):
+    t = TAG.sub(" ", str(text or "")).lower().replace("’", "'")
+    t = re.sub(r"(?<=\d),(?=\d{3})", "", t)
+    return re.sub(r"[^a-z0-9$%]+", " ", t.replace("'", "")).split()
+
+
+def _grams(toks, n):
+    return [" ".join(toks[i:i + n]) for i in range(len(toks) - n + 1)]
+
+
+def _gh(g):
+    return hashlib.sha1((_SALT + g).encode()).hexdigest()[:12]
+
+
+def source_id(url):
+    m = re.search(r"(?:shorts/|[?&]v=|youtu\.be/)([\w-]{11})", url or "")
+    return m.group(1) if m else "u" + hashlib.sha1((url or "").encode()).hexdigest()[:11]
+
+
+def sourceprint(text, url, how, read=None):
+    toks = _ctoks(text)
+    op = toks[:SRC_OPEN_WORDS]
+    return {"schema": "pnf.studio.sourceprint.v1", "source": url, "read": read or dt.date.today().isoformat(), "how": how,
+            "words": len(toks), "g3": sorted({_gh(g) for g in _grams(toks, 3)}),
+            "g6": sorted({_gh(g) for g in _grams(toks, COPY_RUN)}),
+            "open3": sorted({_gh(g) for g in _grams(op, 3)}), "open4": sorted({_gh(g) for g in _grams(op, 4)})}
+
+
+def spoken_text(slug):
+    p = vdir(slug, "01_voice", "script.md")
+    lines = open(p, encoding="utf-8").read().splitlines() if os.path.exists(p) else []
+    return " ".join(l for l in lines if l.strip() and not l.lstrip().startswith("#"))
+
+
+def _strings(o):
+    if isinstance(o, str):
+        yield o
+    elif isinstance(o, dict):
+        for v in o.values():
+            yield from _strings(v)
+    elif isinstance(o, list):
+        for v in o:
+            yield from _strings(v)
+
+
+def copy_problems(text, fp, captions=()):
+    """Our script (and caption texts) against a sourceprint. Returns (problems, stats)."""
+    if not fp or fp.get("words", 0) < 8 or not fp.get("g6"):
+        return ["the source has no sourceprint of 8 words or more (read its transcript or on-screen text, then `anim.py "
+                "sourceprint`)"], {}
+    toks = _ctoks(text)
+    s3, s6 = set(fp["g3"]), set(fp["g6"])
+    out = []
+    hits = [g for g in _grams(toks, COPY_RUN) if _gh(g) in s6]
+    if hits:
+        out.append(f"{len(hits)} run(s) of {COPY_RUN}+ words match the source, first: '{hits[0]}': say it in our own words")
+    g3 = _grams(toks, 3)
+    mine = {_gh(g) for g in g3}
+    share = sum(1 for g in g3 if _gh(g) in s3) / max(1, len(g3))
+    cover = len(mine & s3) / max(1, len(s3))
+    if share >= COPY_SHARE:
+        out.append(f"{share:.0%} of the script's 3-word runs are in the source (under {COPY_SHARE:.0%}): too close overall")
+    if cover >= COPY_COVER:
+        out.append(f"the script repeats {cover:.0%} of the source's 3-word runs (under {COPY_COVER:.0%}): too close overall")
+    first = re.split(r"(?<=[.?!])\s", TAG.sub(" ", str(text or "")).strip(), maxsplit=1)[0]
+    op = _ctoks(first)[:OPEN_WORDS]
+    o4 = [g for g in _grams(op, 4) if _gh(g) in set(fp.get("open4", []))]
+    o3 = _grams(op, 3)
+    oshare = sum(1 for g in o3 if _gh(g) in set(fp.get("open3", []))) / max(1, len(o3))
+    if o4 or oshare >= OPEN_SHARE:
+        out.append(f"the opening '{' '.join(op)}' is worded like the source's opening ({len(o4)} shared 4-word runs, "
+                   f"{oshare:.0%} of its 3-word runs): open with different words")
+    for c in captions:
+        ch = [g for g in _grams(_ctoks(c), COPY_RUN) if _gh(g) in s6]
+        if ch:
+            out.append(f"a caption shares a {COPY_RUN}+ word run with the source: '{ch[0]}'")
+            break
+    return out, {"run_hits": len(hits), "share3": round(share, 3), "cover3": round(cover, 3), "open_share3": round(oshare, 3),
+                 "open_hits4": len(o4), "words": len(toks), "source_words": fp.get("words")}
+
+
+def proven_brief_problems(text):
+    out = []
+    m = SOURCE_LINE.search(text or "")
+    if not m or not m.group(1).startswith("https://"):
+        out.append("brief.md has no '- **Source:** <https link>' line (the outlier this lesson is our version of)")
+    if not re.search(r"(?im)^- \*\*Shape:\*\*\s*\S", text or ""):
+        out.append("brief.md has no '- **Shape:**' line (rotation reads it)")
+    return out
+
+
+def load_sourceprint(url):
+    p = os.path.join(PROVEN_DIR, source_id(url) + ".json")
+    return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else None
+
+
+def proven_problems(slug):
+    bp = vdir(slug, "01_voice", "brief.md")
+    text = open(bp, encoding="utf-8").read() if os.path.exists(bp) else ""
+    out = proven_brief_problems(text)
+    m = SOURCE_LINE.search(text)
+    fp = load_sourceprint(m.group(1)) if m else None
+    if m and not fp:
+        out.append(f"no sourceprint at research/proven/{source_id(m.group(1))}.json for {m.group(1)}")
+    cj = vdir(slug, "05_render", "captions.json")
+    caps = list(_strings(json.load(open(cj, encoding="utf-8")))) if os.path.exists(cj) else []
+    probs, stats = copy_problems(spoken_text(slug), fp, caps) if fp else ([], {})
+    return out + probs, stats
+
+
+def cmd_sourceprint(url, path, how):
+    """Hash a source's words (a transcript or on-screen text the run read itself, kept out of the repo) into
+    research/proven/<id>.json. The text file itself is never committed (keep it under data/)."""
+    text = open(path, encoding="utf-8").read()
+    fp = sourceprint(text, url, how)
+    os.makedirs(PROVEN_DIR, exist_ok=True)
+    out = os.path.join(PROVEN_DIR, source_id(url) + ".json")
+    json.dump(fp, open(out, "w"), indent=0); open(out, "a").write("\n")
+    print(f"sourceprint: {os.path.relpath(out, ROOT)} ({fp['words']} words, {len(fp['g6'])} 6-word runs hashed)")
+
+
+def cmd_copycheck(slug):
+    if lesson_format(slug) != "proven":
+        print(f"copycheck: {slug} is not a proven lesson (Format proven)"); return
+    bad, stats = proven_problems(slug)
+    for x in bad:
+        print("ERROR copy: " + x)
+    rev = vdir(slug, "05_render", "reviews")
+    os.makedirs(rev, exist_ok=True)
+    json.dump({"gate": "copy", "pass": not bad, "at": now(), "stats": stats, "problems": bad,
+               "script_sha": sha(vdir(slug, "01_voice", "script.md"))[:12] if os.path.exists(vdir(slug, "01_voice", "script.md")) else None},
+              open(os.path.join(rev, "copy.json"), "w"), indent=1)
+    print("copycheck: " + ("FAIL" if bad else "PASS") + f" {json.dumps(stats)}")
+    if bad:
+        sys.exit(1)
+
+
+def lane_test():
+    return json.load(open(os.path.join(HERE, "..", "config.json"), encoding="utf-8")).get("laneTest") or {}
+
+
+def next_lane(started, cfg):
+    """started: [(started_at, format)] for new proven and story lessons. The lane the next new lesson takes: the
+    pattern (proven, proven, story) in turn from cfg['from'] while the test runs; None when no test runs."""
+    if not cfg or cfg.get("mode") != "on":
+        return None
+    n = sum(1 for at, f in started if at >= cfg["from"] and f in ("proven", "story"))
+    pat = cfg.get("pattern") or ["proven", "proven", "story"]
+    return pat[n % len(pat)]
+
+
+def cmd_nextlane():
+    cfg = lane_test()
+    rows = []
+    for d in sorted(os.listdir(VIDEOS)):
+        bp = vdir(d, "01_voice", "brief.md")
+        if not os.path.exists(bp):
+            continue
+        m = STARTED_LINE.search(open(bp, encoding="utf-8").read())
+        if m:
+            rows.append((m.group(1).replace("T", " "), lesson_format(d)))
+    lane = next_lane(rows, cfg)
+    if lane is None:
+        print("nextlane: no lane test runs (video/config.json laneTest mode is not on): story lane")
+        return
+    made = sum(1 for at, f in rows if at >= cfg["from"] and f in ("proven", "story"))
+    print(f"nextlane: {lane} ({made} new lessons started since {cfg['from']}; pattern {', '.join(cfg.get('pattern', []))}; "
+          f"verdict {cfg.get('verdict')})")
+
+
 def cmd_selftest():
     """Planted cases for the send moment and the shorter middle: every bad case must be caught, every good one pass."""
     good_brief = "- **Format:** story\n- **Send:** whoever answers the phones: the text to send back, word for word\n"
@@ -2992,6 +3193,39 @@ def cmd_selftest():
         ("story 87.6 s over the ceiling", 87.6 > FORMATS["story"]["max_seconds"], True),
         ("story 66.2 s under the ceiling", 66.2 > FORMATS["story"]["max_seconds"], False),
     ]
+    # The proven lane's copy check and rotation (Todd, live chat, Nov 7, 2026, 12:08 pm: "Go"). The source is made up here.
+    src = ("Every missed call on a busy Monday is a homeowner who already decided to hire someone. They dial the next number "
+           "on the list within two minutes. Most shops never call back until the evening, and by then the job is booked with a "
+           "competitor across town. Put a text back on every missed call and you keep the job.")
+    fp = sourceprint(src, "https://www.youtube.com/shorts/AAAAAAAAAAA", "planted", "2026-11-07")
+    ours = ("Your phone buzzes while you're up a ladder. By the time you climb down, that caller has moved on to another "
+            "plumber. Here's the fix that takes ten minutes tonight: one automatic reply that goes out the second a call rings "
+            "out. It says you're on a job, asks what they need, and promises a call by five.")
+    close = ("Every missed call on a slow Monday means a homeowner who already decided. Then they dial the next number. Most "
+             "shops never call back, and the job gets booked by a competitor across the street. Put a text back on it, keep the job.")
+    cp = lambda text, caps=(): copy_problems(text, fp, caps)[0]
+    st = lambda n, f="proven", at="2026-11-08 09:00": [(at, f)] * n
+    lt = {"mode": "on", "from": "2026-11-07 13:00", "pattern": ["proven", "proven", "story"]}
+    cases += [
+        ("copy: our own words pass", cp(ours), False),
+        ("copy: the source word for word", cp(src), True),
+        ("copy: one 6-word run from the source", cp(ours + " They dial the next number on the list and forget you."), True),
+        ("copy: a 5-word run alone passes", cp(ours + " Then they dial the next number fast."), False),
+        ("copy: close wording with no 6-word run", cp(close), True),
+        ("copy: the source's opening reworded slightly", cp("Every missed call on Monday costs you. " + ours), True),
+        ("copy: a caption with a 6-word run", cp(ours, ["Most shops never call back until the evening, so fix it."]), True),
+        ("copy: no sourceprint", copy_problems(ours, None)[0], True),
+        ("copy: brief with no Source line", proven_brief_problems("- **Format:** proven\n- **Shape:** card\n"), True),
+        ("copy: brief with Source and Shape", proven_brief_problems("- **Format:** proven\n- **Source:** https://www.youtube.com/shorts/AAAAAAAAAAA\n- **Shape:** card\n"), False),
+        ("lane: first new lesson is proven", next_lane([], lt) != "proven", False),
+        ("lane: third new lesson is story", next_lane(st(2), lt) != "story", False),
+        ("lane: fourth new lesson is proven again", next_lane(st(2) + st(1, "story"), lt) != "proven", False),
+        ("lane: lessons before the test do not count", next_lane(st(2, at="2026-11-06 09:00"), lt) != "proven", False),
+        ("lane: shorts do not count", next_lane(st(2, "short"), lt) != "proven", False),
+        ("proven 66 s over the 65 s band", 66.0 > FORMATS["proven"]["max_seconds"], True),
+        ("proven 49 s under the 50 s band", 49.0 < FORMATS["proven"]["min_seconds"], True),
+        ("proven gates carry the copy check and drop the story gate", "copy" not in PROVEN_GATES or "story" in PROVEN_GATES, False),
+    ]
     right = 0
     for name, got, caught in cases:
         hit = bool(got)
@@ -2999,7 +3233,7 @@ def cmd_selftest():
             right += 1
         else:
             print(f"FAIL {name}: {'missed' if caught else 'flagged a good case'} ({got})")
-    print(f"studio send selftest: {right} of {len(cases)} planted cases right ({sum(1 for x in cases if x[2])} bad caught)")
+    print(f"studio send and proven selftest: {right} of {len(cases)} planted cases right ({sum(1 for x in cases if x[2])} bad caught)")
     if right != len(cases):
         sys.exit(1)
 
@@ -3446,6 +3680,8 @@ def main():
         cmd_recuts()
     elif c == "selftest":
         cmd_selftest()
+    elif c == "nextlane":
+        cmd_nextlane()
     elif not a.slug:
         raise SystemExit(f"{c} needs a slug")
     elif c == "new":
@@ -3493,6 +3729,11 @@ def main():
         cmd_script(a.slug)
     elif c == "sendcheck":
         cmd_sendcheck(a.slug)
+    elif c == "copycheck":
+        cmd_copycheck(a.slug)
+    elif c == "sourceprint":   # anim.py sourceprint <source url> <text file under data/> <how it was read>
+        cmd_sourceprint(a.slug, a.rest[0], " ".join(a.rest[1:]) or "read by the run")
+
     elif c == "gatepack":
         cmd_gatepack(a.slug)
     elif c == "postcopy":

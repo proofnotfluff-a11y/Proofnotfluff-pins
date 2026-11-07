@@ -641,6 +641,26 @@
      "at": "2026-11-06T12:59:30-05:00"
     }
    }
+  },
+  {
+   "slug": "2026-11-18-lsa-max-bid",
+   "readyAt": "2026-11-06T23:58:32-05:00",
+   "commit": "d73d359047731b7f5dcd541d76cf145dab97b076",
+   "fingerprints": {
+    "script": "30c1c7533dd1",
+    "takes": "e8c6ba53f3e3",
+    "words": "594160a485ac",
+    "cues": "22a6ec0798f5",
+    "scene": "074aaa96ffee",
+    "data": "6950b437fc7c",
+    "captions": "4c8341982561",
+    "mouth": "f042e0ee8593",
+    "runtime_kit": "7533966669eb",
+    "runtime_player": "0247e61a6184",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

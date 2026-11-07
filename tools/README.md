@@ -1,3 +1,7 @@
+## Code rule (all new code; Todd, Nov 7, 2026; adapted from Ponytail, MIT)
+
+Write the smallest change that fully works. Before new code, check in order: is it needed at all, is it already in tools/, does the Python standard library or an installed package do it; only then write the least new code. Finish every caller, test and file the change touches, leave a small test or self-check for new logic, never cut validation, error handling, security or a gate, and end with one line on what was skipped or not checked.
+
 # Shorts tool
 
 `python3 tools/make_slides.py spec.json out.mp4` builds a 1080x1920 YouTube Short in the slideshow style: five full-screen slides of text, each on screen for whole bars of the music (about 5.3 seconds), no voiceover. The music is a track from the library (tools/music, see Music below): the spec may name `"music"` or `"mood"`, the lift lands on the stat slide and the ending plus the sonic logo on the call to action. Every frame is rendered with Playwright at 30 fps, so motion is smooth. Needs numpy, scipy, ffmpeg, the pre-installed Playwright Chromium, and the Poppins Bold and Carlito fonts. About 90 seconds per video.

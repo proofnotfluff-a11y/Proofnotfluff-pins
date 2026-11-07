@@ -9,3 +9,10 @@
 - Fable off: every reviewer that said "model fable, else opus" now says opus (question-pages, radar, social-carousel SKILLs; agents legal-desk, edition-desk, redesign-desk, factory, cloud-builder).
 - Queued from this chat at about 5:35 am: 57 backtest replays, 29 permit tag jobs (all 720 GC leads), a feed probe and the first story-finding job (4 Jobber threads on unpaid invoices), each with its trial twin: about 180 jobs, several hours of box time.
 - Found: WebSearch site: queries returned forum threads for 1 of 6 forum hosts, and the box reader drops links, so thread discovery rests on the forum feeds probe. Not proven yet: feeds, question page drafts (first on Nov 8), backtest agreement.
+
+## Tools from two reels (live chat, 5:40 to 5:52 am)
+- Checked 7 tools from Alvaro Cintas's weekly roundup and Ben Gusberg's Ponytail reel against primary sources and user tests (Research Wiki, Nov 7 rows).
+- [stated] "Let's go with your recommendation"
+- Built: the Ponytail code rule in our own words (MIT) as the "Code rule" section at the top of tools/README.md, pointed to from the CLAUDE.md tools line (CLAUDE.md and HANDOFF.md stay under their 2,048-byte caps); the plugin's hooks were not taken (they run code on every message and start a background process; skill-security-check CAUTION, 0 high).
+- Watch: MiMo V2.6 Flash, a community 2.76-bit copy that fills about 107 of the box's 108 GB; bake-off against DeepSeek V4 Flash for the big-model slot in box week 3, scored with tools/box_backtest.py, $0.
+- Skipped: MiMo V2.6 Pro (1.02T, no fit), Hy-MT2 (no translation step), Qwen-Image-2.1-Turbo (non-commercial license), Alook (early, hosted messages, always-on daemon). rea stays skipped, Artcraft PhotoCraft stays on watch.

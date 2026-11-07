@@ -1,4 +1,4 @@
-# Handoff (Layer 1), Nov 6
+# Handoff (Layer 1), Nov 7
 
 - [stated] Todd, Oct 22, 7:57 pm: "Let's do all of this as you recommend." Decisions: coo/DECISIONS-*.md.
 - Step 1 live Oct 22: trial and Monday Kit forms on Chicago and Austin pages. Tasks: Monday email (Mon 8:50 am, drafts), Wednesday trial offer (Wed 9:50 am; first about Nov 11).
@@ -12,6 +12,6 @@
 - Oct 26: TRAFFIC FIRST; no builder outreach.
 - Oct 27: trade owners only; free plan waits (DECISIONS Oct 27). News, maps, templates live. R10: 11 free data pages and redesign live (/chicago-data/, site/datahub.json); inspections by area, Quarterly open (W).
 - Videos: 1 a day until 3 wait, then 3; box is the workhorse (nightshift.md, DECISIONS Nov 7); no Fable; smoother gates (prompts/README); 6 old held; Code task trig_01DQgwhps (DECISIONS).
-- Oct 30 usage audit: coo/USAGE.md. Next: Todd pauses API lister. Artcraft: watch.
+- Oct 30 usage audit: coo/USAGE.md. Next: Todd pauses API lister.
 - Radar redesign: launches/radar-design-brief.md.
-- Nov 6: Back Office parked; asset scan next (DECISIONS)
+- Nov 6 to 7: Back Office parked; asset scan next; Ponytail rule, MiMo test (DECISIONS)

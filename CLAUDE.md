@@ -1,11 +1,11 @@
 # ProofNotFluff router (Layer 0)
 
-Read this, coo/HANDOFF.md, coo/CONSTITUTION.md (it binds first), then only the SKILL.md your run names.
+Read this, coo/HANDOFF.md, coo/CONSTITUTION.md (binds first), then only the SKILL.md your run names.
 
 ## Topology
 - .claude/skills/<job>/SKILL.md: stage contracts (Inputs, Process, Outputs). One stage, one job.
-- tools/: deterministic code: fetching, paging, joins, dedup, schemas, copy checks. Never a model.
-- permits/downstream/gc_leads.json: Entity A, GC leads in downstream stages (public, business fields only), written by the downstream-leads workflow.
+- tools/: deterministic code (fetch, page, join, dedup, schemas, copy checks), never a model; code rule: tools/README.md.
+- permits/downstream/gc_leads.json: Entity A, GC leads in downstream stages (public, business fields only; downstream-leads workflow).
 - data/ (gitignored): Entity B prospects and per-run work files. Named people, never committed.
 - CRM https://claude.ai/artifact/De189P4AXgWVC6o8LYbxdB and scoreboard https://claude.ai/artifact/N9eKZy7Pv39njSe4izVgbE (ArtifactData).
 - coo/, email/, design/, legal/, launches/: read only when a SKILL lists it. archive/: never.

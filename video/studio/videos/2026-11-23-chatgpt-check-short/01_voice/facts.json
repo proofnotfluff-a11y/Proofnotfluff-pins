@@ -1,0 +1,23 @@
+{
+ "about": "Every number and claim this short shows or says, with its source, re-read Nov 7, 2026 (the ACHR column through the box's page reader). The check card (the question to type, fix the profile) is our advice. The Jobber forum's four is not used: the thread could not be opened today.",
+ "column": {
+  "chatgptRevenueShare": 1,
+  "chatgptRevenueShown": "about 1%",
+  "chatgptRevenueSaid": "about one percent",
+  "gbpRevenueShare": 67,
+  "gbpTicket": 3441,
+  "chatgptTicket": 11500,
+  "chatgptTicketShown": "$11,500",
+  "chatgptTicketSaid": "eleven and a half grand",
+  "dataSource": "SearchLight data, as read by the column's author (founder of a reputation-marketing firm); method not published",
+  "whatAIReads": "AI tools interpret and reassemble structured business data: name, address, phone number, website content, reviews, Google Posts",
+  "publisher": "ACHR News (guest column)",
+  "date": "2026-03-18",
+  "url": "https://www.achrnews.com/articles/165972-before-you-chase-ai-leads-fix-your-google-business-profile",
+  "opened": "2026-11-07",
+  "readBy": "box page reader (tools/local_job.py fetch, job 2026-11-23-chatgpt-check-short-reread-2026-11-07-r1), Nov 7, 2026, 5:47 pm Central; lines checked word for word against the parent facts.json",
+  "ticketLine": "The leads are undeniably high quality, averaging $11,500 per ticket, but the volume simply isn't there yet.",
+  "revenueLine": "ChatGPT referrals represent only about 1% of total revenue for most contractors.",
+  "readsLine": "They interpret and reassemble structured business data (your name, address, phone number, website content, reviews, and even your Google Posts) to determine credibility and relevance."
+ }
+}

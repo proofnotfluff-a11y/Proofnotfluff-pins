@@ -1,0 +1,17 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "reviewer": "fresh opus agent",
+ "stage": "script",
+ "pass": false,
+ "score": {"numbers": 2, "mismatches": 1},
+ "reasons": [
+  "01_voice/script.md line 7 (\"Those jobs are small today, about one percent of revenue for most contractors.\"): the words say the jobs are small, which contradicts the column's own line two sentences earlier in the same short ('averaging $11,500 per ticket', 'undeniably high quality'). The source says the VOLUME is small ('the volume simply isn't there yet'; 'only about 1% of total revenue'). Exact fix: \"[matter-of-fact] There just aren't many yet, about one percent of revenue for most contractors.\" (or \"Those jobs are rare today, about one percent of revenue for most contractors.\"). The 1% number itself is correct; only the word 'small' misstates it.",
+  "Note, not a fail: 'for most contractors' copies the column word for word, but the column's base is SearchLight's own data (method not published, per facts.json dataSource). The script already attributes both numbers to 'a marketing firm' / 'the same firm', which keeps it fair; keep that attribution in the voice and keep the brief's on-screen tag 'ACHR News guest column, Mar 18, 2026 (SearchLight data)' on the 1% card."
+ ],
+ "sources_checked": [
+  "https://www.achrnews.com/articles/165972-before-you-chase-ai-leads-fix-your-google-business-profile: WebFetch failed (getaddrinfo ENOTFOUND www.achrnews.com, host not allowed in this session). Per the unreachable-page rule, the same-day page read in 01_voice/source-read.json (P2, status ok, 11988 chars, Nov 7, 2026 5:47 pm Central) stands as the source. It confirms word for word: 'averaging $11,500 per ticket' (said 'eleven and a half grand a ticket': matches), 'ChatGPT referrals represent only about 1% of total revenue for most contractors' (said 'about one percent of revenue for most contractors': matches), and 'They interpret and reassemble structured business data (your name, address, phone number, website content, reviews, and even your Google Posts)' (said 'build their answers from your name, your website, your reviews': fair subset). The 24% GBP-attribution line also supports the 'fix your Google profile first' advice, which the brief correctly marks as ours.",
+  "Trades first: ACHR News is HVAC trade press and the data is about contractors: pass.",
+  "No private person, business or address named; no em or en dashes in script.md, brief.md or facts.json; bracketed tags are delivery directions; no story elements read as data."
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "about": "Same-day read of the column by the box's page reader (tools/local_job.py fetch, fetcher 1.0); the lines are copied word for word from the page. The Jobber thread failed to open (HTTP error).",
+ "job": "2026-11-23-chatgpt-check-short-reread-2026-11-07-r1",
+ "finished": "2026-11-07T17:47:13-0600",
+ "pages": [
+  {
+   "id": "P1",
+   "url": "https://community.getjobber.com/discussions/marketing-forum/is-your-business-showing-up-in-ai-search-%F0%9F%94%8D%E2%9C%A8/15769",
+   "status": "error HTTPError",
+   "chars": 0
+  },
+  {
+   "id": "P2",
+   "url": "https://www.achrnews.com/articles/165972-before-you-chase-ai-leads-fix-your-google-business-profile",
+   "status": "ok",
+   "chars": 11988
+  }
+ ],
+ "lines": [
+  {
+   "page": "P2",
+   "quote": "ChatGPT referrals represent only about 1% of total revenue for most contractors."
+  },
+  {
+   "page": "P2",
+   "quote": "The leads are undeniably high quality, averaging $11,500 per ticket, but the volume simply isn't there yet."
+  },
+  {
+   "page": "P2",
+   "quote": "In fact, in December, the data show that for at least 24% of ChatGPT-sourced conversions and 18% of Gemini-sourced conversions, the campaign or medium attribution was the Google Business Profile."
+  },
+  {
+   "page": "P2",
+   "quote": "AI tools don't conjure demand out of thin air."
+  },
+  {
+   "page": "P2",
+   "quote": "They interpret and reassemble structured business data (your name, address, phone number, website content, reviews, and even your Google Posts) to determine credibility and relevance."
+  }
+ ]
+}

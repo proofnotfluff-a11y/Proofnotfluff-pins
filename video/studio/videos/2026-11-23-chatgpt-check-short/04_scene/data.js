@@ -1,0 +1,1 @@
+window.DATA = {"file": "video/studio/videos/2026-11-23-chatgpt-check-short/01_voice/facts.json", "commit": "", "sha256": "72d12fa8cb8bd36738ade5b59b2af8cc2f62ef1a9c692c0fa8566ad741c285cd", "numbers": {"ticket": {"value": 11500, "shown": "$11,500", "path": "column.chatgptTicket"}, "rev1": {"value": 1, "shown": "1%", "path": "column.chatgptRevenueShare"}}, "pull": {}};

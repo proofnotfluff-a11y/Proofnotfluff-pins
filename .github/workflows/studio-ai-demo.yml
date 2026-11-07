@@ -25,7 +25,7 @@ jobs:
           cd tools && python3 -m pytest -q -p no:cacheprovider test_ai_demo.py
       - name: Browser
         run: |
-          pip install --quiet playwright
+          pip install --quiet -c .github/ci-constraints.txt playwright
           python3 -m playwright install --with-deps chromium
       - name: Run new jobs
         env:

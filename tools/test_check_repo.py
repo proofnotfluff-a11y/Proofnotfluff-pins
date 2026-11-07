@@ -9,7 +9,7 @@ check_repo.py runs this file as its gate-tests check, so the nightly optimizer a
 import json, os, random, re, shutil, string, subprocess, sys, tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CHECKS = ["json", "python", "calc-tests", "site-sync", "drafts", "em-dash", "secrets", "permit-data", "builder-contacts", "video-specs", "voice", "fiverr-kit", "monday", "radar", "cos", "video"]
+CHECKS = ["json", "python", "calc-tests", "site-sync", "drafts", "em-dash", "secrets", "permit-data", "builder-contacts", "video-specs", "voice", "fiverr-kit", "monday", "radar", "cos", "video", "gate-guard", "pins"]
 rng = random.Random()
 # Key markers are assembled here so this file never matches the secrets check itself.
 KEY_BEGIN = "-----BEGIN " + "RSA PRIVATE " + "KEY-----"
@@ -238,6 +238,12 @@ def plants(tmp):
         out.append(("fiverr-kit", "the license line removed", edit(gigs, no_license)))
     if os.path.exists(os.path.join(tmp, replies)):
         out.append(("fiverr-kit", "review bait in a reply", edit(replies, lambda t: t + "\n## Planted\n```\nPlease leave a 5-star review.\n```\n")))
+    # Gate guard and pins (Todd, Nov 7, 2026): a gate file edited without a seal, a workflow installing an unlocked package.
+    out.append(("gate-guard", "a gate file edited without a new seal", edit(os.path.join("tools", "copy_gate.py"), lambda t: t + "\n# planted\n")))
+    out.append(("pins", "an unlocked pip install in a workflow", new_file(os.path.join(".github", "workflows", "zz-planted.yml"),
+                "on: push\njobs:\n  x:\n    runs-on: ubuntu-latest\n    steps:\n      - run: pip install --quiet requestz\n")))
+    out.append(("pins", "an unlocked npx in a workflow", new_file(os.path.join(".github", "workflows", "zz-planted2.yml"),
+                "on: push\njobs:\n  x:\n    runs-on: ubuntu-latest\n    steps:\n      - run: npx -y some-tool\n")))
     return out
 
 

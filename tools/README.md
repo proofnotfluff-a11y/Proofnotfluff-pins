@@ -1,6 +1,6 @@
 ## Code rule (all new code; Todd, Nov 7, 2026; adapted from Ponytail, MIT)
 
-Write the smallest change that fully works. Before new code, check in order: is it needed at all, is it already in tools/, does the Python standard library or an installed package do it; only then write the least new code. Finish every caller, test and file the change touches, leave a small test or self-check for new logic, never cut validation, error handling, security or a gate, and end with one line on what was skipped or not checked.
+Write the smallest change that fully works. Before new code, check in order: is it needed at all, is it already in tools/, does the Python standard library or an installed package do it; only then write the least new code. Finish every caller, test and file the change touches, leave a small test or self-check for new logic, never cut validation, error handling, security or a gate, and end with one line on what was skipped or not checked. A new package goes on .github/ci-constraints.txt at an exact version only after its name, author and version are checked on PyPI or npm (a made-up name can be malware); the pins check fails any unlocked install in a workflow.
 
 # Shorts tool
 

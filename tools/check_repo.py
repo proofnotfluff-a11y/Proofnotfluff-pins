@@ -61,6 +61,11 @@ Checks
                 packages runs tools/setup_cloud.sh first; without the face model (video/models/) the face selftest is
                 skipped with a note, while a real video's face check still fails closed (Oct 29, 2026)
   gate-selftest tools/test_gates.py plants a failure for each of the four gates above and confirms each is caught
+  gate-guard    the gate files (GATE_FILES) match tools/gate_seal.json, and each seal names a coo/DECISIONS file holding a
+                [stated] line from Todd that names that file; the planted-test counts never fall below FLOORS (Todd, Nov 7,
+                2026: a gate is never weakened, and a test never deleted, to make a run go green)
+  pins          every pip, npm and npx install in .github/workflows/ is locked: -c .github/ci-constraints.txt,
+                --require-hashes, or an exact version on every package (a made-up package name can be malware)
   gate-tests    tools/test_check_repo.py plants a failure for every check above in a throwaway copy and
                 confirms each one is caught and no secret value is printed (Todd's Oct 15 note: the checks get
                 tested too). An ERROR here means the gate itself is broken: tell Todd, never edit the gate to clear it
@@ -77,6 +82,9 @@ SECRETS = [("github_token", r"gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]
            ("aws_key", r"AKIA[0-9A-Z]{16}"), ("slack_token", r"xox[baprs]-[A-Za-z0-9-]{10,}"), ("private_key", r"-----BEGIN [A-Z ]*PRIVATE KEY-----"),
            ("etsy_token", r"\b\d{5,12}\.[A-Za-z0-9_-]{40,}"),
            ("etsy_key", r"(?i:ETSY_[A-Z_]*|keystring|shared[_-]?secret|refresh[_-]?token|access[_-]?token)[\"']?\s*[:=]\s*[\"']?[A-Za-z0-9]{10,}")]
+GATE_FILES = ["tools/check_repo.py", "tools/test_check_repo.py", "tools/test_gates.py", "tools/context_gate.py", "tools/copy_gate.py"]
+FLOORS = {"gate-tests": 44, "gate-selftest": 335}  # planted tests: totals may grow, never shrink (Todd, Nov 7, 2026)
+SEAL = os.path.join("tools", "gate_seal.json")
 SECRET = re.compile("|".join(f"(?P<{k}>{v})" for k, v in SECRETS))
 BINARY = re.compile(r"\.(png|jpe?g|gif|webp|ico|mp4|mov|mp3|wav|m4a|zip|pdf|xlsx|xls|docx|pptx|ttf|otf|woff2?|parquet|npz|onnx|bin)$", re.I)
 PERSONAL_KEYS = re.compile(r"(phone|email|owner|contact_\d+|skip|ssn|dob)", re.I)
@@ -329,6 +337,85 @@ def check_fiverr_kit():
     err("fiverr-kit", "; ".join(found[:8])) if found else ok("fiverr-kit")
 
 
+def _sha(rel):
+    import hashlib
+    return hashlib.sha256(open(os.path.join(ROOT, rel), "rb").read()).hexdigest()
+
+
+def _approved(decisions, rel):
+    path = os.path.join(ROOT, decisions)
+    if not re.fullmatch(r"coo/DECISIONS-\d{4}-\d{2}-\d{2}\.md", decisions or "") or not os.path.exists(path):
+        return False
+    return any("[stated]" in l for l in open(path, encoding="utf-8")) and os.path.basename(rel) in open(path, encoding="utf-8").read()
+
+
+def check_gate_guard():
+    try:
+        seal = json.load(open(os.path.join(ROOT, SEAL), encoding="utf-8")).get("files", {})
+    except Exception:
+        return err("gate-guard", f"{SEAL} is missing or unreadable")
+    bad = []
+    for rel in GATE_FILES:
+        s = seal.get(rel) or {}
+        if not os.path.exists(os.path.join(ROOT, rel)):
+            bad.append(f"{rel} is missing")
+        elif s.get("sha256") != _sha(rel):
+            bad.append(f"{rel} changed since its seal")
+        elif not _approved(s.get("approved"), rel):
+            bad.append(f"{rel}: seal names no DECISIONS file with Todd's [stated] word on it")
+    if bad:
+        return err("gate-guard", "; ".join(bad) + ". A gate changes only on Todd's word in a live chat: record it in that day's "
+                   "coo/DECISIONS file naming the file, then python3 tools/check_repo.py --seal coo/DECISIONS-<date>.md")
+    ok("gate-guard", f"{len(GATE_FILES)} gate files sealed")
+
+
+def _floor(name, total):
+    if total < FLOORS.get(name, 0):
+        err(name, f"{total} planted tests, below the floor of {FLOORS[name]}: a planted test was removed; never delete a test "
+            "to go green, tell Todd")
+        return False
+    return True
+
+
+def seal(decisions):
+    path = os.path.join(ROOT, SEAL)
+    old = json.load(open(path, encoding="utf-8")).get("files", {}) if os.path.exists(path) else {}
+    files = {}
+    for rel in GATE_FILES:
+        sha = _sha(rel)
+        if old.get(rel, {}).get("sha256") == sha:
+            files[rel] = old[rel]; continue
+        if not _approved(decisions, rel):
+            sys.exit(f"seal refused: {decisions} has no [stated] line from Todd and no mention of {os.path.basename(rel)}")
+        files[rel] = {"sha256": sha, "approved": decisions}
+    json.dump({"about": "Hashes of the gate files; check_repo gate-guard fails when one changes without a new seal. "
+               "Seal only after Todd's word in a live chat is in that day's coo/DECISIONS file.", "files": files},
+              open(path, "w", encoding="utf-8"), indent=1)
+    print(f"sealed {len(files)} gate files")
+
+
+INSTALL = re.compile(r"\b(pip3? install|npm (?:i|install|ci)|npx(?: -y| --yes)?)\b(.*)")
+
+
+def check_pins():
+    bad = []
+    for path in sorted(glob.glob(os.path.join(ROOT, ".github", "workflows", "*.y*ml"))):
+        rel = os.path.relpath(path, ROOT)
+        for i, line in enumerate(open(os.path.join(ROOT, rel), encoding="utf-8"), 1):
+            m = INSTALL.search(line.split("#", 1)[0])
+            if not m or "-c .github/ci-constraints.txt" in line or "--require-hashes" in line:
+                continue
+            tool, rest = m.group(1), re.split(r"&&|\|\||;|\||>", m.group(2))[0]
+            if tool.startswith("npm ci"):
+                continue
+            pkgs = [t for t in rest.split() if not t.startswith("-") and t != "\\"]
+            pinned = (lambda t: "==" in t) if tool.startswith("pip") else (lambda t: re.search(r".@\d", t))
+            loose = [t for t in pkgs if not pinned(t)]
+            if loose:
+                bad.append(f"{rel}:{i} {', '.join(loose[:3])}")
+    err("pins", "unlocked installs: " + "; ".join(bad[:8])) if bad else ok("pins")
+
+
 def check_gate_tests():
     test = os.path.join(ROOT, "tools", "test_check_repo.py")
     if not os.path.exists(test):
@@ -340,7 +427,9 @@ def check_gate_tests():
         err("gate-tests", "the gate itself is broken (" + "; ".join(fails[:6]) + "); never edit tools/check_repo.py or "
             "tools/test_check_repo.py to clear this, tell Todd")
     else:
-        ok("gate-tests", (lines[-1].split(": ", 1)[-1] if lines else "passed"))
+        m = re.search(r"(\d+) planted failures caught, (\d+) missed, (\d+) skipped", lines[-1] if lines else "")
+        if _floor("gate-tests", sum(map(int, m.groups())) if m else 0):
+            ok("gate-tests", (lines[-1].split(": ", 1)[-1] if lines else "passed"))
 
 
 def check_sender():
@@ -556,17 +645,22 @@ def check_gate_selftest():
         err("gate-selftest", "a pipeline gate stopped catching a planted failure (" + "; ".join(l[5:] for l in lines if l.startswith("FAIL "))[:500]
             + "); never edit the gates or tools/test_gates.py to clear this, tell Todd")
     else:
-        ok("gate-selftest", lines[-1].split(": ", 1)[-1] if lines else "passed")
+        m = re.search(r"(\d+) planted cases right", lines[-1] if lines else "")
+        if _floor("gate-selftest", int(m.group(1)) if m else 0):
+            ok("gate-selftest", lines[-1].split(": ", 1)[-1] if lines else "passed")
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", default="")
     ap.add_argument("--preflight", metavar="JOB", default=None)
+    ap.add_argument("--seal", metavar="DECISIONS_FILE", default=None)
     args = ap.parse_args()
+    if args.seal:
+        return seal(args.seal)
     only = {x.strip() for x in args.only.split(",") if x.strip()}
     if args.preflight:
-        only = ({"context", "moat", "schema", "copy", "gate-selftest"} | ({"cos"} if args.preflight == "chief-of-staff" else set())
+        only = ({"context", "moat", "schema", "copy", "gate-selftest", "gate-guard"} | ({"cos"} if args.preflight == "chief-of-staff" else set())
                 | ({"video"} if args.preflight == "video-engine" else set()))
     files = tracked()
     checks = [("json", lambda: check_json(files)), ("python", lambda: check_python(files)), ("calc-tests", check_calc), ("sender-tests", check_sender),
@@ -576,6 +670,7 @@ def main():
               ("fiverr-kit", check_fiverr_kit),
               ("context", lambda: check_context(args.preflight)), ("moat", check_moat), ("schema", lambda: check_schema(files)),
               ("copy", check_copy), ("monday", check_monday), ("radar", check_radar), ("cos", check_cos), ("video", check_video), ("gate-selftest", check_gate_selftest),
+              ("gate-guard", check_gate_guard), ("pins", check_pins),
               ("gate-tests", check_gate_tests)]
     for name, fn in checks:
         if only and name not in only:

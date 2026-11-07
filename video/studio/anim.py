@@ -35,6 +35,9 @@ fresh reviewer checks before the next stage runs.
                            the same lesson after the hook; asks the voice workflow for take 1 only (Instagram trial reels)
   hookready SLUG           SLUG-hookb passed its gates (HOOKB_GATES) and matches the queued lesson after the hook: pin it
   next                     the oldest queued lesson not yet on all four platforms, and the commit its gates passed at
+                           (buffer rule: 3 a day at 6+ waiting, 2 at 3 to 5, 1 at 1 or 2; a short waits 24 h after its parent)
+  missed [SLOT]            after the post log is recorded: was a post due at the last slot (or SLOT), and did one go up?
+                           MISSED, INCOMPLETE, OK or TOO EARLY (the recorder tells Todd on MISSED or INCOMPLETE)
   postcaptions SLUG        the captions to paste, per platform, with any AI voice line taken out (Todd, Oct 29)
   waiting                  the queued lessons with no post yet, in posting order (the daily run's queue rule reads it)
   variety [SLUG]           no two queued lessons alike: own example, no shared hook pattern plus treatment, no two
@@ -1470,7 +1473,15 @@ STORY_GATES = ("qa", "facts", "facts-captions", "render-critic", "story", "send"
 STORY_GATES_NOV6 = ("qa", "facts", "facts-captions", "render-critic", "retell", "read-aloud", "compare", "send", "design")
 
 
+# A short (Format short; Todd, live chat, Nov 7, 2026, 8:33 am: "Go", recommendation 3): one fix from a queued story
+# lesson, 18 to 35 s, its own opening and voice, the parent's scenes and facts. It has no story arc to retell, so the story
+# gate drops; read-aloud counts still run in code (anim.py readcheck). Every other gate stays.
+SHORT_GATES = ("qa", "facts", "facts-captions", "render-critic", "send", "design")
+
+
 def gates_for(slug):
+    if lesson_format(slug) == "short":
+        return SHORT_GATES
     if lesson_format(slug) != "story":
         return GATES
     rev = vdir(slug, "05_render", "reviews")
@@ -1901,33 +1912,161 @@ def cmd_hold(slug, reason, off=False):
     print(f"{'unheld' if off else 'held'}: {slug}")
 
 
-# Post what we can make (Todd, live chat, Nov 6, 2026, 7:14 pm: "Go with your recommendations for all"): 1 lesson a
-# day until 3 are waiting, then up to 3 a day again. A lesson already started today always finishes its platforms.
-def started_today(items):
+# Post what we can make. Buffer rule (Todd, live chat, Nov 7, 2026, 8:33 am: "Go", to the social engine audit's
+# recommendation 2; replaces Nov 6's "1 a day until 3 wait"): 3 a day when 6 or more lessons wait, 2 a day at 3 to 5,
+# 1 a day at 1 or 2 (video/config.json posting "cadence"). The buffer is counted as this morning's line: lessons waiting
+# now plus lessons started today. A lesson already started always finishes its platforms.
+# A short (Format short, recommendation 3) posts only once its parent lesson went up 24 h or more before, never on the
+# parent's first day; until then the line skips it and takes the next lesson.
+CADENCE_DEFAULT = [{"waiting": 6, "perDay": 3}, {"waiting": 3, "perDay": 2}, {"waiting": 0, "perDay": 1}]
+SHORT_GAP_HOURS = 24
+
+
+def cadence_cap(buffer):
+    cfg = json.load(open(os.path.join(HERE, "..", "config.json"), encoding="utf-8")).get("posting", {})
+    rows = sorted(cfg.get("cadence", CADENCE_DEFAULT), key=lambda r: -r["waiting"])
+    cap = next((r["perDay"] for r in rows if buffer >= r["waiting"]), 1)
+    return min(cap, cfg.get("perDay", 3))
+
+
+def _post_times(i, before=None):
+    out = []
+    for p in i.get("posts", {}).values():
+        if isinstance(p, dict) and p.get("at"):
+            t = dt.datetime.fromisoformat(p["at"].replace("Z", "+00:00"))
+            if before is None or t < before:
+                out.append(t)
+    return out
+
+
+def started_today(items, at=None):
     from zoneinfo import ZoneInfo
-    tz = ZoneInfo("America/Chicago"); today = dt.datetime.now(tz).date()
+    tz = ZoneInfo("America/Chicago")
+    at = at or dt.datetime.now(tz)
+    today = at.astimezone(tz).date()
     n = 0
     for i in items:
-        ats = [p.get("at") for p in i.get("posts", {}).values() if isinstance(p, dict) and p.get("at")]
-        if ats and min(dt.datetime.fromisoformat(a).astimezone(tz).date() for a in ats) == today:
+        ats = _post_times(i, at)
+        if ats and min(ats).astimezone(tz).date() == today:
             n += 1
     return n
 
 
-def cmd_next():
-    items = load_queue()["items"]
-    waiting = [i for i in items if not i["posts"] and not i.get("hold")]
+def derived_from(slug):
+    """A short's parent lesson, from brief.md's '- **Derived from:** `slug`' line."""
+    p = vdir(slug, "01_voice", "brief.md")
+    m = re.search(r"(?im)^- \*\*Derived from:\*\*\s*`?([a-z0-9-]+)`?", open(p, encoding="utf-8").read()) if os.path.exists(p) else None
+    return m.group(1).lower() if m else None
+
+
+def pick_next(items, at, fmt=None, parent=None):
+    """What the posting line takes at time `at`, with only the posts made before `at` counted. Returns
+    (item or None, why). fmt and parent are lookups (tests pass made-up ones)."""
+    from zoneinfo import ZoneInfo
+    tz = ZoneInfo("America/Chicago")
+    fmt = fmt or lesson_format
+    parent = parent or derived_from
+    by = {i["slug"]: i for i in items}
+    day = at.astimezone(tz).date()
+    ready = lambda i: not i.get("readyAt") or dt.datetime.fromisoformat(i["readyAt"]) <= at
+    waiting = [i for i in items if ready(i) and not _post_times(i, at) and not i.get("hold")]
+    st = started_today(items, at)
+    cap = cadence_cap(len(waiting) + st)
+    skipped = []
     for i in items:
-        if i.get("hold") and not i["posts"]:
+        posted = _post_times(i, at)
+        if (i.get("hold") and not posted) or not ready(i):
             continue
-        missing = [p for p in PLATFORMS if p not in i["posts"]]
-        if missing:
-            if not i["posts"] and started_today(items) >= 1 and len(waiting) < 3:
-                print(json.dumps({"slug": None, "why": f"cadence: 1 a day while fewer than 3 wait ({len(waiting)} waiting)"}))
-                return
-            print(json.dumps({"slug": i["slug"], "missing": missing, "commit": i.get("commit")}))
-            return
-    print(json.dumps({"slug": None}))
+        missing = [p for p in PLATFORMS if not (isinstance(i["posts"].get(p), dict)
+                   and dt.datetime.fromisoformat(i["posts"][p]["at"].replace("Z", "+00:00")) < at)]
+        if not missing:
+            continue
+        if posted:
+            return i, "finish"
+        if st >= cap:
+            return None, f"cadence: {cap} a day with {len(waiting) + st} in this morning's line ({st} started today)"
+        if fmt(i["slug"]) == "short":
+            par = by.get(parent(i["slug"]) or "")
+            pt = _post_times(par, at) if par else []
+            if not pt or at - min(pt) < dt.timedelta(hours=SHORT_GAP_HOURS) or min(pt).astimezone(tz).date() == day:
+                skipped.append(i["slug"])
+                continue
+        return i, "new"
+    return None, ("short spacing: " + ", ".join(skipped)) if skipped else "nothing waiting"
+
+
+def cmd_next():
+    from zoneinfo import ZoneInfo
+    items = load_queue()["items"]
+    it, why = pick_next(items, dt.datetime.now(ZoneInfo("America/Chicago")))
+    if not it:
+        print(json.dumps({"slug": None} if why == "nothing waiting" else {"slug": None, "why": why}))
+        return
+    missing = [p for p in PLATFORMS if p not in it["posts"]]
+    print(json.dumps({"slug": it["slug"], "missing": missing, "commit": it.get("commit")}))
+
+
+# Missed-slot alarm (Todd, live chat, Nov 7, 2026, 8:33 am: "Go", recommendation 5). PC posting runs have gone up as
+# late as 90 minutes after their slot (Nov 2 lunch 13:07 for 11:37), so a slot's posting window is 3 hours. Each cloud
+# recorder run, after it records the post log, checks the latest slot whose window has closed in the last 14 hours
+# (17:33 checks lunch, 21:33 end of day, 9:33 last evening; 12:33 none), so each slot is checked once: was a post due
+# there (the same rule as `next`), and did anything go up in its window? Due and nothing up: MISSED (the laptop asleep,
+# Chrome signed out, the extension dropped). A lesson started 3 hours or more before with platforms missing: INCOMPLETE.
+SLOT_WINDOW = dt.timedelta(hours=3)
+
+
+def slot_times(day):
+    from zoneinfo import ZoneInfo
+    tz = ZoneInfo("America/Chicago")
+    cfg = json.load(open(os.path.join(HERE, "..", "config.json"), encoding="utf-8")).get("posting", {})
+    out = []
+    for s_ in cfg.get("slots", []):
+        h, m = map(int, s_["central"].split(":"))
+        out.append((s_["name"], dt.datetime.combine(day, dt.time(h, m), tz)))
+    return out
+
+
+def missed_check(items, slot_name, slot_at, now_at, fmt=None, parent=None):
+    it, why = pick_next(items, slot_at + dt.timedelta(minutes=1), fmt, parent)
+    window_end = slot_at + SLOT_WINDOW
+    up = [i["slug"] for i in items if any(slot_at - dt.timedelta(minutes=10) <= t <= window_end for t in _post_times(i))]
+    res = {"slot": slot_name, "at": slot_at.isoformat(timespec="minutes"), "due": it["slug"] if it else None,
+           "why": why, "postedInWindow": up}
+    if now_at < window_end:
+        res["status"] = "TOO EARLY"
+    elif it and not up:
+        res["status"] = "MISSED"
+    else:
+        res["status"] = "OK"
+    late = [i["slug"] for i in items if _post_times(i) and len(_post_times(i)) < len(PLATFORMS)
+            and now_at - min(_post_times(i)) >= SLOT_WINDOW and not i.get("hold")]
+    if late:
+        res["incomplete"] = late
+        if res["status"] == "OK":
+            res["status"] = "INCOMPLETE"
+    return res
+
+
+def slot_to_check(nowt):
+    """The latest slot whose 3-hour window closed in the last 14 hours (None: nothing to check this run)."""
+    cands = slot_times(nowt.date() - dt.timedelta(days=1)) + slot_times(nowt.date())
+    done = [s_ for s_ in cands if s_[1] + SLOT_WINDOW <= nowt and nowt - s_[1] <= dt.timedelta(hours=14)]
+    return done[-1] if done else None
+
+
+def cmd_missed(slot_name=None):
+    from zoneinfo import ZoneInfo
+    tz = ZoneInfo("America/Chicago")
+    nowt = dt.datetime.now(tz)
+    if slot_name:
+        pick = [s_ for s_ in slot_times(nowt.date()) if s_[0] == slot_name][:1]
+        pick = pick[0] if pick else None
+    else:
+        pick = slot_to_check(nowt)
+    if not pick:
+        print(json.dumps({"slot": slot_name, "status": "NO SLOT TO CHECK"}))
+        return
+    print(json.dumps(missed_check(load_queue()["items"], pick[0], pick[1], nowt)))
 
 
 AI_VOICE_LINE = re.compile(r"AI version of my", re.I)   # Todd, Oct 29, 2026: never in a caption, whatever the file says
@@ -2315,7 +2454,10 @@ def queue_hook_problems(slug):
     n = order.index(slug)
     for other in order[:n] + order[n + 1:] + posted:
         o = variety_of(other)
-        if o["example"] and o["example"] == me["example"]:
+        kin = derived_from(slug) == other or derived_from(other) == slug   # a short and its parent tell the same story
+        if kin and o["hook"] == me["hook"]:
+            out.append(f"hook pattern '{me['hook']}' is also its parent's or short's ({other}): a short opens another way")
+        if o["example"] and o["example"] == me["example"] and not kin:
             out.append(f"example '{me['example']}' is also {other}'s")
         if other in order and o["hook"] == me["hook"] and o["treatment"] == me["treatment"]:
             out.append(f"same hook pattern and treatment as {other} ({me['hook']}, {me['treatment']})")
@@ -2335,6 +2477,8 @@ def rotation_shape(slug):
     """What rotates: a story lesson's '- **Shape:**' line (moment, receipt, two-shops, myth-three, scenario, case, ...),
     any other lesson's format."""
     f = lesson_format(slug)
+    if f == "short":
+        return "short"   # at most one short in a posting day (the day window below)
     if f in GUIDE_FORMATS:
         p = vdir(slug, "01_voice", "brief.md")
         m = re.search(r"(?im)^- \*\*Shape:\*\*\s*`?([a-z0-9-]+)`?", open(p, encoding="utf-8").read()) if os.path.exists(p) else None
@@ -2506,9 +2650,12 @@ FORMATS = {
     # (00_story/story.md), told whole. Its word band, the spoken hook's length and the opening rules are guides (NOTE lines),
     # not gates; the retell and read-aloud gates judge it. Length stays a hard band: 90 s is the ceiling.
     "story":      {"min_seconds": 40.0, "max_seconds": 90.0, "words": (110, 230)},
+    # A short (Todd, live chat, Nov 7, 2026, 8:33 am: "Go", recommendation 3): one fix cut from a queued story lesson,
+    # brief.md "- **Derived from:** `<parent slug>`". 7-day test to Nov 14 (_shared/formats.md "Short").
+    "short":      {"min_seconds": 18.0, "max_seconds": 35.0, "words": (45, 95)},
 }
 # Formats whose word band, spoken hook length and drop-in rules are guides, not errors (REBUILD.md "Relaxed").
-GUIDE_FORMATS = {"story"}
+GUIDE_FORMATS = {"story", "short"}
 FORMAT_ALIASES = {"v2": "clinic"}
 
 
@@ -3019,6 +3166,8 @@ def main():
         cmd_ci_voice()
     elif c == "next":
         cmd_next()
+    elif c == "missed":
+        cmd_missed(a.slug)
     elif c == "postcaptions":
         cmd_postcaptions(a.slug)
     elif c == "waiting":

@@ -4,6 +4,13 @@ Todd, live chat, Nov 2, 2026, 12:28 pm: "find really, really interesting new sto
 implementation". The AI lane makes a Ready story before any other AI idea. A Ready story whose newest receipt is over
 45 days old goes back to the reporters for a fresh fact or is killed.
 
+Phone cluster test (Todd, live chat, Nov 7, 2026, 8:33 am: "Go", to the social engine audit): 3 of our top 4 Instagram
+results are about phone calls (lsa-missed-calls IG 1,289 views, 29.1% skip; missed-call-text YouTube 1,299;
+after-hours-robot IG 276). The next 5 stories made come from that cluster: missed calls, after-hours calls, who answers,
+texting back, speed to lead, the rules on automated texts. Each a different owner problem and a different turn, never the
+same story twice. Verdict after the 5 are posted: kept if their median views and deep-read watch beat the other story
+lessons; one cluster lesson that flops is not a verdict. Ready target: 5 stories at all times (story-desk SKILL step 6).
+
 ## Ready (dossier written and verified; newest first)
 | Date | Story | Score | Dossier |
 |---|---|---|---|

@@ -41,23 +41,19 @@ professional dashboard.
   markup-margin (posted Oct 30 from a live chat; Todd's phone, 3:37 pm; close-rate the same day was fine). On the Crop screen open the crop button (bottom left of the
   preview) and choose "Original" (not 1:1, 4:5 or 16:9). Check before Next with JS: the preview media is taller than
   wide (height about 1.78 times width); square or wide means stop and redo. Next, Next, paste `instagram.caption`. "Add AI label"
-  off. "Share to Facebook" off. Turn on "Trial" (trial reel: shown
-  to non-followers first) with automatic sharing off. Share. Record the newest /reel/ link with `posted <slug>
-  instagram-trial <url>`. No Trial option on the screen: post it as a normal reel, record it with `posted <slug>
-  instagram <url>` and add one line to LEARNINGS.md.
-  **Second opening** (Todd, live chat, Nov 1, 2026, 4:35 pm: "Do both", to two openings per lesson as Instagram trial
-  reels): if queue.json shows the lesson with a `hookB` pin and no `hookB.post`, right after the first trial reel run
-  `anim.py postcopy <slug>-hookb` and post that file the same way, with the same `instagram.caption`, as a trial reel
-  with automatic sharing off; record it with `posted <slug>-hookb instagram-trial <url>` (post log doc id
-  `<slug>-hookb.instagram-trial`). It is the same lesson with another first few seconds, never a second lesson: Instagram
-  only, never the grid, never TikTok, Facebook or YouTube, and it does not count toward the day's lessons. No Trial
-  option, or postcopy fails: skip it (never post it as a normal reel) and add one line to LEARNINGS.md.
+  off. "Share to Facebook" off. Share as a normal reel (Todd, live chat, Nov 7, 2026, 8:33 am: "Go", to retiring trial
+  reels: instagram.com's web uploader has shown no Trial option since Oct 31, so none ever ran). Record the newest /reel/
+  link with `posted <slug> instagram <url>`.
+  **Second opening: retired** (same chat). Make no `-hookb` and post none; `anim.py hookb`, `hookready` and `trials`
+  stay only to read old records.
 - **TikTok** (tiktok.com/tiktokstudio/upload): the account must be ProofNotFluff. file_upload the MP4, paste
   `tiktok.caption`. More options: "AI-generated content" ON (Todd, Oct 31: realistic AI voice); commercial disclosure off. Who can watch: Everyone. Post. Record the video link from the
   profile's newest video.
 - **Facebook Page** (https://www.facebook.com/profile.php?id=61594865921562, acting as the Page): Reel, file_upload the
   MP4, Next, paste `facebook.caption`, "Add AI label" off, Public, Share now. Decline boosts and Call Now. Record
-  the reel link.
+  the reel link. Facebook never blocks a slot (Todd, live chat, Nov 7, 2026, 8:33 am: "Go"; it brings 7% of our views at
+  1 to 4 s average watch): post it last, and a Facebook step that fails once is skipped for this run (one LEARNINGS.md
+  line, the end message says so); the next run's `anim.py next` finishes it like any started lesson.
 - **YouTube** (studio.youtube.com, the ProofNotFluff channel): Create, Upload videos, file_upload the MP4. Title =
   `youtube.title`, description = `youtube.description`. Audience: "No, it's not made for kids". Show more: tags =
   `youtube.tags` (comma separated), "AI use": No. Our voice is Todd's own clone, which YouTube lists as not needing
@@ -65,8 +61,7 @@ professional dashboard.
   Record the youtube.com/shorts/<id> link.
 
 After each: `python3 video/studio/anim.py posted <slug> <platform> <url>`, commit, push (a live chat), or the post log below
-(a scheduled run on Todd's PC). A trial reel is the lesson's Instagram link
-(`instagram-trial` records it under `instagram`), so it counts toward the four; never post Instagram again for it.
+(a scheduled run on Todd's PC). Order: Instagram, TikTok, YouTube, then Facebook.
 
 ## Scheduled runs on Todd's PC: the post log (Oct 30, 2026)
 Why: a scheduled run tied to Todd's computer can reach his Chrome but GitHub refuses its push ("not in this session's
@@ -89,21 +84,14 @@ read only, post, and write each post to the scoreboard post log; the cloud task 
   `committed: false`; the recorder writes research/metrics/<slug>.json and the diagnosis from them.
 
 ## Early numbers, every run (Todd, live chat, Oct 31, 2026, 2:28 pm: "We should improve real time.")
-After posting and trials, every PC run (not only the evening one) reads the numbers of each lesson posted 2 h or more
+After posting, every PC run (not only the evening one) reads the numbers of each lesson posted 2 h or more
 before that has no read in the last 6 h, by the "Real time" section of research/PERFORMANCE.md: read only, own tabs
 closed after, never sign in, click through a prompt, reply, like, comment, follow or change anything; numbers only, no
 names or comment text; "hidden" for a hidden number or a sign-in prompt. Each read goes to videometrics as doc id
 `<slug>.<YYYY-MM-DD>T<HH>` (Central hour), `committed: false`, and one line of numbers goes in the end message.
 
-## Trial reels to the feed, and the 90-day re-cut (Todd, Oct 29, 2026, 3:59 pm: "Fold it in")
-- Each run: `python3 video/studio/anim.py trials`. For each one marked due (72 hours old), open its link as proofnotfluff,
-  choose "Share to followers" (the same reel goes to the feed; it is not a second post), then `anim.py feedshared <slug>`,
-  commit, push. A row with `hookB` (two openings): read both reels' insights first (views, skip rate, average watch,
-  shares, saves) and write both reads to videometrics (doc ids `<slug>.<date>T<hour>` and `<slug>-hookb.<date>T<hour>`).
-  Share only the one with the lower skip rate; within 2 points, the one with more shares plus saves; still tied, the
-  lesson's own. Record `feedshared <slug>` or `feedshared <slug>-hookb` (post log doc id `<slug>.feedshared` or
-  `<slug>-hookb.feedshared`). The other stays a trial reel: never share both, never delete it. A skip rate that is
-  hidden on either: wait for the next run, at most 24 hours, then share the lesson's own. Not offered or already shared: record `feedshared` only if the reel shows on the profile grid, else tell Todd.
+## The 90-day re-cut (Todd, Oct 29, 2026, 3:59 pm: "Fold it in"; trial reels retired Nov 7, 2026, 8:33 am)
+- Trial reels: none are made or shared any more (see Instagram above). `anim.py trials` lists nothing to do.
 - Mondays: `python3 video/studio/anim.py recuts`. A lesson within 7 days of its re-cut date, not yet re-cut, and in the top
   third of posted lessons by its read numbers (views, average watch, shares, saves) gets one IDEAS.md line: a re-cut with a
   new hook and a new opening, same facts re-read that day. It is made as a new lesson (new slug, brief.md

@@ -17,7 +17,8 @@ prose, from what owners are saying (desk 1, trade-pulse); the engine (viral-scri
 ## Process (Executes)
 1. Date from bash. Read STORIES.md so no story is told twice and no killed one comes back without new facts.
 2. **Pick:** the sharpest problem in the newest pulse, the one that is in 3+ places, moves an owner's money this month, and
-   has a document or a number behind it. A guru's lesson that answers a pulse problem is a strong pick (we distill it for
+   has a document or a number behind it. Until 5 phone cluster stories are made (research/STORIES.md, Todd, Nov 7), pick
+   from that cluster first when one qualifies. A guru's lesson that answers a pulse problem is a strong pick (we distill it for
    an owner, in our words, with the source named). Our City data is a pick when it answers a pulse problem.
 3. **Report:** open every document behind it in this run. Score it on the story test (_shared/investigative.md; keep 8 or
    more of 10). Find the turn: the catch the vendor, the guru or the obvious answer leaves out. A second independent source
@@ -34,7 +35,9 @@ prose, from what owners are saying (desk 1, trade-pulse); the engine (viral-scri
    the bottom of story.md. Then the retell gate (video/studio/prompts/retell.md) on story.md's prose, a fresh agent that
    never saw the pulse: its sentence must match the message line. Any no or a FAIL goes back to step 4.
 6. Dossier and bank: research/stories/<date>-<slug>.md (template in investigative.md) holds the receipts; add the story
-   to STORIES.md "Ready" with the slug, then "Made" when the engine queues it.
+   to STORIES.md "Ready" with the slug, then "Made" when the engine queues it. Target 5 Ready (Todd, Nov 7): while fewer
+   wait, a studio run with no lesson to finish verifies the best lead in STORIES.md "Leads" (or the night shift's) to
+   Ready before it starts a new build.
 
 ## Hand-off to the engine (viral-script, video-studio)
 - The engine keeps the story whole while it turns it into talk: it may cut words, reorder for the ear and pick the hook and

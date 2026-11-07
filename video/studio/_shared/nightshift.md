@@ -14,8 +14,10 @@ code or by Claude against its source, and nothing a box job writes is published,
    21 slot carry `-night-` in the slug.
    a. Question page draft (21 slot only): seo/LOCAL.md step 2 (one job; copy its answer to seo/box-drafts/ at the end
       of the run).
-   b. Story finding (21 slot; 9 slot too when fewer than 2 stories are Ready): 6 to 10 `pulse-night-extract` fetch jobs,
+   b. Story finding (21 slot; 9 slot too when fewer than 5 stories are Ready; target 5 Ready, Todd, Nov 7, 8:33 am: "Go"): 6 to 10 `pulse-night-extract` fetch jobs,
       8 thread pages each (48 to 80 pages), on hosts the box reader allows (pnf-local-jobs scripts/fetcher.py ALLOWED).
+      Phone cluster first (research/STORIES.md, Nov 7): threads on missed calls, after-hours calls, call answering, texting
+      back and speed to lead go in the first jobs.
       Find the pages: (1) thread links from the newest ok `pulse-feeds` answer (the forum feeds listed as working in
       video/studio/research/listen.json, read by the box; queue one `pulse-feeds-<date>-r<n>` fetch job per feed each 21 slot: one feed a job, or the box lists only the first);
       (2) WebSearch site: queries only to fill up (low yield: on Nov 7 one of six forum hosts returned threads); skip

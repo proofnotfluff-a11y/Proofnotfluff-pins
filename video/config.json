@@ -130,6 +130,21 @@
     "central": "20:13"
    }
   ],
-  "makeWhenWaitingUnder": 9
+  "makeWhenWaitingUnder": 9,
+  "cadence": [
+   {
+    "waiting": 6,
+    "perDay": 3
+   },
+   {
+    "waiting": 3,
+    "perDay": 2
+   },
+   {
+    "waiting": 0,
+    "perDay": 1
+   }
+  ],
+  "cadenceNote": "Todd, live chat, Nov 7, 2026, 8:33 am: \"Go\", to the social engine audit (coo/DECISIONS-2026-11-07.md): 3 a day when 6 or more lessons wait, 2 a day at 3 to 5, 1 a day at 1 or 2, counted on this morning's line (waiting now plus started today). Replaces Nov 6's 1 a day until 3 wait. perDay stays the ceiling."
  }
 }

@@ -12,12 +12,28 @@ working, diagnose the issue and improve." This replaces the Monday-only numbers 
 Read: the problem is the first 3 seconds and the reason to share, not the posting volume. At about 45 s long, 9 s average
 watch is about a fifth of the video. More posts multiply whatever a post does, good or bad.
 
-## The daily read (the evening posting run, through Claude in Chrome, reading only)
-For every lesson posted 24 h, 72 h and 7 days ago, write `research/metrics/<slug>.json` with one entry per platform and
-age: views, average watch (s), percent watched or "viewed vs swiped away" (YouTube), skip rate (Instagram), likes,
-comments, shares, saves, follows. Sources: Instagram professional dashboard insights, TikTok Studio analytics, YouTube
-Studio Shorts analytics, Facebook Page reel insights. Read numbers only: never reply, like, change a setting or a post.
-A sign-in prompt or a hidden number: write "hidden" and go on.
+## The daily read: deep, once a day (the evening posting run, through Claude in Chrome, reading only)
+Todd, live chat, Nov 7, 2026, 8:33 am: "Go", to the social engine audit's first recommendation. Why: from Nov 1 to Nov 6
+every read was "list views only"; skip rate, average watch, shares and saves came back "hidden" on every lesson, so no
+diagnosis rule below could fire. Views alone cannot tell an opening problem from a middle problem.
+For every lesson posted 24 h, 72 h and 7 days ago (and any lesson under 72 h with no deep read yet), the evening run opens
+each platform's per-video analytics page, not the profile grid, and writes `research/metrics/<slug>.json` with one entry
+per platform and age:
+- **TikTok**: TikTok Studio on desktop (tiktok.com/tiktokstudio/analytics, Content tab, the lesson's own page; or the
+  post's three-dot menu, Analytics): views, average watch time (s), watched full video (%), likes, comments, shares, saves,
+  new followers. Its Download data CSV may be used; read it, keep numbers only, delete the file.
+- **YouTube**: YouTube Studio, Content, the Short, Analytics: views, "viewed vs swiped away" (%), average view duration
+  (s), average percentage viewed, likes, comments, shares, subscribers gained.
+- **Instagram and Facebook**: Meta Business Suite (business.facebook.com), Insights, Content, filter Reels; open each
+  reel: views, reach, average watch time, skip rate if shown, likes, comments, shares, saves, follows. Its Export may be
+  used the same way as TikTok's CSV. Then each reel's own "View insights" on instagram.com for skip rate and average
+  watch if Business Suite left them out. Some Instagram watch numbers are reported to show only in the phone app: if a
+  number is still missing after both screens, write "hidden: app only" (not plain "hidden") so the recorder can tell a
+  screen we did not open from a number the web never shows.
+- Each read's doc carries `"depth": "deep"`; a run that could only read the grid writes `"depth": "list"` and says why
+  in its end message. The recorder counts deep reads per lesson; a lesson at 72 h with no deep read on 3 or more
+  platforms is named in the recorder's end message.
+Read numbers only: never reply, like, change a setting or a post. A sign-in prompt: write "hidden" and go on.
 
 ## Account health and reach (every evening; Todd, Oct 31, 2026, 11:58 am: "put measures in place to mitigate those
 risks as much as possible", on being flagged for mass-produced content)
@@ -32,6 +48,12 @@ risks as much as possible", on being flagged for mass-produced content)
 - Reach collapse (the evening diagnosis, cloud): on one platform, the last 3 posts each under 20% of that platform's median
   24 h views of the 6 posts before them (under 10 views each when fewer than 6 exist). Tell Todd that day with the
   numbers and recommend 2 a day on that platform; volume changes only with his word (CONSTITUTION 2).
+
+- Blind check (Todd, live chat, Nov 7, 2026, 8:33 am: "Go"): Oct 31 to Nov 6, Instagram, Facebook and TikTok read
+  "hidden" on most evenings. The evening run tries Meta Business Suite (Settings, Business support home or Account
+  quality, read only) for Instagram and the Page, and TikTok Studio for TikTok, before writing "hidden". Two evenings in a
+  row with "hidden" on a platform: the recorder tells Todd once, in one line, since a safety check that cannot see is a
+  finding of its own.
 
 ## Real time (Todd, live chat, Oct 31, 2026, 2:28 pm: "We don't need to wait until Sunday to examine video data and
 implement changes. We should improve real time.")

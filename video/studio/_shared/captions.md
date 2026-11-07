@@ -27,6 +27,18 @@ matches. So: the keyword in the first line, said out loud in the first seconds, 
 No AI voice line in any caption (Todd, Oct 29, 2026, 10:28 am: "don't put this on the video captions: \"Narrated by an AI
 version of my own voice.\""). AI labels: TikTok on, the rest off (Todd, Oct 31, 2026: label where the rules require it; the voice is an AI clone; POSTING.md).
 
+## One destination (Todd, live chat, Nov 7, 2026, 8:33 am: "Go", to the social engine audit's recommendation 6)
+Why: 56 posts, about 8,000 views, 0 follows and 1 recorded link click. Views that point nowhere do not move the business.
+- The bio link on Instagram, TikTok (where the account offers a website field), the Facebook Page website and the YouTube
+  channel link all point to https://proofnotfluff.com/missed-call-cost-calculator/ (live; it fits the phone cluster, and
+  it links to every other free calculator). Todd sets those once: agents never change a profile (CONSTITUTION 2).
+- Instagram, TikTok and Facebook captions end with one plain line naming it, for example "Free missed call cost
+  calculator: link in bio." A lesson whose topic another live calculator fits names that one and still says "link in bio"
+  (the calculator page links to it). YouTube keeps its site line below, with the full address.
+- Measure: tools/traffic_report.py already counts visits by referring site per page (Mondays, seo/traffic/weekly.json).
+  The Monday read adds one line to research/FORMULA.md: visits from instagram, tiktok, facebook and youtube to the
+  calculator that week, and its stage counts (uses).
+
 ## Per platform
 - Instagram: 3 to 5 hashtags (cap 5): 1 umbrella (#homeservicebusiness or #contractorbusiness), 1 to 2 trade business
   (#plumbingbusiness, #hvacbusiness, #roofingbusiness), 1 topic. No link; "link in bio" is fine. AI label off. Share to

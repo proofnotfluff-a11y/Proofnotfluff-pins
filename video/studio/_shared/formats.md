@@ -36,6 +36,8 @@ viewer sees and hears: a different shape, length, opening and payoff, each built
 
 | story | 40 to 90 s | 110 to 230 (a guide) | the story desk's story.md told whole: an opening from storycraft.md, the setup, the problem with its proof, the cost, the turn, the payoff card, the kicker | every new-line lesson from Nov 5, 2026 (REBUILD.md); rotates on its brief.md Shape line |
 
+| short | 18 to 35 s | 45 to 95 (a guide) | one fix from a queued story lesson: the moment in one line, the fix shown on screen and held, the check that it worked, the button | brief.md `- **Derived from:** <parent slug>` |
+
 Relaxed for the new line (Todd, live chat, Nov 2, 2026, 8:49 pm, PRINCIPLES.md: "We can elaborate more and relax
 restrictions on number of words"; REBUILD.md): for a story lesson the word band, the spoken hook's length, the drop-in rules
 and the echo are guides printed as NOTE by `anim.py script`, `hook` and `lint`; the retell and read-aloud gates judge the
@@ -59,3 +61,21 @@ scenario is told as "picture this" and never as something that happened; every n
 - Tune: `anim.py tunes` (already a rule). Pace: quick-math runs fast (185 to 195 wpm), scenario calm (160 to 170).
 - End card: the same lockup is fine (YouTube allows a shared intro and outro when the body differs); the send line names a
   different role each time.
+
+## Short (Todd, live chat, Nov 7, 2026, 8:33 am: "Go", to the social engine audit's recommendation 3)
+Why: one story lesson costs several runs, so 3 a day needs a second, cheaper post per story. A short is not a re-upload:
+it is a new video that teaches the one thing an owner can do this week from the parent's story.
+- Made only from a lesson already queued with every gate passed (its parent), by the same or a later studio run. One short
+  per parent. Slug `<date>-<words>-short`; brief.md: `- **Format:** short`, `- **Derived from:** <parent slug>`, its own
+  Hook pattern (never the parent's: `variety` fails it), Treatment and Example (it may share the parent's example).
+- Its own script (45 to 95 words, a guide) and its own voice takes; its own cues and its own opening frame. It may reuse the
+  parent's scenes, props and facts.json numbers, each number re-read for the short's own facts gate.
+- Gates (`anim.py` SHORT_GATES): code QA, facts, facts on captions, render critic, send, design. The story gate drops (no
+  arc to retell); `anim.py readcheck` still runs in code.
+- Posting: queue order, never on its parent's first day and never sooner than 24 h after the parent went up (`anim.py
+  next` skips it until then); at most one short in a posting day (rotation).
+- The test: 7 days, verdict Nov 14 by the recorder. Keep shorts if their average watch as a share of length is at least
+  the median of the story lessons posted the same week on TikTok and YouTube (the deep read), and their skip rate on
+  Instagram is no worse. Otherwise stop making them and tell Todd with the numbers. Fewer than 3 shorts read by Nov 14:
+  the verdict waits until 3 are.
+

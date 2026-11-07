@@ -49,7 +49,8 @@ jobs:
                 python3 video/studio/anim.py sourceprint "$source" "$RUNNER_TEMP/words.txt" "Gemini transcript and on-screen text (video-watch workflow), $(date -u +%Y-%m-%d)" > sp.txt 2>> err.txt
                 code=$?
               fi
-              { echo "# Sourceprint job"; echo; echo "- Source: $source"; echo "- The words are withheld (someone else's words); only salted hashes of their word runs were kept."; cat sp.txt 2>/dev/null; } > "$out"
+              { echo "# Sourceprint job"; echo; echo "- Source: $source"; echo "- The words are withheld (someone else's words); only salted hashes of their word runs were kept."; cat sp.txt 2>/dev/null
+                if [ "$code" -ne 0 ]; then python3 -c 'import sys; t=open(sys.argv[1]).read(); print("## Unavailable" + t.split("## Unavailable", 1)[1] if "## Unavailable" in t else "")' "$RUNNER_TEMP/answer.md" 2>/dev/null; fi; } > "$out"
               rm -f "$RUNNER_TEMP/answer.md" "$RUNNER_TEMP/words.txt" sp.txt
             else
               python3 tools/watch_video.py "$source" --question "$question" > "$out" 2> err.txt

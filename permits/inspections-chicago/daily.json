@@ -1,22 +1,22 @@
 {
  "product": "Chicago Restaurant Daily List",
- "asOf": "2026-11-06",
- "asOfText": "Nov 6, 2026",
- "through": "2026-11-05",
- "throughText": "Nov 5, 2026",
- "recentFrom": "2026-10-23",
+ "asOf": "2026-11-07",
+ "asOfText": "Nov 7, 2026",
+ "through": "2026-11-06",
+ "throughText": "Nov 6, 2026",
+ "recentFrom": "2026-10-24",
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-11-06T18:29:33+00:00",
-  "rowsUpdatedAt": "2026-11-06T10:15:49+00:00",
+  "fetchedAt": "2026-11-07T16:59:41+00:00",
+  "rowsUpdatedAt": "2026-11-07T10:11:54+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "pests": 10,
-  "hood": 4,
-  "places": 11
+  "pests": 2,
+  "hood": 0,
+  "places": 2
  },
  "history": [
   {
@@ -130,11 +130,19 @@
    "hood": 4,
    "places": 11,
    "withPhone": 5
+  },
+  {
+   "asOf": "2026-11-07",
+   "through": "2026-11-06",
+   "pests": 2,
+   "hood": 0,
+   "places": 2,
+   "withPhone": 1
   }
  ],
  "examples": [
   {
-   "area": "Lower West Side",
+   "area": "Uptown",
    "type": "Restaurant",
    "result": "Fail",
    "trades": [
@@ -142,28 +150,15 @@
    ]
   },
   {
-   "area": "West Town",
-   "type": "Restaurant",
-   "result": "Pass w/ Conditions",
-   "trades": [
-    "pests"
-   ]
-  },
-  {
-   "area": "Austin",
+   "area": "South Shore",
    "type": "Restaurant",
    "result": "Fail",
    "trades": [
-    "hood and exhaust"
+    "pests"
    ]
   }
  ],
  "pestByDate": [
-  {
-   "date": "2026-10-23",
-   "pests": 1,
-   "restaurant": 1
-  },
   {
    "date": "2026-10-24",
    "pests": 0,
@@ -226,34 +221,41 @@
   },
   {
    "date": "2026-11-05",
-   "pests": 0,
-   "restaurant": 0
+   "pests": 1,
+   "restaurant": 1
+  },
+  {
+   "date": "2026-11-06",
+   "pests": 1,
+   "restaurant": 1
   }
  ],
  "pestLast7": {
-  "from": "2026-10-30",
-  "to": "2026-11-05",
-  "inspections": 10,
-  "restaurantInspections": 4,
+  "from": "2026-10-31",
+  "to": "2026-11-06",
+  "inspections": 11,
+  "restaurantInspections": 6,
   "areas": [
    "Humboldt Park",
    "Lower West Side",
    "North Lawndale",
+   "South Shore",
+   "Uptown",
    "West Town"
   ]
  },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
  "phones": {
-  "rows": 11,
-  "withPhone": 5,
-  "coverage": 45.5
+  "rows": 2,
+  "withPhone": 1,
+  "coverage": 50.0
  },
  "seat": {
-  "asOf": "2026-11-06",
-  "places14": 25,
-  "new": 10,
-  "withPhone14": 14,
-  "coverage14": 56.0,
+  "asOf": "2026-11-07",
+  "places14": 26,
+  "new": 2,
+  "withPhone14": 15,
+  "coverage14": 57.7,
   "phonesChecked": true
  }
 }

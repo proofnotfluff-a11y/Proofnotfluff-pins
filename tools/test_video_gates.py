@@ -15,6 +15,10 @@ check. A gate that stops catching a planted failure turns every run red: tell To
   video_pairwise  pair lists, splits as ties, the send test rule
   video_ledger    lock, stale lock, moves, wrong prior state, fingerprints bound to the yes, double post, tampering
   video_voice     word timings, segment order, no key stops the run
+  studio send     video/studio/anim.py selftest: the send moment and the shorter middle (Todd, live chat, Nov 7, 2026,
+                  9:27 am): no Send line, a group or the viewer as the person, a vague thing, an end card naming someone
+                  else, no or two [send] cues, a send cue under 2.5 s, a card that moves, a payoff at or after halfway,
+                  a reviewer naming another person or thing, a story over 70 s
 
 Usage: python3 tools/test_video_gates.py [--fast]     --fast skips video_qa's clips (about 25 s)
 """
@@ -95,6 +99,14 @@ def main():
             bad.append(f"{t}: " + (why or (tail[-1][:200] if tail else f"exit {r.returncode}, no output")))
         else:
             print(f"OK {last[-1] if last else t}")
+    r = subprocess.run([sys.executable, os.path.join(ROOT, "video", "studio", "anim.py"), "selftest"], capture_output=True, text=True, timeout=300, cwd=ROOT)
+    last = [l for l in r.stdout.splitlines() if "selftest" in l]
+    if r.returncode or not last:
+        why = "; ".join(l[5:] for l in r.stdout.splitlines() if l.startswith("FAIL"))[:300]
+        tail = [l.strip() for l in r.stderr.strip().splitlines() if l.strip()]
+        bad.append("studio send: " + (why or (tail[-1][:200] if tail else f"exit {r.returncode}, no output")))
+    else:
+        print(f"OK {last[-1]}")
     probs, n = artifacts()
     for p in probs:
         bad.append(p)
@@ -102,7 +114,7 @@ def main():
         print("FAIL", b)
     ran = len(SELFTESTS) - (1 if fast else 0)
     skip = f"; skipped here: {', '.join(skipped)} (no face model in this checkout)" if skipped else ""
-    print(f"video gates: {'ok' if not bad else str(len(bad)) + ' failed'} ({ran} planted selftests, {n} artifacts against their schemas{skip})")
+    print(f"video gates: {'ok' if not bad else str(len(bad)) + ' failed'} ({ran + 1} planted selftests, {n} artifacts against their schemas{skip})")
     sys.exit(1 if bad else 0)
 
 

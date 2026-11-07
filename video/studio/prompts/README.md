@@ -20,7 +20,8 @@ golden stay only for the held old-line lessons.
 Old line order (lessons made before Nov 5): facts, facts-captions (after the script and captions exist), then after the
 render: render-critic, buyer, send, design, golden. Pass bars: facts and facts-captions no mismatch; render-critic 0 faults; buyer stop and send or save yes;
 send names one person by role and tie, a real line, a gain beyond "useful", a feeling, and thanks (send.md; Todd, live
-chat, Nov 1, 2026, 4:35 pm: "Do both"); design no score under 4 and average 4.61 or more (4.50 from the third round,
+chat, Nov 1, 2026, 4:35 pm: "Do both"), and from Nov 7, 9:27 am, from the video alone (no brief, no captions) the person
+in the shop and the thing on screen held to screenshot, checked in code against brief.md's Send line (`anim.py sendcheck`); design no score under 4 and average 4.61 or more (4.50 from the third round,
 after two FAILs); golden "post as is" (polish alone is not a FAIL).
 
 The second opening (SLUG-hookb, anim.py hookb; same Todd message): the same lesson after the hook, so it reruns only

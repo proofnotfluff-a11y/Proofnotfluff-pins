@@ -50,6 +50,10 @@ fresh reviewer checks before the next stage runs.
   feedshared SLUG          record that the trial reel was shared to followers (the same post, not a second one);
                            SLUG-hookb when the second opening won
   recuts                   each posted lesson's 90-day re-cut date, re-cuts done (brief.md "Re-cut of:"), numbers if read
+  sendcheck SLUG           the send moment in code (Todd, Nov 7): brief.md's Send line, the end card names that person, one
+                           cue marked [send] that runs 2.5 s or more and starts before half the runtime, and (after the send
+                           gate) the reviewer named the same person and thing; lint adds the measured still hold
+  selftest                 planted cases for the send and length checks (tools/test_video_gates.py runs it)
   status SLUG              what exists
 """
 import argparse, base64, datetime as dt, difflib, glob, hashlib, json, math, os, re, shutil, subprocess, sys, tempfile, time, urllib.request, urllib.error, wave
@@ -978,6 +982,8 @@ def cmd_cues(slug):
             pin = re.search(r"@(\d+(?:\.\d+)?)", rest)
             cur = {"id": cid, "level": cid.count("."), "quote": quote, "sfx": sfx.group(1) if sfx else None,
                    "shift": float(shift.group(1)) if shift else 0.0, "pin": float(pin.group(1)) if pin else None, "text": ""}
+            if SEND_MARK.search(rest):   # the send card goes up on this cue (Todd, Nov 7, 9:27 am; send_cue_problems)
+                cur["send"] = True
             cues.append(cur)
         elif cur is not None and ln.strip():
             cur["text"] = (cur["text"] + " " + ln.strip()).strip()
@@ -1006,7 +1012,8 @@ def cmd_cues(slug):
     json.dump(doc, open(vdir(slug, "03_cues", "cues.json"), "w"), indent=1)
     write_js(vdir(slug, "03_cues", "cues.js"), "CUES", doc)
     for c in cues:
-        print(f"{'  ' * c['level']}{c['id']:<{22 - 2 * c['level']}} {c['t']:6.2f} {c['end']:6.2f}  {c['quote'][:40]}" + (f"  [sfx: {c['sfx']}]" if c["sfx"] else ""))
+        print(f"{'  ' * c['level']}{c['id']:<{22 - 2 * c['level']}} {c['t']:6.2f} {c['end']:6.2f}  {c['quote'][:40]}" + (f"  [sfx: {c['sfx']}]" if c["sfx"] else "")
+              + ("  [send]" if c.get("send") else ""))
     print(f"-> {len(cues)} cues, {duration:.1f} s ({wd.get('source')})")
 
 
@@ -1527,6 +1534,7 @@ def cmd_ready(slug):
     if not os.path.exists(vdir(slug, "05_render", "captions.json")):
         bad.append("captions.json: missing")
     bad += [f"variety: {x}" for x in queue_variety_problems(slug)]
+    bad += [f"send: {x}" for x in send_problems(slug, review=True)]   # Todd, Nov 7, 9:27 am (the hold is lint's)
     if bad:
         raise SystemExit("ERROR ready: " + "; ".join(bad))
     # the gated files must be committed: the queue pins that commit, and posting renders from it (so later runtime
@@ -2648,8 +2656,10 @@ FORMATS = {
     # The new line (Todd, live chat, Nov 2, 2026, 8:49 pm, PRINCIPLES.md: "We can elaborate more and relax restrictions on
     # number of words. Storytelling is the most important skill"; REBUILD.md "Relaxed"): a story from the story desk
     # (00_story/story.md), told whole. Its word band, the spoken hook's length and the opening rules are guides (NOTE lines),
-    # not gates; the retell and read-aloud gates judge it. Length stays a hard band: 90 s is the ceiling.
-    "story":      {"min_seconds": 40.0, "max_seconds": 90.0, "words": (110, 230)},
+    # not gates; the retell and read-aloud gates judge it. Length stays a hard band. The ceiling dropped from 90 s to 70 s
+    # (Todd, live chat, Nov 7, 2026, 9:27 am, the shorter middle: after-hours-robot ran 87.6 s and was watched 29 s); the
+    # aim is 50 to 65 s (STORY_AIM, a NOTE). Lessons queued before keep their pins.
+    "story":      {"min_seconds": 40.0, "max_seconds": 70.0, "words": (110, 175)},
     # A short (Todd, live chat, Nov 7, 2026, 8:33 am: "Go", recommendation 3): one fix cut from a queued story lesson,
     # brief.md "- **Derived from:** `<parent slug>`". 7-day test to Nov 14 (_shared/formats.md "Short").
     "short":      {"min_seconds": 18.0, "max_seconds": 35.0, "words": (45, 95)},
@@ -2771,6 +2781,227 @@ def cmd_script(slug):
     print("script: " + ("FAIL" if bad else "PASS") + f" v2, {nw} words in {len(takes)} takes" + ("" if sl is None else f", end card send line {sl!r}"))
     if bad:
         sys.exit(1)
+# ---------------------------------------------------------------- the send moment and the shorter middle
+# Todd, live chat, Nov 7, 2026, 9:27 am: "Write the next prompt to make adjustments and fix so the next video improves."
+# (his yes to both fixes; coo/DECISIONS-2026-11-07.md "Why after-hours-robot stalled"). after-hours-robot and
+# lsa-missed-calls both held viewers (skip 26% and 29%) and both stalled near 1,280 IG views with 0 or 1 share: they
+# passed the hold test and failed the send test. So every story lesson and short from SEND_FROM on carries one
+# forwardable thing on screen (the exact text, call script or setting) for a named person in the owner's shop, held
+# still long enough to screenshot, and it lands before the halfway point.
+SEND_FROM = "2026-11-19"   # lessons dated from here on (ask-chatgpt and later); queued lessons keep their pins
+SEND_HOLD = 2.5            # seconds the send card holds still, no motion over it
+STORY_AIM = (50.0, 65.0)   # a story lesson's aim (a NOTE); the hard ceiling is FORMATS["story"]
+SEND_BRIEF = re.compile(r"(?im)^- \*\*Send:\*\*[ \t]*(.*?)[ \t]*$")
+SEND_GROUP = re.compile(r"(?i)\b(contractors|owners|everyone|anyone|anybody|network|friends|people|followers|team|crew|everybody|you)\b")
+SEND_MARK = re.compile(r"\[send\]", re.I)
+SEND_STILL_LEVEL, SEND_STILL_SHARE = 24, 0.01   # a sample moves when 1% of the card's pixels change by 24+ levels
+END_TAIL = 3.1   # cmd_cues: the end card's tail after the last word
+SEND_PIX_JS = """(r) => { const c = document.getElementById('c');
+  const x = Math.max(0, Math.floor(r[0])), y = Math.max(0, Math.floor(r[1]));
+  const w = Math.max(1, Math.min(1080 - x, Math.ceil(r[2] - x))), h = Math.max(1, Math.min(1920 - y, Math.ceil(r[3] - y)));
+  if (!window.__sp) window.__sp = document.createElement('canvas');
+  window.__sp.width = w; window.__sp.height = h; const g = window.__sp.getContext('2d');
+  g.clearRect(0, 0, w, h); g.drawImage(c, x, y, w, h, 0, 0, w, h);
+  const d = g.getImageData(0, 0, w, h).data, out = [];
+  for (let j = 0; j < h; j += 3) for (let i = 0; i < w; i += 3) { const k = (j * w + i) * 4; out.push((d[k] + d[k + 1] + d[k + 2]) / 3 | 0); }
+  return out; }"""
+
+
+def send_still_seconds(samples, step):
+    """samples: [(t, signature, pixels)] inside the send window, in time order. The longest run in which the same scene
+    texts sit in the same places and the card's pixels stay within SEND_STILL_SHARE of the run's first sample."""
+    best, run, anchor, sig0 = 0.0, 0, None, None
+    for _, sig, px in samples:
+        same = bool(sig) and sig == sig0 and anchor is not None and len(px) == len(anchor) and \
+            sum(1 for a_, b_ in zip(px, anchor) if abs(a_ - b_) >= SEND_STILL_LEVEL) <= SEND_STILL_SHARE * max(1, len(px))
+        if same:
+            run += 1
+        else:
+            run, anchor, sig0 = (1, px, sig) if sig else (0, None, None)
+        best = max(best, run * step)
+    return round(best, 2)
+
+
+def send_applies(slug):
+    return os.path.basename(slug)[:10] >= SEND_FROM and lesson_format(slug) in GUIDE_FORMATS
+
+
+def _phrase(s):
+    s = re.sub(r"[^a-z0-9 ]", " ", str(s).lower())
+    s = " ".join(s.split())
+    return re.sub(r"^(the|your|my|our) ", "", s)
+
+
+def send_of(text):
+    """brief.md's Send line as (who, thing), or None. Form: '- **Send:** <who it goes to>: <the thing on screen>'."""
+    m = SEND_BRIEF.search(text or "")
+    if not m:
+        return None
+    val = m.group(1).strip().strip("`")
+    who, sep, thing = val.partition(": ")
+    return (who.strip(), thing.strip()) if sep else (val, "")
+
+
+def send_brief_problems(text):
+    """The Send line exists, names one person in the owner's shop by role (never a group or the viewer) and the exact
+    thing on screen (3 words or more)."""
+    s = send_of(text)
+    if s is None:
+        return ["brief.md has no '- **Send:** <who it goes to>: <the thing on screen>' line"]
+    who, thing = s
+    out = []
+    if not who or not thing:
+        out.append(f"the Send line '{(who + ' ' + thing).strip()[:60]}' needs both parts: '<who it goes to>: <the thing on screen>'")
+    if who and (len(who.split()) < 2 or SEND_GROUP.search(who)):
+        out.append(f"the Send line's person '{who}' must be one person in the owner's shop by role (whoever answers the phones, "
+                   f"the office manager, a partner), never a group or the viewer")
+    if thing and len(thing.split()) < 3:
+        out.append(f"the Send line's thing '{thing}' must name the exact text, call script or setting on screen")
+    return out
+
+
+def send_card_problems(who, send_line):
+    """The end card's send line names the same person as brief.md's Send line, word for word."""
+    if not who:
+        return []
+    if not send_line:
+        return [f"the end card has no send line; it must name {who!r}"]
+    if _phrase(who) not in _phrase(send_line):
+        return [f"the end card's send line {send_line!r} does not name the Send line's person {who!r}"]
+    return []
+
+
+def send_cue_problems(doc, still=None):
+    """One cue in cues.md carries [send] (cues.json 'send': true). It runs SEND_HOLD s or more before the next cue, holds
+    still that long (still: seconds the card held with no motion over it, measured by lint; None skips that part), and
+    starts before the halfway point of the runtime, end card included."""
+    cues, dur = doc.get("cues", []), float(doc.get("duration", 0))
+    sends = [c for c in cues if c.get("send")]
+    if len(sends) != 1:
+        return [f"{len(sends)} cues marked [send] in cues.md (exactly one: the cue where the send card goes up)"]
+    c = sends[0]
+    t0 = float(c.get("t", 0))
+    nxt = min([float(d["t"]) for d in cues if float(d.get("t", 0)) > t0 + 1e-6] + [dur - END_TAIL])
+    out = []
+    if nxt - t0 < SEND_HOLD - 1e-6:
+        out.append(f"the send cue '{c['id']}' runs {nxt - t0:.2f} s before the next cue ({SEND_HOLD} s or more to screenshot)")
+    if still is not None and still < SEND_HOLD - 1e-6:
+        out.append(f"the send card holds still {still:.2f} s (needs {SEND_HOLD} s with no motion over it)")
+    if dur and t0 >= dur / 2:
+        out.append(f"the send moment starts at {t0:.2f} s, after the halfway point ({dur / 2:.2f} s of {dur:.2f} s): move the payoff earlier")
+    return out
+
+
+def send_match_problems(send, review):
+    """The send gate's reviewer, who never saw the brief, named the person and the thing on screen from the video alone:
+    its score.person shares a role word with the Send line's person, and score.thing shares at least half the Send line's
+    thing words (4+ letters)."""
+    if not send:
+        return ["no Send line in brief.md"]
+    sc = (review or {}).get("score") or {}
+    who, thing = send
+    stop = {"whoever", "your", "their", "that", "this", "with", "from", "into", "what", "when", "shop", "screen"}
+    words = lambda s: {w for w in _phrase(s).split() if len(w) >= 4 and w not in stop}
+    out = []
+    p, t = sc.get("person") or "", sc.get("thing") or ""
+    if not p or p.lower() == "none" or not (words(who) & words(p)):
+        out.append(f"the send reviewer named {p or 'no one'!r}, not the Send line's person {who!r}")
+    need = words(thing)
+    got = need & words(t)
+    if not t or not need or len(got) * 2 < len(need):
+        out.append(f"the send reviewer named the thing {t or 'nothing'!r}, not the Send line's {thing!r} ({len(got)} of {len(need)} words)")
+    return out
+
+
+def send_problems(slug, send_line=None, still=None, review=False):
+    """Every code check of the send moment for one lesson (lint runs it with the measured hold; ready with the reviewer)."""
+    if not send_applies(slug):
+        return []
+    bp = vdir(slug, "01_voice", "brief.md")
+    text = open(bp, encoding="utf-8").read() if os.path.exists(bp) else ""
+    out = send_brief_problems(text)
+    send = send_of(text)
+    if send_line is None:
+        sj = vdir(slug, "04_scene", "scene.js")
+        m = re.search(r"sendLine:\s*'([^']*)'", open(sj, encoding="utf-8").read()) if os.path.exists(sj) else None
+        send_line = m.group(1) if m else ("" if os.path.exists(sj) else None)
+    if send and send_line is not None:
+        out += send_card_problems(send[0], send_line)
+    cj = vdir(slug, "03_cues", "cues.json")
+    if os.path.exists(cj):
+        out += send_cue_problems(json.load(open(cj)), still)
+    if review:
+        rp = vdir(slug, "05_render", "reviews", "send.json")
+        out += send_match_problems(send, json.load(open(rp)) if os.path.exists(rp) else None) if send else []
+    return out
+
+
+def cmd_sendcheck(slug):
+    bad = send_problems(slug, review=os.path.exists(vdir(slug, "05_render", "reviews", "send.json")))
+    for x in bad:
+        print("ERROR send: " + x)
+    print("sendcheck: " + ("FAIL" if bad else "PASS") + ("" if send_applies(slug) else f" (not a send lesson: before {SEND_FROM} or not story/short)"))
+    if bad:
+        sys.exit(1)
+
+
+def story_aim_note(slug, seconds):
+    if lesson_format(slug) == "story" and not STORY_AIM[0] <= seconds <= STORY_AIM[1]:
+        return f"the lesson runs {seconds:.1f} s (aim {STORY_AIM[0]:.0f} to {STORY_AIM[1]:.0f} s for a story lesson)"
+    return ""
+
+
+def cmd_selftest():
+    """Planted cases for the send moment and the shorter middle: every bad case must be caught, every good one pass."""
+    good_brief = "- **Format:** story\n- **Send:** whoever answers the phones: the text to send back, word for word\n"
+    doc = lambda cues, dur: {"duration": dur, "cues": cues}
+    c = lambda i, t, send=False: dict({"id": i, "t": t, "level": 0}, **({"send": True} if send else {}))
+    cases = [
+        ("brief good", send_brief_problems(good_brief), False),
+        ("brief missing Send line", send_brief_problems("- **Format:** story\n"), True),
+        ("brief Send line with no thing", send_brief_problems("- **Send:** whoever answers the phones\n"), True),
+        ("brief Send line to a group", send_brief_problems("- **Send:** other contractors: the text to send back\n"), True),
+        ("brief Send line to the viewer", send_brief_problems("- **Send:** you: the text to send back word for word\n"), True),
+        ("brief Send line one-word person", send_brief_problems("- **Send:** partner: the text to send back\n"), True),
+        ("brief Send line vague thing", send_brief_problems("- **Send:** the office manager: this tip\n"), True),
+        ("end card names the person", send_card_problems("whoever answers the phones", "Send this to whoever answers the phones."), False),
+        ("end card names someone else", send_card_problems("whoever answers the phones", "Send this to your office manager."), True),
+        ("end card has no send line", send_card_problems("the office manager", ""), True),
+        ("send cue good", send_cue_problems(doc([c("hook", 0), c("fix", 20, True), c("why", 24)], 55.0), still=3.2), False),
+        ("no send cue", send_cue_problems(doc([c("hook", 0), c("fix", 20), c("why", 24)], 55.0)), True),
+        ("two send cues", send_cue_problems(doc([c("hook", 0), c("fix", 20, True), c("why", 24, True)], 55.0)), True),
+        ("send cue too short", send_cue_problems(doc([c("hook", 0), c("fix", 20, True), c("why", 22.0)], 55.0)), True),
+        ("send card moves", send_cue_problems(doc([c("hook", 0), c("fix", 20, True), c("why", 24)], 55.0), still=1.75), True),
+        ("send after halfway", send_cue_problems(doc([c("hook", 0), c("fix", 30, True), c("why", 34)], 55.0)), True),
+        ("send exactly at halfway", send_cue_problems(doc([c("hook", 0), c("fix", 27.5, True), c("why", 31)], 55.0)), True),
+        ("send last cue, holds to the end", send_cue_problems(doc([c("hook", 0), c("fix", 20, True)], 45.0)), False),
+        ("reviewer names both", send_match_problems(("whoever answers the phones", "the text-back message to a missed caller"),
+                                                    {"score": {"person": "my wife, who answers our phones", "thing": "the missed caller text-back message"}}), False),
+        ("reviewer names the wrong person", send_match_problems(("whoever answers the phones", "the text-back message to a missed caller"),
+                                                                {"score": {"person": "my brother-in-law who owns a shop", "thing": "the missed caller text-back message"}}), True),
+        ("reviewer names no thing", send_match_problems(("whoever answers the phones", "the text-back message to a missed caller"),
+                                                        {"score": {"person": "the woman who answers our phones", "thing": "none"}}), True),
+        ("reviewer names another thing", send_match_problems(("the office manager", "the Google profile hours setting"),
+                                                             {"score": {"person": "our office manager", "thing": "a survey chart about Yelp"}}), True),
+        ("card still 3.0 s", send_still_seconds([(i * 0.25, ("CARD",), [10] * 100) for i in range(12)], 0.25) < SEND_HOLD, False),
+        ("snow drifts over the card", send_still_seconds([(i * 0.25, ("CARD",), [10] * 100 if i % 4 else [10] * 90 + [200] * 10) for i in range(12)], 0.25) < SEND_HOLD, True),
+        ("card slides the whole time", send_still_seconds([(i * 0.25, (f"CARD@{i}",), [10] * 100) for i in range(12)], 0.25) < SEND_HOLD, True),
+        ("no text on screen", send_still_seconds([(i * 0.25, (), [10] * 100) for i in range(12)], 0.25) < SEND_HOLD, True),
+        ("story 87.6 s over the ceiling", 87.6 > FORMATS["story"]["max_seconds"], True),
+        ("story 66.2 s under the ceiling", 66.2 > FORMATS["story"]["max_seconds"], False),
+    ]
+    right = 0
+    for name, got, caught in cases:
+        hit = bool(got)
+        if hit == caught:
+            right += 1
+        else:
+            print(f"FAIL {name}: {'missed' if caught else 'flagged a good case'} ({got})")
+    print(f"studio send selftest: {right} of {len(cases)} planted cases right ({sum(1 for x in cases if x[2])} bad caught)")
+    if right != len(cases):
+        sys.exit(1)
+
+
 HOOK_DIFF, HOOK_LEVEL, HOOK_MERGE, HOOK_FPS = 0.08, 40, 0.4, 15
 ACCENT_ERROR_FROM, ACCENT_ERROR_LATE = "2026-11-15", 0.5   # IMPROVE 00a-3: late accent texts fail lint from these lessons on
 ACCENT_STRICT_FROM = "2026-11-17"   # IMPROVE 00a-3 step 2 (Nov 2, end-of-day run): from these lessons on, any late accent fails (0.0 s)
@@ -2836,6 +3067,9 @@ def hook_report(slug, pg=None):
     lo, hi = length_band(slug)
     if cues["duration"] > hi or (is_modern(slug) and cues["duration"] < lo):
         bad.append(f"the lesson runs {cues['duration']:.1f} s ({lo:.0f} to {hi:.0f} s for a {lesson_format(slug)} lesson, end card included)")
+    aim = story_aim_note(slug, cues["duration"])
+    if aim:
+        rep.setdefault("notes", []).append(aim)
     return rep, bad
 
 
@@ -2950,6 +3184,11 @@ def cmd_lint(slug, step=0.25):
     moves = pg.evaluate("(() => { const S = window.SCENE || {}; return {t: S.transitions || {}, s: Object.keys(S.sections || {})}; })()")
     pg.evaluate(WORLD_SPY)
     t, worlds, steps, small, first_seen, last_seen = 0.0, {}, 0, {}, {}, {}
+    # the send card's hold (Todd, Nov 7, 9:27 am): sampled from its cue to the next cue (or the end card)
+    sc = [c for c in cues["cues"] if c.get("send")] if send_applies(slug) else []
+    s0 = float(sc[0]["t"]) if len(sc) == 1 else None
+    s1 = min([float(d["t"]) for d in cues["cues"] if float(d["t"]) > s0 + 1e-6] + [cues["duration"] - END_TAIL]) if s0 is not None else None
+    send_samples = []
     while t < cues["duration"]:
         bx, used = pg.evaluate(f"(() => {{ window.__boxes = []; window.__used = {{}}; drawAt({t:.3f}); const r = window.__boxes; window.__boxes = null; return [r, Object.keys(window.__used)]; }})()")
         steps += 1
@@ -2963,6 +3202,11 @@ def cmd_lint(slug, step=0.25):
             for o, name in [(h, "under the host") for h in host] + [(d, "under the dialog box") for d in dlg]:
                 if ov(x, o) > 0.08 * (x["x1"] - x["x0"]) * (x["y1"] - x["y0"]):
                     hits.setdefault((name, x["s"]), []).append(t)
+        if s0 is not None and s0 - 1e-6 <= t < s1 - 1e-6:
+            sig = tuple(sorted((x["s"].strip(), round(x["x0"]), round(x["y0"]), round(x["x1"]), round(x["y1"])) for x in texts))
+            box = [min(x["x0"] for x in texts) - 8, min(x["y0"] for x in texts) - 8, max(x["x1"] for x in texts) + 8,
+                   max(x["y1"] for x in texts) + 8] if texts else [0, 0, 1, 1]
+            send_samples.append((t, sig, pg.evaluate(f"({SEND_PIX_JS})({json.dumps(box)})") if texts else []))
         for x in texts:   # M3 accent timing (IMPROVE 00a-3): when each scene text first shows
             first_seen.setdefault(x["s"].strip(), t)
             last_seen[x["s"].strip()] = t   # M6 read time (IMPROVE 00a-5): when it was last on screen
@@ -2977,6 +3221,10 @@ def cmd_lint(slug, step=0.25):
     b.close(); pw.stop()
     errors = [f"ERROR lint captions: {x}" for x in captions_problems(slug)] if os.path.exists(vdir(slug, "05_render", "captions.json")) and not slug.endswith(HOOKB_SUFFIX) else []
     errors += [f"ERROR lint hook: {x}" for x in hook_bad]
+    still = send_still_seconds(send_samples, step) if s0 is not None else None
+    errors += [f"ERROR lint send: {x}" for x in send_problems(slug, send_line, still)]
+    if still is not None:
+        print(f"send: card up at {s0:.2f} s of {cues['duration']:.2f} s (half {cues['duration'] / 2:.2f} s), holds still {still:.2f} s")
     lint_notes = []
     errors += [f"ERROR lint script: {x}" for x in script_problems(slug, send_line, lint_notes)]
     for x in lint_notes + hook.get("notes", []):
@@ -3194,6 +3442,8 @@ def main():
         cmd_trials()
     elif c == "recuts":
         cmd_recuts()
+    elif c == "selftest":
+        cmd_selftest()
     elif not a.slug:
         raise SystemExit(f"{c} needs a slug")
     elif c == "new":
@@ -3239,6 +3489,8 @@ def main():
         cmd_hook(a.slug)
     elif c == "script":
         cmd_script(a.slug)
+    elif c == "sendcheck":
+        cmd_sendcheck(a.slug)
     elif c == "gatepack":
         cmd_gatepack(a.slug)
     elif c == "postcopy":

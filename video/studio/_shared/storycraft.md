@@ -35,7 +35,9 @@ desk writes every story.md by it; the read-aloud and retell gates judge by it. I
 - **Because of that (the cost):** what it costs this owner this month, in money, jobs or hours.
 - **The turn:** the thing nobody mentions (the fine print, who pays, what the tool does not do, what the owners in the
   threads actually found). This is where trust is earned: we tell them the catch.
-- **The payoff (what to do):** one setup or check they can finish this week, the exact words or steps.
+- **The payoff (what to do):** one setup or check they can finish this week, the exact words or steps. From Nov 7 (Todd,
+  9:27 am) it is the send moment: one forwardable thing on screen for a named person in the shop (the text to send back,
+  the call script, the setting to change), told before half the runtime (_shared/formats.md "The send moment").
 - **Kicker:** a last line that echoes the opening and lands the rule.
 - **Receipts:** every fact with its URL, publisher and date opened. Pulse items with their links.
 
@@ -80,6 +82,9 @@ Any no goes back to the desk. The engine never fixes a broken story with motion 
   how many of its five are usable (true to the receipts, no invented person, under 15 words) and whether one beat yours.
   After 3 clean lessons it moves to local first (_shared/local.md). No answer in 15 minutes: carry on without it.
 - Step 5 numbers are guides: a sentence that needs 18 words to make sense keeps them. Coherence beats compression.
+- Send moment and shorter middle (Todd, Nov 7, 9:27 am; _shared/formats.md): brief.md's `- **Send:** <who>: <the thing>`,
+  the end card names that person, the card held still 2.5 s, before half the runtime; aim 50 to 65 s, 70 s ceiling. The
+  middle carries the turn and one receipt, not every receipt: the rest live in the caption.
 - Keep the story whole: the setup, the turn and the payoff all reach the script; no claim story.md lacks.
 - Step 8: the human-test numbers are NOTES; read-aloud then retell on script.md (fresh agents) and facts gate it before
   any voice. `anim.py script` prints guide misses as NOTE.

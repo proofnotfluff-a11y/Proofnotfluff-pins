@@ -34,14 +34,32 @@ viewer sees and hears: a different shape, length, opening and payoff, each built
 | case | 70 to 92 s | 180 to 245 | one real setup end to end: before (the problem with its number), the setup step by step, the cost, after (the number), the rule | a real owner's setup we can source |
 | dispatch | 45 to 70 s | 115 to 180 | the lede with its document on screen (0 to 3 s), the nut (by 8 s), two or three receipts with source tags, the other side, the setup card held, the kicker echoing the lede (_shared/investigative.md) | a documented story from research/STORIES.md (AI lane; hook pattern receipt) |
 
-| story | 40 to 90 s | 110 to 230 (a guide) | the story desk's story.md told whole: an opening from storycraft.md, the setup, the problem with its proof, the cost, the turn, the payoff card, the kicker | every new-line lesson from Nov 5, 2026 (REBUILD.md); rotates on its brief.md Shape line |
+| story | 40 to 70 s, aim 50 to 65 | 110 to 175 (a guide) | the story desk's story.md told whole: an opening from storycraft.md, the setup, the problem with its proof, the turn, the send card (before half the runtime), the cost, the kicker | every new-line lesson from Nov 5, 2026 (REBUILD.md); rotates on its brief.md Shape line |
 
-| short | 18 to 35 s | 45 to 95 (a guide) | one fix from a queued story lesson: the moment in one line, the fix shown on screen and held, the check that it worked, the button | brief.md `- **Derived from:** <parent slug>` |
+| short | 18 to 35 s | 45 to 95 (a guide) | one fix from a queued story lesson: the moment in one line, the send card (the fix, held 2.5 s, before half), the check that it worked, the button | brief.md `- **Derived from:** <parent slug>` |
 
 Relaxed for the new line (Todd, live chat, Nov 2, 2026, 8:49 pm, PRINCIPLES.md: "We can elaborate more and relax
 restrictions on number of words"; REBUILD.md): for a story lesson the word band, the spoken hook's length, the drop-in rules
 and the echo are guides printed as NOTE by `anim.py script`, `hook` and `lint`; the retell and read-aloud gates judge the
-story. Length stays a hard band (90 s ceiling) and every honesty, voice-markup and safe-area rule stays an error.
+story. Length stays a hard band (70 s ceiling from Nov 7; 90 s before) and every honesty, voice-markup and safe-area rule
+stays an error. The 50 to 65 s aim is a NOTE (`anim.py hook` and `lint`).
+
+## The send moment and the shorter middle (Todd, live chat, Nov 7, 2026, 9:27 am: "Write the next prompt to make adjustments and fix so the next video improves")
+Why: after-hours-robot (IG skip 26%) and lsa-missed-calls (skip 29%) held viewers and both stalled near 1,280 views with 0
+or 1 share and 0 follows; Instagram weighs sends per reach most for reach beyond followers. after-hours-robot ran 87.6 s
+and was watched 29 s (33%). Both fixes apply to every story lesson and short dated from 2026-11-19 on (`anim.py` SEND_FROM);
+queued lessons keep their pins (lsa-max-bid, 66.2 s of voice, stays).
+- **One send moment.** One forwardable thing on screen, made for a named person in the owner's shop (whoever answers the
+  phones, the office manager, a partner): the exact text to send back, the call script, the setting to change. brief.md
+  carries `- **Send:** <who it goes to>: <the thing on screen>`. The end card's send line names that same person, word for
+  word ("Send this to whoever answers the phones."). cues.md marks the cue where the card goes up with `[send]`.
+- **Held to screenshot.** The card sits still 2.5 s or more with no motion over it (no snow, cursor or slide across it).
+- **Payoff early.** The send cue starts before half the runtime (end card included). What follows it is the why and the
+  kicker, kept short.
+- **Code checks** (`anim.py sendcheck`, `lint`, `ready`, planted cases in `anim.py selftest`): the Send line and its two
+  parts, the person is one role (never a group or the viewer), the end card names the person, exactly one `[send]` cue
+  running 2.5 s or more, the measured still hold, before halfway, and after the send gate that its reviewer, who never saw
+  the brief, named the same person and thing from the video alone (prompts/send.md).
 
 Depth (Todd, Oct 30, 2026, 4:01 pm: "Drive this hard, and let's get real good videos out"; research/topics-2026-10-30.md):
 every lesson hands the owner something to do this week: the exact words, setting, prompt or steps, on screen. A definition

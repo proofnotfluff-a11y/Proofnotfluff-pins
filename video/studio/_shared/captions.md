@@ -21,7 +21,8 @@ matches. So: the keyword in the first line, said out loud in the first seconds, 
 1. Line 1, under 100 characters: the keyword phrase as a plain sentence that names the trades.
 2. Proof line: the number, said exactly as the source supports it, with the source.
 3. The takeaway or steps (the copyable part).
-4. One send or save line ("Send this to whoever answers your phone.").
+4. One send line naming the same person as brief.md's Send line and the end card ("Send this to whoever answers the
+   phones."; Todd, Nov 7, 9:27 am, the send moment).
 5. Hashtags last.
 
 No AI voice line in any caption (Todd, Oct 29, 2026, 10:28 am: "don't put this on the video captions: \"Narrated by an AI

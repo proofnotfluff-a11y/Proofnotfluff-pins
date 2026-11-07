@@ -4,9 +4,9 @@ Todd, live chat, Nov 6, 2026, 10:34 am: "Start leaning on delivery and a lot fas
 really, really quickly. I'm not sure we can afford 2 weeks of shadow. We'll probably need to reduce the testing period.
 Because, practically speaking, we really need to find a way to make this hardware investment worthwhile."
 
-## Night shift (Todd, Nov 6, 2026, 10:16 pm: "Yes do it")
-Read _shared/nightshift.md in full on the 21 and 9 slots: the 21:33 run queues the night batch as its last step before
-the end message; the 9:33 run uses the night's answers right after Record (`python3 tools/local_job.py night`).
+## The box is the workhorse (Todd, Nov 6, 10:16 pm and Nov 7, 2026, 5:22 am)
+Read _shared/nightshift.md in full on every slot: every run fills the box's queue as its last step before the end
+message; the 9:33 run uses the night's answers right after Record (`python3 tools/local_job.py night`).
 
 ## The ladder (replaces "two weeks of shadow")
 1. **Shadow:** the box does the job, Claude does it too, the two are compared. A new job kind starts here.

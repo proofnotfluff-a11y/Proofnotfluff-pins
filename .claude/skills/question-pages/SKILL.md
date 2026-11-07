@@ -14,13 +14,13 @@ One job: draft one question page from seo/BACKLOG.md, gate it, and publish it if
 2. Search wording: no autocomplete fetches (coo/PIVOT.md bars them). WebSearch the question two or three ways and take the wording from the buyer's own post and the top results' titles for the title (under 60 characters before " | ProofNotFluff"), the H1 and the FAQ questions. Search the main wording (WebSearch) and read the top 3 results; note what each answers and misses.
 3. Write a spec in site/pages.json, kind "question", "draft": true (the three Oct 22 specs are the model): the answer in the first 100 words; "tables" built from the data (stats rows such as gcRows, areaRows, catRows) or a dated primary source; "sections" for the subtopics the top results and suggestions cover; one worked example with real numbers as {placeholders} from the product's data (tools/question_site.py stats) or a dated primary source named in "sources"; one table or tiles block; one link to the paid product and one to a free calculator ("calculator"); the byline is built in. Length is what the question needs. No em or en dashes, no banned words (tools/legal_scan.py), no invented people, numbers or claims, no named failed restaurant.
 4. `python3 tools/make_site.py`, `python3 tools/question_site.py`, `python3 tools/check_repo.py`, `python3 tools/verify_site.py --changed --before --flows` (.claude/skills/verify/SKILL.md): all exit 0.
-5. Gates, each a fresh Agent subagent (model fable, else opus) that never saw the drafting:
+5. Gates, each a fresh Agent subagent (model opus) that never saw the drafting:
    a. Copy and facts: every number traced to the data file or a dated primary source; dashes, banned words, legal lines, the Legal desk rules in legal/README.md. PASS or FAIL with lines.
    b. Search intent: does the page answer the question better than the current top 3 results? PASS or FAIL with reasons.
    c. `python3 tools/question_overlap.py <slug>` exits 0 (no other question page shares over 30 percent of its words in 8-word runs), and the search gate also compares the page with every live question page: same main search wording as a live page, or a thin rewrite of one, is a FAIL.
    One fix round per gate; a second FAIL stops the page and goes to Todd.
 6. All of a, b and c pass: remove "draft", set "published" to today (YYYY-MM-DD), rebuild, check_repo exits 0, commit, push to main (pull --rebase once on a reject; never force). Add the row to seo/QUESTIONS.md with its group letter and one line to seo/RESULTS.md: date, slug, "published, gates PASS". If the built-in browser is reachable, ask Search Console (URL property https://proofnotfluff.com/) to index the new URL with URL inspection, Request indexing; else note "indexing not requested".
-7. Fridays: Search Console lines come from index-request (Todd's PC) via step 1a; never read here.
+7. The box (seo/LOCAL.md, read in full): use seo/box-drafts after step 1; write seo/NEXT.json after step 6.
 
 ## Outputs (Writes)
 - site/pages.json (one spec), docs/ through tools/make_site.py only, seo/QUESTIONS.md, seo/RESULTS.md, 1a.

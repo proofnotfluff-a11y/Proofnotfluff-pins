@@ -1,0 +1,11 @@
+{
+ "about": "Forum feeds the box reads to find new owner threads (video/studio/_shared/nightshift.md step 2b). Status per feed: working (thread links came back), empty, refused, or probe pending. The morning run updates it from the newest pulse-probe or pulse-feeds answer.",
+ "feeds": [
+  {"url": "https://www.contractortalk.com/forums/-/index.rss", "status": "probe pending", "since": "2026-11-07"},
+  {"url": "https://www.plumbingzone.com/forums/-/index.rss", "status": "probe pending", "since": "2026-11-07"},
+  {"url": "https://www.electriciantalk.com/forums/-/index.rss", "status": "probe pending", "since": "2026-11-07"},
+  {"url": "https://www.hvac-talk.com/forums/-/index.rss", "status": "probe pending", "since": "2026-11-07"},
+  {"url": "https://www.lawnsite.com/forums/-/index.rss", "status": "probe pending", "since": "2026-11-07"}
+ ],
+ "probe": "pulse-probe-extract-2026-11-07-r1 (sent from a live chat, Nov 7, 5:40 am)"
+}

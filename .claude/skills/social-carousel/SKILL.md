@@ -10,7 +10,7 @@ One job: build one on-brand carousel from today's real data, gate it, and post i
 
 ## Process (Executes)
 1. Date from bash. Preflight. Write cmo/carousels/<date>.json shaped like cmo/carousels/2026-10-25.json: 7 slides in the tools/make_carousel.py roles, per number its file and key, source lines, captions.instagram (ends "Free sample: link in bio (proofnotfluff.com).") and captions.facebook (ends proofnotfluff.com/go/free-<page slug>/, which must exist in docs/go/), 60 to 120 words, hook first.
-2. Facts gate: a fresh Agent (model fable, else opus) recomputes every number from the files and checks copy rules (dashes, tools/legal_scan.py, no business with a failed record). One fix round.
+2. Facts gate: a fresh Agent (model opus) recomputes every number from the files and checks copy rules (dashes, tools/legal_scan.py, no business with a failed record). One fix round.
 3. Buyer test: a fresh Agent (opus) reads only copy and captions as a small cleaning or pest company owner: trial, free sample, or do it yourself; does any slide teach the do-it-yourself route. PASS: trial or sample, no how-to. One fix round, facts gate rerun on changed lines.
 4. Render: `python3 tools/make_carousel.py cmo/carousels/<date>.json --out /home/claude/carousel/<date>`. Exit 1 means fix the copy and render again.
 5. Design gate: a fresh Agent (opus) that never saw the build reads slide-N.jpg and sheet.jpg with DESIGN_DIRECTOR.md and CAROUSEL_STANDARD.md, loads `anthropic-skills:impeccable` and `design:accessibility-review`, scores the seven criteria. Pass: none under 4, average 4.61 or more. One fix round (copy, or the tool if 2026-10-25 still renders the same), then a fresh agent scores again.

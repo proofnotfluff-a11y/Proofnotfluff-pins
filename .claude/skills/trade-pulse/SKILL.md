@@ -19,6 +19,8 @@ for trades owners." Built Nov 5, 2026 (video/studio/REBUILD.md, build run). Feed
 ## Process (Executes)
 1. Date from bash (`TZ=America/Chicago date`). Read the last pulse so the new one reports what changed.
 2. Read wide: 25 to 40 pages opened, newest first, last 90 days (older only when it is still the live complaint).
+   Box first (Nov 7, Todd: the box is the workhorse): when research/pulse/night-<yesterday>.json exists
+   (tools/pulse_merge.py), its items replace steps 2 and 3; read yourself only to fill a trade it missed.
 3. Extract each item: the problem in an owner's plain words (our paraphrase, at most 10 quoted words), the trade, the URL
    opened, the date, the place (forum, sub, publication). Never a person's name or username, never a small business's name.
    Local first pass (Local AI architecture doc, routing table: "trade-pulse ... Local reads forums and comments, extracts

@@ -1,37 +1,53 @@
 {
  "gate": "facts-captions",
- "round": 2,
- "reviewer": "fresh opus agent",
+ "round": 0,
+ "on": "05_render/captions.json after the r27 script ('coming soon' in the YouTube description now 'you'll be able to download old reports soon')",
+ "reviewer": "fresh opus agent; help page quotes from the local page reader (read live Nov 6, 9:51 pm), web search cross-check",
  "pass": true,
  "score": {
-  "numbers": 4,
+  "numbers": 8,
   "mismatches": 0
  },
+ "reasons": [],
+ "notes": [
+  "Caption lines beyond the voice (weekly budget, admin email step, lead history) do not contradict the video.",
+  "Optional: 'if you need them now, it says to take screenshots before migrating'."
+ ],
  "earlier": {
   "gate": "facts-captions",
-  "round": 1,
+  "round": 2,
   "reviewer": "fresh opus agent",
   "pass": true,
   "score": {
-   "numbers": 8,
+   "numbers": 4,
    "mismatches": 0
   },
-  "reasons": [
-   "advisory: tag 'contractor marketing' leans agency"
-  ],
   "earlier": {
    "gate": "facts-captions",
-   "round": 0,
+   "round": 1,
    "reviewer": "fresh opus agent",
-   "pass": false,
+   "pass": true,
    "score": {
     "numbers": 8,
-    "mismatches": 1
+    "mismatches": 0
    },
    "reasons": [
-    "youtube: site line pointed at the missed-call calculator, off topic"
+    "advisory: tag 'contractor marketing' leans agency"
    ],
-   "fixed": "https://proofnotfluff.com/google-local-services-ads-worth-it/"
+   "earlier": {
+    "gate": "facts-captions",
+    "round": 0,
+    "reviewer": "fresh opus agent",
+    "pass": false,
+    "score": {
+     "numbers": 8,
+     "mismatches": 1
+    },
+    "reasons": [
+     "youtube: site line pointed at the missed-call calculator, off topic"
+    ],
+    "fixed": "https://proofnotfluff.com/google-local-services-ads-worth-it/"
+   }
   }
  }
 }

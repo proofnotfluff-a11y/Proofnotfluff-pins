@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-19-ask-chatgpt",
- "mp4Sha256": "6c96cb898855c1f73956b1ced0f7efb3a2ba35eb8ba030e575ef31016a6e48a1",
+ "mp4Sha256": "56813da9257dfe9d4f038681f7820e0c7db92380640b432b1608847f090c943b",
  "checks": [
   {
    "name": "length",
@@ -44,11 +44,11 @@
   {
    "name": "file",
    "value": {
-    "sha256": "6c96cb898855c1f73956b1ced0f7efb3a2ba35eb8ba030e575ef31016a6e48a1",
-    "bytes": 6178270
+    "sha256": "56813da9257dfe9d4f038681f7820e0c7db92380640b432b1608847f090c943b",
+    "bytes": 5989821
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 6.2 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 6.0 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -58,5 +58,5 @@
   }
  ],
  "pass": true,
- "at": "2026-11-07T12:10:38-05:00"
+ "at": "2026-11-07T14:17:37-05:00"
 }

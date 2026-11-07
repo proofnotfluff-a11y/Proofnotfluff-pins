@@ -1,18 +1,37 @@
 {
  "gate": "render-critic",
- "round": 0,
- "pass": false,
+ "round": 1,
+ "stage": "after the render (Nov 7 lunch run, scene fix round)",
+ "pass": true,
  "score": {
-  "faults": 1
+  "faults": 0
  },
- "faults": [
-  {
-   "kind": "overlap",
-   "at": 2.0,
-   "text": "send her to?",
-   "what": "the EXAMPLE badge covers the question mark of the hook line from 0.0 to 2.4 s"
-  }
+ "faults": [],
+ "reasons": [
+  "Round 0 fault gone: the EXAMPLE badge sits on the wall under the hook plate; 'send her to?' clear at 0.0, 0.8 and 2.0 s and through 2.4 s.",
+  "Hook text on screen from 0.0 s; 'Nine at night' caption by 1.0 s.",
+  "Spoken numbers: 'four' at about 12.5 s with the 4 card at 12.5 s; 'one percent' at about 47.6 s with 1% at 47.5 s; 'eleven and a half grand' at 51.6 to 52.5 s with AVG $11,500 from 51.5 s.",
+  "Layout: nothing hidden or cut off once settled; content between y 270 and 1250, left of x 930. The host's hat pompom touches the bottom border of the source plate at 41.5 s and 52.8 s, covering no text.",
+  "Audio: last word ends 59.28 s, video and audio run to 62.37 s; end card about 3 s.",
+  "No text too small; no flash more than 3 times a second (one dissolve wipe at 19.5 s and 33.5 s)."
  ],
- "fixed_in_working_tree": "badge moved to the wall under the plate (scene.js); needs a re-render and the fix-check round",
- "reviewer": "fresh opus agent"
+ "reviewer": "fresh opus agent (Nov 7 lunch run)",
+ "earlier": {
+  "gate": "render-critic",
+  "round": 0,
+  "pass": false,
+  "score": {
+   "faults": 1
+  },
+  "faults": [
+   {
+    "kind": "overlap",
+    "at": 2.0,
+    "text": "send her to?",
+    "what": "the EXAMPLE badge covers the question mark of the hook line from 0.0 to 2.4 s"
+   }
+  ],
+  "fixed_in_working_tree": "badge moved to the wall under the plate (scene.js); needs a re-render and the fix-check round",
+  "reviewer": "fresh opus agent"
+ }
 }

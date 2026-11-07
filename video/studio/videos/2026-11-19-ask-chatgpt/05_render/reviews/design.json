@@ -1,26 +1,52 @@
 {
  "gate": "design",
- "round": 0,
- "pass": false,
+ "round": 1,
+ "stage": "after the render (Nov 7 lunch run, scene fix round)",
+ "pass": true,
  "score": {
-  "first": 3,
-  "hierarchy": 4,
+  "first": 5,
+  "hierarchy": 5,
   "type": 4,
   "color": 5,
   "spacing": 4,
-  "polish": 4,
-  "trust": 4,
-  "average": 4.0
+  "polish": 5,
+  "trust": 5,
+  "average": 4.71
  },
  "reasons": [
-  "7.0 to 19.5 s forum card repeats after-hours-robot's cream Jobber card look (first capped at 3): use a new set (scores or another) and keep the source tag.",
-  "44.0 to 50.5 s: 'ABOUT 1%' small beside a sliver, 60% of the panel empty; make 1% the hero (160 px+, accent), land 0.2 s before 'one percent' with a kick.",
-  "6.5 to 12.0 s: the forum card is 60% blank for 5.5 s; give it content from its first beat.",
-  "Host about 270 px tall, under the 360 px target, where the band has room (20 to 24.5 s, 25 to 33 s, 54.5 to 59.4 s).",
-  "Labels about 30 px, under the 36 px floor: the paraphrase line, source tags, 'Share of revenue', the register slips, the small check card.",
-  "20.0 to 24.5 s: the WAITING phone is small in an empty band; make the dark phone the hero with NO RING on 'never ring'.",
-  "54.5 to 59.4 s: the recap card is smaller than the 25.3 s card and half empty; use the 25.3 s size and wording.",
-  "25.0 to 33.0 s: the check card's navy numbered-list look matches the last two lessons; make it this lesson's own (a prompt card in the phone's style) and fill the band."
+  "Bar used: standard (no score under 4, average 4.61 or more); round 1 fix-check, round 0 the only FAIL.",
+  "Change 1 landed: 7.0 to 19.5 s forum is a dark card with green header, '?' to '4', Yelp 38% / AI tools 37% bars, source tag kept; no longer like after-hours-robot or lsa-max-bid. Change 8 landed: the check card is cream with a blue prompt bubble.",
+  "Change 2 mostly landed: 1% slams in 0.17 s before 'one' as the focal point; about 108 px tall, not 160.",
+  "Changes 3, 6, 7 landed: forum full from 6.5 s; NO RING on 'never ring' over the dark phone at 21.8 s; 54.5 to 59.4 s reuses the full check card.",
+  "Type 4 (cap): source tags, 'Share of revenue, most contractors', 'NO CALLS' / 'WAITING' still about 26 to 30 px; raise to 36 px.",
+  "Spacing 4: host about 280 px at 20 to 24.5 s and 54.5 to 59.4 s; lower 40% of the 1% panel empty at 47.6 to 50.5 s.",
+  "note: the 33.7 s dissolve passes through a near black frame; qa black passes."
  ],
- "reviewer": "fresh opus agent, standard bar (4.61)"
+ "reviewer": "fresh opus agent (Nov 7 lunch run)",
+ "earlier": {
+  "gate": "design",
+  "round": 0,
+  "pass": false,
+  "score": {
+   "first": 3,
+   "hierarchy": 4,
+   "type": 4,
+   "color": 5,
+   "spacing": 4,
+   "polish": 4,
+   "trust": 4,
+   "average": 4.0
+  },
+  "reasons": [
+   "7.0 to 19.5 s forum card repeats after-hours-robot's cream Jobber card look (first capped at 3): use a new set (scores or another) and keep the source tag.",
+   "44.0 to 50.5 s: 'ABOUT 1%' small beside a sliver, 60% of the panel empty; make 1% the hero (160 px+, accent), land 0.2 s before 'one percent' with a kick.",
+   "6.5 to 12.0 s: the forum card is 60% blank for 5.5 s; give it content from its first beat.",
+   "Host about 270 px tall, under the 360 px target, where the band has room (20 to 24.5 s, 25 to 33 s, 54.5 to 59.4 s).",
+   "Labels about 30 px, under the 36 px floor: the paraphrase line, source tags, 'Share of revenue', the register slips, the small check card.",
+   "20.0 to 24.5 s: the WAITING phone is small in an empty band; make the dark phone the hero with NO RING on 'never ring'.",
+   "54.5 to 59.4 s: the recap card is smaller than the 25.3 s card and half empty; use the 25.3 s size and wording.",
+   "25.0 to 33.0 s: the check card's navy numbered-list look matches the last two lessons; make it this lesson's own (a prompt card in the phone's style) and fill the band."
+  ],
+  "reviewer": "fresh opus agent, standard bar (4.61)"
+ }
 }

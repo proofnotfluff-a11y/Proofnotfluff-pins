@@ -1,22 +1,47 @@
 {
  "gate": "send",
- "round": 0,
+ "round": 1,
+ "stage": "after the render, video alone (transcript and timeline sheets)",
  "pass": true,
  "score": {
-  "person": "whoever runs your Google profile (end card, 59.5s to 62.0s)",
-  "tie": "my wife, who co-owns our two-truck HVAC shop and runs our Google profile and reviews",
-  "thing": "the two-step check card: THE CHECK: DO IT TONIGHT 1. Ask ChatGPT: Who's the best [your trade] near me? 2. Not you? Fix your Google profile first.",
-  "held_at": "25.0s to 33.0s",
-  "line": "If it names someone else, that call may never ring, and you'd never know.",
+  "person": "whoever runs your Google profile",
+  "tie": "my wife, who runs the office and our Google profile for our two-truck HVAC shop",
+  "thing": "the two-step check card: \"THE CHECK: DO IT TONIGHT 1. Ask ChatGPT: \"Who's the best [your trade] near me?\" 2. Not you? Fix your Google profile first.\"",
+  "held_at": "25.5 s to 33.0 s, and again 54.5 s to 59.0 s",
+  "line": "So tonight, ask it yourself: who's the best in my trade near me?",
   "gain": "helps",
   "feeling": "surprise",
   "thanks": "yes",
   "send_line_fits": "yes"
  },
  "reasons": [
-  "Weak: the role appears only on the end card; a footer on the check card would carry it in a screenshot.",
-  "Wording drift: the recap card at 54.5s says 'Ask ChatGPT who is the best near you.'",
-  "Look: the transition frames at 19.5s and 33.5s look like pixel noise on the sheet (mosaic wipe)."
+  "Helps: she owns the Google profile and the video says that profile is what ChatGPT builds its answer from.",
+  "Surprise: a homeowner asks ChatGPT instead of calling around; that call may never ring.",
+  "End card 'Send this to whoever runs your Google profile.' points straight at her.",
+  "note: the role is only on the end card; a footer 'For whoever runs your Google profile' on the check card would carry the person in a screenshot.",
+  "note: transition frames at 19.5 s and 33.5 s look scrambled on the sheet (mosaic, fade4); 24.5 s blank panel mid slide-in."
  ],
- "reviewer": "fresh opus agent, video alone (transcript and frames)"
+ "reviewer": "fresh opus agent (Nov 7 lunch run)",
+ "earlier": {
+  "gate": "send",
+  "round": 0,
+  "pass": true,
+  "score": {
+   "person": "whoever runs your Google profile (end card, 59.5s to 62.0s)",
+   "tie": "my wife, who co-owns our two-truck HVAC shop and runs our Google profile and reviews",
+   "thing": "the two-step check card: THE CHECK: DO IT TONIGHT 1. Ask ChatGPT: Who's the best [your trade] near me? 2. Not you? Fix your Google profile first.",
+   "held_at": "25.0s to 33.0s",
+   "line": "If it names someone else, that call may never ring, and you'd never know.",
+   "gain": "helps",
+   "feeling": "surprise",
+   "thanks": "yes",
+   "send_line_fits": "yes"
+  },
+  "reasons": [
+   "Weak: the role appears only on the end card; a footer on the check card would carry it in a screenshot.",
+   "Wording drift: the recap card at 54.5s says 'Ask ChatGPT who is the best near you.'",
+   "Look: the transition frames at 19.5s and 33.5s look like pixel noise on the sheet (mosaic wipe)."
+  ],
+  "reviewer": "fresh opus agent, video alone (transcript and frames)"
+ }
 }

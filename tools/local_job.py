@@ -5,6 +5,7 @@
     python3 tools/local_job.py wait <name> [<name> ...] [--timeout 900] [--every 30]
     python3 tools/local_job.py fetch <job.json> [...] [--wait]   (job has urls instead of input: the box reads the pages)
     python3 tools/local_job.py health
+    python3 tools/local_job.py night [--days 1]   (the night shift's jobs and their answers: video/studio/_shared/nightshift.md)
 
 The lane is the private repo proofnotfluff-a11y/pnf-local-jobs, cloned at $PNF_LOCAL_JOBS (default
 /home/claude/pnf-local-jobs). A job file is named <slug>-<kind>-<date>-r<round>.json and holds kind, model (workhorse,
@@ -131,14 +132,39 @@ def wait(names, timeout, every):
     return 2 if waiting else 0
 
 
+def night(days):
+    """The night shift (Todd, live chat, Nov 6, 2026, 10:16 pm: "Yes do it"): every job named <slug>-night-<kind>-<date>-r<n>
+    from the last `days` days, with its answer's status. Exit 0; a missing answer prints "none" and is not waited for."""
+    import datetime as dt
+    git("pull", "-q", "--rebase", "--autostash")
+    today = dt.date.today()
+    keep = {(today - dt.timedelta(d)).isoformat() for d in range(days + 1)}
+    rows = []
+    for folder in ("jobs", "fetch"):
+        d = os.path.join(LANE, folder)
+        for f in sorted(os.listdir(d)) if os.path.isdir(d) else []:
+            n = f[:-5]
+            m = re.search(r"-night-[a-z-]+-(\d{4}-\d{2}-\d{2})-r\d+$", n)
+            if not f.endswith(".json") or not m or m.group(1) not in keep:
+                continue
+            a = os.path.join(LANE, "answers", f)
+            st = json.load(open(a, encoding="utf-8")).get("status", "unknown") if os.path.exists(a) else "none"
+            rows.append(f"{n}: {st}")
+    print("\n".join(rows) if rows else "night: no night jobs in the last %d day(s)" % days)
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["send", "fetch", "wait", "health"])
+    ap.add_argument("cmd", choices=["send", "fetch", "wait", "health", "night"])
     ap.add_argument("items", nargs="*")
     ap.add_argument("--wait", action="store_true")
     ap.add_argument("--timeout", type=int, default=900)
     ap.add_argument("--every", type=int, default=30)
+    ap.add_argument("--days", type=int, default=1)
     a = ap.parse_args()
+    if a.cmd == "night":
+        return night(a.days)
     if a.cmd == "health":
         git("pull", "-q", "--rebase", "--autostash")
         print(open(os.path.join(LANE, "status", "health.json"), encoding="utf-8").read().strip())

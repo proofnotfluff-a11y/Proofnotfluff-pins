@@ -660,7 +660,20 @@
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {
+    "instagram": {
+     "url": "https://www.instagram.com/proofnotfluff/reel/DfcwDPthb-v/",
+     "at": "2026-11-07T12:47:17-05:00"
+    },
+    "tiktok": {
+     "url": "https://www.tiktok.com/@proofnotfluff/video/7705487939777744158",
+     "at": "2026-11-07T12:48:30-05:00"
+    },
+    "youtube": {
+     "url": "https://youtube.com/shorts/2R9-SICy1as",
+     "at": "2026-11-07T12:51:20-05:00"
+    }
+   }
   },
   {
    "slug": "2026-11-20-lsa-reports-short",

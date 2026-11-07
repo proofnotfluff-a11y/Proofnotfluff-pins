@@ -65,6 +65,42 @@
      "curve": "near typical to about 2 h, steady climb to about 12 h, a step to about 1,250 by about 14 h, flat after"
     }
    }
+  },
+  {
+   "date": "2026-11-07",
+   "readAt": "2026-11-07T17:53:00Z",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": "hidden",
+     "views": "hidden"
+    },
+    "instagram": {
+     "avgWatchS": "hidden",
+     "comments": "hidden",
+     "likes": "hidden",
+     "saves": "hidden",
+     "shares": "hidden",
+     "skipRate": "hidden",
+     "views": 1293
+    },
+    "tiktok": {
+     "avgWatchS": "hidden",
+     "comments": 0,
+     "likes": 10,
+     "saves": "hidden",
+     "shares": "hidden",
+     "views": 262
+    },
+    "youtube": {
+     "avgPctViewed": "hidden",
+     "comments": 0,
+     "likes": "hidden",
+     "viewedVsSwipedPct": "hidden",
+     "views": 49
+    }
+   },
+   "source": "videometrics 2026-11-17-after-hours-robot.2026-11-07T11 (lunch PC run, list views only; Facebook hidden, Chrome extension denied facebook.com)",
+   "docId": "2026-11-17-after-hours-robot.2026-11-07T11"
   }
  ]
 }

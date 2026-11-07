@@ -16,7 +16,7 @@ lessons; one cluster lesson that flops is not a verdict. Ready target: 5 stories
 |---|---|---|---|
 | Nov 5 | AI receptionists: owners say callers hang up on the robot; the ones who keep it run it after hours (made: 2026-11-17-after-hours-robot, preview, not queued) | 10 | videos/2026-11-17-after-hours-robot/00_story/story.md |
 | Nov 2 | Google moves Local Services Ads into its AI ad system; max cost per lead goes away (in the making: 2026-11-18-lsa-max-bid; Nov 6 evening: story gate PASS r26 and fix-check r27, facts PASS r4, voice r28 with 0 flags, every gate PASS: code QA, facts r4, facts-captions, render critic 0 faults, story with compare, send, design 4.57; queued) | 9 | stories/2026-11-02-lsa-to-google-ai.md |
-| Nov 2 | Homeowners would ask ChatGPT for a contractor almost as often as Yelp (in the making: 2026-11-19-ask-chatgpt, story.md Nov 6, script r6, facts PASS r3, story gate next) | 9 | stories/2026-11-02-chatgpt-finds-contractors.md |
+| Nov 2 | Homeowners would ask ChatGPT for a contractor almost as often as Yelp (2026-11-19-ask-chatgpt queued Nov 7 lunch: every gate PASS, design 4.71, 62.4 s) | 9 | stories/2026-11-02-chatgpt-finds-contractors.md |
 
 ## Leads (scored by a reporter, not yet verified; verify before Ready)
 | Date | Lead | Score | Primary record | Note |

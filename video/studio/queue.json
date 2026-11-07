@@ -694,6 +694,26 @@
     "runtime_pixfont": "a8557997756e"
    },
    "posts": {}
+  },
+  {
+   "slug": "2026-11-19-ask-chatgpt",
+   "readyAt": "2026-11-07T14:30:45-05:00",
+   "commit": "ee354786e5317a2e7a7b08580a7dfe1caa5e27e2",
+   "fingerprints": {
+    "script": "1721cecdcb60",
+    "takes": "8565f1f36397",
+    "words": "4d829a310a23",
+    "cues": "d932455b1707",
+    "scene": "81ad1e6eacb1",
+    "data": "9f6425e8d6d0",
+    "captions": "f2b646034032",
+    "mouth": "1c9bca1b5395",
+    "runtime_kit": "7533966669eb",
+    "runtime_player": "0247e61a6184",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

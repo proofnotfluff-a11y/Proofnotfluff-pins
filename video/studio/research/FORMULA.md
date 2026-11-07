@@ -14,6 +14,7 @@
 | 2026-11-11-lsa-missed-calls | core | none named | 49 h, list views (1,288, 289, 58, 87): IG stalled after 33 h | not read | hidden | 29.1% at 2.7 h | hidden |
 | 2026-11-15-three-fixes | core | length (about 29 s, quick-math) | 5.5 h at the Nov 2 end-of-day run: no read filed yet (the 12:19 pm read came before it was 2 h old) | not read | hidden | hidden | hidden |
 | 2026-11-04-close-rate | core | none named (before formula.md) | 70 h, Nov 2 12:19 pm, list views (115, 89, 14, 37): under 300 everywhere, its last read | not read | hidden | hidden | hidden |
+| 2026-11-17-after-hours-robot | story | first story lesson (moment, then turn; compare FAILed, posted on Todd's word) | 8.5 h, Nov 6 8:16 pm, list views (IG 276, TT 213, FB 13, YT 47) | not read | hidden (YT 53.1% avg viewed) | hidden | hidden (TT 8 likes) |
 
 ## References
 (Each: platform, link, the counts on the page and the date, then what the first 3 s, the beats, the save moment and the

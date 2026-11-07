@@ -1,38 +1,76 @@
 {
  "gate": "facts",
- "round": 2,
- "reviewer": "fresh opus agent",
+ "round": 4,
+ "on": "01_voice/script.md r27 (before the voice); fix-check round",
+ "reviewer": "fresh opus agent; Google help page quotes from the local page reader (read live Nov 6, 9:51 pm), web search cross-check",
  "pass": true,
  "score": {
-  "numbers": 6,
+  "numbers": 1,
   "mismatches": 0
  },
- "reasons": [
-  "advisory: 'still just said coming soon'; the page says 'soon'"
+ "earlier_faults": {
+  "1": "fixed",
+  "2": "fixed",
+  "3": "fixed"
+ },
+ "reasons": [],
+ "notes": [
+  "'when I checked this month': if posting slips into December, say 'in November'.",
+  "'For now ... take screenshots' leaves out 'If you need your reports immediately'; 'For now' covers it (not a blocker).",
+  "Close is hedged ('until that download is live', 'can count on'); a safer close: 'the copy Google tells you to make'."
  ],
  "earlier": {
   "gate": "facts",
-  "round": 1,
-  "reviewer": "fresh opus agent",
-  "pass": true,
+  "round": 3,
+  "on": "01_voice/script.md r26 (before the voice)",
+  "reviewer": "fresh opus agent (support.google.com and ppc.land unreachable from the cloud session; claims checked through search results; the help page then re-read live by the local box, fetcher 1.0, Nov 6 9:51 pm, quotes matching facts.json word for word)",
+  "pass": false,
   "score": {
-   "numbers": 6,
-   "mismatches": 0
+   "numbers": 0,
+   "mismatches": 3
   },
+  "reasons": [
+   "s6 'the only way to know if your leads got pricier is to compare with what you spent before': 'only way' is ours and spend alone is not price per lead. Fixed r27: 'So to tell if your leads cost more after the move, you need to know what you paid before.'",
+   "s8 'the page still said coming soon': the page says 'soon'. Fixed r27: 'the page still just said soon.'",
+   "s11 'for now a screenshot is the only copy you'll keep': overstated while a download is promised. Fixed r27: 'until that download is live, a screenshot is the only copy you can count on.'"
+  ],
   "earlier": {
    "gate": "facts",
-   "round": 0,
+   "round": 2,
    "reviewer": "fresh opus agent",
    "pass": true,
    "score": {
-    "numbers": 7,
+    "numbers": 6,
     "mismatches": 0
    },
    "reasons": [
-    "advisory: phase2Shown LATER to LATE (fixed)",
-    "advisory: EXAMPLE on the drawn download screen (added)",
-    "advisory: the other side, leads move (added on the copy screen)"
-   ]
+    "advisory: 'still just said coming soon'; the page says 'soon'"
+   ],
+   "earlier": {
+    "gate": "facts",
+    "round": 1,
+    "reviewer": "fresh opus agent",
+    "pass": true,
+    "score": {
+     "numbers": 6,
+     "mismatches": 0
+    },
+    "earlier": {
+     "gate": "facts",
+     "round": 0,
+     "reviewer": "fresh opus agent",
+     "pass": true,
+     "score": {
+      "numbers": 7,
+      "mismatches": 0
+     },
+     "reasons": [
+      "advisory: phase2Shown LATER to LATE (fixed)",
+      "advisory: EXAMPLE on the drawn download screen (added)",
+      "advisory: the other side, leads move (added on the copy screen)"
+     ]
+    }
+   }
   }
  }
 }

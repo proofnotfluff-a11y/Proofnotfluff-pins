@@ -16,10 +16,10 @@ The look: the real thing on screen (the City's 311 numbers, our map, our pages) 
 3. **Words** (`stages/02_transcript`): the same workflow runs Whisper; `words.json` and `transcript.md`. Check: names and numbers spelled right, nothing dropped.
 4. **Storyboard** (`stages/03_cues`): `cues.md`, one beat per visual change, then `python3 video/studio/anim.py cues <slug>`. Check: read it.
 5. **Scene** (`stages/04_scene`): `scene.js` from the kit, `stills`, read the sheets, fix.
-6. **Render** (`stages/05_render`): `render`, then the gates (stages/05_render/CONTEXT.md), then the preview to Todd.
+6. **Render** (`stages/05_render`): `render`, then the gates (stages/05_render/CONTEXT.md), then the queue (`anim.py ready`).
 
 Creative freedom inside each stage; the gates between them are fixed. Every number on screen or in the voice is computed
-from the data file and checked by the facts gate. Nothing posts without Todd's "post" on that exact preview.
+from the data file and checked by the facts gate. A lesson posts only under the standing video post rule (coo/constitution/video.md): every gate passes, or it does not post.
 
 | Path | Holds |
 |---|---|

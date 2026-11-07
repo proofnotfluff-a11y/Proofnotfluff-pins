@@ -3,6 +3,7 @@
 One job: build and draft the free Monday email for everyone who said yes, and the trial offer for anyone whose third Monday just went out. Design and wording: email/M1-MONDAY.md (Todd, Oct 22, 7:57 pm). Nothing sends until Todd says send in this session.
 
 ## Inputs (Reads)
+- coo/constitution/outreach.md (constitution annex; read in full).
 - permits/downstream/gc_leads.json (refreshed that Monday), permits/<city>/sample.json counts, site/pages.json checkout and price.
 - email/monday/sent.json (lead ids already sent, per city).
 - CRM prospects (ArtifactData list, out_dir data/crm): status monday, mondayCity, tradeVertical, mondaysSent, firstExample, sender, trialOfferedAt.

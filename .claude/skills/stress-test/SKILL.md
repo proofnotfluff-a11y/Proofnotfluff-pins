@@ -3,6 +3,7 @@
 Todd, live chat, Oct 29, 2026 ("Founder: stress test"). coo/CONSTITUTION.md binds. One job: pressure-test a product or offer before Todd spends time or money on it, so a weak idea dies on paper. Adapted from 4 of the 11 MIT-licensed founder-skill skills (github.com/Jakeschincariol/founder-skill, fd9385b: board, CFO, offer, pricing). Research and files only: nothing is built, priced, published, sent or bought.
 
 ## Inputs (Reads)
+- coo/constitution/venture.md (constitution annex; read in full).
 - The product's own record: launches/<slug>.md, scoreboard leadproducts/<slug> and its funnel counts, scout/candidates/<slug>.json and scout/reviews/ for a new idea, legal/reviews/ for it.
 - coo/VENTURE.md (the $1,000 net month by Jan 31, 2027), coo/CONSTITUTION.md section 1 (price rules), lenses.md in this folder.
 - Competitors' own public price pages, fetched this run. Real objections only from CRM reply summaries (counts and our words, never a person's).

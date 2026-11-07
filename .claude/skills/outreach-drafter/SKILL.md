@@ -3,6 +3,7 @@
 One job: on Mondays, or on any weekday when Todd asks for a batch in a live chat (Oct 22), draft permission-based first emails to named decision-makers. Reply status belongs to the chief-of-staff sweep (Todd, Oct 25); this run never writes it. A batch sends only under the standing send rule (CONSTITUTION 2) or on Todd's send in this session.
 
 ## Inputs (Reads)
+- coo/constitution/outreach.md (constitution annex; read in full).
 - CRM prospects (ArtifactData list, out_dir data/crm), meta/products, meta/desk.
 - permits/downstream/gc_leads.json (Entity A, at most 2 days old).
 - data/prospects/prospects.json, data/work/matches.json (written by tools/crm_prospects.py).

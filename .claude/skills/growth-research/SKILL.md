@@ -3,6 +3,7 @@
 One job: evidence-based growth work in two phases. A: better first emails from what proven cold-email practitioners do today. B: new Chicago niches with tailored lead products. Research and drafts only: nothing is sent, published, listed or bought, and no live template or gate changes without Todd's yes in chat.
 
 ## Inputs (Reads)
+- coo/constitution/outreach.md and coo/constitution/venture.md (constitution annex; read in full).
 - .claude/skills/outreach-drafter/templates.md, email/SEND_RULES.md, tools/pnf_rules.py (copy_problems, the Inbox Gate, TRADE_VERTICALS).
 - launches/*.md (what exists; chicago-new-business-licenses.md is built and not launched), permits/downstream/README.md, docstrings of tools/*_chicago.py and tools/rest_*.py, .github/workflows/.
 - CRM meta/desk (ArtifactData) for send and reply history. Web search and fetch; Agent subagents for parallel research.

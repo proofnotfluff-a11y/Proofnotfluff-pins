@@ -1,17 +1,12 @@
 # Handoff (Layer 1), Nov 7
 
-- [stated] Todd, Oct 22, 7:57 pm: "Let's do all of this as you recommend." Decisions: coo/DECISIONS-*.md.
-- Step 1 live Oct 22: trial and Monday Kit forms on Chicago and Austin pages. Tasks: Monday email (Mon 8:50 am, drafts), Wednesday trial offer (Wed 9:50 am; first about Nov 11).
-- Step 2 done Oct 22; lede held for a dumpster or security yes.
-- Step 3 cities (and Seattle) parked until 3 pest seats sell NYC pest held.
-- Live: Chicago and Austin cleaning leads $29, restaurant $39. 0 payers, 0 replies. Trade-owner outreach restarted Oct 29 toward 120 first emails (standing send rule; task Mon 9:40 am). Entity A: 730 GC leads. Entity B ladder: tools/site_owners.py, Hunter 5, Bouncer first. Senders hello@ (25/day), sales@. Licenses: L2 sales@, T21 and T24 standing.
-- Question pages daily; news, index, radar 1st and 15th (Nov 6); backlog fronts B4, C11. Free DD+7 and lead-cost calculators live Oct 24, stage counts e/<page>/, reading Nov 7.
-- Radar: health 4 PASS, AI 0 of 12. Index: 90/101 Oct 30. Grid-down library: DECISIONS Nov 6.
-- Pest seat live Oct 24 (3 seats, launches/chicago-pest-seat.md). Outreach on, Legal subject (Oct 24); batches go to Todd; role inboxes allowed (pest_role_inbox); 12 sendable after Bouncer (todo pest-owners-100).
-- Oct 25: Chief of Staff live, credits burst Nov 2 (DECISIONS-2026-10-25). Area seats live Oct 26, 6 open.
-- Oct 26: TRAFFIC FIRST; no builder outreach.
-- Oct 27: trade owners only; free plan waits (DECISIONS Oct 27). News, maps, templates live. R10: 11 free data pages and redesign live (/chicago-data/, site/datahub.json); inspections by area, Quarterly open (W).
-- Videos: 3/2/1 a day at 6+/3-5/1-2 waiting; shorts test to Nov 14; deep reads; slot alarm; phone stories; send moment, 70 s cap (Nov 7, Todd pastes task); no Fable; task trig_01DQgwhps.
-- Oct 30 usage audit: coo/USAGE.md. Next: Todd pauses API lister.
-- Radar redesign: launches/radar-design-brief.md.
-- Nov 6 to 7: Back Office parked; asset scan next; Ponytail, MiMo, gate seal (DECISIONS)
+Current state only; history is in coo/DECISIONS-*.md. Goal: one $1,000 net month by Jan 31, 2027.
+
+- Money: 0 payers, 0 replies. Live: Chicago and Austin cleaning leads $29, restaurant $39, pest seat (3 seats), area seats (6 open), free calculators, 11 Chicago data pages.
+- Outreach: trade owners only, standing send rule, toward 120 first emails (Mon 9:40 am). Senders hello@ (25/day), sales@. Entity A: 720 GC leads. Trial offer Wed 9:50 am.
+- Site: question pages daily (box drafts from Nov 8); news, index, radar on the 1st and 15th. Index 90/101 (Oct 30). Radar: health 4 PASS, AI 0 of 12.
+- Videos: 3/2/1 a day at 6+/3-5/1-2 waiting; shorts test verdict Nov 14; send moment and 70 s cap for lessons from Nov 19. Todd pastes video/studio/schedule/record-and-make.txt into trig_01DQgwhps. Posting tasks follow video/studio/schedule/post-slot.txt.
+- Box: every studio run fills the GEEKOM night queue; no Fable anywhere.
+- Foundations (Nov 7): constitution is a core plus annexes in coo/constitution/; the context gate counts the full load; the studio reads by step. Open: Todd's account connector cleanup; his call on pausing video-line changes.
+- Priority since Oct 26: traffic first. Next: the asset scan (set Nov 6 to 7). Radar redesign brief: launches/radar-design-brief.md. Grid-down library: DECISIONS Nov 6.
+- Parked: Back Office demo, Step 3 cities, NYC pest, builder outreach, free plan. Usage: coo/USAGE.md (Todd pauses API lister).

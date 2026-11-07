@@ -771,6 +771,8 @@ def respell(script_words, heard):
         if v is None:
             out[i] = (last, last)
         last = out[i][1]
+    # a dash Whisper hears is quoted into the flag; spell it so the transcript passes the em dash check (Nov 7)
+    flags = [f.replace("—", "(dash)").replace("–", "(dash)") for f in flags]
     return out, flags
 
 

@@ -3,6 +3,7 @@
 One job: raise the studio's ceiling. The daily run (video-studio) ships one small fix a day; the lab finds what still separates our lessons from the best animated explainers and proves the next bigger upgrade on stills. Jake Van Clief's method is the yardstick (Todd, Oct 29, 2026: "The guiding structure and principals are developed by Jake Van Clief"; "you have full authority"). Todd, Oct 28, 3:04 pm: "Constantly try to improve these videos."
 
 ## Inputs (Reads)
+- coo/constitution/video.md (constitution annex; read in full).
 - video/studio/CLAUDE.md, CONTEXT.md, IMPROVE.md, LEARNINGS.md, _shared/looks.md, kit.md, sound.md, research/EXPERTS.md, research/LAB.md (the lab log).
 - Jake's method, upstream: shallow clone of github.com/RinDig/Interpretable-Context-Methodology into its own folder, read only, never run its code. Read what changed since LAB.md's `jake-commit` in CLAUDE.md, _core/CONVENTIONS.md, workspaces/voice-driven-animation/ and workspaces/script-to-animation/. Web search his newest public videos and posts; primary pages only, our own words.
 - The last three made lessons: 05_render/sheets, reviews/*.json; research/metrics/*.json when present.

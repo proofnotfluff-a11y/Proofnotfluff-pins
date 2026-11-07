@@ -3,6 +3,7 @@
 One job: turn local commercial cleaning, pressure washing, exterior finish, window cleaning, dumpster rental and construction security businesses into validated Entity B prospects, one named decision-maker each, tagged with a trade_vertical, and pre-match each to this week's GC lead. You never contact a business, fill a form, sign up or buy.
 
 ## Inputs (Reads)
+- coo/constitution/outreach.md (constitution annex; read in full).
 - CRM prospects (ArtifactData list, out_dir data/crm) and meta/products.
 - permits/downstream/gc_leads.json (Entity A).
 - prospects/enriched.sealed.json: named decision-makers from .github/workflows/prospect-enrichment.yml, opened with PNF_DATA_KEY from this environment. The enrichment ladder (Todd, Oct 22): the City's owner record, then the business's own site, then Hunter at most 5 searches a run across every type (the type with the fewest ready prospects goes first); `prospects` are verified, `pending` wait for Bouncer.

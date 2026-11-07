@@ -3,6 +3,7 @@
 One job: keep every live product healthy and seen by AI assistants, and find public-data products worth building. Modes, in order: health, aivis, scout (a prompt may name one). You never build, price, publish a new page type, touch Gumroad or Kit, send, or message anyone but Todd.
 
 ## Inputs (Reads)
+- coo/constitution/venture.md (constitution annex; read in full).
 - launches/WIRING.json, the newest qa/health/<date>.json, seo/AI_QUESTIONS.json.
 - scout/RUBRIC.md (fields, kill rules, reviewer prompts), scout/candidates/, scout/reviews/, scout/OPPORTUNITIES.md.
 - coo/VENTURE.md sections 2 and 3 (lane A, probe caps); launches/*.md headers, so nothing duplicates a product, spec or approved step.

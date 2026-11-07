@@ -10,11 +10,11 @@
    "approved": "coo/DECISIONS-2026-11-07.md"
   },
   "tools/test_gates.py": {
-   "sha256": "60b24f55865523e4133c4a140dce2e035896f608d708cafeac9ec3897b4411a2",
+   "sha256": "108ea05e4ca8cafcbcb71c6c22c9852562e8403a10b48715152bfafda8c15244",
    "approved": "coo/DECISIONS-2026-11-07.md"
   },
   "tools/context_gate.py": {
-   "sha256": "65ed9b19b022a57ca5dac71f274a54052c458ec916563cd4d58707e2141f1555",
+   "sha256": "d996ce2e0e81e70af76a1c702b26bfd6faeb1002af65c53883e9d243f6a6a4b6",
    "approved": "coo/DECISIONS-2026-11-07.md"
   },
   "tools/copy_gate.py": {

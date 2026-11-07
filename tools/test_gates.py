@@ -137,6 +137,8 @@ def context_cases():
             shutil.copy(os.path.join(ROOT, "tools", "context_gate.py"), os.path.join(tmp, "tools"))
             shutil.copy(os.path.join(ROOT, "CLAUDE.md"), tmp)
             shutil.copy(os.path.join(ROOT, "coo", "HANDOFF.md"), os.path.join(tmp, "coo"))
+            shutil.copy(os.path.join(ROOT, "coo", "CONSTITUTION.md"), os.path.join(tmp, "coo"))
+            shutil.copytree(os.path.join(ROOT, "coo", "constitution"), os.path.join(tmp, "coo", "constitution"))
             shutil.copytree(os.path.join(ROOT, ".claude", "skills"), os.path.join(tmp, ".claude", "skills"))
             mutate(tmp)
             r = subprocess.run([sys.executable, os.path.join(tmp, "tools", "context_gate.py")], capture_output=True, text=True)
@@ -156,7 +158,8 @@ def context_cases():
 
     def drop_section(tmp):
         p = os.path.join(tmp, ".claude", "skills", "outreach-drafter", "SKILL.md")
-        open(p, "w", encoding="utf-8").write(open(p, encoding="utf-8").read().replace("## Outputs (Writes)", "## Outputs"))
+        text = open(p, encoding="utf-8").read()   # read first: opening for write empties the file (seen Nov 7)
+        open(p, "w", encoding="utf-8").write(text.replace("## Outputs (Writes)", "## Outputs"))
 
     def budget(tmp):
         # the per-file caps alone keep the sum near 9.2 KB, so the budget check is planted with oversized layers and
@@ -168,11 +171,29 @@ def context_cases():
     expect("context: CLAUDE.md over 2 KB fails", run(append("CLAUDE.md", "x" * 2100)), True)
     expect("context: HANDOFF.md over 2 KB fails", run(append("coo/HANDOFF.md", "x" * 2100)), True)
     expect("context: SKILL.md over 5 KB fails", run(append(".claude/skills/permit-ingestion/SKILL.md", "x" * 5200)), True)
-    expect("context: missing Outputs section fails", run(drop_section), True)
+    expect("context: missing Outputs section fails", [l for l in run(drop_section) if "Outputs (Writes)" in l], True)
     expect("context: legacy ledger file in an active path fails", run(legacy_file), True)
     expect("context: active layer reading the legacy ledger fails", run(append("CLAUDE.md", "\nRead /areas/digital-products.md first.\n")), True)
     expect("context: em dash in a layer fails", run(append("coo/HANDOFF.md", "\nlive \u2014 state\n")), True)
     expect("context: L0 + L1 + one skill over 10 KB fails", [l for l in run(budget) if "the budget is under 10240" in l], True)
+
+    def annex_gone(tmp):
+        os.remove(os.path.join(tmp, "coo", "constitution", "video.md"))
+
+    def retired(tmp):
+        p = os.path.join(tmp, ".claude", "skills", "traffic-report", "SKILL.md")
+        text = open(p, encoding="utf-8").read()   # read before opening for write, which empties the file
+        open(p, "w", encoding="utf-8").write(text.replace("# traffic-report", "# traffic-report RETIRED Nov 7", 1))
+
+    def full_load(tmp):
+        append("coo/constitution/video.md", "w" * 9000)(tmp)
+
+    # foundations audit, Nov 7, 2026: the constitution core, its annexes and the full pre-run load are counted too
+    expect("context: constitution core over 8 KB fails", [l for l in run(append("coo/CONSTITUTION.md", "c" * 1500)) if "the cap is under 8192" in l], True)
+    expect("context: a missing constitution annex fails", [l for l in run(annex_gone) if "which is missing" in l], True)
+    expect("context: a RETIRED skill left in .claude/skills fails", [l for l in run(retired) if "RETIRED" in l], True)
+    expect("context: full load over 32 KB fails", [l for l in run(full_load) if "the full budget is under 32768" in l], True)
+    expect("context: em dash in the constitution core fails", run(append("coo/CONSTITUTION.md", "\nrule \u2014 here\n")), True)
 
 
 def legacy_cases():

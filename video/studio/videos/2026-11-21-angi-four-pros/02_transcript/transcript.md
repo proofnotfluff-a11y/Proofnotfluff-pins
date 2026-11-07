@@ -1,6 +1,6 @@
 # Transcript: 2026-11-21-angi-four-pros
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 145 words, 45.8 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 150 words, 47.2 s of voice.
 
 ## Flags
 none
@@ -11,7 +11,7 @@ none
   02     8.8 s  185 wpm  
   03    18.2 s  192 wpm  
   04    29.5 s  188 wpm  
-  05    41.3 s  199 wpm  
+  05    41.3 s  198 wpm  
 ```
 
 ## Words
@@ -42,4 +42,6 @@ none
 
 `00:37.8` What you still control is how fast you call back.
 
-`00:41.3` So next time it buzzes on that roof, somebody on the ground already has the card.
+`00:41.3` So next time it buzzes on that roof, you can stay up there.
+
+`00:45.1` Somebody on the ground already has the card.

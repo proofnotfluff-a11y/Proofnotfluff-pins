@@ -17,7 +17,7 @@ code or by Claude against its source, and nothing a box job writes is published,
    b. Story finding (21 slot; 9 slot too when fewer than 2 stories are Ready): 6 to 10 `pulse-night-extract` fetch jobs,
       8 thread pages each (48 to 80 pages), on hosts the box reader allows (pnf-local-jobs scripts/fetcher.py ALLOWED).
       Find the pages: (1) thread links from the newest ok `pulse-feeds` answer (the forum feeds listed as working in
-      video/studio/research/listen.json, read by the box; queue a new `pulse-feeds-<date>-r1` fetch job each 21 slot);
+      video/studio/research/listen.json, read by the box; queue one `pulse-feeds-<date>-r<n>` fetch job per feed each 21 slot: one feed a job, or the box lists only the first);
       (2) WebSearch site: queries only to fill up (low yield: on Nov 7 one of six forum hosts returned threads); skip
       pages already read (research/pulse/). Model workhorse; prompt: list every owner problem on each page;
       schema {items: [{problem (our plain words, under 200 characters), trade, quote_under_10_words, url (one of the

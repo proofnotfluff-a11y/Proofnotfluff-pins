@@ -1,6 +1,6 @@
 # Transcript: 2026-11-22-after-hours-greeting
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 161 words, 54.2 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 161 words, 54.5 s of voice.
 
 ## Flags
 none
@@ -11,7 +11,7 @@ none
   02    10.1 s  159 wpm  
   03    26.6 s  199 wpm  
   04    37.8 s  184 wpm  
-  05    50.2 s  230 wpm  fast: give it a landing beat, then speak --take 5
+  05    50.2 s  218 wpm  fast: give it a landing beat, then speak --take 5
 ```
 
 ## Words
@@ -20,7 +20,7 @@ none
 
 `00:02.2` Her furnace just died, so she calls your shop.
 
-`00:05.0` Four rings, then your voicemail says you're closed.
+`00:05.1` Four rings, then your voicemail says you're closed.
 
 `00:08.1` That's all it says.
 
@@ -40,4 +40,6 @@ none
 
 `00:44.3` This one does, and if she texts, you have the job details before you even call.
 
-`00:50.2` So the next time your phone rings at ten to seven, she hears what to do next.
+`00:50.2` So the next time your phone rings at ten to seven...
+
+`00:53.0` she hears what to do next.

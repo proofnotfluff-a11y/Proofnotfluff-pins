@@ -5,7 +5,7 @@
 - Step 2 done Oct 22; lede held for a dumpster or security yes.
 - Step 3 cities (and Seattle) parked until 3 pest seats sell NYC pest held.
 - Live: Chicago and Austin cleaning leads $29, restaurant $39. 0 payers, 0 replies. Trade-owner outreach restarted Oct 29 toward 120 first emails (standing send rule; task Mon 9:40 am). Entity A: 730 GC leads. Entity B ladder: tools/site_owners.py, Hunter 5, Bouncer first. Senders hello@ (25/day), sales@. Licenses: L2 sales@, T21 and T24 standing.
-- Site tasks 1st and 15th (Nov 6); backlog fronts B4, C11. Free DD+7 and lead-cost calculators live Oct 24, stage counts e/<page>/, reading Nov 7.
+- Question pages daily; news, index, radar 1st and 15th (Nov 6); backlog fronts B4, C11. Free DD+7 and lead-cost calculators live Oct 24, stage counts e/<page>/, reading Nov 7.
 - Radar: health 4 PASS, AI 0 of 12; WIRING.json gates lead pages.
 - Index: Bing, IndexNow, 90/101 indexed Oct 30.
 - Pest seat live Oct 24 (3 seats, launches/chicago-pest-seat.md). Outreach on, Legal subject (Oct 24); batches go to Todd; role inboxes allowed (pest_role_inbox); 12 sendable after Bouncer (todo pest-owners-100).

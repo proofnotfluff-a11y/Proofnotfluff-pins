@@ -65,3 +65,4 @@
 - Why it fits the numbers: seo/traffic/history.json, week of Oct 26: 1 visit from search, 0 upgrades.
 - Changed (the four Claude site tasks, now 6:32 to 9:31 am Central on the 1st and 15th): question pages trig_01UHJ2MuXNGTV9teS1GVbN9z (was daily), trades news trig_01Q5KFoNfsiAXZdEykMo5UPP (was Mon, Wed, Fri; news window 3 days to 16, in its prompt and SKILL), index request trig_01TSoXrR7sqNfgjM3GbPM8t8 (was Fridays), radar trig_01M4jbuiVgbx7iV6cerLBRGh (was Mondays). About 12 runs a week down to about 2 a month each. First runs Nov 15.
 - Left as is: the traffic report (Mondays, about 1 minute, the yardstick for speeding back up) and the GitHub data workflows (they use no Claude usage; they keep the free data pages current).
+- [stated] 7:51 pm: "You can do the questions daily". Question pages trig_01UHJ2MuXNGTV9teS1GVbN9z back to daily 7:10 am (next run Nov 7); trades news, index request and radar stay on the 1st and 15th.

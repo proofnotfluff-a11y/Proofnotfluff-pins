@@ -661,6 +661,26 @@
     "runtime_pixfont": "a8557997756e"
    },
    "posts": {}
+  },
+  {
+   "slug": "2026-11-20-lsa-reports-short",
+   "readyAt": "2026-11-07T12:26:57-05:00",
+   "commit": "c92bfb2325cf4f574b2686df25f24a6dde063c4b",
+   "fingerprints": {
+    "script": "79995ee97deb",
+    "takes": "67b615567170",
+    "words": "d707890dbce8",
+    "cues": "0c49dd575ae9",
+    "scene": "6426c79ef845",
+    "data": "37963f7d74e6",
+    "captions": "259a0c668bb5",
+    "mouth": "1b3ab867ab69",
+    "runtime_kit": "7533966669eb",
+    "runtime_player": "0247e61a6184",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

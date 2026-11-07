@@ -99,6 +99,9 @@ runtime, $0, no new dependency.
 10. Visual: on-screen captions of key phrases (two to four words) in the safe area, for viewers with the sound off.
 11. Sound: a two-note sting on the brand plate at the end (our own, made in code).
 12. Visual: a seasonal touch per week (snow outside the half-built house in winter, leaves in fall).
+13. Check: a flicker and flash scan in code on the rendered MP4 (frame-to-frame brightness jumps): fail more than 3
+   flashes in any 1 s (the photosensitive limit) and any one-frame glitch that stills can't show; item 4's impact frame
+   stays legal. Idea from Higgsfield Katana's render scan (Nov 7); no tool taken.
 
 ## Done (newest first: date, item, what changed, proof)
 - 2026-11-02 (end-of-day run, cloud): 00a-3 step 2, accents at 0.0 s. The item's own next step was met: three-fixes and price-list-quote, the two lessons made under the 0.5 s ERROR, both pass `lint` with 0 late texts. So `anim.py lint` now fails, for lessons dated from 2026-11-17 on (ACCENT_STRICT_FROM), every scene text that lands a lint step (0.25 s) or more after its spoken word; 2026-11-15 and 2026-11-16 keep the 0.5 s line, older lessons the WARN. Proof on the lint frames (stills at 0.25 s): with the dates moved back for the test only, ai-night-quote fails 7 (worst 'Send this to whoever' 2.50 s late, 'REAL REPLY' 0.68 s) and price-list-quote passes with 0; at the real dates every queued lesson lints as before.

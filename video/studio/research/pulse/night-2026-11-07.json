@@ -1,0 +1,357 @@
+{
+ "date": "2026-11-07",
+ "rule": "tools/pulse_merge.py: url asked and loaded, quote 10 words or fewer, no contact details",
+ "report": {
+  "jobs": 6,
+  "ok": 5,
+  "pages_ok": 35,
+  "raw": 34,
+  "kept": 34,
+  "dropped": {
+   "job not ok": 1,
+   "quote over 10 words (quote removed, item kept)": 4
+  }
+ },
+ "items": [
+  {
+   "problem": "No business problem raised; user is sharing photos of current work.",
+   "trade": "Roofing and Siding",
+   "quote": "I house I finished up doing the soffit.",
+   "url": "https://www.contractortalk.com/threads/post-a-picture-of-your-current-job-part-iii.417321/",
+   "date_on_page": "Mar 26, 2019",
+   "job": "pulse-night-extract-2026-11-07-r2",
+   "also_on_pages": 1,
+   "n": 6
+  },
+  {
+   "problem": "No business problem raised; user is introducing themselves to the forum.",
+   "trade": "General Contracting",
+   "quote": "Just wanted to introduce myself and connect.",
+   "url": "https://www.contractortalk.com/threads/hello.465511/",
+   "date_on_page": "3h ago",
+   "job": "pulse-night-extract-2026-11-07-r2",
+   "also_on_pages": 1,
+   "n": 7
+  },
+  {
+   "problem": "Uncertainty about the correct waterproofing method for a shower pan built on concrete, specifically whether liquid membrane can replace traditional liners and pre-slope.",
+   "trade": "Tile Contractor",
+   "quote": "Can I do liquid membrane over mud pan?",
+   "url": "https://www.contractortalk.com/threads/water-proofing.465497/",
+   "date_on_page": "1d ago",
+   "job": "pulse-night-extract-2026-11-07-r3",
+   "also_on_pages": 1,
+   "n": 8
+  },
+  {
+   "problem": "Uncertainty about whether practical experience alone meets licensing requirements without formal education.",
+   "trade": "Roofing",
+   "quote": "Is three years of work sufficient for a license?",
+   "url": "https://www.contractortalk.com/threads/navigating-roofing-license-requirements-education-vs-hands-on-experience.454751/",
+   "date_on_page": "Mar 22, 2024",
+   "job": "pulse-night-extract-2026-11-07-r6",
+   "also_on_pages": 1,
+   "n": 28
+  },
+  {
+   "problem": "Difficulty tracking retainage releases after project completion.",
+   "trade": "Commercial Construction",
+   "quote": "Money comes months later and slips through cracks.",
+   "url": "https://www.contractortalk.com/threads/how-do-you-keep-track-of-retainage-releases.465247/",
+   "date_on_page": "Oct 19, 2026",
+   "job": "pulse-night-extract-2026-11-07-r2",
+   "also_on_pages": 0,
+   "n": 1
+  },
+  {
+   "problem": "Uncertainty on how to follow up with clients who do not answer estimates.",
+   "trade": "General Contracting",
+   "quote": "You send the quote, hear nothing back.",
+   "url": "https://www.contractortalk.com/threads/what-do-you-do-when-an-estimate-goes-unanswered.464997/",
+   "date_on_page": "Oct 2, 2026",
+   "job": "pulse-night-extract-2026-11-07-r2",
+   "also_on_pages": 0,
+   "n": 2
+  },
+  {
+   "problem": "Need for a new website builder or service.",
+   "trade": "General Contracting",
+   "quote": "Thinking about getting one.",
+   "url": "https://www.contractortalk.com/threads/who-built-your-website.465513/",
+   "date_on_page": "3h ago",
+   "job": "pulse-night-extract-2026-11-07-r2",
+   "also_on_pages": 0,
+   "n": 3
+  },
+  {
+   "problem": "Uncertainty on selecting a range hood that fits ducting and noise requirements.",
+   "trade": "Kitchen Remodeling",
+   "quote": "Main concern is ducting and noise levels.",
+   "url": "https://www.contractortalk.com/threads/choosing-a-30-inch-range-hood-for-a-small-kitchen-remodel-%E2%80%94-what-should-i-check.465429/",
+   "date_on_page": "5d ago",
+   "job": "pulse-night-extract-2026-11-07-r2",
+   "also_on_pages": 0,
+   "n": 4
+  },
+  {
+   "problem": "Uncertainty on how to organize and outfit a new tool trailer.",
+   "trade": "Framing, Decking, Siding",
+   "quote": "Not sure what I want to start with.",
+   "url": "https://www.contractortalk.com/threads/tool-trailers.465305/",
+   "date_on_page": "Oct 24, 2026",
+   "job": "pulse-night-extract-2026-11-07-r2",
+   "also_on_pages": 0,
+   "n": 5
+  },
+  {
+   "problem": "Concerns about pests entering wall cavities through unscreened weep holes in brick exteriors.",
+   "trade": "Masonry",
+   "quote": "Why aren't they screened?",
+   "url": "https://www.contractortalk.com/threads/weep-holes-in-brick.465377/",
+   "date_on_page": "Oct 28, 2026",
+   "job": "pulse-night-extract-2026-11-07-r3",
+   "also_on_pages": 0,
+   "n": 9
+  },
+  {
+   "problem": "Difficulty installing garage door panels in cold weather while trying to avoid securing hardware before the panels are stacked.",
+   "trade": "General Contractor",
+   "quote": "Can I put panels up before hardware?",
+   "url": "https://www.contractortalk.com/threads/installation-of-garage-door-panels-can-hardware-be-put-on-after.462833/",
+   "date_on_page": "Jan 1, 2026",
+   "job": "pulse-night-extract-2026-11-07-r3",
+   "also_on_pages": 0,
+   "n": 10
+  },
+  {
+   "problem": "Finishing a fiberglass column base where cutting the height removed the smooth section needed for a clean trim fit.",
+   "trade": "Carpentry",
+   "quote": "Base has fluting gaps after cutting.",
+   "url": "https://www.contractortalk.com/threads/fiberglass-columns.465487/",
+   "date_on_page": "2d ago",
+   "job": "pulse-night-extract-2026-11-07-r3",
+   "also_on_pages": 0,
+   "n": 11
+  },
+  {
+   "problem": "Uncertainty about the appearance and durability of treated versus untreated glulam beams for an exterior kitchen project.",
+   "trade": "Carpentry",
+   "quote": "Wondering about look of treated verses untreated.",
+   "url": "https://www.contractortalk.com/threads/glulams-treated-untreated.465503/",
+   "date_on_page": "19h ago",
+   "job": "pulse-night-extract-2026-11-07-r3",
+   "also_on_pages": 0,
+   "n": 12
+  },
+  {
+   "problem": "Losing potential jobs due to missed phone calls while on-site and a lack of an automated system for quote follow-ups.",
+   "trade": "Contracting Business",
+   "quote": "Where im still losing money is two spots.",
+   "url": "https://www.contractortalk.com/threads/what-are-you-running-for-quote-follow-ups-and-missed-calls.465353/",
+   "date_on_page": "Oct 27, 2026",
+   "job": "pulse-night-extract-2026-11-07-r3",
+   "also_on_pages": 0,
+   "n": 13
+  },
+  {
+   "problem": "Need to provide a budget estimate for a multi-bath remodel quickly without having detailed plans or structural changes yet.",
+   "trade": "Remodeling / Estimating",
+   "quote": "Asked to ballpark the job after 20 minutes.",
+   "url": "https://www.contractortalk.com/threads/ai-and-estimating.465313/",
+   "date_on_page": "Oct 25, 2026",
+   "job": "pulse-night-extract-2026-11-07-r3",
+   "also_on_pages": 0,
+   "n": 14
+  },
+  {
+   "problem": "Clients distrust price increases for hidden issues, suspecting padding after the job starts.",
+   "trade": "General Contracting",
+   "quote": "",
+   "url": "https://www.contractortalk.com/threads/how-do-you-handle-price-changes-on-a-job-once-youre-into-it.464317/",
+   "date_on_page": "Jul 30, 2026",
+   "job": "pulse-night-extract-2026-11-07-r4",
+   "also_on_pages": 0,
+   "n": 15
+  },
+  {
+   "problem": "Standard pickup trucks lack sufficient storage space for tools compared to vans.",
+   "trade": "Construction Management",
+   "quote": "wasted space of the back seat",
+   "url": "https://www.contractortalk.com/threads/ford-f150-back-seat-delete.465423/",
+   "date_on_page": "6d ago",
+   "job": "pulse-night-extract-2026-11-07-r4",
+   "also_on_pages": 0,
+   "n": 16
+  },
+  {
+   "problem": "Inexperience with finishing shingling details on open roof valleys.",
+   "trade": "Roofing",
+   "quote": "",
+   "url": "https://www.contractortalk.com/threads/noob-here-advice-needed-please-re-shingling-lower-detail-on-open-valley.465485/",
+   "date_on_page": "2d ago",
+   "job": "pulse-night-extract-2026-11-07-r4",
+   "also_on_pages": 0,
+   "n": 17
+  },
+  {
+   "problem": "New members lack context on how to introduce themselves to the community.",
+   "trade": "General Contractor",
+   "quote": "Here for knowledge!",
+   "url": "https://www.contractortalk.com/threads/introduction.465499/",
+   "date_on_page": "1d ago",
+   "job": "pulse-night-extract-2026-11-07-r4",
+   "also_on_pages": 0,
+   "n": 18
+  },
+  {
+   "problem": "High material costs for specific brand connectors threaten project margins.",
+   "trade": "Framing/Architecture",
+   "quote": "considering ways to cut costs",
+   "url": "https://www.contractortalk.com/threads/is-simpson-too-expensive-now.465445/",
+   "date_on_page": "4d ago",
+   "job": "pulse-night-extract-2026-11-07-r4",
+   "also_on_pages": 0,
+   "n": 19
+  },
+  {
+   "problem": "Financial losses from unpaid invoices are difficult to accept emotionally.",
+   "trade": "General Business",
+   "quote": "You are going to get screwed; it is inevitable",
+   "url": "https://www.contractortalk.com/threads/how-to-lose.465427/",
+   "date_on_page": "6d ago",
+   "job": "pulse-night-extract-2026-11-07-r4",
+   "also_on_pages": 0,
+   "n": 20
+  },
+  {
+   "problem": "Large blisters forming between drywall paper and gypsum board require repair.",
+   "trade": "Drywall",
+   "quote": "",
+   "url": "https://www.contractortalk.com/threads/blisters.465489/",
+   "date_on_page": "2d ago",
+   "job": "pulse-night-extract-2026-11-07-r4",
+   "also_on_pages": 0,
+   "n": 21
+  },
+  {
+   "problem": "The owner needs to find a construction company to hire them as a paid qualifying agent without giving up equity.",
+   "trade": "Residential Contracting",
+   "quote": "Seeking a construction company that needs a licensed Qualifying Agent.",
+   "url": "https://www.contractortalk.com/threads/florida-licensed-residential-contractor-crc-available-as-qualifying-agent.465493/",
+   "date_on_page": "3h ago",
+   "job": "pulse-night-extract-2026-11-07-r5",
+   "also_on_pages": 0,
+   "n": 22
+  },
+  {
+   "problem": "The owner is seeking employment as a responsible managing employee or officer for an established business.",
+   "trade": "General Building and Engineering",
+   "quote": "I am looking for employment as an RME / RMO.",
+   "url": "https://www.contractortalk.com/threads/rme-rmo-available-california-general-building-b-and-general-engineering-a.465491/",
+   "date_on_page": "4h ago",
+   "job": "pulse-night-extract-2026-11-07-r5",
+   "also_on_pages": 0,
+   "n": 23
+  },
+  {
+   "problem": "The owner cannot find a vendor to sell specific replacement parts for an obsolete toilet seat.",
+   "trade": "Plumbing",
+   "quote": "",
+   "url": "https://www.contractortalk.com/threads/toilet-seat-damper-cartridges.465431/",
+   "date_on_page": "5d ago",
+   "job": "pulse-night-extract-2026-11-07-r5",
+   "also_on_pages": 0,
+   "n": 24
+  },
+  {
+   "problem": "The owner needs a reliable business partner to utilize their HVAC licenses after bad experiences with previous arrangements.",
+   "trade": "HVAC",
+   "quote": "They are both waiting for RELIABLE partners.",
+   "url": "https://www.contractortalk.com/threads/florida-cac-hvac-license-holder-is-looking-for-a-partner.465471/",
+   "date_on_page": "4h ago",
+   "job": "pulse-night-extract-2026-11-07-r5",
+   "also_on_pages": 0,
+   "n": 25
+  },
+  {
+   "problem": "The owner is unsure if dents in new roof flashing and unidentified boxes on the roof are normal installation defects.",
+   "trade": "Roofing",
+   "quote": "is that normal or should it be fully straight?",
+   "url": "https://www.contractortalk.com/threads/new-roof-flashing-a-few-questions.465465/",
+   "date_on_page": "4h ago",
+   "job": "pulse-night-extract-2026-11-07-r5",
+   "also_on_pages": 0,
+   "n": 26
+  },
+  {
+   "problem": "The owner needs advice and tips on how to perform exterior caulking services effectively.",
+   "trade": "Exterior Finishing",
+   "quote": "I joined the forum to get some advice and tips",
+   "url": "https://www.contractortalk.com/threads/new-here.465455/",
+   "date_on_page": "4d ago",
+   "job": "pulse-night-extract-2026-11-07-r5",
+   "also_on_pages": 0,
+   "n": 27
+  },
+  {
+   "problem": "Need for specific field-proven details to fix a recurring leak where tile meets shingles in wind.",
+   "trade": "Roofing",
+   "quote": "Old steel plus wind rain equals drips on shingle side.",
+   "url": "https://www.contractortalk.com/threads/tile-shingle-valley-leak-need-your-go-tos.461834/",
+   "date_on_page": "Aug 30, 2025",
+   "job": "pulse-night-extract-2026-11-07-r6",
+   "also_on_pages": 0,
+   "n": 29
+  },
+  {
+   "problem": "High cost and bloated size of industry-standard software for basic document tasks.",
+   "trade": "General Contracting",
+   "quote": "Too costly just to sign a change order.",
+   "url": "https://www.contractortalk.com/threads/adobe-clone-software.465215/",
+   "date_on_page": "Oct 18, 2026",
+   "job": "pulse-night-extract-2026-11-07-r6",
+   "also_on_pages": 0,
+   "n": 30
+  },
+  {
+   "problem": "Difficulty finding painters who perform the necessary prep work for durable cabinet finishes.",
+   "trade": "Painting",
+   "quote": "Hard to find a painter that will do proper prep.",
+   "url": "https://www.contractortalk.com/threads/painting-kitchen-cabinets.464783/",
+   "date_on_page": "Sep 21, 2026",
+   "job": "pulse-night-extract-2026-11-07-r6",
+   "also_on_pages": 0,
+   "n": 31
+  },
+  {
+   "problem": "Cash flow gap between paying for payroll and supplies before receiving the first payment application.",
+   "trade": "Commercial Construction",
+   "quote": "Payroll hits weeks before any money comes in.",
+   "url": "https://www.contractortalk.com/threads/finance-guy-from-newtown-pa-here-to-learn.465409/",
+   "date_on_page": "7d ago",
+   "job": "pulse-night-extract-2026-11-07-r6",
+   "also_on_pages": 0,
+   "n": 32
+  },
+  {
+   "problem": "Modern vehicles lack the engine accessibility and repair space found in older models.",
+   "trade": "Automotive Repair",
+   "quote": "So many cars require pulling crap to get to fixing.",
+   "url": "https://www.contractortalk.com/threads/what-old-car-features-do-you-miss.464463/",
+   "date_on_page": "Aug 20, 2026",
+   "job": "pulse-night-extract-2026-11-07-r6",
+   "also_on_pages": 0,
+   "n": 33
+  },
+  {
+   "problem": "Difficulty maintaining credit ratings and organization due to administrative paperwork piling up.",
+   "trade": "General Contracting",
+   "quote": "Keeping current data allows one to get needed credit.",
+   "url": "https://www.contractortalk.com/threads/new-here-back-office-side-of-things.465393/",
+   "date_on_page": "Oct 30, 2026",
+   "job": "pulse-night-extract-2026-11-07-r6",
+   "also_on_pages": 0,
+   "n": 34
+  }
+ ]
+}

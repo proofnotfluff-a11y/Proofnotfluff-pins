@@ -1,0 +1,50 @@
+{
+ "made": "2026-11-07T15:36Z",
+ "rule": "Backtest the local box against Opus's saved story-gate verdicts (Todd, live chat, Nov 7, 2026, 5:22 am: \"Yes and to",
+ "rows": [
+  {
+   "model": "trial",
+   "kind": "read-aloud",
+   "rounds": 9,
+   "answers": 27,
+   "agree_pct": 77.8,
+   "box_pass_opus_fail": 0,
+   "box_fail_opus_pass": 6,
+   "opus_pass_rounds": 2,
+   "steady_pct": 100.0
+  },
+  {
+   "model": "trial",
+   "kind": "retell",
+   "rounds": 10,
+   "answers": 30,
+   "agree_pct": 46.7,
+   "box_pass_opus_fail": 9,
+   "box_fail_opus_pass": 7,
+   "opus_pass_rounds": 3,
+   "steady_pct": 50.0
+  },
+  {
+   "model": "workhorse",
+   "kind": "read-aloud",
+   "rounds": 9,
+   "answers": 27,
+   "agree_pct": 77.8,
+   "box_pass_opus_fail": 0,
+   "box_fail_opus_pass": 6,
+   "opus_pass_rounds": 2,
+   "steady_pct": 100.0
+  },
+  {
+   "model": "workhorse",
+   "kind": "retell",
+   "rounds": 10,
+   "answers": 30,
+   "agree_pct": 30.0,
+   "box_pass_opus_fail": 21,
+   "box_fail_opus_pass": 0,
+   "opus_pass_rounds": 3,
+   "steady_pct": 100.0
+  }
+ ]
+}

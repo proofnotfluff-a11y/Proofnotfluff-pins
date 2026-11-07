@@ -9,3 +9,4 @@
 - 2026-11-02: Monday research run (cloud lunch): runs/2026-11-02-ai-systems.md; 5 AI lane system ideas added to IDEAS.md "AI lane bank" (unknown-caller-screen, rain-day-check, supplier-price-watch, manual-desk, money-monday), prices read on makers' pages Nov 2; no Shorts outlier could be shown (YouTube pages print no counts to the fetch tool), FORMULA.md References notes the block.
 
 - 2026-11-05 build run (live): first trade pulse (research/pulse/2026-11-05.md, about 65 pages, Reddit refused), gurus.md first pass, story 2026-11-17-after-hours-robot made to preview; gates: retell, read-aloud, facts, render critic, design, send PASS; compare FAIL (r0).
+- 2026-11-07: trade pulse (morning recorder run): research/pulse/2026-11-07.md from the box's night reads (35 ContractorTalk pages) and a morning quote job on 5 threads; Claude could not open the forums from the cloud; top problem: missed calls on the job and no quote follow-up.

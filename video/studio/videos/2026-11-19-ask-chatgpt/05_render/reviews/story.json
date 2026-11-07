@@ -1,9 +1,156 @@
-{"pass": false, "stage": "script.md before voice", "round": 5, "note": "turn 1 (retell questions 1 to 4) only each round; the message matched every round, so turn 2 waits for a round with no lost line", "rounds": [
- {"r": 0, "on": "story.md prose", "retold": "Customers now ask ChatGPT who to hire, so check what it says about you and fix your Google profile and reviews.", "lost_at": "One marketing firm, writing in that same magazine and using one data company's numbers"},
- {"r": 0, "retold": "Homeowners now ask ChatGPT who to hire, so check whether it names you in your town, and fix your Google profile if not.", "lost_at": "A marketing firm read one data company's numbers."},
- {"r": 1, "retold": "Homeowners now ask ChatGPT who to hire, so ask it who's best in your trade and town, and if it's not you, fix your Google profile.", "lost_at": "a heating and cooling magazine's publisher asked homeowners where they'd look"},
- {"r": 2, "retold": "Homeowners now ask ChatGPT who to hire, and if it doesn't name you, you lose calls you never see, so check it and fix Google.", "lost_at": "Thirty-seven percent said AI tools like ChatGPT. Yelp got thirty-eight."},
- {"r": 3, "retold": "Homeowners now ask ChatGPT who to hire, so check whether it names you, and if not, fix your Google profile first.", "lost_at": "A marketing firm, using one data company's numbers, says"},
- {"r": 4, "retold": "Homeowners now ask ChatGPT who to hire, so ask it yourself tonight and, if it doesn't name you, fix your Google profile.", "lost_at": "That's one marketing firm's count, from one data company."},
- {"r": 5, "retold": "Homeowners now ask ChatGPT who to hire, and if it does not name you, you lose calls you never hear about; fix your Google profile.", "lost_at": "the company behind a heating and cooling trade magazine ran a survey", "also": "'Ask it first' points two ways after 'fix your Google profile first'"}
-], "reasons": ["retell: lost at the source line each round; r6 names the magazine plainly and the kicker says 'before they do'"]}
+{
+ "pass": true,
+ "stage": "script.md before voice",
+ "round": 10,
+ "rule": "lost-at-twice",
+ "words": "r10 (Nov 7 morning run; facts r4 wording)",
+ "judged": "changed sentences only (Smoother line 2)",
+ "parts": {
+  "retell": {
+   "pass": true,
+   "score": {
+    "retold": "Homeowners already ask ChatGPT who to hire, so ask it who's best in your trade near you, and if it isn't you, fix your Google profile.",
+    "action": "Tonight, ask ChatGPT who the best in my trade near me is. If it doesn't name me, fix my Google profile first.",
+    "lost_at": "none",
+    "matches_message": "same"
+   }
+  },
+  "read_aloud": {
+   "pass": true
+  },
+  "compare": "not yet"
+ },
+ "reasons": [],
+ "notes": [
+  "'they' after 'four people found them' could be heard as the four people for half a beat.",
+  "'tools' then 'ask it' number mismatch; 'homeowners' opens two sentences in a row.",
+  "'they'd ask it' is wider than the reviews proof that follows."
+ ],
+ "earlier": {
+  "pass": true,
+  "stage": "script.md before voice",
+  "round": 9,
+  "rule": "lost-at-twice",
+  "words": "r9 (Nov 7 morning run)",
+  "fixcheck": true,
+  "parts": {
+   "retell": {
+    "pass": true,
+    "score": {
+     "retold": "Homeowners now ask ChatGPT who to hire. Ask it yourself who's best in your trade nearby, and if it isn't you, fix your Google profile.",
+     "action": "Tonight, ask ChatGPT who's the best in my trade near me. If it doesn't name me, clean up my Google profile: name, website, reviews.",
+     "lost_at": "none",
+     "matches_message": "same"
+    }
+   },
+   "read_aloud": {
+    "pass": true,
+    "earlier_faults_fixed": "7 of 7",
+    "order": "ok"
+   },
+   "compare": "not yet"
+  },
+  "reasons": [],
+  "notes": [
+   "S6 to S7 has no spoken link; 'But if it names someone else' would be smoother.",
+   "The close switches from 'ChatGPT' to 'the robot'.",
+   "Singular they for the forum owner.",
+   "The stats paragraph after the do-this drags a little."
+  ],
+  "earlier": {
+   "pass": false,
+   "stage": "script.md before voice",
+   "round": 8,
+   "rule": "lost-at-twice",
+   "words": "r8 (Nov 7 morning run)",
+   "parts": {
+    "retell": {
+     "pass": true,
+     "score": {
+      "retold": "Homeowners now ask ChatGPT who to hire, so ask it yourself who's best near you, and if it isn't you, fix your Google profile.",
+      "action": "Tonight, ask ChatGPT who the best in my trade near me is. If my shop isn't named, clean up my Google profile: name, website and reviews.",
+      "lost_at": "And they'd never done a thing on ChatGPT.",
+      "matches_message": "same"
+     },
+     "second": {
+      "lost_at": "It's small today. That same firm says it's about one percent of revenue",
+      "lostmatch": "DIFFERENT"
+     }
+    },
+    "read_aloud": {
+     "pass": false,
+     "score": {
+      "sentences": 21,
+      "and_then_pairs": 2,
+      "unset_terms": 2,
+      "choppy_runs": 0,
+      "breath_fails": 1,
+      "order": "broken"
+     }
+    },
+    "compare": "not yet"
+   },
+   "reasons": [
+    "read_aloud: S3-4 no link. Fix: open S4 with 'That's already happening.'",
+    "read_aloud: S4-5 'And they'd never done a thing on ChatGPT.' Fix: 'But'.",
+    "read_aloud: S10-11 and then. Fix: 'That matters, because more homeowners are asking.'",
+    "read_aloud: S4 'Jobber' never introduced. Fix: 'the owner forum for Jobber, the scheduling app'.",
+    "read_aloud: S17 'It's small today' has no named 'it'. Fix: 'Work that comes from ChatGPT is small today.'",
+    "read_aloud: S4 too long for one breath. Fix: shorter clause.",
+    "read_aloud: order broken, the problem comes after the fix. Fix: 'If it names someone else, that call never rings.' just before 'So tonight, ask it yourself'."
+   ],
+   "local_precheck": {
+    "retell": "workhorse same, lost nowhere (r7 and r8)",
+    "read_aloud": "workhorse and trial FAIL every round (opening fragments flagged, known over-flag; box_backtest: box FAIL where Opus PASS 6 of 27)"
+   },
+   "earlier": {
+    "pass": false,
+    "stage": "script.md before voice",
+    "round": 5,
+    "note": "turn 1 (retell questions 1 to 4) only each round; the message matched every round, so turn 2 waits for a round with no lost line",
+    "rounds": [
+     {
+      "r": 0,
+      "on": "story.md prose",
+      "retold": "Customers now ask ChatGPT who to hire, so check what it says about you and fix your Google profile and reviews.",
+      "lost_at": "One marketing firm, writing in that same magazine and using one data company's numbers"
+     },
+     {
+      "r": 0,
+      "retold": "Homeowners now ask ChatGPT who to hire, so check whether it names you in your town, and fix your Google profile if not.",
+      "lost_at": "A marketing firm read one data company's numbers."
+     },
+     {
+      "r": 1,
+      "retold": "Homeowners now ask ChatGPT who to hire, so ask it who's best in your trade and town, and if it's not you, fix your Google profile.",
+      "lost_at": "a heating and cooling magazine's publisher asked homeowners where they'd look"
+     },
+     {
+      "r": 2,
+      "retold": "Homeowners now ask ChatGPT who to hire, and if it doesn't name you, you lose calls you never see, so check it and fix Google.",
+      "lost_at": "Thirty-seven percent said AI tools like ChatGPT. Yelp got thirty-eight."
+     },
+     {
+      "r": 3,
+      "retold": "Homeowners now ask ChatGPT who to hire, so check whether it names you, and if not, fix your Google profile first.",
+      "lost_at": "A marketing firm, using one data company's numbers, says"
+     },
+     {
+      "r": 4,
+      "retold": "Homeowners now ask ChatGPT who to hire, so ask it yourself tonight and, if it doesn't name you, fix your Google profile.",
+      "lost_at": "That's one marketing firm's count, from one data company."
+     },
+     {
+      "r": 5,
+      "retold": "Homeowners now ask ChatGPT who to hire, and if it does not name you, you lose calls you never hear about; fix your Google profile.",
+      "lost_at": "the company behind a heating and cooling trade magazine ran a survey",
+      "also": "'Ask it first' points two ways after 'fix your Google profile first'"
+     }
+    ],
+    "reasons": [
+     "retell: lost at the source line each round; r6 names the magazine plainly and the kicker says 'before they do'"
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,2 @@
+export: /home/runner/work/Proofnotfluff-pins/Proofnotfluff-pins/video/studio/videos/2026-11-18-lsa-max-bid/05_render/2026-11-18-lsa-max-bid-post.mp4 (5.5 MB, the render as is)
+exit 0

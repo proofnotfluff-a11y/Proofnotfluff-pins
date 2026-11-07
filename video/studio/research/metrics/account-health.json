@@ -35,6 +35,18 @@
    },
    "source": "videometrics account-health.2026-11-02 (evening PC run, list views only)",
    "docId": "account-health.2026-11-02"
+  },
+  {
+   "date": "2026-11-06",
+   "readAt": "2026-11-07T02:16:41Z",
+   "platforms": {
+    "facebook": "hidden",
+    "instagram": "hidden",
+    "tiktok": "hidden",
+    "youtube": 0
+   },
+   "source": "videometrics account-health.2026-11-06 (evening PC run, list views only)",
+   "docId": "account-health.2026-11-06"
   }
  ]
 }

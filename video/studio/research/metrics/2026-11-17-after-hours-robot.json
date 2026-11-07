@@ -1,0 +1,41 @@
+{
+ "slug": "2026-11-17-after-hours-robot",
+ "reads": [
+  {
+   "date": "2026-11-06",
+   "readAt": "2026-11-07T02:16:41Z",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": "hidden",
+     "views": 13
+    },
+    "instagram": {
+     "avgWatchS": "hidden",
+     "comments": "hidden",
+     "likes": "hidden",
+     "saves": "hidden",
+     "shares": "hidden",
+     "skipRate": "hidden",
+     "views": 276
+    },
+    "tiktok": {
+     "avgWatchS": "hidden",
+     "comments": 0,
+     "likes": 8,
+     "saves": "hidden",
+     "shares": "hidden",
+     "views": 213
+    },
+    "youtube": {
+     "avgPctViewed": 53.1,
+     "comments": 0,
+     "likes": 0,
+     "viewedVsSwipedPct": "hidden",
+     "views": 47
+    }
+   },
+   "source": "videometrics 2026-11-17-after-hours-robot.2026-11-06T20 (evening PC run, list views only)",
+   "docId": "2026-11-17-after-hours-robot.2026-11-06T20"
+  }
+ ]
+}

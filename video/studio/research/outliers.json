@@ -14,31 +14,31 @@
    "id": "UCYMQLrbOUA94BWrlrSJn9yw",
    "label": "Jobber",
    "shorts": 43,
-   "typical": 524
+   "typical": 525
   },
   {
    "id": "UCnmkHtZ2BKVutgi2Ogk9RIQ",
    "label": "Roofing Insights",
-   "shorts": 38,
-   "typical": 8358.5
+   "shorts": 37,
+   "typical": 8513
   },
   {
    "id": "UCVSuWJ-9UlN2DELnWClctxw",
    "label": "Phlash Consulting",
    "shorts": 49,
-   "typical": 47
+   "typical": 46
   },
   {
    "id": "UCoynaiW7H1L2uwIcgggowhw",
    "label": "Profitable Tradie",
    "shorts": 46,
-   "typical": 56.0
+   "typical": 56.5
   },
   {
    "id": "UCB3jUEyCLRbCw7QED0vnXYg",
    "label": "Electrician U",
    "shorts": 22,
-   "typical": 55762.0
+   "typical": 56715.5
   },
   {
    "id": "UCeO2QdRNK3y6Srm8SpFaeTw",
@@ -50,7 +50,7 @@
    "id": "UChFahjDeMBV67DSXiF5pwBA",
    "label": "UpFlip",
    "shorts": 41,
-   "typical": 11662
+   "typical": 11670
   },
   {
    "id": "UChxfA97D5XdOD4WWwHYrMAQ",
@@ -62,7 +62,7 @@
    "id": "UCgwFAX01m1tT0XyqU19WGtw",
    "label": "ServiceTitan",
    "shorts": 35,
-   "typical": 105
+   "typical": 117
   },
   {
    "id": "UCmA0PaDYqW2J2tJR56Mk91A",
@@ -98,13 +98,13 @@
    "id": "UCUynOuMTPXvUrTpcFWQ_qDA",
    "label": "a plumbing shop owner's pricing channel",
    "shorts": 44,
-   "typical": 10565.5
+   "typical": 10580.0
   },
   {
    "id": "UCGIMKh92vaL0_Yc0u4GYhHA",
    "label": "a plumbing education channel",
    "shorts": 50,
-   "typical": 1232.0
+   "typical": 1301.0
   },
   {
    "id": "UCGXHeIVzjBLRTjyXfXN4p9Q",
@@ -121,14 +121,14 @@
   {
    "id": "UCrvchO1h6lWZAuGaa1LqX9Q",
    "label": "a business advice clips channel",
-   "shorts": 33,
-   "typical": 784
+   "shorts": 27,
+   "typical": 230
   },
   {
    "id": "UCYwm9DYcHEG0X5DEzzv5Qjw",
    "label": "a home service growth coach's channel",
    "shorts": 35,
-   "typical": 624
+   "typical": 627
   },
   {
    "id": "UCvzwdmGkt6E4TaCfthyQMrw",
@@ -163,8 +163,8 @@
   {
    "id": "UCLB2elyHgxdWZay0zYc9jNA",
    "label": "a lawn care business owner's channel",
-   "shorts": 31,
-   "typical": 3956
+   "shorts": 30,
+   "typical": 4036.0
   },
   {
    "id": "UCxAIrYmaxjGZScjWdllN3pQ",
@@ -200,7 +200,7 @@
    "id": "UCFagrk8cFSKz79daDQ_iXHg",
    "label": "a service industry coach's channel",
    "shorts": 50,
-   "typical": 272.5
+   "typical": 277.5
   },
   {
    "id": "UC86r4_wMGU5M1-dVovjxf1w",
@@ -228,9 +228,9 @@
    "title": "No Payment, No Patio? Did These Contractors Go Too Far?",
    "published": "2026-10-20",
    "seconds": 92,
-   "views": 10038701,
-   "typical": 8358.5,
-   "ratio": 1201.0,
+   "views": 10093022,
+   "typical": 8513,
+   "ratio": 1185.6,
    "label": "Roofing Insights",
    "url": "https://www.youtube.com/shorts/zQiyPFqazDg"
   },
@@ -240,11 +240,37 @@
    "title": "This is what happens when you don't pay the junk crew \ud83d\ude33 #junkremoval",
    "published": "2026-10-12",
    "seconds": 25,
-   "views": 2438461,
-   "typical": 8358.5,
-   "ratio": 291.7,
+   "views": 2449791,
+   "typical": 8513,
+   "ratio": 287.8,
    "label": "Roofing Insights",
    "url": "https://www.youtube.com/shorts/Rw_tRgRvZHM"
+  },
+  {
+   "video": "qY3OHVkbNIk",
+   "channel": "UCAL7oQEN2f2w8DSJTQisCMQ",
+   "title": "1 year ago I started with less than $100. This is where we\u2019re at now #entrepreneur #pressurewashing",
+   "published": "2026-05-27",
+   "seconds": 111,
+   "views": 6894089,
+   "typical": 76041.0,
+   "ratio": 90.7,
+   "label": "not yet labeled",
+   "url": "https://www.youtube.com/shorts/qY3OHVkbNIk",
+   "new_channel": true
+  },
+  {
+   "video": "GWuaeIx49jI",
+   "channel": "UCAL7oQEN2f2w8DSJTQisCMQ",
+   "title": "Lets hire my first employee #shorts",
+   "published": "2026-09-28",
+   "seconds": 91,
+   "views": 5935081,
+   "typical": 76041.0,
+   "ratio": 78.1,
+   "label": "not yet labeled",
+   "url": "https://www.youtube.com/shorts/GWuaeIx49jI",
+   "new_channel": true
   },
   {
    "video": "0Yq52oaZeio",
@@ -252,9 +278,9 @@
    "title": "Job Done, Homeowner Won\u2019t Pay, What Would You Do? | Skit",
    "published": "2026-10-23",
    "seconds": 103,
-   "views": 630034,
-   "typical": 8358.5,
-   "ratio": 75.4,
+   "views": 638217,
+   "typical": 8513,
+   "ratio": 75.0,
    "label": "Roofing Insights",
    "url": "https://www.youtube.com/shorts/0Yq52oaZeio"
   },
@@ -264,11 +290,24 @@
    "title": "Roof Inspection or Roof Damage? What Do You See?",
    "published": "2026-10-19",
    "seconds": 20,
-   "views": 425737,
-   "typical": 8358.5,
-   "ratio": 50.9,
+   "views": 430331,
+   "typical": 8513,
+   "ratio": 50.5,
    "label": "Roofing Insights",
    "url": "https://www.youtube.com/shorts/1xb3Cz8A74M"
+  },
+  {
+   "video": "wkwQ8LyPSdA",
+   "channel": "UCNTp8JqwPqS5FKeYRvtrDDQ",
+   "title": "Tried To Sell Plumbing Company for $3.4m - Got Offered $450k...",
+   "published": "2026-06-11",
+   "seconds": 99,
+   "views": 3299602,
+   "typical": 68735.5,
+   "ratio": 48.0,
+   "label": "not yet labeled",
+   "url": "https://www.youtube.com/shorts/wkwQ8LyPSdA",
+   "new_channel": true
   },
   {
    "video": "_DSkrhfDvGk",
@@ -276,9 +315,9 @@
    "title": "Five Roofers. Zero Options.",
    "published": "2026-10-29",
    "seconds": 21,
-   "views": 385594,
-   "typical": 8358.5,
-   "ratio": 46.1,
+   "views": 385709,
+   "typical": 8513,
+   "ratio": 45.3,
    "label": "Roofing Insights",
    "url": "https://www.youtube.com/shorts/_DSkrhfDvGk"
   },
@@ -288,11 +327,141 @@
    "title": "Here's what's even crazier",
    "published": "2026-10-19",
    "seconds": 24,
-   "views": 380895,
-   "typical": 10565.5,
-   "ratio": 36.1,
+   "views": 388054,
+   "typical": 10580.0,
+   "ratio": 36.7,
    "label": "a plumbing shop owner's pricing channel",
    "url": "https://www.youtube.com/shorts/wHS7oI5Ld8I"
+  },
+  {
+   "video": "MRg3bpv5tLI",
+   "channel": "UCNTp8JqwPqS5FKeYRvtrDDQ",
+   "title": "Why A-Players Leave Your Trades Business",
+   "published": "2026-02-27",
+   "seconds": 53,
+   "views": 2187001,
+   "typical": 68735.5,
+   "ratio": 31.8,
+   "label": "not yet labeled",
+   "url": "https://www.youtube.com/shorts/MRg3bpv5tLI",
+   "new_channel": true
+  },
+  {
+   "video": "AS1Mw7crQQY",
+   "channel": "UCNTp8JqwPqS5FKeYRvtrDDQ",
+   "title": "90% of Trades Business Owners Don't Know This Simple Math",
+   "published": "2026-02-27",
+   "seconds": 54,
+   "views": 2113425,
+   "typical": 68735.5,
+   "ratio": 30.7,
+   "label": "not yet labeled",
+   "url": "https://www.youtube.com/shorts/AS1Mw7crQQY",
+   "new_channel": true
+  },
+  {
+   "video": "zR9ftgz2HYE",
+   "channel": "UCAL7oQEN2f2w8DSJTQisCMQ",
+   "title": "My client HIT my truck #fyp #viral #shorts #pressure washing",
+   "published": "2026-08-07",
+   "seconds": 62,
+   "views": 2236558,
+   "typical": 76041.0,
+   "ratio": 29.4,
+   "label": "not yet labeled",
+   "url": "https://www.youtube.com/shorts/zR9ftgz2HYE",
+   "new_channel": true
+  },
+  {
+   "video": "JzWguJJSDqQ",
+   "channel": "UCNTp8JqwPqS5FKeYRvtrDDQ",
+   "title": "Why You're Losing All Your Profit On Labour Costs",
+   "published": "2025-11-30",
+   "seconds": 111,
+   "views": 1745740,
+   "typical": 68735.5,
+   "ratio": 25.4,
+   "label": "not yet labeled",
+   "url": "https://www.youtube.com/shorts/JzWguJJSDqQ",
+   "new_channel": true
+  },
+  {
+   "video": "IEUzqnxBRDk",
+   "channel": "UC0U50x_UsfUyMlizmywz6YA",
+   "title": "65-Year-Olds Walking 30 Floors Up: Bricklayers Never Quit",
+   "published": "2026-10-14",
+   "seconds": 29,
+   "views": 172248,
+   "typical": 6907.5,
+   "ratio": 24.9,
+   "label": "not yet labeled",
+   "url": "https://www.youtube.com/shorts/IEUzqnxBRDk",
+   "new_channel": true
+  },
+  {
+   "video": "4O4EUb1NfbI",
+   "channel": "UCNTp8JqwPqS5FKeYRvtrDDQ",
+   "title": "The Top 12 AI Tools For Trades Business Owners",
+   "published": "2026-06-11",
+   "seconds": 87,
+   "views": 1566432,
+   "typical": 68735.5,
+   "ratio": 22.8,
+   "label": "not yet labeled",
+   "url": "https://www.youtube.com/shorts/4O4EUb1NfbI",
+   "new_channel": true
+  },
+  {
+   "video": "jaAGHdXrJqI",
+   "channel": "UCNTp8JqwPqS5FKeYRvtrDDQ",
+   "title": "You're Running A Daycare, Not A Trades Business",
+   "published": "2025-11-30",
+   "seconds": 82,
+   "views": 1226247,
+   "typical": 68735.5,
+   "ratio": 17.8,
+   "label": "not yet labeled",
+   "url": "https://www.youtube.com/shorts/jaAGHdXrJqI",
+   "new_channel": true
+  },
+  {
+   "video": "wZPc6-WNsxE",
+   "channel": "UCNTp8JqwPqS5FKeYRvtrDDQ",
+   "title": "Why You're Still Working 70 Hour Weeks In Your Trades Business",
+   "published": "2026-02-04",
+   "seconds": 73,
+   "views": 691571,
+   "typical": 68735.5,
+   "ratio": 10.1,
+   "label": "not yet labeled",
+   "url": "https://www.youtube.com/shorts/wZPc6-WNsxE",
+   "new_channel": true
+  },
+  {
+   "video": "mSaSlvvO8K0",
+   "channel": "UCAL7oQEN2f2w8DSJTQisCMQ",
+   "title": "Day 24 of scaling my pressure washing business until I make $100k Profit #fyp #hustle #powerwashing",
+   "published": "2026-07-15",
+   "seconds": 111,
+   "views": 726747,
+   "typical": 76041.0,
+   "ratio": 9.6,
+   "label": "not yet labeled",
+   "url": "https://www.youtube.com/shorts/mSaSlvvO8K0",
+   "new_channel": true
+  },
+  {
+   "video": "jjtJQ-VUhtY",
+   "channel": "UCAL7oQEN2f2w8DSJTQisCMQ",
+   "title": "What would YOU do if your clients don\u2019t pay? #fyp #pressurewashing #business ss",
+   "published": "2026-07-20",
+   "seconds": 80,
+   "views": 640992,
+   "typical": 76041.0,
+   "ratio": 8.4,
+   "label": "not yet labeled",
+   "url": "https://www.youtube.com/shorts/jjtJQ-VUhtY",
+   "new_channel": true
   },
   {
    "video": "RRRujPs1vFQ",
@@ -300,9 +469,9 @@
    "title": "You're Using Tic Tracers Wrong!",
    "published": "2026-03-20",
    "seconds": 60,
-   "views": 384967,
-   "typical": 55762.0,
-   "ratio": 6.9,
+   "views": 385179,
+   "typical": 56715.5,
+   "ratio": 6.8,
    "label": "Electrician U",
    "url": "https://www.youtube.com/shorts/RRRujPs1vFQ"
   },
@@ -312,46 +481,299 @@
    "title": "Why We Dont Use Red Heads On MC",
    "published": "2026-03-25",
    "seconds": 153,
-   "views": 307104,
-   "typical": 55762.0,
-   "ratio": 5.5,
+   "views": 307167,
+   "typical": 56715.5,
+   "ratio": 5.4,
    "label": "Electrician U",
    "url": "https://www.youtube.com/shorts/OyJgZZBaLSY"
   }
  ],
  "new_channels": [
   {
-   "id": "UCxSPVQhZhYoR1yKFRrWgIew",
-   "label": "not yet labeled",
-   "shorts": 15,
-   "typical": 33,
-   "queries": [
-    "after hours calls plumbing business",
-    "hvac business owner tips",
-    "missed calls contractor",
-    "plumbing business pricing"
-   ],
-   "outliers": 0
-  },
-  {
-   "id": "UCDWwK-H421pgIu3p2QuIgdA",
+   "id": "UCzcRZ738vAXs3p1PxkFT4pQ",
    "label": "not yet labeled",
    "shorts": 48,
-   "typical": 17.5,
+   "typical": 389.0,
+   "queries": [
+    "after hours calls plumbing business",
+    "missed calls contractor",
+    "speed to lead home services"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCq3cZVSRCdN8P16xnFoEO1g",
+   "label": "not yet labeled",
+   "shorts": 39,
+   "typical": 6564,
+   "queries": [
+    "electrician business owner",
+    "home service business owner",
+    "hvac business owner tips"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UC1tow2GrlUU3aPx6cUZHqjQ",
+   "label": "not yet labeled",
+   "shorts": 44,
+   "typical": 1165.5,
+   "queries": [
+    "home service business owner",
+    "pest control business owner",
+    "roofing business owner"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCmM8O459hXvBaTQal3z1LdA",
+   "label": "not yet labeled",
+   "shorts": 48,
+   "typical": 23.0,
+   "queries": [
+    "missed calls contractor",
+    "speed to lead home services"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCGbL-uRoIrjIPnZ_2oKQNPA",
+   "label": "not yet labeled",
+   "shorts": 50,
+   "typical": 1400.5,
+   "queries": [
+    "after hours calls plumbing business",
+    "plumber business owner"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCxSPVQhZhYoR1yKFRrWgIew",
+   "label": "not yet labeled",
+   "shorts": 16,
+   "typical": 34.5,
+   "queries": [
+    "after hours calls plumbing business",
+    "plumber business owner"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UC0bxtUahjN8cY1_htz79Edw",
+   "label": "not yet labeled",
+   "shorts": 49,
+   "typical": 51,
+   "queries": [
+    "electrician business owner",
+    "hvac business owner tips"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCpcsn26O2UYQooaTXwZyvKw",
+   "label": "not yet labeled",
+   "shorts": 32,
+   "typical": 215.0,
    "queries": [
     "hvac business owner tips",
+    "pest control business owner"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCNTp8JqwPqS5FKeYRvtrDDQ",
+   "label": "not yet labeled",
+   "shorts": 48,
+   "typical": 68735.5,
+   "queries": [
+    "AI for contractors",
+    "home service business owner"
+   ],
+   "outliers": 7
+  },
+  {
+   "id": "UC0U50x_UsfUyMlizmywz6YA",
+   "label": "not yet labeled",
+   "shorts": 50,
+   "typical": 6907.5,
+   "queries": [
+    "plumber business owner",
+    "plumbing business pricing"
+   ],
+   "outliers": 1
+  },
+  {
+   "id": "UCiEVbEKwCRE-1hZw5JTJquQ",
+   "label": "not yet labeled",
+   "shorts": 50,
+   "typical": 185.0,
+   "queries": [
+    "plumber business owner",
     "plumbing business pricing"
    ],
    "outliers": 0
   },
   {
-   "id": "UC7Brbx3SMBG76YjafqvMwHA",
+   "id": "UCtHEEhieT4aOujKLC146xZQ",
    "label": "not yet labeled",
    "shorts": 50,
-   "typical": 1044.5,
+   "typical": 87.5,
    "queries": [
-    "AI for contractors",
+    "plumber business owner",
+    "plumbing business pricing"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCZNE99pUFbUjz2XsdT2r7Mw",
+   "label": "not yet labeled",
+   "shorts": 48,
+   "typical": 986.0,
+   "queries": [
+    "contractor pricing mistakes",
+    "plumbing business pricing"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCqOIbfGIvDWhJWu38KcYQOQ",
+   "label": "not yet labeled",
+   "shorts": 43,
+   "typical": 655,
+   "queries": [
+    "plumber business owner",
+    "plumbing business pricing"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UC4KgLmKSaYyISfpRI6X-v5g",
+   "label": "not yet labeled",
+   "shorts": 28,
+   "typical": 1219.0,
+   "queries": [
+    "plumber business owner",
     "roofing business owner"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCm9fXry7htKfeD-BKXpjyGg",
+   "label": "not yet labeled",
+   "shorts": 41,
+   "typical": 2799,
+   "queries": [
+    "home service business owner",
+    "roofing business owner"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UC9J_jJwDwUu_jIYRMcoY_8A",
+   "label": "not yet labeled",
+   "shorts": 40,
+   "typical": 40.0,
+   "queries": [
+    "electrician business owner",
+    "roofing business owner"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCEwACSZ8F47Cul0Uz82Kh5A",
+   "label": "not yet labeled",
+   "shorts": 43,
+   "typical": 1092,
+   "queries": [
+    "contractor business tips",
+    "roofing business owner"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCjqZ4WCt2xlxHgSHepoYSuw",
+   "label": "not yet labeled",
+   "shorts": 50,
+   "typical": 1075.0,
+   "queries": [
+    "landscaping business owner",
+    "roofing business owner"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCK3AYZR0a8aOIWjVG34oGmA",
+   "label": "not yet labeled",
+   "shorts": 46,
+   "typical": 2721.5,
+   "queries": [
+    "home service business owner",
+    "trades business owner"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCLBS6kHO12dlvh0tcxB9iSA",
+   "label": "not yet labeled",
+   "shorts": 46,
+   "typical": 94.5,
+   "queries": [
+    "home service business owner",
+    "pest control business owner"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCbixD6fOtYl36zThh26aGpA",
+   "label": "not yet labeled",
+   "shorts": 41,
+   "typical": 218,
+   "queries": [
+    "plumber business owner",
+    "trades business owner"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCXqHM2fKAIJ23FaLalj8VtA",
+   "label": "not yet labeled",
+   "shorts": 44,
+   "typical": 3085.0,
+   "queries": [
+    "electrician business owner",
+    "landscaping business owner"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCi7Zk9baY1tvdlgxIML8MXg",
+   "label": "not yet labeled",
+   "shorts": 35,
+   "typical": 2746,
+   "queries": [
+    "landscaping business owner",
+    "trades business owner"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCAL7oQEN2f2w8DSJTQisCMQ",
+   "label": "not yet labeled",
+   "shorts": 46,
+   "typical": 76041.0,
+   "queries": [
+    "garage door business",
+    "pressure washing business"
+   ],
+   "outliers": 5
+  },
+  {
+   "id": "UC69X6to7-9BAIJR1Z6NzDIA",
+   "label": "not yet labeled",
+   "shorts": 31,
+   "typical": 74,
+   "queries": [
+    "missed calls contractor"
    ],
    "outliers": 0
   },
@@ -359,7 +781,27 @@
    "id": "UCwQTR0pLE0QKG8mCB1bLfDg",
    "label": "not yet labeled",
    "shorts": 44,
-   "typical": 19.0,
+   "typical": 19.5,
+   "queries": [
+    "missed calls contractor"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCkNZUex-NLCCpUGI5jeXYxQ",
+   "label": "not yet labeled",
+   "shorts": 50,
+   "typical": 488.0,
+   "queries": [
+    "missed calls contractor"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCiJJBoCtNttSut2lzANSLZg",
+   "label": "not yet labeled",
+   "shorts": 50,
+   "typical": 38.5,
    "queries": [
     "missed calls contractor"
    ],
@@ -370,6 +812,16 @@
    "label": "not yet labeled",
    "shorts": 42,
    "typical": 40.0,
+   "queries": [
+    "missed calls contractor"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCgamO6DezEMvMfLBiMQnATQ",
+   "label": "not yet labeled",
+   "shorts": 50,
+   "typical": 0.5,
    "queries": [
     "missed calls contractor"
    ],
@@ -396,10 +848,10 @@
    "outliers": 0
   },
   {
-   "id": "UCCE1NtmZZQ5FdeZFPCQyvkQ",
+   "id": "UCUWF1BSgb6Cm9OQQ-fdsciA",
    "label": "not yet labeled",
-   "shorts": 35,
-   "typical": 40,
+   "shorts": 47,
+   "typical": 52,
    "queries": [
     "missed calls contractor"
    ],
@@ -416,20 +868,10 @@
    "outliers": 0
   },
   {
-   "id": "UCDkNBqu_1FFcbK1djx5dmTg",
-   "label": "not yet labeled",
-   "shorts": 50,
-   "typical": 189.0,
-   "queries": [
-    "missed calls contractor"
-   ],
-   "outliers": 0
-  },
-  {
    "id": "UCxQehUrSP0uZ8EJkP5W_CfQ",
    "label": "not yet labeled",
    "shorts": 46,
-   "typical": 19.5,
+   "typical": 20.5,
    "queries": [
     "missed calls contractor"
    ],
@@ -456,70 +898,20 @@
    "outliers": 0
   },
   {
-   "id": "UCzcRZ738vAXs3p1PxkFT4pQ",
+   "id": "UCpCUwAzB6QuCkaNHMps_UwQ",
    "label": "not yet labeled",
-   "shorts": 48,
-   "typical": 401.0,
-   "queries": [
-    "missed calls contractor"
-   ],
-   "outliers": 0
-  },
-  {
-   "id": "UCy4OcVeX31hiTLiPdJvWTcA",
-   "label": "not yet labeled",
-   "shorts": 8,
-   "typical": 530.5,
-   "queries": [
-    "missed calls contractor"
-   ],
-   "outliers": 0
-  },
-  {
-   "id": "UCmJZe8FGZdb0DuCPsnzX_aA",
-   "label": "not yet labeled",
-   "shorts": 47,
-   "typical": 39,
-   "queries": [
-    "missed calls contractor"
-   ],
-   "outliers": 0
-  },
-  {
-   "id": "UCdFX5Ygg6_RyZ-FGwH19KCQ",
-   "label": "not yet labeled",
-   "shorts": 49,
-   "typical": 33,
-   "queries": [
-    "missed calls contractor"
-   ],
-   "outliers": 0
-  },
-  {
-   "id": "UCZR1giqTHZ7MM6n2GfJKkDw",
-   "label": "not yet labeled",
-   "shorts": 33,
-   "typical": 22,
-   "queries": [
-    "missed calls contractor"
-   ],
-   "outliers": 0
-  },
-  {
-   "id": "UCcwtkN8GvjR8d32b-Ob5BMA",
-   "label": "not yet labeled",
-   "shorts": 48,
-   "typical": 50.5,
-   "queries": [
-    "missed calls contractor"
-   ],
-   "outliers": 0
-  },
-  {
-   "id": "UC5OJdYy0zj9-gyvRPb60tDA",
-   "label": "not yet labeled",
-   "shorts": 7,
+   "shorts": 4,
    "typical": null,
+   "queries": [
+    "missed calls contractor"
+   ],
+   "outliers": 0
+  },
+  {
+   "id": "UCQLPuTTxl9vIzMrleMUOQag",
+   "label": "not yet labeled",
+   "shorts": 50,
+   "typical": 5.5,
    "queries": [
     "missed calls contractor"
    ],
@@ -527,5 +919,5 @@
   }
  ],
  "errors": [],
- "quota_units": 965
+ "quota_units": 2225
 }

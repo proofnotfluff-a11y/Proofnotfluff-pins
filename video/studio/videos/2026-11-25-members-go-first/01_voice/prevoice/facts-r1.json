@@ -1,0 +1,18 @@
+{"gate":"facts","round":1,"stage":"script, before voice","pass":true,
+"score":{"numbers":5,"mismatches":0},
+"reasons":[
+"r0 fault 1 fixed: 'Would homeowners pay for a plan?' now asks about a plan in general, not our card, so the 87% is not used to back our specific card.",
+"r0 fault 2 fixed: 'Bill it monthly, and that money comes in even in the slow weeks' makes monthly billing our choice. It no longer reads as a survey result.",
+"r0 fault 3 fixed: 'In a 2023 survey by The ACHR News and Clear Seas Research' credits both and says the year out loud. The number, amounts and period ('eighty-seven percent said they'd pay a hundred or two hundred dollars a year for a service agreement') match the source sentence. The population (homeowners) comes from the question just before it. That is fair.",
+"r0 fault 4 fixed: brief.md send card is now tagged 'EXAMPLE: OUR SUGGESTED PLAN', and the Real screens card keeps the Dec 2023 tag on screen.",
+"Plan card said as one sentence ('Two tune-ups a year, members first when it breaks, a discount on every repair, and one price, billed monthly'). It is spoken as our setup instruction ('So set one up, and hand this card...'), and the EXAMPLE label is on screen. No new claim.",
+"Not a blocker: the brief.md 'Send:' line (the text sent onward) has no EXAMPLE tag. The held on-screen card does, so this is optional cleanup.",
+"No em or en dashes in script.md, brief.md or facts.json. Nothing claims real shops give priority, that plans raise income or that shops grow."
+],
+"fixes":[
+"Optional: start brief.md 'Send:' with 'EXAMPLE: OUR SUGGESTED PLAN:' to match the on-screen card."
+],
+"sources_checked":[
+"https://www.achrnews.com/articles/153922-homeowners-contractors-mutually-support-maintenance-agreements: not reachable from this session. Checked against the same Nov 8, 2026 local page reader quotes as r0 (87% willing to pay $100 or $200 annually for a service agreement; 400 homeowners; Clear Seas Research; page dated Dec 12, 2023).",
+"WebSearch (Nov 8, 2026, r0): a summary of the same article agrees on the 87%, the $100 or $200 a year, Clear Seas Research with ACHR News, and the Dec 12, 2023 date."
+]}

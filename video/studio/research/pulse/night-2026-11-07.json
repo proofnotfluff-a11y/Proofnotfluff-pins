@@ -2,17 +2,48 @@
  "date": "2026-11-07",
  "rule": "tools/pulse_merge.py: url asked and loaded, quote 10 words or fewer, no contact details",
  "report": {
-  "jobs": 6,
-  "ok": 5,
-  "pages_ok": 35,
-  "raw": 34,
-  "kept": 34,
+  "jobs": 9,
+  "ok": 8,
+  "pages_ok": 59,
+  "raw": 59,
+  "kept": 58,
   "dropped": {
    "job not ok": 1,
-   "quote over 10 words (quote removed, item kept)": 4
+   "quote over 10 words (quote removed, item kept)": 10,
+   "near duplicate on the same page": 1
   }
  },
  "items": [
+  {
+   "problem": "Uncertainty about the correct waterproofing method for a shower pan built on concrete, specifically whether liquid membrane can replace traditional liners and pre-slope.",
+   "trade": "Tile Contractor",
+   "quote": "Can I do liquid membrane over mud pan?",
+   "url": "https://www.contractortalk.com/threads/water-proofing.465497/",
+   "date_on_page": "1d ago",
+   "job": "pulse-night-extract-2026-11-07-r3",
+   "also_on_pages": 2,
+   "n": 8
+  },
+  {
+   "problem": "Uncertainty about whether practical experience alone meets licensing requirements without formal education.",
+   "trade": "Roofing",
+   "quote": "Is three years of work sufficient for a license?",
+   "url": "https://www.contractortalk.com/threads/navigating-roofing-license-requirements-education-vs-hands-on-experience.454751/",
+   "date_on_page": "Mar 22, 2024",
+   "job": "pulse-night-extract-2026-11-07-r6",
+   "also_on_pages": 2,
+   "n": 28
+  },
+  {
+   "problem": "Uncertainty about whether exclusive lead access is worth the cost compared to shared lists.",
+   "trade": "HVAC",
+   "quote": "",
+   "url": "https://www.hvac-talk.com/threads/hvac-scout-commercial-hvac-leads-from-public-records.2293713/",
+   "date_on_page": "Oct 28, 2026",
+   "job": "pulse-night-extract-2026-11-07-r7",
+   "also_on_pages": 2,
+   "n": 41
+  },
   {
    "problem": "No business problem raised; user is sharing photos of current work.",
    "trade": "Roofing and Siding",
@@ -34,24 +65,64 @@
    "n": 7
   },
   {
-   "problem": "Uncertainty about the correct waterproofing method for a shower pan built on concrete, specifically whether liquid membrane can replace traditional liners and pre-slope.",
-   "trade": "Tile Contractor",
-   "quote": "Can I do liquid membrane over mud pan?",
-   "url": "https://www.contractortalk.com/threads/water-proofing.465497/",
-   "date_on_page": "1d ago",
+   "problem": "Losing potential jobs due to missed phone calls while on-site and a lack of an automated system for quote follow-ups.",
+   "trade": "Contracting Business",
+   "quote": "Where im still losing money is two spots.",
+   "url": "https://www.contractortalk.com/threads/what-are-you-running-for-quote-follow-ups-and-missed-calls.465353/",
+   "date_on_page": "Oct 27, 2026",
    "job": "pulse-night-extract-2026-11-07-r3",
    "also_on_pages": 1,
-   "n": 8
+   "n": 13
   },
   {
-   "problem": "Uncertainty about whether practical experience alone meets licensing requirements without formal education.",
-   "trade": "Roofing",
-   "quote": "Is three years of work sufficient for a license?",
-   "url": "https://www.contractortalk.com/threads/navigating-roofing-license-requirements-education-vs-hands-on-experience.454751/",
-   "date_on_page": "Mar 22, 2024",
+   "problem": "Difficulty finding painters who perform the necessary prep work for durable cabinet finishes.",
+   "trade": "Painting",
+   "quote": "Hard to find a painter that will do proper prep.",
+   "url": "https://www.contractortalk.com/threads/painting-kitchen-cabinets.464783/",
+   "date_on_page": "Sep 21, 2026",
    "job": "pulse-night-extract-2026-11-07-r6",
    "also_on_pages": 1,
-   "n": 28
+   "n": 31
+  },
+  {
+   "problem": "Lost revenue from missed calls and unreturned estimates due to lack of a follow-up process.",
+   "trade": "HVAC",
+   "quote": "When your team misses a call... what happens?",
+   "url": "https://www.hvac-talk.com/threads/we-miss-a-call-all-the-times-problem.2291482/",
+   "date_on_page": "Jul 22, 2026",
+   "job": "pulse-night-extract-2026-11-07-r7",
+   "also_on_pages": 1,
+   "n": 35
+  },
+  {
+   "problem": "Difficulty finding low-cost marketing methods to generate initial work for a new business.",
+   "trade": "Plumbing",
+   "quote": "Things I can do at little to no cost.",
+   "url": "https://www.plumbingzone.com/threads/guerilla-marketing.90688/",
+   "date_on_page": "Mar 28, 2025",
+   "job": "pulse-night-extract-2026-11-07-r7",
+   "also_on_pages": 1,
+   "n": 39
+  },
+  {
+   "problem": "The owner lacks the business knowledge and marketing skills required to start their own company.",
+   "trade": "Electrical",
+   "quote": "I don't really know much about business and marketing.",
+   "url": "https://www.electriciantalk.com/threads/getting-tired-of-the-industry-suggestions.308135/",
+   "date_on_page": "3d ago",
+   "job": "pulse-night-extract-2026-11-07-r9",
+   "also_on_pages": 1,
+   "n": 52
+  },
+  {
+   "problem": "The owner lacks sufficient capital reserves to survive the first year of business without steady income.",
+   "trade": "HVAC",
+   "quote": "",
+   "url": "https://www.hvac-talk.com/threads/career-and-pay-hvac-questions-for-experience-tech.2293751/",
+   "date_on_page": "Oct 29, 2026",
+   "job": "pulse-night-extract-2026-11-07-r9",
+   "also_on_pages": 1,
+   "n": 56
   },
   {
    "problem": "Difficulty tracking retainage releases after project completion.",
@@ -142,16 +213,6 @@
    "job": "pulse-night-extract-2026-11-07-r3",
    "also_on_pages": 0,
    "n": 12
-  },
-  {
-   "problem": "Losing potential jobs due to missed phone calls while on-site and a lack of an automated system for quote follow-ups.",
-   "trade": "Contracting Business",
-   "quote": "Where im still losing money is two spots.",
-   "url": "https://www.contractortalk.com/threads/what-are-you-running-for-quote-follow-ups-and-missed-calls.465353/",
-   "date_on_page": "Oct 27, 2026",
-   "job": "pulse-night-extract-2026-11-07-r3",
-   "also_on_pages": 0,
-   "n": 13
   },
   {
    "problem": "Need to provide a budget estimate for a multi-bath remodel quickly without having detailed plans or structural changes yet.",
@@ -314,16 +375,6 @@
    "n": 30
   },
   {
-   "problem": "Difficulty finding painters who perform the necessary prep work for durable cabinet finishes.",
-   "trade": "Painting",
-   "quote": "Hard to find a painter that will do proper prep.",
-   "url": "https://www.contractortalk.com/threads/painting-kitchen-cabinets.464783/",
-   "date_on_page": "Sep 21, 2026",
-   "job": "pulse-night-extract-2026-11-07-r6",
-   "also_on_pages": 0,
-   "n": 31
-  },
-  {
    "problem": "Cash flow gap between paying for payroll and supplies before receiving the first payment application.",
    "trade": "Commercial Construction",
    "quote": "Payroll hits weeks before any money comes in.",
@@ -352,6 +403,196 @@
    "job": "pulse-night-extract-2026-11-07-r6",
    "also_on_pages": 0,
    "n": 34
+  },
+  {
+   "problem": "Inability to secure reliable answering services for after-hours commercial calls without using AI.",
+   "trade": "Plumbing",
+   "quote": "Quality has gone down 10 fold.",
+   "url": "https://www.plumbingzone.com/threads/answering-services.91015/",
+   "date_on_page": "Jan 28, 2026",
+   "job": "pulse-night-extract-2026-11-07-r7",
+   "also_on_pages": 0,
+   "n": 36
+  },
+  {
+   "problem": "Fear that AI will book estimates for jobs the business does not perform.",
+   "trade": "Landscaping",
+   "quote": "Letting it put appointments on the calendar is another.",
+   "url": "https://www.lawnsite.com/threads/would-you-trust-ai-to-book-your-estimates.525081/",
+   "date_on_page": "Oct 26, 2026",
+   "job": "pulse-night-extract-2026-11-07-r7",
+   "also_on_pages": 0,
+   "n": 37
+  },
+  {
+   "problem": "Customers agreeing to work then ghosting or cancelling without notice.",
+   "trade": "Plumbing",
+   "quote": "Every one of them ghosted me.",
+   "url": "https://www.plumbingzone.com/threads/ghosting-the-plumber.91332/",
+   "date_on_page": "Oct 26, 2026",
+   "job": "pulse-night-extract-2026-11-07-r7",
+   "also_on_pages": 0,
+   "n": 38
+  },
+  {
+   "problem": "Underestimating the time required to build a customer base and manage office overhead.",
+   "trade": "Plumbing",
+   "quote": "I definitely underestimate the office hours every week.",
+   "url": "https://www.plumbingzone.com/threads/business-update.91153/",
+   "date_on_page": "Jul 31, 2026",
+   "job": "pulse-night-extract-2026-11-07-r7",
+   "also_on_pages": 0,
+   "n": 40
+  },
+  {
+   "problem": "How to charge clients extra for missed leaf cleanup weeks caused by staff shortages without causing arguments.",
+   "trade": "Lawn Care",
+   "quote": "charged an additional $45 for the catch-up cleanup",
+   "url": "https://www.lawnsite.com/threads/managing-fall-leaf-cleanup-surcharges-due-to-scheduling-adjustments.525115/",
+   "date_on_page": "5d ago",
+   "job": "pulse-night-extract-2026-11-07-r8",
+   "also_on_pages": 0,
+   "n": 42
+  },
+  {
+   "problem": "Losing money on weekly leaf removal add-ons because current pricing does not cover the extra labor time.",
+   "trade": "Lawn Care",
+   "quote": "loosing my ass on weekly leaf removal",
+   "url": "https://www.lawnsite.com/threads/i%E2%80%99m-just-hemorrhaging-money-failing-leaf-season.525031/",
+   "date_on_page": "Oct 21, 2026",
+   "job": "pulse-night-extract-2026-11-07-r8",
+   "also_on_pages": 0,
+   "n": 43
+  },
+  {
+   "problem": "Failing to make profit on Christmas light bids due to poor pricing methods for different installation types.",
+   "trade": "Landscaping",
+   "quote": "first bid is where most of them lose money",
+   "url": "https://www.lawnsite.com/threads/christmas-light-installation-pricing-per-foot-how-are-you-bidding-roofline-vs-bushes-and-trees.525137/",
+   "date_on_page": "3d ago",
+   "job": "pulse-night-extract-2026-11-07-r8",
+   "also_on_pages": 0,
+   "n": 44
+  },
+  {
+   "problem": "Deciding how to structure a paid sick leave policy for a very small team without hurting the business budget.",
+   "trade": "Lawn Care",
+   "quote": "how much can my business afford",
+   "url": "https://www.lawnsite.com/threads/sick-pay-for-small-biz.525099/",
+   "date_on_page": "Oct 29, 2026",
+   "job": "pulse-night-extract-2026-11-07-r8",
+   "also_on_pages": 0,
+   "n": 45
+  },
+  {
+   "problem": "Restarting a lawn business with professional systems for payments, scheduling, and pricing after a year-long break.",
+   "trade": "Lawn Care",
+   "quote": "",
+   "url": "https://www.lawnsite.com/threads/looking-for-advice-restarting-my-business.525111/",
+   "date_on_page": "7d ago",
+   "job": "pulse-night-extract-2026-11-07-r8",
+   "also_on_pages": 0,
+   "n": 46
+  },
+  {
+   "problem": "Uncertainty about equipment choices, training, and business viability when expanding a cleaning company into duct cleaning.",
+   "trade": "Cleaning Services",
+   "quote": "don't know which equipment setup is best",
+   "url": "https://www.hvac-talk.com/threads/starting-a-duct-cleaning-business.2293981/",
+   "date_on_page": "2d ago",
+   "job": "pulse-night-extract-2026-11-07-r8",
+   "also_on_pages": 0,
+   "n": 47
+  },
+  {
+   "problem": "Dealing with unpaid invoices and bad debt while maintaining business profitability and customer selection.",
+   "trade": "Electrical",
+   "quote": "",
+   "url": "https://www.electriciantalk.com/threads/how-to-lose.308109/",
+   "date_on_page": "6d ago",
+   "job": "pulse-night-extract-2026-11-07-r8",
+   "also_on_pages": 0,
+   "n": 48
+  },
+  {
+   "problem": "Being forced to perform unpaid or low-value repair work on obsolete equipment just to satisfy a property manager.",
+   "trade": "Electrical",
+   "quote": "hate wasting my time and effort on a moot point",
+   "url": "https://www.electriciantalk.com/threads/total-waste-of-time.308111/",
+   "date_on_page": "6d ago",
+   "job": "pulse-night-extract-2026-11-07-r8",
+   "also_on_pages": 0,
+   "n": 49
+  },
+  {
+   "problem": "Staff are not prepared for long service days or late nights, forcing them to waste time leaving and returning to job sites.",
+   "trade": "Electrical",
+   "quote": "Potential long days make leaving a customers house impractical.",
+   "url": "https://www.electriciantalk.com/threads/duke-energy-estimations.307679/",
+   "date_on_page": "Sep 10, 2026",
+   "job": "pulse-night-extract-2026-11-07-r9",
+   "also_on_pages": 0,
+   "n": 50
+  },
+  {
+   "problem": "A transformer failure cut power to the shop and building, leaving critical equipment like compressors and exhaust fans inoperable.",
+   "trade": "Electrical",
+   "quote": "No compressor, no exhaust fan. So after sanding I'm dead.",
+   "url": "https://www.electriciantalk.com/threads/duke-energy-estimations.307679/",
+   "date_on_page": "Sep 10, 2026",
+   "job": "pulse-night-extract-2026-11-07-r9",
+   "also_on_pages": 0,
+   "n": 51
+  },
+  {
+   "problem": "The owner is unable to generate enough profit from their hobby farm to replace their current employment income.",
+   "trade": "Electrical",
+   "quote": "",
+   "url": "https://www.electriciantalk.com/threads/getting-tired-of-the-industry-suggestions.308135/",
+   "date_on_page": "4d ago",
+   "job": "pulse-night-extract-2026-11-07-r9",
+   "also_on_pages": 0,
+   "n": 53
+  },
+  {
+   "problem": "The owner struggles to organize receipts and paperwork efficiently when transitioning from a paper-based workflow to digital systems.",
+   "trade": "Electrical",
+   "quote": "Otherwise that minimalist desk turns into a pile pretty fast.",
+   "url": "https://www.electriciantalk.com/threads/home-office.308091/",
+   "date_on_page": "4d ago",
+   "job": "pulse-night-extract-2026-11-07-r9",
+   "also_on_pages": 0,
+   "n": 54
+  },
+  {
+   "problem": "The owner is unsure whether to switch from hourly pay to commission, fearing income instability during off-seasons.",
+   "trade": "HVAC",
+   "quote": "Shoulder months can hurt a lot.",
+   "url": "https://www.hvac-talk.com/threads/career-and-pay-hvac-questions-for-experience-tech.2293751/",
+   "date_on_page": "Oct 29, 2026",
+   "job": "pulse-night-extract-2026-11-07-r9",
+   "also_on_pages": 0,
+   "n": 55
+  },
+  {
+   "problem": "The owner is uncertain about the best way to handle customer tipping and fears it may look unprofessional.",
+   "trade": "Lawn Care",
+   "quote": "It just cheapens their impression of you.",
+   "url": "https://www.lawnsite.com/threads/tips.525139/",
+   "date_on_page": "2d ago",
+   "job": "pulse-night-extract-2026-11-07-r9",
+   "also_on_pages": 0,
+   "n": 57
+  },
+  {
+   "problem": "The installer failed to perform pre-installation diagnostics, resulting in an incompatible system that causes high static pressure and equipment stress.",
+   "trade": "HVAC",
+   "quote": "",
+   "url": "https://www.hvac-talk.com/threads/1-2-to-1-4-wc-static-pressure-after-failed-7-lift-on-slab-ranch-new-trane-s8v2-am-i-being-unreasonable-with-the-installer.2293987/",
+   "date_on_page": "2d ago",
+   "job": "pulse-night-extract-2026-11-07-r9",
+   "also_on_pages": 0,
+   "n": 58
   }
  ]
 }

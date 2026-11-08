@@ -1,0 +1,25 @@
+{
+ "about": "Every number and claim this lesson shows or says, with its source. The ACHR News article 'Homeowners, Contractors Mutually Support Maintenance Agreements' (Dec 2023; a survey of 400 homeowners and 100 HVAC contractors with Clear Seas Research) re-read Nov 8, 2026 (Central) by a box fetch job (members-facts-2026-11-08-r1, workhorse, and its trial twin): both models copied the confirm lines below word for word. achrnews.com does not resolve from this cloud session. The cold night, forty calls, three trucks and the plan card are ours (EXAMPLE on screen). We never say that members get priority at real shops, how much a plan earns, or that plans make shops grow: this source does not give those.",
+ "survey": {
+  "title": "Homeowners, Contractors Mutually Support Maintenance Agreements",
+  "publisher": "The ACHR News, with Clear Seas Research",
+  "date": "2023-12",
+  "url": "https://www.achrnews.com/articles/153922-homeowners-contractors-mutually-support-maintenance-agreements",
+  "reread": "2026-11-08",
+  "payPct": 87,
+  "payShown": "87%",
+  "paySaid": "eighty-seven percent",
+  "payAmounts": [100, 200],
+  "payAmountsSaid": "a hundred or two hundred dollars a year",
+  "population": "homeowners in the survey (a survey of 400 homeowners)",
+  "confirms": [
+   "Per the survey, 87% of homeowners are willing to pay either $100 or $200 annually for a service agreement.",
+   "A recent survey of 400 homeowners, conducted by Clear Seas Research, shows that homeowners are generally supportive of HVAC maintenance agreements."
+  ]
+ },
+ "example": {
+  "calls": 40,
+  "trucks": 3,
+  "what": "ours: picture the first cold night, forty no-heat calls by noon, three trucks; the plan card is our suggestion, labeled EXAMPLE"
+ }
+}

@@ -77,7 +77,8 @@
 - Mistake owned: step 1's first tool test passed falsely because the refusal text contained the search word; the check now tests the cited title and detects the refusal.
 - Next, in a fresh chat: step 4 (PNF-OFFLINE Wi-Fi, Deco-cable watcher and shutdown guard, shared Ethernet port, offline-chat command), step 5 (MANIFEST, verify, setup.sh --profile), step 6 (grid-down card), then the power-cut drill in its own session. Modem unplug tests stay clear of the 11:37, 16:41 and 20:13 posting slots.
 
-## Studio changes proposed from the creator's method videos (not adopted; Todd's go needed)
+## Studio changes from the creator's method videos (1, 2 and 4 adopted)
+Todd, Nov 7, 6:59 pm, on the recommendation to adopt 1, 2 and 4: "Go with your recommendation". 3, 5 and 6 are not adopted. Build them in a fresh chat; no gate is loosened.
 Read from six watch-video answers (video/watch/answers/2026-11-07-jvc-*.md; Gemini's account, no frames seen). Each aims at rounds we paid for today (design 3 to 4 rounds, render critic up to 6, story gate up to 29).
 1. Every drawn string goes into cues.md, and facts reads cues.md before scene code; lint fails a drawn string missing from cues.md.
 2. Freshness checked at the storyboard: compare card layouts and transitions with the two lessons before, in code, before render.

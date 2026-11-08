@@ -1,46 +1,68 @@
 {
   "gate": "render-critic",
-  "round": 0,
+  "round": 1,
   "reviewer": "fresh opus agent",
-  "pass": false,
+  "pass": true,
   "score": {
-    "faults": 1
+    "faults": 0
   },
-  "faults": [
-    {
-      "kind": "overlap",
-      "at": 25.0,
-      "text": "0",
-      "scene": "small (gauge, SHARE OF REVENUE)",
-      "what": "Once the needle settles at 1% (about 24.5 to 28 s), it lies across the gauge's '0' scale label at about x 390, y 775, so the 0 is almost fully hidden (full-size frame at 26.5 s shows only a sliver). At 24.08 s (needle at 0) the needle also cuts through the 0. Move the 0 label off the needle's path (for example outside the arc, or below the red end) or start the sweep a few degrees clear of it."
-    }
-  ],
+  "faults": [],
   "reasons": [
-    "Hook: $11,500 is on screen at 0.0 s, both as the big counter number (y about 820 to 950) and the price card; the voice says 'eleven and a half grand' at 1.22 to 3.46 s. Pass.",
-    "Spoken numbers: 'eleven and a half grand' (1.2 to 3.5 s) matches $11,500 on screen 0.0 to 5.5 s; 'one percent' (25.30 to 25.68 s) matches the large orange 1% readout shown from about 24.5 s to 28 s. Both large and readable. The source line dates (Mar 18, 2026) are not spoken.",
-    "Layout once settled: the one fault above (gauge needle over the '0' label). Everything else is clear: the shop sign, chalkboard and price card, VS cards, work order text (ends near x 665), flap board letters (end near x 915), source boxes (box edges reach about x 1035 but their text ends by x 770), speech bubble (x 375 to 928, y 1050 to 1230), close card and end card all sit between y 270 and y 1250 and left of x 930. The RUN THE CHECK bar at y 190 is decoration.",
-    "Note, not a fault: flap board row 2 'WEBSITE' + 'YOURS' fills all 12 cells in the same white with no blank cell, so it reads as one run (row 3 separates them by colour). Mid-transition frames (5.5 s VS wipe, 7.0 s work order typing in, 15.5 s pixel dissolve, 16.0 to 16.5 s flaps flipping, 28.0 s blank cut, 31.5 s end card) were ignored as motion.",
-    "Audio end: last word 'does' ends at 31.42 s, end card starts 31.52 s, video and audio run to 34.53 s; the bubble completes 'before a customer does.' Nothing cut mid-word. Pass.",
-    "Text size: smallest text is the work order subhead and source lines at about 28 to 32 px on a 1080 wide frame, readable on a phone. Flash: scene changes come no faster than every 0.5 s; nothing flashes more than 3 times a second. Pass.",
-    "Earlier round (kept under 'earlier') listed no faults; it noted the needle brushing the '0' label as minor. On this render the needle at 1% hides the 0 rather than brushing it, so it is now counted as an overlap fault."
+    "Earlier fault checked (overlap, gauge needle over the '0' scale label, 24 to 28 s): fixed. Frames pulled from the mp4 at 24.08, 25.0 and 26.5 s and zoomed 4x show the '0' label now drawn on a light plate on top of the needle, at about x 395, y 775; the needle passes behind it at 0 and at 1%, and the 0 is fully readable in both.",
+    "Hook: $11,500 is on screen from 0.0 s (big counter and price card); the voice says 'eleven and a half grand' at about 1.2 to 3.5 s. Pass.",
+    "Spoken numbers: 'one percent' (25.30 to 25.98 s) matches the large orange 1% readout shown about 24.5 to 28 s; $11,500 shown 0.0 to 5.5 s. Both readable.",
+    "Layout once settled: no new blocker. Shop, VS cards, work order, flap board, gauge, close card and end card text all sit between y 270 and y 1250 and left of x 930 as in the last round; nothing hidden or cut off.",
+    "Audio end: last word 'does.' ends 31.42 s; video and audio both run to 34.53 s. Nothing cut mid-word. Pass.",
+    "Text size and flash: unchanged from last round, smallest text about 28 to 32 px, readable on a phone; no flashing faster than 3 times a second. Pass."
+  ],
+  "notes": [
+    "The needle tip still sits beside the 0 plate at 1%, so the plate reads as a small badge over the needle; legible, not a fault.",
+    "Flap board row 2 'WEBSITE' + 'YOURS' still fills all 12 cells with no blank cell (carried note from earlier rounds)."
   ],
   "earlier": {
     "gate": "render-critic",
     "round": 0,
     "reviewer": "fresh opus agent",
-    "pass": true,
+    "pass": false,
     "score": {
-      "faults": 0
+      "faults": 1
     },
-    "faults": [],
+    "faults": [
+      {
+        "kind": "overlap",
+        "at": 25.0,
+        "text": "0",
+        "scene": "small (gauge, SHARE OF REVENUE)",
+        "what": "Once the needle settles at 1% (about 24.5 to 28 s), it lies across the gauge's '0' scale label at about x 390, y 775, so the 0 is almost fully hidden (full-size frame at 26.5 s shows only a sliver). At 24.08 s (needle at 0) the needle also cuts through the 0. Move the 0 label off the needle's path (for example outside the arc, or below the red end) or start the sweep a few degrees clear of it."
+      }
+    ],
     "reasons": [
-      "Hook: $11,500 sign is on screen from frame 0.0s, well before 0:02; the voice says 'eleven and a half grand' at 1.22 to 3.46 s and PER JOB joins the tag by 2.5 s.",
-      "Spoken numbers: only two. 'eleven and a half grand' (1.2 to 3.5 s) matches $11,500 shown 0.0 to 5.5 s; 'one percent' (25.3 to 25.7 s) matches the gauge readout 1% shown from 24.5 s to 28 s. Both large and readable.",
-      "Layout once settled: no word or number hidden, cut off or under another element in any scene (shop 0 to 5.5 s, VS 5.5 to 7 s, work order 7 to 15.5 s, flap board 16 to 23.5 s, gauge 23.5 to 28 s, close 28.5 to 31.5 s, end card 31.5 to 34.5 s). All text sits between y 270 and y 1250 and left of x 930; source boxes and the flap board frame extend past x 930 but their text ends by about x 915. Run of the check bar at y 190 is decoration.",
-      "Minor notes, not faults: the flap board row 'WEBSITE' + 'YOURS' fills all 12 cells with no gap, so it reads as one run; the gauge needle at 0% and 1% brushes the '0' scale label but it stays readable. Mid-transition frames (15.5 s pixel dissolve, 16.0 s flaps flipping, 28.0 s screen-off line, 31.5 s end card slide) were ignored as motion.",
-      "Audio end: last word 'does' ends at 31.42 s, end card starts 31.52 s, video runs to 34.53 s; the speech bubble completes 'before a customer does.' Nothing cut mid-word.",
-      "Text size: smallest text is the source line and the work order subhead at about 28 to 30 px on a 1080 wide frame, readable on a phone; speech bubble and headline text are large. Flash: scene changes come at most once every 0.5 s or slower; nothing flashes more than 3 times a second.",
-      "No earlier render-critic.json existed, so there were no prior faults to confirm."
-    ]
+      "Hook: $11,500 is on screen at 0.0 s, both as the big counter number (y about 820 to 950) and the price card; the voice says 'eleven and a half grand' at 1.22 to 3.46 s. Pass.",
+      "Spoken numbers: 'eleven and a half grand' (1.2 to 3.5 s) matches $11,500 on screen 0.0 to 5.5 s; 'one percent' (25.30 to 25.68 s) matches the large orange 1% readout shown from about 24.5 s to 28 s. Both large and readable. The source line dates (Mar 18, 2026) are not spoken.",
+      "Layout once settled: the one fault above (gauge needle over the '0' label). Everything else is clear: the shop sign, chalkboard and price card, VS cards, work order text (ends near x 665), flap board letters (end near x 915), source boxes (box edges reach about x 1035 but their text ends by x 770), speech bubble (x 375 to 928, y 1050 to 1230), close card and end card all sit between y 270 and y 1250 and left of x 930. The RUN THE CHECK bar at y 190 is decoration.",
+      "Note, not a fault: flap board row 2 'WEBSITE' + 'YOURS' fills all 12 cells in the same white with no blank cell, so it reads as one run (row 3 separates them by colour). Mid-transition frames (5.5 s VS wipe, 7.0 s work order typing in, 15.5 s pixel dissolve, 16.0 to 16.5 s flaps flipping, 28.0 s blank cut, 31.5 s end card) were ignored as motion.",
+      "Audio end: last word 'does' ends at 31.42 s, end card starts 31.52 s, video and audio run to 34.53 s; the bubble completes 'before a customer does.' Nothing cut mid-word. Pass.",
+      "Text size: smallest text is the work order subhead and source lines at about 28 to 32 px on a 1080 wide frame, readable on a phone. Flash: scene changes come no faster than every 0.5 s; nothing flashes more than 3 times a second. Pass.",
+      "Earlier round (kept under 'earlier') listed no faults; it noted the needle brushing the '0' label as minor. On this render the needle at 1% hides the 0 rather than brushing it, so it is now counted as an overlap fault."
+    ],
+    "earlier": {
+      "gate": "render-critic",
+      "round": 0,
+      "reviewer": "fresh opus agent",
+      "pass": true,
+      "score": {
+        "faults": 0
+      },
+      "faults": [],
+      "reasons": [
+        "Hook: $11,500 sign is on screen from frame 0.0s, well before 0:02; the voice says 'eleven and a half grand' at 1.22 to 3.46 s and PER JOB joins the tag by 2.5 s.",
+        "Spoken numbers: only two. 'eleven and a half grand' (1.2 to 3.5 s) matches $11,500 shown 0.0 to 5.5 s; 'one percent' (25.3 to 25.7 s) matches the gauge readout 1% shown from 24.5 s to 28 s. Both large and readable.",
+        "Layout once settled: no word or number hidden, cut off or under another element in any scene (shop 0 to 5.5 s, VS 5.5 to 7 s, work order 7 to 15.5 s, flap board 16 to 23.5 s, gauge 23.5 to 28 s, close 28.5 to 31.5 s, end card 31.5 to 34.5 s). All text sits between y 270 and y 1250 and left of x 930; source boxes and the flap board frame extend past x 930 but their text ends by about x 915. Run of the check bar at y 190 is decoration.",
+        "Minor notes, not faults: the flap board row 'WEBSITE' + 'YOURS' fills all 12 cells with no gap, so it reads as one run; the gauge needle at 0% and 1% brushes the '0' scale label but it stays readable. Mid-transition frames (15.5 s pixel dissolve, 16.0 s flaps flipping, 28.0 s screen-off line, 31.5 s end card slide) were ignored as motion.",
+        "Audio end: last word 'does' ends at 31.42 s, end card starts 31.52 s, video runs to 34.53 s; the speech bubble completes 'before a customer does.' Nothing cut mid-word.",
+        "Text size: smallest text is the source line and the work order subhead at about 28 to 30 px on a 1080 wide frame, readable on a phone; speech bubble and headline text are large. Flash: scene changes come at most once every 0.5 s or slower; nothing flashes more than 3 times a second.",
+        "No earlier render-critic.json existed, so there were no prior faults to confirm."
+      ]
+    }
   }
 }

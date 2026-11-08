@@ -3189,16 +3189,40 @@ def next_lane(started, cfg):
     return pat[n % len(pat)]
 
 
+# Topic first (Todd, video-lab chat, Nov 8, 2026, to "Should the proven lane pick its next source row by that first (money
+# between two people, or our phone topics), before any other row at the 100K bar?": "Yes, pick by topic first"). Our top 4
+# lessons by views are the phone cluster; 9 of the 14 owner Shorts at the bar are money between two people
+# (research/STUDY-2026-11-08.md). eligible_rows orders those rows first, then by views.
+PULL_TOPIC = re.compile(r"(?i)(won'?t pay|don'?t pay|doesn'?t pay|not pay|non-?payment|payment|get paid|collect|lowball|offered|worth when you sell|"
+                        r"labou?r cost|leave|quit|hire|staff|a-players|price objection|\bcalls?\b|phone|missed|after hours|after-hours|answer)")
+
+
+def _row_topic(vid, text=None):
+    if text is None:
+        p = os.path.join(HERE, "research", "PROVEN.md")
+        text = open(p, encoding="utf-8").read() if os.path.exists(p) else ""
+    ln = next((x for x in text.splitlines() if x.startswith("|") and vid in x), "")
+    cols = [c.strip() for c in ln.split("|")]
+    return cols[4] if len(cols) > 4 else ""
+
+
+def topic_rank(topic):
+    """0 for money between two people or our phone cluster, 1 for any other topic."""
+    return 0 if PULL_TOPIC.search(topic or "") else 1
+
+
 def eligible_rows():
-    """Bank rows at the bar, with a sourceprint, that no lesson's brief has used as its Source."""
+    """Bank rows at the bar, with a sourceprint, that no lesson's brief has used as its Source; topic first (PULL_TOPIC),
+    then most views. Returns row numbers in pick order."""
     used = set()
     for d in os.listdir(VIDEOS):
         bp = vdir(d, "01_voice", "brief.md")
         m = SOURCE_LINE.search(open(bp, encoding="utf-8").read()) if os.path.exists(bp) else None
         if m and "shorts/" in m.group(1):
             used.add(m.group(1).rstrip("/").split("shorts/")[-1][:11])
-    return sorted(r[0] for v, r in proven_bank().items() if r[1] >= PROVEN_MIN_VIEWS and r[2] >= PROVEN_MIN_RATIO and v not in used
-                  and os.path.exists(os.path.join(PROVEN_DIR, source_id(f"https://www.youtube.com/shorts/{v}") + ".json")))
+    ok = [(v, r) for v, r in proven_bank().items() if r[1] >= PROVEN_MIN_VIEWS and r[2] >= PROVEN_MIN_RATIO and v not in used
+          and os.path.exists(os.path.join(PROVEN_DIR, source_id(f"https://www.youtube.com/shorts/{v}") + ".json"))]
+    return [r[0] for v, r in sorted(ok, key=lambda vr: (topic_rank(_row_topic(vr[0])), -vr[1][1]))]
 
 
 def cmd_nextlane():
@@ -3221,6 +3245,8 @@ def cmd_nextlane():
         print("nextlane: no lane test runs (video/config.json laneTest mode is not on): story lane")
         return
     made = sum(1 for at, f in rows if at >= cfg["from"] and f in ("proven", "story"))
+    if lane == "proven":
+        print("pick order (topic first, Todd Nov 8; then views): rows " + ", ".join(str(r) for r in eligible_rows()))
     print(f"nextlane: {lane} ({made} new lessons started since {cfg['from']}; pattern {', '.join(cfg.get('pattern', []))}; "
           f"verdict {cfg.get('verdict')})")
 
@@ -3361,6 +3387,13 @@ def cmd_selftest():
         ("hooks: the same first three words", ot("The job's done, and the van is gone.", real), True),
         ("hooks: half the content words of one before", ot("Every receptionist can earn its keep", real[:2]), True),
         ("hooks: a money line two after a money line", ot("Your trucks lose four hundred a week idling.", real[:6]), False),
+    ]
+    cases += [
+        ("topic: a customer who won't pay is pulled first", topic_rank("the homeowner who won't pay after the job is done") != 0, False),
+        ("topic: missed calls are pulled first", topic_rank("paying for leads, then missing the calls") != 0, False),
+        ("topic: why good people leave is pulled first", topic_rank("why good people leave a trades business") != 0, False),
+        ("topic: AI tools are not", topic_rank("AI tools for trades owners (AI lane)") == 0, False),
+        ("topic: the real bank's row 21 reads as pulled", topic_rank(_row_topic("jjtJQ-VUhtY")) != 0, False),
     ]
     right = 0
     for name, got, caught in cases:

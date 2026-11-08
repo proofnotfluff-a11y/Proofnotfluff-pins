@@ -91,7 +91,7 @@ number, our pixel style, the send moment.
 - **Pick** a row of research/PROVEN.md at the bar, 100,000 views or more and 5x its channel's typical (Todd, live chat,
   Nov 7, 2026, 7:17 pm: "We need to change this standard to 100K+ views"; code fails a brief under it, `nextlane`
   says story when none is left), that has a sourceprint (research/proven/<id>.json). A row with no print: queue a watch-video job with `"sourceprint": true` (the workflow hashes Gemini's
-  transcript and commits no words; Todd, Nov 7, 2:45 pm) and build it the next run, or in a live chat read the words
+  transcript and commits no words; Todd, Nov 7, 2:45 pm). Topic first (Todd, video-lab chat, Nov 8, 2026: "Yes, pick by topic first"): take the first row `anim.py nextlane` prints in its pick order, money between two people or our phone topics before any other row at the bar, then the most views and build it the next run, or in a live chat read the words
   into a file under data/ and run `anim.py sourceprint <link> <file> <how>`; never commit the source's words.
 - **Refresh** (tools/yt_outliers.py, Sundays, official YouTube Data API): research/outliers.json lists every Short at
   5x its channel's typical and 100,000 views or more. When every row is used, add the top unbanked outlier that fits (a business lesson an owner

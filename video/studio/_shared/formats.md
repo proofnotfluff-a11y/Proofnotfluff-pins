@@ -87,6 +87,7 @@ Todd, 11:58 am: "We can find what is actually working out there and create our o
 story took up to 28 script rounds a lesson; faceless channels grow by making their own version of what already works.
 Ideas and formats aren't owned; words, footage and art are. Our edge is the version: made for trade owners, one checked
 number, our pixel style, the send moment.
+- **Every new lesson is proven** (Todd, live chat, Nov 8, 2026: "Going forward all videos should use this method."); no story lessons.
 - **Pick** a row of research/PROVEN.md at the bar, 100,000 views or more and 5x its channel's typical (Todd, live chat,
   Nov 7, 2026, 7:17 pm: "We need to change this standard to 100K+ views"; code fails a brief under it, `nextlane`
   says story when none is left), that has a sourceprint (research/proven/<id>.json). A row with no print: queue a watch-video job with `"sourceprint": true` (the workflow hashes Gemini's

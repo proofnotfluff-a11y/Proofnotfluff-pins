@@ -3211,8 +3211,9 @@ def cmd_nextlane():
             rows.append((m.group(1).replace("T", " "), lesson_format(d)))
     lane = next_lane(rows, cfg)
     if lane == "proven" and not eligible_rows():
-        print(f"nextlane: story (pattern says proven, but no unused research/PROVEN.md row has {PROVEN_MIN_VIEWS:,}+ views, "
-              f"{PROVEN_MIN_RATIO:g}x and a sourceprint; queue a watch-video sourceprint job for a new 100K row)")
+        print(f"nextlane: none (no unused research/PROVEN.md row has {PROVEN_MIN_VIEWS:,}+ views, {PROVEN_MIN_RATIO:g}x and a "
+              f"sourceprint; every new lesson is proven (Todd, Nov 8): queue a watch-video sourceprint job for a new 100K row "
+              f"and make no story)")
         return
     if lane is None:
         print("nextlane: no lane test runs (video/config.json laneTest mode is not on): story lane")

@@ -2804,6 +2804,11 @@ def cmd_script(slug):
     bad = script_problems(slug, sl, notes)
     if os.path.basename(slug)[:10] >= STUDIO_V3_FROM and not slug.endswith(HOOKB_SUFFIX):   # before any voice is made
         bad += opener_move_problems(slug)
+    if proven_hook_hard(slug):
+        sp = vdir(slug, "01_voice", "script.md")
+        hn = script_hook_words("\n".join(ln for ln in open(sp, encoding="utf-8").read().splitlines() if not ln.lstrip().startswith(("#", "<!--", ">")))) if os.path.exists(sp) else 0
+        if hn > HOOK["words"][1]:
+            bad.append(f"the spoken hook is {hn} words (12 or fewer by 3.6 s for a proven lesson; {PROVEN_HOOK_NOTE})")
     takes = takes_of(slug)
     nw = sum(len(spoken_words(tk)) for tk in takes)
     for x in notes:
@@ -3395,6 +3400,13 @@ def cmd_selftest():
         ("topic: AI tools are not", topic_rank("AI tools for trades owners (AI lane)") == 0, False),
         ("topic: the real bank's row 21 reads as pulled", topic_rank(_row_topic("jjtJQ-VUhtY")) != 0, False),
     ]
+    cases += [
+        ("hook: 21 words to the first stop (pay-before's) is over 12", script_hook_words("The job's done. The homeowner smiles and says, \"I'll mail you a check.\" Your tech loads the truck.") > 12, True),
+        ("hook: two short sentences of 11 words pass", script_hook_words("The job's done. Now she says she'll mail you a check.") > 12, False),
+        ("cover: 94% plus 8 words is over 8", cover_word_problems([("94%", "scene"), ("OF HOME SERVICE CUSTOMERS", "scene"), ("OWN A CREDIT CARD", "scene"), ("Source: ServiceTitan", "scene")]), True),
+        ("cover: 6 words with a source line and a tag pass", cover_word_problems([("$4,800 JOB.", "scene"), ("NO CHECK. NO ANSWER.", "scene"), ("Source: ServiceTitan, citing Visa", "scene"), ("EXAMPLE", "scene")]), False),
+        ("cover: 3 words is under 5", cover_word_problems([("THE JOB'S DONE.", "scene")]), True),
+    ]
     right = 0
     for name, got, caught in cases:
         hit = bool(got)
@@ -3417,6 +3429,42 @@ HOOK_JS = """(t) => { window.__boxes = []; drawAt(t); const b = window.__boxes; 
   for (let i = 0, j = 0; i < d.length; i += 4) { out[j++] = d[i]; out[j++] = d[i + 1]; out[j++] = d[i + 2]; }
   return {host: b.some((x) => x.tag === 'host'), px: out}; }"""
 
+
+
+# Decision 2 (Todd, video-lab chat, Nov 8, 2026, to "For proven lessons, make it a hard check again: the source's conflict
+# in 5 to 8 words on frame 0, and spoken in 12 words or fewer by 3.6 s?": "Yes, hard check for proven (Recommended)").
+# For proven lessons dated STUDIO_V3_FROM on: the spoken hook (whole sentences to 9 or more words) is 12 words or fewer
+# (script, before the voice) and ends by 3.6 s (hook and lint, after it); the cover's words on frame 0 (scene text, the
+# source line and the EXAMPLE tag aside) number 5 to 8. The 9-word floor stays a note.
+PROVEN_HOOK_NOTE = "decision 2, Nov 8"
+COVER_WORDS = (5, 8)
+
+
+def proven_hook_hard(slug):
+    return lesson_format(slug) == "proven" and os.path.basename(slug)[:10] >= STUDIO_V3_FROM and not slug.endswith(HOOKB_SUFFIX)
+
+
+def script_hook_words(text):
+    """The spoken hook's word count from script text: whole sentences until 9 or more words."""
+    n = 0
+    for x in re.split(r"(?<=[.?!])\s+", " ".join(TAG.sub(" ", text).split())):
+        n += len(x.split())
+        if n >= HOOK["words"][0]:
+            break
+    return n
+
+
+def cover_word_problems(frame0):
+    """frame0: the lint boxes on frame 0. Counts the cover's words: scene text, not the source line, not EXAMPLE."""
+    words = []
+    for s_, tag, *_ in frame0:
+        st = str(s_).strip()
+        if tag != "scene" or not st or st.lower().startswith("source") or st.upper() == "EXAMPLE":
+            continue
+        words += re.findall(r"[A-Za-z0-9$%][A-Za-z0-9$%.,'\u2019-]*", st)
+    n = len(words)
+    lo, hi = COVER_WORDS
+    return [] if lo <= n <= hi else [f"the cover says {n} words on frame 0 ({lo} to {hi}: the source's conflict, short): {' '.join(words)[:80]}"]
 
 def spoken_hook(words):
     """The spoken hook: whole sentences from the first word until there are 9 or more words. Returns (words, end time)."""
@@ -3465,10 +3513,13 @@ def hook_report(slug, pg=None):
     if host_at is None or host_at > HOOK["host_by"]:
         bad.append(f"the host is not on screen by {HOOK['host_by']:.0f} s")
     soft = rep.setdefault("notes", []) if lesson_format(slug) in GUIDE_FORMATS else bad
-    if not HOOK["words"][0] <= n <= HOOK["words"][1]:
+    hard = bad if proven_hook_hard(slug) else soft   # Todd, Nov 8: decision 2 (PROVEN_HOOK_NOTE)
+    if n > HOOK["words"][1]:
+        hard.append(f"the spoken hook is {n} words (12 or fewer)")
+    elif n < HOOK["words"][0]:
         soft.append(f"the spoken hook is {n} words ({HOOK['words'][0]} to {HOOK['words'][1]})")
     if said > HOOK["said_by"]:
-        soft.append(f"the spoken hook ends at {said:.2f} s (by {HOOK['said_by']} s)")
+        hard.append(f"the spoken hook ends at {said:.2f} s (by {HOOK['said_by']} s)")
     lo, hi = length_band(slug)
     if cues["duration"] > hi or (is_modern(slug) and cues["duration"] < lo):
         bad.append(f"the lesson runs {cues['duration']:.1f} s ({lo:.0f} to {hi:.0f} s for a {lesson_format(slug)} lesson, end card included)")
@@ -4056,6 +4107,8 @@ def cmd_lint(slug, step=0.25):
         cm = vdir(slug, "03_cues", "cues.md")
         errors += [f"ERROR lint layout: {x}" for x in layout_v3_problems(v3_samples, open(cm, encoding="utf-8").read() if os.path.exists(cm) else "", end_t, step)]
         errors += [f"ERROR lint opening: {x}" for x in opener_move_problems(slug)]
+        if proven_hook_hard(slug):
+            errors += [f"ERROR lint cover: {x}" for x in cover_word_problems(v3_samples[0][1] if v3_samples and v3_samples[0][0] == 0 else [])]
         fp, frep = fresh_check(slug, me=me)
         errors += [f"ERROR lint fresh: {x}" for x in fp]
         for d, m in frep.items():

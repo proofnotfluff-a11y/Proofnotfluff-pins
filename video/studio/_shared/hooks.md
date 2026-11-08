@@ -30,6 +30,7 @@ Nov 6 to 8 four of seven lessons opened on a clock moment under four different H
 | claim | a contrarian or insider claim ("An AI receptionist can earn its keep. Just not...") | after-hours-robot (1,634, best TikTok watch 21 s); row 15 "90% don't know this math" | the claim on the cover, the turn by 3 s |
 
 ## Rules every move keeps (from the sources and the gates)
+- Proven lessons from 2026-11-26 (Todd, Nov 8, decision 2: "Yes, hard check for proven"): the source's conflict in 5 to 8 words on the cover (frame 0; the source line and EXAMPLE aside), and the spoken hook (whole sentences to 9 or more words) 12 words or fewer, ending by 3.6 s. `anim.py script` checks the words before voice; `hook` and `lint` check the time after.
 - Say the stake in the first sentence: the viewer's money, time or job, not the topic.
 - One payoff, landed before half the runtime (the send rule), then stop. No pitch at the end.
 - The cover (frame 0) states the same stake in 5 to 8 words; k.coverBoard draws it inside the frame rules.

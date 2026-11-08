@@ -2284,6 +2284,18 @@ def cmd_gatepack(slug):
     print(f"gatepack: {out} ({(len(fs) + per - 1) // per} timeline sheets, 3 first frames)")
 
 
+
+JUDGE_Q = re.compile(r"(?i)\b(would you|what would|wh(o|at)'?s right|who is right|who'?s wrong|fair\b|too far|right call|your call|"
+                     r"you decide|should (he|she|they|the|i|you|we)|do you (take|let|wait|call|pay|charge|walk|chase|eat|keep|sell|accept|fire|hire)|"
+                     r"would your|is (he|she|it|this|that) (right|wrong|fair))")
+QUIZ_Q = re.compile(r"(?i)\b(do you know (your|what|how)|what('?s| is) your|how much (do|does) your)\b")
+
+
+def judge_question(line):
+    """A line that asks the viewer to judge the scene (decision 4), never a quiz about the viewer's own numbers."""
+    line = (line or "").strip()
+    return "?" in line and bool(JUDGE_Q.search(line)) and not QUIZ_Q.search(line)
+
 def captions_problems(slug):
     """_shared/captions.md in code: line 1 under 100 characters, a send line, no AI voice line (Todd, Oct 29), hashtag counts, no em or
     en dashes, YouTube title under 100 with no hashtags and 5 to 10 tags. Returns a list of problems."""
@@ -2304,6 +2316,13 @@ def captions_problems(slug):
         if not lo <= n <= hi: out.append(f"{pl}: {n} hashtags ({lo} to {hi})")
         if re.search(r"(?i)#(fyp|foryou|viral)\b", text): out.append(f"{pl}: banned hashtag")
         if re.search("[\u2013\u2014]", text): out.append(f"{pl}: an em or en dash")
+    if proven_hook_hard(slug):   # decision 4 (Todd, Nov 8): a judge-the-scene question in each caption and the YouTube title
+        for pl in ("instagram", "tiktok", "facebook"):
+            body = [ln.strip() for ln in (d.get(pl, {}).get("caption") or "").split("\n") if ln.strip() and not ln.strip().startswith("#")]
+            if not any(judge_question(ln) for ln in body[-4:]):
+                out.append(f"{pl}: no judge-the-scene question before the send line (captions.md, decision 4)")
+        if not judge_question(d.get("youtube", {}).get("title", "")):
+            out.append("youtube: the title asks no judge-the-scene question (captions.md, decision 4)")
     y = d.get("youtube", {})
     if y:
         if len(y.get("title", "")) >= 100 or "#" in y.get("title", ""): out.append("youtube: title 100+ characters or has a hashtag")
@@ -3406,6 +3425,13 @@ def cmd_selftest():
         ("cover: 94% plus 8 words is over 8", cover_word_problems([("94%", "scene"), ("OF HOME SERVICE CUSTOMERS", "scene"), ("OWN A CREDIT CARD", "scene"), ("Source: ServiceTitan", "scene")]), True),
         ("cover: 6 words with a source line and a tag pass", cover_word_problems([("$4,800 JOB.", "scene"), ("NO CHECK. NO ANSWER.", "scene"), ("Source: ServiceTitan, citing Visa", "scene"), ("EXAMPLE", "scene")]), False),
         ("cover: 3 words is under 5", cover_word_problems([("THE JOB'S DONE.", "scene")]), True),
+    ]
+    cases += [
+        ("judge: 'Would you let the truck leave without payment?' counts", not judge_question("Would you let the truck leave without payment?"), False),
+        ("judge: 'Did she go too far?'", not judge_question("Did she go too far, or was he right to wait?"), False),
+        ("judge: a quiz about the viewer's numbers is not one", judge_question("Do you know your close rate?"), False),
+        ("judge: a statement is not one", judge_question("Get paid before the truck leaves."), False),
+        ("judge: pay-before's real YouTube title has none", not judge_question("Get Paid Before the Truck Leaves (HVAC and Plumbing Business)"), True),
     ]
     right = 0
     for name, got, caught in cases:

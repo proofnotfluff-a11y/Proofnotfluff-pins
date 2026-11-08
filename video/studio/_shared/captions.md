@@ -21,9 +21,13 @@ matches. So: the keyword in the first line, said out loud in the first seconds, 
 1. Line 1, under 100 characters: the keyword phrase as a plain sentence that names the trades.
 2. Proof line: the number, said exactly as the source supports it, with the source.
 3. The takeaway or steps (the copyable part).
-4. One send line naming the same person as brief.md's Send line and the end card ("Send this to whoever answers the
+4. Proven lessons dated 2026-11-26 on (Todd, video-lab chat, Nov 8, 2026, decision 4: "Yes, every proven lesson"): one
+   question asking the viewer to judge the scene, just before the send line ("Would you let the truck leave without
+   payment?"), and the YouTube title asks one too. Never a quiz about the viewer's own numbers ("Do you know your close
+   rate?" did worst for us). Facts-captions checks it like any line. `anim.py lint` fails a missing one.
+5. One send line naming the same person as brief.md's Send line and the end card ("Send this to whoever answers the
    phones."; Todd, Nov 7, 9:27 am, the send moment).
-5. Hashtags last.
+6. Hashtags last.
 
 No AI voice line in any caption (Todd, Oct 29, 2026, 10:28 am: "don't put this on the video captions: \"Narrated by an AI
 version of my own voice.\""). AI labels: TikTok on, the rest off (Todd, Oct 31, 2026: label where the rules require it; the voice is an AI clone; POSTING.md).

@@ -818,6 +818,26 @@
     "runtime_pixfont": "a8557997756e"
    },
    "posts": {}
+  },
+  {
+   "slug": "2026-11-25-members-go-first",
+   "readyAt": "2026-11-08T11:56:13-05:00",
+   "commit": "32ee67e362e315b5331316959aeb7e9d2690c201",
+   "fingerprints": {
+    "script": "992b5c8c90b4",
+    "takes": "d28142af76a6",
+    "words": "426553d04899",
+    "cues": "fcc89f47c9de",
+    "scene": "22e58d8cd5f8",
+    "data": "d9ab2848a089",
+    "captions": "f6fa927c070d",
+    "mouth": "3b1c025c20c1",
+    "runtime_kit": "7533966669eb",
+    "runtime_player": "0247e61a6184",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

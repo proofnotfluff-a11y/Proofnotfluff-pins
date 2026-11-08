@@ -126,6 +126,7 @@ def load(data):
     return {"todos": load_dir(os.path.join(sb, "todos")), "agents": load_dir(os.path.join(sb, "agents")),
             "leads": load_dir(os.path.join(sb, "leadproducts")), "meta": meta,
             "runs": (runs or {}).get("tasks") if isinstance(runs, dict) else None,
+            "crewmap": load_json(os.path.join(data, "crew_map.json"), None),
             "crm": load_dir(os.path.join(data, "crm", "prospects"))}
 
 
@@ -450,6 +451,12 @@ def build_brief(data, root, now, looks_done=(), added=()):
         lines.append(f"Crew today: {today_txt}. Last 24h: {cr['runs24']} runs{fail_txt}.")
     else:
         lines.append("Crew: scheduled task list not read this run.")
+    cm = D.get("crewmap")
+    quiet = sorted((cm or {}).get("flagged") or [])
+    if cm is None:
+        lines.append("Crew map: not run this time.")
+    elif quiet:
+        lines.append(f"Gone quiet or failing (tools/crew_map.py): {', '.join(quiet)}.")
     for t in looks_done:
         row = next((r for r in todos if r["id"] == t), None)
         if row:
@@ -465,7 +472,7 @@ def build_brief(data, root, now, looks_done=(), added=()):
     text = "\n".join(lines).strip() + "\n"
 
     fp_src = {"items": [(i["id"], i.get("nudge"), i.get("due")) for i in items], "inbox": [inbox[k] for k in ("replies", "pendingReplies", "sales", "trials", "flagged", "ok")],
-              "failed": sorted(cr["failedNames"]), "gaps": sorted([r["slug"] for r in refs] + [c["hash"] for c in cands]),
+              "failed": sorted(cr["failedNames"]), "quiet": quiet, "gaps": sorted([r["slug"] for r in refs] + [c["hash"] for c in cands]),
               "proposal": (proposal or {}).get("move"), "looks": sorted(looks_done), "added": list(added)}
     fingerprint = hashlib.sha1(json.dumps(fp_src, sort_keys=True).encode()).hexdigest()[:12]
     last = meta.get("brief") or {}
@@ -601,6 +608,8 @@ def check_doc(doc, kind):
             errs.append(f"unknown key {k!r}")
 
     def walk(v, path):
+        if path.endswith(".fingerprint"):  # a hash, not text: 7 digits in a row there is not a phone number
+            return
         if isinstance(v, dict):
             for k, x in v.items():
                 walk(x, f"{path}.{k}")
@@ -747,6 +756,11 @@ def selftest():
         check("owner Claude with a capital C stays off Todd's brief", "feb" not in [i["id"] for i in ag5["items"]])
         z = next((r for r in json.load(open(os.path.join(data, "sb", "todos", "z.json"))).items()), None)
         check("a due date written as UTC midnight reads as that day", due_text({"due": "2026-10-27T00:00:00Z"}, now.date()) == "Due tomorrow.")
+        json.dump({"flagged": ["video lab (quiet)"]}, open(os.path.join(data, "crew_map.json"), "w"))
+        _, text6, doc6, _ = build_brief(data, root, now)
+        check("a quiet crew job shows in the brief and changes its fingerprint", "video lab (quiet)" in text6 and doc6["fingerprint"] != doc5["fingerprint"])
+        os.remove(os.path.join(data, "crew_map.json"))
+        check("a fingerprint with 7 digits in a row is not a phone number", not check_doc(dict(doc5, fingerprint="1234567abcde"), "brief"))
         check("addresses and links in titles are masked, the brief still passes", clean("see https://x.co/a or jane@acme.com") == "see (link) or (address)" and not check_doc(doc5, "brief"))
         json.dump({"seenGaps": ["planted-missing-row"]}, open(os.path.join(data, "sb", "meta", "cos.json"), "w"))
         open(os.path.join(root, "coo", "HANDOFF.md"), "w").write("- build next chat: todo planted-missing-row.\n")

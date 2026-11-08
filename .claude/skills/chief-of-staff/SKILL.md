@@ -4,7 +4,7 @@ Todd, Oct 25 (coo/DECISIONS-2026-10-25.md). coo/CONSTITUTION.md binds. One job: 
 
 ## Inputs (Reads)
 - Date from bash; `python3 tools/check_repo.py --preflight chief-of-staff` first. S meta/cos paused true: stop silent.
-- Brief and review: delete data/cos/sb and data/cos/crm, then pull S todos, agents, meta, leadproducts to data/cos/sb (ArtifactData list, out_dir); list_triggers to data/cos/runs.json ({tasks:[{name,enabled,next,lastStatus,lastFired}]}, PNF only). Review adds C prospects to data/cos/crm and `git fetch --shallow-since=<8 days ago> origin main`.
+- Brief and review: delete data/cos/sb and data/cos/crm, then pull S todos, agents, meta, leadproducts to data/cos/sb (ArtifactData list, out_dir); list_triggers to data/cos/runs.json ({tasks:[{name,enabled,next,lastStatus,lastFired}]}, PNF only), then `python3 tools/crew_map.py --runs data/cos/runs.json --fetch --out data/cos/crew_map.json`. Review adds C prospects to data/cos/crm and `git fetch --shallow-since=<8 days ago> origin main`.
 - Sweep: C prospects and meta/desk; hello@ and sales@ in Todd's Chrome.
 
 ## Process (Executes)

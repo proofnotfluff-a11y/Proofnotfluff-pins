@@ -1,0 +1,12 @@
+{
+ "about": "Crew map (Todd, Nov 8, 2026): each scheduled task that should leave work in the repo, the paths its work lands in, and the longest it should go without a commit there. tools/crew_map.py flags it QUIET past 1.5 x everyHours, so a run that 'succeeds' but makes nothing gets caught. Scheduled GitHub workflows are found from their own cron lines and need no entry. task: text inside the scheduled task's name (list_triggers).",
+ "tasks": [
+  {"task": "video studio: record", "proof": ["video/studio/"], "everyHours": 24, "why": "4 runs a day, each commits post records or a lesson"},
+  {"task": "question", "proof": ["seo/QUESTIONS.md", "site/pages.json"], "everyHours": 24, "why": "a question page a day"},
+  {"task": "video lab", "proof": ["video/studio/research/LAB.md", "video/studio/lab/"], "everyHours": 72, "why": "Tue, Thu, Sat"},
+  {"task": "repo scout", "proof": ["scout/REPOS.md"], "everyHours": 168, "why": "Sundays"},
+  {"task": "trades news", "proof": ["site/news/"], "everyHours": 384, "why": "1st and 15th"},
+  {"task": "radar", "proof": ["scout/OPPORTUNITIES.md", "scout/opportunities.json", "qa/"], "everyHours": 384, "why": "1st and 15th"}
+ ],
+ "skipWorkflows": []
+}

@@ -2,8 +2,8 @@
  "about": "Hashes of the gate files; check_repo gate-guard fails when one changes without a new seal. Seal only after Todd's word in a live chat is in that day's coo/DECISIONS file.",
  "files": {
   "tools/check_repo.py": {
-   "sha256": "f9147a78b24ca4cbeceea5bf3532238cb0f62e7ca80161954714c46ff970c658",
-   "approved": "coo/DECISIONS-2026-11-07.md"
+   "sha256": "1835f26ec231ce077339c2e930b8874228f24015ae640dff0d3c7b56bd560925",
+   "approved": "coo/DECISIONS-2026-11-08.md"
   },
   "tools/test_check_repo.py": {
    "sha256": "59dd77e47f5d6201eccda58257c7a4f89ad47156fa01f16fbeb75a8053fb8086",

@@ -2802,6 +2802,8 @@ def cmd_script(slug):
         sl = m.group(1) if m else ""
     notes = []
     bad = script_problems(slug, sl, notes)
+    if os.path.basename(slug)[:10] >= STUDIO_V3_FROM and not slug.endswith(HOOKB_SUFFIX):   # before any voice is made
+        bad += opener_move_problems(slug)
     takes = takes_of(slug)
     nw = sum(len(spoken_words(tk)) for tk in takes)
     for x in notes:
@@ -3340,6 +3342,26 @@ def cmd_selftest():
         ("fresh: the same send card (a kit piece) is only reported", fresh_problems(fs("x", cv_a, ("dissolve", "iris")), [fs("a", cv_b, ("fade4", "iris"))])[0], False),
         ("fresh: a first hook cut like the lesson before", fresh_problems(fs("x", cv_a, shot=cv_b), [fs("a", cv_b, ("mosaic", "gameover"), shot=cv_b)])[0], True),
     ]
+    # The hook move library: the real openings of Nov 6 to 8, oldest first
+    real = [("three-fixes", "Missed calls cost this shop twenty-eight hundred a month."), ("robot", "An AI receptionist can earn its keep."),
+            ("ask-chatgpt", "Nine at night, her furnace quits."), ("lsa-reports-short", "Google's help page says your old reports won't come with you."),
+            ("angi", "Two in the afternoon, you're up on a roof, and your pocket buzzes."), ("after-hours", "It's ten to seven on a weeknight."),
+            ("chatgpt-check", "A marketing firm says ChatGPT jobs average eleven and a half grand a ticket."), ("pay-before", "The job's done.")]
+    ot = opener_text_problems
+    cases += [
+        ("hooks: classify a clock moment", hook_move("Nine at night, her furnace quits.") != "clock-moment", False),
+        ("hooks: classify a question", hook_move("Do you know your close rate?") != "question", False),
+        ("hooks: classify 'at nine' as a clock moment", hook_move("Missed call at nine, and one short text can answer it.") != "clock-moment", False),
+        ("hooks: classify a short line", hook_move("The job's done.") != "short-line", False),
+        ("hooks: classify a money line", hook_move("Missed calls cost this shop twenty-eight hundred a month.") != "money", False),
+        ("hooks: classify a you-scene", hook_move("You open your reports to check last week's spend.") != "you-scene", False),
+        ("hooks: after-hours (a clock moment right after angi's)", ot(real[5][1], real[:5]), True),
+        ("hooks: members (a third clock moment in 5)", ot("Picture the first cold night of the year.", real[3:8]), True),
+        ("hooks: a question after these eight is free", ot("Would your tech take a card in the driveway?", real), False),
+        ("hooks: the same first three words", ot("The job's done, and the van is gone.", real), True),
+        ("hooks: half the content words of one before", ot("Every receptionist can earn its keep", real[:2]), True),
+        ("hooks: a money line two after a money line", ot("Your trucks lose four hundred a week idling.", real[:6]), False),
+    ]
     right = 0
     for name, got, caught in cases:
         hit = bool(got)
@@ -3749,6 +3771,173 @@ def cmd_fresh(slug):
         sys.exit(1)
 
 
+
+# The hook move library (_shared/hooks.md; video-lab chat, Nov 8, 2026, Todd: "a hook move library with variety checks in
+# code"). The brief's Hook pattern label never saw the real opening: 4 of the 7 lessons made Nov 6 to 8 opened on a clock
+# moment ("Nine at night...", "Two in the afternoon...", "It's ten to seven on a weeknight.", "Picture the first cold
+# night...") under four different labels. So the first spoken sentence of script.md is classified here, and from lessons
+# dated STUDIO_V3_FROM a move may not repeat either of the two lessons before, nor appear in 2 of the 5 before; nor may
+# the first three words, or half the first sentence's content words, repeat one of the lessons before.
+HOOK_MOVES = (
+    ("question", None),   # the first sentence asks the viewer something (ends in ?)
+    ("clock-moment", r"\b(\d{1,2}(:\d\d)?\s?(am|pm|a\.m\.|p\.m\.)|at (one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)|o'clock|noon|midnight|night|tonight|weeknight|weekend|morning|afternoon|evening|monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b"),
+    ("you-scene", r"^(you|you're|your)\b"),
+    ("money", r"(\$\d|\b(dollars?|grand|hundred|thousand|million|cost|costs|paid|pay|price|priced|charge[sd]?|losing|lose)\b)"),
+    ("source-says", r"\b(says|said|reports?|survey(ed)?|study|data|according)\b"),
+    ("short-line", None),  # five words or fewer
+    ("claim", None),
+)
+OPENER_STOP = {"that", "this", "with", "your", "they", "them", "have", "what", "when", "then", "about", "there", "their",
+               "just", "from", "into", "says", "it's", "you're", "here's", "were", "will", "would", "every", "after"}
+
+
+def first_sentence(slug):
+    p = vdir(slug, "01_voice", "script.md")
+    if not os.path.exists(p):
+        return ""
+    t = TAG.sub(" ", open(p, encoding="utf-8").read())
+    t = "\n".join(ln for ln in t.splitlines() if not ln.lstrip().startswith(("#", "<!--", ">")))
+    sents = [x.strip() for x in re.split(r"(?<=[.?!])\s+", " ".join(t.split())) if x.strip()]
+    return sents[0] if sents else ""
+
+
+def hook_move(sentence):
+    s = sentence.strip().lower().replace("’", "'")
+    if not s:
+        return None
+    if s.endswith("?"):
+        return "question"
+    for name, rx in HOOK_MOVES:
+        if rx and re.search(rx, s):
+            return name
+    return "short-line" if len(s.split()) <= 5 else "claim"
+
+
+def opener_move_problems(slug):
+    """The opening's variety against the 6 lessons made before it (by slug date)."""
+    return opener_text_problems(first_sentence(slug), [(d, first_sentence(d)) for d in lessons_before(slug, 6)])
+
+
+def opener_text_problems(me, before):
+    out = []
+    if not me:
+        return out
+    mv = hook_move(me)
+    toks = lambda x: [w for w in re.findall(r"[a-z0-9']+", x.lower().replace("’", "'"))]
+    content = lambda x: {w for w in toks(x) if len(w) >= 4 and w not in OPENER_STOP}
+    moves = [(d, hook_move(t)) for d, t in before if t]
+    near = [d for d, m in moves[-2:] if m == mv]
+    if near:
+        out.append(f"the opening is a {mv} move like {', '.join(near)} right before it (_shared/hooks.md: pick another move)")
+    elif sum(1 for _, m in moves[-5:] if m == mv) >= 2:
+        out.append(f"the opening is a {mv} move, already {sum(1 for _, m in moves[-5:] if m == mv)} of the 5 lessons before (_shared/hooks.md: pick another move)")
+    for d, t in before:
+        if t and toks(t)[:3] == toks(me)[:3]:
+            out.append(f"the first three words '{' '.join(toks(me)[:3])}' open {d} too")
+        a, b_ = content(me), content(t)
+        if a and b_ and len(a & b_) / len(a) >= 0.5:
+            out.append(f"the first sentence shares {len(a & b_)} of its {len(a)} content words with {d}'s ({', '.join(sorted(a & b_))})")
+    return out
+
+
+def cmd_hookmoves(slug=None):
+    """The opening moves of the last 8 lessons, and the ones free for the next lesson (_shared/hooks.md)."""
+    rows = [(d, first_sentence(d)) for d in lessons_before(slug or "9999", 8)]
+    for d, t in rows:
+        print(f"{d:36} {hook_move(t) or '-':13} {t[:70]}")
+    taken = {hook_move(t) for _, t in rows[-2:]} | {m for m in {hook_move(t) for _, t in rows[-5:]} if sum(1 for _, t in rows[-5:] if hook_move(t) == m) >= 2}
+    print("free for the next lesson: " + ", ".join(n for n, _ in HOOK_MOVES if n not in taken))
+
+
+# The Nov 14 read (video-lab chat, Nov 8, 2026, Todd: "Set up a fair test that the Nov 14 read can judge, so we know
+# whether the changes helped"; research/TEST-2026-11-14.md holds the plan and the bars, set before any result).
+# One table, read the same way for both arms: rounds each gate took (from reviews/ and its r<n>/ folders), and each
+# platform's numbers at the read nearest 72 h after its post (research/metrics). Arms: "v3" = lessons dated from
+# STUDIO_V3_FROM (changes 1, 2, 4 and the hook moves in code); "base" = the proven lessons made before them.
+COHORT_GATES = ("facts", "render-critic", "design", "send", "facts-captions")
+PHONE_TOPIC = re.compile(r"(?i)\b(call|calls|phone|phones|missed|after[- ]hours|voicemail|text back|receptionist|answer)\b")
+
+
+def gate_rounds(slug):
+    """{gate: rounds it took to its last verdict}: the highest round seen in reviews/<gate>.json, reviews/r<n>/ and
+    01_voice/prevoice/<gate>-r<n>.json, plus one. None when the gate never ran."""
+    out = {}
+    rv = vdir(slug, "05_render", "reviews")
+    for g in COHORT_GATES:
+        hi = -1
+        f = os.path.join(rv, g + ".json")
+        if os.path.exists(f):
+            try:
+                hi = max(hi, int(json.load(open(f)).get("round", 0) or 0))
+            except Exception:
+                pass
+        for d in glob.glob(os.path.join(rv, "r[0-9]*")):
+            if os.path.exists(os.path.join(d, g + ".json")):
+                hi = max(hi, int(os.path.basename(d)[1:]))
+        for f in glob.glob(vdir(slug, "01_voice", "prevoice", g + "-r[0-9]*.json")):
+            m = re.search(r"-r(\d+)\.json$", f)
+            hi = max(hi, int(m.group(1)) if m else hi)
+        out[g] = hi + 1 if hi >= 0 else None
+    return out
+
+
+def _iso(x):
+    try:
+        return dt.datetime.fromisoformat(str(x).replace("Z", "+00:00"))
+    except Exception:
+        return None
+
+
+def reads_at(slug, hours=72):
+    """{platform: {metric: value}} from the read nearest `hours` after that platform's post (within 24 h of it), and the
+    read's age in hours. Hidden or missing values are left out."""
+    mf = os.path.join(HERE, "research", "metrics", slug + ".json")
+    item = next((i for i in load_queue()["items"] if i["slug"] == slug), None)
+    if not os.path.exists(mf) or not item or not item.get("posts"):
+        return {}
+    out = {}
+    for pl, post in item["posts"].items():
+        at = _iso(post.get("at")) if isinstance(post, dict) else None
+        if not at:
+            continue
+        best = None
+        for r in json.load(open(mf)).get("reads", []):
+            ra = _iso(r.get("readAt"))
+            m = (r.get("platforms") or {}).get(pl)
+            if not ra or not m:
+                continue
+            age = (ra - at).total_seconds() / 3600
+            if age > 0 and abs(age - hours) <= 24 and (best is None or abs(age - hours) < abs(best[0] - hours)):
+                best = (age, {k: v for k, v in m.items() if isinstance(v, (int, float))})
+        if best:
+            out[pl] = dict(best[1], ageH=round(best[0], 1))
+    return out
+
+
+def cohort_rows():
+    rows = []
+    for d in sorted(os.listdir(VIDEOS)):
+        if not re.match(r"\d{4}-\d\d-\d\d-", d) or d.endswith(HOOKB_SUFFIX) or lesson_format(d) != "proven":
+            continue
+        brief = open(vdir(d, "01_voice", "brief.md"), encoding="utf-8").read() if os.path.exists(vdir(d, "01_voice", "brief.md")) else ""
+        rows.append({"slug": d, "arm": "v3" if d[:10] >= STUDIO_V3_FROM else "base",
+                     "topic": "phone" if PHONE_TOPIC.search(first_sentence(d) + " " + brief[:600]) else "other",
+                     "move": hook_move(first_sentence(d)), "rounds": gate_rounds(d), "at72": reads_at(d)})
+    return rows
+
+
+def cmd_cohort():
+    rows = cohort_rows()
+    print("arm   lesson                              topic  move          " + " ".join(f"{g[:8]:>8}" for g in COHORT_GATES) + "  views72 (ig/tt/yt/fb)  shares72 follows72")
+    for r in rows:
+        a = r["at72"]
+        v = "/".join(str(a.get(p, {}).get("views", "-")) for p in ("instagram", "tiktok", "youtube", "facebook"))
+        sh = sum(a.get(p, {}).get("shares", 0) for p in a); fo = sum(a.get(p, {}).get("follows", 0) for p in a)
+        print(f"{r['arm']:5} {r['slug'][:35]:35} {r['topic']:6} {str(r['move']):13} " + " ".join(f"{str(r['rounds'][g] if r['rounds'][g] is not None else '-'):>8}" for g in COHORT_GATES)
+              + f"  {v:21} {sh:8} {fo:9}")
+    json.dump({"schema": "pnf.studio.cohort.v1", "at": now(), "rows": rows}, open(os.path.join(HERE, "research", "tests", "cohort.json"), "w"), indent=1)
+    print("written research/tests/cohort.json")
+
 def cmd_lint(slug, step=0.25):
     """The layout check in code, before a reviewer has to find it: every settled scene text inside the safe area
     (x 20 to 950, y 262 to 1250), not under the host, the dialog box or other text. Problems that last under 0.5 s
@@ -3833,6 +4022,7 @@ def cmd_lint(slug, step=0.25):
         end_t = (wl[-1]["end"] + 0.1) if wl else cues["duration"] - END_TAIL
         cm = vdir(slug, "03_cues", "cues.md")
         errors += [f"ERROR lint layout: {x}" for x in layout_v3_problems(v3_samples, open(cm, encoding="utf-8").read() if os.path.exists(cm) else "", end_t, step)]
+        errors += [f"ERROR lint opening: {x}" for x in opener_move_problems(slug)]
         fp, frep = fresh_check(slug, me=me)
         errors += [f"ERROR lint fresh: {x}" for x in fp]
         for d, m in frep.items():
@@ -4025,6 +4215,10 @@ def main():
         cmd_storysnap(a.slug)
     elif c == "storycarry":
         cmd_storycarry(a.slug)
+    elif c == "cohort":
+        cmd_cohort()
+    elif c == "hookmoves":
+        cmd_hookmoves(a.slug)
     elif c == "fresh":
         cmd_fresh(a.slug)
     elif c == "cuestrings":

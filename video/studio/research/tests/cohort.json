@@ -1,0 +1,62 @@
+{
+ "schema": "pnf.studio.cohort.v1",
+ "at": "2026-11-08T15:06:47-05:00",
+ "rows": [
+  {
+   "slug": "2026-11-21-angi-four-pros",
+   "arm": "base",
+   "topic": "phone",
+   "move": "clock-moment",
+   "rounds": {
+    "facts": 3,
+    "render-critic": 3,
+    "design": 3,
+    "send": 3,
+    "facts-captions": 1
+   },
+   "at72": {}
+  },
+  {
+   "slug": "2026-11-22-after-hours-greeting",
+   "arm": "base",
+   "topic": "phone",
+   "move": "clock-moment",
+   "rounds": {
+    "facts": 4,
+    "render-critic": 6,
+    "design": 4,
+    "send": 4,
+    "facts-captions": 2
+   },
+   "at72": {}
+  },
+  {
+   "slug": "2026-11-24-pay-before-you-leave",
+   "arm": "base",
+   "topic": "other",
+   "move": "short-line",
+   "rounds": {
+    "facts": 3,
+    "render-critic": 2,
+    "design": 2,
+    "send": 2,
+    "facts-captions": 2
+   },
+   "at72": {}
+  },
+  {
+   "slug": "2026-11-25-members-go-first",
+   "arm": "base",
+   "topic": "other",
+   "move": "clock-moment",
+   "rounds": {
+    "facts": 3,
+    "render-critic": 3,
+    "design": 3,
+    "send": 2,
+    "facts-captions": 2
+   },
+   "at72": {}
+  }
+ ]
+}

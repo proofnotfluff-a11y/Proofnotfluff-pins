@@ -8,3 +8,11 @@ Todd: "Actually just make new videos using the 100K+ sources - post the one you 
 
 ## Burst withdrawn (live chat, 10:15 am)
 Todd: "Just keep it to 3 posts per day". posting.burst removed from video/config.json; `anim.py next` prints perRun 1 again. The burst code path stays dormant (POSTING.md: only when config sets a burst).
+
+## Studio changes 1, 2, 4 built; hook moves and the Nov 14 test (video-lab chat, 1:35 pm on)
+Todd's ask, 1:35 pm: "Build changes 1, 2 and 4 with planted test cases. Never edit a gate just to make a lesson pass." (his Nov 7, 6:59 pm go, DECISIONS-2026-11-07.md). No gate loosened; no sealed file touched.
+- Change 1: every drawn string in cues.md; lint fails a missing one from lessons dated 2026-11-26; facts reads cues.md and runs a storyboard round before scene code (prompts/facts.md, README.md).
+- Change 2: `anim.py fresh` and lint: cover and first hook cut layout against the two lessons before, send and close transitions; design reads 04_scene/fresh.json.
+- Change 4: kit pieces with the x 930 edge, the size 52 floor, the tag row and the still hold; lint also fails scene text past x 930 for the new lessons.
+- Lab-size additions (small, no gate loosened): the hook move library (_shared/hooks.md, `anim.py hookmoves`, script and lint fail a repeated opening move), `anim.py cohort` and research/TEST-2026-11-14.md, research/STUDY-2026-11-08.md. Bigger ideas go to Todd one at a time.
+- Gemini quota used by the lunch run: the source study waits in video/watch/pending/ for the first run after 2 am Nov 9.

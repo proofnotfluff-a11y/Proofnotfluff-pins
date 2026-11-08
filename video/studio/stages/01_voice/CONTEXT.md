@@ -1,6 +1,6 @@
 # 01_voice: plan, then the voice
 
-**Reads:** the data file the video is about (for a Rat check, `permits/rodents-chicago/weekly.json`), `_shared/voice.md`, `_shared/desk.md`, `_shared/kit.md`
+**Reads:** the data file the video is about (for a Rat check, `permits/rodents-chicago/weekly.json`), `_shared/voice.md`, `_shared/desk.md`, `_shared/kit.md`, `_shared/hooks.md` (run `anim.py hookmoves` before the first sentence: from lessons dated 2026-11-26, `anim.py script` fails an opening move the lessons before already used)
 **Makes:** `01_voice/brief.md`, `01_voice/script.md`, then (in the workflow) `01_voice/takes.json` and the audio
 
 1. Plan before a word of script. `brief.md` answers: the format (`- **Format:** v2`, Lead Clinic v2 in `_shared/voice.md`: drop-in, play it out, the fix, proof, button; 40 to 50 s), where it posts (Instagram Reel, 9:16), the audience

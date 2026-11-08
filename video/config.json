@@ -145,7 +145,16 @@
     "perDay": 1
    }
   ],
-  "cadenceNote": "Todd, live chat, Nov 7, 2026, 8:33 am: \"Go\", to the social engine audit (coo/DECISIONS-2026-11-07.md): 3 a day when 6 or more lessons wait, 2 a day at 3 to 5, 1 a day at 1 or 2, counted on this morning's line (waiting now plus started today). Replaces Nov 6's 1 a day until 3 wait. perDay stays the ceiling."
+  "cadenceNote": "Todd, live chat, Nov 7, 2026, 8:33 am: \"Go\", to the social engine audit (coo/DECISIONS-2026-11-07.md): 3 a day when 6 or more lessons wait, 2 a day at 3 to 5, 1 a day at 1 or 2, counted on this morning's line (waiting now plus started today). Replaces Nov 6's 1 a day until 3 wait. perDay stays the ceiling.",
+  "burst": {
+   "days": [
+    "2026-11-08",
+    "2026-11-09"
+   ],
+   "perDay": 5,
+   "perRun": 2,
+   "note": "Todd, live chat, Nov 8, 2026, 10:08 am: \"Just do 5 posts today and 5 tomorrow and then we can get back on track\". On these days the cap is 5 a day and a slot run posts up to 2 lessons (lunch 2, end of day 2, evening 1); the cadence table applies again from Nov 10."
+  }
  },
  "laneTest": {
   "mode": "on",

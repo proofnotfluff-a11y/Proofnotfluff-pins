@@ -12,7 +12,7 @@ there to answer; the 4:41 pm run stopped on it). Not connected or refused: post 
 error and the names and deviceIds `list_connected_browsers` shows.
 
 Four a day (Todd, live chat, Oct 30, 2026: three; Oct 31, 9:08 am: "let's add a fourth to the morning time"): each run posts one lesson, the next in queue order, at its slot in
-video/config.json "posting". Never two lessons in one run; a run that finds the lesson already fully posted takes the next.
+video/config.json "posting". Never two lessons in one run, except on burst days (video/config.json posting.burst; Todd, live chat, Nov 8, 2026, 10:08 am: "Just do 5 posts today and 5 tomorrow and then we can get back on track"): when `anim.py next` prints "perRun": 2, the run posts its lesson, records and pushes it, then runs `next` again and posts that lesson too, never more than perRun. A run that finds the lesson already fully posted takes the next.
 
 ## Before any platform
 1. `python3 video/studio/anim.py next` names the lesson, the platforms still missing and the commit its gates passed at.

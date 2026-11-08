@@ -1943,8 +1943,20 @@ CADENCE_DEFAULT = [{"waiting": 6, "perDay": 3}, {"waiting": 3, "perDay": 2}, {"w
 SHORT_GAP_HOURS = 24
 
 
-def cadence_cap(buffer):
+def burst_today(day=None):
+    """config posting.burst (Todd, live chat, Nov 8, 2026, 10:08 am: 5 posts today and 5 tomorrow) when `day` is one of its days."""
+    from zoneinfo import ZoneInfo
     cfg = json.load(open(os.path.join(HERE, "..", "config.json"), encoding="utf-8")).get("posting", {})
+    day = day or dt.datetime.now(ZoneInfo("America/Chicago")).date()
+    b = cfg.get("burst") or {}
+    return b if day.isoformat() in b.get("days", []) else None
+
+
+def cadence_cap(buffer, day=None):
+    cfg = json.load(open(os.path.join(HERE, "..", "config.json"), encoding="utf-8")).get("posting", {})
+    b = burst_today(day) if day else None
+    if b:
+        return b.get("perDay", 5)
     rows = sorted(cfg.get("cadence", CADENCE_DEFAULT), key=lambda r: -r["waiting"])
     cap = next((r["perDay"] for r in rows if buffer >= r["waiting"]), 1)
     return min(cap, cfg.get("perDay", 3))
@@ -1992,7 +2004,7 @@ def pick_next(items, at, fmt=None, parent=None):
     ready = lambda i: not i.get("readyAt") or dt.datetime.fromisoformat(i["readyAt"]) <= at
     waiting = [i for i in items if ready(i) and not _post_times(i, at) and not i.get("hold")]
     st = started_today(items, at)
-    cap = cadence_cap(len(waiting) + st)
+    cap = cadence_cap(len(waiting) + st, day)
     skipped = []
     for i in items:
         posted = _post_times(i, at)
@@ -2024,7 +2036,8 @@ def cmd_next():
         print(json.dumps({"slug": None} if why == "nothing waiting" else {"slug": None, "why": why}))
         return
     missing = [p for p in PLATFORMS if p not in it["posts"]]
-    print(json.dumps({"slug": it["slug"], "missing": missing, "commit": it.get("commit")}))
+    b = burst_today()
+    print(json.dumps({"slug": it["slug"], "missing": missing, "commit": it.get("commit"), "perRun": (b or {}).get("perRun", 1)}))
 
 
 # Missed-slot alarm (Todd, live chat, Nov 7, 2026, 8:33 am: "Go", recommendation 5). PC posting runs have gone up as

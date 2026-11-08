@@ -3,12 +3,12 @@
  "voice": "W3pJy9ibur1FKUihVxzY",
  "model": "eleven_v4",
  "takes": [
-  2
+  5
  ],
  "settings": {
   "stability": 0.7,
   "similarity_boost": 0.7
  },
- "scriptSha256": "4afaf163c284a8794c8385404b73bd0435e9aca841e93f7f7183be3f6853503b",
- "requestedAt": "2026-11-07T19:06:56-05:00"
+ "scriptSha256": "e88ec439df9b63612a89dffabc78aeda5a565e7fd5ead3bbbd58859991edf9c3",
+ "requestedAt": "2026-11-07T19:14:15-05:00"
 }

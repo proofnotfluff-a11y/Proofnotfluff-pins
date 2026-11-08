@@ -6,7 +6,7 @@
   "level": 0.16,
   "tune": "quest"
  },
- "duration": 36.132,
+ "duration": 34.539,
  "cues": [
   {
    "id": "hook",
@@ -39,11 +39,11 @@
    "sfx": "stamp",
    "shift": 0.0,
    "pin": null,
-   "text": "THE CHECK as a work order (the send moment): WORK ORDER: TONIGHT, FOR WHOEVER RUNS YOUR GOOGLE PROFILE; step 1 the question to type, step 2 \"Not you? Fix your Google profile first.\" Every line lands in the first half second, then nothing moves over it while the voice says who to show it to.",
+   "text": "THE CHECK as a work order (the send moment): WORK ORDER: TONIGHT, FOR WHOEVER RUNS YOUR GOOGLE PROFILE; step 1 the question to type, step 2 \"Not you? Fix your Google profile first.\" Every line lands in the first half second, then nothing moves over it while the voice runs on.",
    "send": true,
    "t": 7.007,
    "word": 20,
-   "end": 17.358
+   "end": 15.765
   },
   {
    "id": "why",
@@ -53,9 +53,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The departures board: WHAT IT READS; NAME, WEBSITE, REVIEWS flip to YOURS on their words. Tag ACHR News column, Mar 18, 2026.",
-   "t": 17.358,
-   "word": 45,
-   "end": 25.071
+   "t": 15.765,
+   "word": 39,
+   "end": 23.478
   },
   {
    "id": "small",
@@ -65,9 +65,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The gauge: SHARE OF REVENUE, the needle barely leaves zero and settles on 1%; label \"most contractors, today\". Same tag.",
-   "t": 25.071,
-   "word": 64,
-   "end": 29.832
+   "t": 23.478,
+   "word": 58,
+   "end": 28.239
   },
   {
    "id": "button",
@@ -77,9 +77,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The work order again, small and still; plate \"Ask it tonight.\" Then the end card with the send line.",
-   "t": 29.832,
-   "word": 77,
-   "end": 36.132
+   "t": 28.239,
+   "word": 71,
+   "end": 34.539
   }
  ]
 }

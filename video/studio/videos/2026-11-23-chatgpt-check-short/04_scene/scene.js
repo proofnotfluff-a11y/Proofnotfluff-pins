@@ -1,7 +1,7 @@
 /* Scene: Ask ChatGPT who it would hire (short of 2026-11-19-ask-chatgpt; arcade; Nov 7, 2026). One function per top- */
 /* level cue in 03_cues/cues.md. Numbers only from k.data; every time from a cue start or a spoken word (wordT).        */
 /* Worlds (its own, not the parent's kitchen and chat): hook = the storefront with the price tag (counter set), then the */
-/* dispatch board (who it sends the job to); send = THE CHECK as a work order (the send moment, held still); why = the  */
+/* versus screen (who it sends the job to) ; send = THE CHECK as a work order (the send moment, held still); why = the  */
 /* departures board (what it reads); small = the gauge (about 1% of revenue); button = the work order, small, still.    */
 const INK = '#120D14', CREAM = '#FFF7EA', SAND = '#E6D3BC', GOLD = '#F7C873', ORANGE = '#F2A541', RED = '#E2633B', TEAL = '#6FB7A8', GREY = '#9AA0AD', SKY = '#87CEEB', NIGHT = '#1B1420';
 const hash = (n) => { const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
@@ -91,7 +91,7 @@ window.SCENE = {
   trauma: {},
   sections: {
     /* ---- hook: the cover is the storefront with the tag at the firm's average ticket; on "eleven" the tag sways in;   */
-    /* on "Who" the dispatch board: three shops, a route from the homeowner, a "?" over YOU.                            */
+    /* on "Who" the versus screen: the shop it names against YOU?, no winner drawn.                                     */
     hook: (k, T) => {
       const tk = k.data.numbers.ticket, tWho = k.S('hook.who'), tEl = wordT(k, 'hook', /^eleven/i, 2.0) - 0.25;
       if (T < tWho) {
@@ -104,11 +104,9 @@ window.SCENE = {
         tag(k, d, 'ACHR News column, Mar 18, 2026', 290, '(SearchLight data)');
         return host(k, T >= tEl ? 'shock' : 'point');
       }
-      const tPin = tWho + 0.1, tRoute = wordT(k, 'hook.who', /^send/i, 0.6) - 0.2;
-      const r = k.sets.dispatch({pins: [{x: 0.30, y: 0.25, at: tPin, c: GREY}, {x: 0.78, y: 0.30, at: tPin + 0.1, c: GREY}, {x: 0.62, y: 0.70, at: tPin + 0.2, c: GOLD}, {x: 0.50, y: 0.45, at: tPin - 0.1, c: SKY}],
-        routes: [{pts: [[0.50, 0.45], [0.30, 0.45], [0.30, 0.25]], at: tRoute, dur: 0.8, c: RED}]});
-      const a = r.at ? r.at(0.62, 0.70) : [600, 700];
-      if (T >= tPin) { const b = [0, -1, -2, -1][(Math.floor(T * 30) >> 3) % 4]; k.text('YOU?', a[0], a[1] - 150 + b * 3, {size: 60, color: GOLD, align: 'center', drop: INK}); }
+      const tS = wordT(k, 'hook.who', /^send/i, 0.6) - 0.2;
+      /* our versus screen (EXAMPLE): the shop it names against YOU?; no winner is drawn, the question stays open */
+      k.sets.versus({a: {name: 'SHOP IT NAMES', icon: 'star', stats: []}, b: {name: 'YOU?', icon: 'wrench', stats: []}, at: tWho, vsAt: tS});
       return host(k);
     },
 
@@ -143,7 +141,7 @@ window.SCENE = {
       const tA = wordT(k, 'button', /^tonight/i, 0.8) - 0.2;
       const d = px(k), {P, dith} = d;
       P(0, 0, 360, 417, '#1B1420'); for (let y = 0; y < 417; y += 4) dith(0, y, 360, 1, '#241A2B', (y / 4) % 2);
-      topPlate(k, d, 'Ask ChatGPT tonight,', 'before your customers do.', k.S('button') + 0.02);
+      topPlate(k, d, 'Ask ChatGPT tonight,', 'before a customer does.', k.S('button') + 0.02);
       if (T >= tA) stampBox(k, 'RUN THE CHECK', 540, 560, tA, {color: GOLD, size: 66, freeze: 3});
       return host(k, 'point');
     },

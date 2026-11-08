@@ -1,0 +1,1 @@
+{"gate": "render-critic", "round": 1, "pass": true, "score": {"faults": 0}, "faults": [], "reasons": ["hook, numbers, layout, audio end, text size, flash: PASS; calendar S header past 930 is the set piece, nothing hidden"]}

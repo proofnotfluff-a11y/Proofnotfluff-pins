@@ -6,7 +6,7 @@
   "level": 0.16,
   "tune": "chase"
  },
- "duration": 54.805,
+ "duration": 54.492,
  "cues": [
   {
    "id": "hook",
@@ -18,7 +18,7 @@
    "text": "Cover, frame one: the hero panel 94% / OF HOME SERVICE CUSTOMERS / OWN A CREDIT CARD / Source: ServiceTitan, citing Visa, over the porch. At 0.5 s a blinds wipe to the finished job: a new water heater in the utility room, DONE stamps on \"done\" (EXAMPLE). At 2.4 s a blinds wipe to her front porch: \"I'll mail you a check.\" lands in a bubble on \"I'll\". At 4.5 s a blinds wipe to the street: the van drives off (street set), EXAMPLE in the sky.",
    "t": 0.0,
    "word": 0,
-   "end": 7.2
+   "end": 6.86
   },
   {
    "id": "weeks",
@@ -27,10 +27,10 @@
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "The calendar: a run of x's crosses off three weeks (EXAMPLE); NO CHECK lands on \"no check\", NO ANSWER on \"stopped\", STILL CHASING on \"chasing\".",
-   "t": 7.2,
+   "text": "The calendar: a run of x's crosses off three weeks (EXAMPLE); NO CHECK lands on \"no check\", NO ANSWER on \"won't\", STILL CHASING on \"chasing\".",
+   "t": 6.86,
    "word": 21,
-   "end": 13.799
+   "end": 13.486
   },
   {
    "id": "receipt",
@@ -40,9 +40,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "ServiceTitan's own line on a card, typed on: \"Visa figures show that 94% of home service customers own a credit card\", with its tag (ServiceTitan, After the job: Get paid, manage your reputation, May 6, 2026, citing Visa figures; read Nov 8, 2026). On \"ninety-four\" a four-step fade to the hero: 94% (data.js) over a grid of 100 cards, 94 of them lit, OWN A CREDIT CARD under it, the source on the hood.",
-   "t": 13.799,
-   "word": 40,
-   "end": 23.739
+   "t": 13.486,
+   "word": 42,
+   "end": 23.426
   },
   {
    "id": "send",
@@ -53,9 +53,9 @@
    "pin": null,
    "text": "The send card, held still: FOR THE LEAD TECHNICIAN / BEFORE YOU PACK UP / \"Let's walk the job together. If you're happy with it, I can take payment right here.\" (EXAMPLE). Sweeps on \"lead\", \"line\" and \"payment\".",
    "send": true,
-   "t": 23.739,
-   "word": 66,
-   "end": 38.576
+   "t": 23.426,
+   "word": 68,
+   "end": 38.263
   },
   {
    "id": "why",
@@ -65,9 +65,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Level up: the bar fills; PAID ON SITE stamps on \"there's\"; + NO CHECK TO CHASE lands with it, + FIX IT WHILE THERE on \"there to fix\".",
-   "t": 38.576,
-   "word": 111,
-   "end": 46.445
+   "t": 38.263,
+   "word": 113,
+   "end": 46.132
   },
   {
    "id": "button",
@@ -77,9 +77,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The street again: the van drives up and parks on \"card reader\" with the PAID sign; in the sky her bubble \"I'll mail a check.\" on \"she'll\", then the reader TAP TO PAY turns APPROVED as it parks (EXAMPLE). Holds to the end card.",
-   "t": 46.445,
-   "word": 137,
-   "end": 54.805
+   "t": 46.132,
+   "word": 139,
+   "end": 54.492
   }
  ]
 }

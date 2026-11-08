@@ -1,0 +1,63 @@
+{
+ "schema": "pnf.studio.captions.v1",
+ "keywords": {
+  "primary": "collect payment on site home service business",
+  "secondary": [
+   "get paid before you leave",
+   "home service business"
+  ],
+  "trades": [
+   "HVAC",
+   "plumbing",
+   "electrical"
+  ]
+ },
+ "instagram": {
+  "caption": "\"I'll mail you a check.\" HVAC, plumbing and electrical owners, get paid before the truck leaves:\nVisa figures reported by ServiceTitan: 94% of home service customers own a credit card (ServiceTitan blog, May 6, 2026, read Nov 8, 2026).\n\nThe line for your lead technician:\n\"Let's walk the job together. If you're happy with it, I can take payment right here.\"\nSend this to your lead technician.\nFree missed call cost calculator: link in bio.\n\n#homeservicebusiness #hvacbusiness #plumbingbusiness #getpaid",
+  "settings": {
+   "aiLabel": false,
+   "shareToFacebook": false
+  }
+ },
+ "tiktok": {
+  "caption": "HVAC and plumbing owners: does your tech leave with \"I'll mail you a check\"?\nVisa figures reported by ServiceTitan: 94% of home service customers own a credit card (read Nov 8, 2026).\nWalk the job with the homeowner, then take payment before you pack up.\nSend this to your lead technician.\nFree missed call cost calculator: link in bio.\n#homeservicebusiness #hvacbusiness #plumbingbusiness #getpaid",
+  "settings": {
+   "aiGenerated": true,
+   "commercialDisclosure": false,
+   "suggestKeywords": [
+    "get paid on the job",
+    "hvac business tips",
+    "home service business"
+   ]
+  }
+ },
+ "facebook": {
+  "caption": "Get paid before the truck leaves, HVAC and plumbing business owners.\nVisa figures reported by ServiceTitan: 94% of home service customers own a credit card (ServiceTitan blog, May 6, 2026, read Nov 8, 2026).\nWalk the job with the homeowner, then take payment right there.\nSend this to your lead technician.\nFree missed call cost calculator: link in bio.\n#homeservicebusiness #hvacbusiness",
+  "settings": {
+   "aiLabel": false,
+   "audience": "Public"
+  }
+ },
+ "youtube": {
+  "title": "Get Paid Before the Truck Leaves (HVAC and Plumbing Business)",
+  "description": "Collect payment on site in your home service business instead of waiting on a mailed check.\nServiceTitan reports Visa figures: 94% of home service customers own a credit card (\"After the job: Get paid, manage your reputation,\" ServiceTitan blog, May 6, 2026, read Nov 8, 2026).\n\nThe job for your lead technician:\n1. Before packing up, walk the job with the homeowner.\n2. Say: \"Let's walk the job together. If you're happy with it, I can take payment right here.\"\n3. Take payment right there, card or tap.\n\nSend this to your lead technician.\nNext lesson: another owner problem from the trades, told start to finish.\nFree missed call cost calculator for trade owners: https://proofnotfluff.com/missed-call-cost-calculator/\n#homeservicebusiness #hvacbusiness #getpaid",
+  "tags": [
+   "collect payment on site",
+   "get paid faster contractor",
+   "hvac business owner",
+   "plumbing business tips",
+   "home service business",
+   "contractor payment tips",
+   "homeowner won't pay",
+   "card reader for contractors",
+   "colect payment on site"
+  ],
+  "settings": {
+   "madeForKids": false,
+   "aiUse": false,
+   "category": "Education",
+   "language": "English",
+   "visibility": "Public"
+  }
+ }
+}

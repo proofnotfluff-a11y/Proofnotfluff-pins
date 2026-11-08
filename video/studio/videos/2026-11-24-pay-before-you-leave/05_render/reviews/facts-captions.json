@@ -1,0 +1,1 @@
+{"gate": "facts-captions", "round": 1, "pass": true, "score": {"numbers": 4, "mismatches": 0}, "reasons": ["r0 fix: TikTok keyword now in the first 70 characters; all rules PASS"], "sources_checked": ["https://www.servicetitan.com/blog/automation-payment-methods"]}

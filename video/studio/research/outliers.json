@@ -1,9 +1,9 @@
 {
  "schema": "pnf.studio.outliers.v1",
- "read": "2026-11-07",
+ "read": "2026-11-08",
  "rules": {
   "ratio": 5.0,
-  "min_views": 1000,
+  "min_views": 100000,
   "max_seconds": 180,
   "max_age_days": 365,
   "min_shorts": 8,
@@ -14,13 +14,13 @@
    "id": "UCYMQLrbOUA94BWrlrSJn9yw",
    "label": "Jobber",
    "shorts": 43,
-   "typical": 523
+   "typical": 524
   },
   {
    "id": "UCnmkHtZ2BKVutgi2Ogk9RIQ",
    "label": "Roofing Insights",
    "shorts": 38,
-   "typical": 8355.5
+   "typical": 8358.5
   },
   {
    "id": "UCVSuWJ-9UlN2DELnWClctxw",
@@ -38,19 +38,19 @@
    "id": "UCB3jUEyCLRbCw7QED0vnXYg",
    "label": "Electrician U",
    "shorts": 22,
-   "typical": 54593.0
+   "typical": 55762.0
   },
   {
    "id": "UCeO2QdRNK3y6Srm8SpFaeTw",
    "label": "Hook Agency",
    "shorts": 47,
-   "typical": 947
+   "typical": 966
   },
   {
    "id": "UChFahjDeMBV67DSXiF5pwBA",
    "label": "UpFlip",
    "shorts": 41,
-   "typical": 11653
+   "typical": 11662
   },
   {
    "id": "UChxfA97D5XdOD4WWwHYrMAQ",
@@ -62,7 +62,7 @@
    "id": "UCgwFAX01m1tT0XyqU19WGtw",
    "label": "ServiceTitan",
    "shorts": 35,
-   "typical": 117
+   "typical": 105
   },
   {
    "id": "UCmA0PaDYqW2J2tJR56Mk91A",
@@ -98,13 +98,13 @@
    "id": "UCUynOuMTPXvUrTpcFWQ_qDA",
    "label": "a plumbing shop owner's pricing channel",
    "shorts": 44,
-   "typical": 10559.5
+   "typical": 10565.5
   },
   {
    "id": "UCGIMKh92vaL0_Yc0u4GYhHA",
    "label": "a plumbing education channel",
    "shorts": 50,
-   "typical": 1267.5
+   "typical": 1232.0
   },
   {
    "id": "UCGXHeIVzjBLRTjyXfXN4p9Q",
@@ -121,14 +121,14 @@
   {
    "id": "UCrvchO1h6lWZAuGaa1LqX9Q",
    "label": "a business advice clips channel",
-   "shorts": 35,
-   "typical": 752
+   "shorts": 33,
+   "typical": 784
   },
   {
    "id": "UCYwm9DYcHEG0X5DEzzv5Qjw",
    "label": "a home service growth coach's channel",
    "shorts": 35,
-   "typical": 623
+   "typical": 624
   },
   {
    "id": "UCvzwdmGkt6E4TaCfthyQMrw",
@@ -164,7 +164,7 @@
    "id": "UCLB2elyHgxdWZay0zYc9jNA",
    "label": "a lawn care business owner's channel",
    "shorts": 31,
-   "typical": 4058
+   "typical": 3956
   },
   {
    "id": "UCxAIrYmaxjGZScjWdllN3pQ",
@@ -228,9 +228,9 @@
    "title": "No Payment, No Patio? Did These Contractors Go Too Far?",
    "published": "2026-10-20",
    "seconds": 92,
-   "views": 10016536,
-   "typical": 8355.5,
-   "ratio": 1198.8,
+   "views": 10038701,
+   "typical": 8358.5,
+   "ratio": 1201.0,
    "label": "Roofing Insights",
    "url": "https://www.youtube.com/shorts/zQiyPFqazDg"
   },
@@ -240,36 +240,11 @@
    "title": "This is what happens when you don't pay the junk crew \ud83d\ude33 #junkremoval",
    "published": "2026-10-12",
    "seconds": 25,
-   "views": 2433807,
-   "typical": 8355.5,
-   "ratio": 291.3,
+   "views": 2438461,
+   "typical": 8358.5,
+   "ratio": 291.7,
    "label": "Roofing Insights",
    "url": "https://www.youtube.com/shorts/Rw_tRgRvZHM"
-  },
-  {
-   "video": "nUxI18UBTMk",
-   "channel": "UCy1aFNaWzIXW5c--OOV5enw",
-   "title": "America 250 Special Offer for Contractors #businesstipsforsmallbusinessowners",
-   "published": "2026-06-29",
-   "seconds": 110,
-   "views": 21702,
-   "typical": 164.5,
-   "ratio": 131.9,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/nUxI18UBTMk",
-   "new_channel": true
-  },
-  {
-   "video": "O0BsFpqQ9uw",
-   "channel": "UCVSuWJ-9UlN2DELnWClctxw",
-   "title": "You're paying for leads you never answer",
-   "published": "2026-10-31",
-   "seconds": 5,
-   "views": 4391,
-   "typical": 47,
-   "ratio": 93.4,
-   "label": "Phlash Consulting",
-   "url": "https://www.youtube.com/shorts/O0BsFpqQ9uw"
   },
   {
    "video": "0Yq52oaZeio",
@@ -277,63 +252,11 @@
    "title": "Job Done, Homeowner Won\u2019t Pay, What Would You Do? | Skit",
    "published": "2026-10-23",
    "seconds": 103,
-   "views": 626319,
-   "typical": 8355.5,
-   "ratio": 75.0,
+   "views": 630034,
+   "typical": 8358.5,
+   "ratio": 75.4,
    "label": "Roofing Insights",
    "url": "https://www.youtube.com/shorts/0Yq52oaZeio"
-  },
-  {
-   "video": "4gJYZRsUbnE",
-   "channel": "UCwQTR0pLE0QKG8mCB1bLfDg",
-   "title": "My Grandfather's Rule About Missed Calls #shorts",
-   "published": "2026-10-18",
-   "seconds": 18,
-   "views": 1297,
-   "typical": 19.0,
-   "ratio": 68.3,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/4gJYZRsUbnE",
-   "new_channel": true
-  },
-  {
-   "video": "T0ptxYaCMtE",
-   "channel": "UCxQehUrSP0uZ8EJkP5W_CfQ",
-   "title": "Is an AI receptionist worth it for a small contractor? Plumber missed-call math",
-   "published": "2026-11-04",
-   "seconds": 67,
-   "views": 1102,
-   "typical": 17.5,
-   "ratio": 63.0,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/T0ptxYaCMtE",
-   "new_channel": true
-  },
-  {
-   "video": "owzozeZJkQM",
-   "channel": "UCDWwK-H421pgIu3p2QuIgdA",
-   "title": "Free Webinar for Plumbing & HVAC Owners | Oct 29",
-   "published": "2026-10-07",
-   "seconds": 8,
-   "views": 1049,
-   "typical": 17.5,
-   "ratio": 59.9,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/owzozeZJkQM",
-   "new_channel": true
-  },
-  {
-   "video": "MQnZguoijGk",
-   "channel": "UCMo3fyNijZhnSG1_77Y_Icg",
-   "title": "The Contractor Who Answers Gets the Shot at the Job",
-   "published": "2026-10-11",
-   "seconds": 26,
-   "views": 1319,
-   "typical": 24.0,
-   "ratio": 55.0,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/MQnZguoijGk",
-   "new_channel": true
   },
   {
    "video": "1xb3Cz8A74M",
@@ -341,9 +264,9 @@
    "title": "Roof Inspection or Roof Damage? What Do You See?",
    "published": "2026-10-19",
    "seconds": 20,
-   "views": 424204,
-   "typical": 8355.5,
-   "ratio": 50.8,
+   "views": 425737,
+   "typical": 8358.5,
+   "ratio": 50.9,
    "label": "Roofing Insights",
    "url": "https://www.youtube.com/shorts/1xb3Cz8A74M"
   },
@@ -353,37 +276,11 @@
    "title": "Five Roofers. Zero Options.",
    "published": "2026-10-29",
    "seconds": 21,
-   "views": 385578,
-   "typical": 8355.5,
+   "views": 385594,
+   "typical": 8358.5,
    "ratio": 46.1,
    "label": "Roofing Insights",
    "url": "https://www.youtube.com/shorts/_DSkrhfDvGk"
-  },
-  {
-   "video": "h4GFGgJ3U9I",
-   "channel": "UCOKCzaQA3NdMF9HITK9m5QA",
-   "title": "Transform Your Lawn: The Secret to Lush Landscapes with Pro Tips!",
-   "published": "2026-02-06",
-   "seconds": 13,
-   "views": 1830,
-   "typical": 40.0,
-   "ratio": 45.8,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/h4GFGgJ3U9I",
-   "new_channel": true
-  },
-  {
-   "video": "FwPmWeGtWWg",
-   "channel": "UCxSPVQhZhYoR1yKFRrWgIew",
-   "title": "Missed Call Text Back for Plumbers: What the Text Should Say",
-   "published": "2026-11-01",
-   "seconds": 55,
-   "views": 1292,
-   "typical": 33,
-   "ratio": 39.2,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/FwPmWeGtWWg",
-   "new_channel": true
   },
   {
    "video": "wHS7oI5Ld8I",
@@ -391,267 +288,11 @@
    "title": "Here's what's even crazier",
    "published": "2026-10-19",
    "seconds": 24,
-   "views": 377794,
-   "typical": 10559.5,
-   "ratio": 35.8,
+   "views": 380895,
+   "typical": 10565.5,
+   "ratio": 36.1,
    "label": "a plumbing shop owner's pricing channel",
    "url": "https://www.youtube.com/shorts/wHS7oI5Ld8I"
-  },
-  {
-   "video": "1nMFGmek1XM",
-   "channel": "UCVSuWJ-9UlN2DELnWClctxw",
-   "title": "2M Business, 80 Reviews. Thats the Problem. #shorts",
-   "published": "2026-11-01",
-   "seconds": 6,
-   "views": 1620,
-   "typical": 47,
-   "ratio": 34.5,
-   "label": "Phlash Consulting",
-   "url": "https://www.youtube.com/shorts/1nMFGmek1XM"
-  },
-  {
-   "video": "uHxZMv3zKu0",
-   "channel": "UCOKCzaQA3NdMF9HITK9m5QA",
-   "title": "Do I Actually Lose Jobs to Missed Calls?",
-   "published": "2026-11-01",
-   "seconds": 62,
-   "views": 1026,
-   "typical": 40.0,
-   "ratio": 25.6,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/uHxZMv3zKu0",
-   "new_channel": true
-  },
-  {
-   "video": "sXVNfODe6eg",
-   "channel": "UCcwtkN8GvjR8d32b-Ob5BMA",
-   "title": "The Power Washing Problem Nobody Talks About | Markate",
-   "published": "2026-10-09",
-   "seconds": 18,
-   "views": 1252,
-   "typical": 50.5,
-   "ratio": 24.8,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/sXVNfODe6eg",
-   "new_channel": true
-  },
-  {
-   "video": "51gqchCLEmQ",
-   "channel": "UCzcRZ738vAXs3p1PxkFT4pQ",
-   "title": "This text goes out when you miss the call #plumbing #smallbusiness",
-   "published": "2026-10-21",
-   "seconds": 8,
-   "views": 9119,
-   "typical": 401.0,
-   "ratio": 22.7,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/51gqchCLEmQ",
-   "new_channel": true
-  },
-  {
-   "video": "P42-f-ouoSU",
-   "channel": "UCRIZT8d_FUUKfygm1ogbTsA",
-   "title": "Why You're Losing Leads After Hours",
-   "published": "2026-10-20",
-   "seconds": 18,
-   "views": 1226,
-   "typical": 58,
-   "ratio": 21.1,
-   "label": "a one-person contractor marketing channel",
-   "url": "https://www.youtube.com/shorts/P42-f-ouoSU"
-  },
-  {
-   "video": "KCiFlwsGAGc",
-   "channel": "UCcwtkN8GvjR8d32b-Ob5BMA",
-   "title": "How This Contractor Got 550+ Google Reviews Using Markate",
-   "published": "2026-09-12",
-   "seconds": 27,
-   "views": 1064,
-   "typical": 50.5,
-   "ratio": 21.1,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/KCiFlwsGAGc",
-   "new_channel": true
-  },
-  {
-   "video": "PozbgSSz4kU",
-   "channel": "UCoynaiW7H1L2uwIcgggowhw",
-   "title": "Don't sell yourself cheap. What do you tell customers who have price objections?",
-   "published": "2026-10-25",
-   "seconds": 7,
-   "views": 1170,
-   "typical": 56.0,
-   "ratio": 20.9,
-   "label": "Profitable Tradie",
-   "url": "https://www.youtube.com/shorts/PozbgSSz4kU"
-  },
-  {
-   "video": "iqLf36B5E8g",
-   "channel": "UCoynaiW7H1L2uwIcgggowhw",
-   "title": "The Laziest Way To Build An Operations Manual",
-   "published": "2026-10-26",
-   "seconds": 35,
-   "views": 1101,
-   "typical": 56.0,
-   "ratio": 19.7,
-   "label": "Profitable Tradie",
-   "url": "https://www.youtube.com/shorts/iqLf36B5E8g"
-  },
-  {
-   "video": "SK3r1wswVO8",
-   "channel": "UCoynaiW7H1L2uwIcgggowhw",
-   "title": "How We Landed 10 Clients With Cold Calls",
-   "published": "2026-11-03",
-   "seconds": 23,
-   "views": 1064,
-   "typical": 56.0,
-   "ratio": 19.0,
-   "label": "Profitable Tradie",
-   "url": "https://www.youtube.com/shorts/SK3r1wswVO8"
-  },
-  {
-   "video": "4QuUIyElw3U",
-   "channel": "UCRIZT8d_FUUKfygm1ogbTsA",
-   "title": "When Are Customers Actually Searching?",
-   "published": "2026-10-24",
-   "seconds": 20,
-   "views": 1042,
-   "typical": 58,
-   "ratio": 18.0,
-   "label": "a one-person contractor marketing channel",
-   "url": "https://www.youtube.com/shorts/4QuUIyElw3U"
-  },
-  {
-   "video": "dsPxIa5tAb8",
-   "channel": "UCSeHRgbV1EjTORq19mucyPA",
-   "title": "SOUND UP for a realistic drill sound \ud83d\udd0a #Shorts #FieldPulse #ContractorLife #TradesLife",
-   "published": "2026-08-05",
-   "seconds": 27,
-   "views": 2473,
-   "typical": 151.0,
-   "ratio": 16.4,
-   "label": "FieldPulse",
-   "url": "https://www.youtube.com/shorts/dsPxIa5tAb8"
-  },
-  {
-   "video": "Uhea4nIn5sg",
-   "channel": "UCLtaueIndi5-8Gr0o8fTpxg",
-   "title": "How a plumber in Minnesota is becoming the biggest plumber.",
-   "published": "2026-10-11",
-   "seconds": 39,
-   "views": 1729,
-   "typical": 119.0,
-   "ratio": 14.5,
-   "label": "a plumbing marketer's channel",
-   "url": "https://www.youtube.com/shorts/Uhea4nIn5sg"
-  },
-  {
-   "video": "ZriuLfCLQ78",
-   "channel": "UCSeHRgbV1EjTORq19mucyPA",
-   "title": "FieldPulse FieldDay | #shorts #fieldday",
-   "published": "2026-06-15",
-   "seconds": 10,
-   "views": 1585,
-   "typical": 151.0,
-   "ratio": 10.5,
-   "label": "FieldPulse",
-   "url": "https://www.youtube.com/shorts/ZriuLfCLQ78"
-  },
-  {
-   "video": "fqYFkoXBcJI",
-   "channel": "UCSeHRgbV1EjTORq19mucyPA",
-   "title": "honoring the end of intern season \ud83d\ude14 we will never be forgotten #shorts #theoffice #fieldpulse #meme",
-   "published": "2026-08-07",
-   "seconds": 90,
-   "views": 1550,
-   "typical": 151.0,
-   "ratio": 10.3,
-   "label": "FieldPulse",
-   "url": "https://www.youtube.com/shorts/fqYFkoXBcJI"
-  },
-  {
-   "video": "KwIBmCQubWI",
-   "channel": "UCSeHRgbV1EjTORq19mucyPA",
-   "title": "250 years of America built by the trades. \ud83c\uddfa\ud83c\uddf8#shorts #fieldpulse #4thofjuly",
-   "published": "2026-07-04",
-   "seconds": 24,
-   "views": 1499,
-   "typical": 151.0,
-   "ratio": 9.9,
-   "label": "FieldPulse",
-   "url": "https://www.youtube.com/shorts/KwIBmCQubWI"
-  },
-  {
-   "video": "7cOPDgfcSig",
-   "channel": "UCGIMKh92vaL0_Yc0u4GYhHA",
-   "title": "Diesel at $6.35: Contractors Need to Plan Ahead",
-   "published": "2026-11-02",
-   "seconds": 17,
-   "views": 11155,
-   "typical": 1267.5,
-   "ratio": 8.8,
-   "label": "a plumbing education channel",
-   "url": "https://www.youtube.com/shorts/7cOPDgfcSig"
-  },
-  {
-   "video": "nWVDgYY9ZTE",
-   "channel": "UCSeHRgbV1EjTORq19mucyPA",
-   "title": "Tape Measuring Challenge Pt. 2 \ud83d\udccf #shorts #tapemeasure #funny #bluecollar #FieldPulse",
-   "published": "2026-07-29",
-   "seconds": 63,
-   "views": 1283,
-   "typical": 151.0,
-   "ratio": 8.5,
-   "label": "FieldPulse",
-   "url": "https://www.youtube.com/shorts/nWVDgYY9ZTE"
-  },
-  {
-   "video": "JkYq_Qo1LGY",
-   "channel": "UCnmkHtZ2BKVutgi2Ogk9RIQ",
-   "title": "Wrong Job Site? We've All Been There",
-   "published": "2026-10-24",
-   "seconds": 151,
-   "views": 68622,
-   "typical": 8355.5,
-   "ratio": 8.2,
-   "label": "Roofing Insights",
-   "url": "https://www.youtube.com/shorts/JkYq_Qo1LGY"
-  },
-  {
-   "video": "ejcF7_5cwTg",
-   "channel": "UCSeHRgbV1EjTORq19mucyPA",
-   "title": "when the schedule, invoices, and the actual job all catch up to you at once #Shorts #FieldPulse",
-   "published": "2026-09-03",
-   "seconds": 6,
-   "views": 1213,
-   "typical": 151.0,
-   "ratio": 8.0,
-   "label": "FieldPulse",
-   "url": "https://www.youtube.com/shorts/ejcF7_5cwTg"
-  },
-  {
-   "video": "tAaEzLF-K0w",
-   "channel": "UCSeHRgbV1EjTORq19mucyPA",
-   "title": "Be honest\u2026 how much time are you spending a week? #fieldpulse #adminoverload #shorts",
-   "published": "2026-11-02",
-   "seconds": 17,
-   "views": 1181,
-   "typical": 151.0,
-   "ratio": 7.8,
-   "label": "FieldPulse",
-   "url": "https://www.youtube.com/shorts/tAaEzLF-K0w"
-  },
-  {
-   "video": "CDI4M8KbhaI",
-   "channel": "UCrvchO1h6lWZAuGaa1LqX9Q",
-   "title": "My first close ever",
-   "published": "2026-11-07",
-   "seconds": 27,
-   "views": 5537,
-   "typical": 752,
-   "ratio": 7.4,
-   "label": "a business advice clips channel",
-   "url": "https://www.youtube.com/shorts/CDI4M8KbhaI"
   },
   {
    "video": "RRRujPs1vFQ",
@@ -659,215 +300,11 @@
    "title": "You're Using Tic Tracers Wrong!",
    "published": "2026-03-20",
    "seconds": 60,
-   "views": 384877,
-   "typical": 54593.0,
-   "ratio": 7.0,
+   "views": 384967,
+   "typical": 55762.0,
+   "ratio": 6.9,
    "label": "Electrician U",
    "url": "https://www.youtube.com/shorts/RRRujPs1vFQ"
-  },
-  {
-   "video": "DF9x2h5I604",
-   "channel": "UChddEJbMlV6PO6lQKY_8rQw",
-   "title": "4 What is the difference between a \u00a3500k business and a \u00a32m+ business",
-   "published": "2026-08-08",
-   "seconds": 25,
-   "views": 1175,
-   "typical": 168.0,
-   "ratio": 7.0,
-   "label": "a trades marketer's channel",
-   "url": "https://www.youtube.com/shorts/DF9x2h5I604"
-  },
-  {
-   "video": "SGdG4DXPWsM",
-   "channel": "UCDkNBqu_1FFcbK1djx5dmTg",
-   "title": "nothing hits like last year's jobs turning into this week's bookings",
-   "published": "2026-10-01",
-   "seconds": 6,
-   "views": 1306,
-   "typical": 189.0,
-   "ratio": 6.9,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/SGdG4DXPWsM",
-   "new_channel": true
-  },
-  {
-   "video": "PaJrciB6qlk",
-   "channel": "UCDkNBqu_1FFcbK1djx5dmTg",
-   "title": "One solid service call turning into bookings all year? that's the kind of follow-up people forget",
-   "published": "2026-10-18",
-   "seconds": 10,
-   "views": 1269,
-   "typical": 189.0,
-   "ratio": 6.7,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/PaJrciB6qlk",
-   "new_channel": true
-  },
-  {
-   "video": "m01FEhUuLOw",
-   "channel": "UCYMQLrbOUA94BWrlrSJn9yw",
-   "title": "How to Get Painting Work From Home Builders",
-   "published": "2026-10-02",
-   "seconds": 41,
-   "views": 3430,
-   "typical": 523,
-   "ratio": 6.6,
-   "label": "Jobber",
-   "url": "https://www.youtube.com/shorts/m01FEhUuLOw"
-  },
-  {
-   "video": "xoGkmKoyqfs",
-   "channel": "UCnmkHtZ2BKVutgi2Ogk9RIQ",
-   "title": "ROOFER CAUGHT FAKING STORM DAMAGE?",
-   "published": "2026-10-22",
-   "seconds": 35,
-   "views": 55216,
-   "typical": 8355.5,
-   "ratio": 6.6,
-   "label": "Roofing Insights",
-   "url": "https://www.youtube.com/shorts/xoGkmKoyqfs"
-  },
-  {
-   "video": "BSkp6_D-Er4",
-   "channel": "UCDkNBqu_1FFcbK1djx5dmTg",
-   "title": "why are we chasing new calls when old customers just need a quick tune-up reminder? Kasora handles",
-   "published": "2026-10-19",
-   "seconds": 6,
-   "views": 1220,
-   "typical": 189.0,
-   "ratio": 6.5,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/BSkp6_D-Er4",
-   "new_channel": true
-  },
-  {
-   "video": "JkBlgQlcBvs",
-   "channel": "UCDkNBqu_1FFcbK1djx5dmTg",
-   "title": "wait, a missed call turning into the next booking? that's the kind of follow-up everyone needed",
-   "published": "2026-10-16",
-   "seconds": 32,
-   "views": 1221,
-   "typical": 189.0,
-   "ratio": 6.5,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/JkBlgQlcBvs",
-   "new_channel": true
-  },
-  {
-   "video": "Ys-YbbEwqjU",
-   "channel": "UCDkNBqu_1FFcbK1djx5dmTg",
-   "title": "Batteries included",
-   "published": "2026-09-30",
-   "seconds": 46,
-   "views": 1228,
-   "typical": 189.0,
-   "ratio": 6.5,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/Ys-YbbEwqjU",
-   "new_channel": true
-  },
-  {
-   "video": "T0IQxUxuq_I",
-   "channel": "UCDkNBqu_1FFcbK1djx5dmTg",
-   "title": "clearing the admin pile before lunch with Kasora is the kind of win that changes your whole",
-   "published": "2026-10-28",
-   "seconds": 6,
-   "views": 1209,
-   "typical": 189.0,
-   "ratio": 6.4,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/T0IQxUxuq_I",
-   "new_channel": true
-  },
-  {
-   "video": "W6-S_AeK_fw",
-   "channel": "UCDkNBqu_1FFcbK1djx5dmTg",
-   "title": "wait, your old customer list can book itself? Kasora really said stop letting those contacts collect",
-   "published": "2026-10-28",
-   "seconds": 30,
-   "views": 1207,
-   "typical": 189.0,
-   "ratio": 6.4,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/W6-S_AeK_fw",
-   "new_channel": true
-  },
-  {
-   "video": "Qiv1KGRI3Vg",
-   "channel": "UCDkNBqu_1FFcbK1djx5dmTg",
-   "title": "last year\u2019s customer seeing that tune-up reminder like they didn\u2019t ghost you for 12 months",
-   "published": "2026-10-26",
-   "seconds": 10,
-   "views": 1216,
-   "typical": 189.0,
-   "ratio": 6.4,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/Qiv1KGRI3Vg",
-   "new_channel": true
-  },
-  {
-   "video": "kTMjf7CiNMo",
-   "channel": "UCDkNBqu_1FFcbK1djx5dmTg",
-   "title": "when the cancellation gets filled before the group chat even starts spiraling #homeservice",
-   "published": "2026-10-19",
-   "seconds": 8,
-   "views": 1207,
-   "typical": 189.0,
-   "ratio": 6.4,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/kTMjf7CiNMo",
-   "new_channel": true
-  },
-  {
-   "video": "w-4ohhLboGU",
-   "channel": "UCy1aFNaWzIXW5c--OOV5enw",
-   "title": "If you miss a call, that job is gone.",
-   "published": "2026-04-23",
-   "seconds": 31,
-   "views": 1023,
-   "typical": 164.5,
-   "ratio": 6.2,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/w-4ohhLboGU",
-   "new_channel": true
-  },
-  {
-   "video": "g1-lrubMiUI",
-   "channel": "UCDkNBqu_1FFcbK1djx5dmTg",
-   "title": "not gonna lie, handing off the office chaos sounds like the dream #officework #smallbusiness",
-   "published": "2026-10-30",
-   "seconds": 9,
-   "views": 1162,
-   "typical": 189.0,
-   "ratio": 6.1,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/g1-lrubMiUI",
-   "new_channel": true
-  },
-  {
-   "video": "xWOk9tJ_Y70",
-   "channel": "UCDkNBqu_1FFcbK1djx5dmTg",
-   "title": "scheduling, invoices, and follow-ups can stare into the void for once",
-   "published": "2026-10-16",
-   "seconds": 15,
-   "views": 1161,
-   "typical": 189.0,
-   "ratio": 6.1,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/xWOk9tJ_Y70",
-   "new_channel": true
-  },
-  {
-   "video": "Ca8ppBrIOyI",
-   "channel": "UCUynOuMTPXvUrTpcFWQ_qDA",
-   "title": "how to find your hourly rate in less than 1 minute?",
-   "published": "2026-10-26",
-   "seconds": 70,
-   "views": 62381,
-   "typical": 10559.5,
-   "ratio": 5.9,
-   "label": "a plumbing shop owner's pricing channel",
-   "url": "https://www.youtube.com/shorts/Ca8ppBrIOyI"
   },
   {
    "video": "OyJgZZBaLSY",
@@ -875,61 +312,11 @@
    "title": "Why We Dont Use Red Heads On MC",
    "published": "2026-03-25",
    "seconds": 153,
-   "views": 307071,
-   "typical": 54593.0,
-   "ratio": 5.6,
+   "views": 307104,
+   "typical": 55762.0,
+   "ratio": 5.5,
    "label": "Electrician U",
    "url": "https://www.youtube.com/shorts/OyJgZZBaLSY"
-  },
-  {
-   "video": "JuDQ9TWKOos",
-   "channel": "UCDkNBqu_1FFcbK1djx5dmTg",
-   "title": "not gonna lie, every missed call feels like a job walking straight to the next contractor",
-   "published": "2026-10-17",
-   "seconds": 12,
-   "views": 1013,
-   "typical": 189.0,
-   "ratio": 5.4,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/JuDQ9TWKOos",
-   "new_channel": true
-  },
-  {
-   "video": "wy07OndzRCE",
-   "channel": "UCLB2elyHgxdWZay0zYc9jNA",
-   "title": "Not a one take wonder\u2026",
-   "published": "2026-10-13",
-   "seconds": 27,
-   "views": 21427,
-   "typical": 4058,
-   "ratio": 5.3,
-   "label": "a lawn care business owner's channel",
-   "url": "https://www.youtube.com/shorts/wy07OndzRCE"
-  },
-  {
-   "video": "uaPprfmuJZ4",
-   "channel": "UCeO2QdRNK3y6Srm8SpFaeTw",
-   "title": "Don't get caught slipping \ud83e\ude9d\ud83d\udcc8",
-   "published": "2026-10-30",
-   "seconds": 11,
-   "views": 4923,
-   "typical": 947,
-   "ratio": 5.2,
-   "label": "Hook Agency",
-   "url": "https://www.youtube.com/shorts/uaPprfmuJZ4"
-  },
-  {
-   "video": "tWHO4-_3V8U",
-   "channel": "UCzcRZ738vAXs3p1PxkFT4pQ",
-   "title": "The plumbing secret competitors don't want you to know #plumbing #smallbusiness",
-   "published": "2026-10-22",
-   "seconds": 8,
-   "views": 2033,
-   "typical": 401.0,
-   "ratio": 5.1,
-   "label": "not yet labeled",
-   "url": "https://www.youtube.com/shorts/tWHO4-_3V8U",
-   "new_channel": true
   }
  ],
  "new_channels": [
@@ -941,9 +328,10 @@
    "queries": [
     "after hours calls plumbing business",
     "hvac business owner tips",
-    "missed calls contractor"
+    "missed calls contractor",
+    "plumbing business pricing"
    ],
-   "outliers": 1
+   "outliers": 0
   },
   {
    "id": "UCDWwK-H421pgIu3p2QuIgdA",
@@ -954,7 +342,7 @@
     "hvac business owner tips",
     "plumbing business pricing"
    ],
-   "outliers": 1
+   "outliers": 0
   },
   {
    "id": "UC7Brbx3SMBG76YjafqvMwHA",
@@ -975,7 +363,7 @@
    "queries": [
     "missed calls contractor"
    ],
-   "outliers": 1
+   "outliers": 0
   },
   {
    "id": "UCOKCzaQA3NdMF9HITK9m5QA",
@@ -985,13 +373,13 @@
    "queries": [
     "missed calls contractor"
    ],
-   "outliers": 2
+   "outliers": 0
   },
   {
    "id": "UCUuKuFvOaoRRkg-XBF1MZ7g",
    "label": "not yet labeled",
-   "shorts": 16,
-   "typical": 1162.0,
+   "shorts": 17,
+   "typical": 1116,
    "queries": [
     "missed calls contractor"
    ],
@@ -1005,7 +393,7 @@
    "queries": [
     "missed calls contractor"
    ],
-   "outliers": 2
+   "outliers": 0
   },
   {
    "id": "UCCE1NtmZZQ5FdeZFPCQyvkQ",
@@ -1025,7 +413,7 @@
    "queries": [
     "missed calls contractor"
    ],
-   "outliers": 1
+   "outliers": 0
   },
   {
    "id": "UCDkNBqu_1FFcbK1djx5dmTg",
@@ -1035,17 +423,17 @@
    "queries": [
     "missed calls contractor"
    ],
-   "outliers": 12
+   "outliers": 0
   },
   {
    "id": "UCxQehUrSP0uZ8EJkP5W_CfQ",
    "label": "not yet labeled",
    "shorts": 46,
-   "typical": 17.5,
+   "typical": 19.5,
    "queries": [
     "missed calls contractor"
    ],
-   "outliers": 1
+   "outliers": 0
   },
   {
    "id": "UC_aEYZxip7wo1kaIcqGGSYQ",
@@ -1075,13 +463,13 @@
    "queries": [
     "missed calls contractor"
    ],
-   "outliers": 2
+   "outliers": 0
   },
   {
    "id": "UCy4OcVeX31hiTLiPdJvWTcA",
    "label": "not yet labeled",
    "shorts": 8,
-   "typical": 522.0,
+   "typical": 530.5,
    "queries": [
     "missed calls contractor"
    ],
@@ -1110,8 +498,8 @@
   {
    "id": "UCZR1giqTHZ7MM6n2GfJKkDw",
    "label": "not yet labeled",
-   "shorts": 32,
-   "typical": 27.5,
+   "shorts": 33,
+   "typical": 22,
    "queries": [
     "missed calls contractor"
    ],
@@ -1125,7 +513,7 @@
    "queries": [
     "missed calls contractor"
    ],
-   "outliers": 2
+   "outliers": 0
   },
   {
    "id": "UC5OJdYy0zj9-gyvRPb60tDA",

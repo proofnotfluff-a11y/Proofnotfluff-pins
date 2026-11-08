@@ -1208,6 +1208,138 @@
       const q = easeOut((T - t0) / (o.dur || 0.3)); if (q <= 0) return;
       shape(rectPts(x, y, w * q, h, 0), {fill: o.color || 'accent', line: false, alpha: o.alpha != null ? o.alpha : 1});
     };
+    // ---- Kit pieces with the layout rules built in (studio change 4; Todd, live chat, Nov 7, 2026, 6:59 pm: "Go with your
+    // recommendation"; coo/DECISIONS-2026-11-07.md). The gates kept failing hand-built cards on the same things: text 5 to
+    // 15 px past x 930, an EXAMPLE tag over a header, set-sized text (30 px of ink) and a send card that kept moving. These
+    // pieces cannot do any of that: every line ends left of x 930 (k.X1), nothing is drawn under size 52 (the display face,
+    // 57 px of ink in the arcade look), the EXAMPLE tag gets its own row, and a held card stands still once it lands.
+    const EDGE = 930, FLOOR = 52;
+    // the sizes a line can take, biggest first: in the arcade look only whole display-face steps (66, 132, 198 ...) and 52
+    const sizesFrom = (size, floor) => {
+      if (!look.bitmap) { const out = []; for (let s = size; s >= floor; s -= 4) out.push(s); return out.length ? out : [floor]; }
+      const out = []; for (let m = Math.round(size / 66); m >= 1; m--) if (66 * m >= floor) out.push(66 * m);
+      if (floor <= 52 && !out.includes(52)) out.push(52);
+      return out.length ? out : [Math.max(floor, 52)];
+    };
+    // k.fit(s, size, maxW, floor): the biggest size from size down to floor at which s fits maxW on one line; at the floor it
+    // wraps. Returns {size, lines}. Never returns a size under the floor.
+    k.fit = function (s, size, maxW, floor = FLOOR) {
+      floor = Math.max(FLOOR, floor);
+      const sz = sizesFrom(Math.max(size, floor), floor);
+      for (const z of sz) if (measure(s, {size: z}) <= maxW) return {size: z, lines: [s]};
+      const z = sz[sz.length - 1];
+      return {size: z, lines: wrap(s, {size: z}, maxW)};
+    };
+    // k.exampleTag(x, y, {right, color, ink}): the orange EXAMPLE tag. x is its left edge, or with right: true its right edge;
+    // either way it is pulled left so it ends by x 930. Returns its box {x, y, w, h}.
+    k.exampleTag = function (x, y, o = {}) {
+      const s = o.text || 'EXAMPLE', size = FLOOR, pad = 18, w = Math.ceil(measure(s, {size}) + 2 * pad), h = look.bitmap ? bmHeight(size) + 18 : size + 22;
+      let x0 = o.right ? x - w : x; x0 = Math.min(x0, EDGE - w); if (look.bitmap) x0 = Math.floor(x0 / U) * U;
+      shape(rectPts(x0 + 6, y + 6, w, h, 0), {fill: o.ink || '#120D14', line: false});
+      shape(rectPts(x0, y, w, h, 0), {fill: o.color || '#F2A541', line: false});
+      text(s, x0 + pad, y + 9, {size, color: o.ink || '#120D14'});
+      return {x: x0, y, w, h};
+    };
+    // k.sourceTag(s, x, y, {color, size}): a source line that wraps before x 930 at size 52 or more. Returns {h, lines}.
+    k.sourceTag = function (s, x, y, o = {}) {
+      const size = Math.max(FLOOR, o.size || FLOOR), lh = look.bitmap ? bmHeight(size) * 1.12 : size * 1.2;
+      const lines = wrap(String(s), {size}, EDGE - x - (look.bitmap ? U : 0));
+      lines.forEach((ln, i) => text(ln, x, y + i * lh, {size, color: o.color || 'muted', drop: o.drop}));
+      return {h: lines.length * lh, lines};
+    };
+    // k.sendCard({at, who, title, body | lines, steps, example, y, colors}): the send card. It slides up over 5 frames from
+    // at, then holds dead still (the send gate times the hold in code). Rows, top down: a colored band with who it is for
+    // ("FOR THE LEAD TECHNICIAN"), the title, the body (the thing to forward, wrapped), numbered steps, and the EXAMPLE
+    // tag on its own row at the right, so it never sits on a header. Text runs x 72 to 930. Returns {x, y, w, h, lines,
+    // lineY, lineX, size, overflow} (frame units; lineY are the body lines' tops, for sweeps) or null before it appears.
+    k.sendCard = function (o = {}) {
+      const at = o.at || 0; if (T < at) return null;
+      const c = Object.assign({band: '#2F6F67', paper: '#FFF7EA', rim: '#2B2033', ink: '#120D14', head: '#FFF7EA', title: '#120D14', rule: '#6FB7A8', step: '#4A4E5A', tag: '#F2A541'}, o.colors || {});
+      const x = 42, w = 996, X = 72, maxW = EDGE - X, top = o.y != null ? o.y : 252, bottom = o.bottom || 1030, bar = o.bar === false ? 0 : 24;
+      const lhOf = (z, f) => (look.bitmap ? bmHeight(z) : z) * f;
+      const tagH = look.bitmap ? bmHeight(FLOOR) + 18 : FLOOR + 22;
+      // lay out from the biggest sizes down until the card ends above the dialog band (o.bottom, 1030); still too tall:
+      // overflow true (lint then fails the text under the host or dialog box), so cut words rather than shrink below 52
+      let L = null;
+      for (const [tz, bz, f, gap] of [[o.titleSize || 80, o.bodySize || 60, 1.2, 18], [66, 60, 1.15, 15], [66, 52, 1.12, 12], [52, 52, 1.08, 9]]) {
+        const who = o.who ? k.fit(o.who, FLOOR, maxW) : null, title = o.title ? k.fit(o.title, Math.max(FLOOR, tz), maxW) : null, bodySize = Math.max(FLOOR, bz);
+        const body = o.lines || (o.body ? wrap(String(o.body), {size: bodySize}, maxW - bar) : []);
+        let cy = 0; const r = {who, title, body, bodySize, f, gap};
+        if (who) { r.bandH = who.lines.length * lhOf(who.size, f) + 2 * gap; cy += r.bandH; }
+        cy += gap;
+        if (title) { r.titleTop = cy; cy += title.lines.length * lhOf(title.size, f) + gap; }
+        r.bodyTop = cy; if (body.length) cy += body.length * lhOf(bodySize, f) + gap;
+        r.stepTop = cy; if (o.steps && o.steps.length) cy += o.steps.length * lhOf(FLOOR, f) + gap;
+        r.tagTop = cy; if (o.example) cy += tagH + gap;
+        r.h = cy + gap; L = r;
+        if (top + r.h <= bottom) break;
+      }
+      const q = easeOut(clamp((T - at) / (5 / FR))), lift = look.bitmap ? Math.round(160 * (1 - q) / U) * U : 160 * (1 - q), y = top + lift, h = L.h;
+      // the card: a hard shadow, the rim, the paper, the band
+      shape(rectPts(x + 12, y + 12, w, h, 0), {fill: c.ink, line: false});
+      shape(rectPts(x - 6, y - 6, w + 12, h + 12, 0), {fill: c.rim, line: false});
+      shape(rectPts(x, y, w, h, 0), {fill: c.paper, line: false});
+      if (L.who) { shape(rectPts(x, y, w, L.bandH, 0), {fill: c.band, line: false}); L.who.lines.forEach((ln, i) => text(ln, X, y + L.gap + i * lhOf(L.who.size, L.f), {size: L.who.size, color: c.head})); }
+      if (L.title) L.title.lines.forEach((ln, i) => text(ln, X, y + L.titleTop + i * lhOf(L.title.size, L.f), {size: L.title.size, color: c.title}));
+      const lineY = L.body.map((_, i) => y + L.bodyTop + i * lhOf(L.bodySize, L.f)), lineX = X + bar;
+      if (L.body.length && bar) shape(rectPts(X, y + L.bodyTop - 6, 9, L.body.length * lhOf(L.bodySize, L.f), 0), {fill: c.rule, line: false});
+      L.body.forEach((ln, i) => text(ln, lineX, lineY[i], {size: L.bodySize, color: c.ink}));
+      const stepY = (o.steps || []).map((_, i) => y + L.stepTop + i * lhOf(FLOOR, L.f));
+      (o.steps || []).forEach((s, i) => text(`${i + 1}  ${s}`, X, stepY[i], {size: FLOOR, color: (o.stepOn || [])[i] ? c.ink : c.step}));
+      if (o.example) k.exampleTag(EDGE, y + L.tagTop, {right: true, color: c.tag, ink: c.ink});
+      return {x, y, w, h, lines: L.body, lineY, lineX, size: L.bodySize, stepY, overflow: top + h > bottom};
+    };
+    // k.coverBoard({hero, lines, source, example, y, heroSize, colors}): frame 0, the feed's cover. Fully drawn from frame
+    // 0 with no reveal (the cover rule): a big hero (a number or 1 to 3 words, 132 or more, shrunk to fit), the hook lines
+    // under it (size 52 or more, centered, wrapped inside x 72 to 930) and the source. Returns {x, y, w, h}.
+    k.coverBoard = function (o = {}) {
+      const c = Object.assign({panel: '#253048', rim: '#3B82C4', ink: '#120D14', hero: '#F2A541', text: '#FFF7EA', source: '#F7C873', tag: '#F2A541'}, o.colors || {});
+      const x = 42, w = 996, X = 72, maxW = EDGE - X, y = o.y != null ? o.y : 252, bottom = o.bottom || 860;
+      const lhOf = (z, f) => (look.bitmap ? bmHeight(z) : z) * f, tagH = look.bitmap ? bmHeight(FLOOR) + 18 : FLOOR + 22;
+      // biggest hero first; it steps down (never under 132) until the board ends above the host's head (o.bottom, 860)
+      let L = null;
+      for (const hz of sizesFrom(o.heroSize || 330, 132)) {
+        for (const [lz, f, gap] of [[o.lineSize || 66, 1.15, 24], [FLOOR, 1.1, 18]]) {
+          const hero = o.hero ? k.fit(String(o.hero), hz, maxW, 132) : null;
+          const ls = [].concat(...(o.lines || []).map((s) => { const r = k.fit(s, lz, maxW); return r.lines.map((ln) => [ln, r.size]); }));
+          const src = o.source ? wrap(String(o.source), {size: FLOOR}, maxW) : [];
+          const h = gap * 2 + (hero ? lhOf(hero.size, 1) * hero.lines.length + gap : 0) + ls.reduce((a, l) => a + lhOf(l[1], f), 0)
+            + (src.length ? gap / 2 + src.length * lhOf(FLOOR, f) : 0) + (o.example ? tagH + gap : 0);
+          L = {hero, ls, src, h, f, gap};
+          if (y + h <= bottom) break;
+        }
+        if (y + L.h <= bottom) break;
+      }
+      shape(rectPts(x + 12, y + 12, w, L.h, 0), {fill: c.ink, line: false});
+      shape(rectPts(x - 6, y - 6, w + 12, L.h + 12, 0), {fill: c.rim, line: false});
+      shape(rectPts(x, y, w, L.h, 0), {fill: c.panel, line: false});
+      const cx = (X + EDGE) / 2; let cy = y + L.gap;
+      if (L.hero) { L.hero.lines.forEach((ln) => { text(ln, cx, cy, {size: L.hero.size, color: c.hero, align: 'center', drop: c.ink}); cy += lhOf(L.hero.size, 1); }); cy += L.gap; }
+      L.ls.forEach(([ln, z]) => { text(ln, cx, cy, {size: z, color: c.text, align: 'center'}); cy += lhOf(z, L.f); });
+      if (L.src.length) { cy += L.gap / 2; L.src.forEach((ln) => { text(ln, cx, cy, {size: FLOOR, color: c.source, align: 'center'}); cy += lhOf(FLOOR, L.f); }); }
+      if (o.example) k.exampleTag(EDGE, cy + L.gap / 2, {right: true, color: c.tag, ink: c.ink});
+      return {x, y, w, h: L.h, overflow: y + L.h > bottom};
+    };
+    // k.cut(at, {kind, color, h}): a shot change inside a section that travels instead of a plain cut (design M4 fails a
+    // plain cut). Draw both shots first, then call k.cut last so it sits on top (a wipe drawn before a set is painted over).
+    // kind 'blinds' (default): six bars close over 3 frames and open over 3, never more than half dark; 'iris': a ring closes
+    // to the middle and opens; 'fade4': four dither steps down and up. Returns true from at on (show the new shot).
+    k.cut = function (at, o = {}) {
+      const f = Math.floor((T - at) * FR + 0.005), kind = o.kind || 'blinds', H = o.h || 1250, col_ = o.color || '#120D14';
+      if (f >= -3 && f <= 3) {
+        const d = 1 - Math.abs(f) / 3.5;
+        if (kind === 'iris') {
+          const r = Math.hypot(540, H / 2) * (1 - d * 0.44);   // never more than about half dark (design r1: no black frame)
+          ctx.save(); ctx.beginPath(); ctx.rect(0, 0, 1080, H); ctx.arc(540, H / 2, Math.max(1, r), 0, TAU, true); ctx.fillStyle = col_; ctx.fill('evenodd'); ctx.restore();
+        } else if (kind === 'fade4') {
+          ctx.save(); ctx.globalAlpha *= Math.min(0.5, Math.round(d * 4) / 8); ctx.fillStyle = col_; ctx.fillRect(0, 0, 1080, H); ctx.restore();
+        } else {
+          const bh = H / 6, hh = Math.round(bh / 2 * d / LPX) * LPX;
+          for (let i = 0; i < 6; i++) R(0, i * bh, 1080, Math.min(bh, hh), col_);
+        }
+      }
+      return T >= at;
+    };
     // drifting motes (dust in the light, chalk in the air)
     k.motes = function (x, y, w, h, c, n = 14) {
       for (let i = 0; i < n; i++) {

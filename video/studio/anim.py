@@ -3303,6 +3303,43 @@ def cmd_selftest():
         ("proven 49 s under the 50 s band", 49.0 < FORMATS["proven"]["min_seconds"], True),
         ("proven gates carry the copy check and drop the story gate", "copy" not in PROVEN_GATES or "story" in PROVEN_GATES, False),
     ]
+    # Studio changes 1, 2 and 4 (Todd, live chat, Nov 7, 2026, 6:59 pm: "Go with your recommendation"). Planted frames:
+    # (text, tag, x0, y0, x1, y1, alpha), 0.25 s apart; end card from 20 s.
+    def held(boxes, t0=1.0, t1=3.0):
+        return [(t0 + i * 0.25, list(boxes)) for i in range(int((t1 - t0) / 0.25) + 1)]
+    cal = [(str(d), "scene", 100 + 60 * (d % 7), 600 + 40 * (d // 7), 130 + 60 * (d % 7), 630 + 40 * (d // 7), 1) for d in range(1, 15)]
+    cmd_ = "## send \"the only question\"\nThe card: FOR THE LEAD TECHNICIAN / \"Let's walk the job together.\" 94% OF CUSTOMERS, EXAMPLE\n"
+    lv = lambda frames: layout_v3_problems(frames, cmd_, 20.0)
+    ok_box = ("FOR THE LEAD TECHNICIAN", "scene", 72, 300, 700, 357, 1)
+    cases += [
+        ("cues: a drawn string written in cues.md passes", lv(held([ok_box])), False),
+        ("cues: a drawn string missing from cues.md", lv(held([ok_box, ("AFTER-HOURS MESSAGE", "scene", 72, 400, 700, 457, 1)])), True),
+        ("cues: case, quotes and a wrapped line still match", lv(held([("let's walk the", "scene", 72, 400, 500, 457, 1), ("JOB TOGETHER.", "scene", 72, 470, 500, 527, 1)])), False),
+        ("cues: a set's own label missing (deco) is caught", lv(held([("New text message", "deco", 300, 400, 600, 430, 1)])), True),
+        ("cues: a number not in cues.md is caught", lv(held([("87%", "scene", 300, 400, 600, 457, 1)])), True),
+        ("cues: a calendar grid is ornament", lv(held(cal)), False),
+        ("cues: a HUD token is ornament", lv(held([("LV 2", "scene", 700, 200, 800, 230, 1), ("XP", "scene", 820, 200, 860, 230, 1)])), False),
+        ("cues: a count-up frame under 0.5 s is ignored", lv(held([("41%", "scene", 300, 400, 600, 457, 1)], 1.0, 1.25)), False),
+        ("cues: cover words on frame 0 count however short", lv(held([("NO CHECK IN THE MAIL", "scene", 72, 400, 700, 457, 1)], 0.0, 0.25)), True),
+        ("cues: end card words are not judged", lv(held([("Send this to your office manager.", "scene", 100, 800, 900, 857, 1)], 20.0, 22.0)), False),
+        ("edge: scene text to x 936 is caught", lv(held([("EXAMPLE", "scene", 800, 400, 936, 457, 1)])), True),
+        ("edge: scene text to x 930 passes", lv(held([("EXAMPLE", "scene", 800, 400, 930, 457, 1)])), False),
+        ("edge: a set's ornament past 930 is not judged", layout_v3_problems(held([("OPEN", "deco", 911, 606, 998, 636, 1)]), cmd_ + "OPEN sign", 20.0), False),
+        ("type: 30 px set-size label is left to the design gate", lv(held([("94% OF CUSTOMERS", "scene", 72, 400, 600, 430, 1)])), False),
+        ("type: a 20 px shrunk label is caught", lv(held([("94% OF CUSTOMERS", "scene", 72, 400, 400, 420, 1)])), True),
+    ]
+    fs = lambda slug, cover, send=("fade4", "iris"), shot=None: {"slug": slug, "cover": cover, "shot1": shot, "send": [[0, 3], [1, 3]],
+                                                                   "close": None, "transitions": {"send": send[0], "close": send[1]}}
+    cv_a = [[c, r] for c in range(1, 11) for r in range(4, 9)]
+    cv_b = [[c, r] for c in range(1, 6) for r in range(10, 14)]
+    cases += [
+        ("fresh: a cover laid out like the lesson before", fresh_problems(fs("x", cv_a), [fs("a", cv_a, ("mosaic", "gameover"))])[0], True),
+        ("fresh: a cover laid out its own way", fresh_problems(fs("x", cv_a), [fs("a", cv_b, ("mosaic", "gameover"))])[0], False),
+        ("fresh: send and close transitions both copied", fresh_problems(fs("x", cv_a, ("fade4", "iris")), [fs("a", cv_b, ("fade4", "iris"))])[0], True),
+        ("fresh: one transition shared is fine", fresh_problems(fs("x", cv_a, ("fade4", "iris")), [fs("a", cv_b, ("fade4", "gameover"))])[0], False),
+        ("fresh: the same send card (a kit piece) is only reported", fresh_problems(fs("x", cv_a, ("dissolve", "iris")), [fs("a", cv_b, ("fade4", "iris"))])[0], False),
+        ("fresh: a first hook cut like the lesson before", fresh_problems(fs("x", cv_a, shot=cv_b), [fs("a", cv_b, ("mosaic", "gameover"), shot=cv_b)])[0], True),
+    ]
     right = 0
     for name, got, caught in cases:
         hit = bool(got)
@@ -3482,6 +3519,236 @@ def room_move_report(moves):
             f"plain: {', '.join(plain)}" + (f"; used: {', '.join(used)}" if used else "") + ")")
 
 
+STUDIO_V3_FROM = "2026-11-26"
+CONTENT_X1 = 930
+MONTHS = "jan feb mar apr may jun jul aug sep sept oct nov dec january february march april june july august september october november december"
+DAYS = "s m t w th f sa su mo tu we fr mon tue wed thu fri sat sun monday tuesday wednesday thursday friday saturday sunday"
+GRID_WORDS = set((MONTHS + " " + DAYS).split())
+HUD_WORDS = {"lv", "xp", "hp", "vs", "ko"}
+
+
+def _stoks(s):
+    """A drawn string or cues.md as plain tokens: lowercase words and numbers (9.8%, 100,000, $29 kept whole), no other
+    punctuation, so wrapping, quote marks and case never decide a match."""
+    s = str(s).lower().replace("’", "'").replace("‘", "'")
+    return re.findall(r"\$?[a-z0-9]+(?:[.,'][a-z0-9]+)*%?", s)
+
+
+def _is_num(tok):
+    return bool(re.fullmatch(r"\$?[0-9][0-9.,]*%?", tok))
+
+
+def _runs(ts, step):
+    """Contiguous runs of sample times as (start, end) pairs."""
+    out, start, prev = [], None, None
+    for x in sorted(ts):
+        if prev is None or x - prev > step * 1.5:
+            if prev is not None:
+                out.append((start, prev))
+            start = x
+        prev = x
+    if prev is not None:
+        out.append((start, prev))
+    return out
+
+
+def grid_strings(samples):
+    """Set-piece grid labels a viewer reads as one picture, never one at a time: a frame with 5 or more different labels
+    made only of numbers, months and weekdays (a calendar, a score grid), and HUD tokens (LV 2, XP, VS). They are
+    ornament, so the cues.md and type-floor rules skip them; every other drawn string is a claim or a label."""
+    grid = set()
+    for _, boxes in samples:
+        cand = {b[0].strip() for b in boxes if _stoks(b[0]) and all(_is_num(x) or x in GRID_WORDS for x in _stoks(b[0]))}
+        if len(cand) >= 5:
+            grid |= cand
+        for b in boxes:
+            tk = _stoks(b[0])
+            if tk and any(x in HUD_WORDS for x in tk) and all(x in HUD_WORDS or _is_num(x) for x in tk):
+                grid.add(b[0].strip())
+    return grid
+
+
+def layout_v3_problems(samples, cues_text, end_t, step=0.25, floor_px=28, edge=CONTENT_X1):
+    """Studio changes 1 and 4 (Todd, live chat, Nov 7, 2026, 6:59 pm: "Go with your recommendation"; coo/DECISIONS-2026-11-07.md)
+    in code, for lessons dated from STUDIO_V3_FROM. samples: [(t, [(text, tag, x0, y0, x1, y1, alpha)])] for scene and
+    set (deco) text, before the end card. Fails, for anything on screen 0.5 s or more in a row:
+    (1) a drawn string missing from cues.md (the facts gate reads cues.md as the list of everything drawn);
+    (2) scene text past x 930, the content edge the render critic and the stage contract use (lint's own edge is 950);
+    (3) any text under 28 px of ink, smaller than the kit's smallest face (30 px): a shrunk or scaled-down label.
+    Grid labels (grid_strings) are skipped for (1) and (3)."""
+    cues_t = " " + " ".join(_stoks(cues_text)) + " "
+    grid = grid_strings(samples)
+    seen, wide, small = {}, {}, {}
+    for t, boxes in samples:
+        if t >= end_t:
+            continue
+        for s, tag, x0, y0, x1, y1, a in boxes:
+            s = s.strip()
+            if a <= 0.6 or not s or tag not in ("scene", "deco"):
+                continue
+            seen.setdefault(s, []).append(t)
+            if tag == "scene" and s not in grid and x1 > edge + 0.5:
+                wide.setdefault(s, []).append((t, x1))
+            if s not in grid and y1 - y0 < floor_px and any(c.isalnum() for c in s):
+                small.setdefault(s, []).append((t, y1 - y0))
+    # 0.5 s in a row, or on frame 0 at all: the cover is the feed's thumbnail, however briefly it holds
+    long_enough = lambda ts: min(ts) <= 1e-6 or any(b - a >= 0.5 - 1e-6 for a, b in _runs(ts, step))
+    out = []
+    for s, ts in sorted(seen.items(), key=lambda kv: kv[1][0]):
+        tk = _stoks(s)
+        if s in grid or not tk or not long_enough(ts):
+            continue
+        if not (sum(c.isalnum() for c in s) >= 2 or any(c.isdigit() for c in s)):
+            continue
+        if (" " + " ".join(tk) + " ") not in cues_t:
+            out.append(f"{ts[0]:5.2f} s: drawn string not in cues.md: '{s[:60]}' (write it in cues.md exactly; facts reads cues.md)")
+    for s, hits in sorted(wide.items(), key=lambda kv: kv[1][0][0]):
+        ts = [h[0] for h in hits]
+        if long_enough(ts):
+            out.append(f"{ts[0]:5.2f} s: '{s[:50]}' runs to x {max(h[1] for h in hits):.0f}, past the x {edge} content edge")
+    for s, hits in sorted(small.items(), key=lambda kv: kv[1][0][0]):
+        ts = [h[0] for h in hits]
+        if long_enough(ts):
+            out.append(f"{ts[0]:5.2f} s: '{s[:50]}' is {min(h[1] for h in hits):.0f} px tall, under the {floor_px} px type floor")
+    return out
+
+
+# Freshness in code (studio change 2; Todd, live chat, Nov 7, 2026, 6:59 pm: "Go with your recommendation";
+# coo/DECISIONS-2026-11-07.md). The design gate failed round 0 on copies of the lesson before: a cover in the same layout,
+# a hook cut that repeated the last lesson's move, the send and close transitions copied. A lesson's layout exists from its
+# first `stills`, so this runs there (and in lint), before render: the frames that carry a lesson's identity (the cover,
+# the first hook cut, the send card, the last frame before the end card) as which cells of a 12 x 24 grid hold settled
+# scene text, and its send and close transitions, against the two lessons before it (the same two variety uses).
+# The send card is a kit piece (k.sendCard) and is meant to look the same every time, so its layout is reported, not failed.
+FRESH_GRID = (12, 24)   # 90 x 80 frame-unit cells over 1080 x 1920
+FRESH_MATCH = 0.85      # cover or first-cut layout this close to a lesson before fails (Nov 8 calibration: the 21
+                        # neighbour pairs of the last 12 lessons ran 0.00 to 0.66, and one cover copy ran 0.97)
+FRESH_KEYS = ("cover", "shot1", "send", "close")
+
+
+def layout_cells(boxes):
+    """The cells of a 12 x 24 grid that settled scene text covers, from one frame's lint boxes."""
+    cw, ch = 1080 / FRESH_GRID[0], 1920 / FRESH_GRID[1]
+    cells = set()
+    for s, tag, x0, y0, x1, y1, a in boxes:
+        if tag != "scene" or a <= 0.6 or not str(s).strip():
+            continue
+        for cx in range(max(0, int(x0 // cw)), min(FRESH_GRID[0] - 1, int((x1 - 1) // cw)) + 1):
+            for cy in range(max(0, int(y0 // ch)), min(FRESH_GRID[1] - 1, int((y1 - 1) // ch)) + 1):
+                cells.add((cx, cy))
+    return cells
+
+
+def jaccard(a, b):
+    a, b = {tuple(x) for x in (a or [])}, {tuple(x) for x in (b or [])}
+    return round(len(a & b) / len(a | b), 2) if (a or b) else 0.0
+
+
+def _boxes_at(pg, t):
+    bx = pg.evaluate(f"(() => {{ window.__boxes = []; drawAt({t:.3f}); const r = window.__boxes; window.__boxes = null; return r; }})()")
+    return [(x["s"], x["tag"], x["x0"], x["y0"], x["x1"], x["y1"], x["a"]) for x in bx]
+
+
+def fresh_signature(slug, pg=None, hook=None):
+    """{cover, shot1, send, close: grid cells or None, transitions: {send, close}} for one lesson. Opens its stage unless
+    given a page; uses the hook report's first change for the first cut."""
+    cues = json.load(open(vdir(slug, "03_cues", "cues.json")))
+    own = pg is None
+    if own:
+        pw, b, pg = open_stage(slug)
+    try:
+        if hook is None:
+            hook, _ = hook_report(slug, pg)
+        wd = json.load(open(vdir(slug, "02_transcript", "words.json"))); words = wd["words"] if isinstance(wd, dict) else wd
+        end_t = (words[-1]["end"] + 0.1) if words else cues["duration"] - END_TAIL
+        tops = [c for c in cues["cues"] if c.get("level", 0) == 0]
+        send = [c for c in cues["cues"] if c.get("send")]
+        tr = pg.evaluate("(window.SCENE && window.SCENE.transitions) || {}") or {}
+        ch = hook.get("changes") or []
+        times = {"cover": 0.0, "shot1": (ch[0] + 0.3) if ch else None,
+                 "send": (float(send[0]["t"]) + 1.5) if send else None, "close": end_t - 0.4}
+        sig = {"slug": slug}
+        for k_, t in times.items():
+            sig[k_] = sorted(layout_cells(_boxes_at(pg, t))) if t is not None else None
+        sec = next((c["id"].split(".")[0] for c in reversed(tops) if send and c["t"] <= float(send[0]["t"]) + 1e-6), None)
+        sig["transitions"] = {"send": tr.get(sec) if sec else None, "close": tr.get(tops[-1]["id"]) if len(tops) > 1 else None}
+    finally:
+        if own:
+            b.close(); pw.stop()
+    return sig
+
+
+def fresh_problems(me, others):
+    """me and others: fresh signatures (others = the two lessons before). Returns (problems, report): a cover or first cut
+    whose text layout matches one before at FRESH_MATCH or more, or send and close transitions both the same as one
+    before. The report holds every match number, for the design gate."""
+    out, rep = [], {}
+    for o in others:
+        m = {k_: jaccard(me.get(k_), o.get(k_)) for k_ in FRESH_KEYS if me.get(k_) and o.get(k_)}
+        rep[o["slug"]] = dict(m, transitions=o.get("transitions"))
+        for k_, name in (("cover", "cover (frame 0)"), ("shot1", "first hook cut")):
+            if m.get(k_, 0) >= FRESH_MATCH:
+                out.append(f"the {name} lays out its text like {o['slug']}'s ({m[k_]:.2f} match, {FRESH_MATCH} fails): move the hero, the lines or the shot")
+        a, b_ = me.get("transitions") or {}, o.get("transitions") or {}
+        if a.get("send") and a.get("close") and a.get("send") == b_.get("send") and a.get("close") == b_.get("close"):
+            out.append(f"send and close transitions ({a['send']}, {a['close']}) copy {o['slug']}'s: change at least one (SCENE.transitions)")
+    return out, rep
+
+
+def lessons_before(slug, n=2):
+    vids = sorted(d for d in os.listdir(VIDEOS) if re.match(r"\d{4}-\d\d-\d\d-", d) and not d.endswith(HOOKB_SUFFIX)
+                  and os.path.exists(os.path.join(VIDEOS, d, "03_cues", "cues.json")) and os.path.exists(os.path.join(VIDEOS, d, "04_scene", "scene.js")))
+    return [d for d in vids if d < slug][-n:]
+
+
+def fresh_check(slug, pg=None, hook=None, write=True, me=None):
+    """Signature for slug (or me, already taken), compared with the two lessons before; writes 04_scene/fresh.json.
+    Returns (problems, report). Opens each lesson before in its own browser, so call it with no other stage open."""
+    me = me or fresh_signature(slug, pg, hook)
+    others = []
+    for d in lessons_before(slug):
+        try:
+            others.append(fresh_signature(d))
+        except (Exception, SystemExit) as e:   # a lesson before that no longer boots is skipped, and said so
+            print(f"NOTE fresh: {d} skipped ({str(e)[:120]})")
+    probs, rep = fresh_problems(me, others)
+    if write:
+        json.dump({"schema": "pnf.studio.fresh.v1", "me": me, "against": rep, "problems": probs},
+                  open(vdir(slug, "04_scene", "fresh.json"), "w"), indent=None)
+    return probs, rep
+
+
+def cmd_cuestrings(slug, step=0.25):
+    """Studio change 1: every string the scene draws (0.5 s or more, before the end card), and whether cues.md holds it.
+    The same rule lint fails on for lessons from STUDIO_V3_FROM; run it after the first stills."""
+    cues = json.load(open(vdir(slug, "03_cues", "cues.json")))
+    wd = json.load(open(vdir(slug, "02_transcript", "words.json"))); wl = wd["words"] if isinstance(wd, dict) else wd
+    end_t = (wl[-1]["end"] + 0.1) if wl else cues["duration"] - END_TAIL
+    pw, b, pg = open_stage(slug)
+    t, samples = 0.0, []
+    while t < end_t:
+        samples.append((t, [x for x in _boxes_at(pg, t) if x[1] in ("scene", "deco") and x[6] > 0.6 and str(x[0]).strip()]))
+        t += step
+    b.close(); pw.stop()
+    probs = [p for p in layout_v3_problems(samples, open(vdir(slug, "03_cues", "cues.md"), encoding="utf-8").read(), end_t, step) if "cues.md" in p]
+    for p in probs:
+        print("MISSING " + p)
+    print(f"cuestrings: {len(probs)} drawn string(s) missing from cues.md")
+    if probs:
+        sys.exit(1)
+
+
+def cmd_fresh(slug):
+    probs, rep = fresh_check(slug)
+    for d, m in rep.items():
+        print(f"fresh vs {d}: " + ", ".join(f"{k_} {v:.2f}" for k_, v in m.items() if k_ in FRESH_KEYS) + f"; transitions {m.get('transitions')}")
+    for p in probs:
+        print("ERROR fresh: " + p)
+    print("fresh: " + ("FAIL" if probs else "PASS") + f" against {len(rep)} lesson(s) before")
+    if probs:
+        sys.exit(1)
+
+
 def cmd_lint(slug, step=0.25):
     """The layout check in code, before a reviewer has to find it: every settled scene text inside the safe area
     (x 20 to 950, y 262 to 1250), not under the host, the dialog box or other text. Problems that last under 0.5 s
@@ -3501,13 +3768,16 @@ def cmd_lint(slug, step=0.25):
     sc = [c for c in cues["cues"] if c.get("send")] if send_applies(slug) else []
     s0 = float(sc[0]["t"]) if len(sc) == 1 else None
     s1 = min([float(d["t"]) for d in cues["cues"] if float(d["t"]) > s0 + 1e-6] + [cues["duration"] - END_TAIL]) if s0 is not None else None
-    send_samples = []
+    send_samples, v3_samples = [], []
+    v3 = os.path.basename(slug)[:10] >= STUDIO_V3_FROM and not slug.endswith(HOOKB_SUFFIX)
     while t < cues["duration"]:
         bx, used = pg.evaluate(f"(() => {{ window.__boxes = []; window.__used = {{}}; drawAt({t:.3f}); const r = window.__boxes; window.__boxes = null; return [r, Object.keys(window.__used)]; }})()")
         steps += 1
         for w in used:
             worlds[w] = worlds.get(w, 0) + 1
         texts = [x for x in bx if x["tag"] == "scene" and x["a"] > 0.6 and x["s"].strip()]
+        v3_samples.append((t, [(x["s"], x["tag"], x["x0"], x["y0"], x["x1"], x["y1"], x["a"]) for x in bx
+                               if x["tag"] in ("scene", "deco") and x["a"] > 0.6 and x["s"].strip()]))
         host = [x for x in bx if x["tag"] == "host"]; dlg = [x for x in bx if x["tag"] == "dialogbox"]
         for x in texts:
             if x["x0"] < 20 or x["x1"] > 950 or x["y0"] < 262 or x["y1"] > 1250:
@@ -3531,6 +3801,7 @@ def cmd_lint(slug, step=0.25):
                 if ov(x, y) > 0.15 * min((x["x1"] - x["x0"]) * (x["y1"] - x["y0"]), (y["x1"] - y["x0"]) * (y["y1"] - y["y0"])):
                     hits.setdefault(("text on text", x["s"] + " / " + y["s"]), []).append(t)
         t += step
+    me = fresh_signature(slug, pg, hook) if v3 else None   # studio change 2: this lesson's frames, while its stage is open
     b.close(); pw.stop()
     errors = [f"ERROR lint captions: {x}" for x in captions_problems(slug)] if os.path.exists(vdir(slug, "05_render", "captions.json")) and not slug.endswith(HOOKB_SUFFIX) else []
     errors += [f"ERROR lint hook: {x}" for x in hook_bad]
@@ -3557,6 +3828,15 @@ def cmd_lint(slug, step=0.25):
                 prev = x
         for a0, a1 in runs:
             errors.append(f"ERROR lint {a0:5.2f} to {a1:5.2f} s: {kind}: {what[:70]}")
+    if v3:   # studio changes 1, 2 and 4 (Todd, live chat, Nov 7, 2026, 6:59 pm: "Go with your recommendation")
+        wd = json.load(open(vdir(slug, "02_transcript", "words.json"))); wl = wd["words"] if isinstance(wd, dict) else wd
+        end_t = (wl[-1]["end"] + 0.1) if wl else cues["duration"] - END_TAIL
+        cm = vdir(slug, "03_cues", "cues.md")
+        errors += [f"ERROR lint layout: {x}" for x in layout_v3_problems(v3_samples, open(cm, encoding="utf-8").read() if os.path.exists(cm) else "", end_t, step)]
+        fp, frep = fresh_check(slug, me=me)
+        errors += [f"ERROR lint fresh: {x}" for x in fp]
+        for d, m in frep.items():
+            print(f"fresh vs {d}: " + ", ".join(f"{k_} {v:.2f}" for k_, v in m.items() if k_ in FRESH_KEYS) + f"; transitions {m.get('transitions')}")
     print("hook: " + json.dumps(hook))
     late, ontime = accent_report(slug, first_seen, step)
     # IMPROVE 00a-3 (Nov 1, lunch run): for lessons dated from ACCENT_ERROR_FROM on, a text that lands ACCENT_ERROR_LATE s
@@ -3745,6 +4025,10 @@ def main():
         cmd_storysnap(a.slug)
     elif c == "storycarry":
         cmd_storycarry(a.slug)
+    elif c == "fresh":
+        cmd_fresh(a.slug)
+    elif c == "cuestrings":
+        cmd_cuestrings(a.slug)
     elif c == "variety":
         cmd_variety(a.slug)
     elif c == "lanes":

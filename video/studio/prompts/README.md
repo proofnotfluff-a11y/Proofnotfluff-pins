@@ -18,7 +18,7 @@ was amended by Todd in a live chat, Nov 6, 2026, 7:15 am ("Go with you recommend
 golden stay only for the held old-line lessons.
 
 Proven lessons (Todd, live chat, Nov 7, 2026, 12:08 pm: "Go"; _shared/formats.md "Proven"; anim.py PROVEN_GATES): no story
-gate. Before any voice: `anim.py copycheck` (code, gate copy) and facts on script.md. After the voice: facts-captions.
+gate. Before any voice: `anim.py copycheck` (code, gate copy) and facts on script.md. After the voice: facts-captions. After cues.md and before any scene code (from lessons dated 2026-11-26): facts on cues.md, the storyboard round (facts.md).
 After the render: render-critic, design, send, then `anim.py copycheck` again. The reviewers never see the source video.
 
 Old line order (lessons made before Nov 5): facts, facts-captions (after the script and captions exist), then after the

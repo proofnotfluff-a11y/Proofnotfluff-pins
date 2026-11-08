@@ -6,7 +6,7 @@ round 1 or later was a FAIL, and the round before it), the bar is average 4.50 o
 Oct 31, 2026, 4:19 pm: "After two fails lower the threshold to 4.5"). Say which bar you used. For every score under 5, the exact change (frame time, element, to what). At most 8 changes, most important first.
 Freshness (Todd, Oct 28, 7:37 pm: "You are cycling through the same scenery ... come up with new cool graphic motion for
 each video"): also open the sheets of the two lessons before this one (the folders sorting just before V in
-video/studio/videos/). If this lesson's worlds, set pieces or signature moves look like theirs, first impression is at
+video/studio/videos/), and V/04_scene/fresh.json when it exists (studio change 2: the code's layout match, 0 to 1, of the cover, the first hook cut, the send card and the close against those two lessons, and their send and close transitions; the send card is a kit piece and is meant to match). If this lesson's worlds, set pieces or signature moves look like theirs, first impression is at
 most 3 and name the scenes to replace with what (video/studio/_shared/sets.md lists the set pieces).
 Style board (Todd, Oct 29, 2026: "go with rec"): also open video/studio/_shared/style-board/README.md and board.jpg, our
 best frames and the target spec. Judge the finish against them. Caps, each with a reason that names the frame time and the

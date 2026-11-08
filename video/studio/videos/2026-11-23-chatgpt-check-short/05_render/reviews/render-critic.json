@@ -1,0 +1,17 @@
+{
+  "gate": "render-critic",
+  "round": 0,
+  "reviewer": "fresh opus agent",
+  "pass": true,
+  "score": {"faults": 0},
+  "faults": [],
+  "reasons": [
+    "Hook: $11,500 sign is on screen from frame 0.0s, well before 0:02; the voice says 'eleven and a half grand' at 1.22 to 3.46 s and PER JOB joins the tag by 2.5 s.",
+    "Spoken numbers: only two. 'eleven and a half grand' (1.2 to 3.5 s) matches $11,500 shown 0.0 to 5.5 s; 'one percent' (25.3 to 25.7 s) matches the gauge readout 1% shown from 24.5 s to 28 s. Both large and readable.",
+    "Layout once settled: no word or number hidden, cut off or under another element in any scene (shop 0 to 5.5 s, VS 5.5 to 7 s, work order 7 to 15.5 s, flap board 16 to 23.5 s, gauge 23.5 to 28 s, close 28.5 to 31.5 s, end card 31.5 to 34.5 s). All text sits between y 270 and y 1250 and left of x 930; source boxes and the flap board frame extend past x 930 but their text ends by about x 915. Run of the check bar at y 190 is decoration.",
+    "Minor notes, not faults: the flap board row 'WEBSITE' + 'YOURS' fills all 12 cells with no gap, so it reads as one run; the gauge needle at 0% and 1% brushes the '0' scale label but it stays readable. Mid-transition frames (15.5 s pixel dissolve, 16.0 s flaps flipping, 28.0 s screen-off line, 31.5 s end card slide) were ignored as motion.",
+    "Audio end: last word 'does' ends at 31.42 s, end card starts 31.52 s, video runs to 34.53 s; the speech bubble completes 'before a customer does.' Nothing cut mid-word.",
+    "Text size: smallest text is the source line and the work order subhead at about 28 to 30 px on a 1080 wide frame, readable on a phone; speech bubble and headline text are large. Flash: scene changes come at most once every 0.5 s or slower; nothing flashes more than 3 times a second.",
+    "No earlier render-critic.json existed, so there were no prior faults to confirm."
+  ]
+}

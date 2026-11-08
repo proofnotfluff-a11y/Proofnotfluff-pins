@@ -73,12 +73,25 @@ const workOrder = (k, d, t0, o = {}) => {
   if (up) return;
   const at = (i) => (o.still ? -10 : t0 + 0.2 + i * 0.05), sl = {from: 0.3, glint: false};
   k.text('WORK ORDER: TONIGHT', 72, 266, {size: 52, color: CREAM});
-  k.text('FOR WHOEVER RUNS YOUR GOOGLE PROFILE', 160, 352, {size: 36, color: '#7A3442'});
-  k.slam('1. Ask ChatGPT:', 160, 420, at(0), Object.assign({size: 52, color: INK}, sl));
-  k.slam('"Who\'s the best [your', 160, 488, at(1), Object.assign({size: 56, color: '#2F6F67'}, sl));
-  k.slam('trade] near me?"', 160, 554, at(2), Object.assign({size: 56, color: '#2F6F67'}, sl));
-  k.slam('2. Not you? Fix your', 160, 690, at(3), Object.assign({size: 56, color: INK}, sl));
-  k.slam('Google profile first.', 160, 756, at(4), Object.assign({size: 56, color: RED}, sl));
+  k.text('FOR WHOEVER RUNS YOUR', 160, 340, {size: 42, color: '#7A3442'}); k.text('GOOGLE PROFILE', 160, 384, {size: 42, color: '#7A3442'});   /* send r0 note: one size up */
+  k.slam('1. Ask ChatGPT:', 160, 452, at(0), Object.assign({size: 52, color: INK}, sl));
+  k.slam('"Who\'s the best [your', 160, 516, at(1), Object.assign({size: 56, color: '#2F6F67'}, sl));
+  k.slam('trade] near me?"', 160, 582, at(2), Object.assign({size: 56, color: '#2F6F67'}, sl));
+  k.slam('2. Not you? Fix your', 160, 704, at(3), Object.assign({size: 56, color: INK}, sl));
+  k.slam('Google profile first.', 160, 770, at(4), Object.assign({size: 56, color: RED}, sl));
+};
+
+/* our own drawn chat box on her phone (EXAMPLE, no brand, no reply): the question types from t0 */
+const chatBox = (k, d, q, t0, o = {}) => {
+  const {P, win} = d, up = d.ease(t0 - 0.1, 6, 40);
+  win(30, 150 + up, 300, 118, {base: CREAM, hi: '#FFFFFF', lo: SAND, rule: false});
+  P(30, 150 + up, 300, 20, '#2F6F67'); k.text('ASK THE CHAT', 132, 456 + up * 3, {size: 39, color: CREAM});
+  if (up) return;
+  const n = Math.max(0, Math.floor((k.T - t0) * 34)); let left = n;
+  q.forEach((s, i) => { const m = Math.min(s.length, left); left -= m; if (m) k.text(s.slice(0, m), 120, 540 + i * 62, {size: 48, color: INK}); });
+  const done = n >= q.join('').length;
+  if (done) { P(290, 236, 28, 22, '#2F6F67'); d.line(298, 247, 310, 247, CREAM, 2); d.line(306, 242, 311, 247, CREAM, 2); d.line(306, 252, 311, 247, CREAM, 2);
+    const dots = Math.floor((k.T - t0) * 3) % 4; for (let i = 0; i < 3; i++) d.disc(52 + i * 12, 248, 3, i < dots ? '#2F6F67' : SAND); }
 };
 
 window.SCENE = {
@@ -87,7 +100,7 @@ window.SCENE = {
   host_name: 'Snow',
   hud: 'RUN THE CHECK',
   sendLine: 'Send this to whoever runs your Google profile.',
-  transitions: {send: 'levelselect', why: 'mosaic', small: 'dissolve', button: 'gameover'},
+  transitions: {send: 'dissolve', why: 'mosaic', small: 'fade4', button: 'levelselect'}   /* design r0: not angi-four-pros' moves */,
   trauma: {},
   sections: {
     /* ---- hook: the cover is the storefront with the tag at the firm's average ticket; on "eleven" the tag sways in;   */
@@ -98,15 +111,17 @@ window.SCENE = {
         k.sets.counter({shop: 'JOBS FROM CHATGPT', item: 'heater', tags: [{price: tk.shown, at: -0.5}]});
         const d = px(k), tA = Math.min(0.9, wordT(k, 'hook', /^firm/i, 0.8) - 0.2), tB = Math.min(2.2, wordT(k, 'hook', /^chatgpt/i, 1.6) - 0.2);
         k.text('AVG TICKET', 66, 450, {size: 39, color: CREAM});
-        if (T >= tA) k.slam("ONE FIRM'S", 66, 510, tA, {size: 39, color: SAND, from: 0.3, glint: false});
-        if (T >= tB) k.slam('DATA', 66, 570, tB, {size: 39, color: SAND, from: 0.3, glint: false});
-        if (T >= tEl) stampBox(k, 'PER JOB', 780, 640, tEl, {color: GOLD, size: 52, freeze: 3});
-        tag(k, d, 'ACHR News column, Mar 18, 2026', 290, '(SearchLight data)');
+        if (T >= tA) k.slam("ONE FIRM'S DATA", 66, 500, tA, {size: 36, color: SAND, from: 0.3, glint: false});
+        if (T >= tB) { k.slam('ACHR News,', 66, 548, tB, {size: 36, color: SAND, from: 0.3, glint: false}); k.slam('Mar 18, 2026', 66, 590, tB + 0.05, {size: 36, color: SAND, from: 0.3, glint: false}); }
+        /* design r0: the stake as one huge number from frame 0 (accent, 170 px); it kicks on "eleven" */
+        if (T < tEl) k.text(tk.shown, 620, 790, {size: 170, color: 'accent', align: 'center', drop: INK});
+        else k.slam(tk.shown, 620, 790, tEl, {size: 170, color: 'accent', align: 'center', drop: INK, from: 0.85, shake: 6});
         return host(k, T >= tEl ? 'shock' : 'point');
       }
       const tS = wordT(k, 'hook.who', /^send/i, 0.6) - 0.2;
       /* our versus screen (EXAMPLE): the shop it names against YOU?; no winner is drawn, the question stays open */
-      k.sets.versus({a: {name: 'SHOP IT NAMES', icon: 'star', stats: []}, b: {name: 'YOU?', icon: 'wrench', stats: []}, at: tWho, vsAt: tS});
+      k.sets.versus({a: {name: 'SHOP IT NAMES', icon: 'star', stats: [{label: 'NAMED', value: 1, text: 'YES'}]}, b: {name: 'YOU?', icon: 'wrench', stats: [{label: 'NAMED', value: 0, text: '?'}]}, at: tWho, vsAt: tS, max: 1});
+      exampleTag(px(k), 140, 300);   /* facts r0 note: our story beat, labeled */
       return host(k);
     },
 
@@ -123,14 +138,15 @@ window.SCENE = {
     why: (k, T) => {
       const t0 = k.S('why'), ts = [wordT(k, 'why', /^name/i, 3.0) - 0.3, wordT(k, 'why', /^website/i, 3.6) - 0.3, wordT(k, 'why', /^reviews/i, 4.2) - 0.3];
       const r = k.sets.flaps({title: 'WHAT IT READS', cols: 12, rows: [{label: 'NAME', value: 'YOURS', at: Math.min(ts[0], t0 + 0.4)}, {label: 'WEBSITE', value: 'YOURS', at: ts[1]}, {label: 'REVIEWS', value: 'YOURS', at: ts[2], hi: true}]});
-      const d = px(k); tag(k, d, 'ACHR News column, Mar 18, 2026', 290, '(SearchLight data)');
+      const d = px(k); tag(k, d, 'ACHR News column, Mar 18, 2026', 290);   /* facts r0 note: the column's own line, not a SearchLight number */
       return host(k, 'point');
     },
 
     /* ---- small: the gauge, the needle barely leaves zero: about 1% of revenue, most contractors, today.               */
     small: (k, T) => {
       const t0 = k.S('small'), tOne = wordT(k, 'small', /^one$/i, 1.6) - 0.4, r1 = k.data.numbers.rev1;
-      const r = k.sets.gauge({value: r1.value, max: 100, at: Math.max(t0 + 0.2, tOne - 0.6), dur: 0.8, zones: [[0, 10, RED], [10, 50, GOLD], [50, 100, TEAL]], label: 'SHARE OF REVENUE', suffix: '%'});
+      const r = k.sets.gauge({value: r1.value, max: 100, at: Math.max(t0 + 0.2, tOne - 0.6), dur: 0.8, zones: [[0, 10, RED], [10, 50, GOLD], [50, 100, TEAL]], label: 'SHARE OF REVENUE', suffix: '%', readout: false});
+      if (T >= tOne) k.slam(r1.shown, 540, 680, tOne, {size: 150, color: 'accent', align: 'center', drop: INK, from: 0.6, shake: 8});   /* design r0: the verdict lands big with a kick */
       const d = px(k);
       tag(k, d, 'About, most contractors: ACHR News', 290, 'column, Mar 18, 2026 (SearchLight data)');
       return host(k, T >= tOne ? 'shrug' : null);
@@ -142,7 +158,9 @@ window.SCENE = {
       const d = px(k), {P, dith} = d;
       P(0, 0, 360, 417, '#1B1420'); for (let y = 0; y < 417; y += 4) dith(0, y, 360, 1, '#241A2B', (y / 4) % 2);
       topPlate(k, d, 'Ask ChatGPT tonight,', 'before a customer does.', k.S('button') + 0.02);
-      if (T >= tA) stampBox(k, 'RUN THE CHECK', 540, 560, tA, {color: GOLD, size: 66, freeze: 3});
+      /* design r0: the band carries the question itself, typing into our own chat box (EXAMPLE) */
+      chatBox(k, d, ["Who's the best [trade]", 'near me?'], Math.max(k.S('button') + 0.3, tA));
+      exampleTag(d, 250, 276);
       return host(k, 'point');
     },
   },

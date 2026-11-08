@@ -1,0 +1,16 @@
+{
+  "gate": "design",
+  "round": 0,
+  "reviewer": "fresh opus agent",
+  "pass": false,
+  "bar": "average 4.61 or more, no score under 4 (round 0, no earlier design FAILs on this lesson)",
+  "score": {"first": 4, "hierarchy": 4, "type": 4, "color": 5, "spacing": 4, "polish": 4, "trust": 5, "average": 4.29},
+  "reasons": [
+    "0.00-5.40 s hook, $11,500 price tag: it is the stake but reads at about 55 px on a small hanging tag while the green chalkboard beside it (AVG TICKET, ONE FIRM'S, DATA) is mostly empty; put $11,500 on the chalkboard at 160 px or more in accent #F2A541 (style board 01-hook-stat target), so frame 0 carries one huge number; keep the swaying tag as decor (caps first and hierarchy at 4, type at 4 for the hero-number floor).",
+    "28.50-31.50 s button: the band from y 450 to y 990 is empty for 3 s under the 'Ask ChatGPT tonight' plate and RUN THE CHECK stamp (more than a third of the band empty for over 2 s); draw what the scene comment promises, the work order card small and still (or a ChatGPT prompt box typing \"Who's the best [your trade] near me?\"), between y 600 and y 980 (spacing at 4).",
+    "24.00-25.00 s gauge verdict: the needle stops at 1% with no zoom kick or shake (SCENE.trauma is {}), so M4 'a verdict gets a kick' fails; add a short shake or zoom kick on the word 'one' when the needle lands (polish capped at 4 by M4).",
+    "23.50-28.00 s gauge readout '0%' / '1%': about 45 px in a small green box that covers the '0' dial label; raise the readout to 120 px or more and move the box below the hub so 0 and the needle tip stay visible.",
+    "5.50-7.00 s versus screen: y 620 to y 990 is empty under the two cards (stats: []) and the VS glyph overlaps the left card's right border; add one stat row per side (for example a '?' under YOU? that blinks at 2/s) and center the VS in the gap between the cards.",
+    "7.00 s and 28.00 s transitions: send 'levelselect' and button 'gameover' repeat angi-four-pros (Nov 21) move for move, and the send card mirrors its 'FOR WHOEVER...' layout; change the move into send to 'fade4' or 'dissolve' so two lessons in a row do not open their saveable card the same way."
+  ]
+}

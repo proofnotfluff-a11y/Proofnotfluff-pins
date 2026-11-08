@@ -6,7 +6,7 @@
   "level": 0.16,
   "tune": "quest"
  },
- "duration": 34.539,
+ "duration": 34.519,
  "cues": [
   {
    "id": "hook",
@@ -27,7 +27,7 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "The dispatch board: three shop pins drop (SHOP A, SHOP B, YOU?), a route draws from the homeowner's pin toward one shop; a big \"?\" over YOU.",
+   "text": "The versus screen (EXAMPLE): SHOP IT NAMES against YOU?, VS slams on \"send\"; no winner is drawn.",
    "t": 5.38,
    "word": 14,
    "end": 7.007
@@ -76,10 +76,10 @@
    "sfx": "chime",
    "shift": 0.0,
    "pin": null,
-   "text": "The work order again, small and still; plate \"Ask it tonight.\" Then the end card with the send line.",
+   "text": "The work order again, small and still; plate \"Ask ChatGPT tonight,\" / \"before a customer does.\" Then the end card with the send line.",
    "t": 28.239,
    "word": 71,
-   "end": 34.539
+   "end": 34.519
   }
  ]
 }

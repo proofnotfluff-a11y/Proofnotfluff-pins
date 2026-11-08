@@ -1,0 +1,1 @@
+window.DATA = {"file": "video/studio/videos/2026-11-24-pay-before-you-leave/01_voice/facts.json", "commit": "", "sha256": "d278bf7dd486a83462809b9cc0a13cde01e83e2a8e8396f9e175dc37c0758e7a", "numbers": {"own": {"value": 94, "shown": "94%", "path": "visa.ownPct"}}, "pull": {}};

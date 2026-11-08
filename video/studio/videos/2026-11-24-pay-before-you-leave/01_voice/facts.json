@@ -1,0 +1,27 @@
+{
+ "about": "Every number and claim this lesson shows or says, with its source. ServiceTitan's article 'After the job: Get paid, manage your reputation' (Mike Persinger, May 6, 2026) re-read Nov 8, 2026 (Central) with WebFetch in the live chat; the quoted lines were on it that day. The 94% is Visa's figure as ServiceTitan reports it. The job, the check, three weeks, the driveway line and the card reader are ours (EXAMPLE on screen). We never attach a year or study name to the 94%. We never say how many homeowners don't pay, how long checks take, or that paying on site gets paid faster: no source here gives those for home service.",
+ "visa": {
+  "title": "After the job: Get paid, manage your reputation",
+  "publisher": "ServiceTitan (blog), citing Visa figures",
+  "author": "Mike Persinger",
+  "date": "2026-05-06",
+  "url": "https://www.servicetitan.com/blog/automation-payment-methods",
+  "reread": "2026-11-08",
+  "ownPct": 94,
+  "ownShown": "94%",
+  "ownSaid": "ninety-four percent",
+  "useRegularlyPct": 90,
+  "checkShare": {"2015-16": 59, "2024-25": 36},
+  "population": "home service customers (Visa figures; no year given on the page for the 94%)",
+  "confirms": [
+   "Visa figures show that 94% of home service customers own a credit card, and 90% of those cardholders use theirs regularly.",
+   "In 2015-16, Visa data shows, 59% of home service spending was paid by check.",
+   "By 2024-25, that had fallen to 36%."
+  ]
+ },
+ "example": {
+  "line": "I'll mail you a check",
+  "weeks": 3,
+  "what": "ours: a job finished, the homeowner promises a check, none comes; the driveway line and the card reader are ours, labeled EXAMPLE"
+ }
+}

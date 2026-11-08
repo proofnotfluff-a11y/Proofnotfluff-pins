@@ -701,6 +701,27 @@
    "note": "Todd, live chat, Nov 7, 2026, 7:11 PM: moved ahead of lsa-reports-short and ask-chatgpt so the 8:13 pm evening run posts it (picked 'Next in line at 8:13 pm'); this cloud chat has no file upload tool for his Chrome."
   },
   {
+   "slug": "2026-11-21-angi-four-pros",
+   "readyAt": "2026-11-07T15:16:40-05:00",
+   "commit": "b5f66fcb2b12c2af36d64aa520e12d49ed1ba0e7",
+   "fingerprints": {
+    "script": "6a44d8461ae1",
+    "takes": "a1c9896ba879",
+    "words": "9638185df309",
+    "cues": "174461d531ed",
+    "scene": "69f199ffe8c4",
+    "data": "a16a6de56d77",
+    "captions": "2e2d0bcdc11f",
+    "mouth": "24448b48b859",
+    "runtime_kit": "7533966669eb",
+    "runtime_player": "0247e61a6184",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {},
+   "note": "Todd, live chat, Nov 7, 2026, 7:20 PM: 'if they are already made you can post them both now. Then we move to the regular schedule with the top tier videos'. Moved right after after-hours-greeting (one lesson per run, so it takes the next slot)."
+  },
+  {
    "slug": "2026-11-20-lsa-reports-short",
    "readyAt": "2026-11-07T12:26:57-05:00",
    "commit": "c92bfb2325cf4f574b2686df25f24a6dde063c4b",
@@ -733,26 +754,6 @@
     "data": "9f6425e8d6d0",
     "captions": "f2b646034032",
     "mouth": "1c9bca1b5395",
-    "runtime_kit": "7533966669eb",
-    "runtime_player": "0247e61a6184",
-    "runtime_looks": "0c1f257215e2",
-    "runtime_pixfont": "a8557997756e"
-   },
-   "posts": {}
-  },
-  {
-   "slug": "2026-11-21-angi-four-pros",
-   "readyAt": "2026-11-07T15:16:40-05:00",
-   "commit": "b5f66fcb2b12c2af36d64aa520e12d49ed1ba0e7",
-   "fingerprints": {
-    "script": "6a44d8461ae1",
-    "takes": "a1c9896ba879",
-    "words": "9638185df309",
-    "cues": "174461d531ed",
-    "scene": "69f199ffe8c4",
-    "data": "a16a6de56d77",
-    "captions": "2e2d0bcdc11f",
-    "mouth": "24448b48b859",
     "runtime_kit": "7533966669eb",
     "runtime_player": "0247e61a6184",
     "runtime_looks": "0c1f257215e2",

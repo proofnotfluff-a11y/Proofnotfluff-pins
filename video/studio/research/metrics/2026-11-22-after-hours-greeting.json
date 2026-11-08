@@ -1,0 +1,42 @@
+{
+ "slug": "2026-11-22-after-hours-greeting",
+ "reads": [
+  {
+   "date": "2026-11-08",
+   "readAt": "2026-11-08T17:56:54Z",
+   "depth": "list",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": "hidden",
+     "views": "hidden"
+    },
+    "instagram": {
+     "avgWatchS": "hidden",
+     "comments": "hidden",
+     "likes": "hidden",
+     "saves": "hidden",
+     "shares": "hidden",
+     "skipRate": "hidden",
+     "views": 111
+    },
+    "tiktok": {
+     "avgWatchS": "hidden",
+     "comments": 0,
+     "likes": 2,
+     "saves": "hidden",
+     "shares": "hidden",
+     "views": 180
+    },
+    "youtube": {
+     "avgPctViewed": 43.3,
+     "comments": 0,
+     "likes": 9,
+     "viewedVsSwipedPct": "hidden",
+     "views": 960
+    }
+   },
+   "source": "videometrics 2026-11-22-after-hours-greeting.2026-11-08T11 (lunch PC run, list views only)",
+   "docId": "2026-11-22-after-hours-greeting.2026-11-08T11"
+  }
+ ]
+}

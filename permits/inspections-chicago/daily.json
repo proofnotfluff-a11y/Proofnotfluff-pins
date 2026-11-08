@@ -1,22 +1,22 @@
 {
  "product": "Chicago Restaurant Daily List",
- "asOf": "2026-11-07",
- "asOfText": "Nov 7, 2026",
+ "asOf": "2026-11-08",
+ "asOfText": "Nov 8, 2026",
  "through": "2026-11-06",
  "throughText": "Nov 6, 2026",
  "recentFrom": "2026-10-24",
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-11-07T16:59:41+00:00",
-  "rowsUpdatedAt": "2026-11-07T10:11:54+00:00",
+  "fetchedAt": "2026-11-08T17:14:51+00:00",
+  "rowsUpdatedAt": "2026-11-08T10:09:45+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "pests": 2,
+  "pests": 1,
   "hood": 0,
-  "places": 2
+  "places": 1
  },
  "history": [
   {
@@ -138,19 +138,19 @@
    "hood": 0,
    "places": 2,
    "withPhone": 1
+  },
+  {
+   "asOf": "2026-11-08",
+   "through": "2026-11-06",
+   "pests": 1,
+   "hood": 0,
+   "places": 1,
+   "withPhone": 0
   }
  ],
  "examples": [
   {
-   "area": "Uptown",
-   "type": "Restaurant",
-   "result": "Fail",
-   "trades": [
-    "pests"
-   ]
-  },
-  {
-   "area": "South Shore",
+   "area": "Albany Park",
    "type": "Restaurant",
    "result": "Fail",
    "trades": [
@@ -226,16 +226,17 @@
   },
   {
    "date": "2026-11-06",
-   "pests": 1,
-   "restaurant": 1
+   "pests": 2,
+   "restaurant": 2
   }
  ],
  "pestLast7": {
   "from": "2026-10-31",
   "to": "2026-11-06",
-  "inspections": 11,
-  "restaurantInspections": 6,
+  "inspections": 12,
+  "restaurantInspections": 7,
   "areas": [
+   "Albany Park",
    "Humboldt Park",
    "Lower West Side",
    "North Lawndale",
@@ -246,14 +247,14 @@
  },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
  "phones": {
-  "rows": 2,
-  "withPhone": 1,
-  "coverage": 50.0
+  "rows": 1,
+  "withPhone": 0,
+  "coverage": 0.0
  },
  "seat": {
-  "asOf": "2026-11-07",
+  "asOf": "2026-11-08",
   "places14": 26,
-  "new": 2,
+  "new": 1,
   "withPhone14": 15,
   "coverage14": 57.7,
   "phonesChecked": true

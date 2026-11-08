@@ -9,7 +9,7 @@ over the porch. At 0.5 s a blinds wipe to the finished job: a new water heater i
 a blinds wipe to the street: the van drives off (street set), EXAMPLE in the sky.
 
 ## weeks "Three weeks later," [sfx: blip]
-The calendar: a run of x's crosses off three weeks (EXAMPLE); NO CHECK lands on "no check", NO ANSWER on "stopped",
+The calendar: a run of x's crosses off three weeks (EXAMPLE); NO CHECK lands on "no check", NO ANSWER on "won't",
 STILL CHASING on "chasing".
 
 ## receipt "Here's what ServiceTitan reports" [sfx: blip]

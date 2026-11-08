@@ -1,6 +1,6 @@
-# Script: Pay before you leave (proven, r3, Nov 8; take 5 re-rolled: a landing beat, no 'your' under the end card (lint M3); facts r0 fixes: has a card, no untested promises; our own words for research/PROVEN.md row 1)
+# Script: Pay before you leave (proven, r3, Nov 8; take 1 re-rolled (Whisper heard 'stops'); take 5 re-rolled: a landing beat, no 'your' under the end card (lint M3); facts r0 fixes: has a card, no untested promises; our own words for research/PROVEN.md row 1)
 
-[conversational] The job's done. The homeowner smiles and says, "I'll mail you a check." Your tech loads the truck and drives off. Three weeks later, there's no check, and she stopped picking up. Now somebody in your office is chasing it.
+[conversational] The job's done. The homeowner smiles and says, "I'll mail you a check." Your tech loads the truck and drives off. Three weeks later, there's no check, and she won't pick up the phone. Now somebody in your office is chasing it.
 
 Here's what ServiceTitan reports from Visa's numbers: ninety-four percent of home service customers own a credit card. So almost every one of them has a card. The only question is whether your tech asks before he leaves the driveway.
 

@@ -172,14 +172,14 @@ window.SCENE = {
 
     /* ---- weeks: three weeks crossed off; NO CHECK, NO ANSWER, STILL CHASING on their words ---- */
     weeks: (k, T) => {
-      const t0 = k.S('weeks'), d = px(k), tNo = wordT(k, 'weeks', /^no$/i, 1.3) - 0.2, tStop = wordT(k, 'weeks', /^stopped/i, 2.5) - 0.2, tChase = wordT(k, 'weeks', /^chasing/i, 5.5) - 0.2;
+      const t0 = k.S('weeks'), d = px(k), tNo = wordT(k, 'weeks', /^no$/i, 1.3) - 0.2, tStop = wordT(k, 'weeks', /^won't/i, 2.5) - 0.2, tChase = wordT(k, 'weeks', /^chasing/i, 5.5) - 0.2;
       const r = k.sets.calendar({month: 'NOVEMBER', year: 2026, start: 0, days: 30, run: {from: 3, to: 24, at: t0 + 0.2, every: 0.09, c: '#7A3442', mark: 'x'}});
-      exampleTag(d, 150, 280);
+      exampleTag(d, 150, 276);
       const a = (r && r.area) || {x: 330, y: 840, w: 600, h: 300};
       /* one slot under the month, each line replacing the last */
-      if (T >= tChase) k.slam('STILL CHASING', 610, 956, tChase, {size: 64, color: CREAM, align: 'center', drop: INK, from: 0.3});
-      else if (T >= tStop) k.slam('NO ANSWER', 610, 956, tStop, {size: 64, color: GOLD, align: 'center', drop: INK, from: 0.3});
-      else if (T >= tNo) k.slam('NO CHECK', 610, 956, tNo, {size: 64, color: RED, align: 'center', drop: INK, from: 0.3});
+      if (T >= tChase) k.slam('STILL CHASING', 610, 936, tChase, {size: 56, color: CREAM, align: 'center', drop: INK, from: 0.3});
+      else if (T >= tStop) k.slam('NO ANSWER', 610, 936, tStop, {size: 56, color: GOLD, align: 'center', drop: INK, from: 0.3});
+      else if (T >= tNo) k.slam('NO CHECK', 610, 936, tNo, {size: 56, color: RED, align: 'center', drop: INK, from: 0.3});
       return host(k, T >= tChase ? 'shrug' : null);
     },
 

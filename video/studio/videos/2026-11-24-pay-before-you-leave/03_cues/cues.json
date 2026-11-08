@@ -6,7 +6,7 @@
   "level": 0.16,
   "tune": "chase"
  },
- "duration": 54.825,
+ "duration": 54.805,
  "cues": [
   {
    "id": "hook",
@@ -51,7 +51,7 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "The send card, held still: FOR YOUR LEAD TECH / BEFORE YOU PACK UP / \"Let's walk the job together. If you're happy with it, I can take payment right here, card or tap.\" (EXAMPLE). Sweeps on \"asks\", \"lead\", \"line\", \"payment\" and \"card\".",
+   "text": "The send card, held still: FOR THE LEAD TECHNICIAN / BEFORE YOU PACK UP / \"Let's walk the job together. If you're happy with it, I can take payment right here.\" (EXAMPLE). Sweeps on \"lead\", \"line\" and \"payment\".",
    "send": true,
    "t": 23.739,
    "word": 66,
@@ -79,7 +79,7 @@
    "text": "The street again: the van drives up and parks on \"card reader\" with the PAID sign; in the sky her bubble \"I'll mail a check.\" on \"she'll\", then the reader TAP TO PAY turns APPROVED as it parks (EXAMPLE). Holds to the end card.",
    "t": 46.445,
    "word": 137,
-   "end": 54.825
+   "end": 54.805
   }
  ]
 }

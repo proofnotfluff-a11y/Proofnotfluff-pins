@@ -1,0 +1,64 @@
+{
+ "schema": "pnf.studio.captions.v1",
+ "keywords": {
+  "primary": "ChatGPT for contractors",
+  "secondary": [
+   "Google Business Profile",
+   "home service business"
+  ],
+  "trades": [
+   "HVAC",
+   "plumbing",
+   "roofing"
+  ]
+ },
+ "instagram": {
+  "caption": "Is ChatGPT sending customers to your HVAC, plumbing or roofing business?\nA marketing firm's data, in an ACHR News guest column (Mar 18, 2026), puts jobs from ChatGPT at an average $11,500 a ticket, but only about 1% of revenue for most contractors so far.\n\n1. Ask ChatGPT: \"Who's the best [your trade] near me?\"\n2. Not you? Fix your Google profile first: name, website, reviews.\nSend this to whoever runs your Google profile.\nFree missed call cost calculator: link in bio.\n\n#homeservicebusiness #hvacbusiness #plumbingbusiness #googlebusinessprofile",
+  "settings": {
+   "aiLabel": false,
+   "shareToFacebook": false
+  }
+ },
+ "tiktok": {
+  "caption": "Ask ChatGPT who it would hire, HVAC, plumbing and roofing owners.\nA marketing firm's data, in an ACHR News guest column (Mar 18, 2026), puts jobs from ChatGPT at an average $11,500 a ticket, but only about 1% of revenue for most contractors so far.\n1. Ask ChatGPT: \"Who's the best [your trade] near me?\"\n2. Not you? Fix your Google profile first: name, website, reviews.\nDid it name you?\nSend this to whoever runs your Google profile.\nFree missed call cost calculator: link in bio.\n#homeservicebusiness #hvacbusiness #plumbingbusiness #googlebusinessprofile",
+  "settings": {
+   "aiGenerated": true,
+   "commercialDisclosure": false,
+   "suggestKeywords": [
+    "chatgpt for contractors",
+    "google business profile",
+    "home service business"
+   ]
+  }
+ },
+ "facebook": {
+  "caption": "Is ChatGPT sending customers to your HVAC, plumbing or roofing business?\nA marketing firm's data, in an ACHR News guest column (Mar 18, 2026), puts jobs from ChatGPT at an average $11,500 a ticket, but only about 1% of revenue for most contractors so far.\n1. Ask ChatGPT: \"Who's the best [your trade] near me?\"\n2. Not you? Fix your Google profile first: name, website, reviews.\nSend this to whoever runs your Google profile.\nFree missed call cost calculator: link in bio.\n#homeservicebusiness #googlebusinessprofile",
+  "settings": {
+   "aiLabel": false,
+   "audience": "Public"
+  }
+ },
+ "youtube": {
+  "title": "Ask ChatGPT Who It Would Hire Near You (HVAC, Plumbing, Roofing Owners)",
+  "description": "ChatGPT for contractors: check who it sends customers to.\nA marketing firm's data, in an ACHR News guest column (Mar 18, 2026), puts jobs from ChatGPT at an average $11,500 a ticket, but only about 1% of revenue for most contractors so far. The same column says AI tools interpret and reassemble structured business data, such as your name, website content and reviews (ACHR News guest column, Mar 18, 2026, read Nov 7, 2026).\n\nWhat to do tonight:\n1. Ask ChatGPT: \"Who's the best [your trade] near me?\"\n2. Not you? Fix your Google profile first: name, website, reviews.\n\nSend this to whoever runs your Google profile.\nNext lesson: another owner problem from the trade forums, told start to finish.\nFree missed call cost calculator for trade owners: https://proofnotfluff.com/missed-call-cost-calculator/\n#homeservicebusiness #googlebusinessprofile #contractorbusiness",
+  "tags": [
+   "chatgpt for contractors",
+   "chatgpt hvac business",
+   "google business profile",
+   "google business profile for contractors",
+   "home service business",
+   "hvac business owner",
+   "plumbing business",
+   "roofing business",
+   "contractor business tips",
+   "chat gpt contractors"
+  ],
+  "settings": {
+   "madeForKids": false,
+   "aiUse": false,
+   "category": "Education",
+   "language": "English",
+   "visibility": "Public"
+  }
+ }
+}

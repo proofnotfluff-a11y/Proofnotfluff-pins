@@ -95,10 +95,12 @@ window.SCENE = {
     hook: (k, T) => {
       const tk = k.data.numbers.ticket, tWho = k.S('hook.who'), tEl = wordT(k, 'hook', /^eleven/i, 2.0) - 0.25;
       if (T < tWho) {
-        const r = k.sets.counter({shop: 'JOBS FROM CHATGPT', item: 'heater', tags: [{price: '$?', at: -1}, {price: tk.shown, at: Math.min(tEl, 1.0) <= 0.05 ? -0.5 : -0.5}]});
-        const d = px(k);
-        k.text('AVG TICKET', 66, 450, {size: 39, color: CREAM}); k.text('ONE FIRM\'S', 66, 510, {size: 39, color: SAND}); k.text('DATA', 66, 570, {size: 39, color: SAND});
-        if (T >= tEl) { const f = d.fr(tEl); if (f >= 0 && f < 3) d.P(230, 132, 64, 3, GOLD); }
+        k.sets.counter({shop: 'JOBS FROM CHATGPT', item: 'heater', tags: [{price: tk.shown, at: -0.5}]});
+        const d = px(k), tA = Math.min(0.9, wordT(k, 'hook', /^firm/i, 0.8) - 0.2), tB = Math.min(2.2, wordT(k, 'hook', /^chatgpt/i, 1.6) - 0.2);
+        k.text('AVG TICKET', 66, 450, {size: 39, color: CREAM});
+        if (T >= tA) k.slam("ONE FIRM'S", 66, 510, tA, {size: 39, color: SAND, from: 0.3, glint: false});
+        if (T >= tB) k.slam('DATA', 66, 570, tB, {size: 39, color: SAND, from: 0.3, glint: false});
+        if (T >= tEl) stampBox(k, 'PER JOB', 780, 640, tEl, {color: GOLD, size: 52, freeze: 3});
         tag(k, d, 'ACHR News column, Mar 18, 2026', 290, '(SearchLight data)');
         return host(k, T >= tEl ? 'shock' : 'point');
       }
@@ -117,8 +119,7 @@ window.SCENE = {
       const d = px(k), {P, dith} = d;
       P(0, 0, 360, 417, '#3D2E45'); for (let y = 0; y < 417; y += 4) dith(0, y, 360, 1, '#2B2033', (y / 4) % 2); P(0, 417, 360, 223, NIGHT);
       workOrder(k, d, t0 + 0.02);
-      exampleTag(d, 250, 340);
-      return host(k, 'point', true);
+      return host(k, 'point');
     },
 
     /* ---- why: the departures board, WHAT IT READS; each row flips to YOURS on its word.                               */
@@ -134,8 +135,7 @@ window.SCENE = {
       const t0 = k.S('small'), tOne = wordT(k, 'small', /^one$/i, 1.6) - 0.4, r1 = k.data.numbers.rev1;
       const r = k.sets.gauge({value: r1.value, max: 100, at: Math.max(t0 + 0.2, tOne - 0.6), dur: 0.8, zones: [[0, 10, RED], [10, 50, GOLD], [50, 100, TEAL]], label: 'SHARE OF REVENUE', suffix: '%'});
       const d = px(k);
-      if (r.area) k.text('ABOUT, MOST CONTRACTORS', r.area.x, r.area.y + 70, {size: 39, color: SAND});
-      tag(k, d, 'ACHR News column, Mar 18, 2026', 290, '(SearchLight data)');
+      tag(k, d, 'About, most contractors: ACHR News', 290, 'column, Mar 18, 2026 (SearchLight data)');
       return host(k, T >= tOne ? 'shrug' : null);
     },
 
@@ -144,9 +144,9 @@ window.SCENE = {
       const tA = wordT(k, 'button', /^tonight/i, 0.8) - 0.2;
       const d = px(k), {P, dith} = d;
       P(0, 0, 360, 417, '#1B1420'); for (let y = 0; y < 417; y += 4) dith(0, y, 360, 1, '#241A2B', (y / 4) % 2);
-      workOrder(k, d, 0, {still: true});
-      if (T >= tA) { plate(d, 14, 340, 332, 34); k.slam('Ask it tonight.', 540, 1028, tA, {size: 60, color: GOLD, align: 'center', from: 0.4}); }
-      return host(k, 'point', T < tA);
+      topPlate(k, d, 'Ask ChatGPT tonight,', 'before your customers do.', k.S('button') + 0.02);
+      if (T >= tA) stampBox(k, 'RUN THE CHECK', 540, 560, tA, {color: GOLD, size: 66, freeze: 3});
+      return host(k, 'point');
     },
   },
 };

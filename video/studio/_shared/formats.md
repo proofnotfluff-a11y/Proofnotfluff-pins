@@ -88,6 +88,11 @@ story took up to 28 script rounds a lesson; faceless channels grow by making the
 Ideas and formats aren't owned; words, footage and art are. Our edge is the version: made for trade owners, one checked
 number, our pixel style, the send moment.
 - **Every new lesson is proven** (Todd, live chat, Nov 8, 2026: "Going forward all videos should use this method."); no story lessons.
+- **Act it out, once** (Todd, video-lab chat, Nov 8, 2026, decision 3: "Yes, build it, test on 1 lesson"): the next
+  proven lesson made from a two-person money row (a customer who won't pay, a lowball buyer: `nextlane` pick order) plays
+  the source's conflict as a scene with `k.client` facing the viewer as if the viewer is the tech or the seller (her
+  lines in bubbles, EXAMPLE), then Snow brings the fix and the send card, and the last line asks the viewer what they
+  would do. One lesson only; `anim.py cohort` marks it, and the Nov 14 read compares it with the narrated ones.
 - **The hook is hard** for proven lessons dated 2026-11-26 on (Todd, video-lab chat, Nov 8, 2026, decision 2): the source's conflict in 5 to 8 words on frame 0, spoken in 12 words or fewer by 3.6 s (_shared/hooks.md).
 - **Pick** a row of research/PROVEN.md at the bar, 100,000 views or more and 5x its channel's typical (Todd, live chat,
   Nov 7, 2026, 7:17 pm: "We need to change this standard to 100K+ views"; code fails a brief under it, `nextlane`

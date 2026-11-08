@@ -467,6 +467,97 @@
       return {head: [x + hx0 * s, y + hy0 * s], hand: [x + front.ha[0] * s, y + front.ha[1] * s], top: y - 470 * s};
     };
 
+    // The other side of the money fight (Todd, video-lab chat, Nov 8, 2026, decision 3: "Yes, build it, test on 1 lesson"):
+    // the customer who won't pay, or the buyer who lowballs, so a lesson made from a 100K skit acts the conflict out instead
+    // of Snow retelling it. Original, ours: a homeowner in a cardigan with her hair up (role 'homeowner'), or a buyer in a
+    // grey jacket and tie (role 'buyer'). Shorter than Snow and never bearded, so the two never read as one person.
+    // k.client(x, y, {pose, role, face, scale, talk, mood, at})
+    //   pose: stand | talk | refuse (arms folded) | argue (both palms up) | phone (to her ear) | pay (card held out) | point (at o.at)
+    //   mood: calm | cross (brows down, mouth flat) | smug (one brow up, a half smile); talk: true opens and closes her
+    //   mouth (she has no voice track; her words go in a bubble). Returns {head, hand, top} like k.snow.
+    k.client = function (x, y, o = {}) {
+      const s = o.scale || 1, face = o.face || -1, pose = o.pose || 'stand', mood = o.mood || 'calm', role = o.role || 'homeowner';
+      const L = LPX / s;
+      const bp = ((T % 3.1) + 3.1) % 3.1, bob = bp > 1.6 && bp < 2.6 ? -L : 0;   // her own breath, out of step with Snow's
+      const top = role === 'buyer' ? '#4A4E5A' : '#7A3442', topShade = role === 'buyer' ? '#2B2033' : '#5A2432';
+      const legs = role === 'buyer' ? '#253048' : '#4A4E5A', hair = role === 'buyer' ? '#4A2E1B' : '#8C5A33', hairHi = role === 'buyer' ? '#6B4226' : '#B07A47';
+      ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+      const P = (px, py) => [px, py + (py < -130 ? bob : 0)];
+      // legs and shoes (shorter than Snow's: 136)
+      shape(rectPts(-38, -144, 32, 136, 12), {fill: legs, id: 9201});
+      shape(rectPts(6, -144, 32, 136, 12), {fill: legs, id: 9202});
+      shape(ellPts(-24, -6, 28, 13), {fill: '#120D14', id: 9203});
+      shape(ellPts(24, -6, 28, 13), {fill: '#120D14', id: 9204});
+      const g = Math.sin(T * 6.1);
+      const poses = {
+        stand: [[0.1, -0.12], [0.1, -0.12]],
+        talk: [[0.1, -0.15], [0.6 + 0.15 * g, 1.2 + 0.25 * g]],
+        argue: [[0.75 + 0.06 * g, 2.55], [0.75 - 0.06 * g, 2.55]],   // both palms up at the shoulders, a small shake
+        refuse: [[1.35, 2.3], [1.35, 2.3]],
+        phone: [[0.1, -0.12], [2.6, 2.4]],
+        pay: [[0.1, -0.12], [1.45, 0.25]],
+        point: [[0.1, -0.12], null],
+      };
+      const pz = poses[pose] || poses.stand;
+      const shL = P(-54 * face, -272), shR = P(54 * face, -272);
+      let armR = pz[1];
+      if (!armR) {
+        const tx = ((o.at ? o.at[0] : x - 400) - x) / s, ty = ((o.at ? o.at[1] : y - 300) - y) / s;
+        armR = [Math.atan2(face * (tx - shR[0]), ty - shR[1]), 0.05];
+      }
+      const back = limb(shL, -pz[0][0], -pz[0][1], 74, 68, face), front = limb(shR, armR[0], armR[1], 74, 68, face);
+      const drawArm = (sh, l, id) => { shape(capsule(sh, l.el, 17), {fill: top, id}); shape(capsule(l.el, l.ha, 14), {fill: top, id: id + 1}); shape(ellPts(l.ha[0], l.ha[1], 13, 13), {fill: 'skin', id: id + 2}); };
+      if (pose !== 'refuse') drawArm(shL, back, 9210);
+      // torso: the cardigan (open over a cream shirt) or the jacket (over a white shirt and a tie)
+      shape(rectPts(-58, -296 + bob, 116, 160, 26), {fill: top, id: 9220});
+      shape([[-22, -296 + bob], [22, -296 + bob], [10, -170 + bob], [-10, -170 + bob]], {fill: role === 'buyer' ? '#FFF7EA' : '#E6D3BC', id: 9221});
+      if (role === 'buyer') shape([[0, -282 + bob], [9, -262 + bob], [0, -196 + bob], [-9, -262 + bob]], {fill: '#E2633B', id: 9222});
+      else for (let i = 0; i < 3; i++) shape(ellPts(-14 * face, -262 + i * 34 + bob, 4, 4), {fill: '#F7C873', line: false, id: 9223 + i});
+      shape(rectPts(-58, -156 + bob, 116, 18, 8), {fill: topShade, id: 9227});
+      if (pose === 'refuse') {   // arms folded: both forearms across the chest
+        shape(capsule([-54, -268 + bob], [-60, -206 + bob], 17), {fill: top, id: 9228});   // upper arms down the sides
+        shape(capsule([54, -268 + bob], [60, -206 + bob], 17), {fill: top, id: 9229});
+        shape(capsule([-60, -212 + bob], [46, -230 + bob], 17), {fill: topShade, id: 9230});   // forearms folded across
+        shape(capsule([60, -206 + bob], [-46, -224 + bob], 17), {fill: top, id: 9231});
+        shape(ellPts(48, -232 + bob, 11, 11), {fill: 'skin', id: 9232}); shape(ellPts(-48, -226 + bob, 11, 11), {fill: 'skin', id: 9236});
+      }
+      if (pose === 'pay') {   // a card held out toward the other side
+        const hx = front.ha[0], hy = front.ha[1];
+        shape(rectPts(hx + (face > 0 ? 4 : -58), hy - 30, 54, 36, 5), {fill: '#3B82C4', id: 9233});
+        shape(rectPts(hx + (face > 0 ? 8 : -54), hy - 22, 46, 6, 0), {fill: '#F7C873', id: 9234, line: false});
+      }
+      if (pose === 'phone') shape(rectPts(front.ha[0] - 10, front.ha[1] - 34, 20, 40, 5), {fill: '#120D14', id: 9235});
+      // head and hair (a bun for the homeowner, short and side-parted for the buyer)
+      const hx0 = 2 * face, hy0 = -350 + bob;
+      shape(ellPts(hx0, hy0, 52, 58), {fill: 'skin', id: 9240});
+      if (role === 'buyer') {
+        shape(ellPts(hx0, hy0 - 22, 56, 40, 24, Math.PI, TAU).concat([[hx0 + 56, hy0 - 16], [hx0 - 56, hy0 - 16]]), {fill: hair, id: 9241});
+        shape(rectPts(hx0 - 40 * face - 14, hy0 - 44, 28, 10, 4), {fill: hairHi, line: false, id: 9242});
+      } else {
+        shape(ellPts(hx0, hy0 - 20, 56, 44, 24, Math.PI, TAU).concat([[hx0 + 56, hy0 - 4], [hx0 - 56, hy0 - 4]]), {fill: hair, id: 9241});
+        shape(ellPts(hx0 - 30 * face, hy0 - 64, 22, 20), {fill: hair, id: 9243});
+        shape(ellPts(hx0 - 26 * face, hy0 - 70, 9, 7), {fill: hairHi, line: false, id: 9244});
+        shape(rectPts(hx0 - 56 * face - (face > 0 ? 0 : 14), hy0 - 12, 14, 52, 6), {fill: hair, id: 9245});
+      }
+      shape(ellPts(hx0 + 46 * face, hy0 + 6, 8, 12), {fill: 'skinShade', id: 9246, line: false});
+      // face: eyes, brows by mood, the mouth
+      const bl = k.blinkAt(), ex = hx0 + 12 * face;
+      [ex - 18, ex + 18].forEach((x0, i) => bl === 2 ? shape([[x0 - 6, hy0 + 6], [x0 + 6, hy0 + 6]], {stroke: '#120D14', lw: 4, closed: false, line: false})
+        : shape(ellPts(x0, hy0 + 6 + (bl ? 3 : 0), 6, bl ? 3.5 : 7.5), {fill: '#120D14', line: false, id: 9250 + i}));
+      const browY = hy0 - 14;
+      [[ex - 18, -1], [ex + 18, 1]].forEach(([x0, side], i) => {
+        const tilt = mood === 'cross' ? 6 * side * face : (mood === 'smug' && i === (face > 0 ? 1 : 0) ? -6 : 0);
+        shape([[x0 - 9, browY - (mood === 'cross' ? -tilt : 0) + (mood === 'smug' && tilt ? tilt : 0)], [x0 + 9, browY + (mood === 'cross' ? tilt : 0) + (mood === 'smug' && tilt ? tilt : 0)]], {stroke: hair, lw: 6, closed: false, line: false});
+      });
+      const open = o.talk ? Math.abs(Math.sin(T * 13) * Math.sin(T * 5.1)) * 11 : 0;
+      if (open > 2) shape(ellPts(ex, hy0 + 32, 11, open), {fill: '#7A3442', line: false, id: 9260});
+      else if (mood === 'smug') shape([[ex - 12, hy0 + 32], [ex + 2, hy0 + 34], [ex + 13, hy0 + 27]], {stroke: '#7A3442', lw: 5, closed: false, line: false});
+      else shape([[ex - 12, hy0 + 32 + (mood === 'cross' ? 2 : 0)], [ex + 12, hy0 + 32 + (mood === 'cross' ? 2 : 0)]], {stroke: '#7A3442', lw: 5, closed: false, line: false});
+      if (pose !== 'refuse') drawArm(shR, front, 9270);
+      ctx.restore();
+      return {head: [x + hx0 * s, y + hy0 * s], hand: [x + front.ha[0] * s, y + front.ha[1] * s], top: y - 420 * s};
+    };
+
     k.squeak = function (x, y, o = {}) {
       const s = o.scale || 1, face = o.face || 1, pose = o.pose || 'sit';
       const hop = pose === 'run' ? Math.abs(Math.sin(T * 14)) * 10 : 0;

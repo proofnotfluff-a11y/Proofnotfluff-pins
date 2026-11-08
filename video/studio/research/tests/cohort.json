@@ -1,6 +1,6 @@
 {
  "schema": "pnf.studio.cohort.v1",
- "at": "2026-11-08T15:06:47-05:00",
+ "at": "2026-11-08T16:16:18-05:00",
  "rows": [
   {
    "slug": "2026-11-21-angi-four-pros",
@@ -14,7 +14,8 @@
     "send": 3,
     "facts-captions": 1
    },
-   "at72": {}
+   "at72": {},
+   "acted": false
   },
   {
    "slug": "2026-11-22-after-hours-greeting",
@@ -28,7 +29,8 @@
     "send": 4,
     "facts-captions": 2
    },
-   "at72": {}
+   "at72": {},
+   "acted": false
   },
   {
    "slug": "2026-11-24-pay-before-you-leave",
@@ -42,7 +44,8 @@
     "send": 2,
     "facts-captions": 2
    },
-   "at72": {}
+   "at72": {},
+   "acted": false
   },
   {
    "slug": "2026-11-25-members-go-first",
@@ -56,7 +59,8 @@
     "send": 2,
     "facts-captions": 2
    },
-   "at72": {}
+   "at72": {},
+   "acted": false
   }
  ]
 }

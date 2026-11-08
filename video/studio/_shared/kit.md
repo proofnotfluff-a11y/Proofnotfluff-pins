@@ -8,6 +8,11 @@ Everything below draws in every look (`_shared/looks.md`); scene.js calls it thr
   `clip` (checks the clipboard). His mouth follows the voice (`02_transcript/mouth.js`), and he blinks, breathes and
   fidgets on his own (looks.md, Motion).
   `k.snow(x, y, {pose, at: [x, y], scale, face: 1 | -1})`.
+- **The client** (Todd, video-lab chat, Nov 8, 2026, decision 3: "Yes, build it, test on 1 lesson"): the other side of
+  the money fight, so a lesson made from a 100K skit acts it out. Role `homeowner` (cardigan, hair up) or `buyer` (grey
+  jacket, tie). Poses: `stand`, `talk`, `refuse` (arms folded), `argue` (palms up), `phone`, `pay` (card held out),
+  `point`; mood `calm`, `cross`, `smug`; `talk: true` moves her mouth (no voice; her words go in a bubble).
+  `k.client(x, y, {pose, role, mood, face, scale, talk, at})`. Never evidence: her lines are EXAMPLE.
 - **Squeak**, a small rat: comic relief only, never evidence. Poses: `sit`, `peek` (head over an edge), `run`, `startle`.
   `k.squeak(x, y, {pose, scale, face})`. Never stands in for a count.
 

@@ -4006,7 +4006,8 @@ def cohort_rows():
         brief = open(vdir(d, "01_voice", "brief.md"), encoding="utf-8").read() if os.path.exists(vdir(d, "01_voice", "brief.md")) else ""
         rows.append({"slug": d, "arm": "v3" if d[:10] >= STUDIO_V3_FROM else "base",
                      "topic": "phone" if PHONE_TOPIC.search(first_sentence(d) + " " + brief[:600]) else "other",
-                     "move": hook_move(first_sentence(d)), "rounds": gate_rounds(d), "at72": reads_at(d)})
+                     "move": hook_move(first_sentence(d)), "rounds": gate_rounds(d), "at72": reads_at(d),
+                     "acted": os.path.exists(vdir(d, "04_scene", "scene.js")) and "k.client(" in open(vdir(d, "04_scene", "scene.js"), encoding="utf-8").read()})
     return rows
 
 
@@ -4017,10 +4018,10 @@ def cmd_cohort():
         a = r["at72"]
         v = "/".join(str(a.get(p, {}).get("views", "-")) for p in ("instagram", "tiktok", "youtube", "facebook"))
         sh = sum(a.get(p, {}).get("shares", 0) for p in a); fo = sum(a.get(p, {}).get("follows", 0) for p in a)
-        print(f"{r['arm']:5} {r['slug'][:35]:35} {r['topic']:6} {str(r['move']):13} " + " ".join(f"{str(r['rounds'][g] if r['rounds'][g] is not None else '-'):>8}" for g in COHORT_GATES)
+        print(f"{r['arm'] + ('*' if r.get('acted') else ''):5} {r['slug'][:35]:35} {r['topic']:6} {str(r['move']):13} " + " ".join(f"{str(r['rounds'][g] if r['rounds'][g] is not None else '-'):>8}" for g in COHORT_GATES)
               + f"  {v:21} {sh:8} {fo:9}")
     json.dump({"schema": "pnf.studio.cohort.v1", "at": now(), "rows": rows}, open(os.path.join(HERE, "research", "tests", "cohort.json"), "w"), indent=1)
-    print("written research/tests/cohort.json")
+    print("* = acts the conflict with k.client (decision 3's test lesson)\nwritten research/tests/cohort.json")
 
 def cmd_lint(slug, step=0.25):
     """The layout check in code, before a reviewer has to find it: every settled scene text inside the safe area

@@ -1,0 +1,37 @@
+{
+ "about": "Every number and claim this lesson shows or says, with its source. The ACHR News article 'Cooling Off, Not Cooling Down: Study Shows HVAC Businesses Still Command Premium Prices' (Mar 20, 2026; it reports a 2025 Florida small business exit report) and the Contractor article 'Why Two Identical Shops Sell for Millions Apart' (Jun 15, 2026) re-read Nov 8, 2026 (Central) by a box fetch job (worth-facts-2026-11-08-r2, workhorse, and its trial twin): both models copied the confirm lines below word for word. These hosts do not resolve from this cloud session. The million asked, the half offered, the buyer's three questions and the how-we-do-it list are ours (EXAMPLE on screen). We never say what any real shop sold for, that the list raises a price by any amount, or that 2.73x holds outside Florida: the source does not give those.",
+ "exit": {
+  "title": "Cooling Off, Not Cooling Down: Study Shows HVAC Businesses Still Command Premium Prices",
+  "publisher": "The ACHR News",
+  "date": "2026-03-20",
+  "url": "https://www.achrnews.com/articles/165983-cooling-off-not-cooling-down-study-shows-hvac-businesses-still-command-premium-prices",
+  "reread": "2026-11-08",
+  "multiple": 2.73,
+  "multipleShown": "2.73x",
+  "multipleSaid": "two point seven three times",
+  "basis": "annual earnings (the article: how many times a company's annual owner earnings a buyer is willing to pay)",
+  "where": "Florida, 2025 small business exit report",
+  "confirms": [
+   "In Florida, HVAC businesses are selling for 2.73x annual earnings.",
+   "To compare HVAC with other industries, the Florida report looked at how businesses are typically priced, specifically, how many times a company's annual owner earnings a buyer is willing to pay.",
+   "Businesses supported by service agreements, recurring billing, and documented customer retention consistently achieved stronger pricing dispersion."
+  ]
+ },
+ "owner": {
+  "title": "Why Two Identical Shops Sell for Millions Apart",
+  "publisher": "Contractor (contractormag.com)",
+  "date": "2026-06-15",
+  "url": "https://www.contractormag.com/management/best-practices/article/55384109/why-two-identical-shops-sell-for-millions-apart",
+  "reread": "2026-11-08",
+  "confirms": [
+   "A buyer is not purchasing the owner.",
+   "The owner is the one piece of the company that will not be there anymore.",
+   "Owner dependency can diminish business value; developing a capable management team ensures continuity and attractiveness to buyers"
+  ]
+ },
+ "example": {
+  "asked": 1000000,
+  "offered": 500000,
+  "what": "ours: picture asking a million for your shop and a buyer offering half; the buyer's questions and the how-we-do-it list are ours, labeled EXAMPLE"
+ }
+}

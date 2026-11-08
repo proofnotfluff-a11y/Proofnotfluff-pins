@@ -1,0 +1,1 @@
+window.DATA = {"file": "video/studio/videos/2026-11-27-worth-without-you/01_voice/facts.json", "commit": "", "sha256": "29f6fe7ee6669425a7095651b061c4e343198bf52906cd22aec87324eb8ee031", "numbers": {"multiple": {"value": 2.73, "shown": "2.73x", "path": "exit.multiple"}}, "pull": {}};

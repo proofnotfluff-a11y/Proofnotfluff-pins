@@ -758,6 +758,26 @@
     "runtime_pixfont": "a8557997756e"
    },
    "posts": {}
+  },
+  {
+   "slug": "2026-11-23-chatgpt-check-short",
+   "readyAt": "2026-11-07T19:53:12-05:00",
+   "commit": "ca83c5440e292a961fdd08518a54012931a1844e",
+   "fingerprints": {
+    "script": "e88ec439df9b",
+    "takes": "aeeba970d07b",
+    "words": "b394a586447d",
+    "cues": "188827112964",
+    "scene": "8a37a28593e2",
+    "data": "21f8f697c024",
+    "captions": "6f060233a041",
+    "mouth": "430ae0c817d8",
+    "runtime_kit": "7533966669eb",
+    "runtime_player": "0247e61a6184",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

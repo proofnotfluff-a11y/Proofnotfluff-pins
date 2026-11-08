@@ -32,4 +32,4 @@ none
 
 `00:23.5` There just aren't many yet, about one percent of revenue for most contractors.
 
-`00:28.2` Ask ChatGPT tonight, before your customers do.
+`00:28.2` Ask ChatGPT tonight, before a customer does.

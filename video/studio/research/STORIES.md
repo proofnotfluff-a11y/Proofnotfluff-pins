@@ -21,7 +21,7 @@ lessons; one cluster lesson that flops is not a verdict. Ready target: 5 stories
 ## Leads (scored by a reporter, not yet verified; verify before Ready)
 | Date | Lead | Score | Primary record | Note |
 |---|---|---|---|---|
-| Nov 2 | FCC opt-out rule takes effect Nov 25: a shop may name one way to opt out of its automated texts; all seven stop words must be honored | 8 | https://public-inspection.federalregister.gov/2026-21821.pdf | whether a shop's texting tool counts as robotext is per platform; check before saying it applies |
+| Nov 2 | FCC opt-out rule takes effect Nov 25: a shop may name one way to opt out of its automated texts; all seven stop words must be honored | 8 | https://public-inspection.federalregister.gov/2026-21821.pdf | whether a shop's texting tool counts as robotext is per platform; check before saying it applies. Nov 7 evening: law firm summaries (search only) say FCC 26-67 lets a texter name one exclusive opt-out method from Nov 25, an easing; read the order on fcc.gov (box job fcc-optout-night-extract-2026-11-07-r1) before Ready |
 | Nov 2 | ServiceTitan's own survey: 11% of contractors highly trust their AI tools, 58% little or none | 9 | https://www.servicetitan.com/press/servicetitan-report-finds-contractors-shifting-focus-from-ai-adoption-to-implementation-and-productivity | vendor survey (Thrive Analytics, 1,017 contractors): said as ServiceTitan's |
 
 ## Made

@@ -138,6 +138,59 @@
    },
    "source": "videometrics 2026-11-17-after-hours-robot.2026-11-07T16 (end-of-day PC run, list views only)",
    "docId": "2026-11-17-after-hours-robot.2026-11-07T16"
+  },
+  {
+   "date": "2026-11-07",
+   "depth": "deep",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": 7,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 0,
+     "shares": 0,
+     "threeSecondViews": 3,
+     "viewers": 15,
+     "views": 15
+    },
+    "instagram": {
+     "avgWatchS": 29,
+     "comments": 0,
+     "follows": 0,
+     "likes": 20,
+     "reach": 1122,
+     "saves": 1,
+     "shares": 1,
+     "skipRate": "hidden",
+     "viewers": 1127,
+     "views": 1294
+    },
+    "tiktok": {
+     "avgWatchS": 21.1,
+     "comments": 0,
+     "forYouPct": 97.3,
+     "likes": 10,
+     "newFollowers": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 262,
+     "watchedFullPct": 5.2
+    },
+    "youtube": {
+     "avgPctViewed": "hidden",
+     "avgViewDurationS": 45,
+     "comments": "hidden",
+     "likes": "hidden",
+     "shares": "hidden",
+     "stayedToWatchPct": 84.8,
+     "subscribersGained": "hidden",
+     "views": 52
+    }
+   },
+   "readAt": "2026-11-08T02:45:00Z",
+   "source": "videometrics 2026-11-17-after-hours-robot.2026-11-07 (evening PC run, deep read)",
+   "docId": "2026-11-17-after-hours-robot.2026-11-07"
   }
  ]
 }

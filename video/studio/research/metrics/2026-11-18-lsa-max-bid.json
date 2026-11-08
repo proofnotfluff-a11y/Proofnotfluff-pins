@@ -37,6 +37,58 @@
    },
    "source": "videometrics 2026-11-18-lsa-max-bid.2026-11-07T16 (end-of-day PC run, list views only)",
    "docId": "2026-11-18-lsa-max-bid.2026-11-07T16"
+  },
+  {
+   "date": "2026-11-07",
+   "depth": "deep",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": 2,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 0,
+     "shares": 0,
+     "threeSecondViews": 1,
+     "viewers": 5,
+     "views": 6
+    },
+    "instagram": {
+     "avgWatchS": 11,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "reach": 103,
+     "saves": 0,
+     "shares": 0,
+     "skipRate": "hidden",
+     "viewers": 108,
+     "views": 118
+    },
+    "tiktok": {
+     "avgWatchS": 14.64,
+     "comments": 0,
+     "likes": 0,
+     "newFollowers": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 124,
+     "watchedFullPct": 4.9
+    },
+    "youtube": {
+     "avgPctViewed": "hidden",
+     "avgViewDurationS": "hidden",
+     "comments": "hidden",
+     "likes": "hidden",
+     "shares": "hidden",
+     "subscribersGained": "hidden",
+     "viewedVsSwipedPct": "hidden",
+     "views": 3
+    }
+   },
+   "readAt": "2026-11-08T02:45:00Z",
+   "source": "videometrics 2026-11-18-lsa-max-bid.2026-11-07 (evening PC run, deep read)",
+   "docId": "2026-11-18-lsa-max-bid.2026-11-07"
   }
  ]
 }

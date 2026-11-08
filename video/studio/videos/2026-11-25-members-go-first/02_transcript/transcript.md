@@ -1,6 +1,6 @@
 # Transcript: 2026-11-25-members-go-first
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 148 words, 52.5 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 148 words, 53.6 s of voice.
 
 ## Flags
 none
@@ -11,8 +11,8 @@ none
   02     8.4 s  165 wpm  
   03    18.2 s  167 wpm  
   04    30.0 s  164 wpm  
-  05    43.1 s  197 wpm  
-  06    48.9 s  202 wpm  fast: give it a landing beat, then speak --take 6
+  05    43.1 s  174 wpm  
+  06    49.6 s  179 wpm  
 ```
 
 ## Words
@@ -39,6 +39,10 @@ none
 
 `00:32.2` In a 2023 survey by The ACHR News and Clear Seas Research, eighty-seven percent said they'd pay a hundred or two hundred dollars a year for a service agreement.
 
-`00:43.1` Bill it monthly, and that money comes in even in the slow weeks, when the phone barely rings.
+`00:43.1` Bill it monthly...
 
-`00:48.9` So the next cold night, you already know who gets the first truck.
+`00:44.5` and that money comes in, even in the slow weeks, when the phone barely rings.
+
+`00:49.6` So the next cold night...
+
+`00:51.5` you already know who gets the first truck.

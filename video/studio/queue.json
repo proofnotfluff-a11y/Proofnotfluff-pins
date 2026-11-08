@@ -738,6 +738,26 @@
     "runtime_pixfont": "a8557997756e"
    },
    "posts": {}
+  },
+  {
+   "slug": "2026-11-22-after-hours-greeting",
+   "readyAt": "2026-11-07T19:44:22-05:00",
+   "commit": "9a2cc52985b0e5b7850064b0bfdf4253a20949bb",
+   "fingerprints": {
+    "script": "80ae90900a15",
+    "takes": "e9fae7e1a2c1",
+    "words": "f0367b0c621b",
+    "cues": "c6f081d92d5f",
+    "scene": "36d629b54311",
+    "data": "31a4ad8a2b46",
+    "captions": "0eb69e476007",
+    "mouth": "a91b9a9c0641",
+    "runtime_kit": "7533966669eb",
+    "runtime_player": "0247e61a6184",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

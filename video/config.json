@@ -149,7 +149,7 @@
  },
  "laneTest": {
   "mode": "on",
-  "from": "2026-11-07 12:08",
+  "from": "2026-11-08 07:50",
   "until": "2026-11-14",
   "pattern": [
    "proven",
@@ -157,6 +157,6 @@
    "story"
   ],
   "verdict": "2026-11-14",
-  "note": "Todd, live chat, Nov 7, 2026, 12:08 pm: \"Go\", to the proven idea lane (11:58 am: \"We can find what is actually working out there and create our own videos based on that.\"). For 7 days 2 of every 3 new lessons come from the proven lane and 1 from the story lane (anim.py nextlane counts brief.md Started lines, Central time); shorts do not count. Verdict Nov 14 beside the shorts verdict, by views, sends per reach and follows on the deep reads (_shared/formats.md \"Proven\"). Set mode off when the verdict is written."
+  "note": "Todd, live chat, Nov 7, 2026, 12:08 pm: \"Go\", to the proven idea lane (11:58 am: \"We can find what is actually working out there and create our own videos based on that.\"). For 7 days 2 of every 3 new lessons come from the proven lane and 1 from the story lane (anim.py nextlane counts brief.md Started lines, Central time); shorts do not count. Verdict Nov 14 beside the shorts verdict, by views, sends per reach and follows on the deep reads (_shared/formats.md \"Proven\"). Set mode off when the verdict is written. Rotation reset by Todd, live chat, Nov 8, 2026, 7:50 am: \"reset the rotation. Work on it he video now.\" (after the 100K bar; the two proven lessons made before it no longer count), so the next two new lessons are proven at 100K+ and 5x."
  }
 }

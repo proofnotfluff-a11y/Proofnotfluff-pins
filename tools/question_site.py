@@ -402,6 +402,38 @@ def stats(kind, d):
         s["jobRows"] = [[str(n), m2(out[f"j{n}"]["cpj"]), m2(out[f"j{n}"]["perJob"] - out[f"j{n}"]["cpj"]), m(out[f"j{n}"]["profit"])]
                         for n in range(1, 7)]
         return s
+    if kind == "lead_shoppers":   # paid lead sites bring price shoppers: the cost per lead calculator's model and defaults, and this week's license sample
+        import subprocess
+        c = next(x for x in json.load(open(os.path.join(ROOT, "site", "pages.json"), encoding="utf-8"))["pages"]
+                 if x["slug"] == "cost-per-lead-calculator")["defaults"]
+        won = (2, 4, 6, 8, 10)
+        cases = {"base": {}} | {f"j{n}": {"jobs": str(n)} for n in won}
+        js = ('const P=require(process.argv[1]);const b=JSON.parse(process.argv[2]),c=JSON.parse(process.argv[3]);const o={};'
+              'for(const k in c)o[k]=P.leadCost(Object.assign({},b,c[k]),[]);console.log(JSON.stringify(o));')
+        out = json.loads(subprocess.run(["node", "-e", js, os.path.join(ROOT, "docs", "assets", "pnf-calc.js"), json.dumps(c),
+                                         json.dumps(cases)], capture_output=True, text=True, check=True).stdout)
+        m = lambda v: ("-$" if v < -0.004 else "$") + (_n(round(abs(v))) if abs(abs(v) - round(abs(v))) < 0.005 else f"{abs(v):,.2f}")
+        pct = lambda v: f"{round(v * 100)}%"
+        b = out["base"]
+        s = {"spend": m(b["spend"]), "leads": str(b["leads"]), "quotes": str(b["quotes"]), "jobs": str(b["jobs"]),
+             "avgJob": m(float(c["avgJob"].replace(",", ""))), "jobCost": m(float(c["jobCost"].replace(",", ""))),
+             "cpl": m(b["cpl"]), "cpq": m(b["cpq"]), "cpj": m(b["cpj"]), "perJob": m(b["perJob"]),
+             "afterLeadAbs": m(abs(b["afterLead"])), "profitAbs": m(abs(b["profit"])), "breakEven": str(b["breakEvenJobs"]),
+             "winPct": pct(b["winRate"]), "beWinPct": pct(b["breakEvenJobs"] / b["quotes"]),
+             "repeatCpj": m(b["cpj"] / 2), "repeatLeft": m(b["perJob"] - b["cpj"] / 2),
+             "lowJobs": str(won[0]), "lowWin": pct(out[f"j{won[0]}"]["winRate"]), "lowCpj": m(out[f"j{won[0]}"]["cpj"])}
+        s["quoteRows"] = [[str(n), pct(out[f"j{n}"]["winRate"]), m(out[f"j{n}"]["cpj"]),
+                           m(out[f"j{n}"]["perJob"] - out[f"j{n}"]["cpj"]), m(out[f"j{n}"]["profit"])] for n in won]
+        lic = d   # the spec's data file: permits/licenses-chicago/sample.json
+        lc, names = lic["counts"], lic["segmentNames"]
+        s |= {"lic30": _n(lc["kept30"]), "licWeek": _n(lc["keptWeek"]), "licFrom": _date(lic["window"]["listFrom"]),
+              "licTo": _date(lic["window"]["to"]), "licWeekFrom": _date(lic["window"]["from"]),
+              "licAsOf": _date(lic["source"]["fetchedAt"][:10]), "licDataset": lic["source"]["name"],
+              "food30": _n(lc["segments30"]["food"]), "retail30": _n(lc["segments30"]["retail"]),
+              "beauty30": _n(lc["segments30"]["beauty"])}
+        order = sorted(names, key=lambda k: -lc["segments30"].get(k, 0))
+        s["segRows"] = [[names[k], _n(lc["segments30"].get(k, 0)), _n(lc["segmentsWeek"].get(k, 0))] for k in order]
+        return s
     if kind == "rats":   # rat question pages: the free Rat Index's own weekly file (311 counts by community area, no addresses)
         import rodents_site as R
         ix = R.index(d, R.load_json(R.POP), None)

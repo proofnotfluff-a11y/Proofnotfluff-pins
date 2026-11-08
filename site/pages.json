@@ -8316,6 +8316,202 @@
    "footnote": "The worked example uses the free cost per lead calculator's example inputs, with the bill set to the asker's $500 a month for the break-even table. Google's rules are quoted from its help pages read Nov 1, 2026 and can change. Owner figures are quoted from a public forum thread read Nov 1, 2026.",
    "published": "2026-11-01"
   },
+ {
+  "slug": "carpet-cleaning-leads-price-shoppers",
+  "kind": "question",
+  "draft": true,
+  "city": "Chicago",
+  "product": "chicago-new-business-licenses",
+  "data": "permits/licenses-chicago/sample.json",
+  "stats": "lead_shoppers",
+  "title": "Thumbtack and LSA Leads Are Price Shoppers: What Works? | ProofNotFluff",
+  "desc": "A carpet cleaner pays for Thumbtack and Google Local Services Ads and gets mostly price shoppers. Which numbers to track per channel, and which channels don't send the same lead to several companies.",
+  "card": "Thumbtack and Google LSA leads that shop several companies at once: the close rate a lead bill needs, the numbers to track per channel, and channels with no per lead bill.",
+  "eyebrow": "Lead cost",
+  "updated": "Worked example from the free cost per lead calculator. New license counts from the City of Chicago's Business Licenses data, list of {licAsOf}. Google's Local Services Ads help page read Nov 8, 2026.",
+  "h1": "My carpet cleaning leads from Thumbtack and Local Services Ads are mostly price shoppers. Which channels and numbers actually work?",
+  "answer": [
+   "The channel that works is the one with the lowest lead cost per booked job, and you only find it by counting. For 30 days, write down for each source what you paid, how many leads came in, how many you quoted and how many booked. Divide the spend by the jobs booked and set that against what one job leaves after labor and supplies.",
+   "Price shoppers hurt because they ask several companies at once, so fewer of your quotes book. In the free calculator's example, {spend} of leads brings {quotes} quotes; at {jobs} jobs booked ({winPct} of quotes) each job carries **{cpj}** of lead cost while a job leaves {perJob}, so the month loses {profitAbs}. It takes {breakEven} bookings ({beWinPct} of quotes) to break even. Referrals, repeat customers and your own outreach have no per lead bill, which is why they are worth counting too."
+  ],
+  "numbersTitle": "The worked example, in four numbers",
+  "tiles": [
+   [
+    "Lead cost per booked job",
+    "{cpj}",
+    "{spend} of leads for {jobs} jobs booked"
+   ],
+   [
+    "Lead cost per booked job at {lowWin}",
+    "{lowCpj}",
+    "if only {lowJobs} of {quotes} quotes book"
+   ],
+   [
+    "Close rate to break even",
+    "{beWinPct}",
+    "{breakEven} jobs booked from {quotes} quotes"
+   ],
+   [
+    "Lead cost per visit with one repeat",
+    "{repeatCpj}",
+    "if each booked customer comes back once"
+   ]
+  ],
+  "numbers": [
+   "From the free cost per lead calculator's example month: {spend} paid for {leads} leads, {quotes} quotes sent and {jobs} jobs booked at {avgJob} each, with {jobCost} of labor, supplies and gas per job. That is {cpl} a lead, {cpq} a quote and {cpj} of lead cost for each job booked, {afterLeadAbs} more than a job leaves. These are the calculator's example numbers, a cleaning business's month, not the asker's.",
+   "A repeat booking costs no new lead. If each customer the leads brought in books one more visit, the same {spend} is spread over twice the visits: {repeatCpj} of lead cost per visit, leaving {repeatLeft} a visit after leads. Type your own spend, leads, quotes and bookings into the calculator for your own numbers."
+  ],
+  "tables": [
+   {
+    "title": "The same {spend} of leads at different close rates",
+    "intro": [
+     "{leads} leads and {quotes} quotes every time; only the number that book changes. Leads that shop several companies at once land in the top rows."
+    ],
+    "head": [
+     "Jobs booked from {quotes} quotes",
+     "Close rate on quotes",
+     "Lead cost per booked job",
+     "Left per job after leads",
+     "Month after the {spend} lead bill"
+    ],
+    "rows": "quoteRows",
+    "notes": [
+     "Computed with the free cost per lead calculator's model and its example inputs ({avgJob} a job, {jobCost} of direct cost). Direct cost only: your own time, insurance and the van payment stay out."
+    ]
+   },
+   {
+    "title": "New Chicago business licenses by kind of business",
+    "intro": [
+     "Businesses the City of Chicago newly licensed from {licFrom} to {licTo}, after the leave outs listed on the free sample page. Nobody on the list has asked for a quote."
+    ],
+    "head": [
+     "Kind of business",
+     "Licensed {licFrom} to {licTo}",
+     "Licensed {licWeekFrom} to {licTo}"
+    ],
+    "rows": "segRows",
+    "notes": [
+     "Source: {licDataset}, list of {licAsOf}. The full list adds each business's address, license type, activity and issue date."
+    ]
+   }
+  ],
+  "stepsTitle": "How to measure your channels in 30 days",
+  "steps": [
+   [
+    "Give every source its own count",
+    "Ask every caller how they found you and log it, and keep each paid channel's own lead report: Thumbtack, Local Services Ads, Facebook, referrals, repeat customers and your own outreach each get a line."
+   ],
+   [
+    "Count four numbers per source",
+    "What you paid, leads, quotes sent and jobs booked. A source with no bill, such as a referral, still gets counted, so you can see what it books."
+   ],
+   [
+    "Divide spend by jobs booked",
+    "That is the lead cost per booked job. In the example, {spend} and {jobs} jobs is {cpj}, more than the {perJob} a job leaves."
+   ],
+   [
+    "Check what you control",
+    "One reply in the thread says to check how many calls you answer, to return calls within 2 hours and to compare the close rate by source before paying another agency. A missed call from a paid lead can still be billed: Google charges for a missed call in business hours when the caller stays on the line more than 20 seconds."
+   ],
+   [
+    "Move money to the lowest cost per booked job",
+    "Keep the channels where a booked job costs less than it leaves, cut the rest, and ask any marketing company for these same four numbers each month."
+   ]
+  ],
+  "sections": [
+   [
+    "What the thread says",
+    [
+     "The question was posted Jul 26, 2026 on The Cleaning Standard forum by a carpet cleaner in the Fort Lauderdale and Hollywood, Florida area, almost a year in business. The owner had hired several marketing companies, including ones that specialize in carpet cleaning, and used Thumbtack and Google Local Services Ads, but said most inquiries were price shoppers contacting several companies at the same time and the phone was still barely ringing. The owner asked for an honest diagnosis and a lead system that can be measured, including what numbers to ask a marketing company for.",
+     "A forum admin answered that it is a conversion or positioning problem, not a channel problem, and listed checks: Google Business Profile click rate (a concern below 5 to 10% in a competitive market), the share of calls answered (below 80% is a concern), returning calls within 2 hours, the close rate by source and the repeat rate (below 30% is a concern), tracked for 30 days before hiring another agency. Another reply said referrals and repeat work depend on whether customers find the owner pleasant to have in the home. These are advice from the thread, not measured results."
+    ]
+   ],
+   [
+    "Why shared leads close less",
+    [
+     "A lead that goes to several companies is a race on price and speed. When fewer of your quotes book, the bill stays the same and each booked job carries more of it: in the example, the cost per booked job runs from {cpj} at {jobs} bookings up to {lowCpj} at {lowJobs}. Google's help page says it charges for each valid lead, such as a call you answer, a text or a voicemail, and that the price of a message lead takes into account, among other things, whether the customer contacted other advertisers.",
+     "So the first fix is often on your side of the phone: answer or call back fast, quote clearly, and ask every customer for the review and the next visit."
+    ]
+   ],
+   [
+    "The numbers to ask any marketing company for",
+    [
+     "Per channel, every month: what you spent, leads, quotes, jobs booked and lead cost per booked job, with the leads you could not serve counted separately. A report of clicks, impressions or followers alone can't tell you if the money came back. If a company can't give you jobs booked per channel, keep your own count from your booking records."
+    ]
+   ],
+   [
+    "Channels without a per lead bill",
+    [
+     "Referrals and repeat customers cost no new lead, so every job they book lowers your average. A repeat visit costs no new lead: one return visit per customer halves the lead cost per visit in the example, to {repeatCpj}.",
+     "Your own outreach to businesses is the other one. Nobody on a license list has asked for a quote, so you make the first contact. In Chicago, the City newly licensed {lic30} businesses from {licFrom} to {licTo}, {food30} of them restaurants, cafes, bars and food shops and {retail30} shops, offices and other services, the kinds of sites with floors and entry mats. The Chicago New Business Licenses list sends them every Monday."
+    ]
+   ]
+  ],
+  "calculator": [
+   "cost-per-lead-calculator",
+   "cost per lead calculator",
+   "Put in your own spend, leads, quotes and bookings in"
+  ],
+  "cta": {
+   "title": "New businesses you can contact first",
+   "text": "If you clean carpets or floors for businesses in Chicago, the Chicago New Business Licenses list sends every Monday the businesses the City licensed in the last 30 days, sorted by trade, with address, license type and issue date. Nobody on it has asked for a quote, and you make the first contact. {price} a month, cancel any time."
+  },
+  "faq": [
+   [
+    "Are Thumbtack and Google Local Services Ads leads worth it for carpet cleaning?",
+    "Only if the lead cost per booked job is less than what a job leaves you. In the calculator's example, {spend} of leads booked {jobs} jobs, {cpj} each, while a job left {perJob}."
+   ],
+   [
+    "How do I stop getting price shoppers?",
+    "You can't stop a shared lead from shopping. You can answer and quote faster, track which sources book, and grow the channels with no per lead bill: referrals, repeat customers and your own outreach."
+   ],
+   [
+    "What close rate do I need on paid leads?",
+    "Enough bookings that the bill divided by jobs booked is less than a job leaves. In the example, {breakEven} of {quotes} quotes ({beWinPct}) is the break even."
+   ],
+   [
+    "What should a marketing company report to me?",
+    "Per channel each month: spend, leads, quotes, jobs booked and lead cost per booked job. Clicks and impressions alone don't show if the money came back."
+   ]
+  ],
+  "related": [
+   [
+    "cost-per-lead-calculator",
+    "Free cost per lead calculator"
+   ],
+   [
+    "missed-call-cost-calculator",
+    "Free missed call cost calculator"
+   ],
+   [
+    "google-local-services-ads-worth-it",
+    "Are Google Local Services Ads worth it at $500 a month?"
+   ]
+  ],
+  "sources": [
+   [
+    "The Cleaning Standard forum, honest advice from other carpet cleaning business owners (the question as asked)",
+    "https://thecleaningstandard.com/forum/threads/im-looking-for-honest-advice-from-other-carpet-cleaning-business-owners-because-im-reaching-a-breaking-point.305377/post-4893565",
+    "posted Jul 26, 2026, read Nov 8, 2026"
+   ],
+   [
+    "Google Local Services Ads Help, How leads work",
+    "https://support.google.com/localservices/answer/7195435",
+    "read Nov 8, 2026"
+   ],
+   [
+    "{licDataset}",
+    "https://data.cityofchicago.org/Community-Economic-Development/Business-Licenses/r5kz-chrr",
+    "list of {licAsOf}"
+   ],
+   [
+    "ProofNotFluff, cost per lead calculator (example inputs)",
+    "../cost-per-lead-calculator/",
+    "checked Nov 8, 2026"
+   ]
+  ],
+  "footnote": "The worked example uses the free cost per lead calculator's example inputs, not the asker's figures. License counts are from the City of Chicago's data as filtered for the free sample. Google's rules are quoted from its help page read Nov 8, 2026 and can change. What the thread says is summarized from a public forum thread read Nov 8, 2026."
+ },
   {
    "slug": "chicago-construction-pipeline",
    "kind": "datapage",

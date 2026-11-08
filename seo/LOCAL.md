@@ -33,3 +33,4 @@ instead of writing from nothing. Same ladder as the studio (video/studio/_shared
    No draft: write it yourself and note "no box draft".
 
 ## Log (newest last)
+- 2026-11-08, carpet-cleaning-leads-price-shoppers: no box draft (seo/NEXT.json did not exist before this run).

@@ -1,16 +1,54 @@
 {
   "gate": "design",
-  "round": 0,
+  "round": 1,
   "reviewer": "fresh opus agent",
-  "pass": false,
-  "bar": "average 4.61 or more, no score under 4 (round 0, no earlier design FAILs on this lesson)",
-  "score": {"first": 4, "hierarchy": 4, "type": 4, "color": 5, "spacing": 4, "polish": 4, "trust": 5, "average": 4.29},
+  "pass": true,
+  "bar": "average 4.61 or more, no score under 4 (one earlier design FAIL, round 0; fix-check round per prompts/README.md Smoother line 1)",
+  "score": {
+    "first": 5,
+    "hierarchy": 5,
+    "type": 5,
+    "color": 5,
+    "spacing": 4,
+    "polish": 5,
+    "trust": 5,
+    "average": 4.86
+  },
   "reasons": [
-    "0.00-5.40 s hook, $11,500 price tag: it is the stake but reads at about 55 px on a small hanging tag while the green chalkboard beside it (AVG TICKET, ONE FIRM'S, DATA) is mostly empty; put $11,500 on the chalkboard at 160 px or more in accent #F2A541 (style board 01-hook-stat target), so frame 0 carries one huge number; keep the swaying tag as decor (caps first and hierarchy at 4, type at 4 for the hero-number floor).",
-    "28.50-31.50 s button: the band from y 450 to y 990 is empty for 3 s under the 'Ask ChatGPT tonight' plate and RUN THE CHECK stamp (more than a third of the band empty for over 2 s); draw what the scene comment promises, the work order card small and still (or a ChatGPT prompt box typing \"Who's the best [your trade] near me?\"), between y 600 and y 980 (spacing at 4).",
-    "24.00-25.00 s gauge verdict: the needle stops at 1% with no zoom kick or shake (SCENE.trauma is {}), so M4 'a verdict gets a kick' fails; add a short shake or zoom kick on the word 'one' when the needle lands (polish capped at 4 by M4).",
-    "23.50-28.00 s gauge readout '0%' / '1%': about 45 px in a small green box that covers the '0' dial label; raise the readout to 120 px or more and move the box below the hub so 0 and the needle tip stay visible.",
-    "5.50-7.00 s versus screen: y 620 to y 990 is empty under the two cards (stats: []) and the VS glyph overlaps the left card's right border; add one stat row per side (for example a '?' under YOU? that blinks at 2/s) and center the VS in the gap between the cards.",
-    "7.00 s and 28.00 s transitions: send 'levelselect' and button 'gameover' repeat angi-four-pros (Nov 21) move for move, and the send card mirrors its 'FOR WHOEVER...' layout; change the move into send to 'fade4' or 'dissolve' so two lessons in a row do not open their saveable card the same way."
-  ]
+    "5.50-7.00 s versus screen: still open from round 0, the VS glyph (x about 440 to 560) still sits over the left card's right border (card ends near x 480); shift VS right about 25 px so it centers in the gap between the cards at x about 505 (spacing stays at 4 on this alone).",
+    "Checked fixed, 0.00-5.40 s hook: $11,500 now reads as one huge accent number (170 px, center, y about 620 to 790) from frame 0 with a slam kick on 'eleven' (2.5 s); the small tag stays as decor. First, hierarchy and type to 5.",
+    "Checked fixed, 28.50-31.50 s button: the empty band is now filled by an ASK THE CHAT prompt box that types \"Who's the best [trade] near me?\" with a send arrow and typing dots between about y 600 and y 980. Spacing gain on this scene.",
+    "Checked fixed, 24.00-25.70 s gauge verdict: on 'one' the 1% slams in at 150 px in accent with shake 8 (scene.js line 149), so M4 'a verdict gets a kick' now holds. Polish to 5.",
+    "Checked fixed, 23.50-28.00 s gauge readout: the small green readout box is gone (readout: false); 1% sits large right of the needle below the hub and no longer covers the '0' label box; 50 and 100 stay clear.",
+    "Checked partly fixed, 5.50-7.00 s versus: a NAMED stat row now sits under each card (YES with a filled teal bar, ? with an empty bar), so y 620 to 720 carries content; the VS overlap is the one item left (first reason).",
+    "Checked fixed, 7.00 s transition into send: now a pixel dissolve (transitions.send 'dissolve'), so the saveable work order card no longer opens with angi-four-pros' levelselect move.",
+    "note: 25.0-28.0 s the needle at 1% runs across the '0' scale label so the 0 is half hidden; it reads from context and the 1% carries the number, not a blocker (to LEARNINGS.md).",
+    "note: 5.50-7.00 s versus, y about 720 to 900 is still bare under the stat rows for 1.5 s; the EXAMPLE plate and speed lines carry it, not a blocker.",
+    "Unchanged frames carry round 0 scores: color 5, trust 5; end card 31.5-34.5 s with proofnotfluff.com held 3 s (C3) and qa.json flat passes."
+  ],
+  "earlier": {
+    "gate": "design",
+    "round": 0,
+    "reviewer": "fresh opus agent",
+    "pass": false,
+    "bar": "average 4.61 or more, no score under 4 (round 0, no earlier design FAILs on this lesson)",
+    "score": {
+      "first": 4,
+      "hierarchy": 4,
+      "type": 4,
+      "color": 5,
+      "spacing": 4,
+      "polish": 4,
+      "trust": 5,
+      "average": 4.29
+    },
+    "reasons": [
+      "0.00-5.40 s hook, $11,500 price tag: it is the stake but reads at about 55 px on a small hanging tag while the green chalkboard beside it (AVG TICKET, ONE FIRM'S, DATA) is mostly empty; put $11,500 on the chalkboard at 160 px or more in accent #F2A541 (style board 01-hook-stat target), so frame 0 carries one huge number; keep the swaying tag as decor (caps first and hierarchy at 4, type at 4 for the hero-number floor).",
+      "28.50-31.50 s button: the band from y 450 to y 990 is empty for 3 s under the 'Ask ChatGPT tonight' plate and RUN THE CHECK stamp (more than a third of the band empty for over 2 s); draw what the scene comment promises, the work order card small and still (or a ChatGPT prompt box typing \"Who's the best [your trade] near me?\"), between y 600 and y 980 (spacing at 4).",
+      "24.00-25.00 s gauge verdict: the needle stops at 1% with no zoom kick or shake (SCENE.trauma is {}), so M4 'a verdict gets a kick' fails; add a short shake or zoom kick on the word 'one' when the needle lands (polish capped at 4 by M4).",
+      "23.50-28.00 s gauge readout '0%' / '1%': about 45 px in a small green box that covers the '0' dial label; raise the readout to 120 px or more and move the box below the hub so 0 and the needle tip stay visible.",
+      "5.50-7.00 s versus screen: y 620 to y 990 is empty under the two cards (stats: []) and the VS glyph overlaps the left card's right border; add one stat row per side (for example a '?' under YOU? that blinks at 2/s) and center the VS in the gap between the cards.",
+      "7.00 s and 28.00 s transitions: send 'levelselect' and button 'gameover' repeat angi-four-pros (Nov 21) move for move, and the send card mirrors its 'FOR WHOEVER...' layout; change the move into send to 'fade4' or 'dissolve' so two lessons in a row do not open their saveable card the same way."
+    ]
+  }
 }

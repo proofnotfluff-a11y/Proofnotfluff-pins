@@ -3,17 +3,43 @@
  "round": 0,
  "reviewer": "fresh opus agent",
  "pass": true,
- "score": {"numbers": 2, "mismatches": 0},
+ "score": {
+  "numbers": 2,
+  "mismatches": 0
+ },
  "reasons": [
-  "Note, not a fail: 04_scene/scene.js hook section, versus screen (SHOP IT NAMES against YOU?): cues.md and the scene comment both call it EXAMPLE, and exampleTag() is defined, but it is never drawn. It shows no reply text, names no shop and draws no winner, so it does not read as a tool's output today. Fix to match the cue: after k.sets.versus(...) in hook, add `exampleTag(px(k), 140, 300);` (or wherever it clears the versus art) so the story beat is labelled as ours.",
-  "Note, not a fail: 04_scene/scene.js why section tag reads 'ACHR News column, Mar 18, 2026 (SearchLight data)'. The 'interpret and reassemble' line is the column author's explanation, not a SearchLight number. Fairer: drop the second line there, i.e. `tag(k, d, 'ACHR News column, Mar 18, 2026', 290);` (cues.md already specifies that shorter tag for this cue). Keep '(SearchLight data)' on the hook ticket and the 1% gauge.",
-  "Prior round fix confirmed: script.md and transcript.md now say 'There just aren't many yet, about one percent of revenue for most contractors.' (volume, not size), matching 'the volume simply isn't there yet'."
+  "Prior notes both fixed in 04_scene/scene.js: hook.who versus screen now carries exampleTag(px(k), 140, 300) (labelled EXAMPLE, no winner, no reply, no shop named); why tag now reads 'ACHR News column, Mar 18, 2026' without '(SearchLight data)'.",
+  "Note, not a fail: 04_scene/scene.js hook draws 'ONE FIRM'S DATA' and 'ACHR News, / Mar 18, 2026' but not 'guest column' as brief.md Real screens asks; voice says 'A marketing firm says', so attribution is fair. Optional fix: change 'ACHR News,' to 'ACHR News guest col.,' only if it fits; no change required.",
+  "Note, not a fail: 03_cues/cues.md hook describes a plate 'ChatGPT jobs: / $11,500 avg ticket' and a board 'AVG CHATGPT JOB' while scene.js draws shop 'JOBS FROM CHATGPT' and 'AVG TICKET'; same claim, same number, so no facts issue. Optional: update cues.md to match the scene."
  ],
  "sources_checked": [
-  "https://www.achrnews.com/articles/165972-before-you-chase-ai-leads-fix-your-google-business-profile: WebFetch failed (getaddrinfo ENOTFOUND www.achrnews.com, host not allowed in this session; achrnews.com must be allowed in the session's network settings for a live check). Per the unreachable-page rule, the same-day read in 01_voice/source-read.json (P2, status ok, 11988 chars, 2026-11-07 17:47 Central) stands as the source. Confirmed word for word: 'averaging $11,500 per ticket' (voice 'eleven and a half grand a ticket', screen tag $11,500 with AVG TICKET / ONE FIRM'S DATA / PER JOB, data.js ticket 11500: match); 'ChatGPT referrals represent only about 1% of total revenue for most contractors' (voice 'about one percent of revenue for most contractors', gauge value 1 of 100 labelled SHARE OF REVENUE, tag 'About, most contractors', data.js rev1 1: match, same base and measure); 'They interpret and reassemble structured business data (your name, address, phone number, website content, reviews, and even your Google Posts)' (voice 'your name, your website, your reviews', board NAME / WEBSITE / REVIEWS: fair subset). The 24% GBP attribution line supports the profile-first advice, which the brief correctly marks as ours.",
-  "AI lane: no AI reply or page shot is shown or read; the work order is our advice, the question to type, not a tool output. Nothing needs a run.json.",
-  "Attribution: both numbers and the reads claim are said as 'a marketing firm says' / 'the same firm says' and tagged ACHR News guest column, Mar 18, 2026 (SearchLight data); facts.json notes the method is unpublished. No overstatement; 'yet' and 'for most contractors' copy the column's own scope.",
-  "Trades first: ACHR News is HVAC trade press and the data is about contractors: pass.",
-  "No private person, business or address in voice, screen, scene or captions; no em or en dashes in script.md, brief.md, facts.json, source-read.json, transcript.md, cues.md, scene.js, data.js or captions.json. Bracketed script tags are delivery directions. Captions.json repeats the same $11,500 and about 1% with the same attribution."
- ]
+  "https://www.achrnews.com/articles/165972-before-you-chase-ai-leads-fix-your-google-business-profile: WebFetch tried once, failed (getaddrinfo ENOTFOUND www.achrnews.com; host must be allowed in the session's network settings). Per the unreachable-page rule, 01_voice/source-read.json (P2, status ok, 11988 chars, 2026-11-07 17:47 Central) stands as the source. Confirmed word for word: 'averaging $11,500 per ticket, but the volume simply isn't there yet' (voice 'eleven and a half grand a ticket'; screen $11,500 with AVG TICKET, ONE FIRM'S DATA; data.js ticket 11500: match); 'ChatGPT referrals represent only about 1% of total revenue for most contractors' (voice 'There just aren't many yet, about one percent of revenue for most contractors'; gauge 1 of 100 SHARE OF REVENUE, slam 1%, tag 'About, most contractors'; data.js rev1 1: match, same base and scope; 'aren't many' matches 'volume'); 'They interpret and reassemble structured business data (your name, address, phone number, website content, reviews, and even your Google Posts)' (voice 'your name, your website, your reviews'; board NAME / WEBSITE / REVIEWS: fair subset). The 24% GBP attribution line and the column's headline support 'fix your Google profile first' as advice, which brief.md marks as ours.",
+  "data.js: sha256 72d12fa8... matches 01_voice/facts.json; both numbers' paths and shown values match facts.json.",
+  "AI lane: no AI reply or page shot shown or read. The button chat box types only our question with EXAMPLE and no reply; the versus screen is labelled EXAMPLE with no winner. Nothing needs a run.json.",
+  "Claims: both numbers and the reads line attributed ('a marketing firm says', 'the same firm says', ACHR tags with SearchLight data on the 1%); 'yet' and 'for most contractors' copy the column's scope; no overstatement.",
+  "Trades first: ACHR News is HVAC trade press, data on contractors: pass.",
+  "No private person, business or address in voice, screen, scene or captions; no em or en dashes in 01_voice, transcript.md, cues.md, scene.js, data.js or captions.json (scanned by code). Bracketed script tags are delivery directions."
+ ],
+ "earlier": {
+  "gate": "facts",
+  "round": 0,
+  "reviewer": "fresh opus agent",
+  "pass": true,
+  "score": {
+   "numbers": 2,
+   "mismatches": 0
+  },
+  "reasons": [
+   "Note, not a fail: 04_scene/scene.js hook section, versus screen (SHOP IT NAMES against YOU?): cues.md and the scene comment both call it EXAMPLE, and exampleTag() is defined, but it is never drawn. It shows no reply text, names no shop and draws no winner, so it does not read as a tool's output today. Fix to match the cue: after k.sets.versus(...) in hook, add `exampleTag(px(k), 140, 300);` (or wherever it clears the versus art) so the story beat is labelled as ours.",
+   "Note, not a fail: 04_scene/scene.js why section tag reads 'ACHR News column, Mar 18, 2026 (SearchLight data)'. The 'interpret and reassemble' line is the column author's explanation, not a SearchLight number. Fairer: drop the second line there, i.e. `tag(k, d, 'ACHR News column, Mar 18, 2026', 290);` (cues.md already specifies that shorter tag for this cue). Keep '(SearchLight data)' on the hook ticket and the 1% gauge.",
+   "Prior round fix confirmed: script.md and transcript.md now say 'There just aren't many yet, about one percent of revenue for most contractors.' (volume, not size), matching 'the volume simply isn't there yet'."
+  ],
+  "sources_checked": [
+   "https://www.achrnews.com/articles/165972-before-you-chase-ai-leads-fix-your-google-business-profile: WebFetch failed (getaddrinfo ENOTFOUND www.achrnews.com, host not allowed in this session; achrnews.com must be allowed in the session's network settings for a live check). Per the unreachable-page rule, the same-day read in 01_voice/source-read.json (P2, status ok, 11988 chars, 2026-11-07 17:47 Central) stands as the source. Confirmed word for word: 'averaging $11,500 per ticket' (voice 'eleven and a half grand a ticket', screen tag $11,500 with AVG TICKET / ONE FIRM'S DATA / PER JOB, data.js ticket 11500: match); 'ChatGPT referrals represent only about 1% of total revenue for most contractors' (voice 'about one percent of revenue for most contractors', gauge value 1 of 100 labelled SHARE OF REVENUE, tag 'About, most contractors', data.js rev1 1: match, same base and measure); 'They interpret and reassemble structured business data (your name, address, phone number, website content, reviews, and even your Google Posts)' (voice 'your name, your website, your reviews', board NAME / WEBSITE / REVIEWS: fair subset). The 24% GBP attribution line supports the profile-first advice, which the brief correctly marks as ours.",
+   "AI lane: no AI reply or page shot is shown or read; the work order is our advice, the question to type, not a tool output. Nothing needs a run.json.",
+   "Attribution: both numbers and the reads claim are said as 'a marketing firm says' / 'the same firm says' and tagged ACHR News guest column, Mar 18, 2026 (SearchLight data); facts.json notes the method is unpublished. No overstatement; 'yet' and 'for most contractors' copy the column's own scope.",
+   "Trades first: ACHR News is HVAC trade press and the data is about contractors: pass.",
+   "No private person, business or address in voice, screen, scene or captions; no em or en dashes in script.md, brief.md, facts.json, source-read.json, transcript.md, cues.md, scene.js, data.js or captions.json. Bracketed script tags are delivery directions. Captions.json repeats the same $11,500 and about 1% with the same attribution."
+  ]
+ }
 }

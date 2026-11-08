@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-23-chatgpt-check-short",
- "mp4Sha256": "0ee437feb333ac9ee70dcf31137ba222df27236b0db81a8223cac34821d0a87a",
+ "mp4Sha256": "13eceeefa9a9fb0bc5be37ef36c19f01783eef03b82dc55f0dca336a59690981",
  "checks": [
   {
    "name": "length",
@@ -44,8 +44,8 @@
   {
    "name": "file",
    "value": {
-    "sha256": "0ee437feb333ac9ee70dcf31137ba222df27236b0db81a8223cac34821d0a87a",
-    "bytes": 3996216
+    "sha256": "13eceeefa9a9fb0bc5be37ef36c19f01783eef03b82dc55f0dca336a59690981",
+    "bytes": 4000237
    },
    "pass": true,
    "detail": "H.264 1080x1920 30 fps, AAC, 4.0 MB, decodes clean"
@@ -58,5 +58,5 @@
   }
  ],
  "pass": true,
- "at": "2026-11-07T19:30:52-05:00"
+ "at": "2026-11-07T19:42:49-05:00"
 }

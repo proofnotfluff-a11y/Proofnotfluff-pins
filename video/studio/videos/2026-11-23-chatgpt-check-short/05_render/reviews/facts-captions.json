@@ -2,7 +2,32 @@
  "gate": "facts-captions",
  "round": 0,
  "reviewer": "fresh opus agent",
- "pass": true,
- "score": {"numbers": 4, "mismatches": 0},
- "reasons": []
+ "pass": false,
+ "score": {
+  "numbers": 4,
+  "mismatches": 4
+ },
+ "reasons": [
+  "instagram: proof line says \"A marketing firm's data\", but the source has SearchLight data read by the column's author (a reputation-marketing firm's founder); nothing shows SearchLight is that firm (facts.json dataSource; the same misattribution failed the scene at facts r8, and the scene tag now reads 'Avg ChatGPT job in SearchLight data, per ACHR News column'). Fix: replace \"A marketing firm's data, in an ACHR News guest column (Mar 18, 2026), puts\" with \"SearchLight data, cited in an ACHR News guest column (Mar 18, 2026), puts\".",
+  "tiktok: same misattribution in the proof line. Fix: replace \"A marketing firm's data, in an ACHR News guest column (Mar 18, 2026), puts\" with \"SearchLight data, cited in an ACHR News guest column (Mar 18, 2026), puts\".",
+  "facebook: same misattribution in the proof line. Fix: replace \"A marketing firm's data, in an ACHR News guest column (Mar 18, 2026), puts\" with \"SearchLight data, cited in an ACHR News guest column (Mar 18, 2026), puts\".",
+  "youtube: same misattribution in the description's proof line. Fix: replace \"A marketing firm's data, in an ACHR News guest column (Mar 18, 2026), puts\" with \"SearchLight data, cited in an ACHR News guest column (Mar 18, 2026), puts\" (the next sentence, 'The same column says AI tools interpret and reassemble...', is correct and stays)."
+ ],
+ "notes": [
+  "Source: WebFetch to achrnews.com failed (host not resolvable from this session); 01_voice/source-read.json (box page reader, Nov 7, 2026, 5:47 pm) stands as the source. $11,500 per ticket, about 1% of total revenue for most contractors, and the interpret-and-reassemble line (name, website content, reviews) all match it word for word; 'so far' is supported by 'the volume simply isn't there yet'.",
+  "Mechanical rules pass: line 1 is 72/65/72 characters; YouTube title 71 with no hashtags; hashtags IG 4, TikTok 4, Facebook 2, YouTube description 3; YouTube tags 10 with one misspelling; no link in IG/FB (link in bio line only); no AI voice line; no em or en dashes; no private person, business or address; AI labels TikTok on, others off; TikTok asks owners 'Did it name you?'; send line matches brief.md and the end card.",
+  "Video consistency: the video says nothing is 'in the caption'; caption steps match THE CHECK card.",
+  "Advisory, not a fail: YouTube site line names the missed call cost calculator, which is not this lesson's topic; allowed by the Nov 7 one-destination rule, and no ChatGPT or Google profile page is in docs/sitemap.xml."
+ ],
+ "earlier": {
+  "gate": "facts-captions",
+  "round": 0,
+  "reviewer": "fresh opus agent",
+  "pass": true,
+  "score": {
+   "numbers": 4,
+   "mismatches": 0
+  },
+  "reasons": []
+ }
 }

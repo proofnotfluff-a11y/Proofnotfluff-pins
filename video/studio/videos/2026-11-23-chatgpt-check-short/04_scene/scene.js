@@ -146,6 +146,7 @@ window.SCENE = {
     small: (k, T) => {
       const t0 = k.S('small'), tOne = wordT(k, 'small', /^one$/i, 1.6) - 0.4, r1 = k.data.numbers.rev1;
       const r = k.sets.gauge({value: r1.value, max: 100, at: Math.max(t0 + 0.2, tOne - 0.6), dur: 0.8, zones: [[0, 10, RED], [10, 50, GOLD], [50, 100, TEAL]], label: 'SHARE OF REVENUE', suffix: '%', readout: false});
+      k.text('0', 396, 756, {size: 39, color: '#C9CCD3', align: 'center', drop: INK});   /* render critic r0: the needle at 1% hid the dial's 0, so the 0 is drawn again over it */
       if (T >= tOne) k.slam(r1.shown, 540, 680, tOne, {size: 150, color: 'accent', align: 'center', drop: INK, from: 0.6, shake: 8});   /* design r0: the verdict lands big with a kick */
       const d = px(k);
       tag(k, d, 'About, most contractors: ACHR News', 290, 'column, Mar 18, 2026 (SearchLight data)');

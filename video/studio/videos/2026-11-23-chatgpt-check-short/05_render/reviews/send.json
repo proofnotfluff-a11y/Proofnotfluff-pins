@@ -5,8 +5,8 @@
   "pass": true,
   "score": {
     "person": "whoever runs your Google profile",
-    "tie": "my wife, who runs the office and our Google listing for our two-truck HVAC shop",
-    "thing": "a two-step work order card: \"WORK ORDER: TONIGHT / FOR WHOEVER RUNS YOUR GOOGLE PROFILE / 1. Ask ChatGPT: \"Who's the best [your trade] near me?\" / 2. Not you? Fix your Google profile first.\"",
+    "tie": "my wife, who runs our Google profile and answers the phones for our three-van plumbing shop",
+    "thing": "a work order card with the exact question to type into ChatGPT and the fix if you are not named: \"WORK ORDER: TONIGHT / FOR WHOEVER RUNS YOUR GOOGLE PROFILE / 1. Ask ChatGPT: \"Who's the best [your trade] near me?\" / 2. Not you? Fix your Google profile first.\"",
     "held_at": "7.5s to 15.0s",
     "line": "So tonight, ask ChatGPT: who's the best in my trade near me?",
     "gain": "helps",
@@ -15,16 +15,16 @@
     "send_line_fits": "yes"
   },
   "reasons": [
-    "1. I own a small HVAC shop (the source on screen is ACHR News, so HVAC). I would send it to my wife, who runs the office and our Google listing. One person, named by role and tie.",
-    "2. Send line from the transcript: \"So tonight, ask ChatGPT: who's the best in my trade near me?\"",
-    "3. Helps: she owns the Google profile, and this gives her a 30 second test she can run tonight plus the fix if we are not named. It is her job, so it lands as help, not as homework from me.",
-    "4. Surprise: \"eleven and a half grand a ticket\" from ChatGPT jobs, then the question of whether it names us.",
-    "5. Thanks: it is a test, not a pitch. No product, no link, no price. She would run it and tell me what came back.",
-    "6. End card (31.5s to 34.0s): \"Send this to whoever runs your Google profile.\" It points straight at her. It fits; no rewrite needed.",
-    "7. The work order card sits still and readable from 7.5s to 15.0s (7.5 seconds): \"WORK ORDER: TONIGHT\", \"FOR WHOEVER RUNS YOUR GOOGLE PROFILE\", \"1. Ask ChatGPT: \"Who's the best [your trade] near me?\"\", \"2. Not you? Fix your Google profile first.\" That is the screenshot.",
-    "8. The screen names the role: \"FOR WHOEVER RUNS YOUR GOOGLE PROFILE\" on the card, and the end card repeats it. The voice never says the role.",
-    "Problem (minor, does not fail): the voice never names who the work order is for, so a viewer listening without watching misses it. Fix: at 13.2s change \"Fix your Google profile first.\" to \"Hand this to whoever runs your Google profile.\"",
-    "Problem (minor): 23.5s \"There just aren't many yet, about one percent of revenue for most contractors.\" is unclear: many what? Fix: \"ChatGPT jobs are still small, about one percent of revenue for most contractors.\"",
-    "Problem (minor): the card's subtitle \"FOR WHOEVER RUNS YOUR GOOGLE PROFILE\" is the smallest type on the card and faint in a phone screenshot. Fix: bump it one size."
+    "1. Yes. As a plumbing shop owner I would send it to my wife, who runs our Google profile and answers the phones. The work order card names her job, so forwarding it is a handoff, not homework I have to explain.",
+    "2. \"So tonight, ask ChatGPT: who's the best in my trade near me?\" is the line I would send it on, and \"Not you? Fix your Google profile first.\" goes right after it.",
+    "3. Helps: it gives her a two-minute test she can run tonight and one clear next step if we are not named. That is a real problem we have never checked, not just a tip.",
+    "4. Surprise: \"eleven and a half grand a ticket\" from ChatGPT jobs, and then the worry that the chat names someone else, is what makes me stop and pass it on.",
+    "5. Thanks: it asks her to do one small, concrete thing and frames it as beating the customer to it (\"before a customer does\"). It does not read as an ad, because the only brand shown is on the end card.",
+    "6. The end card reads \"Send this to whoever runs your Google profile.\" (31.5s to 34.0s). That is the person I named and the role the work order card names. It fits.",
+    "7. Thing: the work order card \"WORK ORDER: TONIGHT / FOR WHOEVER RUNS YOUR GOOGLE PROFILE / 1. Ask ChatGPT: \"Who's the best [your trade] near me?\" / 2. Not you? Fix your Google profile first.\" It is fully drawn at 7.5s and holds still until 15.0s, about 7.5 seconds, long enough to screenshot. The closing \"ASK THE CHAT\" box (29.5s to 31.0s) repeats the question but types in and animates, so the work order card is the frame to grab.",
+    "8. The card itself says it is \"FOR WHOEVER RUNS YOUR GOOGLE PROFILE\", and the end card says the same. One role.",
+    "Problem, not blocking: at 15.5s the work order card breaks into pixel blocks for a frame. If a viewer pauses there to screenshot, they get noise. Fix: hold the clean card through the cut, or start the dissolve after 15.6s so the last readable frame is the last frame before the change.",
+    "Problem, not blocking: at 28.0s the sheet is a blank, empty frame between the gauge and the closing box. Fix: cut straight from the 1% gauge into the \"Ask ChatGPT tonight\" box with no empty beat.",
+    "Problem, not blocking: \"There just aren't many yet\" (23.5s) does not say many what. A viewer has to guess it means ChatGPT jobs. Fix: \"There just aren't many of those jobs yet, about one percent of revenue for most contractors.\""
   ]
 }

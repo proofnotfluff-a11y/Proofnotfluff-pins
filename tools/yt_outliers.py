@@ -5,7 +5,7 @@ Todd, live chat, Nov 7, 2026, 12:08 pm: "Go", to the proven idea lane; 2:45 pm: 
 saved as the repo secret YOUTUBE_API_KEY (video/studio/research/PROVEN.md). For every channel in
 video/studio/research/proven-channels.json: its newest 50 uploads, the Shorts among them (180 s or less), the median
 views of those Shorts (the channel's typical), and every Short with 5x that median or more, 100,000 views or more (Todd, live chat, Nov 7, 2026, 7:17 pm; was 1,000), posted
-in the last 365 days. Then the search queries in the same file (Shorts, last 30 days, most viewed) to surface channels
+in the last 365 days. Then the search queries in the same file (Shorts, last 90 days, most viewed; 40 new channels at most) to surface channels
 we don't follow yet, listed by channel ID only. Writes video/studio/research/outliers.json; a run of the studio's
 proven lane reads it when every PROVEN.md row with a sourceprint is used (_shared/formats.md "Proven").
 
@@ -111,7 +111,7 @@ def run(client, cfg, today):
             report["channels"].append(row); report["outliers"] += outs
         except ApiError as e:
             report["errors"].append(str(e))
-    after = (today - dt.timedelta(days=30)).isoformat() + "T00:00:00Z"
+    after = (today - dt.timedelta(days=90)).isoformat() + "T00:00:00Z"
     found = {}
     for q in cfg.get("searches", []):
         try:
@@ -123,7 +123,7 @@ def run(client, cfg, today):
             cid = it.get("snippet", {}).get("channelId")
             if cid and cid not in known:
                 found.setdefault(cid, set()).add(q)
-    for cid, qs in sorted(found.items(), key=lambda kv: -len(kv[1]))[:20]:
+    for cid, qs in sorted(found.items(), key=lambda kv: -len(kv[1]))[:40]:
         try:
             row, outs = channel_report(client, cid, "not yet labeled", today)
         except ApiError as e:

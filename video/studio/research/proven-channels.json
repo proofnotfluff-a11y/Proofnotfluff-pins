@@ -1,41 +1,146 @@
 {
  "about": "Channels the weekly outlier finder reads (tools/yt_outliers.py, .github/workflows/yt-outliers.yml; Todd, live chat, Nov 7, 2026, 2:45 pm: \"key added\", the YouTube Data API key as the repo secret YOUTUBE_API_KEY). Found by YouTube search in the proven lane build chat (research/PROVEN.md). By channel ID only: a company is labeled by its business name, any other channel by a plain description, never a person's name or handle (CLAUDE.md 5). Add channels here; the finder also searches the queries below for new ones and lists them by ID.",
  "channels": [
-  {"id": "UCYMQLrbOUA94BWrlrSJn9yw", "label": "Jobber"},
-  {"id": "UCnmkHtZ2BKVutgi2Ogk9RIQ", "label": "Roofing Insights"},
-  {"id": "UCVSuWJ-9UlN2DELnWClctxw", "label": "Phlash Consulting"},
-  {"id": "UCoynaiW7H1L2uwIcgggowhw", "label": "Profitable Tradie"},
-  {"id": "UCB3jUEyCLRbCw7QED0vnXYg", "label": "Electrician U"},
-  {"id": "UCeO2QdRNK3y6Srm8SpFaeTw", "label": "Hook Agency"},
-  {"id": "UChFahjDeMBV67DSXiF5pwBA", "label": "UpFlip"},
-  {"id": "UChxfA97D5XdOD4WWwHYrMAQ", "label": "Grow My Cleaning Company"},
-  {"id": "UCgwFAX01m1tT0XyqU19WGtw", "label": "ServiceTitan"},
-  {"id": "UCmA0PaDYqW2J2tJR56Mk91A", "label": "Housecall Pro"},
-  {"id": "UCSeHRgbV1EjTORq19mucyPA", "label": "FieldPulse"},
-  {"id": "UCKvoXMUzddggvUgmyfYPaIw", "label": "Thryv"},
-  {"id": "UC4KeHlORpKFJCk0Nhi_lnzg", "label": "Contractor+"},
-  {"id": "UCt-pCmYcb0ArkT4oeLi5XHQ", "label": "King Contractor Agency"},
-  {"id": "UCUynOuMTPXvUrTpcFWQ_qDA", "label": "a plumbing shop owner's pricing channel"},
-  {"id": "UCGIMKh92vaL0_Yc0u4GYhHA", "label": "a plumbing education channel"},
-  {"id": "UCGXHeIVzjBLRTjyXfXN4p9Q", "label": "a remodeling contractor's channel"},
-  {"id": "UCRIZT8d_FUUKfygm1ogbTsA", "label": "a one-person contractor marketing channel"},
-  {"id": "UCrvchO1h6lWZAuGaa1LqX9Q", "label": "a business advice clips channel"},
-  {"id": "UCYwm9DYcHEG0X5DEzzv5Qjw", "label": "a home service growth coach's channel"},
-  {"id": "UCvzwdmGkt6E4TaCfthyQMrw", "label": "an electrician business channel"},
-  {"id": "UCHdJzcy6XBDlTv9nbh9s3Vw", "label": "a home service operator's channel"},
-  {"id": "UCodFV43mCggDyZSWLrUD4Jg", "label": "a trades business channel"},
-  {"id": "UCA3YRULpppE2JvtaBUJlVZw", "label": "a trades business buying channel"},
-  {"id": "UC0Fh1HN4RvOw2hMk9n5PysA", "label": "a plumbing business podcast channel"},
-  {"id": "UCLB2elyHgxdWZay0zYc9jNA", "label": "a lawn care business owner's channel"},
-  {"id": "UCxAIrYmaxjGZScjWdllN3pQ", "label": "a contractor systems coach's channel"},
-  {"id": "UCdsV5ErIXGyir4ffLGq0tCA", "label": "a construction AI channel"},
-  {"id": "UCiz21FXLOV65NTgiUfJsxTg", "label": "an HVAC channel"},
-  {"id": "UCSVx5TWX-m2dl6yuUVF05Dw", "label": "a roofing business coach's channel"},
-  {"id": "UCRyMCZtwf9sgBNOKcF-FNig", "label": "a pest control business channel"},
-  {"id": "UCFagrk8cFSKz79daDQ_iXHg", "label": "a service industry coach's channel"},
-  {"id": "UC86r4_wMGU5M1-dVovjxf1w", "label": "a construction business coach's channel"},
-  {"id": "UChddEJbMlV6PO6lQKY_8rQw", "label": "a trades marketer's channel"},
-  {"id": "UCLtaueIndi5-8Gr0o8fTpxg", "label": "a plumbing marketer's channel"}
+  {
+   "id": "UCYMQLrbOUA94BWrlrSJn9yw",
+   "label": "Jobber"
+  },
+  {
+   "id": "UCnmkHtZ2BKVutgi2Ogk9RIQ",
+   "label": "Roofing Insights"
+  },
+  {
+   "id": "UCVSuWJ-9UlN2DELnWClctxw",
+   "label": "Phlash Consulting"
+  },
+  {
+   "id": "UCoynaiW7H1L2uwIcgggowhw",
+   "label": "Profitable Tradie"
+  },
+  {
+   "id": "UCB3jUEyCLRbCw7QED0vnXYg",
+   "label": "Electrician U"
+  },
+  {
+   "id": "UCeO2QdRNK3y6Srm8SpFaeTw",
+   "label": "Hook Agency"
+  },
+  {
+   "id": "UChFahjDeMBV67DSXiF5pwBA",
+   "label": "UpFlip"
+  },
+  {
+   "id": "UChxfA97D5XdOD4WWwHYrMAQ",
+   "label": "Grow My Cleaning Company"
+  },
+  {
+   "id": "UCgwFAX01m1tT0XyqU19WGtw",
+   "label": "ServiceTitan"
+  },
+  {
+   "id": "UCmA0PaDYqW2J2tJR56Mk91A",
+   "label": "Housecall Pro"
+  },
+  {
+   "id": "UCSeHRgbV1EjTORq19mucyPA",
+   "label": "FieldPulse"
+  },
+  {
+   "id": "UCKvoXMUzddggvUgmyfYPaIw",
+   "label": "Thryv"
+  },
+  {
+   "id": "UC4KeHlORpKFJCk0Nhi_lnzg",
+   "label": "Contractor+"
+  },
+  {
+   "id": "UCt-pCmYcb0ArkT4oeLi5XHQ",
+   "label": "King Contractor Agency"
+  },
+  {
+   "id": "UCUynOuMTPXvUrTpcFWQ_qDA",
+   "label": "a plumbing shop owner's pricing channel"
+  },
+  {
+   "id": "UCGIMKh92vaL0_Yc0u4GYhHA",
+   "label": "a plumbing education channel"
+  },
+  {
+   "id": "UCGXHeIVzjBLRTjyXfXN4p9Q",
+   "label": "a remodeling contractor's channel"
+  },
+  {
+   "id": "UCRIZT8d_FUUKfygm1ogbTsA",
+   "label": "a one-person contractor marketing channel"
+  },
+  {
+   "id": "UCrvchO1h6lWZAuGaa1LqX9Q",
+   "label": "a business advice clips channel"
+  },
+  {
+   "id": "UCYwm9DYcHEG0X5DEzzv5Qjw",
+   "label": "a home service growth coach's channel"
+  },
+  {
+   "id": "UCvzwdmGkt6E4TaCfthyQMrw",
+   "label": "an electrician business channel"
+  },
+  {
+   "id": "UCHdJzcy6XBDlTv9nbh9s3Vw",
+   "label": "a home service operator's channel"
+  },
+  {
+   "id": "UCodFV43mCggDyZSWLrUD4Jg",
+   "label": "a trades business channel"
+  },
+  {
+   "id": "UCA3YRULpppE2JvtaBUJlVZw",
+   "label": "a trades business buying channel"
+  },
+  {
+   "id": "UC0Fh1HN4RvOw2hMk9n5PysA",
+   "label": "a plumbing business podcast channel"
+  },
+  {
+   "id": "UCLB2elyHgxdWZay0zYc9jNA",
+   "label": "a lawn care business owner's channel"
+  },
+  {
+   "id": "UCxAIrYmaxjGZScjWdllN3pQ",
+   "label": "a contractor systems coach's channel"
+  },
+  {
+   "id": "UCdsV5ErIXGyir4ffLGq0tCA",
+   "label": "a construction AI channel"
+  },
+  {
+   "id": "UCiz21FXLOV65NTgiUfJsxTg",
+   "label": "an HVAC channel"
+  },
+  {
+   "id": "UCSVx5TWX-m2dl6yuUVF05Dw",
+   "label": "a roofing business coach's channel"
+  },
+  {
+   "id": "UCRyMCZtwf9sgBNOKcF-FNig",
+   "label": "a pest control business channel"
+  },
+  {
+   "id": "UCFagrk8cFSKz79daDQ_iXHg",
+   "label": "a service industry coach's channel"
+  },
+  {
+   "id": "UC86r4_wMGU5M1-dVovjxf1w",
+   "label": "a construction business coach's channel"
+  },
+  {
+   "id": "UChddEJbMlV6PO6lQKY_8rQw",
+   "label": "a trades marketer's channel"
+  },
+  {
+   "id": "UCLtaueIndi5-8Gr0o8fTpxg",
+   "label": "a plumbing marketer's channel"
+  }
  ],
  "searches": [
   "missed calls contractor",
@@ -45,6 +150,19 @@
   "AI for contractors",
   "plumbing business pricing",
   "roofing business owner",
-  "cleaning business owner tips"
- ]
+  "cleaning business owner tips",
+  "contractor business tips",
+  "home service business owner",
+  "plumber business owner",
+  "electrician business owner",
+  "landscaping business owner",
+  "pest control business owner",
+  "garage door business",
+  "pressure washing business",
+  "handyman business tips",
+  "customer wont pay contractor",
+  "contractor pricing mistakes",
+  "trades business owner"
+ ],
+ "note": "Nov 8, 2026: 12 more searches and a 90-day search window after Todd moved every lesson to sources at 100K+ views and 5x (\"Going forward all videos should use this method.\")."
 }

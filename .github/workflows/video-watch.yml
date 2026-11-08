@@ -17,7 +17,7 @@ concurrency:
 jobs:
   watch:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 75
     steps:
       - uses: actions/checkout@v4
       - name: Self-test (offline)
@@ -29,8 +29,12 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           mkdir -p video/watch/answers
+          start=$(date +%s)
           for job in video/watch/jobs/*.json; do
             [ -e "$job" ] || continue
+            # Time budget (Nov 8: the 30 minute cap cancelled a batch of 8 after 6 answers and committed none): start no new
+            # job after 55 minutes, so the commit step always runs; the rest wait for the next push or a manual run.
+            if [ $(( $(date +%s) - start )) -gt 3300 ]; then echo "time budget used; later jobs wait"; break; fi
             name=$(basename "$job" .json)
             out="video/watch/answers/$name.md"
             [ -f "$out" ] && continue

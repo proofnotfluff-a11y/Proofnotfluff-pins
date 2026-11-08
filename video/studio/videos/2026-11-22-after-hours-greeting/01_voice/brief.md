@@ -29,7 +29,7 @@ leads question), the second phone pattern. The 5:33 pm scheduled run makes ask-c
   2025 data, participating customers' residential HVAC calls, read Nov 7, 2026.
   Off-hours: weekdays before 8 am or after 5 pm, plus weekends (in the tag).
 - **Do this week (on screen, held):** the send card (cue marked [send]): FOR THE OFFICE MANAGER / AFTER-HOURS MESSAGE /
-  "You've reached [shop]. We're off until 7 am. Text this number your address and what's wrong, and we'll call you first thing."
+  "You've reached [shop]. We're off until 7 am. Text this number your address and what's wrong, and we'll phone you first thing."
 - **Send:** your office manager: AFTER-HOURS MESSAGE: TEXT THIS NUMBER YOUR ADDRESS AND WHAT'S WRONG
 - **End card send line:** "Send this to your office manager." (SCENE.sendLine)
 

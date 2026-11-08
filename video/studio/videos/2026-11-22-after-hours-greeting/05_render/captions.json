@@ -1,0 +1,63 @@
+{
+ "schema": "pnf.studio.captions.v1",
+ "keywords": {
+  "primary": "after hours voicemail for HVAC business",
+  "secondary": [
+   "after hours calls",
+   "home service business"
+  ],
+  "trades": [
+   "HVAC",
+   "plumbing",
+   "heating"
+  ]
+ },
+ "instagram": {
+  "caption": "Your after-hours voicemail only says you're closed? HVAC and plumbing business owners:\nServiceTitan's 2025 call data from home HVAC shops on its software: even in October, the lowest month of the year, 9.8% of calls came in before 8, after 5 or on a weekend (ServiceTitan State of the Trades, read Nov 7, 2026).\n\nThe new after-hours message for your office manager:\n\"You've reached [shop]. We're off until 7 am. Text this number your address and what's wrong, and we'll phone you first thing.\"\nSend this to your office manager.\nFree missed call cost calculator: link in bio.\n\n#homeservicebusiness #hvacbusiness #plumbingbusiness #afterhourscalls",
+  "settings": {
+   "aiLabel": false,
+   "shareToFacebook": false
+  }
+ },
+ "tiktok": {
+  "caption": "What does your voicemail say after five? HVAC and plumbing owners:\nServiceTitan's 2025 data from home HVAC shops on its software: even in October, 9.8% of calls came in before 8, after 5 or on a weekend (State of the Trades, read Nov 7, 2026).\nChange the message: say when you'll call back, and ask for a text with the address and what's wrong.\nSend this to your office manager.\nFree missed call cost calculator: link in bio.\n#homeservicebusiness #hvacbusiness #plumbingbusiness #afterhourscalls",
+  "settings": {
+   "aiGenerated": true,
+   "commercialDisclosure": false,
+   "suggestKeywords": [
+    "after hours voicemail",
+    "hvac business tips",
+    "home service business"
+   ]
+  }
+ },
+ "facebook": {
+  "caption": "A voicemail that only says closed gives the caller no next step, HVAC and plumbing business owners.\nServiceTitan's 2025 call data from home HVAC shops on its software: even in October, the lowest month of the year, 9.8% of calls came in before 8, after 5 or on a weekend (State of the Trades, read Nov 7, 2026).\nNew message: say when you'll call back, and ask for a text with the address and what's wrong.\nSend this to your office manager.\nFree missed call cost calculator: link in bio.\n#homeservicebusiness #hvacbusiness",
+  "settings": {
+   "aiLabel": false,
+   "audience": "Public"
+  }
+ },
+ "youtube": {
+  "title": "Your After-Hours Voicemail Only Says Closed (HVAC and Plumbing Business)",
+  "description": "An after-hours voicemail for an HVAC business that gives the caller a next step.\nServiceTitan looked at 2025 inbound calls to residential HVAC shops that use its software (participating customers, not nationally representative). In October, the lowest point of the year, 9.8% of calls arrived outside business hours: weekdays before 8 am or after 5 pm, plus weekends (\"When Summer HVAC Demand Spikes, After-Hours Calls Do Too,\" ServiceTitan State of the Trades, June 3, 2026, read Nov 7, 2026).\n\nThe job for your office manager:\n1. Change the after-hours message to: \"You've reached [shop]. We're off until 7 am. Text this number your address and what's wrong, and we'll phone you first thing.\"\n2. When a text comes in, call back first thing with the address and the problem in hand.\n\nSend this to your office manager.\nNext lesson: another owner problem from the trade forums, told start to finish.\nFree missed call cost calculator for trade owners: https://proofnotfluff.com/missed-call-cost-calculator/\n#homeservicebusiness #hvacbusiness #afterhourscalls",
+  "tags": [
+   "after hours voicemail",
+   "after hours calls hvac",
+   "hvac business owner",
+   "plumbing business tips",
+   "voicemail greeting for business",
+   "home service business",
+   "contractor business tips",
+   "servicetitan",
+   "after hours voice mail"
+  ],
+  "settings": {
+   "madeForKids": false,
+   "aiUse": false,
+   "category": "Education",
+   "language": "English",
+   "visibility": "Public"
+  }
+ }
+}

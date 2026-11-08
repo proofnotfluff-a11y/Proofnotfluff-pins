@@ -1,0 +1,1 @@
+{"gate": "render-critic", "round": 3, "pass": false, "score": {"faults": 1}, "faults": [{"kind": "cutoff", "at": 19.5, "text": "20%", "what": "gauge right label runs to x 935, past 930: right-align to x 925"}], "reasons": ["r0, r1, r2 faults gone; hook, numbers, audio end, small text, flash PASS"]}

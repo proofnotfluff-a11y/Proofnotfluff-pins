@@ -1,0 +1,1 @@
+{"gate": "facts-captions", "round": 0, "pass": false, "score": {"numbers": 21, "mismatches": 0}, "reasons": ["youtube: description has no numbered steps (captions.md): number the job for the office manager", "youtube: tags lack one common misspelling: add 'after hours voice mail'", "all: facts clean; lengths, hashtags, links, labels, dashes PASS"]}

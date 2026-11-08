@@ -1,0 +1,1 @@
+{"gate": "render-critic", "round": 5, "pass": true, "score": {"faults": 0}, "faults": [], "reasons": ["r0 to r4 faults gone; chat message now about 35 to 40 px caps", "hook, numbers, layout, audio end, small text, flash: PASS (shared chat header and banner excused)"]}

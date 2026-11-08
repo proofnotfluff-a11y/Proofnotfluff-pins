@@ -1,0 +1,1 @@
+{"gate": "render-critic", "round": 4, "pass": false, "score": {"faults": 1}, "faults": [{"kind": "small-text", "at": 47.0, "text": "Furnace won't start, no heat. [address]", "what": "chat message about 21 px cap (set size 39): draw it at about size 60"}], "reasons": ["r0 to r3 faults fixed; hook, numbers, layout, audio end, flash PASS"]}

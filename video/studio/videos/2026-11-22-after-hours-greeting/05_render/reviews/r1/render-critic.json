@@ -1,0 +1,1 @@
+{"gate": "render-critic", "round": 1, "pass": false, "score": {"faults": 2}, "faults": [{"kind": "overlap", "at": 38.5, "text": "VS", "what": "S clipped under the AFTER card overlay"}, {"kind": "cutoff", "at": 14.0, "text": "or after", "what": "source line runs to x 938, past 930"}], "reasons": ["r0 faults fixed; hook, numbers, audio end, small text, flash PASS"]}

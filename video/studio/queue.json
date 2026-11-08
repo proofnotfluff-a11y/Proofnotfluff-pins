@@ -797,6 +797,26 @@
     "runtime_pixfont": "a8557997756e"
    },
    "posts": {}
+  },
+  {
+   "slug": "2026-11-24-pay-before-you-leave",
+   "readyAt": "2026-11-08T09:58:40-05:00",
+   "commit": "9729d4c20e3bbf70cc492b9524db78c9a0e86972",
+   "fingerprints": {
+    "script": "cdbdf622d073",
+    "takes": "7b4b404798ab",
+    "words": "aa080d2d4a46",
+    "cues": "a84129cd259b",
+    "scene": "0c55d3eb2c46",
+    "data": "40b0dcfdee9b",
+    "captions": "171c035d6398",
+    "mouth": "3a10c21e0edd",
+    "runtime_kit": "7533966669eb",
+    "runtime_player": "0247e61a6184",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

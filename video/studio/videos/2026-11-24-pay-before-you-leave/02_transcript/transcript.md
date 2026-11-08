@@ -1,6 +1,6 @@
 # Transcript: 2026-11-24-pay-before-you-leave
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 156 words, 51.7 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 154 words, 51.7 s of voice.
 
 ## Flags
 - 9.7 s heard 'stops' for 'stopped'
@@ -11,7 +11,7 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 156 words, 51.7 s of voice.
   02    13.8 s  166 wpm  
   03    28.2 s  191 wpm  
   04    38.6 s  207 wpm  fast: give it a landing beat, then speak --take 4
-  05    46.4 s  205 wpm  fast: give it a landing beat, then speak --take 5
+  05    46.4 s  181 wpm  
 ```
 
 ## Words
@@ -22,7 +22,7 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 156 words, 51.7 s of voice.
 
 `00:07.2` Three weeks later, there's no check, and she stopped picking up.
 
-`00:11.1` Now somebody in your office is chasing it.
+`00:11.2` Now somebody in your office is chasing it.
 
 `00:13.8` Here's what ServiceTitan reports from Visa's numbers: ninety-four percent of home service customers own a credit card.
 
@@ -40,4 +40,6 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 156 words, 51.7 s of voice.
 
 `00:42.0` And if something's wrong, she can tell you while you're still there to fix it.
 
-`00:46.4` So the next time a homeowner says she'll mail a check, your tech already has the card reader out.
+`00:46.4` So the next time a homeowner says she'll mail a check...
+
+`00:50.0` the card reader is already out.

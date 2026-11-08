@@ -76,3 +76,13 @@
 - Downloads: library 159.5 GB done; whole-USA map (20 GB) and the rest of Khan queued; about 249 of 300 GB used for November.
 - Mistake owned: step 1's first tool test passed falsely because the refusal text contained the search word; the check now tests the cited title and detects the refusal.
 - Next, in a fresh chat: step 4 (PNF-OFFLINE Wi-Fi, Deco-cable watcher and shutdown guard, shared Ethernet port, offline-chat command), step 5 (MANIFEST, verify, setup.sh --profile), step 6 (grid-down card), then the power-cut drill in its own session. Modem unplug tests stay clear of the 11:37, 16:41 and 20:13 posting slots.
+
+## Studio changes proposed from the creator's method videos (not adopted; Todd's go needed)
+Read from six watch-video answers (video/watch/answers/2026-11-07-jvc-*.md; Gemini's account, no frames seen). Each aims at rounds we paid for today (design 3 to 4 rounds, render critic up to 6, story gate up to 29).
+1. Every drawn string goes into cues.md, and facts reads cues.md before scene code; lint fails a drawn string missing from cues.md.
+2. Freshness checked at the storyboard: compare card layouts and transitions with the two lessons before, in code, before render.
+3. A "One problem:" line in the brief template; a second fact rides as a reason, never its own part (a LEARNINGS rule that never reached the template).
+4. Ready-made kit pieces for the send card, cover board and source tag, with size floors and the x 930 edge built in.
+5. Read less per run: skip the IMPROVE item and deep read on slots that only finish an unqueued lesson (step 6 may be a standing rule of Todd's).
+6. Two or three key moments named in the brief; design checks those first.
+Not adopted, would weaken a gate: freeing specs of pixel limits, hand timing in an editor, folding reviewers into the builder.

@@ -93,3 +93,9 @@ Todd, 7:17 pm: "wait 1,225 is not viral and out bar of 1,000 is far too low. We 
 - Code: anim.py PROVEN_MIN_VIEWS 100,000 and PROVEN_MIN_RATIO 5 read from PROVEN.md's views column; a proven brief started from 19:17 fails under it (selftest 52 of 52); `nextlane` gives story when no unused row at the bar has a sourceprint. tools/yt_outliers.py min_views 100,000 (selftest 10 of 10).
 - Bank at the bar: rows 1, 3, 4 (sourceprints made), 11, 12, 13 (Roofing Insights skits, sourceprint jobs queued). Two electrician technique Shorts pass the numbers but are not owner lessons.
 - Queue: after-hours-greeting posts at the 8:13 pm evening slot, angi-four-pros next (one lesson per run). This cloud chat has no file upload tool for his Chrome, so the PC runs post them.
+
+## Chatting straight with the box's models (live chat, 7:45 pm on)
+- Todd asked how to chat directly with Qwen 3.8 or the other models like DeepSeek on the GEEKOM.
+- Found: Ask (port 8081) is wired to the workhorse only, with the library tool and the grid-down instructions. llama-swap v270, already on the box, has a built-in Playground with a model picker; it needs the API key, which the browser cannot send. DeepSeek is not on the box (V4 Flash is the week 3 bake-off for the big slot; loading it means the workhorse steps aside).
+- Built (pnf-local-jobs 61f040c, scripts/offline/model-chat.sh; no new software, no security check needed): an nginx door on port 8082 that signs in for the Playground, laptop and box only; it refuses unload, pause, resume, profile switch and cancel (403) so box jobs are never disturbed; its tests only chat with models already loaded, so nothing swaps. Tested here against a stand-in model server: 6 of 6 buttons refused, page, picker list and chat pass through, a wrong key from the browser is replaced. Undo: --remove.
+- Waits on Todd running it on the box.

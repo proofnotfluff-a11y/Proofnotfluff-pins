@@ -1,0 +1,55 @@
+{
+  "gate": "send",
+  "round": 1,
+  "pass": true,
+  "score": {
+    "person": "whoever does your books",
+    "tie": "my wife, who does the books for our two-truck HVAC shop",
+    "thing": "the member plan card: \"FOR WHOEVER DOES YOUR BOOKS / THE MEMBER PLAN / 1 TWO TUNE-UPS A YEAR / 2 MEMBERS FIRST WHEN IT BREAKS / 3 A DISCOUNT ON REPAIRS / 4 ONE PRICE, BILLED MONTHLY\"",
+    "held_at": "27.5s to 29.5s (all four lines lit; the card sits still from 18.5s)",
+    "line": "So set one up, and hand this card to whoever does your books.",
+    "gain": "helps",
+    "feeling": "relief",
+    "thanks": "yes",
+    "send_line_fits": "yes"
+  },
+  "reasons": [
+    "Round 1, re-render (layout only), checked from transcript.md and the rebuilt gates and sheets alone; transcript unchanged.",
+    "1. Still my wife, who does the books for our two-truck HVAC shop.",
+    "2. \"So set one up, and hand this card to whoever does your books.\"",
+    "3. Helps: four plain lines she can price, plus \"that money comes in, even in the slow weeks\".",
+    "4. Relief: the 40 calls, 3 trucks first cold night is real, and the plan settles who goes first.",
+    "5. Thanks: a short sourced how-to (ACHR News and Clear Seas, 87 percent), not an ad.",
+    "6. End card still reads \"Send this to whoever does your books this week.\", pointing straight at her.",
+    "7. The member plan card is unchanged and readable: header \"FOR WHOEVER DOES YOUR BOOKS\", still from 18.5s, all four lines lit 27.5s to 29.5s. The layout fix helps: the EXAMPLE tag no longer covers the MEMBERS FIRST label at 15s to 17.5s or the map at 49.5s to 53s.",
+    "8. Voice and card header both name whoever does your books.",
+    "Minor, carried from round 0, not blocking: card line 3 \"A DISCOUNT ON REPAIRS\" vs voice \"a discount on every repair\"; the fully lit hold is about 2s."
+  ],
+  "previous": {
+    "gate": "send",
+    "round": 0,
+    "pass": true,
+    "score": {
+      "person": "whoever does your books",
+      "tie": "my wife, who does the books for our two-truck HVAC shop",
+      "thing": "the member plan card: \"FOR WHOEVER DOES YOUR BOOKS / THE MEMBER PLAN / 1 TWO TUNE-UPS A YEAR / 2 MEMBERS FIRST WHEN IT BREAKS / 3 A DISCOUNT ON REPAIRS / 4 ONE PRICE, BILLED MONTHLY\"",
+      "held_at": "27.5s to 29.5s (all four lines lit; the card sits still from 18.5s)",
+      "line": "So set one up, and hand this card to whoever does your books.",
+      "gain": "helps",
+      "feeling": "relief",
+      "thanks": "yes",
+      "send_line_fits": "yes"
+    },
+    "reasons": [
+      "1. I own a two-truck HVAC shop; I would send it to my wife, who does our books and fields the no-heat calls with me every first cold night.",
+      "2. \"So set one up, and hand this card to whoever does your books.\"",
+      "3. Helps: she has asked how to even out the slow months, and the card plus \"that money comes in, even in the slow weeks\" answers that with four plain lines she can price.",
+      "4. Relief: the 40 calls, 3 trucks opening is our real first cold night, and the plan gives a rule for who goes first.",
+      "5. Thanks: it reads as a short how-to with a sourced number (ACHR News and Clear Seas, 87 percent), not an ad; the end card only names the site.",
+      "6. End card reads \"Send this to whoever does your books this week.\", which points straight at her.",
+      "7. The member plan card is readable and still, header \"FOR WHOEVER DOES YOUR BOOKS\", fully lit 27.5s to 29.5s.",
+      "8. The voice and the card header both name whoever does your books.",
+      "Minor, not blocking: card line 3 says \"A DISCOUNT ON REPAIRS\" while the voice says \"a discount on every repair\"; matching them (\"A DISCOUNT ON EVERY REPAIR\") would make the screenshot match what she heard. The fully lit hold is about 2 s; a beat longer before the 30.0s cut would make the screenshot easier."
+    ]
+  }
+}

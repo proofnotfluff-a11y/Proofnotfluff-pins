@@ -1,0 +1,62 @@
+{
+ "schema": "pnf.studio.captions.v1",
+ "keywords": {
+  "primary": "HVAC maintenance plan membership",
+  "secondary": [
+   "service agreement",
+   "member plan for contractors"
+  ],
+  "trades": [
+   "HVAC",
+   "plumbing"
+  ]
+ },
+ "instagram": {
+  "caption": "Picture it: 40 calls, 3 trucks, one cold night. Who goes first? HVAC owners, sell a member plan.\nThe ACHR News and Clear Seas Research (survey of 400 homeowners, article Dec 2023, read Nov 8, 2026): 87% of the homeowners surveyed are willing to pay $100 or $200 a year for a service agreement.\n\nOur suggested plan (an example, not a rule):\nTwo tune-ups a year. Members first when it breaks. A discount on every repair. One price, billed monthly.\nSend this to whoever does your books.\nFree missed call cost calculator: link in bio.\n\n#hvacbusiness #plumbingbusiness #maintenanceplan #homeservicebusiness",
+  "settings": {
+   "aiLabel": false,
+   "shareToFacebook": false
+  }
+ },
+ "tiktok": {
+  "caption": "HVAC maintenance plan: picture 40 calls on the first cold night. Who gets a truck first?\nThe ACHR News and Clear Seas Research (survey of 400 homeowners, article Dec 2023, read Nov 8, 2026): 87% of the homeowners surveyed are willing to pay $100 or $200 a year for a service agreement.\nOur suggested plan: two tune-ups a year, members first when it breaks, a repair discount, one monthly price.\nSend this to whoever does your books.\nFree missed call cost calculator: link in bio.\n#hvacbusiness #plumbingbusiness #maintenanceplan #homeservicebusiness",
+  "settings": {
+   "aiGenerated": true,
+   "commercialDisclosure": false,
+   "suggestKeywords": [
+    "hvac maintenance plan",
+    "service agreement",
+    "hvac business tips"
+   ]
+  }
+ },
+ "facebook": {
+  "caption": "Members go first: a plan for the first cold night, for HVAC and plumbing business owners.\nThe ACHR News and Clear Seas Research (survey of 400 homeowners, article Dec 2023, read Nov 8, 2026): 87% of the homeowners surveyed are willing to pay $100 or $200 a year for a service agreement.\nOur suggested plan: two tune-ups a year, members first when it breaks, a discount on every repair, one price billed monthly.\nSend this to whoever does your books.\nFree missed call cost calculator: link in bio.\n#hvacbusiness #maintenanceplan",
+  "settings": {
+   "aiLabel": false,
+   "audience": "Public"
+  }
+ },
+ "youtube": {
+  "title": "Who Gets the First Truck? A Member Plan for HVAC and Plumbing Shops",
+  "description": "A member plan for your HVAC or plumbing shop: members pay monthly and go first when it breaks.\nThe ACHR News and Clear Seas Research: \"Per the survey, 87% of homeowners are willing to pay either $100 or $200 annually for a service agreement.\" (\"Homeowners, Contractors Mutually Support Maintenance Agreements,\" The ACHR News, Dec 2023, a survey of 400 homeowners, read Nov 8, 2026.)\n\nOur suggested plan (an example to price for your shop):\n1. Two tune-ups a year.\n2. Members first when it breaks.\n3. A discount on every repair.\n4. One price, billed monthly.\n\nSend this to whoever does your books.\nNext lesson: another owner problem from the trades, told start to finish.\nFree missed call cost calculator for trade owners: https://proofnotfluff.com/missed-call-cost-calculator/\n#hvacbusiness #maintenanceplan #homeservicebusiness",
+  "tags": [
+   "hvac maintenance plan",
+   "service agreement",
+   "hvac membership program",
+   "plumbing business tips",
+   "home service business",
+   "maintenance agreement",
+   "hvac business owner",
+   "recurring revenue contractor",
+   "hvac maintanence plan"
+  ],
+  "settings": {
+   "madeForKids": false,
+   "aiUse": false,
+   "category": "Education",
+   "language": "English",
+   "visibility": "Public"
+  }
+ }
+}

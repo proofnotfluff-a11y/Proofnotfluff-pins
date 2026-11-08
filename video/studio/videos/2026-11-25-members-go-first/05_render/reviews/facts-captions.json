@@ -1,0 +1,46 @@
+{
+ "gate": "facts-captions",
+ "round": 1,
+ "reviewer": "fresh opus agent",
+ "pass": true,
+ "score": {
+  "numbers": 8,
+  "mismatches": 0
+ },
+ "reasons": [
+  "r0 fault 1 fixed (instagram): proof line now reads '(survey of 400 homeowners, article Dec 2023, read Nov 8, 2026): 87% of the homeowners surveyed are willing to pay $100 or $200 a year for a service agreement'. The date belongs to the article and the population is stated, both as the source gives them.",
+  "r0 fault 2 fixed (tiktok): same proof line, word for word.",
+  "r0 fault 3 fixed (facebook): same proof line, word for word.",
+  "r0 fault 4 fixed (youtube): the tag now says 'The ACHR News, Dec 2023, a survey of 400 homeowners, read Nov 8, 2026.' The quote is still word for word.",
+  "r0 note resolved: Instagram line 1 'Picture it: 40 calls, 3 trucks, one cold night.' and TikTok 'picture 40 calls on the first cold night' now mark our example the way the video does. The 400 is in facts.json survey.homeowners.",
+  "Rechecked with no new blocker: line 1 lengths IG 96, TikTok 88, FB 89; hashtags IG 4, TikTok 4, FB 2, YouTube 3; YouTube title 67 characters with no hashtags; no link in IG or FB; TikTok keyword is in the first 70 characters; no AI voice line; no em or en dashes; the send line matches the brief.",
+  "Note (not a fault): Instagram line 1 now names only HVAC owners, though #plumbingbusiness stays in its tags. That is fine under captions.md (lead with the example trade)."
+ ],
+ "fixes": [],
+ "sources_checked": [
+  "https://www.achrnews.com/articles/153922-homeowners-contractors-mutually-support-maintenance-agreements: not reachable from this session; checked against the Nov 8, 2026 local page reader quotes (400 homeowners, Clear Seas Research; 87% willing to pay either $100 or $200 annually for a service agreement; page dated Dec 12, 2023, 'A recent survey').",
+  "WebSearch Nov 8, 2026: results agree on the 87%, $100 or $200 a year, ACHR News with Clear Seas Research, more than 400 homeowners, run in December 2023."
+ ],
+ "previous": {
+  "round": 0,
+  "pass": false,
+  "score": {
+   "numbers": 7,
+   "mismatches": 4
+  },
+  "reasons": [
+   "instagram: the proof line says '(survey, Dec 2023, ...)' and '87% of homeowners'. The source gives Dec 12, 2023 as the article date ('A recent survey'), not the survey month, and the finding needs its population (a survey of 400 homeowners). Fix: replace 'The ACHR News and Clear Seas Research (survey, Dec 2023, read Nov 8, 2026): 87% of homeowners are willing' with 'The ACHR News and Clear Seas Research (survey of 400 homeowners, article Dec 2023, read Nov 8, 2026): 87% of the homeowners surveyed are willing'.",
+   "tiktok: 'Dec 2023 survey' dates the survey, but the source dates only the article, and '87% of homeowners' has no population qualifier. Fix: replace '(Dec 2023 survey, read Nov 8, 2026): 87% of homeowners are willing' with '(survey of 400 homeowners, article Dec 2023, read Nov 8, 2026): 87% of the homeowners surveyed are willing'.",
+   "facebook: same fault as TikTok. Fix: replace '(Dec 2023 survey, read Nov 8, 2026): 87% of homeowners are willing' with '(survey of 400 homeowners, article Dec 2023, read Nov 8, 2026): 87% of the homeowners surveyed are willing'.",
+   "youtube: the quote is word for word and the tag dates the article correctly, but the population is missing. Fix: in the tag, replace 'The ACHR News, Dec 2023, read Nov 8, 2026.)' with 'The ACHR News, Dec 2023, a survey of 400 homeowners, read Nov 8, 2026.)'.",
+   "All else PASS: 87%, $100 or $200 a year and 'service agreement' match the source sentence; Clear Seas Research conducted it and the publication partnered (web search agrees); the plan is labeled ours/suggested on every platform and matches the spoken card; send line 'whoever does your books' matches brief and end card; the video says nothing is 'in the caption'; line 1 under 100 (IG 99, TikTok 89, FB 89); hashtags IG 4, TikTok 4, FB 2, YouTube 3 with umbrella, trade and topic mix; YouTube title 67 characters, no hashtags; no link in IG or FB; TikTok keyword in first 70 and a question for owners; no AI voice line; no em or en dashes; no private person or business; no promise of priority at real shops, earnings or growth.",
+   "Note (not a fault): Instagram line 1 '40 calls, 3 trucks' is our example without the 'picture' label the video uses; its question form reads as a scenario, and facts.json lists both as ours."
+  ],
+  "fixes": [
+   "instagram caption: 'The ACHR News and Clear Seas Research (survey, Dec 2023, read Nov 8, 2026): 87% of homeowners are willing' -> 'The ACHR News and Clear Seas Research (survey of 400 homeowners, article Dec 2023, read Nov 8, 2026): 87% of the homeowners surveyed are willing'",
+   "tiktok caption: '(Dec 2023 survey, read Nov 8, 2026): 87% of homeowners are willing' -> '(survey of 400 homeowners, article Dec 2023, read Nov 8, 2026): 87% of the homeowners surveyed are willing'",
+   "facebook caption: '(Dec 2023 survey, read Nov 8, 2026): 87% of homeowners are willing' -> '(survey of 400 homeowners, article Dec 2023, read Nov 8, 2026): 87% of the homeowners surveyed are willing'",
+   "youtube description: 'The ACHR News, Dec 2023, read Nov 8, 2026.)' -> 'The ACHR News, Dec 2023, a survey of 400 homeowners, read Nov 8, 2026.)'"
+  ]
+ }
+}

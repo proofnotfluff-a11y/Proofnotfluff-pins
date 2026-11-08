@@ -1,0 +1,9 @@
+{
+ "schema": "pnf.studio.worlds.v1",
+ "share": {
+  "set:dispatch": 0.242,
+  "set:weather": 0.031,
+  "set:slots": 0.123,
+  "set:hud": 0.115
+ }
+}

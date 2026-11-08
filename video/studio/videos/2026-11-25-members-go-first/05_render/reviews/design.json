@@ -1,0 +1,98 @@
+{
+ "gate": "design",
+ "round": 2,
+ "pass": true,
+ "bar": "round 2, after two FAILs: no score under 4 and average 4.50 or more (Todd, Oct 31, 2026)",
+ "reviewer": "claude opus, fresh agent",
+ "score": {
+  "first": 5,
+  "hierarchy": 5,
+  "type": 5,
+  "color": 5,
+  "spacing": 5,
+  "polish": 4,
+  "trust": 5,
+  "average": 4.86
+ },
+ "checked": [
+  "36.2 s survey to slot room: fixed. Frame strip 35.95 to 36.35 s shows the shutter bars closing over the survey card and opening on the slot room over about 8 frames; M4 met.",
+  "52.4 to 53.5 s payoff: fixed. FIRST TRUCK: MEMBER stamps over the lower map, clear of the EXAMPLE tag on the strip; both read whole."
+ ],
+ "reasons": [
+  "polish 4 (no change required to pass): 29.0 to 29.5 s plan card, the check mark flies in over the 4 of row 4 for a few frames; land it in the empty right margin."
+ ],
+ "notes": [
+  "18.5 to 22 s plan card: the slate waiting rows are now close in weight to the lit rows; a slightly lighter slate would keep the line by line reveal clearer.",
+  "29.0 to 29.5 s plan card: the check mark flies in over the 4 of row 4 for a few frames; land it in the empty right margin as in round 0.",
+  "43 to 48 s calendar: falling coins cross the level bar and the BILLED MONTHLY header; fine as motion, keep them behind the header text."
+ ],
+ "previous": [
+  {
+   "gate": "design",
+   "round": 1,
+   "pass": false,
+   "bar": "round 1: no score under 4 and average 4.61 or more (lowered bar 4.50 only after two FAILs)",
+   "reviewer": "claude opus, fresh agent",
+   "score": {
+    "first": 5,
+    "hierarchy": 5,
+    "type": 5,
+    "color": 5,
+    "spacing": 4,
+    "polish": 3,
+    "trust": 5,
+    "average": 4.57
+   },
+   "checked": [
+    "15.0 to 17.5 s row sweeps: fixed, the glint runs under the words and every letter reads (NO HEAT, FURNACE OUT, MEMBER).",
+    "15.0 to 17.5 s header: fixed, MEMBERS FIRST stamps left with EXAMPLE whole to its right.",
+    "28.5 to 29.5 s plan card header sweep: fixed, FOR WHOEVER DOES YOUR BOOKS stays whole.",
+    "36.2 s survey to slot room: NOT fixed. Stepping the MP4 frame by frame at 30 fps (36.10 to 36.50 s), the survey card is whole on one frame and the slot room is whole on the next; no shutter frame renders, so it still reads as a plain cut (standard M4).",
+    "0.0 to 0.9 s hook: fixed, 40 CALLS is the hero and 3 TRUCKS sits second.",
+    "1.0 to 2.4 s cold night panel: fixed enough, bigger title and a ringing phone fill the panel.",
+    "2.5 to 7.5 s and 49.5 to 53.5 s map EXAMPLE: moved to the yard strip, pins are clear; WHO GETS A TECH FIRST? reads well at the top.",
+    "18.5 to 21.5 s plan card: fixed, waiting rows are slate and the EXAMPLE block stops short of OUR SUGGESTED PLAN."
+   ],
+   "reasons": [
+    "36.2 s survey card to slot machine room: the shutter wipe does not show in the render (one frame survey, next frame slot room); make the shutter cover the frame for at least 6 to 8 frames (about 0.2 to 0.3 s), closing on the survey and opening on the slot room, and confirm it in an ffmpeg frame strip.",
+    "52.4 to 53.5 s map, payoff beat (blocker, covered text, caused by the EXAMPLE move): the FIRST TRUCK: MEMBER tag lands on top of the yard strip EXAMPLE tag so it reads EXAM; on this beat move FIRST TRUCK: MEMBER right of EXAMPLE on the strip (or hide EXAMPLE while the verdict tag shows) so both read whole."
+   ],
+   "notes": [
+    "18.5 to 22 s plan card: the slate waiting rows are now close in weight to the lit rows; a slightly lighter slate would keep the line by line reveal clearer.",
+    "29.0 to 29.5 s plan card: the check mark flies in over the 4 of row 4 for a few frames; land it in the empty right margin as in round 0.",
+    "43 to 48 s calendar: falling coins cross the level bar and the BILLED MONTHLY header; fine as motion, keep them behind the header text."
+   ]
+  },
+  {
+   "gate": "design",
+   "round": 0,
+   "pass": false,
+   "bar": "round 0: no score under 4 and average 4.61 or more",
+   "reviewer": "claude opus, fresh agent",
+   "score": {
+    "first": 4,
+    "hierarchy": 4,
+    "type": 4,
+    "color": 4,
+    "spacing": 4,
+    "polish": 3,
+    "trust": 4,
+    "average": 3.86
+   },
+   "reasons": [
+    "15.0 to 17.5 s member plan rows: the cream highlight bar that sweeps the rows is opaque and cuts letters out, so rows read NO EAT and FUR ACE OUT, and MEMBER loses letters; draw the sweep as a semi-transparent glint behind the text or above it at 40 percent so every letter stays whole.",
+    "15.0 to 17.5 s header: the MEMBERS FIRST stamp lands on top of the EXAMPLE tag so it reads XAMPLE and the left of the header bar sits empty; put the stamp in the empty left of the header (or move EXAMPLE right of it) so both read whole.",
+    "28.5 to 29.5 s member plan card header: the same opaque sweep hides the W of WHOEVER and the O of BOOKS on the card meant to be screenshotted; make it a see-through glint or run it under the text.",
+    "36.2 s survey card to slot machine: a plain cut between rooms (standard M4); add a wipe or whip pan into the slot room, like the dither wipes at 8.0 s and 18.0 s.",
+    "0.0 to 0.9 s hook card: 40 CALLS is about 90 px tall against the 160 px hero floor; make 40 CALLS the hero at 160 px or more and drop 3 TRUCKS to the second line size, and keep the host hat off the card edge.",
+    "1.0 to 2.4 s FIRST COLD NIGHT panel: the lower 200 px of the navy panel is empty and the map is a plain green field; shrink the panel to the title or fill it (a temperature readout dropping, a phone starting to ring) so the band is used.",
+    "2.5 to 7.5 s and 49.5 to 53.5 s city map: the EXAMPLE tag covers pins in the top right; move the tag to the panel corner outside the map or shrink it so no pin hides under it.",
+    "18.5 to 21.5 s member plan card: the waiting rows are pale grey on cream (about 2:1) and the EXAMPLE fill overlaps the O of OUR SUGGESTED PLAN; dim rows to at least 3:1 and stop the EXAMPLE block short of the footer text."
+   ],
+   "notes": [
+    "Freshness: map pins, slot machine and month calendar are new against pay-before-you-leave and chatgpt-check-short; the navy hook stat card and cream source card repeat the earlier template but carry new content.",
+    "Good: end card with proofnotfluff.com held 3 s; C3 member plan card held about 11 s with numbered lines and a highlight per line; host on screen from 0 s; qa flat passes."
+   ]
+  }
+ ]
+}

@@ -1,0 +1,106 @@
+{
+ "gate": "render-critic",
+ "round": 2,
+ "reviewer": "claude opus, fresh agent",
+ "pass": true,
+ "score": {
+  "faults": 0
+ },
+ "faults": [],
+ "earlier": [
+  {
+   "fault": "52.5 to 53.3 s FIRST TRUCK: MEMBER over EXAMPLE",
+   "fixed": true,
+   "seen": "At 52.3, 52.8 and 53.2 s the label sits on the map, above the strip. EXAMPLE reads in full on the strip, and nothing else is covered."
+  }
+ ],
+ "reasons": [
+  "The round 1 fault is fixed: EXAMPLE reads in full from 52.3 to 53.2 s.",
+  "Note: the shutter wipe into the slot room at about 36.2 s is one transition with a single brightness dip (frame average falls from about 104 to 76, then settles at 84). There is no flashing, and the 87% reels and the caption read at 36.6 s.",
+  "Nothing else changed. The round 1 checks still stand: the hook, the spoken numbers and the audio end all pass."
+ ],
+ "previous": [
+  {
+   "gate": "render-critic",
+   "round": 1,
+   "reviewer": "claude opus, fresh agent",
+   "pass": false,
+   "score": {
+    "faults": 1
+   },
+   "faults": [
+    {
+     "kind": "overlap",
+     "at": 52.5,
+     "text": "EXAMPLE",
+     "scene": "closing map, first truck",
+     "what": "From about 52.5 s to 53.3 s the FIRST TRUCK: MEMBER label sits on the EXAMPLE tag, now moved to the bottom left of the map, and covers it so it reads EXAMI. New in this render: in round 0 the tag was at the top right and nothing covered it."
+    }
+   ],
+   "earlier": [
+    {
+     "fault": "14.0 to 17.5 s MEMBERS FIRST stamp over the header and EXAMPLE",
+     "fixed": true,
+     "seen": "The stamp now sits in the title slot left of the EXAMPLE tag, and EXAMPLE reads in full from 14.0 to 17.5 s."
+    },
+    {
+     "fault": "15.5 to 17.0 s light bar cutting letters in the member rows",
+     "fixed": true,
+     "seen": "The bar is faint now. NO HEAT, FURNACE OUT and MEMBER read in full at 15.5, 16.0, 16.5 and 17.0 s."
+    },
+    {
+     "fault": "28.5 to 29.7 s block cutting letters of FOR WHOEVER DOES YOUR BOOKS",
+     "fixed": true,
+     "seen": "The block is see-through now. The header reads in full at 28.5, 29.0 and 29.6 s."
+    }
+   ],
+   "reasons": [
+    "Earlier faults 1, 2 and 3 are fixed (see earlier).",
+    "52.5 s to 53.3 s: the FIRST TRUCK: MEMBER label covers the EXAMPLE tag, which reads EXAMI. This is covered text, so it is a blocker. Move the label or the tag so they do not touch.",
+    "Note: the counter reads 21 at 2.5 s, 37 at 3.0 s and 40 by 3.5 s, about 1 s after Forty is said. Good.",
+    "Note: the row 4 check mark now sits left of the 4 and touches it at 29.0 to 29.5 s (it reads like a check and a 4). The 4 is still readable, so this is not a fault.",
+    "Still fine: the hook 40 CALLS 3 TRUCKS shows at 0 s; Two tune-ups at 22 s, 2023 at 32.5 s, 87% and $100 or $200 all show when they are said; the voice ends at 53.55 s, before the video's 56.67 s; no flash over 3 a second."
+   ]
+  },
+  {
+   "gate": "render-critic",
+   "round": 0,
+   "reviewer": "claude opus, fresh agent",
+   "pass": false,
+   "score": {
+    "faults": 3
+   },
+   "faults": [
+    {
+     "kind": "overlap",
+     "at": 14.0,
+     "text": "MEMBER PLAN / EXAMPLE",
+     "scene": "member plan call order",
+     "what": "From 14.0 s to about 17.5 s the settled MEMBERS FIRST stamp sits on top of the header bar: it hides the MEMBER PLAN title and the E of the EXAMPLE tag, which reads XAMPLE."
+    },
+    {
+     "kind": "overlap",
+     "at": 15.5,
+     "text": "NO HEAT, FURNACE OUT, MEMBER",
+     "scene": "member plan call order",
+     "what": "From 15.5 s to 17.0 s a light vertical bar sweeps over the two member rows and hides letters: NO EAT and FUR ACE OUT at 16.0 s, MEM ER at 17.0 s."
+    },
+    {
+     "kind": "overlap",
+     "at": 28.5,
+     "text": "FOR WHOEVER DOES YOUR BOOKS",
+     "scene": "member plan card",
+     "what": "From 28.5 s to about 29.7 s a tan block travels along the card header and hides letters: DO_S at 28.5 s, OR WHOEVER (F missing) at 29.0 to 29.2 s, BC_KS at 29.5 s."
+    }
+   ],
+   "reasons": [
+    "14.0 s to 17.5 s: MEMBERS FIRST stamp covers the MEMBER PLAN header and the E of EXAMPLE (reads XAMPLE).",
+    "15.5 s to 17.0 s: a light vertical bar hides letters in the member rows (NO EAT, FUR ACE OUT, MEM ER).",
+    "28.5 s to 29.7 s: a tan block moving along the header hides letters of FOR WHOEVER DOES YOUR BOOKS (F, E, O missing in turn).",
+    "Checked and fine: hook 40 CALLS 3 TRUCKS at 0.0 s; three trucks drawn at 3.9 s; Two tune-ups at 22.0 s; 2023 at 32.5 s; 87% on the card from 30 s and on the reels at 37.5 s; $100 or $200 at 39.2 s; voice ends 53.55 s, video 56.67 s, nothing cut; no flash over 3 a second (one dither wipe at 8.0 s and at 18.0 s).",
+    "Note (not a fault): the Forty counter reads 7 at 2.5 s and reaches 40 at 4.0 s, 1.5 s after Forty is said; the hook card showed 40 at 0 s.",
+    "Note (not a fault): the check mark beside row 4 at 29.2 s sits near x 970, right of the x 930 content line; it is a mark, not words."
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1 @@
+window.DATA = {"file": "video/studio/videos/2026-11-25-members-go-first/01_voice/facts.json", "commit": "", "sha256": "27762631b20c92602a4ecc4a75724e5b91188da8531ed408c6491045cdf288ca", "numbers": {"pay": {"value": 87, "shown": "87%", "path": "survey.payPct"}}, "pull": {}};

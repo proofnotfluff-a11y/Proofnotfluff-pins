@@ -9,13 +9,18 @@
   "payPct": 87,
   "payShown": "87%",
   "paySaid": "eighty-seven percent",
-  "payAmounts": [100, 200],
+  "payAmounts": [
+   100,
+   200
+  ],
   "payAmountsSaid": "a hundred or two hundred dollars a year",
   "population": "homeowners in the survey (a survey of 400 homeowners)",
   "confirms": [
    "Per the survey, 87% of homeowners are willing to pay either $100 or $200 annually for a service agreement.",
    "A recent survey of 400 homeowners, conducted by Clear Seas Research, shows that homeowners are generally supportive of HVAC maintenance agreements."
-  ]
+  ],
+  "homeowners": 400,
+  "dateNote": "Dec 12, 2023 is the article date; the page calls it a recent survey"
  },
  "example": {
   "calls": 40,

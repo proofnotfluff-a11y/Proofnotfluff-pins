@@ -1,0 +1,62 @@
+{
+ "gate": "facts",
+ "round": 2,
+ "stage": "render (fix round after facts r1)",
+ "reviewer": "fresh opus agent",
+ "pass": true,
+ "score": {
+  "numbers": 10,
+  "mismatches": 0
+ },
+ "reasons": [
+  "r1 fault fixed: scene.js button section now draws stampBox(k, 'FIRST TRUCK: MEMBER', 540, 640, ...) over the map, and exampleTag(d, 14, 280) stays clear on the strip. Frames 52.5 and 53.0 s show the whole word EXAMPLE under the stamp.",
+  "Longer wipe into the slot room (about 36.0 s): a transition over the source card for under a second; no number, quote or tag is changed, and the card is shown whole from 30.0 to 35.5 s. Not a fact issue.",
+  "Rechecked with no new blocker: 87% quote card word for word with its tag (The ACHR News with Clear Seas Research, Dec 2023, read Nov 8, 2026), slot reels 8 7 % under OF THOSE ASKED, WOULD PAY $100 OR $200 / A YEAR FOR A SERVICE AGREEMENT / REPORTED DEC 2023, EXAMPLE tags on every story beat including the cover. No em or en dashes."
+ ],
+ "fixes": [],
+ "sources_checked": [
+  "https://www.achrnews.com/articles/153922-homeowners-contractors-mutually-support-maintenance-agreements: not reachable from this session (achrnews.com does not resolve). Checked against the Nov 8, 2026 local page reader quotes (two models, word for word): 400 homeowners, Clear Seas Research, 87% willing to pay either $100 or $200 annually for a service agreement, page dated Dec 12, 2023.",
+  "WebSearch Nov 8, 2026: results show the same article URL and ACHR News pieces repeating 87% willing to pay either $100 or $200 annually for a service agreement, and the 400 homeowner Clear Seas Research survey."
+ ],
+ "previous": [
+  {
+   "round": 1,
+   "pass": false,
+   "score": {
+    "numbers": 10,
+    "mismatches": 1
+   },
+   "reasons": [
+    "Earlier: r0 passed with no faults; every number rechecked on the new frames and in scene.js: 87% (data.js pay.shown), the word for word quote card with tag 'Source: The ACHR News with Clear Seas Research, Dec 2023. Read Nov 8, 2026.', the slot reels 8 7 % under 'OF THOSE ASKED', 'WOULD PAY $100 OR $200 / A YEAR FOR A SERVICE AGREEMENT / REPORTED DEC 2023', 40 CALLS, 3 TRUCKS, the plan card with 'EXAMPLE' and 'OUR SUGGESTED PLAN'. No words, numbers or sources changed; transcript and data.js unchanged.",
+    "Cover (frame 0): bigger 40 CALLS, 3 TRUCKS and WHO GOES FIRST? still carry the EXAMPLE tag, fully readable. Weather beat (0.5 to 2.0 s): EXAMPLE tag readable; the new ringing phone is a drawing with no number or text, not data. Dispatch beat (2.5 to 8 s): the faster counter still lands on 40 and the moved EXAMPLE tag (bottom left) stays clear; WHO GETS A TECH FIRST? moved to the top bar and no longer covers it. Turn, send and why beats: EXAMPLE tags readable; MEMBERS FIRST stamp sits left of the EXAMPLE tag without covering it.",
+    "FAULT (EXAMPLE label covered), scene.js button section, frames 52.5 to 53.5 s: the EXAMPLE tag was moved to exampleTag(d, 14, 280) (bottom left of the board) and the 'FIRST TRUCK: MEMBER' stamp at stampBox(k, 'FIRST TRUCK: MEMBER', 540, 830, ...) now lands on top of it, so the tag reads 'EXAM' for the last story frame, where our made up claim 'FIRST TRUCK: MEMBER' is shown. In r0 the tag sat at (180, 88) and was clear. Fix: in the button section change 'exampleTag(d, 14, 280);' to 'exampleTag(d, 180, 88);' (top right, as in r0), or move the stamp off the tag (for example stampBox y 830 to 760), then re-render and confirm the full word EXAMPLE shows at 52.5 to 53.5 s.",
+    "No other fact or label change. No em or en dashes in scene.js strings, data.js or the transcript. No real private person, business or address."
+   ],
+   "fixes": [
+    "video/studio/videos/2026-11-25-members-go-first/04_scene/scene.js, button section: 'exampleTag(d, 14, 280);' -> 'exampleTag(d, 180, 88);' (the line just before 'if (T >= tFirst) stampBox(k, 'FIRST TRUCK: MEMBER', ...'). Re-render and check the EXAMPLE tag is whole from 49.5 to 53.5 s."
+   ]
+  },
+  {
+   "round": 0,
+   "pass": true,
+   "score": {
+    "numbers": 10,
+    "mismatches": 0
+   },
+   "reasons": [
+    "87%: data.js numbers.pay.shown '87%' (value 87, path survey.payPct) matches facts.json and the source line 'Per the survey, 87% of homeowners are willing to pay either $100 or $200 annually for a service agreement.' Shown on the source card (word for word, in quotes), the slot reels 8 7 % (36.5 to 43 s) and said 'eighty-seven percent' at 32.2 s.",
+    "$100 or $200 a year: voice 'a hundred or two hundred dollars a year', plate 'WOULD PAY $100 OR $200 / A YEAR FOR A SERVICE AGREEMENT' match 'either $100 or $200 annually for a service agreement'. Same base (homeowners surveyed), same period (annually).",
+    "Population: slot label 'OF THOSE ASKED' and the quoted card 'of homeowners' keep the finding on the surveyed homeowners; the voice question 'Would homeowners pay for a plan?' sets the population. HVAC homeowner survey in HVAC trade press: trades first holds.",
+    "Dates: card tag 'Source: The ACHR News with Clear Seas Research, Dec 2023. Read Nov 8, 2026.' and plate 'REPORTED DEC 2023' date the article, as the page does (Dec 12, 2023). Voice 'In a 2023 survey' is fair: the page calls it 'a recent survey' in a Dec 2023 article; passed pre-voice r1.",
+    "Credit: 'by The ACHR News and Clear Seas Research' is fair: Clear Seas Research conducted it for the publication, and the card says 'The ACHR News with Clear Seas Research'.",
+    "Our example, labeled: 40 CALLS, 3 TRUCKS, FIRST COLD NIGHT, the 40 no-heat call counter, the call order queue, MEMBER rows, MEMBERS FIRST, BILLED MONTHLY month row, SLOW WEEKS TOO and FIRST TRUCK: MEMBER all carry the orange EXAMPLE tag on screen, including the cover (frame 0) where EXAMPLE sits under 40 CALLS / 3 TRUCKS / WHO GOES FIRST?. The voice opens with 'Picture', so none reads as data.",
+    "Plan card: 'EXAMPLE' plus 'OUR SUGGESTED PLAN' on the card; the four steps match the spoken line and brief.md. Two tune-ups a year is our suggestion and also agrees with the source's two visits a year; nothing on the card is claimed as a survey result.",
+    "Claims: 'They pay every month, so they jump the line' and 'that money comes in, even in the slow weeks' describe how our suggested plan works (billed monthly, labeled EXAMPLE), not a finding. No claim of earnings, growth or priority at real shops.",
+    "The reel blur frames (36.5 to 37 s: '$ 2 2 / 2 6 $') are spinning symbols for under a second and settle on 87%; not read as data.",
+    "No real private person, business or address; end card is proofnotfluff.com. No em or en dashes in transcript.md, scene.js strings or data.js.",
+    "Note (not a fault): the source page is not reachable from this session; checked against the Nov 8, 2026 local page reader quotes given in the prompt and in facts.json confirms."
+   ],
+   "fixes": []
+  }
+ ]
+}

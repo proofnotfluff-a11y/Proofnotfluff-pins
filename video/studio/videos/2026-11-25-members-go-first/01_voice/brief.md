@@ -31,9 +31,9 @@ topic of pay-before-you-leave, queued just before this one; row 3 is roof footag
   $100 or $200 annually for a service agreement." Tag: The ACHR News, "Homeowners, Contractors Mutually Support Maintenance
   Agreements" (Dec 2023; survey with Clear Seas Research), read Nov 8, 2026. The Dec 2023 tag stays on the card on screen (facts r0).
 - **Do this week (on screen, held):** the send card (cue marked [send]), tagged EXAMPLE: OUR SUGGESTED PLAN: THE MEMBER PLAN / TWO TUNE-UPS A YEAR / MEMBERS
-  FIRST WHEN IT BREAKS / A DISCOUNT ON EVERY REPAIR / ONE PRICE, BILLED MONTHLY.
-- **Send:** whoever does your books: THE MEMBER PLAN: TWO TUNE-UPS A YEAR, MEMBERS FIRST WHEN IT BREAKS, A DISCOUNT ON EVERY REPAIR, ONE PRICE BILLED MONTHLY
-- **End card send line:** "Send this to whoever does your books." (SCENE.sendLine)
+  FIRST WHEN IT BREAKS / A DISCOUNT ON REPAIRS / ONE PRICE, BILLED MONTHLY.
+- **Send:** whoever does your books: THE MEMBER PLAN: TWO TUNE-UPS A YEAR, MEMBERS FIRST WHEN IT BREAKS, A DISCOUNT ON REPAIRS, ONE PRICE BILLED MONTHLY
+- **End card send line:** "Send this to whoever does your books this week." (SCENE.sendLine; two rows, so it stays inside x 930)
 
 ## Claims and their sources
 | Claim, as said | Source | URL |

@@ -1,0 +1,85 @@
+{
+ "schema": "pnf.studio.cues.v1",
+ "source": "whisper medium.en int8, re-spelled from script.md",
+ "music": {
+  "id": "rooms",
+  "level": 0.16,
+  "tune": "chase"
+ },
+ "duration": 54.825,
+ "cues": [
+  {
+   "id": "hook",
+   "level": 0,
+   "quote": "The job's done.",
+   "sfx": "pop",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Cover, frame one: the hero panel 94% / OF HOME SERVICE CUSTOMERS / OWN A CREDIT CARD / Source: ServiceTitan, citing Visa, over the porch. At 0.5 s a blinds wipe to the finished job: a new water heater in the utility room, DONE stamps on \"done\" (EXAMPLE). At 2.4 s a blinds wipe to her front porch: \"I'll mail you a check.\" lands in a bubble on \"I'll\". At 4.5 s a blinds wipe to the street: the van drives off (street set), EXAMPLE in the sky.",
+   "t": 0.0,
+   "word": 0,
+   "end": 7.2
+  },
+  {
+   "id": "weeks",
+   "level": 0,
+   "quote": "Three weeks later,",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The calendar: a run of x's crosses off three weeks (EXAMPLE); NO CHECK lands on \"no check\", NO ANSWER on \"stopped\", STILL CHASING on \"chasing\".",
+   "t": 7.2,
+   "word": 21,
+   "end": 13.799
+  },
+  {
+   "id": "receipt",
+   "level": 0,
+   "quote": "Here's what ServiceTitan reports",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "ServiceTitan's own line on a card, typed on: \"Visa figures show that 94% of home service customers own a credit card\", with its tag (ServiceTitan, After the job: Get paid, manage your reputation, May 6, 2026, citing Visa figures; read Nov 8, 2026). On \"ninety-four\" a four-step fade to the hero: 94% (data.js) over a grid of 100 cards, 94 of them lit, OWN A CREDIT CARD under it, the source on the hood.",
+   "t": 13.799,
+   "word": 40,
+   "end": 23.739
+  },
+  {
+   "id": "send",
+   "level": 0,
+   "quote": "The only question is",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The send card, held still: FOR YOUR LEAD TECH / BEFORE YOU PACK UP / \"Let's walk the job together. If you're happy with it, I can take payment right here, card or tap.\" (EXAMPLE). Sweeps on \"asks\", \"lead\", \"line\", \"payment\" and \"card\".",
+   "send": true,
+   "t": 23.739,
+   "word": 66,
+   "end": 38.576
+  },
+  {
+   "id": "why",
+   "level": 0,
+   "quote": "When you collect before",
+   "sfx": "chime",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Level up: the bar fills; PAID ON SITE stamps on \"there's\"; + NO CHECK TO CHASE lands with it, + FIX IT WHILE THERE on \"there to fix\".",
+   "t": 38.576,
+   "word": 111,
+   "end": 46.445
+  },
+  {
+   "id": "button",
+   "level": 0,
+   "quote": "So the next time a",
+   "sfx": "chime",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The street again: the van drives up and parks on \"card reader\" with the PAID sign; in the sky her bubble \"I'll mail a check.\" on \"she'll\", then the reader TAP TO PAY turns APPROVED as it parks (EXAMPLE). Holds to the end card.",
+   "t": 46.445,
+   "word": 137,
+   "end": 54.825
+  }
+ ]
+}

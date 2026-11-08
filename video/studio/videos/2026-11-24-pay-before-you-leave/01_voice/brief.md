@@ -27,10 +27,10 @@ Short with 10,000,039 views against its channel's typical 5,700 (1,754x).
 - **Real screens:** ServiceTitan's line as a card with its tag (read Nov 8, 2026): "Visa figures show that 94% of home
   service customers own a credit card" (quoted to there only; facts r1: the 90% stays off screen). Tag: ServiceTitan, "After the
   job: Get paid, manage your reputation", May 6, 2026, citing Visa figures; read Nov 8, 2026.
-- **Do this week (on screen, held):** the send card (cue marked [send]): FOR YOUR LEAD TECH / BEFORE YOU PACK UP /
-  "Let's walk the job together. If you're happy with it, I can take payment right here, card or tap."
-- **Send:** your lead tech: BEFORE YOU PACK UP: WALK THE JOB, THEN TAKE PAYMENT RIGHT THERE
-- **End card send line:** "Send this to your lead tech." (SCENE.sendLine)
+- **Do this week (on screen, held):** the send card (cue marked [send]): FOR THE LEAD TECHNICIAN / BEFORE YOU PACK UP /
+  "Let's walk the job together. If you're happy with it, I can take payment right here."
+- **Send:** your lead technician: BEFORE YOU PACK UP: WALK THE JOB, THEN TAKE PAYMENT RIGHT THERE
+- **End card send line:** "Send this to your lead technician." (SCENE.sendLine)
 
 ## Claims and their sources
 | Claim, as said | Source | URL |

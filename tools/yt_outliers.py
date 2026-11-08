@@ -4,7 +4,7 @@
 Todd, live chat, Nov 7, 2026, 12:08 pm: "Go", to the proven idea lane; 2:45 pm: "key added", the YouTube Data API key
 saved as the repo secret YOUTUBE_API_KEY (video/studio/research/PROVEN.md). For every channel in
 video/studio/research/proven-channels.json: its newest 50 uploads, the Shorts among them (180 s or less), the median
-views of those Shorts (the channel's typical), and every Short with 5x that median or more, 1,000 views or more, posted
+views of those Shorts (the channel's typical), and every Short with 5x that median or more, 100,000 views or more (Todd, live chat, Nov 7, 2026, 7:17 pm; was 1,000), posted
 in the last 365 days. Then the search queries in the same file (Shorts, last 30 days, most viewed) to surface channels
 we don't follow yet, listed by channel ID only. Writes video/studio/research/outliers.json; a run of the studio's
 proven lane reads it when every PROVEN.md row with a sourceprint is used (_shared/formats.md "Proven").
@@ -22,7 +22,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CHANNELS = os.path.join(ROOT, "video", "studio", "research", "proven-channels.json")
 OUT = os.path.join(ROOT, "video", "studio", "research", "outliers.json")
 API = "https://www.googleapis.com/youtube/v3/"
-RULES = {"ratio": 5.0, "min_views": 1000, "max_seconds": 180, "max_age_days": 365, "min_shorts": 8, "newest": 50}
+RULES = {"ratio": 5.0, "min_views": 100000, "max_seconds": 180, "max_age_days": 365, "min_shorts": 8, "newest": 50}
 
 
 class ApiError(Exception):
@@ -143,15 +143,18 @@ def selftest():
     mk = lambda v, s=40, p="2026-10-20": {"video": f"v{v}", "channel": "c", "title": "", "published": p, "seconds": s, "views": v}
     base = [mk(100 + i) for i in range(10)]
     cases = []
+    big = [mk(30000 + i) for i in range(10)]
+    n, t, o = analyze(big + [mk(160000)], today)
+    cases.append(("a 5x Short at 100,000+ is found", [x["views"] for x in o] == [160000]))
     n, t, o = analyze(base + [mk(5000)], today)
-    cases.append(("a 5x Short is found", [x["views"] for x in o] == [5000]))
-    n, t, o = analyze(base + [mk(520)], today)
-    cases.append(("under 1,000 views is not an outlier", o == []))
-    n, t, o = analyze(base + [mk(9000, s=600)], today)
+    cases.append(("a 5x Short under 100,000 views is not an outlier", o == []))
+    n, t, o = analyze(big + [mk(140000)], today)
+    cases.append(("100,000+ at 4.6x is not 5x", o == []))
+    n, t, o = analyze(big + [mk(900000, s=600)], today)
     cases.append(("a long video is not a Short", o == [] and n == 10))
-    n, t, o = analyze(base + [mk(9000, p="2025-10-01")], today)
+    n, t, o = analyze(big + [mk(900000, p="2025-10-01")], today)
     cases.append(("older than a year is left out", o == []))
-    n, t, o = analyze(base[:5] + [mk(9000)], today)
+    n, t, o = analyze(big[:5] + [mk(900000)], today)
     cases.append(("too few Shorts gives no typical", t is None and o == []))
     n, t, o = analyze([mk(200 + i) for i in range(10)] + [mk(999)], today)
     cases.append(("4.6x is not 5x", o == []))

@@ -87,12 +87,13 @@ Todd, 11:58 am: "We can find what is actually working out there and create our o
 story took up to 28 script rounds a lesson; faceless channels grow by making their own version of what already works.
 Ideas and formats aren't owned; words, footage and art are. Our edge is the version: made for trade owners, one checked
 number, our pixel style, the send moment.
-- **Pick** a row of research/PROVEN.md that has a sourceprint (research/proven/<id>.json), phone cluster first while it
-  leads. A row with no print: queue a watch-video job with `"sourceprint": true` (the workflow hashes Gemini's
+- **Pick** a row of research/PROVEN.md at the bar, 100,000 views or more and 5x its channel's typical (Todd, live chat,
+  Nov 7, 2026, 7:17 pm: "We need to change this standard to 100K+ views"; code fails a brief under it, `nextlane`
+  says story when none is left), that has a sourceprint (research/proven/<id>.json). A row with no print: queue a watch-video job with `"sourceprint": true` (the workflow hashes Gemini's
   transcript and commits no words; Todd, Nov 7, 2:45 pm) and build it the next run, or in a live chat read the words
   into a file under data/ and run `anim.py sourceprint <link> <file> <how>`; never commit the source's words.
 - **Refresh** (tools/yt_outliers.py, Sundays, official YouTube Data API): research/outliers.json lists every Short at
-  5x its channel's typical. When every row is used, add the top unbanked outlier that fits (a business lesson an owner
+  5x its channel's typical and 100,000 views or more. When every row is used, add the top unbanked outlier that fits (a business lesson an owner
   can act on; no ad, meme or skit about a real person) as a PROVEN.md row, labeled by business name or a plain
   description, and queue its sourceprint job.
 - **brief.md**: `- **Format:** proven`, `- **Source:** <link>`, `- **Started:** <YYYY-MM-DD HH:MM Central>`, a Shape

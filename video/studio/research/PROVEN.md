@@ -10,7 +10,8 @@ are. We take the pattern (topic, opening move, structure, length, what's on scre
   small business); 33 had a Shorts tab. For each, the newest 48 Shorts and their views from the public channel page.
 - Typical views = the median of those 48. An outlier = 5x the median or more. Each row's exact views, length and date
   come from its own public watch page, read the same day.
-- Kept: business lessons a trade owner can act on, 1,000 views or more, not a paid ad. Dropped: a meme set to a trending
+- The bar (Todd, live chat, Nov 7, 2026, 7:17 pm: "1,225 is not viral and out bar of 1,000 is far too low. We need topics that are actually interesting. We need to change this standard to 100K+ views"; 7:20 pm: 100K+ and 5x): a proven lesson started from Nov 7, 7:17 pm takes only a row with 100,000 views or more AND 5x its channel's typical. `anim.py` reads the views column below and fails a brief under the bar; `anim.py nextlane` says story when no unused row at the bar has a sourceprint. At the bar today: rows 1, 3, 4 (built), 11, 12, 13 (sourceprint jobs queued Nov 7). Rows 2 and 7 were made before the bar (angi-four-pros, after-hours-greeting) and post as made, Todd's word.
+- Kept (before the bar): business lessons a trade owner can act on, 1,000 views or more, not a paid ad. Dropped: a meme set to a trending
   song (_DSkrhfDvGk, 385,504 views, 67.6x), career advice off our topic (HSU189Hzedo, 16,651, 12.8x), and Housecall Pro's
   four TikTok outliers (23,600 to 185,700 views), which are paid free-trial ads.
 - Read honestly: three rows come from small channels (typical 48 to 58 views), so their ratios are large on 1,000 to 4,400
@@ -40,8 +41,11 @@ are. We take the pattern (topic, opening move, structure, length, what's on scre
 | 8 | a plumbing education channel, https://www.youtube.com/shorts/7cOPDgfcSig (Nov 2, 2026) | 11K vs 1,100 (10x) | a cost that moved this month (diesel) | today's price and how far it moved in a year | the number, who says it stays high, what to plan or price in | 17 s | talking head, the number in a title box | the partner who sets prices | yes |
 | 9 | a remodeling contractor's channel, https://www.youtube.com/shorts/ABKKpu8Z7c8 (Oct 13, 2025) | 8,186 vs 996 (8.2x) | how contractors should use AI now | an interview question | the question, practical uses (estimate from your last 10 jobs, ask what you might be forgetting), the caveat: don't take it as gospel | 86 s | interview two-shot, word-by-word captions | the estimator | yes |
 | 10 | a plumbing shop owner's pricing channel, https://www.youtube.com/shorts/Ca8ppBrIOyI (Oct 26, 2026) | 62,383 vs 10,000 (6.2x) | your real hourly rate | a speed promise ("in under a minute") | whiteboard math, one step at a time, each step a number, ending on the rate to bill | 69 s | whiteboard, big numbers, captions | the partner who builds the price book | yes |
+| 11 | Roofing Insights, https://www.youtube.com/shorts/Rw_tRgRvZHM (Oct 12, 2026) | 2,433,807 vs 8,356 (291x) | the customer who won't pay the junk crew | not yet read (sourceprint job queued Nov 7) | a skit | 25 s | skit footage | not yet read | no |
+| 12 | Roofing Insights, https://www.youtube.com/shorts/_DSkrhfDvGk (Oct 29, 2026) | 385,578 vs 8,356 (46x) | five roofers, zero options | not yet read (sourceprint job queued Nov 7) | not yet read | 21 s | not yet read | not yet read | no |
+| 13 | Roofing Insights, https://www.youtube.com/shorts/0Yq52oaZeio (Oct 23, 2026) | 626,319 vs 8,356 (75x) | job done, the homeowner won't pay (row 1's sister skit) | not yet read (sourceprint job queued Nov 7) | a skit | 103 s | skit footage | not yet read | no |
 
-Phone cluster: rows 2 and 7. Row 2 is the strongest phone pattern.
+Phone cluster: rows 2 and 7 (both under the 100K bar). At 100K+ and 5x but not owner lessons (left out): two electrician technique Shorts, RRRujPs1vFQ (384,877, 7x) and OyJgZZBaLSY (307,071, 5.6x), weekly refresh Nov 7.
 
 ## What the ten share (for the script)
 - The opening names the viewer's money or the viewer's moment, never the topic ("You're paying for...", "What happens when

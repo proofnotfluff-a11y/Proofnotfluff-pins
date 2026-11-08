@@ -87,3 +87,9 @@ Read from six watch-video answers (video/watch/answers/2026-11-07-jvc-*.md; Gemi
 5. Read less per run: skip the IMPROVE item and deep read on slots that only finish an unqueued lesson (step 6 may be a standing rule of Todd's).
 6. Two or three key moments named in the brief; design checks those first.
 Not adopted, would weaken a gate: freeing specs of pixel limits, hand timing in an editor, folding reviewers into the builder.
+
+## The proven bar raised to 100K views (live chat, 7:17 to 7:20 pm)
+Todd, 7:17 pm: "wait 1,225 is not viral and out bar of 1,000 is far too low. We need topics that are actually interesting. We need to change this standard to 100K+ views". 7:20 pm: 100K+ AND 5x its channel's typical (his pick of the recommendation), and "if they are already made you can post them both now. Then we move to the regular schedule with the top tier videos".
+- Code: anim.py PROVEN_MIN_VIEWS 100,000 and PROVEN_MIN_RATIO 5 read from PROVEN.md's views column; a proven brief started from 19:17 fails under it (selftest 52 of 52); `nextlane` gives story when no unused row at the bar has a sourceprint. tools/yt_outliers.py min_views 100,000 (selftest 10 of 10).
+- Bank at the bar: rows 1, 3, 4 (sourceprints made), 11, 12, 13 (Roofing Insights skits, sourceprint jobs queued). Two electrician technique Shorts pass the numbers but are not owner lessons.
+- Queue: after-hours-greeting posts at the 8:13 pm evening slot, angi-four-pros next (one lesson per run). This cloud chat has no file upload tool for his Chrome, so the PC runs post them.

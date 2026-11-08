@@ -3065,11 +3065,50 @@ def copy_problems(text, fp, captions=()):
                  "open_hits4": len(o4), "words": len(toks), "source_words": fp.get("words")}
 
 
-def proven_brief_problems(text):
+# The 100K bar (Todd, live chat, Nov 7, 2026, 7:17 pm: "1,225 is not viral and out bar of 1,000 is far too low. We need
+# topics that are actually interesting. We need to change this standard to 100K+ views"; 7:20 pm, of "100K+ and 5x": yes).
+# A proven lesson started from PROVEN_BAR_FROM on must name a research/PROVEN.md bank row with 100,000 views or more and
+# 5x its channel's typical. Lessons started before it keep the old bar (1,000 views and 5x).
+PROVEN_MIN_VIEWS, PROVEN_MIN_RATIO, PROVEN_BAR_FROM = 100000, 5.0, "2026-11-07 19:17"
+_BANK_ROW = re.compile(r"(?m)^\|\s*(\d+)\s*\|[^|]*?youtube\.com/shorts/([A-Za-z0-9_-]{11})[^|]*\|\s*([\d,.]+)(K|M)?\s+vs\s+([\d,.]+)(K|M)?\s*\(([\d,.]+)x\)")
+
+
+def _num(v, unit):
+    n = float(v.replace(",", ""))
+    return int(round(n * {"K": 1e3, "M": 1e6}.get(unit or "", 1)))
+
+
+def proven_bank(text=None):
+    """{video id: (row, views, ratio)} from the bank tables of research/PROVEN.md (or the text given)."""
+    if text is None:
+        p = os.path.join(HERE, "research", "PROVEN.md")
+        text = open(p, encoding="utf-8").read() if os.path.exists(p) else ""
+    out = {}
+    for m in _BANK_ROW.finditer(text):
+        out.setdefault(m.group(2), (int(m.group(1)), _num(m.group(3), m.group(4)), float(m.group(7).replace(",", ""))))
+    return out
+
+
+def proven_bar_problems(text, bank):
+    st = STARTED_LINE.search(text or ""); m = SOURCE_LINE.search(text or "")
+    if not st or st.group(1).replace("T", " ") < PROVEN_BAR_FROM or not m:
+        return []
+    vid = source_id(m.group(1)) if "shorts/" not in m.group(1) else m.group(1).rstrip("/").split("shorts/")[-1][:11]
+    row = bank.get(vid)
+    if not row:
+        return [f"source {vid} is not a research/PROVEN.md bank row (the 100K bar reads its views there)"]
+    if row[1] < PROVEN_MIN_VIEWS or row[2] < PROVEN_MIN_RATIO:
+        return [f"source {vid} (PROVEN.md row {row[0]}) has {row[1]:,} views at {row[2]}x: under the bar of {PROVEN_MIN_VIEWS:,} views and {PROVEN_MIN_RATIO:g}x (Todd, Nov 7, 7:17 pm)"]
+    return []
+
+
+def proven_brief_problems(text, bank=None):
     out = []
     m = SOURCE_LINE.search(text or "")
     if not m or not m.group(1).startswith("https://"):
         out.append("brief.md has no '- **Source:** <https link>' line (the outlier this lesson is our version of)")
+    else:
+        out += proven_bar_problems(text, proven_bank() if bank is None else bank)
     if not re.search(r"(?im)^- \*\*Shape:\*\*\s*\S", text or ""):
         out.append("brief.md has no '- **Shape:**' line (rotation reads it)")
     return out
@@ -3135,6 +3174,18 @@ def next_lane(started, cfg):
     return pat[n % len(pat)]
 
 
+def eligible_rows():
+    """Bank rows at the bar, with a sourceprint, that no lesson's brief has used as its Source."""
+    used = set()
+    for d in os.listdir(VIDEOS):
+        bp = vdir(d, "01_voice", "brief.md")
+        m = SOURCE_LINE.search(open(bp, encoding="utf-8").read()) if os.path.exists(bp) else None
+        if m and "shorts/" in m.group(1):
+            used.add(m.group(1).rstrip("/").split("shorts/")[-1][:11])
+    return sorted(r[0] for v, r in proven_bank().items() if r[1] >= PROVEN_MIN_VIEWS and r[2] >= PROVEN_MIN_RATIO and v not in used
+                  and os.path.exists(os.path.join(PROVEN_DIR, source_id(f"https://www.youtube.com/shorts/{v}") + ".json")))
+
+
 def cmd_nextlane():
     cfg = lane_test()
     rows = []
@@ -3146,6 +3197,10 @@ def cmd_nextlane():
         if m:
             rows.append((m.group(1).replace("T", " "), lesson_format(d)))
     lane = next_lane(rows, cfg)
+    if lane == "proven" and not eligible_rows():
+        print(f"nextlane: story (pattern says proven, but no unused research/PROVEN.md row has {PROVEN_MIN_VIEWS:,}+ views, "
+              f"{PROVEN_MIN_RATIO:g}x and a sourceprint; queue a watch-video sourceprint job for a new 100K row)")
+        return
     if lane is None:
         print("nextlane: no lane test runs (video/config.json laneTest mode is not on): story lane")
         return
@@ -3206,6 +3261,8 @@ def cmd_selftest():
     cp = lambda text, caps=(): copy_problems(text, fp, caps)[0]
     st = lambda n, f="proven", at="2026-11-08 09:00": [(at, f)] * n
     lt = {"mode": "on", "from": "2026-11-07 13:00", "pattern": ["proven", "proven", "story"]}
+    _bk = {"AAAAAAAAAAA": (7, 1225, 21.1), "BBBBBBBBBBB": (11, 2433807, 291.3), "CCCCCCCCCCC": (12, 400000, 3.0)}
+    _bb = lambda at, vid: f"- **Format:** proven\n- **Source:** https://www.youtube.com/shorts/{vid}\n- **Started:** {at}\n- **Shape:** card\n"
     cases += [
         ("copy: our own words pass", cp(ours), False),
         ("copy: the source word for word", cp(src), True),
@@ -3217,6 +3274,12 @@ def cmd_selftest():
         ("copy: no sourceprint", copy_problems(ours, None)[0], True),
         ("copy: brief with no Source line", proven_brief_problems("- **Format:** proven\n- **Shape:** card\n"), True),
         ("copy: brief with Source and Shape", proven_brief_problems("- **Format:** proven\n- **Source:** https://www.youtube.com/shorts/AAAAAAAAAAA\n- **Shape:** card\n"), False),
+        ("100K bar: a source with 1,225 views started after the bar", proven_brief_problems(_bb("2026-11-07 19:30", "AAAAAAAAAAA"), _bk), True),
+        ("100K bar: 400,000 views at 3x is under 5x", proven_brief_problems(_bb("2026-11-08 09:00", "CCCCCCCCCCC"), _bk), True),
+        ("100K bar: a source not in the bank", proven_brief_problems(_bb("2026-11-08 09:00", "ZZZZZZZZZZZ"), _bk), True),
+        ("100K bar: 2,433,807 views at 291x passes", proven_brief_problems(_bb("2026-11-08 09:00", "BBBBBBBBBBB"), _bk), False),
+        ("100K bar: a lesson started before the bar keeps the old bar", proven_brief_problems(_bb("2026-11-07 16:50", "AAAAAAAAAAA"), _bk), False),
+        ("100K bar: the real bank reads row 1 at 10M", proven_bank().get("zQiyPFqazDg", (0, 0, 0))[1] < 10000000, False),
         ("lane: first new lesson is proven", next_lane([], lt) != "proven", False),
         ("lane: third new lesson is story", next_lane(st(2), lt) != "story", False),
         ("lane: fourth new lesson is proven again", next_lane(st(2) + st(1, "story"), lt) != "proven", False),

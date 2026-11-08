@@ -8,7 +8,7 @@ Cover, frame one: the storefront (counter set), a furnace on the counter, the ta
 The dispatch board: three shop pins drop (SHOP A, SHOP B, YOU?), a route draws from the homeowner's pin toward one shop; a big "?" over YOU.
 
 ## send "So tonight, ask ChatGPT" [send] [sfx: stamp]
-THE CHECK as a work order (the send moment): WORK ORDER: TONIGHT, FOR WHOEVER RUNS YOUR GOOGLE PROFILE; step 1 the question to type, step 2 "Not you? Fix your Google profile first." Every line lands in the first half second, then nothing moves over it while the voice says who to show it to.
+THE CHECK as a work order (the send moment): WORK ORDER: TONIGHT, FOR WHOEVER RUNS YOUR GOOGLE PROFILE; step 1 the question to type, step 2 "Not you? Fix your Google profile first." Every line lands in the first half second, then nothing moves over it while the voice runs on.
 
 ## why "Why the profile? The" [sfx: whoosh]
 The departures board: WHAT IT READS; NAME, WEBSITE, REVIEWS flip to YOURS on their words. Tag ACHR News column, Mar 18, 2026.

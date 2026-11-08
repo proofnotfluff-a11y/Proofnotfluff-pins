@@ -108,8 +108,7 @@ window.SCENE = {
       const r = k.sets.dispatch({pins: [{x: 0.30, y: 0.25, at: tPin, c: GREY}, {x: 0.78, y: 0.30, at: tPin + 0.1, c: GREY}, {x: 0.62, y: 0.70, at: tPin + 0.2, c: GOLD}, {x: 0.50, y: 0.45, at: tPin - 0.1, c: SKY}],
         routes: [{pts: [[0.50, 0.45], [0.30, 0.45], [0.30, 0.25]], at: tRoute, dur: 0.8, c: RED}]});
       const a = r.at ? r.at(0.62, 0.70) : [600, 700];
-      if (T >= tPin + 0.4) { const b = [0, -1, -2, -1][(Math.floor(T * 30) >> 3) % 4]; k.text('YOU?', a[0], a[1] - 150 + b * 3, {size: 60, color: GOLD, align: 'center', drop: INK}); }
-      if (r.area) k.text('Who gets the job?', r.area.x, r.area.y, {size: 52, color: CREAM});
+      if (T >= tPin) { const b = [0, -1, -2, -1][(Math.floor(T * 30) >> 3) % 4]; k.text('YOU?', a[0], a[1] - 150 + b * 3, {size: 60, color: GOLD, align: 'center', drop: INK}); }
       return host(k);
     },
 

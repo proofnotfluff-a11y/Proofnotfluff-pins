@@ -1,0 +1,30 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "stage": "storyboard (cues.md), before scene code",
+ "reviewer": "fresh opus agent",
+ "pass": false,
+ "score": {"numbers": 0, "mismatches": 0},
+ "reasons": [
+  "03_cues/cues.md ## ask (BLOCKING): 'a cursor moving between them twice a second' does not say where the cursor is on the last frame or whether the card under it lights. If the video ends, loops or gets screenshotted with the cursor resting on HAIL or WEAR, or with one card brighter, that reads as the answer, which the brief forbids. Fix: add 'Both cards stay the same color and size the whole time (no glow, lift or check on the one under the cursor); on the last frame the cursor sits centered between the two cards, on neither.'",
+  "03_cues/cues.md ## vent (BLOCKING): 'Two shots side by side: VENT, with a dent; GUTTER, smooth. EXAMPLE.' gives one tag for two shots. Rounds r0 and r1 asked for EXAMPLE on the vent and on the gutter. Fix: 'EXAMPLE under each shot' (two tags), or 'one EXAMPLE tag centered under both shots, spanning the pair'. Also say plainly that the only drawn words here are VENT and GUTTER ('with a dent' and 'smooth' are what is drawn, not text), so nobody draws a caption like NO DENT.",
+  "03_cues/cues.md ## hook (note, one word fix): the EXAMPLE tag is on its own row in the caption box and 'the caption box stays up through both cuts', so EXAMPLE should stay up on all three roof shots. Make it explicit so scene code cannot drop it at a cut: 'The caption box, EXAMPLE row included, stays up through both cuts.'",
+  "03_cues/cues.md ## dime (note): the drawn dime must be a plain silver disc with a reeded edge, no face and no words (no LIBERTY, ONE DIME, year or motto). Text would be a drawn string missing from cues.md (lint fails it) and a portrait adds a real person for no reason. Size: the dime and the mark both about one eighth of one shingle course tall, so 'the size of a dime' is true of our own drawing. Add both to the beat.",
+  "03_cues/cues.md ## marks (pass): white camera corners frame each mark with no words, no arrow and no label. They point the eye, as the voice does ('Look close at these round marks'), and say nothing about cause. Keep them identical on every mark so none looks singled out.",
+  "03_cues/cues.md ## dime and ## worn (pass): 'the granules gone' matches the script and facts.json; nothing says knocked off or hit. 'A few loose granules in the gutter', 'wear streaks across every slope' and 'curled tab edges' are drawn clues already in the record (facts.json about: 'loose granules', 'the worn shingles'; brief Shape: 'close-up of loose granules', 'the whole roof worn all over'). No label names a cause. The clues stay split both ways (round marks, bare centers, dented vent and her word against an all over worn roof, curled tabs and an undented gutter), so the drawing does not answer for the voice.",
+  "03_cues/cues.md ## her (pass): the homeowner is drawn and unnamed (k.client has no name or label text; checked kit.js). IT'S HAIL. sits in her speech bubble, so it is her claim, not the video's. EXAMPLE is on the shot. Keep the bubble's tail on her. No house number, street sign, mailbox name or brand is in the string list, and lint fails any drawn string not in cues.md, so none can slip in as text; add 'no house number, street sign or yard sign' to the driveway line so nobody draws one as shapes.",
+  "03_cues/cues.md drawn choices (pass): the ask beat draws exactly HAIL and WEAR, matching the spoken 'So, hail or wear?' and the open 'Hail or wear?'. YOUR CALL? asks, it does not answer. HUD HAIL OR WEAR is the title, not a verdict.",
+  "03_cues/cues.md ## hook caption 'YOU CALL IT.' (note, not facts): the voice says 'You make the call.' and the end card says YOUR CALL?. All three hand the call to the viewer; no fact issue. Match the voice ('YOU MAKE THE CALL.') only if the copy or design gate wants it.",
+  "Every drawn string (HAIL OR WEAR, HAIL OR WEAR?, YOU CALL IT., EXAMPLE, VENT, GUTTER, IT'S HAIL., HAIL, WEAR, YOUR CALL?) checked against facts.json and brief.md: no number, no data look, no cause, no verdict, no real person, business, brand or address. No clock, count or stat card that could read as data.",
+  "02_transcript/words.json (stand-in timings) reads word for word the same as script.md; nothing is said that the record lacks.",
+  "Rule 5 trades first: no outside claim and no number; nothing rests on a non-trade study. Pass.",
+  "Rule 6 dashes: grep for U+2013 and U+2014 in cues.md, script.md, brief.md, facts.json and data.js found none. Pass.",
+  "Numbers: brief.md numbers block {} and data.js numbers {}; data.js sha256 9e27895b726b227c85117e494768cf6d0bf81a262614d5817421821dd5c347bf matches 01_voice/facts.json. No number is spoken or drawn. Pass."
+ ],
+ "sources_checked": [
+  "No outside URL to open: facts.json carries no source by design (source-matched experiment; brief.md claims table source is 'ours (the drawing, EXAMPLE; no verdict)').",
+  "video/studio/research/PROVEN.md row 3 (https://www.youtube.com/shorts/1xb3Cz8A74M, not opened; structure only): a question caption over roof footage, no voice, no answer. cues.md keeps that shape in our own drawn art and our own words.",
+  "video/studio/_runtime/kit.js k.client and sets.js houses: no name, label or house number text is drawn by default.",
+  "04_scene/data.js: sha256 matches 01_voice/facts.json; numbers empty, as the brief says."
+ ]
+}

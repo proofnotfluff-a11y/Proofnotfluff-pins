@@ -3,8 +3,7 @@
 Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 53 words, 17.7 s of voice.
 
 ## Flags
-- 0.7 s heard 'where?' for 'wear?'
-- 17.5 s heard 'where?' for 'wear?'
+none (two homophone flags cleared by hand: Whisper wrote 'where?' for 'wear?' at 0.7 s and 17.5 s; words.json flagsCleared)
 
 ## Pace per take (target 160 to 195 wpm)
 ```

@@ -337,10 +337,7 @@
    "wpm": 176
   }
  ],
- "flags": [
-  "0.7 s heard 'where?' for 'wear?'",
-  "17.5 s heard 'where?' for 'wear?'"
- ],
+ "flags": [],
  "end": 17.727,
  "heard": [
   {
@@ -661,5 +658,12 @@
    "end": 17.727,
    "p": 0.409
   }
- ]
+ ],
+ "flagsCleared": {
+  "flags": [
+   "0.7 s heard 'where?' for 'wear?'",
+   "17.5 s heard 'where?' for 'wear?'"
+  ],
+  "why": "homophone: Whisper wrote 'where?' (p 0.15) for the script's 'wear?'; the two sound the same, so the audio says the script's word and a re-roll cannot change what Whisper writes (stages/02_transcript/CONTEXT.md: fix by hand only when the audio says the script's word). Cleared in the live chat, Nov 8, 2026."
+ }
 }

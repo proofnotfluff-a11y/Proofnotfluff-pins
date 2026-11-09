@@ -2853,7 +2853,7 @@ def script_problems(slug, send_line=None, notes=None):
     m = ABOUT_EXACT.search(text)
     if m:
         out.append(f"\"{m.group(0)}\": an exact number takes no \"about\"; say it plainly or round it (\"call it seventeen hundred\")")
-    if send_line is not None and not re.search(r"(?i)\bsend this to (whoever|your)\b", send_line or ""):
+    if send_line is not None and not source_matched(slug) and not re.search(r"(?i)\bsend this to (whoever|your)\b", send_line or ""):   # a source-matched experiment has no send (Todd, Nov 8, 8:25 pm)
         out.append(f"SCENE.sendLine is {send_line!r}: the end card needs a send line that names a role")
     return out
 

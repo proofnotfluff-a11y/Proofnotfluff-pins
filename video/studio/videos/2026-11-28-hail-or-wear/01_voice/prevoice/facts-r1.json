@@ -1,0 +1,20 @@
+{
+ "gate": "facts",
+ "round": 1,
+ "stage": "script, before voice",
+ "reviewer": "fresh opus agent",
+ "pass": true,
+ "score": {"numbers": 0, "mismatches": 0},
+ "reasons": [
+  "Earlier fault 1 (cause named): FIXED. script.md para 1 now says 'with the granules gone'; facts.json example.what says 'granules gone'; the brief.md claims table says 'granules gone'. 'knocked off' now appears only in the script.md header, which records the fix and is not spoken.",
+  "Earlier fault 2 (age claim): FIXED. script.md para 2 now says 'But the whole roof is worn.' No age is said anywhere; facts.json says 'the whole roof worn' and the claims table says the same, so the record matches what is said. Worn all over is something a drawing can show.",
+  "Earlier fault 3 (recommended, last question): FIXED. script.md ends 'So, hail or wear?', the same two choices as the open 'Hail or wear?'. 'damage or not' is gone from the script (it remains in brief.md only as the name of the sister lesson 2026-11-26-damage-or-not, which is fine).",
+  "No new blocker. No verdict is stated: 'She says it's hail' is her line, not the video's, and 'you're the estimator' hands the call to the viewer. No fact needs more than the drawing (dime sized marks, granules gone, worn roof, dented vent, undented gutter). No real person: the homeowner is unnamed.",
+  "note (not a fault): brief.md Shape still says 'the question again with two choices' without naming them. The storyboard round must check that cues.md draws exactly HAIL and WEAR, matching the voice, plus the r0 carry-overs: EXAMPLE on every roof close-up, the vent, the gutter and her driveway shot; no label, arrow or caption that says what a mark means; no house number, street sign or brand; dime sized marks must read dime sized against the shingle.",
+  "Code checks: `anim.py readcheck 2026-11-28-hail-or-wear` pass (0 breath, 0 choppy runs, 0 'and then' starts). Dashes: grep for U+2013 and U+2014 in script.md, brief.md, facts.json, data.js found none. Numbers: brief.md numbers block {} and data.js numbers {}; data.js sha256 9e27895b... matches 01_voice/facts.json exactly."
+ ],
+ "sources_checked": [
+  "No outside URL to open: facts.json carries no source by design (source-matched experiment; brief.md claims table source is 'ours (the drawing, EXAMPLE; no verdict)').",
+  "04_scene/data.js: sha256 9e27895b726b227c85117e494768cf6d0bf81a262614d5817421821dd5c347bf matches 01_voice/facts.json; numbers empty, as the brief says."
+ ]
+}

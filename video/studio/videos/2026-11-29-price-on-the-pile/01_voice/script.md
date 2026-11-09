@@ -1,10 +1,10 @@
-# Script: Price on the pile (proven, r6, Nov 9; viewer gate r2: the proof cut to one sentence; viewer gate r1: the bridge first, the trade-paper aside cut, so the proof is short; viewer gate r0: the HVAC survey tied back to the hauler's customer; pre-voice facts r0: the made-up job said first, two hundred said whole, the survey kept to heating and cooling and to calling, not to a price said at the pile; box read-aloud r1 and readcheck: no 'Then' start, the made-up line as one sentence, one question not two, the trade paper named for what it is; box read-aloud r0: the survey line split for breath, the made-up line in plain voice, no "Here's the fix" run-up; box retell r0: same message, lost nowhere; our own words for research/PROVEN.md row 11)
+# Script: Price on the pile (proven, r7, Nov 9; length back over 50 s: the voice names the driver (send r0 note) and the card's last line, said; viewer gate r2: the proof cut to one sentence; viewer gate r1: the bridge first, the trade-paper aside cut, so the proof is short; viewer gate r0: the HVAC survey tied back to the hauler's customer; pre-voice facts r0: the made-up job said first, two hundred said whole, the survey kept to heating and cooling and to calling, not to a price said at the pile; box read-aloud r1 and readcheck: no 'Then' start, the made-up line as one sentence, one question not two, the trade paper named for what it is; box read-aloud r0: the survey line split for breath, the made-up line in plain voice, no "Here's the fix" run-up; box retell r0: same message, lost nowhere; our own words for research/PROVEN.md row 11)
 
 [conversational] Say your trailer's full, and she says four hundred's too much.
 
 Made-up job, but you've had this one. She'll give you two hundred, and the junk's already loaded. So do you dump it back on her lawn?
 
-The better move: say the price while the pile is still in her driveway. Before anything gets lifted, point at the pile and say, "This load is four hundred. Good to start?" Then wait for her yes.
+The better move: say the price while the pile is still sitting in her driveway. Tell your driver: before anything gets lifted, point at the pile and say, "This load is four hundred. Good to start?" Then wait for her yes. No yes, no lift. Not one box.
 
 A yes before the work is a deal. A price after the work is a fight.
 

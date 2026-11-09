@@ -42,7 +42,7 @@ padding.
   LIFT / POINT AT THE PILE / "THIS LOAD IS [YOUR PRICE]. GOOD TO START?" / WAIT FOR HER YES (no made-up number on the card, so no tag on it:
   call 2). Every made-up number drawn anywhere else ($400 and $200 in the fight) carries an EXAMPLE tag; the made-up
   job is said once, first, in the voice ("Say your trailer's full").
-- **Send:** your driver: BEFORE YOU LIFT: POINT AT THE PILE: THIS LOAD IS [YOUR PRICE]. GOOD TO START? WAIT FOR HER YES
+- **Send:** your driver: BEFORE YOU LIFT: POINT AT THE PILE: THIS LOAD IS [YOUR PRICE]. GOOD TO START? WAIT FOR HER YES. NO YES, NO LIFT.
 - **End card send line:** "Send this to your driver." (SCENE.sendLine)
 
 ## Claims and their sources

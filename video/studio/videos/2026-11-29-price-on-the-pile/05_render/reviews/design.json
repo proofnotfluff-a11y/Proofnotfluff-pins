@@ -1,21 +1,25 @@
 {
  "gate": "design",
- "round": 1,
- "pass": true,
- "reviewer": "claude opus (fresh agent), 2026-11-09",
+ "round": 0,
+ "pass": false,
+ "reviewer": "claude opus (fresh agent), 2026-11-09, rerun after fix round 2",
  "score": {
-  "first": 5,
+  "first": 4,
   "hierarchy": 4,
   "type": 5,
   "color": 5,
-  "spacing": 5,
-  "polish": 5,
+  "spacing": 4,
+  "polish": 4,
   "trust": 5,
-  "average": 4.86
+  "average": 4.43
  },
  "reasons": [
-  "r0 faults fixed (cover, receipt, card order and hold, maroon row, stamp position)",
-  "note: 70% hero about 80 px, wants 160 px+",
-  "note: 7.5 s of two lines over dark houses before the payoff"
+  "receipt one layout 13.5 s",
+  "70% under the 160 px hero floor, centered against left lines",
+  "cover tag small and covering the pile",
+  "empty band under UP FRONT",
+  "no M7 native moment",
+  "end card stray dot (shared player)",
+  "offer room repeats the wide shot with no text 3 s"
  ]
 }

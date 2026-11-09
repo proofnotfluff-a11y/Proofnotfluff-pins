@@ -6,7 +6,7 @@
   "level": 0.16,
   "tune": "bounce"
  },
- "duration": 52.414,
+ "duration": 47.529,
  "cues": [
   {
    "id": "hook",
@@ -27,7 +27,7 @@
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "The same driveway, closer: the full trailer, the homeowner (argue). On \"give\" her bubble: I'LL GIVE YOU $200. with an EXAMPLE tag. On \"dump\" a stamp on a plate: DUMP IT BACK?",
+   "text": "A push-in: the full trailer up close, the homeowner nearer (argue). On \"give\" her bubble: I'LL GIVE YOU $200. with an EXAMPLE tag. On \"dump\" a stamp on a plate: DUMP IT BACK?",
    "t": 4.029,
    "word": 11,
    "end": 12.708
@@ -72,14 +72,14 @@
   {
    "id": "receipt",
    "level": 0,
-   "quote": "Your customers are homeowners,",
+   "quote": "In an ACHR News",
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "A plain cut to the survey: 70% (data.js) big from the first frame, OF HOMEOWNERS SURVEYED / MORE LIKELY TO CALL / THE ONE UPFRONT ON PRICE under it, a row of ten houses that light one by one, the seventh on \"seventy\"; the tag The ACHR News, Dec 23, 2024 (HVAC) the whole time.",
+   "text": "A plain cut to the survey: 70% (data.js) big from the first frame, OF HOMEOWNERS SURVEYED / MORE LIKELY TO CALL / THE ONE UPFRONT ON PRICE under it, a row of ten houses that light one by one, the seventh on \"seventy\"; the tag ACHR News, Dec 23, 2024, HVAC on top the whole time, the houses under it, then 70% and the three lines.",
    "t": 31.425,
    "word": 90,
-   "end": 44.754
+   "end": 39.869
   },
   {
    "id": "button",
@@ -89,9 +89,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The driveway again, before the job: the pile on the drive, nothing loaded yet, the homeowner calm. The stamp on \"does\", up top: WHERE DOES YOUR PRICE GO? Then two cards under it: ON THE PILE on \"pile\", ON THE TRAILER on \"trailer\". Holds to the end card.",
-   "t": 44.754,
-   "word": 123,
-   "end": 52.414
+   "t": 39.869,
+   "word": 112,
+   "end": 47.529
   }
  ]
 }

@@ -1,13 +1,10 @@
 {
  "gate": "render-critic",
- "round": 1,
+ "round": 0,
  "pass": true,
- "reviewer": "claude opus (fresh agent), 2026-11-09",
+ "reviewer": "claude opus (fresh agent), 2026-11-09, rerun after fix round 2",
  "score": {
   "faults": 0
  },
- "faults": [],
- "reasons": [
-  "r0 faults fixed: SAY THE PRICE / AT THE PILE on its plate clear of the house; DUMP IT BACK? on a maroon plate"
- ]
+ "faults": []
 }

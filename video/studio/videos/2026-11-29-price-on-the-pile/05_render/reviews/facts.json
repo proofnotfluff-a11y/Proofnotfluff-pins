@@ -2,12 +2,12 @@
  "gate": "facts",
  "round": 0,
  "pass": true,
- "reviewer": "claude opus (fresh agent), 2026-11-09, rerun after fix round 1",
+ "reviewer": "claude opus (fresh agent), 2026-11-09, rerun after fix round 2",
  "score": {
-  "numbers": 10,
+  "numbers": 11,
   "mismatches": 0
  },
  "reasons": [
-  "advisory: the voice line This load is four hundred shows in the dialog box with no EXAMPLE tag at that moment; passes since the job is said made-up and the card carries [YOUR PRICE]"
+  "advisory only"
  ]
 }

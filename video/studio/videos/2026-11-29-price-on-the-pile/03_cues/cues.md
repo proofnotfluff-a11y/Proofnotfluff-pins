@@ -10,7 +10,7 @@ homeowner (k.client, cross, arms folded) on the drive. On "four" a plain cut in 
 MUCH. with an EXAMPLE tag beside it.
 
 ## offer "Made-up job, but you've" [sfx: blip]
-The same driveway, closer: the full trailer, the homeowner (argue). On "give" her bubble: I'LL GIVE YOU $200.
+A push-in: the full trailer up close, the homeowner nearer (argue). On "give" her bubble: I'LL GIVE YOU $200.
 with an EXAMPLE tag. On "dump" a stamp on a plate: DUMP IT BACK?
 
 ## fix "The better move:" [sfx: whoosh]
@@ -20,7 +20,7 @@ left of the house reads BEFORE YOU LOAD from the cut (the rewind said on screen)
 ## send "Before anything gets" [send] [sfx: blip]
 The send card on a plain cut, built line by line as each line is spoken: FOR YOUR DRIVER (the band) / BEFORE YOU LIFT
 (the title) from the cut; POINT AT THE PILE on "point"; "THIS LOAD IS [YOUR PRICE]. on "This"; GOOD TO START?" on
-"Good"; WAIT FOR HER YES on "wait". Full, it holds still about 3 s (through "A yes before the work"); only the stripes
+"Good"; WAIT FOR HER YES on "wait"; NO YES, NO LIFT. on "No". Full, it holds still about 3 s (through "A yes before the work"); only the stripes
 behind it drift. No EXAMPLE tag on the card (no made-up number on it).
 
 ## why "is a deal." [sfx: stamp]

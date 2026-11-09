@@ -1,0 +1,27 @@
+{
+ "gate": "facts-captions",
+ "round": 1,
+ "reviewer": "fresh opus agent",
+ "pass": true,
+ "score": {
+  "numbers": 0,
+  "mismatches": 0
+ },
+ "reasons": [],
+ "fixed_from_r0": [
+  "instagram, tiktok: #roofinspection is gone; both now carry #hailseason (4 hashtags each: #roofingbusiness #roofingcontractor #contractorbusiness #hailseason). FIXED.",
+  "youtube: tag 'roof inspection' is gone, replaced by 'hail damage or wear'; still 9 tags with the misspelling 'roofing buisness'. FIXED.",
+  "youtube: description now has 'Next lesson: another owner problem from the trades, told start to finish.' on its own line after the save line and before the site line. FIXED."
+ ],
+ "checked": [
+  "facts: no number and no outside claim in facts.json or brief.md by design; every clue in all four captions (round marks the size of a dime, granules gone, the whole roof worn, a dent in the vent and none in the gutter, she says it's hail) matches facts.json example.what, the brief claims table and the transcript; no caption gives a verdict, a cause or an age; each says it is our drawing, an example, with no answer on purpose. No study finding, so no population qualifier needed. No source URL to open.",
+  "captions.md item 4: Instagram, TikTok and YouTube description ask 'Would you write it up as hail?', Facebook asks 'What would you tell her?', each the line just before the save line (this lesson has no send line by design: brief.md 'End card send line: none'); YouTube title asks 'Would You Write It Up?'. Each judges the scene; none quizzes the viewer's own numbers. anim.py lint PASS.",
+  "line 1: Instagram 64, TikTok 69 (keyword inside the first 70), Facebook 61, YouTube description 79 characters; all name roofing business owners.",
+  "hashtags: Instagram 4, TikTok 4, Facebook 2, YouTube description 3; umbrella #contractorbusiness and trade #roofingbusiness in each; no #fyp, #foryou or #viral; no hashtags in the YouTube title.",
+  "YouTube: title 66 characters, 'roofing business owner' at character 39 (inside 40 to 50); site line uses the proofnotfluff.com fallback; madeForKids false, aiUse false, Education, English. TikTok aiGenerated true.",
+  "links: no URL in Instagram, TikTok or Facebook; each ends with 'Free missed call cost calculator: link in bio.'",
+  "no AI voice line, no em or en dashes (scan of captions.json found none), no real private person, business or address; nothing in the video says something is 'in the caption'.",
+  "note (not a fault, not new): YouTube tag and secondary keyword 'hail damage inspection' leans toward a homeowner search more than the rest; it passed round 0 and is not a new fault, so it does not fail this round. If the Nov 14 read shows off-target viewers, swap it for 'roofing estimator tips'."
+ ],
+ "at": "2026-11-08T20:59:05-06:00"
+}

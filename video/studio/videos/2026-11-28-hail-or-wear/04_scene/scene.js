@@ -48,33 +48,37 @@ const fxy = (o) => { const z = o.z || 1, ox = o.ox || 0, oy = o.oy || 0; return 
 const focus = (fx, fy, z, sx, sy) => ({z, ox: fx - sx / z, oy: fy - (sy - 84 - sx * TILTF) / z});
 const field = (d, o = {}) => {
   const {P} = d, {z, X, Y} = fxy(o), u = Math.max(1, Math.round(z));
+  const C = (x, y, w, h, c) => { const y1 = Math.min(334, y + h), y0 = Math.max(70, y); if (y1 > y0) P(x, y0, w, y1 - y0, c); };   /* design r1: clipped above the ledge */
   P(0, 0, 360, 417, '#2A2C33');
   for (let r = -2; r < 34; r++) {
-    const fy = r * 13, off = (r * 6) % 36;
+    const fy = r * 13, off = (r % 2) * 6;   /* design r1: 3-tab strips, a slot every 12, each course offset half a tab */
     for (let fx = -off - 36; fx < 420; fx += 12) {
       const x0 = X(fx), y0 = Y(fx, fy), w = Math.ceil(12 * z);
-      if (x0 > 360 || x0 + w < 0 || y0 > 340 || y0 + 13 * z < 70) continue;
-      const k2 = Math.floor(hash(r * 31 + Math.floor((fx + off) / 12) * 7) * 3);
-      P(x0, y0, w, Math.ceil(13 * z), ['#575B63', '#5E626A', '#52565E'][k2]);
-      P(x0, y0, w, Math.max(1, Math.round(3 * z)), '#2B2D33');   /* the shadow band under the course above */
-      if (((fx + off) / 12) % 3 === 0) P(x0, y0, u, Math.ceil(13 * z), '#1E2026');   /* a tab slot every third */
-      for (let i = 0; i < 4; i++) P(x0 + Math.floor(hash(r * 7 + fx + i) * 11) * z, y0 + (4 + Math.floor(hash(r + fx * 3 + i) * 8)) * z, u, u, ['#6C7079', '#45484F', '#63676F'][i % 3]);
-      if (o.worn) {   /* wear: light streaks downslope, a curled tab edge with its shadow, bare patches spread evenly */
+      if (x0 > 360 || x0 + w < 0 || y0 > 334 || y0 + 13 * z < 70) continue;
+      const strip = Math.floor((fx + off + 36) / 36), shade = ['#575B63', '#5B5F67', '#54585F'][Math.floor(hash(r * 31 + strip * 7) * 3)];
+      C(x0, y0, w, Math.ceil(13 * z), shade);
+      C(x0, y0, w, Math.max(1, Math.round(3 * z)), '#2B2D33');   /* the shadow band under the course above */
+      C(x0, y0, u, Math.ceil(10 * z), '#1E2026');   /* the tab slot */
+      for (let i = 0; i < 4; i++) C(x0 + Math.floor(hash(r * 7 + fx + i) * 11) * z, y0 + (4 + Math.floor(hash(r + fx * 3 + i) * 8)) * z, u, u, ['#6C7079', '#45484F', '#63676F'][i % 3]);
+      if (o.worn) {   /* wear (design r1: two steps lighter, full height, shadows under curls, bare patches spread evenly) */
         const h = hash(r * 13 + fx * 0.7);
-        if (h < 0.35) P(x0 + Math.floor(h * 30) * z % w, y0 + 3 * z, u, 9 * z, '#7E828A');
-        if (h > 0.82) { P(x0, y0 + 11 * z, w, u, '#9AA0AD'); P(x0, y0 + 12 * z, w, u, '#14161A'); }
-        if (Math.abs(h - 0.6) < 0.04) P(x0 + 3 * z, y0 + 5 * z, 5 * z, 3 * z, '#8A7A66');
+        if (h < 0.45) C(x0 + (Math.floor(h * 40) % 10) * z, y0 + 3 * z, Math.max(1, Math.round(1.5 * z)), 10 * z, '#9AA0AD');
+        if (h > 0.78) { C(x0 + u, y0 + 10 * z, w - u, u, '#C9CCD3'); C(x0 + u, y0 + 11 * z, w - u, Math.max(1, Math.round(2 * z)), '#14161A'); }
+        if (Math.abs(h - 0.6) < 0.09) C(x0 + 3 * z, y0 + 5 * z, 5 * z, 3 * z, '#A08A70');
       }
     }
   }
-  FMARKS.forEach(([fx, fy], m) => {
-    const cx = X(fx), cy = Y(fx, fy), r = Math.max(2, Math.round(6 * z));
+  FMARKS.forEach(([fx, fy], m) => {   /* design r1: a bruise, not a hole: an uneven dark grey blot, wider than tall, a ragged edge, */
+    const cx = X(fx), cy = Y(fx, fy), r = Math.max(2, Math.round(6 * z));   /* a lighter rim of bare mat broken on one side, loose granules */
     if (cy < 70 || cy > 345) return;
-    [[0.4, -0.25, 0.7, 0], [-0.35, 0.3, 0.7, 0], [0, 0, 1, 1]].forEach(([dx, dy, k3, core]) => {   /* an irregular bruise: two rim blobs of bare mat, then one dark crushed center (stills r1: not twin holes) */
-      const R = Math.max(2, Math.round(r * k3)), bx = cx + Math.round(dx * r), by = cy + Math.round(dy * r);
-      for (let j = -R; j <= R; j++) for (let i = -R; i <= R; i++) { const q = i * i + j * j + (hash(m * 5 + i * 3 + j) > 0.8 ? R : 0); if (q <= R * R && by + j >= 84 && by + j < 334) d.DOT(bx + i, by + j, core && q <= (R * 0.55) * (R * 0.55) ? '#1E2026' : (core ? '#8A7A66' : '#7A6C5A')); }
-    });
-    for (let i = 0; i < 5; i++) P(cx + Math.round((hash(m * 9 + i) - 0.5) * 4 * r), cy + Math.round(r * (1.1 + hash(m + i * 3) * 0.8)), u, u, '#45484F');   /* loose granules */
+    for (let j = -r; j <= r; j++) for (let i = -Math.round(r * 1.3); i <= Math.round(r * 1.3); i++) {
+      const q = (i / 1.3) * (i / 1.3) + j * j, rag = hash(m * 5 + i * 3 + j * 7) * r * 0.9, y = cy + j;
+      if (y < 84 || y >= 334 || q > (r + rag * 0.3) * (r + rag * 0.3)) continue;
+      const inner = q <= (r * 0.6 - rag * 0.25) * (r * 0.6 - rag * 0.25);
+      if (inner) d.DOT(cx + i, y, (i + j) % 3 ? '#33363D' : '#2A2C32');
+      else if (!(i > 0 && j < 0)) d.DOT(cx + i, y, '#8A7A66');   /* the rim, broken at the upper right */
+    }
+    for (let i = 0; i < 5; i++) C(cx + Math.round((hash(m * 9 + i) - 0.5) * 4 * r), cy + Math.round(r * (1.2 + hash(m + i * 3) * 0.9)), 2 * u, 2 * u, '#45484F');
   });
   P(0, 334, 360, 8, GREY); P(0, 342, 360, 3, '#6B7080'); P(0, 345, 360, 72, '#2B2033');   /* the drip edge and gutter line */
 };
@@ -165,7 +169,7 @@ window.SCENE = {
       const z = T < tG ? 5 : 5 + 2 * eo((T - tG) / 0.5), r = Math.round(6 * z);
       field(d, focus(118, 182, z, 150, 250));
       if (T >= tD && T < tG) { const sl = d.ease(tD, 6, 120); dime(d, 150 + 2 * r + 2 + sl, 250, r); }
-      if (T >= tG) for (let i = 0; i < 18; i++) { const ft = clamp((T - tG - i * 0.04) * 1.8), x = 110 + Math.floor(hash(i) * 120), y = Math.min(330 - (i % 3), 250 + Math.round(ft * 90)); d.P(x, y, 3, 3, i % 2 ? '#8A8E96' : '#6C7079'); }
+      if (T >= tG) for (let i = 0; i < 22; i++) { const ft = clamp((T - tG - i * 0.04) * 1.8), x = 130 + Math.floor(hash(i) * 70), y = Math.min(329 - 6 * (i % 3), 250 + Math.round(ft * 90)); d.P(x, y, 6, 6, i % 2 ? '#8A8E96' : '#6C7079'); d.P(x, y + 5, 6, 1, '#2A2C33'); }   /* design r1: granules twice the size, a pile on the drip edge */
       caption(k, d);
       k.exampleTag(930, 480, {right: true});
       return host(k, null, 0.5);
@@ -190,7 +194,7 @@ window.SCENE = {
         if (i === 0) {   /* a box vent on its strip of roof; the dent is a crescent shadow on a bent louver (design r0) */
           P(x + 6, 220 + up, 148, 44, '#575B63'); for (let r = 0; r < 3; r++) P(x + 6, 220 + r * 14 + up, 148, 3, '#2B2D33');
           P(x + 30, 140 + up, 100, 84, GREY); for (let r = 0; r < 6; r++) P(x + 34, 146 + r * 12 + up, 92, 4, '#6B7080');
-          for (let ii = -12; ii <= 12; ii++) { const yy = Math.round(Math.sqrt(Math.max(0, 144 - ii * ii)) * 0.5); P(x + 84 + ii, 176 + yy + up, 1, 3, '#3A3D44'); P(x + 84 + ii, 174 + yy + up, 1, 1, '#E6E9F0'); }
+          for (let r2 = 2; r2 < 5; r2++) for (let ii = -16; ii <= 16; ii++) { const bow = Math.round(Math.max(0, 16 - Math.abs(ii)) * 0.25), y0 = 146 + r2 * 12 + up; P(x + 80 + ii, y0 - 2, 1, 2 + bow, '#2E3036'); P(x + 80 + ii, y0 + bow, 1, 4, '#6B7080'); P(x + 80 + ii, y0 + 4 + bow, 1, 1, '#E6E9F0'); }   /* design r1: three louvers bent in, shadow above, lit edge below */
         } else {   /* a K-style gutter hung on the roof edge, smooth, with its downspout elbow */
           P(x + 6, 140 + up, 148, 40, '#575B63'); for (let r = 0; r < 3; r++) P(x + 6, 140 + r * 13 + up, 148, 3, '#2B2D33');
           P(x + 6, 180 + up, 148, 6, GREY);

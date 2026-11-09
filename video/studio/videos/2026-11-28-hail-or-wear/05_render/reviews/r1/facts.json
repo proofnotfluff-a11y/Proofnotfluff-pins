@@ -1,0 +1,28 @@
+{
+ "gate": "facts",
+ "round": 1,
+ "stage": "after render",
+ "reviewer": "fresh opus agent",
+ "pass": true,
+ "score": {"numbers": 0, "mismatches": 0},
+ "reasons": [
+  "Earlier fault (r0, cursor on HAIL while 'wear?' was said, centered rest 3 frames): FIXED. scene.js line 237 now rests the cursor from the START of the last word (tRest = ws[last].start = 17.507 s, 'wear?'). Worked per frame from cues.json (ask t0 = 14.567 s) and the pick line: HAIL 14.967 to 15.067, then alternating every 0.5 s, WEAR 17.067 to 17.507, centered from frame 526 (17.533 s) to the end card at 17.83 s. MP4 frames confirm: 17.45 s on WEAR (voice on 'or'), 17.52 s, 17.60 s and 17.80 s centered at low-res x 188, exactly midway between the card centers (125 and 251) and in the gap between the cards (180 to 196), on neither card; 17.84 s still centered as the wipe to the end card starts. The cursor is never on a card while 'wear?' is said and the last thing seen on the ask is the centered rest. Both cards share one fill (#253048), rim (#3B82C4) and size, and never glow, lift or check. PASS.",
+  "Earlier ask, EXAMPLE on every shot, checked on the new render: hook (all three cuts, f00 to f05), marks (f07), dime with the coin (6.2 s) and the granules push in (7.3 s, 8.1 s), worn (f09, 9.6 s), vent (one tag under VENT, one under GUTTER, f10, 11.0 s, 12.4 s), the new her shot (13.6 s, 14.3 s, f11, tag top left), ask (f12, 15.0 to 17.8 s). PASS.",
+  "Earlier ask, no label says what a mark means: every string drawn in scene.js is HAIL OR WEAR?, YOU CALL IT., VENT, GUTTER, IT'S HAIL. (her bubble), YOUR CALL?, HAIL, WEAR, the HUD HAIL OR WEAR and the EXAMPLE tags, all written in cues.md. No word names a cause, a verdict or what any mark proves. PASS.",
+  "Round 0 notes did not turn into faults: (a) dime beat, the caption box now sits at low-res y 92 to 156 and the mark is drawn whole at y 250 beside a coin of the same radius (6.2 s frame); (b) granules now fall and settle at y 330, just above the drip edge at 334, matching cues.md 'collecting at the drip edge' (8.1 s frame); (c) vent dent is now a crescent shadow with a lit edge on the louvers, reads as a dent; (d) cues.md hook now says the iris is at 1.6 s, matching scene.js t2 and f03 to f04; (e) worn, cues.md 'curled tab edges with a shadow under each' is drawn as a light edge line over a dark line (scene.js line 65); the voice never says curled, so this stays a description of our drawing. None is a fact fault.",
+  "New her shot (design change): a close two-shot at the foot of a ladder, roof edge and vent at the top, siding, ladder; the homeowner points up; bubble IT'S HAIL. on 'She'. No house number, street sign, yard sign or name; she is a drawn, unnamed homeowner tagged EXAMPLE. Her claim is shown as her words, not as a finding. Matches cues.md. PASS.",
+  "New ask cue start ('and you're the estimator', 14.567 s): the cards come up as the call is handed to the viewer; the cursor starts 0.4 s later and alternates evenly. Matches cues.md. PASS.",
+  "02_transcript/transcript.md: 53 words, same words and order as script.md; the two Whisper 'where?' homophones cleared to 'wear?' by hand. No number, cause or verdict is said. The runtime caption bubble matches the transcript word for word in every frame read. PASS.",
+  "Note (not a fault): the centered rest lasts 9 frames (0.30 s) before the end card. It starts on the last word as asked and favors no card; if the runtime allows a tail hold on the ask beat, holding the rest to about 0.5 s would make 'no answer' read even more plainly. Goes to LEARNINGS.md.",
+  "Note (not a fault): in the dime shot the coin matches the mark's whole bruise (bare rim included), while its dark crushed center is smaller than the coin. Fair as drawn since the voice says the mark, not the center, is the size of a dime.",
+  "Rule 5 trades first: no outside claim and no number, so nothing rests on a non-trade study. PASS.",
+  "Rule 6: no real private person, business or address. grep for U+2013 and U+2014 in brief.md, script.md, facts.json, transcript.md, cues.md, scene.js, data.js and captions.json: 0 hits each. PASS.",
+  "Numbers: brief.md numbers block {} and data.js numbers {}; data.js sha256 9e27895b726b227c85117e494768cf6d0bf81a262614d5817421821dd5c347bf matches 01_voice/facts.json. Nothing is spoken or drawn as a number ('the size of a dime' describes our drawing). PASS."
+ ],
+ "sources_checked": [
+  "No outside URL to open: facts.json carries no source by design (source-matched experiment; brief.md claims table source is 'ours (the drawing, EXAMPLE; no verdict)').",
+  "04_scene/data.js: sha256 matches 01_voice/facts.json; numbers empty, as the brief says.",
+  "02_transcript/words.json: 'and' 14.567 s, 'So,' 16.267 s, 'hail' 16.407 s, 'or' 17.087 s, 'wear?' 17.507 to 17.727 s; 03_cues/cues.json ask t 14.567 s; used to time the cursor per frame.",
+  "05_render/2026-11-28-hail-or-wear.mp4 (rendered 20:57, sha256 6ea977c8...; qa.json PASS, 20.83 s, end card 17.83 s): frames pulled at 6.2, 7.3, 8.1, 9.6, 11.0, 12.4, 13.6, 14.3, 14.62, 15.0, 15.2, 17.05, 17.45, 17.52, 17.6, 17.8 and 17.84 s; sheets f00 to f13 (sheet-1.jpg, sheet-2.jpg) and gates timeline-1.jpg, timeline-2.jpg read."
+ ]
+}

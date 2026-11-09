@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-28-hail-or-wear",
- "mp4Sha256": "6ea977c8ec4684af6008da416f5d1592e9131b26d33a33896464e49c59896840",
+ "mp4Sha256": "357d00b3446b48e447071434706894236c77d7e8cae005fa2ca87539ace2b953",
  "checks": [
   {
    "name": "length",
@@ -39,11 +39,11 @@
   {
    "name": "file",
    "value": {
-    "sha256": "6ea977c8ec4684af6008da416f5d1592e9131b26d33a33896464e49c59896840",
-    "bytes": 2571997
+    "sha256": "357d00b3446b48e447071434706894236c77d7e8cae005fa2ca87539ace2b953",
+    "bytes": 2681032
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 2.6 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 2.7 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -53,5 +53,5 @@
   }
  ],
  "pass": true,
- "at": "2026-11-08T21:57:19-05:00"
+ "at": "2026-11-08T22:05:49-05:00"
 }

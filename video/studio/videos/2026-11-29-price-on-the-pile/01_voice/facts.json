@@ -1,0 +1,24 @@
+{
+ "about": "Every number and claim this lesson shows or says, with its source. The ACHR News article 'Homeowners Want Prices Listed Online' (Dec 23, 2024; a survey by The ACHR NEWS with myCLEARopinion) re-read Nov 9, 2026 (Central) by a box fetch job (junk-facts-2026-11-09-r1, workhorse, and its trial twin): both models copied the confirm lines below word for word. achrnews.com does not resolve from this cloud session. The trailer, the four hundred, the two hundred she offers and the line the crew lead says are ours (made-up, said once in the voice, EXAMPLE only on the made-up numbers). We never say junk crews were surveyed (the survey asked homeowners about an HVAC company or contractor), that the line makes every customer pay, or any number the source does not give.",
+ "survey": {
+  "title": "Homeowners Want Prices Listed Online",
+  "publisher": "The ACHR News",
+  "date": "2024-12-23",
+  "url": "https://www.achrnews.com/articles/163905-homeowners-want-prices-listed-online",
+  "reread": "2026-11-09",
+  "pct": 70,
+  "pctShown": "70%",
+  "pctSaid": "seventy percent",
+  "who": "homeowners surveyed by The ACHR NEWS with myCLEARopinion",
+  "what": "more likely to call an HVAC company or contractor who is transparent on pricing (said as: a heating and cooling contractor who's upfront on price; never applied to how a homeowner reacts to a price said on site)",
+  "confirms": [
+   "Homeowners want to see their contractors listing prices on their website, according to a survey conducted by The ACHR NEWS in conjunction with myCLEARopinion.",
+   "Even though 70% of homeowners surveyed said they were more likely to call an HVAC company/contractor who is transparent on pricing."
+  ]
+ },
+ "example": {
+  "price": 400,
+  "offer": 200,
+  "what": "ours: a made-up junk job, the trailer loaded, the homeowner says four hundred is too much and offers two hundred; the driver's line is our suggested wording, labeled EXAMPLE on the made-up numbers"
+ }
+}

@@ -1,0 +1,1 @@
+window.DATA = {"file": "video/studio/videos/2026-11-29-price-on-the-pile/01_voice/facts.json", "commit": "", "sha256": "b03799e964ac5a58b1f2674f6897e35ad494eff59e5137aca134c9c6ab6766cc", "numbers": {"pct": {"value": 70, "shown": "70%", "path": "survey.pct"}}, "pull": {}};

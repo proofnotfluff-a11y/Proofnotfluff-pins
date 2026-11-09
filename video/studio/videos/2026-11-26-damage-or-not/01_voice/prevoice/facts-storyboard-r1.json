@@ -1,0 +1,25 @@
+{
+ "gate": "facts",
+ "round": 1,
+ "stage": "storyboard (cues.md), before scene code",
+ "reviewer": "fresh opus agent",
+ "pass": true,
+ "score": {"numbers": 6, "mismatches": 0},
+ "reasons": [
+  "Earlier fault 1 (why and why.adjuster had no EXAMPLE tag): FIXED. 03_cues/cues.md ## why now reads 'The EXAMPLE tag on its own row under the tablet, up through the adjuster beat', which covers ## why.adjuster and its SAME PHOTOS / SAME ROOF stamps.",
+  "Earlier fault 2 (AS MUCH AS sat under the readout): FIXED. ## receipt.share now reads 'AS MUCH AS sits above the readout from the first frame', so the gauge reads AS MUCH AS / 80% / OF SEVERE STORM CLAIMS / IN A YEAR ARE HAIL. Upper bound, claims base and yearly period all kept.",
+  "Earlier fault 3 (receipt source tag did not match): FIXED. ## receipt tag is now 'Source: Triple-I release, severe convective storms, Apr 14, 2026 (Business Wire). Read Nov 8, 2026.', which matches brief.md Real screens (Triple-I, severe convective storms, Apr 14, 2026 (Business Wire), read Nov 8, 2026) and facts.json hail.of and hail.reread.",
+  "Earlier optional fault 4 (EXAMPLE through the driveway shot): FIXED. ## hook now reads 'The EXAMPLE tag stays up from the cover through the driveway shot', so the homeowner is never on screen untagged before her bubble.",
+  "01_voice/script.md changed line 'Give this list to your estimator.': no fact or number, a plain instruction. PASS.",
+  "01_voice/script.md changed line 'Now she sees what you see, and so does the adjuster.': says the adjuster sees the same photos, not that he will agree or what he will decide; 'Same photos, same roof.' follows. No claim beyond the source and nothing facts.json rules out. PASS.",
+  "Receipt quote re-checked on the page: \"Hail alone accounts for as much as 80% of severe convective storm claims in any given year\" matches word for word; ending at 'year' is a complete clause and keeps its meaning. Spoken 'as much as eighty percent of severe storm claims in a year' is a fair plain read. PASS.",
+  "Note (not a fault): 02_transcript/transcript.md (18:31) predates script.md r1 (18:32) and still has 'Hand this list to your estimator.' and 'Now she sees what you see. / So does the adjuster.' as two sentences. The post-voice facts round must judge the new transcript after takes 3 and 5 are re-voiced.",
+  "Note (not a fault): 03_cues/cues.md ## why.adjuster anchor 'So does the adjuster.' no longer starts a sentence in script.md ('and so does the adjuster.'). Not a facts issue; check the cue still matches the new words when cues are timed.",
+  "Note (not a fault, carried from r0): keep the EXAMPLE tag on the SAY YES half through ## trap.word so the adjuster's NOT HAIL. WEAR. bubble is never untagged; cues.md says 'EXAMPLE on the right' in ## trap.yes but does not say it holds through the stamp.",
+  "Numbers: quote 80%, gauge readout 80% and needle 80, script 'eighty percent', tag dates Apr 14, 2026 and Nov 8, 2026. 04_scene/data.js share value 80 shown '80%', path hail.sharePct; its sha256 a5e3a520f92c... matches 01_voice/facts.json. 0 mismatches.",
+  "Other rules: trades first holds (Triple-I storm claims data, hail on roofs, the core of storm roofing work). No real private person, business or address. No em or en dashes in facts.json, brief.md, script.md, cues.md or data.js. Core lane, no AI reply or tool screen shown, so the AI lane rule does not apply. No denial rate, adjuster outcome, required test square or hail share of roofing claims is said or shown."
+ ],
+ "sources_checked": [
+  "https://www.businesswire.com/news/home/20260414308638/en/: fetched Nov 8, 2026. Title 'Triple-I: Severe Convective Storms Generate More Than $50B in Insured Losses for Third Consecutive Year'; dateline 'MALVERN, Pa.--(BUSINESS WIRE)--' with no date in the text, URL id 20260414 supports Apr 14, 2026. Exact sentence: 'Hail alone accounts for as much as 80% of severe convective storm claims in any given year, with roofs bearing an estimated 70% to 90% of total insured residential catastrophic losses.' Confirms the quote card, the 80% upper bound, the claims base and the yearly period. Also $51 billion in 2025 and the third straight year over $50 billion, which supports STORM AFTER STORM as a fair read with no number added. The page does not mention adjusters; none are claimed as data."
+ ]
+}

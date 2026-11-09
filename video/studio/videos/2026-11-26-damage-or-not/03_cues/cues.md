@@ -34,32 +34,34 @@ WEAR. EXAMPLE on the right.
 YOUR WORD VS HIS stamps across the split.
 
 ## send "So don't call it." [send] [sfx: whoosh]
-The send card (k.sendCard), slides up and holds dead still: FOR YOUR ESTIMATOR / BEFORE YOU SAY HAIL / 1 THE HOUSE
+The send card (k.sendCard), slides up and holds dead still: FOR THE ESTIMATOR / BEFORE YOU SAY HAIL / 1 THE HOUSE
 AND ADDRESS / 2 A CHALK SQUARE EACH SLOPE / 3 EVERY HIT CIRCLED / 4 VENTS AND GUTTERS, the EXAMPLE tag on its own row.
 Each step goes from grey to ink on its words (house, chalk, circled, vents). The background stripes drift; the card
 never moves.
 
-## receipt "Triple-I says hail is" [sfx: blip]
-Triple-I's line on a card, typed on: TRIPLE-I / "Hail alone accounts for as much as 80% of severe convective storm
-claims in any given year" with its source tag: Source: Triple-I release, severe convective storms, Apr 14, 2026 (Business Wire). Read Nov 8, 2026.
+## receipt "Triple-I says hail is" -0.3 [sfx: blip]
+The gauge (k.sets.gauge), 0.3 s before the voice says Triple-I: the source on top, Source: Triple-I, Apr 14, 2026; the
+dial's own numbers 0, 50, 100; AS MUCH AS on a plate right above where the number lands (facts storyboard r0); the plate
+under the dial: OF SEVERE STORM CLAIMS / IN A YEAR ARE HAIL.
 
 ## receipt.share "as much as eighty" [sfx: tick]
-A fade4 cut to the gauge (k.sets.gauge): AS MUCH AS sits above the readout from the first frame (facts storyboard r0),
-the needle rises to 80 and the readout counts to 80% (data.js), and a plate under it: OF SEVERE STORM CLAIMS / IN A
-YEAR ARE HAIL. Pixel hail keeps falling behind the gauge.
+On "eighty" the needle rises to 80 and the number counts to 80% (data.js) under AS MUCH AS.
 
-## receipt.again "storm after storm." [sfx: chime]
-STORM AFTER STORM stamps under the plate.
+## receipt.again "storm after storm." -0.25 [sfx: chime]
+A fade4 cut to Triple-I's line on a card, typed on: TRIPLE-I / "Hail alone accounts for as much as 80% of severe
+convective storm claims in any given year" with its source tag: Source: Triple-I release, severe convective storms, Apr
+14, 2026 (Business Wire). Read Nov 8, 2026. Hail falls behind the card.
 
 ## why "Now she sees what" [sfx: chime]
-The tablet: four photos in a grid (the house, a chalk square with circled hits and a tape, a close hit, a dented vent).
-The homeowner (calm) leans in beside it. The EXAMPLE tag on its own row under the tablet, up through the adjuster beat
-(facts storyboard r0).
+The arcade high-score table (k.sets.scores) titled PHOTOS SEEN, its own header RANK / NAME / SCORE: the rows land on
+their words: 1ST HER 4 PHOTOS on "she", 2ND YOU 4 PHOTOS near "you". The EXAMPLE tag on its own row under the table,
+up through the adjuster beat (facts storyboard r0).
 
-## why.adjuster "So does the adjuster." [sfx: blip]
-The adjuster steps in on the other side, calm. SAME PHOTOS stamps on "Same photos", SAME ROOF under it on "roof".
+## why.adjuster "and so does the adjuster." [sfx: blip]
+3RD ADJUSTER 4 PHOTOS lands, with the cursor. SAME PHOTOS stamps on "Same photos", SAME ROOF under it on "roof".
 
 ## button "Let the photos make" [sfx: whoosh]
-Back on the roof close-up, now with a chalk square and every hit circled. A plate: WHAT WOULD YOU TELL HER? Two choice
-cards under it: HAIL DAMAGE and OLD ROOF, a cursor blinking between them, EXAMPLE on the roof. Holds into the end card:
-Send this to your estimator before the next storm.
+The two calls face off (k.sets.versus, no winner): HAIL DAMAGE (a hammer) against JUST WEAR (a clock; lint r0: OLD ROOF landed after the voice said roof), VS on the split.
+A plate under the cards: LET THE PHOTOS MAKE THE CALL, then on "what": WHAT WOULD YOU TELL HER? A cursor moves between
+the two cards twice a second; EXAMPLE under the plate. Holds into the end card: Send this to your estimator before the
+next storm.

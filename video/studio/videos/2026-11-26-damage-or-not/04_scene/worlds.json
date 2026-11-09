@@ -1,0 +1,8 @@
+{
+ "schema": "pnf.studio.worlds.v1",
+ "share": {
+  "set:gauge": 0.122,
+  "set:scores": 0.109,
+  "set:versus": 0.135
+ }
+}

@@ -33,7 +33,7 @@ would tell her.
 - **Voice:** Todd's own voice clone in `_shared/voice.md`.
 - **Real screens:** Triple-I's line as a card with its tag: "Hail alone accounts for as much as 80% of severe convective
   storm claims in any given year". Tag: Triple-I, severe convective storms, Apr 14, 2026 (Business Wire), read Nov 8, 2026.
-- **Do this week (on screen, held):** the send card (cue marked [send]), tagged EXAMPLE: FOR YOUR ESTIMATOR / BEFORE YOU
+- **Do this week (on screen, held):** the send card (cue marked [send]), tagged EXAMPLE: FOR THE ESTIMATOR / BEFORE YOU
   SAY HAIL / 1 THE HOUSE AND ADDRESS / 2 A CHALK SQUARE EACH SLOPE / 3 EVERY HIT CIRCLED / 4 VENTS AND GUTTERS.
 - **Send:** your estimator: BEFORE YOU SAY HAIL: THE HOUSE AND ADDRESS, A CHALK SQUARE EACH SLOPE, EVERY HIT CIRCLED, VENTS AND GUTTERS
 - **End card send line:** "Send this to your estimator before the next storm." (SCENE.sendLine)

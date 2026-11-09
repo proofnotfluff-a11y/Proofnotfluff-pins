@@ -1,6 +1,6 @@
 # Transcript: 2026-11-29-price-on-the-pile
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 148 words, 52.4 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 148 words, 52.7 s of voice.
 
 ## Flags
 none
@@ -11,8 +11,8 @@ none
   02     4.0 s  187 wpm  
   03    12.7 s  176 wpm  
   04    25.6 s  175 wpm  
-  05    31.4 s  156 wpm  
-  06    47.9 s  195 wpm  
+  05    31.4 s  154 wpm  
+  06    48.1 s  195 wpm  
 ```
 
 ## Words
@@ -37,12 +37,12 @@ none
 
 `00:31.4` And homeowners say they want the price up front.
 
-`00:34.6` The ACHR News, a heating and cooling trade paper, surveyed them.
+`00:34.7` The ACHR News, a heating and cooling trade paper, surveyed them.
 
-`00:39.2` Seventy percent said they're more likely to call a heating and cooling contractor who's upfront on price.
+`00:39.4` Seventy percent said they're more likely to call a heating and cooling contractor who's upfront on price.
 
-`00:45.3` Your customers are homeowners too.
+`00:45.4` Your customers are homeowners too.
 
-`00:47.9` So on your next job...
+`00:48.1` So on your next job...
 
-`00:49.7` does the price go on the pile, or on the trailer?
+`00:49.9` does the price go on the pile, or on the trailer?

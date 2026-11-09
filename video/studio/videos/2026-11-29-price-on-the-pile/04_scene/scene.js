@@ -157,7 +157,7 @@ window.SCENE = {
     },
 
     /* ---- send: a plain cut to the card; its lines arrive as each is spoken; full, it holds dead still (only the ---- */
-    /* stripes behind it drift); no EXAMPLE tag on it (no made-up number on the card) ---- */
+    /* stripes behind it drift); no EXAMPLE tag on the full card (the E.G. $400 chip carries its own, "four" to "Good") */
     send: (k, T) => {
       const t0 = k.S('send'), d = px(k), w = (re, dd) => wordT(k, 'send', re, dd) - 0.2;
       const tThis = w(/^\W*this\b/i, 7.0), on = [w(/^point/i, 5.5), tThis, tThis + 0.6, Math.max(tThis + 0.7, w(/^\W*good/i, 8.2)), w(/^wait/i, 9.4), w(/^no$/i, 10.6)];   /* send r0, design r0: reading order */

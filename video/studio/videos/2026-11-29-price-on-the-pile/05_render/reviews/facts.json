@@ -1,14 +1,16 @@
 {
  "gate": "facts",
- "round": 0,
+ "round": 1,
  "pass": true,
- "reviewer": "claude opus (fresh agent), 2026-11-09, on render r3",
+ "reviewer": "claude opus (fresh agent), 2026-11-09, fix-check on render r4",
  "score": {
-  "numbers": 3,
+  "numbers": 4,
   "mismatches": 0
  },
- "reasons": [],
+ "reasons": [
+  "note fixed: cues.md and scene.js comment now say the full card carries no tag; the E.G. $400 chip carries its own"
+ ],
  "notes": [
-  "achrnews.com unreachable; judged against facts.json confirms (two page reads, Nov 9); the Dec 23, 2024 date rests on facts.json"
+  "achrnews.com unreachable; judged against facts.json confirms (two page reads, Nov 9)"
  ]
 }

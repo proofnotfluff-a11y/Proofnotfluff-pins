@@ -1,9 +1,9 @@
 {
  "gate": "design",
- "round": 2,
+ "round": 3,
  "pass": true,
- "reviewer": "claude opus (fresh agent), 2026-11-09",
- "bar": "4.50 after two FAILs (4.29, 4.43); also clears 4.61",
+ "reviewer": "claude opus (fresh agent), 2026-11-09, fix-check on render r4",
+ "bar": "4.50 after two FAILs; also clears 4.61",
  "score": {
   "first": 4,
   "hierarchy": 5,
@@ -15,6 +15,7 @@
   "average": 4.71
  },
  "reasons": [
-  "notes: cover tag covers most of the pile; no M7 moment; shared end card dot; end card drops NO YES, NO LIFT."
+  "the E.G. $400 chip does not hurt the card",
+  "notes left for a later polish: cover tag size, M7 moment, shared end card dot, end card fifth line"
  ]
 }

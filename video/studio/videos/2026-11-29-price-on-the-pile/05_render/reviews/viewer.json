@@ -1,6 +1,6 @@
 {
  "gate": "viewer",
- "round": 3,
+ "round": 4,
  "pass": true,
  "reviewer": "claude opus (fresh agent), 2026-11-09",
  "score": {
@@ -13,6 +13,7 @@
   "matches_idea": "same"
  },
  "reasons": [
+  "fix-check on render r4: the E.G. $400 chip helps, no answer changes",
   "minor: Say at 0.0 s can sound like an order for half a second",
   "minor: the 70% is an HVAC survey, labeled",
   "minor: the driver card is the longest stretch with no scene"

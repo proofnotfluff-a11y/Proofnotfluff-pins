@@ -27,7 +27,7 @@ behind it drift. No EXAMPLE tag on the card (no made-up number on it).
 On "is" a plain cut to two rows: top, teal: UP FRONT / A YES = A DEAL; bottom, red, on "price": AFTER THE WORK, then A PRICE = A FIGHT.
 The bottom row shakes once on "fight".
 
-## receipt "Your customers are homeowners," [sfx: blip]
+## receipt "In an ACHR News" [sfx: blip]
 A plain cut to the survey: 70% (data.js) big from the first frame, OF HOMEOWNERS SURVEYED / MORE LIKELY TO CALL / THE
 ONE UPFRONT ON PRICE under it, a row of ten houses that light one by one, the seventh on "seventy"; the tag ACHR News,
 Dec 23, 2024, HVAC on top the whole time, the houses under it, then 70% and the three lines.

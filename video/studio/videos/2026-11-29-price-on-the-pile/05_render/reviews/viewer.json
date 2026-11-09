@@ -1,15 +1,15 @@
 {
  "gate": "viewer",
- "round": 1,
+ "round": 2,
  "pass": false,
  "reviewer": "claude opus (fresh agent), 2026-11-09",
  "score": {
-  "about": "Junk haulers: point at the pile, say the price and get her yes before loading, because arguing price after the trailer is full is a fight.",
-  "gets": "a line to say at the pile, and a 70% number",
-  "stop": "the $400? tag over a full trailer",
+  "about": "Say your price at the pile and get the homeowner yes before you load anything, so you do not end up fighting over it after.",
+  "gets": "a script to use at the pile",
+  "stop": "the $400? card over a full trailer",
   "watch_to_end": "no",
-  "leave_at": "about 35 s: 8 s of HOMEOWNERS ASKED ABOUT HVAC before the 70%",
-  "confused": "a heating and cooling survey in a junk video, explained only at 45 s",
+  "leave_at": "about 36 s: one 70% card 13 s after the lesson paid off",
+  "confused": "a heating and cooling stat in a junk story",
   "matches_idea": "same"
  }
 }

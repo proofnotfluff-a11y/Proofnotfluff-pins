@@ -2,11 +2,11 @@
  "gate": "send",
  "round": 0,
  "pass": true,
- "reviewer": "claude opus (fresh agent), 2026-11-09, rerun after fix round 1",
+ "reviewer": "claude opus (fresh agent), 2026-11-09, rerun after fix round 2",
  "score": {
-  "person": "your driver",
+  "person": "driver",
   "thing": "FOR YOUR DRIVER / BEFORE YOU LIFT / POINT AT THE PILE / \"THIS LOAD IS [YOUR PRICE]. GOOD TO START?\" / WAIT FOR HER YES",
-  "held_at": "23.5 to 26.5 s, again on the end card 53.0 to 55.5 s",
+  "held_at": "23.5 to 26.5 s; end card 49.5 to 52.0 s",
   "line": "Before anything gets lifted, point at the pile and say, \"This load is four hundred. Good to start?\" Then wait for her yes.",
   "gain": "helps",
   "feeling": "relief",
@@ -14,7 +14,7 @@
   "send_line_fits": "yes"
  },
  "reasons": [
-  "minor: the HVAC proof stretch may feel borrowed and slow",
-  "minor: hold the full card about 1 s longer"
+  "minor: the voice never says driver",
+  "minor: the HVAC proof may read as borrowed"
  ]
 }

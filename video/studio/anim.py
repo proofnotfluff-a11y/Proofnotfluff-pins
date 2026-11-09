@@ -3531,6 +3531,7 @@ def cmd_selftest():
 HOOK_DIFF, HOOK_LEVEL, HOOK_MERGE, HOOK_FPS = 0.08, 40, 0.4, 15
 ACCENT_ERROR_FROM, ACCENT_ERROR_LATE = "2026-11-15", 0.5   # IMPROVE 00a-3: late accent texts fail lint from these lessons on
 ACCENT_STRICT_FROM = "2026-11-17"   # IMPROVE 00a-3 step 2 (Nov 2, end-of-day run): from these lessons on, any late accent fails (0.0 s)
+READ_ERROR_FROM, READ_ERROR_SHARE = "2026-11-29", 0.5   # IMPROVE 00a-5 step 2 (Nov 8, evening run): from these lessons on, a text held under half its read time fails lint
 HOOK_JS = """(t) => { window.__boxes = []; drawAt(t); const b = window.__boxes; window.__boxes = null;
   if (!window.__sm) { window.__sm = document.createElement('canvas'); window.__sm.width = 108; window.__sm.height = 192; }
   const g = window.__sm.getContext('2d'); g.imageSmoothingEnabled = true; g.drawImage(document.getElementById('c'), 0, 0, 108, 192);
@@ -4241,6 +4242,13 @@ def cmd_lint(slug, step=0.25):
         print(f"WARN lint accents: {len(late)} scene texts land after their spoken word (M3 wants 0.2 to 0.3 s before; "
               f"{ontime} land in time): " + "; ".join(f"'{s_[:30]}' {lead:+.2f} s vs '{w_}'" for s_, w_, lead in late[:12]))
     short = read_time_report(first_seen, last_seen, cues["duration"], step)
+    # IMPROVE 00a-5 step 2 (Nov 8, evening run): three proven lessons in a row kept 21 to 26% of their runtime on TikTok
+    # (rule 2, the middle), and the waiting lessons flash words for a third of their read time (worth-without-you: 'WHO
+    # DOES IT?' 0.2 of 2.1 s). For lessons dated from READ_ERROR_FROM on, a text held under READ_ERROR_SHARE of its read
+    # time is an ERROR (hold it longer or cut it); shorter slips stay the WARN below.
+    if day >= READ_ERROR_FROM:
+        errors += [f"ERROR lint read time: '{s_[:40]}' holds {held:.1f} of {need:.1f} s (M6: letters / 15 + 1.5 s; under half fails)"
+                   for s_, held, need in short if held < READ_ERROR_SHARE * need]
     if short:   # a warning, not an ERROR (M6, _shared/standard.md): the design gate and render critic judge it
         print(f"WARN lint read time: {len(short)} scene texts leave before a viewer can read them (M6: letters / 15 + 1.5 s): "
               + "; ".join(f"'{s_[:30]}' {held:.1f} of {need:.1f} s" for s_, held, need in short[:12]))

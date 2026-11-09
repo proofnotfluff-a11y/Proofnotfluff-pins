@@ -2019,7 +2019,18 @@ def cadence_cap(buffer, day=None):
         return b.get("perDay", 5)
     rows = sorted(cfg.get("cadence", CADENCE_DEFAULT), key=lambda r: -r["waiting"])
     cap = next((r["perDay"] for r in rows if buffer >= r["waiting"]), 1)
-    return min(cap, cfg.get("perDay", 3))
+    return min(cap, per_day_ceiling(cfg, day))
+
+
+def per_day_ceiling(cfg, day=None):
+    """posting.perDay, or posting.perDayFrom's perDay from its date on (Todd, live chat, Nov 9, 2026, 5:10 pm:
+    "from tomorrow, make and post one video a day, not three")."""
+    from zoneinfo import ZoneInfo
+    day = day or dt.datetime.now(ZoneInfo("America/Chicago")).date()
+    pf = cfg.get("perDayFrom") or {}
+    if pf.get("from") and day.isoformat() >= pf["from"]:
+        return pf.get("perDay", 1)
+    return cfg.get("perDay", 3)
 
 
 def _post_times(i, before=None):
@@ -3734,6 +3745,8 @@ def v4_selftest():
         ("v4 gates are qa, facts, render-critic, viewer", list(V4_GATES) != ["qa", "facts", "render-critic", "viewer"], False),
         ("v4 band is 18 to 35 s", [1] if any((FORMATS[f]["min_seconds"], FORMATS[f]["max_seconds"]) != (18.0, 35.0) for f in V4_FORMATS) else [], False),
         ("v4 labels: Meta and TikTok on, YouTube off", [1] if V4_LABELS != {"instagram": ("aiLabel", True), "facebook": ("aiLabel", True), "tiktok": ("aiGenerated", True), "youtube": ("aiUse", False)} else [], False),
+        ("1 a day from its date: day before keeps 3", [] if per_day_ceiling({"perDay": 3, "perDayFrom": {"from": "2026-11-10", "perDay": 1}}, dt.date(2026, 11, 9)) == 3 else [1], False),
+        ("1 a day from its date: that day caps at 1", [] if per_day_ceiling({"perDay": 3, "perDayFrom": {"from": "2026-11-10", "perDay": 1}}, dt.date(2026, 11, 10)) == 1 else [1], False),
     ]
     right = 0
     for name, probs, want_bad in cases:

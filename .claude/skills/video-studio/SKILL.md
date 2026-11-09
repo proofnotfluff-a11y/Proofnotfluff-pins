@@ -1,6 +1,6 @@
 # video-studio (post, make, learn; slots in video/config.json "posting")
 
-Each run: post the next gated lesson on four platforms, make one v4 lesson, learn. Up to 3 a day by the buffer rule (`anim.py next`), queue first (coo/constitution/video.md). Engine v4 from Nov 9, 2026 (Todd: "Make all the necessary changes"). "stop videos" halts it (video/config.json stop); "makePaused" stops making only.
+Each run: post the next gated lesson on four platforms, make one v4 lesson, learn. One a day from Nov 10, evening slot (Todd, Nov 9, 5:10 pm; `anim.py next`), queue first (coo/constitution/video.md). Engine v4 from Nov 9, 2026 (Todd: "Make all the necessary changes"). "stop videos" halts it (video/config.json stop); "makePaused" stops making only.
 
 ## Inputs (Reads)
 By step; paths under video/studio/.
@@ -18,7 +18,7 @@ By step; paths under video/studio/.
    - `speak`, push (check_repo first), wait for the Studio voice workflow (pull each minute, 15 min max), `fetch`. Credits under 3,000: tell Todd, make nothing.
    - cues.md (every row on screen written exactly; one cue marked `[payoff]` by 40%), `cues`; scene.js from `_templates/v4-verdict.scene.js`: change the rows, the place and the cue words, keep the helpers; `stills`, read the sheet, fix; `lint` PASS (safe area, size 132 rows, no hold over 4 s, no flicker, labels); `render`, `check`, `gatepack`. Aim for one render.
    - captions.json per formats.md "v4" (the dilemma, one question, a Source line; labels: Instagram, Facebook, TikTok on, YouTube off).
-5. Gates (prompts/README.md "v4"): fresh opus reviewers who never saw the build: render-critic, viewer (two steps), facts on transcript, screen and captions. Results in 05_render/reviews/<gate>.json, earlier rounds in reviews/r<n>/. At most 2 fix rounds a gate, then `anim.py shelve` and take the next story. All PASS: commit, push, `anim.py ready <slug>`.
+5. Gates (prompts/README.md "v4"): fresh opus reviewers who never saw the build: render-critic, viewer (two steps), facts on transcript, screen and captions. Results in 05_render/reviews/<gate>.json, earlier rounds in reviews/r<n>/. At most 2 fix rounds a gate, then `anim.py shelve` and take the next story. All PASS: commit, push, `anim.py ready <slug> --first`.
 6. Cloud recorder only, after the post log is recorded: `anim.py missed`; MISSED or INCOMPLETE goes first in the end message. Push after check_repo exits 0 (never force). coo/HANDOFF.md one line only when state changes.
 7. Send Todd one message: posted (4 links), made (gate lines PASS/FAIL with values, renders used), read (each lesson against its bar), held (why).
 

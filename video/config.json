@@ -130,6 +130,7 @@
     "central": "20:13"
    }
   ],
+  "perDayFrom": {"from": "2026-11-10", "perDay": 1, "slot": "evening", "note": "Todd, live chat, Nov 9, 2026, 5:10 pm: \"Decision: from tomorrow, make and post one video a day, not three. Cut the make runs to one a day to match. Record this as my decision and update the schedule.\" From Nov 10 the ceiling is 1 a day whatever the buffer; the one post goes at the evening slot (8:13 pm), the only posting task left on, because its run also reads the numbers; the lunch and end-of-day posting tasks are off and the make task runs once a day at 9:33 pm (coo/DECISIONS-2026-11-09.md). The cadence table still applies until then."},
   "makeWhenWaitingUnder": 9,
   "cadence": [
    {

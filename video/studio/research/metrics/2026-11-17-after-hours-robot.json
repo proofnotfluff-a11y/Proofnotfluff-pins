@@ -228,6 +228,43 @@
    },
    "source": "videometrics 2026-11-17-after-hours-robot.2026-11-08T11 (lunch PC run, list views only)",
    "docId": "2026-11-17-after-hours-robot.2026-11-08T11"
+  },
+  {
+   "date": "2026-11-09",
+   "readAt": "2026-11-09T18:05:00Z",
+   "depth": "list",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": "hidden",
+     "saves": "hidden",
+     "shares": "hidden",
+     "views": "hidden"
+    },
+    "instagram": {
+     "avgWatchS": "hidden",
+     "saves": "hidden",
+     "shares": "hidden",
+     "skipRate": "hidden",
+     "views": 1295
+    },
+    "tiktok": {
+     "avgWatchS": "hidden",
+     "comments": 0,
+     "likes": 10,
+     "saves": "hidden",
+     "shares": "hidden",
+     "views": 262
+    },
+    "youtube": {
+     "avgViewDurationS": "hidden",
+     "comments": 0,
+     "likes": "hidden",
+     "shares": "hidden",
+     "views": 66
+    }
+   },
+   "source": "videometrics 2026-11-17-after-hours-robot.2026-11-09T12 (lunch PC run, list views only)",
+   "docId": "2026-11-17-after-hours-robot.2026-11-09T12"
   }
  ]
 }

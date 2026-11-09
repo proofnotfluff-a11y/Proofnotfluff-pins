@@ -872,6 +872,26 @@
     "runtime_pixfont": "a8557997756e"
    },
    "posts": {}
+  },
+  {
+   "slug": "2026-11-27-worth-without-you",
+   "readyAt": "2026-11-08T20:26:22-05:00",
+   "commit": "f2d340f1ceae85d7532ceb24fa31b9b233fa0a2a",
+   "fingerprints": {
+    "script": "90b8ea777023",
+    "takes": "539d5646ae14",
+    "words": "7372280b392c",
+    "cues": "f4d8d1d5a707",
+    "scene": "7e12f4999be5",
+    "data": "4853fc599a0d",
+    "captions": "36028d0be532",
+    "mouth": "9943a4555de0",
+    "runtime_kit": "f6c60100b709",
+    "runtime_player": "0247e61a6184",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

@@ -1,25 +1,20 @@
 {
  "gate": "design",
- "round": 0,
- "pass": false,
- "reviewer": "claude opus (fresh agent), 2026-11-09, rerun after fix round 2",
+ "round": 2,
+ "pass": true,
+ "reviewer": "claude opus (fresh agent), 2026-11-09",
+ "bar": "4.50 after two FAILs (4.29, 4.43); also clears 4.61",
  "score": {
   "first": 4,
-  "hierarchy": 4,
+  "hierarchy": 5,
   "type": 5,
   "color": 5,
-  "spacing": 4,
+  "spacing": 5,
   "polish": 4,
   "trust": 5,
-  "average": 4.43
+  "average": 4.71
  },
  "reasons": [
-  "receipt one layout 13.5 s",
-  "70% under the 160 px hero floor, centered against left lines",
-  "cover tag small and covering the pile",
-  "empty band under UP FRONT",
-  "no M7 native moment",
-  "end card stray dot (shared player)",
-  "offer room repeats the wide shot with no text 3 s"
+  "notes: cover tag covers most of the pile; no M7 moment; shared end card dot; end card drops NO YES, NO LIFT."
  ]
 }

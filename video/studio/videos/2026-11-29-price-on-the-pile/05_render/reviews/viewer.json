@@ -1,15 +1,20 @@
 {
  "gate": "viewer",
- "round": 2,
- "pass": false,
+ "round": 3,
+ "pass": true,
  "reviewer": "claude opus (fresh agent), 2026-11-09",
  "score": {
-  "about": "Say your price at the pile and get the homeowner yes before you load anything, so you do not end up fighting over it after.",
-  "gets": "a script to use at the pile",
-  "stop": "the $400? card over a full trailer",
-  "watch_to_end": "no",
-  "leave_at": "about 36 s: one 70% card 13 s after the lesson paid off",
-  "confused": "a heating and cooling stat in a junk story",
+  "about": "Before your crew loads anything, say the price at the pile and get the customer yes, so you do not fight about it afterward.",
+  "gets": "something to do: a line for the driver to say at the pile, then wait for her yes. No yes, no lift.",
+  "stop": "the $400? price tag on a full trailer with THE TRAILER S FULL. SHE WON T PAY IT.",
+  "watch_to_end": "yes",
+  "leave_at": "none",
+  "confused": "none",
   "matches_idea": "same"
- }
+ },
+ "reasons": [
+  "minor: Say at 0.0 s can sound like an order for half a second",
+  "minor: the 70% is an HVAC survey, labeled",
+  "minor: the driver card is the longest stretch with no scene"
+ ]
 }

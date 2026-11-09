@@ -1,0 +1,31 @@
+{
+ "gate": "viewer",
+ "round": 0,
+ "note": "round 0 on the final render: a rerun after the last fixes changed its input (earlier rounds: reviews/r0, r1, r2)",
+ "pass": true,
+ "reviewer": "fresh opus agent, two steps",
+ "at": "2026-11-09",
+ "score": {
+  "about": "A Florida roofer turned down an $8,000 job because a flipper asked for $200 off. He says it wasn't about the money: the client said he only cares about price, not quality, and he read that as a problem job.",
+  "gets": "A side to take (smart call vs pride) and a gut feeling of relief, plus the on-screen bids ($7,500 and $7,800) that show the $200 wouldn't have made him lowest anyway.",
+  "stop": "The opening card '$8,000 JOB / HE SAID NO.' with two guys squared off in front of a house; borderline: the cartoon style reads a bit kids' channel.",
+  "watch_to_end": "yes",
+  "leave_at": "none (tempted to swipe at 28.5 s: the split screen sits unchanged while the voice slows down)",
+  "confused": "none",
+  "matches_idea": "same",
+  "comment": "Yes, his side: $200 off gets him to $7,800, still $300 over the $7,500 bid",
+  "send": "A buddy who runs a small crew and always caves on price; no one outside the trades"
+ },
+ "reasons": [
+  "Same point as the one idea; would stop, watch to the end, comment and send to one person."
+ ],
+ "notes": [
+  "The bids $7,500 and $7,800 are on screen with no voice, yet they are the most interesting fact: say them next time.",
+  "The account plate reads like a footnote and is up about 1.8 s.",
+  "The closing split runs about 4.5 s with nothing changing after 27.5 s.",
+  "The cream CLIENT: DROP $200? card looks unlike the other plates.",
+  "The client's smirk is cartoonish for a request that sounds fairly reasonable.",
+  "The cartoon style reads a bit kids' channel: a borderline stop."
+ ],
+ "after": "After this PASS one thing changed: from 3.07 to 3.77 s and in the relief beat the roofer no longer moves sideways (render critic: it read as sliding); he stays in place. No word, plate or cut changed."
+}

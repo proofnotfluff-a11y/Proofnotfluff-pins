@@ -29,3 +29,5 @@ Running it: two steps, so the viewer never sees the plan early. Step 1 sends que
 only; step 2 sends brief.md's "The one idea" line for question 6 (SendMessage to the same agent). Results go to
 V/05_render/reviews/viewer.json. `anim.py ready` checks in code that a PASS agrees with its own answers
 (viewer_review_problems). A source-matched video with no lesson still needs 2 to name what the viewer gets.
+
+v4 lessons (Format verdict, invoice or call; Todd, live chat, Nov 9, 2026, 2:11 pm: "Make all the necessary changes"): the stranger "has hired a contractor before, or works in the trades" (not only an owner); question 1 allows 35 words and asks for the point as well; step 1 adds two questions: would you comment, and which side; would you send it, to whom exactly. Small matters of taste go in "notes", not "confused". The JSON adds "comment" and "send" to the score. The PASS rule is unchanged.

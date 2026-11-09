@@ -39,6 +39,24 @@ pastes these prompts with the files and source excerpts, since Kimi has no tools
 confirms every "unconfirmed" item on its source page; the review JSON names the reviewer. Cap, error or no answer: the fresh
 opus agent as before. Render critic, buyer, design and golden stay on Claude.
 
+## v4 (Todd, live chat, Nov 9, 2026, 2:11 pm: "Make all the necessary changes"; coo/constitution/video.md; _shared/formats.md "v4")
+A v4 lesson (Format verdict, invoice or call) runs four gates and nothing above this section: qa (code: `anim.py check`), facts,
+render-critic, viewer (`anim.py gates_for`). Why: design score against views was r = 0.098, the send gate passed 18 of 18
+lessons that earned 1 share between them, and one lesson burned 24 script rounds (the audit, coo/DECISIONS-2026-11-09.md).
+- facts: on script.md before any voice; after the render once more on the transcript, cues.md, scene.js and captions.json
+  (it judges the captions too; there is no separate facts-captions gate). facts.md rules 1 to 4 and 6, plus: a real story
+  is the person's own account ("he says" for anything the source could not verify), names no person or business, lifts
+  no run of 6 or more words from the source, and a plate on screen never reads as an exact quote. Rule 5 (trades first)
+  holds. Rule 7's two-source bar is for dispatch only.
+- render-critic: render-critic.md with the v4 frame: no host, level bar or end card; scene words inside x 40 to 1040 and
+  y 250 to 1440; captions in y 1184 to 1382 may sit over bodies, never over a face or over scene words.
+- viewer: viewer.md in two steps, with two more questions in step 1 (would you comment, and which side; would you send it,
+  and to whom). The stranger has hired a contractor or works in the trades; not only an owner.
+- Rounds: at most 2 fix rounds a gate; a round 1 or 2 reviewer gets the earlier faults and may FAIL on something new only
+  for a blocker (a wrong fact, hidden or unreadable words, a broken frame, the message lost). Still failing after 2: shelve
+  the lesson (`anim.py shelve`) and take the next story. Faults go in LEARNINGS.md.
+- No design, send, story, copy, buyer or golden gate on a v4 lesson.
+
 ## Smoother line (Todd, live chat, Nov 6, 2026, 7:14 pm: "Go with your recommendations for all")
 Why: on Nov 6 four runs queued 0 new lessons. Every round a new reviewer judged from scratch and found something new, so
 fixes never converged (lsa-max-bid: 24 script rounds). These rules make a fix round converge. Every bar above stands.

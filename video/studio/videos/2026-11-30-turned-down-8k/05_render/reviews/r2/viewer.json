@@ -1,0 +1,27 @@
+{
+ "gate": "viewer",
+ "round": 2,
+ "pass": true,
+ "reviewer": "fresh opus agent, two steps",
+ "at": "2026-11-09",
+ "score": {
+  "about": "A Florida roofer turned down an $8,000 job because a house flipper asked for $200 off and said he only cares about price, not quality. Was walking away smart, or just pride?",
+  "gets": "A side to take",
+  "stop": "$8,000 JOB / HE SAID NO. at 0.0 s plus the spoken line",
+  "watch_to_end": "yes",
+  "leave_at": "none",
+  "confused": "none",
+  "matches_idea": "same",
+  "comment": "yes, smart call",
+  "send": "a buddy who runs a small roofing or remodel crew"
+ },
+ "notes": [
+  "0.0 to 1.0 s: the small blue object in the client's hand is unclear (removed in the next render).",
+  "1.5 to 3.5 s: the wide shot shrinks the characters (replaced by a close shot of the roofer).",
+  "21.0 s: the roofer stands on an empty frame (a TO HIM: plate added).",
+  "25.5 s: the right panel starts empty (it starts with OR).",
+  "29.0 s: the ? reads as doubt on the smart side (removed).",
+  "The last line is spoken slower than the rest.",
+  "6.0 s: the client's wink tips him as the bad guy."
+ ]
+}

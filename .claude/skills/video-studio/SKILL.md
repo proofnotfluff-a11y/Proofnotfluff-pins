@@ -1,29 +1,27 @@
 # video-studio (post, make, learn; slots in video/config.json "posting")
 
-Each run: post the next gated lesson on four platforms, make one, learn. Up to 3 a day by the buffer rule (`anim.py next`; Todd, Nov 7), queue first, each unique (coo/constitution/video.md). "stop videos" halts it (video/config.json stop).
+Each run: post the next gated lesson on four platforms, make one v4 lesson, learn. Up to 3 a day by the buffer rule (`anim.py next`), queue first (coo/constitution/video.md). Engine v4 from Nov 9, 2026 (Todd: "Make all the necessary changes"). "stop videos" halts it (video/config.json stop); "makePaused" stops making only.
 
 ## Inputs (Reads)
-By step and section; paths under video/studio/.
-- All: coo/constitution/video.md, PRINCIPLES.md, CONTEXT.md, LEARNINGS.md ("Rules learned", last 10 lines).
-- 2 POSTING.md (that platform); 3 research/PERFORMANCE.md "Real time"; 4 REBUILD.md, top of research/STORIES.md or PROVEN.md, the stage's CONTEXT.md and the _shared/ file it names; 5 prompts/README.md; 6 IMPROVE.md "The bar first".
-- Never: research/IDEAS.md, KNOWLEDGE.md (Mondays only), DESIGN_DIRECTOR.md (gate agent), research/runs/, archive/.
+By step; paths under video/studio/.
+- All: coo/constitution/video.md, PRINCIPLES.md, LEARNINGS.md ("Rules learned", last 10 lines).
+- 2 POSTING.md (that platform); 3 research/PERFORMANCE.md "Real time", research/TEST-2026-11-23.md; 4 _shared/formats.md "v4" only, _templates/v4-*, the newest v4 lesson's scene.js; 5 prompts/README.md "v4".
+- Never: the formats.md sections above "v4", IMPROVE.md (frozen to Nov 23), research/IDEAS.md, KNOWLEDGE.md, research/runs/, archive/, coo/history/.
 
 ## Process (Executes)
 1. Date, preflight `video-studio`, config stop: tell Todd, end.
-2. Post: `anim.py next`, then `anim.py postcopy <slug>` (renders its gated commit). POSTING.md for each missing platform (Claude in Chrome): Instagram (normal reel), TikTok, YouTube, Facebook last; a failed Facebook step never blocks. A refused upload: use postcopy's path. Chrome unreachable or a stop condition: skip posting, tell Todd one line, go on to 3.
-3. Every run: diagnosis (PERFORMANCE.md, Real time). Evening: the deep read. Mondays (lunch): research run (research/README.md, fresh opus agent), then each posted lesson's numbers in Chrome (views, average watch, shares, saves) into research/metrics/<slug>.json; rank IDEAS.md by them; `anim.py recuts` and add an IDEAS.md re-cut line for each due top-third lesson (POSTING.md).
-4. Queue rule: `anim.py waiting`. Make while fewer than 6 wait (Todd, Nov 7), in order: a lesson or short built but not queued; a short for the newest queued story lesson with none (_shared/formats.md "Short"); then the lane `anim.py nextlane` names (2 of 3 proven to Nov 14): a PROVEN.md row (formats.md "Proven") or the next Ready story (REBUILD.md, STORIES.md). Never from IDEAS.md or the old lanes (Nov 6). 6 or more: make none, ship step 6. Slug <date>-<words>; each lesson its own worlds (_shared/sets.md). Stages 01 to 05 by their contracts:
-   - brief.md and facts.json: every number re-read on its source page today; numbers block; `anim.py data`.
-   - brief.md's Hook pattern, Treatment, Example and Music lines: `anim.py variety <slug>` PASS before `speak` (a rebuild keeps its example; change the hook pattern if it fails). Music: a tune neither neighbor in line plays (`anim.py tunes <slug>`; _shared/sound.md); a rebuild picks a free tune the same way.
-   - script.md by viral-script (bands in _shared/formats.md), held to _shared/standard.md. Send moment (Todd, Nov 7): brief.md `- **Send:** <who>: <thing>`, end card names who, one `[send]` cue held 2.5 s before half (formats.md); story 50 to 65 s, 70 s cap; `sendcheck` PASS.
-   - `speak`, push (check_repo first), wait for the Studio voice workflow (pull each minute, 15 min max), `fetch`; flags 0 and pace 160 to 195 or re-roll that take once. takes.json credits left under 3,000: tell Todd once and make no new lesson until they reset.
-   - cues.md (`music: rooms <tune>`, rooms, one beat every 2 to 4 s), `cues`; scene.js from the last lesson's pattern and the kit, motion rules in _shared/looks.md; `stills`, read the sheets, fix; `lint` PASS; `render`, `check`, `gatepack`.
-   - captions.json: per platform from _shared/captions.md. First draft: Kimi's captions-draft job, sent with the facts job right after `fetch` (kimi-jobs skill), then edit it yourself.
-5. Gates from video/studio/prompts/ (README: order and bars), fresh opus agents that never saw the build, results in 05_render/reviews/<gate>.json. Facts and facts-captions go to Kimi first (kimi-jobs skill, Claude checks); cap, error or no answer: opus. Fix rounds go on until all pass (design bar 4.50 after 2 FAILs; Todd, Oct 31); finish unqueued ones first, in `anim.py tomake` order (prompts/story.md). Faults go in LEARNINGS.md; lint-catchable ones become lint rules. All PASS: commit, `anim.py ready <slug>` (push first).
-6. Every slot: one IMPROVE.md item in the shared runtime, proven on stills of today's lesson and lesson 1 before step 4's render; log it under Done.
-7. Cloud recorder only, after the post log is recorded: `anim.py missed`; MISSED or INCOMPLETE goes first in the end message (slot, lesson, likely cause). Push after check_repo exits 0 (never force). Scoreboard rows (video engine todos, agents/video-studio), counts only. coo/HANDOFF.md one line only when state changes.
-8. Send Todd one message: posted (4 links), made (gate lines PASS/FAIL with values), improved (one line), held (why).
+2. Post: `anim.py next`, then `anim.py postcopy <slug>` (renders its gated commit). POSTING.md for each missing platform (Claude in Chrome): Instagram, TikTok, YouTube, Facebook last; a failed Facebook step never blocks. AI labels as captions.json settings say for a v4 lesson. Chrome unreachable or a stop condition: skip posting, tell Todd one line, go on.
+3. Every run: one line per lesson under 72 h in PERFORMANCE.md's log, against the bars in TEST-2026-11-23.md. Evening: the deep read. No rule, gate or format change before Nov 23 (the freeze); findings go to LEARNINGS.md.
+4. Make while fewer than 6 wait and makePaused is unset: first a v4 lesson built but not queued; else one new v4 lesson, its format the one TEST-2026-11-23.md names for the day. `anim.py new <date>-<words>` copies the v4 templates. Stages:
+   - Story: a real, public trade dispute, price fight or phone story (the box's pulse, press, public posts), read today. brief.md: Format, The one idea, Pull (conflict, dollars, send: all yes), breadth (a tech or a homeowner would stop too), Source. facts.json: every number and claim with the source's own words. No person or business named.
+   - script.md: 45 to 95 words, the fight in the first sentence, "he says" on anything the source could not verify, the owner's rule as the reason, a closing question that splits the room. Facts gate on script.md before any voice.
+   - `speak`, push (check_repo first), wait for the Studio voice workflow (pull each minute, 15 min max), `fetch`. Credits under 3,000: tell Todd, make nothing.
+   - cues.md (every row on screen written exactly; one cue marked `[payoff]` by 40%), `cues`; scene.js from `_templates/v4-verdict.scene.js`: change the rows, the place and the cue words, keep the helpers; `stills`, read the sheet, fix; `lint` PASS (safe area, size 132 rows, no hold over 4 s, no flicker, labels); `render`, `check`, `gatepack`. Aim for one render.
+   - captions.json per formats.md "v4" (the dilemma, one question, a Source line; labels: Instagram, Facebook, TikTok on, YouTube off).
+5. Gates (prompts/README.md "v4"): fresh opus reviewers who never saw the build: render-critic, viewer (two steps), facts on transcript, screen and captions. Results in 05_render/reviews/<gate>.json, earlier rounds in reviews/r<n>/. At most 2 fix rounds a gate, then `anim.py shelve` and take the next story. All PASS: commit, push, `anim.py ready <slug>`.
+6. Cloud recorder only, after the post log is recorded: `anim.py missed`; MISSED or INCOMPLETE goes first in the end message. Push after check_repo exits 0 (never force). coo/HANDOFF.md one line only when state changes.
+7. Send Todd one message: posted (4 links), made (gate lines PASS/FAIL with values, renders used), read (each lesson against its bar), held (why).
 
 ## Outputs (Writes)
-- video/studio/videos/<slug>/ (text and JSON; audio and MP4 stay off main), reviews, queue.json via anim.py, IMPROVE.md, research files.
-- Never: post a lesson that is not in the queue or whose fingerprints changed, post twice, boost, spend, reply, change a profile or setting, enter a password, delete a post, post to another platform or account; print or log the ElevenLabs key.
+- video/studio/videos/<slug>/ (text and JSON; audio and MP4 stay off main), reviews, queue.json via anim.py, research files, LEARNINGS.md.
+- Never: post a lesson that is not in the queue or whose fingerprints changed, post twice, boost, spend, reply, change a profile or setting, enter a password, delete a post, post to another platform or account; print or log the ElevenLabs key; change a rule, a gate or anim.py during the freeze.

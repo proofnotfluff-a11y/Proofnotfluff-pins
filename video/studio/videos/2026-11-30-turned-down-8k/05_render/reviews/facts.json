@@ -1,0 +1,25 @@
+{
+ "gate": "facts",
+ "round": 2,
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-09",
+ "score": {
+  "numbers": 4,
+  "mismatches": 0
+ },
+ "rounds": {
+  "0": "FAIL on script.md before any voice (reviews/r0/facts.json), fixed in script r1",
+  "1": "PASS on the transcript, cues, scene and captions",
+  "2": "PASS, fix-check of every changed plate and the caption phrase"
+ },
+ "after": "After round 2 the scene gained two plates with no claim in them (TO HIM: before PROBLEM / JOB, and OR alone before OR / PRIDE:) and lost the VS mark; cues.md lists them; nothing a fact rests on changed.",
+ "notes": [
+  "'CLIENT CARED / ABOUT PRICE / NOT QUALITY' carries no attribution on the plate; the voice says 'The client had told him' at that moment and the account plate comes first: not a blocker.",
+  "Never add quote marks to 'CLIENT: / DROP / $200?': it is a paraphrase.",
+  "The source says both lower bids included all wood replacement; not needed on screen."
+ ],
+ "sources_checked": [
+  "https://dailydot.com/florida-roofer-walked-away-from-an-8000-job-over-one-small-detail-and-he-has-no-regrets: Jun 29, 2026; estimate just under $8,000 against the $8,000 headline; a house being flipped; bids of $7,500 and $7,800; the client asked for $200 off to stay competitive and said he cared only about price, not quality; the roofer refused and walked, says it was not the $200, calls it a problem job, says he feels relief; the outlet could not verify the negotiation; no person named."
+ ]
+}

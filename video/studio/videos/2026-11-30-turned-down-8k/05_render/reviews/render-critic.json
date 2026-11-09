@@ -1,0 +1,24 @@
+{
+ "gate": "render-critic",
+ "round": 1,
+ "note": "round 1 on the final render (the gate was rerun from round 0 after the last viewer fixes changed its input; earlier rounds: reviews/r0, r1, r2)",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-09",
+ "score": {
+  "faults": 0
+ },
+ "rounds": {
+  "0 (final render line)": "FAIL, 1 fault: from 3.07 to 3.77 s the roofer glided sideways with still legs (the kit has no walk); fixed: no figure moves sideways anywhere"
+ },
+ "checked": [
+  "1.7 to 3.8 s: he stays in place, shrugs, raises a hand; the plate clears his hat and face",
+  "23.3 to 25.3 s: he stays in place; his hand covers no words",
+  "30 fps sweep of all 915 frames: no near-black frame, nothing vanishes for a frame, no sideways glide",
+  "hook from 0.0 s; $8,000, $200, $7,500 and $7,800 readable when reached; words inside the safe area; no caption over eyes; voice ends 29.51 s of 30.50 s"
+ ],
+ "notes": [
+  "In the closing split the plates' dark backing reaches x 33 and x 1037; the letters sit well inside the margin.",
+  "His hat pompom comes within about 20 px of the RELIEF plate."
+ ]
+}

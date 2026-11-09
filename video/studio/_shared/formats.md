@@ -146,3 +146,42 @@ it is a new video that teaches the one thing an owner can do this week from the 
   Instagram is no worse. Otherwise stop making them and tell Todd with the numbers. Fewer than 3 shorts read by Nov 14:
   the verdict waits until 3 are.
 
+
+## v4 (Todd, live chat, Nov 9, 2026, 2:11 pm: "Make all the necessary changes"; coo/constitution/video.md)
+Every new lesson from 2026-11-30 on. Why: 80 posts earned 12,842 views and 1 share; owner lessons reach owners only; viewers
+gave every lesson 3 to 29 s whatever its length; no gate score moved views (the audit, coo/DECISIONS-2026-11-09.md). A v4
+video is a short story a stranger can judge, with the owner's rule as its payoff. The sections above bind only the
+old-format lessons already made.
+
+Three formats (brief.md `- **Format:**`), each a named show with a new case every time (never a series):
+| Format | What the viewer sees | Payoff for the owner |
+|---|---|---|
+| `verdict` | a real dispute between a tradesperson and a customer, acted by the cast, ending on "you decide" | the rule that prevents it |
+| `invoice` | a bill or quote built line by line: where the money goes | how to say the price so it sticks |
+| `call` | a phone call as captions and two speakers, said once to be a reenactment | what to say or send |
+
+Pick the story (brief.md `- **Pull:**`, all three yes): two sides in conflict; a dollar figure; someone specific to send it
+to. Then breadth: would a tech or a homeowner stop too? An owner-only lesson is a site page, not a video. Sources: a
+publicly reported or publicly posted trade story, read that run (facts.json), told in our own words as the person's own
+account ("he says"), no person or business named, the source named in every caption. A made-up or acted scene says so once.
+
+The build (anim.py holds each line: `lint`, `check`, `ready`):
+- 18 to 35 s, 45 to 95 spoken words (a note). Ends 1 s after the last word; no end card, no send card, no host, no level bar.
+- Every word on screen is size 132 or larger (66 px caps; size 66 reads 33 px, which the first render critic failed as
+  too small for a phone). The platform shows the handle, so the frame does not.
+- scene.js sets `v4: true, host: false, endCard: false` and draws the whole frame. Words stay inside x 40 to 1040 and
+  y 250 to 1170; the captions own y 1184 to 1382 (the player draws them: two or three big words, the spoken one lit);
+  below y 1440 and the top 250 px belong to the platform. Right of x 930 is clear only above y 1040.
+- Frame 0 is the fight: the stake in 2 to 8 words, as big as fits, the people in it close. The picture changes by 1 s and
+  twice by 3 s. Close shots (waist up, faces between y 700 and 1100, plates above them) carry the story; one wide shot sets the place.
+- cues.md marks one cue `[payoff]`: the outcome or the answer, by 40% of the runtime.
+- No set of words stands unchanged over 4 s. Plain cuts only.
+- The last line is a question that splits the room; the last frame shows both sides, each with its case.
+- captions.json: line 1 the dilemma (under 100 characters), one question, a `Source:` line, 3 to 5 hashtags (2 to 3 on
+  Facebook and YouTube); the YouTube title is the dilemma in 70 characters or fewer with a question or a dollar figure.
+  AI label on for Instagram, Facebook and TikTok, off on YouTube (`V4_LABELS`).
+- Start from `_templates/v4-verdict.scene.js` (the plate, stampPlate, yard and cast helpers): a new lesson changes the
+  rows, the cue times and the place, not the machinery. Aim for one render.
+
+Gates, in order (prompts/README.md "v4"): facts on script.md before any voice; after the render: render critic, viewer,
+then facts once more on the transcript, screen and captions. Two fix rounds a gate at most, then shelve it.

@@ -1,0 +1,57 @@
+{
+ "schema": "pnf.studio.qa.v1",
+ "slug": "2026-11-30-turned-down-8k",
+ "mp4Sha256": "ba3478f55bb68f65f3083a18d28022527007d3a5e2dde2c6046da4289c056f58",
+ "checks": [
+  {
+   "name": "length",
+   "value": 30.5,
+   "pass": true,
+   "detail": "30.50 s (18.0 to 35.0, verdict lesson, end card included)"
+  },
+  {
+   "name": "loudness",
+   "value": {
+    "lufs": -14.3,
+    "truePeak": -3.3
+   },
+   "pass": true,
+   "detail": "-14.3 LUFS (target -14 +/- 1), true peak -3.3 dBTP (at most -1.5)"
+  },
+  {
+   "name": "black",
+   "value": [],
+   "pass": true,
+   "detail": "0 black stretch(es) of 0.5 s or more"
+  },
+  {
+   "name": "frozen",
+   "value": [],
+   "pass": true,
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 29.61 s"
+  },
+  {
+   "name": "flat",
+   "value": [],
+   "pass": true,
+   "detail": "0 flat stretch(es) of 1.2 s or more under 0.1 before the end card at 29.61 s"
+  },
+  {
+   "name": "file",
+   "value": {
+    "sha256": "ba3478f55bb68f65f3083a18d28022527007d3a5e2dde2c6046da4289c056f58",
+    "bytes": 2789832
+   },
+   "pass": true,
+   "detail": "H.264 1080x1920 30 fps, AAC, 2.8 MB, decodes clean"
+  },
+  {
+   "name": "voice",
+   "value": "whisper medium.en int8, re-spelled from script.md",
+   "pass": true,
+   "detail": "whisper medium.en int8, re-spelled from script.md, 0 flag(s)"
+  }
+ ],
+ "pass": true,
+ "at": "2026-11-09T16:11:35-05:00"
+}

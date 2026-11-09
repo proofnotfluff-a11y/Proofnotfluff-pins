@@ -1,0 +1,25 @@
+{
+ "gate": "viewer",
+ "round": 0,
+ "pass": false,
+ "reviewer": "fresh opus agent, two steps",
+ "at": "2026-11-09",
+ "score": {
+  "about": "A Florida roofer turned down an $8,000 job because a flipper wanted $200 off, and the video asks whether that was smart or just pride.",
+  "gets": "A side to take",
+  "stop": "The $8,000 JOB / HE SAID NO card at 0.0 s",
+  "watch_to_end": "yes",
+  "leave_at": "none",
+  "confused": "6.5 to 12.5 s: 'He says the client was a flipper' plays over the client alone, so he looks like the one talking",
+  "matches_idea": "close",
+  "comment": "yes, the smart call side",
+  "send": "a buddy who runs a small roofing or remodeling crew"
+ },
+ "reasons": [
+  "matches_idea close: the takeaway kept was the $200 standoff, not that a price-only client is a problem job; put the idea on the last frame.",
+  "6.5 to 12.5 s: show the roofer talking when the voice says 'He says'.",
+  "17.0 s: the small HE SAYS. tag is unreadable and brief.",
+  "25.5 s: the empty right half before OR PRIDE? reads as a glitch.",
+  "SOURCE: THE DAILY DOT does not say what the original was."
+ ]
+}

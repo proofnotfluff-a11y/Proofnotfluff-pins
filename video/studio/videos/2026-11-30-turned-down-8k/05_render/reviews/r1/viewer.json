@@ -1,0 +1,27 @@
+{
+ "gate": "viewer",
+ "round": 1,
+ "pass": false,
+ "reviewer": "fresh opus agent, two steps",
+ "at": "2026-11-09",
+ "score": {
+  "about": "A Florida roofer turned down an $8,000 job from a flipper who wanted $200 off. He says the money wasn't the issue: a client who only cares about price, not quality, means a problem job. Smart call or pride?",
+  "gets": "A side to take",
+  "stop": "The $8,000 JOB / HE SAID NO. card and the first line",
+  "watch_to_end": "yes",
+  "leave_at": "none",
+  "confused": "25.5 to 30.0 s: the client stood under OR PRIDE with a VS between them, so pride read as the client's",
+  "matches_idea": "same",
+  "comment": "yes, smart call",
+  "send": "a buddy who runs his own small crew and gives in to price shoppers"
+ },
+ "reasons": [
+  "25.5 to 30.0 s: show only the roofer on both sides of the split and drop the VS.",
+  "21.0 s: 'To him,' played over the client alone; cut to the roofer on 'To him'."
+ ],
+ "notes": [
+  "The two lower bids make the $200 ask look odd: a roofer will notice (the source's own numbers; left as reported).",
+  "The account plate was up about 1 s.",
+  "The wide shot from 1.5 to 3.5 s held still."
+ ]
+}

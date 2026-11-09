@@ -1,0 +1,20 @@
+{
+ "gate": "render-critic",
+ "round": 0,
+ "pass": false,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-09",
+ "score": {
+  "faults": 11
+ },
+ "reasons": [
+  "10 labels and kickers drawn at size 52 or 66 read about 33 px of letter height, under the 40 px phone minimum (CLIENT WANTED, SOURCE: THE DAILY DOT, LOWER BID, THE CLIENT:, HIS ASK:, HE SAYS., HE ONLY CARED ABOUT, HE FELT, OR, PROOFNOTFLUFF).",
+  "In the closing split the roofer's teal jacket blends into the teal panel, so he reads as a head and hands with no torso."
+ ],
+ "notes": [
+  "Hook PASS: $8,000 JOB at 0.0 s, HE SAID NO. by 0.5 s.",
+  "Every spoken number on screen as it is said.",
+  "Voice ends 0.99 s before the video ends.",
+  "No flash, no near-black frame."
+ ]
+}

@@ -2795,7 +2795,7 @@ V4_SAFE = (40, 250, 1040, 1440)   # x0, y0, x1, y1: clear of the platform's top 
 V4_SIDE = (930, 1040)    # right of x 930 is clear only above y 1040 (the like, comment and share buttons sit below)
 V4_HOLD_MAX = 4.0        # no set of words stands unchanged longer than this
 V4_PAYOFF_BY = 0.40      # the cue marked [payoff] starts by this share of the runtime
-V4_TEXT_FLOOR = 42       # ink height in frame units
+V4_TEXT_FLOOR = 100      # a text row's ink box in frame units (size 132 draws about 114, size 66 about 57): size 132 or more, 66 px caps (render critic, Nov 9: size 66 reads 33 px, too small for a phone)
 V4_LABELS = {"instagram": ("aiLabel", True), "facebook": ("aiLabel", True), "tiktok": ("aiGenerated", True), "youtube": ("aiUse", False)}
 PAYOFF_MARK = re.compile(r"\[payoff\]", re.I)
 
@@ -3728,6 +3728,9 @@ def v4_selftest():
         ("v4 a card held 6 s", hold_problems(run(["A"] * 8 + ["B"] * 24 + ["C"] * 4), 0.25), True),
         ("v4 a card held to the end 5 s", hold_problems(run(["A"] * 8 + ["B"] * 20), 0.25), True),
         ("v4 an empty stretch is not a held card", hold_problems(run(["A"] * 8 + [""] * 30 + ["B"] * 8), 0.25), False),
+        ("v4 a plate that drops out for one frame", flicker_problems(["A|B"] * 5 + ["A"] + ["A|B"] * 5), True),
+        ("v4 a plate that drops out for two frames", flicker_problems(["A|B"] * 5 + ["A", "A"] + ["A|B"] * 5), True),
+        ("v4 a real change is not a flicker", flicker_problems(["A"] * 5 + ["A|B"] * 5 + ["C"] * 5), False),
         ("v4 gates are qa, facts, render-critic, viewer", list(V4_GATES) != ["qa", "facts", "render-critic", "viewer"], False),
         ("v4 band is 18 to 35 s", [1] if any((FORMATS[f]["min_seconds"], FORMATS[f]["max_seconds"]) != (18.0, 35.0) for f in V4_FORMATS) else [], False),
         ("v4 labels: Meta and TikTok on, YouTube off", [1] if V4_LABELS != {"instagram": ("aiLabel", True), "facebook": ("aiLabel", True), "tiktok": ("aiGenerated", True), "youtube": ("aiUse", False)} else [], False),
@@ -4415,6 +4418,16 @@ def hold_problems(samples, step, limit=None):
     return out
 
 
+def flicker_problems(seq, fps=30):
+    """v4: seq is the scene's words on every frame, in order. A frame whose words differ from the frame before while the
+    frame 1 or 2 later matches the frame before is a flicker: something dropped out and came back."""
+    out = []
+    for i in range(1, len(seq) - 2):
+        if seq[i] != seq[i - 1] and (seq[i + 1] == seq[i - 1] or seq[i + 2] == seq[i - 1]) and (not out or i / fps - out[-1][0] > 0.2):
+            out.append((i / fps, seq[i - 1], seq[i]))
+    return [f"{t:.2f} s: the words on screen change for a frame or two and come back ('{a[:40]}' to '{b_[:40] or 'nothing'}')" for t, a, b_ in out]
+
+
 def v4_static_problems(slug):
     """The v4 checks that need no browser: the payoff mark, the word band (a note), the captions and the plain cuts."""
     out = []
@@ -4461,8 +4474,15 @@ def lint_v4(slug, step=0.25):
                     hits.setdefault(("text on text", x["s"] + " / " + y["s"]), []).append(t)
         sigs.append((round(t, 3), tuple(sorted((x["s"].strip(), round(x["x0"]), round(x["y0"]), round(x["x1"]), round(x["y1"])) for x in texts))))
         t += step
+    # every frame once more, words only: a set of words that vanishes or changes for 1 or 2 frames and comes back is a
+    # flicker (Nov 9: a plate dropped out for one frame between two stamps and no gate saw it; the 0.25 s steps missed it)
+    seq = []
+    for i in range(int(cues["duration"] * 30)):
+        seq.append(pg.evaluate(f"(() => {{ window.__boxes = []; drawAt({i / 30:.4f}); const r = window.__boxes; window.__boxes = null; "
+                               "return r.filter((x) => x.tag === 'scene' && x.a > 0.6 && x.s.trim()).map((x) => x.s.trim()).sort().join('|'); })()"))
     b.close(); pw.stop()
     errors = [f"ERROR lint hook: {x}" for x in hook_bad]
+    errors += [f"ERROR lint flicker: {x}" for x in flicker_problems(seq)]
     errors += [f"ERROR lint v4: {x}" for x in v4_static_problems(slug)]
     errors += [f"ERROR lint hold: {x}" for x in hold_problems(sigs, step)]
     for (kind, what), ts in sorted(hits.items(), key=lambda kv: kv[1][0]):
@@ -4477,7 +4497,7 @@ def lint_v4(slug, step=0.25):
                 prev = x
         for a0, a1 in runs:
             errors.append(f"ERROR lint {a0:5.2f} to {a1:5.2f} s: {kind}: {what[:70]}")
-    errors += [f"ERROR lint type: '{s_}' is {h_} px tall ({V4_TEXT_FLOOR} or more)" for s_, h_ in sorted(small.items(), key=lambda kv: kv[1])
+    errors += [f"ERROR lint type: '{s_}' is drawn {h_} px tall ({V4_TEXT_FLOOR} or more: size 132 up, so the caps are 66 px)" for s_, h_ in sorted(small.items(), key=lambda kv: kv[1])
                if h_ < V4_TEXT_FLOOR and any(ch.isalnum() for ch in s_)]
     wp = vdir(slug, "02_transcript", "words.json")
     n = len(json.load(open(wp))["words"]) if os.path.exists(wp) else 0
@@ -4743,11 +4763,14 @@ def cmd_new(slug):
         raise SystemExit(f"ERROR new: {slug} exists")
     for sub in ["01_voice", "02_transcript", "03_cues", "04_scene/assets", "05_render"]:
         os.makedirs(os.path.join(d, sub))
-    for f in ["brief.md", "script.md"]:
-        shutil.copy(os.path.join(HERE, "_templates", f), os.path.join(d, "01_voice", f))
-    shutil.copy(os.path.join(HERE, "_templates", "cues.md"), os.path.join(d, "03_cues", "cues.md"))
-    shutil.copy(os.path.join(HERE, "_templates", "scene.js"), os.path.join(d, "04_scene", "scene.js"))
-    print(f"new: {d}")
+    v4 = os.path.basename(slug)[:10] >= V4_FROM   # every lesson from 2026-11-30 on is v4 (coo/constitution/video.md)
+    for f, src in [("brief.md", "v4-brief.md" if v4 else "brief.md"), ("script.md", "script.md")]:
+        shutil.copy(os.path.join(HERE, "_templates", src), os.path.join(d, "01_voice", f))
+    shutil.copy(os.path.join(HERE, "_templates", "v4-cues.md" if v4 else "cues.md"), os.path.join(d, "03_cues", "cues.md"))
+    shutil.copy(os.path.join(HERE, "_templates", "v4-verdict.scene.js" if v4 else "scene.js"), os.path.join(d, "04_scene", "scene.js"))
+    if v4:
+        open(os.path.join(d, "04_scene", "data.js"), "w").write("window.DATA = {};\n")
+    print(f"new: {d}" + (" (v4: _shared/formats.md \"v4\")" if v4 else ""))
 
 
 def main():

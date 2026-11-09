@@ -31,6 +31,7 @@ matches. So: the keyword in the first line, said out loud in the first seconds, 
 
 No AI voice line in any caption (Todd, Oct 29, 2026, 10:28 am: "don't put this on the video captions: \"Narrated by an AI
 version of my own voice.\""). AI labels: TikTok on, the rest off (Todd, Oct 31, 2026: label where the rules require it; the voice is an AI clone; POSTING.md).
+From the first v4 lesson (2026-11-30; Todd, Nov 9, 2026, 2:11 pm: "Make all the necessary changes"): AI label on for Instagram, Facebook and TikTok, off on YouTube. Why: Meta's help page lists "a reel with a realistic AI-generated voiceover" as needing a label (help.instagram.com/761121959519495, read Nov 9, 2026); YouTube lists cloning your own voice as not needing one. A v4 caption follows _shared/formats.md "v4" (the dilemma, one question, a Source line), not the six steps above; `anim.py lint` checks it (captions_v4_problems).
 
 ## One destination (Todd, live chat, Nov 7, 2026, 8:33 am: "Go", to the social engine audit's recommendation 6)
 Why: 56 posts, about 8,000 views, 0 follows and 1 recorded link click. Views that point nowhere do not move the business.

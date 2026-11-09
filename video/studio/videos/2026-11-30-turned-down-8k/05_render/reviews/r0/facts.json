@@ -1,0 +1,16 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "stage": "script.md before any voice",
+ "pass": false,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-09",
+ "score": {
+  "numbers": 5,
+  "mismatches": 0
+ },
+ "reasons": [
+  "script.md line 1 repeated a 6-word run of the headline ('walked away from an $8,000 job'): say 'turned down'.",
+  "script.md line 3 gave his reason as the haggle, unattributed; the article quotes him saying it was not the $200 difference he walked from: he points to a client who cared only about price, not quality, and a problem job. Fixed in script r1."
+ ]
+}

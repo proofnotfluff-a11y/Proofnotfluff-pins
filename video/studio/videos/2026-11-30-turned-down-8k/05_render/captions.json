@@ -1,0 +1,61 @@
+{
+ "schema": "pnf.studio.captions.v1",
+ "keywords": {
+  "primary": "roofer turned down job",
+  "secondary": [
+   "contractor pricing",
+   "client wants a discount"
+  ],
+  "trades": [
+   "roofing",
+   "contracting"
+  ]
+ },
+ "instagram": {
+  "caption": "A roofer turned down an $8,000 job after the client asked for $200 off. Smart call, or pride?\nHe says it wasn't about the $200. The client had told him he only cares about price, not quality, and to him that meant a problem job.\nWould you have taken the job?\nSend this to the one on your crew who always gives the discount.\nSource: The Daily Dot, Jun 29, 2026. It is the roofer's own account, and the estimate was just under $8,000.\n\n#roofing #contractorlife #homeservicebusiness #smallbusinessowner",
+  "settings": {
+   "aiLabel": true,
+   "shareToFacebook": false
+  }
+ },
+ "tiktok": {
+  "caption": "A roofer turned down an $8,000 job after the client asked for $200 off. Smart call, or pride?\nHe says it wasn't about the $200: a client who only cares about price, not quality, is a problem job to him.\nWould you have taken it?\nSource: The Daily Dot, Jun 29, 2026. It is the roofer's own account, and the estimate was just under $8,000.\n#roofing #contractorlife #homeservicebusiness #smallbusinessowner",
+  "settings": {
+   "aiGenerated": true,
+   "commercialDisclosure": false,
+   "suggestKeywords": [
+    "roofer turns down job",
+    "contractor discount",
+    "roofing business"
+   ]
+  }
+ },
+ "facebook": {
+  "caption": "A roofer turned down an $8,000 job after the client asked for $200 off. Smart call, or pride?\nHe says it wasn't about the $200. The client had told him he only cares about price, not quality, and to him that meant a problem job.\nWould you have taken the job?\nSource: The Daily Dot, Jun 29, 2026. It is the roofer's own account, and the estimate was just under $8,000.\n#roofing #contractorlife",
+  "settings": {
+   "aiLabel": true,
+   "audience": "Public"
+  }
+ },
+ "youtube": {
+  "title": "Roofer Turns Down $8,000 Job When Client Wants $200 Off. Right Call?",
+  "description": "A roofer turned down an $8,000 job after the client asked for $200 off. Smart call, or pride?\nHe says it wasn't about the $200. The client had told him he only cares about price, not quality, and to him that meant a problem job. He says he felt relief.\n\nWould you have taken the job?\n\nSource: The Daily Dot, Jun 29, 2026. It is the roofer's own account, and the estimate was just under $8,000.\nFree missed call cost calculator for trade owners: https://proofnotfluff.com/missed-call-cost-calculator/\n#roofing #contractorlife",
+  "tags": [
+   "roofer turns down job",
+   "roofing business",
+   "contractor pricing",
+   "client wants discount",
+   "problem client",
+   "home service business",
+   "contractor life",
+   "roofing contractor"
+  ],
+  "settings": {
+   "madeForKids": false,
+   "aiUse": false,
+   "category": "Education",
+   "language": "English",
+   "visibility": "Public"
+  }
+ }
+}

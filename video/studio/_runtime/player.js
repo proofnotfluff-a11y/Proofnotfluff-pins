@@ -18,8 +18,15 @@
   // the display pixel font at size 66 (one font pixel per low-res pixel: 33 px caps at 1080 wide, was 21 px at 39), two
   // rows at most, lowercase. [size, rows, line height], first fit wins: a page holding one word wider than a row (none
   // in our lessons so far) steps down to the body font at 39 on three rows, the old type.
-  const ARCADE_BOX = {x: 372, y: 1046, w: 560, h: 190}, ARCADE_PAD = 30;
-  const ARCADE_TYPE = [[66, 2, 78], [39, 3, 46]];
+  let ARCADE_BOX = {x: 372, y: 1046, w: 560, h: 190};
+  const ARCADE_PAD = 30;
+  // Engine v4 (Todd, live chat, Nov 9, 2026, 2:11 pm: "Make all the necessary changes"; _shared/formats.md "v4"): a scene
+  // with SCENE.v4 = true owns the whole frame. No host, no level bar, no end card (the scene sets host: false, no hud and
+  // endCard: false); the spoken words are captions: one row of two or three big words (size 132, 66 px caps) centered in
+  // the lower third (y 1184 to 1382, above the platform's own caption and buttons), the word being said lit. boot() swaps
+  // the box and the type before the pages are cut; a page whose one word is wider than the row steps down to two rows at 66.
+  const V4_BOX = {x: 60, y: 1184, w: 960, h: 198}, V4_TYPE = [[132, 1, 150], [66, 2, 84]];
+  let ARCADE_TYPE = [[66, 2, 78], [39, 3, 46]];
   let mk = null;   // a kit on a spare canvas: measures words with the same pixel font widths the box draws them in
   // rows a page takes inside the box at this size (the box's own wrap), or Infinity when one word alone is wider than a row
   function arcadeRows(ws, size) {
@@ -57,7 +64,7 @@
       cur.push(w);
       // (arcade) a clause cut can leave words that no longer fit with the new one: the new word starts the next page
       if (look.bitmap && cur.length > 1 && !fits(cur)) { out.push(cur.slice(0, -1)); cur = [w]; }
-      if (/[.!?]$/.test(w.w) && cur.length >= 3) { out.push(cur); cur = []; }
+      if (/[.!?]$/.test(w.w) && cur.length >= (window.SCENE.v4 ? 1 : 3)) { out.push(cur); cur = []; }   // v4: a caption page never runs past the end of a sentence
     });
     if (cur.length) out.push(cur);
     // pages follow sentences (IMPROVE 00h, Oct 30): a page never opens on the last word or two of the sentence before,
@@ -86,6 +93,7 @@
     // never leave one word alone in the box: join it to the phrase before when it fits, else to the one after
     for (let i = 0; i < out.length; i++) {
       if (out[i].length !== 1 || out.length < 2) continue;
+      if (window.SCENE.v4 && END.test(out[i][0].w) && !(i > 0 && !END.test(out[i - 1][out[i - 1].length - 1].w) && fits(out[i - 1].concat(out[i])))) continue;   // v4: a sentence's last word may stand alone, never join the next sentence
       if (i > 0 && fits(out[i - 1].concat(out[i]))) { out[i - 1] = out[i - 1].concat(out[i]); out.splice(i, 1); i--; }
       else if (i + 1 < out.length && fits(out[i].concat(out[i + 1]))) { out[i + 1] = out[i].concat(out[i + 1]); out.splice(i, 1); i--; }
     }
@@ -137,6 +145,28 @@
     });
     // the blinking more arrow sits under the second row's baseline (y + 152), clear of the words
     if (arcade && (T * 2) % 1 < 0.5) k.shape([[x + w - 50, y + h - 27], [x + w - 26, y + h - 27], [x + w - 38, y + h - 15]], {fill: 'bubbleText', line: false});
+  }
+
+  // v4 captions: the whole phrase on a dark plate that hugs it, rows centered, the spoken word in gold. Returns the plate's
+  // box so lint can keep scene words out from under it.
+  function v4Captions(k, T) {
+    let i = phrases.findIndex((p) => T >= p.t0 && T < p.t1);
+    if (i > 0 && T < phrases[i].words[0].start) i -= 1;
+    const ph = phrases[i];
+    if (!ph) return null;
+    const pick = V4_TYPE.find(([s, n]) => arcadeRows(ph.words, s) <= n) || V4_TYPE[V4_TYPE.length - 1];
+    const size = pick[0], lh = pick[2], o = {size, weight: 600, font: 'body'}, maxW = V4_BOX.w - 2 * ARCADE_PAD, sp = k.measure(' ', o);
+    const rows = [[]]; let cx = 0;
+    ph.words.forEach((wd) => { const ww = k.measure(wd.w, o); if (cx + ww > maxW && cx > 0) { rows.push([]); cx = 0; } rows[rows.length - 1].push([wd, ww]); cx += ww + sp; });
+    const rowW = (r) => r.reduce((a, [, w]) => a + w + sp, -sp), widest = Math.max(...rows.map(rowW));
+    const h = rows.length * lh + (size > 66 ? 48 : 30), y = V4_BOX.y + V4_BOX.h - h, bw = Math.ceil((widest + 72) / 6) * 6, bx = 540 - bw / 2;
+    k.shape(k.rectPts(bx + 6, y + 6, bw, h, 0), {fill: '#120D14', line: false});
+    k.shape(k.rectPts(bx, y, bw, h, 0), {fill: '#1B1420', line: false});
+    k.shape(k.rectPts(bx, y, bw, 6, 0), {fill: '#F2A541', line: false});
+    rows.forEach((r, ri) => { let x = 540 - rowW(r) / 2; r.forEach(([wd, ww]) => {
+      const on = T >= wd.start && T < wd.end + 0.05;
+      k.text(wd.w, x, y + (size > 66 ? 33 : 21) + ri * lh, {size, weight: 600, font: 'body', color: on ? '#F7C873' : '#FFF7EA'}); x += ww + sp; }); });
+    return {x0: bx, y0: y, x1: bx + bw, y1: y + h};
   }
 
   // the game HUD: lesson tag and a level bar, one block per section, filling as the lesson plays (a reason to stay)
@@ -422,7 +452,8 @@
       else { k.snow(160, 1246, Object.assign({scale: 0.6, pose: hp, at: ret.hostAt, face: 1}, life)); head = [162, 1246 - 384 * 0.6]; }
     }
     window.__tag = 'dialog';
-    if (ret.speech !== false) { speechBox(k, T); const ph = phrases.find((p) => T >= p.t0 && T < p.t1);
+    if (ret.speech !== false && window.SCENE.v4) { const cb = v4Captions(k, T); if (window.__boxes && cb) window.__boxes.push(Object.assign({s: 'DIALOG', a: 1, tag: 'dialogbox'}, cb)); }
+    else if (ret.speech !== false) { speechBox(k, T); const ph = phrases.find((p) => T >= p.t0 && T < p.t1);
       if (window.__boxes && ph) window.__boxes.push({s: 'DIALOG', x0: look.bitmap ? 372 : 300, y0: (look.bitmap ? 1046 : 1088) - 40, x1: (look.bitmap ? 932 : 928), y1: look.bitmap ? 1236 : 1238, a: 1, tag: 'dialogbox'}); }
     window.__tag = 'hud';   // a scene can hide the dialog box (the hook card)
     if (moving) {
@@ -461,6 +492,7 @@
     await document.fonts.ready;
     await Promise.all(['700 40px Poppins', '600 40px Poppins', '600 40px Inter', '700 40px Inter'].map((f) => document.fonts.load(f)));
     if (look.bitmap) { const cv = document.createElement('canvas'); cv.width = cv.height = 4; mk = Kit.make(cv.getContext('2d'), look, 0, env); }
+    if (window.SCENE.v4) { ARCADE_BOX = V4_BOX; ARCADE_TYPE = V4_TYPE; }   // v4: captions are cut to one row of big words
     phrases = buildPhrases(words);
     if (words.length) END_T = words[words.length - 1].end + 0.1;   // after the fonts load, so the line breaks match what is drawn; 0.1 s after the last word, so the card is up for the last 3 s (style board, Oct 29)
     window.DURATION = window.CUES.duration;

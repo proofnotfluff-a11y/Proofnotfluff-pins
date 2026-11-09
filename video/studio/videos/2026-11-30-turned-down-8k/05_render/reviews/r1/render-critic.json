@@ -1,0 +1,19 @@
+{
+ "gate": "render-critic",
+ "round": 1,
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-09",
+ "score": {
+  "faults": 0
+ },
+ "earlier": [
+  "A fixed: every row 63 px of letter height or more (measured on the key frames)",
+  "B fixed: the left panel no longer hides his jacket"
+ ],
+ "notes": [
+  "His navy legs blended into the navy panel (the panel is slate from the next render).",
+  "Stamp overshoot frames push a plate to the frame edge for 2 frames: motion, not a fault.",
+  "The client's raised hand is cropped at the right edge at 10.7 s (the character, not text)."
+ ]
+}

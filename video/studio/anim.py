@@ -31,6 +31,8 @@ fresh reviewer checks before the next stage runs.
   gatepack SLUG            timeline sheets (2 frames a second) and first frames for the fresh reviewers -> 05_render/gates/
   export SLUG              a copy under 9.5 MB for posting (two-pass H.264; Chrome uploads cap at 10 MB) -> 05_render/SLUG-post.mp4
   ready SLUG               every gate passed: queue it for posting (video/studio/queue.json, fingerprints of what the gates saw)
+                           --first: ahead of every lesson still waiting; --not-before <Central time>: no earlier slot takes it
+                           (Todd, live chat, Nov 8, 2026, 5:10 pm: "post tomorrow 11:37")
   hookb SLUG               the lesson's second opening (01_voice/hook-b.md, 03_cues/hook-b.md) -> videos/SLUG-hookb/,
                            the same lesson after the hook; asks the voice workflow for take 1 only (Instagram trial reels)
   hookready SLUG           SLUG-hookb passed its gates (HOOKB_GATES) and matches the queued lesson after the hook: pin it
@@ -1542,7 +1544,7 @@ def queue_first(items, item):
     return rest[:at] + [item] + rest[at:]
 
 
-def cmd_ready(slug, first=False):
+def cmd_ready(slug, first=False, not_before=None):
     rev = vdir(slug, "05_render", "reviews")
     bad = []
     for g in gates_for(slug):
@@ -1575,6 +1577,10 @@ def cmd_ready(slug, first=False):
         raise SystemExit("ERROR ready: push the lesson commit to main first (git pull --rebase, git push), then run ready")
     q = load_queue()
     item = {"slug": slug, "readyAt": now(), "commit": head, "fingerprints": fingerprints(slug), "posts": {}}
+    if not_before:   # a Central time, e.g. 2026-11-09T00:00: no slot before it takes the lesson
+        from zoneinfo import ZoneInfo
+        nb = dt.datetime.fromisoformat(not_before)
+        item["notBefore"] = (nb if nb.tzinfo else nb.replace(tzinfo=ZoneInfo("America/Chicago"))).isoformat(timespec="minutes")
     pos = next((n for n, i in enumerate(q["items"]) if i["slug"] == slug), None)
     if pos is None:
         q["items"].append(item)
@@ -2014,7 +2020,10 @@ def pick_next(items, at, fmt=None, parent=None):
     parent = parent or derived_from
     by = {i["slug"]: i for i in items}
     day = at.astimezone(tz).date()
-    ready = lambda i: not i.get("readyAt") or dt.datetime.fromisoformat(i["readyAt"]) <= at
+    # notBefore (`ready --first --not-before`, Todd, live chat, Nov 8, 2026, 5:10 pm: "post tomorrow 11:37"): a lesson put
+    # first for a later slot is not taken by an earlier one
+    ready = lambda i: (not i.get("readyAt") or dt.datetime.fromisoformat(i["readyAt"]) <= at) and \
+        (not i.get("notBefore") or dt.datetime.fromisoformat(i["notBefore"]) <= at)
     waiting = [i for i in items if ready(i) and not _post_times(i, at) and not i.get("hold")]
     st = started_today(items, at)
     cap = cadence_cap(len(waiting) + st, day)
@@ -3471,6 +3480,9 @@ def cmd_selftest():
         ("first: the Nov 9 lunch slot takes it", (pick_next(qf, lunch, fmt_, par_)[0] or {}).get("slug") != "2026-11-26-new", False),
         ("first: without --first the slot takes the old head", (pick_next(q0 + [new_], lunch, fmt_, par_)[0] or {}).get("slug") == "2026-11-26-new", False),
         ("first: a lesson already started still finishes first", (pick_next(qs, lunch, fmt_, par_)[0] or {}).get("slug") != "2026-11-00-started", False),
+        ("first: not before tomorrow, tonight's evening slot keeps the old head", (pick_next(queue_first(q0, dict(new_, notBefore=t_(0, 9))), dt.datetime(2026, 11, 8, 20, 14, tzinfo=tz), fmt_, par_)[0] or {}).get("slug") != "2026-11-03-waits", False),
+        ("first: not before tomorrow, the Nov 9 lunch slot takes it", (pick_next(queue_first(q0, dict(new_, notBefore=t_(0, 9))), lunch, fmt_, par_)[0] or {}).get("slug") != "2026-11-26-new", False),
+        ("first: planted bug, no not-before, tonight's slot takes it early", (pick_next(qf, dt.datetime(2026, 11, 8, 20, 14, tzinfo=tz), fmt_, par_)[0] or {}).get("slug") == "2026-11-26-new", True),
         ("first: planted bug, put at the very end", (pick_next(q0 + [new_], lunch, fmt_, par_)[0] or {}).get("slug") != "2026-11-26-new", True),
     ]
     right = 0
@@ -4339,7 +4351,7 @@ def main():
     ap.add_argument("slug", nargs="?")
     ap.add_argument("rest", nargs="*")
     ap.add_argument("--look"); ap.add_argument("--from", dest="t_from", type=float); ap.add_argument("--to", dest="t_to", type=float)
-    ap.add_argument("--out"); ap.add_argument("--mp4"); ap.add_argument("--take", type=int, action="append"); ap.add_argument("--voice"); ap.add_argument("--first", action="store_true")
+    ap.add_argument("--out"); ap.add_argument("--mp4"); ap.add_argument("--take", type=int, action="append"); ap.add_argument("--voice"); ap.add_argument("--first", action="store_true"); ap.add_argument("--not-before", dest="not_before")
     a = ap.parse_args()
     c = a.cmd
     if c == "kit":
@@ -4422,7 +4434,7 @@ def main():
         cmd_posted(a.slug, a.rest[0] if len(a.rest) > 0 else "", a.rest[1] if len(a.rest) > 1 else "",
                    a.rest[2] if len(a.rest) > 2 else None)
     elif c == "ready":
-        cmd_ready(a.slug, a.first)
+        cmd_ready(a.slug, a.first, a.not_before)
     elif c == "hookb":
         cmd_hookb(a.slug)
     elif c == "hookready":

@@ -794,6 +794,27 @@
    "note": "Todd, live chat, Nov 7, 2026, 7:20 PM: 'if they are already made you can post them both now. Then we move to the regular schedule with the top tier videos'. Moved right after after-hours-greeting (one lesson per run, so it takes the next slot)."
   },
   {
+   "slug": "2026-11-26-damage-or-not",
+   "readyAt": "2026-11-08T20:26:42-05:00",
+   "commit": "527323dd69bed0e838727d8194ee7224cf4af0fc",
+   "fingerprints": {
+    "script": "b9e78f22fcf6",
+    "takes": "f030084f2cc8",
+    "words": "0cbc7f45bc7f",
+    "cues": "08ac6cc5e4aa",
+    "scene": "788542113a1d",
+    "data": "615417979c58",
+    "captions": "72ef663c6bc1",
+    "mouth": "d0d31234eaf5",
+    "runtime_kit": "f6c60100b709",
+    "runtime_player": "0247e61a6184",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {},
+   "notBefore": "2026-11-09T00:00-06:00"
+  },
+  {
    "slug": "2026-11-20-lsa-reports-short",
    "readyAt": "2026-11-07T12:26:57-05:00",
    "commit": "c92bfb2325cf4f574b2686df25f24a6dde063c4b",

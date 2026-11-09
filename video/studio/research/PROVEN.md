@@ -67,3 +67,4 @@ Phone cluster: rows 2 and 7 (both under the 100K bar). At 100K+ and 5x but not o
 |---|---|---|---|
 | 2026-11-07 | 2026-11-21-angi-four-pros (Angi charges each lead when sent; up to 4 pros) | 2 | copy PASS: 0 shared 6-word runs, 0% of 3-word runs |
 | 2026-11-08 | 2026-11-25-members-go-first (a member plan: members pay monthly and go first; ACHR News with Clear Seas Research, 87% of homeowners surveyed would pay $100 or $200 a year) | 4 | copy PASS: 0 shared 6-word runs, 1.3% of 3-word runs |
+| 2026-11-08 | 2026-11-26-damage-or-not (hail damage or just an old roof, acted with k.client: don't call it from the driveway, the estimator's four shots; Triple-I, Apr 14, 2026: hail is as much as 80% of severe convective storm claims in any given year) | 3 | copy PASS: 0 shared 6-word runs, 0% of 3-word runs |

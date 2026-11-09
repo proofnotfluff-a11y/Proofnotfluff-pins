@@ -853,7 +853,24 @@
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {
+    "instagram": {
+     "url": "https://www.instagram.com/proofnotfluff/reel/DfgPmHhJgfN/",
+     "at": "2026-11-08T21:20:33-05:00"
+    },
+    "tiktok": {
+     "url": "https://www.tiktok.com/@proofnotfluff/video/7705991217414212895",
+     "at": "2026-11-08T21:22:07-05:00"
+    },
+    "youtube": {
+     "url": "https://youtube.com/shorts/4cTYvw73mQE",
+     "at": "2026-11-08T21:23:58-05:00"
+    },
+    "facebook": {
+     "url": "https://www.facebook.com/reel/1641888903973576/",
+     "at": "2026-11-08T21:26:19-05:00"
+    }
+   }
   },
   {
    "slug": "2026-11-19-ask-chatgpt",

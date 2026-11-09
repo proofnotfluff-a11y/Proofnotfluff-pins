@@ -1497,7 +1497,36 @@ SHORT_GATES = ("qa", "facts", "facts-captions", "render-critic", "send", "design
 PROVEN_GATES = ("qa", "facts", "facts-captions", "render-critic", "send", "design", "copy")
 
 
+# The viewer gate (Todd, live chat, Nov 8, 2026, 10:11 pm: "Yes", to a fresh stranger who sees only the frames and the
+# words and must say what the video is about, what they get and whether they would watch to the end; prompts/viewer.md).
+VIEWER_GATE_FROM = "2026-11-29"
+
+
+def viewer_review_problems(d):
+    """A viewer review's PASS must agree with its own answers: the same point as the one idea, something got, watched to
+    the end, nothing confusing."""
+    if not d or not d.get("pass"):
+        return []
+    sc, out = d.get("score") or {}, []
+    if str(sc.get("matches_idea", "")).lower() != "same":
+        out.append(f"PASS but the viewer's point is '{sc.get('matches_idea')}' against the one idea (same only)")
+    if str(sc.get("watch_to_end", "")).lower() != "yes":
+        out.append("PASS but the viewer would not watch to the end")
+    if str(sc.get("gets", "nothing")).strip().lower() in ("", "nothing", "none"):
+        out.append("PASS but the viewer gets nothing from it")
+    if str(sc.get("confused", "none")).strip().lower() not in ("", "none", "no"):
+        out.append(f"PASS but the viewer was confused by: {sc.get('confused')}")
+    return out
+
+
 def gates_for(slug):
+    g = _gates_for(slug)
+    if os.path.basename(slug)[:10] >= VIEWER_GATE_FROM and lesson_format(slug) in GUIDE_FORMATS and "viewer" not in g:
+        g = g + ("viewer",)
+    return g
+
+
+def _gates_for(slug):
     if lesson_format(slug) == "short":
         return SHORT_GATES
     if lesson_format(slug) == "proven":   # a source-matched experiment has no send card, so no send gate (Todd, Nov 8, 8:25 pm)
@@ -1558,6 +1587,9 @@ def cmd_ready(slug, first=False, not_before=None):
         bad.append("captions.json: missing")
     bad += [f"variety: {x}" for x in queue_variety_problems(slug)]
     bad += [f"send: {x}" for x in send_problems(slug, review=True)]   # Todd, Nov 7, 9:27 am (the hold is lint's)
+    if "viewer" in gates_for(slug):   # Todd, Nov 8, 10:11 pm: the viewer gate's PASS must agree with its own answers
+        vf = os.path.join(rev, "viewer.json")
+        bad += [f"viewer: {x}" for x in viewer_review_problems(json.load(open(vf)) if os.path.exists(vf) else None)]
     if lesson_format(slug) == "proven":   # Todd, Nov 7, 12:08 pm: the copy check runs again on the files being pinned
         bad += [f"copy: {x}" for x in proven_problems(slug)[0]]
     if bad:
@@ -3543,6 +3575,12 @@ def cmd_selftest():
         ("viewer: hail-or-wear's ingredient (real roof footage) is refused", viewer_check_problems("- **Key ingredient:** real footage of a damaged roof the viewer can judge for himself\n- **Viewer check:** a roofer watching ours sees our drawn roof and is asked to call it hail or wear\n"), True),
         ("viewer: no viewer check line", viewer_check_problems("- **Key ingredient:** a famous cheap price everyone knows and the money model behind it\n"), True),
         ("viewer: a one-word ingredient", viewer_check_problems("- **Key ingredient:** skit\n- **Viewer check:** a stranger gets the customer who will not pay acted out and the line to say before the truck leaves\n"), True),
+        ("viewer gate: an honest PASS stands", viewer_review_problems({"pass": True, "score": {"matches_idea": "same", "watch_to_end": "yes", "gets": "the four photos to take", "confused": "none"}}), False),
+        ("viewer gate: PASS with a close point", viewer_review_problems({"pass": True, "score": {"matches_idea": "close", "watch_to_end": "yes", "gets": "a list", "confused": "none"}}), True),
+        ("viewer gate: PASS but would leave", viewer_review_problems({"pass": True, "score": {"matches_idea": "same", "watch_to_end": "no", "gets": "a list", "confused": "none"}}), True),
+        ("viewer gate: PASS but gets nothing (hail-or-wear's shape)", viewer_review_problems({"pass": True, "score": {"matches_idea": "same", "watch_to_end": "yes", "gets": "nothing", "confused": "none"}}), True),
+        ("viewer gate: PASS but confused", viewer_review_problems({"pass": True, "score": {"matches_idea": "same", "watch_to_end": "yes", "gets": "a list", "confused": "the drawn roof, nothing to judge"}}), True),
+        ("viewer gate: on every video from 2026-11-29, not before", ("viewer" in gates_for("2026-11-26-damage-or-not")) or VIEWER_GATE_FROM != "2026-11-29", False),
         ("first: planted bug, put at the very end", (pick_next(q0 + [new_], lunch, fmt_, par_)[0] or {}).get("slug") != "2026-11-26-new", True),
     ]
     right = 0

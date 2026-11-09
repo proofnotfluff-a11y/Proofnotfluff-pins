@@ -1,0 +1,28 @@
+{
+  "gate": "viewer",
+  "round": 0,
+  "note": "calibration run, Nov 8, 2026 (the gate starts with videos dated 2026-11-29)",
+  "reviewer": "fresh opus agent",
+  "pass": false,
+  "score": {
+    "about": "A roof inspection quiz: round dime-sized bare spots, a worn roof, a dented vent and a clean gutter. Is it hail damage or wear?",
+    "gets": "nothing: a puzzle with no answer. The clues go by, it asks 'So, hail or wear?' and cuts to the logo. No rule, no number, no tell to use next time. A roofer might enjoy one second of guessing; anyone else gets a question they cannot judge.",
+    "stop": "weak: the big 'HAIL OR WEAR? YOU CALL IT.' title reads as a quiz and could stop a roofer for a second, but the picture is a dark gray shingle texture with faint marks at phone size. A non-roofer scrolls past because 'hail or wear' means nothing without context.",
+    "watch_to_end": "no",
+    "leave_at": "4.5 s: the whole screen turns into stacked brown bars and the video looks broken. 8.0 s (pixel grid), 10.0 s (garbled title and caption) and 13.0 s (black frame) would each push me out again, and the 17.5 s logo card with no answer makes the watch feel wasted.",
+    "confused": "'EXAMPLE' badge on every picture (example of what?); 'SNOW' tag on the speech bubble (who is Snow?); 'She says it's hail' (who is she? a man with an 'IT'S HAIL.' sign appears at 13.5 s with no setup); the plain white circle at 5.5 to 6.0 s only reads as a dime from the caption; 'There's a dent in the vent and none in the gutter' (never told what that means, so nothing to judge with); 'So, hail or wear?' ends with no answer; brown bars at 4.5 s, pixel grid at 8.0 s, garbled frame at 10.0 s, black frame at 13.0 s look like render glitches.",
+    "matches_idea": "same"
+  },
+  "reasons": [
+    "Answers: about = a hail or wear roof quiz; gets = nothing; stop = weak title hook on a dark, hard to read picture; watch_to_end = no, leave at 4.5 s; confused = several items; matches_idea = same (the video does say its one idea: you are the estimator, hail or wear, you call it).",
+    "The one idea lands, but the idea itself gives the viewer nothing. A question with no reveal and no rule is not a lesson. Fix: after 'So, hail or wear?' hold 2 seconds, then give the answer and the one tell that decides it (for example, what the dented vent with no gutter dent means), in one plain line.",
+    "0.0 to 3.0 s: the shingle picture is dark gray on dark gray, and the round marks are faint at phone size, so the first frame has nothing to look at. Fix: open on one close, bright, high contrast mark filling most of the frame, with the title over it.",
+    "4.5 s: full-screen stacked brown bars. Looks like a broken render; this is where I leave. Fix: remove or replace that transition with a plain cut.",
+    "8.0 s, 10.0 s, 13.0 s: pixel grid scramble, garbled title and caption blocks, and a full black frame. All read as glitches. Fix: plain cuts between beats, no black frame.",
+    "Every scene: the 'EXAMPLE' badge tells a viewer nothing and makes the pictures look like placeholders. Fix: drop it, or say what it means in words (for example 'not a real job').",
+    "Every caption: the 'SNOW' tag on the speech bubble names someone the viewer never met. Fix: drop the tag or introduce the speaker once.",
+    "13.2 s, 'She says it's hail': 'she' comes from nowhere, and the person shown with the 'IT'S HAIL.' sign is a man. Fix: say 'The homeowner says it's hail' and match the figure to the line.",
+    "10.3 s, 'There's a dent in the vent and none in the gutter': a clue with no meaning for anyone who is not already a roofer, so the question has nothing to judge with. Fix: say why it matters in the reveal, or show a side by side of what hail does to metal.",
+    "5.5 to 6.0 s: the dime is a plain white circle. Fix: draw a recognizable dime next to the mark, or a coin with a ridge and face."
+  ]
+}

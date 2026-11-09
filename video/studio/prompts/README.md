@@ -17,6 +17,8 @@ compare set (compare.md). From Nov 6, 2026, 10:54 am the three run as ONE fresh 
 was amended by Todd in a live chat, Nov 6, 2026, 7:15 am ("Go with you recommendations"); anim.py STORY_GATES. Buyer and
 golden stay only for the held old-line lessons.
 
+Viewer gate (Todd, live chat, Nov 8, 2026, 10:11 pm: "Yes"): every lesson, short and proven video dated 2026-11-29 on runs viewer.md last, after the render: a fresh stranger with only the timeline sheets and the words, in two steps (the one idea is sent only in step 2). It decides whether a viewer gets it; no other gate does.
+
 Proven lessons (Todd, live chat, Nov 7, 2026, 12:08 pm: "Go"; _shared/formats.md "Proven"; anim.py PROVEN_GATES): no story
 gate. Before any voice: `anim.py copycheck` (code, gate copy) and facts on script.md. After the voice: facts-captions. After cues.md and before any scene code (from lessons dated 2026-11-26): facts on cues.md, the storyboard round (facts.md).
 After the render: render-critic, design, send, then `anim.py copycheck` again. The reviewers never see the source video.

@@ -1,0 +1,27 @@
+{
+  "gate": "viewer",
+  "round": 0,
+  "note": "calibration run, Nov 8, 2026 (the gate starts with videos dated 2026-11-29; this video was already queued)",
+  "reviewer": "fresh opus agent",
+  "pass": false,
+  "score": {
+    "about": "Before telling a homeowner it's hail damage, have your estimator take four standard photos so the homeowner and adjuster judge the same evidence.",
+    "gets": "Something to do: a four-shot photo list for the estimator before anyone says hail (house and address, a chalk square on each slope, every hit circled with a tape beside it, vents and gutters). Also a number I did not know: Triple-I says hail is as much as 80% of severe storm claims in a year.",
+    "stop": "Only because I do roofing work. The 0.0s title card 'HAIL DAMAGE? OR JUST AN OLD ROOF?' is a fight I have every spring, so I'd pause on it. If I ran any other trade I'd scroll past: the pixel-art house and starfield look like a game, not a real roof, and the first speech bubble at 0.0s is empty.",
+    "watch_to_end": "no",
+    "leave_at": "Around 25s. The checklist card is fully readable at 20.0s and stays the same until 33.5s while the voice reads the four items slowly, with nothing on the card highlighting the item being read. I've read the list by about 22s, so I'd screenshot it and move on. I'd miss the stat and the ending.",
+    "confused": "51.4s: 'So what would you tell her, damage or not?' right after 'Let the photos make the call', with only a hammer icon vs a clock icon on screen. 43.0s to 49.0s: the 'PHOTOS SEEN' table ranks '1ST HER, 2ND YOU, 3RD ADJUSTER' when all three end on 4 photos. 19.5s: a garbled, checkered frame I couldn't read. 49.0s: nearly black frame with only a stray 'SAME ROOF' tag.",
+    "matches_idea": "same"
+  },
+  "reasons": [
+    "Q1: my sentence matches the one idea (same): don't call it from the driveway, have the estimator shoot the same four photos, let the photos decide.",
+    "Q2: not nothing. I get a four-shot checklist to hand my estimator, plus the Triple-I 80% number.",
+    "Q3: the 0.0s title question stops a roofer. Any other trade owner would scroll, and the pixel art reads as a game, not a real roof.",
+    "Q4: FAIL. I leave around 25s. From 20.0s to 33.5s the checklist card doesn't change while the voice reads it item by item. Fix: show the card one line at a time as each item is spoken, or highlight the line being read, and cut the card's time on screen so the stat arrives sooner.",
+    "Q5: FAIL at 51.4s. The ending question 'So what would you tell her, damage or not?' asks me to make the call the video just told me not to make, and gives me nothing to judge (a hammer icon vs a clock icon, no roof photo). Fix: end on 'Let the photos make the call' and the CTA, or show the four example photos and ask a question the photos can actually answer.",
+    "Q5: FAIL at 43.0s to 49.0s. The 'PHOTOS SEEN' scoreboard with RANK 1ST/2ND/3RD and a SCORE column makes it look like a contest, but everyone ties at 4 photos, and at 43.5s to 44.0s 'HER 4, YOU 3' means nothing. Fix: replace it with three faces (her, you, adjuster) all looking at the same four photos, no ranks or scores.",
+    "Q5: FAIL at 19.5s. A garbled, checkered transition frame can't be read. Fix: use a clean cut or fade into the checklist card.",
+    "Q5: FAIL at 49.0s. A nearly black frame with a stray 'SAME ROOF' tag. Fix: remove the empty frame so 'Same photos, same roof' cuts straight to the VS card.",
+    "Smaller: the hammer icon for 'HAIL DAMAGE' doesn't read as hail (use hailstones or dented shingles). The 35.5s gauge shows '17%' mid-count while the voice says 'as much as' (start the count earlier or snap to 80). 'Triple-I' isn't explained in the voice (say 'the insurance industry's Triple-I'). The 'EXAMPLE' stickers on almost every card are clutter with no clear meaning."
+  ]
+}

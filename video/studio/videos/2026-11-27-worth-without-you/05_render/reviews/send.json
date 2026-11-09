@@ -1,0 +1,85 @@
+{
+  "gate": "send",
+  "round": 0,
+  "rerun": true,
+  "pass": true,
+  "score": {
+    "person": "office manager",
+    "tie": "the office manager who answers our phones and sends the bills at my three-truck HVAC shop",
+    "thing": "a one page each list of how we do it: \"FOR YOUR OFFICE MANAGER / HOW WE DO IT / ONE PAGE EACH / 1 ANSWER A CALL / 2 PRICE A JOB / 3 BOOK THE WORK / 4 SEND THE BILL\"",
+    "held_at": "24.5s to 34.0s",
+    "line": "Hand this list to your office manager.",
+    "gain": "helps",
+    "feeling": "surprise",
+    "thanks": "yes",
+    "send_line_fits": "yes"
+  },
+  "reasons": [
+    "Second rerun on the new sheets and gate pack after a design re-render (gauge, inventory, receipt); same transcript, send card unchanged.",
+    "1. I own a small HVAC shop (the lesson's example trade). I would send it to the office manager who answers our phones and does the billing.",
+    "2. \"Hand this list to your office manager.\" then \"Write down how we answer a call, price a job, book the work and send the bill, one page each.\"",
+    "3. Helps: it gives her a four-item job she can start this week and shows her work is what makes the shop worth more than me.",
+    "4. Surprise: \"She isn't buying you.\" flips what the owner thinks a buyer pays for. The new EVERY ANSWER: YOU line at 12.5s to 15.5s sets it up more clearly.",
+    "5. Thanks: a plan that puts her at the center, not a lecture; the 2.73x ACHR News number, now a clean 2.73x ANNUAL EARNINGS FLORIDA HVAC, 2025 card from 47.0s, gives it weight.",
+    "6. End card reads \"Send this to your office manager this week.\" It points at the person I named.",
+    "7. The FOR YOUR OFFICE MANAGER card is unchanged, still and readable from about 24.5s to 34.0s (sheet f09 at 24.81s is clean). Only the item highlight moves.",
+    "8. The voice and the card header both name the office manager.",
+    "Minor, not blocking (carried over): during the hold only the active item is dark and the rest stay grey, so a mid-hold screenshot has uneven contrast. Fix: set all four items full dark for the last second before 34.0s."
+  ],
+  "previous": {
+    "gate": "send",
+    "round": 0,
+    "rerun": true,
+    "pass": true,
+    "score": {
+      "person": "office manager",
+      "tie": "the office manager who answers our phones and sends the bills at my three-truck HVAC shop",
+      "thing": "a one page each list of how we do it: \"FOR YOUR OFFICE MANAGER / HOW WE DO IT / ONE PAGE EACH / 1 ANSWER A CALL / 2 PRICE A JOB / 3 BOOK THE WORK / 4 SEND THE BILL\"",
+      "held_at": "24.5s to 34.0s",
+      "line": "Hand this list to your office manager.",
+      "gain": "helps",
+      "feeling": "surprise",
+      "thanks": "yes",
+      "send_line_fits": "yes"
+    },
+    "reasons": [
+      "Rerun on the new sheets and gate pack after a design re-render; same transcript.",
+      "1. I own a small HVAC shop (the lesson's example trade). I would send it to the office manager who answers our phones and does the billing.",
+      "2. \"Hand this list to your office manager.\" then \"Write down how we answer a call, price a job, book the work and send the bill, one page each.\"",
+      "3. Helps: it gives her a four-item job she can start this week and shows her work is what makes the shop worth more than me.",
+      "4. Surprise: \"She isn't buying you.\" flips what the owner thinks a buyer pays for. The new EVERY ANSWER: YOU line at 12.5s to 15.5s sets it up more clearly.",
+      "5. Thanks: a plan that puts her at the center, not a lecture; the 2.73x ACHR News number gives it weight.",
+      "6. End card reads \"Send this to your office manager this week.\" It points at the person I named.",
+      "7. The FOR YOUR OFFICE MANAGER card is unchanged, still and readable from about 24.5s to 34.0s (sheet f09 at 24.81s is clean). Only the item highlight moves.",
+      "8. The voice and the card header both name the office manager.",
+      "Minor, not blocking (carried over): during the hold only the active item is dark and the rest stay grey, so a mid-hold screenshot has uneven contrast. Fix: set all four items full dark for the last second before 34.0s."
+    ],
+    "previous": {
+      "gate": "send",
+      "round": 0,
+      "pass": true,
+      "score": {
+        "person": "office manager",
+        "tie": "the office manager who answers our phones and sends the bills at my three-truck HVAC shop",
+        "thing": "a one page each list of how we do it: \"FOR YOUR OFFICE MANAGER / HOW WE DO IT / ONE PAGE EACH / 1 ANSWER A CALL / 2 PRICE A JOB / 3 BOOK THE WORK / 4 SEND THE BILL\"",
+        "held_at": "24.5s to 34.0s",
+        "line": "Hand this list to your office manager.",
+        "gain": "helps",
+        "feeling": "surprise",
+        "thanks": "yes",
+        "send_line_fits": "yes"
+      },
+      "reasons": [
+        "1. I own a small HVAC shop (the lesson's example trade). I would send it to the office manager who answers our phones and does the billing.",
+        "2. \"Hand this list to your office manager.\" followed by \"Write down how we answer a call, price a job, book the work and send the bill, one page each.\"",
+        "3. Helps: it hands her a clear, four-item job she can start this week, and it tells her why her work is what makes the shop worth more than me.",
+        "4. Surprise: \"She isn't buying you.\" flips the owner's idea of what a buyer pays for.",
+        "5. Thanks: it reads as a plan that puts her at the center, not a lecture; the 2.73x ACHR News number gives it weight.",
+        "6. End card reads \"Send this to your office manager this week.\" It points at the person I named. Fits.",
+        "7. The FOR YOUR OFFICE MANAGER card sits still and readable from about 24.5s to 34.0s on the timeline sheets (sheet f09 at 24.81s is clean). Only the item highlight moves.",
+        "8. The voice and the card header both name the office manager.",
+        "Minor, not blocking: during the hold the active item turns dark and the rest stay grey, so a screenshot taken mid-hold shows uneven contrast. Fix: let all four items settle to full dark for the last second before 34.0s so any screenshot is clean."
+      ]
+    }
+  }
+}

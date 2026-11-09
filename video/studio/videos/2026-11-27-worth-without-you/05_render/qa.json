@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-27-worth-without-you",
- "mp4Sha256": "7de7a894e3957a8e2e90bee9e1228930c0d49dd53f68b3852324233fd3ecd9cb",
+ "mp4Sha256": "705cc57be0940744923057b09eac1ba74e3f73bb3f22a8a5dfb609d841d63eb3",
  "checks": [
   {
    "name": "length",
@@ -44,11 +44,11 @@
   {
    "name": "file",
    "value": {
-    "sha256": "7de7a894e3957a8e2e90bee9e1228930c0d49dd53f68b3852324233fd3ecd9cb",
-    "bytes": 6059863
+    "sha256": "705cc57be0940744923057b09eac1ba74e3f73bb3f22a8a5dfb609d841d63eb3",
+    "bytes": 6025843
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 6.1 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 6.0 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -58,5 +58,5 @@
   }
  ],
  "pass": true,
- "at": "2026-11-08T19:30:43-05:00"
+ "at": "2026-11-08T20:21:18-05:00"
 }

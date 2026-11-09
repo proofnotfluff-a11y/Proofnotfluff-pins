@@ -42,12 +42,12 @@ const office = (k, d) => {
 /* the price sign on the wall: ASKING $1,000,000; struck in red from tStrike, OFFER: HALF under it */
 const priceSign = (k, d, tStrike) => {
   const {P} = d;
-  P(18, 92, 196, 66, INK); P(20, 94, 192, 62, CREAM); P(20, 94, 192, 14, DTEAL);
-  k.text('ASKING', 72, 284, {size: 52, color: INK});
-  k.text('$1,000,000', 72, 362, {size: 66, color: INK});
+  P(18, 92, 196, 72, INK); P(20, 94, 192, 68, CREAM); P(20, 94, 192, 24, DTEAL);   /* design r0: ASKING sits inside the strip */
+  k.text('ASKING', 72, 291, {size: 52, color: CREAM});
+  k.text('$1,000,000', 72, 372, {size: 66, color: INK});
   if (tStrike != null && k.T >= tStrike) {
-    const n = Math.min(184, d.fr(tStrike) * 30); P(24, 136, n, 4, RED);
-    if (d.fr(tStrike) >= 4) { P(18, 162, 150, 22, INK); P(20, 164, 146, 18, RED); k.text('OFFER: HALF', 72, 494, {size: 52, color: CREAM}); }
+    const n = Math.min(184, d.fr(tStrike) * 30); P(24, 144, n, 4, RED);
+    if (d.fr(tStrike) >= 4) { P(18, 168, 150, 22, INK); P(20, 170, 146, 18, RED); k.text('OFFER: HALF', 72, 512, {size: 52, color: CREAM}); }
   }
 };
 /* her bubble: a cream box with a tail toward her head, left of her, text wrapped to fit inside x 72 to 650 */
@@ -63,7 +63,7 @@ const bubble = (k, d, s, t0, y = 196) => {
 const tally = (k, d, at) => {
   const {P} = d;
   for (let i = 0; i < 3; i++) {
-    const x = 20 + i * 66, y = 166, on = k.T >= at[i];
+    const x = 20 + i * 66, y = 172, on = k.T >= at[i];
     P(x, y, 58, 26, INK); P(x + 2, y + 2, 54, 22, on ? GOLD : '#2B2033');
     k.text(on ? 'YOU' : String(i + 1), (x + 29) * 3, (y + 5) * 3, {size: 52, color: on ? INK : GREY, align: 'center'});
   }
@@ -83,9 +83,9 @@ window.SCENE = {
     /* her bubble and the strike on the price sign ---- */
     hook: (k, T) => {
       const d = px(k), tShop = 0.6, tMil = wordT(k, 'hook', /^million/i, 1.0) - 0.3, tHalf = wordT(k, 'hook', /^half/i, 2.6) - 0.25;
-      if (T < tShop) {
-        office(k, d);
-        k.coverBoard({hero: 'HALF?', lines: ['YOU ASK A MILLION.', 'SHE OFFERS HALF.'], example: true});
+      if (T < tShop) {   /* design r0: the cover opens in the storefront, the board in chalk green over the shop */
+        k.sets.counter({shop: ' ', item: 'toolbox', tags: [{price: ' ', at: -1}]});   /* the cover's words are the board's only */
+        k.coverBoard({hero: 'HALF?', lines: ['YOU ASK A MILLION.', 'SHE OFFERS HALF.'], example: true, y: 300, colors: {panel: '#24453A', rim: '#6B4226', hero: '#F7C873'}});
         k.cut(tShop, {kind: 'blinds'});
         return host(k, 'point');
       }
@@ -117,11 +117,17 @@ window.SCENE = {
     turn: (k, T) => {
       const t0 = k.S('turn'), w = (re, dd) => wordT(k, 'turn', re, dd) - 0.25;
       const tBuy = w(/^buying/i, 3.8), tWalk = w(/^walks/i, 9.5);
-      const need = [{label: 'NEEDS YOU', value: 100, max: 100, text: ' '}];
-      k.sets.inventory({title: 'WHO RUNS THE SHOP', items: [
-        {icon: 'phone', name: 'PHONES', stats: need}, {icon: 'coin', name: 'PRICING', stats: need},
-        {icon: 'star', name: 'CUSTOMERS', stats: need}, {icon: 'clip', name: 'BOOKING', stats: need}],
+      const need = [{label: ' ', value: 100, max: 100, text: ' '}], NAMES = ['PHONES', 'PRICING', 'CUSTOMERS', 'BOOKING'];
+      const sel = [t0 + 0.2, t0 + 0.9, t0 + 1.6, tWalk]; let cur = -1; sel.forEach((a, i) => { if (T >= a) cur = i; });
+      k.sets.inventory({title: ' ', items: [
+        {icon: 'phone', name: ' ', stats: need}, {icon: 'coin', name: ' ', stats: need},
+        {icon: 'star', name: ' ', stats: need}, {icon: 'clip', name: ' ', stats: need}],
         select: [{slot: 0, at: t0 + 0.2}, {slot: 1, at: t0 + 0.9}, {slot: 2, at: t0 + 1.6}, {slot: 3, at: tWalk}], hint: 'WHO DOES IT?'});
+      /* design r0: the title at 52 over the set's small one; the empty lower half carries the answer, then the stamp */
+      k.shape(k.rectPts(120, 264, 600, 66, 0), {fill: '#1B1420', line: false}); k.text('WHO RUNS THE SHOP', 132, 270, {size: 52, color: GOLD});
+      /* design r1: the picked item's name and its stat label at 52 px, drawn by us over the set's small ones */
+      if (cur >= 0) { k.shape(k.rectPts(585, 327, 48, 96, 0), {fill: '#1B1420', line: false}); k.text(NAMES[cur], 600, 340, {size: 52, color: GOLD}); k.text('NEEDS YOU', 588, 444, {size: 52, color: CREAM}); }
+      if (T < tBuy) k.slam('EVERY ANSWER: YOU', 540, 640, t0 + 0.3, {size: 66, color: CREAM, align: 'center', drop: INK, from: 0.4});
       if (T >= tBuy) stampBox(k, "SHE ISN'T BUYING YOU", 540, 600, tBuy, {color: GOLD, bg: WINE, size: 60, freeze: 4});
       return host(k, T >= tBuy ? 'point' : null);
     },
@@ -142,14 +148,27 @@ window.SCENE = {
       if (T < tTwo) {
         d.P(0, 0, 360, 417, '#253048'); for (let y = (d.F >> 2) % 8 - 8; y < 417; y += 8) d.P(0, Math.max(0, y), 360, 3, NIGHT);
         const up = d.ease(t0, 6, 30);
-        k.shape(k.rectPts(54, 264 + up * 3, 984, 560, 0), {fill: INK, line: false}); k.shape(k.rectPts(42, 252 + up * 3, 984, 560, 0), {fill: CREAM, line: false});
-        k.shape(k.rectPts(42, 252 + up * 3, 984, 84, 0), {fill: WINE, line: false});
-        k.text('THE ACHR NEWS', 72, 270 + up * 3, {size: 52, color: CREAM});
-        ['"In Florida, HVAC businesses', 'are selling for ' + n.shown, 'annual earnings."'].forEach((s, i) => k.text(s, 72, 360 + i * 70 + up * 3, {size: 60, color: INK}));
-        k.sourceTag('The ACHR News, Mar 20, 2026, on a 2025 Florida exit report. Read Nov 8, 2026.', 72, 590 + up * 3, {color: SLATE});
+        /* design r0: a newsprint clipping (grey paper, a ruled masthead, a torn foot), not the last lesson's card */
+        k.shape(k.rectPts(60, 270 + up * 3, 960, 588, 0), {fill: INK, line: false}); k.shape(k.rectPts(48, 258 + up * 3, 960, 588, 0), {fill: '#E4E0D6', line: false});
+        for (let x = 48; x < 1008; x += 24) k.shape(k.rectPts(x, 834 + up * 3 + ((x / 24) % 2 ? 6 : 0), 24, 12, 0), {fill: '#253048', line: false});
+        k.text('THE ACHR NEWS', 540, 276 + up * 3, {size: 66, color: INK, align: 'center'});
+        k.shape(k.rectPts(72, 354 + up * 3, 856, 6, 0), {fill: INK, line: false}); k.shape(k.rectPts(72, 366 + up * 3, 856, 3, 0), {fill: INK, line: false});
+        const ql = k.wrap('"In Florida, HVAC businesses are selling for ' + n.shown + ' annual earnings."', {size: 66}, 850);   /* design r1: wrapped to the card's width */
+        ql.forEach((s, i) => k.text(s, 72, 390 + i * 76 + up * 3, {size: 66, color: INK}));
+        k.sourceTag('The ACHR News, Mar 20, 2026, on a 2025 Florida exit report. Read Nov 8, 2026.', 72, 390 + ql.length * 76 + 30 + up * 3, {color: SLATE});
         return host(k);
       }
-      k.sets.gauge({value: n.value != null ? n.value : 2.73, max: 4, at: tTwo + 0.1, dur: 1, zones: [[0, 2, '#4A4E5A'], [2, 4, '#F2A541']], label: 'TIMES A YEAR OF OWNER EARNINGS', prefix: '', suffix: 'x', dec: 2});
+      const tHero = tTwo + 3.4;   /* design r1 and render critic: the dial alone while the needle rises, then a fade to the hero card */
+      if (T < tHero) {
+        k.sets.gauge({value: n.value != null ? n.value : 2.73, max: 4, at: tTwo + 0.1, dur: 1, zones: [[0, 2, '#4A4E5A'], [2, 4, '#F2A541']], labels: false, suffix: 'x', dec: 2});   /* render critic r1: the readout counts with the needle, so 2.73x is on screen as it is said */
+      } else {
+        d.P(0, 0, 360, 417, '#1B1420'); for (let y = (d.F >> 2) % 8 - 8; y < 417; y += 8) d.P(0, Math.max(0, y), 360, 2, '#24304A');
+        d.P(20, 90, 324, 196, INK); d.P(16, 86, 324, 196, '#253048'); d.P(16, 86, 324, 4, GOLD);
+        k.text(n.shown, 540, 300, {size: 198, color: GOLD, align: 'center', drop: INK});
+        k.text('ANNUAL EARNINGS', 540, 560, {size: 66, color: CREAM, align: 'center'});
+        k.text('FLORIDA HVAC, 2025', 540, 650, {size: 66, color: SAND, align: 'center'});
+        k.cut(tHero, {kind: 'fade4'});
+      }
       k.cut(tTwo, {kind: 'fade4'});
       return host(k, 'point');
     },
@@ -159,7 +178,7 @@ window.SCENE = {
       const d = px(k), tAsk = wordT(k, 'button', /^asks/i, 2.0) - 0.25, tWhat = wordT(k, 'button', /^what$/i, 3.6) - 0.25;
       office(k, d);
       k.client(780, 810, {role: 'homeowner', pose: T >= tAsk ? 'talk' : 'stand', mood: 'calm', scale: 0.95, talk: T >= tAsk && T < tAsk + 1.5});
-      bubble(k, d, 'WHO ANSWERS THE PHONE?', tAsk, 96);
+      bubble(k, d, 'WHO ANSWERS THE PHONE?', k.S('button'), 96);   /* design r0: the question comes in with the cut */
       k.exampleTag(72, 450);
       if (T >= tWhat) stampBox(k, 'WHAT WILL YOU TELL HER?', 540, 640, tWhat, {color: GOLD, bg: WINE, size: 60, freeze: 4});
       return host(k, T >= tWhat ? 'shrug' : null);

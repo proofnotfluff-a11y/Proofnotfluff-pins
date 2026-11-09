@@ -1,0 +1,96 @@
+{
+  "gate": "render-critic",
+  "round": 2,
+  "reviewer": "claude opus, fresh agent",
+  "pass": true,
+  "score": {
+    "faults": 0
+  },
+  "earlier_faults_checked": [
+    {
+      "fault": "2.73x not on screen while spoken, 44.1s to 47.3s",
+      "fixed": true,
+      "how": "gauge readout counts with the needle (0.29x at 43.9s, 2.53x at 44.2s) and holds 2.73x from about 44.5s until the 2.73x card at about 47.3s; 'two point seven three' is spoken 44.08s to 45.38s"
+    }
+  ],
+  "faults": [],
+  "reasons": [
+    "PASS, 0 faults. Earlier number-readable fault fixed; settled needle stays clear of the readout; no new blocker seen in the gauge or card frames."
+  ],
+  "previous": {
+    "gate": "render-critic",
+    "round": 1,
+    "reviewer": "claude opus, fresh agent",
+    "pass": false,
+    "score": {
+      "faults": 1
+    },
+    "earlier_faults_checked": [
+      {
+        "fault": "gauge overlap 44.0s to 51.5s (label on rim, glint and needle on 2.73x)",
+        "fixed": true,
+        "how": "gauge now has no label or number on it; 2.73x moved to a clean hero card from about 47.3s"
+      }
+    ],
+    "faults": [
+      {
+        "kind": "number-readable",
+        "at": 44.1,
+        "text": "two point seven three times",
+        "scene": "gauge (43.8s to 47.3s)",
+        "what": "Blocker, made by the fix: the ACHR clipping with 2.73x leaves at 43.8s, and the gauge that follows has no number or label (only a 0 tick). The 2.73x hero card arrives at about 47.3s. So 'two point seven three' (44.08s to 45.38s), the lesson's one real number, is said with no number on screen, about 2 to 3 s early. Fix: put 2.73x (or the card) on screen by about 44.1s, or show the value on the gauge as the needle rises."
+      }
+    ],
+    "reasons": [
+      "FAIL, 1 fault: 2.73x not on screen when spoken, 44.1s to 47.3s (number-readable).",
+      "Earlier overlap fault fixed: the gauge is now plain and 2.73x sits on its own hero card (ANNUAL EARNINGS / FLORIDA HVAC, 2025) with nothing over it.",
+      "Checked also: inventory pane item (PHONES) clear at 52 px, EVERY ANSWER: YOU clear; rewrapped ACHR quote has clean spacing above the source line.",
+      "Hook at 0.0s, other spoken numbers, audio end (56.77s of 59.87s) and transitions unchanged from round 0 and fine."
+    ],
+    "previous": {
+      "gate": "render-critic",
+      "round": 0,
+      "rerun": "re-render for design fixes, Nov 9, 2026",
+      "reviewer": "claude opus, fresh agent",
+      "pass": false,
+      "score": {
+        "faults": 1
+      },
+      "faults": [
+        {
+          "kind": "overlap",
+          "at": 44.5,
+          "text": "TIMES A YEAR OF OWNER EARNINGS / 2.73x",
+          "scene": "gauge (44.0s to 51.5s)",
+          "what": "The two line label is drawn over the gauge rim: the grey rim, the orange arc and the top tick run through OWNER EARNINGS (the tick cuts the A). A white glint patch sits on top of the 3 and x of the 2.73x hero, and the needle tip touches the x. The dial's 2 and 4 scale numbers are no longer visible. Move the label above the rim (or inside on a clear band) and put the glint and needle behind the number."
+        }
+      ],
+      "reasons": [
+        "FAIL, 1 fault: gauge 44.0s to 51.5s, label and 2.73x hero overlap the rim, arc, tick and glint (overlap).",
+        "Hook: HALF? cover with YOU ASK A MILLION. SHE OFFERS HALF. on screen at 0.0s over the storefront; $1,000,000 by 0.5s, $500,000 and OFFER: HALF by 2.5s.",
+        "Spoken numbers readable when said: million 0.8s, three things 5.6s (1 2 3 boxes), 2025 at 43.8s on the ACHR clipping, 2.73 on the clipping from 34.5s and the gauge from 44.5s.",
+        "Other layout fine: inventory title and EVERY ANSWER: YOU line clear; newsprint ACHR clipping text inside the card and left of about x 920; WHAT WILL YOU TELL HER? button over the host is intended and fully readable.",
+        "Audio: last word ends 56.77s, video 59.87s, nothing cut. Text sizes fine for a phone. Transitions at 3.5s, 12.0s, 24.0s are single pixel dissolves, no flashing above 3 a second.",
+        "Note (not a fault): on the ACHR clipping the quote's last line (earnings.) sits tight on the source line below it."
+      ],
+      "previous": {
+        "gate": "render-critic",
+        "round": 0,
+        "reviewer": "claude opus, fresh agent",
+        "pass": true,
+        "score": {
+          "faults": 0
+        },
+        "faults": [],
+        "reasons": [
+          "Hook: HALF? card with 'You ask a million. She offers half.' on screen at 0.0s; $1,000,000 at 0.5s, $500,000 and OFFER: HALF by 2.5s.",
+          "Spoken numbers: million (0.8s) shows $1,000,000; three things (5.6s) shows 1 2 3 boxes; 2025 (43.8s) on the ACHR card; two point seven three (44.4s) shows 2.73x on the card from 34.5s and on the gauge from 44.5s.",
+          "Layout settled: no words or numbers hidden, overlapped or cut off; words sit between y 270 and 1250 and left of x 930. Card frames (office manager, ACHR, end card) run to about x 1030 but their text stays left of about x 920.",
+          "Audio: last word 'her?' ends 56.77s; video runs 59.87s with the end card; nothing cut mid-word.",
+          "Text size fine for a phone (smallest, the gauge label and source line, about 28 to 36 px). Transitions at 3.5s, 12.0s and 24.0s are single pixel dissolves (12.0s a 2 frame dark dip), no flashing above 3 a second.",
+          "Note (not a fault): at 2.0s the ASKING board is empty while $500,000 shows, half a second before OFFER: HALF lands."
+        ]
+      }
+    }
+  }
+}

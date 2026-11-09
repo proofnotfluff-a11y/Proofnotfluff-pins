@@ -1,0 +1,23 @@
+{
+ "gate": "facts-captions",
+ "round": 0,
+ "reviewer": "fresh opus agent",
+ "pass": true,
+ "score": {
+  "numbers": 16,
+  "mismatches": 0
+ },
+ "reasons": [
+  "All four platforms PASS on facts: 2.73x, 'annual earnings', Florida, the 2025 Florida small business exit report, Mar 20, 2026 and The ACHR News match facts.json exit; the YouTube quote 'In Florida, HVAC businesses are selling for 2.73x annual earnings.' matches the confirm line word for word, and the full article title matches. No caption says 2.73x holds outside Florida, names a real sale price, or says the list raises a price.",
+  "Owner-dependence lines (IG 'A buyer pays for the shop that runs without you', FB 'depends on who runs it', TikTok 'the offer drops') rest on the Contractor confirms 'A buyer is not purchasing the owner.' and 'Owner dependency can diminish business value'.",
+  "The how-we-do-it list is labeled 'our example list' on every platform and matches the spoken list; the question 'She asks who answers the phone. What would you tell her?' matches the video's last line; the send line 'your office manager' matches brief.md; the video says nothing is 'in the caption'.",
+  "Rules PASS: line 1 IG 88, TikTok 68, FB 82 characters; TikTok keyword in the first 70 and a question for owners; hashtags IG 4, TikTok 4, FB 2, YouTube 3; YouTube title 54 characters with no hashtags and a question; description has keyword line, proof with full source, numbered steps, next-lesson line and site line (missed-call-cost-calculator is in docs/sitemap.xml); 9 tags with one misspelling; no link in IG or FB; no AI voice line; no em or en dashes; no private person, business or address; AI labels TikTok on, the rest off.",
+  "Note (not a fault): TikTok 'If every answer is you, the offer drops.' is firmer than the source's 'can diminish'; 'the offer can drop' would match it exactly.",
+  "Note (not a fault): the Facebook hashtags carry no umbrella tag (#homeservicebusiness or #contractorbusiness); same as members-go-first, which passed."
+ ],
+ "fixes": [],
+ "sources_checked": [
+  "https://www.achrnews.com/articles/165983-cooling-off-not-cooling-down-study-shows-hvac-businesses-still-command-premium-prices: host does not resolve from this session; checked against the facts.json confirm lines copied word for word from the live page on 2026-11-08 by two independent page reads.",
+  "https://www.contractormag.com/management/best-practices/article/55384109/why-two-identical-shops-sell-for-millions-apart: host does not resolve from this session; checked the same way against the facts.json confirm lines."
+ ]
+}

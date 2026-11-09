@@ -1,0 +1,112 @@
+{
+ "gate": "design",
+ "round": 3,
+ "pass": true,
+ "bar": "round 3, after two FAILs (Todd, Oct 31): no score under 4 and average 4.50 or more",
+ "score": {
+  "first": 5,
+  "hierarchy": 5,
+  "type": 5,
+  "color": 5,
+  "spacing": 5,
+  "polish": 4,
+  "trust": 5,
+  "average": 4.86
+ },
+ "checked": "44.0-47.4 s gauge only; all other frames unchanged, scores carry from round 2.",
+ "fixed": [
+  "44.0-47.4 s gauge: the green readout pill below the hub counts up with the needle (1.43x at 44.0 s, 2.73x from about 44.6 s) while the number is spoken; no collision with the needle, ticks or rim; the 2.73x hero card follows at about 47.5 s."
+ ],
+ "reasons": [
+  "12.5-24.0 s inventory item label: a stray orange mark under the C and U of CUSTOMERS and a dark tick under the H of PHONES (carried from round 2; polish 4)."
+ ],
+ "notes": [
+  "12.5-24.0 s inventory: the WHO RUNS THE SHOP tab still covers the top edges of the first slot row."
+ ],
+ "previous": {
+  "gate": "design",
+  "round": 2,
+  "pass": true,
+  "bar": "round 2, after two FAILs (Todd, Oct 31): no score under 4 and average 4.50 or more",
+  "score": {
+   "first": 5,
+   "hierarchy": 5,
+   "type": 5,
+   "color": 5,
+   "spacing": 5,
+   "polish": 4,
+   "trust": 5,
+   "average": 4.86
+  },
+  "fixed": [
+   "44-51.5 s gauge: no more collisions; the dial runs alone, then 2.73x sits on its own hero card (2.73x / ANNUAL EARNINGS / FLORIDA HVAC, 2025) from about 47.5 s, clean.",
+   "12.5-24 s inventory: NEEDS YOU and the item label (PHONES, PRICING, CUSTOMERS, BOOKING) now at or above 36 px.",
+   "34.5-44 s receipt: the quote wraps to full card width on two lines with clear space above the source."
+  ],
+  "reasons": [
+   "12.5-24.0 s inventory item label: a stray orange mark (the old icon's remnant) sits under the C and U of CUSTOMERS, and a dark tick under the H of PHONES; remove the leftover glyph so the label is clean (polish 4)."
+  ],
+  "notes": [
+   "43.8-47.5 s gauge: the dial shows no number or label while 'two point seven three times' is spoken; the 2.73x card lands about 2 s after the number is said. Consider bringing the card in on 'two point' or putting a small 2.73x readout on the dial (M3).",
+   "12.5-24.0 s inventory: the WHO RUNS THE SHOP tab still covers the top edges of the first slot row."
+  ],
+  "previous": {
+   "gate": "design",
+   "round": 1,
+   "pass": false,
+   "bar": "round 1: no score under 4 and average 4.61 or more",
+   "score": {
+    "first": 5,
+    "hierarchy": 5,
+    "type": 4,
+    "color": 5,
+    "spacing": 4,
+    "polish": 4,
+    "trust": 5,
+    "average": 4.57
+   },
+   "fixed": [
+    "4.0-12.0 s ask card: ASKING now sits fully in the teal strip.",
+    "0.0 s cover: HALF? now on a chalkboard inside the storefront room, its own world.",
+    "12.5-24.0 s inventory: EVERY ANSWER: YOU and the stamp fill the lower panel.",
+    "52.0 s button: WHO ANSWERS THE PHONE? arrives with the cut.",
+    "34.5 s receipt: new newspaper look, no longer the 2026-11-25 card.",
+    "44.0 s gauge: 2.73x is now the hero at about 140 to 160 px."
+   ],
+   "reasons": [
+    "44.5-51.5 s gauge: the fix for 2.73x landed with collisions: the needle runs through the x, a white sliver shows on the 3 and x, and the dial rim cuts through OWNER EARNINGS. Move 2.73x below the hub (or shorten the needle so it stops under the number), remove the sliver, and lift the two-line label clear of the rim.",
+    "12.5-24.0 s inventory labels: NEEDS YOU and the item label (PHONES, PRICING, CUSTOMERS, BOOKING) still render at about 34 px; raise both to 36 px or more (round 0 fault 3, only WHO RUNS THE SHOP was raised).",
+    "34.5-44.0 s receipt: the quote still breaks at about 55 percent of the card width (In Florida, HVAC / businesses are selling ...), leaving a ragged right gap, and the source line butts against earnings.\" with no space; wrap the quote to the full card width and add about 24 px between quote and source (round 0 fault 6, wrap part)."
+   ],
+   "notes": [
+    "12.5-24.0 s inventory: the WHO RUNS THE SHOP tab now covers the top edges of the first slot row; nudge the slots down 10 px."
+   ],
+   "previous": {
+    "gate": "design",
+    "round": 0,
+    "pass": false,
+    "bar": "round 0: no score under 4 and average 4.61 or more",
+    "score": {
+     "first": 4,
+     "hierarchy": 4,
+     "type": 4,
+     "color": 5,
+     "spacing": 4,
+     "polish": 4,
+     "trust": 5,
+     "average": 4.29
+    },
+    "reasons": [
+     "4.0-12.0 s ask card: the ASKING label sits half on the teal header strip and half on the cream body; set it fully inside the teal strip (ink on teal) or drop the strip, so the card reads as one clean label over $1,000,000.",
+     "44.0-51.5 s gauge: the hero number 2.73x is about 50 px in a small pill under a huge dial; set 2.73x at 160 px or more (accent, above or across the dial face) so the number of the lesson is the focal point, per the style board type floor.",
+     "12.5-24.0 s and 44-51.5 s labels: WHO RUNS THE SHOP, NEEDS YOU and TIMES A YEAR OF OWNER EARNINGS render at about 34 px; raise every label to 36 px or more at 1080 wide.",
+     "12.5-24.0 s inventory panel: the bottom 40 percent of the panel is empty dark blue for 11 s (below the stamp); shrink the panel to its content or fill it (the four answers dropping into the empty slots one by one as they are named), so no third of the band sits empty.",
+     "0.0 s cover: the navy title card with an orange headline and EXAMPLE tag is the same layout as the last two covers (fresh.json 0.61 and 0.68); open in the new storefront room with HALF? slammed onto the price tag instead, so the cover is this lesson's own world.",
+     "34.5-44.0 s receipt: the ACHR News card is the same red-header quote card as 2026-11-25 (same paper, same look); keep the source tag but show the number as a For Sale sign or deal sheet in the shop world, and rewrap the quote to full width (now it breaks at 60 percent, leaving a ragged right gap).",
+     "52.0-53.5 s button: the frame is the ask room with only a lone EXAMPLE tag and the woman, half the band empty; bring in the WHO ANSWERS THE PHONE? card with the cut instead of 1.5 s later.",
+     "note: sheets/f02 to f04 show $500,000 beside ASKING while the MP4 shows $1,000,000 at 1.0 to 2.0 s; the sheets are stale against the render, rerun anim.py stills before the next round."
+    ]
+   }
+  }
+ }
+}

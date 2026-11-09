@@ -1,0 +1,90 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "pass": true,
+ "reviewer": "claude opus (fresh agent), 2026-11-09, third rerun (gauge scene only)",
+ "score": {
+  "numbers": 7,
+  "mismatches": 0
+ },
+ "reasons": [],
+ "notes": [
+  "Sources not reachable from this machine (achrnews.com and contractormag.com do not resolve); checked against the confirms lines in 01_voice/facts.json, copied word for word from the live pages on 2026-11-08 by two independent page reads.",
+  "Hero card 2.73x / ANNUAL EARNINGS / FLORIDA HVAC, 2025 (05_render/gates/timeline-4.jpg, 47.0 to 51.5 s): matches 'In Florida, HVAC businesses are selling for 2.73x annual earnings.' and the 2025 Florida exit report; value from data.js; the voice keeps the owner-earnings base.",
+  "ACHR clipping rewrapped (timeline-3.jpg, 34.5 to 43.5 s): same words as the source line, same tag (Mar 20, 2026, 2025 Florida exit report, read Nov 8, 2026).",
+  "Inventory pane (timeline-2.jpg): PHONES, PRICING, CUSTOMERS, BOOKING, NEEDS YOU and EVERY ANSWER: YOU are story labels matching the voice, no number shown; no EXAMPLE tag but they do not read as data. Not a fault.",
+  "Gauge (timeline-4.jpg, 45.0 to 46.5 s): the readout pill counts up with the needle and holds 2.73x (data.js) until the hero card at 47.0 s; a count-up value is a transient, not a claim. cues.md line 28 says the same. No em or en dashes in cues.md or scene.js."
+ ],
+ "sources_checked": [
+  "https://www.achrnews.com/articles/165983-cooling-off-not-cooling-down-study-shows-hvac-businesses-still-command-premium-prices: (via facts.json confirms, read 2026-11-08) 'In Florida, HVAC businesses are selling for 2.73x annual earnings.'; base 'annual owner earnings'. Matches the clipping, data.js 2.73 / 2.73x, the hero card and the voice. Trade source.",
+  "https://www.contractormag.com/management/best-practices/article/55384109/why-two-identical-shops-sell-for-millions-apart: (via facts.json confirms, read 2026-11-08) 'A buyer is not purchasing the owner.' and 'The owner is the one piece of the company that will not be there anymore.' Back SHE ISN'T BUYING YOU and 'the one part of the shop that leaves'.",
+  "Ours, tagged EXAMPLE: $1,000,000, $500,000 / OFFER: HALF, the three questions, the send card, the closing bubble. No private person or business; no em or en dashes in cues.md or scene.js."
+ ],
+ "previous": {
+  "gate": "facts",
+  "round": 0,
+  "pass": true,
+  "reviewer": "claude opus (fresh agent), 2026-11-09, second rerun after design re-render",
+  "score": {
+   "numbers": 7,
+   "mismatches": 0
+  },
+  "reasons": [],
+  "notes": [
+   "Sources not reachable from this machine (achrnews.com and contractormag.com do not resolve); checked against the confirms lines in 01_voice/facts.json, copied word for word from the live pages on 2026-11-08 by two independent page reads.",
+   "Hero card 2.73x / ANNUAL EARNINGS / FLORIDA HVAC, 2025 (05_render/gates/timeline-4.jpg, 47.0 to 51.5 s): matches 'In Florida, HVAC businesses are selling for 2.73x annual earnings.' and the 2025 Florida exit report; value from data.js; the voice keeps the owner-earnings base.",
+   "ACHR clipping rewrapped (timeline-3.jpg, 34.5 to 43.5 s): same words as the source line, same tag (Mar 20, 2026, 2025 Florida exit report, read Nov 8, 2026).",
+   "Inventory pane (timeline-2.jpg): PHONES, PRICING, CUSTOMERS, BOOKING, NEEDS YOU and EVERY ANSWER: YOU are story labels matching the voice, no number shown; no EXAMPLE tag but they do not read as data. Not a fault.",
+   "Gauge (44.0 to 46.5 s) shows the dial alone with no readout, so no transient wrong value."
+  ],
+  "sources_checked": [
+   "https://www.achrnews.com/articles/165983-cooling-off-not-cooling-down-study-shows-hvac-businesses-still-command-premium-prices: (via facts.json confirms, read 2026-11-08) 'In Florida, HVAC businesses are selling for 2.73x annual earnings.'; base 'annual owner earnings'. Matches the clipping, data.js 2.73 / 2.73x, the hero card and the voice. Trade source.",
+   "https://www.contractormag.com/management/best-practices/article/55384109/why-two-identical-shops-sell-for-millions-apart: (via facts.json confirms, read 2026-11-08) 'A buyer is not purchasing the owner.' and 'The owner is the one piece of the company that will not be there anymore.' Back SHE ISN'T BUYING YOU and 'the one part of the shop that leaves'.",
+   "Ours, tagged EXAMPLE: $1,000,000, $500,000 / OFFER: HALF, the three questions, the send card, the closing bubble. No private person or business; no em or en dashes in cues.md or scene.js."
+  ],
+  "previous": {
+   "gate": "facts",
+   "round": 0,
+   "pass": true,
+   "reviewer": "claude opus (fresh agent), 2026-11-09, rerun after design re-render",
+   "score": {
+    "numbers": 7,
+    "mismatches": 0
+   },
+   "reasons": [],
+   "notes": [
+    "Sources not reachable from this machine (achrnews.com and contractormag.com do not resolve); checked against the confirms lines in 01_voice/facts.json, copied word for word from the live pages on 2026-11-08 by two independent page reads.",
+    "New cues.md and scene.js strings checked: cover board over a blank storefront (sign and tag blank, no number), EVERY ANSWER: YOU (story line, matches the voice 'If every answer is you'), the newsprint clipping quotes the ACHR line word for word with the same tag, the gauge label TIMES A YEAR OF / OWNER EARNINGS and the 2.73x hero from data.js, the button bubble WHO ANSWERS THE PHONE? with EXAMPLE from the cut.",
+    "Frames (05_render/gates timeline 1 to 4): the hero reads 2.73x from 44.5 s to the end of the receipt; no wrong count-up value is shown as a hero; the dial ends carry no benchmark.",
+    "The turn panel (12.5 to 24 s) has no EXAMPLE tag; its bars show no number and read as the viewer's own answers, not data. Not a fault."
+   ],
+   "sources_checked": [
+    "https://www.achrnews.com/articles/165983-cooling-off-not-cooling-down-study-shows-hvac-businesses-still-command-premium-prices: (via facts.json confirms, read 2026-11-08) 'In Florida, HVAC businesses are selling for 2.73x annual earnings.'; base 'annual owner earnings'. Matches the clipping, data.js 2.73 / 2.73x, the gauge label and hero, the voice line, the tag Mar 20, 2026 on a 2025 Florida exit report. Trade source.",
+    "https://www.contractormag.com/management/best-practices/article/55384109/why-two-identical-shops-sell-for-millions-apart: (via facts.json confirms, read 2026-11-08) 'A buyer is not purchasing the owner.' and 'The owner is the one piece of the company that will not be there anymore.' Back SHE ISN'T BUYING YOU and 'the one part of the shop that leaves'.",
+    "Ours, tagged EXAMPLE: $1,000,000, $500,000 / OFFER: HALF, the three questions, the send card, the closing bubble. No private person or business; no em or en dashes in cues.md, scene.js or transcript."
+   ],
+   "previous": {
+    "gate": "facts",
+    "round": 0,
+    "pass": true,
+    "reviewer": "claude opus (fresh agent), 2026-11-09",
+    "score": {
+     "numbers": 7,
+     "mismatches": 0
+    },
+    "reasons": [],
+    "notes": [
+     "Sources not reachable from this machine (achrnews.com and contractormag.com do not resolve); checked against the confirms lines in 01_voice/facts.json, copied word for word from the live pages on 2026-11-08 by two independent page reads.",
+     "05_render/gates/timeline-3.jpg 44.0 s: the gauge shows 2.51x for one frame while counting up to 2.73x; it settles on 2.73x by 44.5 s and holds. A count-up frame, not a claim; no fix needed.",
+     "Turn scene (12.5 to 24 s) has no EXAMPLE tag on the WHO RUNS THE SHOP / NEEDS YOU panel; the bars carry no number and read as the viewer's own answers, not data. Not a fault.",
+     "Voice says HVAC shops in Florida 'sold in 2025'; the source is a 2025 Florida small business exit report reporting 'are selling for 2.73x annual earnings'. Fair reading of a 2025 report, scoped to Florida as said."
+    ],
+    "sources_checked": [
+     "https://www.achrnews.com/articles/165983-cooling-off-not-cooling-down-study-shows-hvac-businesses-still-command-premium-prices: (via facts.json confirms, read 2026-11-08) 'In Florida, HVAC businesses are selling for 2.73x annual earnings.' and the base is 'how many times a company's annual owner earnings a buyer is willing to pay'. Matches data.js 2.73 / 2.73x, the quote card word for word, the gauge label TIMES A YEAR OF OWNER EARNINGS, the voice 'two point seven three times what the owner earns from them in a year', the tag Mar 20, 2026, Florida, 2025 exit report. Trade source (HVAC press).",
+     "https://www.contractormag.com/management/best-practices/article/55384109/why-two-identical-shops-sell-for-millions-apart: (via facts.json confirms, read 2026-11-08) 'A buyer is not purchasing the owner.' and 'The owner is the one piece of the company that will not be there anymore.' Back 'She isn't buying you', 'You're the one part of the shop that leaves' and the stamp SHE ISN'T BUYING YOU.",
+     "Ours, labeled EXAMPLE on screen: $1,000,000 asked, $500,000 / OFFER: HALF, the three buyer questions, the HOW WE DO IT send card (1 to 4, ONE PAGE EACH), the closing bubble. EXAMPLE tag seen in hook, ask, send and button frames. No real private person, business or address; no em or en dashes in script, transcript, cues.md or scene.js; every scene.js string appears in cues.md."
+    ]
+   }
+  }
+ }
+}

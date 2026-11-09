@@ -1,0 +1,85 @@
+{
+ "schema": "pnf.studio.cues.v1",
+ "source": "whisper medium.en int8, re-spelled from script.md",
+ "music": {
+  "id": "rooms",
+  "level": 0.16,
+  "tune": "quest"
+ },
+ "duration": 59.866,
+ "cues": [
+  {
+   "id": "hook",
+   "level": 0,
+   "quote": "You want a million",
+   "sfx": "pop",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Cover, frame one: HALF? / YOU ASK A MILLION. / SHE OFFERS HALF. on the cover board, EXAMPLE, over the office. At 0.6 s a blinds cut to the storefront counter: YOUR SHOP on the sign, a toolbox on the counter, the price tag reads $1,000,000; the buyer (k.client, smug) stands at the counter. On \"million\" the tag flips and lands on $500,000 by \"half\". EXAMPLE tag top right.",
+   "t": 0.0,
+   "word": 0,
+   "end": 3.559
+  },
+  {
+   "id": "ask",
+   "level": 0,
+   "quote": "Before she pays more,",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The buyer's office, the buyer leans in (argue pose, talking). Her bubble changes on each question: WHO ANSWERS THE PHONE? on \"Who answers\", WHO PRICES THE JOBS? on \"Who prices\", WHO DO YOUR CUSTOMERS CALL? on \"who do\". A tally of three boxes on the wall marks 1, 2, 3, each marked YOU in turn. The price sign: ASKING $1,000,000. EXAMPLE tag.",
+   "t": 3.559,
+   "word": 10,
+   "end": 12.238
+  },
+  {
+   "id": "turn",
+   "level": 0,
+   "quote": "If every answer is",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The tool belt (inventory): WHO RUNS THE SHOP. The cursor picks PHONES, PRICING, CUSTOMERS, then BOOKING on \"walks\"; each one's stat bar fills: NEEDS YOU 100%. On \"buying\" a stamp: SHE ISN'T BUYING YOU.",
+   "t": 12.238,
+   "word": 33,
+   "end": 24.209
+  },
+  {
+   "id": "send",
+   "level": 0,
+   "quote": "So start this week.",
+   "sfx": "whoosh",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The send card, held still: FOR YOUR OFFICE MANAGER / HOW WE DO IT / ONE PAGE EACH / 1 ANSWER A CALL / 2 PRICE A JOB / 3 BOOK THE WORK / 4 SEND THE BILL, tagged EXAMPLE. Each step's number lights on its words; nothing moves over the card.",
+   "send": true,
+   "t": 24.209,
+   "word": 67,
+   "end": 34.56
+  },
+  {
+   "id": "receipt",
+   "level": 0,
+   "quote": "Here's a real number.",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The ACHR News line on a card: \"In Florida, HVAC businesses are selling for 2.73x annual earnings.\" with its tag: The ACHR News, Mar 20, 2026, on a 2025 Florida exit report. Read Nov 8, 2026. On \"two point\" a fade to the gauge: 2.73x (data.js), TIMES A YEAR OF OWNER EARNINGS.",
+   "t": 34.56,
+   "word": 98,
+   "end": 51.886
+  },
+  {
+   "id": "button",
+   "level": 0,
+   "quote": "So when she makes",
+   "sfx": "chime",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The office again: the buyer, calm; on \"asks\" her bubble: WHO ANSWERS THE PHONE? (EXAMPLE). On \"what will\" the stamp: WHAT WILL YOU TELL HER? Holds to the end card.",
+   "t": 51.886,
+   "word": 143,
+   "end": 59.866
+  }
+ ]
+}

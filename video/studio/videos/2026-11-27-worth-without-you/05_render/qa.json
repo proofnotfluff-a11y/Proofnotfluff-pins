@@ -1,0 +1,62 @@
+{
+ "schema": "pnf.studio.qa.v1",
+ "slug": "2026-11-27-worth-without-you",
+ "mp4Sha256": "7de7a894e3957a8e2e90bee9e1228930c0d49dd53f68b3852324233fd3ecd9cb",
+ "checks": [
+  {
+   "name": "length",
+   "value": 59.867,
+   "pass": true,
+   "detail": "59.87 s (50.0 to 65.0, proven lesson, end card included)"
+  },
+  {
+   "name": "loudness",
+   "value": {
+    "lufs": -14.3,
+    "truePeak": -3.0
+   },
+   "pass": true,
+   "detail": "-14.3 LUFS (target -14 +/- 1), true peak -3.0 dBTP (at most -1.5)"
+  },
+  {
+   "name": "black",
+   "value": [],
+   "pass": true,
+   "detail": "0 black stretch(es) of 0.5 s or more"
+  },
+  {
+   "name": "frozen",
+   "value": [
+    [
+     58.7333,
+     59.866667
+    ]
+   ],
+   "pass": true,
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 56.87 s"
+  },
+  {
+   "name": "flat",
+   "value": [],
+   "pass": true,
+   "detail": "0 flat stretch(es) of 1.2 s or more under 0.1 before the end card at 56.87 s"
+  },
+  {
+   "name": "file",
+   "value": {
+    "sha256": "7de7a894e3957a8e2e90bee9e1228930c0d49dd53f68b3852324233fd3ecd9cb",
+    "bytes": 6059863
+   },
+   "pass": true,
+   "detail": "H.264 1080x1920 30 fps, AAC, 6.1 MB, decodes clean"
+  },
+  {
+   "name": "voice",
+   "value": "whisper medium.en int8, re-spelled from script.md",
+   "pass": true,
+   "detail": "whisper medium.en int8, re-spelled from script.md, 0 flag(s)"
+  }
+ ],
+ "pass": true,
+ "at": "2026-11-08T19:30:43-05:00"
+}

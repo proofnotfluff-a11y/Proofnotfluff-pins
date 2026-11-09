@@ -1,34 +1,39 @@
 {
  "gate": "design",
- "round": 0,
+ "round": 1,
  "reviewer": "claude opus, fresh agent",
  "bar": "4.61",
- "pass": false,
+ "pass": true,
  "score": {
   "first": 4,
   "hierarchy": 5,
   "type": 5,
-  "color": 4,
-  "spacing": 4,
-  "polish": 4,
-  "trust": 4,
-  "average": 4.29
+  "color": 5,
+  "spacing": 5,
+  "polish": 5,
+  "trust": 5,
+  "average": 4.86
  },
  "reasons": [
-  "0.7 to 2.3 s roof close-up: it reads as a purple brick wall, and the hail marks are 8 px dots that vanish on a phone, so the object the hook asks about is never shown (C1). Redraw it as a sloped shingle field (staggered tabs, ridge line at the top, tilted) with 4 to 6 round bruises at least 30 px across (dark center, lighter ring) and one streaky worn patch for OLD ROOF. Chalk-circle one bruise on 'damage'.",
-  "2.4 to 8.0 s driveway, host: his teal jacket sits on the teal lawn and his torso disappears, leaving a floating head and legs. Stand him on the grey driveway, or darken the lawn to a deep green, or give him a 3 px ink outline.",
-  "2.4 to 8.0 s driveway, house roof: the roof is seven loose lines with floating dots and looks unfinished. Draw a filled shingle roof (rows of tabs, a few bruises that match the close-up) on the two-flat the cue asks for. The whole lesson argues about this roof, so it should be the best-drawn thing on screen.",
-  "8.0 to 19.5 s trap split: the host is behind the dialog box for 11.5 s and only his hat shows. Bring him out at the left of the box, as in every other section, and play the cued shrug on 'you lose either way' and a lean-in on 'your word against his' (M5).",
-  "20.3 to 31.8 s send card: the waiting steps (#A7ABB5 on cream, about 2.2:1) are faint, and anyone who pauses or saves before 25 s sees grey lines (C3). Darken waiting steps to about #858A96 (3.3:1). Keep the ink light-up on each word so each step still reads as it lands.",
-  "49.5 to 54.0 s versus cards: the hammer and clock icons are about 70 px inside 410 x 260 cards, so the cards look empty. Scale both icons up 2.5x (about 180 px) and center them.",
-  "11.75 to 19.5 s trap, left half: the small gold ring mark near x 365, y 600 floats 150 px from her phone and reads as a stray glyph. Put it at her ear or drop it. At 18.15 s a red speed-line dash sits under SAY YES like an underline, and another sits between SHE CALLS and ANOTHER ROOFER. Keep the streaks out of the label rows (y 280 to 470).",
-  "33.5 to 40.5 s gauge: the AS MUCH AS plate hides the dial's 0 and 100 (the cue asks for them), and the Source line runs into the top of the ring. Lift the Source line about 20 px or shrink the dial about 6%, and put 0 and 100 at the arc ends above the plate. The count starts on 'eighty' and reaches 80% at 36.6 s, so start it 0.3 s earlier so 80% lands as the word is said (M3)."
+  "0.7 to 2.3 s roof close-up, worn patch: the OLD ROOF patch the r0 change asked for is drawn, but it sits fully behind the EXAMPLE badge (about x 786, y 528), and the ridge cap is behind the title panel (y 252 to 288 under the panel at 270 to 470). So the hook shows four bruises and no old roof, and the field still reads a little like a grey wall. Move the worn patch into open roof at about x 760 to 900, y 630 to 700 (clear of the badge, which ends at y 560, and of the bruises at 612,732 and 828,858), and either drop the ridge or move it below the panel at about y 480."
+ ],
+ "checked": [
+  "1 roof close-up (0.7 to 2.3 s): PARTLY. Landed: grey shingle field with staggered tabs and a slight tilt, four visible bruises about 40 px across (dark center, lighter ring), a chalk ring that draws on with 'damage' (1.0 to 1.5 s). Not visible: the worn patch (under EXAMPLE) and the ridge line (under the title panel). Carried as the one reason above.",
+  "2 host on the driveway (2.4 to 8.0 s): FIXED. He stands on the brown lawn and the teal jacket reads clearly.",
+  "3 house roof (2.4 to 8.0 s): FIXED. Filled shingle rows with a ridge cap and small bruises that echo the close-up.",
+  "4 trap host (8.0 to 19.5 s): FIXED. He stands at the left of the box the whole section, shrugs on 'you lose either way' (10.0 to 10.6 s), and holds up the list on 'your word against his' (18.15 s).",
+  "5 send card (20.0 to 33.4 s): FIXED, as intended. All four steps are lit ink from the moment the card lands, so any pause or save gets the full list.",
+  "6 versus icons (49.5 to 54.0 s): FIXED. Hammer and clock now fill about 200 px of each card.",
+  "7 trap stray marks (11.75 to 19.5 s): FIXED. No gold ring near her phone; label rows (y 270 to 480) clear of streaks at 11.8, 14.5, 17.6 and 18.15 s.",
+  "8 gauge (33.5 to 40.5 s): FIXED. The source sits on its own band above the ring, 0 and 100 show at the arc ends beside the plate, and the count reaches 80% at about 36.15 s, inside 'eighty' (35.99 to 36.33 s), where r0 had it at 36.6 s."
  ],
  "notes": [
-  "Bar used: round 0, no score under 4 and average 4.61 or more. No earlier design.json existed. Fails on average (4.29), and no score is under 4.",
-  "Freshness: PASS. This lesson's worlds (storm-sky cover, driveway, slanted split, gauge, arcade score table, versus) share no set piece with pay-before-you-leave (street, calendar, level-up) or members-go-first (dispatch map, weather, slots, HUD). fresh.json: cover 0.31 and 0.39, shot1 0.14 and 0.08, close 0.08 and 0.17, send 0.71 and 0.64 (kit piece, meant to match). First impression is not capped at 3.",
-  "Style board caps: none triggered. The picture changes at 0.7 s (blinds), the host is on screen at 1.0 s, spoken words are at or above 44 px and labels at or above 39 px (sets.js default; table 52), and the end card with proofnotfluff.com holds 54.05 to 57.07 s.",
-  "Standard: M4 met. Every room change travels (blinds 0.7 s, iris 2.3 s, tile wave 8.0 s, dither 19.6 s, mosaic 33.5 s, fade4 43.0 s, CRT close 49.0 s), and the YOUR WORD VS HIS (17.5 s) and SAME PHOTOS (46.5 s) stamps overshoot and settle. qa.json flat PASS. C3 card present 20.0 to 33.4 s and readable at phone size once lit.",
-  "Render is older than the scene: scene.js was saved at 19:06, after the MP4 (19:00). For example, scene.js step 3 reads EVERY HIT CIRCLED, TAPE BESIDE IT, but the render shows EVERY HIT CIRCLED. Re-render before the next round so the gates judge the same build."
+  "Bar used: 4.61 and no score under 4 (round 0 was the first design FAIL, so the 4.50 bar does not apply). Passes at 4.86, no score under 4.",
+  "Scores: hierarchy and type carry from r0 (5). Color, spacing, polish and trust rise from 4 to 5 because every fault behind them landed (r0 changes 2 to 8). First stays 4 only for the roof close-up item above.",
+  "Freshness: PASS, unchanged since r0. Storm sky cover, driveway, slanted split, gauge, score table and versus share no set piece with pay-before-you-leave (water heater, door, level bar, street) or members-go-first (map, call order, member plan card, months). fresh.json: send 0.68 and 0.65 is the kit card, meant to match.",
+  "Style board and standard caps: none. Picture changes at 0.7 s, host on screen at 1.0 s, spoken words 44 px or more, end card with proofnotfluff.com 54.05 to 57.07 s, M4 travels between every room, qa.json flat PASS, C3 card readable and held 13 s.",
+  "Note, not a fault: at 40.5 s the Triple-I quote card is empty cream for about 0.5 s before the quote types on; start the typing as the card lands.",
+  "Note, not a fault: the close transition (gameover) is the same one members-go-first used; pick another for the next lesson.",
+  "Note, not a fault: M3 asks the key word 0.2 to 0.3 s before it is said; 80% now lands about 0.15 s after 'eighty' starts. Another 0.4 s earlier would hit it exactly."
  ]
 }

@@ -1,19 +1,19 @@
 {
   "gate": "render-critic",
-  "round": 0,
+  "round": 1,
   "reviewer": "claude opus, fresh agent",
   "pass": true,
   "score": {"faults": 0},
   "faults": [],
   "reasons": [
-    "No earlier render-critic.json existed, so there were no earlier faults to check.",
-    "Hook: PASS. HAIL DAMAGE? OR JUST AN OLD ROOF? is on screen from frame 0 (frame-0s.png), well before 0:02.",
-    "Spoken numbers: PASS. Four (23.2 s): the 4-item list numbered 1 to 4 has been on screen since about 20 s. Eighty percent (35.99 to 36.87 s): the dial counts up and reads 80% by 36.5 s, then holds through 40 s. The Triple-I quote card at 41 to 43 s also shows 80%.",
-    "Layout: PASS. Once settled, no words or numbers are hidden, cut off or under another element. All text sits between y 270 and y 1250, and right edges of text and badges stop at about x 928 to 930. Card backgrounds run wider, but the words inside do not. Black bands over the title card at 0.5 to 1.5 s, the pixel dissolve at 19.5 s, the dip at 43.0 s and the wipe at 49.0 s are all mid-transition.",
-    "Audio end: PASS. Last word not? ends at 53.95 s. The end card starts at 54.05 s, the video runs to 57.07 s and the music fades to -53 dB at the end. No word is cut.",
-    "Small text and flashes: PASS. The smallest readable text (DAMAGE OR NOT bar, leaderboard rows, HAIL DAMAGE and JUST WEAR labels) is about 25 to 30 px tall on a 1080 px frame, fine for a phone. Brightness analysis of all 1712 frames finds 4 dip-to-dark transitions (8.0, 19.7, 43.1, 49.3 s), each one swing and at least 6 s apart. Nothing flashes more than 3 times a second.",
-    "Watch item, not a fault: when Four is said at 23.2 s, all four list rows are still dimmed grey on cream (contrast about 2.5 to 1). The 4 is readable but faint until the rows light up at 25.5 s.",
-    "Watch item, not a fault: on the dial scene (33.6 to 40.5 s), the top of the gauge ring runs behind the descenders of Source: Triple-I, Apr 14, 2026. The text is drawn on top and stays readable.",
-    "Watch item, not a fault: drifting speed-line dashes on the trap scene (8.6 to 19.5 s) pass under the baselines of SAY NO and THE ADJUSTER. They do not hide any letters."
+    "Earlier fault 1 (overlap, 1.0 to 2.25 s, Snow's pointing arm across the dialog box): FIXED. Frames pulled at 1.0, 1.25, 1.5, 1.75, 2.0 and 2.25 s plus gates/frame-0.8s.png and frame-2.0s.png: the hand stops at about x 250 and the dialog box starts at about x 375, a gap of about 125 px in every frame. Nothing crosses the box.",
+    "Earlier fault 2 (overlap, about 47.6 s, SAME ROOF stamp over the EXAMPLE tag): FIXED. Frame by frame from 46.2 to 46.63 s and at 47.0, 47.3, 47.6 and 48.0 s: SAME PHOTOS lands settled at about x 295 to 660, left of EXAMPLE (about x 692 to 930), with no oversized landing frame. SAME ROOF sits on its own row below SAME PHOTOS (about y 805 to 880 in the 48.0 s frame) and touches neither tag.",
+    "Earlier fault 3 (small-text, 44.4 to 49.2 s, PHOTOS SEEN table at about 30 px): FIXED. scene.js now sets the scores table to size 52. Measured on full-size frames at 44.4 and 47.6 s: the header row and the 1ST, 2ND and 3RD rows have glyphs 32 to 36 px tall (cap height), and PHOTOS SEEN is larger. Sharp and readable on a phone.",
+    "Hook: PASS. HAIL DAMAGE? OR JUST AN OLD ROOF? is on screen from frame 0 (gates/frame-0s.png).",
+    "Spoken numbers: PASS. Four (23.20 s): the numbered 1 to 4 list has been up since about 20 s. Eighty (35.99 to 36.33 s): the dial counts up and reads 80% by 36.0 s on the timeline sheet, then holds to 40.5 s; the Triple-I quote card also shows 80% from 42 s.",
+    "Layout: PASS. No new blocker. Settled text sits between y 270 and y 1250 and stops by about x 930 in all 21 key frames. Black bands and the pixel dissolve at 0.5 to 1.0, 19.5, 43.0 and 49.0 s are mid-transition.",
+    "Audio end: PASS. Last word not? ends at 53.95 s, end card from 54.05 s, file runs to 57.07 s. Nothing cut mid-word.",
+    "Small text and flashes: PASS. No text under about 25 px; no flashing more than 3 times a second seen on the 2 frames a second timeline.",
+    "Note, not a fault: on frame f15 (35.99 s, the word eighty) the dial still reads 70% mid count-up; it reaches 80% within about a tenth of a second. Same behavior as round 0."
   ]
 }

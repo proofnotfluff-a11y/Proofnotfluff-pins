@@ -1,6 +1,6 @@
 {
  "schema": "pnf.studio.cohort.v1",
- "at": "2026-11-08T16:16:18-05:00",
+ "at": "2026-11-08T20:21:33-05:00",
  "rows": [
   {
    "slug": "2026-11-21-angi-four-pros",
@@ -61,6 +61,36 @@
    },
    "at72": {},
    "acted": false
+  },
+  {
+   "slug": "2026-11-26-damage-or-not",
+   "arm": "v3",
+   "topic": "phone",
+   "move": "question",
+   "rounds": {
+    "facts": 1,
+    "render-critic": 2,
+    "design": 2,
+    "send": 1,
+    "facts-captions": 2
+   },
+   "at72": {},
+   "acted": true
+  },
+  {
+   "slug": "2026-11-27-worth-without-you",
+   "arm": "v3",
+   "topic": "other",
+   "move": "you-scene",
+   "rounds": {
+    "facts": null,
+    "render-critic": null,
+    "design": null,
+    "send": null,
+    "facts-captions": null
+   },
+   "at72": {},
+   "acted": true
   }
  ]
 }

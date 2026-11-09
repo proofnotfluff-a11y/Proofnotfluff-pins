@@ -1,12 +1,13 @@
 {
   "gate": "send",
   "round": 0,
+  "note": "rerun on the new render",
   "pass": true,
   "score": {
     "person": "estimator",
-    "tie": "my estimator, the guy who climbs every roof after a hail storm and gets cornered by the homeowner in the driveway",
-    "thing": "the estimator's four shot photo list: \"FOR THE ESTIMATOR / BEFORE YOU SAY HAIL / 1 THE HOUSE AND ADDRESS / 2 A CHALK SQUARE EACH SLOPE / 3 EVERY HIT CIRCLED / 4 VENTS AND GUTTERS\"",
-    "held_at": "20.0 s to 33.0 s (all four lines fully lit 32.0 s to 33.0 s)",
+    "tie": "the estimator on my roofing crew who walks hail jobs and gets pushed by homeowners to call it from the driveway",
+    "thing": "a four step hail photo checklist card: \"FOR THE ESTIMATOR / BEFORE YOU SAY HAIL / 1 THE HOUSE AND ADDRESS / 2 A CHALK SQUARE EACH SLOPE / 3 EVERY HIT CIRCLED, TAPE BESIDE IT / 4 VENTS AND GUTTERS\"",
+    "held_at": "20.0s to 33.0s",
     "line": "Give this list to your estimator.",
     "gain": "helps",
     "feeling": "relief",
@@ -14,16 +15,15 @@
     "send_line_fits": "yes"
   },
   "reasons": [
-    "1. I run a three crew roofing shop. I would send it to my estimator, who walks every hail roof and gets asked to call it on the spot.",
-    "2. \"Give this list to your estimator.\" The video tells me who it is for and hands me the thing to forward. \"Call it from the driveway, and you lose either way.\" is the line that makes him nod.",
-    "3. Helps: he has been stuck between a homeowner who wants a yes today and an adjuster who says wear, and this gives him a way out that is not his word.",
-    "4. Relief: the trap at 8 s to 18 s (say no, she calls another roofer; say yes, the adjuster says wear) is real, and the list is the exit.",
-    "5. Thanks. It is a four line field checklist, not a pitch; the only brand is the end card.",
-    "6. End card reads \"Send this to your estimator before the next storm.\" It names the same person the video and the list name. Fits.",
-    "7. The list card sits still from 20.0 s to 33.0 s, readable the whole time, with lines 2 to 4 grey until the voice reaches them. All four are bright together only from 32.0 s to 33.0 s before the cut to the gauge at 33.5 s. A viewer who pauses early screenshots a half grey list.",
-    "8. The voice says \"your estimator\" and the card header says \"FOR THE ESTIMATOR\". One role.",
-    "Problem: the fully lit list holds about 1.5 s. Fix: hold the fully lit card at least 2.5 s before the gauge, or flash the full list behind the end card so the last frame a viewer pauses on is the thing to forward.",
-    "Problem: line 3 on screen drops the voice's key detail. Voice: \"every hit circled with a tape beside it\". Screen: \"3 EVERY HIT CIRCLED\". The forwarded screenshot is the only part the estimator sees. Fix: \"3 EVERY HIT CIRCLED, TAPE BESIDE IT\".",
-    "Not a send problem but seen on the sheets: 19.5 s is a checkerboard noise frame and 49.0 s is mostly black mid transition. Worth a look in the visual gates."
+    "1. Yes. As a roofing owner I would send it to my estimator, the one who walks the hail jobs and gets cornered in the driveway by a homeowner who is sure it is hail.",
+    "2. \"Give this list to your estimator.\" The voice hands the list to that exact person, so forwarding it is the obvious next move.",
+    "3. Helps: it fixes a problem I know he has. Say no and she calls another roofer, say yes and the adjuster may see it differently. The list gets him out of making that call on his own word.",
+    "4. Relief. The no win spot is named first (\"Now it's your word against his.\") and the list is the way out.",
+    "5. Thanks. It reads as a field checklist he can use on the next roof, not an ad. The only product mention is the end card logo.",
+    "6. End card reads \"Send this to your estimator before the next storm.\" It points at the same person I named, it is 9 words, and it ties to the storm timing. Keep it.",
+    "7. The checklist card is fully readable and held still from 20.0s to 33.0s on sheets 2 and 3, 13 seconds, plenty for a screenshot. Header \"FOR THE ESTIMATOR\", subhead \"BEFORE YOU SAY HAIL\", four numbered lines.",
+    "8. The video names one role for the thing twice: the voice (\"Give this list to your estimator.\") and the card header (\"FOR THE ESTIMATOR\").",
+    "Minor, not a send blocker: the 19.5s cell shows the checklist arriving as a checkerboard, unreadable mid transition, and the 49.0s cell is nearly all black between the photos scene and the hammer vs clock scene. If these show as a flash in the MP4 they cost a little polish, worth a look by the render critic, not this gate.",
+    "Minor: the 35.5s cell shows the dial reading 17% while counting up to 80%. A viewer who pauses there sees a wrong number. Fine in motion; if the facts gate cares about paused frames, start the count closer to 80 or hide the number until it lands."
   ]
 }

@@ -1,14 +1,23 @@
 {
  "gate": "facts-captions",
- "round": 0,
+ "round": 1,
  "reviewer": "fresh opus agent",
- "pass": false,
+ "pass": true,
  "score": {
   "numbers": 4,
   "mismatches": 0
  },
- "reasons": [
-  "youtube: title puts the trade business keyword past the first 50 characters ('Roofing Business' starts at character 51 of 67; captions.md wants the keyword in the first 40 to 50). Fix: retitle to 'Roofing Business Owners: Hail Damage or Just Wear? Would You Write It Up?' (73 characters, keyword first, judge question kept, no hashtags).",
-  "youtube: tag 'hail damage roof' is a homeowner search (people checking their own roof), which captions.md bans ('Never: generic or homeowner tags'). Fix: replace it with 'roofing business tips'."
+ "reasons": [],
+ "checked": [
+  "source: WebFetch of https://www.businesswire.com/news/home/20260414308638/en/ shows Triple-I's release on its Issues Brief 'Severe Convective Storms: State of the Risk' with the line 'Hail alone accounts for as much as 80% of severe convective storm claims in any given year'; all four captions quote it exactly, with the 'as much as', 'severe convective storm claims' and 'in any given year' qualifiers kept (4 of 4 match)",
+  "r0 fault 1 fixed: YouTube title 'Roofing Business Owners: Hail Damage or Just Wear? Would You Write It Up?' is 73 characters, keyword at character 0, no hashtags",
+  "r0 fault 2 fixed: 'hail damage roof' is gone from the YouTube tags; 'roofing business tips' is in; 9 tags, misspelling 'roofing buisness' kept",
+  "judge question (captions.md item 4): Instagram 'Would you write it up, or tell her it's wear?', TikTok 'Would you write it up from the driveway?', Facebook 'What would you tell her?', YouTube description 'Would you write it up?' each sit just before the send line, and the YouTube title asks one; none quizzes the viewer's own numbers",
+  "send line 'Send this to your estimator.' in all four matches brief.md's Send person (your estimator)",
+  "line 1 lengths: Instagram 90, TikTok 66 (keyword inside the first 70), Facebook 91, YouTube description 80, all under 100",
+  "hashtags: Instagram 4, TikTok 4, Facebook 2, YouTube description 3; umbrella #contractorbusiness in each; no #fyp style tags",
+  "no link in Instagram, TikTok or Facebook; each ends with 'Free missed call cost calculator: link in bio.'; YouTube site line uses the proofnotfluff.com fallback (no live hail or roof claim page in docs/sitemap.xml)",
+  "no AI voice line, no em or en dashes, no real private person, business or address; the homeowner, adjuster and four shot list are framed as ours ('an example, not a rule' on Instagram and YouTube), and no caption claims a denial rate, an adjuster outcome or an insurer requirement",
+  "consistency with the video: the said line 'as much as eighty percent of severe storm claims in a year' and the four shots match the captions; the video says nothing is 'in the caption'"
  ]
 }

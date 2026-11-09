@@ -41,7 +41,7 @@ stripes drift and hail falls behind it; the card never moves.
 
 ## receipt "Triple-I says hail is" -0.3 [sfx: blip]
 The gauge (k.sets.gauge), 0.3 s before the voice says Triple-I: the source on top, Source: Triple-I, Apr 14, 2026; the
-dial's own numbers 0, 50, 100; AS MUCH AS on a plate right above where the number lands (facts storyboard r0); the plate
+dial's own 0 and our 100 at the arc's right end (design r0); AS MUCH AS on a plate right above where the number lands (facts storyboard r0); the plate
 under the dial: OF SEVERE STORM CLAIMS / IN A YEAR ARE HAIL.
 
 ## receipt.share "as much as eighty" [sfx: tick]

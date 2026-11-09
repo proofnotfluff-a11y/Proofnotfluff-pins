@@ -98,9 +98,17 @@ window.SCENE = {
     /* arms folded; on "four" her bubble with the made-up $400 and its EXAMPLE tag ---- */
     hook: (k, T) => {
       const d = px(k), tShop = 0.9, tFour = Math.max(tShop + 0.6, wordT(k, 'hook', /^four/i, 2.0) - 0.25);
-      drive(k, d); trailer(k, d, true);
+      drive(k, d); if (T >= tShop) trailer(k, d, true);
       if (T < tShop) {
-        k.coverBoard({hero: '$400?', lines: ["THE TRAILER'S FULL.", "SHE WON'T PAY IT."], example: true, y: 252, colors: {panel: '#253048', rim: '#E2633B', hero: GOLD}});
+        /* design r0: the cover is this lesson's own picture, the pile up close with its price tag, not a board */
+        d.P(0, 0, 360, 417, 'rgba(18,13,20,0.25)');
+        junk(k, d, 2, 44, (x, y, w, h, c) => d.P(40 + x * 3, 104 + y * 3, w * 3, h * 3, c));
+        k.shape(k.rectPts(612, 258, 6, 60, 0), {fill: INK, line: false});
+        k.shape(k.rectPts(330, 318, 516, 210, 0), {fill: INK, line: false}); k.shape(k.rectPts(318, 306, 516, 210, 0), {fill: CREAM, line: false});
+        k.text('$400?', 576, 330, {size: 160, color: RED, align: 'center', drop: INK});
+        k.exampleTag(834, 534, {right: true});
+        k.shape(k.rectPts(282, 816, 720, 138, 0), {fill: '#253048', line: false}); k.shape(k.rectPts(282, 816, 720, 6, 0), {fill: RED, line: false});
+        k.text("THE TRAILER'S FULL.", 306, 834, {size: 52, color: CREAM}); k.text("SHE WON'T PAY IT.", 306, 894, {size: 52, color: CREAM});
         return host(k, 'point');
       }
       k.cut(tShop);
@@ -127,7 +135,7 @@ window.SCENE = {
       k.client(780, 810, {role: 'homeowner', pose: 'argue', mood: 'smug', scale: 0.95, talk: T >= tTwo && T < tTwo + 1.2});
       const b = bubble(k, d, "I'LL GIVE YOU $200.", tTwo, 96);
       if (b) k.exampleTag(72, b.y + b.h + 18);
-      if (T >= tDump) k.slam('DUMP IT BACK?', 540, 560, tDump, {size: 80, color: GOLD, align: 'center', drop: INK, from: 0.4});
+      if (T >= tDump) stampBox(k, 'DUMP IT BACK?', 540, 480, tDump, {color: GOLD, bg: WINE, size: 66, freeze: 4});   /* render critic r0: on a plate */
       return host(k, T >= tDump ? 'shrug' : null);
     },
 
@@ -137,7 +145,10 @@ window.SCENE = {
       k.cut(t0);
       drive(k, d); pile(k, d);
       k.client(780, 810, {role: 'homeowner', pose: 'stand', mood: 'calm', scale: 0.95});
-      if (T >= tSay) { k.slam('SAY THE PRICE', 540, 300, tSay, {size: 80, color: GOLD, align: 'center', drop: INK, from: 0.4}); k.slam('AT THE PILE', 540, 400, tSay + 0.3, {size: 80, color: GOLD, align: 'center', drop: INK, from: 0.4}); }
+      /* viewer r0 and render critic r0: the rewind said on screen, the line on a plate left of the house */
+      k.shape(k.rectPts(60, 264, 618, 240, 0), {fill: INK, line: false}); k.shape(k.rectPts(54, 258, 618, 240, 0), {fill: '#253048', line: false}); k.shape(k.rectPts(54, 258, 618, 6, 0), {fill: TEAL, line: false});
+      k.text('BEFORE YOU LOAD', 78, 276, {size: 52, color: CREAM});
+      if (T >= tSay) { k.slam('SAY THE PRICE', 78, 342, tSay, {size: 66, color: GOLD, drop: INK, from: 0.4}); k.slam('AT THE PILE', 78, 418, tSay + 0.3, {size: 66, color: GOLD, drop: INK, from: 0.4}); }
       return host(k, T >= tSay ? 'point' : null);
     },
 
@@ -145,7 +156,7 @@ window.SCENE = {
     /* stripes behind it drift); no EXAMPLE tag on it (no made-up number on the card) ---- */
     send: (k, T) => {
       const t0 = k.S('send'), d = px(k), w = (re, dd) => wordT(k, 'send', re, dd) - 0.2;
-      const on = [w(/^point/i, 5.5), w(/^this$/i, 7.0), w(/^this$/i, 7.0) + 0.6, w(/^good/i, 8.2), w(/^wait/i, 9.4)];
+      const tThis = w(/^\W*this\b/i, 7.0), on = [w(/^point/i, 5.5), tThis, tThis + 0.6, Math.max(tThis + 0.7, w(/^\W*good/i, 8.2)), w(/^wait/i, 9.4)];   /* send r0, design r0: reading order */
       d.P(0, 0, 360, 417, '#2B3A4E'); { const so = d.F % 20; for (let x = so - 20; x < 360; x += 20) d.P(Math.max(0, x), 0, Math.max(0, Math.min(x + 10, 360) - Math.max(0, x)), 417, '#34465C'); }
       k.cut(t0);
       const c = k.sendCard({at: t0, who: 'FOR YOUR DRIVER', title: 'BEFORE YOU LIFT', lines: CARD, linesOn: on});
@@ -160,7 +171,7 @@ window.SCENE = {
       const so = (d.F >> 1) % 24;
       P(12, 84, 336, 90, INK); P(10, 82, 336, 90, DTEAL); for (let x = so - 24; x < 346; x += 24) P(Math.max(10, x), 82, 4, 90, '#357C73');
       const sh = T >= tFight && T < tFight + 0.25 ? ((d.F % 2) ? 2 : -2) : 0;
-      P(12 + sh, 184, 336, 90, INK); P(10 + sh, 182, 336, 90, WINE); for (let x = 346 - so; x > 10; x -= 24) P(Math.max(10, x), 182, 4, 90, '#8A3E4C');
+      if (T >= tPrice) { P(12 + sh, 184, 336, 90, INK); P(10 + sh, 182, 336, 90, WINE); for (let x = 346 - so; x > 10; x -= 24) P(Math.max(10, x), 182, 4, 90, '#8A3E4C'); }   /* design r0: no empty panel */
       k.text('UP FRONT', 72, 270, {size: 52, color: CREAM});
       k.text('A YES = A DEAL', 72, 360, {size: 80, color: GOLD, drop: INK});
       if (T >= tPrice) k.text('AFTER THE WORK', 72 + sh * 3, 570, {size: 52, color: CREAM});
@@ -168,26 +179,29 @@ window.SCENE = {
       return host(k, T >= tFight ? 'shrug' : null);
     },
 
-    /* ---- receipt: the ACHR News line on a clipping; on "Seventy" a plain cut to the slot machine (data.js) ---- */
+    /* ---- receipt (viewer r0, design r0): no clipping and no slot machine; the survey's own header, ten houses, seven ---- */
+    /* light up on "Seventy" with 70% (data.js), the line it measured, the source tag held the whole time ---- */
     receipt: (k, T) => {
-      const t0 = k.S('receipt'), d = px(k), n = k.data.numbers.pct, tSev = wordT(k, 'receipt', /^seventy/i, 6.0) - 0.3;
+      const t0 = k.S('receipt'), d = px(k), n = k.data.numbers.pct, tSev = wordT(k, 'receipt', /^seventy/i, 6.0) - 0.3, {P} = d;
+      const lit = Math.round(Number(n.value != null ? n.value : parseFloat(n.shown)) / 10);
+      k.cut(t0);
+      P(0, 0, 360, 417, '#253048'); for (let y = (d.F >> 2) % 8 - 8; y < 417; y += 8) P(0, Math.max(0, y), 360, 3, NIGHT);
       if (T < tSev) {
-        k.cut(t0);
-        d.P(0, 0, 360, 417, '#253048'); for (let y = (d.F >> 2) % 8 - 8; y < 417; y += 8) d.P(0, Math.max(0, y), 360, 3, NIGHT);
-        const up = d.ease(t0, 6, 30);
-        k.shape(k.rectPts(60, 270 + up * 3, 960, 640, 0), {fill: INK, line: false}); k.shape(k.rectPts(48, 258 + up * 3, 960, 640, 0), {fill: '#E4E0D6', line: false});
-        k.text('THE ACHR NEWS', 540, 276 + up * 3, {size: 66, color: INK, align: 'center'});
-        k.shape(k.rectPts(72, 354 + up * 3, 856, 6, 0), {fill: INK, line: false}); k.shape(k.rectPts(72, 366 + up * 3, 856, 3, 0), {fill: INK, line: false});
-        const ql = k.wrap('"' + n.shown + ' of homeowners surveyed said they were more likely to call an HVAC company/contractor who is transparent on pricing."', {size: 52}, 850);
-        ql.forEach((s, i) => k.text(s, 72, 390 + i * 62 + up * 3, {size: 52, color: INK}));
-        k.sourceTag('The ACHR News with myCLEARopinion, Dec 23, 2024. Read Nov 9, 2026.', 72, 390 + ql.length * 62 + 24 + up * 3, {color: SLATE});
-        return host(k);
+        k.text('THE ACHR NEWS SURVEY', 72, 276, {size: 66, color: GOLD, drop: INK});
+        k.text('HOMEOWNERS ASKED ABOUT HVAC', 72, 444, {size: 52, color: CREAM});
+      } else {
+        k.slam(n.shown, 540, 262, tSev, {size: 150, color: GOLD, drop: INK, from: 0.3, align: 'center'});
+        k.text('MORE LIKELY TO CALL', 72, 444, {size: 52, color: CREAM});
+        k.text('THE ONE UPFRONT ON PRICE', 72, 504, {size: 52, color: CREAM});
       }
-      k.cut(tSev);
-      const sym = String(n.shown).split('');
-      const tPct = wordT(k, 'receipt', /^percent/i, 7.0) - 0.2;
-      k.sets.slots({t0: tSev, stops: [tSev + 0.35, tSev + 0.6, Math.max(tSev + 0.85, tPct)], symbols: sym, label: 'MORE LIKELY TO CALL'});
-      return host(k, 'point');
+      for (let i = 0; i < 10; i++) {
+        const x = 14 + i * 33, y = 196, on = T >= tSev + i * 0.08 && i < lit;
+        P(x, y + 10, 28, 24, INK); P(x + 1, y + 11, 26, 22, on ? '#E6D3BC' : SLATE);
+        for (let r = 0; r < 10; r++) P(x + 14 - r * 1.4, y + r, r * 2.8, 1, on ? WINE : '#3D2E45');
+        P(x + 10, y + 22, 8, 12, INK); P(x + 4, y + 15, 6, 5, on ? GOLD : NIGHT); P(x + 18, y + 15, 6, 5, on ? GOLD : NIGHT);
+      }
+      k.sourceTag('The ACHR News, Dec 23, 2024', 72, 744, {color: SAND});
+      return host(k, T >= tSev ? 'point' : null);
     },
 
     /* ---- button: the drive before the job: the pile on the ground, the trailer empty; the two choices; the stamp ---- */
@@ -196,9 +210,9 @@ window.SCENE = {
       k.cut(t0);
       drive(k, d); pile(k, d);
       k.client(780, 810, {role: 'homeowner', pose: 'stand', mood: 'calm', scale: 0.95});
-      const card = (s, x, at, c) => { if (T < at) return; const up = d.ease(at, 4, 8); k.shape(k.rectPts(x + 6, 276 + up * 3, 432, 96, 0), {fill: INK, line: false}); k.shape(k.rectPts(x, 270 + up * 3, 432, 96, 0), {fill: c, line: false}); k.text(s, x + 216, 286 + up * 3, {size: 52, color: INK, align: 'center'}); };
+      const card = (s, x, at, c) => { if (T < at) return; const up = d.ease(at, 4, 8); k.shape(k.rectPts(x + 6, 396 + up * 3, 432, 96, 0), {fill: INK, line: false}); k.shape(k.rectPts(x, 390 + up * 3, 432, 96, 0), {fill: c, line: false}); k.text(s, x + 216, 406 + up * 3, {size: 52, color: INK, align: 'center'}); };
       card('ON THE PILE', 66, tPile, TEAL); card('ON THE TRAILER', 534, tTr, ORANGE);
-      if (T >= tDoes) stampBox(k, 'WHERE DOES YOUR PRICE GO?', 540, 600, tDoes, {color: GOLD, bg: WINE, size: 52, freeze: 4});
+      if (T >= tDoes) stampBox(k, 'WHERE DOES YOUR PRICE GO?', 540, 258, tDoes, {color: GOLD, bg: WINE, size: 52, freeze: 4});
       return host(k, T >= tTr ? 'shrug' : null);
     },
   },

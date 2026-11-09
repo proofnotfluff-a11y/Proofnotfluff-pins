@@ -2,44 +2,52 @@
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "rowsUpdatedAt": "2026-10-30T09:13:52+00:00",
-  "fetchedAt": "2026-11-02T12:25:07+00:00",
+  "rowsUpdatedAt": "2026-11-09T10:06:24+00:00",
+  "fetchedAt": "2026-11-09T21:37:06+00:00",
   "modified": "Filtered by ProofNotFluff: food inspections of the last 7 days at licensed food businesses (schools, day care, hospitals, senior meal sites and mobile vendors left out) that failed with pest violations, failed or passed with conditions with hood, grease or grease trap violations, had a license (pre-opening) inspection, or failed twice in 30 days. Violation notes are read only to set category labels; inspector notes are not republished. Business-level fields only.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
  "window": {
-  "from": "2026-10-26",
-  "to": "2026-11-02"
+  "from": "2026-11-02",
+  "to": "2026-11-09"
  },
  "counts": {
-  "fetched": 1098,
-  "kept": 31,
+  "fetched": 1147,
+  "kept": 61,
   "segments": {
-   "pests": 6,
-   "hoodGrease": 3,
-   "newOpening": 25,
-   "repeatFail": 0
+   "pests": 19,
+   "hoodGrease": 12,
+   "newOpening": 39,
+   "repeatFail": 3
   },
   "excluded": {
-   "institution or mobile vendor": 19,
-   "no lead segment (passed, or no buyer-relevant violation)": 47
+   "no lead segment (passed, or no buyer-relevant violation)": 82,
+   "institution or mobile vendor": 28
   },
-  "licensePlaces": 20,
+  "licensePlaces": 30,
   "areas": [
    [
-    "Near North Side",
-    7
+    "Loop",
+    12
    ],
    [
-    "South Lawndale",
-    2
+    "Near North Side",
+    6
+   ],
+   [
+    "Near West Side",
+    5
+   ],
+   [
+    "Brighton Park",
+    4
+   ],
+   [
+    "Humboldt Park",
+    3
    ],
    [
     "Chicago Lawn",
-    2
-   ],
-   [
-    "Albany Park",
     2
    ],
    [
@@ -47,29 +55,35 @@
     2
    ],
    [
-    "West Englewood",
-    2
-   ],
-   [
-    "South Shore",
+    "East Side",
     2
    ],
    [
     "Hyde Park",
-    1
+    2
    ],
    [
-    "Austin",
-    1
-   ],
-   [
-    "Auburn Gresham",
-    1
+    "Gage Park",
+    2
    ]
   ]
  },
  "segments": {
   "pests": [
+   {
+    "business": "Viet Nam Restaurant",
+    "address": "1032 W Argyle St",
+    "communityArea": "Uptown",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "date": "2026-11-06",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Pests"
+    ]
+   },
    {
     "business": "Golden Crust Pizzeria",
     "address": "4620 N Kedzie Ave",
@@ -77,110 +91,397 @@
     "facilityType": "Restaurant",
     "result": "Fail",
     "inspectionType": "Canvass Re-Inspection",
-    "date": "2026-10-28",
+    "date": "2026-11-06",
     "categories": [
      "Cleaning and sanitation",
+     "Grease buildup",
      "Pests"
     ]
    },
    {
-    "business": "LA Coco Restaurant",
-    "address": "3808 W Lawrence Ave",
-    "communityArea": "Albany Park",
-    "facilityType": "Restaurant",
+    "business": "El Rodeo, Inc.",
+    "address": "4300 S Mozart St",
+    "communityArea": "Brighton Park",
+    "facilityType": "Grocery Store",
     "result": "Fail",
     "inspectionType": "Canvass",
-    "date": "2026-10-27",
+    "date": "2026-11-06",
     "categories": [
      "Cleaning and sanitation",
-     "Grease buildup",
-     "Grease trap",
      "Hood and ventilation",
      "Pests"
     ]
    },
    {
-    "business": "Family Dollar",
-    "address": "6349 S Cottage Grove Ave",
-    "communityArea": "Woodlawn",
-    "facilityType": "Grocery Store",
+    "business": "Churro Factory",
+    "address": "5642-5644 W 63rd St",
+    "communityArea": "Clearing",
+    "facilityType": "Restaurant",
     "result": "Fail",
-    "inspectionType": "Complaint",
-    "date": "2026-10-27",
+    "inspectionType": "Canvass",
+    "date": "2026-11-06",
+    "categories": [
+     "Pests"
+    ]
+   },
+   {
+    "business": "The House of Bing",
+    "address": "6930 S South Shore Dr",
+    "communityArea": "South Shore",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-11-05",
     "categories": [
      "Cleaning and sanitation",
-     "Pests"
+     "Pests",
+     "Plumbing"
     ]
    },
    {
-    "business": "Jojigyros 786 Inc.",
-    "address": "2518 E 79th St",
-    "communityArea": "South Shore",
-    "facilityType": "Restaurant",
+    "business": "Whole Foods Market",
+    "address": "1550 N Kingsbury St",
+    "communityArea": "Near North Side",
+    "facilityType": "Grocery Store",
     "result": "Fail",
     "inspectionType": "Canvass",
-    "date": "2026-10-26",
+    "date": "2026-11-04",
     "categories": [
-     "Pests"
+     "Cleaning and sanitation",
+     "Pests",
+     "Plumbing"
     ]
    },
    {
-    "business": "JR's Jamaican Tropical Cafe",
-    "address": "2200 E 79th St",
-    "communityArea": "South Shore",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Canvass",
-    "date": "2026-10-26",
-    "categories": [
-     "Pests"
-    ]
-   },
-   {
-    "business": "Carnitas Don Pichi",
-    "address": "2702 W 47th St",
+    "business": "Shiki Buffet",
+    "address": "4717 S Kedzie Ave",
     "communityArea": "Brighton Park",
     "facilityType": "Restaurant",
     "result": "Fail",
-    "inspectionType": "Canvass",
-    "date": "2026-10-26",
+    "inspectionType": "Short Form Complaint",
+    "date": "2026-11-04",
     "categories": [
      "Cleaning and sanitation",
-     "Grease trap",
+     "Pests"
+    ]
+   },
+   {
+    "business": "L & G Family Restaurant Inc",
+    "address": "10401 S Torrence Ave",
+    "communityArea": "South Deering",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-11-04",
+    "categories": [
+     "Cleaning and sanitation",
+     "Pests",
+     "Plumbing"
+    ]
+   },
+   {
+    "business": "Hacienda de Pena",
+    "address": "3231-3237 W 63rd St",
+    "communityArea": "Chicago Lawn",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint",
+    "date": "2026-11-04",
+    "categories": [
+     "Cleaning and sanitation",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Aloha Wagon",
+    "address": "2023 S Western Ave",
+    "communityArea": "Lower West Side",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-11-04",
+    "categories": [
      "Pests"
     ]
    }
   ],
   "hoodGrease": [
    {
-    "business": "LA Coco Restaurant",
-    "address": "3808 W Lawrence Ave",
-    "communityArea": "Albany Park",
+    "business": "Viet Nam Restaurant",
+    "address": "1032 W Argyle St",
+    "communityArea": "Uptown",
     "facilityType": "Restaurant",
     "result": "Fail",
-    "inspectionType": "Canvass",
-    "date": "2026-10-27",
+    "inspectionType": "Complaint Re-Inspection",
+    "date": "2026-11-06",
     "categories": [
      "Cleaning and sanitation",
      "Grease buildup",
-     "Grease trap",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Golden Crust Pizzeria",
+    "address": "4620 N Kedzie Ave",
+    "communityArea": "Albany Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass Re-Inspection",
+    "date": "2026-11-06",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Pests"
+    ]
+   },
+   {
+    "business": "El Rodeo, Inc.",
+    "address": "4300 S Mozart St",
+    "communityArea": "Brighton Park",
+    "facilityType": "Grocery Store",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-11-06",
+    "categories": [
+     "Cleaning and sanitation",
      "Hood and ventilation",
      "Pests"
     ]
    },
    {
-    "business": "Hong Kong Restaurant",
-    "address": "2757 W 55th St",
-    "communityArea": "Gage Park",
+    "business": "Wingstop",
+    "address": "7953 S Cicero Ave",
+    "communityArea": "Ashburn",
     "facilityType": "Restaurant",
     "result": "Pass w/ Conditions",
-    "inspectionType": "License",
-    "date": "2026-10-27",
+    "inspectionType": "Complaint",
+    "date": "2026-11-05",
+    "categories": [
+     "Grease trap",
+     "Pests",
+     "Plumbing"
+    ]
+   },
+   {
+    "business": "The Avenue Que and Kitchen",
+    "address": "5248 W Chicago Ave",
+    "communityArea": "Austin",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-11-04",
+    "categories": [
+     "Cleaning and sanitation",
+     "Hood and ventilation",
+     "Plumbing"
+    ]
+   },
+   {
+    "business": "M K Poultry, Inc.",
+    "address": "2600 W 51st St",
+    "communityArea": "Gage Park",
+    "facilityType": "Grocery Store",
+    "result": "Fail",
+    "inspectionType": "Complaint",
+    "date": "2026-11-03",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease trap",
+     "Pests",
+     "Plumbing"
+    ]
+   },
+   {
+    "business": "Basecamp",
+    "address": "1455 W Willow St",
+    "communityArea": "West Town",
+    "facilityType": "Catering",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-11-03",
+    "categories": [
+     "Cleaning and sanitation",
+     "Hood and ventilation",
+     "Pests"
+    ]
+   },
+   {
+    "business": "See Thru Chinese Kitchen",
+    "address": "10939 S Western Ave",
+    "communityArea": "Morgan Park",
+    "facilityType": "Restaurant",
+    "result": "Pass w/ Conditions",
+    "inspectionType": "Complaint",
+    "date": "2026-11-02",
     "categories": [
      "Cleaning and sanitation",
      "Grease buildup",
+     "Hood and ventilation",
+     "Plumbing"
+    ]
+   },
+   {
+    "business": "New Love City",
+    "address": "3901 S California Ave",
+    "communityArea": "Brighton Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-11-02",
+    "categories": [
+     "Cleaning and sanitation",
+     "Hood and ventilation",
      "Pests",
      "Plumbing"
+    ]
+   },
+   {
+    "business": "LA Tropicana",
+    "address": "3601 W North Ave",
+    "communityArea": "Humboldt Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-11-02",
+    "categories": [
+     "Cleaning and sanitation",
+     "Hood and ventilation",
+     "Pests"
+    ]
+   }
+  ],
+  "newOpening": [
+   {
+    "business": "Wow Mart",
+    "address": "2501 W 63rd St",
+    "communityArea": "Chicago Lawn",
+    "facilityType": "Grocery Store",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-11-06",
+    "categories": []
+   },
+   {
+    "business": "Supermercado LA Bodega",
+    "address": "3713 E 106th St",
+    "communityArea": "East Side",
+    "facilityType": "Grocery Store",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-11-06",
+    "categories": []
+   },
+   {
+    "business": "Solgrounds Coffee",
+    "address": "104 W Oak St Ste E",
+    "communityArea": "Near North Side",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-11-06",
+    "categories": []
+   },
+   {
+    "business": "Sip of Hope",
+    "address": "5700 S Maryland Ave",
+    "communityArea": "Hyde Park",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-11-06",
+    "categories": []
+   },
+   {
+    "business": "Pear LLC",
+    "address": "231 S La Salle St",
+    "communityArea": "Loop",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-11-06",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup"
+    ]
+   },
+   {
+    "business": "BB's Counter",
+    "address": "5700 S Maryland Ave",
+    "communityArea": "Hyde Park",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-11-06",
+    "categories": []
+   },
+   {
+    "business": "Vitasana Market",
+    "address": "2 N Riverside Plz",
+    "communityArea": "Near West Side",
+    "facilityType": "",
+    "result": "Not Ready",
+    "inspectionType": "License",
+    "date": "2026-11-05",
+    "categories": []
+   },
+   {
+    "business": "Jamaican Gates",
+    "address": "10226 S Halsted St",
+    "communityArea": "Washington Heights",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-11-05",
+    "categories": []
+   },
+   {
+    "business": "Amazing Lights Inc.",
+    "address": "225 S Canal St",
+    "communityArea": "Near West Side",
+    "facilityType": "",
+    "result": "Not Ready",
+    "inspectionType": "License",
+    "date": "2026-11-05",
+    "categories": []
+   },
+   {
+    "business": "Aldi Inc #10",
+    "address": "4501 S Pulaski Rd",
+    "communityArea": "Archer Heights",
+    "facilityType": "Grocery Store",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-11-05",
+    "categories": []
+   }
+  ],
+  "repeatFail": [
+   {
+    "business": "Viet Nam Restaurant",
+    "address": "1032 W Argyle St",
+    "communityArea": "Uptown",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "date": "2026-11-06",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Golden Crust Pizzeria",
+    "address": "4620 N Kedzie Ave",
+    "communityArea": "Albany Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass Re-Inspection",
+    "date": "2026-11-06",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Pests"
     ]
    },
    {
@@ -189,122 +490,15 @@
     "communityArea": "Brighton Park",
     "facilityType": "Restaurant",
     "result": "Fail",
-    "inspectionType": "Canvass",
-    "date": "2026-10-26",
+    "inspectionType": "Canvass Re-Inspection",
+    "date": "2026-11-02",
     "categories": [
      "Cleaning and sanitation",
      "Grease trap",
      "Pests"
     ]
    }
-  ],
-  "newOpening": [
-   {
-    "business": "Taqueria Misantla Ver, Inc.",
-    "address": "3233 W Cermak Rd",
-    "communityArea": "South Lawndale",
-    "facilityType": "",
-    "result": "Not Ready",
-    "inspectionType": "License",
-    "date": "2026-10-29",
-    "categories": []
-   },
-   {
-    "business": "Suitsupply",
-    "address": "945 N Rush St",
-    "communityArea": "Near North Side",
-    "facilityType": "Suit Store",
-    "result": "Pass w/ Conditions",
-    "inspectionType": "License Re-Inspection",
-    "date": "2026-10-29",
-    "categories": [
-     "Plumbing"
-    ]
-   },
-   {
-    "business": "Suitsupply",
-    "address": "945 N Rush St",
-    "communityArea": "Near North Side",
-    "facilityType": "Suit Store",
-    "result": "Pass",
-    "inspectionType": "License",
-    "date": "2026-10-29",
-    "categories": []
-   },
-   {
-    "business": "Night Heron",
-    "address": "5499 S Cornell Ave",
-    "communityArea": "Hyde Park",
-    "facilityType": "Restaurant",
-    "result": "Pass",
-    "inspectionType": "License",
-    "date": "2026-10-29",
-    "categories": []
-   },
-   {
-    "business": "El Mercadito Productos",
-    "address": "3134 W 25th St",
-    "communityArea": "South Lawndale",
-    "facilityType": "",
-    "result": "Not Ready",
-    "inspectionType": "License",
-    "date": "2026-10-29",
-    "categories": []
-   },
-   {
-    "business": "Sharks Fish and Chicken",
-    "address": "325 S Cicero Ave",
-    "communityArea": "Austin",
-    "facilityType": "Restaurant",
-    "result": "Pass w/ Conditions",
-    "inspectionType": "License",
-    "date": "2026-10-28",
-    "categories": [
-     "Plumbing"
-    ]
-   },
-   {
-    "business": "Rest + Recreation",
-    "address": "1359 N Wells",
-    "communityArea": "Near North Side",
-    "facilityType": "Restaurant",
-    "result": "Pass",
-    "inspectionType": "License",
-    "date": "2026-10-28",
-    "categories": []
-   },
-   {
-    "business": "Pizzeria Naples",
-    "address": "2819 W 63rd St",
-    "communityArea": "Chicago Lawn",
-    "facilityType": "",
-    "result": "Not Ready",
-    "inspectionType": "License",
-    "date": "2026-10-28",
-    "categories": []
-   },
-   {
-    "business": "Lex Chinese Food",
-    "address": "6207 S Kedzie Ave",
-    "communityArea": "Chicago Lawn",
-    "facilityType": "",
-    "result": "Not Ready",
-    "inspectionType": "License",
-    "date": "2026-10-28",
-    "categories": []
-   },
-   {
-    "business": "Trader Joe's Store #884",
-    "address": "804 W Montrose Ave",
-    "communityArea": "Uptown",
-    "facilityType": "Grocery Store",
-    "result": "Pass",
-    "inspectionType": "License Re-Inspection",
-    "date": "2026-10-27",
-    "categories": []
-   }
-  ],
-  "repeatFail": []
+  ]
  },
  "segmentNames": {
   "pests": "Failed with pests",

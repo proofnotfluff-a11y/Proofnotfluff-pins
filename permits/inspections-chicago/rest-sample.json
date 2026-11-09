@@ -1,167 +1,159 @@
 {
  "product": "Chicago Restaurant Inspection Leads",
- "asOf": "2026-11-02",
- "asOfText": "Nov 2, 2026",
- "through": "2026-10-29",
- "throughText": "Oct 29, 2026",
+ "asOf": "2026-11-09",
+ "asOfText": "Nov 9, 2026",
+ "through": "2026-11-06",
+ "throughText": "Nov 6, 2026",
  "window": {
-  "from": "2026-09-30",
-  "to": "2026-10-29",
-  "newFrom": "2026-10-23",
-  "repeatFrom": "2026-08-01"
+  "from": "2026-10-08",
+  "to": "2026-11-06",
+  "newFrom": "2026-10-31",
+  "repeatFrom": "2026-08-09"
  },
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-11-02T12:25:07+00:00",
-  "rowsUpdatedAt": "2026-10-30T09:13:52+00:00",
+  "fetchedAt": "2026-11-09T21:37:06+00:00",
+  "rowsUpdatedAt": "2026-11-09T10:06:24+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "places": 267,
-  "flagged": 134,
-  "opening": 138,
-  "repeat": 19,
-  "new": 39,
+  "places": 253,
+  "flagged": 123,
+  "opening": 132,
+  "repeat": 17,
+  "new": 51,
   "byCat": {
-   "pests": 92,
-   "hood": 29,
-   "drain": 17,
-   "clean": 100
+   "pests": 88,
+   "hood": 26,
+   "drain": 15,
+   "clean": 87
   },
-  "flaggedFail": 98,
-  "openingPassed": 104,
+  "flaggedFail": 88,
+  "openingPassed": 103,
   "excluded": {
-   "business name is a person's name": 2,
-   "school, day care, hospital, senior or mobile vendor": 50,
-   "the City's latest result is out of business or not located": 3
+   "business name is a person's name": 3,
+   "school, day care, hospital, senior or mobile vendor": 52,
+   "the City's latest result is out of business or not located": 4
   },
-  "rowsRead": 1098,
-  "historyRead": 639,
+  "rowsRead": 1147,
+  "historyRead": 667,
   "areas": [
    [
-    "Loop",
-    18
+    "West Town",
+    20
    ],
    [
-    "West Town",
+    "Loop",
     17
    ],
    [
-    "Lake View",
-    14
-   ],
-   [
-    "Logan Square",
-    12
-   ],
-   [
-    "Austin",
+    "Brighton Park",
     11
    ],
    [
     "Near West Side",
-    10
-   ],
-   [
-    "Gage Park",
-    9
-   ],
-   [
-    "South Lawndale",
-    9
-   ],
-   [
-    "Albany Park",
-    9
+    11
    ],
    [
     "Near North Side",
-    8
+    10
    ],
    [
-    "Brighton Park",
-    8
+    "Lake View",
+    10
    ],
    [
-    "Uptown",
-    7
-   ],
-   [
-    "South Shore",
-    7
-   ],
-   [
-    "Grand Boulevard",
-    7
-   ],
-   [
-    "McKinley Park",
-    7
+    "Austin",
+    9
    ],
    [
     "Humboldt Park",
-    7
+    9
+   ],
+   [
+    "Gage Park",
+    8
+   ],
+   [
+    "South Lawndale",
+    8
+   ],
+   [
+    "Logan Square",
+    8
+   ],
+   [
+    "Chicago Lawn",
+    6
+   ],
+   [
+    "Hyde Park",
+    6
+   ],
+   [
+    "Albany Park",
+    6
+   ],
+   [
+    "McKinley Park",
+    6
+   ],
+   [
+    "South Shore",
+    5
    ],
    [
     "Lower West Side",
-    7
-   ],
-   [
-    "Lincoln Park",
-    6
+    5
    ],
    [
     "West Ridge",
-    6
-   ],
-   [
-    "O'Hare",
     5
    ],
    [
-    "Lincoln Square",
+    "West Elsdon",
     5
+   ],
+   [
+    "Edgewater",
+    5
+   ],
+   [
+    "Lincoln Park",
+    5
+   ],
+   [
+    "Grand Boulevard",
+    5
+   ],
+   [
+    "Belmont Cragin",
+    4
    ],
    [
     "Greater Grand Crossing",
     4
    ],
    [
-    "West Elsdon",
+    "O'Hare",
     4
    ],
    [
-    "Hyde Park",
-    4
-   ],
-   [
-    "Auburn Gresham",
-    4
-   ],
-   [
-    "Chicago Lawn",
+    "East Side",
     3
    ],
    [
-    "Douglas",
+    "Archer Heights",
     3
    ],
    [
-    "Beverly",
+    "Uptown",
     3
    ],
    [
-    "West Englewood",
-    3
-   ],
-   [
-    "Avondale",
-    3
-   ],
-   [
-    "Edgewater",
+    "Ashburn",
     3
    ],
    [
@@ -169,23 +161,27 @@
     3
    ],
    [
-    "Dunning",
+    "Jefferson Park",
     3
    ],
    [
-    "Irving Park",
+    "Lincoln Square",
     3
    ],
    [
-    "East Garfield Park",
+    "Avondale",
     3
    ],
    [
-    "Avalon Park",
+    "South Deering",
     2
    ],
    [
-    "Ashburn",
+    "East Garfield Park",
+    2
+   ],
+   [
+    "Rogers Park",
     2
    ],
    [
@@ -193,35 +189,71 @@
     2
    ],
    [
+    "Kenwood",
+    2
+   ],
+   [
+    "New City",
+    2
+   ],
+   [
+    "Dunning",
+    2
+   ],
+   [
+    "Edison Park",
+    2
+   ],
+   [
+    "Beverly",
+    2
+   ],
+   [
+    "West Englewood",
+    2
+   ],
+   [
     "Norwood Park",
     2
    ],
    [
+    "Clearing",
+    1
+   ],
+   [
+    "Garfield Ridge",
+    1
+   ],
+   [
     "Englewood",
-    2
-   ],
-   [
-    "Belmont Cragin",
-    2
-   ],
-   [
-    "Roseland",
-    2
-   ],
-   [
-    "Jefferson Park",
-    2
-   ],
-   [
-    "South Deering",
-    2
+    1
    ],
    [
     "Woodlawn",
     1
    ],
    [
-    "Archer Heights",
+    "Morgan Park",
+    1
+   ],
+   [
+    "Hermosa",
+    1
+   ],
+   [
+    "Portage Park",
+    1
+   ],
+   [
+    "Auburn Gresham",
+    1
+   ],
+   [
+    "Douglas",
+    1
+   ],
+   [
+    "Avalon Park",
     1
    ],
    [
@@ -233,15 +265,7 @@
     1
    ],
    [
-    "Edison Park",
-    1
-   ],
-   [
-    "Kenwood",
-    1
-   ],
-   [
-    "New City",
+    "Roseland",
     1
    ],
    [
@@ -249,23 +273,7 @@
     1
    ],
    [
-    "Rogers Park",
-    1
-   ],
-   [
-    "West Garfield Park",
-    1
-   ],
-   [
-    "Armour Square",
-    1
-   ],
-   [
-    "Hermosa",
-    1
-   ],
-   [
-    "Mount Greenwood",
+    "Irving Park",
     1
    ]
   ]
@@ -299,10 +307,10 @@
  "examples": {
   "flagged": [
    {
-    "type": "Grocery Store",
-    "area": "Chicago Lawn",
-    "date": "2026-10-29",
-    "result": "Pass w/ Conditions",
+    "type": "Restaurant",
+    "area": "Clearing",
+    "date": "2026-11-06",
+    "result": "Fail",
     "inspectionType": "Canvass",
     "categories": [
      "Pests",
@@ -310,19 +318,21 @@
     ]
    },
    {
-    "type": "Restaurant",
-    "area": "Gage Park",
-    "date": "2026-10-29",
-    "result": "Pass w/ Conditions",
+    "type": "Grocery Store",
+    "area": "Brighton Park",
+    "date": "2026-11-06",
+    "result": "Fail",
     "inspectionType": "Canvass",
     "categories": [
+     "Pests",
+     "Hood and exhaust",
      "Cleaning"
     ]
    },
    {
     "type": "Restaurant",
     "area": "Albany Park",
-    "date": "2026-10-28",
+    "date": "2026-11-06",
     "result": "Fail",
     "inspectionType": "Canvass Re-Inspection",
     "categories": [
@@ -334,64 +344,65 @@
   "repeat": [
    {
     "type": "Restaurant",
-    "area": "O'Hare",
-    "date": "2026-10-23",
+    "area": "Albany Park",
+    "date": "2026-11-06",
     "result": "Fail",
     "inspectionType": "Canvass Re-Inspection",
     "categories": [
      "Pests",
-     "Hood and exhaust",
      "Cleaning"
     ]
    },
    {
     "type": "Restaurant",
-    "area": "Greater Grand Crossing",
-    "date": "2026-10-23",
+    "area": "Uptown",
+    "date": "2026-11-06",
     "result": "Fail",
     "inspectionType": "Complaint Re-Inspection",
     "categories": [
      "Pests",
      "Hood and exhaust",
+     "Grease trap and drains",
      "Cleaning"
     ]
    },
    {
     "type": "Restaurant",
-    "area": "West Elsdon",
-    "date": "2026-10-22",
+    "area": "Brighton Park",
+    "date": "2026-11-04",
     "result": "Fail",
-    "inspectionType": "Canvass Re-Inspection",
+    "inspectionType": "Short Form Complaint",
     "categories": [
-     "Pests"
+     "Pests",
+     "Cleaning"
     ]
    }
   ],
   "opening": [
    {
-    "name": "Night Heron",
-    "address": "5499 S Cornell Ave",
+    "name": "BB's Counter",
+    "address": "5700 S Maryland Ave",
     "area": "Hyde Park",
     "type": "Restaurant",
-    "date": "2026-10-29",
+    "date": "2026-11-06",
     "result": "Pass",
     "inspectionType": "License"
    },
    {
-    "name": "Suitsupply",
-    "address": "945 N Rush St",
-    "area": "Near North Side",
-    "type": "Suit Store",
-    "date": "2026-10-29",
-    "result": "Pass",
-    "inspectionType": "License"
-   },
-   {
-    "name": "Rest + Recreation",
-    "address": "1359 N Wells",
-    "area": "Near North Side",
+    "name": "Pear LLC",
+    "address": "231 S La Salle St",
+    "area": "Loop",
     "type": "Restaurant",
-    "date": "2026-10-28",
+    "date": "2026-11-06",
+    "result": "Pass",
+    "inspectionType": "License"
+   },
+   {
+    "name": "Sip of Hope",
+    "address": "5700 S Maryland Ave",
+    "area": "Hyde Park",
+    "type": "Restaurant",
+    "date": "2026-11-06",
     "result": "Pass",
     "inspectionType": "License"
    }

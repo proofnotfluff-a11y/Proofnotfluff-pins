@@ -1,53 +1,53 @@
 {
  "schema": "pnf.areaweek.v1",
- "fetchedAt": "2026-11-02T12:05:26+00:00",
+ "fetchedAt": "2026-11-09T21:27:32+00:00",
  "window": {
-  "from": "2024-11-02",
-  "to": "2026-11-02"
+  "from": "2024-11-09",
+  "to": "2026-11-09"
  },
- "openCitywide": 1134,
+ "openCitywide": 1138,
  "territories": [
   {
    "slug": "loop",
-   "open": 170,
-   "newWeek": 2,
-   "nearFinish": 5,
+   "open": 172,
+   "newWeek": 5,
+   "nearFinish": 6,
    "builders": 63
   },
   {
    "slug": "near-north",
-   "open": 192,
-   "newWeek": 2,
+   "open": 195,
+   "newWeek": 5,
    "nearFinish": 4,
-   "builders": 109
+   "builders": 110
   },
   {
    "slug": "west",
-   "open": 200,
-   "newWeek": 7,
-   "nearFinish": 4,
-   "builders": 115
+   "open": 199,
+   "newWeek": 3,
+   "nearFinish": 3,
+   "builders": 114
   },
   {
    "slug": "northwest",
-   "open": 186,
-   "newWeek": 4,
-   "nearFinish": 1,
-   "builders": 135
+   "open": 185,
+   "newWeek": 3,
+   "nearFinish": 0,
+   "builders": 134
   },
   {
    "slug": "north",
    "open": 178,
-   "newWeek": 1,
-   "nearFinish": 2,
+   "newWeek": 2,
+   "nearFinish": 3,
    "builders": 125
   },
   {
    "slug": "south",
-   "open": 207,
-   "newWeek": 3,
+   "open": 208,
+   "newWeek": 4,
    "nearFinish": 1,
-   "builders": 120
+   "builders": 121
   }
  ]
 }

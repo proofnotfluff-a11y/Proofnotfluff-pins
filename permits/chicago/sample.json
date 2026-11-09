@@ -2,44 +2,44 @@
  "source": {
   "name": "City of Chicago Data Portal, Building Permits",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
-  "rowsUpdatedAt": "2026-10-31T12:12:57+00:00",
-  "fetchedAt": "2026-11-02T12:05:26+00:00",
+  "rowsUpdatedAt": "2026-11-09T13:06:50+00:00",
+  "fetchedAt": "2026-11-09T21:27:32+00:00",
   "modified": "Filtered by ProofNotFluff: permits issued in the last 24 months, new construction or renovation, reported cost $500,000 or more, still open (City status Active or Phased Permitting; complete, suspended, cancelled, revoked and expired permits left out), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs a construction clean under its permit (foundation, superstructure, caisson, demolition, roof, facade, mechanical, equipment or site work only) left out; cleaning companies listed as contractor left out; a revision of a permit already on the list counted once; only project-level and business fields kept.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
  "window": {
-  "from": "2024-11-02",
-  "to": "2026-11-02"
+  "from": "2024-11-09",
+  "to": "2026-11-09"
  },
  "counts": {
-  "fetched": 3064,
-  "kept": 1134,
+  "fetched": 3070,
+  "kept": 1138,
   "excluded": {
-   "house or 2 to 3 flat": 599,
-   "one home inside a larger building": 41,
-   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 249,
-   "no commercial or apartment wording": 82,
-   "no interior finish work or new building named": 39,
-   "common areas only, no homes worked on": 7,
+   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 254,
+   "no commercial or apartment wording": 80,
+   "house or 2 to 3 flat": 595,
+   "one home inside a larger building": 42,
+   "common areas only, no homes worked on": 8,
+   "no interior finish work or new building named": 37,
    "apartment building with no unit count (could be a 2 or 3 flat)": 8,
    "no business listed as general contractor": 5,
-   "closed, complete or suspended": 887,
+   "closed, complete or suspended": 890,
    "revision or second listing of a permit already listed": 13
   },
   "keptByType": {
    "New construction": 335,
-   "Renovation": 799
+   "Renovation": 803
   },
-  "keptCost": 8579332489,
-  "keptUnits": 6213,
+  "keptCost": 8608285122,
+  "keptUnits": 6293,
   "topAreas": [
    [
     "Loop",
-    158
+    160
    ],
    [
     "Near North Side",
-    139
+    143
    ],
    [
     "Near West Side",
@@ -51,7 +51,7 @@
    ],
    [
     "Lincoln Park",
-    53
+    52
    ],
    [
     "Lake View",
@@ -59,7 +59,7 @@
    ],
    [
     "Logan Square",
-    30
+    32
    ],
    [
     "Uptown",
@@ -69,8 +69,13 @@
   "topGCs": [
    {
     "name": "Skender Construction LLC",
-    "projects": 24,
-    "cost": 659040133
+    "projects": 26,
+    "cost": 669073824
+   },
+   {
+    "name": "Executive Construction, Inc.",
+    "projects": 23,
+    "cost": 65880400
    },
    {
     "name": "JC Anderson Inc",
@@ -80,12 +85,7 @@
    {
     "name": "Power Construction Company, LLC",
     "projects": 22,
-    "cost": 362960308
-   },
-   {
-    "name": "Executive Construction, Inc.",
-    "projects": 22,
-    "cost": 62480400
+    "cost": 330460308
    },
    {
     "name": "Bulley & Andrews, L.L.C.",
@@ -94,8 +94,13 @@
    },
    {
     "name": "Leopardo Construction Inc",
-    "projects": 19,
-    "cost": 83639105
+    "projects": 20,
+    "cost": 135805655
+   },
+   {
+    "name": "Development Solutions, Inc",
+    "projects": 16,
+    "cost": 50136520
    },
    {
     "name": "Bear Construction Company",
@@ -108,24 +113,19 @@
     "cost": 50716760
    },
    {
-    "name": "Development Solutions, Inc",
-    "projects": 15,
-    "cost": 48036520
-   },
-   {
     "name": "Redmond Construction Corp.",
-    "projects": 14,
-    "cost": 71125690
-   },
-   {
-    "name": "Reed Construction LLC",
-    "projects": 14,
-    "cost": 16316746
+    "projects": 13,
+    "cost": 68125690
    },
    {
     "name": "Pintauro Construction Company LLC",
     "projects": 13,
     "cost": 59609486
+   },
+   {
+    "name": "Reed Construction LLC",
+    "projects": 13,
+    "cost": 14516746
    }
   ],
   "nearFinish": 17
@@ -528,6 +528,24 @@
    "lon": -87.633631
   },
   {
+   "permit": "101069804",
+   "issued": "2026-11-06",
+   "type": "New construction",
+   "scope": "Full building permit for a new 11-story high rise residential apartment building with 90 dwelling units, building management offices, amenity rooms...",
+   "units": 90,
+   "sleeping": null,
+   "cost": 52166550,
+   "address": "5853 N Broadway",
+   "communityArea": "Edgewater",
+   "status": "Active",
+   "milestone": "Permit Issued (Fee Due)",
+   "gc": [
+    "Leopardo Construction Inc"
+   ],
+   "lat": 41.988439,
+   "lon": -87.66007
+  },
+  {
    "permit": "101065267",
    "issued": "2025-11-26",
    "type": "New construction",
@@ -562,27 +580,45 @@
    ],
    "lat": 41.886704,
    "lon": -87.625496
-  },
-  {
-   "permit": "101077075",
-   "issued": "2026-03-16",
-   "type": "Renovation",
-   "scope": "Interior alterations to levels b2, b1, l1, and l2 for building shared amenity space...",
-   "units": null,
-   "sleeping": null,
-   "cost": 50118593,
-   "address": "100 W Randolph St",
-   "communityArea": "Loop",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "Skender Construction LLC"
-   ],
-   "lat": 41.884586,
-   "lon": -87.63101
   }
  ],
  "nearFinish": [
+  {
+   "permit": "101070709",
+   "issued": "2025-09-09",
+   "type": "New construction",
+   "scope": "Full building for 8 new 3-story townhouses (R-2) with private garages, fully sprinklered, type V-A construction",
+   "units": 8,
+   "sleeping": null,
+   "cost": 7600000,
+   "address": "2235 W Oakdale Ave",
+   "communityArea": "North Center",
+   "status": "Active",
+   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
+   "gc": [
+    "ZSD Construction LLC"
+   ],
+   "lat": 41.934835,
+   "lon": -87.68449
+  },
+  {
+   "permit": "101073642",
+   "issued": "2025-10-03",
+   "type": "Renovation",
+   "scope": "Interior renovation (build-out) of the 30th floor for cook county office area...",
+   "units": null,
+   "sleeping": null,
+   "cost": 6300000,
+   "address": "69 W Washington St",
+   "communityArea": "Loop",
+   "status": "Active",
+   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
+   "gc": [
+    "Power Construction Company, LLC"
+   ],
+   "lat": 41.8831,
+   "lon": -87.630147
+  },
   {
    "permit": "101070402",
    "issued": "2025-10-02",
@@ -618,24 +654,6 @@
    ],
    "lat": 41.811829,
    "lon": -87.626299
-  },
-  {
-   "permit": "101070208",
-   "issued": "2025-11-04",
-   "type": "Renovation",
-   "scope": "Interior alterations to 1st and 2nd floor retail space for new day care, exterior extension of private sidewalk, installation of protective bollards...",
-   "units": null,
-   "sleeping": null,
-   "cost": 2750000,
-   "address": "727 N Milwaukee Ave",
-   "communityArea": "West Town",
-   "status": "Active",
-   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
-   "gc": [
-    "Triumph Design Build Corporation"
-   ],
-   "lat": 41.894889,
-   "lon": -87.653094
   },
   {
    "permit": "101078819",
@@ -726,24 +744,6 @@
    ],
    "lat": 41.887921,
    "lon": -87.63236
-  },
-  {
-   "permit": "101065225",
-   "issued": "2025-03-24",
-   "type": "Renovation",
-   "scope": "Interior alterations to 12th & 14th floor offices. Work to include demo, new partitions, mechanical, electrical and plumbing...",
-   "units": null,
-   "sleeping": null,
-   "cost": 1750000,
-   "address": "222 S Riverside Plz",
-   "communityArea": "Near West Side",
-   "status": "Active",
-   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
-   "gc": [
-    "Interior Construction Group, Inc"
-   ],
-   "lat": 41.878582,
-   "lon": -87.638579
   },
   {
    "permit": "101066773",

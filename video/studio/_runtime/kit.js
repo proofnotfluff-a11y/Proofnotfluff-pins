@@ -439,7 +439,6 @@
       }
       // head
       shape(ellPts(hx0, hy0, 60, 64), {fill: 'skin', id: 9040});
-      shape(ellPts(hx0 + 52 * face, hy0 + 6, 9, 14), {fill: 'skinShade', id: 9041, line: false});
       // knit cap with a fold and a pom
       shape(ellPts(hx0, hy0 - 18, 64, 56, 24, Math.PI, TAU).concat([[hx0 + 64, hy0 - 12], [hx0 - 64, hy0 - 12]]), {fill: 'cap', id: 9042});
       shape(rectPts(hx0 - 66, hy0 - 30, 132, 26, 10), {fill: 'accent2', id: 9043});
@@ -539,7 +538,6 @@
         shape(ellPts(hx0 - 26 * face, hy0 - 70, 9, 7), {fill: hairHi, line: false, id: 9244});
         shape(rectPts(hx0 - 56 * face - (face > 0 ? 0 : 14), hy0 - 12, 14, 52, 6), {fill: hair, id: 9245});
       }
-      shape(ellPts(hx0 + 46 * face, hy0 + 6, 8, 12), {fill: 'skinShade', id: 9246, line: false});
       // face: eyes, brows by mood, the mouth
       const bl = k.blinkAt(), ex = hx0 + 12 * face;
       [ex - 18, ex + 18].forEach((x0, i) => bl === 2 ? shape([[x0 - 6, hy0 + 6], [x0 + 6, hy0 + 6]], {stroke: '#120D14', lw: 4, closed: false, line: false})

@@ -1,0 +1,18 @@
+{
+ "gate": "design",
+ "round": 0,
+ "reviewer": "claude opus, fresh agent",
+ "bar": "4.61",
+ "pass": false,
+ "score": {"first": 3, "hierarchy": 3, "type": 5, "color": 4, "spacing": 4, "polish": 3, "trust": 3, "average": 3.57},
+ "reasons": [
+  "0.00 to 10.29 roof (hook, marks, dime, worn): the roof reads as a gray stone block wall and the marks read as bolt holes, so a roofer cannot make the call the video asks for. Redraw as asphalt shingles: courses that overlap the row below (a dark shadow band under each course), tab slots every third of a strip, granule speckle in two or three palette grays, a slight downslope angle. Draw each hail mark as an irregular dark bruise with a lighter exposed-mat rim and a few loose granules, never a perfect ring.",
+  "2.20 to 8.29 caption box: the box sits at y 600 to 815, right over the hero mark; at 5.30 s and 7.40 s about 80 percent of the mark the voice describes is hidden behind it. Move the box up to y 280 to 470 (under the level bar) and center the hero mark, whole, in y 520 to 980.",
+  "5.30 to 8.29 dime and granules: the dime is a hatched gray disc floating at the top right (about x 860, y 280), away from the mark, and reads as a moon or a ball. Slide a coin (silver disc, rim highlight, edge band, no face) in touching the mark at the same diameter. At 'granules gone' (about 7.0 s) nothing new appears: push in on the bare black center and show loose granules collecting at the drip edge, as cues.md says.",
+  "8.29 to 10.29 worn: the whole-roof shot looks the same as the hook shot, so 'the whole roof is worn' shows nothing. Add the wear: faded light streaks running downslope on every part of the roof, curled tab edges with a shadow under each curl, small bare patches spread evenly (not clustered like the hail marks).",
+  "16.27 to 17.83 ask: the HAIL and WEAR cards, the readable close of this video, are up about 1.5 s before the end card; M6 needs about 2.6 s for 'YOUR CALL? HAIL WEAR'. Hold the ask frame 3.0 s or more (music-only tail before the end card, still inside the source's 20 s plus 20 percent and the end card), or carry the two cards onto the end card above the lockup. Enlarge the accent cursor from about 30 px to about 70 px tall so it reads as a choosing pointer, not a stray speck.",
+  "10.29 to 13.25 vent and gutter: the vent's dent is the same ring as a hail mark and reads as a screw hole; draw a dent as a crescent shadow with a highlight on the bent louver. The gutter reads as a dithered bench; draw a K-style gutter (front lip, downspout elbow) hung on a strip of roof edge. The host's navy legs vanish into the navy backdrop (feet float above the shadow at y 1240): put the gray ledge used in the roof scenes under him or lift the backdrop a step lighter.",
+  "0.80 blinds cut: the blinds erase 'HAIL OR WEAR?' from the caption box for a few frames while 'YOU CALL IT.' stays; draw the caption box above the transition layer so the question holds through both hook cuts, as cues.md promises.",
+  "13.25 to 16.27 her: this frame is nearly the same as damage-or-not at 4.02 s (same house, driveway, homeowner pose, IT'S HAIL bubble). Not capped, because Match source turns off the new-sets rule and this lesson is a planned same-topic comparison, but change the shot so a viewer who saw damage-or-not two days earlier sees something new: for example a closer two-shot of her at the foot of a ladder pointing up, with the roof edge and the dented vent in frame."
+ ]
+}

@@ -1,9 +1,9 @@
 {
  "schema": "pnf.gc_lead.v1",
- "generatedAt": "2026-11-02T12:54:42Z",
+ "generatedAt": "2026-11-09T22:06:00Z",
  "window": {
-  "issuedSince": "2024-11-02",
-  "signalLookbackSince": "2026-07-05",
+  "issuedSince": "2024-11-09",
+  "signalLookbackSince": "2026-07-12",
   "minValuation": 500000
  },
  "sources": {
@@ -19,42 +19,42 @@
  "report": {
   "cities": {
    "chicago": {
-    "permitRows": 2295,
-    "foodRows": 963,
-    "healthJoins": 56,
-    "candidates": 1071,
-    "kept": 591,
+    "permitRows": 2283,
+    "foodRows": 975,
+    "healthJoins": 57,
+    "candidates": 1064,
+    "kept": 594,
     "filtered": {
-     "permit not open in the City record": 225,
-     "candidate": 1083,
-     "no construction clean (foundation, demolition, roof, mechanical or site work only)": 240,
-     "no commercial or apartment wording": 79,
-     "house or 2 to 3 flat": 572,
-     "no interior finish work or new building named": 37,
+     "permit not open in the City record": 223,
+     "candidate": 1076,
+     "no construction clean (foundation, demolition, roof, mechanical or site work only)": 245,
+     "no commercial or apartment wording": 76,
+     "house or 2 to 3 flat": 568,
+     "no interior finish work or new building named": 35,
      "one home inside a larger building": 41,
-     "common areas only, no homes worked on": 6,
+     "common areas only, no homes worked on": 7,
      "no business listed as general contractor": 5,
      "apartment building with no unit count (could be a 2 or 3 flat)": 7,
      "revision or repeat of a listed job": 12
     },
     "rejectedByMoat": {
-     "no adjacent CO or health signal": 478,
+     "no adjacent CO or health signal": 468,
      "scope carries an email or phone number": 2
     }
    },
    "austin": {
-    "permitRows": 8800,
-    "foodRows": 1267,
+    "permitRows": 8793,
+    "foodRows": 1179,
     "healthJoins": 4,
     "coFlagValues": {
-     "Yes": 656,
-     "No": 29
+     "Yes": 654,
+     "No": 30
     },
-    "candidates": 133,
-    "kept": 129,
+    "candidates": 136,
+    "kept": 132,
     "filtered": {
-     "candidate": 133,
-     "upstream stage Permit issued": 24
+     "candidate": 136,
+     "upstream stage Permit issued": 22
     },
     "rejectedByMoat": {
      "no adjacent CO or health signal": 4
@@ -83,7 +83,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-025330 BP",
+     "record_id": "2026-025331 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -110,12 +110,39 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-154154 BP",
+     "record_id": "2025-154205 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
    ],
    "source_url": "https://data.austintexas.gov/resource/3syk-w9eu.json?masterpermitnum=13107658"
+  },
+  {
+   "lead_id": "aus-13680625",
+   "city": "austin",
+   "permit_id": "2026-137244 BP",
+   "master_permit_id": "13680625",
+   "stage": "Inspections Under Way",
+   "stage_source": "Work under way (0 of 4 building permits finaled)",
+   "issue_date": "2026-10-19",
+   "address": "500 E 3rd St",
+   "address_key": "500 E 3RD ST",
+   "zip": "78701",
+   "valuation": 812383209,
+   "work_type": "New construction",
+   "scope": "New Construction of Austin Convention Center - Area 2",
+   "gc_company": "JE Dunn Construction",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "co_flag",
+     "dataset": "3syk-w9eu",
+     "record_id": "2026-137244 BP",
+     "date": null,
+     "detail": "certificate_of_occupancy=Yes"
+    }
+   ],
+   "source_url": "https://data.austintexas.gov/resource/3syk-w9eu.json?masterpermitnum=13680625"
   },
   {
    "lead_id": "aus-13532840",
@@ -137,7 +164,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-094822 BP",
+     "record_id": "2026-094821 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -164,12 +191,39 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-160600 BP",
+     "record_id": "2025-160602 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
    ],
    "source_url": "https://data.austintexas.gov/resource/3syk-w9eu.json?masterpermitnum=13513914"
+  },
+  {
+   "lead_id": "aus-13633524",
+   "city": "austin",
+   "permit_id": "2026-136577 BP",
+   "master_permit_id": "13633524",
+   "stage": "Inspections Under Way",
+   "stage_source": "Work under way (0 of 5 building permits finaled)",
+   "issue_date": "2026-10-16",
+   "address": "8801 McCann Dr",
+   "address_key": "8801 MCCANN DR",
+   "zip": "78757",
+   "valuation": 245000000,
+   "work_type": "New construction",
+   "scope": "Redevelopment of Existing Site. New Construction of 4- Story Affordable Housing to Include 2 Connected Fire Areas and associated site improvements...",
+   "gc_company": "Swinerton Builders Inc.",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "co_flag",
+     "dataset": "3syk-w9eu",
+     "record_id": "2026-136577 BP",
+     "date": null,
+     "detail": "certificate_of_occupancy=Yes"
+    }
+   ],
+   "source_url": "https://data.austintexas.gov/resource/3syk-w9eu.json?masterpermitnum=13633524"
   },
   {
    "lead_id": "aus-13465258",
@@ -299,7 +353,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-130846 BP",
+     "record_id": "2025-130845 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -326,7 +380,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-156340 BP",
+     "record_id": "2025-156351 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -380,7 +434,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2024-084743 BP",
+     "record_id": "2024-084744 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -407,7 +461,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-038460 BP",
+     "record_id": "2025-038462 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     },
@@ -441,7 +495,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-130384 BP",
+     "record_id": "2025-130390 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -468,7 +522,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-054668 BP",
+     "record_id": "2025-054667 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -495,12 +549,39 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-064351 BP",
+     "record_id": "2025-064353 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
    ],
    "source_url": "https://data.austintexas.gov/resource/3syk-w9eu.json?masterpermitnum=13255823"
+  },
+  {
+   "lead_id": "aus-13150876",
+   "city": "austin",
+   "permit_id": "2026-112066 BP",
+   "master_permit_id": "13150876",
+   "stage": "Inspections Under Way",
+   "stage_source": "Work under way (0 of 6 building permits finaled)",
+   "issue_date": "2026-08-27",
+   "address": "2631 Kramer Ln",
+   "address_key": "2631 KRAMER LN",
+   "zip": "78758",
+   "valuation": 48000000,
+   "work_type": "New construction",
+   "scope": "New Construction of a Multi-Family Bldg - Above the Podium Fire Area C",
+   "gc_company": "OHT Construction LLC",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "co_flag",
+     "dataset": "3syk-w9eu",
+     "record_id": "2026-112061 BP",
+     "date": null,
+     "detail": "certificate_of_occupancy=Yes"
+    }
+   ],
+   "source_url": "https://data.austintexas.gov/resource/3syk-w9eu.json?masterpermitnum=13150876"
   },
   {
    "lead_id": "aus-13482374",
@@ -549,7 +630,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-151792 BP",
+     "record_id": "2025-151793 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -630,7 +711,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-141341 BP",
+     "record_id": "2025-141345 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -772,7 +853,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-055202 BP",
+     "record_id": "2025-055220 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -799,7 +880,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-143778 BP",
+     "record_id": "2025-143776 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -853,7 +934,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-035670 BP",
+     "record_id": "2026-035668 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -940,33 +1021,6 @@
     }
    ],
    "source_url": "https://data.austintexas.gov/resource/3syk-w9eu.json?masterpermitnum=13544797"
-  },
-  {
-   "lead_id": "aus-13627246",
-   "city": "austin",
-   "permit_id": "2026-012175 BP",
-   "master_permit_id": "13627246",
-   "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 1 building permits finaled)",
-   "issue_date": "2026-02-02",
-   "address": "400 W 6th St Unit 3100",
-   "address_key": "400 W 6TH ST",
-   "zip": "78701",
-   "valuation": 26668001,
-   "work_type": "Finish-out",
-   "scope": "Tenant Finish out Office Space(2193024 SF)",
-   "gc_company": "Rand Construction Corporation",
-   "site_contact": null,
-   "signals": [
-    {
-     "type": "co_flag",
-     "dataset": "3syk-w9eu",
-     "record_id": "2026-012175 BP",
-     "date": null,
-     "detail": "certificate_of_occupancy=Yes"
-    }
-   ],
-   "source_url": "https://data.austintexas.gov/resource/3syk-w9eu.json?masterpermitnum=13627246"
   },
   {
    "lead_id": "aus-13452184",
@@ -1123,7 +1177,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-037893 BP",
+     "record_id": "2026-037896 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -1435,33 +1489,6 @@
    "source_url": "https://data.austintexas.gov/resource/3syk-w9eu.json?masterpermitnum=13503370"
   },
   {
-   "lead_id": "aus-13368961",
-   "city": "austin",
-   "permit_id": "2024-149774 BP",
-   "master_permit_id": "13368961",
-   "stage": "Inspections Under Way",
-   "stage_source": "Work under way (0 of 9 building permits finaled)",
-   "issue_date": "2024-11-08",
-   "address": "7009 Ed Bluestein Blvd Svrd Nb Bldg 1",
-   "address_key": "7009 ED BLUESTEIN BLVD SVRD NB",
-   "zip": "78724",
-   "valuation": 12331974,
-   "work_type": "New construction",
-   "scope": "New Construction of a 4-Story Multi Family Building (79891 SF)",
-   "gc_company": "Skybeck Construction, LLC",
-   "site_contact": null,
-   "signals": [
-    {
-     "type": "co_flag",
-     "dataset": "3syk-w9eu",
-     "record_id": "2024-149783 BP",
-     "date": null,
-     "detail": "certificate_of_occupancy=Yes"
-    }
-   ],
-   "source_url": "https://data.austintexas.gov/resource/3syk-w9eu.json?masterpermitnum=13368961"
-  },
-  {
    "lead_id": "aus-13705527",
    "city": "austin",
    "permit_id": "2026-104278 BP",
@@ -1562,7 +1589,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-087545 BP",
+     "record_id": "2025-087546 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -1842,12 +1869,12 @@
   {
    "lead_id": "aus-13546530",
    "city": "austin",
-   "permit_id": "2025-115588 BP",
+   "permit_id": "2025-115587 BP",
    "master_permit_id": "13546530",
    "stage": "Inspections Under Way",
    "stage_source": "Work under way (0 of 4 building permits finaled)",
    "issue_date": "2025-09-11",
-   "address": "5707 Southwest Pkwy Bldg 1 Unit 300",
+   "address": "5707 Southwest Pkwy Bldg 1 Unit 200",
    "address_key": "5707 SW PKWY",
    "zip": "78735",
    "valuation": 7000000,
@@ -1859,7 +1886,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-115588 BP",
+     "record_id": "2025-115589 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -1967,7 +1994,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-149928 BP",
+     "record_id": "2025-149929 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -2196,6 +2223,33 @@
     }
    ],
    "source_url": "https://data.austintexas.gov/resource/3syk-w9eu.json?masterpermitnum=13679039"
+  },
+  {
+   "lead_id": "aus-13122563",
+   "city": "austin",
+   "permit_id": "2023-091676 BP",
+   "master_permit_id": "13122563",
+   "stage": "Inspections Under Way",
+   "stage_source": "Work under way (0 of 5 building permits finaled)",
+   "issue_date": "2026-11-06",
+   "address": "6525 Ed Bluestein Blvd Nb Bldg 16",
+   "address_key": "6525 ED BLUESTEIN BLVD NB",
+   "zip": "78724",
+   "valuation": 3500000,
+   "work_type": "New construction",
+   "scope": "New Construction of (4) Multi-Family Buildings and (1) Detached Garage. (Bldgs...",
+   "gc_company": "Blackburn Construction, Inc.",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "co_flag",
+     "dataset": "3syk-w9eu",
+     "record_id": "2023-091676 BP",
+     "date": null,
+     "detail": "certificate_of_occupancy=Yes"
+    }
+   ],
+   "source_url": "https://data.austintexas.gov/resource/3syk-w9eu.json?masterpermitnum=13122563"
   },
   {
    "lead_id": "aus-13271863",
@@ -2568,7 +2622,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-050278 BP",
+     "record_id": "2025-050279 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -2919,7 +2973,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-010844 BP",
+     "record_id": "2026-010842 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3000,7 +3054,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-057417 BP",
+     "record_id": "2025-057403 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3027,7 +3081,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-057818 BP",
+     "record_id": "2025-057812 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3135,7 +3189,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-118079 BP",
+     "record_id": "2025-118080 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3189,7 +3243,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2025-122129 BP",
+     "record_id": "2025-122127 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3216,7 +3270,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-134981 BP",
+     "record_id": "2026-134963 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3270,7 +3324,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-036757 BP",
+     "record_id": "2026-036759 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3297,7 +3351,7 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2026-099857 BP",
+     "record_id": "2026-099851 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
@@ -3467,6 +3521,33 @@
    "source_url": "https://data.austintexas.gov/resource/3syk-w9eu.json?masterpermitnum=12489208"
   },
   {
+   "lead_id": "aus-13655817",
+   "city": "austin",
+   "permit_id": "2026-111101 BP",
+   "master_permit_id": "13655817",
+   "stage": "Inspections Under Way",
+   "stage_source": "Work under way (0 of 2 building permits finaled)",
+   "issue_date": "2026-09-11",
+   "address": "620 W Slaughter Ln",
+   "address_key": "620 W SLAUGHTER LN",
+   "zip": "78748",
+   "valuation": 650000,
+   "work_type": "New construction",
+   "scope": "New Construction of a 6261 SF Convenience Store",
+   "gc_company": "Wurzel Builders, Ltd.",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "co_flag",
+     "dataset": "3syk-w9eu",
+     "record_id": "2026-111103 BP",
+     "date": null,
+     "detail": "certificate_of_occupancy=Yes"
+    }
+   ],
+   "source_url": "https://data.austintexas.gov/resource/3syk-w9eu.json?masterpermitnum=13655817"
+  },
+  {
    "lead_id": "aus-12553652",
    "city": "austin",
    "permit_id": "2020-179907 BP",
@@ -3567,12 +3648,66 @@
     {
      "type": "co_flag",
      "dataset": "3syk-w9eu",
-     "record_id": "2024-160847 BP",
+     "record_id": "2024-160851 BP",
      "date": null,
      "detail": "certificate_of_occupancy=Yes"
     }
    ],
    "source_url": "https://data.austintexas.gov/resource/3syk-w9eu.json?masterpermitnum=13311159"
+  },
+  {
+   "lead_id": "chi-101070709",
+   "city": "chicago",
+   "permit_id": "101070709",
+   "master_permit_id": null,
+   "stage": "Partial Occupancy Approved",
+   "stage_source": "CERTIFICATE OF OCCUPANCY PENDING (TEMPORARY OR PARTIAL OCCUPANCY APPROVED)",
+   "issue_date": "2025-09-09",
+   "address": "2235 W Oakdale Ave",
+   "address_key": "2235 W OAKDALE AVE",
+   "zip": null,
+   "valuation": 7600000,
+   "work_type": "New construction",
+   "scope": "Full building for 8 new 3-story townhouses (R-2) with private garages, fully sprinklered, type V-A construction",
+   "gc_company": "ZSD Construction LLC",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "co_pending",
+     "dataset": "ydr8-5enu",
+     "record_id": "3418641",
+     "date": null,
+     "detail": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)"
+    }
+   ],
+   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101070709"
+  },
+  {
+   "lead_id": "chi-101073642",
+   "city": "chicago",
+   "permit_id": "101073642",
+   "master_permit_id": null,
+   "stage": "Partial Occupancy Approved",
+   "stage_source": "CERTIFICATE OF OCCUPANCY PENDING (TEMPORARY OR PARTIAL OCCUPANCY APPROVED)",
+   "issue_date": "2025-10-03",
+   "address": "69 W Washington St",
+   "address_key": "69 W WASHINGTON ST",
+   "zip": null,
+   "valuation": 6300000,
+   "work_type": "Renovation",
+   "scope": "Interior renovation (build-out) of the 30th floor for cook county office area. Structural peer review for infill of existing slab",
+   "gc_company": "Power Construction Company, LLC",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "co_pending",
+     "dataset": "ydr8-5enu",
+     "record_id": "3425397",
+     "date": null,
+     "detail": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)"
+    }
+   ],
+   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101073642"
   },
   {
    "lead_id": "chi-101070402",
@@ -3627,40 +3762,6 @@
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101053170"
-  },
-  {
-   "lead_id": "chi-101070208",
-   "city": "chicago",
-   "permit_id": "101070208",
-   "master_permit_id": null,
-   "stage": "Partial Occupancy Approved",
-   "stage_source": "CERTIFICATE OF OCCUPANCY PENDING (TEMPORARY OR PARTIAL OCCUPANCY APPROVED)",
-   "issue_date": "2025-11-04",
-   "address": "727 N Milwaukee Ave",
-   "address_key": "727 N MILWAUKEE AVE",
-   "zip": null,
-   "valuation": 2750000,
-   "work_type": "Renovation",
-   "scope": "Interior alterations to 1st and 2nd floor retail space for new day care, exterior extension of private sidewalk, installation of protective bollards and fencing for emergency exiting purposes from...",
-   "gc_company": "Triumph Design Build Corporation",
-   "site_contact": null,
-   "signals": [
-    {
-     "type": "co_pending",
-     "dataset": "ydr8-5enu",
-     "record_id": "3417616",
-     "date": null,
-     "detail": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)"
-    },
-    {
-     "type": "health_license_inspection",
-     "dataset": "4ijn-s7e5",
-     "record_id": "2642584",
-     "date": "2026-09-11",
-     "detail": "License Re-Inspection inspection, Pass"
-    }
-   ],
-   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101070208"
   },
   {
    "lead_id": "chi-101078819",
@@ -3803,33 +3904,6 @@
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101077418"
-  },
-  {
-   "lead_id": "chi-101065225",
-   "city": "chicago",
-   "permit_id": "101065225",
-   "master_permit_id": null,
-   "stage": "Partial Occupancy Approved",
-   "stage_source": "CERTIFICATE OF OCCUPANCY PENDING (TEMPORARY OR PARTIAL OCCUPANCY APPROVED)",
-   "issue_date": "2025-03-24",
-   "address": "222 S Riverside Plz",
-   "address_key": "222 S RIVERSIDE PLZ",
-   "zip": null,
-   "valuation": 1750000,
-   "work_type": "Renovation",
-   "scope": "Interior alterations to 12th & 14th floor offices. Work to include demo, new partitions, mechanical, electrical and plumbing. B-business. 1a construction",
-   "gc_company": "Interior Construction Group, Inc",
-   "site_contact": null,
-   "signals": [
-    {
-     "type": "co_pending",
-     "dataset": "ydr8-5enu",
-     "record_id": "3406008",
-     "date": null,
-     "detail": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)"
-    }
-   ],
-   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101065225"
   },
   {
    "lead_id": "chi-101066773",
@@ -5062,33 +5136,6 @@
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101069993"
   },
   {
-   "lead_id": "chi-101074867",
-   "city": "chicago",
-   "permit_id": "101074867",
-   "master_permit_id": null,
-   "stage": "Inspections Under Way",
-   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
-   "issue_date": "2026-01-28",
-   "address": "5207 S Harper Ave",
-   "address_key": "5207 S HARPER AVE",
-   "zip": null,
-   "valuation": 33000000,
-   "work_type": "Renovation",
-   "scope": "Initial tenant buildout on the 11th, 12th, and 13th floor of an existing office building for a business use non-hazardous laboratory space with server room less than 150 sq.ft. To include non-load...",
-   "gc_company": "Power Construction Company, LLC",
-   "site_contact": null,
-   "signals": [
-    {
-     "type": "co_required",
-     "dataset": "ydr8-5enu",
-     "record_id": "3428271",
-     "date": null,
-     "detail": "Inspections (Certificate Of Occupancy Required)"
-    }
-   ],
-   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101074867"
-  },
-  {
    "lead_id": "chi-101076730",
    "city": "chicago",
    "permit_id": "101076730",
@@ -5168,6 +5215,33 @@
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101089193"
+  },
+  {
+   "lead_id": "chi-101078161",
+   "city": "chicago",
+   "permit_id": "101078161",
+   "master_permit_id": null,
+   "stage": "Inspections Under Way",
+   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
+   "issue_date": "2026-09-16",
+   "address": "136 N Kedzie Ave",
+   "address_key": "136 N KEDZIE AVE",
+   "zip": null,
+   "valuation": 28795046,
+   "work_type": "New construction",
+   "scope": "Full building permit for a 5-story mixed-use building with ground floor commercial and office space with 51 affordable dwelling units. Includes 12 indoor parking spaces, trash enclosure, and green...",
+   "gc_company": "Skender-Ashlaur Joint Venture LLC",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "co_required",
+     "dataset": "ydr8-5enu",
+     "record_id": "3436340",
+     "date": null,
+     "detail": "Inspections (Certificate Of Occupancy Required)"
+    }
+   ],
+   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101078161"
   },
   {
    "lead_id": "chi-101069022",
@@ -5926,33 +6000,6 @@
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101045789"
   },
   {
-   "lead_id": "chi-101051521",
-   "city": "chicago",
-   "permit_id": "101051521",
-   "master_permit_id": null,
-   "stage": "Inspections Under Way",
-   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
-   "issue_date": "2024-11-05",
-   "address": "1880 N Milwaukee Ave",
-   "address_key": "1880 N MILWAUKEE AVE",
-   "zip": null,
-   "valuation": 15000000,
-   "work_type": "New construction",
-   "scope": "Full building permit for a 5 story 44 dwelling unit residential building, 1st floor garage and retail space. Caissons only permit 101038589. All",
-   "gc_company": "Macon Construction Group, Inc.",
-   "site_contact": null,
-   "signals": [
-    {
-     "type": "co_required",
-     "dataset": "ydr8-5enu",
-     "record_id": "3378392",
-     "date": null,
-     "detail": "Inspections (Certificate Of Occupancy Required)"
-    }
-   ],
-   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101051521"
-  },
-  {
    "lead_id": "chi-101067094",
    "city": "chicago",
    "permit_id": "101067094",
@@ -6059,6 +6106,33 @@
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101084556"
+  },
+  {
+   "lead_id": "chi-101083002",
+   "city": "chicago",
+   "permit_id": "101083002",
+   "master_permit_id": null,
+   "stage": "Inspections Under Way",
+   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
+   "issue_date": "2026-07-29",
+   "address": "2233 S Dr Martin L King Jr Dr",
+   "address_key": "2233 S DR MARTIN L KING JR DR",
+   "zip": null,
+   "valuation": 14875000,
+   "work_type": "Renovation",
+   "scope": "Interior renovation of north tower of existing hotel building. Renovation of 462 guestrooms, guestroom corridors, elevator lobbies. The interior renovations of the building's south tower has been...",
+   "gc_company": "Walsh Construction Company II, LLC",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "co_required",
+     "dataset": "ydr8-5enu",
+     "record_id": "3448406",
+     "date": null,
+     "detail": "Inspections (Certificate Of Occupancy Required)"
+    }
+   ],
+   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101083002"
   },
   {
    "lead_id": "chi-101084225",
@@ -7581,33 +7655,6 @@
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101065273"
   },
   {
-   "lead_id": "chi-101070709",
-   "city": "chicago",
-   "permit_id": "101070709",
-   "master_permit_id": null,
-   "stage": "Inspections Under Way",
-   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
-   "issue_date": "2025-09-09",
-   "address": "2235 W Oakdale Ave",
-   "address_key": "2235 W OAKDALE AVE",
-   "zip": null,
-   "valuation": 7600000,
-   "work_type": "New construction",
-   "scope": "Full building for 8 new 3-story townhouses (R-2) with private garages, fully sprinklered, type V-A construction",
-   "gc_company": "ZSD Construction LLC",
-   "site_contact": null,
-   "signals": [
-    {
-     "type": "co_required",
-     "dataset": "ydr8-5enu",
-     "record_id": "3418641",
-     "date": null,
-     "detail": "Inspections (Certificate Of Occupancy Required)"
-    }
-   ],
-   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101070709"
-  },
-  {
    "lead_id": "chi-101081716",
    "city": "chicago",
    "permit_id": "101081716",
@@ -8067,33 +8114,6 @@
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101063790"
   },
   {
-   "lead_id": "chi-101073642",
-   "city": "chicago",
-   "permit_id": "101073642",
-   "master_permit_id": null,
-   "stage": "Inspections Under Way",
-   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
-   "issue_date": "2025-10-03",
-   "address": "69 W Washington St",
-   "address_key": "69 W WASHINGTON ST",
-   "zip": null,
-   "valuation": 6300000,
-   "work_type": "Renovation",
-   "scope": "Interior renovation (build-out) of the 30th floor for cook county office area. Structural peer review for infill of existing slab",
-   "gc_company": "Power Construction Company, LLC",
-   "site_contact": null,
-   "signals": [
-    {
-     "type": "co_required",
-     "dataset": "ydr8-5enu",
-     "record_id": "3425397",
-     "date": null,
-     "detail": "Inspections (Certificate Of Occupancy Required)"
-    }
-   ],
-   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101073642"
-  },
-  {
    "lead_id": "chi-101071576",
    "city": "chicago",
    "permit_id": "101071576",
@@ -8472,6 +8492,33 @@
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101078198"
   },
   {
+   "lead_id": "chi-101087126",
+   "city": "chicago",
+   "permit_id": "101087126",
+   "master_permit_id": null,
+   "stage": "Inspections Under Way",
+   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
+   "issue_date": "2026-10-22",
+   "address": "1014 N Spaulding Ave",
+   "address_key": "1014 N SPAULDING AVE",
+   "zip": null,
+   "valuation": 5228360,
+   "work_type": "New construction",
+   "scope": "Full building permit for 5 story 40 d.u. Building with basement, 24 car garage (floor 1), deck (2nd floor) over portion of garage, deck (floor 1-5), balconies (floors 3-5), rooftop stair...",
+   "gc_company": "TM1 Construction, Inc.",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "co_required",
+     "dataset": "ydr8-5enu",
+     "record_id": "3457595",
+     "date": null,
+     "detail": "Inspections (Certificate Of Occupancy Required)"
+    }
+   ],
+   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101087126"
+  },
+  {
    "lead_id": "chi-101077690",
    "city": "chicago",
    "permit_id": "101077690",
@@ -8524,33 +8571,6 @@
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101015260"
-  },
-  {
-   "lead_id": "chi-101061323",
-   "city": "chicago",
-   "permit_id": "101061323",
-   "master_permit_id": null,
-   "stage": "Inspections Under Way",
-   "stage_source": "INSPECTIONS",
-   "issue_date": "2024-11-04",
-   "address": "10000 W Ohare St",
-   "address_key": "10000 W OHARE ST",
-   "zip": null,
-   "valuation": 5014000,
-   "work_type": "Renovation",
-   "scope": "Renovation of existing offices including removing/relocation existing furniture, repainting existing walls and doors, and building new walls/doors and adding new data ports",
-   "gc_company": "F.H. Paschen, S.N. Nielsen & Associates, LLC.",
-   "site_contact": null,
-   "signals": [
-    {
-     "type": "health_license_inspection",
-     "dataset": "4ijn-s7e5",
-     "record_id": "2641233",
-     "date": "2026-08-13",
-     "detail": "License inspection, Not Ready"
-    }
-   ],
-   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101061323"
   },
   {
    "lead_id": "chi-101053223",
@@ -8740,6 +8760,33 @@
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101068714"
+  },
+  {
+   "lead_id": "chi-101071310",
+   "city": "chicago",
+   "permit_id": "101071310",
+   "master_permit_id": null,
+   "stage": "Inspections Under Way",
+   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
+   "issue_date": "2025-11-26",
+   "address": "2340 N Seeley Ave",
+   "address_key": "2340 N SEELEY AVE",
+   "zip": null,
+   "valuation": 5000000,
+   "work_type": "New construction",
+   "scope": "Full building permit for 5 story 56 d.u. Building, office at 1st floor, 46 car garage at 1st floor, elevator over-run, one loading berth, rooftop stair enclosure, deck at 2nd thru 5th story,...",
+   "gc_company": "Wilmot Construction, Incorporated",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "co_required",
+     "dataset": "ydr8-5enu",
+     "record_id": "3420055",
+     "date": null,
+     "detail": "Inspections (Certificate Of Occupancy Required)"
+    }
+   ],
+   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101071310"
   },
   {
    "lead_id": "chi-101075133",
@@ -9253,33 +9300,6 @@
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101056785"
-  },
-  {
-   "lead_id": "chi-101070707",
-   "city": "chicago",
-   "permit_id": "101070707",
-   "master_permit_id": null,
-   "stage": "Inspections Under Way",
-   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
-   "issue_date": "2025-08-28",
-   "address": "2233 W Oakdale Ave",
-   "address_key": "2233 W OAKDALE AVE",
-   "zip": null,
-   "valuation": 4200000,
-   "work_type": "New construction",
-   "scope": "Full building for 5 new 3-story townhouses (R-2) with private garages, fully sprinklered, type V-A construction",
-   "gc_company": "ZSD Construction LLC",
-   "site_contact": null,
-   "signals": [
-    {
-     "type": "co_required",
-     "dataset": "ydr8-5enu",
-     "record_id": "3418638",
-     "date": null,
-     "detail": "Inspections (Certificate Of Occupancy Required)"
-    }
-   ],
-   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101070707"
   },
   {
    "lead_id": "chi-101060929",
@@ -9983,12 +10003,39 @@
     {
      "type": "health_license_inspection",
      "dataset": "4ijn-s7e5",
-     "record_id": "2641012",
-     "date": "2026-08-11",
-     "detail": "License inspection, Not Ready"
+     "record_id": "2646177",
+     "date": "2026-11-02",
+     "detail": "License inspection, Pass"
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101077153"
+  },
+  {
+   "lead_id": "chi-101088152",
+   "city": "chicago",
+   "permit_id": "101088152",
+   "master_permit_id": null,
+   "stage": "Inspections Under Way",
+   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
+   "issue_date": "2026-09-29",
+   "address": "1 E Wacker Dr",
+   "address_key": "1 E WACKER DR",
+   "zip": null,
+   "valuation": 3500000,
+   "work_type": "Renovation",
+   "scope": "Interior alterations to floors 32, 34 & 35 at existing office building. Work to include demo, new partitions, mechanical, electrical and finishes. (1a construction. B-business use)",
+   "gc_company": "Big Construction LLC",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "co_required",
+     "dataset": "ydr8-5enu",
+     "record_id": "3459795",
+     "date": null,
+     "detail": "Inspections (Certificate Of Occupancy Required)"
+    }
+   ],
+   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101088152"
   },
   {
    "lead_id": "chi-101070711",
@@ -10124,6 +10171,33 @@
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101055045"
+  },
+  {
+   "lead_id": "chi-101088789",
+   "city": "chicago",
+   "permit_id": "101088789",
+   "master_permit_id": null,
+   "stage": "Inspections Under Way",
+   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
+   "issue_date": "2026-10-16",
+   "address": "676 N St Clair St",
+   "address_key": "676 N ST CLAIR ST",
+   "zip": null,
+   "valuation": 3200000,
+   "work_type": "Renovation",
+   "scope": "Interior alterations on the 21st floor of existing building, to create a new exam rooms and consultation rooms. Work includes demolition, construction, HVAC, and MEP. Existing building occupancy...",
+   "gc_company": "Bulley & Andrews, L.L.C.",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "co_required",
+     "dataset": "ydr8-5enu",
+     "record_id": "3461290",
+     "date": null,
+     "detail": "Inspections (Certificate Of Occupancy Required)"
+    }
+   ],
+   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101088789"
   },
   {
    "lead_id": "chi-101067182",
@@ -10721,33 +10795,6 @@
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101084515"
   },
   {
-   "lead_id": "chi-101085088",
-   "city": "chicago",
-   "permit_id": "101085088",
-   "master_permit_id": null,
-   "stage": "Inspections Under Way",
-   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
-   "issue_date": "2026-07-14",
-   "address": "321 N Clark St",
-   "address_key": "321 N CLARK ST",
-   "zip": null,
-   "valuation": 3000000,
-   "work_type": "Renovation",
-   "scope": "Alterations to existing commercial office space, suites 1000, 1040, and 1070. Interiors work only",
-   "gc_company": "Redmond Construction Corp.",
-   "site_contact": null,
-   "signals": [
-    {
-     "type": "co_required",
-     "dataset": "ydr8-5enu",
-     "record_id": "3453021",
-     "date": null,
-     "detail": "Inspections (Certificate Of Occupancy Required)"
-    }
-   ],
-   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101085088"
-  },
-  {
    "lead_id": "chi-101086037",
    "city": "chicago",
    "permit_id": "101086037",
@@ -10773,6 +10820,33 @@
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101086037"
+  },
+  {
+   "lead_id": "chi-101087120",
+   "city": "chicago",
+   "permit_id": "101087120",
+   "master_permit_id": null,
+   "stage": "Inspections Under Way",
+   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
+   "issue_date": "2026-08-25",
+   "address": "320 S Canal St",
+   "address_key": "320 S CANAL ST",
+   "zip": null,
+   "valuation": 3000000,
+   "work_type": "Renovation",
+   "scope": "Interior alterations to existing 22nd floor office space suite 22. Work to include new non load bearing partitions, plumbing, electrical and mechanical work. B-business use)",
+   "gc_company": "Redmond Construction Corp.",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "co_required",
+     "dataset": "ydr8-5enu",
+     "record_id": "3457580",
+     "date": null,
+     "detail": "Inspections (Certificate Of Occupancy Required)"
+    }
+   ],
+   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101087120"
   },
   {
    "lead_id": "chi-101045238",
@@ -10962,6 +11036,33 @@
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101078587"
+  },
+  {
+   "lead_id": "chi-101087451",
+   "city": "chicago",
+   "permit_id": "101087451",
+   "master_permit_id": null,
+   "stage": "Inspections Under Way",
+   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
+   "issue_date": "2026-10-30",
+   "address": "4447 N Ashland Ave",
+   "address_key": "4447 N ASHLAND AVE",
+   "zip": null,
+   "valuation": 2800000,
+   "work_type": "New construction",
+   "scope": "Erect a 4 story, 8 dwelling unit masonry building (first floor and basement duplex), with an elevator, balconies, bicycle parking in the basement, rear decks, roof deck and stair enclosure . to...",
+   "gc_company": "PCH Construction Company",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "co_required",
+     "dataset": "ydr8-5enu",
+     "record_id": "3458361",
+     "date": null,
+     "detail": "Inspections (Certificate Of Occupancy Required)"
+    }
+   ],
+   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101087451"
   },
   {
    "lead_id": "chi-101060433",
@@ -11430,6 +11531,33 @@
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101070814"
   },
   {
+   "lead_id": "chi-101078696",
+   "city": "chicago",
+   "permit_id": "101078696",
+   "master_permit_id": null,
+   "stage": "Inspections Under Way",
+   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
+   "issue_date": "2026-10-16",
+   "address": "2309 S Loomis St",
+   "address_key": "2309 S LOOMIS ST",
+   "zip": null,
+   "valuation": 2490632,
+   "work_type": "Renovation",
+   "scope": "Interior tenant improvement to existing one story building for \"tesla, inc.\" motor vehicle repair shop. Also includes site improvements for two new gates in the existing chain-link fence, a chain...",
+   "gc_company": "Sachse Construction and Development Company LLC",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "co_required",
+     "dataset": "ydr8-5enu",
+     "record_id": "3437907",
+     "date": null,
+     "detail": "Inspections (Certificate Of Occupancy Required)"
+    }
+   ],
+   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101078696"
+  },
+  {
    "lead_id": "chi-101060364",
    "city": "chicago",
    "permit_id": "101060364",
@@ -11808,33 +11936,6 @@
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101070510"
   },
   {
-   "lead_id": "chi-101079802",
-   "city": "chicago",
-   "permit_id": "101079802",
-   "master_permit_id": null,
-   "stage": "Inspections Under Way",
-   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
-   "issue_date": "2026-04-30",
-   "address": "11411 S Eggleston Ave",
-   "address_key": "11411 S EGGLESTON AVE",
-   "zip": null,
-   "valuation": 2200000,
-   "work_type": "Renovation",
-   "scope": "Repairs to existing classrooms, toilet rooms, replace roof and install new roof top exhaust fans to an existing public-school",
-   "gc_company": "All-Bry Construction Company",
-   "site_contact": null,
-   "signals": [
-    {
-     "type": "co_required",
-     "dataset": "ydr8-5enu",
-     "record_id": "3440660",
-     "date": null,
-     "detail": "Inspections (Certificate Of Occupancy Required)"
-    }
-   ],
-   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101079802"
-  },
-  {
    "lead_id": "chi-101082403",
    "city": "chicago",
    "permit_id": "101082403",
@@ -12022,6 +12123,33 @@
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101042741"
+  },
+  {
+   "lead_id": "chi-101072824",
+   "city": "chicago",
+   "permit_id": "101072824",
+   "master_permit_id": null,
+   "stage": "Inspections Under Way",
+   "stage_source": "INSPECTIONS",
+   "issue_date": "2025-08-25",
+   "address": "5700 S Maryland Ave",
+   "address_key": "5700 S MARYLAND AVE",
+   "zip": null,
+   "valuation": 2100000,
+   "work_type": "Renovation",
+   "scope": "Interior alterations to 6th floor operating room to replace (2) electrophysiology labs with (2 ) new operating rooms in existing hospital",
+   "gc_company": "Pepper Construction Company",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "health_license_inspection",
+     "dataset": "4ijn-s7e5",
+     "record_id": "2646452",
+     "date": "2026-11-06",
+     "detail": "License inspection, Pass"
+    }
+   ],
+   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101072824"
   },
   {
    "lead_id": "chi-101067918",
@@ -12508,33 +12636,6 @@
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101081418"
-  },
-  {
-   "lead_id": "chi-101073685",
-   "city": "chicago",
-   "permit_id": "101073685",
-   "master_permit_id": null,
-   "stage": "Inspections Under Way",
-   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
-   "issue_date": "2025-12-22",
-   "address": "300 N Michigan Ave",
-   "address_key": "300 N MICHIGAN AVE",
-   "zip": null,
-   "valuation": 1800000,
-   "work_type": "Renovation",
-   "scope": "Interior building out for a new dine-in portillo's in an existing ground floor commercial space to include kitchen upgrades, restroom, mechanical, plumbing and electrical work",
-   "gc_company": "Reed Construction LLC",
-   "site_contact": null,
-   "signals": [
-    {
-     "type": "co_required",
-     "dataset": "ydr8-5enu",
-     "record_id": "3425486",
-     "date": null,
-     "detail": "Inspections (Certificate Of Occupancy Required)"
-    }
-   ],
-   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101073685"
   },
   {
    "lead_id": "chi-101077321",
@@ -13374,33 +13475,6 @@
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=100976390"
   },
   {
-   "lead_id": "chi-101051267",
-   "city": "chicago",
-   "permit_id": "101051267",
-   "master_permit_id": null,
-   "stage": "Inspections Under Way",
-   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
-   "issue_date": "2024-12-31",
-   "address": "1839 N Dayton St",
-   "address_key": "1839 N DAYTON ST",
-   "zip": null,
-   "valuation": 1500000,
-   "work_type": "New construction",
-   "scope": "New 4 story (14 dwelling units) + basement (R-2) residential building type III-A construction w/attached 14-car garage (u). All work",
-   "gc_company": "Promised Land Development",
-   "site_contact": null,
-   "signals": [
-    {
-     "type": "co_required",
-     "dataset": "ydr8-5enu",
-     "record_id": "3377936",
-     "date": null,
-     "detail": "Inspections (Certificate Of Occupancy Required)"
-    }
-   ],
-   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101051267"
-  },
-  {
    "lead_id": "chi-101061431",
    "city": "chicago",
    "permit_id": "101061431",
@@ -13423,13 +13497,6 @@
      "record_id": "3396646",
      "date": null,
      "detail": "Inspections (Certificate Of Occupancy Required)"
-    },
-    {
-     "type": "health_license_inspection",
-     "dataset": "4ijn-s7e5",
-     "record_id": "2639583",
-     "date": "2026-07-10",
-     "detail": "License Re-Inspection inspection, Pass"
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101061431"
@@ -13596,9 +13663,9 @@
     {
      "type": "health_license_inspection",
      "dataset": "4ijn-s7e5",
-     "record_id": "2645481",
-     "date": "2026-10-20",
-     "detail": "License inspection, Fail"
+     "record_id": "2646136",
+     "date": "2026-11-02",
+     "detail": "License Re-Inspection inspection, Pass"
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101069227"
@@ -13656,6 +13723,33 @@
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101078385"
+  },
+  {
+   "lead_id": "chi-101079014",
+   "city": "chicago",
+   "permit_id": "101079014",
+   "master_permit_id": null,
+   "stage": "Inspections Under Way",
+   "stage_source": "INSPECTIONS",
+   "issue_date": "2026-06-18",
+   "address": "2 N Riverside Plz",
+   "address_key": "2 N RIVERSIDE PLZ",
+   "zip": null,
+   "valuation": 1500000,
+   "work_type": "New construction",
+   "scope": "Level 1 alteration on floors 1 and 2 of a currently occupied 26 story fully sptinkered office building, including replacement of finishes, fixtures, and mechanical equipment within the interior...",
+   "gc_company": "Blue Star Properties Inc",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "health_license_inspection",
+     "dataset": "4ijn-s7e5",
+     "record_id": "2646390",
+     "date": "2026-11-05",
+     "detail": "License inspection, Not Ready"
+    }
+   ],
+   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101079014"
   },
   {
    "lead_id": "chi-101080289",
@@ -13845,33 +13939,6 @@
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101083795"
-  },
-  {
-   "lead_id": "chi-101067729",
-   "city": "chicago",
-   "permit_id": "101067729",
-   "master_permit_id": null,
-   "stage": "Inspections Under Way",
-   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
-   "issue_date": "2025-06-23",
-   "address": "1313 W Taylor St",
-   "address_key": "1313 W TAYLOR ST",
-   "zip": null,
-   "valuation": 1485000,
-   "work_type": "New construction",
-   "scope": "Full building permit for 4 story 3 d.u., 1st floor retail, 2 car garage at 1st floor, rooftop deck, rooftop stair enclosures, front deck at 2nd to 4th story, 6 high masonry trash enclosure, entire...",
-   "gc_company": "Northshore Development Group LLC",
-   "site_contact": null,
-   "signals": [
-    {
-     "type": "co_required",
-     "dataset": "ydr8-5enu",
-     "record_id": "3411417",
-     "date": null,
-     "detail": "Inspections (Certificate Of Occupancy Required)"
-    }
-   ],
-   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101067729"
   },
   {
    "lead_id": "chi-101075005",
@@ -15547,9 +15614,9 @@
     {
      "type": "health_license_inspection",
      "dataset": "4ijn-s7e5",
-     "record_id": "2641012",
-     "date": "2026-08-11",
-     "detail": "License inspection, Not Ready"
+     "record_id": "2646177",
+     "date": "2026-11-02",
+     "detail": "License inspection, Pass"
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101083597"
@@ -16230,6 +16297,33 @@
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101070229"
   },
   {
+   "lead_id": "chi-101085537",
+   "city": "chicago",
+   "permit_id": "101085537",
+   "master_permit_id": null,
+   "stage": "Inspections Under Way",
+   "stage_source": "INSPECTIONS",
+   "issue_date": "2026-10-29",
+   "address": "10 S Dearborn St",
+   "address_key": "10 S DEARBORN ST",
+   "zip": null,
+   "valuation": 914352,
+   "work_type": "Renovation",
+   "scope": "Interior alterations to an existing back of house kitchen area within an eating and drinking establishment restaurant (limited) space on plaza level 00. Work includes new floor drains, new...",
+   "gc_company": "Clune Construction Company, L.P.",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "health_license_inspection",
+     "dataset": "4ijn-s7e5",
+     "record_id": "2645665",
+     "date": "2026-10-22",
+     "detail": "License inspection, Fail"
+    }
+   ],
+   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101085537"
+  },
+  {
    "lead_id": "chi-101069425",
    "city": "chicago",
    "permit_id": "101069425",
@@ -16527,6 +16621,33 @@
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101079675"
   },
   {
+   "lead_id": "chi-101079877",
+   "city": "chicago",
+   "permit_id": "101079877",
+   "master_permit_id": null,
+   "stage": "Inspections Under Way",
+   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
+   "issue_date": "2026-10-05",
+   "address": "506 W Deming Pl",
+   "address_key": "506 W DEMING PL",
+   "zip": null,
+   "valuation": 850000,
+   "work_type": "Renovation",
+   "scope": "Convert existing 45 d.u. To 49 d.u. (4 new units at basement level) with removal of 2 as-built non-permitted units, including MEP work",
+   "gc_company": "HRG Realty Management LLC",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "co_required",
+     "dataset": "ydr8-5enu",
+     "record_id": "3440847",
+     "date": null,
+     "detail": "Inspections (Certificate Of Occupancy Required)"
+    }
+   ],
+   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101079877"
+  },
+  {
    "lead_id": "chi-101082339",
    "city": "chicago",
    "permit_id": "101082339",
@@ -16579,6 +16700,33 @@
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101085759"
+  },
+  {
+   "lead_id": "chi-101087277",
+   "city": "chicago",
+   "permit_id": "101087277",
+   "master_permit_id": null,
+   "stage": "Inspections Under Way",
+   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
+   "issue_date": "2026-10-28",
+   "address": "555 W 14th Pl",
+   "address_key": "555 W 14TH PL",
+   "zip": null,
+   "valuation": 850000,
+   "work_type": "Renovation",
+   "scope": "Interior alteration to S-2 existing 22,000 +- one story masonry warehouse building to secure an indoor ev fleet charging facility with 39 ev stalls. Work will also include approximately 2000 s.f....",
+   "gc_company": "S Construction Co.",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "co_required",
+     "dataset": "ydr8-5enu",
+     "record_id": "3457916",
+     "date": null,
+     "detail": "Inspections (Certificate Of Occupancy Required)"
+    }
+   ],
+   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101087277"
   },
   {
    "lead_id": "chi-101077651",
@@ -18971,6 +19119,33 @@
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101082436"
   },
   {
+   "lead_id": "chi-101085888",
+   "city": "chicago",
+   "permit_id": "101085888",
+   "master_permit_id": null,
+   "stage": "Inspections Under Way",
+   "stage_source": "INSPECTIONS",
+   "issue_date": "2026-08-04",
+   "address": "2 N Riverside Plz",
+   "address_key": "2 N RIVERSIDE PLZ",
+   "zip": null,
+   "valuation": 530000,
+   "work_type": "Renovation",
+   "scope": "Interior alterations of 7,340 SQFT for existing business office along with a lighting upgrade for the corridor and elevator lobby on the 17th floor. Scope includes alterations to mechanical,...",
+   "gc_company": "Blue Star Properties Inc",
+   "site_contact": null,
+   "signals": [
+    {
+     "type": "health_license_inspection",
+     "dataset": "4ijn-s7e5",
+     "record_id": "2646390",
+     "date": "2026-11-05",
+     "detail": "License inspection, Not Ready"
+    }
+   ],
+   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101085888"
+  },
+  {
    "lead_id": "chi-101083880",
    "city": "chicago",
    "permit_id": "101083880",
@@ -19050,33 +19225,6 @@
     }
    ],
    "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101083524"
-  },
-  {
-   "lead_id": "chi-101041695",
-   "city": "chicago",
-   "permit_id": "101041695",
-   "master_permit_id": null,
-   "stage": "Inspections Under Way",
-   "stage_source": "INSPECTIONS (CERTIFICATE OF OCCUPANCY REQUIRED)",
-   "issue_date": "2024-11-06",
-   "address": "2850 N Pulaski Rd",
-   "address_key": "2850 N PULASKI RD",
-   "zip": null,
-   "valuation": 500000,
-   "work_type": "Renovation",
-   "scope": "2nd floor remodel and change of use of existing 2-story building to S-1 self-storage including new elevator access and egress stairwell",
-   "gc_company": "G.A. Johnson & Son",
-   "site_contact": null,
-   "signals": [
-    {
-     "type": "co_required",
-     "dataset": "ydr8-5enu",
-     "record_id": "3360499",
-     "date": null,
-     "detail": "Inspections (Certificate Of Occupancy Required)"
-    }
-   ],
-   "source_url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_=101041695"
   },
   {
    "lead_id": "chi-101042871",

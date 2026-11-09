@@ -1,0 +1,15 @@
+{
+ "gate": "viewer",
+ "round": 0,
+ "pass": false,
+ "reviewer": "claude opus (fresh agent), 2026-11-09",
+ "score": {
+  "about": "Before you load a junk job, point at the pile, say your price, and wait for her yes, so you don't fight about it afterward.",
+  "gets": "something to do: the line to say at the pile, then wait for her yes",
+  "stop": "the $400? card and the full trailer",
+  "watch_to_end": "no",
+  "leave_at": "about 34 s: the lesson lands by 30 s, then 8 s of small quote text about HVAC",
+  "confused": "why an HVAC survey in a junk story; the slot machine reads as luck; the cut from the full trailer back to the pile has no rewind cue",
+  "matches_idea": "same"
+ }
+}

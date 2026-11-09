@@ -1,0 +1,25 @@
+{
+ "gate": "design",
+ "round": 0,
+ "pass": false,
+ "reviewer": "claude opus (fresh agent), 2026-11-09",
+ "score": {
+  "first": 3,
+  "hierarchy": 4,
+  "type": 5,
+  "color": 5,
+  "spacing": 4,
+  "polish": 4,
+  "trust": 5,
+  "average": 4.29
+ },
+ "reasons": [
+  "cover the same layout as worth-without-you's (fresh 0.70)",
+  "ACHR paper card repeats the last lesson's and holds 7.5 s",
+  "send card lines out of spoken order; full hold about 2.4 s",
+  "maroon panel empty 1.4 s before AFTER THE WORK",
+  "WHERE DOES YOUR PRICE GO? banner covers the client and the pile",
+  "stray dot on the end card lockup",
+  "host stays about 270 px tall"
+ ]
+}

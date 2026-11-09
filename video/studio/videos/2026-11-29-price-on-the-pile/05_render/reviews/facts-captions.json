@@ -1,0 +1,19 @@
+{
+ "gate": "facts-captions",
+ "round": 2,
+ "pass": true,
+ "reviewer": "claude opus (fresh agent), 2026-11-09",
+ "score": {
+  "numbers": 3,
+  "mismatches": 0
+ },
+ "reasons": [],
+ "history": [
+  "r0 FAIL: caption shape (line 1 length, no judge question before the send line, keyword placement, umbrella tag, YouTube title keyword)",
+  "r1 FAIL: YouTube title question form and description line 1 length",
+  "r2 PASS"
+ ],
+ "notes": [
+  "achrnews.com unreachable here; judged against facts.json confirms (two page reads, Nov 9)"
+ ]
+}

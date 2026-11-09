@@ -1,0 +1,20 @@
+{
+ "gate": "send",
+ "round": 0,
+ "pass": true,
+ "reviewer": "claude opus (fresh agent), 2026-11-09",
+ "score": {
+  "person": "driver",
+  "thing": "FOR YOUR DRIVER / BEFORE YOU LIFT / POINT AT THE PILE / \"THIS LOAD IS [YOUR PRICE]. GOOD TO START?\" / WAIT FOR HER YES",
+  "held_at": "25.0 to 26.5 s, again on the end card 50.5 to 53.0 s",
+  "line": "A yes before the work is a deal.",
+  "gain": "helps",
+  "feeling": "relief",
+  "thanks": "yes",
+  "send_line_fits": "yes"
+ },
+ "reasons": [
+  "minor: the HVAC survey may feel off-trade to a junk hauler",
+  "minor: card lines built out of reading order (GOOD TO START? before THIS LOAD IS)"
+ ]
+}

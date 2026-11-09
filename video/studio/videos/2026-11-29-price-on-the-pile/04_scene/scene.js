@@ -47,25 +47,30 @@ const drive = (k, d) => {
   P(0, 234, 360, 183, '#4F8A5B'); for (let i = 0; i < 40; i++) P((i * 47) % 360, 240 + (i * 29) % 170, 2, 1, '#3E7A62');
   P(0, 236, 214, 36, '#9AA0AD'); P(0, 236, 214, 2, '#C9CCD3'); P(0, 270, 214, 2, '#6B7080');
 };
-/* the trailer behind the van, heaped (full true) or empty; the van hitched on its right */
+/* the trailer, drawn at twice the pixel size so it reads on a phone: heaped (full true) or empty; it sits on the drive */
+/* with its tongue running off the left edge (the truck is off frame) */
+const Q2 = (d, ox, oy) => (x, y, w, h, c) => d.P(ox + x * 2, oy + y * 2, w * 2, h * 2, c);
 const trailer = (k, d, full) => {
-  const {P} = d;
-  k.sets.van(104, 200, {wheel: (d.F >> 3) % 2});
-  P(94, 224, 12, 2, INK);                                     /* the hitch */
-  P(10, 208, 86, 4, INK); P(12, 210, 82, 14, '#6B7080'); P(12, 210, 82, 2, '#C9CCD3'); P(10, 224, 86, 3, INK);
-  [[26, 228], [76, 228]].forEach(([x, y]) => { P(x - 5, y - 1, 11, 8, INK); P(x - 3, y, 7, 6, SLATE); P(x - 1, y + 2, 3, 2, GREY); });
+  const Q = Q2(d, 6, 130);
+  Q(-10, 52, 16, 2, INK);                                       /* the tongue, off frame left */
+  Q(4, 44, 86, 4, INK); Q(6, 46, 82, 12, '#6B7080'); Q(6, 46, 82, 2, '#C9CCD3'); Q(4, 58, 86, 3, INK);
+  Q(4, 30, 3, 16, INK); Q(87, 30, 3, 16, INK); Q(4, 30, 86, 2, '#4A4E5A');   /* the side rails */
+  [[24, 62], [70, 62]].forEach(([x, y]) => { Q(x - 5, y - 1, 11, 8, INK); Q(x - 3, y, 7, 6, SLATE); Q(x - 1, y + 2, 3, 2, d.F % 16 < 8 ? GREY : '#C9CCD3'); });
   if (!full) return;
-  junk(k, d, 14, 208);
+  junk(k, d, 6, 44, Q);
 };
-/* the junk: a couch, a mattress on edge, boxes, an old fridge; bob a pixel apart on a slow beat so the pile never sits flat */
-const junk = (k, d, x, base) => {
-  const {P, F} = d, b = (F >> 4) % 2;
-  P(x + 2, base - 16, 40, 16, INK); P(x + 3, base - 15, 38, 14, '#8C5A33'); P(x + 3, base - 15, 38, 3, '#B07A47'); P(x + 6, base - 20, 6, 6, '#8C5A33'); P(x + 32, base - 20, 6, 6, '#8C5A33');
-  P(x + 46, base - 38 - b, 20, 38, INK); P(x + 47, base - 37 - b, 18, 36, CREAM); for (let y = base - 34; y < base - 2; y += 6) P(x + 47, y - b, 18, 2, '#9EC7E0');
-  P(x + 68, base - 44, 14, 44, INK); P(x + 69, base - 43, 12, 42, '#C9CCD3'); P(x + 69, base - 26, 12, 1, SLATE); P(x + 79, base - 38, 1, 6, SLATE);
-  P(x + 8, base - 32 + b, 14, 14, INK); P(x + 9, base - 31 + b, 12, 12, '#C99A5B'); P(x + 9, base - 26 + b, 12, 1, '#8C5A33');
-  P(x + 24, base - 28, 12, 12, INK); P(x + 25, base - 27, 10, 10, '#D9AE73');
+/* the junk: a couch, a mattress on edge, boxes, an old fridge; two of them bob a pixel on a slow beat so the pile never */
+/* sits flat. Q is the 2x painter; x, base in its units */
+const junk = (k, d, x, base, Q) => {
+  const {F} = d, b = (F >> 4) % 2;
+  Q(x + 2, base - 16, 40, 16, INK); Q(x + 3, base - 15, 38, 14, '#8C5A33'); Q(x + 3, base - 15, 38, 3, '#B07A47'); Q(x + 4, base - 21, 6, 6, '#8C5A33'); Q(x + 34, base - 21, 6, 6, '#8C5A33');
+  Q(x + 46, base - 38 - b, 20, 38, INK); Q(x + 47, base - 37 - b, 18, 36, CREAM); for (let y = base - 34; y < base - 2; y += 6) Q(x + 47, y - b, 18, 2, '#9EC7E0');
+  Q(x + 68, base - 44, 14, 44, INK); Q(x + 69, base - 43, 12, 42, '#C9CCD3'); Q(x + 69, base - 26, 12, 1, SLATE); Q(x + 79, base - 38, 1, 6, SLATE);
+  Q(x + 8, base - 32 + b, 14, 14, INK); Q(x + 9, base - 31 + b, 12, 12, '#C99A5B'); Q(x + 9, base - 26 + b, 12, 1, '#8C5A33');
+  Q(x + 24, base - 28, 12, 12, INK); Q(x + 25, base - 27, 10, 10, '#D9AE73');
 };
+/* the pile on the drive before the job, at the same 2x size, left of the empty trailer's spot */
+const pile = (k, d) => junk(k, d, 6, 58, Q2(d, 6, 130));
 /* her bubble: a cream box with a tail toward her head, left of her, text wrapped to fit inside x 72 to 650 */
 const bubble = (k, d, s, t0, y = 96) => {
   if (k.T < t0) return null;
@@ -92,22 +97,32 @@ window.SCENE = {
     /* ---- hook: frame 0 is the cover board over the drive; at 0.6 s a plain cut to the drive, the full trailer, her ---- */
     /* arms folded; on "four" her bubble with the made-up $400 and its EXAMPLE tag ---- */
     hook: (k, T) => {
-      const d = px(k), tShop = 0.6, tFour = wordT(k, 'hook', /^four/i, 2.0) - 0.25;
+      const d = px(k), tShop = 0.9, tFour = Math.max(tShop + 0.6, wordT(k, 'hook', /^four/i, 2.0) - 0.25);
       drive(k, d); trailer(k, d, true);
       if (T < tShop) {
         k.coverBoard({hero: '$400?', lines: ["THE TRAILER'S FULL.", "SHE WON'T PAY IT."], example: true, y: 252, colors: {panel: '#253048', rim: '#E2633B', hero: GOLD}});
         return host(k, 'point');
       }
       k.cut(tShop);
-      k.client(780, 810, {role: 'homeowner', pose: T >= tFour ? 'talk' : 'refuse', mood: 'cross', scale: 0.95, talk: T >= tFour && T < tFour + 1.0});
+      if (T < tFour) {
+        k.client(780, 810, {role: 'homeowner', pose: 'refuse', mood: 'cross', scale: 0.95});
+        /* the cover's two lines stay up over the wide shot, so they can be read */
+        k.shape(k.rectPts(54, 258, 636, 150, 0), {fill: '#253048', line: false}); k.shape(k.rectPts(54, 258, 636, 6, 0), {fill: RED, line: false});
+        k.text("THE TRAILER'S FULL.", 78, 276, {size: 52, color: CREAM}); k.text("SHE WON'T PAY IT.", 78, 336, {size: 52, color: CREAM});
+        return host(k);
+      }
+      /* the close shot on "four": a plain cut in, the drive darker behind her, her bubble with the made-up $400 */
+      k.cut(tFour);
+      d.P(0, 0, 360, 417, 'rgba(18,13,20,0.35)');
+      k.client(760, 930, {role: 'homeowner', pose: 'talk', mood: 'cross', scale: 1.3, talk: T < tFour + 1.0});
       const b = bubble(k, d, '$400? TOO MUCH.', tFour, 96);
       if (b) k.exampleTag(72, b.y + b.h + 18);
-      return host(k, T >= tFour ? 'shrug' : null);
+      return host(k, 'shrug');
     },
 
     /* ---- offer: the same drive; her bubble on "two hundred" (EXAMPLE); the slam on "dump" ---- */
     offer: (k, T) => {
-      const d = px(k), tTwo = wordT(k, 'offer', /^two$/i, 2.5) - 0.25, tDump = wordT(k, 'offer', /^dump/i, 5.5) - 0.25;
+      const d = px(k), tTwo = wordT(k, 'offer', /^give$/i, 2.3) - 0.25, tDump = wordT(k, 'offer', /^dump/i, 5.5) - 0.25;
       drive(k, d); trailer(k, d, true);
       k.client(780, 810, {role: 'homeowner', pose: 'argue', mood: 'smug', scale: 0.95, talk: T >= tTwo && T < tTwo + 1.2});
       const b = bubble(k, d, "I'LL GIVE YOU $200.", tTwo, 96);
@@ -120,9 +135,9 @@ window.SCENE = {
     fix: (k, T) => {
       const t0 = k.S('fix'), d = px(k), tSay = wordT(k, 'fix', /^say$/i, 1.0) - 0.2;
       k.cut(t0);
-      drive(k, d); trailer(k, d, false); junk(k, d, 120, 268);
+      drive(k, d); pile(k, d);
       k.client(780, 810, {role: 'homeowner', pose: 'stand', mood: 'calm', scale: 0.95});
-      if (T >= tSay) k.slam('SAY THE PRICE AT THE PILE', 540, 120, tSay, {size: 66, color: GOLD, align: 'center', drop: INK, from: 0.4});
+      if (T >= tSay) { k.slam('SAY THE PRICE', 540, 300, tSay, {size: 80, color: GOLD, align: 'center', drop: INK, from: 0.4}); k.slam('AT THE PILE', 540, 400, tSay + 0.3, {size: 80, color: GOLD, align: 'center', drop: INK, from: 0.4}); }
       return host(k, T >= tSay ? 'point' : null);
     },
 
@@ -146,7 +161,7 @@ window.SCENE = {
       P(12, 84, 336, 90, INK); P(10, 82, 336, 90, DTEAL); for (let x = so - 24; x < 346; x += 24) P(Math.max(10, x), 82, 4, 90, '#357C73');
       const sh = T >= tFight && T < tFight + 0.25 ? ((d.F % 2) ? 2 : -2) : 0;
       P(12 + sh, 184, 336, 90, INK); P(10 + sh, 182, 336, 90, WINE); for (let x = 346 - so; x > 10; x -= 24) P(Math.max(10, x), 182, 4, 90, '#8A3E4C');
-      k.text('BEFORE THE WORK', 72, 270, {size: 52, color: CREAM});
+      k.text('UP FRONT', 72, 270, {size: 52, color: CREAM});
       k.text('A YES = A DEAL', 72, 360, {size: 80, color: GOLD, drop: INK});
       if (T >= tPrice) k.text('AFTER THE WORK', 72 + sh * 3, 570, {size: 52, color: CREAM});
       if (T >= tFight - 0.6) k.text('A PRICE = A FIGHT', 72 + sh * 3, 660, {size: 80, color: GOLD, drop: INK});
@@ -172,20 +187,18 @@ window.SCENE = {
       const sym = String(n.shown).split('');
       const tPct = wordT(k, 'receipt', /^percent/i, 7.0) - 0.2;
       k.sets.slots({t0: tSev, stops: [tSev + 0.35, tSev + 0.6, Math.max(tSev + 0.85, tPct)], symbols: sym, label: 'MORE LIKELY TO CALL'});
-      k.shape(k.rectPts(120, 1000, 840, 78, 0), {fill: NIGHT, line: false});
-      k.text('MORE LIKELY TO CALL', 540, 1010, {size: 52, color: GOLD, align: 'center'});
       return host(k, 'point');
     },
 
     /* ---- button: the drive before the job: the pile on the ground, the trailer empty; the two choices; the stamp ---- */
     button: (k, T) => {
-      const t0 = k.S('button'), d = px(k), tPile = wordT(k, 'button', /^pile/i, 2.5) - 0.25, tTr = wordT(k, 'button', /^trailer/i, 3.6) - 0.25;
+      const t0 = k.S('button'), d = px(k), tDoes = wordT(k, 'button', /^does/i, 1.6) - 0.25, tPile = wordT(k, 'button', /^pile/i, 2.5) - 0.25, tTr = wordT(k, 'button', /^trailer/i, 3.6) - 0.25;
       k.cut(t0);
-      drive(k, d); trailer(k, d, false); junk(k, d, 120, 268);
+      drive(k, d); pile(k, d);
       k.client(780, 810, {role: 'homeowner', pose: 'stand', mood: 'calm', scale: 0.95});
-      const card = (s, x, at, c) => { if (T < at) return; const up = d.ease(at, 4, 8); k.shape(k.rectPts(x + 6, 102 + up * 3, 432, 96, 0), {fill: INK, line: false}); k.shape(k.rectPts(x, 96 + up * 3, 432, 96, 0), {fill: c, line: false}); k.text(s, x + 216, 112 + up * 3, {size: 52, color: INK, align: 'center'}); };
+      const card = (s, x, at, c) => { if (T < at) return; const up = d.ease(at, 4, 8); k.shape(k.rectPts(x + 6, 276 + up * 3, 432, 96, 0), {fill: INK, line: false}); k.shape(k.rectPts(x, 270 + up * 3, 432, 96, 0), {fill: c, line: false}); k.text(s, x + 216, 286 + up * 3, {size: 52, color: INK, align: 'center'}); };
       card('ON THE PILE', 66, tPile, TEAL); card('ON THE TRAILER', 534, tTr, ORANGE);
-      if (T >= tTr) stampBox(k, 'WHERE DOES YOUR PRICE GO?', 540, 600, tTr + 0.4, {color: GOLD, bg: WINE, size: 52, freeze: 4});
+      if (T >= tDoes) stampBox(k, 'WHERE DOES YOUR PRICE GO?', 540, 600, tDoes, {color: GOLD, bg: WINE, size: 52, freeze: 4});
       return host(k, T >= tTr ? 'shrug' : null);
     },
   },

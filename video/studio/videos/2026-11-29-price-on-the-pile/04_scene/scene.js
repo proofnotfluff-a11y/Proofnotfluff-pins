@@ -168,8 +168,9 @@ window.SCENE = {
       const t0 = k.S('why'), d = px(k), tFight = wordT(k, 'why', /^fight/i, 2.0) - 0.15, tPrice = wordT(k, 'why', /^price/i, 0.6) - 0.2, {P} = d;
       k.cut(t0);
       P(0, 0, 360, 417, NIGHT);
-      const so = (d.F >> 1) % 24;
-      P(12, 84, 336, 90, INK); P(10, 82, 336, 90, DTEAL); for (let x = so - 24; x < 346; x += 24) P(Math.max(10, x), 82, 4, 90, '#357C73');
+      const so = d.F % 24;   /* qa r1: the stripes move a pixel every frame and are wider, so the row never sits flat */
+      P(12, 84, 336, 90, INK); P(10, 82, 336, 90, DTEAL); for (let x = so - 24; x < 346; x += 24) P(Math.max(10, x), 82, 10, 90, '#357C73');
+      { const u = Math.min(1, (T - t0) / 1.2); P(24, 166, Math.round(300 * u), 3, GOLD); }   /* a gold rule draws under A YES = A DEAL */
       const sh = T >= tFight && T < tFight + 0.25 ? ((d.F % 2) ? 2 : -2) : 0;
       if (T >= tPrice) { P(12 + sh, 184, 336, 90, INK); P(10 + sh, 182, 336, 90, WINE); for (let x = 346 - so; x > 10; x -= 24) P(Math.max(10, x), 182, 4, 90, '#8A3E4C'); }   /* design r0: no empty panel */
       k.text('UP FRONT', 72, 270, {size: 52, color: CREAM});

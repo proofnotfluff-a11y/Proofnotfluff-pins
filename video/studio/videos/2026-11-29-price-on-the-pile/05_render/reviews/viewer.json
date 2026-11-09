@@ -1,15 +1,15 @@
 {
  "gate": "viewer",
- "round": 0,
+ "round": 1,
  "pass": false,
  "reviewer": "claude opus (fresh agent), 2026-11-09",
  "score": {
-  "about": "Before you load a junk job, point at the pile, say your price, and wait for her yes, so you don't fight about it afterward.",
-  "gets": "something to do: the line to say at the pile, then wait for her yes",
-  "stop": "the $400? card and the full trailer",
+  "about": "Junk haulers: point at the pile, say the price and get her yes before loading, because arguing price after the trailer is full is a fight.",
+  "gets": "a line to say at the pile, and a 70% number",
+  "stop": "the $400? tag over a full trailer",
   "watch_to_end": "no",
-  "leave_at": "about 34 s: the lesson lands by 30 s, then 8 s of small quote text about HVAC",
-  "confused": "why an HVAC survey in a junk story; the slot machine reads as luck; the cut from the full trailer back to the pile has no rewind cue",
+  "leave_at": "about 35 s: 8 s of HOMEOWNERS ASKED ABOUT HVAC before the 70%",
+  "confused": "a heating and cooling survey in a junk video, explained only at 45 s",
   "matches_idea": "same"
  }
 }

@@ -6,7 +6,7 @@
   "level": 0.16,
   "tune": "bounce"
  },
- "duration": 55.523,
+ "duration": 55.758,
  "cues": [
   {
    "id": "hook",
@@ -79,7 +79,7 @@
    "text": "A plain cut to the survey: THE ACHR NEWS SURVEY / HOMEOWNERS ASKED ABOUT HVAC over a row of ten houses, dark; the tag The ACHR News, Dec 23, 2024 under them the whole time. On \"Seventy\" 70% (data.js) lands and seven of the ten houses light up one by one; the lines read MORE LIKELY TO CALL / THE ONE UPFRONT ON PRICE.",
    "t": 31.425,
    "word": 90,
-   "end": 47.863
+   "end": 48.098
   },
   {
    "id": "button",
@@ -89,9 +89,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The driveway again, before the job: the pile on the drive, nothing loaded yet, the homeowner calm. The stamp on \"does\", up top: WHERE DOES YOUR PRICE GO? Then two cards under it: ON THE PILE on \"pile\", ON THE TRAILER on \"trailer\". Holds to the end card.",
-   "t": 47.863,
+   "t": 48.098,
    "word": 132,
-   "end": 55.523
+   "end": 55.758
   }
  ]
 }

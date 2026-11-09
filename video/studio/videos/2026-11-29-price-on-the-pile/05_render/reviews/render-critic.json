@@ -1,23 +1,13 @@
 {
  "gate": "render-critic",
- "round": 0,
- "pass": false,
+ "round": 1,
+ "pass": true,
  "reviewer": "claude opus (fresh agent), 2026-11-09",
  "score": {
-  "faults": 2
+  "faults": 0
  },
- "faults": [
-  {
-   "kind": "overlap",
-   "at": 15.0,
-   "text": "SAY THE PRICE / AT THE PILE",
-   "what": "runs into the house; PILE clipped"
-  },
-  {
-   "kind": "overlap",
-   "at": 10.5,
-   "text": "DUMP IT BACK?",
-   "what": "no backing over the fridge stripes and her arm"
-  }
+ "faults": [],
+ "reasons": [
+  "r0 faults fixed: SAY THE PRICE / AT THE PILE on its plate clear of the house; DUMP IT BACK? on a maroon plate"
  ]
 }

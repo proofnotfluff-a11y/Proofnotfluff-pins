@@ -1,338 +1,665 @@
 {
  "schema": "pnf.studio.words.v1",
- "source": "estimate",
- "about": "Stand-in timings from script.md; never rendered for posting.",
+ "source": "whisper medium.en int8, re-spelled from script.md",
+ "voice": "W3pJy9ibur1FKUihVxzY",
+ "model": "eleven_v4",
  "words": [
   {
    "w": "Hail",
-   "start": 0.15,
-   "end": 0.428,
+   "start": 0.0,
+   "end": 0.38,
    "take": 1
   },
   {
    "w": "or",
-   "start": 0.478,
-   "end": 0.672,
+   "start": 0.38,
+   "end": 0.74,
    "take": 1
   },
   {
    "w": "wear?",
-   "start": 0.722,
-   "end": 1.042,
+   "start": 0.74,
+   "end": 1.12,
    "take": 1
   },
   {
    "w": "You",
-   "start": 1.312,
-   "end": 1.548,
+   "start": 1.64,
+   "end": 1.8,
    "take": 1
   },
   {
    "w": "make",
-   "start": 1.598,
-   "end": 1.876,
+   "start": 1.8,
+   "end": 1.98,
    "take": 1
   },
   {
    "w": "the",
-   "start": 1.926,
-   "end": 2.162,
+   "start": 1.98,
+   "end": 2.12,
    "take": 1
   },
   {
    "w": "call.",
-   "start": 2.212,
-   "end": 2.532,
+   "start": 2.12,
+   "end": 2.4,
    "take": 1
   },
   {
    "w": "Look",
-   "start": 2.802,
-   "end": 3.08,
+   "start": 2.96,
+   "end": 3.1,
    "take": 1
   },
   {
    "w": "close",
-   "start": 3.13,
-   "end": 3.45,
+   "start": 3.1,
+   "end": 3.38,
    "take": 1
   },
   {
    "w": "at",
-   "start": 3.5,
-   "end": 3.694,
+   "start": 3.38,
+   "end": 3.54,
    "take": 1
   },
   {
    "w": "these",
-   "start": 3.744,
-   "end": 4.064,
+   "start": 3.54,
+   "end": 3.68,
    "take": 1
   },
   {
    "w": "round",
-   "start": 4.114,
-   "end": 4.434,
+   "start": 3.68,
+   "end": 3.98,
    "take": 1
   },
   {
    "w": "marks,",
-   "start": 4.484,
-   "end": 4.846,
+   "start": 3.98,
+   "end": 4.38,
    "take": 1
   },
   {
    "w": "each",
-   "start": 4.996,
-   "end": 5.274,
+   "start": 4.7,
+   "end": 4.88,
    "take": 1
   },
   {
    "w": "one",
-   "start": 5.324,
-   "end": 5.56,
+   "start": 4.88,
+   "end": 5.14,
    "take": 1
   },
   {
    "w": "the",
-   "start": 5.61,
-   "end": 5.846,
+   "start": 5.14,
+   "end": 5.3,
    "take": 1
   },
   {
    "w": "size",
-   "start": 5.896,
-   "end": 6.174,
+   "start": 5.3,
+   "end": 5.52,
    "take": 1
   },
   {
    "w": "of",
-   "start": 6.224,
-   "end": 6.418,
+   "start": 5.52,
+   "end": 5.66,
    "take": 1
   },
   {
    "w": "a",
-   "start": 6.468,
-   "end": 6.62,
+   "start": 5.66,
+   "end": 5.76,
    "take": 1
   },
   {
    "w": "dime,",
-   "start": 6.67,
-   "end": 6.99,
+   "start": 5.76,
+   "end": 6.16,
    "take": 1
   },
   {
    "w": "with",
-   "start": 7.14,
-   "end": 7.418,
+   "start": 6.36,
+   "end": 6.54,
    "take": 1
   },
   {
    "w": "the",
-   "start": 7.468,
-   "end": 7.704,
+   "start": 6.54,
+   "end": 6.68,
    "take": 1
   },
   {
    "w": "granules",
-   "start": 7.754,
-   "end": 8.2,
+   "start": 6.68,
+   "end": 7.1,
    "take": 1
   },
   {
    "w": "gone.",
-   "start": 8.25,
-   "end": 8.57,
+   "start": 7.1,
+   "end": 7.46,
    "take": 1
   },
   {
    "w": "But",
-   "start": 9.19,
-   "end": 9.426,
+   "start": 8.287,
+   "end": 8.427,
    "take": 2
   },
   {
    "w": "the",
-   "start": 9.476,
-   "end": 9.712,
+   "start": 8.427,
+   "end": 8.627,
    "take": 2
   },
   {
    "w": "whole",
-   "start": 9.762,
-   "end": 10.082,
+   "start": 8.627,
+   "end": 8.827,
    "take": 2
   },
   {
    "w": "roof",
-   "start": 10.132,
-   "end": 10.41,
+   "start": 8.827,
+   "end": 9.187,
    "take": 2
   },
   {
    "w": "is",
-   "start": 10.46,
-   "end": 10.654,
+   "start": 9.187,
+   "end": 9.387,
    "take": 2
   },
   {
    "w": "worn.",
-   "start": 10.704,
-   "end": 11.024,
+   "start": 9.387,
+   "end": 9.767,
    "take": 2
   },
   {
    "w": "There's",
-   "start": 11.294,
-   "end": 11.698,
+   "start": 10.287,
+   "end": 10.467,
    "take": 2
   },
   {
    "w": "a",
-   "start": 11.748,
-   "end": 11.9,
+   "start": 10.467,
+   "end": 10.547,
    "take": 2
   },
   {
    "w": "dent",
-   "start": 11.95,
-   "end": 12.228,
+   "start": 10.547,
+   "end": 10.827,
    "take": 2
   },
   {
    "w": "in",
-   "start": 12.278,
-   "end": 12.472,
+   "start": 10.827,
+   "end": 11.007,
    "take": 2
   },
   {
    "w": "the",
-   "start": 12.522,
-   "end": 12.758,
+   "start": 11.007,
+   "end": 11.107,
    "take": 2
   },
   {
    "w": "vent",
-   "start": 12.808,
-   "end": 13.086,
+   "start": 11.107,
+   "end": 11.407,
    "take": 2
   },
   {
    "w": "and",
-   "start": 13.136,
-   "end": 13.372,
+   "start": 11.407,
+   "end": 11.747,
    "take": 2
   },
   {
    "w": "none",
-   "start": 13.422,
-   "end": 13.7,
+   "start": 11.747,
+   "end": 12.027,
    "take": 2
   },
   {
    "w": "in",
-   "start": 13.75,
-   "end": 13.944,
+   "start": 12.027,
+   "end": 12.187,
    "take": 2
   },
   {
    "w": "the",
-   "start": 13.994,
-   "end": 14.23,
+   "start": 12.187,
+   "end": 12.287,
    "take": 2
   },
   {
    "w": "gutter.",
-   "start": 14.28,
-   "end": 14.684,
+   "start": 12.287,
+   "end": 12.627,
    "take": 2
   },
   {
    "w": "She",
-   "start": 14.954,
-   "end": 15.19,
+   "start": 13.247,
+   "end": 13.387,
    "take": 2
   },
   {
    "w": "says",
-   "start": 15.24,
-   "end": 15.518,
+   "start": 13.387,
+   "end": 13.607,
    "take": 2
   },
   {
    "w": "it's",
-   "start": 15.568,
-   "end": 15.846,
+   "start": 13.607,
+   "end": 13.947,
    "take": 2
   },
   {
    "w": "hail,",
-   "start": 15.896,
-   "end": 16.216,
+   "start": 13.947,
+   "end": 14.147,
    "take": 2
   },
   {
    "w": "and",
-   "start": 16.366,
-   "end": 16.602,
+   "start": 14.567,
+   "end": 14.767,
    "take": 2
   },
   {
    "w": "you're",
-   "start": 16.652,
-   "end": 17.014,
+   "start": 14.767,
+   "end": 15.047,
    "take": 2
   },
   {
    "w": "the",
-   "start": 17.064,
-   "end": 17.3,
+   "start": 15.047,
+   "end": 15.147,
    "take": 2
   },
   {
    "w": "estimator.",
-   "start": 17.35,
-   "end": 17.88,
+   "start": 15.147,
+   "end": 15.727,
    "take": 2
   },
   {
    "w": "So,",
-   "start": 18.15,
-   "end": 18.386,
+   "start": 16.267,
+   "end": 16.407,
    "take": 2
   },
   {
    "w": "hail",
-   "start": 18.536,
-   "end": 18.814,
+   "start": 16.407,
+   "end": 17.087,
    "take": 2
   },
   {
    "w": "or",
-   "start": 18.864,
-   "end": 19.058,
+   "start": 17.087,
+   "end": 17.507,
    "take": 2
   },
   {
    "w": "wear?",
-   "start": 19.108,
-   "end": 19.428,
+   "start": 17.507,
+   "end": 17.727,
    "take": 2
   }
  ],
  "takes": [
   {
    "n": 1,
-   "start": 0.15,
-   "end": 8.84
+   "start": 0.0,
+   "end": 7.967,
+   "wpm": 181
   },
   {
    "n": 2,
-   "start": 9.19,
-   "end": 19.698
+   "start": 8.287,
+   "end": 18.161,
+   "wpm": 176
   }
  ],
- "end": 19.428
+ "flags": [
+  "0.7 s heard 'where?' for 'wear?'",
+  "17.5 s heard 'where?' for 'wear?'"
+ ],
+ "end": 17.727,
+ "heard": [
+  {
+   "w": "Hail",
+   "start": 0.0,
+   "end": 0.38,
+   "p": 0.737
+  },
+  {
+   "w": "or",
+   "start": 0.38,
+   "end": 0.74,
+   "p": 0.872
+  },
+  {
+   "w": "where?",
+   "start": 0.74,
+   "end": 1.12,
+   "p": 0.153
+  },
+  {
+   "w": "You",
+   "start": 1.64,
+   "end": 1.8,
+   "p": 0.942
+  },
+  {
+   "w": "make",
+   "start": 1.8,
+   "end": 1.98,
+   "p": 0.996
+  },
+  {
+   "w": "the",
+   "start": 1.98,
+   "end": 2.12,
+   "p": 0.997
+  },
+  {
+   "w": "call.",
+   "start": 2.12,
+   "end": 2.4,
+   "p": 0.999
+  },
+  {
+   "w": "Look",
+   "start": 2.96,
+   "end": 3.1,
+   "p": 0.993
+  },
+  {
+   "w": "close",
+   "start": 3.1,
+   "end": 3.38,
+   "p": 0.994
+  },
+  {
+   "w": "at",
+   "start": 3.38,
+   "end": 3.54,
+   "p": 0.992
+  },
+  {
+   "w": "these",
+   "start": 3.54,
+   "end": 3.68,
+   "p": 0.993
+  },
+  {
+   "w": "round",
+   "start": 3.68,
+   "end": 3.98,
+   "p": 0.999
+  },
+  {
+   "w": "marks,",
+   "start": 3.98,
+   "end": 4.38,
+   "p": 0.997
+  },
+  {
+   "w": "each",
+   "start": 4.7,
+   "end": 4.88,
+   "p": 0.996
+  },
+  {
+   "w": "one",
+   "start": 4.88,
+   "end": 5.14,
+   "p": 0.995
+  },
+  {
+   "w": "the",
+   "start": 5.14,
+   "end": 5.3,
+   "p": 0.98
+  },
+  {
+   "w": "size",
+   "start": 5.3,
+   "end": 5.52,
+   "p": 0.999
+  },
+  {
+   "w": "of",
+   "start": 5.52,
+   "end": 5.66,
+   "p": 0.998
+  },
+  {
+   "w": "a",
+   "start": 5.66,
+   "end": 5.76,
+   "p": 0.995
+  },
+  {
+   "w": "dime,",
+   "start": 5.76,
+   "end": 6.16,
+   "p": 0.999
+  },
+  {
+   "w": "with",
+   "start": 6.36,
+   "end": 6.54,
+   "p": 0.993
+  },
+  {
+   "w": "the",
+   "start": 6.54,
+   "end": 6.68,
+   "p": 0.996
+  },
+  {
+   "w": "granules",
+   "start": 6.68,
+   "end": 7.1,
+   "p": 0.997
+  },
+  {
+   "w": "gone.",
+   "start": 7.1,
+   "end": 7.46,
+   "p": 0.997
+  },
+  {
+   "w": "But",
+   "start": 8.287,
+   "end": 8.427,
+   "p": 0.629
+  },
+  {
+   "w": "the",
+   "start": 8.427,
+   "end": 8.627,
+   "p": 0.984
+  },
+  {
+   "w": "whole",
+   "start": 8.627,
+   "end": 8.827,
+   "p": 0.995
+  },
+  {
+   "w": "roof",
+   "start": 8.827,
+   "end": 9.187,
+   "p": 0.994
+  },
+  {
+   "w": "is",
+   "start": 9.187,
+   "end": 9.387,
+   "p": 0.993
+  },
+  {
+   "w": "worn.",
+   "start": 9.387,
+   "end": 9.767,
+   "p": 0.994
+  },
+  {
+   "w": "There's",
+   "start": 10.287,
+   "end": 10.467,
+   "p": 0.981
+  },
+  {
+   "w": "a",
+   "start": 10.467,
+   "end": 10.547,
+   "p": 0.996
+  },
+  {
+   "w": "dent",
+   "start": 10.547,
+   "end": 10.827,
+   "p": 0.999
+  },
+  {
+   "w": "in",
+   "start": 10.827,
+   "end": 11.007,
+   "p": 0.994
+  },
+  {
+   "w": "the",
+   "start": 11.007,
+   "end": 11.107,
+   "p": 0.996
+  },
+  {
+   "w": "vent",
+   "start": 11.107,
+   "end": 11.407,
+   "p": 0.998
+  },
+  {
+   "w": "and",
+   "start": 11.407,
+   "end": 11.747,
+   "p": 0.716
+  },
+  {
+   "w": "none",
+   "start": 11.747,
+   "end": 12.027,
+   "p": 0.99
+  },
+  {
+   "w": "in",
+   "start": 12.027,
+   "end": 12.187,
+   "p": 0.994
+  },
+  {
+   "w": "the",
+   "start": 12.187,
+   "end": 12.287,
+   "p": 0.998
+  },
+  {
+   "w": "gutter.",
+   "start": 12.287,
+   "end": 12.627,
+   "p": 0.997
+  },
+  {
+   "w": "She",
+   "start": 13.247,
+   "end": 13.387,
+   "p": 0.996
+  },
+  {
+   "w": "says",
+   "start": 13.387,
+   "end": 13.607,
+   "p": 0.99
+  },
+  {
+   "w": "it's",
+   "start": 13.607,
+   "end": 13.947,
+   "p": 0.979
+  },
+  {
+   "w": "hail,",
+   "start": 13.947,
+   "end": 14.147,
+   "p": 0.923
+  },
+  {
+   "w": "and",
+   "start": 14.567,
+   "end": 14.767,
+   "p": 0.993
+  },
+  {
+   "w": "you're",
+   "start": 14.767,
+   "end": 15.047,
+   "p": 0.993
+  },
+  {
+   "w": "the",
+   "start": 15.047,
+   "end": 15.147,
+   "p": 0.997
+  },
+  {
+   "w": "estimator.",
+   "start": 15.147,
+   "end": 15.727,
+   "p": 0.998
+  },
+  {
+   "w": "So",
+   "start": 16.267,
+   "end": 16.407,
+   "p": 0.996
+  },
+  {
+   "w": "hail",
+   "start": 16.407,
+   "end": 17.087,
+   "p": 0.469
+  },
+  {
+   "w": "or",
+   "start": 17.087,
+   "end": 17.507,
+   "p": 0.725
+  },
+  {
+   "w": "where?",
+   "start": 17.507,
+   "end": 17.727,
+   "p": 0.409
+  }
+ ]
 }

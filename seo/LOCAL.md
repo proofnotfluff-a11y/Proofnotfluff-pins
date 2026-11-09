@@ -34,3 +34,4 @@ instead of writing from nothing. Same ladder as the studio (video/studio/_shared
 
 ## Log (newest last)
 - 2026-11-08, carpet-cleaning-leads-price-shoppers: no box draft (seo/NEXT.json did not exist before this run).
+- 2026-11-09, carpet-cleaning-leads-price-shoppers: no box draft (seo/box-drafts held none; the page was the Nov 8 held draft, run from step 4).

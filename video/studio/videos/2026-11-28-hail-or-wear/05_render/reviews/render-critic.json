@@ -1,18 +1,18 @@
 {
   "gate": "render-critic",
   "round": 0,
-  "note": "rerun on the new render",
+  "note": "rerun on the design r1 render",
   "reviewer": "claude opus, fresh agent",
   "pass": true,
   "score": {"faults": 0},
   "faults": [],
   "reasons": [
-    "Earlier verdict: listed 0 faults, so nothing to confirm gone. One change from the old notes: the title no longer blanks at 0.5 to 0.9 s; the glitch now only bands the brick wall and HAIL OR WEAR? stays readable the whole hook.",
-    "1 hook: PASS. HAIL OR WEAR? title and YOU CALL IT. are on screen at 0.0 s (frame-0s), the bubble reads Hail at 0.0 s and Hail or wear? by 0.8 s, and the title holds through 2.0 s.",
-    "2 readable question: PASS. No number is spoken (a dime is a size, not a figure). The spoken question is readable both times it is said: title plus bubble Hail or wear? at 0.0 to 1.1 s, and YOUR CALL? banner with HAIL and WEAR buttons plus bubble So, hail or wear? at 16.3 to 17.7 s (pulled frames 16.3 and 17.8 s).",
-    "3 layout: PASS. Once settled, no words or labels are hidden or cut off in any scene (brick wall title, close-up mark, vent and gutter panels, house with IT'S HAIL. sign, YOUR CALL? choice, end card). All words sit between y 270 and y 1250 and left of x 930: EXAMPLE tags end near x 930, title text near x 880, GUTTER near x 885, WEAR near x 885, end card text near x 835. Only container backgrounds (title band, gutter panel, end card) run past x 930, with no text in that strip. Round marks cut at the right edge (about 8.9 s) are scenery. WEAR sits low and offset at 14.5 to 14.7 s only during the dither slide-in and is aligned by 15.2 s.",
-    "4 audio end: PASS. Last word wear? ends 17.73 s; voice level falls from about -14 dB at 17.6 s to -29 dB at 17.8 s, then the end card sound runs and fades to about -42 dB by 20.6 s. File ends 20.83 s. Nothing cut mid word.",
-    "5 text size and flash: PASS. Bubble, title, buttons, sign and end card text are about 40 px tall or larger on the 1080 wide frame; smallest is the SNOW name tag at about 22 px caps, still legible. Frame-by-frame brightness shows only single dips at scene changes (2.95, 4.7, 8.3, 13.2, 14.55, 17.85 s), each at least 1.2 s apart, so nothing flashes more than 3 times a second.",
-    "Not faults, noted for the maker: the lower 35 percent of every frame (below y 1250) is empty by design; the brown plank wipe at 4.6 to 4.8 s covers the bubble while each is spoken; the screen goes fully dark for 2 to 3 frames at 13.25 s and 14.55 s, mid transition; the switch to the YOUR CALL? scene lands at 14.5 s mid sentence, on and."
+    "Earlier verdict: listed 0 faults, so there was nothing to confirm gone. Its notes still match this render: brief dark dips at 13.23 to 13.27 s and 14.57 to 14.60 s (luma about 29, 2 frames each, mid transition), and the plank wipe covers the bubble at 4.6 to 4.8 s, also mid transition.",
+    "1 hook: PASS. HAIL OR WEAR? and YOU CALL IT. are on screen at 0.0 s (frame-0s) and hold through 2.0 s. The bubble reads Hail at 0.0 s and Hail or wear? by 0.8 s.",
+    "2 readable question: PASS. No number is spoken. The question is readable both times it is said: the title plus the bubble Hail or wear? at 0.0 to 1.1 s, and the YOUR CALL? banner with HAIL and WEAR buttons plus the bubble So, hail or wear? at 16.3 to 17.73 s (pulled frames 16.3, 17.0 and 17.75 s).",
+    "3 layout: PASS. Once settled, no words are hidden, cut off or under another element in any scene (brick title, close-up mark, vent and gutter panels, house with IT'S HAIL. sign, YOUR CALL? choice, end card). All text sits between y 270 and y 1250 and left of x 930: title text ends near x 880, EXAMPLE tags end at about x 930, WEAR ends near x 885, bubble text ends near x 855, end card text near x 835. Only container fills (title band, gutter panel, end card box) run past x 930, with no text there. The dimmed GUTTER panel at 10.9 s is still readable. A round mark tucked behind the EXAMPLE tag at 8.9 s is scenery.",
+    "4 audio end: PASS. Last word wear? ends 17.73 s; voice level drops from about -12 dB at 17.5 s to about -29 dB at 17.8 s, then the end card bed fades to about -45 dB by 20.65 s. File ends 20.83 s. Nothing cut mid word.",
+    "5 text size and flash: PASS. Bubble, title, buttons, sign and end card text are 40 px tall or more on the 1080 wide frame; the smallest is the SNOW name tag at about 26 px caps, still easy to read. Per-frame brightness shows one dip and recovery per scene change (3.0, 8.3, 13.2, 14.55 s), each more than 1 s apart, so nothing flashes more than 3 times a second.",
+    "Not faults, noted for the maker: the host is absent at 0.0 s and stands in by 0.8 s; the lower 35 percent of every frame (below y 1250) is empty by design; the scene change to YOUR CALL? lands at 14.5 s mid sentence."
   ]
 }

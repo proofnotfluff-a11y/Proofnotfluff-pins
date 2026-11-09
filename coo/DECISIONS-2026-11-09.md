@@ -1,0 +1,6 @@
+# Decisions, Nov 9, 2026
+
+## The make task synced to Nov 8; making paused (live chat, 6:51 to 7:06 am)
+Todd asked whether the video schedules were updated. The posting tasks post what `anim.py next` names, so the queue changes (damage-or-not first, hail-or-wear held) were live; the make task (trig_01DQgwhps) still ran its Nov 7 prompt (the 2 proven to 1 story lane test, a hard 50 to 65 s for proven, no viewer check), and the repo copy was as stale. Claude recommended rewriting the prompt with every Nov 8 change and making no new video until Todd settles the five rule changes the viewer gate calibration surfaced (pixel transitions read as glitches, EXAMPLE stickers, the SNOW tag, the 3-new-sets rule, the long held send card; video/studio/LEARNINGS.md, 2026-11-08), since a lesson dated 2026-11-29 must pass the viewer gate and runs cannot change those rules. Five lessons wait, about 2.5 days of posts.
+- [stated] Todd, 7:06 am: "Go"
+- Done: video/studio/schedule/record-and-make.txt rewritten (every lesson proven, the viewer check and footage rule, Match: source, gates_for with the viewer gate, length_band, the makePaused step) and copied into the scheduled task; video/config.json makePaused set (remove the key to resume). Posting untouched.

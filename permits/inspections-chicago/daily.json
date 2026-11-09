@@ -1,22 +1,22 @@
 {
  "product": "Chicago Restaurant Daily List",
- "asOf": "2026-11-08",
- "asOfText": "Nov 8, 2026",
+ "asOf": "2026-11-09",
+ "asOfText": "Nov 9, 2026",
  "through": "2026-11-06",
  "throughText": "Nov 6, 2026",
  "recentFrom": "2026-10-24",
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-11-08T17:14:51+00:00",
-  "rowsUpdatedAt": "2026-11-08T10:09:45+00:00",
+  "fetchedAt": "2026-11-09T21:38:13+00:00",
+  "rowsUpdatedAt": "2026-11-09T10:06:24+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "pests": 1,
-  "hood": 0,
-  "places": 1
+  "pests": 12,
+  "hood": 3,
+  "places": 13
  },
  "history": [
   {
@@ -146,13 +146,38 @@
    "hood": 0,
    "places": 1,
    "withPhone": 0
+  },
+  {
+   "asOf": "2026-11-09",
+   "through": "2026-11-06",
+   "pests": 12,
+   "hood": 3,
+   "places": 13,
+   "withPhone": 7
   }
  ],
  "examples": [
   {
-   "area": "Albany Park",
+   "area": "Clearing",
    "type": "Restaurant",
    "result": "Fail",
+   "trades": [
+    "pests"
+   ]
+  },
+  {
+   "area": "Brighton Park",
+   "type": "Grocery Store",
+   "result": "Fail",
+   "trades": [
+    "pests",
+    "hood and exhaust"
+   ]
+  },
+  {
+   "area": "Ashburn",
+   "type": "Restaurant",
+   "result": "Pass w/ Conditions",
    "trades": [
     "pests"
    ]
@@ -186,13 +211,13 @@
   },
   {
    "date": "2026-10-29",
-   "pests": 2,
-   "restaurant": 1
+   "pests": 3,
+   "restaurant": 2
   },
   {
    "date": "2026-10-30",
-   "pests": 1,
-   "restaurant": 0
+   "pests": 3,
+   "restaurant": 1
   },
   {
    "date": "2026-10-31",
@@ -206,40 +231,45 @@
   },
   {
    "date": "2026-11-02",
-   "pests": 3,
-   "restaurant": 1
+   "pests": 5,
+   "restaurant": 3
   },
   {
    "date": "2026-11-03",
-   "pests": 3,
+   "pests": 4,
    "restaurant": 1
   },
   {
    "date": "2026-11-04",
-   "pests": 3,
-   "restaurant": 2
+   "pests": 6,
+   "restaurant": 5
   },
   {
    "date": "2026-11-05",
-   "pests": 1,
-   "restaurant": 1
+   "pests": 2,
+   "restaurant": 2
   },
   {
    "date": "2026-11-06",
-   "pests": 2,
-   "restaurant": 2
+   "pests": 4,
+   "restaurant": 3
   }
  ],
  "pestLast7": {
   "from": "2026-10-31",
   "to": "2026-11-06",
-  "inspections": 12,
-  "restaurantInspections": 7,
+  "inspections": 21,
+  "restaurantInspections": 14,
   "areas": [
    "Albany Park",
+   "Ashburn",
+   "Brighton Park",
+   "Chicago Lawn",
+   "Clearing",
    "Humboldt Park",
    "Lower West Side",
    "North Lawndale",
+   "South Deering",
    "South Shore",
    "Uptown",
    "West Town"
@@ -247,16 +277,16 @@
  },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
  "phones": {
-  "rows": 1,
-  "withPhone": 0,
-  "coverage": 0.0
+  "rows": 13,
+  "withPhone": 7,
+  "coverage": 53.8
  },
  "seat": {
-  "asOf": "2026-11-08",
-  "places14": 26,
-  "new": 1,
-  "withPhone14": 15,
-  "coverage14": 57.7,
+  "asOf": "2026-11-09",
+  "places14": 37,
+  "new": 12,
+  "withPhone14": 20,
+  "coverage14": 54.1,
   "phonesChecked": true
  }
 }

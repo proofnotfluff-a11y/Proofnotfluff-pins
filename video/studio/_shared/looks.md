@@ -24,8 +24,10 @@ The player adds these to every arcade lesson; a scene adds the rest from the kit
   A scene element stamped with `k.stampIn` also squashes (1.20 x 0.85 for 2 frames, 0.95 x 1.05 for 1) and settles.
 - Shake only on a real hit, and small: each stamp adds a bit of "trauma" that drains in about a fifth of a second; the shake
   is trauma squared, smooth, on whole pixels, 3 pixels at most (a normal stamp moves about 1). Never more than once in 10 s.
-- Rooms change in 12 frames: 5 closing over the old room, the cut, 1 held, 6 opening. The new room picks the move:
-  blinds (workshop), a chalk wipe (blackboard), a garage door (garage), an iris on Snow's head (framing).
+- Rooms change with a plain cut on the spoken word, or a simple slide (`SCENE.transitions = {section: 'slide'}`: the new
+  room slides in from the right over 6 frames). No full-screen moves (blinds, chalk wipe, garage door, iris, mosaic,
+  dither, game over) and no black frames: viewers read them as broken renders (Todd, live chat, Nov 9, 2026, 7:33 am, "Recs", call 1; lint fails them from
+  2026-11-29). Lessons pinned before keep their moves.
 - Snow is alive: his mouth follows the voice (4 shapes from `mouth.js`, the beard drops a pixel when he opens wide); he
   blinks every 2.5 to 6 s, in the gaps between words when he can, sometimes twice; he breathes (a lit shoulder edge,
   then his chest up a pixel); after 8 to 12 s in one pose he fidgets (scratches his beard, fixes his cap, glances at the board).

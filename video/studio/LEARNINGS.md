@@ -16,7 +16,8 @@ The studio learns in three loops (Todd, Oct 28, 2026, 3:43 pm: "make this video 
 - Oct 28: Voice take numbers start at 1 ("--take 0" only re-transcribes). Whisper hears an s across a word boundary ("Quote still" as "quotes", "texts beat" as "text beat"): reword the line rather than re-roll. anim.py display() lowercases all-caps stress words, so trade acronyms go in its ACRONYMS set (ACHR, HVAC showed lowercase in a bubble). Hook cards need motion before 1.0 s or the freeze check fails at 0.0 to 1.03 s.
 - Oct 28: Posting via Chrome: upload the copy at videos/<slug>/05_render/<slug>-post.mp4 (the session can read the repo path; /mnt/user-data/outputs is refused). Export keeps a render under 9.5 MB as is and two-passes anything bigger to under 9.9 MB. TikTok's first post asks "Ready to post?" to collect face and voice information: that is consent, so it holds for Todd's word (he said "accept tiktok" for lesson 1). After posting, TikTok shows Only me while the video is under review.
 - Each lesson its own world (Todd, Oct 28): `lint` fails a lesson whose stock rooms fill over 40% of the runtime, that
-  reuses the last lesson's set pieces, or that has fewer than 3 set pieces new against the two before (04_scene/worlds.json).
+  reuses the last lesson's set pieces, or (before 2026-11-29) that has fewer than 3 set pieces new against the two before
+  (04_scene/worlds.json). The minimum is gone from 2026-11-29 (Todd, Nov 9, call 4: it forced filler like PHOTOS SEEN).
 - Trades first (Todd, Oct 28): the main evidence comes from the trades; the facts gate fails other-industry studies.
 - Frame 0 is the cover: no sheen, sparks or reveal on it (the shine waits until 1 s).
 - The freeze check flags only truly stuck pictures (qa.freezeNoiseDb -70, Todd's word): small crisp motion counts.

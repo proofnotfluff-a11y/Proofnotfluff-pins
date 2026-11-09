@@ -23,7 +23,9 @@ Relaxed for story lessons (REBUILD.md, Nov 5, 2026; PRINCIPLES.md outranks this 
 - C2 One invented metaphor a lesson, built from a trade object the viewer owns (a tape measure, a work order, a truck
   dash), named in brief.md `- **Metaphor:**`, on screen for at least one beat.
 - C3 A screen worth saving. The exact thing to copy (the text, the setting path, the checklist, the prompt) on one
-  clean card, held 3 s or more, readable at phone size. This is what earns saves and shares.
+  clean card, built line by line as each line is spoken, held about 3 s once full (2.5 to 4.0 s), then the video moves
+  on; the end card shows it again (`SCENE.endSend`). Readable at phone size. (Todd, live chat, Nov 9, 2026, 7:33 am, "Recs", call 5: a full card held 13.5 s was
+  where the stranger left.)
 - C4 An open loop. One question set in the first 5 s and answered after 60% of the runtime.
 - C5 The result on screen by 3 s (Todd, Nov 1, 2026: shares are 0; most viewers left by 4 to 8 s on TikTok): open on the
   finished thing (the reply, the quote, the money saved), then show how. AI lane lessons also meet `_shared/lanes.md`.
@@ -41,7 +43,8 @@ Relaxed for story lessons (REBUILD.md, Nov 5, 2026; PRINCIPLES.md outranks this 
 - M2 Cuts land on the spoken word: a scene change starts on a word's first frame, never mid-word.
 - M3 Accent words: the key word of each beat lands on screen 0.2 to 0.3 s before it is said (IMPROVE 00a-3).
 - M4 Physical motion: entrances overshoot and settle; a verdict gets a zoom kick or a short shake (at most once in
-  10 s); room changes travel (a whip pan or a wipe that fits the room), never a plain cut to a new room.
+  10 s); room changes are a plain cut on the word or a simple slide, never a full-screen move or a black frame (Todd, live chat, Nov 9, 2026, 7:33 am, "Recs",
+  call 1).
 - M5 The host acts: mouth follows the voice, and he reacts on the big numbers (shock, lean-in, a point at the board).
 - M6 Time to read: every on-screen text holds letters / 15 + 1.5 s after it lands; never cut before a viewer can finish.
 - M7 One native move a lesson, a game moment only our world can do (ITEM GET, LEVEL UP, a stat screen, a boss HP bar

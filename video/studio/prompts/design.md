@@ -14,8 +14,13 @@ target: type at most 4 when spoken words run under 44 px or labels under 36 px a
 when the picture does not change within 1 s or the host is not on screen by 3 s; polish at most 4 when the last 3 s have no
 end card with proofnotfluff.com.
 The bar (Todd, Oct 31, 2026: "We need to set a higher standard"): also open video/studio/_shared/standard.md and hold
-the lesson to its M lines (motion) and C3 (a clean card worth saving, held 3 s or more). Caps: polish at most 4 when
-M4 fails (an entrance with no overshoot and settle, a plain cut between rooms, no kick on a verdict); first impression
+the lesson to its M lines (motion) and C3 (a clean card worth saving, built line by line as spoken, held about 3 s once
+full, then the video moves on). Caps: polish at most 4 when M4 fails (an entrance with no overshoot and settle, a
+full-screen transition or a black frame between rooms, no kick on a verdict); first impression
 at most 4 when 05_render/qa.json "flat" fails; hierarchy at most 4 when C3's card is missing or unreadable at phone size.
+Todd's five calls (live chat, Nov 9, 2026, 7:33 am, "Recs"; lessons dated 2026-11-29 on): a plain cut or a simple slide
+between rooms is right, so never ask for a room transition; never ask for more EXAMPLE tags (a made-up scene is set up
+once, in the voice or one small MADE-UP EXAMPLE line, and tags sit only beside made-up numbers), for a name tag over the
+dialog box, or for more new set pieces than the scene needs. Trust at most 3 when a made-up scene could pass as real.
 Earlier rounds: if V/05_render/reviews/design.json exists, read it first. Check that each change it asked for landed, and do not ask to undo a change an earlier round asked for unless it broke something you can name. New problems count only if a phone viewer would notice them.
 Do not edit files. JSON only: {"pass": bool, "score": {"first": n, "hierarchy": n, "type": n, "color": n, "spacing": n, "polish": n, "trust": n, "average": n.nn}, "reasons": ["<time> <element>: <change>"]}

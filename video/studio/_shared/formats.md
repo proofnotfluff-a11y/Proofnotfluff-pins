@@ -56,6 +56,9 @@ queued lessons keep their pins (lsa-max-bid, 66.2 s of voice, stays).
   carries `- **Send:** <who it goes to>: <the thing on screen>`. The end card's send line names that same person, word for
   word ("Send this to whoever answers the phones."). cues.md marks the cue where the card goes up with `[send]`.
 - **Held to screenshot.** The card sits still 2.5 s or more with no motion over it (no snow, cursor or slide across it).
+  From 2026-11-29 (Todd, live chat, Nov 9, 2026, 7:33 am, "Recs", call 5: damage-or-not's card sat 13.5 s while the voice read it, and the stranger left there):
+  it builds line by line as each line is spoken (`k.sendCard` linesOn), holds about 3 s once full (lint: 2.5 to 4.0 s
+  still), then the video moves on, and the end card shows it again (`SCENE.endSend`) for a screenshot.
 - **Payoff early.** The send cue starts before half the runtime (end card included). What follows it is the why and the
   kicker, kept short.
 - **Code checks** (`anim.py sendcheck`, `lint`, `ready`, planted cases in `anim.py selftest`): the Send line and its two
@@ -72,7 +75,9 @@ do it"). Every lesson stands alone: no "Part X of Y" and no promise of a next pa
 captions. A playbook lesson teaches one setup step end to end on its own. The one exception is the part 2 that
 count-before-ai already promised (research/IDEAS.md "Owed first").
 
-Honesty in every format: a fix-this example is labeled "Example" on screen and is ours, never a real customer's words; a
+Honesty in every format: a made-up example is said once (the voice sets it up, "Say a homeowner tells you...", or one small
+MADE-UP EXAMPLE line on its first frame; Todd, live chat, Nov 9, 2026, 7:33 am, "Recs", call 2), an EXAMPLE tag sits only beside a made-up number, and it is ours,
+never a real customer's words; a
 scenario is told as "picture this" and never as something that happened; every number still comes from facts.json.
 
 ## What else must change from lesson to lesson (the build checks these, the design gate judges them)
@@ -89,11 +94,11 @@ Ideas and formats aren't owned; words, footage and art are. Our edge is the vers
 number, our pixel style, the send moment.
 - **Every new lesson is proven** (Todd, live chat, Nov 8, 2026: "Going forward all videos should use this method."); no story lessons.
 - **Viewer check** (Todd, live chat, Nov 8, 2026, 9:51 pm: "When ideating these videos, take a step back and ask if it makes sense from the viewers perspective. Find viral videos that will work in the context of a faceless animated videos that we are creating"): before a row is picked, name what made it work. It must be something we can draw or animate (a number reveal, math on a board, a list, a line to say, an acted conflict with k.client); real footage as evidence or a real person's face or story is not. Then watch our version in your head as a stranger scrolling: what do they get? brief.md `- **Key ingredient:**` and `- **Viewer check:**`, required from lessons dated 2026-11-29 (copycheck and ready). Why: hail-or-wear copied row 3's structure, but a drawn roof gave the viewer nothing real to judge; Todd: "I watched the video but I don't get it."
-- **Match the source** (Todd, live chat, Nov 8, 2026, 8:25 pm: "let's not keep strict rules or a standard template. We need to experiment to see what works."): brief.md `- **Match:** source` and `- **Source length:** N s` make a proven lesson take its source's structure: length within 20% (plus the end card), beat order, voice or none, answer or none. Off for it: the send card and gate, the hard hook, the 50 to 65 s band, the opening rotation, the 3 new sets. Kept: facts, EXAMPLE tags, the copy check, our own words and art. Only what we cannot copy changes (their footage and words). Where our pipeline forces a change (every picture is timed to a voice), say so in brief.md.
+- **Match the source** (Todd, live chat, Nov 8, 2026, 8:25 pm: "let's not keep strict rules or a standard template. We need to experiment to see what works."): brief.md `- **Match:** source` and `- **Source length:** N s` make a proven lesson take its source's structure: length within 20% (plus the end card), beat order, voice or none, answer or none. Off for it: the send card and gate, the hard hook, the 50 to 65 s band, the opening rotation, the 3 new sets (a minimum gone for every lesson from 2026-11-29). Kept: facts, the made-up label (said once, call 2), the copy check, our own words and art. Only what we cannot copy changes (their footage and words). Where our pipeline forces a change (every picture is timed to a voice), say so in brief.md.
 - **Act it out, once** (Todd, video-lab chat, Nov 8, 2026, decision 3: "Yes, build it, test on 1 lesson"): the next
   proven lesson made from a two-person money row (a customer who won't pay, a lowball buyer: `nextlane` pick order) plays
   the source's conflict as a scene with `k.client` facing the viewer as if the viewer is the tech or the seller (her
-  lines in bubbles, EXAMPLE), then Snow brings the fix and the send card, and the last line asks the viewer what they
+  lines in bubbles, the scene set up once as made up), then Snow brings the fix and the send card, and the last line asks the viewer what they
   would do. One lesson only; `anim.py cohort` marks it, and the Nov 14 read compares it with the narrated ones.
 - **The hook is hard** for proven lessons dated 2026-11-26 on (Todd, video-lab chat, Nov 8, 2026, decision 2): the source's conflict in 5 to 8 words on frame 0, spoken in 12 words or fewer by 3.6 s (_shared/hooks.md).
 - **Pick** a row of research/PROVEN.md at the bar, 100,000 views or more and 5x its channel's typical (Todd, live chat,

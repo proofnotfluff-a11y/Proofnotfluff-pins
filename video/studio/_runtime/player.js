@@ -106,7 +106,9 @@
     k.shape(k.rectPts(x, y, w, h, r), {fill: 'bubble', stroke: look.name === 'clean' ? 'line' : null, lw: 2});
     if (arcade) k.shape(k.rectPts(x + 6, y + 6, w - 12, h - 12, 0), {stroke: 'bubbleText', lw: 6, line: false});
     k.shape([[x + 2, y + h - 70], [x - 40, y + h - 40], [x + 2, y + h - 30]], {fill: 'bubble', line: false});
-    k.chip(window.SCENE.host_name || 'Snow', x + 24, y - 34, {size: arcade ? 30 : 24, fill: 'tag', color: 'tagText'});
+    // no name tag over the box (Todd, live chat, Nov 9, 2026, 7:33 am, "Recs" call 3: viewers asked "who is Snow?");
+    // SCENE.nameTag: true draws it again (SCENE.host_name its text) when a lesson wants it on purpose
+    if (window.SCENE.nameTag) k.chip(window.SCENE.host_name || 'Snow', x + 24, y - 34, {size: arcade ? 30 : 24, fill: 'tag', color: 'tagText'});
     // lay the phrase out: the arcade box takes the first size its page fits (ARCADE_TYPE); the other looks step down
     let fs = arcade ? ARCADE_TYPE[0][0] : 46, lh;
     const pad = arcade ? ARCADE_PAD : 26, maxX = x + w - pad;
@@ -242,7 +244,11 @@
   // picks the move: blinds (workshop), a chalk wipe (blackboard), a garage door (garage), an iris (framing); blinds otherwise.
   // A section names its room with SCENE.rooms = {sectionId: 'garage'}, or the player reads its k.room call.
   // SCENE.transitions = {sectionId: 'levelselect' | 'dissolve' | 'gameover'} picks a set piece's move (sets.js) instead.
-  const STYLE = {workshop: 'blinds', blackboard: 'chalk', garage: 'door', framing: 'iris'};
+  // Since Todd's call 1 (live chat, Nov 9, 2026, 7:33 am, "Recs"; viewers read the full-screen moves as broken renders)
+  // a room change is a plain cut on the beat unless the section names 'slide' (drawAt slides the new room in) or, in a
+  // lesson pinned before, one of the old moves by name. The room's own move is no longer the default.
+  const STYLE = {};
+  const CUTS = {cut: 1, slide: 1};
   function transition(ctx, T, tops, sec, U, head) {
     const i = tops.indexOf(sec), nx = tops[i + 1];
     let u = null, to = null;
@@ -253,7 +259,8 @@
     const q = u < 0 ? Math.pow(Math.max(0, (u + 6) / 6), 2) : (u < 1 ? 1 : Math.pow(1 - u / 7, 2));   // how shut: eases in, eases out
     if (q <= 0) return;
     const room = (window.SCENE.rooms || {})[to.id] || (survey && survey.rooms[to.id]);
-    const style = (window.SCENE.transitions || {})[to.id] || STYLE[room] || 'blinds', closing = u < 0;
+    const style = (window.SCENE.transitions || {})[to.id] || STYLE[room] || 'cut', closing = u < 0;
+    if (CUTS[style]) return;
     const cell = Math.max(U, 3), sn = (v) => Math.round(v / cell) * cell;
     const fill = (c, x, y, w, h) => { if (w > 0 && h > 0) { ctx.fillStyle = c; ctx.fillRect(x, y, w, h); } };
     const ext = window.SETS && window.SETS.transitions[style];   // the set pieces' moves (sets.js): levelselect, dissolve, gameover
@@ -314,24 +321,35 @@
     k.text('proofnotfluff.com', 534, 576, {size: 66, color: '#F7C873', align: 'center', lint: drop === 0});
     const uw = Math.round(k.measure('proofnotfluff.com', {size: 66}) / 3), ux = 178 - Math.round(uw / 2);
     if (f >= 12) P(ux, 216, Math.min(uw, (f - 12) * 8), 2, '#F7C873');   // the site's underline draws on
-    k.text('Lessons for trade owners', 534, 690, {size: 66, color: '#E6D3BC', align: 'center', lint: drop === 0});
+    // SCENE.endSend (Todd's call 5, live chat, Nov 9, 2026, 7:33 am, "Recs"): the send card's lines again, for a
+    // screenshot. The tagline steps out, the send line moves up under the site, the lines sit on a paper strip, Snow
+    // steps out so they have the room.
+    const again = Array.isArray(window.SCENE.endSend) ? window.SCENE.endSend.slice(0, 4) : null;
+    if (!again) k.text('Lessons for trade owners', 534, 690, {size: 66, color: '#E6D3BC', align: 'center', lint: drop === 0});
     // the send line (Lead Clinic v2, Oct 29): a v2 lesson says no call to action, so the card carries it, word-wrapped
     // into the space under the plate; on a card with a send line Snow stands smaller, so his hat stays under it
     const send = window.SCENE.sendLine;
+    let sendRows = 0;
     if (send) {
       // balanced rows at a readable size (design gate, Oct 31: 39 read as 28 px): one row if it fits, else the split
       // into two rows with the shortest longer row
-      const words = String(send).split(/\s+/), W = (s) => k.measure(s, {size: 66});
+      const sz = again ? 52 : 66, words = String(send).split(/\s+/), W = (s) => k.measure(s, {size: sz});
       let rows = [words.join(' ')];
       if (W(rows[0]) > 960) { let best = null; for (let i = 1; i < words.length; i++) { const a = words.slice(0, i).join(' '), b = words.slice(i).join(' '), m = Math.max(W(a), W(b)); if (!best || m < best[0]) best = [m, [a, b]]; } rows = best[1]; }
-      rows.forEach((s, i) => k.text(s, 534, 830 + i * 78, {size: 66, color: '#FFF7EA', align: 'center', lint: drop === 0 && f >= 12}));
+      rows.forEach((s, i) => k.text(s, 534, (again ? 818 : 830) + i * (again ? 62 : 78), {size: sz, color: '#FFF7EA', align: 'center', lint: drop === 0 && f >= 12}));
+      sendRows = rows.length;
+    }
+    if (again) {   // under the send line, size 52 rows 62 apart: four rows end by y 1250 with a two-row send line
+      const top = 818 + sendRows * 62 + 18, lh = 62;
+      P(20, Math.round(top / 3) - 4, 320, Math.ceil(again.length * lh / 3) + 6, '#FFF7EA'); P(20, Math.round(top / 3) - 4, 3, Math.ceil(again.length * lh / 3) + 6, '#2F6F67');
+      again.forEach((s, i) => k.text(s, 540, top + i * lh, {size: 52, color: '#120D14', align: 'center', lint: drop === 0}));
     }
     // a twinkle walks the plate's corners, one every 8 frames, so the held card is never a still picture
     const pts = [[46, 102], [310, 102], [310, 258], [46, 258]], g = f >= 10 ? Math.floor((f - 10) / 8) % 4 : -1;
     if (g >= 0) { const [x, y] = pts[g], s = [0, 1, 2, 1][Math.floor(f / 2) % 4]; P(x, y, 1, 1, '#FFF7EA'); for (let i = 1; i <= s; i++) { P(x - i, y, 1, 1, '#FFF7EA'); P(x + i, y, 1, 1, '#FFF7EA'); P(x, y - i, 1, 1, '#FFF7EA'); P(x, y + i, 1, 1, '#FFF7EA'); } }
     // Snow waves goodbye on a strip of floor under the plate
     P(0, 418, 360, 6, '#3D2E45'); P(0, 424, 360, 212, '#1B1420'); for (let x = (f >> 2) % 24 - 24; x < 360; x += 24) P(x, 430, 12, 2, '#2B2033');
-    k.snow(540, 1254, {scale: window.SCENE.sendLine ? 0.5 : 0.86, pose: 'wave', face: 1});
+    if (!again) k.snow(540, 1254, {scale: window.SCENE.sendLine ? 0.5 : 0.86, pose: 'wave', face: 1});
     ctx.restore();
     return true;
   }
@@ -374,6 +392,8 @@
     }
     // the camera, its position on whole low-res pixels so the grid never swims
     ctx.translate(moving ? snap(sx + fx * (1 - zoom)) : fx * (1 - zoom), moving ? snap(sy + fy * (1 - zoom)) : fy * (1 - zoom)); ctx.scale(zoom, zoom);
+    // 'slide' (call 1): the new room slides in from the right over its first 6 frames, on whole low-res pixels
+    if (moving && sec !== tops[0] && (window.SCENE.transitions || {})[sec.id] === 'slide' && into * FPS < 6) ctx.translate(snap(W * Math.pow(1 - Math.max(0, into * FPS) / 6, 2)), 0);
     if (fn) ret = fn(ks, Ts, sec) || {};
     ctx.restore();
     let head = [540, 760];

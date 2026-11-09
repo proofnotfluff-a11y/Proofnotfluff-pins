@@ -29,7 +29,7 @@ desk writes every story.md by it; the read-aloud and retell gates judge by it. I
 - **ABT line:** the one-breath version (tool 2).
 - **Message line:** one sentence, 20 words or fewer, a stranger could repeat. It is what the retell gate must hear back.
 - **Who:** one owner in one situation the viewer recognizes ("a two-truck HVAC shop, first cold night of the year").
-  An example is labeled "Example"; a real case is a record we opened. Never a named private person or small business.
+  An example is said once to be made up (the voice, or one MADE-UP EXAMPLE line; Nov 9, call 2); a real case is a record we opened. Never a named private person or small business.
 - **Every day (the setup):** what normal looks like and why it seems fine. One or two sentences.
 - **But (the problem):** what breaks, with the number or the document that proves it.
 - **Because of that (the cost):** what it costs this owner this month, in money, jobs or hours.

@@ -1338,7 +1338,12 @@
       lines.forEach((ln, i) => text(ln, x, y + i * lh, {size, color: o.color || 'muted', drop: o.drop}));
       return {h: lines.length * lh, lines};
     };
-    // k.sendCard({at, who, title, body | lines, steps, example, y, colors}): the send card. It slides up over 5 frames from
+    // k.madeUp(x, y, {right}): the one small MADE-UP EXAMPLE line, on the first made-up frame only (Todd's call 2, live
+    // chat, Nov 9, 2026, 7:33 am, "Recs": say it once, in the voice or with this line; EXAMPLE tags only on made-up numbers)
+    k.madeUp = function (x, y, o = {}) { return k.exampleTag(x, y, Object.assign({text: 'MADE-UP EXAMPLE'}, o)); };
+    // k.sendCard({at, who, title, body | lines, linesOn, steps, example, y, colors}): the send card. linesOn (Todd's call 5,
+    // Nov 9: built line by line as spoken) gives each body line its time; a line shows from its time on, in its place.
+    // It slides up over 5 frames from
     // at, then holds dead still (the send gate times the hold in code). Rows, top down: a colored band with who it is for
     // ("FOR THE LEAD TECHNICIAN"), the title, the body (the thing to forward, wrapped), numbered steps, and the EXAMPLE
     // tag on its own row at the right, so it never sits on a header. Text runs x 72 to 930. Returns {x, y, w, h, lines,
@@ -1374,9 +1379,11 @@
       if (L.title) L.title.lines.forEach((ln, i) => text(ln, X, y + L.titleTop + i * lhOf(L.title.size, L.f), {size: L.title.size, color: c.title}));
       const lineY = L.body.map((_, i) => y + L.bodyTop + i * lhOf(L.bodySize, L.f)), lineX = X + bar;
       if (L.body.length && bar) shape(rectPts(X, y + L.bodyTop - 6, 9, L.body.length * lhOf(L.bodySize, L.f), 0), {fill: c.rule, line: false});
-      L.body.forEach((ln, i) => text(ln, lineX, lineY[i], {size: L.bodySize, color: c.ink}));
+      // linesOn times the rows in order: the body lines, then the steps (a row past the list shows with the last time)
+      const on = (i) => !o.linesOn || !o.linesOn.length || T >= (o.linesOn[i] != null ? o.linesOn[i] : o.linesOn[o.linesOn.length - 1]);
+      L.body.forEach((ln, i) => { if (on(i)) text(ln, lineX, lineY[i], {size: L.bodySize, color: c.ink}); });
       const stepY = (o.steps || []).map((_, i) => y + L.stepTop + i * lhOf(FLOOR, L.f));
-      (o.steps || []).forEach((s, i) => text(`${i + 1}  ${s}`, X, stepY[i], {size: FLOOR, color: (o.stepOn || [])[i] ? c.ink : c.step}));
+      (o.steps || []).forEach((s, i) => { if (on(L.body.length + i)) text(`${i + 1}  ${s}`, X, stepY[i], {size: FLOOR, color: (o.stepOn || [])[i] ? c.ink : c.step}); });
       if (o.example) k.exampleTag(EDGE, y + L.tagTop, {right: true, color: c.tag, ink: c.ink});
       return {x, y, w, h, lines: L.body, lineY, lineX, size: L.bodySize, stepY, overflow: top + h > bottom};
     };
@@ -1411,13 +1418,13 @@
       if (o.example) k.exampleTag(EDGE, cy + L.gap / 2, {right: true, color: c.tag, ink: c.ink});
       return {x, y, w, h: L.h, overflow: y + L.h > bottom};
     };
-    // k.cut(at, {kind, color, h}): a shot change inside a section that travels instead of a plain cut (design M4 fails a
-    // plain cut). Draw both shots first, then call k.cut last so it sits on top (a wipe drawn before a set is painted over).
-    // kind 'blinds' (default): six bars close over 3 frames and open over 3, never more than half dark; 'iris': a ring closes
-    // to the middle and opens; 'fade4': four dither steps down and up. Returns true from at on (show the new shot).
+    // k.cut(at, {kind, color, h}): a shot change inside a section. Since Todd's call 1 (live chat, Nov 9, 2026, 7:33 am,
+    // "Recs") the default is a plain cut on the beat (kind 'cut'); the old kinds stay only for lessons pinned before
+    // ('blinds': six bars close over 3 frames and open over 3; 'iris': a ring closes to the middle and opens; 'fade4':
+    // four dither steps down and up), and lint fails them from 2026-11-29. Returns true from at on (show the new shot).
     k.cut = function (at, o = {}) {
-      const f = Math.floor((T - at) * FR + 0.005), kind = o.kind || 'blinds', H = o.h || 1250, col_ = o.color || '#120D14';
-      if (f >= -3 && f <= 3) {
+      const f = Math.floor((T - at) * FR + 0.005), kind = o.kind || 'cut', H = o.h || 1250, col_ = o.color || '#120D14';
+      if (kind !== 'cut' && f >= -3 && f <= 3) {
         const d = 1 - Math.abs(f) / 3.5;
         if (kind === 'iris') {
           const r = Math.hypot(540, H / 2) * (1 - d * 0.44);   // never more than about half dark (design r1: no black frame)

@@ -5,7 +5,10 @@ Storyboard round (studio change 1; Todd, live chat, Nov 7, 2026, 6:59 pm: "Go wi
 1. Open every source URL in facts.json with WebFetch and confirm each number and claim on the page itself. AI lane (`_shared/lanes.md`): an AI reply shown or read must match video/studio/demos/out/<job>/run.json word for word and carry its model and date; a page shot must be a page-<n>.png from the same folder with its address on screen; anything else shown as a tool's output is a FAIL. If WebFetch cannot reach a maker's page, its pages.json shot (same day) is the source.
 2. Every number in voice, screen and scene against the sources and data.js: same value, comparison, base and period. Plain-English rounding must stay fair ("about half" for 46% is fine).
 3. Claims in words: no overstatement, no applying a finding beyond its population without saying so, nothing promised that no source tests.
-4. Story elements (clocks, sample texts) must not read as data.
+4. Story elements (clocks, sample texts) must not read as data. From lessons dated 2026-11-29 (Todd, live chat, Nov 9,
+   2026, 7:33 am, "Recs", call 2): a made-up scene is set up once, in the voice ("Say a homeowner tells you...") or one
+   MADE-UP EXAMPLE line on its first frame, and every made-up number carries an EXAMPLE tag. FAIL a made-up scene a viewer
+   could take as real, or a made-up number with no tag.
 5. Trades first (Todd, Oct 28, 7:38 pm): the lesson's main evidence must come from the trades (trade data, trade press,
    trade associations, government data on trades, research on trades or home services). FAIL a lesson whose core claim
    rests on a non-trade study (hotels, restaurants, freelancers, general retail) or that needs a "this isn't the trades" caveat.

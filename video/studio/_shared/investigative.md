@@ -37,7 +37,7 @@ heard, with the paper in hand, is rare. People send a story that makes them look
 - The other side, every time: the vendor's, agency's or defendant's own published words or limits, one beat on screen.
 - Names: public companies, agencies, courts, laws and public officials in their role are named. A private person or a
   small business (a plumber who was sued, an owner in a thread) is never named: "an HVAC shop in Ohio", with the record.
-- Nothing invented. A reenactment is labeled "Example" on screen. If a fact can't be pinned, the line is cut.
+- Nothing invented. A reenactment is said once to be made up (the voice, or one MADE-UP EXAMPLE line; Nov 9, call 2). If a fact can't be pinned, the line is cut.
 
 ## Script craft (format dispatch, _shared/formats.md)
 The voice rules in _shared/voice.md all hold. On top of them, how a great reporter tells it to one owner:

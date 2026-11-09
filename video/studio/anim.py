@@ -2420,7 +2420,7 @@ def variety_problems(slug, share):
     if seen and sets & set().union(*seen):
         out.append(f"reuses set pieces from the last two lessons: {', '.join(sorted(sets & set().union(*seen)))}")
     new = sets - set().union(*seen) if seen else sets
-    if len(new) < 3 and not source_matched(slug):   # a source-matched experiment draws what its source shows (Todd, Nov 8, 8:25 pm)
+    if len(new) < 3 and not source_matched(slug) and not recs_apply(slug):   # a source-matched experiment draws what its source shows (Todd, Nov 8, 8:25 pm); no minimum from RECS_FROM (call 4)
         out.append(f"{len(new)} set piece(s) new against the two lessons before (at least 3)")
     return out
 
@@ -2943,6 +2943,69 @@ SEND_PIX_JS = """(r) => { const c = document.getElementById('c');
   return out; }"""
 
 
+# ---------------------------------------------------------------- Todd's five calls (live chat, Nov 9, 2026, 7:33 am: "Recs")
+# The viewer gate's calibration on damage-or-not and hail-or-wear found five of our own rules confusing strangers
+# (coo/DECISIONS-2026-11-09.md). For lessons dated from RECS_FROM on: (1) room changes are plain cuts on the beat or a
+# simple slide, never a full-screen move or a black frame; (2) a made-up scene is said once (the voice sets it up or one
+# small MADE-UP EXAMPLE line on its first frame) and EXAMPLE tags sit only beside made-up numbers; (3) no SNOW name tag
+# (the player); (4) no minimum of new set pieces, only no reuse from the last two lessons; (5) the send card builds line
+# by line as it is spoken, holds about 3 s once full, then moves on, and shows again on the end card (SCENE.endSend).
+RECS_FROM = "2026-11-29"
+CUT_MOVES = ("cut", "slide")
+SEND_HOLD_MAX = 4.0   # call 5: the full card holds about 3 s, at most this, then the video moves on
+MADE_UP = "MADE-UP EXAMPLE"
+
+
+def recs_apply(slug):
+    return os.path.basename(slug)[:10] >= RECS_FROM
+
+
+def move_problems(scene_text):
+    """Call 1: SCENE.transitions names only 'cut' or 'slide', and k.cut takes no kind but 'cut'."""
+    out = []
+    m = re.search(r"transitions\s*[:=]\s*\{([^}]*)\}", scene_text or "")
+    bad = sorted({v for v in re.findall(r":\s*['\"](\w+)['\"]", m.group(1)) if v not in CUT_MOVES}) if m else []
+    if bad:
+        out.append(f"SCENE.transitions uses {', '.join(bad)}: a room change is a plain cut on the beat or 'slide' (call 1, viewers read the moves as broken renders)")
+    kinds = sorted({k_ for k_ in re.findall(r"k\.cut\([^)]*?kind:\s*['\"](\w+)['\"]", scene_text or "") if k_ != "cut"})
+    if kinds:
+        out.append(f"k.cut kind {', '.join(kinds)}: a shot change is a plain cut (drop the kind; call 1)")
+    return out
+
+
+def example_tag_problems(samples, step):
+    """Call 2, on lint's samples [(t, [(text, tag, x0, y0, x1, y1, a)])]: an EXAMPLE tag on screen while no scene text
+    beside it carries a number, and the MADE-UP EXAMPLE line shown in more than one stretch."""
+    out, lone, runs, prev = [], [], 0, None
+    for t, xs in samples:
+        texts = [x[0].strip() for x in xs if x[1] == "scene"]
+        # a number beside it: a digit outside a list number ("1  THE HOUSE" is a step, not a made-up number)
+        if "EXAMPLE" in (x.upper() for x in texts) and not any(re.search(r"\d", re.sub(r"^\d+[.)]?\s+", "", x)) for x in texts if x.upper() != "EXAMPLE"):
+            lone.append(t)
+        on = MADE_UP in (x.upper() for x in texts)
+        if on and (prev is None or t - prev > step * 1.5):
+            runs += 1
+        prev = t if on else prev
+    if lone:
+        out.append(f"an EXAMPLE tag with no number beside it at {lone[0]:.2f} s ({len(lone)} samples): tags only on made-up numbers; say a made-up scene once (the voice, or k.madeUp on its first frame)")
+    if runs > 1:
+        out.append(f"the MADE-UP EXAMPLE line shows {runs} times: once, on the first made-up frame")
+    return out
+
+
+def recs_send_scene_problems(scene_text):
+    """Call 5 in the scene: the card's body lines arrive as spoken (k.sendCard linesOn) and the end card shows it again
+    (SCENE.endSend)."""
+    out = []
+    if not re.search(r"\blinesOn\s*:", scene_text or ""):
+        out.append("the send card has no linesOn: build it line by line as each line is spoken (call 5)")
+    if re.search(r"k\.sendCard\([^;]*?\bexample:\s*true", scene_text or ""):
+        out.append("the send card carries an EXAMPLE tag: it is the thing to send, not a made-up number (call 2)")
+    if not re.search(r"\bendSend\s*:", scene_text or ""):
+        out.append("no SCENE.endSend: show the send card's lines again on the end card (call 5)")
+    return out
+
+
 def send_still_seconds(samples, step):
     """samples: [(t, signature, pixels)] inside the send window, in time order. The longest run in which the same scene
     texts sit in the same places and the card's pixels stay within SEND_STILL_SHARE of the run's first sample."""
@@ -3007,7 +3070,7 @@ def send_card_problems(who, send_line):
     return []
 
 
-def send_cue_problems(doc, still=None):
+def send_cue_problems(doc, still=None, recs=False):
     """One cue in cues.md carries [send] (cues.json 'send': true). It runs SEND_HOLD s or more before the next cue, holds
     still that long (still: seconds the card held with no motion over it, measured by lint; None skips that part), and
     starts before the halfway point of the runtime, end card included."""
@@ -3023,6 +3086,8 @@ def send_cue_problems(doc, still=None):
         out.append(f"the send cue '{c['id']}' runs {nxt - t0:.2f} s before the next cue ({SEND_HOLD} s or more to screenshot)")
     if still is not None and still < SEND_HOLD - 1e-6:
         out.append(f"the send card holds still {still:.2f} s (needs {SEND_HOLD} s with no motion over it)")
+    if recs and still is not None and still > SEND_HOLD_MAX + 1e-6:
+        out.append(f"the full send card sits still {still:.2f} s (call 5: about 3 s once full, at most {SEND_HOLD_MAX} s; build it line by line as spoken, then move on)")
     if dur and t0 >= dur / 2:
         out.append(f"the send moment starts at {t0:.2f} s, after the halfway point ({dur / 2:.2f} s of {dur:.2f} s): move the payoff earlier")
     return out
@@ -3065,7 +3130,11 @@ def send_problems(slug, send_line=None, still=None, review=False):
         out += send_card_problems(send[0], send_line)
     cj = vdir(slug, "03_cues", "cues.json")
     if os.path.exists(cj):
-        out += send_cue_problems(json.load(open(cj)), still)
+        out += send_cue_problems(json.load(open(cj)), still, recs=recs_apply(slug))
+    if recs_apply(slug):
+        sj = vdir(slug, "04_scene", "scene.js")
+        if os.path.exists(sj):
+            out += recs_send_scene_problems(open(sj, encoding="utf-8").read())
     if review:
         rp = vdir(slug, "05_render", "reviews", "send.json")
         out += send_match_problems(send, json.load(open(rp)) if os.path.exists(rp) else None) if send else []
@@ -3404,6 +3473,23 @@ def cmd_selftest():
         ("send after halfway", send_cue_problems(doc([c("hook", 0), c("fix", 30, True), c("why", 34)], 55.0)), True),
         ("send exactly at halfway", send_cue_problems(doc([c("hook", 0), c("fix", 27.5, True), c("why", 31)], 55.0)), True),
         ("send last cue, holds to the end", send_cue_problems(doc([c("hook", 0), c("fix", 20, True)], 45.0)), False),
+        # Todd's five calls (live chat, Nov 9, 2026, 7:33 am, "Recs")
+        ("call 5: a full card still 13.5 s fails", send_cue_problems(doc([c("hook", 0), c("fix", 12, True), c("why", 26)], 55.0), still=13.5, recs=True), True),
+        ("call 5: a card built line by line, full 3.0 s, passes", send_cue_problems(doc([c("hook", 0), c("fix", 12, True), c("why", 20)], 55.0), still=3.0, recs=True), False),
+        ("call 5: before RECS_FROM the long hold is not checked", send_cue_problems(doc([c("hook", 0), c("fix", 12, True), c("why", 26)], 55.0), still=13.5), False),
+        ("call 5: no linesOn and no endSend fail", recs_send_scene_problems("k.sendCard({at: 12, lines: ['a', 'b']});"), True),
+        ("call 5: linesOn and endSend pass", recs_send_scene_problems("k.sendCard({at: 12, lines: ['a'], linesOn: [12]}); window.SCENE = {endSend: ['a']};"), False),
+        ("call 1: a mosaic room move fails", move_problems("window.SCENE = {transitions: {fix: 'mosaic', close: 'cut'}};"), True),
+        ("call 1: cuts and a slide pass", move_problems("window.SCENE = {transitions: {fix: 'slide', close: 'cut'}};"), False),
+        ("call 1: a k.cut iris fails", move_problems("if (k.cut(3.2, {kind: 'iris'})) draw2();"), True),
+        ("call 1: a plain k.cut passes", move_problems("if (k.cut(3.2)) draw2();"), False),
+        ("call 2: an EXAMPLE tag with no number fails", example_tag_problems([(1.0, [("EXAMPLE", "scene", 0, 0, 1, 1, 1), ("SAY THIS", "scene", 0, 0, 1, 1, 1)])], 0.25), True),
+        ("call 2: an EXAMPLE tag beside only step numbers fails", example_tag_problems([(1.0, [("EXAMPLE", "scene", 0, 0, 1, 1, 1), ("1  THE HOUSE AND ADDRESS", "scene", 0, 0, 1, 1, 1)])], 0.25), True),
+        ("call 2: an EXAMPLE tag on the send card fails", recs_send_scene_problems("k.sendCard({at: 12, linesOn: [12], steps: ['a'], example: true}); window.SCENE = {endSend: ['a']};"), True),
+        ("call 2: an EXAMPLE tag beside a made-up number passes", example_tag_problems([(1.0, [("EXAMPLE", "scene", 0, 0, 1, 1, 1), ("$4,800 JOB", "scene", 0, 0, 1, 1, 1)])], 0.25), False),
+        ("call 2: the made-up line twice fails", example_tag_problems([(t_, [("MADE-UP EXAMPLE", "scene", 0, 0, 1, 1, 1)] if t_ in (1.0, 1.25, 9.0) else []) for t_ in (1.0, 1.25, 1.5, 9.0)], 0.25), True),
+        ("call 2: the made-up line once passes", example_tag_problems([(t_, [("MADE-UP EXAMPLE", "scene", 0, 0, 1, 1, 1)] if t_ < 2 else []) for t_ in (1.0, 1.25, 1.5, 9.0)], 0.25), False),
+        ("call 1: two lessons both on cuts are not a copied transition", fresh_problems({"slug": "x", "transitions": {"send": "cut", "close": "cut"}}, [{"slug": "a", "transitions": {"send": "cut", "close": "cut"}}])[0], False),
         ("reviewer names both", send_match_problems(("whoever answers the phones", "the text-back message to a missed caller"),
                                                     {"score": {"person": "my wife, who answers our phones", "thing": "the missed caller text-back message"}}), False),
         ("reviewer names the wrong person", send_match_problems(("whoever answers the phones", "the text-back message to a missed caller"),
@@ -3636,7 +3722,7 @@ def cover_word_problems(frame0):
     words = []
     for s_, tag, *_ in frame0:
         st = str(s_).strip()
-        if tag != "scene" or not st or st.lower().startswith("source") or st.upper() == "EXAMPLE":
+        if tag != "scene" or not st or st.lower().startswith("source") or st.upper() in ("EXAMPLE", MADE_UP):
             continue
         words += re.findall(r"[A-Za-z0-9$%][A-Za-z0-9$%.,'\u2019-]*", st)
     n = len(words)
@@ -3973,7 +4059,8 @@ def fresh_problems(me, others):
             if m.get(k_, 0) >= FRESH_MATCH:
                 out.append(f"the {name} lays out its text like {o['slug']}'s ({m[k_]:.2f} match, {FRESH_MATCH} fails): move the hero, the lines or the shot")
         a, b_ = me.get("transitions") or {}, o.get("transitions") or {}
-        if a.get("send") and a.get("close") and a.get("send") == b_.get("send") and a.get("close") == b_.get("close"):
+        if a.get("send") and a.get("close") and a.get("send") == b_.get("send") and a.get("close") == b_.get("close") \
+                and not {a["send"], a["close"]} <= set(CUT_MOVES):   # plain cuts are the rule from Nov 9 (call 1)
             out.append(f"send and close transitions ({a['send']}, {a['close']}) copy {o['slug']}'s: change at least one (SCENE.transitions)")
     return out, rep
 
@@ -4290,6 +4377,10 @@ def cmd_lint(slug, step=0.25):
         errors += [f"ERROR lint opening: {x}" for x in opener_move_problems(slug)]
         if proven_hook_hard(slug):
             errors += [f"ERROR lint cover: {x}" for x in cover_word_problems(v3_samples[0][1] if v3_samples and v3_samples[0][0] == 0 else [])]
+        if recs_apply(slug):   # Todd's calls 1 and 2 (live chat, Nov 9, 2026, 7:33 am, "Recs")
+            sj_ = vdir(slug, "04_scene", "scene.js")
+            errors += [f"ERROR lint moves: {x}" for x in move_problems(open(sj_, encoding="utf-8").read() if os.path.exists(sj_) else "")]
+            errors += [f"ERROR lint example: {x}" for x in example_tag_problems(v3_samples, step)]
         fp, frep = fresh_check(slug, me=me)
         errors += [f"ERROR lint fresh: {x}" for x in fp]
         for d, m in frep.items():
@@ -4319,7 +4410,7 @@ def cmd_lint(slug, step=0.25):
     if short:   # a warning, not an ERROR (M6, _shared/standard.md): the design gate and render critic judge it
         print(f"WARN lint read time: {len(short)} scene texts leave before a viewer can read them (M6: letters / 15 + 1.5 s): "
               + "; ".join(f"'{s_[:30]}' {held:.1f} of {need:.1f} s" for s_, held, need in short[:12]))
-    plain = room_move_report(moves)
+    plain = room_move_report(moves) if not recs_apply(slug) else ""
     if plain:   # a warning, not an ERROR (M4, _shared/standard.md; IMPROVE 00a-4): the design gate judges the travel
         print("WARN lint room moves: " + plain)
     small = {s_: h_ for s_, h_ in small.items() if h_ < LABEL_FLOOR_PX and any(c.isalnum() for c in s_)}

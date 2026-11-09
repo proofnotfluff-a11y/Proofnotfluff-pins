@@ -30,8 +30,11 @@ mid: (k, T) => {
   clip, mail, star, coin, clock, horn, hammer), in low-res units.
 
 ## Transitions
-`SCENE.transitions = {sectionId: 'levelselect' | 'dissolve' | 'gameover' | 'mosaic' | 'fade4'}` picks the move into that section (the
-player falls back to the room's own move, then blinds). All are 12 frames on the pixel grid like the room moves.
+From 2026-11-29 a room change is a plain cut on the word or `'slide'` (Todd, live chat, Nov 9, 2026, 7:33 am, "Recs", call 1: the stranger test read these moves
+as broken renders and said he would leave at the first one, 4.5 s in). Lint fails the moves below for those lessons; they
+stay in sets.js only so pinned lessons render as gated.
+Retired: `SCENE.transitions = {sectionId: 'levelselect' | 'dissolve' | 'gameover' | 'mosaic' | 'fade4'}` picked the move into
+that section (the player fell back to the room's own move, then blinds). All are 12 frames on the pixel grid.
 - `levelselect`: square tiles grow out of nothing in a diagonal wave, gold-edged while they grow. Use into a "next level" section.
 - `dissolve`: a 4x4 ordered (Bayer) dither of 4-pixel blocks fills in and clears. Use between two calm sets.
 - `gameover`: black closes from top and bottom to a white line that shrinks to nothing (a CRT switching off). Use

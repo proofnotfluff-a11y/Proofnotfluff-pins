@@ -9,6 +9,9 @@ Order of pick: a fault a gate named twice in the last week, then the item most l
 weekly numbers), then the top of the backlog. Research runs (Mondays) add items with their source.
 The lab (Tue, Thu, Sat) ranks this list from its benchmark against _shared/style-board/ and builds the bigger items.
 
+Never pick an item that brings back what Todd's five calls removed (Nov 9: full-screen transitions, EXAMPLE stickers on
+anything but made-up numbers, the name tag, set pieces added to meet a count, a long still send card).
+
 ## Backlog (most promising first)
 The bar first (Todd, Oct 31, 2026, 2:28 pm: "We need to set a higher standard... Keep driving improvements";
 _shared/standard.md; craft from lemo-opuscar, research/opuscar-2026-10-31.md). Until these are done, every run ships
@@ -46,9 +49,8 @@ runtime, $0, no new dependency.
    `lint` WARN.
 00b-3. Smear frames: on fast slams 2 or 3 dithered copies trail at peak speed, and a 1-frame whole-pixel squash on landing
    (the pixel version of motion blur). Proof: the peak frame shows the trail; palette colour count unchanged.
-00b-4. Caused transitions: a pixel iris that closes on the host's head or the key number, and a whip-pan with streak lines,
-   beside level-select, dissolve and game-over; 2 or 3 kinds a lesson. Proof: at the halfway frame the iris is centred
-   on its cause, edge on the grid.
+00b-4. Retired (Todd, live chat, Nov 9, 2026, 7:33 am, "Recs", call 1): room changes are plain cuts or a simple slide;
+   no full-screen transition item is picked. Was: caused transitions (an iris on the host or the key number, a whip-pan).
 00b-5. A hand-drawn pixel circle or underline that draws onto the key number as it is said (idea from Remotion's
    rough-notation; skill check CAUTION, ideas only), and zooms eased on perceived size so a punch-in doesn't drag.
 00b-6. A sound for every move: whoosh or footsteps generated from camera travel (length by distance); `check` flags any

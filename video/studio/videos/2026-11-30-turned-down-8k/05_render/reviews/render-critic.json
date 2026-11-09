@@ -1,7 +1,7 @@
 {
  "gate": "render-critic",
- "round": 1,
- "note": "round 1 on the final render (the gate was rerun from round 0 after the last viewer fixes changed its input; earlier rounds: reviews/r0, r1, r2)",
+ "round": 2,
+ "note": "round 2, a fix-check on the re-render after the face patch came out of the kit (commit 95766ee; Todd, live chat, Nov 9, 3:29 pm, asked about the dot); earlier rounds: reviews/r0, r1, r2",
  "pass": true,
  "reviewer": "fresh opus agent",
  "at": "2026-11-09",
@@ -9,16 +9,18 @@
   "faults": 0
  },
  "rounds": {
-  "0 (final render line)": "FAIL, 1 fault: from 3.07 to 3.77 s the roofer glided sideways with still legs (the kit has no walk); fixed: no figure moves sideways anywhere"
+  "0 (final render line)": "FAIL, 1 fault: from 3.07 to 3.77 s the roofer glided sideways with still legs (the kit has no walk); fixed: no figure moves sideways anywhere",
+  "1 (final render line)": "PASS, 0 faults"
  },
  "checked": [
-  "1.7 to 3.8 s: he stays in place, shrugs, raises a hand; the plate clears his hat and face",
-  "23.3 to 25.3 s: he stays in place; his hand covers no words",
-  "30 fps sweep of all 915 frames: no near-black frame, nothing vanishes for a frame, no sideways glide",
-  "hook from 0.0 s; $8,000, $200, $7,500 and $7,800 readable when reached; words inside the safe area; no caption over eyes; voice ends 29.51 s of 30.50 s"
+  "frames at 14 times from 0.3 to 29 s, heads enlarged: the dot is gone from both characters, no hole, stray outline or gap",
+  "1.5 to 3.8 s: the roofer stays in place and only raises a hand; no sideways glide anywhere",
+  "plate rows measured at 7.0, 18 and 29 s: capitals 66 px or more",
+  "30 fps sweep of all 915 frames: 13 flagged, each a planned one-frame jolt as a plate lands; nothing vanishes; darkest frame averages 63 of 255",
+  "scene words inside x 40 to 1040 and y 250 to 1440; no caption over eyes or scene words; hook on screen from 0.0 s"
  ],
  "notes": [
-  "In the closing split the plates' dark backing reaches x 33 and x 1037; the letters sit well inside the margin.",
-  "His hat pompom comes within about 20 px of the RELIEF plate."
+  "In the closing split the captions 'him the job?' and 'You decide.' sit just under the roofers' eyes, over the beards: clear of the eyes, the tightest fit in the video.",
+  "In the closing split the plates' dark backing reaches x 33 and x 1037; the letters sit well inside the margin."
  ]
 }

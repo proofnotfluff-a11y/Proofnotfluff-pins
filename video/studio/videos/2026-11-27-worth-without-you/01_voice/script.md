@@ -1,4 +1,4 @@
-# Script: Worth without you (proven, r3, Nov 8; pre-voice facts r0: no "because" tying the answers to a higher price, the number called a real number not the stake, the owner-earnings base said plainly, the buyer is "she" like the k.client bubbles; box read-aloud r1: the paper named as what it is, the three questions stay three as the buyer's bubbles; box read-aloud r0: the "then" link, the choppy run, the source line said plainly; our own words for research/PROVEN.md row 19, EXAMPLE)
+# Script: Worth without you (proven, r3, Nov 8; takes 5 and 6 re-rolled (158 and 204 wpm), take 6 with a landing beat; pre-voice facts r0: no "because" tying the answers to a higher price, the number called a real number not the stake, the owner-earnings base said plainly, the buyer is "she" like the k.client bubbles; box read-aloud r1: the paper named as what it is, the three questions stay three as the buyer's bubbles; box read-aloud r0: the "then" link, the choppy run, the source line said plainly; our own words for research/PROVEN.md row 19, EXAMPLE)
 
 [conversational] You want a million for your shop. She offers half.
 
@@ -10,4 +10,4 @@ So start this week. Hand this list to your office manager. Write down how we ans
 
 Here's a real number. The ACHR News, the heating and cooling trade paper, says HVAC shops in Florida sold in 2025 for two point seven three times what the owner earns from them in a year. So make sure those earnings don't leave with you.
 
-So when she makes her offer and asks who answers the phone... what will you tell her?
+So when she makes her offer... and asks who answers the phone... what will you tell her?

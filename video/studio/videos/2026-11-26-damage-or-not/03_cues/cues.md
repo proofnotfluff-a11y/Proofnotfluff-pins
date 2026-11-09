@@ -1,6 +1,65 @@
-# Cues: <title>
+# Cues: Damage or not (proven, our own version of PROVEN.md row 3; Nov 8, 2026)
 
-music: quiet-math 0.16
+music: rooms night
 
-## hook "<first three to six words>" [sfx: pop]
-What is on screen; what Snow does.
+Every string the scene draws is written below exactly as drawn (cues.md rule from 2026-11-26). The HUD reads DAMAGE OR NOT.
+
+## hook "Is that hail damage, or" [sfx: pop]
+Frame 0 is the cover (k.coverBoard, no reveal): HAIL DAMAGE? as the hero, OR JUST AN OLD ROOF? under it, the EXAMPLE tag
+on its own row, over a storm sky with hail falling. At 0.7 s a blinds cut (k.cut) to the roof close-up: rows of
+shingles, a scatter of dark marks, some round, some streaked; the hook stays up on a title plate: HAIL DAMAGE? / OR JUST
+AN OLD ROOF?, with EXAMPLE. At 2.3 s an iris cut to the driveway: a two-flat with a shingled roof, the homeowner
+(k.client, homeowner, arms folded, cross) on the driveway facing us, as if we are the roofer; Snow at the left. The
+EXAMPLE tag stays up from the cover through the driveway shot (facts storyboard r0).
+
+## hook.she "She's sure it's hail." [sfx: blip]
+Her bubble types on, line by line: IT'S HAIL. / WRITE IT UP FOR / MY INSURANCE. She points up at the roof, then argues
+(palms up). The EXAMPLE tag sits under the bubble on its own row.
+
+## hook.today "today." [sfx: stamp]
+TODAY. stamps on the bubble's corner. She folds her arms again.
+
+## trap "Call it from the driveway," [sfx: whoosh]
+A split screen, two halves on a slant: SAY NO on the left, SAY YES on the right, both dim. Snow shrugs between them.
+
+## trap.no "Say no, and she" [sfx: blip]
+The left half lights: the homeowner with her phone to her ear (k.client phone), a phone card beside her: SHE CALLS /
+ANOTHER ROOFER. EXAMPLE on the left.
+
+## trap.yes "Say yes, and the" [sfx: blip]
+The right half lights: THE ADJUSTER (k.client, buyer role, grey jacket and tie, arms folded), his bubble: NOT HAIL.
+WEAR. EXAMPLE on the right.
+
+## trap.word "your word against his." [sfx: stamp]
+YOUR WORD VS HIS stamps across the split.
+
+## send "So don't call it." [send] [sfx: whoosh]
+The send card (k.sendCard), slides up and holds dead still: FOR YOUR ESTIMATOR / BEFORE YOU SAY HAIL / 1 THE HOUSE
+AND ADDRESS / 2 A CHALK SQUARE EACH SLOPE / 3 EVERY HIT CIRCLED / 4 VENTS AND GUTTERS, the EXAMPLE tag on its own row.
+Each step goes from grey to ink on its words (house, chalk, circled, vents). The background stripes drift; the card
+never moves.
+
+## receipt "Triple-I says hail is" [sfx: blip]
+Triple-I's line on a card, typed on: TRIPLE-I / "Hail alone accounts for as much as 80% of severe convective storm
+claims in any given year" with its source tag: Source: Triple-I release, severe convective storms, Apr 14, 2026 (Business Wire). Read Nov 8, 2026.
+
+## receipt.share "as much as eighty" [sfx: tick]
+A fade4 cut to the gauge (k.sets.gauge): AS MUCH AS sits above the readout from the first frame (facts storyboard r0),
+the needle rises to 80 and the readout counts to 80% (data.js), and a plate under it: OF SEVERE STORM CLAIMS / IN A
+YEAR ARE HAIL. Pixel hail keeps falling behind the gauge.
+
+## receipt.again "storm after storm." [sfx: chime]
+STORM AFTER STORM stamps under the plate.
+
+## why "Now she sees what" [sfx: chime]
+The tablet: four photos in a grid (the house, a chalk square with circled hits and a tape, a close hit, a dented vent).
+The homeowner (calm) leans in beside it. The EXAMPLE tag on its own row under the tablet, up through the adjuster beat
+(facts storyboard r0).
+
+## why.adjuster "So does the adjuster." [sfx: blip]
+The adjuster steps in on the other side, calm. SAME PHOTOS stamps on "Same photos", SAME ROOF under it on "roof".
+
+## button "Let the photos make" [sfx: whoosh]
+Back on the roof close-up, now with a chalk square and every hit circled. A plate: WHAT WOULD YOU TELL HER? Two choice
+cards under it: HAIL DAMAGE and OLD ROOF, a cursor blinking between them, EXAMPLE on the roof. Holds into the end card:
+Send this to your estimator before the next storm.

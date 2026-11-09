@@ -1500,8 +1500,8 @@ PROVEN_GATES = ("qa", "facts", "facts-captions", "render-critic", "send", "desig
 def gates_for(slug):
     if lesson_format(slug) == "short":
         return SHORT_GATES
-    if lesson_format(slug) == "proven":
-        return PROVEN_GATES
+    if lesson_format(slug) == "proven":   # a source-matched experiment has no send card, so no send gate (Todd, Nov 8, 8:25 pm)
+        return tuple(g for g in PROVEN_GATES if g != "send") if source_matched(slug) else PROVEN_GATES
     if lesson_format(slug) != "story":
         return GATES
     rev = vdir(slug, "05_render", "reviews")
@@ -2338,7 +2338,7 @@ def captions_problems(slug):
         if not lo <= n <= hi: out.append(f"{pl}: {n} hashtags ({lo} to {hi})")
         if re.search(r"(?i)#(fyp|foryou|viral)\b", text): out.append(f"{pl}: banned hashtag")
         if re.search("[\u2013\u2014]", text): out.append(f"{pl}: an em or en dash")
-    if proven_hook_hard(slug):   # decision 4 (Todd, Nov 8): a judge-the-scene question in each caption and the YouTube title
+    if lesson_format(slug) == "proven" and os.path.basename(slug)[:10] >= STUDIO_V3_FROM and not slug.endswith(HOOKB_SUFFIX):   # decision 4 (Todd, Nov 8): a judge-the-scene question in each caption and the YouTube title
         for pl in ("instagram", "tiktok", "facebook"):
             body = [ln.strip() for ln in (d.get(pl, {}).get("caption") or "").split("\n") if ln.strip() and not ln.strip().startswith("#")]
             if not any(judge_question(ln) for ln in body[-4:]):
@@ -2388,7 +2388,7 @@ def variety_problems(slug, share):
     if seen and sets & set().union(*seen):
         out.append(f"reuses set pieces from the last two lessons: {', '.join(sorted(sets & set().union(*seen)))}")
     new = sets - set().union(*seen) if seen else sets
-    if len(new) < 3:
+    if len(new) < 3 and not source_matched(slug):   # a source-matched experiment draws what its source shows (Todd, Nov 8, 8:25 pm)
         out.append(f"{len(new)} set piece(s) new against the two lessons before (at least 3)")
     return out
 
@@ -2754,7 +2754,33 @@ def is_modern(slug):
     return lesson_format(slug) != "v1"
 
 
+# Source-matched experiments (Todd, live chat, Nov 8, 2026, 8:25 pm: "#1 let's not keep strict rules or a standard template.
+# We need to experiment to see what works. We'll keep testing different viral videos to learn what works."). A proven
+# lesson whose brief.md says `- **Match:** source` takes its source's structure: its length (`- **Source length:** N s`,
+# within 20%, plus our end card), its beat order, whether it answers. Off for it: the send card and the send gate, the
+# hard hook (12 words by 3.6 s, a 5 to 8 word cover), the opening move rotation and the 3 new set pieces. Every honesty
+# rule stays: facts, facts on captions, EXAMPLE tags, the copy check, our own art and words, render critic, design.
+MATCH_LINE = re.compile(r"(?im)^- \*\*Match:\*\*\s*source\b")
+SOURCE_LEN = re.compile(r"(?im)^- \*\*Source length:\*\*\s*(\d+(?:\.\d+)?)\s*s\b")
+
+
+def matched_band(seconds, end_card=3.1):
+    return (round(max(8.0, seconds * 0.8), 2), round(seconds * 1.2 + end_card, 2))
+
+
+def source_matched(slug):
+    if lesson_format(slug) != "proven":
+        return False
+    bp = vdir(slug, "01_voice", "brief.md")
+    return os.path.exists(bp) and bool(MATCH_LINE.search(open(bp, encoding="utf-8").read()))
+
+
 def length_band(slug):
+    if source_matched(slug):
+        m = SOURCE_LEN.search(open(vdir(slug, "01_voice", "brief.md"), encoding="utf-8").read())
+        if not m:
+            raise SystemExit(f"ERROR {slug}: a source-matched lesson needs '- **Source length:** <seconds> s' in brief.md")
+        return matched_band(float(m.group(1)))
     f = FORMATS.get(lesson_format(slug))
     return (f["min_seconds"], f["max_seconds"]) if f else (45.0, HOOK["max_seconds"])
 
@@ -2901,7 +2927,7 @@ def send_still_seconds(samples, step):
 
 
 def send_applies(slug):
-    return os.path.basename(slug)[:10] >= SEND_FROM and lesson_format(slug) in GUIDE_FORMATS
+    return os.path.basename(slug)[:10] >= SEND_FROM and lesson_format(slug) in GUIDE_FORMATS and not source_matched(slug)
 
 
 def _phrase(s):
@@ -3483,6 +3509,11 @@ def cmd_selftest():
         ("first: not before tomorrow, tonight's evening slot keeps the old head", (pick_next(queue_first(q0, dict(new_, notBefore=t_(0, 9))), dt.datetime(2026, 11, 8, 20, 14, tzinfo=tz), fmt_, par_)[0] or {}).get("slug") != "2026-11-03-waits", False),
         ("first: not before tomorrow, the Nov 9 lunch slot takes it", (pick_next(queue_first(q0, dict(new_, notBefore=t_(0, 9))), lunch, fmt_, par_)[0] or {}).get("slug") != "2026-11-26-new", False),
         ("first: planted bug, no not-before, tonight's slot takes it early", (pick_next(qf, dt.datetime(2026, 11, 8, 20, 14, tzinfo=tz), fmt_, par_)[0] or {}).get("slug") == "2026-11-26-new", True),
+        ("match: a brief with the Match line is matched", not MATCH_LINE.search("- **Format:** proven\n- **Match:** source\n"), False),
+        ("match: a brief without it is not", MATCH_LINE.search("- **Format:** proven\n- **Source:** x\n"), False),
+        ("match: a 20 s source gives 16 to 27.1 s with the end card", matched_band(20.0) != (16.0, 27.1), False),
+        ("match: a 57 s cut of a 20 s source is out of the band", not (57.07 > matched_band(20.0)[1]), False),
+        ("match: the length line parses", (SOURCE_LEN.search("- **Source length:** 20 s") or [None, ''])[1] != '20', False),
         ("first: planted bug, put at the very end", (pick_next(q0 + [new_], lunch, fmt_, par_)[0] or {}).get("slug") != "2026-11-26-new", True),
     ]
     right = 0
@@ -3519,7 +3550,7 @@ COVER_WORDS = (5, 8)
 
 
 def proven_hook_hard(slug):
-    return lesson_format(slug) == "proven" and os.path.basename(slug)[:10] >= STUDIO_V3_FROM and not slug.endswith(HOOKB_SUFFIX)
+    return lesson_format(slug) == "proven" and not source_matched(slug) and os.path.basename(slug)[:10] >= STUDIO_V3_FROM and not slug.endswith(HOOKB_SUFFIX)
 
 
 def script_hook_words(text):
@@ -3976,7 +4007,10 @@ def hook_move(sentence):
 
 
 def opener_move_problems(slug):
-    """The opening's variety against the 6 lessons made before it (by slug date)."""
+    """The opening's variety against the 6 lessons made before it (by slug date). A source-matched experiment opens the
+    way its source does (Todd, Nov 8, 8:25 pm), so it is not held to our own rotation."""
+    if source_matched(slug):
+        return []
     return opener_text_problems(first_sentence(slug), [(d, first_sentence(d)) for d in lessons_before(slug, 6)])
 
 

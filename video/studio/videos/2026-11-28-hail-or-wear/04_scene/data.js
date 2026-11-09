@@ -1,0 +1,1 @@
+window.DATA = {"file": "video/studio/videos/2026-11-28-hail-or-wear/01_voice/facts.json", "commit": "", "sha256": "9e27895b726b227c85117e494768cf6d0bf81a262614d5817421821dd5c347bf", "numbers": {}, "pull": {}};

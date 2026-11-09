@@ -88,6 +88,7 @@ story took up to 28 script rounds a lesson; faceless channels grow by making the
 Ideas and formats aren't owned; words, footage and art are. Our edge is the version: made for trade owners, one checked
 number, our pixel style, the send moment.
 - **Every new lesson is proven** (Todd, live chat, Nov 8, 2026: "Going forward all videos should use this method."); no story lessons.
+- **Match the source** (Todd, live chat, Nov 8, 2026, 8:25 pm: "let's not keep strict rules or a standard template. We need to experiment to see what works."): brief.md `- **Match:** source` and `- **Source length:** N s` make a proven lesson take its source's structure: length within 20% (plus the end card), beat order, voice or none, answer or none. Off for it: the send card and gate, the hard hook, the 50 to 65 s band, the opening rotation, the 3 new sets. Kept: facts, EXAMPLE tags, the copy check, our own words and art. Only what we cannot copy changes (their footage and words). Where our pipeline forces a change (every picture is timed to a voice), say so in brief.md.
 - **Act it out, once** (Todd, video-lab chat, Nov 8, 2026, decision 3: "Yes, build it, test on 1 lesson"): the next
   proven lesson made from a two-person money row (a customer who won't pay, a lowball buyer: `nextlane` pick order) plays
   the source's conflict as a scene with `k.client` facing the viewer as if the viewer is the tech or the seller (her

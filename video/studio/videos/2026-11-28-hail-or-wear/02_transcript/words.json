@@ -1,0 +1,338 @@
+{
+ "schema": "pnf.studio.words.v1",
+ "source": "estimate",
+ "about": "Stand-in timings from script.md; never rendered for posting.",
+ "words": [
+  {
+   "w": "Hail",
+   "start": 0.15,
+   "end": 0.428,
+   "take": 1
+  },
+  {
+   "w": "or",
+   "start": 0.478,
+   "end": 0.672,
+   "take": 1
+  },
+  {
+   "w": "wear?",
+   "start": 0.722,
+   "end": 1.042,
+   "take": 1
+  },
+  {
+   "w": "You",
+   "start": 1.312,
+   "end": 1.548,
+   "take": 1
+  },
+  {
+   "w": "make",
+   "start": 1.598,
+   "end": 1.876,
+   "take": 1
+  },
+  {
+   "w": "the",
+   "start": 1.926,
+   "end": 2.162,
+   "take": 1
+  },
+  {
+   "w": "call.",
+   "start": 2.212,
+   "end": 2.532,
+   "take": 1
+  },
+  {
+   "w": "Look",
+   "start": 2.802,
+   "end": 3.08,
+   "take": 1
+  },
+  {
+   "w": "close",
+   "start": 3.13,
+   "end": 3.45,
+   "take": 1
+  },
+  {
+   "w": "at",
+   "start": 3.5,
+   "end": 3.694,
+   "take": 1
+  },
+  {
+   "w": "these",
+   "start": 3.744,
+   "end": 4.064,
+   "take": 1
+  },
+  {
+   "w": "round",
+   "start": 4.114,
+   "end": 4.434,
+   "take": 1
+  },
+  {
+   "w": "marks,",
+   "start": 4.484,
+   "end": 4.846,
+   "take": 1
+  },
+  {
+   "w": "each",
+   "start": 4.996,
+   "end": 5.274,
+   "take": 1
+  },
+  {
+   "w": "one",
+   "start": 5.324,
+   "end": 5.56,
+   "take": 1
+  },
+  {
+   "w": "the",
+   "start": 5.61,
+   "end": 5.846,
+   "take": 1
+  },
+  {
+   "w": "size",
+   "start": 5.896,
+   "end": 6.174,
+   "take": 1
+  },
+  {
+   "w": "of",
+   "start": 6.224,
+   "end": 6.418,
+   "take": 1
+  },
+  {
+   "w": "a",
+   "start": 6.468,
+   "end": 6.62,
+   "take": 1
+  },
+  {
+   "w": "dime,",
+   "start": 6.67,
+   "end": 6.99,
+   "take": 1
+  },
+  {
+   "w": "with",
+   "start": 7.14,
+   "end": 7.418,
+   "take": 1
+  },
+  {
+   "w": "the",
+   "start": 7.468,
+   "end": 7.704,
+   "take": 1
+  },
+  {
+   "w": "granules",
+   "start": 7.754,
+   "end": 8.2,
+   "take": 1
+  },
+  {
+   "w": "gone.",
+   "start": 8.25,
+   "end": 8.57,
+   "take": 1
+  },
+  {
+   "w": "But",
+   "start": 9.19,
+   "end": 9.426,
+   "take": 2
+  },
+  {
+   "w": "the",
+   "start": 9.476,
+   "end": 9.712,
+   "take": 2
+  },
+  {
+   "w": "whole",
+   "start": 9.762,
+   "end": 10.082,
+   "take": 2
+  },
+  {
+   "w": "roof",
+   "start": 10.132,
+   "end": 10.41,
+   "take": 2
+  },
+  {
+   "w": "is",
+   "start": 10.46,
+   "end": 10.654,
+   "take": 2
+  },
+  {
+   "w": "worn.",
+   "start": 10.704,
+   "end": 11.024,
+   "take": 2
+  },
+  {
+   "w": "There's",
+   "start": 11.294,
+   "end": 11.698,
+   "take": 2
+  },
+  {
+   "w": "a",
+   "start": 11.748,
+   "end": 11.9,
+   "take": 2
+  },
+  {
+   "w": "dent",
+   "start": 11.95,
+   "end": 12.228,
+   "take": 2
+  },
+  {
+   "w": "in",
+   "start": 12.278,
+   "end": 12.472,
+   "take": 2
+  },
+  {
+   "w": "the",
+   "start": 12.522,
+   "end": 12.758,
+   "take": 2
+  },
+  {
+   "w": "vent",
+   "start": 12.808,
+   "end": 13.086,
+   "take": 2
+  },
+  {
+   "w": "and",
+   "start": 13.136,
+   "end": 13.372,
+   "take": 2
+  },
+  {
+   "w": "none",
+   "start": 13.422,
+   "end": 13.7,
+   "take": 2
+  },
+  {
+   "w": "in",
+   "start": 13.75,
+   "end": 13.944,
+   "take": 2
+  },
+  {
+   "w": "the",
+   "start": 13.994,
+   "end": 14.23,
+   "take": 2
+  },
+  {
+   "w": "gutter.",
+   "start": 14.28,
+   "end": 14.684,
+   "take": 2
+  },
+  {
+   "w": "She",
+   "start": 14.954,
+   "end": 15.19,
+   "take": 2
+  },
+  {
+   "w": "says",
+   "start": 15.24,
+   "end": 15.518,
+   "take": 2
+  },
+  {
+   "w": "it's",
+   "start": 15.568,
+   "end": 15.846,
+   "take": 2
+  },
+  {
+   "w": "hail,",
+   "start": 15.896,
+   "end": 16.216,
+   "take": 2
+  },
+  {
+   "w": "and",
+   "start": 16.366,
+   "end": 16.602,
+   "take": 2
+  },
+  {
+   "w": "you're",
+   "start": 16.652,
+   "end": 17.014,
+   "take": 2
+  },
+  {
+   "w": "the",
+   "start": 17.064,
+   "end": 17.3,
+   "take": 2
+  },
+  {
+   "w": "estimator.",
+   "start": 17.35,
+   "end": 17.88,
+   "take": 2
+  },
+  {
+   "w": "So,",
+   "start": 18.15,
+   "end": 18.386,
+   "take": 2
+  },
+  {
+   "w": "hail",
+   "start": 18.536,
+   "end": 18.814,
+   "take": 2
+  },
+  {
+   "w": "or",
+   "start": 18.864,
+   "end": 19.058,
+   "take": 2
+  },
+  {
+   "w": "wear?",
+   "start": 19.108,
+   "end": 19.428,
+   "take": 2
+  }
+ ],
+ "takes": [
+  {
+   "n": 1,
+   "start": 0.15,
+   "end": 8.84
+  },
+  {
+   "n": 2,
+   "start": 9.19,
+   "end": 19.698
+  }
+ ],
+ "end": 19.428
+}

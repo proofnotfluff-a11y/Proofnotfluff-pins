@@ -1,0 +1,25 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "stage": "script, before voice",
+ "reviewer": "fresh opus agent",
+ "pass": false,
+ "score": {"numbers": 0, "mismatches": 0},
+ "reasons": [
+  "script.md para 1 'with the granules knocked off': the only line that names a cause. 'Knocked off' says something struck the shingle, which leans the viewer toward hail, but the brief says the voice only describes and never answers, and granules also go missing from plain age. Fix: 'with the granules gone' (and the same words in facts.json example.what and the brief.md claims table, which both say 'knocked off').",
+  "script.md para 2 'But it's an old roof': the roof's age is a fact about the story that is not in facts.json or the brief.md claims table, and a drawing cannot show age, only wear. It is also a second hint toward wear. Fix, either: cut to 'But it's worn all over.' or add 'an old roof' to facts.json example.what and the claims table so the record matches what is said. Pick one before voice.",
+  "script.md para 2 closing 'So, damage or not?' (recommended, not blocking): the open asks 'Hail or wear?' and the brief's last beat is 'the question again with two choices'. If the end frame draws HAIL and WEAR, the spoken question should match it: 'So, hail or wear?' 'Damage or not' also quietly treats wear as no damage, which is insurance shorthand, not something the lesson shows. Whatever two choices cues.md draws must be the two the voice says.",
+  "script.md 'each one the size of a dime' (note for cues and scene): a description of our drawing, not a hail-size claim, so it needs no source. The drawn marks must actually read dime sized against the shingle (a mark about an eighth of one shingle course tall), or cut the phrase.",
+  "script.md para 2 'There's a dent in the vent and none in the gutter' and 'She says it's hail': both are clues and a story line, not verdicts. Pass. Keep the scene from adding any label, arrow or caption that says what a mark means (no 'HAIL HIT', no 'WEAR', no 'CONFIRMED').",
+  "Honesty (note for cues and scene): the homeowner is unnamed and drawn; keep it that way, with EXAMPLE on every roof close-up, the vent, the gutter and her driveway shot, no house number or street sign, no brand on the vent or gutter. cues.md is still a template (0 EXAMPLE strings today), so the storyboard round must check this.",
+  "brief.md names the source channel (Roofing Insights) via PROVEN.md row 3 and the source link: fine as a source in the brief; it must not appear on screen or in captions.",
+  "Rule 5 trades first: no outside claim and no number, so nothing rests on a non-trade study. Pass.",
+  "Rule 6 dashes: no em or en dash in facts.json, brief.md, script.md or data.js (grep for U+2013 and U+2014 found none). Pass.",
+  "Numbers: brief.md numbers block is {} and data.js numbers is {}; data.js sha256 7c8030b0... matches facts.json exactly. No number is spoken or drawn. Pass."
+ ],
+ "sources_checked": [
+  "No outside URL to open: facts.json carries no source by design (source-matched experiment, formats.md 'Match the source').",
+  "research/PROVEN.md row 3 (https://www.youtube.com/shorts/1xb3Cz8A74M, not opened; structure only): 20 s, a question over roof footage, no voice, no answer. The script keeps that structure: one question, clues, no answer.",
+  "04_scene/data.js: sha256 matches 01_voice/facts.json; numbers empty, as the brief says."
+ ]
+}

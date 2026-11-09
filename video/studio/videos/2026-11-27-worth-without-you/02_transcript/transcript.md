@@ -1,6 +1,6 @@
 # Transcript: 2026-11-27-worth-without-you
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 160 words, 56.6 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 160 words, 56.8 s of voice.
 
 ## Flags
 none
@@ -11,8 +11,8 @@ none
   02     3.6 s  165 wpm  
   03    12.2 s  175 wpm  
   04    24.2 s  185 wpm  
-  05    34.6 s  158 wpm  
-  06    52.0 s  204 wpm  fast: give it a landing beat, then speak --take 6
+  05    34.6 s  159 wpm  
+  06    51.9 s  194 wpm  
 ```
 
 ## Words
@@ -47,8 +47,10 @@ none
 
 `00:36.2` The ACHR News, the heating and cooling trade paper, says HVAC shops in Florida sold in 2025 for two point seven three times what the owner earns from them in a year.
 
-`00:48.6` So make sure those earnings don't leave with you.
+`00:48.5` So make sure those earnings don't leave with you.
 
-`00:52.0` So when she makes her offer and asks who answers the phone...
+`00:51.9` So when she makes her offer...
 
-`00:55.9` what will you tell her?
+`00:53.1` and asks who answers the phone...
+
+`00:56.0` what will you tell her?

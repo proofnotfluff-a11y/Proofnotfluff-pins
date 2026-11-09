@@ -164,6 +164,15 @@ window.SCENE = {
       d.P(0, 0, 360, 417, '#2B3A4E'); { const so = d.F % 20; for (let x = so - 20; x < 360; x += 20) d.P(Math.max(0, x), 0, Math.max(0, Math.min(x + 10, 360) - Math.max(0, x)), 417, '#34465C'); }
       k.cut(t0);
       const c = k.sendCard({at: t0, who: 'FOR YOUR DRIVER', title: 'BEFORE YOU LIFT', lines: CARD, linesOn: on});
+      /* render critic r0 (round 3): the spoken "four hundred" on screen while it is said, beside [YOUR PRICE], tagged */
+      /* EXAMPLE; gone by "Good" so the full card holds clean */
+      const tFour = w(/^four/i, 7.2), tGood = on[3];
+      if (c && T >= tFour && T < tGood && c.lineY && c.lineY[2] != null) {
+        const y = c.lineY[2] - 6, x = 560;
+        k.shape(k.rectPts(x + 6, y + 6, 258, 72, 0), {fill: INK, line: false}); k.shape(k.rectPts(x, y, 258, 72, 0), {fill: GOLD, line: false});
+        k.text('E.G. $400', x + 18, y + 10, {size: 52, color: INK});
+        k.exampleTag(x, y + 84);
+      }
       return host(k, c ? 'point' : null);
     },
 

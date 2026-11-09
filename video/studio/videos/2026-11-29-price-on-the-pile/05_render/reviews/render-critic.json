@@ -1,10 +1,17 @@
 {
  "gate": "render-critic",
  "round": 0,
- "pass": true,
- "reviewer": "claude opus (fresh agent), 2026-11-09, rerun after fix round 2",
+ "pass": false,
+ "reviewer": "claude opus (fresh agent), 2026-11-09, on render r3",
  "score": {
-  "faults": 0
+  "faults": 1
  },
- "faults": []
+ "faults": [
+  {
+   "kind": "number-readable",
+   "at": 22.75,
+   "text": "This load is four hundred.",
+   "what": "spoken four hundred not on screen; the card shows [YOUR PRICE]"
+  }
+ ]
 }

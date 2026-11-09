@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-11-29-price-on-the-pile",
- "mp4Sha256": "39f6ba55be74f93f8bcd6bfc9737db6b08d299dfe07f22e89518e88546445cca",
+ "mp4Sha256": "e6e0a03f5831217bd94c0a5fe7a1daac5a43cb40b79a2921a1c6958f284cf15a",
  "checks": [
   {
    "name": "length",
@@ -44,8 +44,8 @@
   {
    "name": "file",
    "value": {
-    "sha256": "39f6ba55be74f93f8bcd6bfc9737db6b08d299dfe07f22e89518e88546445cca",
-    "bytes": 4285867
+    "sha256": "e6e0a03f5831217bd94c0a5fe7a1daac5a43cb40b79a2921a1c6958f284cf15a",
+    "bytes": 4293276
    },
    "pass": true,
    "detail": "H.264 1080x1920 30 fps, AAC, 4.3 MB, decodes clean"
@@ -58,5 +58,5 @@
   }
  ],
  "pass": true,
- "at": "2026-11-09T13:50:23-05:00"
+ "at": "2026-11-09T14:14:33-05:00"
 }

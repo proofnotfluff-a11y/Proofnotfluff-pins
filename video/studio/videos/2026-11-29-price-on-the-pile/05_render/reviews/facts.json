@@ -2,12 +2,13 @@
  "gate": "facts",
  "round": 0,
  "pass": true,
- "reviewer": "claude opus (fresh agent), 2026-11-09, rerun after fix round 2",
+ "reviewer": "claude opus (fresh agent), 2026-11-09, on render r3",
  "score": {
-  "numbers": 11,
+  "numbers": 3,
   "mismatches": 0
  },
- "reasons": [
-  "advisory only"
+ "reasons": [],
+ "notes": [
+  "achrnews.com unreachable; judged against facts.json confirms (two page reads, Nov 9); the Dec 23, 2024 date rests on facts.json"
  ]
 }

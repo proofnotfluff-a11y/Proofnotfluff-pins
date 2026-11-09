@@ -17,14 +17,14 @@ with an EXAMPLE tag. On "dump" a stamp on a plate: DUMP IT BACK?
 A plain cut to the same drive before the job: the pile still on the drive, nothing loaded yet, the homeowner calm. A plate
 left of the house reads BEFORE YOU LOAD from the cut (the rewind said on screen); on "say": SAY THE PRICE, then AT THE PILE.
 
-## send "Before anything gets" [send] [sfx: blip]
+## send "Tell your driver:" [send] [sfx: blip]
 The send card on a plain cut, built line by line as each line is spoken: FOR YOUR DRIVER (the band) / BEFORE YOU LIFT
 (the title) from the cut; POINT AT THE PILE on "point"; "THIS LOAD IS [YOUR PRICE]. on "This"; GOOD TO START?" on
-"Good"; WAIT FOR HER YES on "wait"; NO YES, NO LIFT. on "No". Full, it holds still about 3 s (through "A yes before the work"); only the stripes
+"Good"; WAIT FOR HER YES on "wait"; NO YES, NO LIFT. on "No". Full, it holds still about 3 s (through "Not one box."); only the stripes
 behind it drift. No EXAMPLE tag on the card (no made-up number on it).
 
-## why "is a deal." [sfx: stamp]
-On "is" a plain cut to two rows: top, teal: UP FRONT / A YES = A DEAL; bottom, red, on "price": AFTER THE WORK, then A PRICE = A FIGHT.
+## why "A yes before the" [sfx: stamp]
+On "A yes" a plain cut to two rows: top, teal: UP FRONT / A YES = A DEAL; bottom, red, on "price": AFTER THE WORK, then A PRICE = A FIGHT.
 The bottom row shakes once on "fight".
 
 ## receipt "In an ACHR News" [sfx: blip]

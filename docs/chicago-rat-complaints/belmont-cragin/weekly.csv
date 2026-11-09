@@ -1,5 +1,4 @@
 week_from,week_to,community_area,rat_complaints,restaurant_inspections,restaurant_pest_citations,restaurant_hood_citations
-2026-08-10,2026-08-16,Belmont Cragin,50,3,0,0
 2026-08-17,2026-08-23,Belmont Cragin,27,2,0,0
 2026-08-24,2026-08-30,Belmont Cragin,26,2,1,0
 2026-08-31,2026-09-06,Belmont Cragin,30,8,3,2
@@ -10,4 +9,5 @@ week_from,week_to,community_area,rat_complaints,restaurant_inspections,restauran
 2026-10-05,2026-10-11,Belmont Cragin,35,2,0,0
 2026-10-12,2026-10-18,Belmont Cragin,24,1,0,0
 2026-10-19,2026-10-25,Belmont Cragin,30,2,1,0
-2026-10-26,2026-11-01,Belmont Cragin,23,0,0,0
+2026-10-26,2026-11-01,Belmont Cragin,23,1,0,1
+2026-11-02,2026-11-08,Belmont Cragin,34,2,0,1

@@ -1,5 +1,4 @@
 week_from,week_to,community_area,rat_complaints,restaurant_inspections,restaurant_pest_citations,restaurant_hood_citations
-2026-08-10,2026-08-16,Ashburn,23,0,0,0
 2026-08-17,2026-08-23,Ashburn,22,2,0,0
 2026-08-24,2026-08-30,Ashburn,24,2,0,1
 2026-08-31,2026-09-06,Ashburn,17,0,0,0
@@ -10,4 +9,5 @@ week_from,week_to,community_area,rat_complaints,restaurant_inspections,restauran
 2026-10-05,2026-10-11,Ashburn,12,1,0,0
 2026-10-12,2026-10-18,Ashburn,17,0,0,0
 2026-10-19,2026-10-25,Ashburn,22,1,1,0
-2026-10-26,2026-11-01,Ashburn,8,1,0,0
+2026-10-26,2026-11-01,Ashburn,8,2,0,0
+2026-11-02,2026-11-08,Ashburn,9,3,1,0

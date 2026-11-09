@@ -1,5 +1,4 @@
 week_from,week_to,community_area,rat_complaints,restaurant_inspections,restaurant_pest_citations,restaurant_hood_citations
-2026-08-10,2026-08-16,South Lawndale,20,3,2,0
 2026-08-17,2026-08-23,South Lawndale,27,4,1,0
 2026-08-24,2026-08-30,South Lawndale,25,1,1,0
 2026-08-31,2026-09-06,South Lawndale,14,1,1,0
@@ -10,4 +9,5 @@ week_from,week_to,community_area,rat_complaints,restaurant_inspections,restauran
 2026-10-05,2026-10-11,South Lawndale,24,3,1,1
 2026-10-12,2026-10-18,South Lawndale,23,4,2,0
 2026-10-19,2026-10-25,South Lawndale,23,4,0,0
-2026-10-26,2026-11-01,South Lawndale,19,0,0,0
+2026-10-26,2026-11-01,South Lawndale,19,2,0,0
+2026-11-02,2026-11-08,South Lawndale,17,0,0,0

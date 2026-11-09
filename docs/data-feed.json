@@ -11,10 +11,10 @@
    "source": "Chicago 311",
    "schedule": "Updated every Monday",
    "headline": {
-    "value": "1,022",
+    "value": "948",
     "label": "rat complaints to 311 in the last 7 days"
    },
-   "pageUpdated": "2026-11-02",
+   "pageUpdated": "2026-11-09",
    "downloads": [
     "https://proofnotfluff.com/chicago-rat-complaints/rat-index.csv"
    ]

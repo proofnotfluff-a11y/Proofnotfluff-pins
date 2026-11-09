@@ -1,5 +1,4 @@
 week_from,week_to,community_area,rat_complaints,restaurant_inspections,restaurant_pest_citations,restaurant_hood_citations
-2026-08-10,2026-08-16,Lincoln Park,59,6,0,0
 2026-08-17,2026-08-23,Lincoln Park,26,9,0,0
 2026-08-24,2026-08-30,Lincoln Park,34,10,1,0
 2026-08-31,2026-09-06,Lincoln Park,51,6,1,0
@@ -10,4 +9,5 @@ week_from,week_to,community_area,rat_complaints,restaurant_inspections,restauran
 2026-10-05,2026-10-11,Lincoln Park,30,3,0,0
 2026-10-12,2026-10-18,Lincoln Park,32,2,0,0
 2026-10-19,2026-10-25,Lincoln Park,31,6,1,1
-2026-10-26,2026-11-01,Lincoln Park,46,0,0,0
+2026-10-26,2026-11-01,Lincoln Park,46,3,0,1
+2026-11-02,2026-11-08,Lincoln Park,37,0,0,0

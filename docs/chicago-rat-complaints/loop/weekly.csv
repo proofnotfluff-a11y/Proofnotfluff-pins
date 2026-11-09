@@ -1,5 +1,4 @@
 week_from,week_to,community_area,rat_complaints,restaurant_inspections,restaurant_pest_citations,restaurant_hood_citations
-2026-08-10,2026-08-16,Loop,2,14,3,4
 2026-08-17,2026-08-23,Loop,4,9,5,1
 2026-08-24,2026-08-30,Loop,1,8,1,1
 2026-08-31,2026-09-06,Loop,3,9,1,1
@@ -10,4 +9,5 @@ week_from,week_to,community_area,rat_complaints,restaurant_inspections,restauran
 2026-10-05,2026-10-11,Loop,4,17,2,7
 2026-10-12,2026-10-18,Loop,0,13,0,1
 2026-10-19,2026-10-25,Loop,7,13,2,3
-2026-10-26,2026-11-01,Loop,5,3,0,0
+2026-10-26,2026-11-01,Loop,5,6,1,1
+2026-11-02,2026-11-08,Loop,5,12,1,0

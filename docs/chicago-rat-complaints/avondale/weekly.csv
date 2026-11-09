@@ -1,5 +1,4 @@
 week_from,week_to,community_area,rat_complaints,restaurant_inspections,restaurant_pest_citations,restaurant_hood_citations
-2026-08-10,2026-08-16,Avondale,19,0,0,0
 2026-08-17,2026-08-23,Avondale,27,3,0,0
 2026-08-24,2026-08-30,Avondale,28,2,0,0
 2026-08-31,2026-09-06,Avondale,21,0,0,0
@@ -10,4 +9,5 @@ week_from,week_to,community_area,rat_complaints,restaurant_inspections,restauran
 2026-10-05,2026-10-11,Avondale,21,0,0,0
 2026-10-12,2026-10-18,Avondale,19,1,0,0
 2026-10-19,2026-10-25,Avondale,17,1,1,1
-2026-10-26,2026-11-01,Avondale,24,0,0,0
+2026-10-26,2026-11-01,Avondale,24,1,1,0
+2026-11-02,2026-11-08,Avondale,13,0,0,0

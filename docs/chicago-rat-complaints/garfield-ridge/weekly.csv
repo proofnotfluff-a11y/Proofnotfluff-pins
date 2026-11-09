@@ -1,5 +1,4 @@
 week_from,week_to,community_area,rat_complaints,restaurant_inspections,restaurant_pest_citations,restaurant_hood_citations
-2026-08-10,2026-08-16,Garfield Ridge,23,6,2,1
 2026-08-17,2026-08-23,Garfield Ridge,32,2,1,0
 2026-08-24,2026-08-30,Garfield Ridge,23,2,0,0
 2026-08-31,2026-09-06,Garfield Ridge,25,2,0,0
@@ -10,4 +9,5 @@ week_from,week_to,community_area,rat_complaints,restaurant_inspections,restauran
 2026-10-05,2026-10-11,Garfield Ridge,36,1,0,0
 2026-10-12,2026-10-18,Garfield Ridge,28,2,0,0
 2026-10-19,2026-10-25,Garfield Ridge,33,3,0,2
-2026-10-26,2026-11-01,Garfield Ridge,32,0,0,0
+2026-10-26,2026-11-01,Garfield Ridge,32,1,0,0
+2026-11-02,2026-11-08,Garfield Ridge,27,4,0,0

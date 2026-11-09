@@ -1,5 +1,4 @@
 week_from,week_to,community_area,rat_complaints,restaurant_inspections,restaurant_pest_citations,restaurant_hood_citations
-2026-08-10,2026-08-16,North Lawndale,17,1,0,1
 2026-08-17,2026-08-23,North Lawndale,13,1,1,0
 2026-08-24,2026-08-30,North Lawndale,19,1,0,0
 2026-08-31,2026-09-06,North Lawndale,8,3,0,0
@@ -11,3 +10,4 @@ week_from,week_to,community_area,rat_complaints,restaurant_inspections,restauran
 2026-10-12,2026-10-18,North Lawndale,12,4,0,0
 2026-10-19,2026-10-25,North Lawndale,18,1,0,0
 2026-10-26,2026-11-01,North Lawndale,10,0,0,0
+2026-11-02,2026-11-08,North Lawndale,17,2,2,0

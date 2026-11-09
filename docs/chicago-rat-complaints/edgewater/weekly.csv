@@ -1,5 +1,4 @@
 week_from,week_to,community_area,rat_complaints,restaurant_inspections,restaurant_pest_citations,restaurant_hood_citations
-2026-08-10,2026-08-16,Edgewater,17,0,0,0
 2026-08-17,2026-08-23,Edgewater,17,4,0,0
 2026-08-24,2026-08-30,Edgewater,13,3,0,0
 2026-08-31,2026-09-06,Edgewater,8,0,0,0
@@ -11,3 +10,4 @@ week_from,week_to,community_area,rat_complaints,restaurant_inspections,restauran
 2026-10-12,2026-10-18,Edgewater,8,2,0,1
 2026-10-19,2026-10-25,Edgewater,9,3,0,0
 2026-10-26,2026-11-01,Edgewater,11,0,0,0
+2026-11-02,2026-11-08,Edgewater,6,0,0,0

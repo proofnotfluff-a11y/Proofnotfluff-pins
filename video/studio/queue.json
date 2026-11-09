@@ -794,6 +794,27 @@
    "note": "Todd, live chat, Nov 7, 2026, 7:20 PM: 'if they are already made you can post them both now. Then we move to the regular schedule with the top tier videos'. Moved right after after-hours-greeting (one lesson per run, so it takes the next slot)."
   },
   {
+   "slug": "2026-11-28-hail-or-wear",
+   "readyAt": "2026-11-08T22:14:11-05:00",
+   "commit": "578b7cca0af15421585d857b6c388bd5939c51bf",
+   "fingerprints": {
+    "script": "5d181fd1c465",
+    "takes": "687af0f00449",
+    "words": "fb11ac2f3f36",
+    "cues": "95baee9a344f",
+    "scene": "16dfd14cff29",
+    "data": "25b108ca600a",
+    "captions": "d75949baa4b2",
+    "mouth": "609dc9f23655",
+    "runtime_kit": "f6c60100b709",
+    "runtime_player": "0247e61a6184",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {},
+   "notBefore": "2026-11-10T00:00-06:00"
+  },
+  {
    "slug": "2026-11-26-damage-or-not",
    "readyAt": "2026-11-08T20:26:42-05:00",
    "commit": "527323dd69bed0e838727d8194ee7224cf4af0fc",

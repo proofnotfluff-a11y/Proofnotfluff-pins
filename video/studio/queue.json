@@ -972,6 +972,26 @@
     "runtime_pixfont": "a8557997756e"
    },
    "posts": {}
+  },
+  {
+   "slug": "2026-11-29-price-on-the-pile",
+   "readyAt": "2026-11-09T14:25:09-05:00",
+   "commit": "4ae000a46bb8c62efa7434466350c4d07a16532f",
+   "fingerprints": {
+    "script": "c073dcdab54c",
+    "takes": "9e3560283227",
+    "words": "85903bacdc7f",
+    "cues": "56168b86d100",
+    "scene": "4a93394f53dc",
+    "data": "11b06c94512c",
+    "captions": "b2bfebf75228",
+    "mouth": "5f1a72315d75",
+    "runtime_kit": "2cd6f7a7e3e6",
+    "runtime_player": "c3a5422cb53a",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

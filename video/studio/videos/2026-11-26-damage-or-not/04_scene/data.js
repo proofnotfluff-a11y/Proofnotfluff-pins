@@ -1,0 +1,1 @@
+window.DATA = {"file": "video/studio/videos/2026-11-26-damage-or-not/01_voice/facts.json", "commit": "", "sha256": "a5e3a520f92cde3f77d1ddb4dfc43a1bbc1b3f72dbc49119a9ed11ce6ce02f3b", "numbers": {"share": {"value": 80, "shown": "80%", "path": "hail.sharePct"}}, "pull": {}};

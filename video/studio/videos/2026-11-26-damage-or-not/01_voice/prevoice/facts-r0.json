@@ -1,0 +1,19 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "stage": "script, before voice",
+ "reviewer": "fresh opus agent",
+ "pass": true,
+ "score": {"numbers": 4, "mismatches": 0},
+ "reasons": [
+  "script.md para 4 'as much as eighty percent of severe storm claims in a year': matches the source (upper bound kept, base is claims, period one year). 'Severe storm' drops 'convective'; fair shorthand because the on-screen card carries the exact line with 'severe convective storm'. No fix required. Optional, if a line has room: 'severe hail and wind storm claims'.",
+  "script.md para 5 'So does the adjuster. Same photos, same roof.' and para 6 'Let the photos make the call.': advice, not a result; it promises no outcome, and the brief and facts.json rule out any claim about denial rates or what an adjuster decides. Keep it at that level: do not add any line saying photos win claims or change an adjuster's call.",
+  "script.md para 2 (say no, she calls another roofer; say yes, the adjuster may see it differently) and para 1 (her lines): story, worded with 'may', no rate implied; pass as EXAMPLE as long as her bubbles and the trap beats carry the EXAMPLE tag on screen.",
+  "brief.md Do this week card (FOR YOUR ESTIMATOR / BEFORE YOU SAY HAIL / 1 THE HOUSE AND ADDRESS / 2 A CHALK SQUARE EACH SLOPE / 3 EVERY HIT CIRCLED / 4 VENTS AND GUTTERS): reads as our suggestion, tagged EXAMPLE, says nothing about any insurer requiring a test square. Pass. Script says 'circled with a tape beside it', card says 'EVERY HIT CIRCLED'; consistent, no fix needed.",
+  "Trades first: Triple-I is the insurance industry's research body and the figure is about hail claims, the core of storm roofing work; the same page says roofs bear an estimated 70% to 90% of insured residential catastrophic losses. No 'this isn't the trades' caveat needed. Pass. The script does not claim hail is 80% of roofing claims (its population also includes auto and commercial claims), which is correct; keep it that way.",
+  "No real private person, business or address; no em or en dashes in brief.md, script.md, facts.json or data.js. data.js sha256 matches facts.json (a5e3a520...); share value 80, shown 80%."
+ ],
+ "sources_checked": [
+  "https://www.businesswire.com/news/home/20260414308638/en/: fetched Nov 8, 2026. Title 'Triple-I: Severe Convective Storms Generate More Than $50B in Insured Losses for Third Consecutive Year'; Issues Brief 'Severe Convective Storms: State of the Risk'; under the heading 'Hail Damage Generates Most Claims', the exact line 'Hail alone accounts for as much as 80% of severe convective storm claims in any given year' (matches facts.json confirms and the brief's Real screens card word for word). Page body has no dateline; the URL id 20260414 supports Apr 14, 2026. Page says nothing about adjusters, disputes or denials, so none are claimed."
+ ]
+}

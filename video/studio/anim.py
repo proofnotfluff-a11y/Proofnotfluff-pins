@@ -1532,7 +1532,17 @@ def save_queue(q):
     json.dump(q, open(QUEUE, "w"), indent=1); open(QUEUE, "a").write("\n")
 
 
-def cmd_ready(slug):
+def queue_first(items, item):
+    """`ready <slug> --first` (Todd, live chat, Nov 8, 2026, 5:10 pm: "Row 3 now, post tomorrow 11:37"): the gated lesson
+    goes ahead of every lesson still waiting (no platform up, not held), so the next slot posts it. A lesson already
+    started on some platform keeps its place (pick_next finishes it first anyway), and so does everything posted or held.
+    Returns a new list with the lesson in it once."""
+    rest = [i for i in items if i["slug"] != item["slug"]]
+    at = next((n for n, i in enumerate(rest) if not i.get("posts") and not i.get("hold")), len(rest))
+    return rest[:at] + [item] + rest[at:]
+
+
+def cmd_ready(slug, first=False):
     rev = vdir(slug, "05_render", "reviews")
     bad = []
     for g in gates_for(slug):
@@ -1572,8 +1582,11 @@ def cmd_ready(slug):
         raise SystemExit(f"ERROR ready: {slug} is already posted on {', '.join(q['items'][pos]['posts'])}")
     else:   # a rebuild on the newest runtime (queue rule) keeps its place in line
         q["items"][pos] = item
+    if first:   # Todd's word for this lesson in a live chat: first in the waiting line
+        q["items"] = queue_first(q["items"], item)
     save_queue(q)
-    print(f"ready: {slug} {'queued' if pos is None else 're-pinned at place ' + str(pos + 1)} ({len(q['items'])} in the queue)")
+    where = "first in the waiting line" if first else ("queued" if pos is None else "re-pinned at place " + str(pos + 1))
+    print(f"ready: {slug} {where} (place {[i['slug'] for i in q['items']].index(slug) + 1} of {len(q['items'])})")
 
 
 # ---------------------------------------------------------------- the second opening (hook B)
@@ -3433,6 +3446,33 @@ def cmd_selftest():
         ("judge: a statement is not one", judge_question("Get paid before the truck leaves."), False),
         ("judge: pay-before's real YouTube title has none", not judge_question("Get Paid Before the Truck Leaves (HVAC and Plumbing Business)"), True),
     ]
+    # ready --first (Todd, live chat, Nov 8, 2026, 5:10 pm): the lesson goes ahead of the waiting line, never ahead of a
+    # lesson already started, and the next slot then takes it
+    from zoneinfo import ZoneInfo
+    tz = ZoneInfo("America/Chicago")
+    t_ = lambda h, d=9: dt.datetime(2026, 11, d, h, 0, tzinfo=tz).isoformat()
+    up = lambda *ps: {p: {"url": "u", "at": t_(8, 8)} for p in ps}
+    q0 = [{"slug": "2026-11-01-posted", "readyAt": t_(1, 1), "posts": up(*PLATFORMS)},
+          {"slug": "2026-11-02-held", "readyAt": t_(1, 1), "posts": {}, "hold": "old gates"},
+          {"slug": "2026-11-03-waits", "readyAt": t_(1, 1), "posts": {}},
+          {"slug": "2026-11-04-waits", "readyAt": t_(1, 1), "posts": {}}]
+    new_ = {"slug": "2026-11-26-new", "readyAt": t_(19, 8), "posts": {}}
+    qf = queue_first(q0, new_)
+    order = [i["slug"] for i in qf]
+    fmt_, par_ = (lambda s_: "proven"), (lambda s_: None)
+    lunch = dt.datetime(2026, 11, 9, 11, 38, tzinfo=tz)
+    started = [dict(q0[0], slug="2026-11-00-started", posts=up("instagram"))] + q0[1:]
+    qs = queue_first(started, new_)
+    cases += [
+        ("first: the lesson is ahead of the waiting lessons", order.index("2026-11-26-new") > order.index("2026-11-03-waits"), False),
+        ("first: posted and held lessons keep their places", order[:2] != ["2026-11-01-posted", "2026-11-02-held"], False),
+        ("first: the lesson is in the line once", order.count("2026-11-26-new") != 1, False),
+        ("first: moving a lesson already in line", [i["slug"] for i in queue_first(q0 + [new_], new_)].count("2026-11-26-new") != 1, False),
+        ("first: the Nov 9 lunch slot takes it", (pick_next(qf, lunch, fmt_, par_)[0] or {}).get("slug") != "2026-11-26-new", False),
+        ("first: without --first the slot takes the old head", (pick_next(q0 + [new_], lunch, fmt_, par_)[0] or {}).get("slug") == "2026-11-26-new", False),
+        ("first: a lesson already started still finishes first", (pick_next(qs, lunch, fmt_, par_)[0] or {}).get("slug") != "2026-11-00-started", False),
+        ("first: planted bug, put at the very end", (pick_next(q0 + [new_], lunch, fmt_, par_)[0] or {}).get("slug") != "2026-11-26-new", True),
+    ]
     right = 0
     for name, got, caught in cases:
         hit = bool(got)
@@ -4299,7 +4339,7 @@ def main():
     ap.add_argument("slug", nargs="?")
     ap.add_argument("rest", nargs="*")
     ap.add_argument("--look"); ap.add_argument("--from", dest="t_from", type=float); ap.add_argument("--to", dest="t_to", type=float)
-    ap.add_argument("--out"); ap.add_argument("--mp4"); ap.add_argument("--take", type=int, action="append"); ap.add_argument("--voice")
+    ap.add_argument("--out"); ap.add_argument("--mp4"); ap.add_argument("--take", type=int, action="append"); ap.add_argument("--voice"); ap.add_argument("--first", action="store_true")
     a = ap.parse_args()
     c = a.cmd
     if c == "kit":
@@ -4382,7 +4422,7 @@ def main():
         cmd_posted(a.slug, a.rest[0] if len(a.rest) > 0 else "", a.rest[1] if len(a.rest) > 1 else "",
                    a.rest[2] if len(a.rest) > 2 else None)
     elif c == "ready":
-        cmd_ready(a.slug)
+        cmd_ready(a.slug, a.first)
     elif c == "hookb":
         cmd_hookb(a.slug)
     elif c == "hookready":

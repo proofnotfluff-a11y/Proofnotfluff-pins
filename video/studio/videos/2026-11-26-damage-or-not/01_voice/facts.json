@@ -1,0 +1,22 @@
+{
+ "about": "Every number and claim this lesson shows or says, with its source. Triple-I's release 'Triple-I: Severe Convective Storms Generate More Than $50B in Insured Losses for Third Consecutive Year' (Business Wire, Apr 14, 2026, on Triple-I's Issues Brief 'Severe Convective Storms: State of the Risk'), re-read Nov 8, 2026 (Central) in the live chat by web fetch: the confirm line below is copied from the page. The homeowner, her line, the adjuster, the roof marks and the photo checklist are ours (EXAMPLE on screen). We never say how often insurers deny hail claims, what an adjuster will decide, that a test square is required by any insurer, or that hail is most of all roofing claims: this source does not give those.",
+ "hail": {
+  "title": "Triple-I: Severe Convective Storms Generate More Than $50B in Insured Losses for Third Consecutive Year",
+  "publisher": "Insurance Information Institute (Triple-I), release on Business Wire",
+  "report": "Severe Convective Storms: State of the Risk (Triple-I Issues Brief)",
+  "date": "2026-04-14",
+  "url": "https://www.businesswire.com/news/home/20260414308638/en/",
+  "reread": "2026-11-08",
+  "sharePct": 80,
+  "shareShown": "80%",
+  "shareSaid": "as much as eighty percent",
+  "bound": "as much as (an upper figure, any given year)",
+  "of": "severe convective storm claims (said and shown as severe storm claims; the source tag names convective storms)",
+  "confirms": [
+   "Hail alone accounts for as much as 80% of severe convective storm claims in any given year"
+  ]
+ },
+ "example": {
+  "what": "ours: a homeowner on her driveway sure her roof has hail damage and wanting it written up for her insurance; an adjuster who may see it differently; the four-shot photo list is our suggestion for the estimator, labeled EXAMPLE"
+ }
+}

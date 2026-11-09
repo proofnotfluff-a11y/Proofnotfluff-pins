@@ -156,5 +156,6 @@
   ],
   "verdict": "2026-11-14",
   "note": "Todd, live chat, Nov 7, 2026, 12:08 pm: \"Go\", to the proven idea lane (11:58 am: \"We can find what is actually working out there and create our own videos based on that.\"). For 7 days 2 of every 3 new lessons come from the proven lane and 1 from the story lane (anim.py nextlane counts brief.md Started lines, Central time); shorts do not count. Verdict Nov 14 beside the shorts verdict, by views, sends per reach and follows on the deep reads (_shared/formats.md \"Proven\"). Set mode off when the verdict is written. Rotation reset by Todd, live chat, Nov 8, 2026, 7:50 am: \"reset the rotation. Work on it he video now.\" (after the 100K bar; the two proven lessons made before it no longer count), so the next two new lessons are proven at 100K+ and 5x. Todd, live chat, Nov 8, 2026, 10:15 AM: \"Actually just make new videos using the 100K+ sources - post the one you made now to test it. Going forward all videos should use this method.\" Every new lesson is proven at 100K+ and 5x; no story lessons. When no unused source at the bar has a sourceprint, `nextlane` says none: queue sourceprint jobs and make nothing."
- }
+ },
+ "makePaused": "Nov 9, 2026, 2:11 pm (Todd, live chat: \"Make all the necessary changes\"): engine v4 is being built; no scheduled run makes a lesson until Todd pastes the v4 make prompt (video/studio/schedule/record-and-make.txt). Posting, recording and the box queue go on. Remove this key to resume."
 }

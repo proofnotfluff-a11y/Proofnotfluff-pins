@@ -1,0 +1,24 @@
+{
+ "about": "Every number and claim this lesson shows or says, with its source. One source: The Daily Dot, 'Florida Roofer Walked Away From an $8,000 Job Over One Small Detail and He Has No Regrets' (Jun 29, 2026), read Nov 9, 2026 (Central) by web fetch in the live chat that built v4, and again by the pre-voice facts gate. It reports the roofer's own video (reshared on X on Jun 28, 2026) and says it could not independently verify the negotiation details, so the voice says 'he says' for the client's bids, the ask, his reason and the relief. We name no person and no business. We never say the job was $8,000 of profit, that he lost $7,800, that the $200 was his reason (he says it was not), or that the client said any exact words.",
+ "story": {
+  "title": "Florida Roofer Walked Away From an $8,000 Job Over One Small Detail and He Has No Regrets",
+  "publisher": "The Daily Dot",
+  "date": "2026-06-29",
+  "url": "https://dailydot.com/florida-roofer-walked-away-from-an-8000-job-over-one-small-detail-and-he-has-no-regrets",
+  "reread": "2026-11-09",
+  "job": 8000,
+  "jobShown": "$8,000",
+  "jobNote": "the headline says an $8,000 job; the text says the estimate was just under $8,000 (the caption says just under)",
+  "ask": 200,
+  "askShown": "$200",
+  "bids": [
+   7500,
+   7800
+  ],
+  "bidsShown": [
+   "$7,500",
+   "$7,800"
+  ],
+  "what": "a roof replacement on a house being flipped; the client had two lower bids and asked the roofer to cut $200 to stay competitive; the roofer refused and walked when the client would not pay his price; he says it was not the $200 difference he walked from: the client had said he cared only about price, not quality, and he took it as a problem job; he says he felt relief"
+ }
+}

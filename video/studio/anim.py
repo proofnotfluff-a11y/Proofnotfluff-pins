@@ -992,6 +992,8 @@ def cmd_cues(slug):
                    "shift": float(shift.group(1)) if shift else 0.0, "pin": float(pin.group(1)) if pin else None, "text": ""}
             if SEND_MARK.search(rest):   # the send card goes up on this cue (Todd, Nov 7, 9:27 am; send_cue_problems)
                 cur["send"] = True
+            if PAYOFF_MARK.search(rest):   # v4: the outcome or the answer lands on this cue (lint_v4: by 40% of the runtime)
+                cur["payoff"] = True
             cues.append(cur)
         elif cur is not None and ln.strip():
             cur["text"] = (cur["text"] + " " + ln.strip()).strip()
@@ -1012,7 +1014,9 @@ def cmd_cues(slug):
     if bad:
         raise SystemExit("ERROR cues: " + "; ".join(bad))
     cues[0]["t"] = 0.0
-    duration = round(wd["end"] + 3.1, 3)   # 3.1 s tail: the end card, up for the last 3.0 s (player.js, IMPROVE 000; style board, Oct 29)
+    # 3.1 s tail: the end card, up for the last 3.0 s (player.js, IMPROVE 000; style board, Oct 29); a v4 lesson has no end
+    # card and ends 1 s after the last word (V4_TAIL)
+    duration = round(wd["end"] + (V4_TAIL if is_v4(slug) else 3.1), 3)
     for i, c in enumerate(cues):
         nxt = next((d for d in cues[i + 1:] if d["level"] <= c["level"]), None)
         c["end"] = nxt["t"] if nxt else duration
@@ -1527,6 +1531,8 @@ def gates_for(slug):
 
 
 def _gates_for(slug):
+    if lesson_format(slug) in V4_FORMATS:   # Todd, Nov 9, 2:11 pm: four gates, each with a reason (formats.md "v4")
+        return V4_GATES
     if lesson_format(slug) == "short":
         return SHORT_GATES
     if lesson_format(slug) == "proven":   # a source-matched experiment has no send card, so no send gate (Todd, Nov 8, 8:25 pm)
@@ -1585,7 +1591,10 @@ def cmd_ready(slug, first=False, not_before=None):
             bad.append(f"{g}: FAIL")
     if not os.path.exists(vdir(slug, "05_render", "captions.json")):
         bad.append("captions.json: missing")
-    bad += [f"variety: {x}" for x in queue_variety_problems(slug)]
+    if is_v4(slug):   # v4: no hook-pattern or tune bookkeeping; the payoff mark and the captions (labels, source) instead
+        bad += [f"v4: {x}" for x in v4_static_problems(slug)]
+    else:
+        bad += [f"variety: {x}" for x in queue_variety_problems(slug)]
     bad += [f"send: {x}" for x in send_problems(slug, review=True)]   # Todd, Nov 7, 9:27 am (the hold is lint's)
     if "viewer" in gates_for(slug):   # Todd, Nov 8, 10:11 pm: the viewer gate's PASS must agree with its own answers
         vf = os.path.join(rev, "viewer.json")
@@ -2770,6 +2779,29 @@ FORMATS = {
 # Formats whose word band, spoken hook length and drop-in rules are guides, not errors (REBUILD.md "Relaxed").
 GUIDE_FORMATS = {"story", "short", "proven"}
 FORMAT_ALIASES = {"v2": "clinic"}
+# Engine v4 (Todd, live chat, Nov 9, 2026, 2:11 pm: "I want you to take the reigns and I want you to modify this engine so
+# that we go viral. Make all the necessary changes"; coo/DECISIONS-2026-11-09.md; _shared/formats.md "v4"). Three short
+# formats a stranger can judge: verdict (a real dispute, the viewer calls it), invoice (where the money goes, line by
+# line), call (a phone call acted out, said once to be a reenactment). 18 to 35 s, the whole frame, no host lecture, no
+# end card (a 1 s tail). Why: viewers gave every earlier lesson 3 to 29 s whatever its length, and no gate score moved
+# views (research/STUDY-2026-11-08.md). Four gates (V4_GATES); the checks are lint_v4.
+V4_FORMATS = {"verdict", "invoice", "call"}
+for _f in V4_FORMATS:
+    FORMATS[_f] = {"min_seconds": 18.0, "max_seconds": 35.0, "words": (45, 95)}
+V4_FROM = "2026-11-30"
+V4_GATES = ("qa", "facts", "render-critic", "viewer")
+V4_TAIL = 1.0            # cmd_cues: seconds after the last word (no end card)
+V4_SAFE = (40, 250, 1040, 1440)   # x0, y0, x1, y1: clear of the platform's top bar and bottom caption and buttons
+V4_SIDE = (930, 1040)    # right of x 930 is clear only above y 1040 (the like, comment and share buttons sit below)
+V4_HOLD_MAX = 4.0        # no set of words stands unchanged longer than this
+V4_PAYOFF_BY = 0.40      # the cue marked [payoff] starts by this share of the runtime
+V4_TEXT_FLOOR = 42       # ink height in frame units
+V4_LABELS = {"instagram": ("aiLabel", True), "facebook": ("aiLabel", True), "tiktok": ("aiGenerated", True), "youtube": ("aiUse", False)}
+PAYOFF_MARK = re.compile(r"\[payoff\]", re.I)
+
+
+def is_v4(slug):
+    return lesson_format(slug) in V4_FORMATS
 
 
 def lesson_format(slug):
@@ -3679,6 +3711,35 @@ def cmd_selftest():
     print(f"studio send and proven selftest: {right} of {len(cases)} planted cases right ({sum(1 for x in cases if x[2])} bad caught)")
     if right != len(cases):
         sys.exit(1)
+    v4_selftest()
+
+
+def v4_selftest():
+    """Planted cases for the v4 checks (payoff by 40%, no hold over 4 s, the gate list, the band): bad ones caught, good ones pass."""
+    c = lambda i, t, pay=False: dict({"id": i, "t": t, "level": 0}, **({"payoff": True} if pay else {}))
+    sig = lambda s: ((s, 0, 0, 10, 10),)
+    run = lambda pairs, step=0.25: [(round(i * step, 3), sig(s) if s else ()) for i, s in enumerate(pairs)]
+    cases = [
+        ("v4 payoff by 40%", payoff_problems({"duration": 27.0, "cues": [c("hook", 0), c("turn", 9.0, True), c("why", 14)]}), False),
+        ("v4 payoff late", payoff_problems({"duration": 27.0, "cues": [c("hook", 0), c("turn", 14.0, True)]}), True),
+        ("v4 no payoff cue", payoff_problems({"duration": 27.0, "cues": [c("hook", 0), c("turn", 9.0)]}), True),
+        ("v4 two payoff cues", payoff_problems({"duration": 27.0, "cues": [c("hook", 0, True), c("turn", 9.0, True)]}), True),
+        ("v4 words change every 3 s", hold_problems(run(["A"] * 12 + ["B"] * 12 + ["C"] * 12), 0.25), False),
+        ("v4 a card held 6 s", hold_problems(run(["A"] * 8 + ["B"] * 24 + ["C"] * 4), 0.25), True),
+        ("v4 a card held to the end 5 s", hold_problems(run(["A"] * 8 + ["B"] * 20), 0.25), True),
+        ("v4 an empty stretch is not a held card", hold_problems(run(["A"] * 8 + [""] * 30 + ["B"] * 8), 0.25), False),
+        ("v4 gates are qa, facts, render-critic, viewer", list(V4_GATES) != ["qa", "facts", "render-critic", "viewer"], False),
+        ("v4 band is 18 to 35 s", [1] if any((FORMATS[f]["min_seconds"], FORMATS[f]["max_seconds"]) != (18.0, 35.0) for f in V4_FORMATS) else [], False),
+        ("v4 labels: Meta and TikTok on, YouTube off", [1] if V4_LABELS != {"instagram": ("aiLabel", True), "facebook": ("aiLabel", True), "tiktok": ("aiGenerated", True), "youtube": ("aiUse", False)} else [], False),
+    ]
+    right = 0
+    for name, probs, want_bad in cases:
+        ok = bool(probs) == want_bad
+        right += ok
+        print(f"{'ok  ' if ok else 'WRONG'} {name}" + (f": {probs}" if not ok else ""))
+    print(f"v4 selftest: {right} of {len(cases)}")
+    if right != len(cases):
+        sys.exit(1)
 
 
 HOOK_DIFF, HOOK_LEVEL, HOOK_MERGE, HOOK_FPS = 0.08, 40, 0.4, 15
@@ -3773,9 +3834,10 @@ def hook_report(slug, pg=None):
         bad.append(f"the picture first changes at {rep['first_change']} s (by {HOOK['first_change_by']} s)")
     if len(events) < HOOK["changes_min"]:
         bad.append(f"{len(events)} picture change(s) in the first {HOOK['changes_in']:.0f} s (at least {HOOK['changes_min']})")
-    if host_at is None or host_at > HOOK["host_by"]:
+    v4 = is_v4(slug)
+    if not v4 and (host_at is None or host_at > HOOK["host_by"]):
         bad.append(f"the host is not on screen by {HOOK['host_by']:.0f} s")
-    soft = rep.setdefault("notes", []) if lesson_format(slug) in GUIDE_FORMATS else bad
+    soft = rep.setdefault("notes", []) if lesson_format(slug) in GUIDE_FORMATS or v4 else bad
     hard = bad if proven_hook_hard(slug) else soft   # Todd, Nov 8: decision 2 (PROVEN_HOOK_NOTE)
     if n > HOOK["words"][1]:
         hard.append(f"the spoken hook is {n} words (12 or fewer)")
@@ -4290,7 +4352,150 @@ def cmd_cohort():
     json.dump({"schema": "pnf.studio.cohort.v1", "at": now(), "rows": rows}, open(os.path.join(HERE, "research", "tests", "cohort.json"), "w"), indent=1)
     print("* = acts the conflict with k.client (decision 3's test lesson)\nwritten research/tests/cohort.json")
 
+def captions_v4_problems(slug):
+    """A v4 lesson's captions in code: the dilemma first (line 1 under 100 characters), one question, the source named when
+    the brief names one, 3 to 5 hashtags (2 to 3 on Facebook and YouTube), no AI voice line, no dashes, and each
+    platform's AI label set as its own rules require (V4_LABELS: the voice is a clone, which Meta and TikTok label;
+    YouTube exempts a clone of your own voice)."""
+    f = vdir(slug, "05_render", "captions.json")
+    if not os.path.exists(f):
+        return ["captions.json missing"]
+    d, out = json.load(open(f)), []
+    bp = vdir(slug, "01_voice", "brief.md")
+    sourced = bool(re.search(r"(?im)^- \*\*Source:\*\*\s*\S", open(bp, encoding="utf-8").read())) if os.path.exists(bp) else False
+    tags = {"instagram": (3, 5), "tiktok": (3, 5), "facebook": (2, 3), "youtube": (2, 3)}
+    for pl, (lo, hi) in tags.items():
+        if pl not in d:
+            out.append(f"{pl}: missing"); continue
+        text = d[pl].get("description" if pl == "youtube" else "caption") or ""
+        first = text.split("\n")[0]
+        if not first or len(first) >= 100: out.append(f"{pl}: line 1 is {len(first)} characters (1 to 99)")
+        if "?" not in text: out.append(f"{pl}: no question for the viewer")
+        if sourced and not re.search(r"(?i)\bsource:", text): out.append(f"{pl}: the brief names a source but the caption has no 'Source:' line")
+        if AI_VOICE_LINE.search(text): out.append(f"{pl}: the AI voice line (Todd, Oct 29: none in any caption)")
+        n = len(re.findall(r"(?<!\w)#\w+", text))
+        if not lo <= n <= hi: out.append(f"{pl}: {n} hashtags ({lo} to {hi})")
+        if re.search(r"(?i)#(fyp|foryou|viral)\b", text): out.append(f"{pl}: banned hashtag")
+        if re.search("[\u2013\u2014]", text): out.append(f"{pl}: an em or en dash")
+        key, want = V4_LABELS[pl]
+        got = (d[pl].get("settings") or {}).get(key)
+        if got is not want: out.append(f"{pl}: settings.{key} is {got!r} (must be {want!r}: the platform's own AI rule for a cloned voice)")
+    y = d.get("youtube", {})
+    if y:
+        t = y.get("title", "")
+        if not t or len(t) > 70 or "#" in t: out.append(f"youtube: the title is {len(t)} characters or has a hashtag (1 to 70, none)")
+        if "?" not in t and "$" not in t: out.append("youtube: the title has no question and no dollar figure (the dilemma, not a search phrase)")
+        if not 5 <= len(y.get("tags", [])) <= 10: out.append(f"youtube: {len(y.get('tags', []))} tags (5 to 10)")
+        if re.search("[\u2013\u2014]", t): out.append("youtube: an em or en dash in the title")
+    return out
+
+
+def payoff_problems(cues):
+    """v4: exactly one cue marked [payoff], starting by V4_PAYOFF_BY of the runtime."""
+    ps = [c for c in cues.get("cues", []) if c.get("payoff")]
+    if len(ps) != 1:
+        return [f"{len(ps)} cues marked [payoff] in cues.md (exactly 1: the cue where the outcome or the answer lands)"]
+    t, dur = float(ps[0]["t"]), float(cues["duration"])
+    return [] if t <= V4_PAYOFF_BY * dur + 1e-6 else [f"the payoff cue '{ps[0]['id']}' starts at {t:.1f} s of {dur:.1f} s ({100 * t / dur:.0f}%; by {100 * V4_PAYOFF_BY:.0f}%)"]
+
+
+def hold_problems(samples, step, limit=None):
+    """v4: no set of settled words stands unchanged longer than V4_HOLD_MAX. samples: [(t, signature)], a signature being the
+    sorted (string, box) tuples of the scene text on that frame; an empty frame resets the run."""
+    limit = V4_HOLD_MAX if limit is None else limit
+    out, start, prev = [], None, None
+    for t, sig in list(samples) + [(None, None)]:
+        if sig is not None and sig and sig == prev:
+            continue
+        if prev and start is not None:
+            last = (t if t is not None else samples[-1][0] + step) - start
+            if last > limit + 1e-6:
+                out.append(f"{start:.2f} to {start + last:.2f} s: the same words stand {last:.1f} s ({limit:.0f} s at most): '{prev[0][0][:40]}'")
+        start, prev = t, sig
+    return out
+
+
+def v4_static_problems(slug):
+    """The v4 checks that need no browser: the payoff mark, the word band (a note), the captions and the plain cuts."""
+    out = []
+    cj = vdir(slug, "03_cues", "cues.json")
+    if os.path.exists(cj):
+        out += payoff_problems(json.load(open(cj)))
+    if os.path.exists(vdir(slug, "05_render", "captions.json")):
+        out += [f"captions: {x}" for x in captions_v4_problems(slug)]
+    sj = vdir(slug, "04_scene", "scene.js")
+    if os.path.exists(sj):
+        out += [f"moves: {x}" for x in move_problems(open(sj, encoding="utf-8").read())]
+    return out
+
+
+def lint_v4(slug, step=0.25):
+    """The v4 layout check: every settled scene text inside the v4 safe area (V4_SAFE, V4_SIDE), not under the captions or
+    other text, at least V4_TEXT_FLOOR px of ink; no set of words standing over V4_HOLD_MAX; the picture changing by 1 s
+    and twice by 3 s; the length band; the payoff by 40%; the captions and labels. Exit 1 on an ERROR."""
+    cues = json.load(open(vdir(slug, "03_cues", "cues.json")))
+    pw, b, pg = open_stage(slug)
+    hook, hook_bad = hook_report(slug, pg)
+    hits, small, sigs, t = {}, {}, [], 0.0
+    def ov(p_, q_):
+        w = min(p_["x1"], q_["x1"]) - max(p_["x0"], q_["x0"]); h = min(p_["y1"], q_["y1"]) - max(p_["y0"], q_["y0"])
+        return max(0, w) * max(0, h)
+    x0s, y0s, x1s, y1s = V4_SAFE
+    while t < cues["duration"]:
+        bx = pg.evaluate(f"(() => {{ window.__boxes = []; drawAt({t:.3f}); const r = window.__boxes; window.__boxes = null; return r; }})()")
+        texts = [x for x in bx if x["tag"] == "scene" and x["a"] > 0.6 and x["s"].strip()]
+        caps = [x for x in bx if x["tag"] == "dialogbox"]
+        for x in texts:
+            if x["x0"] < x0s or x["x1"] > x1s or x["y0"] < y0s or x["y1"] > y1s:
+                hits.setdefault(("off the safe area", x["s"]), []).append(t)
+            elif x["x1"] > V4_SIDE[0] and x["y1"] > V4_SIDE[1]:
+                hits.setdefault(("under the platform's side buttons", x["s"]), []).append(t)
+            for c in caps:
+                if ov(x, c) > 0.08 * (x["x1"] - x["x0"]) * (x["y1"] - x["y0"]):
+                    hits.setdefault(("under the captions", x["s"]), []).append(t)
+            k_ = x["s"].strip()[:40]
+            small[k_] = max(small.get(k_, 0), round(x["y1"] - x["y0"]))
+        for i, x in enumerate(texts):
+            for y in texts[i + 1:]:
+                if ov(x, y) > 0.15 * min((x["x1"] - x["x0"]) * (x["y1"] - x["y0"]), (y["x1"] - y["x0"]) * (y["y1"] - y["y0"])):
+                    hits.setdefault(("text on text", x["s"] + " / " + y["s"]), []).append(t)
+        sigs.append((round(t, 3), tuple(sorted((x["s"].strip(), round(x["x0"]), round(x["y0"]), round(x["x1"]), round(x["y1"])) for x in texts))))
+        t += step
+    b.close(); pw.stop()
+    errors = [f"ERROR lint hook: {x}" for x in hook_bad]
+    errors += [f"ERROR lint v4: {x}" for x in v4_static_problems(slug)]
+    errors += [f"ERROR lint hold: {x}" for x in hold_problems(sigs, step)]
+    for (kind, what), ts in sorted(hits.items(), key=lambda kv: kv[1][0]):
+        runs, start, prev = [], ts[0], ts[0]
+        for x in ts[1:] + [None]:
+            if x is None or x - prev > step * 1.5:
+                if prev - start >= 0.5 - 1e-6:
+                    runs.append((start, prev))
+                if x is not None:
+                    start = x
+            if x is not None:
+                prev = x
+        for a0, a1 in runs:
+            errors.append(f"ERROR lint {a0:5.2f} to {a1:5.2f} s: {kind}: {what[:70]}")
+    errors += [f"ERROR lint type: '{s_}' is {h_} px tall ({V4_TEXT_FLOOR} or more)" for s_, h_ in sorted(small.items(), key=lambda kv: kv[1])
+               if h_ < V4_TEXT_FLOOR and any(ch.isalnum() for ch in s_)]
+    wp = vdir(slug, "02_transcript", "words.json")
+    n = len(json.load(open(wp))["words"]) if os.path.exists(wp) else 0
+    lo, hi = FORMATS[lesson_format(slug)]["words"]
+    if n and not lo <= n <= hi:
+        print(f"NOTE lint v4 (a guide, not a gate): {n} spoken words ({lo} to {hi})")
+    for x in hook.get("notes", []):
+        print("NOTE lint v4 (a guide, not a gate): " + x)
+    print("hook: " + json.dumps(hook))
+    print("\n".join(errors) if errors else f"lint: PASS v4 0 layout problems ({cues['duration']:.1f} s at {step} s steps); first change {hook['first_change']} s, "
+          f"{hook['changes_by_3s']} by 3 s; payoff by {100 * V4_PAYOFF_BY:.0f}%; no hold over {V4_HOLD_MAX:.0f} s")
+    if errors:
+        sys.exit(1)
+
+
 def cmd_lint(slug, step=0.25):
+    if is_v4(slug):
+        return lint_v4(slug, step)
     """The layout check in code, before a reviewer has to find it: every settled scene text inside the safe area
     (x 20 to 950, y 262 to 1250), not under the host, the dialog box or other text. Problems that last under 0.5 s
     (slide-ins, slams) are ignored. Exit 1 on an ERROR."""

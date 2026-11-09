@@ -812,7 +812,11 @@
     "runtime_pixfont": "a8557997756e"
    },
    "posts": {},
-   "notBefore": "2026-11-10T00:00-06:00"
+   "notBefore": "2026-11-10T00:00-06:00",
+   "hold": {
+    "reason": "Todd, live chat, Nov 8, 2026, 9:51 pm: \"Yes never post.\" A drawn roof gives the viewer nothing real to judge.",
+    "at": "2026-11-08T22:51:28-05:00"
+   }
   },
   {
    "slug": "2026-11-26-damage-or-not",

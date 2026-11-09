@@ -3206,10 +3206,35 @@ def load_sourceprint(url):
     return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else None
 
 
+# The viewer check (Todd, live chat, Nov 8, 2026, 9:51 pm, after hail-or-wear, a drawn roof with nothing real to judge:
+# "If the viral video focuses on real footage we obviously can't use that as a basis for our video. ... When ideating these
+# videos, take a step back and ask if it makes sense from the viewers perspective. Find viral videos that will work in the
+# context of a faceless animated videos that we are creating"). A proven lesson started after it says, in brief.md, what
+# made the source work and that our animated version keeps it, and what a viewer gets from ours.
+VIEWER_FROM = "2026-11-29"
+VIEWER_LINE = re.compile(r"(?im)^- \*\*Viewer check:\*\*\s*(.+)$")
+INGREDIENT_LINE = re.compile(r"(?im)^- \*\*Key ingredient:\*\*\s*(.+)$")
+FOOTAGE_WORDS = re.compile(r"(?i)\b(real footage|raw footage|phone footage|live[- ]action|on camera|their footage|a real person|real people)\b")
+
+
+def viewer_check_problems(text):
+    out = []
+    ing, view = INGREDIENT_LINE.search(text), VIEWER_LINE.search(text)
+    if not ing or len(ing.group(1).split()) < 6:
+        out.append("brief.md needs '- **Key ingredient:** <what made the source work, in a sentence>' (Todd, Nov 8, 9:51 pm)")
+    elif FOOTAGE_WORDS.search(ing.group(1)) and not re.search(r"(?i)\b(we can draw|drawn|animat)", ing.group(1)):
+        out.append("the source's key ingredient is real footage or real people, which a faceless animated lesson cannot carry: pick another row")
+    if not view or len(view.group(1).split()) < 12:
+        out.append("brief.md needs '- **Viewer check:** <a stranger watching our animated version gets ..., in a sentence>' (Todd, Nov 8, 9:51 pm)")
+    return out
+
+
 def proven_problems(slug):
     bp = vdir(slug, "01_voice", "brief.md")
     text = open(bp, encoding="utf-8").read() if os.path.exists(bp) else ""
     out = proven_brief_problems(text)
+    if os.path.basename(slug)[:10] >= VIEWER_FROM:
+        out += viewer_check_problems(text)
     m = SOURCE_LINE.search(text)
     fp = load_sourceprint(m.group(1)) if m else None
     if m and not fp:
@@ -3514,6 +3539,10 @@ def cmd_selftest():
         ("match: a 20 s source gives 16 to 27.1 s with the end card", matched_band(20.0) != (16.0, 27.1), False),
         ("match: a 57 s cut of a 20 s source is out of the band", not (57.07 > matched_band(20.0)[1]), False),
         ("match: the length line parses", (SOURCE_LEN.search("- **Source length:** 20 s") or [None, ''])[1] != '20', False),
+        ("viewer: a drawable ingredient and a viewer line pass", viewer_check_problems("- **Key ingredient:** whiteboard math one step at a time, each step a number the viewer can check\n- **Viewer check:** a shop owner watching ours sees his own hourly rate built on the board and leaves knowing what to bill\n"), False),
+        ("viewer: hail-or-wear's ingredient (real roof footage) is refused", viewer_check_problems("- **Key ingredient:** real footage of a damaged roof the viewer can judge for himself\n- **Viewer check:** a roofer watching ours sees our drawn roof and is asked to call it hail or wear\n"), True),
+        ("viewer: no viewer check line", viewer_check_problems("- **Key ingredient:** a famous cheap price everyone knows and the money model behind it\n"), True),
+        ("viewer: a one-word ingredient", viewer_check_problems("- **Key ingredient:** skit\n- **Viewer check:** a stranger gets the customer who will not pay acted out and the line to say before the truck leaves\n"), True),
         ("first: planted bug, put at the very end", (pick_next(q0 + [new_], lunch, fmt_, par_)[0] or {}).get("slug") != "2026-11-26-new", True),
     ]
     right = 0

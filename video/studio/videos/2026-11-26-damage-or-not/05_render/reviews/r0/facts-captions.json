@@ -1,0 +1,14 @@
+{
+ "gate": "facts-captions",
+ "round": 0,
+ "reviewer": "fresh opus agent",
+ "pass": false,
+ "score": {
+  "numbers": 4,
+  "mismatches": 0
+ },
+ "reasons": [
+  "youtube: title puts the trade business keyword past the first 50 characters ('Roofing Business' starts at character 51 of 67; captions.md wants the keyword in the first 40 to 50). Fix: retitle to 'Roofing Business Owners: Hail Damage or Just Wear? Would You Write It Up?' (73 characters, keyword first, judge question kept, no hashtags).",
+  "youtube: tag 'hail damage roof' is a homeowner search (people checking their own roof), which captions.md bans ('Never: generic or homeowner tags'). Fix: replace it with 'roofing business tips'."
+ ]
+}

@@ -35,9 +35,9 @@ YOUR WORD VS HIS stamps across the split.
 
 ## send "So don't call it." [send] [sfx: whoosh]
 The send card (k.sendCard), slides up and holds dead still: FOR THE ESTIMATOR / BEFORE YOU SAY HAIL / 1 THE HOUSE
-AND ADDRESS / 2 A CHALK SQUARE EACH SLOPE / 3 EVERY HIT CIRCLED / 4 VENTS AND GUTTERS, the EXAMPLE tag on its own row.
-Each step goes from grey to ink on its words (house, chalk, circled, vents). The background stripes drift; the card
-never moves.
+AND ADDRESS / 2 A CHALK SQUARE EACH SLOPE / 3 EVERY HIT CIRCLED, TAPE BESIDE IT / 4 VENTS AND GUTTERS, the EXAMPLE tag on its own row.
+All four steps are lit from the moment the card lands (send r0: any screenshot is the whole list). The background
+stripes drift and hail falls behind it; the card never moves.
 
 ## receipt "Triple-I says hail is" -0.3 [sfx: blip]
 The gauge (k.sets.gauge), 0.3 s before the voice says Triple-I: the source on top, Source: Triple-I, Apr 14, 2026; the

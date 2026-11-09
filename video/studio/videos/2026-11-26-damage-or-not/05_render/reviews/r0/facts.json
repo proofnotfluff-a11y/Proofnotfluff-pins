@@ -1,0 +1,20 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "stage": "after render",
+ "reviewer": "fresh opus agent",
+ "pass": true,
+ "score": {"numbers": 9, "mismatches": 0},
+ "reasons": [
+  "note, not blocking: transcript.md 00:33.8 and the gauge plate (scene.js receipt, cues.md receipt) say 'severe storm claims' where the source says 'severe convective storm claims'. Fair plain-English shortening: AS MUCH AS sits above the 80%, 'in a year' matches 'in any given year', and the quote card at 41 to 43 s shows the full source sentence word for word. No fix needed.",
+  "note, not blocking: transcript.md 00:23.2 'Four shots, every time' and the 4 PHOTOS rows (scene.js why) count four kinds of shot, while 'a chalk square on each slope' means one per slope. This is our own suggested list, tagged EXAMPLE on the send card and the score table, so it does not read as data and no source is misstated. If a later edit wants it tighter: 'Four kinds of shot, every time'.",
+  "checked: every string drawn in scene.js (HUD DAMAGE OR NOT; cover and plate HAIL DAMAGE? / OR JUST AN OLD ROOF?; IT'S HAIL. / WRITE IT UP FOR / MY INSURANCE.; TODAY.; SAY NO, SAY YES, SHE CALLS, ANOTHER ROOFER, THE ADJUSTER, NOT HAIL. / WEAR., YOUR WORD VS HIS; send card FOR THE ESTIMATOR / BEFORE YOU SAY HAIL / four steps; gauge source line, AS MUCH AS, 80%, OF SEVERE STORM CLAIMS / IN A YEAR ARE HAIL; TRIPLE-I quote and source tag; PHOTOS SEEN, HER, YOU, ADJUSTER, 4 PHOTOS; SAME PHOTOS, SAME ROOF; HAIL DAMAGE, JUST WEAR; LET THE PHOTOS MAKE THE CALL; WHAT WOULD YOU TELL HER?; sendLine) appears in cues.md as drawn. Set labels (gauge 50, score table header and ranks, VS) are kit-drawn.",
+  "checked: the 80% on the gauge is data.js numbers.share (value 80, shown 80%, path hail.sharePct); data.js sha256 a5e3a520... matches 01_voice/facts.json; the rendered frame at 37.6 s shows AS MUCH AS 80% with the needle at 80.",
+  "checked: every story element carries EXAMPLE on screen (cover, roof plate, driveway, both trap halves, send card, score table, versus). The adjuster's NOT HAIL. WEAR. is one tagged example of the voice's 'may see it differently', not a claim about what adjusters decide. The data beats (gauge, quote card) carry the source and no EXAMPLE tag. No denial rate, no adjuster outcome, no insurer test-square requirement, no 'most roofing claims' claim anywhere.",
+  "checked: trades first. The one number is Triple-I (the insurance industry's information institute) on severe storm insurance claims, with roofs named on the same page as bearing 70% to 90% of insured residential catastrophe losses: home services and roofing evidence, no non-trade study, no caveat needed.",
+  "checked: no real private person, business or address (the homeowner, adjuster, two-flat and Snow are ours); no em or en dashes in facts.json, brief.md, script.md, transcript.md, cues.md, scene.js, data.js or captions.json; no AI lane content shown."
+ ],
+ "sources_checked": [
+  "https://www.businesswire.com/news/home/20260414308638/en/: re-fetched Nov 8, 2026. Title 'Triple-I: Severe Convective Storms Generate More Than $50B in Insured Losses for Third Consecutive Year', Triple-I release on its Issues Brief 'Severe Convective Storms: State of the Risk'; the URL carries 20260414 (Apr 14, 2026). Confirms word for word: 'Hail alone accounts for as much as 80% of severe convective storm claims in any given year', matching the quote card, the gauge (AS MUCH AS 80%, IN A YEAR) and the voice ('as much as eighty percent of severe storm claims in a year')."
+ ]
+}

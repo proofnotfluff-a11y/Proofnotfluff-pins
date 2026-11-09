@@ -248,6 +248,9 @@
     // o: {title, rows: [{name, value, prefix, suffix, dec, comma, hi}], t0, gap (0.3), count (0.7), newAt, newText}
     S.scores = function (o = {}) {
       const t0 = o.t0 || 0, gap = o.gap != null ? o.gap : 0.3, cnt = o.count || 0.7;
+      // o.size (damage-or-not, render critic r0, Nov 8, 2026: the table's 39 reads about 30 px at 1080): the table's text
+      // size; 52 or more draws it in the display face (one pixel step, 66 px). Unset keeps 39, so earlier lessons draw as before.
+      const tz = o.size || 39, T2 = (s2, x, y, oo) => tx(s2, x, y, Object.assign({size: tz}, oo));
       P(0, 0, 360, 417, '#1B1420');
       for (let i = 0; i < 40; i++) DOT(Math.floor(hash(i * 3.1) * 360), Math.floor(hash(i * 5.3) * 70), hash(i) > 0.5 ? '#3D2E45' : '#2B2033');
       P(0, 70, 360, 2, '#7A3442'); P(0, 74, 360, 1, '#3B82C4');
@@ -256,25 +259,25 @@
       // the marquee: lit panel, the title, bulbs chasing
       P(22, 84, 316, 30, INK); P(24, 86, 312, 26, '#7A3442'); P(26, 88, 308, 22, '#2B2033');
       for (let i = 0; i < 39; i++) { const lit = (i + Math.floor(F / 4)) % 3 === 0; DOT(26 + i * 8, 86, lit ? '#FFF7EA' : '#B07A47'); DOT(26 + i * 8, 111, (i + Math.floor(F / 4) + 1) % 3 === 0 ? '#FFF7EA' : '#B07A47'); }
-      tx(o.title || 'HIGH SCORES', 180, 93, {align: 'center', color: '#F7C873'});
+      T2(o.title || 'HIGH SCORES', 180, 93, {align: 'center', color: '#F7C873'});
       // the screen: bezel, black glass, scanlines, the glass glint
       P(22, 116, 316, 202, INK); P(26, 120, 308, 194, '#120D14'); for (let y = 121; y < 314; y += 2) P(26, y, 308, 1, '#1B1420');
       line(30, 136, 44, 122, '#2B2033'); line(30, 142, 50, 122, '#2B2033');
       const cols = ['#F2A541', '#E2633B', '#6FB7A8', '#87CEEB', '#FFF7EA', '#F7C873'];
-      tx('RANK', 40, 126, {color: '#6FB7A8'}); tx('NAME', 110, 126, {color: '#6FB7A8'}); tx('SCORE', 306, 126, {color: '#6FB7A8', align: 'right'}); P(36, 142, 272, 1, '#2F6F67');
+      T2('RANK', 40, 126, {color: '#6FB7A8'}); T2('NAME', 110, 126, {color: '#6FB7A8'}); T2('SCORE', 306, 126, {color: '#6FB7A8', align: 'right'}); P(36, 142, 272, 1, '#2F6F67');
       (o.rows || []).forEach((r, i) => { if (T < t0 + i * gap) for (let x = 46; x < 306; x += 8) P(x, 156 + i * 24, 4, 1, '#3D2E45'); });
       (o.rows || []).forEach((r, i) => {
         const ti = t0 + i * gap; if (T < ti) return;
         const y = 150 + i * 24, c = r.hi ? '#F7C873' : cols[i % cols.length], slide = ease(ti, 5, 40);
         const rank = r.rank || (['1ST', '2ND', '3RD', '4TH', '5TH', '6TH'][i]);
-        if (r.hi) { P(32, y - 4, 280, 21, '#3D2E45'); if (((Math.floor((T - ti) * 4)) % 2) === 0) tx('>', 32 + slide, y, {color: '#F2A541'}); }
-        tx(rank, 46 + slide, y, {color: c});
+        if (r.hi) { P(32, y - 4, 280, 21, '#3D2E45'); if (((Math.floor((T - ti) * 4)) % 2) === 0) T2('>', 32 + slide, y, {color: '#F2A541'}); }
+        T2(rank, 46 + slide, y, {color: c});
         const blinkOff = r.hi && T >= ti + cnt && Math.floor((T - ti) * 4) % 2 === 1;
-        tx(r.name, 110 + slide, y, {color: blinkOff ? '#E2633B' : c});
+        T2(r.name, 110 + slide, y, {color: blinkOff ? '#E2633B' : c});
         const p = clamp((T - ti) / cnt), v = typeof r.value === 'number' ? k.count(r.value, p, {from: r.from != null ? r.from : r.value * 0.85, prefix: r.prefix, suffix: r.suffix, dec: r.dec, comma: r.comma}) : r.value;
-        tx(v, 306 + slide, y, {color: c, align: 'right'});
+        T2(v, 306 + slide, y, {color: c, align: 'right'});
       });
-      if (o.newAt != null && T >= o.newAt) tx(o.newText || 'NEW RECORD!', 180, 284, {align: 'center', color: Math.floor((T - o.newAt) * 4) % 2 ? '#E2633B' : '#F7C873'});
+      if (o.newAt != null && T >= o.newAt) T2(o.newText || 'NEW RECORD!', 180, 284, {align: 'center', color: Math.floor((T - o.newAt) * 4) % 2 ? '#E2633B' : '#F7C873'});
       // the control panel: a joystick and three buttons
       P(22, 318, 316, 16, '#3D2E45'); P(22, 318, 316, 1, '#6B7080'); P(22, 333, 316, 1, '#120D14');
       P(258, 322, 6, 6, INK); disc(261, 324, 3, '#E2633B'); DOT(260, 323, '#F7C873');
@@ -878,7 +881,8 @@
         const x = X + sl;
         // the portrait card: the icon at 4x on a lit panel
         win(x, 86, W, 92, {base: left ? '#2F6F67' : '#E2633B', hi: left ? '#6FB7A8' : '#F2A541', lo: left ? '#245752' : '#7A3442', rule: '#FFF7EA'});
-        S.icon(s.icon || (left ? 'wrench' : 'clip'), x + W / 2 - 20, 112, 4);
+        // o.iconScale (damage-or-not, design r0, Nov 8, 2026: a 4x icon left the cards looking empty); unset keeps 4x
+        const isz = o.iconScale || 4; S.icon(s.icon || (left ? 'wrench' : 'clip'), x + W / 2 - 5 * isz, isz > 4 ? 132 - 5 * isz : 112, isz);
         // the name plate
         P(x, 184, W, 20, INK); P(x + 1, 185, W - 2, 18, '#1B1420'); tx(s.name, x + W / 2, 188, {color: left ? '#6FB7A8' : '#F2A541', align: 'center'});
         // the stats

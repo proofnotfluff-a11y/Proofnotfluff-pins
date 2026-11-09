@@ -1,0 +1,33 @@
+{
+ "gate": "render-critic",
+ "round": 0,
+ "reviewer": "claude opus, fresh agent",
+ "pass": false,
+ "score": {
+  "faults": 3
+ },
+ "note": "the round 0 agent returned twice; this is its first verdict (FAIL). Its second pass over the same files returned PASS with 0 faults (r0/render-critic.json). The lesson was fixed for every fault here before round 1.",
+ "faults": [
+  {
+   "kind": "overlap",
+   "at": 1.5,
+   "text": "Is that hail damage,",
+   "scene": "hook roof close-up",
+   "what": "Snow's pointing arm crosses the left edge of the dialog box"
+  },
+  {
+   "kind": "overlap",
+   "at": 47.6,
+   "text": "EXAMPLE",
+   "scene": "why",
+   "what": "SAME ROOF stamp over the EXAMPLE tag (not seen in the final render's frame at 48.3 s; the stamp was already moved left)"
+  },
+  {
+   "kind": "small-text",
+   "at": 44.4,
+   "text": "PHOTOS SEEN table",
+   "scene": "why",
+   "what": "the score table at about 30 px"
+  }
+ ]
+}

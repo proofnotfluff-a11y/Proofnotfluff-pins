@@ -53,23 +53,35 @@ const stormSky = (d) => {
   d.P(0, 330, 360, 87, '#2B2033'); d.P(0, 330, 360, 2, '#3D2E45');
   hail(d, 40);
 };
-/* the roof close-up: rows of shingle tabs, granules, the marks (round hits and streaked wear, ours) */
-const MARKS = [[64, 132, 'hit'], [150, 116, 'hit'], [236, 170, 'wear'], [118, 196, 'hit'], [292, 128, 'wear'], [206, 238, 'hit'], [44, 262, 'wear'], [266, 286, 'hit'], [170, 300, 'wear'], [96, 228, 'hit']];
-const SQ = {x: 76, y: 140, w: 156, h: 148};   /* stills r0: below the question plate */   /* the chalk square, in low-res units */
+/* the roof close-up (design r0: a sloped shingle field, not a wall): a ridge cap at the top, rows of staggered tabs that  */
+/* fall to the right, granules, round bruises 36 px across (dark center, a lighter ring where granules are knocked off) */
+/* and one streaky worn patch. All ours (EXAMPLE). */
+const MARKS = [[70, 150, 'hit'], [146, 128, 'hit'], [118, 206, 'hit'], [204, 244, 'hit'], [262, 176, 'wear'], [96, 262, 'hit'], [276, 286, 'hit']];
+const SQ = {x: 76, y: 140, w: 156, h: 148};   /* the chalk square, in low-res units */
+const TILT = 0.07;
+const bruise = (d, x, y, r = 7) => {
+  for (let j = -r; j <= r; j++) for (let i = -r; i <= r; i++) { const q = i * i + j * j; if (q <= r * r) d.DOT(x + i, y + j, q <= (r - 3) * (r - 3) ? '#1E2026' : (q <= (r - 1) * (r - 1) ? '#8A8E96' : '#6E727A')); }
+  d.DOT(x - 1, y - 1, '#2E3036'); d.DOT(x + 1, y, '#14161A');
+};
 const roof = (d, o = {}) => {
   const {P, DOT} = d;
-  P(0, 0, 360, 417, '#3A3F4C');
-  for (let r = 0; r < 18; r++) {
-    const y = 84 + r * 14, off = r % 2 ? 12 : 0;
-    P(0, y, 360, 1, '#252A35');
-    for (let x = -off; x < 360; x += 24) { P(x, y + 1, 1, 13, '#252A35'); P(x + 2, y + 2, 20, 2, '#474D5C'); }
-    for (let i = 0; i < 22; i++) DOT(Math.floor(hash(r * 31 + i) * 360), y + 3 + Math.floor(hash(r * 7 + i * 3) * 10), i % 3 ? '#555B6A' : '#2E3340');
+  P(0, 0, 360, 417, '#2A2C33');
+  for (let r = 0; r < 19; r++) {
+    const off = r % 2 ? 11 : 0;
+    for (let x = -off; x < 360; x += 22) {
+      const y = 96 + r * 13 + Math.floor((x + 11) * TILT), c = ['#5B5F68', '#53575F', '#62666E', '#575B63'][Math.floor(hash(r * 17 + x) * 4)];
+      P(x + 1, y, 21, 12, c); P(x + 1, y + 11, 21, 2, '#2E3036'); P(x, y, 1, 13, '#2E3036');
+      for (let i = 0; i < 5; i++) DOT(x + 2 + Math.floor(hash(r * 7 + x + i) * 19), y + 2 + Math.floor(hash(r + x * 3 + i) * 8), i % 2 ? '#6C7079' : '#45484F');
+    }
   }
+  for (let x = 0; x < 360; x++) { const y = 84 + Math.floor(x * TILT); P(x, 84, 1, y - 84 + 12, '#3E4148'); DOT(x, y + 11, '#24262B'); }   /* the ridge cap */
+  for (let x = 0; x < 360; x += 16) { const y = 84 + Math.floor(x * TILT); P(x, y + 2, 14, 8, '#4A4D55'); }
   P(0, 334, 360, 8, GREY); P(0, 342, 360, 3, '#6B7080'); P(0, 345, 360, 72, '#2B2033');   /* the gutter edge */
   MARKS.forEach(([x, y, kind]) => {
-    if (kind === 'hit') { P(x - 3, y - 2, 7, 5, '#22262F'); P(x - 2, y - 3, 5, 7, '#22262F'); P(x - 1, y - 1, 3, 3, '#14161C'); DOT(x + 2, y - 2, '#7A8090'); }
-    else { P(x - 7, y, 14, 2, '#2E3340'); P(x - 4, y + 2, 9, 1, '#2E3340'); DOT(x + 5, y - 1, '#666C7B'); }
+    if (kind === 'hit') bruise(d, x, y);
+    else { for (let i = 0; i < 6; i++) { P(x - 16 + i * 2, y - 8 + i * 3, 30 - i * 3, 2, i % 2 ? '#8A7A66' : '#7A6C5A'); } DOT(x + 8, y - 6, '#9A8A74'); }
   });
+  if (o.ring != null && o.ring > 0) d.ring(MARKS[2][0], MARKS[2][1], 12, CHALK, 0, o.ring); d.ring(MARKS[2][0], MARKS[2][1], 13, CHALK, 0, o.ring);   /* the chalk ring on "damage" */
   if (o.square) {   /* chalk lines draw on */
     const q = clamp(o.square), per = 2 * (SQ.w + SQ.h), L = Math.floor(per * q);
     for (let i = 0; i < L; i += 1) {
@@ -77,19 +89,25 @@ const roof = (d, o = {}) => {
       P(x, y, 2, 2, CHALK);
     }
   }
-  if (o.circles) MARKS.forEach(([x, y, kind], i) => { if (kind === 'hit' && x > SQ.x && x < SQ.x + SQ.w && y > SQ.y && y < SQ.y + SQ.h) d.ring(x, y, 8, CHALK, 0, clamp(o.circles * 4 - i * 0.4)); });
-  if (o.tape) { const x = 170, y = 250; P(x, y, 60, 6, GOLD); for (let i = 0; i < 60; i += 4) P(x + i, y, 1, i % 12 ? 2 : 4, INK); P(x + 58, y - 2, 8, 10, '#B07A47'); }
 };
 /* the driveway: a frame house with a shingled roof (marks on it), the driveway, the lawn, dusk */
 const driveway = (d) => {
   const {P} = d;
   P(0, 0, 360, 417, '#3A4A5E'); for (let y = 84; y < 200; y += 6) d.dith(0, y, 360, 1, '#425470', (y / 6) & 1);
-  P(0, 300, 360, 117, DTEAL); P(150, 300, 210, 117, '#5C606E');
+  P(0, 300, 360, 117, '#4B5F2A'); for (let i = 0; i < 40; i++) P(Math.floor(hash(i + 5) * 150), 304 + Math.floor(hash(i + 44) * 100), 1, 3, '#5E7436');   /* design r0: an olive lawn, so the host's teal jacket reads */
+  P(150, 300, 210, 117, '#5C606E');
   for (let x = (d.F % 30) - 30; x < 360; x += 30) P(Math.max(150, x + 180), 360, 10, 2, '#6B7080');
   P(26, 190, 150, 112, SAND); for (let y = 196; y < 300; y += 8) P(26, y, 150, 1, '#CDBA9F');
-  for (let r = 0; r < 9; r++) { const y = 118 + r * 8, half = 10 + r * 10; P(101 - half, y, half * 2, 8, r % 2 ? '#4A4E5A' : '#555B6A'); P(101 - half, y + 7, half * 2, 1, '#2E3340'); }
-  P(4, 190, 194, 4, '#2E3340');
-  [[70, 150], [118, 168], [140, 140], [52, 176]].forEach(([x, y]) => d.P(x, y, 3, 3, '#22262F'));
+  /* design r0: a filled shingle roof (rows of tabs, bruises like the close-up), not loose lines */
+  for (let r = 0; r < 9; r++) {
+    const y = 116 + r * 8, half = 12 + r * 10, x0 = 101 - half;
+    P(x0, y, half * 2, 8, '#4E525A');
+    for (let x = x0 + (r % 2 ? 4 : 0); x < x0 + half * 2 - 2; x += 8) { P(x, y + 1, 7, 6, ['#5B5F68', '#53575F', '#62666E'][Math.floor(hash(r * 11 + x) * 3)]); P(x + 7, y, 1, 8, '#2E3036'); }
+    P(x0, y + 7, half * 2, 1, '#2E3036');
+  }
+  P(84, 112, 34, 4, '#3E4148');
+  [[70, 150], [118, 166], [140, 140], [56, 174], [98, 132]].forEach(([x, y]) => { d.P(x - 1, y - 1, 4, 4, '#6E727A'); d.P(x, y, 2, 2, '#1E2026'); });
+  P(4, 188, 194, 4, '#2E3036');
   P(44, 214, 30, 30, '#253048'); P(46, 216, 26, 26, '#3B82C4'); P(58, 216, 2, 26, SAND); P(46, 228, 26, 2, SAND);
   P(116, 236, 30, 64, '#7A3442'); P(140, 266, 3, 3, GOLD);
   P(176, 250, 8, 52, '#6B7080');   /* a downspout */
@@ -117,7 +135,7 @@ const split = (d, litL, litR) => {
     const bx = 180 + Math.round((200 - y) * 0.12);
     P(0, y, bx, 1, '#1F3B3A'); P(bx, y, 360 - bx, 1, '#3B1F2A'); P(bx - 1, y, 3, 1, GOLD);
   }
-  for (let i = 0; i < 22; i++) { const y = 90 + Math.floor(hash(i) * 240), x = ((Math.floor(hash(i + 9) * 400 + d.F * (i % 2 ? 6 : -6)) % 400) + 400) % 400 - 20; P(x, y, 24, 2, i % 2 ? '#6A3A4A' : '#3E6E6A'); }   /* code QA r0 flat: more, brighter speed lines */
+  for (let i = 0; i < 22; i++) { const y = 160 + Math.floor(hash(i) * 170),   /* design r0: clear of the label rows */ x = ((Math.floor(hash(i + 9) * 400 + d.F * (i % 2 ? 6 : -6)) % 400) + 400) % 400 - 20; P(x, y, 24, 2, i % 2 ? '#6A3A4A' : '#3E6E6A'); }   /* code QA r0 flat: more, brighter speed lines */
   if (!litL) for (let y = 84; y < 340; y++) { const bx = 180 + Math.round((200 - y) * 0.12); d.dith(0, y, bx - 1, 1, INK, y & 1); }
   if (!litR) for (let y = 84; y < 340; y++) { const bx = 180 + Math.round((200 - y) * 0.12); d.dith(bx + 2, y, 360 - bx - 2, 1, INK, y & 1); }
 };
@@ -142,14 +160,14 @@ window.SCENE = {
         return {host: false};
       }
       if (T < tDrive) {
-        roof(d);
+        roof(d, {ring: clamp((T - (wordT(k, 0, /^damage/i, 0.9) - 0.1)) / 0.4)});   /* design r0: chalk-circle one bruise on "damage" */
         hail(d, 18, 84, 330, 6);
         d.P(16, 92, 334, 66, INK); d.P(14, 90, 334, 66, '#253048'); d.P(14, 90, 334, 3, '#3B82C4');
         k.text('HAIL DAMAGE?', 540, 288, {size: 66, color: ORANGE, align: 'center'});
         k.text('OR JUST AN OLD ROOF?', 540, 366, {size: 66, color: CREAM, align: 'center'});
         k.exampleTag(930, 480, {right: true});
         k.cut(tRoof); k.cut(tDrive, {kind: 'iris'});
-        return host(k, 'point');
+        return host(k, null);   /* render critic r0: his pointing arm crossed the dialog box */
       }
       const tShe = k.S('hook.she'), tWrit = wordT(k, 'hook.she', /^written/i, 1.6) - 0.1, tIns = wordT(k, 'hook.she', /^insurance/i, 2.4) - 0.1, tToday = k.S('hook.today'), tWants = wordT(k, 'hook.she', /^wants/i, 1.3);
       driveway(d);
@@ -169,13 +187,12 @@ window.SCENE = {
       split(d, T >= tNo, T >= tYes);
       k.text('SAY NO', 72, 268, {size: 66, color: T >= tNo ? TEAL : GREY});
       k.text('SAY YES', 930 - k.measure('SAY YES', {size: 66}), 268, {size: 66, color: T >= tYes ? RED : GREY});
-      k.client(250, 980, {role: 'homeowner', pose: T >= tNo ? 'phone' : 'refuse', mood: 'cross', scale: 0.62, face: 1});
+      k.client(330, 980, {role: 'homeowner', pose: T >= tNo ? 'phone' : 'refuse', mood: 'cross', scale: 0.62, face: 1});
       k.client(830, 980, {role: 'buyer', pose: 'refuse', mood: T >= tYes ? 'smug' : 'calm', scale: 0.62, face: -1, talk: T >= tYes && T < tWord});
       if (T >= tNo) {
         k.text('SHE CALLS', 72, 350, {size: 52, color: CREAM});
         k.text('ANOTHER ROOFER', 72, 410, {size: 52, color: GOLD});
         k.exampleTag(72, 480);
-        if (Math.floor((T - tNo) * 4) % 2 === 0) { d.P(118, 196, 3, 8, GOLD); d.P(124, 192, 3, 16, GOLD); }   /* the call rings */
       }
       if (T >= tYes) {
         k.text('THE ADJUSTER', 930 - k.measure('THE ADJUSTER', {size: 52}), 350, {size: 52, color: CREAM});
@@ -183,16 +200,17 @@ window.SCENE = {
         if (T < tWord) bubble(k, d, ['NOT HAIL.', 'WEAR.'], [tYes + 0.5, tYes + 0.8], 196, 168, 100, 276, {edge: RED});   /* stills r0: inside x 930, under the tag; gone when the stamp lands */
       }
       if (T >= tWord) stampBox(k, 'YOUR WORD VS HIS', 540, 560, tWord, {color: GOLD, bg: NIGHT, size: 66, freeze: 4});   /* stills r0: above both heads */
-      return host(k, T >= tWord ? 'shrug' : null, 0.5, 540);
+      const tLose = wordT(k, 'trap', /^lose/i, 1.4) - 0.1;   /* design r0: the host out at the left, a shrug on "you lose either way", a lean on "your word against his" */
+      return host(k, T >= tWord ? 'lean' : (T >= tLose && T < tLose + 1.6 ? 'shrug' : null), 0.55, 150);
     },
 
     /* ---- send: the estimator's card slides up and holds dead still; each step goes to ink on its words ---- */
     send: (k, T) => {
-      const t0 = k.S('send'), d = px(k), w = (re, dd) => wordT(k, 'send', re, dd) - 0.2;
-      const on = [w(/^house/i, 4.2), w(/^chalk/i, 5.6), w(/^circled/i, 7.0), w(/^vents/i, 8.6)].map((a) => T >= a);
+      const t0 = k.S('send'), d = px(k);
+      const on = [true, true, true, true];   /* send r0: all four lit from the moment the card lands, so any screenshot is the whole list */
       d.P(0, 0, 360, 417, '#253048'); const so = (d.F * 2) % 24; for (let x = so - 24; x < 360; x += 24) d.P(Math.max(0, x), 0, Math.max(0, Math.min(x + 12, 360) - Math.max(0, x)), 417, '#34466A');   /* the stripes drift; the card never moves */
       hail(d, 60, 0, 417, 8);   /* code QA r0 flat (20.0 to 25.3 s): hail falls behind the card, never over it */
-      const c = k.sendCard({at: t0, who: 'FOR THE ESTIMATOR', title: 'BEFORE YOU SAY HAIL', steps: ['THE HOUSE AND ADDRESS', 'A CHALK SQUARE EACH SLOPE', 'EVERY HIT CIRCLED', 'VENTS AND GUTTERS'], stepOn: on, example: true, colors: {step: '#A7ABB5'}});   /* stills r0: unlit steps lighter, so each lights clearly */
+      const c = k.sendCard({at: t0, who: 'FOR THE ESTIMATOR', title: 'BEFORE YOU SAY HAIL', steps: ['THE HOUSE AND ADDRESS', 'A CHALK SQUARE EACH SLOPE', 'EVERY HIT CIRCLED, TAPE BESIDE IT', 'VENTS AND GUTTERS']   /* send r0: the tape is on the card too */, stepOn: on, example: true, colors: {step: '#A7ABB5'}});   /* stills r0: unlit steps lighter, so each lights clearly */
       return host(k, c ? 'point' : null);
     },
 
@@ -202,11 +220,13 @@ window.SCENE = {
     receipt: (k, T) => {
       const d = px(k), n = k.data.numbers.share, tE = wordT(k, 'receipt.share', /^eighty/i, 0.6), tQ = k.S('receipt.again');
       if (T < tQ) {
-        k.sets.gauge({value: n.value, max: 100, at: tE, dur: 1.0, readout: false, zones: [[0, 40, DTEAL], [40, 70, ORANGE], [70, 100, RED]]});
+        k.sets.gauge({value: n.value, max: 100, at: tE - 0.3, dur: 1.0, readout: false, labels: false, zones: [[0, 40, DTEAL], [40, 70, ORANGE], [70, 100, RED]]});
+        d.P(0, 88, 360, 26, '#2B2033'); d.P(0, 114, 360, 2, '#3D2E45');   /* design r0: a visor band, so the source never runs into the ring */
         k.text('Source: Triple-I, Apr 14, 2026', 540, 276, {size: 52, color: SAND, align: 'center', drop: INK});
-        d.P(118, 224, 124, 70, INK); d.P(120, 226, 120, 66, '#1A332B');
-        k.text('AS MUCH AS', 540, 676, {size: 52, color: GOLD, align: 'center'});
-        if (T >= tE) { const rise = clamp((T - tE) / 0.6), v = Math.round(n.value * eo(rise)); k.text(rise >= 1 ? n.shown : v + '%', 540, 734, {size: 132, color: ORANGE, align: 'center', drop: INK, lint: rise >= 1}); }
+        d.P(136, 224, 104, 70, INK); d.P(138, 226, 100, 66, '#1A332B');   /* design r0: narrower, clear of the 0 and the 100 */
+        k.text('100', 732, 744, {size: 39, color: '#C9CCD3'});
+        k.text('AS MUCH AS', 564, 676, {size: 52, color: GOLD, align: 'center'});
+        if (T >= tE - 0.3) { const rise = clamp((T - tE + 0.3) / 0.6), v = Math.round(n.value * eo(rise)); k.text(rise >= 1 ? n.shown : v + '%', 564, 734, {size: 132, color: ORANGE, align: 'center', drop: INK, lint: rise >= 1}); }
         d.P(102, 292, 210, 48, INK); d.P(100, 290, 210, 48, NIGHT); d.P(100, 290, 210, 3, GOLD);
         k.text('OF SEVERE STORM CLAIMS', 330, 884, {size: 52, color: CREAM});
         k.text('IN A YEAR ARE HAIL', 330, 942, {size: 52, color: GOLD});
@@ -233,7 +253,8 @@ window.SCENE = {
       const t0 = k.S('why'), d = px(k), tAdj = k.S('why.adjuster'), tSame = wordT(k, 'why.adjuster', /^same$/i, 1.6) - 0.25, tRoof = wordT(k, 'why.adjuster', /^roof/i, 2.4) - 0.25;
       const tHer = wordT(k, 'why', /^she$/i, 0.2) - 0.25;
       /* the rows land on "she", near "you" and on "and so does the adjuster" (one gap, so the third lands on its cue) */
-      k.sets.scores({title: 'PHOTOS SEEN', t0: tHer, gap: Math.max(0.3, (tAdj - tHer) / 2), count: 0.4, rows: [
+      k.sets.scores({title: 'PHOTOS SEEN', size: 52, t0: tHer,   /* render critic r0: the table at 52 (sets.js scores size) */
+        gap: Math.max(0.3, (tAdj - tHer) / 2), count: 0.4, rows: [
         {name: 'HER', value: 4, from: 0, suffix: ' PHOTOS'},
         {name: 'YOU', value: 4, from: 0, suffix: ' PHOTOS'},
         {name: 'ADJUSTER', value: 4, from: 0, suffix: ' PHOTOS', hi: true},
@@ -248,7 +269,7 @@ window.SCENE = {
     /* "what" the question; a cursor moves between the cards twice a second ---- */
     button: (k, T) => {
       const t0 = k.S('button'), d = px(k), tQ = wordT(k, 'button', /^what$/i, 2.0) - 0.25;
-      k.sets.versus({a: {name: 'HAIL DAMAGE', icon: 'hammer'}, b: {name: 'JUST WEAR', icon: 'clock'}, at: t0, vsAt: t0 + 0.4});
+      k.sets.versus({a: {name: 'HAIL DAMAGE', icon: 'hammer'}, b: {name: 'JUST WEAR', icon: 'clock'}, at: t0, vsAt: t0 + 0.4, iconScale: 8});   /* design r0: icons 2x */
       d.P(16, 214, 330, 40, INK); d.P(14, 212, 330, 40, '#253048'); d.P(14, 212, 330, 3, '#3B82C4');
       k.text(T >= tQ ? 'WHAT WOULD YOU TELL HER?' : 'LET THE PHOTOS MAKE THE CALL', 540, 654, {size: 66, color: T >= tQ ? GOLD : CREAM, align: 'center'});
       k.exampleTag(930, 780, {right: true});

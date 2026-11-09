@@ -1,0 +1,19 @@
+{
+  "gate": "render-critic",
+  "round": 0,
+  "reviewer": "claude opus, fresh agent",
+  "pass": true,
+  "score": {"faults": 0},
+  "faults": [],
+  "reasons": [
+    "No earlier render-critic.json existed, so there were no earlier faults to check.",
+    "Hook: PASS. HAIL DAMAGE? OR JUST AN OLD ROOF? is on screen from frame 0 (frame-0s.png), well before 0:02.",
+    "Spoken numbers: PASS. Four (23.2 s): the 4-item list numbered 1 to 4 has been on screen since about 20 s. Eighty percent (35.99 to 36.87 s): the dial counts up and reads 80% by 36.5 s, then holds through 40 s. The Triple-I quote card at 41 to 43 s also shows 80%.",
+    "Layout: PASS. Once settled, no words or numbers are hidden, cut off or under another element. All text sits between y 270 and y 1250, and right edges of text and badges stop at about x 928 to 930. Card backgrounds run wider, but the words inside do not. Black bands over the title card at 0.5 to 1.5 s, the pixel dissolve at 19.5 s, the dip at 43.0 s and the wipe at 49.0 s are all mid-transition.",
+    "Audio end: PASS. Last word not? ends at 53.95 s. The end card starts at 54.05 s, the video runs to 57.07 s and the music fades to -53 dB at the end. No word is cut.",
+    "Small text and flashes: PASS. The smallest readable text (DAMAGE OR NOT bar, leaderboard rows, HAIL DAMAGE and JUST WEAR labels) is about 25 to 30 px tall on a 1080 px frame, fine for a phone. Brightness analysis of all 1712 frames finds 4 dip-to-dark transitions (8.0, 19.7, 43.1, 49.3 s), each one swing and at least 6 s apart. Nothing flashes more than 3 times a second.",
+    "Watch item, not a fault: when Four is said at 23.2 s, all four list rows are still dimmed grey on cream (contrast about 2.5 to 1). The 4 is readable but faint until the rows light up at 25.5 s.",
+    "Watch item, not a fault: on the dial scene (33.6 to 40.5 s), the top of the gauge ring runs behind the descenders of Source: Triple-I, Apr 14, 2026. The text is drawn on top and stays readable.",
+    "Watch item, not a fault: drifting speed-line dashes on the trap scene (8.6 to 19.5 s) pass under the baselines of SAY NO and THE ADJUSTER. They do not hide any letters."
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "gate": "send",
+  "round": 0,
+  "pass": true,
+  "score": {
+    "person": "estimator",
+    "tie": "my estimator, the guy who climbs every roof after a hail storm and gets cornered by the homeowner in the driveway",
+    "thing": "the estimator's four shot photo list: \"FOR THE ESTIMATOR / BEFORE YOU SAY HAIL / 1 THE HOUSE AND ADDRESS / 2 A CHALK SQUARE EACH SLOPE / 3 EVERY HIT CIRCLED / 4 VENTS AND GUTTERS\"",
+    "held_at": "20.0 s to 33.0 s (all four lines fully lit 32.0 s to 33.0 s)",
+    "line": "Give this list to your estimator.",
+    "gain": "helps",
+    "feeling": "relief",
+    "thanks": "yes",
+    "send_line_fits": "yes"
+  },
+  "reasons": [
+    "1. I run a three crew roofing shop. I would send it to my estimator, who walks every hail roof and gets asked to call it on the spot.",
+    "2. \"Give this list to your estimator.\" The video tells me who it is for and hands me the thing to forward. \"Call it from the driveway, and you lose either way.\" is the line that makes him nod.",
+    "3. Helps: he has been stuck between a homeowner who wants a yes today and an adjuster who says wear, and this gives him a way out that is not his word.",
+    "4. Relief: the trap at 8 s to 18 s (say no, she calls another roofer; say yes, the adjuster says wear) is real, and the list is the exit.",
+    "5. Thanks. It is a four line field checklist, not a pitch; the only brand is the end card.",
+    "6. End card reads \"Send this to your estimator before the next storm.\" It names the same person the video and the list name. Fits.",
+    "7. The list card sits still from 20.0 s to 33.0 s, readable the whole time, with lines 2 to 4 grey until the voice reaches them. All four are bright together only from 32.0 s to 33.0 s before the cut to the gauge at 33.5 s. A viewer who pauses early screenshots a half grey list.",
+    "8. The voice says \"your estimator\" and the card header says \"FOR THE ESTIMATOR\". One role.",
+    "Problem: the fully lit list holds about 1.5 s. Fix: hold the fully lit card at least 2.5 s before the gauge, or flash the full list behind the end card so the last frame a viewer pauses on is the thing to forward.",
+    "Problem: line 3 on screen drops the voice's key detail. Voice: \"every hit circled with a tape beside it\". Screen: \"3 EVERY HIT CIRCLED\". The forwarded screenshot is the only part the estimator sees. Fix: \"3 EVERY HIT CIRCLED, TAPE BESIDE IT\".",
+    "Not a send problem but seen on the sheets: 19.5 s is a checkerboard noise frame and 49.0 s is mostly black mid transition. Worth a look in the visual gates."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+ "gate": "design",
+ "round": 0,
+ "reviewer": "claude opus, fresh agent",
+ "bar": "4.61",
+ "pass": false,
+ "score": {
+  "first": 4,
+  "hierarchy": 5,
+  "type": 5,
+  "color": 4,
+  "spacing": 4,
+  "polish": 4,
+  "trust": 4,
+  "average": 4.29
+ },
+ "reasons": [
+  "0.7 to 2.3 s roof close-up: it reads as a purple brick wall, and the hail marks are 8 px dots that vanish on a phone, so the object the hook asks about is never shown (C1). Redraw it as a sloped shingle field (staggered tabs, ridge line at the top, tilted) with 4 to 6 round bruises at least 30 px across (dark center, lighter ring) and one streaky worn patch for OLD ROOF. Chalk-circle one bruise on 'damage'.",
+  "2.4 to 8.0 s driveway, host: his teal jacket sits on the teal lawn and his torso disappears, leaving a floating head and legs. Stand him on the grey driveway, or darken the lawn to a deep green, or give him a 3 px ink outline.",
+  "2.4 to 8.0 s driveway, house roof: the roof is seven loose lines with floating dots and looks unfinished. Draw a filled shingle roof (rows of tabs, a few bruises that match the close-up) on the two-flat the cue asks for. The whole lesson argues about this roof, so it should be the best-drawn thing on screen.",
+  "8.0 to 19.5 s trap split: the host is behind the dialog box for 11.5 s and only his hat shows. Bring him out at the left of the box, as in every other section, and play the cued shrug on 'you lose either way' and a lean-in on 'your word against his' (M5).",
+  "20.3 to 31.8 s send card: the waiting steps (#A7ABB5 on cream, about 2.2:1) are faint, and anyone who pauses or saves before 25 s sees grey lines (C3). Darken waiting steps to about #858A96 (3.3:1). Keep the ink light-up on each word so each step still reads as it lands.",
+  "49.5 to 54.0 s versus cards: the hammer and clock icons are about 70 px inside 410 x 260 cards, so the cards look empty. Scale both icons up 2.5x (about 180 px) and center them.",
+  "11.75 to 19.5 s trap, left half: the small gold ring mark near x 365, y 600 floats 150 px from her phone and reads as a stray glyph. Put it at her ear or drop it. At 18.15 s a red speed-line dash sits under SAY YES like an underline, and another sits between SHE CALLS and ANOTHER ROOFER. Keep the streaks out of the label rows (y 280 to 470).",
+  "33.5 to 40.5 s gauge: the AS MUCH AS plate hides the dial's 0 and 100 (the cue asks for them), and the Source line runs into the top of the ring. Lift the Source line about 20 px or shrink the dial about 6%, and put 0 and 100 at the arc ends above the plate. The count starts on 'eighty' and reaches 80% at 36.6 s, so start it 0.3 s earlier so 80% lands as the word is said (M3)."
+ ],
+ "notes": [
+  "Bar used: round 0, no score under 4 and average 4.61 or more. No earlier design.json existed. Fails on average (4.29), and no score is under 4.",
+  "Freshness: PASS. This lesson's worlds (storm-sky cover, driveway, slanted split, gauge, arcade score table, versus) share no set piece with pay-before-you-leave (street, calendar, level-up) or members-go-first (dispatch map, weather, slots, HUD). fresh.json: cover 0.31 and 0.39, shot1 0.14 and 0.08, close 0.08 and 0.17, send 0.71 and 0.64 (kit piece, meant to match). First impression is not capped at 3.",
+  "Style board caps: none triggered. The picture changes at 0.7 s (blinds), the host is on screen at 1.0 s, spoken words are at or above 44 px and labels at or above 39 px (sets.js default; table 52), and the end card with proofnotfluff.com holds 54.05 to 57.07 s.",
+  "Standard: M4 met. Every room change travels (blinds 0.7 s, iris 2.3 s, tile wave 8.0 s, dither 19.6 s, mosaic 33.5 s, fade4 43.0 s, CRT close 49.0 s), and the YOUR WORD VS HIS (17.5 s) and SAME PHOTOS (46.5 s) stamps overshoot and settle. qa.json flat PASS. C3 card present 20.0 to 33.4 s and readable at phone size once lit.",
+  "Render is older than the scene: scene.js was saved at 19:06, after the MP4 (19:00). For example, scene.js step 3 reads EVERY HIT CIRCLED, TAPE BESIDE IT, but the render shows EVERY HIT CIRCLED. Re-render before the next round so the gates judge the same build."
+ ]
+}

@@ -93,7 +93,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 1,Rogers Park,2026-08,12,13
 1,Rogers Park,2026-09,1,11
 1,Rogers Park,2026-10,4,12
-1,Rogers Park,2026-11,0,0
+1,Rogers Park,2026-11,0,1
 2,West Ridge,2019-01,0,5
 2,West Ridge,2019-02,0,16
 2,West Ridge,2019-03,4,24
@@ -188,7 +188,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 2,West Ridge,2026-08,8,19
 2,West Ridge,2026-09,6,9
 2,West Ridge,2026-10,7,13
-2,West Ridge,2026-11,0,166
+2,West Ridge,2026-11,0,167
 3,Uptown,2019-01,0,3
 3,Uptown,2019-02,0,20
 3,Uptown,2019-03,1,16
@@ -3418,7 +3418,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 36,Oakland,2026-08,1,2
 36,Oakland,2026-09,0,0
 36,Oakland,2026-10,0,2
-36,Oakland,2026-11,0,1
+36,Oakland,2026-11,0,2
 37,Fuller Park,2019-01,0,0
 37,Fuller Park,2019-02,0,3
 37,Fuller Park,2019-03,1,3
@@ -3988,7 +3988,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 42,Woodlawn,2026-08,6,13
 42,Woodlawn,2026-09,1,4
 42,Woodlawn,2026-10,2,5
-42,Woodlawn,2026-11,1,0
+42,Woodlawn,2026-11,2,0
 43,South Shore,2019-01,0,6
 43,South Shore,2019-02,0,18
 43,South Shore,2019-03,14,15
@@ -4843,7 +4843,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 51,South Deering,2026-08,9,10
 51,South Deering,2026-09,21,12
 51,South Deering,2026-10,3,4
-51,South Deering,2026-11,0,0
+51,South Deering,2026-11,0,1
 52,East Side,2019-01,0,5
 52,East Side,2019-02,3,8
 52,East Side,2019-03,7,24
@@ -6553,7 +6553,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 69,Greater Grand Crossing,2026-08,10,12
 69,Greater Grand Crossing,2026-09,8,12
 69,Greater Grand Crossing,2026-10,11,12
-69,Greater Grand Crossing,2026-11,0,0
+69,Greater Grand Crossing,2026-11,1,0
 70,Ashburn,2019-01,0,1
 70,Ashburn,2019-02,1,13
 70,Ashburn,2019-03,3,12

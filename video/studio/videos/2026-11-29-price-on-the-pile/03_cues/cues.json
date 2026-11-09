@@ -6,7 +6,7 @@
   "level": 0.16,
   "tune": "bounce"
  },
- "duration": 55.758,
+ "duration": 52.414,
  "cues": [
   {
    "id": "hook",
@@ -72,14 +72,14 @@
   {
    "id": "receipt",
    "level": 0,
-   "quote": "And homeowners say they",
+   "quote": "Your customers are homeowners,",
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "A plain cut to the survey: THE ACHR NEWS SURVEY / HOMEOWNERS ASKED ABOUT HVAC over a row of ten houses, dark; the tag The ACHR News, Dec 23, 2024 under them the whole time. On \"Seventy\" 70% (data.js) lands and seven of the ten houses light up one by one; the lines read MORE LIKELY TO CALL / THE ONE UPFRONT ON PRICE.",
+   "text": "A plain cut to the survey: 70% (data.js) big from the first frame, OF HOMEOWNERS SURVEYED / MORE LIKELY TO CALL / THE ONE UPFRONT ON PRICE under it, a row of ten houses that light one by one, the seventh on \"seventy\"; the tag The ACHR News, Dec 23, 2024 (HVAC) the whole time.",
    "t": 31.425,
    "word": 90,
-   "end": 48.098
+   "end": 44.754
   },
   {
    "id": "button",
@@ -89,9 +89,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The driveway again, before the job: the pile on the drive, nothing loaded yet, the homeowner calm. The stamp on \"does\", up top: WHERE DOES YOUR PRICE GO? Then two cards under it: ON THE PILE on \"pile\", ON THE TRAILER on \"trailer\". Holds to the end card.",
-   "t": 48.098,
-   "word": 132,
-   "end": 55.758
+   "t": 44.754,
+   "word": 123,
+   "end": 52.414
   }
  ]
 }

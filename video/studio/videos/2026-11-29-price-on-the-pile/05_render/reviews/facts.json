@@ -2,17 +2,12 @@
  "gate": "facts",
  "round": 0,
  "pass": true,
- "reviewer": "claude opus (fresh agent), 2026-11-09",
+ "reviewer": "claude opus (fresh agent), 2026-11-09, rerun after fix round 1",
  "score": {
   "numbers": 10,
   "mismatches": 0
  },
- "reasons": [],
- "notes": [
-  "achrnews.com unreachable here (ENOTFOUND); judged against the facts.json confirms lines, copied word for word from the live page on 2026-11-09 by two page reads.",
-  "70 matches in voice, clipping quote and slot reels; population kept to HVAC homeowners and calling; the made-up job set up once in the voice, first; EXAMPLE tags on $400 (cover, bubble) and $200 (bubble); the send card, endSend and sendLine carry [YOUR PRICE], no number; no dashes; no private person or business."
- ],
- "sources_checked": [
-  "https://www.achrnews.com/articles/163905-homeowners-want-prices-listed-online: unreachable; facts.json confirms used"
+ "reasons": [
+  "advisory: the voice line This load is four hundred shows in the dialog box with no EXAMPLE tag at that moment; passes since the job is said made-up and the card carries [YOUR PRICE]"
  ]
 }

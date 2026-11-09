@@ -187,21 +187,19 @@ window.SCENE = {
       const lit = Math.round(Number(n.value != null ? n.value : parseFloat(n.shown)) / 10);
       k.cut(t0);
       P(0, 0, 360, 417, '#253048'); for (let y = (d.F >> 2) % 8 - 8; y < 417; y += 8) P(0, Math.max(0, y), 360, 3, NIGHT);
-      if (T < tSev) {
-        k.text('THE ACHR NEWS SURVEY', 72, 276, {size: 66, color: GOLD, drop: INK});
-        k.text('HOMEOWNERS ASKED ABOUT HVAC', 72, 444, {size: 52, color: CREAM});
-      } else {
-        k.slam(n.shown, 540, 262, tSev, {size: 150, color: GOLD, drop: INK, from: 0.3, align: 'center'});
-        k.text('MORE LIKELY TO CALL', 72, 444, {size: 52, color: CREAM});
-        k.text('THE ONE UPFRONT ON PRICE', 72, 504, {size: 52, color: CREAM});
-      }
+      /* viewer r1 and design r1: the number from the first frame of the beat, big; the houses light one by one up to */
+      /* "Seventy", the seventh on the word */
+      k.slam(n.shown, 540, 420, t0, {size: 220, color: GOLD, drop: INK, from: 0.3, align: 'center'});
+      k.text('OF HOMEOWNERS SURVEYED', 72, 648, {size: 52, color: CREAM});
+      k.text('MORE LIKELY TO CALL', 72, 704, {size: 52, color: CREAM});
+      k.text('THE ONE UPFRONT ON PRICE', 72, 760, {size: 52, color: CREAM});
       for (let i = 0; i < 10; i++) {
-        const x = 14 + i * 33, y = 196, on = T >= tSev + i * 0.08 && i < lit;
+        const x = 14 + i * 33, y = 112, on = i < lit && T >= t0 + 0.4 + (tSev + 0.3 - t0 - 0.4) * i / Math.max(1, lit - 1);
         P(x, y + 10, 28, 24, INK); P(x + 1, y + 11, 26, 22, on ? '#E6D3BC' : SLATE);
         for (let r = 0; r < 10; r++) P(x + 14 - r * 1.4, y + r, r * 2.8, 1, on ? WINE : '#3D2E45');
         P(x + 10, y + 22, 8, 12, INK); P(x + 4, y + 15, 6, 5, on ? GOLD : NIGHT); P(x + 18, y + 15, 6, 5, on ? GOLD : NIGHT);
       }
-      k.sourceTag('The ACHR News, Dec 23, 2024', 72, 744, {color: SAND});
+      k.sourceTag('ACHR News, Dec 23, 2024, HVAC', 72, 270, {color: SAND});
       return host(k, T >= tSev ? 'point' : null);
     },
 

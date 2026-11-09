@@ -27,10 +27,10 @@ behind it drift. No EXAMPLE tag on the card (no made-up number on it).
 On "is" a plain cut to two rows: top, teal: UP FRONT / A YES = A DEAL; bottom, red, on "price": AFTER THE WORK, then A PRICE = A FIGHT.
 The bottom row shakes once on "fight".
 
-## receipt "And homeowners say they" [sfx: blip]
-A plain cut to the survey: THE ACHR NEWS SURVEY / HOMEOWNERS ASKED ABOUT HVAC over a row of ten houses, dark; the tag
-The ACHR News, Dec 23, 2024 under them the whole time. On "Seventy" 70% (data.js) lands and seven of the ten houses
-light up one by one; the lines read MORE LIKELY TO CALL / THE ONE UPFRONT ON PRICE.
+## receipt "Your customers are homeowners," [sfx: blip]
+A plain cut to the survey: 70% (data.js) big from the first frame, OF HOMEOWNERS SURVEYED / MORE LIKELY TO CALL / THE
+ONE UPFRONT ON PRICE under it, a row of ten houses that light one by one, the seventh on "seventy"; the tag ACHR News,
+Dec 23, 2024, HVAC on top the whole time, the houses under it, then 70% and the three lines.
 
 ## button "So on your next" [sfx: chime]
 The driveway again, before the job: the pile on the drive, nothing loaded yet, the homeowner calm. The stamp on "does", up top: WHERE DOES YOUR PRICE GO?

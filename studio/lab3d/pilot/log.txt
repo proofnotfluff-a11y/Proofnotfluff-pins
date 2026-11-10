@@ -1,0 +1,54 @@
+FRAME 0 t=0.00 done, 1.9 s a frame so far
+FRAME 1 t=0.04 done, 1.7 s a frame so far
+FRAME 2 t=0.08 done, 1.7 s a frame so far
+FRAME 3 t=0.12 done, 1.7 s a frame so far
+FRAME 4 t=0.17 done, 1.6 s a frame so far
+FRAME 5 t=0.21 done, 1.6 s a frame so far
+FRAME 6 t=0.25 done, 1.6 s a frame so far
+FRAME 7 t=0.29 done, 1.6 s a frame so far
+FRAME 8 t=0.33 done, 1.6 s a frame so far
+FRAME 9 t=0.38 done, 1.6 s a frame so far
+FRAME 10 t=0.42 done, 1.6 s a frame so far
+FRAME 11 t=0.46 done, 1.6 s a frame so far
+FRAME 12 t=0.50 done, 1.6 s a frame so far
+FRAME 13 t=0.54 done, 1.6 s a frame so far
+FRAME 14 t=0.58 done, 1.6 s a frame so far
+FRAME 15 t=0.62 done, 1.6 s a frame so far
+FRAME 16 t=0.67 done, 1.6 s a frame so far
+FRAME 17 t=0.71 done, 1.6 s a frame so far
+FRAME 18 t=0.75 done, 1.6 s a frame so far
+FRAME 19 t=0.79 done, 1.6 s a frame so far
+FRAME 20 t=0.83 done, 1.6 s a frame so far
+FRAME 21 t=0.88 done, 1.6 s a frame so far
+FRAME 22 t=0.92 done, 1.6 s a frame so far
+FRAME 23 t=0.96 done, 1.6 s a frame so far
+DONE 24 frames in 39 s
+exit 0
+frames 24 of 24
+FRAME 24 t=1.00 done, 1.9 s a frame so far
+FRAME 25 t=1.04 done, 1.8 s a frame so far
+FRAME 26 t=1.08 done, 1.7 s a frame so far
+FRAME 27 t=1.12 done, 1.7 s a frame so far
+FRAME 28 t=1.17 done, 1.7 s a frame so far
+FRAME 29 t=1.21 done, 1.7 s a frame so far
+FRAME 30 t=1.25 done, 1.7 s a frame so far
+FRAME 31 t=1.29 done, 1.6 s a frame so far
+FRAME 32 t=1.33 done, 1.6 s a frame so far
+FRAME 33 t=1.38 done, 1.6 s a frame so far
+FRAME 34 t=1.42 done, 1.6 s a frame so far
+FRAME 35 t=1.46 done, 1.6 s a frame so far
+FRAME 36 t=1.50 done, 1.6 s a frame so far
+FRAME 37 t=1.54 done, 1.6 s a frame so far
+FRAME 38 t=1.58 done, 1.6 s a frame so far
+FRAME 39 t=1.62 done, 1.6 s a frame so far
+FRAME 40 t=1.67 done, 1.6 s a frame so far
+FRAME 41 t=1.71 done, 1.6 s a frame so far
+FRAME 42 t=1.75 done, 1.6 s a frame so far
+FRAME 43 t=1.79 done, 1.6 s a frame so far
+FRAME 44 t=1.83 done, 1.6 s a frame so far
+FRAME 45 t=1.88 done, 1.6 s a frame so far
+FRAME 46 t=1.92 done, 1.6 s a frame so far
+FRAME 47 t=1.96 done, 1.6 s a frame so far
+DONE 24 frames in 39 s
+exit 0
+frames 24 of 24

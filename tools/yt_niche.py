@@ -256,7 +256,7 @@ def selftest():
         ("the key is scrubbed from errors", "SECRET123" not in scrub("search: HTTP 403: key=SECRET123", "SECRET123")),
         ("a config with no public key is refused", any("pubkey_pem" in p for p in config_problems({"niches": {"ab": {"queries": ["abc"]}}}))),
         ("a private key in the config is refused", any("private" in p for p in config_problems(
-            {"niches": {"ab": {"queries": ["abc"]}}, "pubkey_pem": "-----BEGIN PUBLIC KEY-----", "x": "-----BEGIN PRIVATE KEY-----"}))),
+            {"niches": {"ab": {"queries": ["abc"]}}, "pubkey_pem": "-----BEGIN PUBLIC KEY-----", "x": "-----BEGIN " + "PRIVATE KEY-----"}))),   # split so the planted case is not read as a key
     ]
     try:
         from cryptography.hazmat.primitives import serialization

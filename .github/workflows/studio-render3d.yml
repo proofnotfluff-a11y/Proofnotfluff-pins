@@ -1,0 +1,130 @@
+name: Studio 3D render (lab)
+# 3D look test (Todd, live chat, Nov 9, 2026, 10:38 pm: "Go"; coo/DECISIONS-2026-11-09.md). A push of
+# video/studio/lab3d/jobs/<name>.json renders video/studio/lab3d/film.py with Blender's free Python module on the runners'
+# CPUs, in parallel slices of frames, joins the slices into one silent MP4 and publishes it with the logs to the
+# video-renders branch under studio/lab3d/<name>/. No secrets are used, nothing is posted and main is never written.
+on:
+  push:
+    branches: [main]
+    paths: ["video/studio/lab3d/jobs/*.json"]
+permissions:
+  contents: write
+concurrency:
+  group: studio-render3d
+  cancel-in-progress: true
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      slices: ${{ steps.p.outputs.slices }}
+      name: ${{ steps.p.outputs.name }}
+      res: ${{ steps.p.outputs.res }}
+      spp: ${{ steps.p.outputs.spp }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - id: p
+        run: |
+          J=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- 'video/studio/lab3d/jobs/*.json' | head -1)
+          echo "job file: $J"
+          python3 - "$J" >> "$GITHUB_OUTPUT" <<'PY'
+          import json, re, sys
+          j = json.load(open(sys.argv[1]))
+          name = re.sub(r"[^a-z0-9-]", "", str(j["name"]).lower())[:60]
+          frames, n = int(j.get("frames", 732)), max(1, min(20, int(j.get("slices", 20))))
+          per = -(-frames // n)
+          sl = [{"start": a, "end": min(frames, a + per) - 1} for a in range(0, frames, per)]
+          print("slices=" + json.dumps(sl)); print("name=" + name)
+          print("res=%d" % max(90, min(1080, int(j.get("res", 1080))))); print("spp=%d" % max(1, min(64, int(j.get("spp", 32)))))
+          PY
+  render:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        slice: ${{ fromJSON(needs.plan.outputs.slices) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Blender
+        run: |
+          pip install --quiet bpy==5.2.3 imageio-ffmpeg==0.6.0
+          if ! python3 -c "import bpy" 2> /tmp/import.txt; then
+            cat /tmp/import.txt
+            timeout 480 sudo apt-get update -qq || true
+            timeout 480 sudo apt-get install -y -qq libxi6 libxxf86vm1 libxfixes3 libxrender1 libgl1 libegl1 libxkbcommon0 libsm6 libice6 > /dev/null || true
+            python3 -c "import bpy"
+          fi
+      - name: Render the slice
+        env:
+          A: ${{ matrix.slice.start }}
+          B: ${{ matrix.slice.end }}
+          RES: ${{ needs.plan.outputs.res }}
+          SPP: ${{ needs.plan.outputs.spp }}
+        run: |
+          mkdir -p /tmp/out /tmp/frames
+          P=$(printf "%04d" "$A")
+          set +e
+          python3 video/studio/lab3d/film.py --res "$RES" --spp "$SPP" --start "$A" --end "$B" --out /tmp/frames > /tmp/log.txt 2>&1
+          echo "exit $?" >> /tmp/log.txt
+          set -e
+          grep -E "^FRAME|^DONE|^exit|Error|Traceback|fallback" /tmp/log.txt | tail -60 > "/tmp/out/log-$P.txt" || true
+          tail -5 "/tmp/out/log-$P.txt"
+          FF=$(python3 -c "import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())")
+          N=$(ls /tmp/frames | wc -l)
+          [ "$N" -gt 0 ] && "$FF" -loglevel error -y -framerate 24 -start_number "$A" -i /tmp/frames/f%04d.png -c:v libx264 -crf 12 -preset medium -pix_fmt yuv420p "/tmp/out/seg-$P.mp4"
+          echo "frames $N of $((B - A + 1))" >> "/tmp/out/log-$P.txt"
+          [ "$N" -eq "$((B - A + 1))" ]
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: seg-${{ matrix.slice.start }}
+          path: /tmp/out/
+          retention-days: 3
+  publish:
+    needs: [plan, render]
+    if: always() && needs.plan.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: actions/download-artifact@v4
+        with:
+          path: /tmp/segs
+          merge-multiple: true
+      - name: Join and publish to video-renders
+        env:
+          NAME: ${{ needs.plan.outputs.name }}
+        run: |
+          pip install --quiet imageio-ffmpeg==0.6.0
+          FF=$(python3 -c "import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())")
+          mkdir -p /tmp/pub && cd /tmp/segs && ls
+          cat log-*.txt > /tmp/pub/log.txt 2>/dev/null || true
+          ls seg-*.mp4 | sort | sed "s/^/file '/; s/$/'/" > list.txt
+          "$FF" -loglevel error -y -f concat -safe 0 -i list.txt -c copy /tmp/pub/film-silent.mp4
+          cd "$GITHUB_WORKSPACE"
+          git rev-parse HEAD > /tmp/pub/commit.txt
+          git config user.name proofnotfluff-bot
+          git config user.email proofnotfluff-bot@users.noreply.github.com
+          git fetch --depth 1 origin +refs/heads/video-renders:refs/remotes/origin/video-renders
+          git worktree add -B video-renders /tmp/renders origin/video-renders
+          D=/tmp/renders/studio/lab3d/$NAME
+          rm -rf "$D" && mkdir -p "$D" && cp -r /tmp/pub/. "$D/"
+          cd /tmp/renders
+          git add -A
+          git commit -qm "Studio 3D lab render: $NAME" || exit 0
+          for i in 1 2 3 4 5 6; do
+            git push origin HEAD:video-renders && exit 0
+            git pull --rebase -q origin video-renders
+            sleep $((5 * i))
+          done
+          exit 1

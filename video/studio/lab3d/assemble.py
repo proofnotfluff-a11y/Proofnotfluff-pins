@@ -10,7 +10,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 GOLD, CREAM, DARK = "&H73C8F7&", "&HEAF7FF&", "&H00181014"
 
 
-def pages(words, max_chars=15, max_words=3):
+def pages(words, max_chars=11, max_words=3):
     out, cur = [], []
     for i, w in enumerate(words):
         txt = w["w"].strip()
@@ -28,7 +28,7 @@ def ts(t):
     return "%d:%02d:%05.2f" % (h, m, s)
 
 
-def ass(words, path, y=1284, size=98):
+def ass(words, path, y=1284, size=128):
     pg = pages(words)
     head = """[Script Info]
 ScriptType: v4.00+
@@ -39,7 +39,7 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: cap,Poppins,%d,%s,%s,%s,&H96000000,-1,0,0,0,100,100,0,0,1,9,3,5,40,40,0,1
+Style: cap,Poppins,%d,%s,%s,%s,&H96000000,-1,0,0,0,100,100,0,0,1,10,3,5,40,40,0,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text

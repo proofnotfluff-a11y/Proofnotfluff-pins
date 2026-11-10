@@ -1,0 +1,104 @@
+{
+ "about": "Candidate communities for the video engine's niche pick (Todd, live chat, Nov 9, 2026, 4:00 pm and the 4:28 pm niche research chat). Read by tools/yt_niche.py through .github/workflows/yt-niche.yml: a push that changes this file starts one read. The first four niches are Todd's candidates; the other six are added ones to test against them. pubkey_pem is the public half of a one-chat key pair: results with other people's words are sealed to it and land on the throwaway branch niche-results, never on main.",
+ "per_niche": 50,
+ "comment_videos_per_niche": 20,
+ "comments_per_video": 40,
+ "thumbs_per_niche": 12,
+ "niches": {
+  "trades": {
+   "label": "Trades owners",
+   "queries": [
+    "contractor customer refused to pay",
+    "contractor vs homeowner story",
+    "plumber electrician business owner story",
+    "trades business owner mistake",
+    "contractor nightmare customer animated"
+   ]
+  },
+  "str-hosts": {
+   "label": "Short-term rental hosts",
+   "queries": [
+    "airbnb host story",
+    "airbnb guest horror story",
+    "airbnb host vs guest",
+    "airbnb host tips money",
+    "short term rental owner story"
+   ]
+  },
+  "biz-money": {
+   "label": "Money fights for any small business",
+   "queries": [
+    "small business owner customer refused to pay",
+    "client didn't pay invoice story",
+    "business partner stole money story",
+    "chargeback scam small business",
+    "small business owner money mistake"
+   ]
+  },
+  "sellers": {
+   "label": "Online sellers",
+   "queries": [
+    "amazon seller story lost money",
+    "amazon fba mistake",
+    "etsy seller story",
+    "tiktok shop seller story",
+    "ecommerce store owner story"
+   ]
+  },
+  "landlords": {
+   "label": "Landlords and tenants",
+   "queries": [
+    "landlord tenant story",
+    "landlord kept security deposit",
+    "tenant stopped paying rent landlord",
+    "landlord vs tenant animated story"
+   ]
+  },
+  "workplace": {
+   "label": "Employees and bosses, pay fights",
+   "queries": [
+    "boss refused to pay me story",
+    "asked for a raise got fired story",
+    "malicious compliance work story",
+    "laid off severance story"
+   ]
+  },
+  "biz-stories": {
+   "label": "How companies make and lose money",
+   "queries": [
+    "how this company makes money animated",
+    "why this company went bankrupt",
+    "business story animated explained",
+    "how this small business makes millions"
+   ]
+  },
+  "homeowners": {
+   "label": "Homeowners, HOAs and contractors",
+   "queries": [
+    "HOA horror story",
+    "contractor scammed homeowner story",
+    "HOA vs homeowner animated",
+    "neighbor property line dispute story"
+   ]
+  },
+  "family-money": {
+   "label": "Money fights in families",
+   "queries": [
+    "family money fight story",
+    "lent money to friend never paid back story",
+    "inheritance family fight story",
+    "husband wife money argument story"
+   ]
+  },
+  "freelancers": {
+   "label": "Freelancers and clients",
+   "queries": [
+    "client refused to pay freelancer story",
+    "freelancer client nightmare story",
+    "clients from hell story",
+    "freelance designer client won't pay"
+   ]
+  }
+ },
+ "pubkey_pem": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEA5ATWSS2Kk/ReuMur2g0A\nZlxBnMsTX0NObZ85pajJwukFZ7c4IDMrau62hkjt7c+LSm1HQolb5+LUGPVzvmPH\nRvk1H3svPNXEeKNvmwBEYhIiqwRAn+KB5p5zqEnaPLF644LK+Y1/p6joh/2T1US/\nlUct2z3PJSPZlup2Q+dpWlfJxN+/VwoCBjlMjBqCU7htruUnDQlF7v16vOYHJY+C\nWfeRcC4uy4MB40FR7E8xiddwiMSYWjTp4HVd/QNQmOVmMRI/4jxqz0voCSvgk7c8\nuh+nJxTZk415JEh6iJ41fLkYZeJ6GXxH3Cu6LYdmKXOHCyerg9AfslWKkl3myVYU\nCKoUi6TjL6oXEbp3h6J6S4yhp9jBD82CuliG6cuxgpZJdfzsUL/iQ3YEUaUT2SIR\nu0zoQSuOjRYAGlWOqenEA+1RW/S3QP7j2TEkXOk7Fc2C6vXmYUiDNI1UpLxWuRle\ngoH3epZCjjoU4TVcJFsKKtXGpyvGPtZglQbdr3cpO29LAgMBAAE=\n-----END PUBLIC KEY-----\n"
+}

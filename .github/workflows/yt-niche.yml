@@ -1,0 +1,46 @@
+name: YouTube niche research
+# The niche pick's reader (Todd, live chat, Nov 9, 2026, 4:00 pm: "The questions is what community should I target?").
+# Reads public YouTube data through the official YouTube Data API v3 with the YOUTUBE_API_KEY secret (never printed;
+# tools/yt_niche.py scrubs it from errors). Read only: nothing is posted or changed anywhere.
+# Results never land on main: counts, the sealed words (titles, channel names, comment text with no commenter's name;
+# sealed with tools/data_box.py to the one-chat public key in queries.json) and the search cache go to the throwaway
+# branch niche-results, which is replaced on each run and deleted once the chat has read it.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["video/studio/research/niche/queries.json"]
+permissions:
+  contents: write
+concurrency:
+  group: yt-niche
+  cancel-in-progress: false
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install --quiet -c .github/ci-constraints.txt cryptography
+      - name: Self-check (planted cases)
+        run: python3 tools/yt_niche.py --selftest
+      - name: Earlier search cache, if the branch exists
+        run: |
+          if git fetch --quiet --depth 1 origin niche-results 2>/dev/null; then
+            git show FETCH_HEAD:search-cache.json > "$RUNNER_TEMP/cache.json" 2>/dev/null || rm -f "$RUNNER_TEMP/cache.json"
+          fi
+      - name: Read
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: python3 tools/yt_niche.py --out "$RUNNER_TEMP/niche" --cache "$RUNNER_TEMP/cache.json"
+      - name: Publish to the throwaway branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd "$RUNNER_TEMP/niche"
+          git init -q -b niche-results
+          git config user.name "yt-niche"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add summary.json sealed.json search-cache.json
+          git commit -q -m "yt-niche: results (throwaway branch, words sealed)"
+          git push --force "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" niche-results

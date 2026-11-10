@@ -1,22 +1,22 @@
 {
  "product": "Chicago Restaurant Daily List",
- "asOf": "2026-11-09",
- "asOfText": "Nov 9, 2026",
+ "asOf": "2026-11-10",
+ "asOfText": "Nov 10, 2026",
  "through": "2026-11-06",
  "throughText": "Nov 6, 2026",
  "recentFrom": "2026-10-24",
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-11-09T21:38:13+00:00",
+  "fetchedAt": "2026-11-10T18:50:46+00:00",
   "rowsUpdatedAt": "2026-11-09T10:06:24+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "pests": 12,
-  "hood": 3,
-  "places": 13
+  "pests": 0,
+  "hood": 0,
+  "places": 0
  },
  "history": [
   {
@@ -154,35 +154,17 @@
    "hood": 3,
    "places": 13,
    "withPhone": 7
-  }
- ],
- "examples": [
-  {
-   "area": "Clearing",
-   "type": "Restaurant",
-   "result": "Fail",
-   "trades": [
-    "pests"
-   ]
   },
   {
-   "area": "Brighton Park",
-   "type": "Grocery Store",
-   "result": "Fail",
-   "trades": [
-    "pests",
-    "hood and exhaust"
-   ]
-  },
-  {
-   "area": "Ashburn",
-   "type": "Restaurant",
-   "result": "Pass w/ Conditions",
-   "trades": [
-    "pests"
-   ]
+   "asOf": "2026-11-10",
+   "through": "2026-11-06",
+   "pests": 0,
+   "hood": 0,
+   "places": 0,
+   "withPhone": 0
   }
  ],
+ "examples": [],
  "pestByDate": [
   {
    "date": "2026-10-24",
@@ -277,14 +259,14 @@
  },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
  "phones": {
-  "rows": 13,
-  "withPhone": 7,
-  "coverage": 53.8
+  "rows": 0,
+  "withPhone": 0,
+  "coverage": 0.0
  },
  "seat": {
-  "asOf": "2026-11-09",
+  "asOf": "2026-11-10",
   "places14": 37,
-  "new": 12,
+  "new": 0,
   "withPhone14": 20,
   "coverage14": 54.1,
   "phonesChecked": true

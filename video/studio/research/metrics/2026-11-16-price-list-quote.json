@@ -35,6 +35,50 @@
    },
    "source": "videometrics 2026-11-16-price-list-quote.2026-11-06T20 (evening PC run, list views only)",
    "docId": "2026-11-16-price-list-quote.2026-11-06T20"
+  },
+  {
+   "date": "2026-11-09",
+   "readAt": "2026-11-10T02:50:00Z",
+   "depth": "deep",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": "hidden",
+     "views": "hidden"
+    },
+    "instagram": {
+     "avgWatchS": "hidden: app only",
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 0,
+     "shares": 0,
+     "skipRate": "hidden: app only",
+     "viewers": 120,
+     "views": 144
+    },
+    "tiktok": {
+     "avgWatchS": 15.88,
+     "comments": 0,
+     "likes": 7,
+     "newFollowers": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 287,
+     "watchedFullPct": 8.4
+    },
+    "youtube": {
+     "avgPctViewed": "hidden",
+     "avgViewDurationS": 18,
+     "comments": 0,
+     "likes": "hidden",
+     "shares": "hidden",
+     "subscribersGained": "hidden",
+     "viewedVsSwipedPct": 66.3,
+     "views": 182
+    }
+   },
+   "source": "videometrics 2026-11-16-price-list-quote.2026-11-09 (evening PC run, deep read)",
+   "docId": "2026-11-16-price-list-quote.2026-11-09"
   }
  ]
 }

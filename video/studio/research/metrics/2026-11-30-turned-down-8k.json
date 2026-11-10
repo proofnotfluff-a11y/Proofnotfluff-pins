@@ -1,0 +1,45 @@
+{
+ "slug": "2026-11-30-turned-down-8k",
+ "reads": [
+  {
+   "date": "2026-11-09",
+   "readAt": "2026-11-10T02:50:00Z",
+   "depth": "deep",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": "hidden",
+     "views": "hidden"
+    },
+    "instagram": {
+     "avgWatchS": "hidden: app only",
+     "comments": 1,
+     "follows": 0,
+     "likes": 8,
+     "saves": 0,
+     "shares": 0,
+     "skipRate": "hidden: app only",
+     "viewers": 389,
+     "views": 515
+    },
+    "tiktok": {
+     "avgWatchS": 15.72,
+     "comments": 0,
+     "likes": 9,
+     "newFollowers": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 271,
+     "watchedFullPct": 19.1
+    },
+    "youtube": {
+     "avgViewDurationS": "hidden",
+     "comments": 0,
+     "viewedVsSwipedPct": "hidden",
+     "views": 1099
+    }
+   },
+   "source": "videometrics 2026-11-30-turned-down-8k.2026-11-09 (evening PC run, deep read)",
+   "docId": "2026-11-30-turned-down-8k.2026-11-09"
+  }
+ ]
+}

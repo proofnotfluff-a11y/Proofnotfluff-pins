@@ -81,6 +81,50 @@
    },
    "source": "videometrics 2026-11-24-pay-before-you-leave.2026-11-09T12 (lunch PC run, list views only)",
    "docId": "2026-11-24-pay-before-you-leave.2026-11-09T12"
+  },
+  {
+   "date": "2026-11-09",
+   "readAt": "2026-11-10T02:50:00Z",
+   "depth": "deep",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": "hidden",
+     "views": "hidden"
+    },
+    "instagram": {
+     "avgWatchS": "hidden: app only",
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 0,
+     "shares": 0,
+     "skipRate": "hidden: app only",
+     "viewers": 113,
+     "views": 133
+    },
+    "tiktok": {
+     "avgWatchS": 11.23,
+     "comments": 0,
+     "likes": 3,
+     "newFollowers": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 207,
+     "watchedFullPct": 5.5
+    },
+    "youtube": {
+     "avgPctViewed": "hidden",
+     "avgViewDurationS": 37,
+     "comments": 0,
+     "likes": "hidden",
+     "shares": "hidden",
+     "subscribersGained": "hidden",
+     "viewedVsSwipedPct": 57.9,
+     "views": 40
+    }
+   },
+   "source": "videometrics 2026-11-24-pay-before-you-leave.2026-11-09 (evening PC run, deep read)",
+   "docId": "2026-11-24-pay-before-you-leave.2026-11-09"
   }
  ]
 }

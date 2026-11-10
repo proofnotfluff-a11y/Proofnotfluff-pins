@@ -70,6 +70,50 @@
    },
    "source": "videometrics 2026-11-15-three-fixes.2026-11-06T20 (evening PC run, list views only)",
    "docId": "2026-11-15-three-fixes.2026-11-06T20"
+  },
+  {
+   "date": "2026-11-09",
+   "readAt": "2026-11-10T02:50:00Z",
+   "depth": "deep",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": "hidden",
+     "views": "hidden"
+    },
+    "instagram": {
+     "avgWatchS": "hidden: app only",
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 0,
+     "shares": 0,
+     "skipRate": "hidden: app only",
+     "viewers": 114,
+     "views": 135
+    },
+    "tiktok": {
+     "avgWatchS": 8.64,
+     "comments": 0,
+     "likes": 1,
+     "newFollowers": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 228,
+     "watchedFullPct": 8.2
+    },
+    "youtube": {
+     "avgPctViewed": "hidden",
+     "avgViewDurationS": 16,
+     "comments": 0,
+     "likes": "hidden",
+     "shares": "hidden",
+     "subscribersGained": "hidden",
+     "viewedVsSwipedPct": 56.6,
+     "views": 78
+    }
+   },
+   "source": "videometrics 2026-11-15-three-fixes.2026-11-09 (evening PC run, deep read)",
+   "docId": "2026-11-15-three-fixes.2026-11-09"
   }
  ]
 }

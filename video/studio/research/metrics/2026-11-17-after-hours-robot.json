@@ -265,6 +265,50 @@
    },
    "source": "videometrics 2026-11-17-after-hours-robot.2026-11-09T12 (lunch PC run, list views only)",
    "docId": "2026-11-17-after-hours-robot.2026-11-09T12"
+  },
+  {
+   "date": "2026-11-09",
+   "readAt": "2026-11-10T02:50:00Z",
+   "depth": "deep",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": "hidden",
+     "views": "hidden"
+    },
+    "instagram": {
+     "avgWatchS": "hidden: app only",
+     "comments": 0,
+     "follows": 0,
+     "likes": 20,
+     "saves": 1,
+     "shares": 1,
+     "skipRate": "hidden: app only",
+     "viewers": 1129,
+     "views": 1295
+    },
+    "tiktok": {
+     "avgWatchS": 21.13,
+     "comments": 0,
+     "likes": 10,
+     "newFollowers": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 262,
+     "watchedFullPct": 5.2
+    },
+    "youtube": {
+     "avgPctViewed": "hidden",
+     "avgViewDurationS": 44,
+     "comments": 0,
+     "likes": "hidden",
+     "shares": "hidden",
+     "subscribersGained": "hidden",
+     "viewedVsSwipedPct": 76.6,
+     "views": 67
+    }
+   },
+   "source": "videometrics 2026-11-17-after-hours-robot.2026-11-09 (evening PC run, deep read)",
+   "docId": "2026-11-17-after-hours-robot.2026-11-09"
   }
  ]
 }

@@ -1,0 +1,45 @@
+{
+ "slug": "2026-11-26-damage-or-not",
+ "reads": [
+  {
+   "date": "2026-11-09",
+   "readAt": "2026-11-10T02:50:00Z",
+   "depth": "deep",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": "hidden",
+     "views": "hidden"
+    },
+    "instagram": {
+     "avgWatchS": "hidden: app only",
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 0,
+     "shares": 0,
+     "skipRate": "hidden: app only",
+     "viewers": 122,
+     "views": 128
+    },
+    "tiktok": {
+     "avgWatchS": 16.94,
+     "comments": 0,
+     "likes": 2,
+     "newFollowers": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 216,
+     "watchedFullPct": 4
+    },
+    "youtube": {
+     "avgViewDurationS": "hidden",
+     "comments": 0,
+     "viewedVsSwipedPct": "hidden",
+     "views": 69
+    }
+   },
+   "source": "videometrics 2026-11-26-damage-or-not.2026-11-09 (evening PC run, deep read)",
+   "docId": "2026-11-26-damage-or-not.2026-11-09"
+  }
+ ]
+}

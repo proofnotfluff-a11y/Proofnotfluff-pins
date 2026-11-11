@@ -1,22 +1,22 @@
 {
  "product": "Chicago Restaurant Daily List",
- "asOf": "2026-11-10",
- "asOfText": "Nov 10, 2026",
- "through": "2026-11-06",
- "throughText": "Nov 6, 2026",
- "recentFrom": "2026-10-24",
+ "asOf": "2026-11-11",
+ "asOfText": "Nov 11, 2026",
+ "through": "2026-11-10",
+ "throughText": "Nov 10, 2026",
+ "recentFrom": "2026-10-28",
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-11-10T18:50:46+00:00",
-  "rowsUpdatedAt": "2026-11-09T10:06:24+00:00",
+  "fetchedAt": "2026-11-11T18:53:05+00:00",
+  "rowsUpdatedAt": "2026-11-11T10:09:05+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "pests": 0,
+  "pests": 3,
   "hood": 0,
-  "places": 0
+  "places": 3
  },
  "history": [
   {
@@ -162,30 +162,43 @@
    "hood": 0,
    "places": 0,
    "withPhone": 0
+  },
+  {
+   "asOf": "2026-11-11",
+   "through": "2026-11-10",
+   "pests": 3,
+   "hood": 0,
+   "places": 3,
+   "withPhone": 2
   }
  ],
- "examples": [],
+ "examples": [
+  {
+   "area": "Lincoln Square",
+   "type": "Restaurant",
+   "result": "Fail",
+   "trades": [
+    "pests"
+   ]
+  },
+  {
+   "area": "Roseland",
+   "type": "Grocery Store",
+   "result": "Fail",
+   "trades": [
+    "pests"
+   ]
+  },
+  {
+   "area": "West Ridge",
+   "type": "Restaurant",
+   "result": "Fail",
+   "trades": [
+    "pests"
+   ]
+  }
+ ],
  "pestByDate": [
-  {
-   "date": "2026-10-24",
-   "pests": 0,
-   "restaurant": 0
-  },
-  {
-   "date": "2026-10-25",
-   "pests": 0,
-   "restaurant": 0
-  },
-  {
-   "date": "2026-10-26",
-   "pests": 3,
-   "restaurant": 3
-  },
-  {
-   "date": "2026-10-27",
-   "pests": 3,
-   "restaurant": 2
-  },
   {
    "date": "2026-10-28",
    "pests": 6,
@@ -193,8 +206,8 @@
   },
   {
    "date": "2026-10-29",
-   "pests": 3,
-   "restaurant": 2
+   "pests": 4,
+   "restaurant": 3
   },
   {
    "date": "2026-10-30",
@@ -213,8 +226,8 @@
   },
   {
    "date": "2026-11-02",
-   "pests": 5,
-   "restaurant": 3
+   "pests": 6,
+   "restaurant": 4
   },
   {
    "date": "2026-11-03",
@@ -235,22 +248,41 @@
    "date": "2026-11-06",
    "pests": 4,
    "restaurant": 3
+  },
+  {
+   "date": "2026-11-07",
+   "pests": 0,
+   "restaurant": 0
+  },
+  {
+   "date": "2026-11-08",
+   "pests": 0,
+   "restaurant": 0
+  },
+  {
+   "date": "2026-11-09",
+   "pests": 1,
+   "restaurant": 0
+  },
+  {
+   "date": "2026-11-10",
+   "pests": 1,
+   "restaurant": 1
   }
  ],
  "pestLast7": {
-  "from": "2026-10-31",
-  "to": "2026-11-06",
-  "inspections": 21,
-  "restaurantInspections": 14,
+  "from": "2026-11-04",
+  "to": "2026-11-10",
+  "inspections": 14,
+  "restaurantInspections": 11,
   "areas": [
    "Albany Park",
    "Ashburn",
    "Brighton Park",
    "Chicago Lawn",
    "Clearing",
-   "Humboldt Park",
+   "Lincoln Square",
    "Lower West Side",
-   "North Lawndale",
    "South Deering",
    "South Shore",
    "Uptown",
@@ -259,16 +291,16 @@
  },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
  "phones": {
-  "rows": 0,
-  "withPhone": 0,
-  "coverage": 0.0
+  "rows": 3,
+  "withPhone": 2,
+  "coverage": 66.7
  },
  "seat": {
-  "asOf": "2026-11-10",
-  "places14": 37,
-  "new": 0,
-  "withPhone14": 20,
-  "coverage14": 54.1,
+  "asOf": "2026-11-11",
+  "places14": 35,
+  "new": 3,
+  "withPhone14": 19,
+  "coverage14": 54.3,
   "phonesChecked": true
  }
 }

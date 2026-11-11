@@ -118,6 +118,52 @@
    },
    "source": "videometrics 2026-11-22-after-hours-greeting.2026-11-09T12 (lunch PC run, list views only)",
    "docId": "2026-11-22-after-hours-greeting.2026-11-09T12"
+  },
+  {
+   "date": "2026-11-10",
+   "readAt": "2026-11-11T02:45:00Z",
+   "depth": "deep",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": 2,
+     "comments": 0,
+     "likes": 0,
+     "shares": 0,
+     "viewers": 16,
+     "views": 22,
+     "views3s": 3
+    },
+    "instagram": {
+     "avgWatchS": 10,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "reach": 108,
+     "saves": 0,
+     "shares": 0,
+     "skipRate": "hidden: app only",
+     "viewers": 107,
+     "views": 111
+    },
+    "tiktok": {
+     "avgWatchS": 14.97,
+     "comments": 0,
+     "likes": 4,
+     "newFollowers": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 262,
+     "watchedFullPct": 5.6
+    },
+    "youtube": {
+     "avgViewDurationS": "hidden",
+     "likes": 9,
+     "viewedVsSwipedPct": 46,
+     "views7d": "1.0K"
+    }
+   },
+   "source": "videometrics 2026-11-22-after-hours-greeting.2026-11-10 (evening PC run, deep read)",
+   "docId": "2026-11-22-after-hours-greeting.2026-11-10"
   }
  ]
 }

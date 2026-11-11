@@ -40,6 +40,52 @@
    },
    "source": "videometrics 2026-11-30-turned-down-8k.2026-11-09 (evening PC run, deep read)",
    "docId": "2026-11-30-turned-down-8k.2026-11-09"
+  },
+  {
+   "date": "2026-11-10",
+   "readAt": "2026-11-11T02:45:00Z",
+   "depth": "deep",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": 8,
+     "comments": 0,
+     "likes": 1,
+     "shares": 0,
+     "viewers": 188,
+     "views": 221,
+     "views3s": 72
+    },
+    "instagram": {
+     "avgWatchS": 19,
+     "comments": 1,
+     "follows": 0,
+     "likes": 20,
+     "reach": 1066,
+     "saves": 0,
+     "shares": 0,
+     "skipRate": "hidden: app only",
+     "viewers": 1073,
+     "views": 1411
+    },
+    "tiktok": {
+     "avgWatchS": 15.58,
+     "comments": 0,
+     "likes": 9,
+     "newFollowers": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 287,
+     "watchedFullPct": 18.2
+    },
+    "youtube": {
+     "avgViewDurationS": "hidden",
+     "likes": 28,
+     "viewedVsSwipedPct": 63.8,
+     "views7d": "1.6K"
+    }
+   },
+   "source": "videometrics 2026-11-30-turned-down-8k.2026-11-10 (evening PC run, deep read)",
+   "docId": "2026-11-30-turned-down-8k.2026-11-10"
   }
  ]
 }

@@ -1,0 +1,51 @@
+{
+ "slug": "2026-11-19-ask-chatgpt",
+ "reads": [
+  {
+   "date": "2026-11-10",
+   "readAt": "2026-11-11T02:45:00Z",
+   "depth": "deep",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": 12,
+     "comments": 0,
+     "likes": 0,
+     "shares": 0,
+     "viewers": 2,
+     "views": 3,
+     "views3s": 1
+    },
+    "instagram": {
+     "avgWatchS": 12,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "reach": 108,
+     "saves": 1,
+     "shares": 0,
+     "skipRate": "hidden: app only",
+     "viewers": 108,
+     "views": 118
+    },
+    "tiktok": {
+     "avgWatchS": 11.67,
+     "comments": 0,
+     "likes": 7,
+     "newFollowers": 2,
+     "saves": 0,
+     "shares": 0,
+     "views": 272,
+     "watchedFullPct": 4.7
+    },
+    "youtube": {
+     "avgViewDurationS": "hidden",
+     "likes": 0,
+     "viewedVsSwipedPct": 54.6,
+     "views7d": 11
+    }
+   },
+   "source": "videometrics 2026-11-19-ask-chatgpt.2026-11-10 (evening PC run, deep read)",
+   "docId": "2026-11-19-ask-chatgpt.2026-11-10"
+  }
+ ]
+}

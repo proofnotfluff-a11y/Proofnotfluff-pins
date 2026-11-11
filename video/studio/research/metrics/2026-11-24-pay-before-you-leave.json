@@ -125,6 +125,52 @@
    },
    "source": "videometrics 2026-11-24-pay-before-you-leave.2026-11-09 (evening PC run, deep read)",
    "docId": "2026-11-24-pay-before-you-leave.2026-11-09"
+  },
+  {
+   "date": "2026-11-10",
+   "readAt": "2026-11-11T02:45:00Z",
+   "depth": "deep",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": 5,
+     "comments": 0,
+     "likes": 0,
+     "shares": 0,
+     "viewers": 24,
+     "views": 25,
+     "views3s": 4
+    },
+    "instagram": {
+     "avgWatchS": 18,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "reach": 112,
+     "saves": 0,
+     "shares": 0,
+     "skipRate": "hidden: app only",
+     "viewers": 113,
+     "views": 133
+    },
+    "tiktok": {
+     "avgWatchS": 11.23,
+     "comments": 0,
+     "likes": 3,
+     "newFollowers": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 207,
+     "watchedFullPct": 5.5
+    },
+    "youtube": {
+     "avgViewDurationS": "hidden",
+     "likes": 0,
+     "viewedVsSwipedPct": 52.1,
+     "views7d": 45
+    }
+   },
+   "source": "videometrics 2026-11-24-pay-before-you-leave.2026-11-10 (evening PC run, deep read)",
+   "docId": "2026-11-24-pay-before-you-leave.2026-11-10"
   }
  ]
 }

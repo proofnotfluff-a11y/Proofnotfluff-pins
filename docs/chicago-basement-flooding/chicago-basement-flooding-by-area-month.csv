@@ -188,7 +188,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 2,West Ridge,2026-08,8,19
 2,West Ridge,2026-09,6,9
 2,West Ridge,2026-10,7,13
-2,West Ridge,2026-11,0,217
+2,West Ridge,2026-11,0,267
 3,Uptown,2019-01,0,3
 3,Uptown,2019-02,0,20
 3,Uptown,2019-03,1,16
@@ -1138,7 +1138,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 12,Forest Glen,2026-08,7,10
 12,Forest Glen,2026-09,2,1
 12,Forest Glen,2026-10,0,13
-12,Forest Glen,2026-11,0,3
+12,Forest Glen,2026-11,0,5
 13,North Park,2019-01,0,1
 13,North Park,2019-02,0,5
 13,North Park,2019-03,0,6
@@ -1423,7 +1423,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 15,Portage Park,2026-08,13,22
 15,Portage Park,2026-09,5,14
 15,Portage Park,2026-10,4,11
-15,Portage Park,2026-11,3,2
+15,Portage Park,2026-11,4,3
 16,Irving Park,2019-01,0,7
 16,Irving Park,2019-02,1,9
 16,Irving Park,2019-03,6,34
@@ -1613,7 +1613,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 17,Dunning,2026-08,1,13
 17,Dunning,2026-09,2,17
 17,Dunning,2026-10,10,5
-17,Dunning,2026-11,0,1
+17,Dunning,2026-11,1,2
 18,Montclare,2019-01,0,1
 18,Montclare,2019-02,0,7
 18,Montclare,2019-03,1,5
@@ -1803,7 +1803,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 19,Belmont Cragin,2026-08,13,40
 19,Belmont Cragin,2026-09,7,25
 19,Belmont Cragin,2026-10,3,12
-19,Belmont Cragin,2026-11,0,5
+19,Belmont Cragin,2026-11,0,7
 20,Hermosa,2019-01,0,2
 20,Hermosa,2019-02,0,5
 20,Hermosa,2019-03,0,6
@@ -1898,7 +1898,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 20,Hermosa,2026-08,5,12
 20,Hermosa,2026-09,5,10
 20,Hermosa,2026-10,3,7
-20,Hermosa,2026-11,0,3
+20,Hermosa,2026-11,1,3
 21,Avondale,2019-01,0,6
 21,Avondale,2019-02,0,15
 21,Avondale,2019-03,2,17
@@ -2183,7 +2183,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 23,Humboldt Park,2026-08,14,10
 23,Humboldt Park,2026-09,3,9
 23,Humboldt Park,2026-10,2,6
-23,Humboldt Park,2026-11,0,1
+23,Humboldt Park,2026-11,1,1
 24,West Town,2019-01,0,6
 24,West Town,2019-02,0,18
 24,West Town,2019-03,4,27
@@ -2278,7 +2278,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 24,West Town,2026-08,18,30
 24,West Town,2026-09,5,16
 24,West Town,2026-10,5,17
-24,West Town,2026-11,2,3
+24,West Town,2026-11,3,3
 25,Austin,2019-01,0,2
 25,Austin,2019-02,0,22
 25,Austin,2019-03,19,30
@@ -2658,7 +2658,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 28,Near West Side,2026-08,10,17
 28,Near West Side,2026-09,2,10
 28,Near West Side,2026-10,2,12
-28,Near West Side,2026-11,1,4
+28,Near West Side,2026-11,1,5
 29,North Lawndale,2019-01,1,3
 29,North Lawndale,2019-02,0,4
 29,North Lawndale,2019-03,3,12
@@ -2753,7 +2753,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 29,North Lawndale,2026-08,5,7
 29,North Lawndale,2026-09,0,6
 29,North Lawndale,2026-10,1,5
-29,North Lawndale,2026-11,2,1
+29,North Lawndale,2026-11,5,1
 30,South Lawndale,2019-01,0,0
 30,South Lawndale,2019-02,1,7
 30,South Lawndale,2019-03,3,7
@@ -2848,7 +2848,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 30,South Lawndale,2026-08,8,23
 30,South Lawndale,2026-09,7,14
 30,South Lawndale,2026-10,4,6
-30,South Lawndale,2026-11,1,1
+30,South Lawndale,2026-11,1,4
 31,Lower West Side,2019-01,0,1
 31,Lower West Side,2019-02,0,5
 31,Lower West Side,2019-03,2,7
@@ -3038,7 +3038,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 32,Loop,2026-08,2,2
 32,Loop,2026-09,1,3
 32,Loop,2026-10,0,1
-32,Loop,2026-11,0,0
+32,Loop,2026-11,1,0
 33,Near South Side,2019-01,0,1
 33,Near South Side,2019-02,0,0
 33,Near South Side,2019-03,1,3
@@ -3703,7 +3703,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 39,Kenwood,2026-08,0,4
 39,Kenwood,2026-09,0,1
 39,Kenwood,2026-10,1,0
-39,Kenwood,2026-11,0,0
+39,Kenwood,2026-11,0,1
 40,Washington Park,2019-01,0,2
 40,Washington Park,2019-02,0,1
 40,Washington Park,2019-03,1,4
@@ -3798,7 +3798,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 40,Washington Park,2026-08,2,7
 40,Washington Park,2026-09,2,1
 40,Washington Park,2026-10,1,0
-40,Washington Park,2026-11,0,0
+40,Washington Park,2026-11,0,1
 41,Hyde Park,2019-01,0,6
 41,Hyde Park,2019-02,1,6
 41,Hyde Park,2019-03,2,7
@@ -4083,7 +4083,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 43,South Shore,2026-08,14,22
 43,South Shore,2026-09,8,7
 43,South Shore,2026-10,10,10
-43,South Shore,2026-11,1,1
+43,South Shore,2026-11,2,1
 44,Chatham,2019-01,0,3
 44,Chatham,2019-02,1,5
 44,Chatham,2019-03,6,10
@@ -4368,7 +4368,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 46,South Chicago,2026-08,26,20
 46,South Chicago,2026-09,5,16
 46,South Chicago,2026-10,8,10
-46,South Chicago,2026-11,0,0
+46,South Chicago,2026-11,2,2
 47,Burnside,2019-01,0,0
 47,Burnside,2019-02,0,1
 47,Burnside,2019-03,0,2
@@ -4843,7 +4843,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 51,South Deering,2026-08,9,10
 51,South Deering,2026-09,21,12
 51,South Deering,2026-10,3,4
-51,South Deering,2026-11,0,1
+51,South Deering,2026-11,0,2
 52,East Side,2019-01,0,5
 52,East Side,2019-02,3,8
 52,East Side,2019-03,7,24
@@ -4938,7 +4938,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 52,East Side,2026-08,8,6
 52,East Side,2026-09,5,6
 52,East Side,2026-10,0,0
-52,East Side,2026-11,0,1
+52,East Side,2026-11,0,2
 53,West Pullman,2019-01,1,3
 53,West Pullman,2019-02,5,11
 53,West Pullman,2019-03,4,11
@@ -5223,7 +5223,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 55,Hegewisch,2026-08,0,4
 55,Hegewisch,2026-09,0,4
 55,Hegewisch,2026-10,0,3
-55,Hegewisch,2026-11,0,0
+55,Hegewisch,2026-11,1,5
 56,Garfield Ridge,2019-01,0,4
 56,Garfield Ridge,2019-02,5,11
 56,Garfield Ridge,2019-03,13,9
@@ -5793,7 +5793,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 61,New City,2026-08,3,7
 61,New City,2026-09,2,6
 61,New City,2026-10,0,20
-61,New City,2026-11,0,0
+61,New City,2026-11,0,1
 62,West Elsdon,2019-01,0,0
 62,West Elsdon,2019-02,0,2
 62,West Elsdon,2019-03,2,3
@@ -6268,7 +6268,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 66,Chicago Lawn,2026-08,10,17
 66,Chicago Lawn,2026-09,10,12
 66,Chicago Lawn,2026-10,4,6
-66,Chicago Lawn,2026-11,1,4
+66,Chicago Lawn,2026-11,1,7
 67,West Englewood,2019-01,1,3
 67,West Englewood,2019-02,2,8
 67,West Englewood,2019-03,9,9
@@ -6363,7 +6363,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 67,West Englewood,2026-08,7,12
 67,West Englewood,2026-09,7,15
 67,West Englewood,2026-10,3,11
-67,West Englewood,2026-11,0,2
+67,West Englewood,2026-11,0,3
 68,Englewood,2019-01,0,5
 68,Englewood,2019-02,2,5
 68,Englewood,2019-03,9,7
@@ -6553,7 +6553,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 69,Greater Grand Crossing,2026-08,10,12
 69,Greater Grand Crossing,2026-09,8,12
 69,Greater Grand Crossing,2026-10,11,12
-69,Greater Grand Crossing,2026-11,1,0
+69,Greater Grand Crossing,2026-11,1,1
 70,Ashburn,2019-01,0,1
 70,Ashburn,2019-02,1,13
 70,Ashburn,2019-03,3,12
@@ -6743,7 +6743,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 71,Auburn Gresham,2026-08,27,31
 71,Auburn Gresham,2026-09,11,18
 71,Auburn Gresham,2026-10,9,20
-71,Auburn Gresham,2026-11,4,5
+71,Auburn Gresham,2026-11,4,6
 72,Beverly,2019-01,0,0
 72,Beverly,2019-02,0,5
 72,Beverly,2019-03,5,6
@@ -6933,7 +6933,7 @@ community_area_number,community_area,month,Water in Basement Complaint,Sewer Cle
 73,Washington Heights,2026-08,30,30
 73,Washington Heights,2026-09,26,14
 73,Washington Heights,2026-10,18,13
-73,Washington Heights,2026-11,1,3
+73,Washington Heights,2026-11,2,4
 74,Mount Greenwood,2019-01,0,2
 74,Mount Greenwood,2019-02,0,1
 74,Mount Greenwood,2019-03,2,6

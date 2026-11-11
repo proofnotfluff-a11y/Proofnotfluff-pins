@@ -79,10 +79,10 @@
    "source": "CDOT",
    "schedule": "Updated daily",
    "headline": {
-    "value": "4,350",
+    "value": "4,426",
     "label": "dumpster permits in the last 90 days"
    },
-   "pageUpdated": "2026-11-10",
+   "pageUpdated": "2026-11-11",
    "downloads": [
     "https://proofnotfluff.com/chicago-dumpster-permits/chicago-dumpster-permits-by-community-area.csv"
    ]

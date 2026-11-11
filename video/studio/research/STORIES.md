@@ -11,6 +11,13 @@ texting back, speed to lead, the rules on automated texts. Each a different owne
 same story twice. Verdict after the 5 are posted: kept if their median views and deep-read watch beat the other story
 lessons; one cluster lesson that flops is not a verdict. Ready target: 5 stories at all times (story-desk SKILL step 6).
 
+## v4 case bank (Todd, live chat, Nov 11, 2026, 4:26 pm; the make run takes the top unmade row, reads its sources again that day, and marks it made)
+| Date | Story | Format | Brief |
+|---|---|---|---|
+| Nov 11 | A crew did a $6,000 job in under six hours and the customer offered half | verdict | research/VIRALITY-2026-11-briefs/01-six-hours-6k.md |
+| Nov 11 | One plumber quoted $3,100 to replace a water heater, a second fixed it for $150 | call | research/VIRALITY-2026-11-briefs/02-dead-or-150.md |
+| Nov 11 | Where $100 of a plumbing bill goes: about $9 left, about $2 after the shop | invoice | research/VIRALITY-2026-11-briefs/03-where-100-goes.md |
+
 ## Ready (dossier written and verified; newest first)
 | Date | Story | Score | Dossier |
 |---|---|---|---|

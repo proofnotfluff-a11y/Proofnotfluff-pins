@@ -176,12 +176,18 @@ The build (anim.py holds each line: `lint`, `check`, `ready`):
   twice by 3 s. Close shots (waist up, faces between y 700 and 1100, plates above them) carry the story; one wide shot sets the place.
 - cues.md marks one cue `[payoff]`: the outcome or the answer, by 40% of the runtime.
 - No set of words stands unchanged over 4 s. Plain cuts only.
-- The last line is a question that splits the room; the last frame shows both sides, each with its case.
+- The last line is a question that splits the room, then the send line (Level-ups below); the last frame shows both sides, each with its case.
 - captions.json: line 1 the dilemma (under 100 characters), one question, a `Source:` line, 3 to 5 hashtags (2 to 3 on
   Facebook and YouTube); the YouTube title is the dilemma in 70 characters or fewer with a question or a dollar figure.
   AI label on for Instagram, Facebook and TikTok, off on YouTube (`V4_LABELS`).
 - Start from `_templates/v4-verdict.scene.js` (the plate, stampPlate, yard and cast helpers): a new lesson changes the
   rows, the cue times and the place, not the machinery. Aim for one render.
+
+Level-ups, Nov 11 (Todd, live chat, Nov 11, 2026, 4:26 pm: "Go with your recommendations on everything"; why and the bars: research/VIRALITY-2026-11.md "Adopted Nov 11"; the make run keeps or drops each one by its bar). Guides the script, the cues and the viewer gate hold; no lint error yet:
+- Story pick, two more checks: two numbers that stand against each other; and a split (a stranger could fairly take either side: if nearly everyone takes one side it is a rant, not a verdict). brief.md `- **Send:**` names the sender, the receiver and why in one line.
+- The first second: frame 0 stays a settled cover and shows the two numbers, or the number and the refusal. The first change lands by 0.6 s. The spoken hook is 8 words or fewer and ends by 2.5 s; the next sentence carries the detail.
+- Two reveals: the answer still lands by 40% (`[payoff]`). The second best fact is held for a cue named `twist` that starts at 70% to 85% of the runtime, said aloud and shown. Every number on screen is spoken.
+- The send line: after the closing question, one spoken line of 2 s or less says who to send it to, in the story's own words; the last frame labels the two sides as two kinds of people the viewer knows. The caption keeps its send line.
 
 Gates, in order (prompts/README.md "v4"): facts on script.md before any voice; after the render: render critic, viewer,
 then facts once more on the transcript, screen and captions. Two fix rounds a gate at most, then shelve it.

@@ -173,36 +173,55 @@ def test_dashes_removed_from_answers(calls, capsys):
     assert '00:02 to 00:04, then trash first' in out and '\u2013' not in out and '\u2014' not in out
 
 
-def test_busy_model_is_asked_again(calls, monkeypatch, capsys):
+def test_busy_model_is_asked_again_then_the_second_model(calls, monkeypatch, capsys):
     log, queue = calls
     naps = []
     monkeypatch.setattr(wv.time, 'sleep', naps.append)
     queue += [http_error(503, 'This model is currently experiencing high demand.'), http_error(503, 'busy'), classic()]
     assert wv.main(['https://youtu.be/abc']) == 0
-    assert len(log) == 3 and naps == [20, 60]
-    assert 'At 00:05 the hook appears.' in capsys.readouterr().out
+    assert len(log) == 3 and naps == [20]
+    assert wv.DEFAULT_MODEL in log[1].full_url and f'{wv.FALLBACK_MODEL}:generateContent' in log[2].full_url
+    out = capsys.readouterr().out
+    assert 'At 00:05 the hook appears.' in out and f'Model: {wv.FALLBACK_MODEL}' in out
 
 
-def test_busy_model_gives_up_and_marks_retry(calls, monkeypatch, capsys):
+def test_both_models_busy_gives_up_and_marks_retry(calls, monkeypatch, capsys):
     log, queue = calls
     monkeypatch.setattr(wv.time, 'sleep', lambda s: None)
-    queue += [http_error(503, 'busy')] * 3
+    queue += [http_error(503, 'busy')] * 5
     assert wv.main(['https://youtu.be/abc', '--retries', '2']) == 1
     out = capsys.readouterr().out
-    assert len(log) == 3 and 'Gemini service' in out and '- Retry: yes' in out
+    assert len(log) == 5 and 'Gemini service' in out and '- Retry: yes' in out
 
 
-def test_quota_is_not_hammered_but_marked_retry(calls, monkeypatch, capsys):
+def test_no_fallback_keeps_every_try_on_one_model(calls, monkeypatch):
+    log, queue = calls
+    naps = []
+    monkeypatch.setattr(wv.time, 'sleep', naps.append)
+    queue += [http_error(503, 'busy'), http_error(503, 'busy'), classic()]
+    assert wv.main(['https://youtu.be/abc', '--fallback', '']) == 0
+    assert naps == [20, 60] and all(wv.DEFAULT_MODEL in r.full_url for r in log)
+
+
+def test_quota_moves_to_the_second_model_without_waiting(calls, monkeypatch, capsys):
     log, queue = calls
     monkeypatch.setattr(wv.time, 'sleep', lambda s: pytest.fail('no wait on quota'))
-    queue.append(http_error(429, 'Quota exceeded'))
+    queue += [http_error(429, 'Quota exceeded'), classic()]
+    assert wv.main(['https://youtu.be/abc']) == 0
+    assert len(log) == 2 and wv.FALLBACK_MODEL in log[1].full_url
+
+
+def test_quota_on_both_models_is_marked_retry(calls, monkeypatch, capsys):
+    log, queue = calls
+    monkeypatch.setattr(wv.time, 'sleep', lambda s: pytest.fail('no wait on quota'))
+    queue += [http_error(429, 'Quota exceeded'), http_error(429, 'Quota exceeded')]
     assert wv.main(['https://youtu.be/abc']) == 1
     out = capsys.readouterr().out
-    assert len(log) == 1 and 'Gemini quota' in out and '- Retry: yes' in out
+    assert len(log) == 2 and 'Gemini quota' in out and '- Retry: yes' in out
 
 
 def test_refused_video_is_final(calls, capsys):
-    _, queue = calls
+    log, queue = calls
     queue.append(http_error(400, 'video is private'))
     assert wv.main(['https://youtu.be/abc']) == 1
-    assert '- Retry: yes' not in capsys.readouterr().out
+    assert len(log) == 1 and '- Retry: yes' not in capsys.readouterr().out

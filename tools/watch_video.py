@@ -27,6 +27,9 @@ from urllib.request import Request, urlopen
 API = 'https://generativelanguage.googleapis.com'
 INTERACTIONS = f'{API}/v1beta/interactions'
 DEFAULT_MODEL = 'gemini-3.8-flash'  # gemini-3.7-flash, the upstream default, is deprecated and routed here.
+# Asked when the first model is busy or out of quota: the free limit is counted per model (the 429 text names the
+# model), and on Nov 11, 2026 the first model answered 1 of 6 jobs, each retry spending one of its 20 daily requests.
+FALLBACK_MODEL = 'gemini-3.6-flash'
 YOUTUBE = re.compile(
     r'^https?://(?:(?:www\.|m\.)?youtube\.com/(?:watch\?\S*\bv=|shorts/|live/)|youtu\.be/)[^\s]+$', re.I)
 HINTS = {
@@ -230,6 +233,8 @@ def main(argv=None) -> int:
     ap.add_argument('--model', default=os.environ.get('WATCH_GEMINI_MODEL', DEFAULT_MODEL))
     ap.add_argument('--timeout', type=float, default=600.0)
     ap.add_argument('--retries', type=int, default=3, help='More tries when Gemini answers with a server error')
+    ap.add_argument('--fallback', default=os.environ.get('WATCH_GEMINI_FALLBACK', FALLBACK_MODEL),
+                    help='A second Gemini model for YouTube links when the first is busy or out of quota; "" for none')
     args = ap.parse_args(argv)
 
     key = os.environ.get('GEMINI_API_KEY', '').strip()
@@ -243,16 +248,27 @@ def main(argv=None) -> int:
     uploaded, note, sent = None, None, 'link sent to Google'
     try:
         if is_youtube(args.source):
-            def by_link():
+            def by_link(model):
                 try:
-                    return ask_link(args.source, args.question, key=key, model=args.model, timeout=args.timeout)
+                    return ask_link(args.source, args.question, key=key, model=model, timeout=args.timeout)
                 except GeminiError as exc:
                     if exc.category != 'network':
                         raise
                     # One retry when the long request is dropped; uses the background Interactions path.
-                    return ask({'uri': args.source}, args.question, key=key, model=args.model,
+                    return ask({'uri': args.source}, args.question, key=key, model=model,
                                processing='static', timeout=args.timeout)
-            result = retrying(by_link, max(0, args.retries))
+            models = [args.model] + ([args.fallback] if args.fallback and args.fallback != args.model else [])
+            retries = max(0, args.retries)
+            for i, model in enumerate(models):
+                last = i == len(models) - 1
+                try:
+                    # The first model gets one more try, the last one all of them: each try spends daily quota.
+                    result = retrying(lambda: by_link(model), retries if last else min(1, retries))
+                    args.model = model
+                    break
+                except GeminiError as exc:
+                    if last or exc.category not in ('service', 'quota'):
+                        raise
         elif re.match(r'^[a-z][a-z0-9+.-]*://', args.source, re.I):
             print('watch_video: only public YouTube links can be sent by link. TikTok, Instagram, Facebook and '
                   'other sites are not downloaded; save the video file first if it may be used.', file=sys.stderr)

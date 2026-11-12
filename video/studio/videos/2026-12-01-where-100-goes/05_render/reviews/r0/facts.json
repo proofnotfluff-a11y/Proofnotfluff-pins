@@ -1,21 +1,26 @@
 {
  "gate": "facts",
  "round": 0,
- "stage": "script.md before any voice (r1)",
- "pass": true,
+ "stage": "after render 3: transcript, screen, captions",
+ "pass": false,
  "reviewer": "fresh opus agent",
  "at": "2026-11-11",
  "score": {
-  "numbers": 8,
-  "mismatches": 0
+  "numbers": 10,
+  "mismatches": 3
  },
  "reasons": [
-  "Advisory: 16 is office staff pay, say 'office help' (taken in r2).",
-  "Advisory: the 20 also covers professional services: 'and the accountant' (taken).",
-  "Advisory: the 4 is wider than supplies: 'the home office' (taken).",
-  "Advisory: the column's own arithmetic for the shop line gives about 2.6, its text says just under 2: say 'he says' on that line (taken)."
- ],
- "sources_checked": [
-  "box fetch jobs where-100-goes-facts-2026-11-11-r1 to r3 of https://phcppros.com/articles/15049-how-much-do-you-keep-out-of-each-consumer-dollar (word for word, two models); web search confirmed the page and the 'just under 2 percent' passage"
+  "INSURANCE $6 plate: insurance is about 2, the other 4 is home office costs.",
+  "tiktok caption '$6 insurance': same.",
+  "PLUMBER: FAIR, $2 LEFT: drops 'with a shop', rounds just under 2 up, colons read as quotes; make each side a question.",
+  "Captions 'kept the whole $100': her price is never given.",
+  "Captions 'He explained where the money goes, and she approved': needs 'he says' and national figures of the time.",
+  "Bill section: the homeowner reacting to the example budget implies he showed her this bill; take her out; head it as an example.",
+  "YouTube title applies the example to plumbers in general.",
+  "Hook '$100 BILL' reads as her bill: 'EVERY $100'.",
+  "FEES $20 reads as a fee to the customer: OVERHEAD $20.",
+  "OFFICE $16: OFFICE PAY $16.",
+  "Advisory: she was at work and phoned; the face to face hook does not match.",
+  "Advisory: keep 'he says' on the under $2 line."
  ]
 }

@@ -1,20 +1,20 @@
 {
  "gate": "viewer",
- "round": 0,
+ "round": 1,
  "pass": false,
  "reviewer": "fresh opus agent, two steps",
  "at": "2026-11-11",
- "render": 3,
+ "render": 6,
  "score": {
-  "about": "A plumber's $100 bill split up: $41 tech, $16 office, $8 truck, $20 fees, $6 insurance. About $9 is left, under $2 with a shop. The point: the bill isn't profit.",
-  "gets": "a number I did not know: about $9 of $100 left, under $2 with a shop",
-  "stop": "the $100 BILL / ALL HIS? card and the first line; a soft stop",
+  "about": "A one-truck plumber breaks down where a customer's $100 goes: tech, office, truck, overhead, insurance. About $9 is left, under $2 if he rents a shop. The point is that he is not pocketing your money.",
+  "gets": "a number: about $9 of $100, under $2 with rent; a line item list to show customers",
+  "stop": "the first line and the EVERY $100 / ALL HIS? card; the flat art is quiet",
   "watch_to_end": "yes",
-  "leave_at": "none (weakest stretch 11 to 23 s, a list of numbers)",
-  "confused": "23.4 s 'And they work from home': 'they' is new and why it matters is missing; 3.5 to 5.0 s 'HIS ACCOUNT: JOB ON HOLD' sits over the customer",
+  "leave_at": "none",
+  "confused": "none",
   "matches_idea": "close",
   "comment": "yes, the plumber's side",
-  "send": "yes: a parent who grumbles at every trade bill",
+  "send": "yes: a spouse after a plumbing bill; a trades friend tired of discount requests",
   "forecast": {
    "stop": 3,
    "hold": 4,
@@ -22,13 +22,26 @@
    "send": 3
   }
  },
+ "earlier": [
+  {
+   "fault": "a",
+   "gone": true
+  },
+  {
+   "fault": "b",
+   "gone": true
+  },
+  {
+   "fault": "c",
+   "gone": true
+  }
+ ],
  "reasons": [
-  "5 confused: 23.4 s 'And they work from home' (fix: say the reason, no rent; a $9 card) and the account card over the customer (fix: a card about her).",
-  "6 close: the owner's move, say where the money goes before they ask, is never said (fix: make the last line the owner's move)."
+  "6 close: the owner's move is one line at 31.5 to 34 s after the question turns the ending to the customer, with no card; fix: give the move its own card and beat, the last thing heard and seen."
  ],
  "notes": [
-  "'rules' reads vague",
-  "teal to grey background jump at 0.5 s",
-  "11 to 23 s one woman standing still"
+  "HIS ACCOUNT: sits alone with a colon for 1.5 s",
+  "'rules' is vague",
+  "'before they ask' could say what they ask"
  ]
 }

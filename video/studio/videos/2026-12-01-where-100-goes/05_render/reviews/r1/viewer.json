@@ -1,0 +1,47 @@
+{
+ "gate": "viewer",
+ "round": 1,
+ "pass": false,
+ "reviewer": "fresh opus agent, two steps",
+ "at": "2026-11-11",
+ "render": 6,
+ "score": {
+  "about": "A one-truck plumber breaks down where a customer's $100 goes: tech, office, truck, overhead, insurance. About $9 is left, under $2 if he rents a shop. The point is that he is not pocketing your money.",
+  "gets": "a number: about $9 of $100, under $2 with rent; a line item list to show customers",
+  "stop": "the first line and the EVERY $100 / ALL HIS? card; the flat art is quiet",
+  "watch_to_end": "yes",
+  "leave_at": "none",
+  "confused": "none",
+  "matches_idea": "close",
+  "comment": "yes, the plumber's side",
+  "send": "yes: a spouse after a plumbing bill; a trades friend tired of discount requests",
+  "forecast": {
+   "stop": 3,
+   "hold": 4,
+   "finish": 4,
+   "send": 3
+  }
+ },
+ "earlier": [
+  {
+   "fault": "a",
+   "gone": true
+  },
+  {
+   "fault": "b",
+   "gone": true
+  },
+  {
+   "fault": "c",
+   "gone": true
+  }
+ ],
+ "reasons": [
+  "6 close: the owner's move is one line at 31.5 to 34 s after the question turns the ending to the customer, with no card; fix: give the move its own card and beat, the last thing heard and seen."
+ ],
+ "notes": [
+  "HIS ACCOUNT: sits alone with a colon for 1.5 s",
+  "'rules' is vague",
+  "'before they ask' could say what they ask"
+ ]
+}

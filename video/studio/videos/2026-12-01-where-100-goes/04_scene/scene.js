@@ -77,17 +77,17 @@ window.SCENE = {
     /* on "kept" a cut to her alone ---- */
     hook: (k, T) => {
       const tArg = 0.5, tSolo = Math.max(1.0, wordT(k, 'hook', /^kept/i, 1.2) - 0.05), tOwn = k.S('hook.owner');
-      const rows = [['$100 BILL', 198, GOLD], ['ALL HIS?', 132, RED]];
+      const rows = [['EVERY $100', 198, GOLD], ['ALL HIS?', 132, RED]];   /* facts r0: $100 is the unit, not her price */
       if (T >= tOwn) return holdUp(k, T);
       if (T < tArg) {
         kitchen(k, 0.15, 2);
-        owner(k, 260, 2.1, 'refuse', 'cross', {feet: 1720, face: 1});
+        owner(k, 260, 2.1, 'phone', 'cross', {feet: 1720, face: 1});   /* facts r0: she was at work and phoned */
         plumber(k, 820, 1.9, 'clip', {feet: 1720, face: -1});
         plate(k, rows, 264);
       } else if (T < tSolo) {
         k.cut(tArg);
         kitchen(k, 0.22, 2);
-        owner(k, 540, 2.4, 'argue', 'cross', {feet: 1800, face: 1});
+        owner(k, 540, 2.4, 'phone', 'cross', {feet: 1800, face: -1, talk: true});
         plate(k, rows, 264);
       } else {
         k.cut(tSolo);
@@ -112,7 +112,7 @@ const holdUp = (k, T) => {
         k.cut(tHeld);
         kitchen(k, 0.3, 2);
         owner(k, 560, 2.4, 'phone', 'cross', {feet: 1800, face: -1});
-        stampPlate(k, [['HIS ACCOUNT:', 132, CREAM], ['JOB ON HOLD', 132, RED]], 264, tHeld, {drop: 0.06, freeze: 4});
+        stampPlate(k, [['SHE PUT THE', 132, CREAM], ['JOB ON HOLD', 132, RED]], 264, tHeld, {drop: 0.06, freeze: 4});   /* viewer r0: HIS ACCOUNT sat over her */
       }
       return {host: false};
 };
@@ -136,25 +136,25 @@ Object.assign(window.SCENE.sections, {
         k.cut(t0);
         kitchen(k, 0.3, 2);
         const ts = [t0, wordT(k, 'bill', /^sixteen/i, 1.6) - 0.1, wordT(k, 'bill', /^eight/i, 3.0) - 0.1, wordT(k, 'bill', /^twenty/i, 4.5) - 0.1, wordT(k, 'bill', /^six\b/i, 9.5) - 0.1];
-        const all = [['TECH $41', 132, INK], ['OFFICE $16', 132, INK], ['TRUCK $8', 132, INK], ['FEES $20', 132, INK], ['INSURANCE $6', 132, INK]];
+        const all = [['TECH $41', 132, INK], ['OFFICE PAY $16', 132, INK], ['TRUCK $8', 132, INK], ['OVERHEAD $20', 132, INK], ['INS + HOME $6', 132, INK]];
         let n = 0; ts.forEach((t) => { if (T >= t) n++; });
         n = Math.max(1, n);
         /* the homeowner, close on the right, reads it: arms folded until the fees, then they drop */
-        owner(k, 870, 2.0, T >= ts[4] + 0.8 ? 'talk' : (T >= ts[3] ? 'stand' : 'refuse'), T >= ts[3] ? 'calm' : 'cross', {feet: 1740, face: -1, talk: false});   /* after the last row she gestures at it (QA r1: the full card sat flat 1.3 s) */
-        const rows = [['$100 BILL', 132, RED]].concat(all.slice(0, n)), o = {bg: CREAM, rule: RED, pad: 24, gap: 6, drop: 0.06, cx: 396};
+        plumber(k, 905, 2.0, T >= ts[4] + 0.8 ? 'talk' : 'clip', {feet: 1740, face: -1, talk: false});   /* facts r0: his example, not her bill: the plumber reads it, she is not in it */   /* after the last row he gestures at it (QA r1: the full card sat flat 1.3 s) */
+        const rows = [['EXAMPLE $100', 132, RED]].concat(all.slice(0, n)), o = {bg: CREAM, rule: RED, pad: 24, gap: 6, drop: 0.06, cx: 420};
         if (n === 1 && T < t0 + 0.06) plate(k, rows, 264, o);
         else stampPlate(k, rows, 264, ts[n - 1], o);
         /* QA r1 and r2: the full card sat flat 1.3 s; after the last row a gold band reads down the five rows, one at a time */
         const tSweep = ts[4] + 0.6;
         if (n === 5 && T >= tSweep) {
-          const w = k.measure('INSURANCE $6', {size: 132}) + 48, top = 264 + 24 + 138 - 6, y = top + Math.floor(((T - tSweep) * 2.4) % 5) * 138;
-          k.shape(k.rectPts(Math.round((396 - w / 2) / 3) * 3, y, Math.round(w / 3) * 3, 144, 0), {fill: GOLD, line: false, alpha: 0.45});
+          const w = k.measure('OFFICE PAY $16', {size: 132}) + 48, top = 264 + 24 + 138 - 6, y = top + Math.floor(((T - tSweep) * 2.4) % 5) * 138;
+          k.shape(k.rectPts(Math.round((420 - w / 2) / 3) * 3, y, Math.round(w / 3) * 3, 144, 0), {fill: GOLD, line: false, alpha: 0.45});
         }
       } else {
         k.cut(tHome);
         kitchen(k, 0.2, 2);
         plumber(k, 540, 2.2, 'talk', {feet: 1780, talk: true});
-        plate(k, [['THEY WORK', 132, CREAM], ['FROM HOME', 132, GOLD]], 264);
+        plate(k, [['NO RENT:', 132, CREAM], ['$9 LEFT', 198, GOLD]], 264);   /* viewer r0: say why it matters */
       }
       return {host: false};
     },
@@ -163,8 +163,12 @@ Object.assign(window.SCENE.sections, {
     twist: (k, T) => {
       const t0 = k.S('twist'), tShop = wordT(k, 'twist', /^shop/i, 0.6) - 0.1, tTwo = wordT(k, 'twist', /^two/i, 2.0) - 0.15;
       k.cut(t0);
+      /* QA r4: after "under two dollars" the frame froze 1 s; a slow push-in on him carries it to the cut (plates stay put) */
+      const zz = 1 + 0.08 * clamp((T - tTwo - 0.5) / 1.6);
+      k.ctx.save(); k.ctx.translate(540, 1000); k.ctx.scale(zz, zz); k.ctx.translate(-540, -1000);
       kitchen(k, 0.3, 2);
       plumber(k, 540, 2.2, T >= tTwo ? 'shrug' : 'talk', {feet: 1780, talk: T < tTwo});
+      k.ctx.restore();
       if (T < tTwo - 0.06) {
         const b = plate(k, [['$9 LEFT', 198, GOLD]], 264);
         if (T >= tShop) strike(k, '$9 LEFT', 198, b, tShop);
@@ -174,17 +178,18 @@ Object.assign(window.SCENE.sections, {
 
     /* ---- ask: the frame splits, one person a side: the plumber (fair, $2 left) and the client (too much, $100 bill) ---- */
     ask: (k, T) => {
-      const t0 = k.S('ask'), tToo = wordT(k, 'ask', /^too/i, 1.0) - 0.1, tSend = k.S('ask.send');
+      const t0 = k.S('ask'), tToo = wordT(k, 'ask', /^too/i, 1.0) - 0.1, tSend = k.S('ask.show');
       k.cut(t0);
       const P = px(k);
       P(0, 0, 180, 640, '#4A4E5A'); P(180, 0, 180, 640, WINE); P(178, 0, 4, 640, INK);
       for (let y = 20; y < 640; y += 22) { P(0, y, 178, 1, '#6B7080'); P(182, y + 11, 178, 1, '#5A2432'); }
       plumber(k, 270, 1.6, T >= tSend ? 'point' : 'talk', {feet: 1690, at: [540, 1900], talk: false});
       owner(k, 810, 1.75, 'refuse', 'cross', {feet: 1690, face: -1});
-      if (T < t0 + 0.3) plate(k, [['PLUMBER:', 132, CREAM], ['FAIR,', 132, TEAL]], 264, {cx: 290, bg: INK, rule: TEAL});
-      else stampPlate(k, [['PLUMBER:', 132, CREAM], ['FAIR,', 132, TEAL], ['$2 LEFT', 132, TEAL]], 264, t0 + 0.34, {cx: 290, bg: INK, rule: TEAL, drop: 0.06});
-      if (T < tToo - 0.06) plate(k, [['CLIENT:', 132, CREAM]], 264, {cx: 800, bg: INK, rule: RED});
-      else stampPlate(k, [['CLIENT:', 132, CREAM], ['TOO', 132, GOLD], ['MUCH,', 132, GOLD], ['$100 BILL', 132, GOLD]], 264, tToo, {cx: 800, bg: INK, rule: RED, drop: 0.06});
+      /* facts r0: each side a question, labels with no colons (never a quote); the shop condition stays on the left */
+      if (T < t0 + 0.3) plate(k, [['PLUMBER', 132, CREAM], ['FAIR?', 132, TEAL]], 264, {cx: 290, bg: INK, rule: TEAL});
+      else stampPlate(k, [['PLUMBER', 132, CREAM], ['FAIR?', 132, TEAL], ['UNDER $2', 132, TEAL]], 264, t0 + 0.34, {cx: 290, bg: INK, rule: TEAL, drop: 0.06});
+      if (T < tToo - 0.06) plate(k, [['CLIENT', 132, CREAM]], 264, {cx: 795, bg: INK, rule: RED});
+      else stampPlate(k, [['CLIENT', 132, CREAM], ['TOO', 132, GOLD], ['MUCH?', 132, GOLD]], 264, tToo, {cx: 795, bg: INK, rule: RED, drop: 0.06});
       return {host: false};
     },
 });

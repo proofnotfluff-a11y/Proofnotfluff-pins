@@ -6,7 +6,7 @@
   "level": 0.16,
   "tune": "bounce"
  },
- "duration": 33.98,
+ "duration": 34.44,
  "cues": [
   {
    "id": "hook",
@@ -15,7 +15,7 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "Frame 0, close and settled, a kitchen: the homeowner left, arms folded, facing the plumber right, who holds the bill on a clipboard. Up top, big: $100 BILL in gold, under it in red: ALL HIS?. At 0.5 s a plain cut to her alone, close, palms up at him (the first change). On \"kept\" a plain cut to the plumber alone, close, shrugging, the same plate.",
+   "text": "Frame 0, close and settled, a kitchen: the homeowner left, on the phone, cross, the plumber right with the clipboard (she was at work and phoned). Up top, big: EVERY $100 in gold, under it in red: ALL HIS?. At 0.5 s a plain cut to her alone, close, on the phone (the first change). On \"kept\" a plain cut to the plumber alone, close, shrugging, the same plate.",
    "t": 0.0,
    "word": 0,
    "end": 5.68
@@ -27,7 +27,7 @@
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "A plain cut to the plumber, close, talking. The plate: HIS ACCOUNT:. On \"held\" a plain cut to the homeowner on the phone, cross, and the plate lands again with a second row in red: JOB ON HOLD.",
+   "text": "A plain cut to the plumber, close, talking. The plate: HIS ACCOUNT:. On \"held\" a plain cut to the homeowner on the phone, cross, and a new plate lands: SHE PUT THE / JOB ON HOLD, the last row red.",
    "t": 2.2,
    "word": 7,
    "end": 5.68
@@ -52,22 +52,22 @@
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "The bill on the left over the dimmed kitchen, the homeowner close on the right, arms folded until \"Twenty\", then they drop, and after the last row she gestures at the bill: a cream invoice headed $100 BILL in red, one row landing under it as each is said: TECH $41, then on \"Sixteen\" OFFICE $16, on \"eight\" TRUCK $8, on \"Twenty\" FEES $20, on \"Six\" INSURANCE $6.",
+   "text": "His example invoice on the left over the dimmed kitchen, the plumber close on the right holding the clipboard (she is not in it): a cream card headed EXAMPLE $100 in red, one row landing under it as each is said: TECH $41, then on \"Sixteen\" OFFICE PAY $16, on \"eight\" TRUCK $8, on \"Twenty\" OVERHEAD $20, on \"Six\" INS + HOME $6; then the plumber gestures at it and a gold band steps down the five rows, one at a time, until the cut.",
    "t": 10.96,
    "word": 32,
-   "end": 25.04
+   "end": 25.36
   },
   {
    "id": "bill.home",
    "level": 1,
-   "quote": "And they work from home",
+   "quote": "And that's with no",
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "A plain cut to the plumber in the kitchen, close, talking. The plate: THEY WORK / FROM HOME.",
+   "text": "A plain cut to the plumber in the kitchen, close, talking. The plate: NO RENT: / $9 LEFT, the last row big and gold.",
    "t": 23.44,
    "word": 59,
-   "end": 25.04
+   "end": 25.36
   },
   {
    "id": "twist",
@@ -76,10 +76,10 @@
    "sfx": "stamp",
    "shift": 0.0,
    "pin": null,
-   "text": "A plain cut to the plumber, close, shrugging. The plate: $9 LEFT, struck through in red as he says \"shop\"; on \"two\" it gives way to a stamp: WITH A SHOP: / UNDER $2, the last row big and red.",
-   "t": 25.04,
+   "text": "A plain cut to the plumber, close. The plate: $9 LEFT, struck through in red as he says \"shop\"; on \"two\" he shrugs and it gives way to a stamp: WITH A SHOP: / UNDER $2, the last row big and red.",
+   "t": 25.36,
    "word": 64,
-   "end": 28.56
+   "end": 28.88
   },
   {
    "id": "ask",
@@ -88,22 +88,22 @@
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "The frame splits: the plumber on a slate left, the homeowner on wine right, arms folded. Left plate: PLUMBER: / FAIR, / $2 LEFT. Right plate: CLIENT: then on \"too\" TOO / MUCH, / $100 BILL under it.",
-   "t": 28.56,
+   "text": "The frame splits, one person a side: the plumber on a slate left, the homeowner on wine right, arms folded. Left plate: PLUMBER, then FAIR? / UNDER $2 under it. Right plate: CLIENT, then on \"too\" TOO / MUCH? under it.",
+   "t": 28.88,
    "word": 75,
-   "end": 33.98
+   "end": 34.44
   },
   {
-   "id": "ask.send",
+   "id": "ask.show",
    "level": 1,
-   "quote": "Send this to whoever",
+   "quote": "Show customers this before",
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
    "text": "The plumber points down at the viewer; the homeowner keeps her arms folded. Both plates hold. Ends 1 s after the last word.",
-   "t": 31.16,
+   "t": 31.52,
    "word": 80,
-   "end": 33.98
+   "end": 34.44
   }
  ]
 }

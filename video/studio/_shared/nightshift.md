@@ -18,10 +18,6 @@ code or by Claude against its source, and nothing a box job writes is published,
       8 thread pages each (48 to 80 pages), on hosts the box reader allows (pnf-local-jobs scripts/fetcher.py ALLOWED).
       Phone cluster first (research/STORIES.md, Nov 7): threads on missed calls, after-hours calls, call answering, texting
       back and speed to lead go in the first jobs.
-      Closed hosts (Todd, live chat, Nov 12, 2026, 9:36 am: "go with recs"; CONSTITUTION 3): no fetch job of any kind,
-      feed or thread page, names contractortalk.com, plumbingzone.com, electriciantalk.com, hvac-talk.com or
-      lawnsite.com. Their terms forbid automated and AI collection (research/listen.json "stopped_why"). A host comes
-      back only after a terms check and Todd's yes. Until a feed is listed again, skip (1) below.
       Find the pages: (1) thread links from the newest ok `pulse-feeds` answer (the forum feeds listed as working in
       video/studio/research/listen.json, read by the box; queue one `pulse-feeds-<date>-r<n>` fetch job per feed each 21 slot: one feed a job, or the box lists only the first);
       (2) WebSearch site: queries only to fill up (low yield: on Nov 7 one of six forum hosts returned threads); skip

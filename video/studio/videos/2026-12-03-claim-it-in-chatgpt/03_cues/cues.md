@@ -22,8 +22,11 @@ IN BETA, on "claim" the clipping "claim their business," replaces it and a stamp
 
 ## step1 "One. Open Business Hub" [payoff] [sfx: stamp]
 The first step. The help page's own words "open Business Hub". A stamp: STEP 1 / OPEN THE HUB, on "OpenAI" the clipping
-is ringed and a stamp: OPENAI SAYS: / THE SIDEBAR, on "type" the Business Hub page's own headline line, "your business
-with ChatGPT", replaces it and a stamp: CHATGPT.COM / /BUSINESS-HUB.
+is ringed and a stamp: OPENAI SAYS: / THE SIDEBAR.
+
+## addr "or type" [sfx: blip]
+The Business Hub page's own headline line, "your business with ChatGPT". The plate: OR TYPE THIS:, then on "chatgpt" a
+stamp of the address, written exactly: CHATGPT.COM / /BUSINESS-HUB.
 
 ## step2 "Two. Search your business" [sfx: stamp]
 The Business Hub search box ("Search business"), ringed on "Search". A stamp: STEP 2: SEARCH.

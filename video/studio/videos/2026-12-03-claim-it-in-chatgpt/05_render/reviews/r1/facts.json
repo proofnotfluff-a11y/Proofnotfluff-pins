@@ -1,0 +1,26 @@
+{
+ "gate": "facts",
+ "round": 1,
+ "pass": false,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "render": 3,
+ "score": {
+  "numbers": 1,
+  "mismatches": 3
+ },
+ "reasons": [
+  "scene 'local' 44.6 to 47.6 s: EXISTING ONLY over 'claim only an existing' / 'U.S. listing.' with 'Local stores' / 'and restaurants' cleared, so the limit reads as every business's",
+  "scene 'fine' 6.5 to 9.2 s: the clipping shows only 'ChatGPT Terms', cut from the title 'Businesses in ChatGPT Terms'",
+  "captions.json tiktok step 1 drops 'OpenAI says' and states the sidebar as fact"
+ ],
+ "advisories": [
+  "'OR TYPE THIS:' sat over the clipping 'your business with ChatGPT' for about 1 s",
+  "never let a plate say an ID is required",
+  "youtube aiUse false while the others label AI: check against the post rule"
+ ],
+ "not_checked": [
+  "the live OpenAI pages (403 to fetch tools; same-day captures used)",
+  "chatgpt.com/business-hub opening at exactly that bare address (the capture shows the path with the create flow's query)"
+ ]
+}

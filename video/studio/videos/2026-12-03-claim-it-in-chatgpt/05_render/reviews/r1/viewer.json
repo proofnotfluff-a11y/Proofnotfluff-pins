@@ -1,0 +1,28 @@
+{
+ "gate": "viewer",
+ "round": 1,
+ "pass": false,
+ "reviewer": "fresh opus agent, two steps",
+ "at": "2026-11-12",
+ "render": 3,
+ "score": {
+  "matches_idea": "close",
+  "watch_to_end": "no",
+  "leaves_at_s": 24,
+  "forecast": {
+   "stop": 3,
+   "hold": 2,
+   "finish": 2,
+   "send": 2
+  }
+ },
+ "reasons": [
+  "would leave at about 24 s: the hook is the news, not the terms; each step stops after its number",
+  "'OR TYPE THIS:' over a clipping that is not the address",
+  "the catch never says what it means for a contractor; 'Search and see' lands on nothing",
+  "our own domain on the verify screen reads as a plug",
+  "the U.S. listing limit is in fragments that are hard to piece together",
+  "the recap row '2 SEARCH, READ' is unclear; the ending feels like 'then why bother'",
+  "the bottom of the frame is empty black; the same waving figure throughout; the actual Business Hub screen is never seen"
+ ]
+}

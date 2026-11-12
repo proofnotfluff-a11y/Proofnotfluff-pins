@@ -1,15 +1,13 @@
-# Script: ChatGPT just opened business listings. Read the small print first. (v4 update, r3, Nov 12, 2026: rewritten after the viewer left at 36 s on render 2 and the render critic failed every clipping for size. Shorter, the steps start by 14 s, the terms come right after the search step, no jargon, no "ours" story; sources: OpenAI's announcement, help page and Businesses in ChatGPT Terms, read today in the browser on Todd's PC, and his own Business Hub screens)
+# Script: ChatGPT just opened business listings. Claim yours, and its AI may call you. (v4 update, r5, Nov 12, 2026: fix round 2 after the viewer left render 3 at 24 s. The terms open it, the four steps run as one counted list with no stops, the catch ends on what a business that is not listed can expect, and it closes on what you get and what you do not; sources: OpenAI's announcement, help page and Businesses in ChatGPT Terms, read today in the browser on Todd's PC, and his own Business Hub screens)
 
-[conversational] ChatGPT just opened business listings. One point two billion people use it every week. But read the small print before you claim yours.
+[conversational] ChatGPT just opened business listings. Claim yours, and you agree that OpenAI's AI may call you.
 
-It's called Business Hub, it's in beta, and it's where you claim your business.
+It's in the terms. The calls are for its users, and you can opt out. You also agree not to bring certain claims against OpenAI.
 
-One. Open Business Hub. OpenAI says it's in your sidebar, or type chatgpt.com slash business hub.
+It's called Business Hub, and it's in beta. Four steps.
 
-Two. Search your business name. Now the small print. By continuing, you accept OpenAI's terms. They say its AI assistant may call your business for its users. You can opt out. And you agree not to bring certain claims against OpenAI.
+One, open Business Hub. OpenAI says it's in your sidebar, or type chatgpt.com slash business hub. Two, search your business name. By continuing, you accept those terms. Three, prove it's yours with your business phone or email, or your website. Four, pass an identity check before any change goes live.
 
-Here's the catch. OpenAI says local stores and restaurants can only claim a listing that's already there. U.S. only, for now. A plumber or a roofer? Search and see.
+Here's the catch. OpenAI says local stores and restaurants can only claim a listing that's already there. U.S. only, for now. Not listed? You may not be able to add it yet.
 
-Three. Prove it's yours with your business phone or email, or your website. Four. Pass an identity check before any change goes live.
-
-[matter-of-fact] And OpenAI says claiming it doesn't guarantee ChatGPT recommends you more. Save this, and send it to whoever runs your Google listing.
+[matter-of-fact] What you get: you manage your own info in an app one point two billion people use every week. What you don't: OpenAI says claiming it doesn't guarantee ChatGPT recommends you more. Read the terms, then decide. Save this, and send it to whoever runs your Google listing.

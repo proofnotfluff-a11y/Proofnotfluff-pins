@@ -1,0 +1,25 @@
+{
+ "gate": "render-critic",
+ "round": 1,
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "render": 3,
+ "score": {
+  "faults": 0
+ },
+ "faults": [],
+ "reasons": [
+  "items 1 to 5 PASS; 30 fps sweep of all 2,155 frames PASS; clippings 57 to 62 px capitals, plates 66 to 69 px"
+ ],
+ "notes": [
+  "plate pop overshoot: for one frame plate text leaves x 40 to 1040 (28.93 s YOU ACCEPT TERMS, 19.80 s, 45.10 s, 55.27 s, 59.97 s, 68.6 s, 68.8 s); cap the overshoot",
+  "y 1390 to 1920 is an empty dark band; formats.md Update asks for Snow waist up in the lower half",
+  "'your business with ChatGPT' is the smallest clipping: capitals 57 px"
+ ],
+ "not_checked": [
+  "single-glyph capital read for three clippings (line maxima only)",
+  "whether clippings are true crops (assets out of scope)",
+  "mouth sync"
+ ]
+}

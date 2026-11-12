@@ -1,0 +1,22 @@
+{
+ "gate": "facts",
+ "stage": "script r5 (fix round 2), before any voice",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "score": {
+  "numbers": 2,
+  "mismatches": 0
+ },
+ "reasons": [],
+ "advisories": [
+  "'U.S. only, for now.' stands alone; in context it is the limit on local stores' and restaurants' listings",
+  "step three drops the help page's 'such as'",
+  "'yet' leans on the page's 'currently'",
+  "the screen must show chatgpt.com/business-hub exactly, with its hyphen"
+ ],
+ "not_checked": [
+  "the three live OpenAI pages (fetch tools get a client error; judged from the same-day captures)",
+  "the definition of 'Covered Claim' (not captured; the script does not say which claims)"
+ ]
+}

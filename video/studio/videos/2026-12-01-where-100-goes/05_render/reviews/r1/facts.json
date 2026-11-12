@@ -1,0 +1,20 @@
+{
+ "gate": "facts",
+ "round": 1,
+ "stage": "after render 6",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-11",
+ "score": {
+  "numbers": 11,
+  "mismatches": 0
+ },
+ "earlier_fixed": 12,
+ "notes": [
+  "'Show customers this before they ask': no fact; safer as 'your numbers' (the budget is his).",
+  "'And that's with no rent' matches the column.",
+  "The PLUMBER FAIR? UNDER $2 plate carries the shop condition only from the frame before.",
+  "The couple's own pay sits inside the $41 and $16: a likely comment, nothing false.",
+  "She still stands in the kitchen in the hook (advisory)."
+ ]
+}

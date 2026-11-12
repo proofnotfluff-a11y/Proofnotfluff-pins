@@ -107,7 +107,7 @@ const holdUp = (k, T) => {
         k.cut(t0);
         kitchen(k, 0.3, 2);
         plumber(k, 540, 2.2, 'talk', {feet: 1780, talk: true});
-        plate(k, [['HIS ACCOUNT:', 132, CREAM]], 264);
+        plate(k, [['HIS ACCOUNT', 132, CREAM]], 264);   /* viewer r1 note: a lone colon looked unfinished */
       } else {
         k.cut(tHeld);
         kitchen(k, 0.3, 2);
@@ -183,7 +183,8 @@ Object.assign(window.SCENE.sections, {
       const P = px(k);
       P(0, 0, 180, 640, '#4A4E5A'); P(180, 0, 180, 640, WINE); P(178, 0, 4, 640, INK);
       for (let y = 20; y < 640; y += 22) { P(0, y, 178, 1, '#6B7080'); P(182, y + 11, 178, 1, '#5A2432'); }
-      plumber(k, 270, 1.6, T >= tSend ? 'point' : 'talk', {feet: 1690, at: [540, 1900], talk: false});
+      if (T >= tSend) return showIt(k, T, tSend);
+      plumber(k, 270, 1.6, 'talk', {feet: 1690, talk: false});
       owner(k, 810, 1.75, 'refuse', 'cross', {feet: 1690, face: -1});
       /* facts r0: each side a question, labels with no colons (never a quote); the shop condition stays on the left */
       if (T < t0 + 0.3) plate(k, [['PLUMBER', 132, CREAM], ['FAIR?', 132, TEAL]], 264, {cx: 290, bg: INK, rule: TEAL});
@@ -193,3 +194,14 @@ Object.assign(window.SCENE.sections, {
       return {host: false};
     },
 });
+
+/* ---- ask.show (inside ask; viewer r1: the owner's move needs its own card and beat, the last thing heard and seen): ---- */
+/* a plain cut to the kitchen, the plumber holding the clipboard out to the customer, who listens; the card lands ---- */
+const showIt = (k, T, t0) => {
+  k.cut(t0);
+  kitchen(k, 0.15, 2);
+  plumber(k, 300, 2.0, 'talk', {feet: 1720, face: 1, talk: false});
+  owner(k, 800, 2.1, 'stand', 'calm', {feet: 1720, face: -1});
+  stampPlate(k, [['SHOW YOUR', 132, CREAM], ['NUMBERS', 198, GOLD], ['BEFORE THEY ASK', 132, CREAM]], 264, t0 + 0.1, {drop: 0.06, freeze: 4});
+  return {host: false};
+};

@@ -1,26 +1,21 @@
 {
  "gate": "facts",
- "round": 0,
- "stage": "after render 3: transcript, screen, captions",
- "pass": false,
+ "round": 2,
+ "stage": "final render 8: transcript, screen, captions",
+ "pass": true,
  "reviewer": "fresh opus agent",
  "at": "2026-11-11",
  "score": {
-  "numbers": 10,
-  "mismatches": 3
+  "numbers": 11,
+  "mismatches": 0
  },
- "reasons": [
-  "INSURANCE $6 plate: insurance is about 2, the other 4 is home office costs.",
-  "tiktok caption '$6 insurance': same.",
-  "PLUMBER: FAIR, $2 LEFT: drops 'with a shop', rounds just under 2 up, colons read as quotes; make each side a question.",
-  "Captions 'kept the whole $100': her price is never given.",
-  "Captions 'He explained where the money goes, and she approved': needs 'he says' and national figures of the time.",
-  "Bill section: the homeowner reacting to the example budget implies he showed her this bill; take her out; head it as an example.",
-  "YouTube title applies the example to plumbers in general.",
-  "Hook '$100 BILL' reads as her bill: 'EVERY $100'.",
-  "FEES $20 reads as a fee to the customer: OVERHEAD $20.",
-  "OFFICE $16: OFFICE PAY $16.",
-  "Advisory: she was at work and phoned; the face to face hook does not match.",
-  "Advisory: keep 'he says' on the under $2 line."
+ "notes": [
+  "'show this split' could read as his budget; the card SHOW YOUR NUMBERS fixes it on screen; next voice pass: 'your own split'.",
+  "The closing kitchen two-shot is the owner's move, not a scene from the story.",
+  "Cue text and scene comment differed on the clipboard (comment fixed).",
+  "YouTube AI label off while the others are on (by the Oct 31 rule, V4_LABELS)."
+ ],
+ "sources_checked": [
+  "data/studio/where-100-goes-source.txt (box copy of the PHC Pros column, Mar 1, 2022): every figure in voice, screen and captions matches; nothing lifted 6+ words; nobody named; no dashes."
  ]
 }

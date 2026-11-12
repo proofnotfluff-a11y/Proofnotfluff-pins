@@ -1,20 +1,18 @@
 {
  "gate": "render-critic",
- "round": 0,
+ "round": 2,
  "pass": true,
  "reviewer": "fresh opus agent",
  "at": "2026-11-11",
- "render": 3,
+ "render": 8,
  "score": {
   "faults": 0
  },
  "faults": [],
  "reasons": [
-  "Hook plate on screen from frame 0.",
-  "Every spoken number on screen at about the moment it is said (1-TRUCK SHOP, $9 LEFT, TECH $41, OFFICE $16, TRUCK $8, FEES $20, INSURANCE $6, UNDER $2).",
-  "Plates settle in y 265 to 1130, x 40 to 1040; the CLIENT plate's box edge reaches about x 1045 in the end scene, its words end near x 995.",
-  "Smallest rows about 60 to 75 px cap height.",
-  "Last word ends 32.98 s, video runs to 33.97 s.",
-  "No flashing; glitch sweep of 1019 frames: only pop-in squash and blinks, nothing vanishes for a frame."
+  "Round 1 rechecked on the final render (34.8 s): nothing broken; every spoken number on screen as said.",
+  "HIS ACCOUNT card clear, no colon.",
+  "Closing card SHOW YOUR / NUMBERS / BEFORE THEY ASK at x 108 to 980, y 265 to 835, rows 65 to 100 px; covers hat tops, no eyes; captions over torsos only.",
+  "Ends 1.0 s after the last word; no flash; 30 fps sweep of 1044 frames: kicks on word onsets, pop-in squash, lip-sync and blinks only."
  ]
 }

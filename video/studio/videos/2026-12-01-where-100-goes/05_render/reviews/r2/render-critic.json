@@ -1,0 +1,18 @@
+{
+ "gate": "render-critic",
+ "round": 2,
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-11",
+ "render": 8,
+ "score": {
+  "faults": 0
+ },
+ "faults": [],
+ "reasons": [
+  "Round 1 rechecked on the final render (34.8 s): nothing broken; every spoken number on screen as said.",
+  "HIS ACCOUNT card clear, no colon.",
+  "Closing card SHOW YOUR / NUMBERS / BEFORE THEY ASK at x 108 to 980, y 265 to 835, rows 65 to 100 px; covers hat tops, no eyes; captions over torsos only.",
+  "Ends 1.0 s after the last word; no flash; 30 fps sweep of 1044 frames: kicks on word onsets, pop-in squash, lip-sync and blinks only."
+ ]
+}

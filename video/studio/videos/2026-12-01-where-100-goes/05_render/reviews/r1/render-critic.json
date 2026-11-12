@@ -1,0 +1,15 @@
+{
+ "gate": "render-critic",
+ "round": 1,
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-11",
+ "render": 6,
+ "score": {
+  "faults": 0
+ },
+ "faults": [],
+ "reasons": [
+  "Round 0 rechecked, nothing broken; every number on screen as said; card x 49 to 797; rows 66 to 69 px; ends 1 s after the last word; no flash; 30 fps sweep: one-frame kicks on word onsets and pop-in squash only."
+ ]
+}

@@ -1,0 +1,21 @@
+{
+ "gate": "facts",
+ "round": 2,
+ "stage": "final render 8: transcript, screen, captions",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-11",
+ "score": {
+  "numbers": 11,
+  "mismatches": 0
+ },
+ "notes": [
+  "'show this split' could read as his budget; the card SHOW YOUR NUMBERS fixes it on screen; next voice pass: 'your own split'.",
+  "The closing kitchen two-shot is the owner's move, not a scene from the story.",
+  "Cue text and scene comment differed on the clipboard (comment fixed).",
+  "YouTube AI label off while the others are on (by the Oct 31 rule, V4_LABELS)."
+ ],
+ "sources_checked": [
+  "data/studio/where-100-goes-source.txt (box copy of the PHC Pros column, Mar 1, 2022): every figure in voice, screen and captions matches; nothing lifted 6+ words; nobody named; no dashes."
+ ]
+}

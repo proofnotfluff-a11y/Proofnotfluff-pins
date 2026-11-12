@@ -1,24 +1,24 @@
 {
  "gate": "viewer",
- "round": 1,
- "pass": false,
+ "round": 2,
+ "pass": true,
  "reviewer": "fresh opus agent, two steps",
  "at": "2026-11-11",
- "render": 6,
+ "render": 8,
  "score": {
-  "about": "A one-truck plumber breaks down where a customer's $100 goes: tech, office, truck, overhead, insurance. About $9 is left, under $2 if he rents a shop. The point is that he is not pocketing your money.",
-  "gets": "a number: about $9 of $100, under $2 with rent; a line item list to show customers",
-  "stop": "the first line and the EVERY $100 / ALL HIS? card; the flat art is quiet",
+  "about": "One plumber's example of where a customer's $100 goes: tech, office help, truck, overhead and insurance leave him about $9, under $2 if he pays shop rent. Point: owners, show customers that split before they balk.",
+  "gets": "a number I did not know, plus something to do: about $9 of every $100 left in a one-truck shop with no rent, under $2 with a shop; show customers that split up front",
+  "stop": "0 to 1.5 s: EVERY $100 / ALL HIS? over a doubtful customer, with 'She thought the plumber kept it all.'",
   "watch_to_end": "yes",
   "leave_at": "none",
   "confused": "none",
-  "matches_idea": "close",
-  "comment": "yes, the plumber's side",
-  "send": "yes: a spouse after a plumbing bill; a trades friend tired of discount requests",
+  "matches_idea": "same",
+  "comment": "yes, the fair side; may ask what 'rules' means or argue the $41",
+  "send": "yes: a customer who pushed back on a quote, and the office manager as a model; as a buyer, a spouse after a plumbing bill",
   "forecast": {
    "stop": 3,
    "hold": 4,
-   "finish": 4,
+   "finish": 3,
    "send": 3
   }
  },
@@ -34,14 +34,20 @@
   {
    "fault": "c",
    "gone": true
+  },
+  {
+   "fault": "d",
+   "gone": true
   }
  ],
  "reasons": [
-  "6 close: the owner's move is one line at 31.5 to 34 s after the question turns the ending to the customer, with no card; fix: give the move its own card and beat, the last thing heard and seen."
+  "Same point as the one idea; stops, watches to the end, nothing confusing, would comment and send."
  ],
  "notes": [
-  "HIS ACCOUNT: sits alone with a colon for 1.5 s",
-  "'rules' is vague",
-  "'before they ask' could say what they ask"
+  "HIS ACCOUNT is a vague card",
+  "'rules' is unclear; permits or licenses would be plainer",
+  "the highlight band at 21 to 23 s jumps without a clear reason",
+  "the closing split is busy for 2 s",
+  "the move lands in the last 4 s; a longer hold on the end card would help"
  ]
 }

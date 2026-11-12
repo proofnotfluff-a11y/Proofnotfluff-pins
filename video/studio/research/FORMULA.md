@@ -16,6 +16,9 @@
 | 2026-11-04-close-rate | core | none named (before formula.md) | 70 h, Nov 2 12:19 pm, list views (115, 89, 14, 37): under 300 everywhere, its last read | not read | hidden | hidden | hidden |
 | 2026-11-17-after-hours-robot | story | first story lesson (moment, then turn; compare FAILed, posted on Todd's word) | 8.5 h, Nov 6 8:16 pm, list views (IG 276, TT 213, FB 13, YT 47) | not read | hidden (YT 53.1% avg viewed) | hidden | hidden (TT 8 likes) |
 
+## v4 forecasts (the viewer gate's guess beside the 72 h numbers; make run, Nov 11 prompt)
+- 2026-12-01-where-100-goes (v4 invoice, 34.8 s, queued Nov 11): viewer forecast (viewer r2 PASS) stop 3, hold 4, finish 3, send 3; 72 h numbers: not posted yet.
+
 ## References
 (Each: platform, link, the counts on the page and the date, then what the first 3 s, the beats, the save moment and the
 length do, in our words.)

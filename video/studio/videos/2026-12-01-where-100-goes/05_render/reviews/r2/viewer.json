@@ -1,0 +1,53 @@
+{
+ "gate": "viewer",
+ "round": 2,
+ "pass": true,
+ "reviewer": "fresh opus agent, two steps",
+ "at": "2026-11-11",
+ "render": 8,
+ "score": {
+  "about": "One plumber's example of where a customer's $100 goes: tech, office help, truck, overhead and insurance leave him about $9, under $2 if he pays shop rent. Point: owners, show customers that split before they balk.",
+  "gets": "a number I did not know, plus something to do: about $9 of every $100 left in a one-truck shop with no rent, under $2 with a shop; show customers that split up front",
+  "stop": "0 to 1.5 s: EVERY $100 / ALL HIS? over a doubtful customer, with 'She thought the plumber kept it all.'",
+  "watch_to_end": "yes",
+  "leave_at": "none",
+  "confused": "none",
+  "matches_idea": "same",
+  "comment": "yes, the fair side; may ask what 'rules' means or argue the $41",
+  "send": "yes: a customer who pushed back on a quote, and the office manager as a model; as a buyer, a spouse after a plumbing bill",
+  "forecast": {
+   "stop": 3,
+   "hold": 4,
+   "finish": 3,
+   "send": 3
+  }
+ },
+ "earlier": [
+  {
+   "fault": "a",
+   "gone": true
+  },
+  {
+   "fault": "b",
+   "gone": true
+  },
+  {
+   "fault": "c",
+   "gone": true
+  },
+  {
+   "fault": "d",
+   "gone": true
+  }
+ ],
+ "reasons": [
+  "Same point as the one idea; stops, watches to the end, nothing confusing, would comment and send."
+ ],
+ "notes": [
+  "HIS ACCOUNT is a vague card",
+  "'rules' is unclear; permits or licenses would be plainer",
+  "the highlight band at 21 to 23 s jumps without a clear reason",
+  "the closing split is busy for 2 s",
+  "the move lands in the last 4 s; a longer hold on the end card would help"
+ ]
+}

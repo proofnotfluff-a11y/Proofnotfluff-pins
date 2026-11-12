@@ -1,11 +1,9 @@
-/* v4 template (verdict): the first v4 lesson, 2026-11-30-turned-down-8k, kept whole as the pattern (_shared/formats.md   */
-/* "v4"). For a new lesson keep the helpers (wordT, px, plate, stampPlate, the cast) and change: the place (yard), the     */
-/* rows on each plate, the words the times hang on, and the cue ids to match 03_cues/cues.md. Rules the lint holds: every */
-/* row size 132 or more; words inside x 40 to 1040, y 250 to 1170; nothing unchanged over 4 s; no word set that drops out */
-/* for a frame (switch a plate for its stamp at the stamp's own start: t0 minus its drop). The cast has no walk: never  */
-/* move a figure sideways (it reads as sliding); change the pose or cut. Close shots put the feet far                    */
-/* below the frame (feet 1700 or so) so the faces sit between y 700 and 1100 and the plates own the band above them.     */
-const INK = '#120D14', CREAM = '#FFF7EA', SAND = '#E6D3BC', GOLD = '#F7C873', ORANGE = '#F2A541', RED = '#E2633B', TEAL = '#6FB7A8', DTEAL = '#2F6F67', NIGHT = '#1B1420', PLUM = '#2B2033', WINE = '#7A3442', SKY = '#87CEEB';
+/* 2026-12-03-claim-it-in-chatgpt (v4 update), from the v4 template's helpers (wordT, px, plate, stampPlate, steps),   */
+/* kept whole (_shared/formats.md "v4" and "Update"). One section a cue. Every row of words is size 132 or more. The    */
+/* real screens are strips cut from the captures in assets/ (facts.json "captures"): each is drawn as a paper clipping, */
+/* its box painted in a key color and returned in `screens`, and the player lays the capture in at full resolution.    */
+/* Never a drawn copy: no word of a screen is typed here.                                                              */
+const INK = '#120D14', CREAM = '#FFF7EA', GOLD = '#F7C873', ORANGE = '#F2A541', RED = '#E2633B', TEAL = '#6FB7A8', DTEAL = '#2F6F67', NIGHT = '#1B1420', PLUM = '#2B2033', WINE = '#7A3442', SLATE = '#253048';
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 const WS = () => (window.WORDS && window.WORDS.words) || [];
 /* the start of the first word matching re at or after a cue (id) or a time; dflt seconds after it when no word matches */
@@ -19,8 +17,7 @@ const px = (k) => {
   const ctx = k.ctx;
   return (x, y, w, h, c) => { x = Math.round(x); y = Math.round(y); w = Math.round(w); h = Math.round(h); if (w > 0 && h > 0 && c) { ctx.fillStyle = c; ctx.fillRect(x * 3, y * 3, w * 3, h * 3); } };
 };
-/* a centered plate of rows [[text, size, color], ...] with its top at y; returns its bottom. Sizes are whole steps of */
-/* the display face (66, 132, 198) so the pixels stay square. */
+/* a centered plate of rows [[text, size, color], ...] with its top at y; returns its bottom */
 const plate = (k, rows, y, o = {}) => {
   const cx = o.cx || 540, pad = o.pad || 36, gap = o.gap || 18;
   const hs = rows.map(([, z]) => Math.round(z * 1.0)), w = Math.ceil((Math.max(...rows.map(([s, z]) => k.measure(s, {size: z}))) + 2 * pad) / 6) * 6;
@@ -32,156 +29,168 @@ const plate = (k, rows, y, o = {}) => {
   rows.forEach(([s, z, c], i) => { k.text(s, cx, yy, {size: z, color: c || CREAM, align: 'center'}); yy += hs[i] + gap; });
   return y + h;
 };
-/* the same plate landing as a stamp at t0 (put a [sfx: stamp] cue there for the hit-stop) */
+/* the same plate landing as a stamp at t0 */
 const stampPlate = (k, rows, y, t0, o = {}) => {
   const hgt = rows.reduce((a, [, z]) => a + z, 0) + 18 * (rows.length - 1) + 66;
   return k.stampIn(t0, () => plate(k, rows, y, o), {at: [o.cx || 540, y + hgt], freeze: o.freeze, drop: o.drop});
 };
-
-/* the yard: sky, a sun, a house with half its roof stripped and a ladder, the lawn running to the bottom of the frame. */
-/* z 2 is the close shot: the same yard at twice the size (whole pixels), the lawn line near y 1000, the wall behind.   */
-const yard = (k, dim = 0, z = 1) => {
-  const ctx = k.ctx, P = px(k), F = Math.floor(k.T * 30 + 0.005);
-  ctx.save();
-  if (z !== 1) { ctx.translate(-540, -836); ctx.scale(z, z); }
-  P(0, 0, 360, 250, SKY); P(0, 250, 360, 24, '#BDE6F5');
-  P(286, 96, 26, 26, GOLD); P(290, 92, 18, 34, GOLD); P(282, 100, 34, 18, GOLD);
-  const cx = (Math.floor(F / 5) % 440) - 70; P(cx, 110, 46, 9, CREAM); P(cx + 10, 103, 24, 7, CREAM); P((cx + 230) % 440 - 70, 150, 36, 8, CREAM);
-  /* the house */
-  P(54, 196, 252, 110, INK); P(57, 199, 246, 107, SAND); for (let y = 208; y < 306; y += 9) P(57, y, 246, 1, '#D2BCA2');
-  for (let i = 0; i < 34; i++) P(40 + i * 3.6, 196 - i * 1.6, 280 - i * 7.2, 2, i % 6 === 5 ? '#5A2432' : WINE);   /* the roof, shingle rows */
-  for (let i = 4; i < 20; i++) P(170 + (i - 4) * 1.2, 196 - i * 1.6, 90 - (i - 4) * 4.4, 2, i % 3 ? '#9AA0AD' : '#6B7080');   /* the stripped patch, felt showing */
-  P(92, 232, 44, 40, INK); P(95, 235, 38, 34, '#5B8FB9'); P(113, 235, 2, 34, INK); P(95, 251, 38, 2, INK);
-  P(196, 240, 40, 66, INK); P(199, 243, 34, 63, DTEAL); P(226, 274, 3, 3, GOLD);
-  P(300, 150, 3, 156, '#8C5A33'); P(314, 150, 3, 156, '#8C5A33'); for (let y = 160; y < 300; y += 14) P(300, y, 17, 2, '#B07A47');   /* the ladder */
-  /* the lawn, to the bottom of the frame */
-  P(0, 306, 360, 334, '#3E7A62'); P(0, 306, 360, 3, '#2F5A4A');
-  for (let i = 0; i < 70; i++) P((i * 53) % 360, 314 + (i * 37) % 320, 3, 1, '#2F5A4A');
-  P(0, 388, 360, 252, '#2F5A4A'); for (let i = 0; i < 40; i++) P((i * 71) % 360, 394 + (i * 43) % 240, 3, 1, '#24453A');
-  ctx.restore();
-  if (dim) P(0, 0, 360, 640, `rgba(18,13,20,${dim})`);
+/* a row of plates in time: [[t, rows, stamp?], ...]; the last one whose time has come shows; a later one lands as a stamp */
+const steps = (k, T, list, o = {}, y = 264) => {
+  let i = 0; list.forEach(([t], j) => { if (j && T >= t - 0.06) i = j; });
+  const [t, rows, st] = list[i];
+  if (i === 0 && !st) return plate(k, rows, y, o);
+  return stampPlate(k, rows, y, t, Object.assign({drop: 0.06, freeze: 4}, o));
 };
-/* the cast. Wide shot: whole figures, feet on the lawn (y 1150). Close shot: from the waist up, feet far below the frame's */
-/* safe band, so the faces sit between y 700 and 1100 and the plates own the band above them. */
-const roofer = (k, x, sc, pose, o = {}) => k.snow(x, o.feet || 1150, Object.assign({scale: sc, pose, face: 1, talk: false}, o));
-const client = (k, x, sc, pose, mood, o = {}) => k.client(x, o.feet || 1150, Object.assign({role: 'buyer', scale: sc, pose, mood, face: -1}, o));
+const W = (k, id, re, d) => wordT(k, id, re, d) - 0.1;
+const plateBottom = (rows, y = 264) => y + rows.reduce((a, [, z]) => a + z, 0) + 18 * (rows.length - 1) + 66;
+
+/* ---- the real screens: strips of the captures (image, [x, y, w, h] in its own pixels), found by reading the capture ---- */
+const STRIPS = {"hubHead":{"img":"hub","r":[207,365,645,125]},"hubBox":{"img":"hub-box","r":[0,0,560,125]},"annDate":{"img":"announce","r":[279,12,293,55]},"annTitle":{"img":"announce","r":[71,121,848,177]},"annBeta":{"img":"announce-beta","r":[500,11,270,49]},"annSub1":{"img":"announce","r":[67,350,319,51]},"annSub2":{"img":"announce","r":[386,350,467,51]},"localIf":{"img":"help-local","r":[17,8,445,48]},"localStores":{"img":"help-local","r":[417,56,414,42]},"localClaim":{"img":"help-local","r":[16,103,476,49]},"localOnline":{"img":"help-local","r":[463,7,525,49]},"localAdd":{"img":"help-local","r":[17,55,401,49]},"step1":{"img":"help-claim","r":[426,538,532,49]},"methods1":{"img":"help-claim","r":[684,170,354,49]},"methods2":{"img":"help-claim","r":[16,218,492,49]},"phoneHead":{"img":"help-phone","r":[15,154,584,58]},"persona1":{"img":"help-claim","r":[428,354,476,49]},"persona2":{"img":"help-claim","r":[16,402,539,49]},"email1":{"img":"help-email","r":[12,98,425,49]},"email2":{"img":"help-email","r":[773,98,389,49]},"faqQ":{"img":"help-faq","r":[8,12,938,112]},"faqA":{"img":"help-faq","r":[156,209,564,49]},"termsTitle":{"img":"terms-top","r":[22,119,1046,86]},"termsLine1":{"img":"hub-terms","r":[10,12,446,47]},"termsLine2":{"img":"hub-terms","r":[455,12,370,41]},"calls1":{"img":"terms-calls","r":[718,566,491,52]},"calls2":{"img":"terms-calls","r":[14,623,684,50]},"opt":{"img":"terms-calls","r":[694,623,330,53]},"sue1":{"img":"terms-claims","r":[12,127,400,43]},"sue2":{"img":"terms-claims","r":[648,184,513,50]},"searchBox":{"img":"hub-search","r":[20,200,540,122]},"createRow":{"img":"hub-search","r":[20,326,540,112]},"sideNav":{"img":"sidebar","r":[0,96,340,474]},"verifyHead":{"img":"hub-verify","r":[12,17,1021,80]},"verifyTxt":{"img":"hub-verify","r":[18,94,504,47]},"addrBar":{"img":"hub-address","r":[0,0,413,70]}};
+/* the page each capture is from decides its key color: a dark page or a light one, so the cast's edge sits on a near color */
+const DARK = '#212223', LIGHT = '#FCFDFC';
+const TONE = (img) => (/^help/.test(img) ? LIGHT : DARK);
+const q3 = (v) => Math.round(v / 3) * 3;
+/* one clipping: strip `name` at scale sc with its top-left at (x, y); pushes the screen for the player; returns its box */
+const clip = (k, L, name, x, y, sc) => {
+  const s = STRIPS[name], P = px(k), key = TONE(s.img);
+  const w = q3(s.r[2] * sc), h = q3(s.r[3] * sc); x = q3(x); y = q3(y);
+  P(x / 3 + 1, y / 3 + 1, w / 3 + 4, h / 3 + 4, INK);
+  P(x / 3 - 2, y / 3 - 2, w / 3 + 4, h / 3 + 4, CREAM);
+  P(x / 3, y / 3, w / 3, h / 3, key);
+  L.push({img: s.img, x, y, w, h, sx: s.r[0], sy: s.r[1], sw: s.r[2], sh: s.r[3], key});
+  return {x, y, w, h, b: y + h};
+};
+/* a ring around a clipping (the place to look or tap) */
+const ring = (k, b, c = ORANGE) => { const P = px(k), x = b.x / 3 - 4, y = b.y / 3 - 4, w = b.w / 3 + 8, h = b.h / 3 + 8; P(x, y, w, 3, c); P(x, y + h - 3, w, 3, c); P(x, y, 3, h, c); P(x + w - 3, y, 3, h, c); };
+/* a plain lined wall: each source has its own (openai.com night, the help page green, ChatGPT slate, the terms wine) */
+const WALLS = {ai: [NIGHT, PLUM], help: ['#24453A', '#2F5A4A'], hub: [SLATE, '#1B1420'], terms: ['#5A2432', WINE], end: [PLUM, '#3D2E45']};
+const wall = (k, id) => { const P = px(k), [c, c2] = WALLS[id]; P(0, 0, 360, 640, c); for (let y = 20; y < 640; y += 22) P(0, y, 360, 1, c2); P(0, 386, 360, 254, INK); P(0, 384, 360, 2, c2); };
+/* Snow, from the chest up at the bottom of the frame: his head between y 900 and 1180, clear of the captions */
+const snow = (k, x, pose, o = {}) => k.snow(x, o.feet || 1632, Object.assign({scale: 1.5, pose, face: x > 540 ? -1 : 1}, o));
+const HEAD = 885;   /* clippings stop here, above his head */
+
+/* One section from a small table:                                                                                      */
+/*   wall; snow [x, pose]; plates [[word or null, rows, stamp?], ...] (the first at the cue, the rest on a spoken word);  */
+/*   strips [[word or null, [names], 'add' | 'new'], ...]: 'new' clears the clippings before it, 'add' joins the stack;   */
+/*   ring [[word or null, name], ...]; mixed: each clipping at its own scale (a headline over body text).                */
+const section = (id, d) => (k, T) => {
+  const t0 = k.S(id), L = [];
+  if (!d.first) k.cut(t0);
+  wall(k, d.wall);
+  const pl = d.plates.map(([re, rows, st], i) => [i === 0 ? t0 + (st ? 0.08 : 0) : W(k, id, re, 1.4 * i), rows, st]);
+  const top = Math.max(...d.plates.map(([, rows]) => plateBottom(rows))) + 30;
+  const gs = (d.strips || []).map(([re, names, mode], i) => ({t: re ? W(k, id, re, 1.4 * i) : t0, names, mode: i === 0 ? 'new' : (mode || 'add')}));
+  let a = 0; gs.forEach((g, i) => { if (g.mode === 'new' && T >= g.t) a = i; });
+  let b = gs.length; for (let i = a + 1; i < gs.length; i++) if (gs[i].mode === 'new') { b = i; break; }
+  const items = []; gs.slice(a, b).forEach((g) => g.names.forEach((n) => items.push([n, g.t])));
+  const gap = 27, maxW = d.maxW || 972;
+  let scs = items.map(([n]) => Math.min(2.4, maxW / STRIPS[n].r[2]));
+  if (!d.mixed) { const m = Math.min(...scs); scs = scs.map(() => m); }
+  const room = (d.bottom || HEAD) - top - gap * (items.length - 1), tall = items.reduce((s, [n], i) => s + STRIPS[n].r[3] * scs[i], 0), fit = Math.min(1, room / tall);
+  let y = top, last = null; const boxes = {};
+  items.forEach(([n, t], i) => { const sc = scs[i] * fit, w = q3(STRIPS[n].r[2] * sc), h = q3(STRIPS[n].r[3] * sc); if (T >= t) { boxes[n] = clip(k, L, n, d.left != null ? d.left : 540 - w / 2, y, sc); last = boxes[n]; } y += h + gap; });
+  (d.ring || []).forEach(([re, n, c]) => { if (boxes[n] && T >= (re ? W(k, id, re, 1) : t0)) ring(k, boxes[n], c); });
+  const [sx, pose] = d.snow;
+  snow(k, sx, pose, pose === 'point' && last ? {at: [sx > 540 ? last.x + last.w * 0.7 : last.x + last.w * 0.3, last.b - 20]} : {});
+  steps(k, T, pl);
+  return {host: false, screens: L};
+};
+const STEP = (n) => ['STEP ' + n, 132, ORANGE];
 
 window.SCENE = {
   look: 'arcade',
   v4: true,
   host: false,
   endCard: false,
-  images: [],
-  trauma: {'ask.you': 0.8},
+  images: ['announce', 'announce-beta', 'help-claim', 'help-local', 'help-faq', 'help-email', 'help-phone', 'terms-top', 'terms-calls', 'terms-claims', 'sidebar', 'hub', 'hub-box', 'hub-terms', 'hub-search', 'hub-verify', 'hub-address'],
+  trauma: {step1: 0.5},
   sections: {
-    /* ---- hook: frame 0 is the fight, close: the two of them and $8,000 JOB; at 0.8 s HE SAID NO. lands under it; on ---- */
-    /* "eight" a cut to the roofer alone, close, who shrugs and waves it off (viewers r1 and r2: the wide shot shrank them ---- */
-    /* and stood still; r2: the card in the client's hand read as "something small and blue", so his palms are up ---- */
-    /* instead); on "The client only wanted" a cut to the client: $200 OFF ---- */
+    /* ---- hook: frame 0 is the news, settled: the Business Hub page's own headline, Snow close, the question up top.  */
+    /* At 0.5 s the wall turns and the search box lands (the first change); on "listed" the plate stamps.                */
     hook: (k, T) => {
-      const tNo = 0.8, tSolo = Math.max(1.7, wordT(k, 'hook', /^eight/i, 2.0) - 0.1), tAsk = k.S('hook.ask');
-      const hero = () => (T < tNo - 0.1 ? plate(k, [['$8,000 JOB', 198, GOLD]], 264)
-        : stampPlate(k, [['$8,000 JOB', 198, GOLD], ['HE SAID NO.', 132, RED]], 264, tNo, {freeze: 4}));
-      if (T < tSolo) {
-        yard(k, T >= tNo ? 0.22 : 0, 2);
-        roofer(k, 250, 1.9, T >= tNo ? 'shrug' : 'stand', {feet: 1700}); client(k, 840, 2.1, 'argue', 'calm', {feet: 1700});
-        hero();
-      } else if (T < tAsk) {
-        k.cut(tSolo);
-        yard(k, 0.22, 2);
-        /* render critic (final render, r0): a figure moved sideways with still legs reads as sliding; the kit has no */
-        /* walk, so he stays put: a shrug, then he waves it off */
-        roofer(k, 540, 2.3, T < tSolo + 0.9 ? 'shrug' : 'wave', {feet: 1840});
-        plate(k, [['$8,000 JOB', 198, GOLD], ['HE SAID NO.', 132, RED]], 264);
-      } else {
-        k.cut(tAsk);
-        yard(k, 0.22, 2);
-        client(k, 700, 2.4, 'argue', 'smug', {feet: 1790, talk: T < tAsk + 1.4});
-        stampPlate(k, [['CLIENT WANTED', 132, CREAM], ['$200 OFF', 198, RED]], 264, tAsk, {freeze: 4});
-      }
-      return {host: false};
+      const L = [], t1 = 0.5, tL = Math.max(1.2, W(k, 'hook', /^listed/i, 1.9));
+      wall(k, T < t1 ? 'hub' : 'help');
+      const A = [['YOUR BUSINESS', 132, CREAM], ['IN CHATGPT?', 132, GOLD]], B = [['ALREADY', 132, CREAM], ['LISTED?', 132, GOLD]];
+      const top = plateBottom(A) + 30;
+      const h1 = clip(k, L, 'hubHead', 540 - q3(STRIPS.hubHead.r[2] * 1.3) / 2, top, 1.3);
+      let last = h1;
+      if (T >= t1) last = clip(k, L, 'hubBox', 60, h1.b + 30, 1.05);
+      snow(k, 830, T < t1 ? 'wave' : 'point', T < t1 ? {} : {at: [last.x + last.w * 0.9, last.b - 30]});
+      steps(k, T, [[0, A], [tL, B, 1]]);
+      return {host: false, screens: L};
     },
-
-    /* ---- bids: the roofer tells it (viewer r0: "he" must be seen talking; r1: the account plate needs its 2 s), ---- */
-    /* then on "two lower bids" the client close: a flipper, the two bids, then the ask ---- */
-    bids: (k, T) => {
-      const t0 = k.S('bids'), tTwo = k.S('bids.two'), tDrop = k.S('bids.drop');
+    what: section('what', {wall: 'ai', snow: [200, 'point'], mixed: true,
+      plates: [[null, [['OPENAI.COM', 132, TEAL]]], [/^Business/i, [['BUSINESS HUB', 132, GOLD]], 1]],
+      strips: [[null, ['annDate', 'annTitle']]]}),
+    beta: section('beta', {wall: 'ai', snow: [850, 'talk'],
+      plates: [[null, [['IN BETA', 198, GOLD]], 1], [/^claim/i, [['CLAIM IT.', 132, CREAM], ['KEEP IT CURRENT', 132, GOLD]], 1]],
+      strips: [[null, ['annBeta']], [/^claim/i, ['annSub1', 'annSub2'], 'new']], ring: [[null, 'annBeta']]}),
+    who: section('who', {wall: 'help', snow: [200, 'shrug'],
+      plates: [[null, [['THE CATCH', 198, RED]], 1], [/^local/i, [['THE CATCH', 132, RED], ['IF YOU ARE LOCAL', 132, CREAM]], 1]],
+      strips: [[null, ['localIf']]]}),
+    local: section('local', {wall: 'help', snow: [850, 'point'],
+      plates: [[null, [['HELP.OPENAI.COM', 132, TEAL]]], [/^claim/i, [['EXISTING', 132, GOLD], ['LISTINGS ONLY', 132, GOLD]], 1]],
+      strips: [[null, ['localStores']], [/^claim/i, ['localClaim']]]}),
+    usonly: section('usonly', {wall: 'help', snow: [200, 'point'],
+      plates: [[null, [['U.S. ONLY', 198, GOLD], ['FOR NOW', 132, CREAM]], 1]],
+      strips: [[null, ['localClaim']]], ring: [[null, 'localClaim']]}),
+    step1: section('step1', {wall: 'help', snow: [850, 'point'],
+      plates: [[null, [STEP(1), ['BUSINESS HUB', 132, CREAM]], 1], [/^OpenAI/i, [['OPENAI SAYS:', 132, CREAM], ['THE SIDEBAR', 132, GOLD]], 1]],
+      strips: [[null, ['step1']]], ring: [[/^OpenAI/i, 'step1']]}),
+    /* ---- addr: the sidebar as it was on our account (no Business Hub row), then the address bar from our own screenshot ---- */
+    addr: (k, T) => {
+      const t0 = k.S('addr'), L = [], tT = W(k, 'addr', /^type/i, 1.0);
       k.cut(t0);
-      yard(k, 0.45, 2);
-      if (T < tTwo) {
-        roofer(k, 540, 2.0, 'talk', {feet: 1700, talk: true});
-        plate(k, [['HIS ACCOUNT,', 132, CREAM], ['VIA THE DAILY DOT', 132, GOLD]], 264);
-        return {host: false};
-      }
-      k.cut(tTwo);
-      client(k, 860, 2.3, T >= tDrop ? 'argue' : 'stand', 'smug', {feet: 1790, talk: T >= tDrop && T < tDrop + 1.6});
-      if (T < tDrop) {
-        plate(k, [['THE CLIENT:', 132, CREAM], ['A FLIPPER', 132, GOLD]], 264, {cx: 370});
-        if (T >= tTwo + 0.25) stampPlate(k, T >= tTwo + 0.8 ? [['LOWER BIDS:', 132, CREAM], ['$7,500', 132, TEAL], ['$7,800', 132, TEAL]] : [['LOWER BIDS:', 132, CREAM], ['$7,500', 132, TEAL]], 630, T >= tTwo + 0.8 ? tTwo + 0.8 : tTwo + 0.33, {cx: 370, drop: 0.08});
-      } else stampPlate(k, [['CLIENT:', 132, INK], ['DROP', 132, WINE], ['$200?', 198, RED]], 264, tDrop, {cx: 330, bg: CREAM, rule: RED, drop: 0.08});
-      return {host: false};
+      wall(k, 'hub');
+      const A = [['NOT THERE?', 132, CREAM]], B = [['CHATGPT.COM', 132, GOLD], ['/BUSINESS-HUB', 132, GOLD]];
+      let last;
+      if (T < tT) last = clip(k, L, 'sideNav', 60, plateBottom(A) + 30, 1.3);
+      else { last = clip(k, L, 'addrBar', 540 - q3(STRIPS.addrBar.r[2] * 2.3) / 2, plateBottom(B) + 36, 2.3); ring(k, last); }
+      snow(k, 850, 'point', {at: [last.x + last.w * 0.7, last.b - 10]});
+      steps(k, T, [[t0, A], [tT, B, 1]]);
+      return {host: false, screens: L};
     },
-
-    /* ---- no: the roofer, close; one stamp ---- */
-    no: (k, T) => {
-      const t0 = k.S('no'), tNo = wordT(k, 'no', /^no/i, 0.6) - 0.15;
-      k.cut(t0);
-      yard(k, 0.22, 2);
-      roofer(k, 320, 2.2, T >= tNo ? 'shrug' : 'stand', {feet: 1720});
-      if (T >= tNo - 0.1) stampPlate(k, [['NO.', 264, CREAM]], 290, tNo, {cx: 740, bg: RED, rule: INK, freeze: 4});
-      return {host: false};
-    },
-
-    /* ---- why: he says it was not the $200; the client cared about price, not quality; a problem job; relief ---- */
-    why: (k, T) => {
-      const t0 = k.S('why'), tPrice = k.S('why.price'), tNot = wordT(k, 'why.price', /^not$/i, 1.6) - 0.15, tFlag = k.S('why.flag'), tJob = k.S('why.flag.job'), tRel = k.S('why.relief');
-      if (T < tPrice) {
-        k.cut(t0);
-        yard(k, 0.45, 2);
-        roofer(k, 250, 1.9, 'talk', {feet: 1740, talk: true}); client(k, 840, 2.1, 'refuse', 'cross', {feet: 1740});
-        const b = plate(k, [['HE SAYS IT WAS', 132, CREAM], ['NOT ABOUT', 132, CREAM], ['THE $200', 132, GOLD]], 264);
-        if (T >= t0 + 0.9) { const w = k.measure('THE $200', {size: 132}); k.shape(k.rectPts(540 - w / 2 - 12, b - 126, Math.round((w + 24) * clamp((T - t0 - 0.9) / 0.25) / 3) * 3, 15, 0), {fill: RED, line: false}); }
-      } else if (T < tFlag) {
-        k.cut(tPrice);
-        yard(k, 0.45, 2);
-        client(k, 540, 2.4, 'argue', 'smug', {feet: 1840, talk: T < tPrice + 1.5});
-        if (T < tNot - 0.06) plate(k, [['CLIENT CARED', 132, CREAM], ['ABOUT PRICE', 132, GOLD]], 264);
-        else stampPlate(k, [['CLIENT CARED', 132, CREAM], ['ABOUT PRICE', 132, GOLD], ['NOT QUALITY', 132, RED]], 264, tNot, {drop: 0.06});
-      } else if (T < tRel) {
-        k.cut(tFlag);
-        yard(k, 0.5, 2);
-        /* viewer r1: "To him," played over the client; the cut to the roofer now comes on "To", the stamp on "problem" */
-        roofer(k, 290, 2.0, T >= tJob ? 'point' : 'talk', {feet: 1700, at: [700, 600], talk: T < tJob});
-        const P = px(k);
-        k.stampIn(tJob, () => { P(196, 92, 4, 46, INK); P(200, 92, 56, 30, RED); P(200, 122, 40, 5, WINE); }, {at: [660, 414], freeze: 4});
-        if (T < tJob - 0.1) plate(k, [['TO HIM:', 132, CREAM]], 420, {cx: 740});   /* viewer r2: he stood on an empty frame for 1.4 s */
-        else stampPlate(k, [['TO HIM:', 132, CREAM], ['PROBLEM', 132, CREAM], ['JOB', 198, RED]], 420, tJob, {cx: 740, freeze: 4});
-      } else {
-        k.cut(tRel);
-        yard(k, 0.1, 2);
-        roofer(k, 420, 2.0, 'wave', {feet: 1700});   /* he stays put (no sliding: the kit has no walk) */
-        plate(k, [['HE FELT', 132, INK], ['RELIEF', 198, DTEAL]], 264, {bg: CREAM, rule: TEAL});
-      }
-      return {host: false};
-    },
-
-    /* ---- ask: the frame splits into two verdicts on the same man (viewer r1: the client under PRIDE read as roofer ---- */
-    /* against client): the roofer stands on both sides, at ease on the navy side, shrugging on the wine side; both ---- */
-    /* halves are there from the first frame; the caption says "You decide." (no mark between them: r2) ---- */
+    step2: section('step2', {wall: 'hub', snow: [200, 'point'],
+      plates: [[null, [STEP(2), ['FIND YOUR NAME', 132, CREAM]], 1], [/^But/i, [['FIRST: READ', 132, CREAM], ['THE SMALL PRINT', 132, RED]], 1]],
+      strips: [[null, ['hubBox']], [/^But/i, ['termsLine1', 'termsLine2'], 'new']], ring: [[/^But/i, 'termsLine2', RED]]}),
+    terms: section('terms', {wall: 'terms', snow: [850, 'talk'],
+      plates: [[null, [['CONTINUE =', 132, CREAM], ['ACCEPT TERMS', 132, RED]], 1]],
+      strips: [[null, ['termsTitle']]]}),
+    calls: section('calls', {wall: 'terms', snow: [200, 'point'],
+      plates: [[null, [['OPENAI TERMS', 132, TEAL]]], [/^call/i, [['ITS AI MAY', 132, CREAM], ['CALL YOU', 132, RED]], 1], [/^opt/i, [['YOU CAN', 132, CREAM], ['OPT OUT', 132, TEAL]], 1]],
+      strips: [[null, ['calls1']], [/^call/i, ['calls2']], [/^opt/i, ['opt'], 'new']], mixed: true}),
+    claims: section('claims', {wall: 'terms', snow: [850, 'shrug'],
+      plates: [[null, [['TERMS 10.1', 132, TEAL]]], [/^certain/i, [['COVENANT', 132, CREAM], ['NOT TO SUE', 132, RED]], 1]],
+      strips: [[null, ['sue1']], [/^not/i, ['sue2']]]}),
+    ours: section('ours', {wall: 'hub', snow: [850, 'point'],
+      plates: [[null, [['WE SEARCHED OURS', 132, CREAM]]], [/^not/i, [['NOT LISTED', 198, RED]], 1], [/^create/i, [['CREATE ONE?', 132, GOLD]], 1]],
+      strips: [[null, ['searchBox', 'createRow']]], ring: [[/^create/i, 'createRow']], bottom: 960}),
+    online: section('online', {wall: 'help', snow: [200, 'talk'],
+      plates: [[null, [['HELP.OPENAI.COM', 132, TEAL]]], [/^eligible/i, [['FOR ELIGIBLE', 132, CREAM], ['ONLINE BUSINESS', 132, GOLD]], 1]],
+      strips: [[null, ['localOnline', 'localAdd']]]}),
+    step3: section('step3', {wall: 'help', snow: [850, 'point'],
+      plates: [[null, [STEP(3), ['PROVE IT', 132, CREAM]], 1], [/^phone/i, [['PHONE', 132, GOLD], ['OR EMAIL', 132, GOLD]], 1], [/^website/i, [['YOUR DOMAIN', 132, GOLD], ['OR SHOPIFY', 132, GOLD]], 1]],
+      strips: [[null, ['phoneHead']], [/^phone/i, ['methods1', 'methods2'], 'new']]}),
+    dns: section('dns', {wall: 'hub', snow: [200, 'point'], mixed: true,
+      plates: [[null, [['OURS ASKED FOR', 132, CREAM], ['A DNS RECORD', 132, GOLD]], 1]],
+      strips: [[null, ['verifyHead', 'verifyTxt']]]}),
+    step4: section('step4', {wall: 'help', snow: [850, 'point'],
+      plates: [[null, [STEP(4), ['BEFORE CHANGES', 132, CREAM]], 1], [/^identity/i, [['ID CHECK', 132, CREAM], ['WITH PERSONA', 132, GOLD]], 1]],
+      strips: [[null, ['persona1', 'persona2']]], ring: [[/^identity/i, 'persona1']]}),
+    email: section('email', {wall: 'help', snow: [200, 'talk'],
+      plates: [[null, [['OPENAI EMAILS', 132, CREAM], ['ITS DECISION', 132, GOLD]], 1]],
+      strips: [[null, ['email1', 'email2']]]}),
+    check: section('check', {wall: 'help', snow: [850, 'shrug'], mixed: true,
+      plates: [[null, [['OPENAI SAYS:', 132, TEAL]]], [/^guarantee/i, [['CLAIMING IT:', 132, CREAM], ['NO GUARANTEE', 132, RED]], 1]],
+      strips: [[null, ['faqQ', 'faqA']]], ring: [[/^guarantee/i, 'faqA']]}),
+    /* ---- ask: save it, who to send it to, then the four steps as the last frame (the thing to save) ---- */
     ask: (k, T) => {
-      const t0 = k.S('ask'), tPride = k.S('ask.pride'), tLost = wordT(k, 'ask.pride', /^cost/i, 1.4) - 0.15, tYou = k.S('ask.you');
+      const t0 = k.S('ask'), tS = W(k, 'ask', /^send/i, 0.9), tR = W(k, 'ask', /^runs/i, 2.4);
       k.cut(t0);
-      const P = px(k);
-      /* render critic r1 note: navy hid his navy legs; slate keeps the jacket, the legs and the cap all off the wall */
-      P(0, 0, 180, 640, '#4A4E5A'); P(180, 0, 180, 640, WINE); P(178, 0, 4, 640, INK);
-      for (let y = 20; y < 640; y += 22) { P(0, y, 178, 1, '#6B7080'); P(182, y + 11, 178, 1, '#5A2432'); }
-      roofer(k, 270, 1.6, T >= tYou ? 'point' : 'wave', {feet: 1690, at: [540, 1900]});   /* on "You decide" both of him turn it over to the viewer */
-      roofer(k, 810, 1.6, T >= tPride ? 'shrug' : 'stand', {feet: 1690, face: -1});
-      if (T < t0 + 0.34) plate(k, [['SMART', 132, CREAM], ['CALL:', 132, CREAM]], 264, {cx: 270, bg: INK, rule: TEAL});
-      else stampPlate(k, [['SMART', 132, CREAM], ['CALL:', 132, CREAM], ['PROBLEM', 132, TEAL], ['JOB', 132, TEAL]], 264, t0 + 0.4, {cx: 270, bg: INK, rule: TEAL, drop: 0.06});
-      if (T < tPride - 0.08) plate(k, [['OR', 132, CREAM]], 264, {cx: 810, bg: INK, rule: RED});   /* viewer r2: an empty right side looked unfinished */
-      else if (T < tLost - 0.06) stampPlate(k, [['OR', 132, CREAM], ['PRIDE:', 132, CREAM]], 264, tPride, {cx: 810, bg: INK, rule: RED, drop: 0.08});
-      else if (T >= tLost - 0.06) stampPlate(k, [['OR', 132, CREAM], ['PRIDE:', 132, CREAM], ['LOST', 132, GOLD], ['THE JOB', 132, GOLD]], 264, tLost, {cx: 810, bg: INK, rule: RED, drop: 0.06});
+      wall(k, 'end');
+      snow(k, 540, T >= tR ? 'wave' : 'talk', {feet: 1668});
+      steps(k, T, [[t0 + 0.08, [['SAVE THIS', 198, GOLD]], 1], [tS, [['SEND IT TO YOUR', 132, CREAM], ['LISTING PERSON', 132, GOLD]], 1],
+        [tR, [['1 BUSINESS HUB', 132, CREAM], ['2 SEARCH, READ', 132, CREAM], ['3 PROVE IT', 132, CREAM], ['4 ID CHECK', 132, CREAM]], 1]]);
       return {host: false};
     },
   },

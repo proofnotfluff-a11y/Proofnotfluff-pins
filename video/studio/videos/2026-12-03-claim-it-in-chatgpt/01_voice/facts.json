@@ -250,7 +250,7 @@
    "words": "Sign in to ChatGPT, and open Business Hub from the sidebar."
   },
   {
-   "said": "If it's not, type chatgpt dot com, slash business hub",
+   "said": "If it's not, type chatgpt dot com slash business hub",
    "source": [
     "hub"
    ],
@@ -288,7 +288,7 @@
    "note": "'certain claims' stands for the terms' defined 'Covered Claim'; the video does not explain the definition and tells the viewer to read the small print"
   },
   {
-   "said": "We searched ours. Not listed. It offered to create one",
+   "said": "We searched ours, and it's not listed. It offered to create one",
    "source": [
     "hub"
    ],
@@ -296,19 +296,19 @@
    "note": "Todd typed the search himself in this live chat (3:09 pm: 'I'll type it myself')"
   },
   {
-   "said": "OpenAI says that's for eligible online businesses",
+   "said": "which OpenAI says is for eligible online businesses",
    "source": [
     "help"
    ],
    "words": "If you run an eligible online business, you may see an option to add it."
   },
   {
-   "said": "Three. Prove it's yours. OpenAI lists a business phone, a business email, your website domain, or Shopify",
+   "said": "Three. Prove it's yours. OpenAI lists a business phone or email, your website domain, or Shopify",
    "source": [
     "help"
    ],
    "words": "Use one of the verification methods offered for your business, such as phone, business email, website domain, or Shopify. The method's own heading on the same page: Verify with your business phone",
-   "note": "'business phone' is the page's own name for the phone method (asset help-phone); the summary sentence says 'phone' (asset help-claim)"
+   "note": "'business phone' is the page's own name for the phone method (asset help-phone); the summary sentence says 'phone' (asset help-claim); 'a business phone or email' joins the page's 'phone' and 'business email'"
   },
   {
    "said": "Ours asked for a DNS record",
@@ -326,14 +326,14 @@
    "words": "You'll need to complete identity verification with Persona before you can publish changes to your business information"
   },
   {
-   "said": "Then OpenAI reviews it and emails you its decision",
+   "said": "and OpenAI emails you its decision",
    "source": [
     "help"
    ],
    "words": "OpenAI reviews your Persona verification submission and emails you its decision or a request for more information."
   },
   {
-   "said": "And claiming it doesn't guarantee ChatGPT recommends you more. OpenAI says so itself",
+   "said": "And OpenAI says claiming it doesn't guarantee ChatGPT recommends you more",
    "source": [
     "help"
    ],

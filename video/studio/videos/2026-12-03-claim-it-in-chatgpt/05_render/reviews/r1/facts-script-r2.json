@@ -1,0 +1,25 @@
+{
+ "gate": "facts",
+ "round": 1,
+ "stage": "script.md re-check after six sentences were tightened (the first voice ran 90.0 s); before the takes were spoken again",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "score": {
+  "numbers": 0,
+  "mismatches": 0
+ },
+ "advisories": [
+  "the screen must show chatgpt.com/business-hub exactly, with the hyphen and no query string, while the address line plays",
+  "'emails you its decision': the page adds 'or a request for more information'; never shorten to 'approves you'",
+  "never say every business gets all four verification methods",
+  "keep the Create row on screen when 'not listed' plays",
+  "'certain claims': never 'you can't sue OpenAI'",
+  "'U.S. only' covers local stores and restaurants, not online businesses",
+  "'just': re-read and drop it if it posts after Nov 17",
+  "longest shared word run with a source: 5 words"
+ ],
+ "not_checked": [
+  "the live text of the three OpenAI pages (WebFetch 403): checked against the same-day captures, per facts.md"
+ ]
+}

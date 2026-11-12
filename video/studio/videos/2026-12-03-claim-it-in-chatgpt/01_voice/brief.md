@@ -31,13 +31,13 @@ Planned and built Nov 12, 2026 in Todd's live chat, started for this lesson (2:4
 | By continuing, you accept OpenAI's terms | "By continuing, you accept OpenAI's Businesses in ChatGPT Terms." | his screen (asset hub-terms) |
 | They say its AI assistant may call your business for its users; you can opt out | "By using Business Hub, you agree OpenAI's AI assistant may make calls to you on behalf of our users. You can opt out here." | terms 4.1 (asset terms-calls) |
 | You agree not to bring certain claims against OpenAI | "Covenant Not to Sue. You ... covenant and agree not to assert or commence ... any Covered Claim against OpenAI or any of its Affiliates" | terms 10.1 (asset terms-claims) |
-| We searched ours. Not listed. It offered to create one | Todd's screen: the search for ProofNotFluff returned other businesses and the row "Create 'ProofNotFluff'" | his screen (asset hub-search) |
-| OpenAI says that's for eligible online businesses | "If you run an eligible online business, you may see an option to add it." | help page (asset help-local) |
-| Prove it's yours: a business phone, a business email, your website domain, or Shopify | "Use one of the verification methods offered for your business, such as phone, business email, website domain, or Shopify." | help page (assets help-claim, help-phone: the method's heading is "Verify with your business phone") |
+| We searched ours, and it's not listed. It offered to create one | Todd's screen: the search for ProofNotFluff returned other businesses and the row "Create 'ProofNotFluff'" | his screen (asset hub-search) |
+| which OpenAI says is for eligible online businesses | "If you run an eligible online business, you may see an option to add it." | help page (asset help-local) |
+| Prove it's yours: a business phone or email, your website domain, or Shopify | "Use one of the verification methods offered for your business, such as phone, business email, website domain, or Shopify." | help page (assets help-claim, help-phone: the method's heading is "Verify with your business phone") |
 | Ours asked for a DNS record | Todd's screenshot: "Verify that you control proofnotfluff.com. Add this TXT record to the DNS settings" | his screenshot (asset hub-verify) |
 | Before any change goes live, there's an identity check with Persona | "You'll need to complete identity verification with Persona before you can publish changes to your business information" | help page (assets help-claim, help-persona) |
-| Then OpenAI reviews it and emails you its decision | "OpenAI reviews your Persona verification submission and emails you its decision or a request for more information." | help page (read in full as text; no capture) |
-| Claiming it doesn't guarantee ChatGPT recommends you more; OpenAI says so itself | "It doesn't guarantee increased visibility or give you direct control over ChatGPT's independent recommendations." | help page FAQ (asset help-faq) |
+| and OpenAI emails you its decision | "OpenAI reviews your Persona verification submission and emails you its decision or a request for more information." | help page (read in full as text; no capture) |
+| OpenAI says claiming it doesn't guarantee ChatGPT recommends you more | "It doesn't guarantee increased visibility or give you direct control over ChatGPT's independent recommendations." | help page FAQ (asset help-faq) |
 
 ## Numbers on screen
 

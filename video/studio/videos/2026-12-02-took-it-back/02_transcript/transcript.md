@@ -3,7 +3,10 @@
 Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 198 words, 74.9 s of voice.
 
 ## Flags
-- dropped 'thirty-three': not heard
+- none
+
+## Checked
+- Nov 12: Whisper wrote 'thirty-three thirty' as '$33' and '.30.' (heard at 10.48 s and 11.04 s); both words are spoken, nothing is dropped
 
 ## Pace per take (target 160 to 195 wpm)
 ```

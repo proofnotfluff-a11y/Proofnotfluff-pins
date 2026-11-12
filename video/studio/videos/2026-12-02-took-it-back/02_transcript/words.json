@@ -169,13 +169,13 @@
   {
    "w": "thirty-three",
    "start": 10.48,
-   "end": 10.48,
+   "end": 11.04,
    "take": 1
   },
   {
    "w": "thirty.",
-   "start": 10.48,
-   "end": 10.667,
+   "start": 11.04,
+   "end": 11.52,
    "take": 1
   },
   {
@@ -1237,9 +1237,7 @@
    "wpm": 179
   }
  ],
- "flags": [
-  "dropped 'thirty-three': not heard"
- ],
+ "flags": [],
  "end": 74.94,
  "heard": [
   {
@@ -2418,5 +2416,8 @@
    "end": 74.94,
    "p": 1.0
   }
+ ],
+ "checked": [
+  "checked Nov 12: Whisper wrote 'thirty-three thirty' as '$33' (10.48 s) and '.30.' (11.04 s); both words are spoken, and their times are set from those two heard tokens"
  ]
 }

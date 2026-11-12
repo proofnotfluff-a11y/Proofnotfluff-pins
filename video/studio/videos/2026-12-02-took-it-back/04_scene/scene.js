@@ -399,10 +399,12 @@ window.SCENE = {
       const t0 = k.S('fit'), P = px(k), q = clamp((T - t0 - 0.15) / 0.4);
       k.cut(t0);
       P(0, 0, 360, 640, NIGHT); for (let i = 0; i < 30; i++) P((i * 67) % 360, (i * 131) % 640, 2, 2, PLUM);
-      P(38, 300, 284, 40, INK); P(41, 303, 278, 34, GOLD);
-      P(38, 352, Math.round(278 * 4225 / 7500 * q) + 6, 40, INK); P(41, 355, Math.round(278 * 4225 / 7500 * q), 34, TEAL);
-      for (let y = 290; y < 404; y += 12) P(318, y, 3, 7, RED);
-      for (let i = 0; i < 6; i++) P(60 + i * 44 + Math.round(((T * 20) % 44)), 420, 6, 3, PLUM);
+      push(k, T, t0, () => {   /* QA r0: the bars sat flat 1.3 s; a slow push, a glint running along the limit, his bar breathing */
+        const w = Math.round(278 * 4225 / 7500 * q), g = Math.round(((T - t0) * 150) % 300);
+        P(38, 300, 284, 40, INK); P(41, 303, 278, 34, GOLD); if (g < 262) P(41 + g, 303, 16, 34, CREAM);
+        P(38, 352, w + 6, 40, INK); P(41, 355, w, 34, TEAL); if (q >= 1) P(41, 355, w, 6 + Math.round(3 * (1 + Math.sin(T * 9))), '#9FE0D2');
+        for (let y = 290; y < 404; y += 12) P(318, y + Math.round(((T - t0) * 24) % 12), 3, 7, RED);
+      }, 0.1, 1000);
       steps(k, T, [[t0 + 0.1, [['UP TO $7,500', 132, GOLD], ['HIS $4,225', 132, TEAL], ['FIT', 198, CREAM]], 1]], {}, 264);
       return {host: false};
     },

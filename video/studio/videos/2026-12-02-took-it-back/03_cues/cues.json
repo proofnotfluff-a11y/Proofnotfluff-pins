@@ -1,12 +1,12 @@
 {
  "schema": "pnf.studio.cues.v1",
- "source": "estimate",
+ "source": "whisper medium.en int8, re-spelled from script.md",
  "music": {
   "id": "rooms",
   "level": 0.16,
   "tune": "chase"
  },
- "duration": 80.814,
+ "duration": 75.94,
  "cues": [
   {
    "id": "hook",
@@ -18,7 +18,7 @@
    "text": "Frame 0, close and settled, a new tiled bathroom: the homeowner left, arms folded, the contractor right with a sledgehammer on his shoulder. Up top: SHE HELD BACK, under it big and gold: $4,225. At 0.5 s a plain cut to her alone, close (the first change). On \"So\" a plain cut to the contractor alone, close, the hammer up, and a stamp: HE CAME BACK / WITH A HAMMER, the last row red.",
    "t": 0.0,
    "word": 0,
-   "end": 5.736
+   "end": 5.4
   },
   {
    "id": "deal",
@@ -28,9 +28,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to the wide shot: the whole bathroom, the new shower, the contractor pointing at it. The plate: SHOWER REBUILD / COLORADO.",
-   "t": 5.736,
+   "t": 5.4,
    "word": 13,
-   "end": 8.336
+   "end": 7.76
   },
   {
    "id": "bill",
@@ -40,9 +40,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to the bill on the left over the dimmed bathroom, the contractor close on the right with the clipboard: a cream card, THE BILL / $7,555, and on \"paid\" a third row lands: PAID $3,330.",
-   "t": 8.336,
+   "t": 7.76,
    "word": 20,
-   "end": 13.128
+   "end": 12.32
   },
   {
    "id": "her",
@@ -52,9 +52,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to the homeowner, close, arms folded, cross. The plate: SHE SAYS: / NOT HAPPY / WITH THE WORK.",
-   "t": 13.128,
+   "t": 12.32,
    "word": 29,
-   "end": 16.014
+   "end": 14.92
   },
   {
    "id": "herline",
@@ -64,9 +64,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut closer on her, talking (an acted line, our words). The plate: REENACTMENT.",
-   "t": 16.014,
+   "t": 14.92,
    "word": 37,
-   "end": 18.858
+   "end": 17.0
   },
   {
    "id": "him",
@@ -76,9 +76,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to the contractor, close, the hammer on his shoulder. The plate: HE SAW IT / DIFFERENTLY, the last row red.",
-   "t": 18.858,
+   "t": 17.0,
    "word": 45,
-   "end": 20.516
+   "end": 18.58
   },
   {
    "id": "himline",
@@ -88,9 +88,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut closer on him, talking (an acted line, our words). The plate: REENACTMENT.",
-   "t": 20.516,
+   "t": 18.58,
    "word": 49,
-   "end": 24.14
+   "end": 21.68
   },
   {
    "id": "room",
@@ -100,9 +100,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to the hallway: the bathroom door open, the contractor in the doorway with the hammer. The plate: HER ROOMMATE / LET THEM IN.",
-   "t": 24.14,
+   "t": 21.68,
    "word": 57,
-   "end": 26.328
+   "end": 23.7
   },
   {
    "id": "film",
@@ -112,9 +112,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to the bathroom through a phone camera: corner marks and a red dot that blinks, the contractor with the hammer up. The plate: THE ROOMMATE / IS FILMING, the last row red.",
-   "t": 26.328,
+   "t": 23.7,
    "word": 63,
-   "end": 28.356
+   "end": 25.66
   },
   {
    "id": "smash",
@@ -124,9 +124,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to the shower wall, close: he swings at the tile, chips fly on each hit. The plate: THE HAMMER / TO THE TILE, the last row red.",
-   "t": 28.356,
+   "t": 25.66,
    "word": 68,
-   "end": 30.668
+   "end": 27.42
   },
   {
    "id": "says",
@@ -136,9 +136,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to him, close, talking, the broken wall behind. The plate: HE SAYS:, then on \"no\" NO CONTRACTOR lands under it, then on \"fix\" WILL FIX IT.",
-   "t": 30.668,
+   "t": 27.42,
    "word": 75,
-   "end": 34.656
+   "end": 31.26
   },
   {
    "id": "repo",
@@ -148,9 +148,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to the wide shot: the shower broken open, rubble on the floor, the contractor with the hammer down. The plate: HIS COMPANY / CALLED IT / REPOSSESSING, the last row red.",
-   "t": 34.656,
+   "t": 31.26,
    "word": 87,
-   "end": 38.026
+   "end": 34.72
   },
   {
    "id": "viral",
@@ -160,9 +160,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to a phone on a dark wall, the clip playing, red hearts rising beside it. The plate: MILLIONS big and gold / OF VIEWS.",
-   "t": 38.026,
+   "t": 34.72,
    "word": 94,
-   "end": 40.34
+   "end": 37.54
   },
   {
    "id": "rebuild",
@@ -172,9 +172,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to the bathroom, two tile workers at the shower wall, new tile going up. The plate: STRANGERS IN / THE TILE TRADE; on \"came\" it gives way to a stamp, CAME TO / REBUILD IT / FREE, the last row big and teal.",
-   "t": 40.34,
+   "t": 37.54,
    "word": 100,
-   "end": 44.79
+   "end": 41.82
   },
   {
    "id": "police",
@@ -184,9 +184,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to a police desk under a gold badge. The plate: POLICE big / LOOKED INTO IT.",
-   "t": 44.79,
+   "t": 41.82,
    "word": 112,
-   "end": 46.448
+   "end": 43.22
   },
   {
    "id": "owner",
@@ -196,9 +196,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to a statement sheet on a desk. The plate: ONE OWNER / TOLD POLICE; on \"wished\" it gives way to THEY WISHED / THEY HAD GONE / THE LEGAL ROUTE, the last row gold.",
-   "t": 46.448,
+   "t": 43.22,
    "word": 116,
-   "end": 51.184
+   "end": 47.16
   },
   {
    "id": "warrants",
@@ -208,9 +208,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to the sheet with a red seal. The stamp: FELONY big and red / WARRANTS / FOR BOTH.",
-   "t": 51.184,
+   "t": 47.16,
    "word": 129,
-   "end": 54.528
+   "end": 50.24
   },
   {
    "id": "result",
@@ -221,9 +221,9 @@
    "pin": null,
    "text": "A plain cut to a courtroom: the bench, the gavel coming down, the contractor close in front of it. The plate: HE PLEADED, then on \"guilty\" the stamp: GUILTY PLEA / A FELONY, the last row big and red.",
    "payoff": true,
-   "t": 54.528,
+   "t": 50.24,
    "word": 136,
-   "end": 56.758
+   "end": 52.46
   },
   {
    "id": "jail",
@@ -233,9 +233,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to a cell: the contractor behind bars. The stamp: 15 DAYS big and gold / IN JAIL.",
-   "t": 56.758,
+   "t": 52.46,
    "word": 142,
-   "end": 58.374
+   "end": 54.14
   },
   {
    "id": "prob",
@@ -245,9 +245,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut back to the courtroom, wider. The stamp: 3 YEARS big and gold / PROBATION.",
-   "t": 58.374,
+   "t": 54.14,
    "word": 146,
-   "end": 60.158
+   "end": 55.82
   },
   {
    "id": "closed",
@@ -257,9 +257,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to a shop front, the shutter down and locked. The plate: THE COMPANY: / NO LONGER / ACTIVE, the last two rows red.",
-   "t": 60.158,
+   "t": 55.82,
    "word": 150,
-   "end": 63.108
+   "end": 58.64
   },
   {
    "id": "rule",
@@ -269,9 +269,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to a courthouse, wide. The plate: HERE IS WHAT / STINGS, the last row big and red.",
-   "t": 63.108,
+   "t": 58.64,
    "word": 157,
-   "end": 64.522
+   "end": 60.3
   },
   {
    "id": "court",
@@ -281,9 +281,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut closer on the courthouse. The plate: SMALL CLAIMS / COURT TAKES; on \"up\" a third row lands in gold: UP TO $7,500.",
-   "t": 64.522,
+   "t": 60.3,
    "word": 160,
-   "end": 69.476
+   "end": 65.2
   },
   {
    "id": "fit",
@@ -293,9 +293,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to two bars over a dark wall: a long gold bar for the limit and a shorter teal bar inside it. The stamp: UP TO $7,500 / HIS $4,225 / FIT, the last row big and teal.",
-   "t": 69.476,
+   "t": 65.2,
    "word": 172,
-   "end": 71.82
+   "end": 67.84
   },
   {
    "id": "ask",
@@ -305,9 +305,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The frame splits, one person a side: the homeowner on wine left, arms folded, the contractor on slate right. Left plate: CLIENT / HELD / $4,225.",
-   "t": 71.82,
+   "t": 67.84,
    "word": 176,
-   "end": 74.092
+   "end": 69.96
   },
   {
    "id": "askhe",
@@ -317,9 +317,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The same split. The right plate lands: BUILDER / GOT / 15 DAYS.",
-   "t": 74.092,
+   "t": 69.96,
    "word": 182,
-   "end": 75.666
+   "end": 71.82
   },
   {
    "id": "who",
@@ -329,9 +329,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to the two of them close in the broken bathroom. The plate: WHO WAS / MORE WRONG?, the last row gold.",
-   "t": 75.666,
+   "t": 71.82,
    "word": 186,
-   "end": 77.198
+   "end": 73.38
   },
   {
    "id": "send",
@@ -341,9 +341,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut back to the split, both plates up: CLIENT / HELD / $4,225 and BUILDER / GOT / 15 DAYS. Ends 1 s after the last word.",
-   "t": 77.198,
+   "t": 73.38,
    "word": 190,
-   "end": 80.814
+   "end": 75.94
   }
  ]
 }

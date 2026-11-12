@@ -1,0 +1,37 @@
+{
+ "gate": "facts",
+ "round": 2,
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "render": 4,
+ "score": {
+  "numbers": 1,
+  "mismatches": 0
+ },
+ "earlier": [
+  "EXISTING ONLY without its group: gone",
+  "terms title cut to 'ChatGPT Terms': gone",
+  "TikTok step 1 without 'OpenAI says': gone"
+ ],
+ "reasons": [],
+ "advisories": [
+  "the plate COVENANT / NOT TO SUE is the section heading word for word and its red row leans toward 'you can't sue'; the voice and the clipping keep it accurate",
+  "step three leaves out 'methods offered for your business, such as'; the captions keep it",
+  "the address clipping clips the right edge of the last 'b'",
+  "'your business with ChatGPT' is a fragment of the hub headline",
+  "the ID check comes after a claim is approved in the source; step 4 is a fair simplification",
+  "youtube aiUse false while the other three label AI: check against the post rule"
+ ],
+ "not_checked": [
+  "the three live OpenAI pages (403 to fetch tools; same-day captures used)",
+  "chatgpt.com/business-hub opening at the bare address (the capture shows it with the create flow's query)",
+  "voice timing against words.json beyond what the frames show",
+  "captures not drawn in the scene, as whole images"
+ ],
+ "checked": [
+  "all 39 clippings re-cut from the captures and read: true crops",
+  "timeline frames 0 to 66 s",
+  "6-word lift check, dash scan, Source lines and names in all four captions, by code"
+ ]
+}

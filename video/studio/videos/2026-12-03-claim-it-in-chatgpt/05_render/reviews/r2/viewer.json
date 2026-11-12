@@ -1,0 +1,40 @@
+{
+ "gate": "viewer",
+ "round": 2,
+ "pass": false,
+ "reviewer": "fresh opus agent, two steps",
+ "at": "2026-11-12",
+ "render": 4,
+ "score": {
+  "about": "ChatGPT now lets businesses claim listings, but claiming means agreeing its AI may call you and you give up some legal claims; here are four steps, and it's only for existing US listings.",
+  "gets": "Something to do plus a heads-up: the four claim steps and the address, and that claiming signs you up for AI calls and a covenant not to sue. Mildly useful.",
+  "stop": "Barely. The first 3 seconds are a waving cartoon at a desk and a small white card; the stronger line, 'OpenAI's AI may call you', lands at 3 to 6 s.",
+  "watch_to_end": "no",
+  "leave_at": "about 22 to 27 s: the scary part is defused fast, then it is a slow how-to with the same figure, desk and arm in every frame",
+  "confused": "'Covenant Not to Sue' and 'certain claims' with no plain meaning; 'You can opt out here.' is a link nobody can tap; the address clipping is cut at its right edge; 'read the terms, then decide' gives no verdict; 'whoever runs your Google listing' came from nowhere",
+  "matches_idea": "same",
+  "comment": "Maybe one skeptical line: 'So I sign away my right to sue to get a free listing? Pass.'",
+  "send": "Nobody, most likely.",
+  "forecast": {
+   "stop": 2,
+   "hold": 2,
+   "finish": 1,
+   "send": 1
+  }
+ },
+ "notes": [
+  "same character, desk and phone in every frame for 66 s; the phone's ring does not read",
+  "mostly white cards of terms text",
+  "the opening take and the steps are slow (about 140 wpm)",
+  "the recap card shows for about 1 s"
+ ],
+ "reasons": [
+  "matches_idea same; watch_to_end no (leaves 22 to 27 s); confused not none; would send it to nobody",
+  "0 to 3 s: the hook is a caption about a launch. Fix: open on the sharp line with the terms clause or the listing itself on screen",
+  "8.5 to 11 s: 'you can opt out' kills the tension 6 s in. Fix: say who calls and why in plain words, opt-out later",
+  "11.6 to 15.5 s: 'Covenant Not to Sue' and 'certain claims' have no plain meaning. Fix: one plain line or cut it",
+  "17.5 to 34 s: four steps told with text cards only. Fix: show the real Business Hub screens, or one card for the steps and the time on the catch",
+  "43.5 to 47 s: the voice breaks mid-phrase ('claim a U.S.' / 'listing that's already there')",
+  "60 to 65 s: no verdict and a send line that names another product. Fix: a plain call (claim it if X, skip if Y)"
+ ]
+}

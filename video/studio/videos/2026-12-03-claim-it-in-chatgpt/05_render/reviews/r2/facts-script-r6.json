@@ -1,0 +1,22 @@
+{
+ "gate": "facts",
+ "stage": "script r6 (fix round 2, 13 words shorter than r5), before its voice",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "score": {
+  "numbers": 2,
+  "mismatches": 0
+ },
+ "reasons": [],
+ "advisories": [
+  "step three drops the help page's 'offered for your business'",
+  "'Four steps' is our own count; the help page's 'select the listing' and 'choose a method' fold into steps two and three",
+  "the terms tie the agreement to using Business Hub, which is wider than claiming; the line is true and keeps 'may'",
+  "claiming does not give exclusive control (terms 4.1); the script does not claim it"
+ ],
+ "not_checked": [
+  "the three live OpenAI pages (403 to fetch tools; judged from the same-day captures)",
+  "captures no spoken line rests on: help-email, sidebar, hub-search, hub-add, hub-verify"
+ ]
+}

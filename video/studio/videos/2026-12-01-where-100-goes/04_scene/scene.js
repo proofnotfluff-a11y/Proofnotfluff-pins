@@ -144,6 +144,12 @@ Object.assign(window.SCENE.sections, {
         const rows = [['$100 BILL', 132, RED]].concat(all.slice(0, n)), o = {bg: CREAM, rule: RED, pad: 24, gap: 6, drop: 0.06, cx: 396};
         if (n === 1 && T < t0 + 0.06) plate(k, rows, 264, o);
         else stampPlate(k, rows, 264, ts[n - 1], o);
+        /* QA r1 and r2: the full card sat flat 1.3 s; after the last row a gold band reads down the five rows, one at a time */
+        const tSweep = ts[4] + 0.6;
+        if (n === 5 && T >= tSweep) {
+          const w = k.measure('INSURANCE $6', {size: 132}) + 48, top = 264 + 24 + 138 - 6, y = top + Math.floor(((T - tSweep) * 2.4) % 5) * 138;
+          k.shape(k.rectPts(Math.round((396 - w / 2) / 3) * 3, y, Math.round(w / 3) * 3, 144, 0), {fill: GOLD, line: false, alpha: 0.45});
+        }
       } else {
         k.cut(tHome);
         kitchen(k, 0.2, 2);

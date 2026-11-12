@@ -1,0 +1,20 @@
+{
+ "gate": "render-critic",
+ "round": 0,
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-11",
+ "render": 3,
+ "score": {
+  "faults": 0
+ },
+ "faults": [],
+ "reasons": [
+  "Hook plate on screen from frame 0.",
+  "Every spoken number on screen at about the moment it is said (1-TRUCK SHOP, $9 LEFT, TECH $41, OFFICE $16, TRUCK $8, FEES $20, INSURANCE $6, UNDER $2).",
+  "Plates settle in y 265 to 1130, x 40 to 1040; the CLIENT plate's box edge reaches about x 1045 in the end scene, its words end near x 995.",
+  "Smallest rows about 60 to 75 px cap height.",
+  "Last word ends 32.98 s, video runs to 33.97 s.",
+  "No flashing; glitch sweep of 1019 frames: only pop-in squash and blinks, nothing vanishes for a frame."
+ ]
+}

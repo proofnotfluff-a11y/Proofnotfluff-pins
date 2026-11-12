@@ -2796,9 +2796,20 @@ FORMAT_ALIASES = {"v2": "clinic"}
 # line), call (a phone call acted out, said once to be a reenactment). 18 to 35 s, the whole frame, no host lecture, no
 # end card (a 1 s tail). Why: viewers gave every earlier lesson 3 to 29 s whatever its length, and no gate score moved
 # views (research/STUDY-2026-11-08.md). Four gates (V4_GATES); the checks are lint_v4.
-V4_FORMATS = {"verdict", "invoice", "call"}
-for _f in V4_FORMATS:
+V4_SHORT = {"verdict", "invoice", "call"}
+for _f in V4_SHORT:
     FORMATS[_f] = {"min_seconds": 18.0, "max_seconds": 35.0, "words": (45, 95)}
+# case (Todd, live chat, Nov 12, 2026, 10:03 am: "can we make the necessary changes so we rectify our weaknesses?";
+# research/WATCH-2026-11-11.md): a real, sourced dispute with a public outcome, told as a story. The 8 faceless winners
+# watched ran 52 to 179 s, held the result to 67% to 90% of the runtime and changed the picture every 3 to 6 s; our best
+# lesson was 30 s, one scene, the answer by 40% and an open question. So a case runs 55 to 95 s, its [payoff] cue (the
+# result) starts in the last 40%, and no stretch between two cues runs over V4_CASE_GAP.
+V4_CASE = "case"
+FORMATS[V4_CASE] = {"min_seconds": 55.0, "max_seconds": 95.0, "words": (120, 240)}
+V4_FORMATS = V4_SHORT | {V4_CASE}
+V4_CASE_PAYOFF_FROM = 0.60   # a case: the cue marked [payoff] starts at or after this share of the runtime
+V4_CASE_GAP = 8.0            # a case: the longest stretch between two cue starts
+V4_CASE_BEAT = 6.0           # a case: one cue for every this many seconds, on average
 V4_FROM = "2026-11-30"
 V4_GATES = ("qa", "facts", "render-critic", "viewer")
 V4_TAIL = 1.0            # cmd_cues: seconds after the last word (no end card)
@@ -3743,7 +3754,15 @@ def v4_selftest():
         ("v4 a plate that drops out for two frames", flicker_problems(["A|B"] * 5 + ["A", "A"] + ["A|B"] * 5), True),
         ("v4 a real change is not a flicker", flicker_problems(["A"] * 5 + ["A|B"] * 5 + ["C"] * 5), False),
         ("v4 gates are qa, facts, render-critic, viewer", list(V4_GATES) != ["qa", "facts", "render-critic", "viewer"], False),
-        ("v4 band is 18 to 35 s", [1] if any((FORMATS[f]["min_seconds"], FORMATS[f]["max_seconds"]) != (18.0, 35.0) for f in V4_FORMATS) else [], False),
+        ("v4 band is 18 to 35 s", [1] if any((FORMATS[f]["min_seconds"], FORMATS[f]["max_seconds"]) != (18.0, 35.0) for f in V4_SHORT) else [], False),
+        ("v4 case band is 55 to 95 s", [1] if (FORMATS[V4_CASE]["min_seconds"], FORMATS[V4_CASE]["max_seconds"]) != (55.0, 95.0) or V4_CASE not in V4_FORMATS else [], False),
+        ("v4 case result held to 80%", payoff_problems({"duration": 75.0, "cues": [c("wrong", 0), c("result", 60.0, True)]}, V4_CASE), False),
+        ("v4 case result given at 30%", payoff_problems({"duration": 75.0, "cues": [c("wrong", 0), c("result", 22.0, True)]}, V4_CASE), True),
+        ("v4 case with no payoff cue", payoff_problems({"duration": 75.0, "cues": [c("wrong", 0), c("result", 60.0)]}, V4_CASE), True),
+        ("v4 a short lesson still pays off by 40%", payoff_problems({"duration": 27.0, "cues": [c("hook", 0), c("turn", 20.0, True)]}, "verdict"), True),
+        ("v4 case a beat every 5 s", beat_problems({"duration": 75.0, "cues": [c(str(i), 5.0 * i) for i in range(15)]}), False),
+        ("v4 case one scene for 20 s", beat_problems({"duration": 75.0, "cues": [c(str(i), 5.0 * i) for i in range(11)] + [c("end", 72.0)]}), True),
+        ("v4 case too few beats", beat_problems({"duration": 75.0, "cues": [c(str(i), 7.5 * i) for i in range(10)]}), True),
         ("v4 labels: Meta and TikTok on, YouTube off", [1] if V4_LABELS != {"instagram": ("aiLabel", True), "facebook": ("aiLabel", True), "tiktok": ("aiGenerated", True), "youtube": ("aiUse", False)} else [], False),
         ("1 a day from its date: day before keeps 3", [] if per_day_ceiling({"perDay": 3, "perDayFrom": {"from": "2026-11-10", "perDay": 1}}, dt.date(2026, 11, 9)) == 3 else [1], False),
         ("1 a day from its date: that day caps at 1", [] if per_day_ceiling({"perDay": 3, "perDayFrom": {"from": "2026-11-10", "perDay": 1}}, dt.date(2026, 11, 10)) == 1 else [1], False),
@@ -4406,13 +4425,36 @@ def captions_v4_problems(slug):
     return out
 
 
-def payoff_problems(cues):
-    """v4: exactly one cue marked [payoff], starting by V4_PAYOFF_BY of the runtime."""
+def payoff_problems(cues, fmt=None):
+    """v4: exactly one cue marked [payoff], starting by V4_PAYOFF_BY of the runtime; in a case, at or after
+    V4_CASE_PAYOFF_FROM (the result is held for the end)."""
     ps = [c for c in cues.get("cues", []) if c.get("payoff")]
     if len(ps) != 1:
         return [f"{len(ps)} cues marked [payoff] in cues.md (exactly 1: the cue where the outcome or the answer lands)"]
     t, dur = float(ps[0]["t"]), float(cues["duration"])
+    if fmt == V4_CASE:
+        return [] if t >= V4_CASE_PAYOFF_FROM * dur - 1e-6 else [
+            f"the payoff cue '{ps[0]['id']}' starts at {t:.1f} s of {dur:.1f} s ({100 * t / dur:.0f}%; a case holds the result "
+            f"until {100 * V4_CASE_PAYOFF_FROM:.0f}% or later)"]
     return [] if t <= V4_PAYOFF_BY * dur + 1e-6 else [f"the payoff cue '{ps[0]['id']}' starts at {t:.1f} s of {dur:.1f} s ({100 * t / dur:.0f}%; by {100 * V4_PAYOFF_BY:.0f}%)"]
+
+
+def beat_problems(cues):
+    """A case: the picture keeps changing. One cue for every V4_CASE_BEAT s on average, and no stretch between two cue
+    starts (or the last cue and the end) over V4_CASE_GAP."""
+    dur = float(cues["duration"])
+    ts = sorted(float(c["t"]) for c in cues.get("cues", []))
+    out = []
+    need = int(dur // V4_CASE_BEAT)
+    if len(ts) < need:
+        out.append(f"{len(ts)} cues in {dur:.1f} s ({need} or more: a new beat about every {V4_CASE_BEAT:.0f} s)")
+    edges = ts + [dur]
+    gaps = [(b - a, a) for a, b in zip(edges, edges[1:])]
+    if gaps:
+        g, at = max(gaps)
+        if g > V4_CASE_GAP + 1e-6:
+            out.append(f"{g:.1f} s with no new cue from {at:.1f} s ({V4_CASE_GAP:.0f} s or less: add a shot change, a close shot or a new place)")
+    return out
 
 
 def hold_problems(samples, step, limit=None):
@@ -4446,7 +4488,10 @@ def v4_static_problems(slug):
     out = []
     cj = vdir(slug, "03_cues", "cues.json")
     if os.path.exists(cj):
-        out += payoff_problems(json.load(open(cj)))
+        fmt = lesson_format(slug)
+        out += payoff_problems(json.load(open(cj)), fmt)
+        if fmt == V4_CASE:
+            out += [f"beats: {x}" for x in beat_problems(json.load(open(cj)))]
     if os.path.exists(vdir(slug, "05_render", "captions.json")):
         out += [f"captions: {x}" for x in captions_v4_problems(slug)]
     sj = vdir(slug, "04_scene", "scene.js")
@@ -4521,7 +4566,7 @@ def lint_v4(slug, step=0.25):
         print("NOTE lint v4 (a guide, not a gate): " + x)
     print("hook: " + json.dumps(hook))
     print("\n".join(errors) if errors else f"lint: PASS v4 0 layout problems ({cues['duration']:.1f} s at {step} s steps); first change {hook['first_change']} s, "
-          f"{hook['changes_by_3s']} by 3 s; payoff by {100 * V4_PAYOFF_BY:.0f}%; no hold over {V4_HOLD_MAX:.0f} s")
+          f"{hook['changes_by_3s']} by 3 s; payoff {('from %d%%' % (100 * V4_CASE_PAYOFF_FROM)) if lesson_format(slug) == V4_CASE else ('by %d%%' % (100 * V4_PAYOFF_BY))}; no hold over {V4_HOLD_MAX:.0f} s")
     if errors:
         sys.exit(1)
 

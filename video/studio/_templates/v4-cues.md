@@ -6,7 +6,7 @@ music: rooms <tune>
 Frame 0, close and settled: <the two sides and the stake, 2 to 8 words, as big as fits; two numbers against each other where the story has them>. The first change lands by 0.6 s and the picture changes again by 3 s. The spoken hook is 8 words or fewer.
 
 ## hook.turn "<words where the outcome lands>" [payoff] [sfx: stamp]
-<the outcome or the answer: by 40% of the runtime>
+<the outcome or the answer: by 40% of the runtime (a case uses _templates/v4-case-cues.md: the result waits for 60% or later)>
 
 ## how "<words>" [sfx: blip]
 <how it went, one plate per beat, a change at least every 4 s; every row written here exactly as drawn>

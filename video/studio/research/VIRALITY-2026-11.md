@@ -333,6 +333,8 @@ Live from the first v4 lesson made after Nov 11 (formats.md "v4", "Level-ups, No
 
 Where Instagram's send count or skip rate is still hidden, the row says "cannot see" and no bar is called on it.
 
+Adopted Nov 12 (Todd, live chat, 10:03 am): the `case` format, from the watched winners (research/WATCH-2026-11-11.md). Rules: formats.md "Case". Bar and days: TEST-2026-11-23.md "Case test" (PASS: on 2 of 3 cases YouTube average percentage viewed 50% or more and 72 h views over both 30 s control lessons). For a case, the two reveals row above is not read (its result is held, there is no twist cue); the send line, first second and story pick rows still are.
+
 ### Next builds (for the Opus runs and the box; none is a rule change by itself)
 1. The official numbers feed (Part 4, change 2): a small read-only tool for Instagram's and YouTube's own insights. Waits on Todd's sign-ins, in a live chat.
 2. A way to hand Todd each lesson's file on his phone, for TikTok by hand (Part 4, change 3).

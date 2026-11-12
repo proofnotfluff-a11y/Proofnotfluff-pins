@@ -153,12 +153,13 @@ gave every lesson 3 to 29 s whatever its length; no gate score moved views (the 
 video is a short story a stranger can judge, with the owner's rule as its payoff. The sections above bind only the
 old-format lessons already made.
 
-Three formats (brief.md `- **Format:**`), each a named show with a new case every time (never a series):
+Four formats (brief.md `- **Format:**`), each a named show with a new case every time (never a series):
 | Format | What the viewer sees | Payoff for the owner |
 |---|---|---|
 | `verdict` | a real dispute between a tradesperson and a customer, acted by the cast, ending on "you decide" | the rule that prevents it |
 | `invoice` | a bill or quote built line by line: where the money goes | how to say the price so it sticks |
 | `call` | a phone call as captions and two speakers, said once to be a reenactment | what to say or send |
+| `case` | a real dispute with a public result (a ruling, a sentence, a refund, a fine), told in order, the result held for the end (rules: "Case" below) | the legal route that would have paid |
 
 Pick the story (brief.md `- **Pull:**`, all three yes): two sides in conflict; a dollar figure; someone specific to send it
 to. Then breadth: would a tech or a homeowner stop too? An owner-only lesson is a site page, not a video. Sources: a
@@ -188,6 +189,17 @@ Level-ups, Nov 11 (Todd, live chat, Nov 11, 2026, 4:26 pm: "Go with your recomme
 - The first second: frame 0 stays a settled cover and shows the two numbers, or the number and the refusal. The first change lands by 0.6 s. The spoken hook is 8 words or fewer and ends by 2.5 s; the next sentence carries the detail.
 - Two reveals: the answer still lands by 40% (`[payoff]`). The second best fact is held for a cue named `twist` that starts at 70% to 85% of the runtime, said aloud and shown. Every number on screen is spoken.
 - The send line: after the closing question, one spoken line of 2 s or less says who to send it to, in the story's own words; the last frame labels the two sides as two kinds of people the viewer knows. The caption keeps its send line.
+
+Case (Todd, live chat, Nov 12, 2026, 10:03 am: "can we make the necessary changes so we rectify our weaknesses?"; why: research/WATCH-2026-11-11.md, 8 watched faceless dispute winners against ours; bar and days: research/TEST-2026-11-23.md "Case test"). A `case` keeps every v4 line above except these, and anim.py holds the first three (`lint`, `selftest`):
+- Length: 55 to 95 s, 120 to 240 spoken words, about 150 to 165 words a minute with a breath before the result.
+- The result is held: the one cue marked `[payoff]` is the public result and starts at 60% of the runtime or later (the winners: 67% to 90%). The by-40% rule and the `twist` cue do not apply. Nothing before it gives the result away, on screen or in the caption's first line.
+- A beat every few seconds: one cue for every 6 s on average and no stretch over 8 s between two cue starts. Each cue is a new shot, a close shot or a new place (`k.cut`, `k.cam`, `SCENE.rooms`), never the same frame with new words only.
+- The story must have: a real dispute, a dollar figure, and a result a public source reports (court, police, a licensing board, the press quoting them). No result on the record means it is a verdict, not a case.
+- The wrong comes first: frame 0 and the first sentence show what one side did to the other, with the two numbers. Then the story in order: what was agreed, what broke, what each side did, what the law did.
+- One acted line a side, at most two a side: the narrator speaks as that person over a close shot, and the first one carries "Reenactment" on screen. Each line says in our own words what the source reports that side said or did; it adds no new claim and never reads as an exact quote.
+- The owner's rule comes after the result, as what the legal route was (the lien, small claims, the notice), with its number from a source read that run.
+- The end: the result, the rule in one sentence, one closing question that still splits the room (was it fair, who was more wrong), then the send line. The send line names someone a homeowner or a tech could send it to, not only an owner.
+- Cues start from `_templates/v4-case-cues.md` (copy it over 03_cues/cues.md after `anim.py new`).
 
 Gates, in order (prompts/README.md "v4"): facts on script.md before any voice; after the render: render critic, viewer,
 then facts once more on the transcript, screen and captions. Two fix rounds a gate at most, then shelve it.

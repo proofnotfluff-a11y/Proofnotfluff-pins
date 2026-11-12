@@ -7,12 +7,12 @@
   {
    "w": "ChatGPT",
    "start": 0.0,
-   "end": 0.84,
+   "end": 0.82,
    "take": 1
   },
   {
    "w": "just",
-   "start": 0.84,
+   "start": 0.82,
    "end": 1.34,
    "take": 1
   },
@@ -36,103 +36,103 @@
   },
   {
    "w": "Claim",
-   "start": 3.02,
-   "end": 3.22,
+   "start": 2.96,
+   "end": 3.14,
    "take": 1
   },
   {
    "w": "yours,",
-   "start": 3.22,
-   "end": 3.64,
+   "start": 3.14,
+   "end": 3.54,
    "take": 1
   },
   {
    "w": "and",
-   "start": 3.94,
-   "end": 4.14,
+   "start": 3.8,
+   "end": 4.1,
    "take": 1
   },
   {
    "w": "you",
-   "start": 4.14,
-   "end": 4.32,
+   "start": 4.1,
+   "end": 4.24,
    "take": 1
   },
   {
    "w": "agree",
-   "start": 4.32,
-   "end": 4.64,
+   "start": 4.24,
+   "end": 4.56,
    "take": 1
   },
   {
    "w": "that",
-   "start": 4.64,
-   "end": 4.88,
+   "start": 4.56,
+   "end": 4.8,
    "take": 1
   },
   {
    "w": "OpenAI's",
-   "start": 4.88,
-   "end": 5.6,
+   "start": 4.8,
+   "end": 5.52,
    "take": 1
   },
   {
    "w": "AI",
-   "start": 5.6,
-   "end": 5.94,
+   "start": 5.52,
+   "end": 5.84,
    "take": 1
   },
   {
    "w": "may",
-   "start": 5.94,
-   "end": 6.24,
+   "start": 5.84,
+   "end": 6.16,
    "take": 1
   },
   {
    "w": "call",
-   "start": 6.24,
-   "end": 6.48,
+   "start": 6.16,
+   "end": 6.42,
    "take": 1
   },
   {
    "w": "you.",
-   "start": 6.48,
-   "end": 6.72,
+   "start": 6.42,
+   "end": 6.66,
    "take": 1
   },
   {
    "w": "It's",
    "start": 7.2,
-   "end": 7.4,
+   "end": 7.38,
    "take": 2
   },
   {
    "w": "in",
-   "start": 7.4,
-   "end": 7.5,
+   "start": 7.38,
+   "end": 7.48,
    "take": 2
   },
   {
    "w": "the",
-   "start": 7.5,
-   "end": 7.64,
+   "start": 7.48,
+   "end": 7.62,
    "take": 2
   },
   {
    "w": "terms.",
-   "start": 7.64,
+   "start": 7.62,
    "end": 8.02,
    "take": 2
   },
   {
    "w": "The",
-   "start": 8.56,
-   "end": 8.64,
+   "start": 8.54,
+   "end": 8.66,
    "take": 2
   },
   {
    "w": "calls",
-   "start": 8.64,
+   "start": 8.66,
    "end": 8.9,
    "take": 2
   },
@@ -157,938 +157,860 @@
   {
    "w": "users,",
    "start": 9.36,
-   "end": 9.76,
+   "end": 9.78,
    "take": 2
   },
   {
    "w": "and",
-   "start": 9.76,
-   "end": 10.26,
+   "start": 9.78,
+   "end": 10.24,
    "take": 2
   },
   {
    "w": "you",
-   "start": 10.26,
-   "end": 10.44,
+   "start": 10.24,
+   "end": 10.46,
    "take": 2
   },
   {
    "w": "can",
-   "start": 10.44,
+   "start": 10.46,
    "end": 10.6,
    "take": 2
   },
   {
    "w": "opt",
    "start": 10.6,
-   "end": 10.76,
+   "end": 10.8,
    "take": 2
   },
   {
    "w": "out.",
-   "start": 10.76,
-   "end": 11.08,
+   "start": 10.8,
+   "end": 11.1,
    "take": 2
   },
   {
    "w": "You",
-   "start": 11.52,
-   "end": 11.66,
+   "start": 11.56,
+   "end": 11.68,
    "take": 2
   },
   {
    "w": "also",
-   "start": 11.66,
-   "end": 12.02,
+   "start": 11.68,
+   "end": 12.1,
    "take": 2
   },
   {
    "w": "agree",
-   "start": 12.02,
-   "end": 12.38,
+   "start": 12.1,
+   "end": 12.48,
    "take": 2
   },
   {
    "w": "not",
-   "start": 12.38,
-   "end": 12.68,
+   "start": 12.48,
+   "end": 12.8,
    "take": 2
   },
   {
    "w": "to",
-   "start": 12.68,
-   "end": 12.88,
+   "start": 12.8,
+   "end": 12.98,
    "take": 2
   },
   {
    "w": "bring",
-   "start": 12.88,
-   "end": 13.04,
+   "start": 12.98,
+   "end": 13.16,
    "take": 2
   },
   {
    "w": "certain",
-   "start": 13.04,
-   "end": 13.4,
+   "start": 13.16,
+   "end": 13.52,
    "take": 2
   },
   {
    "w": "claims",
-   "start": 13.4,
-   "end": 13.84,
+   "start": 13.52,
+   "end": 13.98,
    "take": 2
   },
   {
    "w": "against",
-   "start": 13.84,
-   "end": 14.2,
+   "start": 13.98,
+   "end": 14.36,
    "take": 2
   },
   {
    "w": "OpenAI.",
-   "start": 14.2,
-   "end": 14.74,
+   "start": 14.36,
+   "end": 14.9,
    "take": 2
   },
   {
-   "w": "It's",
-   "start": 15.68,
-   "end": 15.94,
+   "w": "Four",
+   "start": 15.84,
+   "end": 16.08,
    "take": 3
   },
   {
-   "w": "called",
-   "start": 15.94,
-   "end": 16.12,
+   "w": "steps",
+   "start": 16.08,
+   "end": 16.42,
    "take": 3
   },
   {
-   "w": "Business",
-   "start": 16.12,
-   "end": 16.6,
+   "w": "to",
+   "start": 16.42,
+   "end": 16.64,
    "take": 3
   },
   {
-   "w": "Hub,",
-   "start": 16.6,
+   "w": "claim",
+   "start": 16.64,
    "end": 16.9,
    "take": 3
   },
   {
-   "w": "and",
+   "w": "it.",
    "start": 16.9,
-   "end": 17.32,
-   "take": 3
-  },
-  {
-   "w": "it's",
-   "start": 17.32,
-   "end": 17.5,
-   "take": 3
-  },
-  {
-   "w": "in",
-   "start": 17.5,
-   "end": 17.6,
-   "take": 3
-  },
-  {
-   "w": "beta.",
-   "start": 17.6,
-   "end": 17.94,
-   "take": 3
-  },
-  {
-   "w": "Four",
-   "start": 18.62,
-   "end": 18.74,
-   "take": 3
-  },
-  {
-   "w": "steps.",
-   "start": 18.74,
-   "end": 19.14,
+   "end": 17.22,
    "take": 3
   },
   {
    "w": "One,",
-   "start": 20.16,
-   "end": 20.5,
-   "take": 4
+   "start": 17.7,
+   "end": 17.86,
+   "take": 3
   },
   {
    "w": "open",
-   "start": 21.02,
-   "end": 21.28,
-   "take": 4
+   "start": 18.42,
+   "end": 18.68,
+   "take": 3
   },
   {
    "w": "Business",
-   "start": 21.28,
-   "end": 21.7,
-   "take": 4
+   "start": 18.68,
+   "end": 19.1,
+   "take": 3
   },
   {
    "w": "Hub.",
-   "start": 21.7,
-   "end": 21.94,
-   "take": 4
+   "start": 19.1,
+   "end": 19.3,
+   "take": 3
   },
   {
-   "w": "OpenAI",
-   "start": 22.58,
-   "end": 23.04,
-   "take": 4
-  },
-  {
-   "w": "says",
-   "start": 23.04,
-   "end": 23.36,
-   "take": 4
-  },
-  {
-   "w": "it's",
-   "start": 23.36,
-   "end": 23.6,
-   "take": 4
+   "w": "It's",
+   "start": 19.8,
+   "end": 19.96,
+   "take": 3
   },
   {
    "w": "in",
-   "start": 23.6,
-   "end": 23.7,
-   "take": 4
+   "start": 19.96,
+   "end": 20.1,
+   "take": 3
   },
   {
-   "w": "your",
-   "start": 23.7,
-   "end": 23.84,
-   "take": 4
-  },
-  {
-   "w": "sidebar,",
-   "start": 23.84,
-   "end": 24.36,
-   "take": 4
-  },
-  {
-   "w": "or",
-   "start": 24.82,
-   "end": 24.98,
-   "take": 4
-  },
-  {
-   "w": "type",
-   "start": 24.98,
-   "end": 25.34,
-   "take": 4
-  },
-  {
-   "w": "chatgpt.com",
-   "start": 25.34,
-   "end": 26.98,
-   "take": 4
-  },
-  {
-   "w": "slash",
-   "start": 26.98,
-   "end": 27.4,
-   "take": 4
-  },
-  {
-   "w": "business",
-   "start": 27.4,
-   "end": 27.8,
-   "take": 4
-  },
-  {
-   "w": "hub.",
-   "start": 27.8,
-   "end": 28.14,
-   "take": 4
-  },
-  {
-   "w": "Two,",
-   "start": 28.64,
-   "end": 28.96,
-   "take": 4
-  },
-  {
-   "w": "search",
-   "start": 29.5,
-   "end": 29.74,
-   "take": 4
-  },
-  {
-   "w": "your",
-   "start": 29.74,
-   "end": 29.92,
-   "take": 4
-  },
-  {
-   "w": "business",
-   "start": 29.92,
-   "end": 30.24,
-   "take": 4
-  },
-  {
-   "w": "name.",
-   "start": 30.24,
-   "end": 30.58,
-   "take": 4
-  },
-  {
-   "w": "By",
-   "start": 30.98,
-   "end": 31.2,
-   "take": 4
-  },
-  {
-   "w": "continuing,",
-   "start": 31.2,
-   "end": 31.68,
-   "take": 4
-  },
-  {
-   "w": "you",
-   "start": 32.06,
-   "end": 32.16,
-   "take": 4
-  },
-  {
-   "w": "accept",
-   "start": 32.16,
-   "end": 32.5,
-   "take": 4
-  },
-  {
-   "w": "those",
-   "start": 32.5,
-   "end": 32.76,
-   "take": 4
-  },
-  {
-   "w": "terms.",
-   "start": 32.76,
-   "end": 33.2,
-   "take": 4
-  },
-  {
-   "w": "Three,",
-   "start": 33.94,
-   "end": 34.06,
-   "take": 4
-  },
-  {
-   "w": "prove",
-   "start": 34.54,
-   "end": 34.72,
-   "take": 4
-  },
-  {
-   "w": "it's",
-   "start": 34.72,
-   "end": 35.0,
-   "take": 4
-  },
-  {
-   "w": "yours",
-   "start": 35.0,
-   "end": 35.2,
-   "take": 4
-  },
-  {
-   "w": "with",
-   "start": 35.2,
-   "end": 35.48,
-   "take": 4
-  },
-  {
-   "w": "your",
-   "start": 35.48,
-   "end": 35.68,
-   "take": 4
-  },
-  {
-   "w": "business",
-   "start": 35.68,
-   "end": 35.98,
-   "take": 4
-  },
-  {
-   "w": "phone",
-   "start": 35.98,
-   "end": 36.32,
-   "take": 4
-  },
-  {
-   "w": "or",
-   "start": 36.32,
-   "end": 36.58,
-   "take": 4
-  },
-  {
-   "w": "email,",
-   "start": 36.58,
-   "end": 36.96,
-   "take": 4
-  },
-  {
-   "w": "or",
-   "start": 36.96,
-   "end": 37.38,
-   "take": 4
-  },
-  {
-   "w": "your",
-   "start": 37.38,
-   "end": 37.56,
-   "take": 4
-  },
-  {
-   "w": "website.",
-   "start": 37.56,
-   "end": 37.88,
-   "take": 4
-  },
-  {
-   "w": "Four,",
-   "start": 38.5,
-   "end": 38.84,
-   "take": 4
-  },
-  {
-   "w": "pass",
-   "start": 39.32,
-   "end": 39.54,
-   "take": 4
-  },
-  {
-   "w": "an",
-   "start": 39.54,
-   "end": 39.7,
-   "take": 4
-  },
-  {
-   "w": "identity",
-   "start": 39.7,
-   "end": 40.1,
-   "take": 4
-  },
-  {
-   "w": "check",
-   "start": 40.1,
-   "end": 40.44,
-   "take": 4
-  },
-  {
-   "w": "before",
-   "start": 40.44,
-   "end": 40.78,
-   "take": 4
-  },
-  {
-   "w": "any",
-   "start": 40.78,
-   "end": 41.16,
-   "take": 4
-  },
-  {
-   "w": "change",
-   "start": 41.16,
-   "end": 41.56,
-   "take": 4
-  },
-  {
-   "w": "goes",
-   "start": 41.56,
-   "end": 41.8,
-   "take": 4
-  },
-  {
-   "w": "live.",
-   "start": 41.8,
-   "end": 42.2,
-   "take": 4
-  },
-  {
-   "w": "Here's",
-   "start": 43.12,
-   "end": 43.42,
-   "take": 5
-  },
-  {
-   "w": "the",
-   "start": 43.42,
-   "end": 43.5,
-   "take": 5
-  },
-  {
-   "w": "catch.",
-   "start": 43.5,
-   "end": 43.88,
-   "take": 5
+   "w": "beta.",
+   "start": 20.1,
+   "end": 20.38,
+   "take": 3
   },
   {
    "w": "OpenAI",
-   "start": 44.56,
-   "end": 44.96,
-   "take": 5
+   "start": 21.06,
+   "end": 21.42,
+   "take": 3
   },
   {
    "w": "says",
-   "start": 44.96,
-   "end": 45.32,
-   "take": 5
+   "start": 21.42,
+   "end": 21.72,
+   "take": 3
+  },
+  {
+   "w": "it's",
+   "start": 21.72,
+   "end": 21.96,
+   "take": 3
+  },
+  {
+   "w": "in",
+   "start": 21.96,
+   "end": 22.06,
+   "take": 3
+  },
+  {
+   "w": "your",
+   "start": 22.06,
+   "end": 22.24,
+   "take": 3
+  },
+  {
+   "w": "sidebar,",
+   "start": 22.24,
+   "end": 22.72,
+   "take": 3
+  },
+  {
+   "w": "or",
+   "start": 22.72,
+   "end": 23.38,
+   "take": 3
+  },
+  {
+   "w": "type",
+   "start": 23.38,
+   "end": 23.78,
+   "take": 3
+  },
+  {
+   "w": "chatgpt.com",
+   "start": 23.78,
+   "end": 25.48,
+   "take": 3
+  },
+  {
+   "w": "slash",
+   "start": 25.48,
+   "end": 25.9,
+   "take": 3
+  },
+  {
+   "w": "business",
+   "start": 25.9,
+   "end": 26.3,
+   "take": 3
+  },
+  {
+   "w": "hub.",
+   "start": 26.3,
+   "end": 26.62,
+   "take": 3
+  },
+  {
+   "w": "Two,",
+   "start": 27.06,
+   "end": 27.42,
+   "take": 3
+  },
+  {
+   "w": "search",
+   "start": 28.02,
+   "end": 28.2,
+   "take": 3
+  },
+  {
+   "w": "your",
+   "start": 28.2,
+   "end": 28.4,
+   "take": 3
+  },
+  {
+   "w": "business",
+   "start": 28.4,
+   "end": 28.72,
+   "take": 3
+  },
+  {
+   "w": "name.",
+   "start": 28.72,
+   "end": 29.12,
+   "take": 3
+  },
+  {
+   "w": "Three,",
+   "start": 29.68,
+   "end": 29.8,
+   "take": 3
+  },
+  {
+   "w": "prove",
+   "start": 30.36,
+   "end": 30.52,
+   "take": 3
+  },
+  {
+   "w": "it's",
+   "start": 30.52,
+   "end": 30.82,
+   "take": 3
+  },
+  {
+   "w": "yours",
+   "start": 30.82,
+   "end": 31.0,
+   "take": 3
+  },
+  {
+   "w": "with",
+   "start": 31.0,
+   "end": 31.32,
+   "take": 3
+  },
+  {
+   "w": "your",
+   "start": 31.32,
+   "end": 31.5,
+   "take": 3
+  },
+  {
+   "w": "business",
+   "start": 31.5,
+   "end": 31.82,
+   "take": 3
+  },
+  {
+   "w": "phone",
+   "start": 31.82,
+   "end": 32.18,
+   "take": 3
+  },
+  {
+   "w": "or",
+   "start": 32.18,
+   "end": 32.42,
+   "take": 3
+  },
+  {
+   "w": "email,",
+   "start": 32.42,
+   "end": 32.76,
+   "take": 3
+  },
+  {
+   "w": "or",
+   "start": 32.76,
+   "end": 33.22,
+   "take": 3
+  },
+  {
+   "w": "your",
+   "start": 33.22,
+   "end": 33.42,
+   "take": 3
+  },
+  {
+   "w": "website.",
+   "start": 33.42,
+   "end": 33.74,
+   "take": 3
+  },
+  {
+   "w": "Four,",
+   "start": 34.26,
+   "end": 34.66,
+   "take": 3
+  },
+  {
+   "w": "pass",
+   "start": 35.18,
+   "end": 35.38,
+   "take": 3
+  },
+  {
+   "w": "an",
+   "start": 35.38,
+   "end": 35.52,
+   "take": 3
+  },
+  {
+   "w": "identity",
+   "start": 35.52,
+   "end": 35.96,
+   "take": 3
+  },
+  {
+   "w": "check",
+   "start": 35.96,
+   "end": 36.3,
+   "take": 3
+  },
+  {
+   "w": "before",
+   "start": 36.3,
+   "end": 36.62,
+   "take": 3
+  },
+  {
+   "w": "any",
+   "start": 36.62,
+   "end": 37.02,
+   "take": 3
+  },
+  {
+   "w": "change",
+   "start": 37.02,
+   "end": 37.4,
+   "take": 3
+  },
+  {
+   "w": "goes",
+   "start": 37.4,
+   "end": 37.68,
+   "take": 3
+  },
+  {
+   "w": "live.",
+   "start": 37.68,
+   "end": 38.08,
+   "take": 3
+  },
+  {
+   "w": "Here's",
+   "start": 38.88,
+   "end": 39.2,
+   "take": 4
+  },
+  {
+   "w": "the",
+   "start": 39.2,
+   "end": 39.3,
+   "take": 4
+  },
+  {
+   "w": "catch.",
+   "start": 39.3,
+   "end": 39.68,
+   "take": 4
+  },
+  {
+   "w": "OpenAI",
+   "start": 40.34,
+   "end": 40.74,
+   "take": 4
+  },
+  {
+   "w": "says",
+   "start": 40.74,
+   "end": 41.08,
+   "take": 4
   },
   {
    "w": "local",
-   "start": 45.32,
-   "end": 45.7,
-   "take": 5
+   "start": 41.08,
+   "end": 41.5,
+   "take": 4
   },
   {
    "w": "stores",
-   "start": 45.7,
-   "end": 46.08,
-   "take": 5
+   "start": 41.5,
+   "end": 41.9,
+   "take": 4
   },
   {
    "w": "and",
-   "start": 46.08,
-   "end": 46.3,
-   "take": 5
+   "start": 41.9,
+   "end": 42.12,
+   "take": 4
   },
   {
    "w": "restaurants",
-   "start": 46.3,
-   "end": 46.8,
-   "take": 5
+   "start": 42.12,
+   "end": 42.62,
+   "take": 4
   },
   {
    "w": "can",
-   "start": 46.8,
-   "end": 47.04,
-   "take": 5
+   "start": 42.62,
+   "end": 42.9,
+   "take": 4
   },
   {
    "w": "only",
-   "start": 47.04,
-   "end": 47.44,
-   "take": 5
+   "start": 42.9,
+   "end": 43.26,
+   "take": 4
   },
   {
    "w": "claim",
-   "start": 47.44,
-   "end": 47.74,
-   "take": 5
+   "start": 43.26,
+   "end": 43.6,
+   "take": 4
   },
   {
    "w": "a",
-   "start": 47.74,
-   "end": 47.92,
-   "take": 5
-  },
-  {
-   "w": "listing",
-   "start": 47.92,
-   "end": 48.24,
-   "take": 5
-  },
-  {
-   "w": "that's",
-   "start": 48.24,
-   "end": 48.64,
-   "take": 5
-  },
-  {
-   "w": "already",
-   "start": 48.64,
-   "end": 48.96,
-   "take": 5
-  },
-  {
-   "w": "there.",
-   "start": 48.96,
-   "end": 49.42,
-   "take": 5
+   "start": 43.6,
+   "end": 43.82,
+   "take": 4
   },
   {
    "w": "U.S.",
-   "start": 49.96,
-   "end": 50.2,
-   "take": 5
+   "start": 43.82,
+   "end": 44.14,
+   "take": 4
   },
   {
-   "w": "only,",
-   "start": 50.2,
-   "end": 50.54,
-   "take": 5
+   "w": "listing",
+   "start": 44.14,
+   "end": 44.56,
+   "take": 4
+  },
+  {
+   "w": "that's",
+   "start": 44.56,
+   "end": 44.96,
+   "take": 4
+  },
+  {
+   "w": "already",
+   "start": 44.96,
+   "end": 45.28,
+   "take": 4
+  },
+  {
+   "w": "there,",
+   "start": 45.28,
+   "end": 45.7,
+   "take": 4
   },
   {
    "w": "for",
-   "start": 50.88,
+   "start": 46.06,
+   "end": 46.28,
+   "take": 4
+  },
+  {
+   "w": "now.",
+   "start": 46.28,
+   "end": 46.54,
+   "take": 4
+  },
+  {
+   "w": "Not",
+   "start": 47.1,
+   "end": 47.26,
+   "take": 4
+  },
+  {
+   "w": "listed?",
+   "start": 47.26,
+   "end": 47.6,
+   "take": 4
+  },
+  {
+   "w": "You",
+   "start": 48.04,
+   "end": 48.28,
+   "take": 4
+  },
+  {
+   "w": "may",
+   "start": 48.28,
+   "end": 48.48,
+   "take": 4
+  },
+  {
+   "w": "not",
+   "start": 48.48,
+   "end": 48.66,
+   "take": 4
+  },
+  {
+   "w": "be",
+   "start": 48.66,
+   "end": 48.82,
+   "take": 4
+  },
+  {
+   "w": "able",
+   "start": 48.82,
+   "end": 48.98,
+   "take": 4
+  },
+  {
+   "w": "to",
+   "start": 48.98,
+   "end": 49.14,
+   "take": 4
+  },
+  {
+   "w": "add",
+   "start": 49.14,
+   "end": 49.3,
+   "take": 4
+  },
+  {
+   "w": "it",
+   "start": 49.3,
+   "end": 49.46,
+   "take": 4
+  },
+  {
+   "w": "yet.",
+   "start": 49.46,
+   "end": 49.62,
+   "take": 4
+  },
+  {
+   "w": "What",
+   "start": 50.4,
+   "end": 50.58,
+   "take": 5
+  },
+  {
+   "w": "you",
+   "start": 50.58,
+   "end": 50.72,
+   "take": 5
+  },
+  {
+   "w": "get:",
+   "start": 50.72,
    "end": 51.0,
    "take": 5
   },
   {
-   "w": "now.",
+   "w": "you",
    "start": 51.0,
-   "end": 51.24,
+   "end": 51.62,
    "take": 5
   },
   {
-   "w": "Not",
-   "start": 51.84,
-   "end": 52.0,
+   "w": "manage",
+   "start": 51.62,
+   "end": 51.92,
    "take": 5
   },
   {
-   "w": "listed?",
-   "start": 52.0,
-   "end": 52.36,
+   "w": "your",
+   "start": 51.92,
+   "end": 52.14,
    "take": 5
   },
   {
-   "w": "You",
-   "start": 52.84,
-   "end": 53.02,
+   "w": "own",
+   "start": 52.14,
+   "end": 52.32,
    "take": 5
   },
   {
-   "w": "may",
-   "start": 53.02,
-   "end": 53.24,
+   "w": "info",
+   "start": 52.32,
+   "end": 52.7,
    "take": 5
   },
   {
-   "w": "not",
-   "start": 53.24,
-   "end": 53.44,
+   "w": "in",
+   "start": 52.7,
+   "end": 52.92,
    "take": 5
   },
   {
-   "w": "be",
-   "start": 53.44,
-   "end": 53.62,
+   "w": "an",
+   "start": 52.92,
+   "end": 53.1,
    "take": 5
   },
   {
-   "w": "able",
-   "start": 53.62,
-   "end": 53.78,
+   "w": "app",
+   "start": 53.1,
+   "end": 53.28,
    "take": 5
   },
   {
-   "w": "to",
-   "start": 53.78,
-   "end": 53.96,
+   "w": "one",
+   "start": 53.28,
+   "end": 53.64,
    "take": 5
   },
   {
-   "w": "add",
-   "start": 53.96,
+   "w": "point",
+   "start": 53.64,
+   "end": 53.9,
+   "take": 5
+  },
+  {
+   "w": "two",
+   "start": 53.9,
    "end": 54.16,
    "take": 5
   },
   {
-   "w": "it",
-   "start": 54.16,
-   "end": 54.3,
-   "take": 5
-  },
-  {
-   "w": "yet.",
-   "start": 54.3,
-   "end": 54.5,
-   "take": 5
-  },
-  {
-   "w": "What",
-   "start": 55.28,
-   "end": 55.46,
-   "take": 6
-  },
-  {
-   "w": "you",
-   "start": 55.46,
-   "end": 55.6,
-   "take": 6
-  },
-  {
-   "w": "get:",
-   "start": 55.6,
-   "end": 55.88,
-   "take": 6
-  },
-  {
-   "w": "you",
-   "start": 56.4,
-   "end": 56.48,
-   "take": 6
-  },
-  {
-   "w": "manage",
-   "start": 56.48,
-   "end": 56.78,
-   "take": 6
-  },
-  {
-   "w": "your",
-   "start": 56.78,
-   "end": 57.0,
-   "take": 6
-  },
-  {
-   "w": "own",
-   "start": 57.0,
-   "end": 57.18,
-   "take": 6
-  },
-  {
-   "w": "info",
-   "start": 57.18,
-   "end": 57.5,
-   "take": 6
-  },
-  {
-   "w": "in",
-   "start": 57.5,
-   "end": 57.72,
-   "take": 6
-  },
-  {
-   "w": "an",
-   "start": 57.72,
-   "end": 57.88,
-   "take": 6
-  },
-  {
-   "w": "app",
-   "start": 57.88,
-   "end": 58.1,
-   "take": 6
-  },
-  {
-   "w": "one",
-   "start": 58.1,
-   "end": 58.44,
-   "take": 6
-  },
-  {
-   "w": "point",
-   "start": 58.44,
-   "end": 58.7,
-   "take": 6
-  },
-  {
-   "w": "two",
-   "start": 58.7,
-   "end": 58.96,
-   "take": 6
-  },
-  {
    "w": "billion",
-   "start": 58.96,
-   "end": 59.46,
-   "take": 6
+   "start": 54.16,
+   "end": 54.64,
+   "take": 5
   },
   {
    "w": "people",
-   "start": 59.46,
-   "end": 59.9,
-   "take": 6
+   "start": 54.64,
+   "end": 55.08,
+   "take": 5
   },
   {
    "w": "use",
-   "start": 59.9,
-   "end": 60.18,
-   "take": 6
+   "start": 55.08,
+   "end": 55.38,
+   "take": 5
   },
   {
    "w": "every",
-   "start": 60.18,
-   "end": 60.58,
-   "take": 6
+   "start": 55.38,
+   "end": 55.82,
+   "take": 5
   },
   {
    "w": "week.",
-   "start": 60.58,
-   "end": 60.94,
-   "take": 6
+   "start": 55.82,
+   "end": 56.18,
+   "take": 5
   },
   {
    "w": "What",
-   "start": 61.52,
-   "end": 61.64,
-   "take": 6
+   "start": 56.76,
+   "end": 56.84,
+   "take": 5
   },
   {
    "w": "you",
-   "start": 61.64,
-   "end": 61.78,
-   "take": 6
+   "start": 56.84,
+   "end": 56.98,
+   "take": 5
   },
   {
    "w": "don't:",
-   "start": 61.78,
-   "end": 62.3,
-   "take": 6
+   "start": 56.98,
+   "end": 57.7,
+   "take": 5
   },
   {
-   "w": "OpenAI",
-   "start": 62.76,
-   "end": 63.16,
-   "take": 6
+   "w": "a",
+   "start": 57.7,
+   "end": 57.9,
+   "take": 5
   },
   {
-   "w": "says",
-   "start": 63.16,
-   "end": 63.52,
-   "take": 6
+   "w": "guarantee",
+   "start": 57.9,
+   "end": 58.59,
+   "take": 5
   },
   {
-   "w": "claiming",
-   "start": 63.52,
+   "w": "ChatGPT",
+   "start": 58.59,
+   "end": 59.28,
+   "take": 5
+  },
+  {
+   "w": "recommends",
+   "start": 59.28,
+   "end": 59.7,
+   "take": 5
+  },
+  {
+   "w": "you",
+   "start": 59.7,
+   "end": 59.96,
+   "take": 5
+  },
+  {
+   "w": "more.",
+   "start": 59.96,
+   "end": 60.32,
+   "take": 5
+  },
+  {
+   "w": "Read",
+   "start": 60.32,
+   "end": 60.9,
+   "take": 5
+  },
+  {
+   "w": "the",
+   "start": 60.9,
+   "end": 61.1,
+   "take": 5
+  },
+  {
+   "w": "terms,",
+   "start": 61.1,
+   "end": 61.42,
+   "take": 5
+  },
+  {
+   "w": "then",
+   "start": 61.64,
+   "end": 61.9,
+   "take": 5
+  },
+  {
+   "w": "decide.",
+   "start": 61.9,
+   "end": 62.34,
+   "take": 5
+  },
+  {
+   "w": "Save",
+   "start": 62.34,
+   "end": 63.0,
+   "take": 5
+  },
+  {
+   "w": "this,",
+   "start": 63.0,
+   "end": 63.38,
+   "take": 5
+  },
+  {
+   "w": "and",
+   "start": 63.44,
+   "end": 63.78,
+   "take": 5
+  },
+  {
+   "w": "send",
+   "start": 63.78,
    "end": 63.94,
-   "take": 6
+   "take": 5
   },
   {
    "w": "it",
    "start": 63.94,
-   "end": 64.24,
-   "take": 6
-  },
-  {
-   "w": "doesn't",
-   "start": 64.24,
-   "end": 64.74,
-   "take": 6
-  },
-  {
-   "w": "guarantee",
-   "start": 64.74,
-   "end": 65.18,
-   "take": 6
-  },
-  {
-   "w": "ChatGPT",
-   "start": 65.18,
-   "end": 66.02,
-   "take": 6
-  },
-  {
-   "w": "recommends",
-   "start": 66.02,
-   "end": 66.52,
-   "take": 6
-  },
-  {
-   "w": "you",
-   "start": 66.52,
-   "end": 66.76,
-   "take": 6
-  },
-  {
-   "w": "more.",
-   "start": 66.76,
-   "end": 67.06,
-   "take": 6
-  },
-  {
-   "w": "Read",
-   "start": 67.52,
-   "end": 67.66,
-   "take": 6
-  },
-  {
-   "w": "the",
-   "start": 67.66,
-   "end": 67.86,
-   "take": 6
-  },
-  {
-   "w": "terms,",
-   "start": 67.86,
-   "end": 68.18,
-   "take": 6
-  },
-  {
-   "w": "then",
-   "start": 68.46,
-   "end": 68.72,
-   "take": 6
-  },
-  {
-   "w": "decide.",
-   "start": 68.72,
-   "end": 69.14,
-   "take": 6
-  },
-  {
-   "w": "Save",
-   "start": 69.84,
-   "end": 70.0,
-   "take": 6
-  },
-  {
-   "w": "this,",
-   "start": 70.0,
-   "end": 70.3,
-   "take": 6
-  },
-  {
-   "w": "and",
-   "start": 70.3,
-   "end": 70.68,
-   "take": 6
-  },
-  {
-   "w": "send",
-   "start": 70.68,
-   "end": 70.9,
-   "take": 6
-  },
-  {
-   "w": "it",
-   "start": 70.9,
-   "end": 71.06,
-   "take": 6
+   "end": 64.08,
+   "take": 5
   },
   {
    "w": "to",
-   "start": 71.06,
-   "end": 71.2,
-   "take": 6
+   "start": 64.08,
+   "end": 64.22,
+   "take": 5
   },
   {
    "w": "whoever",
-   "start": 71.2,
-   "end": 71.52,
-   "take": 6
+   "start": 64.22,
+   "end": 64.54,
+   "take": 5
   },
   {
    "w": "runs",
-   "start": 71.52,
-   "end": 71.86,
-   "take": 6
+   "start": 64.54,
+   "end": 64.86,
+   "take": 5
   },
   {
    "w": "your",
-   "start": 71.86,
-   "end": 72.04,
-   "take": 6
+   "start": 64.86,
+   "end": 65.04,
+   "take": 5
   },
   {
    "w": "Google",
-   "start": 72.04,
-   "end": 72.28,
-   "take": 6
+   "start": 65.04,
+   "end": 65.26,
+   "take": 5
   },
   {
    "w": "listing.",
-   "start": 72.28,
-   "end": 72.66,
-   "take": 6
+   "start": 65.26,
+   "end": 65.64,
+   "take": 5
   }
  ],
  "takes": [
@@ -1101,168 +1023,162 @@
   {
    "n": 2,
    "start": 7.2,
-   "end": 15.36,
-   "wpm": 184
+   "end": 15.52,
+   "wpm": 180
   },
   {
    "n": 3,
-   "start": 15.68,
-   "end": 19.84,
-   "wpm": 144
+   "start": 15.84,
+   "end": 38.56,
+   "wpm": 137
   },
   {
    "n": 4,
-   "start": 20.16,
-   "end": 42.8,
-   "wpm": 133
+   "start": 38.88,
+   "end": 50.08,
+   "wpm": 166
   },
   {
    "n": 5,
-   "start": 43.12,
-   "end": 54.96,
-   "wpm": 162
-  },
-  {
-   "n": 6,
-   "start": 55.28,
-   "end": 72.88,
-   "wpm": 164
+   "start": 50.4,
+   "end": 65.92,
+   "wpm": 170
   }
  ],
  "flags": [],
- "end": 72.66,
+ "end": 65.64,
  "heard": [
   {
    "w": "ChatGPT",
    "start": 0.0,
-   "end": 0.84,
-   "p": 0.863
+   "end": 0.82,
+   "p": 0.849
   },
   {
    "w": "just",
-   "start": 0.84,
+   "start": 0.82,
    "end": 1.34,
-   "p": 0.947
+   "p": 0.922
   },
   {
    "w": "opened",
    "start": 1.34,
    "end": 1.68,
-   "p": 0.992
+   "p": 0.989
   },
   {
    "w": "business",
    "start": 1.68,
    "end": 2.08,
-   "p": 0.886
+   "p": 0.919
   },
   {
    "w": "listings.",
    "start": 2.08,
    "end": 2.6,
-   "p": 0.996
+   "p": 0.995
   },
   {
    "w": "Claim",
-   "start": 3.02,
-   "end": 3.22,
-   "p": 0.99
+   "start": 2.96,
+   "end": 3.14,
+   "p": 0.937
   },
   {
    "w": "yours,",
-   "start": 3.22,
-   "end": 3.64,
-   "p": 0.987
+   "start": 3.14,
+   "end": 3.54,
+   "p": 0.985
   },
   {
    "w": "and",
-   "start": 3.94,
-   "end": 4.14,
-   "p": 0.997
+   "start": 3.8,
+   "end": 4.1,
+   "p": 0.996
   },
   {
    "w": "you",
-   "start": 4.14,
-   "end": 4.32,
-   "p": 0.994
+   "start": 4.1,
+   "end": 4.24,
+   "p": 0.989
   },
   {
    "w": "agree",
-   "start": 4.32,
-   "end": 4.64,
-   "p": 0.978
+   "start": 4.24,
+   "end": 4.56,
+   "p": 0.972
   },
   {
    "w": "that",
-   "start": 4.64,
-   "end": 4.88,
-   "p": 0.984
+   "start": 4.56,
+   "end": 4.8,
+   "p": 0.988
   },
   {
    "w": "OpenAI's",
-   "start": 4.88,
-   "end": 5.6,
-   "p": 0.978
+   "start": 4.8,
+   "end": 5.52,
+   "p": 0.97
   },
   {
    "w": "AI",
-   "start": 5.6,
-   "end": 5.94,
-   "p": 0.985
+   "start": 5.52,
+   "end": 5.84,
+   "p": 0.988
   },
   {
    "w": "may",
-   "start": 5.94,
-   "end": 6.24,
-   "p": 0.985
+   "start": 5.84,
+   "end": 6.16,
+   "p": 0.982
   },
   {
    "w": "call",
-   "start": 6.24,
-   "end": 6.48,
-   "p": 0.999
+   "start": 6.16,
+   "end": 6.42,
+   "p": 0.998
   },
   {
    "w": "you.",
-   "start": 6.48,
-   "end": 6.72,
-   "p": 0.999
+   "start": 6.42,
+   "end": 6.66,
+   "p": 0.998
   },
   {
    "w": "It's",
    "start": 7.2,
-   "end": 7.4,
-   "p": 0.961
+   "end": 7.38,
+   "p": 0.957
   },
   {
    "w": "in",
-   "start": 7.4,
-   "end": 7.5,
+   "start": 7.38,
+   "end": 7.48,
    "p": 0.998
   },
   {
    "w": "the",
-   "start": 7.5,
-   "end": 7.64,
-   "p": 0.995
+   "start": 7.48,
+   "end": 7.62,
+   "p": 0.997
   },
   {
    "w": "terms.",
-   "start": 7.64,
+   "start": 7.62,
    "end": 8.02,
    "p": 0.985
   },
   {
    "w": "The",
-   "start": 8.56,
-   "end": 8.64,
-   "p": 0.994
+   "start": 8.54,
+   "end": 8.66,
+   "p": 0.996
   },
   {
    "w": "calls",
-   "start": 8.64,
+   "start": 8.66,
    "end": 8.9,
-   "p": 0.997
+   "p": 0.998
   },
   {
    "w": "are",
@@ -1280,949 +1196,877 @@
    "w": "its",
    "start": 9.22,
    "end": 9.36,
-   "p": 0.951
+   "p": 0.965
   },
   {
    "w": "users",
    "start": 9.36,
-   "end": 9.76,
-   "p": 0.995
+   "end": 9.78,
+   "p": 0.997
   },
   {
    "w": "and",
-   "start": 9.76,
-   "end": 10.26,
-   "p": 0.331
+   "start": 9.78,
+   "end": 10.24,
+   "p": 0.527
   },
   {
    "w": "you",
-   "start": 10.26,
-   "end": 10.44,
-   "p": 0.991
+   "start": 10.24,
+   "end": 10.46,
+   "p": 0.995
   },
   {
    "w": "can",
-   "start": 10.44,
+   "start": 10.46,
    "end": 10.6,
-   "p": 0.993
+   "p": 0.997
   },
   {
    "w": "opt",
    "start": 10.6,
-   "end": 10.76,
+   "end": 10.8,
    "p": 0.997
   },
   {
    "w": "out.",
-   "start": 10.76,
-   "end": 11.08,
-   "p": 0.88
+   "start": 10.8,
+   "end": 11.1,
+   "p": 0.925
   },
   {
    "w": "You",
-   "start": 11.52,
-   "end": 11.66,
-   "p": 0.996
-  },
-  {
-   "w": "also",
-   "start": 11.66,
-   "end": 12.02,
-   "p": 0.994
-  },
-  {
-   "w": "agree",
-   "start": 12.02,
-   "end": 12.38,
-   "p": 0.992
-  },
-  {
-   "w": "not",
-   "start": 12.38,
-   "end": 12.68,
-   "p": 0.971
-  },
-  {
-   "w": "to",
-   "start": 12.68,
-   "end": 12.88,
+   "start": 11.56,
+   "end": 11.68,
    "p": 0.998
   },
   {
+   "w": "also",
+   "start": 11.68,
+   "end": 12.1,
+   "p": 0.995
+  },
+  {
+   "w": "agree",
+   "start": 12.1,
+   "end": 12.48,
+   "p": 0.989
+  },
+  {
+   "w": "not",
+   "start": 12.48,
+   "end": 12.8,
+   "p": 0.986
+  },
+  {
+   "w": "to",
+   "start": 12.8,
+   "end": 12.98,
+   "p": 0.999
+  },
+  {
    "w": "bring",
-   "start": 12.88,
-   "end": 13.04,
+   "start": 12.98,
+   "end": 13.16,
    "p": 0.999
   },
   {
    "w": "certain",
-   "start": 13.04,
-   "end": 13.4,
-   "p": 0.997
+   "start": 13.16,
+   "end": 13.52,
+   "p": 0.999
   },
   {
    "w": "claims",
-   "start": 13.4,
-   "end": 13.84,
+   "start": 13.52,
+   "end": 13.98,
    "p": 0.999
   },
   {
    "w": "against",
-   "start": 13.84,
-   "end": 14.2,
-   "p": 0.998
+   "start": 13.98,
+   "end": 14.36,
+   "p": 0.999
   },
   {
    "w": "OpenAI.",
-   "start": 14.2,
-   "end": 14.74,
-   "p": 0.813
+   "start": 14.36,
+   "end": 14.9,
+   "p": 0.802
   },
   {
-   "w": "It's",
-   "start": 15.68,
-   "end": 15.94,
-   "p": 0.965
+   "w": "Four",
+   "start": 15.84,
+   "end": 16.08,
+   "p": 0.767
   },
   {
-   "w": "called",
-   "start": 15.94,
-   "end": 16.12,
-   "p": 0.997
+   "w": "steps",
+   "start": 16.08,
+   "end": 16.42,
+   "p": 0.979
   },
   {
-   "w": "Business",
-   "start": 16.12,
-   "end": 16.6,
-   "p": 0.819
-  },
-  {
-   "w": "Hub",
-   "start": 16.6,
-   "end": 16.9,
-   "p": 0.832
-  },
-  {
-   "w": "and",
-   "start": 16.9,
-   "end": 17.32,
-   "p": 0.517
-  },
-  {
-   "w": "it's",
-   "start": 17.32,
-   "end": 17.5,
-   "p": 0.989
-  },
-  {
-   "w": "in",
-   "start": 17.5,
-   "end": 17.6,
-   "p": 0.997
-  },
-  {
-   "w": "beta,",
-   "start": 17.6,
-   "end": 17.94,
-   "p": 0.678
-  },
-  {
-   "w": "four",
-   "start": 18.62,
-   "end": 18.74,
-   "p": 0.894
-  },
-  {
-   "w": "steps.",
-   "start": 18.74,
-   "end": 19.14,
-   "p": 0.997
-  },
-  {
-   "w": "One,",
-   "start": 20.16,
-   "end": 20.5,
-   "p": 0.379
-  },
-  {
-   "w": "open",
-   "start": 21.02,
-   "end": 21.28,
-   "p": 0.91
-  },
-  {
-   "w": "Business",
-   "start": 21.28,
-   "end": 21.7,
-   "p": 0.921
-  },
-  {
-   "w": "Hub.",
-   "start": 21.7,
-   "end": 21.94,
-   "p": 0.93
-  },
-  {
-   "w": "Open",
-   "start": 22.58,
-   "end": 22.76,
-   "p": 0.976
-  },
-  {
-   "w": "AI",
-   "start": 22.76,
-   "end": 23.04,
-   "p": 0.46
-  },
-  {
-   "w": "says",
-   "start": 23.04,
-   "end": 23.36,
-   "p": 0.996
-  },
-  {
-   "w": "it's",
-   "start": 23.36,
-   "end": 23.6,
-   "p": 0.987
-  },
-  {
-   "w": "in",
-   "start": 23.6,
-   "end": 23.7,
-   "p": 0.997
-  },
-  {
-   "w": "your",
-   "start": 23.7,
-   "end": 23.84,
-   "p": 0.998
-  },
-  {
-   "w": "sidebar,",
-   "start": 23.84,
-   "end": 24.36,
-   "p": 0.976
-  },
-  {
-   "w": "or",
-   "start": 24.82,
-   "end": 24.98,
-   "p": 0.995
-  },
-  {
-   "w": "type",
-   "start": 24.98,
-   "end": 25.34,
-   "p": 0.986
-  },
-  {
-   "w": "chatgpt",
-   "start": 25.34,
-   "end": 26.22,
-   "p": 0.913
-  },
-  {
-   "w": ".com",
-   "start": 26.22,
-   "end": 26.98,
-   "p": 0.992
-  },
-  {
-   "w": "slash",
-   "start": 26.98,
-   "end": 27.4,
-   "p": 0.004
-  },
-  {
-   "w": "business",
-   "start": 27.4,
-   "end": 27.8,
-   "p": 0.91
-  },
-  {
-   "w": "hub.",
-   "start": 27.8,
-   "end": 28.14,
-   "p": 0.749
-  },
-  {
-   "w": "Two,",
-   "start": 28.64,
-   "end": 28.96,
-   "p": 0.995
-  },
-  {
-   "w": "search",
-   "start": 29.5,
-   "end": 29.74,
-   "p": 0.997
-  },
-  {
-   "w": "your",
-   "start": 29.74,
-   "end": 29.92,
-   "p": 0.998
-  },
-  {
-   "w": "business",
-   "start": 29.92,
-   "end": 30.24,
-   "p": 0.997
-  },
-  {
-   "w": "name.",
-   "start": 30.24,
-   "end": 30.58,
-   "p": 0.999
-  },
-  {
-   "w": "By",
-   "start": 30.98,
-   "end": 31.2,
-   "p": 0.998
-  },
-  {
-   "w": "continuing,",
-   "start": 31.2,
-   "end": 31.68,
-   "p": 0.996
-  },
-  {
-   "w": "you",
-   "start": 32.06,
-   "end": 32.16,
-   "p": 0.999
-  },
-  {
-   "w": "accept",
-   "start": 32.16,
-   "end": 32.5,
-   "p": 0.994
-  },
-  {
-   "w": "those",
-   "start": 32.5,
-   "end": 32.76,
-   "p": 0.999
-  },
-  {
-   "w": "terms.",
-   "start": 32.76,
-   "end": 33.2,
-   "p": 0.999
-  },
-  {
-   "w": "Three,",
-   "start": 33.94,
-   "end": 34.06,
-   "p": 0.998
-  },
-  {
-   "w": "prove",
-   "start": 34.54,
-   "end": 34.72,
-   "p": 0.998
-  },
-  {
-   "w": "it's",
-   "start": 34.72,
-   "end": 35.0,
-   "p": 0.995
-  },
-  {
-   "w": "yours",
-   "start": 35.0,
-   "end": 35.2,
-   "p": 0.998
-  },
-  {
-   "w": "with",
-   "start": 35.2,
-   "end": 35.48,
-   "p": 0.996
-  },
-  {
-   "w": "your",
-   "start": 35.48,
-   "end": 35.68,
-   "p": 0.999
-  },
-  {
-   "w": "business",
-   "start": 35.68,
-   "end": 35.98,
-   "p": 0.999
-  },
-  {
-   "w": "phone",
-   "start": 35.98,
-   "end": 36.32,
-   "p": 0.998
-  },
-  {
-   "w": "or",
-   "start": 36.32,
-   "end": 36.58,
-   "p": 0.888
-  },
-  {
-   "w": "email",
-   "start": 36.58,
-   "end": 36.96,
-   "p": 0.978
-  },
-  {
-   "w": "or",
-   "start": 36.96,
-   "end": 37.38,
-   "p": 0.79
-  },
-  {
-   "w": "your",
-   "start": 37.38,
-   "end": 37.56,
-   "p": 0.99
-  },
-  {
-   "w": "website.",
-   "start": 37.56,
-   "end": 37.88,
-   "p": 0.992
-  },
-  {
-   "w": "Four,",
-   "start": 38.5,
-   "end": 38.84,
-   "p": 0.997
-  },
-  {
-   "w": "pass",
-   "start": 39.32,
-   "end": 39.54,
-   "p": 0.998
-  },
-  {
-   "w": "an",
-   "start": 39.54,
-   "end": 39.7,
-   "p": 0.995
-  },
-  {
-   "w": "identity",
-   "start": 39.7,
-   "end": 40.1,
-   "p": 0.982
-  },
-  {
-   "w": "check",
-   "start": 40.1,
-   "end": 40.44,
-   "p": 0.998
-  },
-  {
-   "w": "before",
-   "start": 40.44,
-   "end": 40.78,
-   "p": 0.997
-  },
-  {
-   "w": "any",
-   "start": 40.78,
-   "end": 41.16,
-   "p": 1.0
-  },
-  {
-   "w": "change",
-   "start": 41.16,
-   "end": 41.56,
-   "p": 0.999
-  },
-  {
-   "w": "goes",
-   "start": 41.56,
-   "end": 41.8,
-   "p": 0.999
-  },
-  {
-   "w": "live.",
-   "start": 41.8,
-   "end": 42.2,
-   "p": 0.999
-  },
-  {
-   "w": "Here's",
-   "start": 43.12,
-   "end": 43.42,
-   "p": 0.987
-  },
-  {
-   "w": "the",
-   "start": 43.42,
-   "end": 43.5,
-   "p": 0.999
-  },
-  {
-   "w": "catch.",
-   "start": 43.5,
-   "end": 43.88,
-   "p": 0.998
-  },
-  {
-   "w": "OpenAI",
-   "start": 44.56,
-   "end": 44.96,
-   "p": 0.85
-  },
-  {
-   "w": "says",
-   "start": 44.96,
-   "end": 45.32,
-   "p": 0.994
-  },
-  {
-   "w": "local",
-   "start": 45.32,
-   "end": 45.7,
-   "p": 0.945
-  },
-  {
-   "w": "stores",
-   "start": 45.7,
-   "end": 46.08,
-   "p": 0.999
-  },
-  {
-   "w": "and",
-   "start": 46.08,
-   "end": 46.3,
-   "p": 0.997
-  },
-  {
-   "w": "restaurants",
-   "start": 46.3,
-   "end": 46.8,
-   "p": 0.998
-  },
-  {
-   "w": "can",
-   "start": 46.8,
-   "end": 47.04,
-   "p": 0.995
-  },
-  {
-   "w": "only",
-   "start": 47.04,
-   "end": 47.44,
+   "w": "to",
+   "start": 16.42,
+   "end": 16.64,
    "p": 0.999
   },
   {
    "w": "claim",
-   "start": 47.44,
-   "end": 47.74,
-   "p": 0.999
-  },
-  {
-   "w": "a",
-   "start": 47.74,
-   "end": 47.92,
-   "p": 0.999
-  },
-  {
-   "w": "listing",
-   "start": 47.92,
-   "end": 48.24,
-   "p": 1.0
-  },
-  {
-   "w": "that's",
-   "start": 48.24,
-   "end": 48.64,
-   "p": 0.996
-  },
-  {
-   "w": "already",
-   "start": 48.64,
-   "end": 48.96,
-   "p": 0.999
-  },
-  {
-   "w": "there.",
-   "start": 48.96,
-   "end": 49.42,
-   "p": 0.999
-  },
-  {
-   "w": "US",
-   "start": 49.96,
-   "end": 50.2,
-   "p": 0.776
-  },
-  {
-   "w": "only,",
-   "start": 50.2,
-   "end": 50.54,
-   "p": 0.902
-  },
-  {
-   "w": "for",
-   "start": 50.88,
-   "end": 51.0,
-   "p": 0.999
-  },
-  {
-   "w": "now.",
-   "start": 51.0,
-   "end": 51.24,
-   "p": 1.0
-  },
-  {
-   "w": "Not",
-   "start": 51.84,
-   "end": 52.0,
+   "start": 16.64,
+   "end": 16.9,
    "p": 0.997
   },
   {
-   "w": "listed?",
-   "start": 52.0,
-   "end": 52.36,
-   "p": 0.997
-  },
-  {
-   "w": "You",
-   "start": 52.84,
-   "end": 53.02,
+   "w": "it.",
+   "start": 16.9,
+   "end": 17.22,
    "p": 0.998
   },
   {
-   "w": "may",
-   "start": 53.02,
-   "end": 53.24,
-   "p": 0.996
+   "w": "One,",
+   "start": 17.7,
+   "end": 17.86,
+   "p": 0.798
   },
   {
-   "w": "not",
-   "start": 53.24,
-   "end": 53.44,
-   "p": 0.999
+   "w": "open",
+   "start": 18.42,
+   "end": 18.68,
+   "p": 0.946
   },
   {
-   "w": "be",
-   "start": 53.44,
-   "end": 53.62,
-   "p": 0.997
+   "w": "Business",
+   "start": 18.68,
+   "end": 19.1,
+   "p": 0.899
   },
   {
-   "w": "able",
-   "start": 53.62,
-   "end": 53.78,
-   "p": 1.0
+   "w": "Hub.",
+   "start": 19.1,
+   "end": 19.3,
+   "p": 0.949
   },
   {
-   "w": "to",
-   "start": 53.78,
-   "end": 53.96,
-   "p": 0.999
-  },
-  {
-   "w": "add",
-   "start": 53.96,
-   "end": 54.16,
-   "p": 0.997
-  },
-  {
-   "w": "it",
-   "start": 54.16,
-   "end": 54.3,
-   "p": 1.0
-  },
-  {
-   "w": "yet.",
-   "start": 54.3,
-   "end": 54.5,
-   "p": 0.993
-  },
-  {
-   "w": "What",
-   "start": 55.28,
-   "end": 55.46,
-   "p": 0.911
-  },
-  {
-   "w": "you",
-   "start": 55.46,
-   "end": 55.6,
-   "p": 0.866
-  },
-  {
-   "w": "get,",
-   "start": 55.6,
-   "end": 55.88,
+   "w": "It's",
+   "start": 19.8,
+   "end": 19.96,
    "p": 0.995
-  },
-  {
-   "w": "you",
-   "start": 56.4,
-   "end": 56.48,
-   "p": 0.965
-  },
-  {
-   "w": "manage",
-   "start": 56.48,
-   "end": 56.78,
-   "p": 0.99
-  },
-  {
-   "w": "your",
-   "start": 56.78,
-   "end": 57.0,
-   "p": 0.996
-  },
-  {
-   "w": "own",
-   "start": 57.0,
-   "end": 57.18,
-   "p": 0.999
-  },
-  {
-   "w": "info",
-   "start": 57.18,
-   "end": 57.5,
-   "p": 0.997
   },
   {
    "w": "in",
-   "start": 57.5,
-   "end": 57.72,
-   "p": 0.99
-  },
-  {
-   "w": "an",
-   "start": 57.72,
-   "end": 57.88,
-   "p": 0.993
-  },
-  {
-   "w": "app",
-   "start": 57.88,
-   "end": 58.1,
-   "p": 0.986
-  },
-  {
-   "w": "1",
-   "start": 58.1,
-   "end": 58.44,
-   "p": 0.931
-  },
-  {
-   "w": ".2",
-   "start": 58.44,
-   "end": 58.96,
+   "start": 19.96,
+   "end": 20.1,
    "p": 0.999
   },
   {
-   "w": "billion",
-   "start": 58.96,
-   "end": 59.46,
-   "p": 0.958
+   "w": "beta.",
+   "start": 20.1,
+   "end": 20.38,
+   "p": 0.841
   },
   {
-   "w": "people",
-   "start": 59.46,
-   "end": 59.9,
-   "p": 0.986
+   "w": "Open",
+   "start": 21.06,
+   "end": 21.18,
+   "p": 0.983
   },
   {
-   "w": "use",
-   "start": 59.9,
-   "end": 60.18,
+   "w": "AI",
+   "start": 21.18,
+   "end": 21.42,
+   "p": 0.422
+  },
+  {
+   "w": "says",
+   "start": 21.42,
+   "end": 21.72,
+   "p": 0.997
+  },
+  {
+   "w": "it's",
+   "start": 21.72,
+   "end": 21.96,
+   "p": 0.991
+  },
+  {
+   "w": "in",
+   "start": 21.96,
+   "end": 22.06,
    "p": 0.998
   },
   {
-   "w": "every",
-   "start": 60.18,
-   "end": 60.58,
-   "p": 0.995
-  },
-  {
-   "w": "week.",
-   "start": 60.58,
-   "end": 60.94,
+   "w": "your",
+   "start": 22.06,
+   "end": 22.24,
    "p": 0.999
   },
   {
-   "w": "What",
-   "start": 61.52,
-   "end": 61.64,
+   "w": "sidebar",
+   "start": 22.24,
+   "end": 22.72,
+   "p": 0.974
+  },
+  {
+   "w": "or",
+   "start": 22.72,
+   "end": 23.38,
+   "p": 0.513
+  },
+  {
+   "w": "type",
+   "start": 23.38,
+   "end": 23.78,
    "p": 0.994
   },
   {
-   "w": "you",
-   "start": 61.64,
-   "end": 61.78,
+   "w": "chatgpt",
+   "start": 23.78,
+   "end": 24.68,
+   "p": 0.908
+  },
+  {
+   "w": ".com",
+   "start": 24.68,
+   "end": 25.48,
+   "p": 0.993
+  },
+  {
+   "w": "slash",
+   "start": 25.48,
+   "end": 25.9,
+   "p": 0.005
+  },
+  {
+   "w": "business",
+   "start": 25.9,
+   "end": 26.3,
+   "p": 0.885
+  },
+  {
+   "w": "hub.",
+   "start": 26.3,
+   "end": 26.62,
+   "p": 0.823
+  },
+  {
+   "w": "Two,",
+   "start": 27.06,
+   "end": 27.42,
+   "p": 0.996
+  },
+  {
+   "w": "search",
+   "start": 28.02,
+   "end": 28.2,
+   "p": 0.997
+  },
+  {
+   "w": "your",
+   "start": 28.2,
+   "end": 28.4,
+   "p": 0.998
+  },
+  {
+   "w": "business",
+   "start": 28.4,
+   "end": 28.72,
+   "p": 0.998
+  },
+  {
+   "w": "name.",
+   "start": 28.72,
+   "end": 29.12,
    "p": 0.999
   },
   {
-   "w": "don't,",
-   "start": 61.78,
-   "end": 62.3,
+   "w": "Three,",
+   "start": 29.68,
+   "end": 29.8,
+   "p": 0.998
+  },
+  {
+   "w": "prove",
+   "start": 30.36,
+   "end": 30.52,
+   "p": 0.997
+  },
+  {
+   "w": "it's",
+   "start": 30.52,
+   "end": 30.82,
+   "p": 0.995
+  },
+  {
+   "w": "yours",
+   "start": 30.82,
+   "end": 31.0,
+   "p": 0.997
+  },
+  {
+   "w": "with",
+   "start": 31.0,
+   "end": 31.32,
+   "p": 0.997
+  },
+  {
+   "w": "your",
+   "start": 31.32,
+   "end": 31.5,
+   "p": 0.999
+  },
+  {
+   "w": "business",
+   "start": 31.5,
+   "end": 31.82,
+   "p": 0.999
+  },
+  {
+   "w": "phone",
+   "start": 31.82,
+   "end": 32.18,
+   "p": 0.999
+  },
+  {
+   "w": "or",
+   "start": 32.18,
+   "end": 32.42,
+   "p": 0.976
+  },
+  {
+   "w": "email",
+   "start": 32.42,
+   "end": 32.76,
+   "p": 0.991
+  },
+  {
+   "w": "or",
+   "start": 32.76,
+   "end": 33.22,
+   "p": 0.906
+  },
+  {
+   "w": "your",
+   "start": 33.22,
+   "end": 33.42,
+   "p": 0.998
+  },
+  {
+   "w": "website.",
+   "start": 33.42,
+   "end": 33.74,
+   "p": 0.996
+  },
+  {
+   "w": "Four,",
+   "start": 34.26,
+   "end": 34.66,
+   "p": 0.998
+  },
+  {
+   "w": "pass",
+   "start": 35.18,
+   "end": 35.38,
+   "p": 0.997
+  },
+  {
+   "w": "an",
+   "start": 35.38,
+   "end": 35.52,
+   "p": 0.995
+  },
+  {
+   "w": "identity",
+   "start": 35.52,
+   "end": 35.96,
+   "p": 0.986
+  },
+  {
+   "w": "check",
+   "start": 35.96,
+   "end": 36.3,
+   "p": 0.998
+  },
+  {
+   "w": "before",
+   "start": 36.3,
+   "end": 36.62,
+   "p": 0.998
+  },
+  {
+   "w": "any",
+   "start": 36.62,
+   "end": 37.02,
+   "p": 1.0
+  },
+  {
+   "w": "change",
+   "start": 37.02,
+   "end": 37.4,
+   "p": 0.999
+  },
+  {
+   "w": "goes",
+   "start": 37.4,
+   "end": 37.68,
+   "p": 0.999
+  },
+  {
+   "w": "live.",
+   "start": 37.68,
+   "end": 38.08,
+   "p": 0.999
+  },
+  {
+   "w": "Here's",
+   "start": 38.88,
+   "end": 39.2,
+   "p": 0.985
+  },
+  {
+   "w": "the",
+   "start": 39.2,
+   "end": 39.3,
+   "p": 0.999
+  },
+  {
+   "w": "catch.",
+   "start": 39.3,
+   "end": 39.68,
    "p": 0.998
   },
   {
    "w": "OpenAI",
-   "start": 62.76,
-   "end": 63.16,
-   "p": 0.917
+   "start": 40.34,
+   "end": 40.74,
+   "p": 0.856
   },
   {
    "w": "says",
-   "start": 63.16,
-   "end": 63.52,
+   "start": 40.74,
+   "end": 41.08,
+   "p": 0.995
+  },
+  {
+   "w": "local",
+   "start": 41.08,
+   "end": 41.5,
+   "p": 0.957
+  },
+  {
+   "w": "stores",
+   "start": 41.5,
+   "end": 41.9,
+   "p": 0.999
+  },
+  {
+   "w": "and",
+   "start": 41.9,
+   "end": 42.12,
+   "p": 0.997
+  },
+  {
+   "w": "restaurants",
+   "start": 42.12,
+   "end": 42.62,
+   "p": 0.998
+  },
+  {
+   "w": "can",
+   "start": 42.62,
+   "end": 42.9,
+   "p": 0.997
+  },
+  {
+   "w": "only",
+   "start": 42.9,
+   "end": 43.26,
+   "p": 0.999
+  },
+  {
+   "w": "claim",
+   "start": 43.26,
+   "end": 43.6,
+   "p": 0.999
+  },
+  {
+   "w": "a",
+   "start": 43.6,
+   "end": 43.82,
+   "p": 0.994
+  },
+  {
+   "w": "US",
+   "start": 43.82,
+   "end": 44.14,
+   "p": 0.625
+  },
+  {
+   "w": "listing",
+   "start": 44.14,
+   "end": 44.56,
+   "p": 0.997
+  },
+  {
+   "w": "that's",
+   "start": 44.56,
+   "end": 44.96,
    "p": 0.993
   },
   {
-   "w": "claiming",
-   "start": 63.52,
+   "w": "already",
+   "start": 44.96,
+   "end": 45.28,
+   "p": 0.998
+  },
+  {
+   "w": "there,",
+   "start": 45.28,
+   "end": 45.7,
+   "p": 0.997
+  },
+  {
+   "w": "for",
+   "start": 46.06,
+   "end": 46.28,
+   "p": 0.998
+  },
+  {
+   "w": "now.",
+   "start": 46.28,
+   "end": 46.54,
+   "p": 1.0
+  },
+  {
+   "w": "Not",
+   "start": 47.1,
+   "end": 47.26,
+   "p": 0.995
+  },
+  {
+   "w": "listed?",
+   "start": 47.26,
+   "end": 47.6,
+   "p": 0.997
+  },
+  {
+   "w": "You",
+   "start": 48.04,
+   "end": 48.28,
+   "p": 0.998
+  },
+  {
+   "w": "may",
+   "start": 48.28,
+   "end": 48.48,
+   "p": 0.994
+  },
+  {
+   "w": "not",
+   "start": 48.48,
+   "end": 48.66,
+   "p": 0.999
+  },
+  {
+   "w": "be",
+   "start": 48.66,
+   "end": 48.82,
+   "p": 0.998
+  },
+  {
+   "w": "able",
+   "start": 48.82,
+   "end": 48.98,
+   "p": 1.0
+  },
+  {
+   "w": "to",
+   "start": 48.98,
+   "end": 49.14,
+   "p": 0.999
+  },
+  {
+   "w": "add",
+   "start": 49.14,
+   "end": 49.3,
+   "p": 0.998
+  },
+  {
+   "w": "it",
+   "start": 49.3,
+   "end": 49.46,
+   "p": 0.999
+  },
+  {
+   "w": "yet.",
+   "start": 49.46,
+   "end": 49.62,
+   "p": 0.995
+  },
+  {
+   "w": "What",
+   "start": 50.4,
+   "end": 50.58,
+   "p": 0.921
+  },
+  {
+   "w": "you",
+   "start": 50.58,
+   "end": 50.72,
+   "p": 0.843
+  },
+  {
+   "w": "get",
+   "start": 50.72,
+   "end": 51.0,
+   "p": 0.993
+  },
+  {
+   "w": "You",
+   "start": 51.0,
+   "end": 51.62,
+   "p": 0.128
+  },
+  {
+   "w": "manage",
+   "start": 51.62,
+   "end": 51.92,
+   "p": 0.985
+  },
+  {
+   "w": "your",
+   "start": 51.92,
+   "end": 52.14,
+   "p": 0.995
+  },
+  {
+   "w": "own",
+   "start": 52.14,
+   "end": 52.32,
+   "p": 0.998
+  },
+  {
+   "w": "info",
+   "start": 52.32,
+   "end": 52.7,
+   "p": 0.996
+  },
+  {
+   "w": "in",
+   "start": 52.7,
+   "end": 52.92,
+   "p": 0.987
+  },
+  {
+   "w": "an",
+   "start": 52.92,
+   "end": 53.1,
+   "p": 0.991
+  },
+  {
+   "w": "app",
+   "start": 53.1,
+   "end": 53.28,
+   "p": 0.978
+  },
+  {
+   "w": "1",
+   "start": 53.28,
+   "end": 53.64,
+   "p": 0.972
+  },
+  {
+   "w": ".2",
+   "start": 53.64,
+   "end": 54.16,
+   "p": 0.998
+  },
+  {
+   "w": "billion",
+   "start": 54.16,
+   "end": 54.64,
+   "p": 0.918
+  },
+  {
+   "w": "people",
+   "start": 54.64,
+   "end": 55.08,
+   "p": 0.986
+  },
+  {
+   "w": "use",
+   "start": 55.08,
+   "end": 55.38,
+   "p": 0.997
+  },
+  {
+   "w": "every",
+   "start": 55.38,
+   "end": 55.82,
+   "p": 0.985
+  },
+  {
+   "w": "week.",
+   "start": 55.82,
+   "end": 56.18,
+   "p": 0.998
+  },
+  {
+   "w": "What",
+   "start": 56.76,
+   "end": 56.84,
+   "p": 0.988
+  },
+  {
+   "w": "you",
+   "start": 56.84,
+   "end": 56.98,
+   "p": 0.999
+  },
+  {
+   "w": "don't",
+   "start": 56.98,
+   "end": 57.7,
+   "p": 0.995
+  },
+  {
+   "w": "A",
+   "start": 57.7,
+   "end": 57.9,
+   "p": 0.684
+  },
+  {
+   "w": "guaranteed",
+   "start": 57.9,
+   "end": 58.38,
+   "p": 0.538
+  },
+  {
+   "w": "chat",
+   "start": 58.38,
+   "end": 58.74,
+   "p": 0.524
+  },
+  {
+   "w": "GPT",
+   "start": 58.74,
+   "end": 59.28,
+   "p": 0.719
+  },
+  {
+   "w": "recommends",
+   "start": 59.28,
+   "end": 59.7,
+   "p": 0.975
+  },
+  {
+   "w": "you",
+   "start": 59.7,
+   "end": 59.96,
+   "p": 0.99
+  },
+  {
+   "w": "more",
+   "start": 59.96,
+   "end": 60.32,
+   "p": 0.996
+  },
+  {
+   "w": "Read",
+   "start": 60.32,
+   "end": 60.9,
+   "p": 0.416
+  },
+  {
+   "w": "the",
+   "start": 60.9,
+   "end": 61.1,
+   "p": 0.995
+  },
+  {
+   "w": "terms,",
+   "start": 61.1,
+   "end": 61.42,
+   "p": 0.989
+  },
+  {
+   "w": "then",
+   "start": 61.64,
+   "end": 61.9,
+   "p": 0.988
+  },
+  {
+   "w": "decide",
+   "start": 61.9,
+   "end": 62.34,
+   "p": 0.992
+  },
+  {
+   "w": "Save",
+   "start": 62.34,
+   "end": 63.0,
+   "p": 0.677
+  },
+  {
+   "w": "this,",
+   "start": 63.0,
+   "end": 63.38,
+   "p": 0.994
+  },
+  {
+   "w": "and",
+   "start": 63.44,
+   "end": 63.78,
+   "p": 0.974
+  },
+  {
+   "w": "send",
+   "start": 63.78,
    "end": 63.94,
-   "p": 0.916
+   "p": 0.983
   },
   {
    "w": "it",
    "start": 63.94,
-   "end": 64.24,
-   "p": 0.997
-  },
-  {
-   "w": "doesn't",
-   "start": 64.24,
-   "end": 64.74,
-   "p": 0.978
-  },
-  {
-   "w": "guarantee",
-   "start": 64.74,
-   "end": 65.18,
-   "p": 0.998
-  },
-  {
-   "w": "ChatGPT",
-   "start": 65.18,
-   "end": 66.02,
-   "p": 0.814
-  },
-  {
-   "w": "recommends",
-   "start": 66.02,
-   "end": 66.52,
-   "p": 0.997
-  },
-  {
-   "w": "you",
-   "start": 66.52,
-   "end": 66.76,
-   "p": 0.998
-  },
-  {
-   "w": "more.",
-   "start": 66.76,
-   "end": 67.06,
-   "p": 0.999
-  },
-  {
-   "w": "Read",
-   "start": 67.52,
-   "end": 67.66,
-   "p": 0.998
-  },
-  {
-   "w": "the",
-   "start": 67.66,
-   "end": 67.86,
-   "p": 0.999
-  },
-  {
-   "w": "terms,",
-   "start": 67.86,
-   "end": 68.18,
-   "p": 0.994
-  },
-  {
-   "w": "then",
-   "start": 68.46,
-   "end": 68.72,
-   "p": 0.996
-  },
-  {
-   "w": "decide.",
-   "start": 68.72,
-   "end": 69.14,
-   "p": 0.994
-  },
-  {
-   "w": "Save",
-   "start": 69.84,
-   "end": 70.0,
-   "p": 0.998
-  },
-  {
-   "w": "this",
-   "start": 70.0,
-   "end": 70.3,
-   "p": 0.998
-  },
-  {
-   "w": "and",
-   "start": 70.3,
-   "end": 70.68,
-   "p": 0.651
-  },
-  {
-   "w": "send",
-   "start": 70.68,
-   "end": 70.9,
-   "p": 0.997
-  },
-  {
-   "w": "it",
-   "start": 70.9,
-   "end": 71.06,
-   "p": 0.993
+   "end": 64.08,
+   "p": 0.974
   },
   {
    "w": "to",
-   "start": 71.06,
-   "end": 71.2,
-   "p": 0.999
+   "start": 64.08,
+   "end": 64.22,
+   "p": 0.996
   },
   {
    "w": "whoever",
-   "start": 71.2,
-   "end": 71.52,
-   "p": 0.997
+   "start": 64.22,
+   "end": 64.54,
+   "p": 0.993
   },
   {
    "w": "runs",
-   "start": 71.52,
-   "end": 71.86,
-   "p": 0.999
+   "start": 64.54,
+   "end": 64.86,
+   "p": 0.998
   },
   {
    "w": "your",
-   "start": 71.86,
-   "end": 72.04,
-   "p": 0.997
+   "start": 64.86,
+   "end": 65.04,
+   "p": 0.992
   },
   {
    "w": "Google",
-   "start": 72.04,
-   "end": 72.28,
-   "p": 0.981
+   "start": 65.04,
+   "end": 65.26,
+   "p": 0.918
   },
   {
-   "w": "listing.",
-   "start": 72.28,
-   "end": 72.66,
-   "p": 0.987
+   "w": "listing",
+   "start": 65.26,
+   "end": 65.64,
+   "p": 0.965
   }
  ]
 }

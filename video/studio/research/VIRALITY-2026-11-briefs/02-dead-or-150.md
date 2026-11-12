@@ -26,6 +26,14 @@ Sample brief from research/VIRALITY-2026-11.md, written Nov 11, 2026. Not planne
 - Works later as the "quote duel" format on paper in VIRALITY-2026-11.md (the viewer guesses which price is right before beat 4). That is a new format and needs its own yes.
 - The send line (move 1), if approved: "Send this to someone waiting on a quote."
 
+## Staging notes (creative direction for cues and scene; no rule changed; from the read of the first v4 lesson's sheet, Nov 11)
+- Show the fight happening, not labels over two people standing still: the two face each other; something changes hands or is pushed back (the invoice, the estimate, the phone); each reacts on the beat (arms crossed, a step back, turning to leave).
+- One close shot on a face at the turn, and a second place or angle before the end. Faces must read at phone size: the refusal and the relief should not look the same.
+- A plate carries the number or the two or three words the picture needs. It never repeats the caption under it, and the caption does not cover a face.
+- Numbers move: the price is struck and the new one lands as it is said.
+- The last frame shows the two people, one a side. Never the same person twice.
+- One short line may be acted for each person, in our own words, with "Reenactment" on its first frame (formats.md "v4": an acted scene says so once). Say whose account it is once in the voice near the top and once in the caption, not on every sentence, as far as the facts gate allows.
+
 ## Claims and their sources
 | Claim, as said | Source | URL |
 |---|---|---|

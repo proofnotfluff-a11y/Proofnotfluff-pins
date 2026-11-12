@@ -985,7 +985,11 @@
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {},
+   "hold": {
+    "reason": "Todd, live chat, Nov 11, 2026, 6:40 pm: old format is not working, do not post; v4 only",
+    "at": "2026-11-11T19:42:08-05:00"
+   }
   },
   {
    "slug": "2026-11-25-members-go-first",
@@ -1042,7 +1046,11 @@
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {},
+   "hold": {
+    "reason": "Todd, live chat, Nov 11, 2026, 6:40 pm: old format is not working, do not post; v4 only",
+    "at": "2026-11-11T19:42:08-05:00"
+   }
   },
   {
    "slug": "2026-11-29-price-on-the-pile",
@@ -1062,7 +1070,11 @@
     "runtime_looks": "0c1f257215e2",
     "runtime_pixfont": "a8557997756e"
    },
-   "posts": {}
+   "posts": {},
+   "hold": {
+    "reason": "Todd, live chat, Nov 11, 2026, 6:40 pm: old format is not working, do not post; v4 only",
+    "at": "2026-11-11T19:42:08-05:00"
+   }
   }
  ]
 }

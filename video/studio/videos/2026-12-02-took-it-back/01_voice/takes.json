@@ -1,0 +1,88 @@
+{
+ "schema": "pnf.studio.takes.v1",
+ "requestedAt": "2026-11-12T12:25:18-05:00",
+ "voice": "W3pJy9ibur1FKUihVxzY",
+ "model": "eleven_v4",
+ "scriptSha256": "8fb05adf7f4cd3dc0b9c25316658a5c540a305fe2ea0d796f477c90da9efd6ee",
+ "voiceSha256": "1146bf8277d67fd36a883ad00eb66d5d4ff0ce765faee041b3882a5b8ccfee41",
+ "takes": [
+  {
+   "n": 1,
+   "file": "takes/01.mp3",
+   "sha256": "3c4b83422f21a36280acb85d46eaeba0b033a3a27eeddad3667d2d2dd916f9e9",
+   "seconds": 12.0,
+   "chars": 209,
+   "start": 0.0,
+   "end": 12.0,
+   "wpm": 145
+  },
+  {
+   "n": 2,
+   "file": "takes/02.mp3",
+   "sha256": "583f40e19c92e28594171e7d101f665c4d0a5b43f80fcf97d0123792471128a7",
+   "seconds": 9.04,
+   "chars": 148,
+   "start": 12.32,
+   "end": 21.36,
+   "wpm": 186
+  },
+  {
+   "n": 3,
+   "file": "takes/03.mp3",
+   "sha256": "fba28cd82b5ce91e656b65020d3cb35ab12fcd0986a154b54773a84906e59f96",
+   "seconds": 12.72,
+   "chars": 194,
+   "start": 21.68,
+   "end": 34.4,
+   "wpm": 175
+  },
+  {
+   "n": 4,
+   "file": "takes/04.mp3",
+   "sha256": "b8da9d8c1ad63d7ad07e827936c44b844023483c92c73d59b82b8e8bb3553d6f",
+   "seconds": 15.2,
+   "chars": 237,
+   "start": 34.72,
+   "end": 49.92,
+   "wpm": 166
+  },
+  {
+   "n": 5,
+   "file": "takes/05.mp3",
+   "sha256": "b74287e20c844c94aade07b55dd2d28b1ce3085f2fdeeadc53f4ee0fc3fca32a",
+   "seconds": 8.08,
+   "chars": 132,
+   "start": 50.24,
+   "end": 58.32,
+   "wpm": 156
+  },
+  {
+   "n": 6,
+   "file": "takes/06.mp3",
+   "sha256": "a02c72d0d06af6823a48d70b2132afa0b22c08a294aaf05268154e06f6c0a05a",
+   "seconds": 8.88,
+   "chars": 129,
+   "start": 58.64,
+   "end": 67.52,
+   "wpm": 128
+  },
+  {
+   "n": 7,
+   "file": "takes/07.mp3",
+   "sha256": "11925a3621155b178c2cb49bb45ece54847df63a79d489a05aed9da5e0aba1a4",
+   "seconds": 7.36,
+   "chars": 113,
+   "start": 67.84,
+   "end": 75.2,
+   "wpm": 179
+  }
+ ],
+ "chars": 1162,
+ "at": "2026-11-12T12:35:52-05:00",
+ "credits": {
+  "used": 13470,
+  "limit": 133571,
+  "tier": "creator",
+  "resetsAt": 1796089820
+ }
+}

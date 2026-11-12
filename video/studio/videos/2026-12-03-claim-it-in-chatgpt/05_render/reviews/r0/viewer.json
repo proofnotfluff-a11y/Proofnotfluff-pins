@@ -1,0 +1,42 @@
+{
+ "gate": "viewer",
+ "round": 0,
+ "pass": false,
+ "reviewer": "fresh opus agent, two steps",
+ "at": "2026-11-12",
+ "render": 2,
+ "score": {
+  "about": "OpenAI launched a beta Business Hub where you can claim your business listing in ChatGPT. Local businesses can only claim a listing that already exists, and claiming means accepting some terms you should read first.",
+  "gets": "Something to do, useful but thin: go to chatgpt.com/business-hub and search your name; and a fact: by continuing you agree OpenAI's AI may call your business, and there is a covenant not to sue (the most interesting bit, buried in the middle).",
+  "stop": "Maybe, for a second, on 'Your business in ChatGPT?'; the visuals add nothing.",
+  "watch_to_end": "no",
+  "leave_at": "about 36 s, at 'But first, the small print': the one action (the address) came at 28 to 33 s, then it turns into terms reading with tiny strips; 'We searched ours, and it's not listed' at 51 s kills it",
+  "confused": "whether a contractor counts as local; 'not listed ... offered to create one ... eligible online businesses' (can I make one or not); 'a dns record' never explained; the legal strips and most white strips too small to read; 'your listing person': who is that",
+  "matches_idea": "close",
+  "comment": "probably not; maybe 'So I give up my right to sue and their robot can call my shop? Pass.'",
+  "send": "most likely nobody; maybe the one guy who handles our Google Business profile",
+  "forecast": {
+   "stop": 3,
+   "hold": 2,
+   "finish": 1,
+   "send": 2
+  }
+ },
+ "reasons": [
+  "point not whole by the end of the hook: 'no guarantee' and 'eyes open' arrive at 79 s; state it in the first 5 s",
+  "leaves at 36 s: start the steps by 8 s, cut the setup to one line, get to the terms fast (the line that holds a trades owner)",
+  "51 to 60 s 'We searched ours, and it's not listed' deflates it: say plainly what a local shop that is not listed can do",
+  "15 to 22 s: a contractor cannot tell if trades count: name trades or say how to find out",
+  "68 to 71 s 'a dns record': jargon; cut it or say it plainly",
+  "47 to 51 s legal strips too small: put the plain words big on the plate",
+  "strips throughout unreadable at phone size: one key line per screen, enlarged",
+  "85 s 'your listing person': say 'whoever runs your Google listing' on screen too",
+  "send fails: lead with the terms point; give one reason to check today without promising more recommendations"
+ ],
+ "notes": [
+  "88 s is long for a four-step how-to",
+  "the character does the same wave and point throughout",
+  "too much text competing: plate, strip and caption at once",
+  "'DNS record' and 'Persona' unexplained"
+ ]
+}

@@ -1,12 +1,14 @@
 {
- "about": "Every fact, step and limit this update says or shows, with the source's own words. Sources: three OpenAI pages and Todd's own ChatGPT Business Hub screens, all read and captured on Nov 12, 2026 (Central) in the browser on his PC during the live chat he started for this lesson (2:46 pm). OpenAI's pages answer our page reader and WebFetch with a 403, so each was read in full as text in his browser and the passages used were captured there; the captures in 04_scene/assets/ are the record a reviewer checks. The lesson has no numbers. It names no person and no business but OpenAI, ChatGPT, Persona, Shopify, Google (the send line) and ProofNotFluff (ours). Not said, though the pages say it: Business Agents, product feeds, insights, the blue check, the claim invitation and locked listing cases, dispute of ownership, what can be edited after approval (website, description, category, logo, policies). Not claimed: that Business Hub is missing from anyone else's sidebar (one account was seen); that trades businesses are or are not 'local stores' (the help page's own words are used and the voice says 'might not'); anything about ranking beyond OpenAI's own 'doesn't guarantee'.",
+ "about": "Every fact, step and limit this update says or shows, with the source's own words. Sources: three OpenAI pages and Todd's own ChatGPT Business Hub screens, all read and captured on Nov 12, 2026 (Central) in the browser on his PC during the live chat he started for this lesson (2:46 pm). OpenAI's pages answer our page reader and WebFetch with a 403, so each was read in full as text in his browser and the passages used were captured there; the captures in 04_scene/assets/ are the record a reviewer checks. The lesson has one number: OpenAI's own 1.2 billion weekly users. It names no person and no business but OpenAI, ChatGPT, Persona, Shopify, Google (the send line) and ProofNotFluff (ours). Not said, though the pages say it: Business Agents, product feeds, insights, the blue check, the claim invitation and locked listing cases, dispute of ownership, what can be edited after approval (website, description, category, logo, policies). Not claimed: that Business Hub is missing from anyone else's sidebar (one account was seen); that trades businesses are or are not 'local stores' (the help page's own words, 'local stores and restaurants', are used; the voice asks 'A plumber or a roofer? Search and see.' and states nothing about trades); anything about ranking beyond OpenAI's own 'doesn't guarantee'. Round 1 (after the viewer and render critic failed render 2): the 'we searched ours' story, the DNS record, Persona's name, the email decision and the sidebar screen are no longer said or shown; nothing was added but OpenAI's weekly user figure and the line 'A plumber or a roofer? Search and see.', which claims nothing.",
  "format": "update",
  "changed": {
   "what": "OpenAI opened Businesses in ChatGPT and Business Hub in beta",
   "date": "2026-11-10",
   "daysBeforeBuild": 2
  },
- "numbers": {},
+ "numbers": {
+  "weeklyUsersBillion": 1.2
+ },
  "sources": [
   {
    "id": "announcement",
@@ -211,51 +213,52 @@
  ],
  "claims": [
   {
-   "said": "Your business might already be listed in ChatGPT",
-   "source": [
-    "terms",
-    "help"
-   ],
-   "words": "OpenAI may create, maintain, and display a business listing ... regardless of whether you claim, manage, or cease managing it; Local stores and restaurants can currently claim only an existing U.S. listing",
-   "note": "'might': no page says every business is listed"
-  },
-  {
-   "said": "OpenAI just opened Business Hub. It's in beta",
+   "said": "ChatGPT just opened business listings",
    "source": [
     "announcement"
    ],
-   "words": "We're introducing Businesses in ChatGPT in beta ... Through Business Hub",
-   "note": "'just': dated Nov 10, 2026, two days before the build; 'beta' is said aloud"
+   "words": "Introducing Businesses in ChatGPT; dated November 10, 2026",
+   "note": "'just': two days before the build"
   },
   {
-   "said": "it's where you claim your business and keep its info current",
+   "said": "One point two billion people use it every week",
    "source": [
     "announcement"
    ],
-   "words": "Claim your business, keep your information current"
+   "words": "the 1.2 billion people who use ChatGPT each week",
+   "note": "OpenAI's own figure"
   },
   {
-   "said": "Here's the catch if you're local. You might not be able to add yourself. OpenAI says local stores and restaurants can only claim a listing that's already there. U.S. only, for now",
+   "said": "But read the small print before you claim yours",
    "source": [
-    "help"
+    "hub",
+    "terms"
    ],
-   "words": "If you run an eligible online business, you may see an option to add it. Local stores and restaurants can currently claim only an existing U.S. listing.",
-   "note": "'for now' is the page's 'currently'; 'might not' because the page names local stores and restaurants and does not define other local businesses"
+   "words": "By continuing, you accept OpenAI's Businesses in ChatGPT Terms.",
+   "note": "advice, tied to the terms line on his own screen"
   },
   {
-   "said": "One. Go to Business Hub. OpenAI says it's in your ChatGPT sidebar",
+   "said": "It's called Business Hub, it's in beta, and it's where you claim your business",
+   "source": [
+    "announcement"
+   ],
+   "words": "We're introducing Businesses in ChatGPT in beta ... Through Business Hub, businesses can claim their business",
+   "note": "'beta' is said aloud"
+  },
+  {
+   "said": "One. Open Business Hub. OpenAI says it's in your sidebar",
    "source": [
     "help"
    ],
    "words": "Sign in to ChatGPT, and open Business Hub from the sidebar."
   },
   {
-   "said": "If not, type chatgpt.com slash business hub",
+   "said": "or type chatgpt.com slash business hub",
    "source": [
     "hub"
    ],
-   "words": "his sidebar did not list Business Hub; the address bar on his own screenshot reads chatgpt.com/business-hub (followed by the create flow's own ?create=1&creation_session=1)",
-   "note": "on screen the address is written exactly, with its hyphen: chatgpt.com/business-hub. Claude opened the Business Hub page at exactly https://chatgpt.com/business-hub in his signed-in Chrome at 3:06 pm (the browser tool's own log); the capture that shows an address bar is his 3:27 pm screenshot (asset hub-address)"
+   "words": "the address bar on his own screenshot reads chatgpt.com/business-hub (followed by the create flow's own ?create=1&creation_session=1)",
+   "note": "on screen the address is written exactly, with its hyphen: chatgpt.com/business-hub. Claude opened the Business Hub page at exactly https://chatgpt.com/business-hub in his signed-in Chrome at 3:06 pm (the browser tool's own log); the capture that shows an address bar is his 3:27 pm screenshot (asset hub-address). On his account the sidebar did not show Business Hub; the video says 'or' and claims nothing about other accounts."
   },
   {
    "said": "Two. Search your business name",
@@ -263,10 +266,10 @@
     "help",
     "hub"
    ],
-   "words": "Search for your business by name."
+   "words": "Search for your business by name.; the box reads 'Search business'"
   },
   {
-   "said": "By continuing, you accept OpenAI's terms",
+   "said": "Now the small print. By continuing, you accept OpenAI's terms",
    "source": [
     "hub"
    ],
@@ -285,52 +288,38 @@
     "terms"
    ],
    "words": "Covenant Not to Sue. You ... covenant and agree not to assert or commence ... any Covered Claim against OpenAI or any of its Affiliates",
-   "note": "'certain claims' stands for the terms' defined 'Covered Claim'; the video does not explain the definition and tells the viewer to read the small print"
+   "note": "'certain claims' stands for the terms' defined 'Covered Claim'; never 'you can't sue OpenAI'"
   },
   {
-   "said": "We searched ours, and it's not listed. It offered to create one",
+   "said": "Here's the catch. OpenAI says local stores and restaurants can only claim a listing that's already there. U.S. only, for now",
    "source": [
+    "help"
+   ],
+   "words": "Local stores and restaurants can currently claim only an existing U.S. listing.",
+   "note": "'for now' is the page's 'currently'. The catch is stated only for the page's own group, local stores and restaurants; the voice never says 'local businesses' or 'if you're local' (facts gate, script round after the rewrite)"
+  },
+  {
+   "said": "A plumber or a roofer? Search and see",
+   "source": [],
+   "words": "",
+   "note": "claims nothing: the help page's words are 'local stores and restaurants' and the video does not say whether a trade business counts; it tells the viewer to look"
+  },
+  {
+   "said": "Three. Prove it's yours with your business phone or email, or your website",
+   "source": [
+    "help",
     "hub"
    ],
-   "words": "Create 'ProofNotFluff'",
-   "note": "Todd typed the search himself in this live chat (3:09 pm: 'I'll type it myself')"
+   "words": "Use one of the verification methods offered for your business, such as phone, business email, website domain, or Shopify. Heading: Verify with your business phone. His own screenshot: Verify that you control proofnotfluff.com",
+   "note": "three of the page's examples; Shopify is left out; never 'every business gets all of them'"
   },
   {
-   "said": "which OpenAI says is for eligible online businesses",
+   "said": "Four. Pass an identity check before any change goes live",
    "source": [
     "help"
    ],
-   "words": "If you run an eligible online business, you may see an option to add it."
-  },
-  {
-   "said": "Three. Prove it's yours. OpenAI lists a business phone or email, your website domain, or Shopify",
-   "source": [
-    "help"
-   ],
-   "words": "Use one of the verification methods offered for your business, such as phone, business email, website domain, or Shopify. The method's own heading on the same page: Verify with your business phone",
-   "note": "'business phone' is the page's own name for the phone method (asset help-phone); the summary sentence says 'phone' (asset help-claim); 'a business phone or email' joins the page's 'phone' and 'business email'"
-  },
-  {
-   "said": "Ours asked for a DNS record",
-   "source": [
-    "hub"
-   ],
-   "words": "Verify that you control proofnotfluff.com. Add this TXT record to the DNS settings for proofnotfluff.com",
-   "note": "Todd went through the create flow himself and sent this screenshot at 3:27 pm"
-  },
-  {
-   "said": "Four. Before any change goes live, there's an identity check with Persona",
-   "source": [
-    "help"
-   ],
-   "words": "You'll need to complete identity verification with Persona before you can publish changes to your business information"
-  },
-  {
-   "said": "and OpenAI emails you its decision",
-   "source": [
-    "help"
-   ],
-   "words": "OpenAI reviews your Persona verification submission and emails you its decision or a request for more information."
+   "words": "You'll need to complete identity verification with Persona before you can publish changes to your business information; You may need a government-issued ID",
+   "note": "Persona is not named in the voice"
   },
   {
    "said": "And OpenAI says claiming it doesn't guarantee ChatGPT recommends you more",
@@ -346,5 +335,7 @@
    "note": "the send line; it claims nothing about Google"
   }
  ],
- "posts": "Queued first for the evening slot on Nov 12, 2026 (8:13 pm Central), two days after the announcement; the slug's date is its place in line, not its post day. If it has not posted by Nov 17, re-read the help page and the terms before it does, and drop 'just'."
+ "posts": "Queued first for the evening slot on Nov 12, 2026 (8:13 pm Central), two days after the announcement; the slug's date is its place in line, not its post day. If it has not posted by Nov 17, re-read the help page and the terms before it does, and drop 'just'.",
+ "weeklyUsersBillion": 1.2,
+ "weeklyUsersNote": "OpenAI's own figure in the announcement: 'the 1.2 billion people who use ChatGPT each week' (asset announce-beta). Said as 'one point two billion people use it every week'."
 }

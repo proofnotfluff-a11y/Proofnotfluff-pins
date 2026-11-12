@@ -1,0 +1,26 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "stage": "render 2: transcript, screen, captions",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "score": {
+  "numbers": 0,
+  "mismatches": 0
+ },
+ "advisories": [
+  "captions: 'by continuing, you accept OpenAI's Businesses in ChatGPT Terms' is a 9-word run from the Business Hub line: put it in quotation marks as the on-screen notice or reword it",
+  "tiktok caption step 3 drops 'OpenAI lists': it could read as a fixed menu",
+  "keep each limit plate paired with its clipping",
+  "brief.md table: the 'emails you its decision' row says no capture, but help-email.png exists",
+  "'just': re-read and drop it if it posts after Nov 17"
+ ],
+ "not_checked": [
+  "the live text of the three OpenAI pages (WebFetch 403): checked against the same-day captures, per facts.md",
+  "the bare address rests on the browser tool's 3:06 pm log"
+ ],
+ "sources_checked": [
+  "all 36 strips cropped and read against cues.md; key frames f00 to f26 and timelines 2 to 5 viewed: no personal name, email, phone, ID or other business readable"
+ ]
+}

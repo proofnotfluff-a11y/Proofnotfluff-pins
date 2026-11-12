@@ -1,0 +1,15 @@
+{
+ "gate": "facts",
+ "round": 2,
+ "stage": "script.md r3, one sentence re-checked before the voice ('Pass an identity check', was 'an ID check')",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "score": {
+  "numbers": 1,
+  "mismatches": 0
+ },
+ "advisories": [
+  "keep 'may' on any screen line about a government ID"
+ ]
+}

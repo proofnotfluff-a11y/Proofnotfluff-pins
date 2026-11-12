@@ -1,0 +1,23 @@
+{
+ "gate": "facts",
+ "round": 2,
+ "stage": "script.md r3 (the rewrite after viewer r0), before any voice",
+ "pass": false,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "score": {
+  "numbers": 1,
+  "mismatches": 1
+ },
+ "reasons": [
+  "'The catch if you're local.': applies the limit to every local business; the page says 'Local stores and restaurants'. Fix: 'Here's the catch.' and keep the next sentence as written"
+ ],
+ "advisories": [
+  "'just': drop it if it posts after Nov 17",
+  "the screen must write chatgpt.com/business-hub exactly",
+  "not every business is offered every verification method",
+  "keep 'U.S. only' attached to the local stores and restaurants sentence on screen",
+  "never 'you can't sue OpenAI'"
+ ],
+ "fix": "'The catch if you're local.' is now 'Here's the catch.'; 'Here's the small print.' is now 'Now the small print.' (so the two lines do not open alike). No other word changed."
+}

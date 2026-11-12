@@ -1,0 +1,30 @@
+{
+ "gate": "render-critic",
+ "round": 0,
+ "pass": false,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "render": 2,
+ "score": {
+  "faults": 14
+ },
+ "faults": [
+  {
+   "kind": "small-text",
+   "at": 0.5,
+   "what": "every clipping row of a real screen is under the v4 bar of about 60 px of capital height: measured 25 to 48 px (plates pass at 66 to 75 px). Worst: the sidebar menu 27 px grey on black, 'Create ProofNotFluff' 26 px, 'Search business' 25 px in the hook, the FAQ question 32 px, the second terms row 34 px. 14 scenes listed, 0.5 s to 84 s."
+  }
+ ],
+ "reasons": [
+  "item 5 FAIL: 14 small-text faults, all on clippings",
+  "items 1 to 4 PASS: hook words at 0.0 s; STEP 1 to 4 land within 0.15 s of the spoken number; layout inside the safe area, captions clear of eyes and scene words; the video ends 0.99 s after the last word",
+  "30 fps sweep of all 2,639 frames PASS: nothing vanishes for a frame"
+ ],
+ "notes": [
+  "Snow is drawn full body with legs hanging below the caption plate; the format asks for chest up",
+  "0.5 to 3.4 s: the teal wall matches his jacket, so his raised arm disappears",
+  "29.2 s: the new plate draws over the old sidebar clipping for 2 frames",
+  "the final 'b' of chatgpt.com/business-hub sits tight against the ring",
+  "some clippings look set rather than cropped; confirm against the assets (they are crops)"
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "gate": "facts",
+ "round": 2,
+ "stage": "script.md r3 after the fix, before any voice",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "score": {
+  "numbers": 1,
+  "mismatches": 0
+ },
+ "earlier": [
+  "'The catch if you're local.': gone; the line is 'Here's the catch.' and the next sentence keeps the page's own group"
+ ],
+ "advisories": [
+  "a screen line about a government ID must keep the page's 'may need'",
+  "the on-screen address must be exactly chatgpt.com/business-hub",
+  "never say or show that every business gets all the verification methods",
+  "keep 'U.S. only' tied to the local stores and restaurants sentence on screen",
+  "never 'you can't sue OpenAI'",
+  "'just': drop it if it posts after Nov 17"
+ ],
+ "not_checked": [
+  "the live OpenAI pages (403): the same-day captures were the source"
+ ]
+}

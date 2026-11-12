@@ -1,91 +1,76 @@
-# Cues: Your business might already be in ChatGPT (v4 update; OpenAI's announcement, help page and Businesses in ChatGPT Terms, and Todd's own Business Hub screens; Nov 12, 2026)
+# Cues: ChatGPT just opened business listings. Read the small print first. (v4 update; OpenAI's announcement, help page and Businesses in ChatGPT Terms, and Todd's own Business Hub screens; Nov 12, 2026; fix round 1 after viewer r0 and render critic r0)
 
 music: rooms sunny
 
-Every cue: a plain cut to a lined wall (ChatGPT slate, openai.com night, the help page green, the terms wine), a plate of big words up top, under it one to three paper clippings cut from the real captures in 04_scene/assets (never typed, never redrawn), and Snow from the chest up at the bottom, talking, his hand running along the newest clipping. A ring is an orange or red box around a clipping.
+Every cue: a plain cut to a lined wall (openai.com night, the help page green, ChatGPT slate, the terms wine), a plate of big words up top, under it one or two paper clippings cut from the real captures in 04_scene/assets (never typed, never redrawn), each drawn so its capital letters stand 62 px tall, and Snow from the chest up behind a counter at the bottom, talking, his hand running along the newest clipping. A ring is an orange or red box around a clipping.
 
-## hook "Your business might already" [sfx: pop]
-Frame 0, settled: the Business Hub page's own headline as a clipping, Snow close at the right, waving. The plate:
-YOUR BUSINESS / IN CHATGPT?. At 0.5 s the wall turns teal and the page's search box lands under the headline, Snow
-points (the first change). On "listed" the search box is ringed and a stamp: ALREADY / LISTED?.
+## hook "ChatGPT just opened business" [sfx: pop]
+Frame 0, settled: OpenAI's own headline, "Introducing Businesses in ChatGPT", as a clipping, Snow close at the right,
+waving. The plate: NEW IN CHATGPT. At 0.5 s the wall turns wine red and he points (the first change). On "listings"
+the headline is ringed and a stamp: NEW IN CHATGPT: / BUSINESS LISTINGS.
 
-## what "OpenAI just opened Business" [sfx: blip]
-openai.com: the date and the headline of the announcement as two clippings. The plate: OPENAI.COM, then on "Business" a
-stamp: BUSINESS HUB.
+## users "One point two billion" [sfx: stamp]
+openai.com: the announcement's own words "the 1.2 billion people", then on "use" "who use ChatGPT". A stamp:
+1.2 BILLION, then on "week": 1.2 BILLION / EVERY WEEK.
 
-## beta "It's in beta" [sfx: stamp]
-The announcement's own words "ChatGPT in beta," ringed. A stamp: IN BETA. On "claim" the subtitle's two halves replace
-it, and a stamp: CLAIM IT. / KEEP IT CURRENT.
+## fine "But read the small" [sfx: stamp]
+The title of OpenAI's terms page, "ChatGPT Terms". A stamp: FIRST: READ / THE SMALL PRINT.
 
-## who "Here's the catch if" [sfx: stamp]
-The help page: its bold line "If you can't find your business:". A stamp: THE CATCH, then on "local": THE CATCH /
-IF YOU ARE LOCAL. Snow shrugs.
+## what "It's called Business Hub" [sfx: blip]
+The announcement's own words "ChatGPT in beta,". The plate: BUSINESS HUB, on "beta" the clipping is ringed and a stamp:
+IN BETA, on "claim" the clipping "claim their business," replaces it and a stamp: CLAIM YOURS.
 
-## local "OpenAI says local stores" [sfx: blip]
-The help page's own words "Local stores and restaurants", and on "claim" the next line, "claim only an existing U.S.
-listing.". The plate: HELP.OPENAI.COM, then a stamp: EXISTING / LISTINGS ONLY.
-
-## usonly "U.S. only" [sfx: stamp]
-Close on "claim only an existing U.S. listing.", ringed. A stamp: U.S. ONLY / FOR NOW.
-
-## step1 "One. Go to Business" [payoff] [sfx: stamp]
-The first step. The help page's step, "open Business Hub from the sidebar.". A stamp: STEP 1 / BUSINESS HUB, then on
-"OpenAI": OPENAI SAYS: / THE SIDEBAR, the clipping ringed.
-
-## addr "If not, type" [sfx: blip]
-Our own ChatGPT sidebar (New chat to Explore, no Business Hub row) at the left. The plate: NOT THERE?. On "type" the
-address bar from our own screenshot replaces it, big and ringed, cut to chatgpt.com/business-hub, and a stamp:
-CHATGPT.COM / /BUSINESS-HUB.
+## step1 "One. Open Business Hub" [payoff] [sfx: stamp]
+The first step. The help page's own words "open Business Hub". A stamp: STEP 1 / OPEN THE HUB, on "OpenAI" the clipping
+is ringed and a stamp: OPENAI SAYS: / THE SIDEBAR, on "type" the Business Hub page's own headline line, "your business
+with ChatGPT", replaces it and a stamp: CHATGPT.COM / /BUSINESS-HUB.
 
 ## step2 "Two. Search your business" [sfx: stamp]
-The Business Hub search box. A stamp: STEP 2 / FIND YOUR NAME. On "But" the line under the box replaces it in two
-clippings ("By continuing, you accept OpenAI's" / "Businesses in ChatGPT Terms."), the second ringed red, and a stamp:
-FIRST: READ / THE SMALL PRINT.
+The Business Hub search box ("Search business"), ringed on "Search". A stamp: STEP 2: SEARCH.
 
-## terms "By continuing" [sfx: stamp]
-The terms page's own title. A stamp: CONTINUE = / ACCEPT TERMS.
+## terms "Now the small print" [sfx: stamp]
+The line under that search box, in two clippings: "By continuing," then on "continuing" "you accept OpenAI's", ringed red
+on "accept". A stamp: THE SMALL PRINT, then on "accept": YOU ACCEPT TERMS.
 
 ## calls "They say its AI" [sfx: blip]
-Section 4.1 of the terms: "you agree OpenAI's AI assistant", then on "call" "may make calls to you on behalf of our
-users.". The plate: OPENAI TERMS, then a stamp: ITS AI MAY / CALL YOU. On "opt" the clipping "You can opt out
-here." alone, and a stamp: YOU CAN / OPT OUT.
+Section 4.1 of the terms: "OpenAI's AI assistant", then on "call" "may make calls to you". The plate: THE TERMS SAY:,
+then a stamp: ITS AI MAY CALL.
+
+## opt "You can opt out" [sfx: stamp]
+The terms' own words "You can opt out here.". A stamp: YOU CAN OPT OUT. Snow shrugs.
 
 ## claims "And you agree not" [sfx: blip]
-Section 10.1: "10.1. Covenant Not to Sue.", then on "not" "agree not to assert or commence". The plate: TERMS 10.1,
-then on "certain" a stamp of the section's own name: COVENANT / NOT TO SUE. Snow shrugs.
+Section 10.1's own name as a clipping, "Covenant Not to Sue.", ringed red on "not". The plate: AND THIS:, then a stamp of
+that name: COVENANT / NOT TO SUE. Snow shrugs.
 
-## ours "We searched ours" [sfx: pop]
-Our own search: the box with ProofNotFluff typed in and the row under it, Create 'ProofNotFluff' (the Create row is
-on screen the whole cue). The plate: WE SEARCHED OURS, on "not" a stamp: NOT LISTED, on "create" the row is ringed
-and a stamp: CREATE ONE?.
+## catch "Here's the catch" [sfx: stamp]
+The help page's own words "Local stores" and "and restaurants". A stamp: THE CATCH. Snow shrugs.
 
-## online "which OpenAI says is" [sfx: blip]
-The help page: "If you run an eligible online business," and "may see an option to add it.". The plate:
-HELP.OPENAI.COM, then on "eligible" a stamp: FOR ELIGIBLE / ONLINE BUSINESS.
+## local "OpenAI says local stores" [sfx: blip]
+The same two clippings, then on "claim" "claim only an existing" replaces them and on "listing" "U.S. listing." joins it.
+The plate: OPENAI SAYS:, then on "claim" a stamp: EXISTING ONLY.
+
+## usonly "U.S. only" [sfx: stamp]
+"Local stores" and "and restaurants" stay up, so the limit keeps its owner, and "U.S. listing." sits beside Snow,
+ringed. A stamp: U.S. ONLY.
+
+## trade "A plumber or a" [sfx: stamp]
+Snow shrugs. A stamp: PLUMBER? ROOFER?. On "Search" the Business Hub search box lands and a stamp: SEARCH AND SEE.
 
 ## step3 "Three. Prove it's yours" [sfx: stamp]
-The help page's heading "Verify with your business phone". A stamp: STEP 3 / PROVE IT. On "phone" its list replaces the
-heading ("such as phone, business" / "email, website domain, or Shopify.") and a stamp: PHONE / OR EMAIL; on "website":
-YOUR DOMAIN / OR SHOPIFY.
+The help page's heading in two clippings, "Verify with your" and "business phone". A stamp: STEP 3: PROVE IT, on "phone":
+PHONE OR EMAIL, on "website" our own screenshot replaces them ("Verify that you control" / "proofnotfluff.com") and a
+stamp: OR YOUR WEBSITE.
 
-## dns "Ours asked for a" [sfx: stamp]
-Our own screenshot: "Verify that you control proofnotfluff.com" and "Add this TXT record to the DNS settings" (the
-record's value is not shown). A stamp: OURS ASKED FOR / A DNS RECORD.
-
-## step4 "Four. Before any change" [sfx: stamp]
-The help page: "identity verification with Persona" and "can publish changes to your business". A stamp: STEP 4 /
-BEFORE CHANGES, then on "identity": ID CHECK / WITH PERSONA, the first clipping ringed.
-
-## email "and OpenAI emails you" [sfx: stamp]
-The help page: "OpenAI reviews your Persona" and "and emails you its decision". A stamp: OPENAI EMAILS /
-ITS DECISION.
+## step4 "Four. Pass an identity" [sfx: stamp]
+The help page's own words in two clippings, "You may need a" and "government-issued ID,". A stamp: STEP 4: ID CHECK. On
+"before" the clipping "publish changes" replaces them and a stamp: BEFORE CHANGES.
 
 ## check "And OpenAI says claiming" [sfx: blip]
-The help page's own question, "Will claiming my business make ChatGPT recommend it more often?", and under it "It
-doesn't guarantee increased visibility". The plate: OPENAI SAYS:, then on "guarantee" the answer is ringed and a
-stamp: CLAIMING IT: / NO GUARANTEE. Snow shrugs.
+The help page's own answer in two clippings, "It doesn't guarantee" and "increased visibility", the first ringed red on
+"guarantee". The plate: OPENAI SAYS:, then a stamp: NO GUARANTEE. Snow shrugs.
 
 ## ask "Save this" [sfx: stamp]
-Snow in the middle, waving. A stamp: SAVE THIS. On "send": SEND IT TO YOUR / LISTING PERSON. On "runs" the four
-steps land as the last frame: 1 BUSINESS HUB / 2 SEARCH, READ / 3 PROVE IT / 4 ID CHECK. Ends 1 s after the
-last word.
+Snow in the middle, waving. A stamp: SAVE THIS. On "send": SEND TO WHOEVER / RUNS YOUR / GOOGLE LISTING. On "Google" the
+four steps land as the last frame: 1 OPEN THE HUB / 2 SEARCH, READ / 3 PROVE IT / 4 ID CHECK. Ends 1 s after the last
+word.

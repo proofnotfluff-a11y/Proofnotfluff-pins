@@ -1077,6 +1077,26 @@
    }
   },
   {
+   "slug": "2026-12-02-took-it-back",
+   "readyAt": "2026-11-12T13:37:32-05:00",
+   "commit": "e0fc9dee441cf7ff44e9f5e8018b412662df88e1",
+   "fingerprints": {
+    "script": "cd42f3621ca3",
+    "takes": "9a699152696f",
+    "words": "8f48a22731d1",
+    "cues": "137102f67e72",
+    "scene": "9a6c68ea06bb",
+    "data": "47335f3aaa37",
+    "captions": "f02851fc502f",
+    "mouth": "9b10823edec8",
+    "runtime_kit": "e963af86df8b",
+    "runtime_player": "d87eb03f881c",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
+  },
+  {
    "slug": "2026-12-01-where-100-goes",
    "readyAt": "2026-11-11T22:26:48-05:00",
    "commit": "ca7f722d36316a2d26d84f36d534b7ebee6f0bfe",

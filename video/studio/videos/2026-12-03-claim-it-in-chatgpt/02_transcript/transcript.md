@@ -1,71 +1,64 @@
 # Transcript: 2026-12-03-claim-it-in-chatgpt
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 168 words, 70.8 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 181 words, 72.7 s of voice.
 
 ## Flags
 none
 
 ## Pace per take (target 160 to 195 wpm)
 ```
-  01     0.0 s  155 wpm  
-  02     9.2 s  175 wpm  
-  03    14.3 s  104 wpm  slow: rewrite it as talk, then speak --take 3
-  04    23.8 s  147 wpm  slow: rewrite it as talk, then speak --take 4
-  05    40.9 s  147 wpm  slow: rewrite it as talk, then speak --take 5
-  06    53.0 s  147 wpm  slow: rewrite it as talk, then speak --take 6
-  07    62.7 s  159 wpm  
+  01     0.0 s  140 wpm  slow: rewrite it as talk, then speak --take 1
+  02     7.2 s  184 wpm  
+  03    15.7 s  144 wpm  slow: rewrite it as talk, then speak --take 3
+  04    20.2 s  133 wpm  slow: rewrite it as talk, then speak --take 4
+  05    43.1 s  162 wpm  
+  06    55.3 s  164 wpm  
 ```
 
 ## Words
 
 `00:00.0` ChatGPT just opened business listings.
 
-`00:03.0` One point two billion people use it every week.
+`00:03.0` Claim yours, and you agree that OpenAI's AI may call you.
 
-`00:06.3` But read the small print before you claim yours.
+`00:07.2` It's in the terms.
 
-`00:09.2` It's called Business Hub, it's in beta, and it's where you claim your business.
+`00:08.6` The calls are for its users, and you can opt out.
 
-`00:14.3` One.
+`00:11.5` You also agree not to bring certain claims against OpenAI.
 
-`00:15.3` Open Business Hub.
+`00:15.7` It's called Business Hub, and it's in beta.
 
-`00:17.0` OpenAI says it's in your sidebar, or type chatgpt.com slash business hub.
+`00:18.6` Four steps.
 
-`00:23.8` Two.
+`00:20.2` One, open Business Hub.
 
-`00:24.8` Search your business name.
+`00:22.6` OpenAI says it's in your sidebar, or type chatgpt.com slash business hub.
 
-`00:26.5` Now the small print.
+`00:28.6` Two, search your business name.
 
-`00:27.9` By continuing, you accept OpenAI's terms.
+`00:31.0` By continuing, you accept those terms.
 
-`00:31.2` They say its AI assistant may call your business for its users.
+`00:33.9` Three, prove it's yours with your business phone or email, or your website.
 
-`00:35.3` You can opt out.
+`00:38.5` Four, pass an identity check before any change goes live.
 
-`00:36.6` And you agree not to bring certain claims against OpenAI.
+`00:43.1` Here's the catch.
 
-`00:40.9` Here's the catch.
+`00:44.6` OpenAI says local stores and restaurants can only claim a listing that's already there.
 
-`00:42.3` OpenAI says local stores and restaurants can only claim a listing that's already there.
+`00:50.0` U.S.
 
-`00:47.7` U.S.
+`00:50.2` only, for now.
 
-`00:48.0` only, for now.
+`00:51.8` Not listed?
 
-`00:49.7` A plumber or a roofer?
+`00:52.8` You may not be able to add it yet.
 
-`00:51.6` Search and see.
+`00:55.3` What you get: you manage your own info in an app one point two billion people use every week.
 
-`00:53.0` Three.
+`01:01.5` What you don't: OpenAI says claiming it doesn't guarantee ChatGPT recommends you more.
 
-`00:54.0` Prove it's yours with your business phone or email, or your website.
+`01:07.5` Read the terms, then decide.
 
-`00:58.4` Four.
-
-`00:59.0` Pass an identity check before any change goes live.
-
-`01:02.7` And OpenAI says claiming it doesn't guarantee ChatGPT recommends you more.
-
-`01:07.8` Save this, and send it to whoever runs your Google listing.
+`01:09.8` Save this, and send it to whoever runs your Google listing.

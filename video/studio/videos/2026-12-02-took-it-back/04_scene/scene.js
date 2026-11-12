@@ -142,6 +142,10 @@ const house = (k, dim = 0, z = 1) => {
 /* the split wall: the homeowner's side left (wine), the contractor's side right (slate) */
 const split = (k) => { const P = px(k); P(0, 0, 180, 640, WINE); P(180, 0, 180, 640, '#4A4E5A'); P(178, 0, 4, 640, INK); for (let y = 20; y < 640; y += 22) { P(0, y + 11, 178, 1, '#5A2432'); P(182, y, 178, 1, '#6B7080'); } };
 
+/* a plain lined wall in one color (each side's own place in the close shots at the end and in the hook) */
+const wall = (k, c, c2) => { const P = px(k); P(0, 0, 360, 640, c); for (let y = 20; y < 640; y += 22) P(0, y, 360, 1, c2); };
+/* a second person as a plain dark shape (the business partner: no source describes them, so no face and no clothes) */
+const shape2 = (k, x, y, s = 1) => { const c = k.ctx, q = (v) => Math.round(v / 3) * 3; c.fillStyle = '#2B2033'; c.fillRect(q(x - 45 * s), q(y - 330 * s), q(90 * s), q(90 * s)); c.fillRect(q(x - 75 * s), q(y - 235 * s), q(150 * s), q(235 * s)); };
 /* the cast. Close shots from the waist up, feet far below the frame (feet 1700 or so), faces between y 700 and 1100. */
 const pro = (k, x, sc, pose, o = {}) => k.snow(x, o.feet || 1150, Object.assign({scale: sc, pose, face: 1, talk: false}, o));
 const owner = (k, x, sc, pose, mood, o = {}) => k.client(x, o.feet || 1150, Object.assign({role: 'homeowner', scale: sc, pose, mood, face: -1}, o));
@@ -181,25 +185,24 @@ window.SCENE = {
   images: [],
   trauma: {smash: 0.6, result: 0.7, jail: 0.5},
   sections: {
-    /* ---- hook: frame 0 is the wrong, close: she holds back $4,225, he stands there with the hammer; at 0.5 s her ---- */
-    /* alone; on "So" him alone, the hammer up ---- */
+    /* ---- hook: frame 0 is the wrong, settled: him at the shower, the hammer up, and what she held back; at 0.5 s her, ---- */
+    /* arms folded, on her own wall (viewer r0: the hammer belongs in frame 0; facts r0: no source puts her in the room) ---- */
     hook: (k, T) => {
       const tHer = 0.5, tHim = Math.max(1.4, W(k, 'hook', /^so/i, 2.2));
       const rows = [['SHE HELD BACK', 132, CREAM], ['$4,225', 198, GOLD]];
       if (T < tHer) {
         bath(k, 'new', 0.15, 2);
-        owner(k, 260, 2.1, 'refuse', 'cross', {feet: 1720, face: 1});
-        proHammer(k, 770, 1.9, 'stand', {feet: 1720, face: -1});
+        proHammer(k, 470, 2.2, 'stand', {feet: 1790, up: 1.15});
         plate(k, rows, 264);
       } else if (T < tHim) {
         k.cut(tHer);
-        bath(k, 'new', 0.22, 2);
+        wall(k, WINE, '#5A2432');
         owner(k, 540, 2.4, 'refuse', 'cross', {feet: 1800, face: -1});
         plate(k, rows, 264);
       } else {
         k.cut(tHim);
         bath(k, 'new', 0.22, 2);
-        proHammer(k, 500, 2.2, 'stand', {feet: 1790, up: 1.15 + 0.1 * Math.sin(T * 6)});
+        proHammer(k, 500, 2.4, 'stand', {feet: 1850, up: 1.15 + 0.1 * Math.sin(T * 6)});
         steps(k, T, [[tHim, [['HE CAME BACK', 132, CREAM], ['WITH A HAMMER', 132, RED]], 1]]);
       }
       return {host: false};
@@ -225,41 +228,34 @@ window.SCENE = {
     /* ---- her: her side, close ---- */
     her: (k, T) => {
       k.cut(k.S('her'));
-      bath(k, 'new', 0.3, 2);
+      wall(k, WINE, '#5A2432');
       owner(k, 560, 2.3, 'refuse', 'cross', {feet: 1790, face: -1});
       plate(k, [['SHE SAYS:', 132, CREAM], ['NOT HAPPY', 132, GOLD], ['WITH THE WORK', 132, GOLD]], 264);
       return {host: false};
     },
-    /* ---- herline: her acted line, closer, said once to be a reenactment ---- */
+    /* ---- herline: her acted line, closer; the plate says whose side and that it is a reenactment (viewer r0) ---- */
     herline: (k, T) => {
       k.cut(k.S('herline'));
-      bath(k, 'new', 0.45, 2);
+      wall(k, '#5A2432', WINE);
       owner(k, 540, 2.9, 'talk', 'calm', {feet: 2080, face: -1, talk: true});
-      plate(k, [['REENACTMENT', 132, ORANGE]], 264);
+      plate(k, [['HER SIDE', 132, CREAM], ['REENACTMENT', 132, ORANGE]], 264);
       return {host: false};
     },
-    /* ---- him: his side, close, the hammer on his shoulder ---- */
-    him: (k, T) => {
-      k.cut(k.S('him'));
-      bath(k, 'new', 0.3, 2);
-      proHammer(k, 520, 2.2, 'stand', {feet: 1780});
-      plate(k, [['HE SAW IT', 132, CREAM], ['DIFFERENTLY', 132, RED]], 264);
-      return {host: false};
-    },
-    /* ---- himline: his acted line, closer ---- */
+    /* ---- himline: his acted line, close, the hammer on his shoulder ---- */
     himline: (k, T) => {
       k.cut(k.S('himline'));
-      bath(k, 'new', 0.45, 2);
+      wall(k, '#4A4E5A', '#6B7080');
       proHammer(k, 520, 2.8, 'talk', {feet: 2060, talk: true});
-      plate(k, [['REENACTMENT', 132, ORANGE]], 264);
+      plate(k, [['HIS SIDE', 132, CREAM], ['REENACTMENT', 132, ORANGE]], 264);
       return {host: false};
     },
-    /* ---- room: the hallway, the door open, him in the doorway ---- */
+    /* ---- room: the hallway, the door open, him in the doorway, his partner a plain shape behind him ---- */
     room: (k, T) => {
       k.cut(k.S('room'));
       hall(k, 0.1);
-      proHammer(k, 560, 1.25, 'stand', {feet: 1150, face: -1});
-      plate(k, [['HER ROOMMATE', 132, CREAM], ['LET THEM IN', 132, GOLD]], 264);
+      shape2(k, 640, 1150, 1.2);
+      proHammer(k, 500, 1.25, 'stand', {feet: 1150, face: -1});
+      plate(k, [['THE ROOMMATE', 132, CREAM], ['LET THEM IN', 132, GOLD]], 264);
       return {host: false};
     },
     /* ---- film: through the roommate's phone: corner marks, a red dot that blinks ---- */
@@ -271,7 +267,7 @@ window.SCENE = {
       const P = px(k);
       [[20, 236], [326, 236], [20, 600], [326, 600]].forEach(([x, y], i) => { P(x, y, 14, 3, CREAM); P(i % 2 ? x + 11 : x, i < 2 ? y : y - 11, 3, 14, CREAM); });
       if (Math.floor((T - t0) * 3) % 2 === 0) { P(36, 250, 12, 12, INK); P(38, 252, 8, 8, RED); }
-      plate(k, [['THE ROOMMATE', 132, CREAM], ['IS FILMING', 132, RED]], 264);
+      plate(k, [['AND FILMED IT', 132, RED]], 264);
       return {host: false};
     },
     /* ---- smash: he swings at the tile, chips fly on each hit ---- */
@@ -303,11 +299,12 @@ window.SCENE = {
       plate(k, [['HIS COMPANY', 132, CREAM], ['CALLED IT', 132, CREAM], ['REPOSSESSING', 132, RED]], 264);
       return {host: false};
     },
-    /* ---- viral: a phone, the clip playing, hearts rising ---- */
+    /* ---- viral: a phone, the clip playing, hearts rising; the phone shakes a little (viewer r0: dead air) ---- */
     viral: (k, T) => {
-      const t0 = k.S('viral');
+      const t0 = k.S('viral'), c = k.ctx;
       k.cut(t0);
-      phone(k, T);
+      px(k)(0, 0, 360, 640, NIGHT);
+      c.save(); c.translate(Math.round(Math.sin(T * 31) * 2) * 3, Math.round(Math.cos(T * 23) * 2) * 3); phone(k, T); c.restore();
       steps(k, T, [[t0 + 0.1, [['MILLIONS', 198, GOLD], ['OF VIEWS', 132, CREAM]], 1]]);
       return {host: false};
     },
@@ -328,12 +325,35 @@ window.SCENE = {
       plate(k, [['POLICE', 198, CREAM], ['LOOKED INTO IT', 132, GOLD]], 264);
       return {host: false};
     },
-    /* ---- owner: a statement sheet; what one owner told police ---- */
-    owner: (k, T) => {
-      const t0 = k.S('owner'), tW = W(k, 'owner', /^wished/i, 2.4);
+    /* ---- partner: a statement sheet; what his partner told police ---- */
+    partner: (k, T) => {
+      const t0 = k.S('partner'), tW = W(k, 'partner', /^wished/i, 2.0);
       k.cut(t0);
       push(k, T, t0, () => sheet(k, false), 0.06);
-      steps(k, T, [[t0, [['ONE OWNER', 132, CREAM], ['TOLD POLICE', 132, CREAM]]], [tW, [['THEY WISHED', 132, CREAM], ['THEY HAD GONE', 132, CREAM], ['THE LEGAL ROUTE', 132, GOLD]]]]);
+      steps(k, T, [[t0, [['HIS PARTNER', 132, CREAM], ['TOLD POLICE:', 132, CREAM]]], [tW, [['THEY WISHED', 132, CREAM], ['THEY HAD GONE', 132, CREAM], ['THE LEGAL ROUTE', 132, GOLD]]]]);
+      return {host: false};
+    },
+    /* ---- rule: the courthouse, wide: there was a legal route ---- */
+    rule: (k, T) => {
+      k.cut(k.S('rule'));
+      push(k, T, k.S('rule'), () => house(k, 0.1, 1), 0.1, 900);
+      plate(k, [['THERE WAS', 132, CREAM], ['A LEGAL ROUTE', 132, GOLD]], 264);
+      return {host: false};
+    },
+    /* ---- court: closer on the courthouse; the limit lands ---- */
+    court: (k, T) => {
+      const t0 = k.S('court'), tUp = W(k, 'court', /^up$/i, 2.8);
+      k.cut(t0);
+      push(k, T, t0, () => house(k, 0.3, 2), 0.06, 900);
+      steps(k, T, [[t0, [['SMALL CLAIMS', 132, CREAM], ['COURT TAKES', 132, CREAM]]], [tUp, [['SMALL CLAIMS', 132, CREAM], ['COURT TAKES', 132, CREAM], ['UP TO $7,500', 132, GOLD]]]]);
+      return {host: false};
+    },
+    /* ---- fit: the courthouse door, close; his bill under the limit ---- */
+    fit: (k, T) => {
+      const t0 = k.S('fit');
+      k.cut(t0);
+      push(k, T, t0, () => house(k, 0.45, 3), 0.12, 1000);
+      steps(k, T, [[t0 + 0.1, [['HIS $4,225', 132, TEAL], ['FIT', 198, CREAM]], 1]]);
       return {host: false};
     },
     /* ---- warrants: the sheet, sealed ---- */
@@ -353,14 +373,12 @@ window.SCENE = {
       steps(k, T, [[t0, [['HE PLEADED', 132, CREAM]]], [tG, [['GUILTY PLEA', 132, CREAM], ['A FELONY', 198, RED]]]]);
       return {host: false};
     },
-    /* ---- jail: the cell ---- */
+    /* ---- jail: the sentence, at the bench: the gavel comes down (facts r0: a cell would read as time served) ---- */
     jail: (k, T) => {
       const t0 = k.S('jail');
       k.cut(t0);
-      cell(k);
-      pro(k, 540, 2.2, 'stand', {feet: 1800});
-      bars(k);
-      steps(k, T, [[t0 + 0.1, [['15 DAYS', 198, GOLD], ['IN JAIL', 132, CREAM]], 1]]);
+      push(k, T, t0, () => court(k, T, t0 + 0.1, 0.1, 3), 0.06, 900);
+      steps(k, T, [[t0 + 0.1, [['SENTENCE:', 132, CREAM], ['15 DAYS', 198, GOLD], ['IN JAIL', 132, CREAM]], 1]]);
       return {host: false};
     },
     /* ---- prob: the courtroom, wider ---- */
@@ -379,74 +397,42 @@ window.SCENE = {
       plate(k, [['THE COMPANY:', 132, CREAM], ['NO LONGER', 132, RED], ['ACTIVE', 132, RED]], 264);
       return {host: false};
     },
-    /* ---- rule: the courthouse, wide ---- */
-    rule: (k, T) => {
-      k.cut(k.S('rule'));
-      push(k, T, k.S('rule'), () => house(k, 0.1, 1), 0.1, 900);
-      plate(k, [['HERE IS WHAT', 132, CREAM], ['STINGS', 198, RED]], 264);
-      return {host: false};
-    },
-    /* ---- court: closer on the courthouse; the limit lands ---- */
-    court: (k, T) => {
-      const t0 = k.S('court'), tUp = W(k, 'court', /^up$/i, 2.8);
-      k.cut(t0);
-      push(k, T, t0, () => house(k, 0.3, 2), 0.06, 900);
-      steps(k, T, [[t0, [['SMALL CLAIMS', 132, CREAM], ['COURT TAKES', 132, CREAM]]], [tUp, [['SMALL CLAIMS', 132, CREAM], ['COURT TAKES', 132, CREAM], ['UP TO $7,500', 132, GOLD]]]]);
-      return {host: false};
-    },
-    /* ---- fit: two bars: the limit, and his bill inside it ---- */
-    fit: (k, T) => {
-      const t0 = k.S('fit'), P = px(k), q = clamp((T - t0 - 0.15) / 0.4);
-      k.cut(t0);
-      P(0, 0, 360, 640, NIGHT); for (let i = 0; i < 30; i++) P((i * 67) % 360, (i * 131) % 640, 2, 2, PLUM);
-      push(k, T, t0, () => {   /* QA r0: the bars sat flat 1.3 s; a slow push, a glint running along the limit, his bar breathing */
-        const w = Math.round(278 * 4225 / 7500 * q), g = Math.round(((T - t0) * 150) % 300);
-        P(38, 300, 284, 40, INK); P(41, 303, 278, 34, GOLD); if (g < 262) P(41 + g, 303, 16, 34, CREAM);
-        P(38, 352, w + 6, 40, INK); P(41, 355, w, 34, TEAL); if (q >= 1) P(41, 355, w, 6 + Math.round(3 * (1 + Math.sin(T * 9))), '#9FE0D2');
-        for (let y = 290; y < 404; y += 12) P(318, y + Math.round(((T - t0) * 24) % 12), 3, 7, RED);
-      }, 0.1, 1000);
-      steps(k, T, [[t0 + 0.1, [['UP TO $7,500', 132, GOLD], ['HIS $4,225', 132, TEAL], ['FIT', 198, CREAM]], 1]], {}, 264);
-      return {host: false};
-    },
-    /* ---- ask: the frame splits, one person a side; her case first ---- */
+    /* ---- ask: her, close, on her wall: what she held ---- */
     ask: (k, T) => {
       const t0 = k.S('ask');
       k.cut(t0);
-      split(k);
-      owner(k, 270, 1.7, 'refuse', 'cross', {feet: 1700, face: 1});
-      proHammer(k, 780, 1.6, 'stand', {feet: 1700, face: -1});
-      steps(k, T, [[t0 + 0.1, HELD, 1]], SIDE_L, 264);
+      wall(k, WINE, '#5A2432');
+      owner(k, 540, 2.4, 'refuse', 'cross', {feet: 1800, face: -1});
+      steps(k, T, [[t0 + 0.05, [['SHE HELD', 132, CREAM], ['$4,225', 198, GOLD]], 1]]);
       return {host: false};
     },
-    /* ---- askhe: his side lands ---- */
+    /* ---- askhe: him, close, on his wall: what he got ---- */
     askhe: (k, T) => {
       const t0 = k.S('askhe');
-      split(k);
-      owner(k, 270, 1.7, 'refuse', 'cross', {feet: 1700, face: 1});
-      proHammer(k, 780, 1.6, 'shrug', {feet: 1700, face: -1});
-      plate(k, HELD, 264, SIDE_L);
-      steps(k, T, [[t0 + 0.05, GOT, 1]], SIDE_R, 264);
+      k.cut(t0);
+      wall(k, '#4A4E5A', '#6B7080');
+      proHammer(k, 520, 2.2, 'shrug', {feet: 1790});
+      steps(k, T, [[t0 + 0.05, [['HE GOT', 132, CREAM], ['15 DAYS', 198, RED]], 1]]);
       return {host: false};
     },
-    /* ---- who: the two of them close in the broken bathroom ---- */
+    /* ---- who: the frame splits, one a side, the question between them ---- */
     who: (k, T) => {
       const t0 = k.S('who');
       k.cut(t0);
-      bath(k, 'broken', 0.35, 2);
-      owner(k, 250, 2.0, 'argue', 'cross', {feet: 1720, face: 1});
-      proHammer(k, 790, 1.9, 'shrug', {feet: 1720, face: -1});
+      split(k);
+      owner(k, 270, 1.7, 'argue', 'cross', {feet: 1700, face: 1});
+      proHammer(k, 780, 1.6, 'shrug', {feet: 1700, face: -1});
       steps(k, T, [[t0 + 0.05, [['WHO WAS', 132, CREAM], ['MORE WRONG?', 132, GOLD]], 1]]);
       return {host: false};
     },
-    /* ---- send: back to the split, both cases up, each side labeled as a kind of person ---- */
+    /* ---- send: the same split; each side's case lands, labeled as a kind of person ---- */
     send: (k, T) => {
       const t0 = k.S('send');
-      k.cut(t0);
       split(k);
-      owner(k, 270, 1.7, 'stand', 'calm', {feet: 1700, face: 1});
+      owner(k, 270, 1.7, 'refuse', 'calm', {feet: 1700, face: 1});
       proHammer(k, 780, 1.6, 'stand', {feet: 1700, face: -1});
-      plate(k, HELD, 264, SIDE_L);
-      plate(k, GOT, 264, SIDE_R);
+      steps(k, T, [[t0 + 0.05, HELD, 1]], SIDE_L, 264);
+      steps(k, T, [[t0 + 0.3, GOT, 1]], SIDE_R, 264);
       return {host: false};
     },
   },

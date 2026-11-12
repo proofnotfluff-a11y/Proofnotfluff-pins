@@ -1,0 +1,15 @@
+{
+ "gate": "render-critic",
+ "round": 0,
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "render": 2,
+ "score": {
+  "faults": 0
+ },
+ "faults": [],
+ "reasons": [
+  "hook plate on frame 0; every spoken number on screen within 0.5 s; plates inside x 66 to 1031, y 258 to 836; captions over bodies only; smallest capitals 66 px; voice ends 74.94 s, video 75.93 s; 2,278 frames swept, nothing vanishes; red dot blinks 1.5 a second; longest same shot 4.7 s"
+ ]
+}

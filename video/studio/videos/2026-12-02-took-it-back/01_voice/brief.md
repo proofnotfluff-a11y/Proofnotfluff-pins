@@ -24,13 +24,13 @@ Planned Nov 12, 2026 in Todd's live chat (11:13 am: "Build it here now", after t
 | A shower rebuild in Colorado; the bill was $7,555; she had paid $3,330 | KRDO, Oct 13, 2022: paid $3,330 of an owed $7,555 to rebuild her bathroom shower | https://krdo.com/news/2022/10/13/ex-colorado-springs-contractor-recorded-destroying-customers-shower-sentenced-to-jail-time/ |
 | She says she was not happy with the work and wanted to check it before paying the rest | KRDO, Oct 13, 2022 and Nov 5, 2021: unhappy with the work, wanted to inspect it further before the final payment | same as row 3 |
 | Her acted line: she will pay the rest once she has checked it (reenactment) | the same account, in our own words | same as row 3 |
-| His acted line: nobody is paying him, so he is taking it back (reenactment) | CBS Colorado: he said the homeowner refused to pay him, so he took back the work | same as row 2 |
+| His acted line: she won't pay him, so he is taking it back (reenactment) | CBS Colorado: he said the homeowner refused to pay him, so he took back the work | same as row 2 |
 | Her roommate had let them in; the roommate is filming; he takes the hammer to the tile | KRDO, Oct 13, 2022: the roommate let them in without knowing their intentions and recorded it on a phone | same as row 3 |
 | He says no contractor in the state will fix it now | CBS Colorado: his words on the video, paraphrased | same as row 2 |
 | His company called it repossessing the shower | CBS Colorado: the company's statement | same as row 2 |
 | The video got millions of views | KRDO, Sept 2021: viewed millions of times | https://krdo.com/?p=621051 |
 | Strangers in the tile trade came to rebuild her bathroom for free | KRDO, Oct 6, 2021: a tile installer from Oregon and local contractors rebuilt it with donated materials and labor, at no cost to her | https://krdo.com/news/2021/10/06/group-of-men-rebuild-bathroom-for-colorado-springs-homeowner-after-viral-video/ |
-| Police looked into it; one of the owners told police they wished they had gone the legal route | Levelset, Oct 15, 2021: a co-owner's words to police | https://www.levelset.com/news/colorado-contractor-criticism-after-taking-sledgehammer-to-bathroom/ |
+| Police looked into it; his business partner (the other co-owner) told police they wished they had gone the legal route | Levelset, Oct 15, 2021: a co-owner's words to police | https://www.levelset.com/news/colorado-contractor-criticism-after-taking-sledgehammer-to-bathroom/ |
 | Felony warrants followed, for both of them | KRDO, Nov 5, 2021: felony warrants for two people | same as row 1 |
 | He pleaded guilty to a felony | KRDO, Oct 13, 2022: pleaded guilty to felony criminal mischief | same as row 3 |
 | 15 days in jail, 3 years of probation | KRDO, Oct 13, 2022: 15 days in jail, 3 years of supervised probation | same as row 3 |

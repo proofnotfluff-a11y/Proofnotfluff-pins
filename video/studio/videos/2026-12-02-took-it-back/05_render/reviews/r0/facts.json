@@ -1,0 +1,24 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "stage": "render 2: transcript, screen, captions",
+ "pass": false,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "score": {
+  "numbers": 7,
+  "mismatches": 1
+ },
+ "reasons": [
+  "jail cue: the contractor behind bars under 15 DAYS / IN JAIL reads as time served; the sources report the sentence only. Fix: a sentencing picture, not a cell"
+ ],
+ "advisories": [
+  "no source puts the homeowner in the bathroom with him: draw them apart",
+  "captions: 'the shower he had just finished' has no timing in the sources: 'the shower he had built'",
+  "captions: 'He took it back with a hammer' states his framing as fact",
+  "'strangers in the tile trade': the page names one tile installer and local contractors"
+ ],
+ "sources_checked": [
+  "all seven pages opened; every number confirmed; REENACTMENT on screen through both acted lines; no name, no 6 word run, no dashes"
+ ]
+}

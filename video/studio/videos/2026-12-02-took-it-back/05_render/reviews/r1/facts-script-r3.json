@@ -1,0 +1,21 @@
+{
+ "gate": "facts",
+ "round": 1,
+ "stage": "script.md r3 before its voice (rewritten after viewer r0)",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "score": {
+  "numbers": 11,
+  "mismatches": 0
+ },
+ "reasons": [],
+ "advisories": [
+  "'Fifteen days in jail' reads as the sentence in its place",
+  "his acted line: 'she won't pay me' is closer to his reported words (taken)",
+  "facts.json: the warrants page does not print $4,225 (fixed)"
+ ],
+ "sources_checked": [
+  "all seven pages opened; every number and claim confirmed"
+ ]
+}

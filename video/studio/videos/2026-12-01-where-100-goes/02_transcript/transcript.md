@@ -1,6 +1,6 @@
 # Transcript: 2026-12-01-where-100-goes
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 87 words, 33.0 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 86 words, 33.4 s of voice.
 
 ## Flags
 none
@@ -10,8 +10,8 @@ none
   01     0.0 s  213 wpm  fast: give it a landing beat, then speak --take 1
   02     5.7 s  157 wpm  
   03    11.0 s  133 wpm  slow: rewrite it as talk, then speak --take 3
-  04    23.4 s  200 wpm  
-  05    28.6 s  153 wpm  
+  04    23.4 s  188 wpm  
+  05    28.9 s  138 wpm  slow: rewrite it as talk, then speak --take 5
 ```
 
 ## Words
@@ -30,10 +30,10 @@ none
 
 `00:20.6` Six, insurance and the home office.
 
-`00:23.4` And they work from home.
+`00:23.4` And that's with no rent.
 
-`00:25.0` Pay for a shop, and he says it's under two dollars.
+`00:25.4` Pay for a shop, and he says it's under two dollars.
 
-`00:28.6` Fair, or still too much?
+`00:28.9` Fair, or still too much?
 
-`00:31.2` Send this to whoever calls it profit.
+`00:31.5` Show customers this before they ask.

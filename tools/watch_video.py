@@ -92,6 +92,21 @@ def _call(method, url, key, *, data=None, headers=None, timeout=60.0):
 
 
 RUNNING = {'in_progress', 'queued', 'pending', 'running'}
+# A busy model answers HTTP 503 ("high demand"); 33 of 106 jobs died on one such reply with no second try (Oct 31 to
+# Nov 9, 2026). Wait and ask again, same request, a few times. A failure that could pass later is marked so the
+# workflow asks again on its next run instead of keeping the failure as the answer.
+RETRY_WAITS = (20, 60, 120)
+RETRYABLE = ('service', 'quota', 'network')
+
+
+def retrying(fn, retries):
+    for attempt in range(retries + 1):
+        try:
+            return fn()
+        except GeminiError as exc:
+            if exc.category != 'service' or attempt >= retries:
+                raise
+            time.sleep(RETRY_WAITS[min(attempt, len(RETRY_WAITS) - 1)])
 
 
 def _json(body: bytes, key: str) -> dict:
@@ -214,6 +229,7 @@ def main(argv=None) -> int:
                          'or when the key is on a paid (billed) project.')
     ap.add_argument('--model', default=os.environ.get('WATCH_GEMINI_MODEL', DEFAULT_MODEL))
     ap.add_argument('--timeout', type=float, default=600.0)
+    ap.add_argument('--retries', type=int, default=3, help='More tries when Gemini answers with a server error')
     args = ap.parse_args(argv)
 
     key = os.environ.get('GEMINI_API_KEY', '').strip()
@@ -227,14 +243,16 @@ def main(argv=None) -> int:
     uploaded, note, sent = None, None, 'link sent to Google'
     try:
         if is_youtube(args.source):
-            try:
-                result = ask_link(args.source, args.question, key=key, model=args.model, timeout=args.timeout)
-            except GeminiError as exc:
-                if exc.category != 'network':
-                    raise
-                # One retry when the long request is dropped; uses the background Interactions path.
-                result = ask({'uri': args.source}, args.question, key=key, model=args.model,
-                             processing='static', timeout=args.timeout)
+            def by_link():
+                try:
+                    return ask_link(args.source, args.question, key=key, model=args.model, timeout=args.timeout)
+                except GeminiError as exc:
+                    if exc.category != 'network':
+                        raise
+                    # One retry when the long request is dropped; uses the background Interactions path.
+                    return ask({'uri': args.source}, args.question, key=key, model=args.model,
+                               processing='static', timeout=args.timeout)
+            result = retrying(by_link, max(0, args.retries))
         elif re.match(r'^[a-z][a-z0-9+.-]*://', args.source, re.I):
             print('watch_video: only public YouTube links can be sent by link. TikTok, Instagram, Facebook and '
                   'other sites are not downloaded; save the video file first if it may be used.', file=sys.stderr)
@@ -254,6 +272,8 @@ def main(argv=None) -> int:
                          key=key, model=args.model, timeout=args.timeout)
     except GeminiError as exc:
         print(f'# Video answer\n\n- Source: {args.source} ({sent})\n\n## Unavailable\n\n- {exc}')
+        if exc.category in RETRYABLE:
+            print('- Retry: yes')
         return 1
     finally:
         if uploaded:

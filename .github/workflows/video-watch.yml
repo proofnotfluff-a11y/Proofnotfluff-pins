@@ -37,7 +37,8 @@ jobs:
             if [ $(( $(date +%s) - start )) -gt 3300 ]; then echo "time budget used; later jobs wait"; break; fi
             name=$(basename "$job" .json)
             out="video/watch/answers/$name.md"
-            [ -f "$out" ] && continue
+            # A failure that could pass later ("- Retry: yes": busy model, quota, network) is asked again; any other answer stands.
+            if [ -f "$out" ] && ! grep -q "^- Retry: yes" "$out"; then continue; fi
             source=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["source"])' "$job")
             question=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("question", ""))' "$job")
             sp=$(python3 -c 'import json,sys; print("yes" if json.load(open(sys.argv[1])).get("sourceprint") else "no")' "$job")
@@ -65,6 +66,8 @@ jobs:
               { echo; echo "Exit $code."; cat err.txt; } >> "$out"
             fi
             echo "$name: exit $code"
+            # Out of quota (Nov 9: 22 jobs in a row were sent after the daily limit and all failed): stop, the rest wait.
+            if [ "$code" -ne 0 ] && grep -q "Gemini quota" "$out"; then echo "quota used; later jobs wait"; break; fi
           done
           rm -f err.txt
       - name: Commit answers

@@ -171,3 +171,38 @@ def test_dashes_removed_from_answers(calls, capsys):
     assert wv.main(['https://youtu.be/abc']) == 0
     out = capsys.readouterr().out
     assert '00:02 to 00:04, then trash first' in out and '\u2013' not in out and '\u2014' not in out
+
+
+def test_busy_model_is_asked_again(calls, monkeypatch, capsys):
+    log, queue = calls
+    naps = []
+    monkeypatch.setattr(wv.time, 'sleep', naps.append)
+    queue += [http_error(503, 'This model is currently experiencing high demand.'), http_error(503, 'busy'), classic()]
+    assert wv.main(['https://youtu.be/abc']) == 0
+    assert len(log) == 3 and naps == [20, 60]
+    assert 'At 00:05 the hook appears.' in capsys.readouterr().out
+
+
+def test_busy_model_gives_up_and_marks_retry(calls, monkeypatch, capsys):
+    log, queue = calls
+    monkeypatch.setattr(wv.time, 'sleep', lambda s: None)
+    queue += [http_error(503, 'busy')] * 3
+    assert wv.main(['https://youtu.be/abc', '--retries', '2']) == 1
+    out = capsys.readouterr().out
+    assert len(log) == 3 and 'Gemini service' in out and '- Retry: yes' in out
+
+
+def test_quota_is_not_hammered_but_marked_retry(calls, monkeypatch, capsys):
+    log, queue = calls
+    monkeypatch.setattr(wv.time, 'sleep', lambda s: pytest.fail('no wait on quota'))
+    queue.append(http_error(429, 'Quota exceeded'))
+    assert wv.main(['https://youtu.be/abc']) == 1
+    out = capsys.readouterr().out
+    assert len(log) == 1 and 'Gemini quota' in out and '- Retry: yes' in out
+
+
+def test_refused_video_is_final(calls, capsys):
+    _, queue = calls
+    queue.append(http_error(400, 'video is private'))
+    assert wv.main(['https://youtu.be/abc']) == 1
+    assert '- Retry: yes' not in capsys.readouterr().out

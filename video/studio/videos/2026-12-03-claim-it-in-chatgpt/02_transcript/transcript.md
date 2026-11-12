@@ -1,6 +1,6 @@
 # Transcript: 2026-12-03-claim-it-in-chatgpt
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 210 words, 90.0 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 206 words, 87.3 s of voice.
 
 ## Flags
 - dropped 'dot': not heard
@@ -9,12 +9,12 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 210 words, 90.0 s of voice.
 ```
   01     0.0 s  169 wpm  
   02    10.2 s  160 wpm  
-  03    22.6 s  120 wpm  slow: rewrite it as talk, then speak --take 3
-  04    33.8 s  147 wpm  slow: rewrite it as talk, then speak --take 4
-  05    51.8 s  126 wpm  slow: rewrite it as talk, then speak --take 5
-  06    60.2 s  124 wpm  slow: rewrite it as talk, then speak --take 6
-  07    71.6 s  138 wpm  slow: rewrite it as talk, then speak --take 7
-  08    81.0 s  158 wpm  
+  03    22.6 s  123 wpm  slow: rewrite it as talk, then speak --take 3
+  04    33.6 s  141 wpm  slow: rewrite it as talk, then speak --take 4
+  05    51.8 s  143 wpm  slow: rewrite it as talk, then speak --take 5
+  06    60.5 s  127 wpm  slow: rewrite it as talk, then speak --take 6
+  07    71.2 s  139 wpm  slow: rewrite it as talk, then speak --take 7
+  08    79.3 s  160 wpm  
 ```
 
 ## Words
@@ -37,50 +37,42 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 210 words, 90.0 s of voice.
 
 `00:22.6` One.
 
-`00:23.5` Go to Business Hub.
+`00:23.4` Go to Business Hub.
 
-`00:25.2` OpenAI says it's in your ChatGPT sidebar.
+`00:25.1` OpenAI says it's in your ChatGPT sidebar.
 
-`00:28.5` If it's not, type chatgpt dot com, slash business hub.
+`00:28.5` If it's not, type chatgpt dot com slash business hub.
 
-`00:33.8` Two.
+`00:33.6` Two.
 
-`00:34.8` Search your business name.
+`00:34.6` Search your business name.
 
-`00:36.3` But read the small print first.
+`00:36.3` But first, the small print.
 
-`00:38.7` By continuing, you accept OpenAI's terms.
+`00:38.5` By continuing, you accept OpenAI's terms.
 
-`00:42.0` They say its AI assistant may call your business for its users.
+`00:41.8` They say its AI assistant may call your business for its users.
 
-`00:46.1` You can opt out.
+`00:45.9` You can opt out.
 
-`00:47.4` And you agree not to bring certain claims against OpenAI.
+`00:47.3` And you agree not to bring certain claims against OpenAI.
 
-`00:51.8` We searched ours.
+`00:51.8` We searched ours, and it's not listed.
 
-`00:53.3` Not listed.
+`00:54.6` It offered to create one, which OpenAI says is for eligible online businesses.
 
-`00:54.5` It offered to create one.
+`01:00.5` Three.
 
-`00:56.2` OpenAI says that's for eligible online businesses.
+`01:01.4` Prove it's yours.
 
-`01:00.2` Three.
+`01:03.1` OpenAI lists a business phone or email, your website domain, or Shopify.
 
-`01:01.1` Prove it's yours.
+`01:08.4` Ours asked for a dns record.
 
-`01:02.7` OpenAI lists a business phone, a business email, your website domain, or Shopify.
+`01:11.2` Four.
 
-`01:08.8` Ours asked for a dns record.
+`01:12.1` Before any change goes live, there's an identity check with Persona, and OpenAI emails you its decision.
 
-`01:11.6` Four.
+`01:19.3` And OpenAI says claiming it doesn't guarantee ChatGPT recommends you more.
 
-`01:12.5` Before any change goes live, there's an identity check with Persona.
-
-`01:16.9` Then OpenAI reviews it and emails you its decision.
-
-`01:21.0` And claiming it doesn't guarantee ChatGPT recommends you more.
-
-`01:25.1` OpenAI says so itself.
-
-`01:27.1` Save this, and send it to whoever runs your Google listing.
+`01:24.5` Save this, and send it to whoever runs your Google listing.

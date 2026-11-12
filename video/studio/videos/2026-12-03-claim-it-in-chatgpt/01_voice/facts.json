@@ -1,5 +1,5 @@
 {
- "about": "Every fact, step and limit this update says or shows, with the source's own words. Sources: three OpenAI pages and Todd's own ChatGPT Business Hub screens, all read and captured on Nov 12, 2026 (Central) in the browser on his PC during the live chat he started for this lesson (2:46 pm). OpenAI's pages answer our page reader and WebFetch with a 403, so each was read in full as text in his browser and the passages used were captured there; the captures in 04_scene/assets/ are the record a reviewer checks. The lesson has one number: OpenAI's own 1.2 billion weekly users. It names no person and no business but OpenAI, ChatGPT, Persona, Shopify, Google (the send line) and ProofNotFluff (ours). Not said, though the pages say it: Business Agents, product feeds, insights, the blue check, the claim invitation and locked listing cases, dispute of ownership, what can be edited after approval (website, description, category, logo, policies). Not claimed: that Business Hub is missing from anyone else's sidebar (one account was seen); that trades businesses are or are not 'local stores' (the help page's own words, 'local stores and restaurants', are used, and the voice states nothing about trades); anything about ranking beyond OpenAI's own 'doesn't guarantee'. Round 1 (after the viewer and render critic failed render 2): the 'we searched ours' story, the DNS record, Persona's name, the email decision and the sidebar screen are no longer said or shown. Round 2 (after the viewer left render 3 at 24 s and the facts gate found two clippings cut too short): the terms open the video; the plumber and roofer line is gone and 'Not listed? You may not be able to add it yet.' stands in its place; our own domain check screen is no longer shown; nothing new is claimed.",
+ "about": "Every fact, step and limit this update says or shows, with the source's own words. Sources: three OpenAI pages and Todd's own ChatGPT Business Hub screens, all read and captured on Nov 12, 2026 (Central) in the browser on his PC during the live chat he started for this lesson (2:46 pm). OpenAI's pages answer our page reader and WebFetch with a 403, so each was read in full as text in his browser and the passages used were captured there; the captures in 04_scene/assets/ are the record a reviewer checks. The lesson has one number: OpenAI's own 1.2 billion weekly users. It names no person and no business but OpenAI, ChatGPT, Persona, Shopify, Google (the send line) and ProofNotFluff (ours). Not said, though the pages say it: Business Agents, product feeds, insights, the blue check, the claim invitation and locked listing cases, dispute of ownership, what can be edited after approval (website, description, category, logo, policies). Not claimed: that Business Hub is missing from anyone else's sidebar (one account was seen); that trades businesses are or are not 'local stores' (the help page's own words, 'local stores and restaurants', are used, and the voice states nothing about trades); anything about ranking beyond OpenAI's own 'doesn't guarantee'. Round 1 (after the viewer and render critic failed render 2): the 'we searched ours' story, the DNS record, Persona's name, the email decision and the sidebar screen are no longer said or shown. Round 2 (after the viewer left render 3 at 24 s and the facts gate found two clippings cut too short): the terms open the video; the plumber and roofer line is gone and 'Not listed? You may not be able to add it yet.' stands in its place; our own domain check screen is no longer shown; nothing new is claimed. r6 (after the r5 voice ran 73 s): 13 words shorter; 'beta' is said in step one; the line under the search box is no longer said.",
  "format": "update",
  "changed": {
   "what": "OpenAI opened Businesses in ChatGPT and Business Hub in beta",
@@ -227,7 +227,7 @@
     "hub"
    ],
    "words": "By using Business Hub, you agree OpenAI's AI assistant may make calls to you on behalf of our users.; on his screen: By continuing, you accept OpenAI's Businesses in ChatGPT Terms.",
-   "note": "claiming is done in Business Hub, and the terms tie the agreement to using Business Hub; 'may' is kept"
+   "note": "claiming is done in Business Hub, and the terms tie the agreement to using Business Hub; 'may' is kept. The line under the search box on his own screen is no longer said or shown; the terms' own sentence is shown instead"
   },
   {
    "said": "It's in the terms. The calls are for its users, and you can opt out",
@@ -246,17 +246,17 @@
    "note": "'certain claims' stands for the terms' defined 'Covered Claim'; never 'you can't sue OpenAI'"
   },
   {
-   "said": "It's called Business Hub, and it's in beta. Four steps",
+   "said": "Four steps to claim it. One, open Business Hub. It's in beta",
    "source": [
     "announcement",
     "help",
     "hub"
    ],
-   "words": "We're introducing Businesses in ChatGPT in beta ... Through Business Hub, businesses can claim their business",
+   "words": "We're introducing Businesses in ChatGPT in beta ... Through Business Hub, businesses can claim their business; Sign in to ChatGPT, and open Business Hub from the sidebar.",
    "note": "'beta' is said aloud. 'Four steps' is our own count of what the help page and his screens show in order: open Business Hub, search, verify, identity check"
   },
   {
-   "said": "One, open Business Hub. OpenAI says it's in your sidebar",
+   "said": "OpenAI says it's in your sidebar",
    "source": [
     "help"
    ],
@@ -279,14 +279,6 @@
    "words": "Search for your business by name.; the box reads 'Search business'"
   },
   {
-   "said": "By continuing, you accept those terms",
-   "source": [
-    "hub"
-   ],
-   "words": "By continuing, you accept OpenAI's Businesses in ChatGPT Terms.",
-   "note": "the line under the search box on his own screen"
-  },
-  {
    "said": "Three, prove it's yours with your business phone or email, or your website",
    "source": [
     "help"
@@ -303,12 +295,12 @@
    "note": "no plate says an ID is required"
   },
   {
-   "said": "Here's the catch. OpenAI says local stores and restaurants can only claim a listing that's already there. U.S. only, for now",
+   "said": "Here's the catch. OpenAI says local stores and restaurants can only claim a U.S. listing that's already there, for now",
    "source": [
     "help"
    ],
    "words": "Local stores and restaurants can currently claim only an existing U.S. listing.",
-   "note": "'for now' is the page's 'currently'. The catch is stated only for the page's own group, local stores and restaurants; the voice never says 'local businesses' or 'if you're local'"
+   "note": "'for now' is the page's 'currently'; 'U.S.' stays tied to the listing, as on the page. The catch is stated only for the page's own group, local stores and restaurants; the voice never says 'local businesses' or 'if you're local'"
   },
   {
    "said": "Not listed? You may not be able to add it yet",
@@ -327,11 +319,12 @@
    "note": "OpenAI's own figure; nothing is said about being shown to them"
   },
   {
-   "said": "What you don't: OpenAI says claiming it doesn't guarantee ChatGPT recommends you more",
+   "said": "What you don't: a guarantee ChatGPT recommends you more",
    "source": [
     "help"
    ],
-   "words": "It doesn't guarantee increased visibility or give you direct control over ChatGPT's independent recommendations."
+   "words": "It doesn't guarantee increased visibility or give you direct control over ChatGPT's independent recommendations.",
+   "note": "the help page's own answer is shown as clippings while it is said"
   },
   {
    "said": "Read the terms, then decide",

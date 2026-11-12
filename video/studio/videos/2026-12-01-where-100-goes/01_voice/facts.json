@@ -1,0 +1,26 @@
+{
+ "about": "Every number and claim this lesson shows or says, with its source. One source: PHC Pros, 'How much do you keep out of each consumer dollar?' ('Contractor Profit Advantage' column, Mar 1, 2022), read again Nov 11, 2026 (Central) by box fetch jobs where-100-goes-facts-2026-11-11-r1 to r3 (workhorse and trial models copied the same sentences word for word; the cloud session cannot open phcppros.com) and found by web search at the same address. It is the columnist's own account of one customer, many years ago, and his own example budget: a one tech, one truck shop run from home by a married couple, minimal costs, figures rounded, which he says vary from company to company. He explained national statistics to that customer, not this example. Every dollar figure is his percentage of each consumer dollar, shown as dollars of a $100 bill. We name no person and no business. We never say this was his own shop's budget, that he showed her this bill, that every plumber keeps $9, or that the customer said any exact words. Not used: his '3 percent average profit' line (no source named).",
+ "story": {
+  "title": "How much do you keep out of each consumer dollar?",
+  "publisher": "PHC Pros (Contractor Profit Advantage column)",
+  "date": "2022-03-01",
+  "url": "https://phcppros.com/articles/15049-how-much-do-you-keep-out-of-each-consumer-dollar",
+  "reread": "2026-11-11",
+  "what": "a customer, many years ago, got the price his tech quoted from her adult daughter at home; thinking the full price went in his pocket, she told her daughter not to authorize the work until she spoke to him; he explained that contractors do not keep all the money (with national statistics of the time); she authorized the work at the price first quoted"
+ },
+ "bill": 100,
+ "technician": 41,
+ "office": 16,
+ "vehicle": 8,
+ "otherOperating": 20,
+ "otherOperatingWhat": "government mandates, rules, regulations and tariffs; communications; bank charges; and professional services",
+ "insurance": 2,
+ "supplies": 4,
+ "suppliesWhat": "shop and office costs without rent: computers, printers, ink or toner, paper, pens, invoices, utilities and maintenance",
+ "insuranceAndSupplies": 6,
+ "expenses": 91,
+ "left": 9,
+ "leftAfterSpace": 2,
+ "leftAfterSpaceNote": "the column: with the shop/office cost included, 'just under 2 percent of the consumer dollar'; said and shown as under $2",
+ "rounded": "the column: figures are rounded and will vary from company to company; the example budget is one of minimal costs"
+}

@@ -1,0 +1,21 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "stage": "script.md before any voice (r1)",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-11",
+ "score": {
+  "numbers": 8,
+  "mismatches": 0
+ },
+ "reasons": [
+  "Advisory: 16 is office staff pay, say 'office help' (taken in r2).",
+  "Advisory: the 20 also covers professional services: 'and the accountant' (taken).",
+  "Advisory: the 4 is wider than supplies: 'the home office' (taken).",
+  "Advisory: the column's own arithmetic for the shop line gives about 2.6, its text says just under 2: say 'he says' on that line (taken)."
+ ],
+ "sources_checked": [
+  "box fetch jobs where-100-goes-facts-2026-11-11-r1 to r3 of https://phcppros.com/articles/15049-how-much-do-you-keep-out-of-each-consumer-dollar (word for word, two models); web search confirmed the page and the 'just under 2 percent' passage"
+ ]
+}

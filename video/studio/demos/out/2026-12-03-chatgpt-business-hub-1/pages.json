@@ -1,0 +1,34 @@
+[
+ {
+  "n": 1,
+  "url": "https://openai.com/index/introducing-businesses-chatgpt/",
+  "at": "2026-11-12T18:04:05+00:00",
+  "final": "https://openai.com/index/introducing-businesses-chatgpt/",
+  "status": 403,
+  "title": "Just a moment..."
+ },
+ {
+  "n": 2,
+  "url": "https://help.openai.com/en/articles/20001635-setting-up-your-business-on-chatgpt",
+  "at": "2026-11-12T18:04:55+00:00",
+  "final": "https://help.openai.com/en/articles/20001635-setting-up-your-business-on-chatgpt",
+  "status": 403,
+  "title": "Just a moment..."
+ },
+ {
+  "n": 3,
+  "url": "https://help.openai.com/en/articles/20001635-setting-up-your-business-on-chatgpt#:~:text=Local%20stores%20and%20restaurants",
+  "at": "2026-11-12T18:05:45+00:00",
+  "final": "https://help.openai.com/en/articles/20001635-setting-up-your-business-on-chatgpt",
+  "status": null,
+  "title": "Just a moment..."
+ },
+ {
+  "n": 4,
+  "url": "https://chatgpt.com/business-hub",
+  "at": "2026-11-12T18:06:34+00:00",
+  "final": "https://chatgpt.com/business-hub",
+  "status": 403,
+  "title": "Just a moment..."
+ }
+]

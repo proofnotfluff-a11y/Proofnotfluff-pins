@@ -20,7 +20,8 @@ Written Nov 12, 2026, the first `update` (Todd, live chat, Nov 12, 2026, 11:37 a
 - The catches: it is a beta; a local store or restaurant can only claim a listing that already exists, United States only; claiming is not said to move a business up in ChatGPT's answers.
 - Not for us: Business Agents (US online stores and online services only).
 
-## What it waits on (Todd, in a live chat; about 5 minutes on his phone)
+## What it waits on (Todd, in a live chat)
+Todd, Nov 12, 2026, 1:52 pm: "Use Chrome on my PC". That chat could not reach his PC, so he starts a new chat for the build (2:36 pm: "just give me a fresh prompt and I'll start it from a new chat"). There the browser on his PC reads OpenAI's two pages in full and captures the screens below; nothing is submitted in his account without his word. Or, from his phone:
 Screenshots of his own claim for ProofNotFluff or Outlandia, in this order: 1. Business Hub in the ChatGPT sidebar. 2. The search box with the business found (or "not found": that is the catch, and worth showing). 3. The verify choices. 4. The Persona step's first screen (no ID in shot). 5. The page after approval, if it is approved. Each cropped to business fields. Whatever the screens show replaces the excerpts above; a step the screens do not show is not said.
 
 ## Draft of the talk (a guide for the script; every line still needs its screen)

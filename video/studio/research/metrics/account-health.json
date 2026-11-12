@@ -95,6 +95,19 @@
    },
    "source": "videometrics account-health.2026-11-10 (evening PC run)",
    "docId": "account-health.2026-11-10"
+  },
+  {
+   "date": "2026-11-11",
+   "platforms": {
+    "facebook": "hidden",
+    "instagram": "hidden",
+    "tiktok": "hidden",
+    "youtube": 0
+   },
+   "readAt": "2026-11-12T02:17:52Z",
+   "note": "YouTube dashboard showed no notice; TikTok account-status page blank; Business support home stopped at a redirect confirmation, not clicked",
+   "source": "videometrics account-health.2026-11-11 (evening PC run)",
+   "docId": "account-health.2026-11-11"
   }
  ]
 }

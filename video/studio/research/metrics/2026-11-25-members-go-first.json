@@ -1,0 +1,59 @@
+{
+ "slug": "2026-11-25-members-go-first",
+ "reads": [
+  {
+   "date": "2026-11-11",
+   "depth": "deep",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": 2,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 0,
+     "shares": 0,
+     "viewers": 11,
+     "views": 12,
+     "views3s": 2
+    },
+    "instagram": {
+     "avgWatchS": 22,
+     "comments": 0,
+     "follows": 0,
+     "likes": 28,
+     "reach": 1078,
+     "saves": 1,
+     "shares": 0,
+     "skipRate": "hidden: app only",
+     "viewers": 1076,
+     "views": 1208
+    },
+    "tiktok": {
+     "avgWatchS": 14.42,
+     "comments": 0,
+     "likes": 2,
+     "newFollowers": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 256,
+     "watchedFullPct": 3.5
+    },
+    "youtube": {
+     "avgPctViewed": 48.4,
+     "avgViewDurationS": "hidden",
+     "comments": 0,
+     "likes": 1,
+     "shares": "hidden",
+     "subscribersGained": 0,
+     "viewedVsSwipedPct": 55.3,
+     "views": 38,
+     "watchTimeH": 0.2
+    }
+   },
+   "readAt": "2026-11-12T02:17:52Z",
+   "note": "Meta Business Suite range Oct 12 to Nov 10 (last 30 days)",
+   "source": "videometrics 2026-11-25-members-go-first.2026-11-11 (evening PC run, deep read)",
+   "docId": "2026-11-25-members-go-first.2026-11-11"
+  }
+ ]
+}

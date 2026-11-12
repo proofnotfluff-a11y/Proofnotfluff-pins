@@ -127,6 +127,59 @@
    },
    "source": "videometrics 2026-11-20-lsa-reports-short.2026-11-10 (evening PC run, deep read)",
    "docId": "2026-11-20-lsa-reports-short.2026-11-10"
+  },
+  {
+   "date": "2026-11-11",
+   "depth": "deep",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": 4,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 0,
+     "shares": 0,
+     "viewers": 60,
+     "views": 67,
+     "views3s": 16
+    },
+    "instagram": {
+     "avgWatchS": 7,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "reach": 151,
+     "saves": 0,
+     "shares": 0,
+     "skipRate": "hidden: app only",
+     "viewers": 155,
+     "views": 165
+    },
+    "tiktok": {
+     "avgWatchS": 7.82,
+     "comments": 0,
+     "likes": 1,
+     "newFollowers": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 168,
+     "watchedFullPct": 3.6
+    },
+    "youtube": {
+     "avgViewDurationS": "hidden",
+     "comments": "hidden",
+     "likes": 4,
+     "shares": "hidden",
+     "subscribersGained": 0,
+     "viewedVsSwipedPct": 54.6,
+     "views": 1100,
+     "watchTimeH": 2.8
+    }
+   },
+   "readAt": "2026-11-12T02:17:52Z",
+   "note": "72 h read; Meta Business Suite range Oct 12 to Nov 10; YouTube views shown as 1.1K",
+   "source": "videometrics 2026-11-20-lsa-reports-short.2026-11-11 (evening PC run, deep read)",
+   "docId": "2026-11-20-lsa-reports-short.2026-11-11"
   }
  ]
 }

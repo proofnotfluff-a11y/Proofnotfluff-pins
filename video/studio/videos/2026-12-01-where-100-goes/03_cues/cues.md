@@ -4,8 +4,8 @@ music: rooms bounce
 
 ## hook "She thought the plumber" [sfx: pop]
 Frame 0, close and settled, a kitchen: the homeowner left, arms folded, facing the plumber right, who holds the bill on a
-clipboard. Up top, big: $100 BILL in gold, under it in red: ALL HIS?. At 0.5 s she unfolds her arms and argues at him (the
-first change). On "kept" a plain cut to her alone, close, still arguing, the same plate.
+clipboard. Up top, big: $100 BILL in gold, under it in red: ALL HIS?. At 0.5 s a plain cut to her alone, close, palms up at
+him (the first change). On "kept" a plain cut to the plumber alone, close, shrugging, the same plate.
 
 ## hook.owner "One shop owner says" [sfx: blip]
 A plain cut to the plumber, close, talking. The plate: HIS ACCOUNT:. On "held" a plain cut to the homeowner on the phone,
@@ -16,7 +16,7 @@ A plain cut to the plumber, close, with the clipboard. The plate: HIS EXAMPLE: /
 stamp: OF EVERY $100 / $9 LEFT, the last row big and gold.
 
 ## bill "Forty-one pays the tech" [sfx: blip]
-The bill fills the frame over the dimmed kitchen: a cream invoice, one row landing as each is said: TECH $41, then on
+The bill on the left over the dimmed kitchen, the homeowner close on the right, arms folded until "Twenty", then they drop, and after the last row she gestures at the bill: a cream invoice headed $100 BILL in red, one row landing under it as each is said: TECH $41, then on
 "Sixteen" OFFICE $16, on "eight" TRUCK $8, on "Twenty" FEES $20, on "Six" INSURANCE $6.
 
 ## bill.home "And they work from home" [sfx: whoosh]

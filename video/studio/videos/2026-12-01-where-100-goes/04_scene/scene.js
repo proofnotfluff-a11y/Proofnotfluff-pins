@@ -79,15 +79,20 @@ window.SCENE = {
       const tArg = 0.5, tSolo = Math.max(1.0, wordT(k, 'hook', /^kept/i, 1.2) - 0.05), tOwn = k.S('hook.owner');
       const rows = [['$100 BILL', 198, GOLD], ['ALL HIS?', 132, RED]];
       if (T >= tOwn) return holdUp(k, T);
-      if (T < tSolo) {
+      if (T < tArg) {
         kitchen(k, 0.15, 2);
-        owner(k, 260, 2.1, T >= tArg ? 'argue' : 'refuse', 'cross', {feet: 1720, face: 1});
+        owner(k, 260, 2.1, 'refuse', 'cross', {feet: 1720, face: 1});
         plumber(k, 820, 1.9, 'clip', {feet: 1720, face: -1});
+        plate(k, rows, 264);
+      } else if (T < tSolo) {
+        k.cut(tArg);
+        kitchen(k, 0.22, 2);
+        owner(k, 540, 2.4, 'argue', 'cross', {feet: 1800, face: 1});
         plate(k, rows, 264);
       } else {
         k.cut(tSolo);
         kitchen(k, 0.22, 2);
-        owner(k, 540, 2.4, 'argue', 'cross', {feet: 1800, face: 1, talk: T < tOwn - 0.2});
+        plumber(k, 540, 2.3, 'shrug', {feet: 1800});
         plate(k, rows, 264);
       }
       return {host: false};
@@ -129,14 +134,16 @@ Object.assign(window.SCENE.sections, {
       const t0 = k.S('bill'), tHome = k.S('bill.home');
       if (T < tHome) {
         k.cut(t0);
-        kitchen(k, 0.55, 2);
-        const ts = [t0, wordT(k, 'bill', /^sixteen/i, 1.6) - 0.1, wordT(k, 'bill', /^eight/i, 3.0) - 0.1, wordT(k, 'bill', /^twenty/i, 4.5) - 0.1, wordT(k, 'bill', /^six$/i, 7.5) - 0.1];
+        kitchen(k, 0.3, 2);
+        const ts = [t0, wordT(k, 'bill', /^sixteen/i, 1.6) - 0.1, wordT(k, 'bill', /^eight/i, 3.0) - 0.1, wordT(k, 'bill', /^twenty/i, 4.5) - 0.1, wordT(k, 'bill', /^six\b/i, 9.5) - 0.1];
         const all = [['TECH $41', 132, INK], ['OFFICE $16', 132, INK], ['TRUCK $8', 132, INK], ['FEES $20', 132, INK], ['INSURANCE $6', 132, INK]];
         let n = 0; ts.forEach((t) => { if (T >= t) n++; });
         n = Math.max(1, n);
-        const rows = all.slice(0, n);
-        if (n === 1 && T < t0 + 0.06) plate(k, rows, 264, {bg: CREAM, rule: RED});
-        else stampPlate(k, rows, 264, ts[n - 1], {bg: CREAM, rule: RED, drop: 0.06});
+        /* the homeowner, close on the right, reads it: arms folded until the fees, then they drop */
+        owner(k, 870, 2.0, T >= ts[4] + 0.8 ? 'talk' : (T >= ts[3] ? 'stand' : 'refuse'), T >= ts[3] ? 'calm' : 'cross', {feet: 1740, face: -1, talk: false});   /* after the last row she gestures at it (QA r1: the full card sat flat 1.3 s) */
+        const rows = [['$100 BILL', 132, RED]].concat(all.slice(0, n)), o = {bg: CREAM, rule: RED, pad: 24, gap: 6, drop: 0.06, cx: 396};
+        if (n === 1 && T < t0 + 0.06) plate(k, rows, 264, o);
+        else stampPlate(k, rows, 264, ts[n - 1], o);
       } else {
         k.cut(tHome);
         kitchen(k, 0.2, 2);

@@ -1,0 +1,30 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "stage": "script.md, before any voice",
+ "pass": false,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "score": {
+  "numbers": 0,
+  "mismatches": 1
+ },
+ "reasons": [
+  "'OpenAI lists a business phone': the capture help-claim.png says 'phone', not 'business phone'; fix: say 'a phone', or show the page's own words for it",
+  "'If it's not, type chatgpt dot com, slash business hub': no capture showed an address bar reading chatgpt.com/business-hub; fix: add a same-day capture from Todd's own account that shows it, or cut the sentence"
+ ],
+ "advisories": [
+  "the help page names only 'local stores and restaurants': keep the 'might not' hedge and the attributed wording on screen and in captions",
+  "'U.S. only' is tied to local stores and restaurants; the announcement's 'in the U.S.' is about Business Agents",
+  "'Not listed' is shown only by the Create row (the 7 other results are cropped out for privacy): keep the Create row on screen when the line plays",
+  "'just': fair two days after Nov 10; re-read the pages and drop 'just' if it posts more than about 7 days after",
+  "'emails you its decision': the source adds 'or a request for more information'; do not promise a yes or no",
+  "'certain claims' fairly stands for the defined 'Covered Claim'; never shorten it to 'you can't sue OpenAI'",
+  "longest shared word run with a source: 5 words (under 6)",
+  "no personal name, email, phone or ID readable in any PNG; no other business shown"
+ ],
+ "not_checked": [
+  "live page text: WebFetch failed on all three OpenAI URLs, so every OpenAI claim was confirmed against the same-day captures, per facts.md"
+ ],
+ "fix": "round 1: no script word changed. Added two captures as evidence: help-phone.png (the page's heading 'Verify with your business phone') and hub-address.png (the address bar on Todd's own 3:27 pm screenshot, reading chatgpt.com/business-hub?create=1&creation_session=1); brief.md and facts.json say when it posts."
+}

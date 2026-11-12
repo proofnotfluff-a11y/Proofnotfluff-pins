@@ -1,0 +1,350 @@
+{
+ "about": "Every fact, step and limit this update says or shows, with the source's own words. Sources: three OpenAI pages and Todd's own ChatGPT Business Hub screens, all read and captured on Nov 12, 2026 (Central) in the browser on his PC during the live chat he started for this lesson (2:46 pm). OpenAI's pages answer our page reader and WebFetch with a 403, so each was read in full as text in his browser and the passages used were captured there; the captures in 04_scene/assets/ are the record a reviewer checks. The lesson has no numbers. It names no person and no business but OpenAI, ChatGPT, Persona, Shopify, Google (the send line) and ProofNotFluff (ours). Not said, though the pages say it: Business Agents, product feeds, insights, the blue check, the claim invitation and locked listing cases, dispute of ownership, what can be edited after approval (website, description, category, logo, policies). Not claimed: that Business Hub is missing from anyone else's sidebar (one account was seen); that trades businesses are or are not 'local stores' (the help page's own words are used and the voice says 'might not'); anything about ranking beyond OpenAI's own 'doesn't guarantee'.",
+ "format": "update",
+ "changed": {
+  "what": "OpenAI opened Businesses in ChatGPT and Business Hub in beta",
+  "date": "2026-11-10",
+  "daysBeforeBuild": 2
+ },
+ "numbers": {},
+ "sources": [
+  {
+   "id": "announcement",
+   "publisher": "OpenAI",
+   "title": "Introducing Businesses in ChatGPT",
+   "date": "2026-11-10",
+   "url": "https://openai.com/index/introducing-businesses-chatgpt/",
+   "read": "2026-11-12",
+   "how": "read in full as text at 2:48 pm in the Claude desktop app's browser on Todd's PC; captured at 3:23 pm in Chrome on his PC",
+   "confirms": "dated November 10, 2026; 'We're introducing Businesses in ChatGPT in beta'; through Business Hub 'businesses can claim their business, manage their information, and see insights'; subtitle 'Claim your business, keep your information current'"
+  },
+  {
+   "id": "help",
+   "publisher": "OpenAI Help Center",
+   "title": "Setting up your business on ChatGPT",
+   "date": "shown as 'Updated: 23 hours ago' when read",
+   "url": "https://help.openai.com/en/articles/20001635-setting-up-your-business-on-chatgpt",
+   "read": "2026-11-12",
+   "how": "read in full as text at 2:49 pm in the Claude desktop app's browser on Todd's PC; captured at 3:22 pm and 3:29 pm in Chrome on his PC",
+   "confirms": "'Sign in to ChatGPT, and open Business Hub from the sidebar. Search for your business by name.'; 'Use one of the verification methods offered for your business, such as phone, business email, website domain, or Shopify.'; 'If you run an eligible online business, you may see an option to add it. Local stores and restaurants can currently claim only an existing U.S. listing.'; 'You'll need to complete identity verification with Persona before you can publish changes to your business information'; 'OpenAI reviews your Persona verification submission and emails you its decision or a request for more information.'; FAQ: 'It doesn't guarantee increased visibility or give you direct control over ChatGPT's independent recommendations.'; website domain method: 'add the TXT record shown in ChatGPT to your domain's DNS settings'; heading 'Verify with your business phone'"
+  },
+  {
+   "id": "terms",
+   "publisher": "OpenAI",
+   "title": "Businesses in ChatGPT Terms",
+   "date": "last updated 2026-11-09",
+   "url": "https://openai.com/policies/businesses-in-chatgpt-terms/",
+   "read": "2026-11-12",
+   "how": "read in full as text at 3:09 pm in Chrome on Todd's PC (the link on his Business Hub screen); captured at 3:22 pm. A third source on Todd's word in this chat at 3:09 pm: 'Yes, say it'",
+   "confirms": "4.1: 'OpenAI may create, maintain, and display a business listing ... regardless of whether you claim, manage, or cease managing it'; 4.1: 'By using Business Hub, you agree OpenAI's AI assistant may make calls to you on behalf of our users. You can opt out here.'; 10.1 Covenant Not to Sue: 'covenant and agree not to assert or commence ... any Covered Claim against OpenAI or any of its Affiliates'"
+  },
+  {
+   "id": "hub",
+   "publisher": "Todd's own ChatGPT account (Business Hub)",
+   "url": "https://chatgpt.com/business-hub",
+   "read": "2026-11-12",
+   "how": "his own signed-in ChatGPT account in Chrome on his PC, during this live chat; he signed in himself and typed the search himself",
+   "confirms": "Business Hub opens at chatgpt.com/business-hub; his sidebar showed New chat, Images, Scheduled, Library, Plugins, Explore and no Business Hub; the page reads 'Reach new customers and grow your business with ChatGPT', a box 'Search business', and 'By continuing, you accept OpenAI's Businesses in ChatGPT Terms.'; a search for ProofNotFluff returned 7 other businesses and the row \"Create 'ProofNotFluff'\"; the create flow, which he went through himself, reached 'Verify that you control proofnotfluff.com. Add this TXT record to the DNS settings'; the address bar on his 3:27 pm screenshot reads chatgpt.com/business-hub?create=1&creation_session=1"
+  }
+ ],
+ "captures": [
+  {
+   "file": "04_scene/assets/announce.png",
+   "source": "announcement",
+   "day": "2026-11-12",
+   "time": "3:23 pm",
+   "how": "captured in Chrome on Todd's PC by Claude during the live chat he started for this lesson (Chrome's narrowest window, 657 px wide, at 2x; the screenshot tool's region capture), then cropped",
+   "shows": "the date, the headline and the subtitle"
+  },
+  {
+   "file": "04_scene/assets/announce-beta.png",
+   "source": "announcement",
+   "day": "2026-11-12",
+   "time": "3:23 pm",
+   "how": "captured in Chrome on Todd's PC by Claude during the live chat he started for this lesson (Chrome's narrowest window, 657 px wide, at 2x; the screenshot tool's region capture), then cropped",
+   "shows": "the first paragraph: in beta, Business Hub"
+  },
+  {
+   "file": "04_scene/assets/help-claim.png",
+   "source": "help",
+   "day": "2026-11-12",
+   "time": "3:22 pm",
+   "how": "captured in Chrome on Todd's PC by Claude during the live chat he started for this lesson (Chrome's narrowest window, 657 px wide, at 2x; the screenshot tool's region capture), then cropped",
+   "shows": "Claim your business: the verification methods, the Persona line, steps 1 to 3"
+  },
+  {
+   "file": "04_scene/assets/help-local.png",
+   "source": "help",
+   "day": "2026-11-12",
+   "time": "3:22 pm",
+   "how": "captured in Chrome on Todd's PC by Claude during the live chat he started for this lesson (Chrome's narrowest window, 657 px wide, at 2x; the screenshot tool's region capture), then cropped",
+   "shows": "If you can't find your business: online businesses may add; local stores and restaurants claim an existing U.S. listing only"
+  },
+  {
+   "file": "04_scene/assets/help-persona.png",
+   "source": "help",
+   "day": "2026-11-12",
+   "time": "3:22 pm",
+   "how": "captured in Chrome on Todd's PC by Claude during the live chat he started for this lesson (Chrome's narrowest window, 657 px wide, at 2x; the screenshot tool's region capture), then cropped",
+   "shows": "the Persona identity verification paragraphs"
+  },
+  {
+   "file": "04_scene/assets/help-email.png",
+   "source": "help",
+   "day": "2026-11-12",
+   "time": "3:29 pm",
+   "how": "captured in Chrome on Todd's PC by Claude during the same live chat (desktop width, at 2x, region capture)",
+   "shows": "Wait for verification approval: OpenAI reviews the submission and emails its decision"
+  },
+  {
+   "file": "04_scene/assets/help-faq.png",
+   "source": "help",
+   "day": "2026-11-12",
+   "time": "3:22 pm",
+   "how": "captured in Chrome on Todd's PC by Claude during the live chat he started for this lesson (Chrome's narrowest window, 657 px wide, at 2x; the screenshot tool's region capture), then cropped",
+   "shows": "the FAQ: will claiming make ChatGPT recommend it more often"
+  },
+  {
+   "file": "04_scene/assets/terms-top.png",
+   "source": "terms",
+   "day": "2026-11-12",
+   "time": "3:22 pm",
+   "how": "captured in Chrome on Todd's PC by Claude during the live chat he started for this lesson (Chrome's narrowest window, 657 px wide, at 2x; the screenshot tool's region capture), then cropped",
+   "shows": "the title and 'Last updated: November 9, 2026'"
+  },
+  {
+   "file": "04_scene/assets/terms-calls.png",
+   "source": "terms",
+   "day": "2026-11-12",
+   "time": "3:22 pm",
+   "how": "captured in Chrome on Todd's PC by Claude during the live chat he started for this lesson (Chrome's narrowest window, 657 px wide, at 2x; the screenshot tool's region capture), then cropped",
+   "shows": "section 4.1, ending on the AI assistant calls line and the opt out"
+  },
+  {
+   "file": "04_scene/assets/terms-claims.png",
+   "source": "terms",
+   "day": "2026-11-12",
+   "time": "3:22 pm",
+   "how": "captured in Chrome on Todd's PC by Claude during the live chat he started for this lesson (Chrome's narrowest window, 657 px wide, at 2x; the screenshot tool's region capture), then cropped",
+   "shows": "section 10.1, Covenant Not to Sue"
+  },
+  {
+   "file": "04_scene/assets/sidebar.png",
+   "source": "hub",
+   "day": "2026-11-12",
+   "time": "3:08 pm",
+   "how": "captured in Chrome on Todd's PC by Claude during the live chat he started for this lesson (Chrome's narrowest window, 657 px wide, at 2x; the screenshot tool's region capture), then cropped to the navigation rows only (no chat titles, no account name)",
+   "account": "Todd's own ChatGPT account",
+   "shows": "the ChatGPT sidebar: New chat, Images, Scheduled, Library, Plugins, Explore"
+  },
+  {
+   "file": "04_scene/assets/hub.png",
+   "source": "hub",
+   "day": "2026-11-12",
+   "time": "3:08 pm",
+   "how": "captured in Chrome on Todd's PC by Claude during the live chat he started for this lesson (Chrome's narrowest window, 657 px wide, at 2x; the screenshot tool's region capture), then cropped",
+   "account": "Todd's own ChatGPT account",
+   "shows": "the Business Hub page: its headline over a row of pictures"
+  },
+  {
+   "file": "04_scene/assets/hub-box.png",
+   "source": "hub",
+   "day": "2026-11-12",
+   "time": "3:08 pm",
+   "how": "captured in Chrome on Todd's PC by Claude during the live chat he started for this lesson (Chrome's narrowest window, 657 px wide, at 2x; the screenshot tool's region capture), then cropped",
+   "account": "Todd's own ChatGPT account",
+   "shows": "the empty 'Search business' box"
+  },
+  {
+   "file": "04_scene/assets/hub-terms.png",
+   "source": "hub",
+   "day": "2026-11-12",
+   "time": "3:08 pm",
+   "how": "captured in Chrome on Todd's PC by Claude during the live chat he started for this lesson (Chrome's narrowest window, 657 px wide, at 2x; the screenshot tool's region capture), then cropped",
+   "account": "Todd's own ChatGPT account",
+   "shows": "the line under the box: By continuing, you accept OpenAI's Businesses in ChatGPT Terms."
+  },
+  {
+   "file": "04_scene/assets/hub-search.png",
+   "source": "hub",
+   "day": "2026-11-12",
+   "time": "3:10 pm",
+   "how": "Todd typed ProofNotFluff himself; captured in Chrome on Todd's PC by Claude during the live chat he started for this lesson (Chrome's narrowest window, 657 px wide, at 2x; the screenshot tool's region capture), then cropped to the headline, the box and the Create row (the 7 other businesses under it are cropped out: no other business is shown)",
+   "account": "Todd's own ChatGPT account",
+   "shows": "the search for ProofNotFluff and the row Create 'ProofNotFluff'"
+  },
+  {
+   "file": "04_scene/assets/hub-add.png",
+   "source": "hub",
+   "day": "2026-11-12",
+   "time": "3:21 pm",
+   "how": "Claude clicked the Create row once on Todd's word (3:20 pm), captured the dialog in Chrome on his PC at 2x and closed it; nothing was filled in or submitted",
+   "account": "Todd's own ChatGPT account",
+   "shows": "the dialog 'Add your business to ChatGPT' (not used on screen unless cues.md names it)"
+  },
+  {
+   "file": "04_scene/assets/hub-verify.png",
+   "source": "hub",
+   "day": "2026-11-12",
+   "time": "3:27 pm",
+   "how": "a screenshot Todd took himself in Chrome on his PC and sent in this live chat at 3:27 pm; cropped to the heading, the instruction, and the Type and Name rows (the record's value and its expiry are cropped out)",
+   "account": "Todd's own ChatGPT account",
+   "shows": "Verify that you control proofnotfluff.com: add this TXT record to the DNS settings"
+  },
+  {
+   "file": "04_scene/assets/help-phone.png",
+   "source": "help",
+   "day": "2026-11-12",
+   "time": "3:22 pm",
+   "how": "captured in Chrome on Todd's PC by Claude during the live chat he started for this lesson (Chrome's narrowest window, 657 px wide, at 2x; the screenshot tool's region capture), then cropped",
+   "shows": "the headings 'Verify your claim' and 'Verify with your business phone' (OpenAI's own words for the phone method)"
+  },
+  {
+   "file": "04_scene/assets/hub-address.png",
+   "source": "hub",
+   "day": "2026-11-12",
+   "time": "3:27 pm",
+   "how": "the top of the screenshot Todd took himself in Chrome on his PC and sent in this live chat at 3:27 pm: the address bar",
+   "account": "Todd's own ChatGPT account",
+   "shows": "the address bar reading chatgpt.com/business-hub?create=1&creation_session=1 over a Business Hub page (the create flow he was in); the part after the question mark belongs to that flow"
+  }
+ ],
+ "claims": [
+  {
+   "said": "Your business might already be listed in ChatGPT",
+   "source": [
+    "terms",
+    "help"
+   ],
+   "words": "OpenAI may create, maintain, and display a business listing ... regardless of whether you claim, manage, or cease managing it; Local stores and restaurants can currently claim only an existing U.S. listing",
+   "note": "'might': no page says every business is listed"
+  },
+  {
+   "said": "OpenAI just opened Business Hub. It's in beta",
+   "source": [
+    "announcement"
+   ],
+   "words": "We're introducing Businesses in ChatGPT in beta ... Through Business Hub",
+   "note": "'just': dated Nov 10, 2026, two days before the build; 'beta' is said aloud"
+  },
+  {
+   "said": "it's where you claim your business and keep its info current",
+   "source": [
+    "announcement"
+   ],
+   "words": "Claim your business, keep your information current"
+  },
+  {
+   "said": "Here's the catch if you're local. You might not be able to add yourself. OpenAI says local stores and restaurants can only claim a listing that's already there. U.S. only, for now",
+   "source": [
+    "help"
+   ],
+   "words": "If you run an eligible online business, you may see an option to add it. Local stores and restaurants can currently claim only an existing U.S. listing.",
+   "note": "'for now' is the page's 'currently'; 'might not' because the page names local stores and restaurants and does not define other local businesses"
+  },
+  {
+   "said": "One. Go to Business Hub. OpenAI says it's in your ChatGPT sidebar",
+   "source": [
+    "help"
+   ],
+   "words": "Sign in to ChatGPT, and open Business Hub from the sidebar."
+  },
+  {
+   "said": "If it's not, type chatgpt dot com, slash business hub",
+   "source": [
+    "hub"
+   ],
+   "words": "his sidebar did not list Business Hub; the address bar on his own screenshot reads chatgpt.com/business-hub (followed by the create flow's own ?create=1&creation_session=1)",
+   "note": "on screen the address is written exactly, with its hyphen: chatgpt.com/business-hub. Claude opened the Business Hub page at exactly https://chatgpt.com/business-hub in his signed-in Chrome at 3:06 pm (the browser tool's own log); the capture that shows an address bar is his 3:27 pm screenshot (asset hub-address)"
+  },
+  {
+   "said": "Two. Search your business name",
+   "source": [
+    "help",
+    "hub"
+   ],
+   "words": "Search for your business by name."
+  },
+  {
+   "said": "By continuing, you accept OpenAI's terms",
+   "source": [
+    "hub"
+   ],
+   "words": "By continuing, you accept OpenAI's Businesses in ChatGPT Terms."
+  },
+  {
+   "said": "They say its AI assistant may call your business for its users. You can opt out",
+   "source": [
+    "terms"
+   ],
+   "words": "By using Business Hub, you agree OpenAI's AI assistant may make calls to you on behalf of our users. You can opt out here."
+  },
+  {
+   "said": "And you agree not to bring certain claims against OpenAI",
+   "source": [
+    "terms"
+   ],
+   "words": "Covenant Not to Sue. You ... covenant and agree not to assert or commence ... any Covered Claim against OpenAI or any of its Affiliates",
+   "note": "'certain claims' stands for the terms' defined 'Covered Claim'; the video does not explain the definition and tells the viewer to read the small print"
+  },
+  {
+   "said": "We searched ours. Not listed. It offered to create one",
+   "source": [
+    "hub"
+   ],
+   "words": "Create 'ProofNotFluff'",
+   "note": "Todd typed the search himself in this live chat (3:09 pm: 'I'll type it myself')"
+  },
+  {
+   "said": "OpenAI says that's for eligible online businesses",
+   "source": [
+    "help"
+   ],
+   "words": "If you run an eligible online business, you may see an option to add it."
+  },
+  {
+   "said": "Three. Prove it's yours. OpenAI lists a business phone, a business email, your website domain, or Shopify",
+   "source": [
+    "help"
+   ],
+   "words": "Use one of the verification methods offered for your business, such as phone, business email, website domain, or Shopify. The method's own heading on the same page: Verify with your business phone",
+   "note": "'business phone' is the page's own name for the phone method (asset help-phone); the summary sentence says 'phone' (asset help-claim)"
+  },
+  {
+   "said": "Ours asked for a DNS record",
+   "source": [
+    "hub"
+   ],
+   "words": "Verify that you control proofnotfluff.com. Add this TXT record to the DNS settings for proofnotfluff.com",
+   "note": "Todd went through the create flow himself and sent this screenshot at 3:27 pm"
+  },
+  {
+   "said": "Four. Before any change goes live, there's an identity check with Persona",
+   "source": [
+    "help"
+   ],
+   "words": "You'll need to complete identity verification with Persona before you can publish changes to your business information"
+  },
+  {
+   "said": "Then OpenAI reviews it and emails you its decision",
+   "source": [
+    "help"
+   ],
+   "words": "OpenAI reviews your Persona verification submission and emails you its decision or a request for more information."
+  },
+  {
+   "said": "And claiming it doesn't guarantee ChatGPT recommends you more. OpenAI says so itself",
+   "source": [
+    "help"
+   ],
+   "words": "It doesn't guarantee increased visibility or give you direct control over ChatGPT's independent recommendations."
+  },
+  {
+   "said": "Save this, and send it to whoever runs your Google listing",
+   "source": [],
+   "words": "",
+   "note": "the send line; it claims nothing about Google"
+  }
+ ],
+ "posts": "Queued first for the evening slot on Nov 12, 2026 (8:13 pm Central), two days after the announcement; the slug's date is its place in line, not its post day. If it has not posted by Nov 17, re-read the help page and the terms before it does, and drop 'just'."
+}

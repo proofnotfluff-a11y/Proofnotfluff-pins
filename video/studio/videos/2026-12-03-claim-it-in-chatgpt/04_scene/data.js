@@ -1,0 +1,1 @@
+window.DATA = {"file": "video/studio/videos/2026-12-03-claim-it-in-chatgpt/01_voice/facts.json", "commit": "", "sha256": "6a7661b8b18fd168a3b87454d9fd8fe0f21eddbec759ae2c80dad6b6077e0bb4", "numbers": {}, "pull": {}};

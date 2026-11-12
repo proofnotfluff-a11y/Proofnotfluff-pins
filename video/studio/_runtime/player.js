@@ -183,6 +183,32 @@
     });
   }
 
+  // Real screens (formats.md "Update"; Todd, live chat, Nov 12, 2026, 11:37 am: an update shows the maker's real screens,
+  // "never a drawn copy"). The pixel looks draw at a third of the frame and snap every color to the palette, which turns a
+  // captured page into a drawing nobody can read. So a section may return screens: [{img, x, y, w, h, sx, sy, sw, sh, key}]:
+  // the scene paints that box (frame units, multiples of 3) in the key color and draws the cast and its marks over it, and
+  // the capture (04_scene/assets/<img>.png, its source box in image pixels) is laid in at full resolution wherever the key
+  // color still shows. The cast stands in front of a sharp real screen; nothing else changes for a scene without screens.
+  function screenMask(s) {
+    const img = env.img(s.img); if (!img || !lowCanvas) return null;
+    const q = look.scale, x = Math.round(s.x * q), y = Math.round(s.y * q), w = Math.round(s.w * q), h = Math.round(s.h * q);
+    const im = lowCanvas.getContext('2d').getImageData(x, y, w, h), d = im.data;
+    const kr = parseInt(s.key.slice(1, 3), 16), kg = parseInt(s.key.slice(3, 5), 16), kb = parseInt(s.key.slice(5, 7), 16);
+    for (let i = 0; i < d.length; i += 4) { const on = d[i] === kr && d[i + 1] === kg && d[i + 2] === kb && d[i + 3] === 255; d[i] = d[i + 1] = d[i + 2] = 255; d[i + 3] = on ? 255 : 0; }
+    const mc = document.createElement('canvas'); mc.width = w; mc.height = h; mc.getContext('2d').putImageData(im, 0, 0);
+    return {s, img, mc, x: x / q, y: y / q, w: w / q, h: h / q};
+  }
+  let screenCanvas = null;
+  function screenDraw(mctx, m) {
+    if (!m) return;
+    if (!screenCanvas) screenCanvas = document.createElement('canvas');
+    const c = screenCanvas, s = m.s; c.width = m.w; c.height = m.h;
+    const g = c.getContext('2d'); g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high';
+    g.drawImage(m.img, s.sx || 0, s.sy || 0, s.sw || m.img.width, s.sh || m.img.height, 0, 0, m.w, m.h);
+    g.globalCompositeOperation = 'destination-in'; g.imageSmoothingEnabled = false; g.drawImage(m.mc, 0, 0, m.w, m.h);
+    mctx.save(); mctx.setTransform(1, 0, 0, 1, 0, 0); mctx.imageSmoothingEnabled = true; mctx.drawImage(c, m.x, m.y); mctx.restore();
+  }
+
   function quantize(c) {
     const g = c.getContext('2d'); const im = g.getImageData(0, 0, c.width, c.height); const d = im.data;
     if (!pal) pal = look.palette.map((h) => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)]);
@@ -463,9 +489,11 @@
     if (ending) { if (window.__boxes) window.__boxes.length = 0; window.__tag = 'scene'; endCard(k, T); }   // the card covers the scene, so only its own words count for lint
     window.__tag = 'scene';
     if (pixel) {
+      const scr = ending ? [] : (ret.screens || []).map(screenMask);   // before the palette pass, which would recolor the key
       quantize(lowCanvas);
       mctx.setTransform(1, 0, 0, 1, 0, 0); mctx.imageSmoothingEnabled = false;
       mctx.drawImage(lowCanvas, 0, 0, W, H);
+      scr.forEach((m) => screenDraw(mctx, m));
     }
     return true;
   };

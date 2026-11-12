@@ -1,0 +1,34 @@
+{
+ "gate": "facts",
+ "round": 1,
+ "stage": "script.md, before any voice",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "score": {
+  "numbers": 0,
+  "mismatches": 0
+ },
+ "earlier": [
+  "'business phone': gone (help-phone.png shows the page's own heading 'Verify with your business phone')",
+  "the typed address: gone (hub-address.png, the address bar on Todd's own 3:27 pm screenshot, reads chatgpt.com/business-hub?create=1&creation_session=1; the 3:06 pm visit to the bare address is the browser tool's log)"
+ ],
+ "advisories": [
+  "on screen show only chatgpt.com/business-hub, with its hyphen; never the query string as something to type",
+  "do not claim Business Hub is missing from sidebars (the capture has a scrollbar; the script's 'If it's not' is conditional)",
+  "keep the Create row on screen when 'Not listed' plays",
+  "'emails you its decision': never shorten to 'approves you'",
+  "'certain claims': never shorten to 'you can't sue OpenAI'",
+  "'U.S. only' covers local stores and restaurants, not online businesses",
+  "'just': re-read and drop it if it posts after Nov 17",
+  "do not say every business gets all four verification methods",
+  "longest shared word run with a source: 5 words",
+  "no personal detail readable in any of the 19 PNGs"
+ ],
+ "not_checked": [
+  "the live text of the three OpenAI pages (WebFetch 403): every OpenAI claim was confirmed against the same-day captures, per facts.md"
+ ],
+ "sources_checked": [
+  "all 19 captures in 04_scene/assets were opened and matched to the claims they support"
+ ]
+}

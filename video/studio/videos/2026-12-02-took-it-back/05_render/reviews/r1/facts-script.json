@@ -1,0 +1,23 @@
+{
+ "gate": "facts",
+ "round": 1,
+ "stage": "script.md before any voice (r1)",
+ "pass": false,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "score": {
+  "numbers": 9,
+  "mismatches": 1
+ },
+ "reasons": [
+  "Para 3, 'Tile comes off the wall': no source says it; fix: 'He takes the hammer to the tile, and he says'"
+ ],
+ "advisories": [
+  "'Now she's filming' could be heard as the homeowner: name the roommate",
+  "'Strangers in the tile trade' matches the page more closely than 'tile setters she'd never met'",
+  "'no contractor in the state' is a 5 word run from the quote: do not add 'of Colorado'"
+ ],
+ "sources_checked": [
+  "all seven pages in facts.json opened; every other number and claim confirmed; $4,225 accepted as computed"
+ ]
+}

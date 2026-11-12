@@ -1,0 +1,31 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "stage": "script.md before any voice (r0)",
+ "pass": false,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "score": {
+  "numbers": 9,
+  "mismatches": 2
+ },
+ "reasons": [
+  "Para 4, 'One owner told them she wished they'd gone the legal route.': no source gives this co-owner a gender; fix: 'One of the owners told police they wished they'd gone the legal route.'",
+  "Last para, 'He did fifteen days.': the sources report the sentence, not that it was served; fix: 'He got fifteen days.'"
+ ],
+ "advisories": [
+  "$4,225 is computed (7,555 minus 3,330); no opened page prints it: say so in facts.json",
+  "KRDO's warrant report calls the second person an employee: 'for both of them' is safer",
+  "the rebuild is reported as under way and free: 'came to rebuild' is safer",
+  "'Tile comes off the wall' is a fair picture, never a quote"
+ ],
+ "sources_checked": [
+  "krdo.com 2022-10-13: amounts, held payment, roommate, plea, 15 days set to begin Oct 19, 3 years supervised probation, business no longer active",
+  "krdo.com 2021-11-05: felony warrants for both, amounts",
+  "krdo.com 2021-10-06: rebuild by tile workers, free to her",
+  "krdo.com ?p=621051: millions of views, findings to the district attorney",
+  "cbsnews.com: sledgehammer, took back the work, his words, the company's statement",
+  "levelset.com: a co-owner's words to police, $7,500 limit",
+  "coloradojudicial.gov: small claims up to $7,500, dated 10-12-26"
+ ]
+}

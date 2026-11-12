@@ -1,0 +1,22 @@
+{
+ "gate": "facts",
+ "round": 2,
+ "stage": "script.md before any voice (r2)",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "score": {
+  "numbers": 9,
+  "mismatches": 0
+ },
+ "reasons": [],
+ "advisories": [
+  "'He got fifteen days' reports the sentence, not time served: fair as set up",
+  "both co-owners came back; the line names the contractor only",
+  "'Nobody's paying me?' reads as a reenacted outburst, adds no claim",
+  "keep 'came to rebuild', never 'rebuilt'"
+ ],
+ "sources_checked": [
+  "all seven pages in facts.json opened by the reviewer; every number and claim confirmed; $4,225 accepted as computed from $7,555 and $3,330"
+ ]
+}

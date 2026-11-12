@@ -1,0 +1,71 @@
+{
+ "about": "Every number and claim this lesson shows or says, with its source. A real dispute in Colorado Springs, September 2021, and its court result, October 2022, as reported by KRDO 13 (five reports), CBS Colorado and Levelset; the small claims limit from the Colorado Judicial Branch. Every page was opened and read on Nov 12, 2026 (Central) in Todd's live chat session; the scheduled cloud session cannot open these hosts. We name no person and no business. The two acted lines are reenactments in our own words of what each side is reported to have said; they are labeled Reenactment once on screen and are never shown as exact quotes. Not used: the building department's finding that the work had no permit, the company's reply that it was licensed, the burglary count on the warrants, the co-owner's own plea, the contractor's earlier record, any restitution (none is reported). The sources report a 15 day jail sentence set to begin Oct 19, 2022, not that it was served: we say he got fifteen days. KRDO's warrant report calls the second person an employee and Levelset and KRDO's sentencing report call the two co-owners: we say 'one of the owners' only for the person Levelset calls a co-owner, give that person no gender, and say the warrants were for both of them. KRDO's Oct 6, 2021 report covers the rebuild as under way and free to her: we say they came to rebuild it for free.",
+ "story": {
+  "title": "Ex-Colorado Springs contractor recorded destroying customer's shower sentenced to jail time",
+  "publisher": "KRDO 13",
+  "date": "2022-10-13",
+  "url": "https://krdo.com/news/2022/10/13/ex-colorado-springs-contractor-recorded-destroying-customers-shower-sentenced-to-jail-time/",
+  "reread": "2026-11-12",
+  "what": "a homeowner paid $3,330 of $7,555 for a shower rebuild and held the final payment because she was unhappy with the work and wanted to inspect it; the two co-owners of the contracting company came back, were let in by her roommate, and broke up the finished shower and tile while the roommate filmed; one co-owner pleaded guilty to felony criminal mischief and was sentenced to 15 days in jail and 3 years of supervised probation; the building department says the company is no longer active"
+ },
+ "job": 7555,
+ "paid": 3330,
+ "heldBack": 4225,
+ "heldBackNote": "computed: 7,555 minus 3,330 is 4,225. The KRDO pages print the two exact amounts and call the unpaid part 'more than $4,000'; no page we could open prints $4,225 (a Business Insider headline does, but that page refuses automated reads, so it is not a source here).",
+ "jailDays": 15,
+ "probationYears": 3,
+ "probationNote": "supervised probation; said as 'three years of probation'",
+ "smallClaimsLimit": 7500,
+ "smallClaimsNote": "Colorado Judicial Branch, Small Claims Basic Information, dated 10-12-26: cases up to $7,500 in value. Levelset (Oct 15, 2021) gives the same limit at the time of the dispute.",
+ "sources": [
+  {
+   "id": "krdo-sentence",
+   "publisher": "KRDO 13",
+   "date": "2022-10-13",
+   "url": "https://krdo.com/news/2022/10/13/ex-colorado-springs-contractor-recorded-destroying-customers-shower-sentenced-to-jail-time/",
+   "confirms": "paid $3,330 of $7,555 for a shower rebuild; she held the final payment, unhappy with the work, to inspect it further; her roommate let the contractors in without knowing why and filmed on a phone; guilty plea in July to felony criminal mischief; 15 days in jail and 3 years of supervised probation; the business is no longer active, per the regional building department"
+  },
+  {
+   "id": "krdo-warrants",
+   "publisher": "KRDO 13",
+   "date": "2021-11-05",
+   "url": "https://krdo.com/news/2021/11/05/warrants-issued-for-contractor-who-destroyed-colorado-springs-womans-bathroom/",
+   "confirms": "felony warrants issued for two people, the two co-owners; $3,330 paid of $7,555, $4,225 unpaid; she wanted to inspect the work before the final payment"
+  },
+  {
+   "id": "krdo-rebuild",
+   "publisher": "KRDO 13",
+   "date": "2021-10-06",
+   "url": "https://krdo.com/news/2021/10/06/group-of-men-rebuild-bathroom-for-colorado-springs-homeowner-after-viral-video/",
+   "confirms": "a tile installer from Oregon organized the rebuild with local contractors, with donated materials and labor, at no cost to her; they were strangers who offered help after the video"
+  },
+  {
+   "id": "krdo-views",
+   "publisher": "KRDO 13",
+   "date": "2021-09",
+   "url": "https://krdo.com/?p=621051",
+   "confirms": "the video was viewed millions of times; police turned their findings over to the district attorney"
+  },
+  {
+   "id": "cbs",
+   "publisher": "CBS Colorado",
+   "date": "2021-09-17",
+   "url": "https://www.cbsnews.com/colorado/news/contractor-sledgehammer-tile-destroyed-colorado-springs",
+   "confirms": "he was filmed using a sledgehammer on the tiled bathroom he had renovated; he said the homeowner refused to pay him so he took back the work; he said no contractor in the state would fix it; the company's statement called it repossessing the tile shower; CBS rounds the amounts to $3,300 of $7,500"
+  },
+  {
+   "id": "levelset",
+   "publisher": "Levelset",
+   "date": "2021-10-15",
+   "url": "https://www.levelset.com/news/colorado-contractor-criticism-after-taking-sledgehammer-to-bathroom/",
+   "confirms": "a co-owner told police she wished they had gone the legal route; Colorado small claims court takes claims up to $7,500"
+  },
+  {
+   "id": "co-courts",
+   "publisher": "Colorado Judicial Branch",
+   "date": "2026-10-12",
+   "url": "https://www.coloradojudicial.gov/sites/default/files/2026-10/SmallClaimsInfoFor%20Website2026.pdf",
+   "confirms": "small claims cases are for cases up to $7,500 in value"
+  }
+ ]
+}

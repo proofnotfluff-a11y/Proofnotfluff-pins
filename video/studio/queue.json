@@ -1075,6 +1075,26 @@
     "reason": "Todd, live chat, Nov 11, 2026, 6:40 pm: old format is not working, do not post; v4 only",
     "at": "2026-11-11T19:42:08-05:00"
    }
+  },
+  {
+   "slug": "2026-12-01-where-100-goes",
+   "readyAt": "2026-11-11T22:26:48-05:00",
+   "commit": "ca7f722d36316a2d26d84f36d534b7ebee6f0bfe",
+   "fingerprints": {
+    "script": "6e70a0d98cc7",
+    "takes": "a9318fea6b62",
+    "words": "2d0cdb591510",
+    "cues": "a5e3872a77f4",
+    "scene": "dfb44bc7ba48",
+    "data": "47335f3aaa37",
+    "captions": "24b278e33ddc",
+    "mouth": "8e51c481a706",
+    "runtime_kit": "e963af86df8b",
+    "runtime_player": "d87eb03f881c",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

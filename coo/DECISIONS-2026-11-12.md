@@ -1,0 +1,7 @@
+# Decisions, Nov 12, 2026
+
+- [stated] Todd, live chat (idea scout chat), 9:36 am: "go with recs". The rec it answers, in Claude's words to him at 9:14 am: "stop the nightly reads of the 5 VerticalScope feeds? I say stop, because their terms forbid it."
+- Why: the box read the terms pages of contractortalk, plumbingzone, electriciantalk, hvac-talk and lawnsite that morning (pnf-local-jobs fetch/terms-check-a to e-2026-11-12-r1, 5 of 5 ok). One operator, VerticalScope, one set of terms: no collecting content by automated tools, scraping and AI named. CONSTITUTION 3 already says nothing against a platform's terms. The reads began Nov 7, before anyone had read the terms.
+- Done: video/studio/research/listen.json "feeds" is empty and the five are under "stopped"; video/studio/_shared/nightshift.md step 2b names the five as closed hosts for every fetch job, feeds and thread pages alike. No gate file, tool, skill or scheduled task changed.
+- Effect on the studio: story finding loses its forum input from tonight. It still has the case bank (research/STORIES.md), press, public records, and the other hosts the box reader allows (the Jobber, ServiceTitan, Housecall Pro and Thumbtack communities, the trade magazines, pestcontrolforum), whose terms are being checked next in the idea scout chat.
+- Not done: the five hosts are still in the box reader's own list (pnf-local-jobs scripts/fetcher.py ALLOWED, set on the box). Taking them out is a box install; it rides with the next box script change. Until then the rule above is what stops the reads.

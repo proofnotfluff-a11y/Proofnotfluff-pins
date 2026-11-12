@@ -3,7 +3,7 @@
 Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 87 words, 33.0 s of voice.
 
 ## Flags
-- 0.0 s heard 'He' for 'She'
+none
 
 ## Pace per take (target 160 to 195 wpm)
 ```
@@ -18,7 +18,7 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 87 words, 33.0 s of voice.
 
 `00:00.0` She thought the plumber kept it all.
 
-`00:02.3` One shop owner says a customer held up his job over that.
+`00:02.2` One shop owner says a customer held up his job over that.
 
 `00:05.7` In his example, a one-truck shop keeps about nine dollars of every hundred.
 
@@ -36,4 +36,4 @@ Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 87 words, 33.0 s of voice.
 
 `00:28.6` Fair, or still too much?
 
-`00:31.1` Send this to whoever calls it profit.
+`00:31.2` Send this to whoever calls it profit.

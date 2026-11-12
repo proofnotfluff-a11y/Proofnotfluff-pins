@@ -145,7 +145,7 @@ const split = (k) => { const P = px(k); P(0, 0, 180, 640, WINE); P(180, 0, 180, 
 /* a plain lined wall in one color (each side's own place in the close shots at the end and in the hook) */
 const wall = (k, c, c2) => { const P = px(k); P(0, 0, 360, 640, c); for (let y = 20; y < 640; y += 22) P(0, y, 360, 1, c2); };
 /* a second person as a plain dark shape (the business partner: no source describes them, so no face and no clothes) */
-const shape2 = (k, x, y, s = 1) => { const c = k.ctx, q = (v) => Math.round(v / 3) * 3; c.fillStyle = '#2B2033'; c.fillRect(q(x - 45 * s), q(y - 330 * s), q(90 * s), q(90 * s)); c.fillRect(q(x - 75 * s), q(y - 235 * s), q(150 * s), q(235 * s)); };
+const shape2 = (k, x, y, s = 1) => { const c = k.ctx, q = (v) => Math.round(v / 3) * 3; c.fillStyle = '#3A2F45'; c.fillRect(q(x - 33 * s), q(y - 345 * s), q(66 * s), q(72 * s)); c.fillRect(q(x - 12 * s), q(y - 273 * s), q(24 * s), q(15 * s)); c.fillRect(q(x - 54 * s), q(y - 258 * s), q(108 * s), q(18 * s)); c.fillRect(q(x - 66 * s), q(y - 240 * s), q(132 * s), q(130 * s)); c.fillRect(q(x - 45 * s), q(y - 110 * s), q(36 * s), q(110 * s)); c.fillRect(q(x + 9 * s), q(y - 110 * s), q(36 * s), q(110 * s)); };
 /* the cast. Close shots from the waist up, feet far below the frame (feet 1700 or so), faces between y 700 and 1100. */
 const pro = (k, x, sc, pose, o = {}) => k.snow(x, o.feet || 1150, Object.assign({scale: sc, pose, face: 1, talk: false}, o));
 const owner = (k, x, sc, pose, mood, o = {}) => k.client(x, o.feet || 1150, Object.assign({role: 'homeowner', scale: sc, pose, mood, face: -1}, o));
@@ -246,7 +246,8 @@ window.SCENE = {
       k.cut(k.S('himline'));
       wall(k, '#4A4E5A', '#6B7080');
       proHammer(k, 520, 2.8, 'talk', {feet: 2060, talk: true});
-      plate(k, [['HIS SIDE', 132, CREAM], ['REENACTMENT', 132, ORANGE]], 264);
+      const t0 = k.S('himline'), tSo = W(k, 'himline', /^so,?$/i, 2.2);
+      steps(k, T, [[t0, [['HIS SIDE', 132, CREAM], ['REENACTMENT', 132, ORANGE]]], [tSo, [['HIS SIDE', 132, CREAM], ['REENACTMENT', 132, ORANGE], ['TAKES IT BACK', 132, RED]]]]);
       return {host: false};
     },
     /* ---- room: the hallway, the door open, him in the doorway, his partner a plain shape behind him ---- */

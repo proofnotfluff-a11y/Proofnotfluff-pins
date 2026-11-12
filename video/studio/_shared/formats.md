@@ -153,13 +153,14 @@ gave every lesson 3 to 29 s whatever its length; no gate score moved views (the 
 video is a short story a stranger can judge, with the owner's rule as its payoff. The sections above bind only the
 old-format lessons already made.
 
-Four formats (brief.md `- **Format:**`), each a named show with a new case every time (never a series):
+Five formats (brief.md `- **Format:**`), each a named show with a new case every time (never a series):
 | Format | What the viewer sees | Payoff for the owner |
 |---|---|---|
 | `verdict` | a real dispute between a tradesperson and a customer, acted by the cast, ending on "you decide" | the rule that prevents it |
 | `invoice` | a bill or quote built line by line: where the money goes | how to say the price so it sticks |
 | `call` | a phone call as captions and two speakers, said once to be a reenactment | what to say or send |
 | `case` | a real dispute with a public result (a ruling, a sentence, a refund, a fine), told in order, the result held for the end (rules: "Case" below) | the legal route that would have paid |
+| `update` | something that changed this week that an owner can act on: what it is, the catch, the steps, on the maker's real screens with a presenter talking (rules: "Update" below) | the steps, in order, to do today |
 
 Pick the story (brief.md `- **Pull:**`, all three yes): two sides in conflict; a dollar figure; someone specific to send it
 to. Then breadth: would a tech or a homeowner stop too? An owner-only lesson is a site page, not a video. Sources: a
@@ -197,9 +198,19 @@ Case (Todd, live chat, Nov 12, 2026, 10:03 am: "can we make the necessary change
 - The story must have: a real dispute, a dollar figure, and a result a public source reports (court, police, a licensing board, the press quoting them). No result on the record means it is a verdict, not a case.
 - The wrong comes first: frame 0 and the first sentence show what one side did to the other, with the two numbers. Then the story in order: what was agreed, what broke, what each side did, what the law did.
 - One acted line a side, at most two a side: the narrator speaks as that person over a close shot, and the first one carries "Reenactment" on screen. Each line says in our own words what the source reports that side said or did; it adds no new claim and never reads as an exact quote.
-- The owner's rule comes after the result, as what the legal route was (the lien, small claims, the notice), with its number from a source read that run.
-- The end: the result, the rule in one sentence, one closing question that still splits the room (was it fair, who was more wrong), then the send line. The send line names someone a homeowner or a tech could send it to, not only an owner.
+- The owner's rule is the road not taken and comes before the result (the lien, small claims, the notice, with its number from a source read that run); the video ends within about 8 s of the result's last line (viewer r0 on the first case, Nov 12: the stranger left at the result when the rule came after it).
+- The end: the result, then one closing question that still splits the room (was it fair, who was more wrong), then the send line. The send line names someone a homeowner or a tech could send it to, not only an owner.
 - Cues start from `_templates/v4-case-cues.md` (copy it over 03_cues/cues.md after `anim.py new`).
+
+Update (Todd, live chat, Nov 12, 2026, 11:37 am, with a reel he sent of a home service creator explaining a two day old launch: "This is the type of video format we should be pursuing ... we can still make it sound human and make it sound relatable ... The information in here is actually useful ... figuring out a way to put this in the faceless format"; that reel showed 469 likes, 501 saves and 451 shares; bar and days: research/TEST-2026-11-23.md "Update test"). An `update` keeps every v4 line above except these:
+- The story must have all four: something that changed in the last 7 days (a launch, a rule, a price, a deadline), read that day on the maker's or the agency's own page; one thing an owner can do about it in 15 minutes or less; the steps, in order; and the catch or the limit the hype leaves out. No catch found means it was not read closely enough. A tip with no news in it is not an update.
+- Length: 45 to 90 s, 110 to 230 spoken words (anim.py holds the band and the beats: a cue for every 6 s on average, none over 8 s apart).
+- Written as talk, the way a person tells a friend what they just found out: "you", contractions, one plain aside, short sentences, the steps counted aloud ("One.", "Two."). Never "I did this" unless Todd did it and said so in a live chat. Read it aloud before the facts gate: a line nobody would say gets rewritten.
+- Shape: the news and why it matters in the first sentence (8 words or fewer, by 2.5 s); what it is, in one sentence; who it is for and the catch; the steps (the first step is the cue marked `[payoff]`, by 40%); the one thing to check when done; "save this" and the send line.
+- Real screens carry it: each step shows the maker's own screen. A public page comes from a demos job (`tools/ai_demo.py`: page-<n>.png with its address). A screen behind a sign-in comes only from Todd: a screenshot he took of his own business account, sent in a live chat, kept in the lesson's 04_scene/assets/ with the day he took it in facts.json, cropped so it shows business fields only (no personal name, email, phone or ID). Never a drawn copy of someone's app, never a screen we did not see.
+- The presenter: Snow from the waist up in the lower half, talking (his mouth follows the voice), with the screen in the upper half. He points, reacts and steps aside for a full screen; he is the person in the room, since we show no face of ours.
+- Captions: the steps as a numbered list in the caption (it is what gets saved), the catch in one line, the maker's page named on the `Source:` line with the date read.
+- Facts: every feature, limit, price and step confirmed on the maker's own page or Todd's own screen that day; "beta" or "rolling out" is said aloud; nothing promised that the maker does not promise (a claimed profile is not a better ranking unless the maker says so).
 
 Gates, in order (prompts/README.md "v4"): facts on script.md before any voice; after the render: render critic, viewer,
 then facts once more on the transcript, screen and captions. Two fix rounds a gate at most, then shelve it.

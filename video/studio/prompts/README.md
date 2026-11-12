@@ -40,7 +40,7 @@ confirms every "unconfirmed" item on its source page; the review JSON names the 
 opus agent as before. Render critic, buyer, design and golden stay on Claude.
 
 ## v4 (Todd, live chat, Nov 9, 2026, 2:11 pm: "Make all the necessary changes"; coo/constitution/video.md; _shared/formats.md "v4")
-A v4 lesson (Format verdict, invoice, call or case) runs four gates and nothing above this section: qa (code: `anim.py check`), facts,
+A v4 lesson (Format verdict, invoice, call, case or update) runs four gates and nothing above this section: qa (code: `anim.py check`), facts,
 render-critic, viewer (`anim.py gates_for`). Why: design score against views was r = 0.098, the send gate passed 18 of 18
 lessons that earned 1 share between them, and one lesson burned 24 script rounds (the audit, coo/DECISIONS-2026-11-09.md).
 - facts: on script.md before any voice; after the render once more on the transcript, cues.md, scene.js and captions.json

@@ -1,0 +1,21 @@
+{
+ "gate": "render-critic",
+ "round": 1,
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "render": 3,
+ "score": {
+  "faults": 0
+ },
+ "faults": [],
+ "reasons": [
+  "hook plate SHE HELD BACK $4,225 on frame 0",
+  "every spoken number readable when said: $4,225 at 0.0 and 53.5 s, $7,555 at 8.5 s, $3,330 at 10.1 s, up to $7,500 at 51.0 s, 15 days at 61.0 and 69.5 s, 3 years at 63.0 s, millions at 35.0 s",
+  "plates inside x 100 to 1031, y 258 to 840; captions y 1184 to 1385 over bodies only, never eyes or scene words",
+  "smallest capitals 65 to 70 px",
+  "last word ends 74.74 s, video ends 75.73 s",
+  "2,272 frames swept: nothing vanishes for a frame; no flash over 3 a second",
+  "longest same shot 5.0 s (48.5 to 53.5 s): nothing static over 8 s"
+ ]
+}

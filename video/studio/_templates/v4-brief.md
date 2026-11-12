@@ -1,9 +1,9 @@
-# Brief: <title> (v4 <verdict | invoice | call | case>)
+# Brief: <title> (v4 <verdict | invoice | call | case | update>)
 
 Planned <date>. Rules: `_shared/formats.md` "v4"; coo/constitution/video.md.
 
 - **Test:** <the one thing this lesson tries, and the bar it is read against (research/VIRALITY-2026-11.md "Adopted Nov 11")>.
-- **Format:** <verdict | invoice | call | case>
+- **Format:** <verdict | invoice | call | case | update>
 - **Where:** Instagram Reel, 9:16, then TikTok, Facebook, YouTube Shorts.
 - **Audience:** <who stops for this: not only owners>.
 - **The one idea:** <one sentence a stranger could repeat, the owner's rule in it>.

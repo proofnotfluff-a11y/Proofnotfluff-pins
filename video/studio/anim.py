@@ -2806,7 +2806,13 @@ for _f in V4_SHORT:
 # result) starts in the last 40%, and no stretch between two cues runs over V4_CASE_GAP.
 V4_CASE = "case"
 FORMATS[V4_CASE] = {"min_seconds": 55.0, "max_seconds": 95.0, "words": (120, 240)}
-V4_FORMATS = V4_SHORT | {V4_CASE}
+# An update (Todd, live chat, Nov 12, 2026, 11:37 am: "This is the type of video format we should be pursuing"; formats.md
+# "Update"): something that changed this week and the steps to act on it, on real screens. Longer than a short lesson, the
+# first step by 40% like any answer, and the picture keeps changing like a case.
+V4_UPDATE = "update"
+FORMATS[V4_UPDATE] = {"min_seconds": 45.0, "max_seconds": 90.0, "words": (110, 230)}
+V4_FORMATS = V4_SHORT | {V4_CASE, V4_UPDATE}
+V4_BEAT_FORMATS = {V4_CASE, V4_UPDATE}   # the beat rule (beat_problems) holds for these
 V4_CASE_PAYOFF_FROM = 0.60   # a case: the cue marked [payoff] starts at or after this share of the runtime
 V4_CASE_GAP = 8.0            # a case: the longest stretch between two cue starts
 V4_CASE_BEAT = 6.0           # a case: one cue for every this many seconds, on average
@@ -3756,6 +3762,9 @@ def v4_selftest():
         ("v4 gates are qa, facts, render-critic, viewer", list(V4_GATES) != ["qa", "facts", "render-critic", "viewer"], False),
         ("v4 band is 18 to 35 s", [1] if any((FORMATS[f]["min_seconds"], FORMATS[f]["max_seconds"]) != (18.0, 35.0) for f in V4_SHORT) else [], False),
         ("v4 case band is 55 to 95 s", [1] if (FORMATS[V4_CASE]["min_seconds"], FORMATS[V4_CASE]["max_seconds"]) != (55.0, 95.0) or V4_CASE not in V4_FORMATS else [], False),
+        ("v4 update band is 45 to 90 s, beats held", [1] if (FORMATS[V4_UPDATE]["min_seconds"], FORMATS[V4_UPDATE]["max_seconds"]) != (45.0, 90.0) or V4_UPDATE not in V4_FORMATS or V4_BEAT_FORMATS != {V4_CASE, V4_UPDATE} else [], False),
+        ("v4 update first step by 30%", payoff_problems({"duration": 60.0, "cues": [c("news", 0), c("step1", 18.0, True)]}, V4_UPDATE), False),
+        ("v4 update first step at 70%", payoff_problems({"duration": 60.0, "cues": [c("news", 0), c("step1", 42.0, True)]}, V4_UPDATE), True),
         ("v4 case result held to 80%", payoff_problems({"duration": 75.0, "cues": [c("wrong", 0), c("result", 60.0, True)]}, V4_CASE), False),
         ("v4 case result given at 30%", payoff_problems({"duration": 75.0, "cues": [c("wrong", 0), c("result", 22.0, True)]}, V4_CASE), True),
         ("v4 case with no payoff cue", payoff_problems({"duration": 75.0, "cues": [c("wrong", 0), c("result", 60.0)]}, V4_CASE), True),
@@ -4490,7 +4499,7 @@ def v4_static_problems(slug):
     if os.path.exists(cj):
         fmt = lesson_format(slug)
         out += payoff_problems(json.load(open(cj)), fmt)
-        if fmt == V4_CASE:
+        if fmt in V4_BEAT_FORMATS:
             out += [f"beats: {x}" for x in beat_problems(json.load(open(cj)))]
     if os.path.exists(vdir(slug, "05_render", "captions.json")):
         out += [f"captions: {x}" for x in captions_v4_problems(slug)]

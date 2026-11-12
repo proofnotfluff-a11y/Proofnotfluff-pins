@@ -1,0 +1,27 @@
+{
+ "gate": "facts",
+ "round": 1,
+ "stage": "render 3: transcript, screen, captions",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "score": {
+  "numbers": 7,
+  "mismatches": 0
+ },
+ "notes": [
+  "round 0 fault gone: the jail cue is a courtroom bench under SENTENCE: / 15 DAYS / IN JAIL",
+  "advisory: 'they wished' could be heard as both owners; left as is",
+  "advisory: 'supervised' dropped from probation, allowed by facts.json",
+  "advisory: YouTube aiUse false is the rule (V4_LABELS), the other three labels on"
+ ],
+ "sources_checked": [
+  "krdo.com 2022-10-13: amounts, held payment, roommate, plea, 15 days set to begin Oct 19, 3 years supervised probation, business no longer active, two co-owners",
+  "krdo.com 2021-11-05: felony warrants for two people; $4,225 is computed",
+  "krdo.com 2021-10-06: strangers in the tile trade, donated work, free for her",
+  "krdo.com ?p=621051: millions of views; police findings to the district attorney",
+  "cbsnews.com: sledgehammer to his own work; took it back because she refused to pay; his words; the company's statement",
+  "levelset.com: co-owners; a co-owner's words to police; $7,500",
+  "coloradojudicial.gov: small claims up to $7,500, dated 10-12-26"
+ ]
+}

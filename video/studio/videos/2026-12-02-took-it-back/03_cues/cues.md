@@ -24,7 +24,7 @@ A plain cut closer on her, talking (an acted line, our words). The plate: HER SI
 
 ## himline "His side: she won't" [sfx: pop]
 A plain cut to the contractor on his wall, close, talking, the hammer on his shoulder (an acted line, our words). The
-plate: HIS SIDE / REENACTMENT.
+plate: HIS SIDE / REENACTMENT, and on "so" a third row in red: TAKES IT BACK.
 
 ## room "Her roommate let him" [sfx: blip]
 A plain cut to the hallway: the bathroom door open, the contractor in the doorway with the hammer, his business partner

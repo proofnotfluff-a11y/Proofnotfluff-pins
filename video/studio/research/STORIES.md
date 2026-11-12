@@ -14,7 +14,8 @@ lessons; one cluster lesson that flops is not a verdict. Ready target: 5 stories
 ## v4 case bank (Todd, live chat, Nov 11, 2026, 4:26 pm; the make run takes the top unmade row, reads its sources again that day, and marks it made)
 | Date | Story | Format | Brief |
 |---|---|---|---|
-| Nov 12 | Owed $4,225 on a shower, a contractor smashed it with a sledgehammer; the public result is held for the end (the first case: make it before any row below) | case | research/VIRALITY-2026-11-briefs/04-sledgehammer-4225.md |
+| Nov 12 | OpenAI opened Businesses in ChatGPT (beta, Nov 10): how an owner claims the listing, and the catch for local shops. Waits on Todd's own screenshots of Business Hub (OpenAI's pages refuse our readers) | update | research/VIRALITY-2026-11-briefs/05-chatgpt-business-hub.md |
+| Nov 12 | Owed $4,225 on a shower, a contractor smashed it with a sledgehammer; the public result is held for the end (made Nov 12 in Todd's live chat: 2026-12-02-took-it-back, queued first) | case | research/VIRALITY-2026-11-briefs/04-sledgehammer-4225.md |
 | Nov 11 | A crew did a $6,000 job in under six hours and the customer offered half | verdict | research/VIRALITY-2026-11-briefs/01-six-hours-6k.md |
 | Nov 11 | One plumber quoted $3,100 to replace a water heater, a second fixed it for $150 | call | research/VIRALITY-2026-11-briefs/02-dead-or-150.md |
 | Nov 11 | Where $100 of a plumbing bill goes: about $9 left, about $2 after the shop (made Nov 11: 2026-12-01-where-100-goes, queued first) | invoice | research/VIRALITY-2026-11-briefs/03-where-100-goes.md |

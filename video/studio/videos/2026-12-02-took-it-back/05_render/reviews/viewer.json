@@ -1,0 +1,46 @@
+{
+ "gate": "viewer",
+ "round": 1,
+ "pass": true,
+ "reviewer": "fresh opus agent, two steps",
+ "at": "2026-11-12",
+ "render": 3,
+ "score": {
+  "about": "A Colorado contractor smashed a shower because the client held back $4,225. He could have gone to small claims court. Instead he got a felony, 15 days in jail, and lost his company.",
+  "gets": "A number I did not know, plus a feeling: Colorado small claims takes cases up to $7,500, so his $4,225 would have fit.",
+  "stop": "Weak stop. A dollar figure alone does not grab me; the sledgehammer line at 2.6 s is the real hook.",
+  "watch_to_end": "yes",
+  "leave_at": "none",
+  "confused": "none",
+  "matches_idea": "same",
+  "comment": "Yes: side with the trades but blame him; the other side will show up too. The comments would split.",
+  "send": "A buddy who runs a small crew and has eaten an unpaid final invoice.",
+  "forecast": {
+   "stop": 3,
+   "hold": 3,
+   "finish": 2,
+   "send": 2
+  }
+ },
+ "earlier": [
+  "rule after the result: fixed",
+  "REENACTMENT with no reason: fixed (HER SIDE / HIS SIDE)",
+  "'one of the owners': fixed",
+  "'both of them': fixed (the business partner is introduced at 22.3 s)",
+  "unlabeled bars: fixed (gone)",
+  "hammer not in frame 0: fixed",
+  "phone shot dead air: mostly fixed",
+  "end cards three times: fixed"
+ ],
+ "reasons": [
+  "same point as the one idea; gets the $7,500 limit; watched to the end; the result at 59 to 67 s was not shown early",
+  "two step 1 items judged notes by the reviewer, not blockers: 'His forty-two twenty-five fit' takes a beat to parse; the frame 0 card sits over the contractor for half a second"
+ ],
+ "notes": [
+  "lead with the sledgehammer line; the number second",
+  "most frames are a figure under a card: it plays like a slideshow; hold longer on the smash",
+  "'repossessing the shower' is the best line and could come earlier",
+  "the pause on 'And there was one' over a still courthouse is the slowest stretch",
+  "forecast: stop 3, hold 3, finish 2, send 2"
+ ]
+}

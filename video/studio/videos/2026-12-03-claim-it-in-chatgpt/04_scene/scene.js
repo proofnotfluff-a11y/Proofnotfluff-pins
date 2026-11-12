@@ -63,11 +63,14 @@ const clip = (k, L, name, x, y, sc) => {
 /* a ring around a clipping (the place to look or tap) */
 const ring = (k, b, c = ORANGE) => { const P = px(k), x = b.x / 3 - 4, y = b.y / 3 - 4, w = b.w / 3 + 8, h = b.h / 3 + 8; P(x, y, w, 3, c); P(x, y + h - 3, w, 3, c); P(x, y, 3, h, c); P(x + w - 3, y, 3, h, c); };
 /* a plain lined wall: each source has its own (openai.com night, the help page green, ChatGPT slate, the terms wine) */
-const WALLS = {ai: [NIGHT, PLUM], help: ['#24453A', '#2F5A4A'], hub: [SLATE, '#1B1420'], terms: ['#5A2432', WINE], end: [PLUM, '#3D2E45']};
+const WALLS = {ai: [NIGHT, PLUM], help: ['#24453A', '#2F5A4A'], hub: [SLATE, '#1B1420'], terms: ['#5A2432', WINE], end: [PLUM, '#3D2E45'], go: [DTEAL, '#3E7A62']};
 const wall = (k, id) => { const P = px(k), [c, c2] = WALLS[id]; P(0, 0, 360, 640, c); for (let y = 20; y < 640; y += 22) P(0, y, 360, 1, c2); P(0, 386, 360, 254, INK); P(0, 384, 360, 2, c2); };
 /* Snow, from the chest up at the bottom of the frame: his head between y 900 and 1180, clear of the captions */
 const snow = (k, x, pose, o = {}) => k.snow(x, o.feet || 1632, Object.assign({scale: 1.5, pose, face: x > 540 ? -1 : 1}, o));
-const HEAD = 885;   /* clippings stop here, above his head */
+const HEAD = 885;
+/* where a pointing hand aims at time T: it runs back and forth along the bottom edge of clipping b, on whole low-res pixels */
+const follow = (T, t0, b, sx) => { const c = sx > 540 ? b.x + b.w * 0.62 : b.x + b.w * 0.38, a = Math.min(190, b.w * 0.3); return [q3(c + a * Math.sin((T - t0) * 2.6)), b.b - 12]; };
+   /* clippings stop here, above his head */
 
 /* One section from a small table:                                                                                      */
 /*   wall; snow [x, pose]; plates [[word or null, rows, stamp?], ...] (the first at the cue, the rest on a spoken word);  */
@@ -90,8 +93,11 @@ const section = (id, d) => (k, T) => {
   let y = top, last = null; const boxes = {};
   items.forEach(([n, t], i) => { const sc = scs[i] * fit, w = q3(STRIPS[n].r[2] * sc), h = q3(STRIPS[n].r[3] * sc); if (T >= t) { boxes[n] = clip(k, L, n, d.left != null ? d.left : 540 - w / 2, y, sc); last = boxes[n]; } y += h + gap; });
   (d.ring || []).forEach(([re, n, c]) => { if (boxes[n] && T >= (re ? W(k, id, re, 1) : t0)) ring(k, boxes[n], c); });
-  const [sx, pose] = d.snow;
-  snow(k, sx, pose, pose === 'point' && last ? {at: [sx > 540 ? last.x + last.w * 0.7 : last.x + last.w * 0.3, last.b - 20]} : {});
+  const [sx, pose0] = d.snow;
+  /* he never stands still: a pointing hand runs along the newest clipping the way a finger follows a line; a shrug lifts */
+  /* and drops; talking moves his hand on its own (the kit). Motion lives in the things on screen, never in the camera.   */
+  const beat = Math.floor((T - t0) / 0.9) % 2, pose = pose0 === 'shrug' ? (beat ? 'point' : 'shrug') : pose0;
+  snow(k, sx, pose, pose === 'point' && last ? {at: follow(T, t0, last, sx)} : {});
   steps(k, T, pl);
   return {host: false, screens: L};
 };
@@ -109,20 +115,21 @@ window.SCENE = {
     /* At 0.5 s the wall turns and the search box lands (the first change); on "listed" the plate stamps.                */
     hook: (k, T) => {
       const L = [], t1 = 0.5, tL = Math.max(1.2, W(k, 'hook', /^listed/i, 1.9));
-      wall(k, T < t1 ? 'hub' : 'help');
+      wall(k, T < t1 ? 'hub' : 'go');
       const A = [['YOUR BUSINESS', 132, CREAM], ['IN CHATGPT?', 132, GOLD]], B = [['ALREADY', 132, CREAM], ['LISTED?', 132, GOLD]];
       const top = plateBottom(A) + 30;
       const h1 = clip(k, L, 'hubHead', 540 - q3(STRIPS.hubHead.r[2] * 1.3) / 2, top, 1.3);
       let last = h1;
       if (T >= t1) last = clip(k, L, 'hubBox', 60, h1.b + 30, 1.05);
-      snow(k, 830, T < t1 ? 'wave' : 'point', T < t1 ? {} : {at: [last.x + last.w * 0.9, last.b - 30]});
+      if (T >= tL) ring(k, last);
+      snow(k, 830, T < t1 ? 'wave' : 'point', T < t1 ? {} : {at: follow(T, 0, last, 830)});
       steps(k, T, [[0, A], [tL, B, 1]]);
       return {host: false, screens: L};
     },
     what: section('what', {wall: 'ai', snow: [200, 'point'], mixed: true,
       plates: [[null, [['OPENAI.COM', 132, TEAL]]], [/^Business/i, [['BUSINESS HUB', 132, GOLD]], 1]],
       strips: [[null, ['annDate', 'annTitle']]]}),
-    beta: section('beta', {wall: 'ai', snow: [850, 'talk'],
+    beta: section('beta', {wall: 'ai', snow: [850, 'point'],
       plates: [[null, [['IN BETA', 198, GOLD]], 1], [/^claim/i, [['CLAIM IT.', 132, CREAM], ['KEEP IT CURRENT', 132, GOLD]], 1]],
       strips: [[null, ['annBeta']], [/^claim/i, ['annSub1', 'annSub2'], 'new']], ring: [[null, 'annBeta']]}),
     who: section('who', {wall: 'help', snow: [200, 'shrug'],
@@ -146,14 +153,14 @@ window.SCENE = {
       let last;
       if (T < tT) last = clip(k, L, 'sideNav', 60, plateBottom(A) + 30, 1.3);
       else { last = clip(k, L, 'addrBar', 540 - q3(STRIPS.addrBar.r[2] * 2.3) / 2, plateBottom(B) + 36, 2.3); ring(k, last); }
-      snow(k, 850, 'point', {at: [last.x + last.w * 0.7, last.b - 10]});
+      snow(k, 850, 'point', {at: follow(T, t0, last, 850)});
       steps(k, T, [[t0, A], [tT, B, 1]]);
       return {host: false, screens: L};
     },
     step2: section('step2', {wall: 'hub', snow: [200, 'point'],
       plates: [[null, [STEP(2), ['FIND YOUR NAME', 132, CREAM]], 1], [/^But/i, [['FIRST: READ', 132, CREAM], ['THE SMALL PRINT', 132, RED]], 1]],
       strips: [[null, ['hubBox']], [/^But/i, ['termsLine1', 'termsLine2'], 'new']], ring: [[/^But/i, 'termsLine2', RED]]}),
-    terms: section('terms', {wall: 'terms', snow: [850, 'talk'],
+    terms: section('terms', {wall: 'terms', snow: [850, 'point'],
       plates: [[null, [['CONTINUE =', 132, CREAM], ['ACCEPT TERMS', 132, RED]], 1]],
       strips: [[null, ['termsTitle']]]}),
     calls: section('calls', {wall: 'terms', snow: [200, 'point'],
@@ -165,7 +172,7 @@ window.SCENE = {
     ours: section('ours', {wall: 'hub', snow: [850, 'point'],
       plates: [[null, [['WE SEARCHED OURS', 132, CREAM]]], [/^not/i, [['NOT LISTED', 198, RED]], 1], [/^create/i, [['CREATE ONE?', 132, GOLD]], 1]],
       strips: [[null, ['searchBox', 'createRow']]], ring: [[/^create/i, 'createRow']], bottom: 960}),
-    online: section('online', {wall: 'help', snow: [200, 'talk'],
+    online: section('online', {wall: 'help', snow: [200, 'point'],
       plates: [[null, [['HELP.OPENAI.COM', 132, TEAL]]], [/^eligible/i, [['FOR ELIGIBLE', 132, CREAM], ['ONLINE BUSINESS', 132, GOLD]], 1]],
       strips: [[null, ['localOnline', 'localAdd']]]}),
     step3: section('step3', {wall: 'help', snow: [850, 'point'],
@@ -177,7 +184,7 @@ window.SCENE = {
     step4: section('step4', {wall: 'help', snow: [850, 'point'],
       plates: [[null, [STEP(4), ['BEFORE CHANGES', 132, CREAM]], 1], [/^identity/i, [['ID CHECK', 132, CREAM], ['WITH PERSONA', 132, GOLD]], 1]],
       strips: [[null, ['persona1', 'persona2']]], ring: [[/^identity/i, 'persona1']]}),
-    email: section('email', {wall: 'help', snow: [200, 'talk'],
+    email: section('email', {wall: 'help', snow: [200, 'point'],
       plates: [[null, [['OPENAI EMAILS', 132, CREAM], ['ITS DECISION', 132, GOLD]], 1]],
       strips: [[null, ['email1', 'email2']]]}),
     check: section('check', {wall: 'help', snow: [850, 'shrug'], mixed: true,
@@ -188,7 +195,7 @@ window.SCENE = {
       const t0 = k.S('ask'), tS = W(k, 'ask', /^send/i, 0.9), tR = W(k, 'ask', /^runs/i, 2.4);
       k.cut(t0);
       wall(k, 'end');
-      snow(k, 540, T >= tR ? 'wave' : 'talk', {feet: 1668});
+      snow(k, 540, 'wave', {feet: 1668});
       steps(k, T, [[t0 + 0.08, [['SAVE THIS', 198, GOLD]], 1], [tS, [['SEND IT TO YOUR', 132, CREAM], ['LISTING PERSON', 132, GOLD]], 1],
         [tR, [['1 BUSINESS HUB', 132, CREAM], ['2 SEARCH, READ', 132, CREAM], ['3 PROVE IT', 132, CREAM], ['4 ID CHECK', 132, CREAM]], 1]]);
       return {host: false};

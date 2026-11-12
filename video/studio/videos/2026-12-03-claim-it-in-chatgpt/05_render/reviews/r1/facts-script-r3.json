@@ -1,0 +1,20 @@
+{
+ "gate": "facts",
+ "round": 1,
+ "stage": "script.md re-check of one sentence before take 3 was spoken again ('If not, type chatgpt.com slash business hub.': the address respelled so the transcript check matches)",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "score": {
+  "numbers": 0,
+  "mismatches": 0
+ },
+ "advisories": [
+  "the screen must show chatgpt.com/business-hub exactly, with the hyphen and no query string",
+  "keep 'If not' a condition; never 'it's not in your sidebar'"
+ ],
+ "not_checked": [
+  "the live text of OpenAI's pages (WebFetch 403): checked against the same-day captures",
+  "the bare address opening Business Hub rests on the browser tool's 3:06 pm log; the capture shows the path followed by the create flow's query string"
+ ]
+}

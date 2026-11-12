@@ -2,12 +2,12 @@
 
 music: rooms sunny
 
-Every cue: a plain cut to a lined wall (ChatGPT slate, openai.com night, the help page green, the terms wine), a plate of big words up top, under it one to three paper clippings cut from the real captures in 04_scene/assets (never typed, never redrawn), and Snow from the chest up at the bottom, talking, pointing at the newest clipping. A ring is an orange or red box around a clipping.
+Every cue: a plain cut to a lined wall (ChatGPT slate, openai.com night, the help page green, the terms wine), a plate of big words up top, under it one to three paper clippings cut from the real captures in 04_scene/assets (never typed, never redrawn), and Snow from the chest up at the bottom, talking, his hand running along the newest clipping. A ring is an orange or red box around a clipping.
 
 ## hook "Your business might already" [sfx: pop]
 Frame 0, settled: the Business Hub page's own headline as a clipping, Snow close at the right, waving. The plate:
-YOUR BUSINESS / IN CHATGPT?. At 0.5 s the wall turns green and the page's search box lands under the headline, Snow
-points (the first change). On "listed" a stamp: ALREADY / LISTED?.
+YOUR BUSINESS / IN CHATGPT?. At 0.5 s the wall turns teal and the page's search box lands under the headline, Snow
+points (the first change). On "listed" the search box is ringed and a stamp: ALREADY / LISTED?.
 
 ## what "OpenAI just opened Business" [sfx: blip]
 openai.com: the date and the headline of the announcement as two clippings. The plate: OPENAI.COM, then on "Business" a
@@ -32,7 +32,7 @@ Close on "claim only an existing U.S. listing.", ringed. A stamp: U.S. ONLY / FO
 The first step. The help page's step, "open Business Hub from the sidebar.". A stamp: STEP 1 / BUSINESS HUB, then on
 "OpenAI": OPENAI SAYS: / THE SIDEBAR, the clipping ringed.
 
-## addr "If it's not" [sfx: blip]
+## addr "If not, type" [sfx: blip]
 Our own ChatGPT sidebar (New chat to Explore, no Business Hub row) at the left. The plate: NOT THERE?. On "type" the
 address bar from our own screenshot replaces it, big and ringed, cut to chatgpt.com/business-hub, and a stamp:
 CHATGPT.COM / /BUSINESS-HUB.
@@ -86,6 +86,6 @@ doesn't guarantee increased visibility". The plate: OPENAI SAYS:, then on "guara
 stamp: CLAIMING IT: / NO GUARANTEE. Snow shrugs.
 
 ## ask "Save this" [sfx: stamp]
-Snow in the middle, talking. A stamp: SAVE THIS. On "send": SEND IT TO YOUR / LISTING PERSON. On "runs" he waves and
-the four steps land as the last frame: 1 BUSINESS HUB / 2 SEARCH, READ / 3 PROVE IT / 4 ID CHECK. Ends 1 s after the
+Snow in the middle, waving. A stamp: SAVE THIS. On "send": SEND IT TO YOUR / LISTING PERSON. On "runs" the four
+steps land as the last frame: 1 BUSINESS HUB / 2 SEARCH, READ / 3 PROVE IT / 4 ID CHECK. Ends 1 s after the
 last word.

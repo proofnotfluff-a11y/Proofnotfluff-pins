@@ -1,22 +1,22 @@
 {
  "product": "Chicago Restaurant Daily List",
- "asOf": "2026-11-12",
- "asOfText": "Nov 12, 2026",
- "through": "2026-11-10",
- "throughText": "Nov 10, 2026",
- "recentFrom": "2026-10-28",
+ "asOf": "2026-11-13",
+ "asOfText": "Nov 13, 2026",
+ "through": "2026-11-12",
+ "throughText": "Nov 12, 2026",
+ "recentFrom": "2026-10-30",
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-11-12T19:08:45+00:00",
-  "rowsUpdatedAt": "2026-11-12T10:08:16+00:00",
+  "fetchedAt": "2026-11-13T18:47:10+00:00",
+  "rowsUpdatedAt": "2026-11-13T10:12:12+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "pests": 0,
+  "pests": 1,
   "hood": 0,
-  "places": 0
+  "places": 1
  },
  "history": [
   {
@@ -178,20 +178,27 @@
    "hood": 0,
    "places": 0,
    "withPhone": 0
+  },
+  {
+   "asOf": "2026-11-13",
+   "through": "2026-11-12",
+   "pests": 1,
+   "hood": 0,
+   "places": 1,
+   "withPhone": 1
   }
  ],
- "examples": [],
+ "examples": [
+  {
+   "area": "Loop",
+   "type": "Restaurant",
+   "result": "Fail",
+   "trades": [
+    "pests"
+   ]
+  }
+ ],
  "pestByDate": [
-  {
-   "date": "2026-10-28",
-   "pests": 6,
-   "restaurant": 6
-  },
-  {
-   "date": "2026-10-29",
-   "pests": 4,
-   "restaurant": 3
-  },
   {
    "date": "2026-10-30",
    "pests": 3,
@@ -251,39 +258,43 @@
    "date": "2026-11-10",
    "pests": 1,
    "restaurant": 1
+  },
+  {
+   "date": "2026-11-11",
+   "pests": 0,
+   "restaurant": 0
+  },
+  {
+   "date": "2026-11-12",
+   "pests": 1,
+   "restaurant": 1
   }
  ],
  "pestLast7": {
-  "from": "2026-11-04",
-  "to": "2026-11-10",
-  "inspections": 14,
-  "restaurantInspections": 11,
+  "from": "2026-11-06",
+  "to": "2026-11-12",
+  "inspections": 7,
+  "restaurantInspections": 5,
   "areas": [
    "Albany Park",
-   "Ashburn",
-   "Brighton Park",
-   "Chicago Lawn",
    "Clearing",
    "Lincoln Square",
-   "Lower West Side",
-   "South Deering",
-   "South Shore",
-   "Uptown",
-   "West Town"
+   "Loop",
+   "Uptown"
   ]
  },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
  "phones": {
-  "rows": 0,
-  "withPhone": 0,
-  "coverage": 0.0
+  "rows": 1,
+  "withPhone": 1,
+  "coverage": 100.0
  },
  "seat": {
-  "asOf": "2026-11-12",
-  "places14": 35,
-  "new": 0,
-  "withPhone14": 19,
-  "coverage14": 54.3,
+  "asOf": "2026-11-13",
+  "places14": 27,
+  "new": 1,
+  "withPhone14": 13,
+  "coverage14": 48.1,
   "phonesChecked": true
  }
 }

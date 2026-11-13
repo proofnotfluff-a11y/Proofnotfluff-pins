@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-10-27T13:57:21-05:00",
+ "checkedAt": "2026-11-13T15:24:34-06:00",
  "api": "v2",
  "messages": [
   "v2: The catalog has been disabled for this request."
@@ -10,161 +10,161 @@
    "ourTitle": "Lumber",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU083",
    "ourTitle": "Plywood",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU1333",
    "ourTitle": "Ready-mixed concrete",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU13330101B",
    "ourTitle": "Midwest region ready-mix concrete",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU1322",
    "ourTitle": "Cement",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU1321",
    "ourTitle": "Construction sand/gravel/crushed stone",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU1331",
    "ourTitle": "Concrete block and brick",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU1342",
    "ourTitle": "Brick and structural clay tile",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU1394",
    "ourTitle": "Paving mixtures and blocks",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU1017",
    "ourTitle": "Steel mill products",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU107405",
    "ourTitle": "Fabricated structural metal",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU101706",
    "ourTitle": "Steel pipe and tube",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU102501",
    "ourTitle": "Aluminum mill shapes",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU10260314",
    "ourTitle": "Copper wire and cable",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU136",
    "ourTitle": "Asphalt felts and coatings",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU137",
    "ourTitle": "Gypsum products",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU1392",
    "ourTitle": "Insulation materials",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU0621",
    "ourTitle": "Prepared paint",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU07210603",
    "ourTitle": "Plastics pipe",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU105",
    "ourTitle": "Plumbing fixtures and fittings",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU106",
    "ourTitle": "Heating equipment",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU1083",
    "ourTitle": "Lighting fixtures",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   },
   {
    "id": "WPU057303",
    "ourTitle": "No. 2 diesel fuel",
    "returned": true,
    "blsTitle": "",
-   "last": "2026-09"
+   "last": "2026-10"
   }
  ]
 }

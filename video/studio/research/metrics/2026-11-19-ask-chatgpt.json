@@ -46,6 +46,60 @@
    },
    "source": "videometrics 2026-11-19-ask-chatgpt.2026-11-10 (evening PC run, deep read)",
    "docId": "2026-11-19-ask-chatgpt.2026-11-10"
+  },
+  {
+   "date": "2026-11-12",
+   "readAt": "2026-11-13T02:45:00Z",
+   "depth": "deep",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": 8,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 0,
+     "shares": 0,
+     "viewers": 2,
+     "views": 3,
+     "views3s": 1
+    },
+    "instagram": {
+     "avgWatchS": 12,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "reach": 109,
+     "saves": 1,
+     "shares": 0,
+     "skipRate": "hidden",
+     "viewers": 109,
+     "views": 119
+    },
+    "tiktok": {
+     "avgWatchS": 12.11,
+     "comments": 0,
+     "likes": 7,
+     "newFollowers": 2,
+     "saves": 0,
+     "shares": 0,
+     "views": 284,
+     "watchedFullPct": 4.5
+    },
+    "youtube": {
+     "avgPctViewed": "hidden",
+     "avgViewDurationS": "hidden",
+     "comments": "hidden",
+     "likes": 0,
+     "shares": "hidden",
+     "subscribersGained": 0,
+     "viewedVsSwipedPct": 33.3,
+     "views": 18,
+     "watchTimeH": 0
+    }
+   },
+   "note": "Meta Business Suite Content table, last 30 days Oct 13 to Nov 11; TikTok Studio per-video analytics; YouTube Studio per-Short analytics overview",
+   "source": "videometrics 2026-11-19-ask-chatgpt.2026-11-12 (evening PC run, deep read)",
+   "docId": "2026-11-19-ask-chatgpt.2026-11-12"
   }
  ]
 }

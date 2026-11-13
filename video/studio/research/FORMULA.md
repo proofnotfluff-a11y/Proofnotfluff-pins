@@ -18,6 +18,7 @@
 
 ## v4 forecasts (the viewer gate's guess beside the 72 h numbers; make run, Nov 11 prompt)
 - 2026-12-01-where-100-goes (v4 invoice, 34.8 s, queued Nov 11): viewer forecast (viewer r2 PASS) stop 3, hold 4, finish 3, send 3; 72 h numbers: not posted yet.
+- 2026-12-02-took-it-back (v4 case, posted Nov 12 8:23 pm): viewer forecast (viewer r1 PASS, render 3) stop 3, hold 3, finish 2, send 2; 72 h numbers: due Nov 15 evening.
 
 ## References
 (Each: platform, link, the counts on the page and the date, then what the first 3 s, the beats, the save moment and the

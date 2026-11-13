@@ -1,0 +1,25 @@
+{
+ "gate": "render-critic",
+ "round": 0,
+ "build": "reopened (script r7, render 5)",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "render": 5,
+ "score": {
+  "faults": 0
+ },
+ "faults": [],
+ "reasons": [
+  "items 1 to 5 PASS; cut-outs about 61 px capitals, plates 66 px; every whole screen has a plate of big words and a ringed spot or a cut-out; 30 fps sweep found nothing vanishing"
+ ],
+ "notes": [
+  "the plate entrance pop runs past the side margins for 1 to 3 frames (3.07 s cuts NO SUING OPENAI at both edges for one frame)",
+  "the address cut-out fills its box with almost no room",
+  "SEND TO WHOEVER / HANDLES YOUR / LISTINGS looks about 60 px, not measured at full size"
+ ],
+ "not_checked": [
+  "audio level after the last word (timing from words.json only)",
+  "each key frame by eye (measured by script)"
+ ]
+}

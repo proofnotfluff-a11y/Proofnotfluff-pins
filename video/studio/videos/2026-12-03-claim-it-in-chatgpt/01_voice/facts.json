@@ -1,5 +1,5 @@
 {
- "about": "Every fact, step and limit this update says or shows, with the source's own words. Sources: three OpenAI pages and Todd's own ChatGPT Business Hub screens, all read and captured on Nov 12, 2026 (Central) in the browser on his PC during the live chat he started for this lesson (2:46 pm). OpenAI's pages answer our page reader and WebFetch with a 403, so each was read in full as text in his browser and the passages used were captured there; the captures in 04_scene/assets/ are the record a reviewer checks. The lesson has one number: OpenAI's own 1.2 billion weekly users. It names no person and no business but OpenAI, ChatGPT, Persona, Shopify, ProofNotFluff (ours). Not said, though the pages say it: Business Agents, product feeds, insights, the blue check, the claim invitation and locked listing cases, dispute of ownership, what can be edited after approval (website, description, category, logo, policies). Not claimed: that Business Hub is missing from anyone else's sidebar (one account was seen); that trades businesses are or are not 'local stores' (the help page's own words, 'local stores and restaurants', are used, and the voice states nothing about trades); anything about ranking beyond OpenAI's own 'doesn't guarantee'. Reopened on Todd's word after the viewer gate failed three times (5:58 pm: 'for 1&2 go for what you think is best', to whole screenshots in an update and a verdict line for owners; 6:05 pm: 'Yes, all three', to unshelving it and the two rule lines): the plain meaning of the covenant opens it (the 'Covered Claim' definition, read and captured at 6:01 pm), whole captures of his Business Hub are shown as pictures, and the last lines are our own call, said as ours. The 1.2 billion figure is no longer said or shown. Not said, though the terms say it: parts (a) and (c) of the definition; the release in 10.2; the perpetual license in 4.2.",
+ "about": "Every fact, step and limit this update says or shows, with the source's own words. Sources: three OpenAI pages and Todd's own ChatGPT Business Hub screens, all read and captured on Nov 12, 2026 (Central) in the browser on his PC during the live chat he started for this lesson (2:46 pm). OpenAI's pages answer our page reader and WebFetch with a 403, so each was read in full as text in his browser and the passages used were captured there; the captures in 04_scene/assets/ are the record a reviewer checks. The lesson has one number: OpenAI's own 1.2 billion weekly users. It names no person and no business but OpenAI, ChatGPT, Persona, Shopify, ProofNotFluff (ours). Not said, though the pages say it: Business Agents, product feeds, insights, the blue check, the claim invitation and locked listing cases, dispute of ownership, what can be edited after approval (website, description, category, logo, policies). Not claimed: that Business Hub is missing from anyone else's sidebar (one account was seen); that trades businesses are or are not 'local stores' (the help page's own words, 'local stores and restaurants', are used, and the voice states nothing about trades); anything about ranking beyond OpenAI's own 'doesn't guarantee'. Reopened on Todd's word after the viewer gate failed three times (5:58 pm: 'for 1&2 go for what you think is best', to whole screenshots in an update and a verdict line for owners; 6:05 pm: 'Yes, all three', to unshelving it and the two rule lines): the plain meaning of the covenant opens it (the 'Covered Claim' definition, read and captured at 6:01 pm), whole captures of his Business Hub are shown as pictures, and the last lines are our own call, said as ours. The 1.2 billion figure is no longer said or shown. Not said, though the terms say it: parts (a) and (c) of the definition; the release in 10.2; the perpetual license in 4.2. Fix round 1 of the reopened build (script r8, after the viewer left render 5 at 24 to 30 s): the four steps are one spoken line, the address is shown and captioned but not spoken, and the call comes sooner.",
  "format": "update",
  "changed": {
   "what": "OpenAI opened Businesses in ChatGPT and Business Hub in beta",
@@ -219,13 +219,13 @@
  ],
  "claims": [
   {
-   "said": "Claim your business in ChatGPT, and you agree not to sue OpenAI over what's on your website, unless OpenAI breaks the terms.",
+   "said": "Claim your business in ChatGPT, and you agree not to sue OpenAI over anything published on your website, unless OpenAI breaks the terms",
    "source": [
     "terms",
     "hub"
    ],
    "words": "10.1 Covenant Not to Sue: You ... hereby irrevocably and perpetually covenant and agree not to assert or commence ... any Covered Claim against OpenAI. Definitions: 'Covered Claim' means a claim, other than a claim that OpenAI breached these Terms, arising out of or relating to (a) Customer Data ...; (b) any other content, data, or materials that are or were published or made available ... on or in websites, applications, or other online properties owned or operated by you or your Affiliates; or (c) ... Also: By enabling, accessing, or using Businesses in ChatGPT ... you agree to these Terms; on his screen: By continuing, you accept OpenAI's Businesses in ChatGPT Terms.",
-   "note": "'what's on your website' is part (b) of the definition; 'unless OpenAI breaks the terms' is the definition's own exception ('other than a claim that OpenAI breached these Terms'), added after the facts gate on script r7 failed the bare 'never'. The terms say 'irrevocably and perpetually'; the voice does not say 'never'. The definition was read and captured at 6:01 pm (asset terms-covered)"
+   "note": "'anything published on your website' is part (b) ('content, data, or materials ... published or made available ... on or in websites ... owned or operated by you') of the definition; 'unless OpenAI breaks the terms' is the definition's own exception ('other than a claim that OpenAI breached these Terms'), added after the facts gate on script r7 failed the bare 'never'. The terms say 'irrevocably and perpetually'; the voice does not say 'never'. The definition was read and captured at 6:01 pm (asset terms-covered)"
   },
   {
    "said": "It's in the terms. You also agree its AI may call your business for its users. You can opt out of the calls",
@@ -236,7 +236,7 @@
    "note": "'may' is kept; 'for its users' is the terms' 'on behalf of our users'"
   },
   {
-   "said": "This is Business Hub, OpenAI's new place to claim your business listing. It's in beta",
+   "said": "This is Business Hub, OpenAI's new place to claim your business listing ... It's in beta",
    "source": [
     "announcement"
    ],
@@ -244,23 +244,15 @@
    "note": "'beta' is said aloud; 'new': announced two days before the build"
   },
   {
-   "said": "Here's how claiming works. One, open Business Hub",
+   "said": "Four steps: open it",
    "source": [
     "help"
    ],
-   "words": "Sign in to ChatGPT, and open Business Hub from the sidebar.",
-   "note": "the four steps are our own count of what the help page and his screens show in order: open Business Hub, search, verify, identity check. The help page says it opens from the sidebar; his sidebar did not show it, so the voice gives the address only and says nothing about the sidebar"
+   "words": "Sign in to ChatGPT, and open Business Hub from the sidebar.; his own address bar: chatgpt.com/business-hub",
+   "note": "the four steps are our own count of what the help page and his screens show in order: open Business Hub, search, verify, identity check. The address is shown (asset hub-address) and written in the captions, not spoken. The help page says it opens from the sidebar; his sidebar did not show it, and the video says nothing about the sidebar"
   },
   {
-   "said": "Type chatgpt.com slash business hub",
-   "source": [
-    "hub"
-   ],
-   "words": "the address bar on his own screenshot reads chatgpt.com/business-hub (followed by the create flow's own ?create=1&creation_session=1)",
-   "note": "on screen the address is shown as the address bar itself (asset hub-address) and written exactly, with its hyphen. Claude opened the Business Hub page at exactly https://chatgpt.com/business-hub in his signed-in Chrome at 3:06 pm. On his account the sidebar did not show Business Hub; the video claims nothing about other accounts."
-  },
-  {
-   "said": "Two, search your business name",
+   "said": "search your name",
    "source": [
     "help",
     "hub"
@@ -268,16 +260,16 @@
    "words": "Search for your business by name.; his own search screen (asset hub-search) with ProofNotFluff typed in and the row Create 'ProofNotFluff'"
   },
   {
-   "said": "Three, prove it's yours with your business phone or email, or your website",
+   "said": "prove it's yours",
    "source": [
     "help",
     "hub"
    ],
    "words": "Use one of the verification methods offered for your business, such as phone, business email, website domain, or Shopify. Heading: Verify with your business phone. His own screen: Verify that you control proofnotfluff.com",
-   "note": "examples, joined by 'or'; Shopify is left out, not denied. His own domain check screen is shown whole, as the real screen for this step (the record's value is cropped out)"
+   "note": "the methods are not said; his own domain check screen is shown whole as the real screen for this step (the record's value is cropped out), and the captions name the methods as 'such as'"
   },
   {
-   "said": "Four, pass an identity check before any change goes live",
+   "said": "pass an identity check",
    "source": [
     "help"
    ],
@@ -293,7 +285,7 @@
    "note": "'for now' is the page's 'currently'. The catch is stated only for the page's own group, local stores and restaurants"
   },
   {
-   "said": "Our call. OpenAI may list you whether you claim it or not",
+   "said": "So should you claim it? Our call. OpenAI may list you whether you claim it or not",
    "source": [
     "terms"
    ],
@@ -301,10 +293,10 @@
    "note": "the fact under our call"
   },
   {
-   "said": "Already listed, and just want your info right? Claim it, then opt out of the calls. If your website is how you make money, read those terms first. We're not lawyers",
+   "said": "Already listed, and want your info kept current? Claim it, then opt out of the calls. If you sell what's on your website, read those terms first. We're not lawyers",
    "source": [],
    "words": "",
-   "note": "our own call for owners, said as ours ('Our call'), on Todd's word at 5:58 pm: 'for 1&2 go for what you think is best'. It promises nothing: the terms say claiming 'does not give you exclusive control over its contents', and the help page says it 'doesn't guarantee increased visibility'; neither is contradicted. The opt-out is the terms' own 'You can opt out here.'"
+   "note": "our own call for owners, said as ours ('Our call'), on Todd's word at 5:58 pm: 'for 1&2 go for what you think is best'. It promises nothing: the terms say claiming 'does not give you exclusive control over its contents', and the help page says it 'doesn't guarantee increased visibility'; neither is contradicted. The opt-out is the terms' own 'You can opt out here.'. 'kept current' is the announcement's own subtitle ('keep your information current')"
   },
   {
    "said": "Save this, and send it to whoever handles your listings online",

@@ -1,0 +1,28 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "build": "reopened (script r7, render 5)",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "render": 5,
+ "score": {
+  "numbers": 0,
+  "mismatches": 0
+ },
+ "reasons": [],
+ "advisories": [
+  "NO SUING OPENAI stands about 1 s without its scope; put the scope on the same plate",
+  "YOU CAN OPT OUT matches the terms' four words exactly",
+  "CLAIM YOURS HERE sits over a ring on a headline that does not say claim",
+  "step three leaves out 'offered for your business, such as'",
+  "FOUR STEPS is our own grouping",
+  "'want your info right? Claim it' leans toward control the terms do not give; the captions add 'doesn't guarantee'"
+ ],
+ "not_checked": [
+  "the three live OpenAI pages (403; same-day captures used)",
+  "chatgpt.com/business-hub at the bare address",
+  "the announcement's date on announce.png (taken from facts.json)",
+  "the audio itself; frames between the half-second samples"
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "gate": "viewer",
+ "round": 0,
+ "build": "reopened (script r7, render 5)",
+ "pass": false,
+ "reviewer": "fresh opus agent, two steps",
+ "at": "2026-11-12",
+ "render": 5,
+ "score": {
+  "about": "OpenAI has a new Business Hub for claiming your listing in ChatGPT. Claiming it means you agree not to sue them over your website content and let their AI phone you, so read the terms first.",
+  "gets": "Something to do, plus a fact I didn't know: ChatGPT may list my business whether I claim it or not, claiming gives up the right to sue over my site content, and their AI may call, which I can opt out of.",
+  "stop": "Partly: 'you agree not to sue OpenAI' with NO SUING OPENAI in red is a real hook; the first frame is a screenshot I can't read",
+  "watch_to_end": "no",
+  "leave_at": "around 24 to 30 s, when it turns into a slow four-step tutorial",
+  "confused": "over WHAT about my website; the terms pictures are tiny; spoken 'business hub' against shown 'business-hub'; 'Our call': whose; 'Already listed, and just want your info right?' reads like a typo; 'if your website is how you make money': does a contractor's lead site count",
+  "matches_idea": "close",
+  "comment": "Maybe; skeptical of OpenAI",
+  "send": "Maybe my office manager; most likely nobody",
+  "forecast": {
+   "stop": 3,
+   "hold": 2,
+   "finish": 2,
+   "send": 2
+  }
+ },
+ "reasons": [
+  "leaves at 24 to 30 s: cut the tutorial to one line and use the end card; get to the catch and the call sooner",
+  "the recommendation half of the call lands at 56 s, after he left",
+  "say what is given up in plainer words; enlarge 3 to 6 words of each terms clause",
+  "'Our call' needs a lead-in such as 'So should you claim it?'",
+  "name who the website warning is for"
+ ]
+}

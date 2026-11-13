@@ -1,22 +1,22 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-12-03-claim-it-in-chatgpt",
- "mp4Sha256": "0ae7a4dfab8fbbeda8d79d660bcb19834dab5d813159518d118cd4567e9fa5af",
+ "mp4Sha256": "59e471a6d8143cc54acf8a484cc2f0a5856c6d0a264286feed9570004bb71cee",
  "checks": [
   {
    "name": "length",
-   "value": 66.633,
+   "value": 59.067,
    "pass": true,
-   "detail": "66.63 s (45.0 to 90.0, update lesson, end card included)"
+   "detail": "59.07 s (45.0 to 90.0, update lesson, end card included)"
   },
   {
    "name": "loudness",
    "value": {
     "lufs": -14.2,
-    "truePeak": -3.1
+    "truePeak": -3.2
    },
    "pass": true,
-   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -3.1 dBTP (at most -1.5)"
+   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -3.2 dBTP (at most -1.5)"
   },
   {
    "name": "black",
@@ -28,22 +28,22 @@
    "name": "frozen",
    "value": [],
    "pass": true,
-   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 65.74 s"
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 58.16 s"
   },
   {
    "name": "flat",
    "value": [],
    "pass": true,
-   "detail": "0 flat stretch(es) of 1.2 s or more under 0.1 before the end card at 65.74 s"
+   "detail": "0 flat stretch(es) of 1.2 s or more under 0.1 before the end card at 58.16 s"
   },
   {
    "name": "file",
    "value": {
-    "sha256": "0ae7a4dfab8fbbeda8d79d660bcb19834dab5d813159518d118cd4567e9fa5af",
-    "bytes": 6642593
+    "sha256": "59e471a6d8143cc54acf8a484cc2f0a5856c6d0a264286feed9570004bb71cee",
+    "bytes": 5946183
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 6.6 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 5.9 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -53,5 +53,5 @@
   }
  ],
  "pass": true,
- "at": "2026-11-12T18:37:11-05:00"
+ "at": "2026-11-12T19:52:25-05:00"
 }

@@ -1,0 +1,21 @@
+{
+ "gate": "facts",
+ "stage": "script r8 (reopened build, fix round 1), before its voice",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "score": {
+  "numbers": 0,
+  "mismatches": 0
+ },
+ "reasons": [],
+ "advisories": [
+  "'published on your website' is a slightly narrow plain reading of part (b)",
+  "the identity check comes after a claim is approved: 'then pass an identity check to publish changes' would be more exact",
+  "'want your info kept current? Claim it' sits close to a promise; it is said as ours and guarantees nothing"
+ ],
+ "not_checked": [
+  "the three live OpenAI pages (403; captures used)",
+  "the terms' opening 'by using ... you agree' sentence (from facts.json, not a capture)"
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "gate": "render-critic",
+ "round": 1,
+ "build": "reopened (script r8, render 6)",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "render": 6,
+ "score": {
+  "faults": 0
+ },
+ "faults": [],
+ "reasons": [
+  "items 1 to 5 PASS; last word ends 58.06 s, video 59.07 s; 30 fps sweep of 1,772 frames found nothing vanishing; every whole screen has a plate of big words plus a ring or a cut-out"
+ ],
+ "notes": [
+  "'owned or operated by you' measures about 56 px and 'OpenAI breached' about 57 px, under the 60 px bar: size them like the others in the next build",
+  "the plate entrance pop still runs past the side margins for 1 frame (3.07 s, 55.67 s, 56.47 s)",
+  "the address and 'Businesses in' cut-outs fill their boxes to the edges",
+  "boxes reach x 1046 at the right border (frame only, no text)"
+ ],
+ "not_checked": [
+  "key frames f*.png one by one",
+  "capital heights of plates and of cut-outs unchanged since render 5",
+  "SEND TO WHOEVER plate at full size"
+ ]
+}

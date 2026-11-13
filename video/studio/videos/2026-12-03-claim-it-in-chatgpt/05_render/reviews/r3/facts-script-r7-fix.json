@@ -1,0 +1,19 @@
+{
+ "gate": "facts",
+ "stage": "script r7 after the first line fix (reopened build), before its voice",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "score": {
+  "numbers": 0,
+  "mismatches": 0
+ },
+ "reasons": [],
+ "advisories": [
+  "step three drops 'offered for your business'",
+  "'over what's on your website' covers part (b) only: it understates the covenant, it does not overstate it"
+ ],
+ "not_checked": [
+  "the three live OpenAI pages (403; captures used)"
+ ]
+}

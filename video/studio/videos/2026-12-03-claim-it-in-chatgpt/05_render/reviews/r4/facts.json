@@ -1,0 +1,28 @@
+{
+ "gate": "facts",
+ "round": 1,
+ "build": "reopened (script r8, render 6)",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "render": 6,
+ "score": {
+  "numbers": 0,
+  "mismatches": 0
+ },
+ "reasons": [],
+ "advisories": [
+  "captions, all four: 'does not give you exclusive control' is a 6-word run from terms 4.1 outside quotation marks; reword or quote it before any queue",
+  "the voice and plates cover part (b) of the definition only: narrower than the covenant, not wider",
+  "'owned or operated by you' drops 'or your Affiliates'",
+  "the catch ring also takes in 'may see an option to add it.'",
+  "YOU CAN OPT OUT matches the terms' four words over their own cut-out"
+ ],
+ "not_checked": [
+  "the three live OpenAI pages (403; same-day captures used)",
+  "chatgpt.com/business-hub at the bare address",
+  "the announcement's date on announce.png (from facts.json)",
+  "help-persona and hub-add at full resolution",
+  "the audio itself; frames between the half-second samples"
+ ]
+}

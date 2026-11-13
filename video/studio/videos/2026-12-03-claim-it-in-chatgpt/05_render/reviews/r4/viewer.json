@@ -1,0 +1,40 @@
+{
+ "gate": "viewer",
+ "round": 1,
+ "build": "reopened (script r8, render 6)",
+ "pass": false,
+ "reviewer": "fresh opus agent, two steps",
+ "at": "2026-11-12",
+ "render": 6,
+ "score": {
+  "about": "If you claim your business listing in ChatGPT's new Business Hub, you sign away the right to sue OpenAI over your website content and agree its AI can call you, so read first.",
+  "gets": "Mostly a feeling (mild alarm about fine print), plus one fact: ChatGPT's AI may phone my business for its users, and I can opt out. The steps and the advice are too thin to act on.",
+  "stop": "Maybe: 'you agree not to sue OpenAI' is a decent jolt; the first screen is a screenshot I can't read; 'its AI may call your business' at 10 s would have stopped me harder",
+  "watch_to_end": "no",
+  "leave_at": "about 16 s, when it switches to 'This is Business Hub' and four setup steps for something I haven't decided I want",
+  "confused": "sue over what, exactly; call me to do what; opt out how; does the catch apply to a contractor; what does 'sell what's on your website' mean; what if I'm not listed",
+  "matches_idea": "close",
+  "comment": "Probably not; skeptic side",
+  "send": "Maybe the office manager; most likely nobody",
+  "forecast": {
+   "stop": 3,
+   "hold": 2,
+   "finish": 2,
+   "send": 1
+  }
+ },
+ "notes": [
+  "four text layers on every frame is a lot to read",
+  "the terms pictures are unreadable at phone size; only the boxed phrases come through",
+  "the phone on 'call' is a nice touch",
+  "the end recap card is the cleanest frame"
+ ],
+ "reasons": [
+  "matches_idea close; watch_to_end no (about 16 s); confused not none; send most likely nobody",
+  "lead with the call line for a trades owner, the sue clause second",
+  "say what the calls are for and where the opt-out is",
+  "put the verdict right after the terms and leave the steps to the end card",
+  "say whether service businesses can claim, and what to do if not listed",
+  "name plainly who 'sell what's on your website' means"
+ ]
+}

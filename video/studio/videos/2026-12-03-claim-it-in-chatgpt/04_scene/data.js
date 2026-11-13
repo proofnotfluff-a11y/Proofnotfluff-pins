@@ -1,1 +1,1 @@
-window.DATA = {"file": "video/studio/videos/2026-12-03-claim-it-in-chatgpt/01_voice/facts.json", "commit": "6713495", "sha256": "7a8d9a8c524d66b09e94f28cbd03ccca8fff474ac9e62b531eefe093d96e945a", "numbers": {"weeklyUsersBillion": {"value": 1.2, "shown": "1.2", "path": "weeklyUsersBillion"}}, "pull": {}};
+window.DATA = {"file": "video/studio/videos/2026-12-03-claim-it-in-chatgpt/01_voice/facts.json", "commit": "e35e66d", "sha256": "394ed915169394e3b756447e9b86ccde268ce50535931c0c1fe496c36fe7934a", "numbers": {}, "pull": {}};

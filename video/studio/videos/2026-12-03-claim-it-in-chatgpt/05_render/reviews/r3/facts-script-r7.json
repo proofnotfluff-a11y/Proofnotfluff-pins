@@ -1,0 +1,26 @@
+{
+ "gate": "facts",
+ "stage": "script r7 (reopened build, round 0), before any voice",
+ "pass": false,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-12",
+ "score": {
+  "numbers": 1,
+  "mismatches": 1
+ },
+ "reasons": [
+  "line 1 'you agree never to sue OpenAI over what's on your website' overstates: the Covered Claim definition carves out a claim that OpenAI breached the terms. Fix: 'you agree not to sue OpenAI over what's on your website, unless it breaks these terms'"
+ ],
+ "advisories": [
+  "Business Hub is the place to claim and manage a listing, not the listings themselves",
+  "step three drops 'offered for your business'",
+  "the four steps are our own count",
+  "no caption or plate may suggest claiming guarantees correct info",
+  "no on-screen opt-out step: the opt-out screen was not captured",
+  "facts.json still named Google and stored the 1.2 figure"
+ ],
+ "not_checked": [
+  "the three live OpenAI pages (403; captures used)",
+  "captures no spoken line rests on alone"
+ ]
+}

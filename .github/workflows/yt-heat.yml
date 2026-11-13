@@ -1,0 +1,42 @@
+name: YouTube heat read
+# What is winning on YouTube right now, in any field (Todd, live chat, Nov 13, 2026, 10:03 am: "don't restrict yourself
+# to the trades. Let's go for volume."; coo/DECISIONS-2026-11-13.md).
+# Reads public YouTube data through the official YouTube Data API v3 with the YOUTUBE_API_KEY secret (never printed;
+# tools/yt_heat.py scrubs it from errors). Read only: nothing is posted or changed anywhere.
+# Results never land on main: counts and the sealed words (titles, channel names, comment text with no commenter's name;
+# sealed with tools/data_box.py to the one-chat public key in queries.json) go to the throwaway branch heat-results,
+# which is replaced on each run.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["video/studio/research/heat/queries.json"]
+permissions:
+  contents: write
+concurrency:
+  group: yt-heat
+  cancel-in-progress: false
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install --quiet -c .github/ci-constraints.txt cryptography
+      - name: Self-check (planted cases)
+        run: python3 tools/yt_heat.py --selftest
+      - name: Read
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: python3 tools/yt_heat.py --out "$RUNNER_TEMP/heat" --max-units 9000
+      - name: Publish to the throwaway branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd "$RUNNER_TEMP/heat"
+          git init -q -b heat-results
+          git config user.name "yt-heat"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add summary.json sealed.json
+          git commit -q -m "yt-heat: results (throwaway branch, words sealed)"
+          git push --force "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" heat-results

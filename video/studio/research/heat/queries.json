@@ -1,0 +1,151 @@
+{
+ "about": "Areas the heat reader searches (tools/yt_heat.py, .github/workflows/yt-heat.yml; Todd, live chat, Nov 13, 2026, 10:03 am: \"don't restrict yourself to the trades. Let's go for volume.\"; coo/DECISIONS-2026-11-13.md). Any field, the last 14 days. Change a query here and push: the workflow runs and writes to the throwaway branch heat-results. The public key belongs to one chat; its private half is never in the repo.",
+ "per_area": 40,
+ "comment_videos_per_area": 15,
+ "comments_per_video": 40,
+ "areas": {
+  "agents-at-work": {
+   "label": "AI agents doing a job",
+   "queries": [
+    "AI agent automate my job",
+    "AI agents for business",
+    "build an AI agent no code",
+    "AI employee",
+    "Claude agent automation"
+   ]
+  },
+  "accounting-finance": {
+   "label": "Accounting and finance",
+   "queries": [
+    "AI for accountants",
+    "AI bookkeeping automation",
+    "AI financial analysis",
+    "AI month end close"
+   ]
+  },
+  "spreadsheets": {
+   "label": "Spreadsheets and data",
+   "queries": [
+    "AI Excel automation",
+    "Claude Excel",
+    "AI Google Sheets",
+    "AI dashboard in minutes"
+   ]
+  },
+  "claude": {
+   "label": "Claude",
+   "queries": [
+    "Claude Code tutorial",
+    "Claude skills",
+    "Claude Fable",
+    "Claude MCP",
+    "Claude new feature"
+   ]
+  },
+  "chatgpt": {
+   "label": "ChatGPT",
+   "queries": [
+    "ChatGPT new feature",
+    "ChatGPT agent",
+    "ChatGPT tips",
+    "OpenAI update"
+   ]
+  },
+  "small-business": {
+   "label": "Small business owners",
+   "queries": [
+    "AI for small business owners",
+    "AI automation small business",
+    "AI receptionist small business",
+    "AI tools for business owners"
+   ]
+  },
+  "sales-marketing": {
+   "label": "Sales and marketing",
+   "queries": [
+    "AI lead generation",
+    "AI cold email automation",
+    "AI marketing automation",
+    "AI content automation"
+   ]
+  },
+  "trades": {
+   "label": "Trades and home service",
+   "queries": [
+    "AI for contractors",
+    "AI for home service business",
+    "AI estimating construction"
+   ]
+  },
+  "real-estate": {
+   "label": "Real estate and rentals",
+   "queries": [
+    "AI for real estate agents",
+    "AI real estate investing",
+    "AI airbnb host"
+   ]
+  },
+  "legal-admin": {
+   "label": "Legal and paperwork",
+   "queries": [
+    "AI for lawyers",
+    "AI contract review",
+    "AI paperwork automation"
+   ]
+  },
+  "automation-tools": {
+   "label": "Automation tools",
+   "queries": [
+    "n8n automation",
+    "Zapier AI automation",
+    "Make.com AI automation",
+    "AI workflow automation"
+   ]
+  },
+  "build-with-ai": {
+   "label": "Building apps with AI",
+   "queries": [
+    "vibe coding",
+    "build an app with AI",
+    "AI website builder",
+    "AI built my app"
+   ]
+  },
+  "productivity": {
+   "label": "Personal productivity",
+   "queries": [
+    "AI email inbox automation",
+    "AI second brain",
+    "AI meeting notes",
+    "AI personal assistant"
+   ]
+  },
+  "money": {
+   "label": "Making money with AI",
+   "queries": [
+    "make money with AI",
+    "AI side hustle",
+    "AI business ideas",
+    "faceless AI channel"
+   ]
+  },
+  "ai-news": {
+   "label": "AI news",
+   "queries": [
+    "AI news this week",
+    "new AI tool",
+    "AI model release",
+    "AI just changed everything"
+   ]
+  },
+  "local-ai": {
+   "label": "AI on your own machine",
+   "queries": [
+    "local AI model",
+    "run AI on your own computer",
+    "open source AI model"
+   ]
+  }
+ },
+ "pubkey_pem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw4V+6TxpUDhxrWDjBm1f\ncVtXlRMXLHekyGljwPg2gd4ajtL6+9SQLaM2lMCkGJCr5rOkUndx99jWR2n/FVFh\nuvoGWiXRwUXc4wr7H/jKT9CNNPkbXq5s0gtLO9FgXWu0tQBF45tPsIVShFUiJasL\nX2rzIX75UelPsouG4wO2LBFlwTIWVXNDbRcphW+yvbntAu4FlzRk8xOUfsZDn755\ntsAr/hzb0Rtp+ZaHCnuRcRO8KcFZ3S+EJmI2w6WHCr2KvNWeFVIT7YDamQ/wJY0e\nT8U24zwxgU2NtfnPt79pZ2cWnVloLIKOkJsedxlx+W2qdRkxMw/DRpvYYvnslbEF\nuQIDAQAB\n-----END PUBLIC KEY-----\n"
+}

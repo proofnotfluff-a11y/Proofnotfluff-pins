@@ -1,10 +1,11 @@
-/* Trial video r1, Nov 13, 2026: result first. "An AI found $2,015 a year in subscriptions, with no bank link."
-   29.5 s, 1080 x 1920, no presenter. Every number comes from DATA: the sample statement and the one-question run's answer. */
+/* Trial video r2, Nov 13, 2026: result first. The yearly number on screen, an AI that read one sample statement, no bank link.
+   27.5 s, 1080 x 1920, no presenter. Every number comes from DATA: the sample statement and the one-question run's answer. */
 const BAR = 60 / 122 * 4, B = (n) => n * BAR;                 /* the music's bar: cuts land on it */
-const T = {plug: B(1), file: B(2), ask: B(3), scan: B(4), stack: B(5), month: B(6), year: 12.82, twice: B(7), price: B(8), deliv: B(9), katch: B(10), cut: 21.42, end: B(12), stop: B(15)};
+const T = {plug: B(1), file: B(2), ask: B(3), scan: B(4), stack: B(5), month: B(6), year: 12.82, twice: B(7), price: B(8), deliv: B(9), katch: B(10), cut: 21.42, end: B(12), stop: B(14)};
 const ROWS = DATA.rows, MON = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const dshort = (d) => MON[+d.slice(5, 7)] + ' ' + d.slice(8, 10);
 const amt = (v) => (v < 0 ? '-' : '+') + money(Math.abs(v));
+const fit = (s, n) => { if (s.length <= n) return s; const c = s.slice(0, n + 1), k = c.lastIndexOf(' '); return (k > 3 ? c.slice(0, k) : s.slice(0, n)).replace(/ (AND|THANK)$/, ''); };   /* never a word cut in half */
 const Q = DATA.run.question, QALL = Q.join(' ');
 const SHORT = {'MEALCRATE WEEKLY BOX': 'MEALCRATE BOX'};
 const SUBS = Object.entries(DATA.subs).map(([n, a]) => ({n: SHORT[n] || n, a})).sort((p, q) => p.a - q.a);
@@ -12,22 +13,21 @@ const MONTHLY = DATA.monthly, YEARLY = DATA.yearly, DEL = DATA.delivery, DELN = 
 const YR = money(Math.round(YEARLY), false);                   /* $2,015: the caption's rounded figure */
 
 const CAPS = [
-  {a: -0.5, b: T.plug - .04, text: 'An AI found ' + YR + ' a year.', hot: [3]},
+  {a: -0.6, b: T.plug - .04, text: 'An AI read one sample statement.', hot: [4]},
   {a: T.plug, b: T.file - .04, text: 'With no bank link.', color: C.teal, hot: [1, 2, 3]},
   {a: T.file, b: T.ask - .05, text: 'Download your statement as a CSV.', hot: [5]},
-  {a: T.ask, b: T.scan - .05, text: 'Ask one question.'},
+  {a: T.ask, b: T.scan - .05, text: 'Ask Claude one question.', hot: [1]},
   {a: T.scan, b: 8.84, text: '159 transactions.', hot: [0]},
   {a: 8.88, b: T.stack - .04, text: 'Under a minute.'},
-  {a: T.stack + .06, b: T.month - .04, text: SUBS.length + ' subscriptions.', hot: [0]},
-  {a: T.month, b: T.year + .26, text: money(MONTHLY) + ' a month.', hot: [0]},
-  {a: T.year + .3, b: T.twice - .04, text: YR + ' a year.', hot: [0]},
+  {a: T.stack + .06, b: T.year + .26, text: SUBS.length + ' subscriptions.', hot: [0]},
+  {a: T.year + .3, b: T.twice - .04, text: "That's " + YR + ' a year.', hot: [1]},
   {a: T.twice, b: T.price - .04, text: 'It also flagged a double charge.', color: C.red, hot: [4, 5]},
   {a: T.price, b: T.deliv - .04, text: 'A price that tripled.', hot: [3]},
   {a: T.deliv, b: T.katch - .04, text: 'Delivery orders doubled.', hot: [2]},
   {a: T.katch, b: T.cut - .04, text: 'The catch: the AI still sees the file.'},
   {a: T.cut, b: T.end - .04, text: 'So cut any rows you want kept private.', color: C.teal, hot: [1]},
-  {a: T.end, b: 25.3, text: 'Try it.'},
-  {a: 25.4, b: 99, text: 'Bank link, or file only?', hot: [0, 1, 3, 4]},
+  {a: T.end, b: 24.9, text: 'Try it.'},
+  {a: 24.96, b: 99, text: 'Link your bank, or just upload a file?', hot: [1, 6]},
 ];
 window.SFX = [[0, 'sting', .9], [.1, 'chime', .6], [T.plug - .05, 'whoosh', .7], [2.56, 'whoosh_1', .9], [2.66, 'stamp', .9], [T.file, 'tick', .5], [4.1, 'tick', .5], [4.25, 'tick', .5], [4.4, 'tick', .5], [4.62, 'pop', .7], [5.12, 'whoosh_2', .6], [5.6, 'blip', .9],
   [7.5, 'pop', .8], [7.6, 'whoosh', .6], [T.scan, 'blip', .5], [T.stack - .08, 'whoosh_1', .6], ...SUBS.map((s, i) => [9.9 + i * .17 + .3, 'blip_' + (i % 4), .55]), [T.month, 'chime', .9], [12.5, 'whoosh_2', .7], [T.year + .1, 'chime_1', .9],
@@ -57,12 +57,12 @@ function chipRow(s, w) {
 /* ------------------------------------------------------------------ 0 to 2 s: the result, first */
 function open(t) {
   if (t >= T.plug) return;
-  SUBS.forEach((s, i) => {   /* the charges fall past, behind the number */
+  SUBS.filter((s, i) => i % 2 === 0).forEach((s, i) => {   /* a few of the charges fall past, behind the number */
     const sp = 300 + hash(i + 2) * 240, y = ((-200 + (t + 1.2 + hash(i) * 4) * sp) % 1300) + 150, x = 150 + ((i * 397) % 780), sc = .62 + hash(i + 5) * .34;
     at(x, y, sc, sc, (hash(i + 8) - .5) * .3, (.7 + sc * .3) * (1 - seg(y, 1040, 1160)) * seg(y, 230, 330), () => chipRow(s, 520));
   });
   ctx.save(); ctx.translate(540, 716); ctx.scale(1, .3); const sh = ctx.createRadialGradient(0, 0, 200, 0, 0, 620); sh.addColorStop(0, 'rgba(11,14,21,.97)'); sh.addColorStop(.7, 'rgba(11,14,21,.9)'); sh.addColorStop(1, 'rgba(11,14,21,0)'); ctx.fillStyle = sh; ctx.fillRect(-700, -700, 1400, 1400); ctx.restore();
-  ring(540, 690, 470 + 520 * E.out3(t / 1.0), C.gold, .9 * (1 - seg(t, 0, 1.0)), 10); ring(540, 690, 440 + 420 * E.out3((t - .15) / 1.0), C.orange, .7 * (1 - seg(t, .15, 1.15)) * seg(t, .15, .2), 6);
+  ctx.save(); ctx.beginPath(); ctx.rect(0, 0, W, 1150); ctx.clip(); ring(540, 690, 470 + 520 * E.out3(t / 1.0), C.gold, .9 * (1 - seg(t, 0, 1.0)), 10); ring(540, 690, 440 + 420 * E.out3((t - .15) / 1.0), C.orange, .7 * (1 - seg(t, .15, 1.15)) * seg(t, .15, .2), 6); ctx.restore();
   const s = lerp(1.22, 1, E.spring(seg(t + .25, 0, .8), 5, 9)) + .02 * Math.sin(t * 5);
   at(540, 712, s, s, 0, 1, () => {
     ctx.save(); ctx.shadowColor = 'rgba(0,0,0,.6)'; ctx.shadowBlur = 44; ctx.shadowOffsetY = 14; roll(YEARLY, 0, 0, 176, C.gold, true); ctx.restore();
@@ -74,7 +74,7 @@ function open(t) {
 function aiBox(t) {
   if (t < T.plug) return;
   const m1 = E.spring(seg(t, T.file - .05, T.file + .6), 5, 8), m2 = E.io3(seg(t, 7.58, T.scan));
-  const sq = {x: 395, y: 872, w: 290, h: 290, r: 62}, box = {x: 80, y: 880, w: 870, h: 290, r: 46}, pill = {x: 80, y: 276, w: 870, h: 122, r: 40};
+  const sq = {x: 395, y: 872, w: 290, h: 290, r: 62}, box = {x: 80, y: 880, w: 870, h: 290, r: 46}, pill = {x: 80, y: 330, w: 870, h: 122, r: 40};
   const L = (k) => lerp(lerp(sq[k], box[k], m1), pill[k], m2);
   const gulp = E.spring(seg(t, 5.6, 6.1), 6, 14), sy = t >= 5.6 && t < 6.1 ? lerp(.92, 1, gulp) : 1;
   const r = {x: L('x'), y: L('y'), w: L('w'), h: L('h') * sy, r: L('r')};
@@ -108,7 +108,7 @@ function aiBox(t) {
 }
 function sheetRows(x, y, w, n, i0, size, o = {}) {
   for (let i = 0; i < n; i++) { const r = ROWS[i0 + i]; if (!r) break; const yy = y + i * (o.lh || size * 1.9);
-    text(dshort(r[0]), x, yy, {size, weight: 500, fam: 'Inter', color: '#7C8496'}); text(r[1].slice(0, o.cut || 26), x + size * 3.9, yy, {size, weight: 600, fam: 'Inter', color: C.ink});
+    text(dshort(r[0]), x, yy, {size, weight: 500, fam: 'Inter', color: '#7C8496'}); text(fit(r[1], o.cut || 26), x + size * 3.9, yy, {size, weight: 600, fam: 'Inter', color: C.ink});
     text(amt(r[2]), x + w, yy, {size, weight: 600, fam: 'Inter', color: r[2] > 0 ? '#1F8A6D' : C.ink, align: 'right'}); }
 }
 function intro(t) {
@@ -121,9 +121,6 @@ function intro(t) {
   if (yk < 1) { ctx.save(); ctx.globalAlpha = 1 - seg(yk, .7, 1); cable(540, slot - 10, 540, py - 54, wob); plug(540, py, 1); ctx.restore(); }
   if (t < 2.56) for (let i = 0; i < 6; i++) { const f = Math.floor(t * 30), a = hash(f * 7 + i) * Math.PI * 2, d = 20 + hash(f + i * 3) * 50, x = 540 + (i % 2 ? 40 : -40), y = 870;
     ctx.strokeStyle = rgba(C.gold, .9); ctx.lineWidth = 4; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + Math.cos(a) * d, y - Math.abs(Math.sin(a)) * d * .7); ctx.stroke(); }
-  const hit = t - 2.66; if (hit >= 0 && t < T.file + .3) { const fade = 1 - seg(t, T.file, T.file + .3);
-    at(540, 868, lerp(2.4, 1, E.out3(hit / .16)), undefined, 0, clamp(hit * 12) * fade, () => { ctx.fillStyle = C.red; ctx.beginPath(); ctx.arc(0, 0, 52, 0, 7); ctx.fill(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 12; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(-20, -20); ctx.lineTo(20, 20); ctx.moveTo(20, -20); ctx.lineTo(-20, 20); ctx.stroke(); });
-    ring(540, 868, 70 + 300 * E.out3(hit / .5), C.red, .8 * (1 - seg(hit, 0, .5)) * fade, 8); }
   /* the statement prints out of the bank */
   const pp = seg(t, T.file + .02, 4.5), feed = (Math.floor(pp * 4) + E.out3((pp * 4) % 1)) / 4, ph = 330, pw = 400, fold = E.io3(seg(t, 4.5, 4.8));
   if (t >= T.file && fold < 1) {
@@ -131,7 +128,7 @@ function intro(t) {
     ctx.save(); ctx.beginPath(); ctx.rect(0, slot + 6, W, H); ctx.clip();
     at(540, top + ph / 2, lerp(1, 1.3, fold), lerp(1, .4, fold), 0, 1 - seg(fold, .2, .6), () => {
       card(-pw / 2, -ph / 2, pw, ph, 14, C.paper, {blur: 40, dy: 18}); text('Statement', -pw / 2 + 28, -ph / 2 + 52, {size: 32, weight: 800, color: C.ink});
-      ctx.fillStyle = C.line; ctx.fillRect(-pw / 2 + 28, -ph / 2 + 70, pw - 56, 3); sheetRows(-pw / 2 + 28, -ph / 2 + 108, pw - 56, 7, 3, 18, {lh: 34, cut: 16});
+      ctx.fillStyle = C.line; ctx.fillRect(-pw / 2 + 28, -ph / 2 + 70, pw - 56, 3); sheetRows(-pw / 2 + 28, -ph / 2 + 108, pw - 56, 7, 3, 18, {lh: 34, cut: 17});
     });
     ctx.restore();
   }
@@ -142,10 +139,15 @@ function intro(t) {
     fileChip(x, y, s, seg(fold, .3, .8));
   }
 }
+function noLink(t) {   /* the socket is crossed off, in front of the box */
+  const hit = t - 2.66; if (hit < 0 || t >= T.file + .25) return; const fade = 1 - seg(t, T.file, T.file + .25);
+  at(540, 846, lerp(2.4, 1, E.out3(hit / .16)), undefined, 0, clamp(hit * 12) * fade, () => { ctx.save(); ctx.shadowColor = 'rgba(0,0,0,.5)'; ctx.shadowBlur = 24; ctx.shadowOffsetY = 8; ctx.fillStyle = C.red; ctx.beginPath(); ctx.arc(0, 0, 58, 0, 7); ctx.fill(); ctx.restore(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 13; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(-22, -22); ctx.lineTo(22, 22); ctx.moveTo(22, -22); ctx.lineTo(-22, 22); ctx.stroke(); });
+  ring(540, 846, 80 + 300 * E.out3(hit / .5), C.red, .8 * (1 - seg(hit, 0, .5)) * fade, 8);
+}
 function attachment(t) { if (t >= 5.6 && t < 7.7) fileChip(330, 946, .74, 1 - seg(t, 7.55, 7.7)); }
 
 /* ------------------------------------------------------------------ 7.9 to 9.8 s: 159 real rows go by */
-const RH = 60, VIEW = {x: 70, y: 500, w: 880, h: 650, head: 78};
+const RH = 60, VIEW = {x: 70, y: 552, w: 880, h: 610, head: 78};
 const scrollAt = (t) => (ROWS.length * RH - (VIEW.h - VIEW.head) + 20) * E.io3(seg(t, T.scan + .1, T.stack - .1));
 function ledger(t) {
   if (t < 7.6 || t > T.stack) return;
@@ -153,14 +155,14 @@ function ledger(t) {
   at(VIEW.x + VIEW.w / 2, VIEW.y + VIEW.h / 2 + (1 - inn) * 520, 1, 1, 0, clamp(inn * 3), () => {
     const x = -VIEW.w / 2, y = -VIEW.h / 2; card(x, y, VIEW.w, VIEW.h, 30, C.paper);
     ctx.save(); rr(x, y, VIEW.w, VIEW.h, 30); ctx.clip();
-    const sc = scrollAt(t), v = Math.abs(scrollAt(t + 1 / 60) - scrollAt(t - 1 / 60)) * 30, fast = clamp(v / 4000), i0 = Math.max(0, Math.floor(sc / RH) - 1), scanY = y + VIEW.head + 290;
+    const sc = scrollAt(t), v = Math.abs(scrollAt(t + 1 / 60) - scrollAt(t - 1 / 60)) * 30, fast = clamp(v / 4000), i0 = Math.max(0, Math.floor(sc / RH) - 1), scanY = y + VIEW.head + 270;
     for (let i = i0; i < Math.min(ROWS.length, i0 + 13); i++) {
       const r = ROWS[i], ry = y + VIEW.head + i * RH - sc, mid = ry + RH / 2; if (ry > VIEW.h / 2 || ry < y + VIEW.head - RH) continue;
       const hot = r[3] && mid < scanY;
       if (hot) { ctx.fillStyle = C.orange; ctx.fillRect(x, ry, VIEW.w, RH - 4); } else if (i % 2) { ctx.fillStyle = 'rgba(21,25,34,.035)'; ctx.fillRect(x, ry, VIEW.w, RH); }
       ctx.save(); ctx.globalAlpha *= hot ? 1 : lerp(1, .42, fast);
       text(dshort(r[0]), x + 32, mid + 11, {size: 30, weight: 500, fam: 'Inter', color: hot ? '#fff' : '#7C8496'});
-      text(r[1].slice(0, 25), x + 160, mid + 11, {size: 30, weight: hot ? 800 : 600, fam: 'Inter', color: hot ? '#fff' : C.ink});
+      text(fit(r[1], 25), x + 160, mid + 11, {size: 30, weight: hot ? 800 : 600, fam: 'Inter', color: hot ? '#fff' : C.ink});
       text(amt(r[2]), x + VIEW.w - 32, mid + 11, {size: 30, weight: 700, fam: 'Inter', color: hot ? '#fff' : (r[2] > 0 ? '#1F8A6D' : C.ink), align: 'right'});
       ctx.restore();
     }
@@ -173,7 +175,7 @@ function ledger(t) {
     ctx.restore();
   });
   const cp = seg(t, T.scan + .1, T.stack - .1), secs = Math.round(SECS * cp), p = seg(t, T.scan - .05, T.scan + .25);
-  if (p > 0) at(515, 448, lerp(.8, 1, E.back(p)), undefined, 0, clamp(p * 3), () => {
+  if (p > 0) at(515, 500, lerp(.8, 1, E.back(p)), undefined, 0, clamp(p * 3), () => {
     card(-270, -38, 540, 76, 38, C.glass2, {blur: 24, dy: 10, stroke: 'rgba(255,255,255,.12)'});
     ctx.strokeStyle = C.gold; ctx.lineWidth = 6; ctx.beginPath(); ctx.arc(-222, 0, 20, 0, 7); ctx.stroke(); ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(-222, 0); ctx.lineTo(-222 + 13 * Math.sin(cp * 12.566), -13 * Math.cos(cp * 12.566)); ctx.stroke();
     text('0:' + String(secs).padStart(2, '0'), -184, 17, {size: 48, weight: 800}); text('timed run, sped up', 240, 11, {size: 29, weight: 700, fam: 'Inter', color: C.soft, align: 'right'});
@@ -216,8 +218,8 @@ function twice(t) {
   if (t < T.twice || t >= T.price) return;
   const a = E.spring(seg(t, T.twice - .1, T.twice + .5), 5, 9), b = E.spring(seg(t, 13.9, 14.45), 5, 9), snap = E.io3(seg(t, 14.42, 14.62));
   const hit = t - 14.62, sh = hit >= 0 ? Math.exp(-9 * hit) * 12 : 0, jx = sh * Math.sin(hit * 80), red = hit >= 0;
-  rowCard(lerp(-560, 510, a) + jx, 660); rowCard(lerp(1640, 510, b) + lerp(0, 22, snap) - jx, lerp(870, 684, snap), {stroke: red ? C.red : null, amt: red ? C.red : C.ink, rot: lerp(0, .02, snap)});
-  if (hit >= 0) { badge(872, 532, 'x2', C.red, lerp(2.6, 1, E.out3(hit / .16)), {size: 84, rot: -.12, alpha: clamp(hit * 12)}); ring(872, 532, 90 + 260 * E.out3(hit / .5), C.red, .8 * (1 - seg(hit, 0, .5)), 8); }
+  rowCard(lerp(-560, 510, a) + jx, 640, {stroke: red ? C.red : null, amt: red ? C.red : C.ink}); rowCard(lerp(1640, 510, b) - jx, lerp(880, 838, snap), {stroke: red ? C.red : null, amt: red ? C.red : C.ink});
+  if (hit >= 0) { badge(622, 739, 'x2', C.red, lerp(2.6, 1, E.out3(hit / .16)), {size: 84, rot: -.1, alpha: clamp(hit * 12)}); ring(622, 739, 90 + 260 * E.out3(hit / .5), C.red, .8 * (1 - seg(hit, 0, .5)), 8); }
 }
 function title(s, sub, t, a) {
   const p = E.out3(seg(t, a - .08, a + .22)); ctx.save(); ctx.globalAlpha = p;
@@ -251,7 +253,7 @@ function delivery(t) {
     for (let j = 0; j < n; j++) { const p = seg(t, t0[i] + j * .028, t0[i] + j * .028 + .3); if (p > 0) bag(cx + (j % 3 - 1) * 90, 1000 - Math.floor(j / 3) * 106 - (1 - E.out3(p)) * 160, lerp(.4, 1, E.spring(p, 5, 10)), clamp(p * 4)); }
     const lp = seg(t, t0[i] + .2, t0[i] + .45); if (lp > 0) { ctx.save(); ctx.globalAlpha *= lp; text(n + ' orders', cx, 1104, {size: 46, weight: 800, align: 'center', color: i === 2 ? C.gold : C.cream}); text(['Aug', 'Sep', 'Oct'][i] + '  ' + money(DEL[i], false), cx, 1152, {size: 34, weight: 700, fam: 'Inter', color: C.soft, align: 'center'}); ctx.restore(); }
   });
-  const bp = seg(t, 19.0, 19.22); if (bp > 0) badge(840, 560, (DELN[2] / DELN[0]) + 'x', C.orange, lerp(1.9, 1, E.out3(bp)), {size: 66, rot: .08, alpha: clamp(bp * 5)});
+  const bp = seg(t, 19.0, 19.22); if (bp > 0) badge(300, 640, (DELN[2] / DELN[0]) + 'x orders', C.orange, lerp(1.9, 1, E.out3(bp)), {size: 60, rot: -.06, alpha: clamp(bp * 5)});
 }
 
 /* ------------------------------------------------------------------ 19.7 to 23.6 s: the catch: it sees the file, so cut rows first */
@@ -264,7 +266,7 @@ function katch(t) {
     const x = -B0.w / 2, y = -B0.h / 2; card(x, y, B0.w, B0.h, 60, C.glass, {stroke: 'rgba(255,255,255,.16)', lw: 3});
     const see = seg(t, 20.3, 20.55);
     if (see > 0) { ctx.save(); rr(x + 26, y + 120, B0.w - 52, B0.h - 150, 26); ctx.clip(); ctx.fillStyle = rgba('#FBF8F1', see); ctx.fillRect(x, y, B0.w, B0.h);
-      const sc = (t - 20.3) * 150; for (let i = 0; i < 12; i++) { const r = ROWS[100 + i], yy = y + 170 + i * 50 - sc; text(dshort(r[0]), x + 46, yy, {size: 25, weight: 500, fam: 'Inter', color: '#7C8496'}); text(r[1].slice(0, 15), x + 150, yy, {size: 25, weight: 700, fam: 'Inter', color: C.ink}); text(amt(r[2]), x + B0.w - 46, yy, {size: 25, weight: 700, fam: 'Inter', color: C.ink, align: 'right'}); }
+      const sc = (t - 20.3) * 150; for (let i = 0; i < 12; i++) { const r = ROWS[100 + i], yy = y + 170 + i * 50 - sc; text(dshort(r[0]), x + 46, yy, {size: 25, weight: 500, fam: 'Inter', color: '#7C8496'}); text(fit(r[1], 16), x + 150, yy, {size: 25, weight: 700, fam: 'Inter', color: C.ink}); text(amt(r[2]), x + B0.w - 46, yy, {size: 25, weight: 700, fam: 'Inter', color: C.ink, align: 'right'}); }
       const sy = y + 130 + ((t * 260) % (B0.h - 170)); ctx.fillStyle = rgba(C.teal, .9); ctx.fillRect(x, sy, B0.w, 5); const g = ctx.createLinearGradient(0, sy - 60, 0, sy); g.addColorStop(0, rgba(C.teal, 0)); g.addColorStop(1, rgba(C.teal, .28)); ctx.fillStyle = g; ctx.fillRect(x, sy - 60, B0.w, 60); ctx.restore(); }
     sparkle(x + 70, y + 66, 30 + 3 * Math.sin(t * 5), C.gold, t * .4); text('AI', x + 116, y + 84, {size: 46, weight: 800, ls: 4});
     if (see > 0) { ctx.save(); ctx.globalAlpha = see; ctx.strokeStyle = C.teal; ctx.lineWidth = 7; ctx.lineCap = 'round'; const ex = B0.w / 2 - 84, ey = y + 68, bl = Math.abs(Math.sin(t * 2.2)) < .12 ? .15 : 1;
@@ -288,7 +290,7 @@ function cutRows(t) {
     if (g >= 0) { const p = seg(t, tg[g], tg[g] + .55), lift = E.out3(seg(p, 0, .3)), fly = E.in3(seg(p, .3, 1)); x = lerp(x + lift * 40, bx, fly); y = lerp(y - lift * 26, by - 40, fly); sc = lerp(1, .12, fly); rot = fly * .5; al = 1 - seg(p, .9, 1); if (p >= 1) return; }
     at(x, y, sc, sc, rot, al, () => {
       const hot = g >= 0 && t >= tg[g] - .15; card(-420, -50, 840, 100, 26, hot ? '#FFE1D6' : C.cream, {blur: 24, dy: 10, stroke: hot ? C.orange : null, lw: 6});
-      text(dshort(r[0]), -388, 13, {size: 31, weight: 600, fam: 'Inter', color: '#7C8496'}); text(r[1].slice(0, 19), -268, 13, {size: 33, weight: 700, fam: 'Inter', color: C.ink}); text(amt(r[2]), 392, 14, {size: 36, weight: 800, color: r[2] > 0 ? '#1F8A6D' : C.ink, align: 'right'});
+      text(dshort(r[0]), -388, 13, {size: 31, weight: 600, fam: 'Inter', color: '#7C8496'}); text(fit(r[1], 20), -268, 13, {size: 33, weight: 700, fam: 'Inter', color: C.ink}); text(amt(r[2]), 392, 14, {size: 36, weight: 800, color: r[2] > 0 ? '#1F8A6D' : C.ink, align: 'right'});
     });
   });
 }
@@ -304,9 +306,9 @@ function stepIcon(i, x, y, p) {
 }
 function endCard(t) {
   if (t < T.end) return;
-  const inn = E.spring(seg(t, T.end - .08, T.end + .55), 5.5, 8), cy = 722 + (1 - inn) * 760;
+  const inn = E.back(seg(t, T.end - .08, T.end + .4), 1.1), cy = 712 + (1 - inn) * 760;
   at(510, cy, 1, 1, 0, 1, () => {
-    card(-440, -440, 880, 880, 44, C.cream);
+    card(-440, -440, 880, 906, 44, C.cream);
     text('No bank link.', -384, -322, {size: 86, weight: 800, color: C.ink}); text('Just a file.', -384, -230, {size: 86, weight: 800, color: '#2B8C7C'});
     const steps = [['Download your statement', 'as a CSV'], ['Drop it into an AI chat'], ['Ask: ' + Q[0].slice(0, 20).replace('What', 'what'), Q[0].slice(21), Q[1]]], SY = [-126, 2, 124];
     steps.forEach((s, i) => {
@@ -316,7 +318,7 @@ function endCard(t) {
       ctx.restore();
     });
     const f = seg(t, T.end + .2, T.end + .5); ctx.save(); ctx.globalAlpha = f; ctx.fillStyle = C.line; ctx.fillRect(-384, 270, 768, 3);
-    ['Sample statement, made-up names.', 'Timed run: ' + DATA.run.model + ', ' + DATA.run.date + '.', 'AI gets numbers wrong sometimes. Check them.'].forEach((s, i) => text(s, -384, 322 + i * 44, {size: 33, weight: 700, fam: 'Inter', color: '#4E5668'})); ctx.restore();
+    ['Sample statement, made-up names.', 'Run: ' + DATA.run.model + ', ' + DATA.run.date + '.', 'AI gets numbers wrong. Check them.'].forEach((s, i) => text(s, -384, 326 + i * 50, {size: 39, weight: 700, fam: 'Inter', color: '#3F4758'})); ctx.restore();
   });
 }
 
@@ -332,7 +334,7 @@ window.drawAt = function (t) {
   ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1;
   room(t, tintAt(t));
   const c = camera(t); ctx.save(); ctx.translate(540, 960); ctx.scale(c.s, c.s); ctx.translate(-c.cx, -c.cy);
-  open(t); intro(t); aiBox(t); attachment(t); ledger(t); payoff(t); twice(t); price(t); delivery(t); katch(t); cutRows(t); endCard(t);
+  open(t); intro(t); aiBox(t); noLink(t); attachment(t); ledger(t); payoff(t); twice(t); price(t); delivery(t); katch(t); cutRows(t); endCard(t);
   ctx.restore();
   sampleTag(t); captions(t, CAPS); grain(t);
 };

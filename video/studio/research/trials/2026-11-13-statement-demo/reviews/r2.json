@@ -1,0 +1,78 @@
+{
+ "round": 2,
+ "at": "2026-11-13",
+ "why": "Todd, live chat, 11:44 am: \"Fix, then post as a test (Recommended)\": a second fix round, then the checks again; all pass, one post; any fail, back to him (coo/DECISIONS-2026-11-13.md)",
+ "render": "27.5 s (the files in this folder): the opening caption no longer credits the AI with a figure, the AI is named, whole words in every row, two whole cards for the double charge, the end card holds about 2.6 s once full",
+ "reviewers": "three new fresh Opus agents, same briefs and bars; the facts pack also held make_statement.py and post-captions.md this time",
+ "code": {
+  "file": "PASS",
+  "length": "PASS 27.53 s",
+  "loudness": "PASS -14.1 LUFS, true peak -2.4 dBTP",
+  "black": "PASS 0",
+  "frozen": "PASS 0",
+  "flat": "PASS 0",
+  "verify": "PASS 53 of 53"
+ },
+ "viewer": {
+  "pass": false,
+  "matches_idea": "same",
+  "gets": "something to do: the three steps",
+  "watch_to_end": "yes",
+  "leave_at": "none; says a casual scroller drops at 4 to 6 s, when the how-to starts before any payoff is shown",
+  "forecast": {
+   "stop": 3,
+   "hold": 3,
+   "finish": 3,
+   "send": 2
+  },
+  "why_fail": "confused is not none (the gate's rule): five things",
+  "confused": [
+   "calling it a sample makes the $2,014.68 mean nothing as a hook: not my money, not an average",
+   "two same-day hardware charges could be two trips: nothing shows why it is a mistake",
+   "the red X on the AI box reads for a beat as AI blocked, not no bank link",
+   "cut rows how and where: it does not show this happens in the file before upload",
+   "the end card's small print is the most honest line and too small to read"
+  ]
+ },
+ "facts": {
+  "pass": false,
+  "fails": [
+   "$2,014.68 a year in subscriptions is shown as the statement's total, but the script that made the statement counts 10 subscriptions (the gym, $49.00) for $216.89 a month, $2,602.68 a year: the AI filed the gym under bills. Fix: tie the number to the AI's list (the 9 it listed), or state the full figure as ours"
+  ],
+  "passes": "every other figure in the video and the post captions matched the reviewer's own count; the clock matches runlog.txt; no dash",
+  "not_checked": [
+   "that the exact question was what the AI got (no prompt transcript)",
+   "the model name",
+   "whether banks export a CSV",
+   "YouTube's label setting"
+  ],
+  "concerns": [
+   "the scrolling sheet with rows lighting up is a picture of the result, not a recording of the run",
+   "made-up names is said only on the end card",
+   "the sample file is cleaner than a real bank export"
+  ]
+ },
+ "design": {
+  "pass": false,
+  "average": 3.88,
+  "scores": {
+   "first_second": 4,
+   "clear_sound_off": 4,
+   "motion_carries_meaning": 4,
+   "reading_load": 3,
+   "variety": 4,
+   "finish": 3,
+   "safe_areas": 4,
+   "honesty_marks": 5
+  },
+  "finish_faults": [
+   "the x2 badge covers the last letter of a merchant name (14.5 s)",
+   "the end card sits about 25 px above the caption",
+   "card groups sit about 30 px left of the captions' center",
+   "no caption for a few frames at 13.7 and 23.4 s",
+   "the sheet fades in over a caption (7.6 s)"
+  ]
+ },
+ "outcome": "Third fail on all three. Nothing was posted, queued or scheduled. Back to Todd.",
+ "read_across_rounds": "Viewer forecasts rose a little each round (stop 2, 3, 3; finish 2, 2, 3; send stayed 2) and round 2 is the first where the stranger watched to the end. Design scores went 3.75, 4.31, 3.88 from three different reviewers on a video that kept getting fixes: each fresh reviewer found a new list, so the 4.6 bar did not converge by iteration. The one fault every viewer raised in some form: the numbers are a sample, so the hook has nobody's money behind it."
+}

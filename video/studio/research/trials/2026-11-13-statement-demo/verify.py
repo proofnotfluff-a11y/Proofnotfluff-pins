@@ -39,7 +39,9 @@ ok("DashDish is the only delivery merchant in the file", not [d for d in by if r
 secs = float(re.search(r"\(([\d.]+) s after the ask\)", open("run/runlog.txt").read()).group(1))
 ok("the run took under a minute (written answer)", secs < 60, secs); ok("the clock on screen is the run's time", data["run"]["seconds_to_answer"] == secs, (data["run"]["seconds_to_answer"], secs))
 ok("the question on screen is the one the run was asked", data["run"]["question"] == ["What am I paying for every month?", "Anything look off?"])
-for cap in ["'An AI found ' + YR + ' a year.'", "'With no bank link.'", "'159 transactions.'", "'Under a minute.'", "SUBS.length + ' subscriptions.'", "money(MONTHLY) + ' a month.'", "'It also flagged a double charge.'", "'A price that tripled.'", "'Delivery orders doubled.'"]:
+ok("the opening caption credits the AI with no figure", "'An AI read one sample statement.'" in scene and "An AI found" not in scene)
+ok("the yearly caption is the rounded x 12", '"That\'s " + YR + \' a year.\'' in scene)
+for cap in ["'With no bank link.'", "'Ask Claude one question.'", "'159 transactions.'", "'Under a minute.'", "SUBS.length + ' subscriptions.'", "'It also flagged a double charge.'", "'A price that tripled.'", "'Delivery orders doubled.'"]:
     ok(f"caption present: {cap}", cap in scene)
 ok("no em or en dash anywhere", not re.search("[" + chr(0x2013) + chr(0x2014) + "]", scene + ans + open("video/lib.js").read()))
 bad = [c for c in checks if not c[1]]

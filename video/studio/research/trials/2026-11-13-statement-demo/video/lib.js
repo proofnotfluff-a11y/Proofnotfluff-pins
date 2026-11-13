@@ -120,8 +120,8 @@ function fileIcon(x, y, s) {
 function fileChip(cx, cy, s, alpha = 1) {
   at(cx, cy, s, s, 0, alpha, () => {
     card(-270, -66, 540, 132, 34, C.cream); fileIcon(-204, 0, 1.05);
-    text('statement.csv', -150, -4, {size: 42, weight: 700, fam: 'Inter', color: C.ink});
-    text('159 rows  ·  3 months', -150, 38, {size: 28, weight: 500, fam: 'Inter', color: '#6A7285'});
+    text('statement.csv', -150, -8, {size: 42, weight: 700, fam: 'Inter', color: C.ink});
+    text('159 rows  ·  3 months', -150, 42, {size: 34, weight: 600, fam: 'Inter', color: '#5C6476'});
   });
 }
 function ring(cx, cy, r, color, a, lw = 6) { if (a <= 0 || r <= 0) return; ctx.save(); ctx.strokeStyle = rgba(color, clamp(a)); ctx.lineWidth = lw; ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.stroke(); ctx.restore(); }

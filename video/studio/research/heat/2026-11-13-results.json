@@ -1,0 +1,286 @@
+{
+ "schema": "pnf.heat.read.v1",
+ "read": "2026-11-13T16:15Z",
+ "rules": {
+  "days": 14,
+  "min_views": 20000,
+  "ratio": 3.0,
+  "short_seconds": 180,
+  "min_same_kind": 5,
+  "newest": 50
+ },
+ "searches": 62,
+ "videos": 529,
+ "hot": 148,
+ "comments_read": 5355,
+ "quota_units": 7354,
+ "note": "Counts only: no title, channel name or comment. The grouping of hot videos into topics was a reading done in the Nov 13 live chat (keyword rules on the sealed titles); the counting is code. small_channel_wins: hot videos from channels under 100,000 subscribers. questions: comments read that ask something.",
+ "areas": {
+  "agents-at-work": {
+   "searched": 221,
+   "kept": 40,
+   "hot": 18,
+   "creators_hot": 17
+  },
+  "accounting-finance": {
+   "searched": 199,
+   "kept": 40,
+   "hot": 15,
+   "creators_hot": 14
+  },
+  "spreadsheets": {
+   "searched": 191,
+   "kept": 40,
+   "hot": 8,
+   "creators_hot": 8
+  },
+  "claude": {
+   "searched": 205,
+   "kept": 40,
+   "hot": 21,
+   "creators_hot": 19
+  },
+  "chatgpt": {
+   "searched": 193,
+   "kept": 40,
+   "hot": 11,
+   "creators_hot": 11
+  },
+  "small-business": {
+   "searched": 178,
+   "kept": 40,
+   "hot": 2,
+   "creators_hot": 2
+  },
+  "sales-marketing": {
+   "searched": 185,
+   "kept": 40,
+   "hot": 11,
+   "creators_hot": 8
+  },
+  "trades": {
+   "searched": 148,
+   "kept": 40,
+   "hot": 2,
+   "creators_hot": 2
+  },
+  "real-estate": {
+   "searched": 148,
+   "kept": 40,
+   "hot": 7,
+   "creators_hot": 6
+  },
+  "legal-admin": {
+   "searched": 150,
+   "kept": 40,
+   "hot": 7,
+   "creators_hot": 6
+  },
+  "automation-tools": {
+   "searched": 191,
+   "kept": 40,
+   "hot": 1,
+   "creators_hot": 1
+  },
+  "build-with-ai": {
+   "searched": 187,
+   "kept": 40,
+   "hot": 19,
+   "creators_hot": 18
+  },
+  "productivity": {
+   "searched": 199,
+   "kept": 40,
+   "hot": 13,
+   "creators_hot": 11
+  },
+  "money": {
+   "searched": 170,
+   "kept": 40,
+   "hot": 19,
+   "creators_hot": 16
+  },
+  "ai-news": {
+   "searched": 193,
+   "kept": 40,
+   "hot": 18,
+   "creators_hot": 17
+  },
+  "local-ai": {
+   "searched": 123,
+   "kept": 40,
+   "hot": 23,
+   "creators_hot": 23
+  }
+ },
+ "topics": [
+  {
+   "topic": "market-news",
+   "videos": 25,
+   "channels": 22,
+   "small_channel_wins": 3,
+   "views": 21025766,
+   "per_day": 2621589,
+   "median_ratio": 10.8,
+   "median_age": 8.9,
+   "shorts": 5,
+   "comments_read": 732,
+   "questions": 82,
+   "comment_count": 21555
+  },
+  {
+   "topic": "other",
+   "videos": 36,
+   "channels": 33,
+   "small_channel_wins": 21,
+   "views": 6857042,
+   "per_day": 1266084,
+   "median_ratio": 12.2,
+   "median_age": 8.8,
+   "shorts": 16,
+   "comments_read": 759,
+   "questions": 90,
+   "comment_count": 10482
+  },
+  {
+   "topic": "make-money-with-ai",
+   "videos": 14,
+   "channels": 11,
+   "small_channel_wins": 4,
+   "views": 4815270,
+   "per_day": 1012807,
+   "median_ratio": 6.05,
+   "median_age": 5.9,
+   "shorts": 4,
+   "comments_read": 527,
+   "questions": 70,
+   "comment_count": 5586
+  },
+  {
+   "topic": "fable-5-2-release",
+   "videos": 8,
+   "channels": 7,
+   "small_channel_wins": 1,
+   "views": 3006476,
+   "per_day": 949378,
+   "median_ratio": 4.85,
+   "median_age": 3.1500000000000004,
+   "shorts": 4,
+   "comments_read": 179,
+   "questions": 24,
+   "comment_count": 2172
+  },
+  {
+   "topic": "lawyers-and-ai",
+   "videos": 5,
+   "channels": 4,
+   "small_channel_wins": 5,
+   "views": 7601888,
+   "per_day": 599470,
+   "median_ratio": 5.8,
+   "median_age": 13.1,
+   "shorts": 3,
+   "comments_read": 137,
+   "questions": 13,
+   "comment_count": 4330
+  },
+  {
+   "topic": "vibe-coding",
+   "videos": 11,
+   "channels": 11,
+   "small_channel_wins": 6,
+   "views": 3395760,
+   "per_day": 561638,
+   "median_ratio": 10.5,
+   "median_age": 9.1,
+   "shorts": 6,
+   "comments_read": 320,
+   "questions": 47,
+   "comment_count": 6120
+  },
+  {
+   "topic": "claude-office-tools",
+   "videos": 6,
+   "channels": 5,
+   "small_channel_wins": 0,
+   "views": 3151166,
+   "per_day": 444561,
+   "median_ratio": 8.35,
+   "median_age": 7.95,
+   "shorts": 2,
+   "comments_read": 195,
+   "questions": 52,
+   "comment_count": 1540
+  },
+  {
+   "topic": "giant-model-on-laptop",
+   "videos": 12,
+   "channels": 12,
+   "small_channel_wins": 7,
+   "views": 3495113,
+   "per_day": 420740,
+   "median_ratio": 10.6,
+   "median_age": 10.05,
+   "shorts": 5,
+   "comments_read": 375,
+   "questions": 34,
+   "comment_count": 5801
+  },
+  {
+   "topic": "claude-makes-videos",
+   "videos": 9,
+   "channels": 7,
+   "small_channel_wins": 4,
+   "views": 2245013,
+   "per_day": 411874,
+   "median_ratio": 12.9,
+   "median_age": 3.6,
+   "shorts": 2,
+   "comments_read": 318,
+   "questions": 73,
+   "comment_count": 3416
+  },
+  {
+   "topic": "free-claude-code",
+   "videos": 12,
+   "channels": 10,
+   "small_channel_wins": 10,
+   "views": 1669232,
+   "per_day": 267805,
+   "median_ratio": 12.8,
+   "median_age": 8.65,
+   "shorts": 1,
+   "comments_read": 309,
+   "questions": 57,
+   "comment_count": 2244
+  },
+  {
+   "topic": "ai-agents-howto",
+   "videos": 7,
+   "channels": 7,
+   "small_channel_wins": 3,
+   "views": 1076409,
+   "per_day": 207027,
+   "median_ratio": 8.4,
+   "median_age": 8.1,
+   "shorts": 5,
+   "comments_read": 107,
+   "questions": 33,
+   "comment_count": 347
+  },
+  {
+   "topic": "trading-bots",
+   "videos": 3,
+   "channels": 3,
+   "small_channel_wins": 1,
+   "views": 209611,
+   "per_day": 29457,
+   "median_ratio": 4.2,
+   "median_age": 6.1,
+   "shorts": 0,
+   "comments_read": 89,
+   "questions": 30,
+   "comment_count": 188
+  }
+ ]
+}

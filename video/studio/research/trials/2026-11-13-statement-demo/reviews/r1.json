@@ -1,0 +1,78 @@
+{
+ "round": 1,
+ "at": "2026-11-13",
+ "render": "29.5 s, result first, one-question run, hard cuts (the files in this folder)",
+ "reviewers": "three new fresh Opus agents, same briefs and bars as round 0",
+ "code": {
+  "file": "PASS",
+  "length": "PASS 29.50 s",
+  "loudness": "PASS -14.1 LUFS, true peak -2.4 dBTP",
+  "black": "PASS 0",
+  "frozen": "PASS 0",
+  "flat": "PASS 0",
+  "verify": "PASS 52 of 52"
+ },
+ "viewer": {
+  "pass": false,
+  "matches_idea": "same",
+  "gets": "something to do (the three steps) and a privacy tip (cut rows first)",
+  "watch_to_end": "no",
+  "leave_at": "about 24 s, once the steps card is done: the card then sits for 6 s",
+  "forecast": {
+   "stop": 3,
+   "hold": 3,
+   "finish": 2,
+   "send": 2
+  },
+  "said": [
+   "the big number would probably stop me; the sample tag cools it",
+   "which AI is only in small print on the end card",
+   "the closing question comes from nowhere",
+   "two copies of the number in the hook",
+   "0 to 19 s is tight and every caption matches the picture"
+  ]
+ },
+ "facts": {
+  "pass": false,
+  "fails": [
+   "the opening caption says an AI found $2,015 a year: the AI's answer has no yearly figure, the video multiplied by 12 itself. Fix: '$2,015 a year in subscriptions.' or 'An AI found $167.89 a month in subscriptions.'"
+  ],
+  "passes": "the other 25 claims: every number matched the reviewer's own count, the question on screen is the question asked, the clock matches runlog.txt (37 s)",
+  "not_checked": [
+   "the model name and that the agent was fresh (not in any file)",
+   "that there is no voice (audio not listened to)"
+  ],
+  "concerns": [
+   "made-up names is said only on the end card",
+   "x2 and double charge read as certain where the AI hedged",
+   "the 2x badge sits by dollar amounts that rose 1.86x",
+   "cutting a row also hides it from the totals"
+  ]
+ },
+ "design": {
+  "pass": false,
+  "average": 4.31,
+  "scores": {
+   "first_second": 4,
+   "clear_sound_off": 5,
+   "motion_carries_meaning": 4.5,
+   "reading_load": 4,
+   "variety": 4.5,
+   "finish": 3.5,
+   "safe_areas": 4,
+   "honesty_marks": 5
+  },
+  "finish_faults": [
+   "4.5 s and 21.0 s: a merchant name runs into its amount",
+   "3.0 s: the red X sits half behind the AI box",
+   "14.25 s: the second card shows as a thin sliver behind the first",
+   "0 s: the ring crosses the caption"
+  ],
+  "weakest": [
+   "23.5 to 29.5 s: the end card holds 6 s",
+   "4.5 and 21.0 s: colliding row text",
+   "0 to 1 s: a crowded hook with the number twice"
+  ]
+ },
+ "outcome": "Second fail on all three after the one fix round. Not fixed again: it goes to Todd as it stands (his rule: one fix round, a second fail comes to him unapproved)."
+}

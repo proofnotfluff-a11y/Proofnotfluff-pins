@@ -1,0 +1,61 @@
+{
+ "round": 0,
+ "at": "2026-11-13",
+ "render": "30.5 s, question hook, three-question run",
+ "reviewers": "three fresh Opus agents, each given only the finished piece and a written brief",
+ "code": {
+  "file": "PASS",
+  "length": "PASS 30.50 s",
+  "loudness": "PASS -13.8 LUFS after one audio remix (first mix peaked at -1.4 dBTP)",
+  "black": "PASS 0",
+  "frozen": "PASS 0",
+  "flat": "PASS 0",
+  "verify": "PASS 33 of 33"
+ },
+ "viewer": {
+  "pass": false,
+  "matches_idea": "same",
+  "gets": "something to do: the three steps",
+  "watch_to_end": "no",
+  "leave_at": "about 15.5 s, at a dark beat after the yearly number",
+  "forecast": {
+   "stop": 2,
+   "hold": 3,
+   "finish": 2,
+   "send": 2
+  },
+  "said": [
+   "the hook is a yes or no question most people answer no and swipe: lead with the payoff",
+   "looks clean but like a fintech ad",
+   "sample data is only in small print at the end",
+   "which AI is never said",
+   "cut the dark gaps between beats"
+  ]
+ },
+ "facts": {
+  "pass": false,
+  "fails": [
+   "the video shows one question; the run asked three, and the double charge, price jump and delivery rise came from the two not shown",
+   "the caption cut $2,602.68 to $2,602 where it rounds to $2,603"
+  ],
+  "numbers": "every figure matched the reviewer's own count from statement.csv",
+  "not_checked": [
+   "the 50 s run time (no run log in the pack)",
+   "that there is no voice (audio not listened to)"
+  ]
+ },
+ "design": {
+  "pass": false,
+  "average": 3.75,
+  "scores": {
+   "first_second": 3,
+   "clear_sound_off": 5,
+   "motion_carries_meaning": 4,
+   "reading_load": 3,
+   "variety": 4,
+   "finish": 3,
+   "safe_areas": 4,
+   "honesty_marks": 4
+  }
+ }
+}

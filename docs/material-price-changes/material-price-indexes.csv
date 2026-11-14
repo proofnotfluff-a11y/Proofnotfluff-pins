@@ -112,10 +112,11 @@ WPU081,"Lumber",national,2026-02,272.101,no
 WPU081,"Lumber",national,2026-03,270.805,no
 WPU081,"Lumber",national,2026-04,280.362,no
 WPU081,"Lumber",national,2026-05,281.228,no
-WPU081,"Lumber",national,2026-06,280.234,yes
+WPU081,"Lumber",national,2026-06,280.234,no
 WPU081,"Lumber",national,2026-07,291.003,yes
-WPU081,"Lumber",national,2026-08,286.355,yes
-WPU081,"Lumber",national,2026-09,282.34,yes
+WPU081,"Lumber",national,2026-08,286.481,yes
+WPU081,"Lumber",national,2026-09,282.695,yes
+WPU081,"Lumber",national,2026-10,275.584,yes
 WPU083,"Plywood",national,2017-01,189.9,no
 WPU083,"Plywood",national,2017-02,192.4,no
 WPU083,"Plywood",national,2017-03,198.6,no
@@ -229,10 +230,11 @@ WPU083,"Plywood",national,2026-02,272.226,no
 WPU083,"Plywood",national,2026-03,276.116,no
 WPU083,"Plywood",national,2026-04,283.721,no
 WPU083,"Plywood",national,2026-05,288.925,no
-WPU083,"Plywood",national,2026-06,292.805,yes
+WPU083,"Plywood",national,2026-06,292.805,no
 WPU083,"Plywood",national,2026-07,295.359,yes
 WPU083,"Plywood",national,2026-08,298.353,yes
-WPU083,"Plywood",national,2026-09,303.66,yes
+WPU083,"Plywood",national,2026-09,305.027,yes
+WPU083,"Plywood",national,2026-10,312.362,yes
 WPU1333,"Ready-mixed concrete",national,2017-01,257.2,no
 WPU1333,"Ready-mixed concrete",national,2017-02,257.6,no
 WPU1333,"Ready-mixed concrete",national,2017-03,258.3,no
@@ -346,10 +348,11 @@ WPU1333,"Ready-mixed concrete",national,2026-02,390.077,no
 WPU1333,"Ready-mixed concrete",national,2026-03,390.985,no
 WPU1333,"Ready-mixed concrete",national,2026-04,392.891,no
 WPU1333,"Ready-mixed concrete",national,2026-05,394.112,no
-WPU1333,"Ready-mixed concrete",national,2026-06,395.954,yes
+WPU1333,"Ready-mixed concrete",national,2026-06,395.954,no
 WPU1333,"Ready-mixed concrete",national,2026-07,394.942,yes
-WPU1333,"Ready-mixed concrete",national,2026-08,395.299,yes
-WPU1333,"Ready-mixed concrete",national,2026-09,395.319,yes
+WPU1333,"Ready-mixed concrete",national,2026-08,395.309,yes
+WPU1333,"Ready-mixed concrete",national,2026-09,395.309,yes
+WPU1333,"Ready-mixed concrete",national,2026-10,394.843,yes
 WPU13330101B,"Midwest region ready-mix concrete",Midwest region,2017-01,117.1,no
 WPU13330101B,"Midwest region ready-mix concrete",Midwest region,2017-02,117.4,no
 WPU13330101B,"Midwest region ready-mix concrete",Midwest region,2017-03,119.1,no
@@ -463,10 +466,11 @@ WPU13330101B,"Midwest region ready-mix concrete",Midwest region,2026-02,180.322,
 WPU13330101B,"Midwest region ready-mix concrete",Midwest region,2026-03,180.853,no
 WPU13330101B,"Midwest region ready-mix concrete",Midwest region,2026-04,182.021,no
 WPU13330101B,"Midwest region ready-mix concrete",Midwest region,2026-05,182.63,no
-WPU13330101B,"Midwest region ready-mix concrete",Midwest region,2026-06,186.39,yes
+WPU13330101B,"Midwest region ready-mix concrete",Midwest region,2026-06,186.39,no
 WPU13330101B,"Midwest region ready-mix concrete",Midwest region,2026-07,186.562,yes
-WPU13330101B,"Midwest region ready-mix concrete",Midwest region,2026-08,186.438,yes
-WPU13330101B,"Midwest region ready-mix concrete",Midwest region,2026-09,187.164,yes
+WPU13330101B,"Midwest region ready-mix concrete",Midwest region,2026-08,186.458,yes
+WPU13330101B,"Midwest region ready-mix concrete",Midwest region,2026-09,187.069,yes
+WPU13330101B,"Midwest region ready-mix concrete",Midwest region,2026-10,187.069,yes
 WPU1322,"Cement",national,2017-01,242.1,no
 WPU1322,"Cement",national,2017-02,242.0,no
 WPU1322,"Cement",national,2017-03,241.8,no
@@ -580,10 +584,11 @@ WPU1322,"Cement",national,2026-02,356.022,no
 WPU1322,"Cement",national,2026-03,355.9,no
 WPU1322,"Cement",national,2026-04,357.927,no
 WPU1322,"Cement",national,2026-05,357.468,no
-WPU1322,"Cement",national,2026-06,357.529,yes
+WPU1322,"Cement",national,2026-06,357.529,no
 WPU1322,"Cement",national,2026-07,355.559,yes
-WPU1322,"Cement",national,2026-08,356.119,yes
-WPU1322,"Cement",national,2026-09,356.209,yes
+WPU1322,"Cement",national,2026-08,356.107,yes
+WPU1322,"Cement",national,2026-09,356.434,yes
+WPU1322,"Cement",national,2026-10,356.434,yes
 WPU1321,"Construction sand/gravel/crushed stone",national,2017-01,319.7,no
 WPU1321,"Construction sand/gravel/crushed stone",national,2017-02,320.3,no
 WPU1321,"Construction sand/gravel/crushed stone",national,2017-03,320.5,no
@@ -697,10 +702,11 @@ WPU1321,"Construction sand/gravel/crushed stone",national,2026-02,551.283,no
 WPU1321,"Construction sand/gravel/crushed stone",national,2026-03,551.917,no
 WPU1321,"Construction sand/gravel/crushed stone",national,2026-04,552.735,no
 WPU1321,"Construction sand/gravel/crushed stone",national,2026-05,555.136,no
-WPU1321,"Construction sand/gravel/crushed stone",national,2026-06,559.197,yes
+WPU1321,"Construction sand/gravel/crushed stone",national,2026-06,559.197,no
 WPU1321,"Construction sand/gravel/crushed stone",national,2026-07,561.911,yes
-WPU1321,"Construction sand/gravel/crushed stone",national,2026-08,562.195,yes
-WPU1321,"Construction sand/gravel/crushed stone",national,2026-09,563.041,yes
+WPU1321,"Construction sand/gravel/crushed stone",national,2026-08,562.137,yes
+WPU1321,"Construction sand/gravel/crushed stone",national,2026-09,562.98,yes
+WPU1321,"Construction sand/gravel/crushed stone",national,2026-10,562.372,yes
 WPU1331,"Concrete block and brick",national,2017-01,248.6,no
 WPU1331,"Concrete block and brick",national,2017-02,249.1,no
 WPU1331,"Concrete block and brick",national,2017-03,250.6,no
@@ -814,10 +820,11 @@ WPU1331,"Concrete block and brick",national,2026-02,402.519,no
 WPU1331,"Concrete block and brick",national,2026-03,406.771,no
 WPU1331,"Concrete block and brick",national,2026-04,408.743,no
 WPU1331,"Concrete block and brick",national,2026-05,409.042,no
-WPU1331,"Concrete block and brick",national,2026-06,409.042,yes
+WPU1331,"Concrete block and brick",national,2026-06,409.042,no
 WPU1331,"Concrete block and brick",national,2026-07,409.011,yes
 WPU1331,"Concrete block and brick",national,2026-08,409.011,yes
 WPU1331,"Concrete block and brick",national,2026-09,409.708,yes
+WPU1331,"Concrete block and brick",national,2026-10,411.202,yes
 WPU1342,"Brick and structural clay tile",national,2017-01,191.8,no
 WPU1342,"Brick and structural clay tile",national,2017-02,191.9,no
 WPU1342,"Brick and structural clay tile",national,2017-03,193.3,no
@@ -931,10 +938,11 @@ WPU1342,"Brick and structural clay tile",national,2026-02,272.178,no
 WPU1342,"Brick and structural clay tile",national,2026-03,272.371,no
 WPU1342,"Brick and structural clay tile",national,2026-04,272.555,no
 WPU1342,"Brick and structural clay tile",national,2026-05,272.555,no
-WPU1342,"Brick and structural clay tile",national,2026-06,272.555,yes
+WPU1342,"Brick and structural clay tile",national,2026-06,272.555,no
 WPU1342,"Brick and structural clay tile",national,2026-07,272.0,yes
-WPU1342,"Brick and structural clay tile",national,2026-08,272.819,yes
-WPU1342,"Brick and structural clay tile",national,2026-09,272.819,yes
+WPU1342,"Brick and structural clay tile",national,2026-08,272.795,yes
+WPU1342,"Brick and structural clay tile",national,2026-09,272.795,yes
+WPU1342,"Brick and structural clay tile",national,2026-10,273.654,yes
 WPU1394,"Paving mixtures and blocks",national,2017-01,306.3,no
 WPU1394,"Paving mixtures and blocks",national,2017-02,301.7,no
 WPU1394,"Paving mixtures and blocks",national,2017-03,298.2,no
@@ -1048,10 +1056,11 @@ WPU1394,"Paving mixtures and blocks",national,2026-02,435.829,no
 WPU1394,"Paving mixtures and blocks",national,2026-03,435.275,no
 WPU1394,"Paving mixtures and blocks",national,2026-04,411.899,no
 WPU1394,"Paving mixtures and blocks",national,2026-05,425.971,no
-WPU1394,"Paving mixtures and blocks",national,2026-06,429.378,yes
-WPU1394,"Paving mixtures and blocks",national,2026-07,430.835,yes
-WPU1394,"Paving mixtures and blocks",national,2026-08,432.245,yes
-WPU1394,"Paving mixtures and blocks",national,2026-09,432.695,yes
+WPU1394,"Paving mixtures and blocks",national,2026-06,429.378,no
+WPU1394,"Paving mixtures and blocks",national,2026-07,435.184,yes
+WPU1394,"Paving mixtures and blocks",national,2026-08,436.179,yes
+WPU1394,"Paving mixtures and blocks",national,2026-09,436.335,yes
+WPU1394,"Paving mixtures and blocks",national,2026-10,439.651,yes
 WPU1017,"Steel mill products",national,2017-01,178.1,no
 WPU1017,"Steel mill products",national,2017-02,183.1,no
 WPU1017,"Steel mill products",national,2017-03,186.4,no
@@ -1165,10 +1174,11 @@ WPU1017,"Steel mill products",national,2026-02,325.105,no
 WPU1017,"Steel mill products",national,2026-03,331.357,no
 WPU1017,"Steel mill products",national,2026-04,341.57,no
 WPU1017,"Steel mill products",national,2026-05,349.997,no
-WPU1017,"Steel mill products",national,2026-06,359.958,yes
-WPU1017,"Steel mill products",national,2026-07,374.462,yes
-WPU1017,"Steel mill products",national,2026-08,380.348,yes
-WPU1017,"Steel mill products",national,2026-09,388.58,yes
+WPU1017,"Steel mill products",national,2026-06,359.945,no
+WPU1017,"Steel mill products",national,2026-07,374.679,yes
+WPU1017,"Steel mill products",national,2026-08,381.212,yes
+WPU1017,"Steel mill products",national,2026-09,389.05,yes
+WPU1017,"Steel mill products",national,2026-10,399.645,yes
 WPU107405,"Fabricated structural metal",national,2017-01,201.9,no
 WPU107405,"Fabricated structural metal",national,2017-02,202.1,no
 WPU107405,"Fabricated structural metal",national,2017-03,201.7,no
@@ -1282,10 +1292,11 @@ WPU107405,"Fabricated structural metal",national,2026-02,368.79,no
 WPU107405,"Fabricated structural metal",national,2026-03,369.662,no
 WPU107405,"Fabricated structural metal",national,2026-04,366.727,no
 WPU107405,"Fabricated structural metal",national,2026-05,358.904,no
-WPU107405,"Fabricated structural metal",national,2026-06,361.361,yes
+WPU107405,"Fabricated structural metal",national,2026-06,361.361,no
 WPU107405,"Fabricated structural metal",national,2026-07,365.949,yes
 WPU107405,"Fabricated structural metal",national,2026-08,371.452,yes
 WPU107405,"Fabricated structural metal",national,2026-09,380.544,yes
+WPU107405,"Fabricated structural metal",national,2026-10,390.16,yes
 WPU101706,"Steel pipe and tube",national,2017-01,229.8,no
 WPU101706,"Steel pipe and tube",national,2017-02,237.3,no
 WPU101706,"Steel pipe and tube",national,2017-03,245.3,no
@@ -1399,10 +1410,11 @@ WPU101706,"Steel pipe and tube",national,2026-02,393.057,no
 WPU101706,"Steel pipe and tube",national,2026-03,395.77,no
 WPU101706,"Steel pipe and tube",national,2026-04,405.723,no
 WPU101706,"Steel pipe and tube",national,2026-05,410.91,no
-WPU101706,"Steel pipe and tube",national,2026-06,418.922,yes
+WPU101706,"Steel pipe and tube",national,2026-06,418.922,no
 WPU101706,"Steel pipe and tube",national,2026-07,422.059,yes
 WPU101706,"Steel pipe and tube",national,2026-08,429.05,yes
 WPU101706,"Steel pipe and tube",national,2026-09,431.717,yes
+WPU101706,"Steel pipe and tube",national,2026-10,462.366,yes
 WPU102501,"Aluminum mill shapes",national,2017-01,170.7,no
 WPU102501,"Aluminum mill shapes",national,2017-02,174.5,no
 WPU102501,"Aluminum mill shapes",national,2017-03,177.4,no
@@ -1516,10 +1528,11 @@ WPU102501,"Aluminum mill shapes",national,2026-02,349.365,no
 WPU102501,"Aluminum mill shapes",national,2026-03,353.17,no
 WPU102501,"Aluminum mill shapes",national,2026-04,367.769,no
 WPU102501,"Aluminum mill shapes",national,2026-05,385.055,no
-WPU102501,"Aluminum mill shapes",national,2026-06,394.359,yes
-WPU102501,"Aluminum mill shapes",national,2026-07,388.092,yes
-WPU102501,"Aluminum mill shapes",national,2026-08,370.931,yes
-WPU102501,"Aluminum mill shapes",national,2026-09,370.48,yes
+WPU102501,"Aluminum mill shapes",national,2026-06,392.719,no
+WPU102501,"Aluminum mill shapes",national,2026-07,386.341,yes
+WPU102501,"Aluminum mill shapes",national,2026-08,369.343,yes
+WPU102501,"Aluminum mill shapes",national,2026-09,369.158,yes
+WPU102501,"Aluminum mill shapes",national,2026-10,371.703,yes
 WPU10260314,"Copper wire and cable",national,2017-01,261.8,no
 WPU10260314,"Copper wire and cable",national,2017-02,274.3,no
 WPU10260314,"Copper wire and cable",national,2017-03,268.2,no
@@ -1632,10 +1645,11 @@ WPU10260314,"Copper wire and cable",national,2026-02,537.87,no
 WPU10260314,"Copper wire and cable",national,2026-03,536.77,no
 WPU10260314,"Copper wire and cable",national,2026-04,533.808,no
 WPU10260314,"Copper wire and cable",national,2026-05,564.877,no
-WPU10260314,"Copper wire and cable",national,2026-06,577.166,yes
+WPU10260314,"Copper wire and cable",national,2026-06,577.166,no
 WPU10260314,"Copper wire and cable",national,2026-07,578.69,yes
-WPU10260314,"Copper wire and cable",national,2026-08,602.663,yes
-WPU10260314,"Copper wire and cable",national,2026-09,607.705,yes
+WPU10260314,"Copper wire and cable",national,2026-08,601.761,yes
+WPU10260314,"Copper wire and cable",national,2026-09,606.518,yes
+WPU10260314,"Copper wire and cable",national,2026-10,610.018,yes
 WPU136,"Asphalt felts and coatings",national,2017-01,220.5,no
 WPU136,"Asphalt felts and coatings",national,2017-02,216.4,no
 WPU136,"Asphalt felts and coatings",national,2017-03,219.2,no
@@ -1749,10 +1763,11 @@ WPU136,"Asphalt felts and coatings",national,2026-02,344.316,no
 WPU136,"Asphalt felts and coatings",national,2026-03,339.273,no
 WPU136,"Asphalt felts and coatings",national,2026-04,340.486,no
 WPU136,"Asphalt felts and coatings",national,2026-05,348.585,no
-WPU136,"Asphalt felts and coatings",national,2026-06,361.502,yes
+WPU136,"Asphalt felts and coatings",national,2026-06,361.502,no
 WPU136,"Asphalt felts and coatings",national,2026-07,369.089,yes
 WPU136,"Asphalt felts and coatings",national,2026-08,370.5,yes
 WPU136,"Asphalt felts and coatings",national,2026-09,364.328,yes
+WPU136,"Asphalt felts and coatings",national,2026-10,363.939,yes
 WPU137,"Gypsum products",national,2017-01,308.1,no
 WPU137,"Gypsum products",national,2017-02,327.2,no
 WPU137,"Gypsum products",national,2017-03,326.0,no
@@ -1866,10 +1881,11 @@ WPU137,"Gypsum products",national,2026-02,480.694,no
 WPU137,"Gypsum products",national,2026-03,479.517,no
 WPU137,"Gypsum products",national,2026-04,480.366,no
 WPU137,"Gypsum products",national,2026-05,475.063,no
-WPU137,"Gypsum products",national,2026-06,477.52,yes
+WPU137,"Gypsum products",national,2026-06,477.52,no
 WPU137,"Gypsum products",national,2026-07,481.644,yes
-WPU137,"Gypsum products",national,2026-08,484.844,yes
-WPU137,"Gypsum products",national,2026-09,488.936,yes
+WPU137,"Gypsum products",national,2026-08,481.575,yes
+WPU137,"Gypsum products",national,2026-09,483.436,yes
+WPU137,"Gypsum products",national,2026-10,486.546,yes
 WPU1392,"Insulation materials",national,2017-01,187.6,no
 WPU1392,"Insulation materials",national,2017-02,188.9,no
 WPU1392,"Insulation materials",national,2017-03,188.9,no
@@ -1983,10 +1999,11 @@ WPU1392,"Insulation materials",national,2026-02,288.121,no
 WPU1392,"Insulation materials",national,2026-03,290.15,no
 WPU1392,"Insulation materials",national,2026-04,288.045,no
 WPU1392,"Insulation materials",national,2026-05,289.542,no
-WPU1392,"Insulation materials",national,2026-06,289.248,yes
+WPU1392,"Insulation materials",national,2026-06,289.248,no
 WPU1392,"Insulation materials",national,2026-07,287.742,yes
-WPU1392,"Insulation materials",national,2026-08,289.038,yes
-WPU1392,"Insulation materials",national,2026-09,293.639,yes
+WPU1392,"Insulation materials",national,2026-08,289.196,yes
+WPU1392,"Insulation materials",national,2026-09,294.469,yes
+WPU1392,"Insulation materials",national,2026-10,296.495,yes
 WPU0621,"Prepared paint",national,2017-01,272.4,no
 WPU0621,"Prepared paint",national,2017-02,273.0,no
 WPU0621,"Prepared paint",national,2017-03,272.4,no
@@ -2100,10 +2117,11 @@ WPU0621,"Prepared paint",national,2026-02,440.288,no
 WPU0621,"Prepared paint",national,2026-03,440.626,no
 WPU0621,"Prepared paint",national,2026-04,443.318,no
 WPU0621,"Prepared paint",national,2026-05,446.888,no
-WPU0621,"Prepared paint",national,2026-06,446.803,yes
-WPU0621,"Prepared paint",national,2026-07,447.824,yes
-WPU0621,"Prepared paint",national,2026-08,453.979,yes
-WPU0621,"Prepared paint",national,2026-09,452.904,yes
+WPU0621,"Prepared paint",national,2026-06,446.803,no
+WPU0621,"Prepared paint",national,2026-07,447.619,yes
+WPU0621,"Prepared paint",national,2026-08,447.472,yes
+WPU0621,"Prepared paint",national,2026-09,447.768,yes
+WPU0621,"Prepared paint",national,2026-10,449.136,yes
 WPU07210603,"Plastics pipe",national,2017-01,102.2,no
 WPU07210603,"Plastics pipe",national,2017-02,103.9,no
 WPU07210603,"Plastics pipe",national,2017-03,102.7,no
@@ -2217,10 +2235,11 @@ WPU07210603,"Plastics pipe",national,2026-02,170.223,no
 WPU07210603,"Plastics pipe",national,2026-03,170.789,no
 WPU07210603,"Plastics pipe",national,2026-04,171.91,no
 WPU07210603,"Plastics pipe",national,2026-05,181.246,no
-WPU07210603,"Plastics pipe",national,2026-06,181.268,yes
+WPU07210603,"Plastics pipe",national,2026-06,181.268,no
 WPU07210603,"Plastics pipe",national,2026-07,182.454,yes
 WPU07210603,"Plastics pipe",national,2026-08,182.44,yes
 WPU07210603,"Plastics pipe",national,2026-09,181.791,yes
+WPU07210603,"Plastics pipe",national,2026-10,178.941,yes
 WPU105,"Plumbing fixtures and fittings",national,2017-01,258.0,no
 WPU105,"Plumbing fixtures and fittings",national,2017-02,259.6,no
 WPU105,"Plumbing fixtures and fittings",national,2017-03,259.8,no
@@ -2334,10 +2353,11 @@ WPU105,"Plumbing fixtures and fittings",national,2026-02,375.394,no
 WPU105,"Plumbing fixtures and fittings",national,2026-03,378.256,no
 WPU105,"Plumbing fixtures and fittings",national,2026-04,379.752,no
 WPU105,"Plumbing fixtures and fittings",national,2026-05,380.31,no
-WPU105,"Plumbing fixtures and fittings",national,2026-06,381.344,yes
-WPU105,"Plumbing fixtures and fittings",national,2026-07,381.344,yes
-WPU105,"Plumbing fixtures and fittings",national,2026-08,381.344,yes
-WPU105,"Plumbing fixtures and fittings",national,2026-09,381.344,yes
+WPU105,"Plumbing fixtures and fittings",national,2026-06,381.649,no
+WPU105,"Plumbing fixtures and fittings",national,2026-07,380.603,yes
+WPU105,"Plumbing fixtures and fittings",national,2026-08,382.172,yes
+WPU105,"Plumbing fixtures and fittings",national,2026-09,381.126,yes
+WPU105,"Plumbing fixtures and fittings",national,2026-10,381.126,yes
 WPU106,"Heating equipment",national,2017-01,255.0,no
 WPU106,"Heating equipment",national,2017-02,255.4,no
 WPU106,"Heating equipment",national,2017-03,255.4,no
@@ -2451,10 +2471,11 @@ WPU106,"Heating equipment",national,2026-02,435.343,no
 WPU106,"Heating equipment",national,2026-03,435.667,no
 WPU106,"Heating equipment",national,2026-04,437.664,no
 WPU106,"Heating equipment",national,2026-05,437.636,no
-WPU106,"Heating equipment",national,2026-06,435.98,yes
-WPU106,"Heating equipment",national,2026-07,437.52,yes
-WPU106,"Heating equipment",national,2026-08,440.475,yes
-WPU106,"Heating equipment",national,2026-09,443.154,yes
+WPU106,"Heating equipment",national,2026-06,435.967,no
+WPU106,"Heating equipment",national,2026-07,437.48,yes
+WPU106,"Heating equipment",national,2026-08,440.747,yes
+WPU106,"Heating equipment",national,2026-09,443.336,yes
+WPU106,"Heating equipment",national,2026-10,443.792,yes
 WPU1083,"Lighting fixtures",national,2017-01,169.8,no
 WPU1083,"Lighting fixtures",national,2017-02,169.4,no
 WPU1083,"Lighting fixtures",national,2017-03,170.3,no
@@ -2568,10 +2589,11 @@ WPU1083,"Lighting fixtures",national,2026-02,243.196,no
 WPU1083,"Lighting fixtures",national,2026-03,243.184,no
 WPU1083,"Lighting fixtures",national,2026-04,243.243,no
 WPU1083,"Lighting fixtures",national,2026-05,243.385,no
-WPU1083,"Lighting fixtures",national,2026-06,243.386,yes
+WPU1083,"Lighting fixtures",national,2026-06,243.386,no
 WPU1083,"Lighting fixtures",national,2026-07,244.481,yes
-WPU1083,"Lighting fixtures",national,2026-08,244.807,yes
-WPU1083,"Lighting fixtures",national,2026-09,247.574,yes
+WPU1083,"Lighting fixtures",national,2026-08,244.763,yes
+WPU1083,"Lighting fixtures",national,2026-09,247.023,yes
+WPU1083,"Lighting fixtures",national,2026-10,247.023,yes
 WPU057303,"No. 2 diesel fuel",national,2017-01,161.1,no
 WPU057303,"No. 2 diesel fuel",national,2017-02,163.5,no
 WPU057303,"No. 2 diesel fuel",national,2017-03,161.3,no
@@ -2685,7 +2707,8 @@ WPU057303,"No. 2 diesel fuel",national,2026-02,315.983,no
 WPU057303,"No. 2 diesel fuel",national,2026-03,437.312,no
 WPU057303,"No. 2 diesel fuel",national,2026-04,494.104,no
 WPU057303,"No. 2 diesel fuel",national,2026-05,581.23,no
-WPU057303,"No. 2 diesel fuel",national,2026-06,475.571,yes
-WPU057303,"No. 2 diesel fuel",national,2026-07,463.725,yes
-WPU057303,"No. 2 diesel fuel",national,2026-08,543.93,yes
-WPU057303,"No. 2 diesel fuel",national,2026-09,675.626,yes
+WPU057303,"No. 2 diesel fuel",national,2026-06,474.884,no
+WPU057303,"No. 2 diesel fuel",national,2026-07,464.099,yes
+WPU057303,"No. 2 diesel fuel",national,2026-08,547.832,yes
+WPU057303,"No. 2 diesel fuel",national,2026-09,674.422,yes
+WPU057303,"No. 2 diesel fuel",national,2026-10,643.175,yes

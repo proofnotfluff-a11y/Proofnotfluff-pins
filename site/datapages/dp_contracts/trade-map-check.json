@@ -320,10 +320,6 @@
  },
  "_supplyLeftOut": [
   [
-   "JANITORIAL SUPPLIES - L, T",
-   6
-  ],
-  [
    "JANITORIAL SUPPLIES - GROUPS DD, H, M, N, QQ, R, S, U, TT, Y",
    6
   ],
@@ -333,6 +329,10 @@
   ],
   [
    "VARIOUS PLUMBING SUPPLIES (GROUPS 1, 6-29, 31-36, 38-50, 52-80, 82-85,",
+   5
+  ],
+  [
+   "JANITORIAL SUPPLIES - L, T",
    5
   ],
   [

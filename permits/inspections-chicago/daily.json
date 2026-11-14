@@ -1,15 +1,15 @@
 {
  "product": "Chicago Restaurant Daily List",
- "asOf": "2026-11-13",
- "asOfText": "Nov 13, 2026",
- "through": "2026-11-12",
- "throughText": "Nov 12, 2026",
- "recentFrom": "2026-10-30",
+ "asOf": "2026-11-14",
+ "asOfText": "Nov 14, 2026",
+ "through": "2026-11-13",
+ "throughText": "Nov 13, 2026",
+ "recentFrom": "2026-10-31",
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-11-13T18:47:10+00:00",
-  "rowsUpdatedAt": "2026-11-13T10:12:12+00:00",
+  "fetchedAt": "2026-11-14T17:18:56+00:00",
+  "rowsUpdatedAt": "2026-11-14T10:07:01+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
@@ -186,11 +186,19 @@
    "hood": 0,
    "places": 1,
    "withPhone": 1
+  },
+  {
+   "asOf": "2026-11-14",
+   "through": "2026-11-13",
+   "pests": 1,
+   "hood": 0,
+   "places": 1,
+   "withPhone": 1
   }
  ],
  "examples": [
   {
-   "area": "Loop",
+   "area": "Gage Park",
    "type": "Restaurant",
    "result": "Fail",
    "trades": [
@@ -199,11 +207,6 @@
   }
  ],
  "pestByDate": [
-  {
-   "date": "2026-10-30",
-   "pests": 3,
-   "restaurant": 1
-  },
   {
    "date": "2026-10-31",
    "pests": 0,
@@ -266,21 +269,24 @@
   },
   {
    "date": "2026-11-12",
-   "pests": 1,
-   "restaurant": 1
+   "pests": 2,
+   "restaurant": 2
+  },
+  {
+   "date": "2026-11-13",
+   "pests": 0,
+   "restaurant": 0
   }
  ],
  "pestLast7": {
-  "from": "2026-11-06",
-  "to": "2026-11-12",
-  "inspections": 7,
-  "restaurantInspections": 5,
+  "from": "2026-11-07",
+  "to": "2026-11-13",
+  "inspections": 4,
+  "restaurantInspections": 3,
   "areas": [
-   "Albany Park",
-   "Clearing",
+   "Gage Park",
    "Lincoln Square",
-   "Loop",
-   "Uptown"
+   "Loop"
   ]
  },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
@@ -290,11 +296,11 @@
   "coverage": 100.0
  },
  "seat": {
-  "asOf": "2026-11-13",
-  "places14": 27,
+  "asOf": "2026-11-14",
+  "places14": 25,
   "new": 1,
-  "withPhone14": 13,
-  "coverage14": 48.1,
+  "withPhone14": 14,
+  "coverage14": 56.0,
   "phonesChecked": true
  }
 }

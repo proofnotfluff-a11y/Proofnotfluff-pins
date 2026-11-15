@@ -6,7 +6,7 @@
   "url": "https://data.cityofchicago.org/Transportation/Transportation-Department-Permits/pubx-yq2d",
   "type": "DOT_DMPSTR",
   "issuedOnly": true,
-  "fetchedAt": "2026-11-14T11:53:30-0600",
+  "fetchedAt": "2026-11-15T12:43:41-0600",
   "join": "latitude and longitude to community area outlines",
   "geo": {
    "name": "Boundaries - Community Areas",
@@ -16,24 +16,24 @@
   },
   "statusesCounted": {
    "Closed": 37,
-   "Open": 35865
+   "Open": 35882
   },
   "unit": "distinct permit numbers",
-  "rows": 35902,
+  "rows": 35919,
   "typeProbe": [
    {
     "applicationtype": "DOT_DMPSTR",
     "applicationdescription": "DOT Dumpster Permit",
-    "n": "322662"
+    "n": "322677"
    }
   ]
  },
  "window": {
-  "to": "2026-11-14",
-  "from90": "2026-08-16",
-  "prev90From": "2026-05-18",
-  "yr90From": "2025-08-16",
-  "yr90To": "2025-11-14",
+  "to": "2026-11-15",
+  "from90": "2026-08-17",
+  "prev90From": "2026-05-19",
+  "yr90From": "2025-08-17",
+  "yr90To": "2025-11-15",
   "fromMonths": "2024-11-01"
  },
  "monthLabels": [
@@ -90,16 +90,16 @@
    1400,
    1349,
    1652,
-   742
+   753
   ],
-  "d90": 4467,
-  "prev90": 4357,
-  "yr90": 4244,
+  "d90": 4478,
+  "prev90": 4306,
+  "yr90": 4307,
   "noArea": {
    "months": 12,
    "d90": 2
   },
-  "multiArea90": 216
+  "multiArea90": 217
  },
  "areas": [
   {
@@ -107,7 +107,7 @@
    "name": "Rogers Park",
    "d90": 60,
    "prev90": 60,
-   "yr90": 59,
+   "yr90": 62,
    "months": [
     23,
     11,
@@ -141,8 +141,8 @@
    "n": 2,
    "name": "West Ridge",
    "d90": 71,
-   "prev90": 75,
-   "yr90": 71,
+   "prev90": 74,
+   "yr90": 72,
    "months": [
     21,
     10,
@@ -176,8 +176,8 @@
    "n": 3,
    "name": "Uptown",
    "d90": 63,
-   "prev90": 50,
-   "yr90": 69,
+   "prev90": 49,
+   "yr90": 71,
    "months": [
     20,
     15,
@@ -211,8 +211,8 @@
    "n": 4,
    "name": "Lincoln Square",
    "d90": 91,
-   "prev90": 115,
-   "yr90": 105,
+   "prev90": 114,
+   "yr90": 107,
    "months": [
     33,
     34,
@@ -245,8 +245,8 @@
   {
    "n": 5,
    "name": "North Center",
-   "d90": 140,
-   "prev90": 129,
+   "d90": 141,
+   "prev90": 127,
    "yr90": 142,
    "months": [
     56,
@@ -273,16 +273,16 @@
     42,
     45,
     48,
-    25
+    26
    ],
    "rank": 6
   },
   {
    "n": 6,
    "name": "Lake View",
-   "d90": 222,
-   "prev90": 209,
-   "yr90": 192,
+   "d90": 225,
+   "prev90": 208,
+   "yr90": 196,
    "months": [
     56,
     41,
@@ -308,16 +308,16 @@
     69,
     63,
     87,
-    35
+    38
    ],
    "rank": 3
   },
   {
    "n": 7,
    "name": "Lincoln Park",
-   "d90": 236,
-   "prev90": 228,
-   "yr90": 195,
+   "d90": 237,
+   "prev90": 225,
+   "yr90": 194,
    "months": [
     68,
     54,
@@ -343,7 +343,7 @@
     82,
     66,
     85,
-    43
+    44
    ],
    "rank": 2
   },
@@ -351,8 +351,8 @@
    "n": 8,
    "name": "Near North Side",
    "d90": 124,
-   "prev90": 107,
-   "yr90": 88,
+   "prev90": 105,
+   "yr90": 92,
    "months": [
     24,
     12,
@@ -421,8 +421,8 @@
    "n": 10,
    "name": "Norwood Park",
    "d90": 63,
-   "prev90": 74,
-   "yr90": 40,
+   "prev90": 73,
+   "yr90": 41,
    "months": [
     17,
     8,
@@ -456,7 +456,7 @@
    "n": 11,
    "name": "Jefferson Park",
    "d90": 35,
-   "prev90": 36,
+   "prev90": 34,
    "yr90": 24,
    "months": [
     10,
@@ -485,13 +485,13 @@
     14,
     4
    ],
-   "rank": 51
+   "rank": 52
   },
   {
    "n": 12,
    "name": "Forest Glen",
    "d90": 40,
-   "prev90": 40,
+   "prev90": 39,
    "yr90": 39,
    "months": [
     13,
@@ -561,7 +561,7 @@
    "n": 14,
    "name": "Albany Park",
    "d90": 73,
-   "prev90": 76,
+   "prev90": 75,
    "yr90": 72,
    "months": [
     24,
@@ -595,8 +595,8 @@
   {
    "n": 15,
    "name": "Portage Park",
-   "d90": 76,
-   "prev90": 68,
+   "d90": 77,
+   "prev90": 67,
    "yr90": 89,
    "months": [
     22,
@@ -623,16 +623,16 @@
     19,
     30,
     29,
-    7
+    8
    ],
-   "rank": 22
+   "rank": 21
   },
   {
    "n": 16,
    "name": "Irving Park",
    "d90": 128,
-   "prev90": 116,
-   "yr90": 107,
+   "prev90": 115,
+   "yr90": 109,
    "months": [
     31,
     22,
@@ -666,8 +666,8 @@
    "n": 17,
    "name": "Dunning",
    "d90": 49,
-   "prev90": 44,
-   "yr90": 46,
+   "prev90": 43,
+   "yr90": 48,
    "months": [
     12,
     12,
@@ -702,7 +702,7 @@
    "name": "Montclare",
    "d90": 22,
    "prev90": 24,
-   "yr90": 20,
+   "yr90": 21,
    "months": [
     5,
     4,
@@ -736,8 +736,8 @@
    "n": 19,
    "name": "Belmont Cragin",
    "d90": 95,
-   "prev90": 84,
-   "yr90": 93,
+   "prev90": 83,
+   "yr90": 95,
    "months": [
     26,
     8,
@@ -772,7 +772,7 @@
    "name": "Hermosa",
    "d90": 33,
    "prev90": 30,
-   "yr90": 27,
+   "yr90": 28,
    "months": [
     15,
     5,
@@ -805,9 +805,9 @@
   {
    "n": 21,
    "name": "Avondale",
-   "d90": 64,
+   "d90": 65,
    "prev90": 67,
-   "yr90": 63,
+   "yr90": 66,
    "months": [
     18,
     10,
@@ -833,16 +833,16 @@
     25,
     20,
     24,
-    12
+    13
    ],
    "rank": 29
   },
   {
    "n": 22,
    "name": "Logan Square",
-   "d90": 179,
-   "prev90": 163,
-   "yr90": 202,
+   "d90": 180,
+   "prev90": 160,
+   "yr90": 204,
    "months": [
     66,
     48,
@@ -868,7 +868,7 @@
     60,
     52,
     76,
-    20
+    21
    ],
    "rank": 4
   },
@@ -877,7 +877,7 @@
    "name": "Humboldt Park",
    "d90": 115,
    "prev90": 96,
-   "yr90": 83,
+   "yr90": 85,
    "months": [
     45,
     24,
@@ -911,8 +911,8 @@
    "n": 24,
    "name": "West Town",
    "d90": 257,
-   "prev90": 237,
-   "yr90": 239,
+   "prev90": 235,
+   "yr90": 241,
    "months": [
     85,
     59,
@@ -946,8 +946,8 @@
    "n": 25,
    "name": "Austin",
    "d90": 168,
-   "prev90": 188,
-   "yr90": 171,
+   "prev90": 186,
+   "yr90": 176,
    "months": [
     73,
     39,
@@ -981,8 +981,8 @@
    "n": 26,
    "name": "West Garfield Park",
    "d90": 29,
-   "prev90": 43,
-   "yr90": 34,
+   "prev90": 41,
+   "yr90": 36,
    "months": [
     16,
     5,
@@ -1016,7 +1016,7 @@
    "n": 27,
    "name": "East Garfield Park",
    "d90": 58,
-   "prev90": 35,
+   "prev90": 34,
    "yr90": 51,
    "months": [
     12,
@@ -1051,8 +1051,8 @@
    "n": 28,
    "name": "Near West Side",
    "d90": 104,
-   "prev90": 97,
-   "yr90": 106,
+   "prev90": 95,
+   "yr90": 107,
    "months": [
     31,
     18,
@@ -1121,7 +1121,7 @@
    "n": 30,
    "name": "South Lawndale",
    "d90": 81,
-   "prev90": 81,
+   "prev90": 80,
    "yr90": 61,
    "months": [
     33,
@@ -1156,8 +1156,8 @@
    "n": 31,
    "name": "Lower West Side",
    "d90": 62,
-   "prev90": 63,
-   "yr90": 61,
+   "prev90": 62,
+   "yr90": 62,
    "months": [
     17,
     10,
@@ -1190,9 +1190,9 @@
   {
    "n": 32,
    "name": "Loop",
-   "d90": 55,
-   "prev90": 45,
-   "yr90": 41,
+   "d90": 56,
+   "prev90": 43,
+   "yr90": 43,
    "months": [
     4,
     11,
@@ -1218,7 +1218,7 @@
     15,
     18,
     21,
-    10
+    11
    ],
    "rank": 38
   },
@@ -1297,7 +1297,7 @@
    "name": "Douglas",
    "d90": 23,
    "prev90": 16,
-   "yr90": 21,
+   "yr90": 22,
    "months": [
     5,
     8,
@@ -1401,7 +1401,7 @@
    "n": 38,
    "name": "Grand Boulevard",
    "d90": 61,
-   "prev90": 43,
+   "prev90": 40,
    "yr90": 39,
    "months": [
     21,
@@ -1435,7 +1435,7 @@
   {
    "n": 39,
    "name": "Kenwood",
-   "d90": 35,
+   "d90": 36,
    "prev90": 42,
    "yr90": 20,
    "months": [
@@ -1463,9 +1463,9 @@
     18,
     13,
     7,
-    1
+    2
    ],
-   "rank": 51
+   "rank": 50
   },
   {
    "n": 40,
@@ -1542,7 +1542,7 @@
    "name": "Woodlawn",
    "d90": 55,
    "prev90": 70,
-   "yr90": 70,
+   "yr90": 69,
    "months": [
     10,
     15,
@@ -1570,14 +1570,14 @@
     20,
     10
    ],
-   "rank": 38
+   "rank": 39
   },
   {
    "n": 43,
    "name": "South Shore",
    "d90": 109,
-   "prev90": 86,
-   "yr90": 117,
+   "prev90": 85,
+   "yr90": 119,
    "months": [
     30,
     25,
@@ -1611,7 +1611,7 @@
    "n": 44,
    "name": "Chatham",
    "d90": 80,
-   "prev90": 75,
+   "prev90": 74,
    "yr90": 81,
    "months": [
     16,
@@ -1646,7 +1646,7 @@
    "n": 45,
    "name": "Avalon Park",
    "d90": 28,
-   "prev90": 41,
+   "prev90": 40,
    "yr90": 37,
    "months": [
     13,
@@ -1681,7 +1681,7 @@
    "n": 46,
    "name": "South Chicago",
    "d90": 76,
-   "prev90": 63,
+   "prev90": 62,
    "yr90": 58,
    "months": [
     19,
@@ -1710,7 +1710,7 @@
     18,
     16
    ],
-   "rank": 22
+   "rank": 23
   },
   {
    "n": 47,
@@ -1750,7 +1750,7 @@
   {
    "n": 48,
    "name": "Calumet Heights",
-   "d90": 45,
+   "d90": 46,
    "prev90": 56,
    "yr90": 44,
    "months": [
@@ -1778,9 +1778,9 @@
     20,
     18,
     15,
-    5
+    6
    ],
-   "rank": 46
+   "rank": 45
   },
   {
    "n": 49,
@@ -1927,7 +1927,7 @@
    "name": "West Pullman",
    "d90": 62,
    "prev90": 62,
-   "yr90": 61,
+   "yr90": 62,
    "months": [
     18,
     10,
@@ -2032,7 +2032,7 @@
    "name": "Garfield Ridge",
    "d90": 50,
    "prev90": 50,
-   "yr90": 37,
+   "yr90": 39,
    "months": [
     24,
     10,
@@ -2067,7 +2067,7 @@
    "name": "Archer Heights",
    "d90": 16,
    "prev90": 17,
-   "yr90": 23,
+   "yr90": 24,
    "months": [
     2,
     2,
@@ -2101,7 +2101,7 @@
    "n": 58,
    "name": "Brighton Park",
    "d90": 50,
-   "prev90": 45,
+   "prev90": 44,
    "yr90": 63,
    "months": [
     14,
@@ -2172,7 +2172,7 @@
    "name": "Bridgeport",
    "d90": 54,
    "prev90": 47,
-   "yr90": 58,
+   "yr90": 59,
    "months": [
     18,
     4,
@@ -2207,7 +2207,7 @@
    "name": "New City",
    "d90": 66,
    "prev90": 72,
-   "yr90": 45,
+   "yr90": 46,
    "months": [
     19,
     17,
@@ -2347,7 +2347,7 @@
    "name": "West Lawn",
    "d90": 30,
    "prev90": 28,
-   "yr90": 36,
+   "yr90": 37,
    "months": [
     7,
     0,
@@ -2381,8 +2381,8 @@
    "n": 66,
    "name": "Chicago Lawn",
    "d90": 59,
-   "prev90": 71,
-   "yr90": 98,
+   "prev90": 70,
+   "yr90": 99,
    "months": [
     17,
     10,
@@ -2417,7 +2417,7 @@
    "name": "West Englewood",
    "d90": 87,
    "prev90": 86,
-   "yr90": 95,
+   "yr90": 96,
    "months": [
     23,
     16,
@@ -2451,8 +2451,8 @@
    "n": 68,
    "name": "Englewood",
    "d90": 75,
-   "prev90": 72,
-   "yr90": 72,
+   "prev90": 70,
+   "yr90": 74,
    "months": [
     33,
     7,
@@ -2487,7 +2487,7 @@
    "name": "Greater Grand Crossing",
    "d90": 77,
    "prev90": 81,
-   "yr90": 82,
+   "yr90": 84,
    "months": [
     36,
     10,
@@ -2522,7 +2522,7 @@
    "name": "Ashburn",
    "d90": 51,
    "prev90": 51,
-   "yr90": 57,
+   "yr90": 58,
    "months": [
     24,
     3,
@@ -2556,8 +2556,8 @@
    "n": 71,
    "name": "Auburn Gresham",
    "d90": 130,
-   "prev90": 112,
-   "yr90": 114,
+   "prev90": 110,
+   "yr90": 116,
    "months": [
     42,
     30,
@@ -2627,7 +2627,7 @@
    "name": "Washington Heights",
    "d90": 75,
    "prev90": 53,
-   "yr90": 71,
+   "yr90": 72,
    "months": [
     12,
     7,
@@ -2661,7 +2661,7 @@
    "n": 74,
    "name": "Mount Greenwood",
    "d90": 46,
-   "prev90": 49,
+   "prev90": 47,
    "yr90": 32,
    "months": [
     10,
@@ -2765,9 +2765,9 @@
   {
    "n": 77,
    "name": "Edgewater",
-   "d90": 96,
+   "d90": 97,
    "prev90": 99,
-   "yr90": 78,
+   "yr90": 81,
    "months": [
     26,
     15,
@@ -2793,7 +2793,7 @@
     27,
     28,
     42,
-    15
+    16
    ],
    "rank": 14
   }

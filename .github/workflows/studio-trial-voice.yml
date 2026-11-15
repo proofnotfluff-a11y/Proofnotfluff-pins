@@ -1,0 +1,51 @@
+name: Studio trial voice
+# The voice for a trial video that lives outside the lesson line (video/studio/research/trials/<trial>/; Todd, live chat,
+# Nov 15, 2026, about 11:19 am: "Yes, pixel Todd (Recommended)": "The ElevenLabs voice the lessons already use reads it";
+# coo/DECISIONS-2026-11-15.md). The lesson voice workflow (studio-voice.yml) only speaks lessons under videos/, and a trial
+# must stay out of that line, so this one runs the trial's own voice/voice.py, which reuses anim.py's voice code unchanged:
+# ElevenLabs Eleven v4 with the ELEVENLABS_API_KEY secret (never printed), then Whisper for word times.
+# Nothing lands on main and nothing is posted: the audio and the heard words go to the throwaway branch trial-voice,
+# which is replaced on each run.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["video/studio/research/trials/*/voice/speak.json"]
+permissions:
+  contents: write
+concurrency:
+  group: studio-trial-voice
+  cancel-in-progress: false
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tools
+        run: |
+          echo 'set man-db/auto-update false' | sudo debconf-communicate > /dev/null 2>&1 || true
+          sudo rm -f /var/lib/man-db/auto-update
+          for i in 1 2; do timeout 480 sudo apt-get update -qq && timeout 480 sudo apt-get install -y -qq ffmpeg > /dev/null && break; echo "apt try $i failed or timed out"; done
+          command -v ffmpeg && command -v ffprobe
+          pip install --quiet -c .github/ci-constraints.txt faster-whisper numpy
+      - name: Speak and time the words
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+        run: |
+          for req in video/studio/research/trials/*/voice/speak.json; do
+            [ -e "$req" ] || continue
+            trial=$(basename "$(dirname "$(dirname "$req")")")
+            python3 "video/studio/research/trials/$trial/voice/voice.py" ci "$RUNNER_TEMP/voice/$trial"
+          done
+      - name: Publish to the throwaway branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd "$RUNNER_TEMP/voice"
+          git init -q -b trial-voice
+          git config user.name "studio-trial-voice"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -q -m "studio-trial-voice: audio and heard words (throwaway branch)"
+          git push --force "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" trial-voice

@@ -1,0 +1,59 @@
+{
+ "slug": "2026-12-02-took-it-back",
+ "reads": [
+  {
+   "date": "2026-11-14",
+   "readAt": "2026-11-15T02:35:00Z",
+   "depth": "deep",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": 8,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 0,
+     "shares": 0,
+     "viewers": 39,
+     "views": 39,
+     "views3s": 15
+    },
+    "instagram": {
+     "avgWatchS": 52,
+     "comments": 2,
+     "follows": 0,
+     "likes": 29,
+     "reach": 1544,
+     "saves": 3,
+     "shares": 0,
+     "skipRate": "hidden",
+     "viewers": 1533,
+     "views": 1783
+    },
+    "tiktok": {
+     "avgWatchS": 19.85,
+     "comments": 0,
+     "likes": 10,
+     "newFollowers": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 285,
+     "watchedFullPct": 4.1
+    },
+    "youtube": {
+     "avgPctViewed": "hidden",
+     "avgViewDurationS": "hidden",
+     "comments": "hidden",
+     "likes": 25,
+     "shares": "hidden",
+     "subscribersGained": 0,
+     "viewedVsSwipedPct": 76,
+     "views": 1400,
+     "views48h": 1320,
+     "watchTimeH": 18.5
+    }
+   },
+   "source": "videometrics 2026-12-02-took-it-back.2026-11-14 (evening PC run, deep read)",
+   "docId": "2026-12-02-took-it-back.2026-11-14"
+  }
+ ]
+}

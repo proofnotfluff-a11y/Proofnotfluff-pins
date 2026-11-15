@@ -121,6 +121,18 @@
    "note": "YouTube Studio dashboard showed no notice; Meta and TikTok status pages not opened this run",
    "source": "videometrics account-health.2026-11-12 (evening PC run)",
    "docId": "account-health.2026-11-12"
+  },
+  {
+   "date": "2026-11-14",
+   "readAt": "2026-11-15T02:36:00Z",
+   "platforms": {
+    "facebook": "hidden",
+    "instagram": "hidden",
+    "tiktok": "hidden",
+    "youtube": 0
+   },
+   "source": "videometrics account-health.2026-11-14 (evening PC run)",
+   "docId": "account-health.2026-11-14"
   }
  ]
 }

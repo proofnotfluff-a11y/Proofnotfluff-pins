@@ -90,7 +90,7 @@ def words(d):
     print(f"words: {len(ws)}, {doc['end']:.1f} s, flags: {flags or 'none'}\n" + "\n".join(pace))
 
 
-KEEP = 0.34
+KEEP = 0.30
 
 
 def tighten(d):
@@ -129,8 +129,8 @@ def tighten(d):
 
 
 def mouth(d, rhubarb):
-    """Rhubarb's cues (shape per time) as one letter a frame, 2 frames early like the lessons' mouth (the eye forgives a
-    mouth that leads the sound, not one that lags). X (rest) outside words. Plus the studio's own loudness levels."""
+    """Rhubarb's cues (shape per time) as one letter a frame, 1 frame early (the eye forgives a mouth that leads the
+    sound, not one that lags; round 0's 2 frames read as opening before the word). X (rest) outside words. Plus the studio's own loudness levels."""
     voice = os.path.join(d, "voice-tight.wav") if os.path.exists(os.path.join(d, "voice-tight.wav")) else os.path.join(d, "voice.mp3")
     wav = os.path.join(d, "voice16.wav"); txt = os.path.join(d, "dialog.txt")
     anim.sh(["ffmpeg", "-y", "-loglevel", "error", "-i", voice, "-ac", "1", "-ar", "16000", wav])
@@ -140,7 +140,7 @@ def mouth(d, rhubarb):
     if r.returncode:
         raise SystemExit("ERROR mouth: rhubarb failed: " + r.stderr[-300:])
     cues = json.load(open(out))["mouthCues"]; wd = json.load(open(os.path.join(HERE, "words.json")))
-    fps, lead = anim.FPS, 2
+    fps, lead = anim.FPS, 1
     n = int((wd["end"] + 1.5) * fps) + 1; shapes = []
     for i in range(n):
         t = (i + lead) / fps
@@ -152,8 +152,8 @@ def mouth(d, rhubarb):
     x = np.frombuffer(subprocess.run(["ffmpeg", "-v", "error", "-i", wav, "-f", "f32le", "-"], capture_output=True, check=True).stdout, dtype=np.float32)
     quiet = 0
     for i in range(n):
-        t = (i + lead) / fps; seg = x[max(0, int((t - 0.01) * 16000)):int((t + 0.045) * 16000)]
-        if len(seg) == 0 or float(np.sqrt(np.mean(seg ** 2))) < 0.008:
+        t = (i + lead) / fps; seg = x[max(0, int((t - 0.02) * 16000)):int((t + 0.05) * 16000)]
+        if len(seg) == 0 or float(np.sqrt(np.mean(seg ** 2))) < 0.004:
             quiet += shapes[i] not in "XA"; shapes[i] = "X"
     for i in range(1, n - 1):
         if shapes[i] != shapes[i - 1] and shapes[i] != shapes[i + 1] and shapes[i] != "X":

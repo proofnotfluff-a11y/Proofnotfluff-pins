@@ -1,22 +1,22 @@
 {
  "product": "Chicago Restaurant Daily List",
- "asOf": "2026-11-14",
- "asOfText": "Nov 14, 2026",
+ "asOf": "2026-11-15",
+ "asOfText": "Nov 15, 2026",
  "through": "2026-11-13",
  "throughText": "Nov 13, 2026",
  "recentFrom": "2026-10-31",
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-11-14T17:18:56+00:00",
-  "rowsUpdatedAt": "2026-11-14T10:07:01+00:00",
+  "fetchedAt": "2026-11-15T17:59:20+00:00",
+  "rowsUpdatedAt": "2026-11-15T10:07:22+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "pests": 1,
+  "pests": 0,
   "hood": 0,
-  "places": 1
+  "places": 0
  },
  "history": [
   {
@@ -194,18 +194,17 @@
    "hood": 0,
    "places": 1,
    "withPhone": 1
-  }
- ],
- "examples": [
+  },
   {
-   "area": "Gage Park",
-   "type": "Restaurant",
-   "result": "Fail",
-   "trades": [
-    "pests"
-   ]
+   "asOf": "2026-11-15",
+   "through": "2026-11-13",
+   "pests": 0,
+   "hood": 0,
+   "places": 0,
+   "withPhone": 0
   }
  ],
+ "examples": [],
  "pestByDate": [
   {
    "date": "2026-10-31",
@@ -291,14 +290,14 @@
  },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
  "phones": {
-  "rows": 1,
-  "withPhone": 1,
-  "coverage": 100.0
+  "rows": 0,
+  "withPhone": 0,
+  "coverage": 0.0
  },
  "seat": {
-  "asOf": "2026-11-14",
+  "asOf": "2026-11-15",
   "places14": 25,
-  "new": 1,
+  "new": 0,
   "withPhone14": 14,
   "coverage14": 56.0,
   "phonesChecked": true

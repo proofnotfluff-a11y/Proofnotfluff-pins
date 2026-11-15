@@ -6,7 +6,8 @@
   voice.py words DIR   (a chat) DIR holds what ci wrote: line the script's words up with the heard times.
                        Writes voice/words.json, voice/transcript.md, video/words.js. Prints flags and pace.
   voice.py tighten DIR (a chat) cut the dead air: every silence longer than KEEP s is shortened to KEEP s (only silence is
-                       removed, from its middle; no word is touched). Writes DIR/voice-tight.wav and moves the word times.
+                       removed, from its middle; no word is touched), then the take plays TEMPO times as fast, pitch kept.
+                       Writes DIR/voice-tight.wav and moves the word times.
   voice.py mouth DIR RHUBARB   (a chat) mouth shapes from the voice with Rhubarb Lip Sync (MIT), plus the studio's
                        own 4 loudness levels as the fallback. Writes video/mouth.js.
 """
@@ -91,6 +92,7 @@ def words(d):
 
 
 KEEP = 0.30
+TEMPO = 1.06
 
 
 def tighten(d):
@@ -116,16 +118,17 @@ def tighten(d):
         pos = int(b * sr); x[pos:pos + fade] *= np.linspace(0, 1, fade)
     out.append(x[pos:]); y = np.concatenate(out)
     wav = os.path.join(d, "voice-tight.wav")
-    subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "f32le", "-ar", str(sr), "-ac", "1", "-i", "-", wav], input=y.tobytes(), check=True)
-    shift = lambda t: round(t - sum(b - a for a, b in cuts if b <= t + 1e-6), 3)
+    # then the whole take a touch faster, pitch kept: the lessons' own target is 160 to 195 words a minute (_shared/voice.md)
+    subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "f32le", "-ar", str(sr), "-ac", "1", "-i", "-", "-af", f"atempo={TEMPO}", wav], input=y.tobytes(), check=True)
+    shift = lambda t: round((t - sum(b - a for a, b in cuts if b <= t + 1e-6)) / TEMPO, 3)
     for w in wd["words"]:
         w["start"], w["end"] = shift(w["start"]), shift(w["end"])
     for t in wd["takes"]:
         t["start"], t["end"] = shift(t["start"]), shift(t["end"])
-    wd["end"] = wd["words"][-1]["end"]; wd["tightened"] = {"keep": KEEP, "cuts": cuts, "removed": round(sum(b - a for a, b in cuts), 2), "wavSha256": sha(wav)}
+    wd["end"] = wd["words"][-1]["end"]; wd["tightened"] = {"keep": KEEP, "tempo": TEMPO, "cuts": cuts, "removed": round(sum(b - a for a, b in cuts), 2), "wavSha256": sha(wav)}
     json.dump(wd, open(os.path.join(HERE, "words.json"), "w"), indent=1)
     open(os.path.join(TRIAL, "video", "words.js"), "w").write("window.WORDS = " + json.dumps({k: wd[k] for k in ("words", "takes", "end", "source")}) + ";\n")
-    n = len(wd["words"]); print(f"tightened: {len(cuts)} cuts, {wd['tightened']['removed']} s removed, voice now {len(y) / sr:.1f} s, last word ends {wd['end']} s, {round(n / wd['end'] * 60)} wpm overall")
+    n = len(wd["words"]); print(f"tightened: {len(cuts)} cuts, {wd['tightened']['removed']} s removed, voice now {len(y) / sr / TEMPO:.1f} s at {TEMPO}x, last word ends {wd['end']} s, {round(n / wd['end'] * 60)} wpm overall")
 
 
 def mouth(d, rhubarb):

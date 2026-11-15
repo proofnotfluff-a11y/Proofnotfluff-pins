@@ -1,0 +1,132 @@
+{
+ "round": 0,
+ "at": "2026-11-15",
+ "why": "Todd, live chat, Nov 15, about 11:19 am: \"Yes, pixel Todd (Recommended)\"; 11:29 am: \"Make it look like the guy we are already using: the hat the beard etc\" (coo/DECISIONS-2026-11-15.md)",
+ "render": "53.9 s, script round 0 (the hook was \"My topic lost. Two out of forty.\"; the window was the results file for 33 s)",
+ "reviewers": "four fresh Opus agents who never saw the build: one viewer (two steps, the one idea sent second), one design, two facts checkers working apart. Each got only frames cut from the finished MP4, the words as heard and, for facts, copies of the source files (pack.py)",
+ "code": {
+  "file": "PASS 1080x1920 30/1 h264 + aac, 5080 KB",
+  "length": "PASS 53.93 s",
+  "loudness": "PASS -15.0 LUFS, true peak -1.6 dBFS",
+  "black": "PASS 0",
+  "verify": "PASS 46 of 46 (3 planted wrong numbers caught in a throwaway copy)",
+  "mp4_sha256": "a4c79fcf2c9bde1ec072d4d341c417c83276b31d4554fa0b877b11eb34d2dbd9"
+ },
+ "viewer": {
+  "pass": false,
+  "matches_idea": "close",
+  "gets": "Mostly nothing. A small fact: videos about running AI on your own computer are hot on YouTube right now. It doesn't matter to me because I don't make videos.",
+  "watch_to_end": "no",
+  "leave_at": "8 s. 'I had code run sixty-two YouTube searches' and the screen turns into a wall of code text. That reads like homework. If I made it past that, the reveal at 23 s ('AI you run on your own computer') would be my last reason to stay, and I'd be gone by about 27 s at 'Claude was next'.",
+  "send": "nobody",
+  "forecast": {
+   "stop": 2,
+   "hold": 1,
+   "finish": 1,
+   "send": 1
+  },
+  "host": "He's friendly and the arm moves give it some life, but he just stands and waves, takes up half the screen, and adds nothing the captions don't already say.",
+  "confused": [
+   "0-2.5 s: 'Two out of forty.' Forty of what? The card says 'out of the 40 fastest' but the voice never says it, and I can't tell why it's 40 when he later says 529 videos.",
+   "8-43 s: the code screens ('queries.json', '2026-11-13-results.json'). Tiny monospace text on a phone. I can't read it and don't know what 'ratio', 'min_same_kind', 'creators_hot' or 'quota_units' mean.",
+   "14.5-25.4 s: '529 of them', '148 were hot', then 'twenty-three of forty'. How does 148 out of 529 turn into 23 out of 40? The numbers don't connect for me.",
+   "27.0 s: 'Claude was next, with twenty-one.' What is Claude? I use ChatGPT. Never heard of it.",
+   "35.1 s: 'twelve hot videos were about running a big model on a laptop.' Isn't that the same as 'AI you run on your own computer' at 23? Is the 12 part of the 23? And what is a 'big model'?",
+   "43.5 s: 'So small channels can win.' The picture switches to the 23 vs 2 chart, which has nothing to do with small channels.",
+   "47.4 s: 'One pull.' What's a pull?",
+   "0.5 s: 'MY TOPIC: AI FOR THE TRADES'. Which trades? Plumbers? Stock traders? Took me until the thumbnails at 3 s to guess."
+  ],
+  "why_fail": "10 is close, not same; 4 is no (left at 8 s); 5 is not none (8 confusions); 7 is nobody. Answer 2 passes narrowly: one small fact (AI on your own computer is hot), though it does not matter to me."
+ },
+ "facts": {
+  "pass": false,
+  "both_checkers_failed": "\"Mine just picked a cold topic.\": the count never measured our own channel, and \"just\" makes topic the only cause",
+  "rewrites": [
+   "A: And my topic was cold in this count.",
+   "B: My topic came up cold in this count."
+  ],
+  "numbers": "every number in the voice, captions, card and file window passed both checkers; the bars measured exactly 23/40 and 2/40",
+  "concerns_a": [
+   "'My topic lost' plus the LOST stamp on a two-row card (mine vs the winner) can leave viewers thinking trades came last. It did not: automation-tools had 1 hot of 40 and small-business tied trades at 2. Literally true, so not a fail. Optional: 'My topic nearly came last.'",
+   "'keep the fastest AI videos from the last two weeks' can be heard as the fastest AI videos on all of YouTube. The tool kept the 40 fastest per area from what each area's searches returned. Optional: 'keep the fastest forty in each area from the last two weeks.'",
+   "Areas overlap: 16 areas x 40 kept = 640 but videos = 529, and area hot counts add to 195 against 148 total hot, so one video can count in more than one area (local-ai 23 and claude 21 may share videos). The ranking still holds as stated, but '23 of 40' is not 23 unique videos out of the 148.",
+   "Areas did not start from equal pools: local-ai searched 123 (fewest, 3 queries) vs agents-at-work 221. Each still kept 40, so 'of 40' is fair, but the winner was picked from the narrowest search pool.",
+   "The 12 'giant model on a laptop' videos come from the topic grouping across all 148 hot videos, not from the local-ai area. Placed right after 'AI you run on your own computer' wins, viewers may read the 12 as part of the 23. Not stated, so not a fail.",
+   "'Small channels can win' rests on a channel-relative test: hot means 3x that channel's own median, which a small channel with a low median clears more easily (the 20,000 floor limits this). Fine as an existence claim. It does not show small channels beat big ones.",
+   "'Hot' is not 'what people actually watch' in absolute terms: by views per day, market-news (21.0M views, 2.62M a day) dwarfs giant-model-on-laptop (3.5M, 421K a day). The video's 'winner' is by hot count, not by views. The card header says so, which is fine, but viewers may take 'winner' to mean most watched.",
+   "File window, 14.5-21.5 s: the note line is wrapped at a fixed width and clipped by the window edge, so it visibly reads 'Counts only: no / comment. The grouping of h... / a reading done in the Nov'. The words 'title, channel name or' are hidden, so on screen it looks like the note says 'no comment'. The text is real file text, not altered, but the clip changes how it reads.",
+   "Brand metrics slugs are dated 2026-11-14, -17 and -19, but their own reads are dated Nov 2 to Nov 12. The slug date is not a post date. The video shows none of these dates, so this does not affect the piece.",
+   "The brand's own videos got most of their views off YouTube (for example after-hours-robot: Instagram 1,295 vs YouTube 67). The count is YouTube only, which the video discloses ('YouTube only'), but it shows the count is not a test of the brand's own channels."
+  ],
+  "concerns_b": [
+   "'My topic lost' and the LOST stamp are true against the winner, but trades was not last: it tied small-business at 2, and automation-tools had 1. Any later wording that says 'last' or 'worst' would be false.",
+   "Only 3 trades searches were run (AI for contractors, AI for home service business, AI estimating construction), and 148 videos were searched against 205 for claude. 'Cold topic' rests on 3 queries in one 14-day pull. The caveat at 47.4 s covers pull and period, not query count.",
+   "The local-ai area includes the query 'open source AI model', which is not only about running AI on your own computer. The 'AI you run on your own computer' label slightly narrows what the 23 covers.",
+   "File window at 15.0 to 21.5 s: the note line is clipped at the right edge, so it reads '\"note\": \"Counts only: no' then 'comment. The grouping of h...'. The hidden words 'title, channel name or' make it look like 'no comment.' Not a misquote, but a clipped view.",
+   "The highlight boxes (orange, teal, red) in the file window are drawn by the maker. They read clearly as annotation, and the text under them matches the source byte for byte as far as shown. The 'OUR FILE' window looks like a screen capture; its text matches the source files, so this is acceptable.",
+   "At 9.0 s the caption '62' appears over the queries.json window, which does not contain the number 62. The number comes from results.json 'searches' and also equals the query count in queries.json, so the value is correct.",
+   "The slugs of the three metrics records carry dates (11-14, 11-17, 11-19) later than their read dates (Nov 2 to Nov 12). This is probably a naming scheme, but it can't be explained from the files.",
+   "No em or en dashes seen on screen; hyphens appear only inside JSON keys, file names and dates. No private person or private channel is named; ChatGPT, OpenAI, Claude and YouTube appear only as search terms, area keys or platform names."
+  ],
+  "not_checked": [
+   "Frames between the two-a-second samples were not seen; a brief on-screen element shown for under 0.5 s could be missed.",
+   "Very small text inside the three thumbnails (for example the 'HELLO, I AM AN AI' bubble and the small header bars) is only partly legible at full-frame size. A dash check there is limited to what could be read. No em or en dash was seen anywhere: captions, card text and file-window text use only hyphens inside JSON keys and dates.",
+   "Whether 'triple' means at least 3.0x or strictly over it: the file gives ratio 3.0 only. The card's '3x' matches the file value either way.",
+   "Whether every kept video is actually about AI, and how the 12 laptop videos were classified: titles are sealed and not in the files.",
+   "Whether the brand's posted videos are about 'AI for the trades': the three records hold view counts and slugs only (ai-night-quote, after-hours-robot, ask-chatgpt), with no subject field. They confirm three posted AI videos, not that the subject is the trades.",
+   "Whether the brand's videos are 'AI for the trades': the records have no subject or description field. They confirm only that three videos were posted and got views on Facebook, Instagram, TikTok and YouTube. The thumbnails show an AI receptionist, a late-night quote reply for a move-out clean, and a ChatGPT recommendation, which suggests home-service AI, but the files cannot confirm it.",
+   "Whether the counting code applied its rules correctly (per-area 40 fastest, median baseline, dedupe to 529): only the output file was given. The tool's description was taken as the definition, as instructed.",
+   "Whether the three 'OUR VIDEOS' thumbnails (3.0-5.0 s) are real frames from the brand's posted videos: the source records hold only slugs and view counts, no images. The thumbnail labels (AFTER HOURS, QUOTE REPLY '11 pm quote', ASK THE CHAT 'Who does ChatGPT send her to?') match the slugs after-hours-robot, ai-night-quote and ask-chatgpt by name only.",
+   "Whether the three thumbnails shown at 3.0 to 5.4 s are real frames of those posted videos: the records hold no images.",
+   "Whether the topic grouping (12 giant-model-on-laptop videos) is right: the file says it was a person's reading on sealed titles. No titles are in the pack, so only the count as recorded was checked."
+  ]
+ },
+ "design": {
+  "pass": false,
+  "average": 3.67,
+  "scores": {
+   "first_second": 4,
+   "clear_sound_off": 4,
+   "motion_carries_meaning": 4,
+   "reading_load": 4,
+   "variety": 3,
+   "finish": 3,
+   "safe_areas": 4,
+   "honesty_marks": 4,
+   "host_and_mouth": 3
+  },
+  "weakest": "10.5-43.4 is one white JSON window scrolling for 33 seconds, in front of a host whose tiny, badly timed mouth barely reads on a phone.",
+  "strongest": "The right number boxed on the right word in the real file (25.5 '\"hot\": 23' on '23', 30.5 red '\"hot\": 2' on '2'), with OUR FILE / OUR COUNT / OUR VIDEOS labels that make real against made plain.",
+  "finish_faults": [
+   "0.0-54.0 window: top border and header bar start at y 200, inside the 220 px top band; header text 'OUR COUNT' / 'Nov 13' sits on the edge",
+   "0.0-54.0 host: a skin-colored blob (hidden arm's hand) is cut by the bottom edge at about x 345-410, y 1895-1920, so it reads as a stray patch",
+   "0.0, 0.8, 15.2 captions: ascenders of 'My topic', 'lost.' and 'of them.' sit about 18 px under the window's bottom border, which feels cramped",
+   "6.0 caption 'what people': runs edge to edge (x 60-1020) and into the right column",
+   "9.5 queries.json: top line '}' is half cut by the header; 'Trades and home servi' and 'Sales and marketing\",' are cut at the right edge",
+   "10.0 queries.json: the 'AI for contractors' highlight appears to stop partway through the word",
+   "10.5-14.0 results.json: 'pnf.heat.read' and '2026-11-13T16:15' are cut at the right edge for 4 s at full size",
+   "15.2, 21.4 results.json: the note string wraps to the left margin ('comment. The grouping of h', 'a reading done in the Nov') with broken indent and is cut off mid-sentence",
+   "16.0, 25.0, 31.0 results.json: caught mid-scroll with half lines at the top and bottom ('ratio': 3.0 sliced, 'kept': 40 sliced, 'small-business' sliced)",
+   "28.6 results.json: the 'claude' teal highlight is clipped at the top by the header bar",
+   "33.4 results.json: the 'small-business' teal highlight is clipped at the top by the header bar",
+   "35.0 results.json: the font drops from about 50 px to about 35 px, so the window changes type size mid-video",
+   "37.4-43.4 results.json: 11 lines of tiny unboxed keys ('median_age', 'per_day', 'comments_read') crowd the two boxed rows",
+   "42.5 caption 'subscribers.': spans about x 110-1030 and crosses the right column",
+   "43.5-44.9 count card: an empty band at the bottom (y 740-850) until the chips arrive at 47.5, so the card looks unbalanced",
+   "53.5 end: the last half second is a held frame with no caption and no closing beat"
+  ],
+  "changes": [
+   "10.5-43.4 window: break up the 33 s of results.json by cutting to the count card at each topic as it is named, its bar growing in on the word (23 local AI at 25.4, 21 Claude at 27.0, 2 trades at 30.6, 2 small business at 33.0) and a small-channel card (7 of 12 under 100,000 subs) at 40.0-43.4, so the window changes look at least every 5-6 s",
+   "22.0-23.0 host mouth: retime the mouth shapes to the voice (closed until 22.2, open through 'win-ner' 22.2-22.8, open again on 'AI' at 23.0), widen the mouth from about 60 px to about 100 px with a lighter inner color so it shows against the beard, and add two shapes (wide 'E', round 'O') to the current three",
+   "43.5-54.0 end card: add motion so it is not 10.5 s static: bars grow in at 43.5, the LOST stamp returns on the 2 at 50.6, and the 23 bar pulses on 'two of forty is two of forty'; restore the 'Hot = 20,000+ views and 3x the channel's normal' line under the chips",
+   "8.1-10.4 queries.json: on '62' at 9.0 show and box '\"searches\": 62' (results file) or a count line, and remove the 'AI for contractors' box shown on 'searches' at 10.0",
+   "11.0-12.5 'the fastest AI videos': box a line that says it (for example '\"kept\": 40' or '\"newest\": 50') or hold the count card title 'OUT OF THE 40 FASTEST' with it boxed",
+   "35.1-39.9 'By my read': put a visible mark on the 12 laptop videos ('MY GROUPING' tag on the teal 'giant-model-on-laptop' box), and at 15.2/21.4 wrap the note string inside the window with matching indent so the full limit sentence can be read",
+   "6.0, 22.0, 29.5, 42.5 captions: cap caption width at x 110-940 (scale long words like 'what people' and 'subscribers.' down) so nothing enters the right column, and leave at least 40 px between the window's bottom border (y 862) and the caption top",
+   "0.0-54.0 window: move the window down so its border starts at y 236 or lower, clear of the 220 px top band",
+   "28.6, 33.4 results.json: scroll so the boxed key sits at least one full line below the header instead of clipped under it; finish scrolling before the word lands (16.0, 25.0, 31.0)",
+   "35.0-43.4 results.json: keep the same type size as 10.5-34.9 and crop to 6-7 lines around the boxed rows instead of shrinking to 11 lines; also remove the bottom-left skin blob at x 345-410, y 1895-1920 (or draw the full lowered arm)"
+  ]
+ },
+ "outcome": "Fail on viewer, facts and design. One fix round followed (r1.json). Nothing was posted, queued or scheduled."
+}

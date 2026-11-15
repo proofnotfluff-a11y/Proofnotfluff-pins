@@ -1,0 +1,170 @@
+{
+ "round": 1,
+ "at": "2026-11-15",
+ "why": "the one fix round after r0.json (Foundational 6: one fix round, then the checks again; a second fail goes to Todd unapproved)",
+ "render": "51.9 s. New script (hook \"The hottest AI topic on YouTube isn't ChatGPT\"; the forty said out loud; both facts checkers' rewrite of the failed line), spoken again; dead air cut and the take played 1.06 times as fast; the window cuts between whole-line captures, a running count of bars, our lesson frames and cards; a larger mouth with lips; captions capped at 780 px wide",
+ "reviewers": "four new fresh Opus agents, same briefs and bars as round 0, none told there had been a round 0",
+ "code": {
+  "file": "PASS 1080x1920 30/1 h264 + aac, 3726 KB",
+  "length": "PASS 51.9 s",
+  "loudness": "PASS -15.0 LUFS, true peak -1.6 dBFS",
+  "black": "PASS 0",
+  "verify": "PASS 43 of 43",
+  "voice": "PASS no Whisper flag on the final take; 0 of 1,246 open-mouth frames on silent sound",
+  "mp4_sha256": "29aed30cc0ba45ee62158a50fa63ad1bd5fe8fd59a57af1a8603c8ce5fe05024"
+ },
+ "viewer": {
+  "pass": false,
+  "matches_idea": "close",
+  "gets": "A number, sort of: ChatGPT got 11 of 40 hot spots, AI on your own computer got 23. Interesting for a second, but nothing to do with it and no reason it matters to me.",
+  "stop": "The opening line 'The hottest AI topic on YouTube isn't ChatGPT' made me pause, since ChatGPT is the one AI I know. The '???' bar is a decent tease. The 'NOT FIRST' stamp at 0.5 s already gives the answer away though.",
+  "watch_to_end": "no",
+  "leave_at": "About 5-8 s. The screen turns into a code file ('rules', 'min_views', 'ratio': 3.0) and he starts explaining his method. I came for the answer, not how he counted. If I survived that, 27 s ('And mine? I make AI videos for the trades') would lose me: now it's about his channel, not me.",
+  "send": "Nobody. Maybe a friend who runs a YouTube channel, but I don't really have one.",
+  "forecast": {
+   "stop": 3,
+   "hold": 2,
+   "finish": 1,
+   "send": 1
+  },
+  "host": "Mildly helps: a friendly face that keeps things moving, but he just waves his arm the whole time and adds nothing the words don't already say.",
+  "confused": [
+   "3.5 s 'I counted sixteen.' Sixteen what? Only four topics ever show up on screen; the other twelve never appear.",
+   "5.0-17.5 s the code-file boxes ('rules', 'min_views': 20000, 'ratio': 3.0). I don't read code; looks like a spreadsheet nobody explained.",
+   "8.5 s 'searches': 62, 'hot': 148 on screen. Never mentioned out loud, no idea what they mean.",
+   "10.0-14.0 s 'agents-at-work': searched 221, kept 40, hot 18. A whole topic shown that he never names or explains.",
+   "14.5 s 'Hot means twenty thousand views and triple that channel's normal.' Triple of what, exactly? 'Channel's normal' is fuzzy.",
+   "22.9 s 'AI you run on your own computer' wins with 23, then 32.0 s '12 of all the hot videos were about running a big AI model on a laptop.' Is that the same thing? Why 23 then 12?",
+   "32.0 s 'By my read' and on-screen 'giant-model-on-laptop'. What does 'my read' mean here?",
+   "37.7 s 'Seven came from channels under a hundred thousand subscribers.' So? I'm not a channel.",
+   "41.1 s 'So a small channel can win.' Who said I wanted to win? This is advice for YouTubers, not me.",
+   "48.0 s 'But if ChatGPT's all you use, now you know what's hot.' Okay, and? What am I supposed to do, and what even is AI on my own computer?"
+  ],
+  "fixes": [
+   "0-3 s: drop the 'NOT FIRST' stamp; keep the '???' and reveal the winner by 5 s so I get the payoff early.",
+   "3.5 s: cut 'I counted sixteen' or show the sixteen; otherwise say 'I compared AI topics.'",
+   "5-17 s: replace the code file with one plain sentence ('I looked at 529 fast-growing AI videos from the last two weeks') and a simple picture; nobody normal reads JSON.",
+   "10-14 s: remove the 'agents-at-work' box; it is never explained.",
+   "22.9 s: in one line, say what 'AI on your own computer' is and why someone would want it (free, private, no internet?). That's the one thing I'd care about.",
+   "27-31 s: cut 'And mine? I make AI videos for the trades' and the 2-of-40 row; it turns the video into the creator's problem.",
+   "32-41 s: either merge the 23 and 12 numbers or explain the difference; and drop 'a small channel can win' unless the video is pitched at creators.",
+   "48 s: end with something I can do, e.g. 'Want to try it? Here's the free app that runs AI on your laptop,' instead of 'now you know what's hot.'"
+  ],
+  "why_fail": "10 is close, not same; 4 is no (would swipe at about 5-8 s); 5 lists ten confusions, not none; 7 is nobody. 2 passes (a number: ChatGPT 11 of 40 vs AI on your own computer 23)."
+ },
+ "facts": {
+  "pass": false,
+  "numbers": {
+   "a": [],
+   "b": [
+    "43.0-52 HOT, OUT OF THE 40 FASTEST ranked list: AI on your own computer 23, Claude 21, ChatGPT 11, AI for the trades (mine) 2: Each value is right, but 4 of 16 areas are shown as a ranked list, so ChatGPT reads as 3rd; it is tied 9th-10th, below build-with-ai 19, money 19, agents-at-work 18, ai-news 18, accounting-finance 15, productivity 13. Fix: add the small-print line '4 of 16 topics shown. ChatGPT ranked 9th of 16.' (or show all 16 bars)."
+   ]
+  },
+  "both_checkers_failed": [
+   "the hook \"The hottest AI topic on YouTube isn't ChatGPT\" claims all of YouTube from 16 areas we picked, 62 searches, one 14 day count",
+   "the close \"now you know what's hot\" undoes the limits just said"
+  ],
+  "one_checker_failed": [
+   "B: \"My code pulled the fastest AI videos\" reads as the fastest on YouTube; they are the fastest among the results of 62 set searches",
+   "B: the closing card ranks 4 of the 16 areas, so ChatGPT looks 3rd; it is tied 9th of 16"
+  ],
+  "fails_a": [
+   "Scope overreach in the hook and the close (0.0 to 5.0 s voice and card header; 48.0 to 51.5 s). \"The hottest AI topic on YouTube\" and \"now you know what's hot\" turn a ranking of 16 brand-picked, overlapping search areas (62 searches, one 14-day count) into a claim about YouTube's AI topics in general. The count supports only \"most hot videos of the 16 topics I counted\". Fix: voice 0.0 s \"Of the sixteen AI topics I counted on YouTube, the hottest isn't ChatGPT.\"; card header \"HOTTEST OF MY 16 AI TOPICS?\"; voice 48.0 s \"But if ChatGPT's all you use, now you know what was hot in my count.\""
+  ],
+  "fails_b": [
+   "0.0 s voice: 'The hottest AI topic on YouTube isn't ChatGPT' claims all of YouTube from one count of 62 searches in 16 chosen areas. Fix: 'In my count, the hottest AI topic wasn't ChatGPT.'",
+   "5.0 s voice and captions: 'My code pulled the fastest AI videos from the last two weeks' (then '529 in all') reads as the fastest AI videos on YouTube; the 529 are the fastest among results of 62 set searches. Fix: 'My code ran sixty-two YouTube searches for AI videos from the last two weeks.' ('Five hundred twenty-nine in all' can stay as videos kept.)",
+   "48.0 s voice: 'now you know what's hot' undoes the caveat just given. Fix: 'now you know what was hot in my count.'",
+   "43.0 to 52 s card: a ranked list of 4 of the 16 areas makes ChatGPT look 3rd; it is tied 9th-10th of 16 (six areas between Claude and ChatGPT are left out). Fix: add small print '4 of 16 topics shown. ChatGPT ranked 9th of 16.' or show all 16 bars."
+  ],
+  "concerns_a": [
+   "The video uses two different groupings and calls both \"topics\". The 11/21/23/2 bars are the code's 16 search areas. The \"12 ... on a laptop\" figure comes from the separate person-read topic grouping. In that grouping, market-news (25 hot videos), \"other\" (36) and make-money-with-ai (14) are all bigger than giant-model-on-laptop (12). A viewer will likely take the 12 as a subset of the 23 and assume local AI tops both measures, which the file does not show. Suggest the voice say \"By my own grouping of the titles\" and avoid any wording that ties the 12 to the 23.",
+   "Area counts overlap: area hot counts sum to 195, but there are 148 unique hot videos, so one video can count in several areas. The 23 vs 21 lead is 2 videos and may share videos with other areas.",
+   "\"My code pulled the fastest AI videos ... 529\": these are the fastest among the brand's own search results (about 2,891 results across areas before the cut to 40 per area), not YouTube's fastest AI videos.",
+   "The local-ai area includes the search \"open source AI model\", so \"AI you run on your own computer\" slightly narrows what was searched. The brand's own label is \"AI on your own machine\".",
+   "File window, 18.0 to 31.5 s: a maker-drawn dark bar panel (HOT, OUT OF THE 40 FASTEST) sits inside the frame titled OUR FILE. It is styled like the maker's cards, so it is unlikely to pass as file text, but a thin divider or its own frame would make the split clear. The TOPIC GROUPS: MY READ tag inside the file area is a maker label that discloses rather than misleads.",
+   "File window text is trimmed, not altered. Indentation is changed, and fields after the shown lines (short_seconds, min_same_kind, newest, creators_hot, and the topic's other fields) are left out. The trailing commas show that the excerpts are cut.",
+   "OUR VIDEOS frames: the middle card's example is a quote for a move-out clean (a cleaning business), and none of the three cards shows a contractor or a trade job. That slightly undercuts \"for the trades, like contractors\".",
+   "Card rule line \"3x the channel's normal\" would match the rule exactly as \"3x+\", as with \"20,000+\".",
+   "Metrics record slugs carry dates (Nov 14, 17, 19) later than their own reads (Nov 2 to 12) and later than today for two of them. They are not post dates; this does not affect the video but could confuse any later date claim."
+  ],
+  "concerns_b": [
+   "The bar panel 'HOT, OUT OF THE 40 FASTEST' sits inside the window titled 'OUR FILE 2026-11-13-results.json' (18 to 31.5 s), so the drawn bars and the maker's labels ('Claude', 'AI on your own computer', 'AI for the trades (mine)') can be taken as part of the file. The file has only lower-case keys and numbers. Consider moving the bars out of the file window or adding a 'chart: mine' tag.",
+   "The file window is styled like a capture but is a re-typeset excerpt: lines are left out (short_seconds, min_same_kind, newest, creators_hot, views and other topic fields) and indentation is reflowed. Every key and value shown matches the source exactly, so this is not a fail.",
+   "Areas overlap: 16 x 40 = 640 kept slots but 529 videos, and per-area hot counts sum to 195 against 148 hot videos. So one video can count toward two areas, e.g. Claude and local AI. The comparison between areas is not between separate pools.",
+   "The local-ai area ran 3 queries and found 123 candidates, against 4 to 5 queries and 148 to 221 candidates elsewhere. The area results depend on which queries were chosen.",
+   "'Topic' means two different things: the 16 search areas (11, 21, 23, 2) and the person-read topic groups (12 laptop videos). By the topic groups, the largest are 'other' 36 and 'market-news' 25, not local AI. The 'TOPIC GROUPS: MY READ' tag helps, but a viewer may take the 12 as part of the 23.",
+   "'My topic came up cold': trades (2) is tied with small-business (2), and automation-tools (1) is lower. The claim holds, but trades is not the very bottom.",
+   "ChatGPT's 11 is tied with sales-marketing 11.",
+   "OUR VIDEOS card (27.5 to 30.5 s): the three drawn panels ('AFTER HOURS: AI answering your phone? Not at 2 PM.', 'QUOTE REPLY: 11 pm quote. Reply in 7 seconds.', 'ASK THE CHAT: Who does ChatGPT send her to?') match the three record slugs (after-hours-robot, ai-night-quote, ask-chatgpt) but carry EXAMPLE tags. Nothing shows whether they are real frames from the posted videos. One panel shows a cleaning quote ('move-out clean, 2 bed 1 bath'), which is home service rather than contractors.",
+   "Record slugs carry dates (2026-11-14, -17, -19) later than their own reads (Nov 2 to Nov 13). They are probably slot names, but the slug date is not a posting date.",
+   "'Hot' rule small print says '3x the channel's normal'; the rule is the median of that channel's other recent uploads of the same kind (shorts vs long, min 5 such uploads). Fine for a viewer, but simplified.",
+   "No private person, business or channel is named. ChatGPT, Claude and YouTube are public products. No em or en dashes on screen; only hyphens inside file names and keys."
+  ],
+  "not_checked": [
+   "Anything on YouTube beyond this count: no web access was allowed, so YouTube-wide popularity of any topic could not be checked.",
+   "Frames between the half-second samples: a brief on-screen element shorter than 0.5 s could be missed.",
+   "No em or en dashes on screen: checked by eye on all 11 timeline sheets and 21 full frames; none seen (the hyphens are in file names and JSON keys). Byte-level character codes of rendered text cannot be checked from images.",
+   "No private person, business or channel is named on screen or in the voice (only ChatGPT, Claude, YouTube). Checked by eye; PASS.",
+   "That the count searched YouTube only, and the per-video hot judgments, kept lists, titles and channels: the results file holds counts only (per its note). The tool's code and raw output were not provided.",
+   "The audio itself: only words.txt was supplied, so the voice was checked as transcribed.",
+   "The person's topic grouping (the 12 laptop videos and the 7 small-channel wins): only its totals are in the file. The keyword rules and titles behind it were not provided.",
+   "The tool's code and the topic grouping: per the task, the tool's description is the definition, and the grouping is a person's reading the file records only as counts.",
+   "Whether ChatGPT and Claude are rivals: outside the files, and no web access allowed.",
+   "Whether the brand's three posted videos are about AI for the trades: the records in source/ hold only slugs and view counts, no titles, descriptions or content.",
+   "Whether the three OUR VIDEOS frames are frames from the posted videos. The records hold view counts only, with no image, title or subject. Slug names line up with the card themes (after-hours-robot = AFTER HOURS / AI answering your phone; ai-night-quote = QUOTE REPLY / 11 pm quote; ask-chatgpt = ASK THE CHAT / Who does ChatGPT send her to?). The records confirm that all three were posted (views on Facebook, Instagram, TikTok and YouTube from Nov 2 to Nov 12), but not that their subject is the trades.",
+   "Whether the three panels on the OUR VIDEOS card are real frames from the posted videos: no copy of those videos was supplied."
+  ]
+ },
+ "design": {
+  "pass": false,
+  "average": 3.78,
+  "scores": {
+   "first_second": 4,
+   "clear_sound_off": 4,
+   "motion_carries_meaning": 4,
+   "reading_load": 4,
+   "variety": 3,
+   "finish": 3,
+   "safe_areas": 4,
+   "honesty_marks": 4,
+   "host_and_mouth": 4
+  },
+  "weakest": "One fixed layout for all 52 s (same window, same spot, three host poses), with 32.0-41.0 holding a small, off-centre code view for 9 s at the point attention drops most.",
+  "strongest": "18.0-31.5: the bar chart builds one row at a time straight from the boxed file line, ending on the maker's own red 2 (AI for the trades (mine)), so the data argument is shown, not claimed.",
+  "finish_faults": [
+   "0.0 caption 'The hottest': final 't' runs past x 940 into the right app-button column",
+   "0.7-4.5 NOT FIRST stamp is laid over the ChatGPT bar track and hides its empty part, so the 11-of-40 length can't be read",
+   "6.6 file text: the underscore in 'min_views' drops onto the next line and reads as a stray mark over the 'i' in 'ratio'",
+   "15.0-17.5 highlight hides the underscore so the line reads \"min views\"; the same happens at 38.0-41.0 with \"small channel wins\"",
+   "18.0-31.5 file window: code starts about 15 px under the header bar (the teal 'chatgpt'/'claude'/'local-ai'/'trades' box touches it), against about 100 px of padding in the 5.0-17.5 views",
+   "18.0-18.5 lower chart panel shows the HOT, OUT OF THE 40 FASTEST heading with no bars, about 250 px of empty dark box",
+   "19.0-25.5 lower chart panel has about 120 px of dead space under the last bar",
+   "31.0 red highlight sliver half-drawn at the left edge of the \"kept\" line",
+   "31.0-31.5 \"kept\": 40 is boxed in red as if it were a bad number, but it is not the point being made",
+   "32.0-41.0 topic-group file view: small type, block sits low with about 170 px of empty white above it and a large gap to the MY READ tag",
+   "33.0 highlight covers \"videos\": but stops before 12 while the caption shows 12",
+   "43.0-45.0 OUR COUNT card: about 100 px empty gap between the last row and the footer before the chips arrive",
+   "43.0-52.0 chips and footer indented at x 108 against row labels at x 96; left edges misaligned",
+   "51.0-51.5 HOT stamp covers the bar end and butts against the '23' with no gap",
+   "19.4, 24.4 caption descenders ('g' in got, 'y' in your) almost touch the host's pom-pom",
+   "28.6 OUR VIDEOS: thumbnail text unreadable; the left card's 'HELLO, I AM AN AI' bubble is clipped by the centre card",
+   "0.0, 4.2, 8.9, all raised-hand frames: host hands have soft grey anti-aliased halo pixels, not crisp pixel art",
+   "all seconds: host chin and lower beard cross y 1470 into the bottom UI zone"
+  ],
+  "changes": [
+   "variety 27.5-31.0 and 32.0-41.0: break the fixed layout. At 27.5 'And mine?' hide the window and punch in on the host to fill the frame for 1 s. Bring the 12-tile grid in at 37.7 ('Seven came from') rather than 41.0, so no view holds longer than 5 s. Add a 1.15x zoom on the boxed line at each spoken number (8.5, 12.0, 19.0, 22.0, 26.0, 31.0).",
+   "clear_sound_off 32.0: retitle the topic-group view and the 41.0 tile card '12 of 148 hot videos: a big AI model on a laptop' so the 12 is tied to 'all the hot videos' and not read against local AI 23.",
+   "finish 18.0-31.5: give the file part of the split window the same ~60 px top padding as the 5.0-17.5 views, and shrink the empty chart panel to fit its rows (no empty panel at 18.0-18.5).",
+   "finish/reading_load 32.0-41.0: set the topic-group code at the 6.6-s type size (about 60 px), centre it vertically, and keep the MY READ tag tight under it.",
+   "motion_carries_meaning 18.5, 25.5, 33.0: start each box on the first frame of the spoken number. Box \"hot\": 11 at 18.5, box \"hot\": 23 and draw its bar at 25.5, and cover \"videos\": 12 in full at 33.0.",
+   "safe_areas 0.0 and all seconds: cap caption width at 820 px so 'The hottest' ends before x 920, and move the host up about 60 px so the beard ends above y 1470.",
+   "first_second/reading_load 0.0: remove the two-line grey footer from the hook card (show it from 3.5 on 'I counted sixteen'), leaving question, ChatGPT 11 of 40 and the ??? bar.",
+   "honesty_marks 5.0-41.0: rename the capture header 'SCREENSHOT: our results file' and the drawn cards 'CHART: drawn from that file'; at 18.0-31.5 add a thin label 'chart from these lines' on the divider between file and bars.",
+   "host_and_mouth all seconds: scale the sprite nearest-neighbour to remove the grey hand halos; add one in-between frame for each arm pose change, add a fourth pose for 43.0 'came up cold' (shrug), and blink every 3-4 s.",
+   "finish 51.0 and 43.0-52.0: move the HOT stamp 20 px left so it clears the '23', and align chips and footer to the x 96 row-label edge."
+  ]
+ },
+ "outcome": "Second fail on viewer, facts and design. Nothing more was changed. Nothing was posted, queued or scheduled. Back to Todd.",
+ "read_across_rounds": "Viewer forecast: stop 2 to 3, hold 1 to 2, finish 1 to 1, send 1 to 1. Both strangers left when the window became a data file (8 s, then 5 to 8 s) and both said it is a video for people who make videos, not for someone who uses ChatGPT now and then. Design 3.67 to 3.78 from two different reviewers; host and mouth went 3 to 4, variety and finish stayed 3. Facts: no number was ever wrong in either round; both fails were words that claimed more than one count of 16 areas can carry, and the round 1 hook, written to give a stranger a reason to care, is the line that overreached."
+}

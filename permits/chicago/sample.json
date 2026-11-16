@@ -2,56 +2,56 @@
  "source": {
   "name": "City of Chicago Data Portal, Building Permits",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
-  "rowsUpdatedAt": "2026-11-09T13:06:50+00:00",
-  "fetchedAt": "2026-11-09T21:27:32+00:00",
+  "rowsUpdatedAt": "2026-11-16T13:06:50+00:00",
+  "fetchedAt": "2026-11-16T21:04:10+00:00",
   "modified": "Filtered by ProofNotFluff: permits issued in the last 24 months, new construction or renovation, reported cost $500,000 or more, still open (City status Active or Phased Permitting; complete, suspended, cancelled, revoked and expired permits left out), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs a construction clean under its permit (foundation, superstructure, caisson, demolition, roof, facade, mechanical, equipment or site work only) left out; cleaning companies listed as contractor left out; a revision of a permit already on the list counted once; only project-level and business fields kept.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
  "window": {
-  "from": "2024-11-09",
-  "to": "2026-11-09"
+  "from": "2024-11-16",
+  "to": "2026-11-16"
  },
  "counts": {
-  "fetched": 3070,
+  "fetched": 3074,
   "kept": 1138,
   "excluded": {
-   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 254,
-   "no commercial or apartment wording": 80,
-   "house or 2 to 3 flat": 595,
-   "one home inside a larger building": 42,
-   "common areas only, no homes worked on": 8,
+   "house or 2 to 3 flat": 593,
+   "no construction clean (foundation, demolition, roof, mechanical or site work only)": 258,
    "no interior finish work or new building named": 37,
+   "common areas only, no homes worked on": 9,
+   "one home inside a larger building": 42,
+   "no commercial or apartment wording": 79,
    "apartment building with no unit count (could be a 2 or 3 flat)": 8,
    "no business listed as general contractor": 5,
-   "closed, complete or suspended": 890,
+   "closed, complete or suspended": 892,
    "revision or second listing of a permit already listed": 13
   },
   "keptByType": {
-   "New construction": 335,
-   "Renovation": 803
+   "New construction": 336,
+   "Renovation": 802
   },
-  "keptCost": 8608285122,
-  "keptUnits": 6293,
+  "keptCost": 8575615504,
+  "keptUnits": 6192,
   "topAreas": [
    [
     "Loop",
-    160
+    162
    ],
    [
     "Near North Side",
-    143
+    142
    ],
    [
     "Near West Side",
-    106
+    104
    ],
    [
     "West Town",
-    69
+    70
    ],
    [
     "Lincoln Park",
-    52
+    51
    ],
    [
     "Lake View",
@@ -59,11 +59,11 @@
    ],
    [
     "Logan Square",
-    32
+    33
    ],
    [
-    "Uptown",
-    27
+    "Lower West Side",
+    25
    ]
   ],
   "topGCs": [
@@ -73,9 +73,9 @@
     "cost": 669073824
    },
    {
-    "name": "Executive Construction, Inc.",
+    "name": "Power Construction Company, LLC",
     "projects": 23,
-    "cost": 65880400
+    "cost": 347789294
    },
    {
     "name": "JC Anderson Inc",
@@ -83,19 +83,24 @@
     "cost": 47747594
    },
    {
-    "name": "Power Construction Company, LLC",
+    "name": "Executive Construction, Inc.",
     "projects": 22,
-    "cost": 330460308
-   },
-   {
-    "name": "Bulley & Andrews, L.L.C.",
-    "projects": 20,
-    "cost": 163975924
+    "cost": 63312600
    },
    {
     "name": "Leopardo Construction Inc",
     "projects": 20,
-    "cost": 135805655
+    "cost": 135143621
+   },
+   {
+    "name": "Bulley & Andrews, L.L.C.",
+    "projects": 19,
+    "cost": 160475924
+   },
+   {
+    "name": "Clune Construction Company, L.P.",
+    "projects": 16,
+    "cost": 53216760
    },
    {
     "name": "Development Solutions, Inc",
@@ -108,16 +113,6 @@
     "cost": 25799000
    },
    {
-    "name": "Clune Construction Company, L.P.",
-    "projects": 15,
-    "cost": 50716760
-   },
-   {
-    "name": "Redmond Construction Corp.",
-    "projects": 13,
-    "cost": 68125690
-   },
-   {
     "name": "Pintauro Construction Company LLC",
     "projects": 13,
     "cost": 59609486
@@ -126,9 +121,14 @@
     "name": "Reed Construction LLC",
     "projects": 13,
     "cost": 14516746
+   },
+   {
+    "name": "F.H. Paschen, S.N. Nielsen & Associates, LLC.",
+    "projects": 12,
+    "cost": 676237247
    }
   ],
-  "nearFinish": 17
+  "nearFinish": 19
  },
  "projects": [
   {
@@ -638,6 +638,24 @@
    "lon": -87.620773
   },
   {
+   "permit": "101079860",
+   "issued": "2026-04-01",
+   "type": "Renovation",
+   "scope": "Buildout of single-floor office tenant space located on the 2nd floor of an existing office building...",
+   "units": null,
+   "sleeping": null,
+   "cost": 5700000,
+   "address": "8600 W Bryn Mawr Ave",
+   "communityArea": "O'Hare",
+   "status": "Active",
+   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
+   "gc": [
+    "JC Anderson Inc"
+   ],
+   "lat": 41.981135,
+   "lon": -87.841638
+  },
+  {
    "permit": "101053170",
    "issued": "2025-02-11",
    "type": "New construction",
@@ -654,6 +672,42 @@
    ],
    "lat": 41.811829,
    "lon": -87.626299
+  },
+  {
+   "permit": "101073877",
+   "issued": "2026-01-30",
+   "type": "Renovation",
+   "scope": "Interior alterations to existing fitness center (5th floor) in existing 5-story building",
+   "units": null,
+   "sleeping": null,
+   "cost": 3500000,
+   "address": "3030 N Broadway",
+   "communityArea": "Lake View",
+   "status": "Active",
+   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
+   "gc": [
+    "Gallant Construction Company, Inc."
+   ],
+   "lat": 41.937338,
+   "lon": -87.644456
+  },
+  {
+   "permit": "101084515",
+   "issued": "2026-06-17",
+   "type": "Renovation",
+   "scope": "Interior alterations to existing 19th floor office space. No change to existing use",
+   "units": null,
+   "sleeping": null,
+   "cost": 3000000,
+   "address": "151 N Franklin St",
+   "communityArea": "Loop",
+   "status": "Active",
+   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
+   "gc": [
+    "Skender Construction LLC"
+   ],
+   "lat": 41.884499,
+   "lon": -87.635234
   },
   {
    "permit": "101078819",
@@ -708,60 +762,6 @@
    ],
    "lat": 41.975933,
    "lon": -87.698122
-  },
-  {
-   "permit": "101068718",
-   "issued": "2025-08-13",
-   "type": "Renovation",
-   "scope": "5th floor addition - 8 additional units - to existing 4 story 24 unit building...",
-   "units": 32,
-   "sleeping": null,
-   "cost": 1900000,
-   "address": "1537 N Orleans St",
-   "communityArea": "Near North Side",
-   "status": "Active",
-   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
-   "gc": [
-    "Midwest Heritage Builders, LLC"
-   ],
-   "lat": 41.910432,
-   "lon": -87.637457
-  },
-  {
-   "permit": "101077418",
-   "issued": "2026-01-14",
-   "type": "Renovation",
-   "scope": "Interior alterations and renovations of existing restaurant tenant space at the street level and river level within existing 8-story building...",
-   "units": null,
-   "sleeping": null,
-   "cost": 1851000,
-   "address": "315 N La Salle Dr",
-   "communityArea": "Near North Side",
-   "status": "Active",
-   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
-   "gc": [
-    "Development Solutions, Inc"
-   ],
-   "lat": 41.887921,
-   "lon": -87.63236
-  },
-  {
-   "permit": "101066773",
-   "issued": "2025-06-05",
-   "type": "New construction",
-   "scope": "Erect new 4 story, 3-unit apartment building w/stair penthouse and private roof deck, ground floor retail space and attached 2 car garage with...",
-   "units": 3,
-   "sleeping": null,
-   "cost": 900000,
-   "address": "1412 W Belmont Ave",
-   "communityArea": "Lake View",
-   "status": "Active",
-   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
-   "gc": [
-    "Desmond Builders"
-   ],
-   "lat": 41.939865,
-   "lon": -87.664396
   }
  ]
 }

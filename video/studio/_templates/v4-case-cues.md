@@ -29,5 +29,5 @@ Frame 0, close and settled: <the wrong, as the two numbers or the number and the
 ## rule "<words>" [sfx: whoosh]
 <what the legal route was, with its number from a source read this run>
 
-## ask "<the closing question, then who to send it to>" [sfx: blip]
-<both sides on screen, each with its case and labeled as a kind of person the viewer knows; the send line is 2 s or less; ends 1 s after the last word>
+## ask "<the closing question>" [sfx: blip]
+<both sides on screen, each with its case and labeled as a kind of person the viewer knows; ends 1 s after the last word>

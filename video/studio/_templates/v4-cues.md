@@ -17,5 +17,5 @@ Frame 0, close and settled: <the two sides and the stake, 2 to 8 words, as big a
 ## twist "<words>" [sfx: stamp]
 <the second best fact, held back until 70% to 85% of the runtime, said aloud and shown (formats.md "v4", Level-ups)>
 
-## ask "<the closing question, then who to send it to>" [sfx: blip]
-<both sides on screen, each with its case and labeled as a kind of person the viewer knows; the caption carries the question; the send line is 2 s or less; ends 1 s after the last word>
+## ask "<the closing question>" [sfx: blip]
+<both sides on screen, each with its case and labeled as a kind of person the viewer knows; the caption carries the question; ends 1 s after the last word>

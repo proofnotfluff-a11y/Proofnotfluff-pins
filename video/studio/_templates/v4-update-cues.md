@@ -23,5 +23,5 @@ Frame 0, settled: the maker's real screen in the upper half with its address, Sn
 ## check "<words>" [sfx: whoosh]
 <the one thing to check when done, Snow close>
 
-## ask "<save this, then who to send it to>" [sfx: blip]
+## ask "<save this>" [sfx: blip]
 <the steps as a short list on screen (size 132 rows), Snow beside it; ends 1 s after the last word>

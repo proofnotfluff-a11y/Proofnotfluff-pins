@@ -17,8 +17,8 @@
 | 2026-11-17-after-hours-robot | story | first story lesson (moment, then turn; compare FAILed, posted on Todd's word) | 8.5 h, Nov 6 8:16 pm, list views (IG 276, TT 213, FB 13, YT 47) | not read | hidden (YT 53.1% avg viewed) | hidden | hidden (TT 8 likes) |
 
 ## v4 forecasts (the viewer gate's guess beside the 72 h numbers; make run, Nov 11 prompt)
-- 2026-12-01-where-100-goes (v4 invoice, 34.8 s, posted Nov 14 8:23 pm): viewer forecast (viewer r2 PASS) stop 3, hold 4, finish 3, send 3; 72 h numbers: due Nov 17 evening.
-- 2026-12-02-took-it-back (v4 case, posted Nov 12 8:23 pm): viewer forecast (viewer r1 PASS, render 3) stop 3, hold 3, finish 2, send 2; 48 h numbers (Nov 14): IG 1,783 (avg 69% of runtime, 0 shares, 3 saves), YT 1,400 (stayed 76%), TT 285 (26.2%, full 4.1%), FB 39; 72 h numbers: due Nov 15 evening. Hold was forecast 3 and IG held 69%: better than forecast; send 2 and 0 shares: as forecast.
+- 2026-12-01-where-100-goes (v4 invoice, 34.8 s, posted Nov 14 8:23 pm): viewer forecast (viewer r2 PASS) stop 3, hold 4, finish 3, send 3; 24 h numbers (Nov 15): IG 1,931 (52% of runtime, 0 shares, 0 saves), TT 292 (41.7%, full 20.5%), YT 45 (stayed 52.1%), FB 13; send 3 against 0 sends: worse than forecast; 72 h numbers: due Nov 17 evening.
+- 2026-12-02-took-it-back (v4 case, posted Nov 12 8:23 pm): viewer forecast (viewer r1 PASS, render 3) stop 3, hold 3, finish 2, send 2; 48 h numbers (Nov 14): IG 1,783 (avg 69% of runtime, 0 shares, 3 saves), YT 1,400 (stayed 76%), TT 285 (26.2%, full 4.1%), FB 39; 72 h numbers: due Nov 15 evening. Hold was forecast 3 and IG held 69%: better than forecast; send 2 and 0 shares: as forecast. 72 h numbers (Nov 15, final): IG 1,786 (69% of runtime, 0 shares, 3 saves), YT 1,400 (stayed 75.7%, avg viewed 86%), TT 353 (29.5%, full 5.3%), FB 39. Finish forecast 2 against YT 86% viewed: better than forecast; send 2 and 0 shares: as forecast.
 
 ## References
 (Each: platform, link, the counts on the page and the date, then what the first 3 s, the beats, the save moment and the

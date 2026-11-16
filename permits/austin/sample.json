@@ -2,71 +2,75 @@
  "source": {
   "name": "City of Austin, Issued Construction Permits",
   "url": "https://data.austintexas.gov/d/3syk-w9eu",
-  "rowsUpdatedAt": "2026-11-09T13:13:18+00:00",
-  "fetchedAt": "2026-11-09T21:35:51+00:00",
+  "rowsUpdatedAt": "2026-11-15T13:21:19+00:00",
+  "fetchedAt": "2026-11-16T21:11:53+00:00",
   "license": "Public Domain U.S. Government",
   "attribution": "City of Austin, Texas - data.austintexas.gov",
   "modified": "Filtered by ProofNotFluff: commercial building permits issued in the last 24 months, still Active, grouped into projects by the City's master permit, project valuation $500,000 or more (the largest valuation on its open building permits on the list, counted once; finaled, shell and garage permits do not count), with a business listed as general contractor; structures that are not buildings (carports, pergolas, canopies, enclosures, pools, EV chargers), parking garages, houses, duplexes and three-unit buildings, shell-only buildings, interior demolition, repairs, and roof, equipment, sign, elevator, site and exterior-only work left out; cleaning companies listed as contractor left out; only project-level and business fields kept.",
   "terms": "https://data.austintexas.gov/stories/s/ranj-cccq"
  },
  "window": {
-  "from": "2024-11-09",
-  "to": "2026-11-09"
+  "from": "2024-11-16",
+  "to": "2026-11-16"
  },
  "counts": {
-  "fetched": 8793,
-  "kept": 158,
+  "fetched": 8795,
+  "kept": 159,
   "excluded": {
-   "shell only, no finish work": 69,
-   "project valuation under $500,000": 1093,
-   "kept": 158,
-   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 179,
-   "work class Interior Demo Non-Structural (interior demolition or repair)": 56,
-   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 244,
-   "no open building permit in the window": 4151,
+   "project valuation under $500,000": 1079,
+   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 239,
+   "work class Interior Demo Non-Structural (interior demolition or repair)": 54,
+   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 174,
+   "kept": 159,
+   "work class Demolition (interior demolition or repair)": 60,
+   "shell only, no finish work": 67,
+   "no open building permit in the window": 4182,
    "no business listed as general contractor": 5,
-   "work class Demolition (interior demolition or repair)": 64,
    "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)": 3,
-   "parking garage": 5,
+   "parking garage": 4,
    "work class Repair (interior demolition or repair)": 2,
    "house, duplex or three-unit building": 1,
    "second master permit of a development already listed": 1
   },
   "permitReasons": {
-   "shell only, no finish work": 150,
-   "kept": 1948,
-   "issued before the 24-month window": 495,
-   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 548,
-   "work class Interior Demo Non-Structural (interior demolition or repair)": 56,
-   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 332,
-   "permit closed (final, expired, withdrawn, void or cancelled)": 5103,
-   "work class Demolition (interior demolition or repair)": 65,
-   "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)": 26,
+   "kept": 1945,
+   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 329,
+   "work class Interior Demo Non-Structural (interior demolition or repair)": 54,
+   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 544,
    "parking garage": 57,
+   "shell only, no finish work": 148,
+   "work class Demolition (interior demolition or repair)": 61,
+   "issued before the 24-month window": 499,
+   "permit closed (final, expired, withdrawn, void or cancelled)": 5119,
+   "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)": 26,
    "work class Repair (interior demolition or repair)": 2,
    "house, duplex or three-unit building": 11
   },
   "keptByType": {
-   "Remodel or addition": 44,
-   "New construction": 105,
+   "Remodel or addition": 43,
+   "New construction": 107,
    "Finish-out": 9
   },
   "byStage": {
-   "Work under way": 134,
-   "Permit issued": 22,
+   "Work under way": 133,
+   "Permit issued": 24,
    "Near finish": 2
   },
-  "keptCost": 7719697435,
-  "keptUnits": 8401,
+  "keptCost": 7719797435,
+  "keptUnits": 8877,
   "oddCosts": [
    18000001,
    500002
   ],
-  "keptBuildings": 357,
+  "keptBuildings": 363,
   "topAreas": [
    [
     "78744",
     20
+   ],
+   [
+    "78702",
+    11
    ],
    [
     "78723",
@@ -77,15 +81,7 @@
     10
    ],
    [
-    "78702",
-    10
-   ],
-   [
     "78704",
-    9
-   ],
-   [
-    "78758",
     9
    ],
    [
@@ -94,6 +90,10 @@
    ],
    [
     "78724",
+    7
+   ],
+   [
+    "78758",
     7
    ]
   ],
@@ -160,9 +160,9 @@
    }
   ],
   "nearFinish": 2,
-  "builders": 107,
-  "mapped": 138,
-  "geocoded": 56
+  "builders": 106,
+  "mapped": 139,
+  "geocoded": 57
  },
  "projects": [
   {
@@ -247,7 +247,7 @@
    "gc": [
     "Cadence McShane Construction Company"
    ],
-   "newThisWeek": true
+   "newThisWeek": false
   },
   {
    "permit": "13532840",

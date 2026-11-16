@@ -1,6 +1,6 @@
 {
- "ranAt": "2026-11-02T12:34:54+00:00",
- "since": "2026-09-21",
+ "ranAt": "2026-11-16T21:15:03+00:00",
+ "since": "2026-10-05",
  "columns": [
   "id",
   "license_id",
@@ -45,74 +45,74 @@
   ":@computed_region_bdys_3d7i",
   ":@computed_region_43wa_7qmu"
  ],
- "rows": 810,
+ "rows": 863,
  "byLicense": [
   [
    "Limited Business License",
-   187
+   182
   ],
   [
    "Pop-Up Retail User",
-   121
+   137
   ],
   [
    "Retail Food Establishment",
-   108
+   134
   ],
   [
    "Regulated Business License",
-   93
-  ],
-  [
-   "Special Event Food",
-   61
-  ],
-  [
-   "Peddler License",
-   32
+   103
   ],
   [
    "Pharmaceutical Representative",
-   29
+   37
+  ],
+  [
+   "Special Event Food",
+   33
   ],
   [
    "Consumption on Premises - Incidental Activity",
-   17
+   26
+  ],
+  [
+   "Peddler License",
+   23
   ],
   [
    "Shared Kitchen User (Long Term)",
-   16
-  ],
-  [
-   "Tobacco",
-   14
-  ],
-  [
-   "Shared Housing Unit Operator",
-   13
-  ],
-  [
-   "Valet Parking Operator",
-   12
+   21
   ],
   [
    "Video Gaming Location",
+   17
+  ],
+  [
+   "Valet Parking Operator",
+   13
+  ],
+  [
+   "Commercial Garage",
    11
   ],
   [
-   "Raffles",
-   8
+   "Public Place of Amusement",
+   10
+  ],
+  [
+   "Tobacco",
+   10
+  ],
+  [
+   "Shared Housing Unit Operator",
+   10
   ],
   [
    "Animal Care License",
    8
   ],
   [
-   "Children's Services Facility License",
-   7
-  ],
-  [
-   "Public Place of Amusement",
+   "Motor Vehicle Services License",
    7
   ],
   [
@@ -120,35 +120,43 @@
    7
   ],
   [
-   "Motor Vehicle Services License",
+   "Outdoor Patio",
+   7
+  ],
+  [
+   "Children's Services Facility License",
+   7
+  ],
+  [
+   "Raffles",
+   7
+  ],
+  [
+   "Indoor Special Event",
+   7
+  ],
+  [
+   "Tavern",
+   6
+  ],
+  [
+   "Package Goods",
    6
   ],
   [
    "Video Gaming Terminal",
-   5
+   6
   ],
   [
    "Towing - Tow Truck",
    5
   ],
   [
-   "Indoor Special Event",
+   "Private Booting Registration",
    4
   ],
   [
-   "Tavern",
-   4
-  ],
-  [
-   "Commercial Garage",
-   4
-  ],
-  [
-   "Manufacturing Establishments",
-   4
-  ],
-  [
-   "Outdoor Patio",
+   "Mobile Food License",
    4
   ],
   [
@@ -156,19 +164,7 @@
    3
   ],
   [
-   "Filling Station",
-   3
-  ],
-  [
-   "Package Goods",
-   3
-  ],
-  [
-   "Mobile Food License",
-   3
-  ],
-  [
-   "Private Booting Registration",
+   "Shared Kitchen User (Short Term)",
    3
   ],
   [
@@ -176,12 +172,16 @@
    2
   ],
   [
+   "Filling Station",
+   2
+  ],
+  [
    "Wholesale Food Establishment",
    2
   ],
   [
-   "Shared Kitchen User (Short Term)",
-   2
+   "Manufacturing Establishments",
+   1
   ],
   [
    "Emerging Business",
@@ -195,62 +195,58 @@
  "byActivity": [
   [
    "Sale of General Merchandise at Flea Market 181-365 Consecutive Days",
-   77
-  ],
-  [
-   "5 Day Single Event  - Special Event Food",
-   36
-  ],
-  [
-   "Organizer of Event with Retail Vendors (1-5 Day Show)",
-   32
+   88
   ],
   [
    "Markets / Promotes Pharmaceuticals to Health Care Professionals and Conducts Bus",
-   29
+   37
   ],
   [
    "Preparation of Food and Dining on Premises With Seating",
-   28
+   33
   ],
   [
    "Sale of Food Prepared Onsite With Dining Area",
-   27
+   32
   ],
   [
-   "180 Day Multiple Events - Special Event Food",
-   24
-  ],
-  [
-   "Retail Sales of General Merchandise",
-   23
-  ],
-  [
-   "Retail Sales of General Merchandise and Non-Perishable Food",
-   15
+   "Organizer of Event with Retail Vendors (1-5 Day Show)",
+   25
   ],
   [
    "Consumption of Liquor on Premises",
-   15
+   22
+  ],
+  [
+   "5 Day Single Event  - Special Event Food",
+   22
   ],
   [
    "Shared Kitchen User - Long Term",
+   21
+  ],
+  [
+   "Sale of Food Prepared Onsite Without Dining Area",
+   21
+  ],
+  [
+   "Provide Video Gaming Terminals for Customer Use",
+   17
+  ],
+  [
+   "Retail Sales of General Merchandise",
    15
   ],
   [
    "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Pe",
-   14
+   15
   ],
   [
-   "Peddler- Retail Sales of General Merchandise, Whole Uncut Fruits/Vegetables, Flo",
-   14
-  ],
-  [
-   "Sale of Food Prepared Onsite Without Dining Area",
+   "Retail Sales of General Merchandise and Non-Perishable Food",
    13
   ],
   [
-   "Shared Housing Operator - Host of More Than One Shared Housing Unit",
+   "Valet Parking Operator",
    13
   ],
   [
@@ -258,67 +254,111 @@
    12
   ],
   [
-   "Valet Parking Operator",
-   12
+   "180 Day Multiple Events - Special Event Food",
+   11
+  ],
+  [
+   "Vacation Rental Building Containing Five or More Dwelling Units For Transient Oc",
+   10
+  ],
+  [
+   "Operation of an Administrative Commercial Office",
+   10
+  ],
+  [
+   "Retail Sales of Clothing / Accessories / Shoes",
+   10
+  ],
+  [
+   "Peddler- Retail Sales of General Merchandise, Whole Uncut Fruits/Vegetables, Flo",
+   10
+  ],
+  [
+   "Shared Housing Operator - Host of More Than One Shared Housing Unit",
+   10
+  ],
+  [
+   "Miscellaneous Commercial Services",
+   9
+  ],
+  [
+   "Charges a Fee for Entertainment or Amusements or Recreational Activities",
+   8
+  ],
+  [
+   "Provide 4 or More Parking Spaces For a Fee - to Residents, Tenants, Users, Emplo",
+   8
+  ],
+  [
+   "6-30 Day Retail Pop Up Vendor (Sale of General Merchandise)",
+   8
+  ],
+  [
+   "Sale of Food Prepared Onsite With Dining Area | Preparation and Sale of Coffee a",
+   8
   ],
   [
    "Retail Sales of Flavored Tobacco Products | Retail Sales of Tobacco Products and",
-   11
+   7
   ],
   [
-   "Provide Video Gaming Terminals for Customer Use",
-   11
+   "Sale of Liquor Outdoors on Private Property",
+   7
   ],
   [
-   "Debt Collecting - Administrative Commercial Office",
-   10
-  ],
-  [
-   "Professional Consulting (Home Based Business)",
-   10
+   "61-90 Day Retail Pop Up Vendor (Sale of General Merchandise)",
+   7
   ],
   [
    "Not-For-Profit Selling Raffles for Prizes of $50 or More",
-   8
-  ],
-  [
-   "Nail Services",
-   8
-  ],
-  [
-   "Street Performer, Moving Along the Public Way",
-   8
+   7
   ],
   [
    "Other Home Based Businesses",
    7
   ],
   [
-   "Operation of an Administrative Commercial Office",
+   "Indoor Special Event",
+   7
+  ],
+  [
+   "Tavern - Consumption of Liquor on Premises",
    6
   ],
   [
-   "Charges a Fee for Entertainment or Amusements or Recreational Activities",
+   "Web / Software Development",
    6
   ],
   [
-   "Miscellaneous Commercial Services",
+   "Nail Services",
    6
   ],
   [
-   "Retail Sales of Clothing / Accessories / Shoes",
-   5
+   "Professional Consulting (Home Based Business)",
+   6
   ],
   [
    "Own, Service, or Maintain Video Gaming Terminals for Placement in Licensed Estab",
+   6
+  ],
+  [
+   "Street Performer, Moving Along the Public Way",
+   6
+  ],
+  [
+   "Online Sales (Home Based Business)",
    5
   ],
   [
-   "Private Scavenger Vehicle",
+   "Special Event Beer & Wine",
    5
   ],
   [
-   "Sale of Food Prepared Onsite With Dining Area | Preparation and Sale of Coffee a",
+   "Debt Collecting - Administrative Commercial Office",
+   5
+  ],
+  [
+   "Retail Sales of Packaged Liquor",
    5
   ],
   [
@@ -326,39 +366,31 @@
    5
   ],
   [
-   "Operation of a Health Club",
-   5
-  ],
-  [
-   "Indoor Special Event",
+   "Private Booting Registration",
    4
   ],
   [
-   "Tavern - Consumption of Liquor on Premises",
+   "Fitness Training On and Off Premises | Retail Sales of General Merchandise and N",
    4
   ],
   [
-   "Residential Cleaning (Home Based Business)",
+   "Automatic Food Vending Machine Business",
    4
   ],
   [
-   "Combination - Street Performer and Retail Sales of General Merchandise, Whole Un",
+   "Heating, Ventilation and Air Conditioning Services - Residential",
    4
   ],
   [
-   "Sale of Liquor Outdoors on Private Property",
+   "Consumption of Liquor on Premises | Retail Sales of General Merchandise and Non-",
    4
   ],
   [
-   "Provide Business and Management Consulting",
+   "Residential / Commercial Cleaning Services",
    4
   ],
   [
-   "Special Event Beer, Wine & Spirits",
-   4
-  ],
-  [
-   "Vacation Rental Building Containing Five or More Dwelling Units For Transient Oc",
+   "Hair Services | Retail Sales of General Merchandise",
    4
   ],
   [
@@ -366,7 +398,15 @@
    3
   ],
   [
-   "Supervision of, and Care for, Children 0-6 Years of Age, During the Day between ",
+   "Retail Sales of Cell Phones and Accessories",
+   3
+  ],
+  [
+   "Provide Tax Preparation Services",
+   3
+  ],
+  [
+   "Preparation of Food, Coffee or Drinks | Retail Sales of Fresh Fruits and Vegetab",
    3
   ],
   [
@@ -374,68 +414,28 @@
    3
   ],
   [
-   "Peddler (Over 65 Years of Age) - Retail Sales of General Merchandise, Whole Uncu",
+   "Provide 4 or More Parking Spaces For a Fee - Available and Advertised to the Pub",
    3
   ],
   [
-   "Online Sales (Home Based Business)",
+   "Hotel - 7 or More Sleeping Rooms",
    3
   ],
   [
-   "Preparation of Food and Dining on Premises With Seating | Sale of Food Prepared ",
+   "Operation of a Financial Services Commercial Office",
    3
   ],
   [
-   "Automatic Food Vending Machine Business",
-   3
-  ],
-  [
-   "Retail Sales of General Merchandise | Preparation and Sale of Coffee and/or Drin",
-   3
-  ],
-  [
-   "Skincare Services",
-   3
-  ],
-  [
-   "Web / Software Development",
-   3
-  ],
-  [
-   "Residential / Commercial Cleaning Services",
-   3
-  ],
-  [
-   "Retail Sales of Packaged Liquor",
-   3
-  ],
-  [
-   "Heating, Ventilation and Air Conditioning Services - Residential",
-   3
-  ],
-  [
-   "Hair Services | Retail Sales of General Merchandise",
-   3
-  ],
-  [
-   "Hair Services | Skincare Services",
+   "Organizer of Event with Retail Vendors (Multiple Shows within 31-90 Days)",
    3
   ],
   [
    "Preparation and Sale of Food (ONLY) from a Mobile Food Truck (Mobile Food Prepar",
    3
-  ],
-  [
-   "Private Booting Registration",
-   3
-  ],
-  [
-   "Motor Vehicle Repair -  Engine and Transmission Work",
-   3
   ]
  ],
  "byStatus": {
-  "AAI": 808,
+  "AAI": 861,
   "AAC": 2
  }
 }

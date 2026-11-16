@@ -1,0 +1,58 @@
+{
+ "slug": "2026-12-01-where-100-goes",
+ "reads": [
+  {
+   "date": "2026-11-15",
+   "depth": "deep",
+   "readAt": "2026-11-16T02:18:40Z",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": 4,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 0,
+     "shares": 0,
+     "viewers": 13,
+     "views": 13,
+     "views3s": 4
+    },
+    "instagram": {
+     "avgWatchS": 18,
+     "comments": 0,
+     "follows": 0,
+     "likes": 26,
+     "reach": 1478,
+     "saves": 0,
+     "shares": 0,
+     "skipRate": "hidden",
+     "viewers": 1460,
+     "views": 1931
+    },
+    "tiktok": {
+     "avgWatchS": 14.51,
+     "comments": 0,
+     "likes": 4,
+     "newFollowers": 0,
+     "saves": 1,
+     "shares": 0,
+     "views": 292,
+     "watchedFullPct": 20.5
+    },
+    "youtube": {
+     "avgPctViewed": 32,
+     "avgViewDurationS": 11,
+     "comments": "hidden",
+     "likes": 0,
+     "shares": "hidden",
+     "subscribersGained": 0,
+     "viewedVsSwipedPct": 52.1,
+     "views": 45,
+     "watchTimeH": 0.1
+    }
+   },
+   "source": "videometrics 2026-12-01-where-100-goes.2026-11-15 (evening PC run, deep read)",
+   "docId": "2026-12-01-where-100-goes.2026-11-15"
+  }
+ ]
+}

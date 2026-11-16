@@ -54,6 +54,60 @@
    },
    "source": "videometrics 2026-12-02-took-it-back.2026-11-14 (evening PC run, deep read)",
    "docId": "2026-12-02-took-it-back.2026-11-14"
+  },
+  {
+   "date": "2026-11-15",
+   "depth": "deep",
+   "readAt": "2026-11-16T02:18:40Z",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": 8,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 0,
+     "shares": 0,
+     "viewers": 39,
+     "views": 39,
+     "views3s": 15
+    },
+    "instagram": {
+     "avgWatchS": 52,
+     "comments": 2,
+     "follows": 0,
+     "likes": 29,
+     "reach": 1546,
+     "saves": 3,
+     "shares": 0,
+     "skipRate": "hidden",
+     "viewers": 1533,
+     "views": 1786
+    },
+    "tiktok": {
+     "avgWatchS": 22.33,
+     "comments": 0,
+     "likes": 14,
+     "newFollowers": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 353,
+     "watchedFullPct": 5.3
+    },
+    "youtube": {
+     "avgPctViewed": 86,
+     "avgViewDurationS": 65,
+     "comments": 1,
+     "engagedViews": 1000,
+     "likes": 25,
+     "shares": "hidden",
+     "subscribersGained": 0,
+     "viewedVsSwipedPct": 75.7,
+     "views": 1400,
+     "watchTimeH": 18.5
+    }
+   },
+   "source": "videometrics 2026-12-02-took-it-back.2026-11-15 (evening PC run, deep read)",
+   "docId": "2026-12-02-took-it-back.2026-11-15"
   }
  ]
 }

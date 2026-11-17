@@ -214,9 +214,10 @@ Object.assign(window.SCENE.sections, {
       const t0 = k.S('ask'), tFair = wordT(k, 'ask', /^fair/i, 0.9) - 0.1;
       k.cut(t0);
       split(k, SLATE, DTEAL);
-      plumber1(k, 540, 2.0, 'shrug', {feet: 1780});   /* facts r1 advisory: both readings hang on plumber one's verdict */
-      plate(k, [['UPSELL?', 132, RED], ['$3,100', 132, CREAM]], 264, {cx: 290, bg: INK, rule: RED});
-      if (T >= tFair) stampPlate(k, [['FAIR', 132, TEAL], ['WARNING?', 132, TEAL], ['10 YEARS', 132, CREAM]], 264, tFair, {cx: 768, bg: INK, rule: TEAL, drop: 0.06});
+      plumber1(k, 540, 1.6, 'shrug', {feet: 1630});   /* facts r1 advisory: both readings hang on plumber one's verdict; faces between the plates and the captions */
+      /* r1: side by side the two plates overlapped (both cannot fit at 132), so they stack */
+      plate(k, [['UPSELL? $3,100', 132, RED]], 264, {bg: INK, rule: RED});
+      if (T >= tFair) stampPlate(k, [['FAIR WARNING?', 132, TEAL], ['10 YEARS OLD', 132, CREAM]], 480, tFair, {bg: INK, rule: TEAL, drop: 0.06});
       return {host: false};
     },
 });

@@ -1,0 +1,20 @@
+{
+ "gate": "render-critic",
+ "round": 1,
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-17",
+ "render": 2,
+ "score": {
+  "faults": 0
+ },
+ "faults": [],
+ "reasons": [
+  "Nothing new broke after the fix round (new last take, lesson card, stacked close, labels).",
+  "Hook numbers from frame 0; every spoken number on screen when said.",
+  "All plates inside x 40 to 1040, y 250 to 1440; no overlap; no plate over a face; captions never over eyes or scene words.",
+  "New rows 66 to 101 px caps.",
+  "Last word ends 33.42 s, video 34.43 s.",
+  "30 fps sweep, 1033 frames: no vanishing plate, row or character; the lesson card's one-frame pop-in overshoot at 28.2 s is the standard bounce."
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "gate": "facts",
+ "round": 1,
+ "stage": "after the render: transcript, cues, scene, captions",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-17",
+ "render": 2,
+ "score": {
+  "numbers": 8,
+  "mismatches": 0
+ },
+ "reasons": [
+  "Round 0 fault fixed: 'one commenter says' in the Instagram, Facebook and YouTube captions.",
+  "New take, plates and the captions' Plumbers line checked: advice or labels, no new claim, no quote-like plate.",
+  "Carried advisories hold; no dashes, names, or 6-word runs; Source line on every caption.",
+  "Every number matches: $3,100, $150, 2 minutes, plumbers 1 to 3, 10 years, under an hour.",
+  "Advisory: the reviewer's page summaries did not show the 'not swindling' commenter in facts.json; the Yahoo search index read the same day does show 'First plumber wasn't swindling you.' Nothing in the video or captions rests on it."
+ ],
+ "sources_checked": [
+  "https://www.thecooldown.com/green-home/water-heater-leak-second-opinion-fix-2/: opened Nov 17, 2026",
+  "https://www.yahoo.com/lifestyle/articles/plumber-declared-water-heater-dead-212300807.html: opened Nov 17, 2026"
+ ]
+}

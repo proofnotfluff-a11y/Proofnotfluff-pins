@@ -43,5 +43,5 @@ SHOW WHAT / YOU TESTED / BEFORE REPLACE, the middle row big and gold.
 
 ## ask "Upsell, or fair" [sfx: blip]
 The frame splits, a slate wall left and a teal wall right, plumber one in the middle, shrugging: both readings of his
-quote. Left plate: UPSELL? / $3,100 in red. Right plate, on "fair": FAIR / WARNING? / 10 YEARS, in teal. Ends 1 s after
-the last word.
+quote. The top plate: UPSELL? $3,100 in red. Under it, on "fair": FAIR WARNING? / 10 YEARS OLD, in teal. Ends 1 s
+after the last word.

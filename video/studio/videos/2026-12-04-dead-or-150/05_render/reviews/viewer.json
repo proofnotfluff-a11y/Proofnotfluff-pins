@@ -1,0 +1,58 @@
+{
+ "gate": "viewer",
+ "round": 1,
+ "pass": true,
+ "reviewer": "fresh opus agent, two steps",
+ "at": "2026-11-17",
+ "render": 2,
+ "earlier": [
+  {
+   "fault": "a",
+   "gone": true
+  },
+  {
+   "fault": "b",
+   "gone": true
+  },
+  {
+   "fault": "c",
+   "gone": true
+  },
+  {
+   "fault": "d",
+   "gone": true
+  },
+  {
+   "fault": "e",
+   "gone": true
+  }
+ ],
+ "score": {
+  "about": "A homeowner got a $3,100 \"it's dead\" replacement quote after a two-minute look, then a $150 pipe fix from a second plumber; the point is that plumbers should show what they tested before saying replace.",
+  "gets": "a feeling (the sting of an upsell) and a clear to-do for plumbers: show your test before you say replace",
+  "stop": "maybe: $3,100 and $150 over one heater",
+  "watch_to_end": "yes",
+  "leave_at": "none",
+  "confused": "none",
+  "matches_idea": "same",
+  "comment": "yes, upsell; tradespeople would argue a 10-year tank is on borrowed time",
+  "send": "a friend or relative who just got a big replacement quote on a water heater",
+  "forecast": {
+   "stop": 3,
+   "hold": 3,
+   "finish": 3,
+   "send": 2
+  }
+ },
+ "reasons": [
+  "Same point as the one idea; gets a to-do; watches to the end; nothing confusing; would comment and send. Round 0 faults a to e gone."
+ ],
+ "notes": [
+  "Plumber three? Canceled. has no setup (one setup word would fix it)",
+  "'Some say that's near the end' gives no lifespan number",
+  "the reenactment card is text-heavy for 3.5 s",
+  "the opening price tags should be bigger",
+  "NEW ONE: $3,100 against 'quoted' in the voice",
+  "a secondhand story, not proof"
+ ]
+}

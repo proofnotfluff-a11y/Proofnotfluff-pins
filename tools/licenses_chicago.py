@@ -21,6 +21,7 @@ from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from permits_chicago import get, terms_text  # noqa: E402
 from inspections_chicago import dba_case, street, load_areas, area_of  # noqa: E402
+import pnf_rules as R  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "permits", "licenses-chicago")
@@ -231,6 +232,20 @@ def chicago_now():
     return dt.datetime.now(ZoneInfo("America/Chicago")).replace(microsecond=0)
 
 
+# A trade name that is a web address ("EARSEEDS.COM", Nov 16, 2026) shows without its web ending ("Earseeds"), so no page
+# or email that names the business carries a link; a name that still reads as a web address is left out.
+WEB_END = re.compile(r"\.\s*(?:%s)\s*$" % R.TLDS, re.I)
+WEB_NAME_REASON = "name is a web address"
+
+
+def shown_name(raw):
+    """The business name as pages and emails show it, or '' when it can only be shown as a web address."""
+    s = name_case(raw)
+    if R.URL_RE.search(R.link_safe(s)):
+        s = WEB_END.sub("", s).strip(" .")
+    return "" if not s or R.URL_RE.search(R.link_safe(s)) else s
+
+
 def keep(r, since, today):
     """(record or None, reason left out)."""
     if (r.get("application_type") or "").upper() != "ISSUE":
@@ -267,9 +282,12 @@ def keep(r, since, today):
     shown = (r.get("doing_business_as_name") or "").strip() or (r.get("legal_name") or "").strip()
     if could_be_person(shown) or holds_full_name(shown) or could_be_person(r.get("legal_name") if not r.get("doing_business_as_name") else ""):
         return None, "name could be a person's"
+    name = shown_name(shown)
+    if not name:
+        return None, WEB_NAME_REASON
     num = lambda k: str(r.get(k) or "").split(".")[0]
     return {"license": num("license_number") or num("license_id"),
-            "business": name_case(shown), "address": street(addr), "zip": (r.get("zip_code") or "")[:5],
+            "business": name, "address": street(addr), "zip": (r.get("zip_code") or "")[:5],
             "licenseType": desc, "otherTypes": [], "activity": activity_text(r.get("business_activity")),
             "issued": issued, "segment": segment(desc, r.get("business_activity") or ""),
             "lat": _coord(r.get("latitude")), "lon": _coord(r.get("longitude")), "communityArea": "",
@@ -756,6 +774,9 @@ def selftest():
                       ("ChaTraMue", "ChaTraMue"), ("(GEI-184)  Shop", "(GEI-184) Shop"), ("ACME (HAMOC)", "Acme (HAMOC)"),
                       ("87TH QUICK STOP", "87th Quick Stop"), ("NEVERIA LA GARRAFITA", "Neveria La Garrafita")]:
         assert name_case(raw) == want, (raw, name_case(raw))
+    for raw, want in [("EARSEEDS.COM", "Earseeds"), ("ACME.NET", "Acme"), ("SHOP.CO", "Shop"), ("WWW.ACME.COM", ""),
+                      ("HENRY BROS.CO.", "Henry Bros.Co."), ("YATES LIQUOR", "Yates Liquor"), ("ACME CO.", "Acme Co.")]:
+        assert shown_name(raw) == want, (raw, shown_name(raw), want)   # web-address names (Nov 16, 2026)
     for desc, act, want in [("Regulated Business License", "Computer Consulting Services / Computer Automated Design", "retail"),
                             ("Motor Vehicle Services License", "Motor Vehicle Repair - Engine and Transmission Work", "auto"),
                             ("Limited Business License", "Hair Services", "beauty"), ("Filling Station", "", "auto"),

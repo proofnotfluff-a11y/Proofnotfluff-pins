@@ -235,24 +235,12 @@
   {
    "w": "A",
    "start": 15.98,
-   "end": 16.14,
+   "end": 16.22,
    "take": 3
   },
   {
-   "w": "hundred",
-   "start": 16.14,
-   "end": 16.3,
-   "take": 3
-  },
-  {
-   "w": "and",
-   "start": 16.3,
-   "end": 16.3,
-   "take": 3
-  },
-  {
-   "w": "fifty",
-   "start": 16.3,
+   "w": "hundred-and-fifty",
+   "start": 16.22,
    "end": 16.46,
    "take": 3
   },
@@ -293,7 +281,7 @@
    "take": 3
   },
   {
-   "w": "Cancelled.",
+   "w": "Canceled.",
    "start": 20.14,
    "end": 20.36,
    "take": 3
@@ -466,7 +454,7 @@
    "n": 3,
    "start": 11.92,
    "end": 20.96,
-   "wpm": 153
+   "wpm": 139
   },
   {
    "n": 4,
@@ -481,10 +469,7 @@
    "wpm": 123
   }
  ],
- "flags": [
-  "dropped 'and': not heard",
-  "20.1 s heard 'canceled.' for 'Cancelled.'"
- ],
+ "flags": [],
  "end": 31.34,
  "heard": [
   {

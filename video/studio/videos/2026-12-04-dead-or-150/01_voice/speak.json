@@ -2,11 +2,13 @@
  "schema": "pnf.studio.speak.v1",
  "voice": "W3pJy9ibur1FKUihVxzY",
  "model": "eleven_v4",
- "takes": "all",
+ "takes": [
+  5
+ ],
  "settings": {
   "stability": 0.7,
   "similarity_boost": 0.7
  },
- "scriptSha256": "b1895887745e2cab23afd5f8d3c7007e2b57b9a5132e48779e9ab9e003f6d305",
- "requestedAt": "2026-11-17T07:57:18-05:00"
+ "scriptSha256": "a9b44bf5b0656f8fa9f7d95e2224f6f97cea4d365bff7f00992c94e7435c68fd",
+ "requestedAt": "2026-11-17T08:22:21-05:00"
 }

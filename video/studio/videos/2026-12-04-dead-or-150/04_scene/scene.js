@@ -121,11 +121,20 @@ window.SCENE = {
 };
 /* ---- hook.one: plumber one, close, at the heater: 2 MINUTES, then DEAD., then NEW ONE: $3,100 ---- */
 const one = (k, T) => {
-  const t0 = k.S('hook.one'), tDead = wordT(k, 'hook.one', /^dead/i, 2.5) - 0.12, tQuote = wordT(k, 'hook.one', /^thirty/i, 3.2) - 0.12;
-  k.cut(t0);
+  const t0 = k.S('hook.one'), tPl = wordT(k, 'hook.one', /^plumber/i, 0.8) - 0.08, tTwo = wordT(k, 'hook.one', /^two/i, 1.5) - 0.1;
+  const tDead = wordT(k, 'hook.one', /^dead/i, 2.5) - 0.12, tQuote = wordT(k, 'hook.one', /^thirty/i, 3.2) - 0.12;
+  if (T < tPl) {   /* viewer r0: the voice names the homeowner first, so the picture does too */
+    k.cut(t0);
+    utility(k, 0.25, 2.0, {fx: 300, fy: 900, drip: true});
+    owner(k, 540, 2.3, 'talk', 'cross', {feet: 1800, face: -1, talk: false});
+    plate(k, [['HOMEOWNER', 132, TEAL]], 264, {rule: TEAL});
+    return {host: false};
+  }
+  k.cut(tPl);
   utility(k, 0.25, 2.0, {fx: 400, fy: 900, drip: true});
   plumber1(k, 560, 2.3, T >= tQuote ? 'talk' : 'clip', {feet: 1800, talk: T >= tDead});
-  if (T < tDead - 0.06) plate(k, [['2 MINUTES', 132, CREAM]], 264);
+  if (T < tTwo - 0.06) plate(k, [['PLUMBER 1', 132, ORANGE]], 264);
+  else if (T < tDead - 0.06) stampPlate(k, [['2 MINUTES', 132, CREAM]], 264, tTwo, {drop: 0.06});
   else if (T < tQuote - 0.06) stampPlate(k, [['DEAD.', 198, RED]], 264, tDead, {drop: 0.06, freeze: 3});
   else stampPlate(k, [['NEW ONE:', 132, CREAM], ['$3,100', 198, RED]], 264, tQuote, {drop: 0.06, freeze: 4});
   return {host: false};
@@ -137,14 +146,11 @@ Object.assign(window.SCENE.sections, {
       const t0 = k.S('call'), tHer = wordT(k, 'call', /^can/i, 0.9) - 0.1, tHim = wordT(k, 'call', /^i'?ll/i, 3.4) - 0.1;
       k.cut(t0);
       split(k, WINE, SLATE);
-      const herTalk = T >= tHer && T < tHim, hisTalk = T >= tHim;
+      const herTalk = T >= tHer && T < tHim, hisTalk = T >= tHim;   /* viewer r0: no dimming (it changed their colors) */
       const hd = owner(k, 290, 1.9, 'phone', herTalk ? 'cross' : 'calm', {feet: 1740, face: 1, talk: herTalk}).head;
       const hd2 = plumber2(k, 800, 1.9, 'stand', {feet: 1740, talk: hisTalk});
       phoneAt(k, hd2.head, 1.9, 1);
-      if (!herTalk && !hisTalk) k.shape(k.rectPts(546, 0, 534, 1180, 0), {fill: 'rgba(18,13,20,0.0)', line: false});
-      if (herTalk) k.shape(k.rectPts(546, 250, 534, 930, 0), {fill: 'rgba(18,13,20,0.35)', line: false});
-      if (hisTalk) k.shape(k.rectPts(0, 250, 534, 930, 0), {fill: 'rgba(18,13,20,0.35)', line: false});
-      if (T < tHer - 0.06) plate(k, [['REENACTMENT', 132, CREAM]], 264, {rule: TEAL});
+      if (T < tHer - 0.06) plate(k, [['REENACTMENT', 132, CREAM], ['THE CALL TO', 132, CREAM], ['PLUMBER 2', 132, BLUE]], 264, {rule: TEAL});
       else if (T < tHim - 0.06) stampPlate(k, [['HOMEOWNER', 132, TEAL], ['CAN YOU STILL', 132, CREAM], ['COME LOOK?', 132, CREAM]], 264, tHer, {drop: 0.06, rule: WINE});
       else stampPlate(k, [['PLUMBER 2', 132, BLUE], ["I'LL LOOK.", 132, CREAM]], 264, tHim, {drop: 0.06, rule: BLUE});
       void hd;
@@ -158,7 +164,9 @@ Object.assign(window.SCENE.sections, {
         k.cut(t0);
         utility(k, 0.2, 2.0, {fx: 640, fy: 760, drip: T < tPipe + 0.4, fixed: T >= tPipe + 0.4});
         plumber2(k, 470, 2.2, T >= tCash ? 'shrug' : 'point', {feet: 1780, face: 1, at: [700, 420], talk: false});
-        if (T < tPipe - 0.06) plate(k, [['IT WORKS.', 198, TEAL]], 264);
+        const tFound = wordT(k, 'fix', /^found/i, 0.5) - 0.1;
+        if (T < tFound - 0.06) plate(k, [['PLUMBER 2', 132, BLUE]], 264, {rule: BLUE});
+        else if (T < tPipe - 0.06) stampPlate(k, [['IT WORKS.', 198, TEAL]], 264, tFound, {drop: 0.06});
         else if (T < tCash - 0.06) stampPlate(k, [['A LEAKING PIPE', 132, CREAM]], 264, tPipe, {drop: 0.06});
         else stampPlate(k, [['$150', 198, GOLD]], 264, tCash, {drop: 0.06, freeze: 4});
       } else {
@@ -180,7 +188,7 @@ Object.assign(window.SCENE.sections, {
       utility(k, 0.3, 2.0, {fx: 300, fy: 900, fixed: true});
       owner(k, 540, 2.3, 'phone', 'calm', {feet: 1800, face: 1, talk: T >= tCan});
       if (T < tCan - 0.06) plate(k, [['PLUMBER 3?', 132, CREAM]], 264);
-      else stampPlate(k, [['CANCELLED', 132, RED]], 264, tCan, {drop: 0.06, freeze: 3});
+      else stampPlate(k, [['CANCELED', 132, RED]], 264, tCan, {drop: 0.06, freeze: 3});
       return {host: false};
     },
 
@@ -195,31 +203,32 @@ Object.assign(window.SCENE.sections, {
         else stampPlate(k, [['10 YEARS OLD', 132, RED]], 264, tTen, {drop: 0.06, freeze: 4});
       } else {
         k.cut(tSome);
-        utility(k, 0.15, 1.8, {fx: 540, fy: 900, fixed: true});   /* facts r0 advisory: the age case is the commenters', not plumber one's */
+        utility(k, 0.15, 1.8 + 0.3 * clamp((T - tSome) / 2.0), {fx: 540, fy: 760, fixed: true});   /* facts r0 advisory: the age case is the commenters', not plumber one's; QA r0: a slow push-in (the shot sat flat 1.3 s) */
         plate(k, [['SOME SAY', 132, CREAM], ['NEAR THE END', 132, GOLD]], 264);
       }
       return {host: false};
     },
 
-    /* ---- ask: plumber one between the two readings of his quote: UPSELL? $3,100 against FAIR WARNING? 10 YEARS ---- */
+    /* ---- ask, the last frame: plumber one between the two readings of his quote: UPSELL? $3,100 against FAIR WARNING? 10 YEARS ---- */
     ask: (k, T) => {
-      const t0 = k.S('ask'), tFair = wordT(k, 'ask', /^fair/i, 0.9) - 0.1, tOwn = k.S('ask.owner');
-      if (T >= tOwn) return showIt(k, T, tOwn);
+      const t0 = k.S('ask'), tFair = wordT(k, 'ask', /^fair/i, 0.9) - 0.1;
       k.cut(t0);
       split(k, SLATE, DTEAL);
       plumber1(k, 540, 2.0, 'shrug', {feet: 1780});   /* facts r1 advisory: both readings hang on plumber one's verdict */
-      plate(k, [['UPSELL?', 132, RED], ['$3,100', 132, CREAM]], 264, {cx: 270, bg: INK, rule: RED});
-      if (T >= tFair) stampPlate(k, [['FAIR', 132, TEAL], ['WARNING?', 132, TEAL], ['10 YEARS', 132, CREAM]], 264, tFair, {cx: 810, bg: INK, rule: TEAL, drop: 0.06});
+      plate(k, [['UPSELL?', 132, RED], ['$3,100', 132, CREAM]], 264, {cx: 290, bg: INK, rule: RED});
+      if (T >= tFair) stampPlate(k, [['FAIR', 132, TEAL], ['WARNING?', 132, TEAL], ['10 YEARS', 132, CREAM]], 264, tFair, {cx: 768, bg: INK, rule: TEAL, drop: 0.06});
       return {host: false};
     },
 });
 
-/* ---- ask.owner (inside ask): the owner's move, the last thing heard and seen ---- */
-const showIt = (k, T, t0) => {
+/* ---- rule (viewer r0: the lesson gets its own beat before the question, tied to the tank's age) ---- */
+window.SCENE.sections.rule = (k, T) => {
+  const t0 = k.S('rule'), tShow = wordT(k, 'rule', /^show/i, 1.6) - 0.1;
   k.cut(t0);
   utility(k, 0.2, 1.6, {fx: 540, fy: 900, fixed: true});
-  plumber1(k, 330, 2.0, 'clip', {feet: 1880, face: 1});   /* the card owns y 264 to about 790: heads below it */
-  owner(k, 790, 2.1, 'stand', 'calm', {feet: 1880, face: -1});
-  stampPlate(k, [['SHOW WHAT', 132, CREAM], ['YOU TESTED', 198, GOLD], ['BEFORE REPLACE', 132, CREAM]], 264, t0 + 0.1, {drop: 0.06, freeze: 4});
+  plumber1(k, 340, 1.6, T >= tShow ? 'clip' : 'talk', {feet: 1630, face: 1});   /* faces between the card (to y 873) and the captions (from y 1184) */
+  owner(k, 760, 1.7, 'stand', 'calm', {feet: 1630, face: -1});
+  if (T < tShow - 0.06) plate(k, [['OLD? SAY SO.', 132, CREAM]], 264);
+  else stampPlate(k, [['SHOW WHAT', 132, CREAM], ['YOU TESTED', 198, GOLD], ['BEFORE REPLACE', 132, CREAM]], 264, tShow, {drop: 0.06, freeze: 4});
   return {host: false};
 };

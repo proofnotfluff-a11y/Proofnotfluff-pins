@@ -1,0 +1,60 @@
+{
+ "schema": "pnf.studio.captions.v1",
+ "keywords": {
+  "primary": "water heater repair or replace",
+  "secondary": [
+   "plumber second opinion",
+   "is my plumber upselling me"
+  ],
+  "trades": [
+   "plumbing",
+   "home services"
+  ]
+ },
+ "instagram": {
+  "caption": "Plumber one called the water heater dead and quoted $3,100. Plumber two charged $150.\nA homeowner says the first plumber looked at the unit for about two minutes before calling it dead and quoting a new one. The second plumber found it working, swapped a leaking pipe on top in under an hour, and the hot water came back. The third visit got canceled.\nBut the tank is 10 years old, and one commenter says a tank that age is near the end anyway.\nUpsell, or fair warning?\nPlumbers: show the customer what you tested before you say replace.\nSend this to someone sitting on a big repair quote.\nThe phone call is a reenactment in our own words.\nSource: The Cool Down, Nov 1, 2026, relaying the homeowner's own post on Reddit's r/Homeowners. It is the homeowner's account; the site did not check it.\n\n#plumbing #plumber #homeowner #waterheater",
+  "settings": {
+   "aiLabel": true,
+   "shareToFacebook": false
+  }
+ },
+ "tiktok": {
+  "caption": "Plumber one called the water heater dead and quoted $3,100. Plumber two charged $150.\nA homeowner says the first plumber looked for about two minutes. The second found it working, swapped a leaking pipe on top, and the hot water came back. But the tank is 10 years old, and some say that is near the end anyway.\nUpsell, or fair warning?\nSend this to someone sitting on a big repair quote.\nThe phone call is a reenactment in our own words.\nSource: The Cool Down, Nov 1, 2026, relaying the homeowner's own post on Reddit's r/Homeowners. It is the homeowner's account; the site did not check it.\n#plumbing #plumber #homeowner #waterheater",
+  "settings": {
+   "aiGenerated": true,
+   "commercialDisclosure": false,
+   "suggestKeywords": [
+    "water heater repair",
+    "plumber second opinion",
+    "repair or replace"
+   ]
+  }
+ },
+ "facebook": {
+  "caption": "Plumber one called the water heater dead and quoted $3,100. Plumber two charged $150.\nA homeowner says the first plumber looked at the unit for about two minutes before calling it dead and quoting a new one. The second plumber found it working, swapped a leaking pipe on top in under an hour, and the hot water came back. The third visit got canceled.\nBut the tank is 10 years old, and one commenter says a tank that age is near the end anyway.\nUpsell, or fair warning?\nPlumbers: show the customer what you tested before you say replace.\nSend this to someone sitting on a big repair quote.\nThe phone call is a reenactment in our own words.\nSource: The Cool Down, Nov 1, 2026, relaying the homeowner's own post on Reddit's r/Homeowners. It is the homeowner's account; the site did not check it.\n\n#plumbing #homeowner",
+  "settings": {
+   "aiLabel": true,
+   "audience": "Public"
+  }
+ },
+ "youtube": {
+  "title": "Water Heater Called Dead at $3,100, Fixed for $150. Upsell or Fair?",
+  "description": "Plumber one called the water heater dead and quoted $3,100. Plumber two charged $150.\nA homeowner says the first plumber looked at the unit for about two minutes before calling it dead and quoting a new one. The second plumber found it working, swapped a leaking pipe on top in under an hour, and the hot water came back. The third visit got canceled.\nBut the tank is 10 years old, and one commenter says a tank that age is near the end anyway.\n\nUpsell, or fair warning?\nPlumbers: show the customer what you tested before you say replace.\n\nThe phone call is a reenactment in our own words.\nSource: The Cool Down, Nov 1, 2026, relaying the homeowner's own post on Reddit's r/Homeowners. It is the homeowner's account; the site did not check it.\nFree missed call cost calculator for trade owners: https://proofnotfluff.com/missed-call-cost-calculator/\n#plumbing #homeowner",
+  "tags": [
+   "water heater repair",
+   "repair or replace",
+   "plumber second opinion",
+   "plumber upsell",
+   "plumbing business",
+   "home service business",
+   "homeowner tips"
+  ],
+  "settings": {
+   "madeForKids": false,
+   "aiUse": false,
+   "category": "Education",
+   "language": "English",
+   "visibility": "Public"
+  }
+ }
+}

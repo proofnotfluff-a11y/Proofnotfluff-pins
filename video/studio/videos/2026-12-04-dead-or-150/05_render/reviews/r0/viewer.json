@@ -1,0 +1,32 @@
+{
+ "gate": "viewer",
+ "round": 0,
+ "pass": false,
+ "reviewer": "fresh opus agent (two steps)",
+ "at": "2026-11-17",
+ "score": {
+  "about": "One plumber spent two minutes, called a water heater dead and quoted $3,100. A second found it working and fixed a leaking pipe for $150. But the tank is ten years old: upsell or fair warning?",
+  "gets": "a feeling and a debate; the lesson came too late",
+  "stop": "maybe: the $3,100 vs $150 tags with 'One heater. Two prices.'",
+  "watch_to_end": "yes",
+  "leave_at": "none (closest 8.0 s, 'Reenactment' and a new room)",
+  "confused": "'Reenactment' from nowhere (8.0 s); 'A homeowner says' over the plumber alone (2.5 s); reenactment faces and hats change (9.0 to 11.5 s, the dimming); 'Owners' reads as homeowners (28.2 s)",
+  "matches_idea": "close",
+  "comment": "yes: customer says upsell; a tradesperson says offer replacement on a 10-year tank but do not call a working heater dead",
+  "send": "a friend or spouse with a big replacement quote",
+  "forecast": {
+   "stop": 3,
+   "hold": 3,
+   "finish": 3,
+   "send": 2
+  }
+ },
+ "reasons": [
+  "matches close: the lesson came in the last 3 s after a debate question and 'owners' read as homeowners. Fix: say who (plumbers) and give the lesson its own beat before the question, tied to the tank's age.",
+  "2.5 s: show the homeowner for 'A homeowner says'.",
+  "8.0 s: say whose call it is on screen.",
+  "9.0 to 11.5 s: keep one look per person (no dimming).",
+  "0 to 2 s: tie the two plumbers to plumber 1 and 2.",
+  "No visible test (not taken: the source does not say how plumber two tested; drawing one would add a claim)."
+ ]
+}

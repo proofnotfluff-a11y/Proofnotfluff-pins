@@ -1,0 +1,22 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "stage": "after the render: transcript, cues, scene, captions",
+ "pass": false,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-17",
+ "score": {
+  "numbers": 7,
+  "mismatches": 0
+ },
+ "reasons": [
+  "captions.json instagram, facebook, youtube: 'some commenters say a tank that age is near the end anyway' overstates: one commenter spoke to age. Fix: 'one commenter says'. TikTok's 'some say' matches the voice and may stay.",
+  "Advisory: the voice's 'Some say' rests on one commenter; passed twice before, not re-judged.",
+  "Advisory: 'Fixed for $150' in the YouTube title is fair.",
+  "Checked, no fault: every number, the reenactment, Source lines, no names, no dashes, no 6-word runs, no she or her in captions."
+ ],
+ "sources_checked": [
+  "https://www.thecooldown.com/green-home/water-heater-leak-second-opinion-fix-2/: opened Nov 17, 2026",
+  "https://www.yahoo.com/lifestyle/articles/plumber-declared-water-heater-dead-212300807.html: opened Nov 17, 2026; three commenters quoted, one on age"
+ ]
+}

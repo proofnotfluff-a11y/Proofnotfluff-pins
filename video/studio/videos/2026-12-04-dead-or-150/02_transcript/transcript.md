@@ -1,6 +1,6 @@
 # Transcript: 2026-12-04-dead-or-150
 
-Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 72 words, 31.3 s of voice.
+Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 78 words, 33.4 s of voice.
 
 ## Flags
 none
@@ -11,7 +11,7 @@ none
   02     8.0 s  133 wpm  slow: rewrite it as talk, then speak --take 2
   03    11.9 s  139 wpm  slow: rewrite it as talk, then speak --take 3
   04    21.3 s  184 wpm  
-  05    25.5 s  123 wpm  slow: rewrite it as talk, then speak --take 5
+  05    25.5 s  138 wpm  slow: rewrite it as talk, then speak --take 5
 ```
 
 ## Words
@@ -42,6 +42,6 @@ none
 
 `00:23.4` Some say that's near the end.
 
-`00:25.5` Upsell, or fair warning?
+`00:25.5` Plumbers, if it's old, say so, but show what you tested before you say replace.
 
-`00:28.2` Owners, show what you tested before you say replace.
+`00:31.6` Upsell, or fair warning?

@@ -1,0 +1,29 @@
+{
+ "about": "Every number and claim this lesson shows or says, with its source. One source: The Cool Down, 'Plumber declared water heater 'dead' after 2 minutes; a second opinion led to a $150 fix', Nov 1, 2026, read again Nov 17, 2026 (Central) by the web reader at its own address (the cloud shell cannot open thecooldown.com; the reader can) and found syndicated on Yahoo Life the same day. It relays a homeowner's own post in Reddit's r/Homeowners forum; the site checked none of it. We say 'A homeowner says' once at the top and name no person or business. We never say plumber one lied, scammed or was wrong, that the pipe was certainly the cause (plumber two assumed it), or that every 10-year-old tank should be replaced. The phone call to plumber two is a reenactment in our own words that adds no claim.",
+ "story": {
+  "title": "Plumber declared water heater 'dead' after 2 minutes; a second opinion led to a $150 fix",
+  "publisher": "The Cool Down (green-home), syndicated by Yahoo Life",
+  "date": "2026-11-01",
+  "url": "https://www.thecooldown.com/green-home/water-heater-leak-second-opinion-fix-2/",
+  "alsoAt": "https://www.yahoo.com/lifestyle/articles/plumber-declared-water-heater-dead-212300807.html",
+  "reread": "2026-11-17",
+  "whose": "the homeowner's own post in r/Homeowners, relayed by the site",
+  "what": "hot water had been cooling for about two days and a leak showed above a 10-year-old, 40-gallon gas water heater; the homeowner contacted three local family-run plumbers; the first looked at the unit for about two minutes, declared it dead and quoted $3,100 to replace it; the second arrived about two hours later, found it functioning, assumed the minor leak from the top was the issue and replaced the pipe within an hour for $150; hot water came back; the homeowner cancelled the third visit and asked the forum whether the first plumber was swindling; commenters were divided: one said $3,100 is within range but a new heater was not needed (an upsell), another that a standard tank at 10 years is near the end of its typical life though it may keep working, another that the first plumber was not swindling",
+  "words": {
+   "firstQuote": "The first plumber provided a $3,100 quote after looking at the unit for just two minutes and declaring it 'dead.'",
+   "second": "determines it is functioning just fine. He assumes the minor leak from the top was the issue and replaced the pipe within an hour. $150. I have hot water.",
+   "third": "the OP called the third plumber to cancel the visit",
+   "tank": "the 10-year-old, 40-gallon gas water heater",
+   "split": "Commenters were divided over the first plumber's recommendation."
+  }
+ },
+ "firstQuote": 3100,
+ "secondBill": 150,
+ "minutesLooked": 2,
+ "hoursUntilSecond": 2,
+ "repairUnderHours": 1,
+ "plumbersContacted": 3,
+ "tankAgeYears": 10,
+ "tankGallons": 40,
+ "acted": "the phone call to plumber two: the homeowner asks for a look after plumber one's verdict; plumber two says he will come look (reenactment, our words, said and shown once)"
+}

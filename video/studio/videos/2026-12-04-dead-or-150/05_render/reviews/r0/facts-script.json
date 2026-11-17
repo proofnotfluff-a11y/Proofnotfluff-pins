@@ -1,0 +1,25 @@
+{
+ "gate": "facts",
+ "round": 0,
+ "stage": "script.md and cues.md before any voice (storyboard round)",
+ "pass": false,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-17",
+ "score": {
+  "numbers": 7,
+  "mismatches": 0
+ },
+ "reasons": [
+  "03_cues/cues.md, call: HOMEOWNER / SAYS IT'S DEAD. / CAN YOU LOOK? reads as the homeowner calling it dead; plumber one did. Fix: say who said it, or drop the verdict.",
+  "script.md and cues.md, call: the reenactment adds two details the source lacks: that the verdict was passed to plumber two, and that the call came after the verdict (all three were contacted after the leak; plumber three was still booked). Fix: 'Reenactment. Can you still come look? I'll look.' and plate HOMEOWNER / CAN YOU STILL / COME LOOK?",
+  "Advisory: twist, SOME SAY / NEAR THE END on plumber one reads as his argument; it came from forum commenters. Cut to the heater or a neutral visual.",
+  "Advisory: never add 'fixed the problem' or 'the real cause' to captions (plumber two assumed the leak).",
+  "Advisory: keep 'Some say'.",
+  "Homeowner drawn as a woman: not a fault; keep she and her out of captions, title and description.",
+  "Checked, no fault: no 6-word run from the source, no person or business named, no dashes, no plate reads as an exact quote, 'A homeowner says' once at the top, REENACTMENT said and shown."
+ ],
+ "sources_checked": [
+  "https://www.thecooldown.com/green-home/water-heater-leak-second-opinion-fix-2/: opened Nov 17, 2026; every number confirmed",
+  "https://www.yahoo.com/lifestyle/articles/plumber-declared-water-heater-dead-212300807.html: opened Nov 17, 2026; same article, plumber two arrived two hours later"
+ ]
+}

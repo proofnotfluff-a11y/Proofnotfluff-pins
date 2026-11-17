@@ -1,0 +1,22 @@
+{
+ "gate": "facts",
+ "round": 1,
+ "stage": "script.md and cues.md before any voice (storyboard round)",
+ "pass": true,
+ "reviewer": "fresh opus agent",
+ "at": "2026-11-17",
+ "score": {
+  "numbers": 6,
+  "mismatches": 0
+ },
+ "reasons": [
+  "Round 0 faults 1 and 2 fixed; the advisory fixed (SOME SAY over the heater alone).",
+  "Checked, no fault: every number and claim matches the source; 'A homeowner says' once; no names, dashes, 6-word runs or quote-like plates.",
+  "Advisory: ask frame, FAIR / WARNING? / 10 YEARS on plumber two's side while he talks reads as his warning; hang both plates on plumber one's verdict (taken: plumber one in the middle).",
+  "Advisory: captions never say 'fixed the problem' or 'the real cause', never she or her for the homeowner."
+ ],
+ "sources_checked": [
+  "https://www.thecooldown.com/green-home/water-heater-leak-second-opinion-fix-2/: opened Nov 17, 2026, every claim confirmed",
+  "https://www.yahoo.com/lifestyle/articles/plumber-declared-water-heater-dead-212300807.html: not opened this round (not checked)"
+ ]
+}

@@ -1,0 +1,109 @@
+{
+ "schema": "pnf.studio.cues.v1",
+ "source": "estimate",
+ "music": {
+  "id": "rooms",
+  "level": 0.16,
+  "tune": "night"
+ },
+ "duration": 33.108,
+ "cues": [
+  {
+   "id": "hook",
+   "level": 0,
+   "quote": "One heater",
+   "sfx": "pop",
+   "shift": 0.0,
+   "pin": null,
+   "text": "Frame 0, settled: the water heater in the middle, plumber one close on the left, plumber two close on the right. Left plate: $3,100 in red. Right plate: $150 in gold. At 0.5 s a plain cut to the heater close, the two prices on it, the left one red, the right one gold (the first change). On \"prices\" a plain cut back to the two plumbers, the same plates.",
+   "t": 0.0,
+   "word": 0,
+   "end": 8.272
+  },
+  {
+   "id": "hook.one",
+   "level": 1,
+   "quote": "A homeowner says",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "A plain cut to plumber one, close, at the heater, clipboard up. The plate: 2 MINUTES. On \"dead\" a stamp: DEAD. in red. On \"thirty\" a stamp: NEW ONE: / $3,100, the last row big and red.",
+   "t": 2.07,
+   "word": 4,
+   "end": 8.272
+  },
+  {
+   "id": "call",
+   "level": 0,
+   "quote": "Reenactment",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The frame splits for a phone call: the homeowner left on a wine wall, phone to her ear; plumber two right on a slate wall, a phone at his ear. The plate across the top: REENACTMENT. On \"Can\" it gives way to the homeowner's line, her side lit: HOMEOWNER / CAN YOU STILL / COME LOOK? On \"I'll\" it gives way to his line, his side lit: PLUMBER 2 / I'LL LOOK.",
+   "t": 8.272,
+   "word": 18,
+   "end": 12.284
+  },
+  {
+   "id": "fix",
+   "level": 0,
+   "quote": "Plumber two found it working",
+   "sfx": "stamp",
+   "shift": 0.0,
+   "pin": null,
+   "text": "A plain cut to plumber two, close, at the heater. The plate: IT WORKS. On \"swapped\" the pipe on top gets a new piece and the plate gives way to: A LEAKING PIPE. On \"hundred\" a stamp: $150, big and gold. On \"Hot\" a plain cut to the homeowner, close, smiling, steam off a mug: HOT WATER / IS BACK.",
+   "payoff": true,
+   "t": 12.284,
+   "word": 26,
+   "end": 19.966
+  },
+  {
+   "id": "three",
+   "level": 0,
+   "quote": "Plumber three",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "A plain cut to the homeowner, close, phone to her ear. The plate: PLUMBER 3? On \"Cancelled\" a stamp: CANCELLED in red.",
+   "t": 19.966,
+   "word": 46,
+   "end": 22.202
+  },
+  {
+   "id": "twist",
+   "level": 0,
+   "quote": "But the tank's",
+   "sfx": "stamp",
+   "shift": 0.0,
+   "pin": null,
+   "text": "A plain cut to the heater, close, its label plate. The plate: THE TANK. On \"ten\" a stamp: 10 YEARS OLD, big and red. On \"Some\" a plain cut to the heater a step back, no one in the frame: SOME SAY / NEAR THE END.",
+   "t": 22.202,
+   "word": 49,
+   "end": 26.928
+  },
+  {
+   "id": "ask",
+   "level": 0,
+   "quote": "Upsell, or fair",
+   "sfx": "blip",
+   "shift": 0.0,
+   "pin": null,
+   "text": "The frame splits, one person a side: plumber one on a slate wall left, plumber two on a teal wall right. Left plate: UPSELL? / $3,100 in red. Right plate, on \"fair\": FAIR / WARNING? / 10 YEARS, in teal.",
+   "t": 26.928,
+   "word": 61,
+   "end": 33.108
+  },
+  {
+   "id": "ask.owner",
+   "level": 1,
+   "quote": "Owners, show what you",
+   "sfx": "stamp",
+   "shift": 0.0,
+   "pin": null,
+   "text": "A plain cut to the utility room, plumber one left holding the clipboard out to the homeowner right, who reads it. The card lands: SHOW WHAT / YOU TESTED / BEFORE REPLACE, the middle row big and gold. Ends 1 s after the last word.",
+   "t": 28.77,
+   "word": 65,
+   "end": 33.108
+  }
+ ]
+}

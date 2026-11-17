@@ -1149,6 +1149,26 @@
      "at": "2026-11-14T21:30:38-05:00"
     }
    }
+  },
+  {
+   "slug": "2026-12-04-dead-or-150",
+   "readyAt": "2026-11-17T08:43:39-05:00",
+   "commit": "664bb2347a8b552f4c7539df12b8ee813c2faf09",
+   "fingerprints": {
+    "script": "a9b44bf5b065",
+    "takes": "478f3d329e3d",
+    "words": "711cbababa77",
+    "cues": "5ae3d0e962ad",
+    "scene": "53aecab7b81e",
+    "data": "47335f3aaa37",
+    "captions": "34c41e708d73",
+    "mouth": "1adf66b6f668",
+    "runtime_kit": "e963af86df8b",
+    "runtime_player": "961e9dd986fc",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

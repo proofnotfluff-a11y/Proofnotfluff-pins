@@ -1,0 +1,28 @@
+{
+ "pass": true,
+ "ours": "A",
+ "round": 1,
+ "on": "01_voice/script.md fix round 1 (before voice)",
+ "benchmark": "2026-12-02-took-it-back",
+ "score": {
+  "keep": "A",
+  "stop": {
+   "A": "none",
+   "B": "s5"
+  },
+  "real": {
+   "A": "None of that brought the house back.",
+   "B": "Her roommate let him and his business partner in, and filmed it."
+  },
+  "scripted": {
+   "A": "Here's the part that gets me.",
+   "B": "Send this to someone who'd take it back."
+  }
+ },
+ "reasons": [
+  "Kept ours: the first sentence is the whole hook, and every beat after makes it worse until a real dollar figure.",
+  "Benchmark: three spoken dollar pairs in five sentences bury the sledgehammer; stop s5.",
+  "Ours, stop none; 'Here's the part that gets me' is a creator habit but lasts a second."
+ ],
+ "reviewer": "fresh Opus agent, blind, coin flip A, Nov 18, 2026"
+}

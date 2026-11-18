@@ -18,7 +18,8 @@
   },
   "ap": {
    "url": "https://csmonitor.com/layout/set/amphtml/USA/Latest-News-Wires/2013/0718/Wrong-house-demolished-Homeowners-billed-condemned-house-still-there",
-   "read": "2026-11-18"
+   "read": "2026-11-18",
+   "label": "Christian Science Monitor wire copy, no credit shown; name it as opened"
   },
   "st": {
    "url": "https://insurancenewsnet.com/oarticle/Fort-Worth-reaches-tentative-settlement-for-tearing-down-wrong-house-a-480316",
@@ -35,11 +36,16 @@
   "abc": {
    "url": "https://www.goodmorningamerica.com/news/story/worth-couple-fighting-city-home-demolished-accident-20882129",
    "read": "2026-11-18"
+  },
+  "nbc2014": {
+   "url": "https://nbcdfw.com/news/local/fort-worth-to-pay-62500-in-wrong-house-demolition/129308",
+   "read": "2026-11-18",
+   "what": "the council agreed: $62,500 by the city, $40,000 by the contractor and insurer"
   }
  },
  "bedrooms": 3,
  "bill": 6000,
- "billNote": "more than $6,000 (AP); said as 'over six thousand'",
+ "billNote": "more than $6,000 (CS Monitor wire copy, no credit shown); said as 'over six thousand'",
  "total": 102500,
  "city": 62500,
  "company": 15000,

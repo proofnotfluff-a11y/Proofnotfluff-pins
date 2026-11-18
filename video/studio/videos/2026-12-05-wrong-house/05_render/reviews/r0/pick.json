@@ -1,0 +1,26 @@
+{
+ "pass": false,
+ "ours": "A",
+ "round": 0,
+ "benchmark": "2026-12-02-took-it-back",
+ "score": {
+  "keep": "B",
+  "stop": {
+   "A": "s14",
+   "B": "s24"
+  },
+  "real": {
+   "A": "All that was left was a bare slab and their mailbox.",
+   "B": "His company called it repossessing the shower."
+  },
+  "scripted": {
+   "A": "It gets worse.",
+   "B": "Send this to someone who'd take it back."
+  }
+ },
+ "reasons": [
+  "Kept the benchmark: it keeps turning every few seconds.",
+  "Ours has the better opening image; slow at s5 to s6 on which mailbox; 'It gets worse' pulls you out.",
+  "Ours stop s14: the split read out loud is math; s15 lectures crews, most listeners do not run one."
+ ]
+}

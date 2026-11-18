@@ -1,0 +1,20 @@
+{
+ "pass": true,
+ "round": 1,
+ "on": "01_voice/script.md fix round 1",
+ "score": {
+  "sentences": 14,
+  "and_then_pairs": 0,
+  "unset_terms": 0,
+  "choppy_runs": 0,
+  "breath_fails": 0,
+  "order": "ok"
+ },
+ "reasons": [
+  "Every round 0 fault fixed or no longer applies.",
+  "Note: 'his grandmother's' after 'a couple'.",
+  "Note: who sent the bill.",
+  "Note: 'that Friday' not named before."
+ ],
+ "reviewer": "fresh Opus agent, Nov 18, 2026"
+}

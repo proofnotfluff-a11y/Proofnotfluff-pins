@@ -1,0 +1,17 @@
+{
+ "pass": false,
+ "round": 0,
+ "score": {
+  "sentences": 16,
+  "and_then_pairs": 4,
+  "unset_terms": 3,
+  "choppy_runs": 0,
+  "breath_fails": 0,
+  "order": "ok"
+ },
+ "reasons": [
+  "Chain 5-6, 7-8, 10-11, 12-13: and-then links (description with no tie; the neighbor jumps back in time; bare 'and'; shutdown to payout).",
+  "Set-up: 'the condemned house' new label; the bill for what; 'the same company' and 'its order' never met.",
+  "Told: the side in s15 is not said as ours."
+ ]
+}

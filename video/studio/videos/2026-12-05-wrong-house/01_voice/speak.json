@@ -2,11 +2,14 @@
  "schema": "pnf.studio.speak.v1",
  "voice": "W3pJy9ibur1FKUihVxzY",
  "model": "eleven_v4",
- "takes": "all",
+ "takes": [
+  3,
+  5
+ ],
  "settings": {
   "stability": 0.5,
   "similarity_boost": 0.7
  },
  "scriptSha256": "4dc7c2558983fcfd038470ea949efcc93a614dfcd69fb89bd91df3fdd6f954f9",
- "requestedAt": "2026-11-18T11:36:43-05:00"
+ "requestedAt": "2026-11-18T12:15:03-05:00"
 }

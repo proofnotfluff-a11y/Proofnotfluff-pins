@@ -1,21 +1,51 @@
-# Cues: <title> (v4 <format>; <date>)
+# Cues: They drove out to mow the lawn, and the house was gone (v4 told; KDFW, NBC DFW, CBS Texas, Star-Telegram, ABC News; Nov 18, 2026)
 
-music: rooms <tune>
+music: rooms night
 
-## hook "<first words>" [sfx: pop]
-Frame 0, close and settled: <the two sides and the stake, 2 to 8 words, as big as fits; two numbers against each other where the story has them>. The first change lands by 0.6 s and the picture changes again by 3 s. The spoken hook is 8 words or fewer.
+## hook "One Saturday, a couple" [sfx: pop]
+Frame 0, wide and settled: the lot, a bare grey slab where a house stood, one mailbox at the curb, trees behind. At 0.5 s a plain cut to the couple close, stunned, palms up (the first acted frame): the small label REENACTMENT up top for about 3 s. On "mow" a plain cut close on the mailbox standing alone beside the slab. On "the house was gone" back to the wide slab.
 
-## hook.turn "<words where the outcome lands>" [payoff] [sfx: stamp]
-<the outcome or the answer: by 40% of the runtime (a case uses _templates/v4-case-cues.md: the result waits for 60% or later)>
+## slab "All that was left" [sfx: blip]
+Closer on the slab and the mailbox, the lawn grown up to the edge; on "mailbox" the camera eases in on it.
 
-## how "<words>" [sfx: blip]
-<how it went, one plate per beat, a change at least every 4 s; every row written here exactly as drawn>
+## house "The house had been" [sfx: whoosh]
+A plain cut to the house as it was: small, three bedrooms, a red roof, the mailbox at the curb. On "Fort Worth" the plate: FORT WORTH, TEXAS.
 
-## why "<words>" [sfx: whoosh]
-<the reason or the rule: the owner's payoff>
+## order "The city had ordered" [sfx: blip]
+The street, wide: their house on the left, the condemned house on the right, set back in the trees.
 
-## twist "<words>" [sfx: stamp]
-<the second best fact, held back until 70% to 85% of the runtime, said aloud and shown (formats.md "v4", Level-ups)>
+## trees "That one sat back" [sfx: blip]
+Close on the condemned house in the trees, boarded; on "mailbox" closer on its faded mailbox, the number barely there.
 
-## ask "<the closing question>" [sfx: blip]
-<both sides on screen, each with its case and labeled as a kind of person the viewer knows; the caption carries the question; ends 1 s after the last word>
+## mark "and a city worker marked" [sfx: whoosh]
+A plain cut to their house, close: a city worker (a plain dark shape, no source describes them) sprays an orange X on the wall.
+
+## level "So a demolition company's" [sfx: stamp]
+The street, wide: the excavator's arm comes down on their house; the house breaks, dust flies; then rubble.
+
+## neighbor "A neighbor says" [sfx: blip]
+Behind a fence, a neighbor (a plain dark shape) on the phone; the machine's arm working beyond them.
+
+## gets "Here's the part" [sfx: pop]
+A plain cut, close: the condemned house, still standing in the trees.
+
+## bill "The condemned house was" [sfx: blip]
+The condemned house held; on "bill" a plain cut to a bill on a desk, and on "over" the plate: OVER $6,000.
+
+## closer "When the city looked" [sfx: whoosh]
+A plain cut to city hall, its flag, wide; on "found" closer on the doors.
+
+## other "one that nobody" [sfx: stamp]
+A plain cut to another lot: the same excavator knocking down a small back building.
+
+## stop "That's when the city" [sfx: stamp]
+The excavator parked and still, barrier tape across the frame.
+
+## back "None of that brought" [sfx: blip]
+The couple close at the slab again, quiet; the mailbox beside them.
+
+## end "In the end" [payoff] [sfx: stamp]
+The slab, wide; on "hundred" the plate lands: $102,500; on "city" a second row: CITY $62,500.
+
+## ask "So who should have" [sfx: blip]
+The frame splits: the city worker with the orange can on the left, the excavator on the right. On "city" the left label: CITY $62,500; on "company" the right label: COMPANY $40,000. Ends 1 s after the last word.

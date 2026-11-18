@@ -70,7 +70,7 @@ const mailbox = (P, x, y, s = 1, faded = false) => {
   P(x - 2 * s, y, 4 * s, 46 * s, INK); P(x - 1 * s, y, 2 * s, 46 * s, '#8C5A33');
   P(x - 16 * s, y - 16 * s, 32 * s, 18 * s, INK); P(x - 14 * s, y - 14 * s, 28 * s, 14 * s, faded ? '#8E949E' : '#C9CCD3');
   P(x + 10 * s, y - 22 * s, 3 * s, 10 * s, faded ? '#7A3442' : RED);
-  if (faded) { for (let i = 0; i < 4; i++) P(x - 10 * s + i * 6 * s, y - 9 * s, 3 * s, 4 * s, '#A6ABB4'); }
+  if (faded) { P(x - 14 * s, y - 14 * s, 28 * s, 14 * s, '#7E848C'); P(x - 10 * s, y - 6 * s, 8 * s, 4 * s, '#8C5A33'); P(x + 2 * s, y - 12 * s, 6 * s, 3 * s, '#6E5040'); for (let i = 0; i < 4; i++) P(x - 10 * s + i * 6 * s, y - 9 * s, 3 * s, 2 * s, '#868C94'); }
   else { for (let i = 0; i < 4; i++) P(x - 10 * s + i * 6 * s, y - 10 * s, 4 * s, 6 * s, INK); }
 };
 /* their house: a small three-bedroom house; st 'whole', 'hit' (a bite out of it), 'rubble' */
@@ -87,6 +87,8 @@ const home = (P, x, y, s = 1, st = 'whole') => {
   P(x + 62 * s, y + 26 * s, 26 * s, 44 * s, INK); P(x + 64 * s, y + 28 * s, 22 * s, 42 * s, DTEAL); P(x + 81 * s, y + 48 * s, 2 * s, 2 * s, GOLD);
   if (st === 'hit') { P(x + 96 * s, y - 24 * s, 60 * s, 94 * s, SKY); P(x + 96 * s, y + 30 * s, 60 * s, 40 * s, '#3F3A38'); for (let i = 0; i < 5; i++) P(x + (92 + i * 3) * s, y + (i * 14) * s, 6 * s, 10 * s, SAND); }
 };
+/* brush: tall weeds around a point */
+const brush = (P, x, y) => { for (let i = 0; i < 16; i++) { const h = 10 + (i * 7) % 14; P(x - 40 + i * 5, y - h, 3, h, i % 2 ? '#2F5A4A' : '#24453A'); } };
 /* the condemned house, back in the trees: boarded, sagging */
 const wreck = (P, x, y, s = 1) => {
   const w = 120 * s, h = 60 * s;
@@ -105,7 +107,13 @@ const digger = (P, x, y, s = 1, a = 0, f = -1) => {
   P(tx - 12 * s, ty - 4 * s, 24 * s, 14 * s, INK); P(tx - 10 * s, ty - 2 * s, 20 * s, 10 * s, '#6B7080'); for (let i = 0; i < 4; i++) P(tx - 9 * s + i * 6 * s, ty + 8 * s, 3 * s, 5 * s, '#9AA0AD');
 };
 /* the slab: a grey pad with the lawn grown up to it */
-const slab = (P, x, y, s = 1) => { P(x, y, 170 * s, 30 * s, INK); P(x + 3 * s, y + 3 * s, 164 * s, 24 * s, '#B8B6AE'); for (let i = 0; i < 9; i++) P(x + (8 + i * 18) * s, y + (6 + (i % 3) * 6) * s, 10 * s, 2 * s, '#9C9A92'); };
+const slab = (P, x, y, s = 1) => {   /* a foundation pad seen from the street: the top face going back in perspective, the front edge, a step, pipe stubs */
+  for (let r = 0; r < 40; r++) { const inset = Math.round((40 - r) * 0.5) * s; P(x + inset, y - (40 - r) * s, 170 * s - 2 * inset, 1 * s, r % 9 === 4 ? '#B4B2AA' : '#C9C7BF'); }
+  P(x, y - 41 * s, 170 * s, 2 * s, INK); P(x, y, 170 * s, 30 * s, INK); P(x + 3 * s, y + 3 * s, 164 * s, 24 * s, '#A8A69E');
+  P(x + 70 * s, y + 27 * s, 30 * s, 8 * s, INK); P(x + 72 * s, y + 29 * s, 26 * s, 5 * s, '#C9C7BF');
+  [[40, -26], [104, -14], [130, -32]].forEach(([a, b]) => { P(x + a * s, y + b * s, 5 * s, 9 * s, INK); P(x + (a + 1) * s, y + (b + 1) * s, 3 * s, 7 * s, '#9AA0AD'); });
+  P(x + 20 * s, y - 20 * s, 60 * s, 2 * s, '#B4B2AA'); P(x + 96 * s, y - 30 * s, 50 * s, 2 * s, '#B4B2AA');
+};
 /* the street scene: their house (left), the condemned house back in the trees (right), two mailboxes */
 const street = (k, st = 'whole', dim = 0, f = [180, 300, 1.5], armA = null, mark = 0) => {
   focus(k, f[0], f[1], f[2], (P) => {
@@ -115,7 +123,7 @@ const street = (k, st = 'whole', dim = 0, f = [180, 300, 1.5], armA = null, mark
     wreck(P, 222, 236, 0.9);
     tree(P, 246, 210, 0.8); tree(P, 300, 214, 0.75);
     if (st === 'slab') slab(P, 14, 290, 1); else home(P, 20, 240, 1, st);
-    if (mark) { const c = clamp(mark); for (let i = 0; i < Math.round(16 * c); i++) { P(56 + i * 2, 252 + i * 2.6, 5, 5, ORANGE); P(88 - i * 2, 252 + i * 2.6, 5, 5, ORANGE); } }
+    if (mark && st !== 'rubble') { const c = clamp(mark); for (let i = 0; i < Math.round(16 * c); i++) { P(56 + i * 2, 252 + i * 2.6, 5, 5, ORANGE); P(88 - i * 2, 252 + i * 2.6, 5, 5, ORANGE); } }
     mailbox(P, 150, 336, 1, false); mailbox(P, 214, 330, 0.8, true);
     P(-400, 380, 1200, 40, '#5E6470'); P(-400, 380, 1200, 3, '#4A4E5A'); for (let x = -390; x < 760; x += 50) P(x, 399, 24, 3, GOLD);
     if (armA !== null) digger(P, 170, 372, 1, armA, -1);
@@ -155,8 +163,8 @@ const couple = (k, x, sc, pose, mood, o = {}) => {
 const worker = (k, x, y, s = 1, spray = false) => { shape2(k, x, y, s); const c = k.ctx, q = (v) => Math.round(v / 3) * 3; c.fillStyle = INK; c.fillRect(q(x + 50 * s), q(y - 230 * s), q(30 * s), q(54 * s)); c.fillStyle = ORANGE; c.fillRect(q(x + 53 * s), q(y - 227 * s), q(24 * s), q(48 * s)); if (spray) { c.fillStyle = 'rgba(242,165,65,0.6)'; for (let i = 0; i < 8; i++) c.fillRect(q(x + 82 * s + i * 12), q(y - 250 * s - (i % 3) * 12), 9, 9); } };
 
 const L_CITY = {cx: 290, bg: INK, rule: TEAL}, L_CO = {cx: 795, bg: INK, rule: GOLD};
-const CITY = [['CITY', 132, CREAM], ['$62,500', 132, GOLD]], CO = [['COMPANY', 132, CREAM], ['$40,000', 132, GOLD]];
-const LOT = [110, 318, 2.1], LOTC = [110, 318, 2.6];   /* the lot (slab and mailbox), wide and close */
+const CITY = [['CITY', 132, CREAM], ['$62,500', 132, GOLD]], CO = [['COMPANY', 132, CREAM], ['+ INSURER', 132, CREAM], ['$40,000', 132, GOLD]];
+const LOT = [100, 300, 1.8], LOTC = [110, 310, 2.4];   /* the lot (slab and mailbox), wide and close */
 const lot = (k, f, dim = 0) => { focus(k, f[0], f[1], f[2], (P) => { groundW(P, 0); tree(P, 230, 190, 1.2); tree(P, -40, 196, 1.1); slab(P, 14, 290, 1); mailbox(P, 150, 336, 1, false); }); dimmer(k, dim); };
 const woods = (P) => { groundW(P, 0); tree(P, 214, 168, 1.1); tree(P, 330, 176, 1.2); tree(P, 268, 150, 0.9); wreck(P, 222, 236, 0.9); tree(P, 246, 210, 0.8); tree(P, 300, 214, 0.75); };
 
@@ -217,7 +225,7 @@ window.SCENE = {
       const t0 = k.S('trees'), tM = W(k, 'trees', /^mailbox/i, 2.2);
       k.cut(t0);
       if (T < tM) focus(k, 275, 262, 3, woods);
-      else { k.cut(tM); push(k, T, tM, () => focus(k, 214, 322, 6, (P) => { woods(P); mailbox(P, 214, 330, 0.8, true); }), 0.08, 1000); }
+      else { k.cut(tM); push(k, T, tM, () => focus(k, 214, 322, 5, (P) => { groundW(P, 0); P(150, 250, 140, 66, '#2F5A4A'); mailbox(P, 214, 330, 0.8, true); brush(P, 214, 340); }), 0.08, 1000); }
       return {host: false};
     },
     /* ---- mark: the city worker sprays an orange X on their house ---- */
@@ -225,7 +233,7 @@ window.SCENE = {
       const t0 = k.S('mark'), tM = W(k, 'mark', /^marked/i, 0.9);
       k.cut(t0);
       focus(k, 95, 278, 3.1, (P) => { groundW(P, 0); home(P, 20, 240, 1, 'whole'); const c = clamp((T - tM) / 1.2); for (let i = 0; i < Math.round(16 * c); i++) { P(56 + i * 2, 252 + i * 2.6, 5, 5, ORANGE); P(88 - i * 2, 252 + i * 2.6, 5, 5, ORANGE); } });
-      worker(k, 860, 1980, 2.3, T >= tM && T < tM + 1.3);
+      worker(k, 860, 1700, 2.2, T >= tM && T < tM + 1.3);   /* the head above the captions (render critic r0) */
       return {host: false};
     },
     /* ---- level: the arm comes down, the house breaks, dust ---- */
@@ -242,7 +250,7 @@ window.SCENE = {
       const t0 = k.S('neighbor');
       k.cut(t0);
       focus(k, 170, 330, 2.0, (P) => { groundW(P, Math.floor(T * 30)); home(P, 40, 270, 0.8, 'hit'); digger(P, 210, 330, 1.1, 0.5 + 0.4 * Math.sin(T * 3), -1); fence(P, 352); });
-      shape2(k, 300, 1980, 2.4); const c = k.ctx; c.fillStyle = INK; c.fillRect(387, 1170, 54, 105); c.fillStyle = '#5B8FB9'; c.fillRect(393, 1176, 42, 87);
+      shape2(k, 300, 1720, 2.2); const c = k.ctx; c.fillStyle = INK; c.fillRect(375, 990, 54, 105); c.fillStyle = '#5B8FB9'; c.fillRect(381, 996, 42, 87);   /* head and phone above the captions (render critic r0) */
       return {host: false};
     },
     /* ---- gets: the condemned house, still standing ---- */
@@ -263,7 +271,7 @@ window.SCENE = {
     closer: (k, T) => {
       const t0 = k.S('closer'), tF = W(k, 'closer', /^found/i, 1.8);
       k.cut(t0);
-      if (T < tF) hall(k, 0); else { k.cut(tF); const c = k.ctx; c.save(); c.translate(540, 900); c.scale(2.4, 2.4); c.translate(-540, -1120); hall(k, 0.1); c.restore(); }
+      if (T < tF) hall(k, 0); else { k.cut(tF); focus(k, 130, 320, 1.6, (P) => { groundW(P, 0); tree(P, 40, 170, 1.0); P(40, 270, 100, 50, INK); P(43, 273, 94, 47, '#B09A7C'); for (let i = 0; i < 10; i++) P(34 + i * 3, 270 - i * 2, 112 - i * 6, 2, '#5A524A'); digger(P, 250, 372, 1, 0.1 + 0.05 * Math.sin(T * 2), -1); }); }
       return {host: false};
     },
     /* ---- other: another lot, the same machine on a small back building ---- */
@@ -308,7 +316,7 @@ window.SCENE = {
       const t0 = k.S('ask'), tCi = W(k, 'ask', /^city/i, 2.3), tCo = W(k, 'ask', /^company/i, 4.7);
       k.cut(t0);
       split(k);
-      worker(k, 280, 1900, 2.3, false);
+      worker(k, 270, 1700, 2.0, false);
       digger(px(k), 250, 560, 1.6, 0.0, 1);
       if (T >= tCi) steps(k, T, [[tCi, CITY, 1]], L_CITY, 264);
       if (T >= tCo) steps(k, T, [[tCo, CO, 1]], L_CO, 264);

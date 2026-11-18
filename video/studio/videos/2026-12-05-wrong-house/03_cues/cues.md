@@ -15,7 +15,7 @@ A plain cut to the house as it was: small, three bedrooms, a red roof, the mailb
 The street, wide: their house on the left, the condemned house on the right, set back in the trees.
 
 ## trees "That one sat back" [sfx: blip]
-Close on the condemned house in the trees, boarded; on "mailbox" closer on its faded mailbox, the number barely there.
+Close on the condemned house in the trees, boarded; on "mailbox" closer on its faded, rusted mailbox in the weeds, no number readable.
 
 ## mark "and a city worker marked" [sfx: whoosh]
 A plain cut to their house, close: a city worker (a plain dark shape, no source describes them) sprays an orange X on the wall.
@@ -33,7 +33,7 @@ A plain cut, close: the condemned house, still standing in the trees.
 The condemned house held; on "bill" a plain cut to a bill on a desk, and on "over" the plate: OVER $6,000.
 
 ## closer "When the city looked" [sfx: whoosh]
-A plain cut to city hall, its flag, wide; on "found" closer on the doors.
+A plain cut to city hall, its flag, wide; on "found" a plain cut to another lot far off, a small back building and the same excavator beside it.
 
 ## other "one that nobody" [sfx: stamp]
 A plain cut to another lot: the same excavator knocking down a small back building.
@@ -48,4 +48,4 @@ The couple close at the slab again, quiet; the mailbox beside them.
 The slab, wide; on "hundred" the plate lands: $102,500; on "city" a second row: CITY $62,500.
 
 ## ask "So who should have" [sfx: blip]
-The frame splits: the city worker with the orange can on the left, the excavator on the right. On "city" the left label: CITY $62,500; on "company" the right label: COMPANY $40,000. Ends 1 s after the last word.
+The frame splits: the city worker with the orange can on the left, the excavator on the right. On "city" the left label: CITY $62,500; on "company" the right label: COMPANY + INSURER $40,000. Ends 1 s after the last word.

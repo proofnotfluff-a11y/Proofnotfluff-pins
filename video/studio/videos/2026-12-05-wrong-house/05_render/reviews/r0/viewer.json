@@ -1,0 +1,28 @@
+{
+ "pass": false,
+ "round": 0,
+ "score": {
+  "about": "A city worker marked the wrong Fort Worth house and a demo crew leveled it. The couple got $102,500, mostly from the city. Point: who should really pay, the city or the crew?",
+  "gets": "a story plus numbers I did not know, a feeling and an argument",
+  "stop": "nothing in the first 3 s; the hook lands about 4.5 to 5.5 s",
+  "watch_to_end": "yes",
+  "leave_at": "none",
+  "confused": "23.5 to 25.0 s: gray blocks off the top edge over a clean mailbox that the line says was barely readable",
+  "matches_idea": "same",
+  "comment": "yes, the company",
+  "send": "yes, a small excavation and demo owner",
+  "forecast": {
+   "stop": 3,
+   "hold": 4,
+   "finish": 4,
+   "send": 3
+  },
+  "swipe_at": "none",
+  "guessed_result": "no"
+ },
+ "reasons": [
+  "FAIL on q5 only: the faded mailbox shot.",
+  "Notes: the slab reads as a gray bar on a phone; the city hall close-up under 'another building'."
+ ],
+ "reviewer": "fresh Opus agent, two steps, Nov 18, 2026"
+}

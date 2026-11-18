@@ -1186,6 +1186,26 @@
      "at": "2026-11-17T21:31:41-05:00"
     }
    }
+  },
+  {
+   "slug": "2026-12-05-wrong-house",
+   "readyAt": "2026-11-18T13:04:50-05:00",
+   "commit": "18592f993fdd0ab7a88ee1a636df83e08d15aa5c",
+   "fingerprints": {
+    "script": "4dc7c2558983",
+    "takes": "087e71e7ec8c",
+    "words": "a35e69343779",
+    "cues": "a7b903b17771",
+    "scene": "d189d4101ccb",
+    "data": "47335f3aaa37",
+    "captions": "93c292a57e4f",
+    "mouth": "a0ee8cc5851c",
+    "runtime_kit": "e963af86df8b",
+    "runtime_player": "961e9dd986fc",
+    "runtime_looks": "0c1f257215e2",
+    "runtime_pixfont": "a8557997756e"
+   },
+   "posts": {}
   }
  ]
 }

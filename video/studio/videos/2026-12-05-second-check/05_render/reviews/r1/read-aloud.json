@@ -1,0 +1,19 @@
+{
+ "pass": false,
+ "round": 1,
+ "on": "01_voice/script.md fix round 1",
+ "score": {
+  "sentences": 16,
+  "and_then_pairs": 1,
+  "unset_terms": 0,
+  "choppy_runs": 0,
+  "breath_fails": 0,
+  "order": "ok"
+ },
+ "reasons": [
+  "Earlier fault not fixed, s7 to s8: no step says he was charged over their furnace; after 'out on bond in another county' a listener can think the deal is that county's. Rewrite s8: He got charged over their furnace, and took a deal: one year of probation.",
+  "Fixed: the stacked limit and the unset sentence; 'he' in s1; 'That fall'; 'she'; the three thousand stumble; the 'So' before the question.",
+  "Note: 'Their heat had started leaking' is odd to the ear: 'Their furnace had started leaking'."
+ ],
+ "reviewer": "fresh Opus agent, Nov 18, 2026"
+}

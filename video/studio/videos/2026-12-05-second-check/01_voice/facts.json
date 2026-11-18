@@ -1,0 +1,57 @@
+{
+ "about": "Every number and claim this lesson shows or says, with its source. A real HVAC theft case in Henry County, Indiana: the couple hired the contractor in fall 2024; WRTV Investigates reported it Feb 17, 2025, the rejected plea deal Oct 6, 2025, and the sentence Feb 9, 2026 (updated Aug 19, 2026). Every page was opened and read on Nov 18, 2026 in Todd's live chat (WebSearch, then WebFetch on the result's address). We name no person and no business. The couple's account (the 20 minutes, the pressure to write the second check) is said as theirs. The scenes are acted and labeled Reenactment once on screen; no acted lines. Not used: the retail theft case, the second company's rating, the earlier charge on a customer's accounts, the jail and bond dates in the other county, the judge's words to the lawyers.",
+ "story": {
+  "title": "Henry Co judge orders HVAC contractor to pay victims $10K or face jail time",
+  "publisher": "WRTV Investigates",
+  "date": "2026-02-09",
+  "updated": "2026-08-19",
+  "url": "https://www.wrtv.com/news/wrtv-investigates/henry-co-judge-orders-hvac-contractor-to-pay-victims-10k-or-face-jail-time",
+  "reread": "2026-11-18",
+  "what": "a couple hired an HVAC contractor a family friend recommended; he took the system apart, took $7,250 and then $3,650, and the work was never done; they paid over $8,000 to another contractor; he had about six prior convictions and was out on bond in another county; a plea deal for one year of probation was rejected by the judge; he pleaded guilty and got the maximum 2.5 years and $10,900 restitution at $750 a month, on home detention allowed, starting after Nov 2027"
+ },
+ "sources": {
+  "feb2025": {
+   "publisher": "WRTV Investigates",
+   "date": "2025-02-17",
+   "url": "https://www.wrtv.com/news/wrtv-investigates/hvac-contractor-accused-of-theft-from-henry-co-couple-while-out-on-bond-in-different-county",
+   "read": "2026-11-18"
+  },
+  "oct2025": {
+   "publisher": "WRTV Investigates",
+   "date": "2025-10-06",
+   "updated": "2026-02-09",
+   "url": "https://www.wrtv.com/news/wrtv-investigates/not-going-to-be-a-part-of-that-judge-rejects-no-prison-plea-for-hvac-contractor",
+   "read": "2026-11-18"
+  },
+  "feb2026": {
+   "publisher": "WRTV Investigates",
+   "date": "2026-02-09",
+   "updated": "2026-08-19",
+   "url": "https://www.wrtv.com/news/wrtv-investigates/henry-co-judge-orders-hvac-contractor-to-pay-victims-10k-or-face-jail-time",
+   "read": "2026-11-18"
+  }
+ },
+ "minutes": 20,
+ "minutesNote": "the couple's words: about 20 minutes of taking the furnace apart (feb2025); said as 'a couple says'",
+ "check1": 7250,
+ "check2": 3650,
+ "total": 10900,
+ "totalNote": "computed: 7,250 plus 3,650; WRTV feb2026 gives $10,900 restitution, the same figure",
+ "electricMore": 3000,
+ "electricNote": "about a day later he said an electric furnace instead of gas needed another $3,000 (feb2025); the second check they wrote was $3,650",
+ "fixedBy": 8000,
+ "fixedByNote": "more than $8,000 to another contractor (feb2025); said as 'over eight thousand'",
+ "convictions": 6,
+ "convictionsNote": "about half a dozen, 2011 to 2018 (feb2025, oct2025, feb2026); said as 'about six'",
+ "probationYears": 1,
+ "maxYears": 2.5,
+ "perMonth": 750,
+ "startYear": 2027,
+ "startNote": "on work release in another county until November 2027; the Henry County sentence cannot begin until then (feb2026)",
+ "homeDetention": "he can serve the sentence on electronic home detention (feb2026)",
+ "pray": "asked whether they will receive the restitution, the wife answered that she would pray about it (feb2026); said in our words",
+ "personWords": {
+  "couple": "the only work was about 20 minutes of taking the furnace apart (feb2025); they would not have hired him had they known (feb2025)",
+  "judge": "rejected the deal, citing a long history of dishonest crimes (oct2025)"
+ }
+}

@@ -1,0 +1,22 @@
+{
+ "pass": false,
+ "round": 0,
+ "on": "01_voice/script.md (before voice)",
+ "score": {
+  "numbers": 12,
+  "mismatches": 0
+ },
+ "reasons": [
+  "para 1: the friend recommended him, did not send him; the HVAC system leaked ('leaking heat' misleads). Fix: their heating system started leaking, and a family friend recommended him.",
+  "para 2: the furnace taken apart and the $3,000 ask are the couple's account; one attribution over the paragraph ('Here's how they tell it'); the source says 'a day or so later'.",
+  "para 3: over $8,000 to another contractor is the couple's word: 'They say they paid someone else'.",
+  "para 6: add the condition: miss payments and the judge can send him to jail (leaving it out tilts the closing question).",
+  "para 6: 'she' has no antecedent: 'the wife said she'll pray about it'."
+ ],
+ "sources_checked": [
+  "WRTV Feb 17, 2025 (via WebSearch result)",
+  "WRTV Oct 6, 2025 (via WebSearch result)",
+  "WRTV Feb 9, 2026 (via WebSearch result)"
+ ],
+ "reviewer": "fresh Opus agent, Nov 18, 2026"
+}

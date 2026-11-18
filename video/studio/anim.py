@@ -2921,9 +2921,12 @@ def script_problems(slug, send_line=None, notes=None):
     out = []
     guide = notes if notes is not None else []
     soft = guide if lesson_format(slug) in GUIDE_FORMATS else out
+    band = soft
+    if lesson_format(slug) == V4_TOLD:   # told (Todd, Nov 18): the drop-in and echo craft rules are guides (PRINCIPLES.md:
+        soft = guide                     # a rule that gets in the way of a human story gives way); its word band stays hard
     lo, hi = FORMATS[lesson_format(slug)]["words"]
     if not lo <= len(words) <= hi:
-        soft.append(f"{len(words)} spoken words ({lo} to {hi})")
+        band.append(f"{len(words)} spoken words ({lo} to {hi})")
     # Length before any voice is made (Todd, Nov 1, 2026: the lunch slot went empty; ai-night-quote was voiced long and cut
     # after). Our takes run 147 to 175 words a minute, gaps included (14 lessons, median about 159): at 160 the lesson plus
     # the end card must fit its format's top length, or it is cut before any credits are spent.
@@ -2986,7 +2989,7 @@ def cmd_script(slug):
         return
     sl = None
     sj = vdir(slug, "04_scene", "scene.js")
-    if os.path.exists(sj):
+    if os.path.exists(sj) and lesson_format(slug) != V4_TOLD:   # a told lesson has no end card, so no send line on it (Nov 15)
         m = re.search(r"sendLine:\s*'([^']*)'", open(sj, encoding="utf-8").read())
         sl = m.group(1) if m else ""
     notes = []
@@ -3839,6 +3842,8 @@ def told_selftest_cases(c):
         ("told Ending result: given at 40%", payoff_problems({"duration": 60.0, "cues": [c("a", 0), c("r", 24.0, True)]}, V4_TOLD), True),
         ("told payoff at 40% fails lint and ready", v4_static_problems(lesson(b=brief(ending="result"), pay=25.0)), True),
         ("told beats: one scene for 20 s", [x for x in v4_static_problems(lesson(pay=55.0, last=35.0)) if x.startswith("beats")], True),
+        ("told word band stays hard: 2 paragraphs twice is inside", [x for x in script_problems(lesson(TOLD_GOOD_SCRIPT + TOLD_GOOD_SCRIPT.split("\n", 2)[2], pay=55.0)) if "spoken words" in x], False),
+        ("told word band stays hard: under 110 words", [x for x in script_problems(lesson(pay=55.0)) if "spoken words" in x], True),
         ("told viewer forecast 4 and 4", told_viewer_problems({"pass": True, "score": {"forecast": {"stop": 3, "hold": 4, "finish": 4}}}), False),
         ("told viewer forecast hold 3", told_viewer_problems({"pass": True, "score": {"forecast": {"stop": 5, "hold": 3, "finish": 4}}}), True),
         ("told pick: ours kept, no stop", pick_review_problems({"pass": True, "ours": "B", "score": {"keep": "B", "stop": {"A": "s4", "B": "none"}}}), False),

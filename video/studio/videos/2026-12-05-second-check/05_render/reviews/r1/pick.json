@@ -1,0 +1,28 @@
+{
+ "pass": false,
+ "ours": "A",
+ "round": 1,
+ "on": "01_voice/script.md fix round 1 (before voice)",
+ "benchmark": "2026-12-02-took-it-back",
+ "score": {
+  "keep": "B",
+  "stop": {
+   "A": "none",
+   "B": "s24"
+  },
+  "real": {
+   "A": "The wife says she'll pray about it.",
+   "B": "His partner told police they wished they'd gone the legal route."
+  },
+  "scripted": {
+   "A": "Here's the catch.",
+   "B": "Send this to someone who'd take it back."
+  }
+ },
+ "reasons": [
+  "Kept the benchmark: the sledgehammer is a picture in two sentences, and each beat tops the last.",
+  "Ours is a good story with less pull: s4 'an electric one' comes from nowhere out loud; s5 'If you ask me' steps in when the facts were enough.",
+  "Ours, stop none: the late 2027 twist is new, the wife's line is human, the end is short.",
+  "Benchmark, stop s24: the recap repeats the opening."
+ ]
+}

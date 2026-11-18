@@ -1,0 +1,22 @@
+{
+ "pass": false,
+ "round": 0,
+ "on": "01_voice/script.md (before voice)",
+ "score": {
+  "sentences": 17,
+  "and_then_pairs": 2,
+  "unset_terms": 4,
+  "choppy_runs": 0,
+  "breath_fails": 0,
+  "order": "ok"
+ },
+ "reasons": [
+  "Chain 9-10 no link: which court, which case? Fix: Charged over the furnace, he took a deal.",
+  "Chain 13-14 a plain 'and' stacks a second limit; 'his other sentence' was never set up.",
+  "Set-up s1: 'he' before anyone is introduced: 'a contractor'.",
+  "Set-up s2: 'That fall' points back to nothing: 'One fall'.",
+  "Set-up s15: 'she' is a new person: 'the wife'.",
+  "Note: three thousand then a check for thirty-six fifty, a listener stumbles. Note: 'So' before the question claims a link that is not there."
+ ],
+ "reviewer": "fresh Opus agent, Nov 18, 2026"
+}

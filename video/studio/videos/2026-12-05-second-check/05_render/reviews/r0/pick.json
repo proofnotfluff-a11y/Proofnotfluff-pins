@@ -1,0 +1,28 @@
+{
+ "pass": false,
+ "ours": "B",
+ "round": 0,
+ "on": "01_voice/script.md (before voice)",
+ "benchmark": "2026-12-02-took-it-back",
+ "score": {
+  "keep": "A",
+  "stop": {
+   "A": "none",
+   "B": "s14"
+  },
+  "real": {
+   "A": "And there was one.",
+   "B": "Asked if they'll ever see the money, she said she'll pray about it."
+  },
+  "scripted": {
+   "A": "Send this to someone who'd take it back.",
+   "B": "Our take: if a contractor won't leave until you write the check, that's your answer."
+  }
+ },
+ "reasons": [
+  "Kept the benchmark: the sledgehammer is a picture; the small claims turn pulls to the end.",
+  "Ours: after s9 it turns into court paperwork (deal, sentence, monitor, payment plan, start date); energy drains where it should build.",
+  "Stop ours at s14: sentencing logistics with no new image or twist. s5 says three thousand more, s6's check is 3,650: a careful listener trips.",
+  "Our s1 works as a standalone hook; the story does not live up to it."
+ ]
+}

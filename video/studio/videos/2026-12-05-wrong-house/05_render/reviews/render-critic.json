@@ -1,0 +1,12 @@
+{
+ "pass": true,
+ "round": 1,
+ "score": {
+  "faults": 0
+ },
+ "reasons": [
+  "Round 0 faults fixed: the worker's and the neighbor's heads above the captions; the split-frame head clears; no X over the rubble.",
+  "Notes: a thin dark bar at the top right corner at 4.0 to 5.5 s and 28 to 31 s (outside the word zone); the 6 px landing shake on plates."
+ ],
+ "reviewer": "fresh Opus agent, Nov 18, 2026"
+}

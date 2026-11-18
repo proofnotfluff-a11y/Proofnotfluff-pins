@@ -1,0 +1,26 @@
+{
+ "schema": "pnf.trial.voice-ab.v1",
+ "requestedAt": "2026-11-18T16:08:56Z",
+ "voice": "W3pJy9ibur1FKUihVxzY",
+ "model": "eleven_v4",
+ "chars": 624,
+ "takes": [
+  {
+   "stability": 0.7,
+   "similarity_boost": 0.7,
+   "file": "stability-0.7.mp3",
+   "sha256": "b415346c897b9c4f2bda0038f30b0301e137a90f7ba1b9b0ac93c8d769bb93b8",
+   "seconds": 17.52
+  },
+  {
+   "stability": 0.5,
+   "similarity_boost": 0.7,
+   "file": "stability-0.5.mp3",
+   "sha256": "4a303a94fa209952638e1bf9c6378065552e1baf2c513551d6d4ebb73c19e9fd",
+   "seconds": 17.68
+  }
+ ],
+ "credits": {
+  "error": "TimeoutError"
+ }
+}

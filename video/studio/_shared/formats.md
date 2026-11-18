@@ -153,7 +153,7 @@ gave every lesson 3 to 29 s whatever its length; no gate score moved views (the 
 video is a short story a stranger can judge, with the owner's rule as its payoff. The sections above bind only the
 old-format lessons already made.
 
-Five formats (brief.md `- **Format:**`), each a named show with a new case every time (never a series):
+Six formats (brief.md `- **Format:**`), each a named show with a new case every time (never a series):
 | Format | What the viewer sees | Payoff for the owner |
 |---|---|---|
 | `verdict` | a real dispute between a tradesperson and a customer, acted by the cast, ending on "you decide" | the rule that prevents it |
@@ -161,6 +161,7 @@ Five formats (brief.md `- **Format:**`), each a named show with a new case every
 | `call` | a phone call as captions and two speakers, said once to be a reenactment | what to say or send |
 | `case` | a real dispute with a public result (a ruling, a sentence, a refund, a fine), told in order, the result held for the end (rules: "Case" below) | the legal route that would have paid |
 | `update` | something that changed this week that an owner can act on: what it is, the catch, the steps, on the maker's real screens with a presenter talking (rules: "Update" below) | the steps, in order, to do today |
+| `told` | a real story told whole, the way a person tells it, its shape set by what happened (rules: "Told" below); the format for every new lesson from Nov 18 | the rule, said as ours, where the story earns it |
 
 Pick the story (brief.md `- **Pull:**`, all three yes): two sides in conflict; a dollar figure; someone specific to send it
 to. Then breadth: would a tech or a homeowner stop too? An owner-only lesson is a site page, not a video. Sources: a
@@ -212,6 +213,16 @@ Update (Todd, live chat, Nov 12, 2026, 11:37 am, with a reel he sent of a home s
 - The presenter: Snow from the waist up in the lower half, talking (his mouth follows the voice), with the screen in the upper half. He points, reacts and steps aside for a full screen; he is the person in the room, since we show no face of ours.
 - Captions: the steps as a numbered list in the caption (it is what gets saved), the catch in one line, the maker's page named on the `Source:` line with the date read.
 - Facts: every feature, limit, price and step confirmed on the maker's own page or Todd's own screen that day; "beta" or "rolling out" is said aloud; nothing promised that the maker does not promise (a claimed profile is not a better ranking unless the maker says so).
+
+Told (Todd, live chat, Nov 18, 2026, 9:07 to 9:22 am, picks tapped, then "Go"; coo/DECISIONS-2026-11-18.md and coo/constitution/video.md; contract: BUILD-2026-11-18.md). Why: dead-or-150 read "very robotic, very uninteresting" to him, "very simplistic templates"; 24 text cards in 34 s. New lessons are `told` (the name `story` is taken by the old line); `invoice` and `update` are parked until they earn a place. A `told` keeps the case rules above except where this says otherwise; anim.py holds what code can count (`lint`, `ready`, `selftest`):
+- Story first: no format is picked first. The story is picked by the six answers in brief.md `- **Story test:**` (_templates/v4-brief.md), each a line from the source, and its shape follows from what happened.
+- Length: 45 to 90 s, 110 to 240 spoken words, about 150 to 165 words a minute. A cue every 6 s on average, none over 8 s apart; each a new shot, a close shot or a new place.
+- The ending, brief.md `- **Ending:** result` or `question`. `result`: the one cue marked `[payoff]` is the public result and starts at 60% of the runtime or later; nothing before it gives it away. `question`: no result is on the record, so the `[payoff]` cue is the closing question, starting at 60% or later, and the split check (two sides a fair stranger could take) holds for it only.
+- The script is written whole as speech, by _shared/storycraft.md: one person telling a friend what happened, "you" and "I", contractions, but and therefore. `anim.py readcheck` runs inside `lint` and `ready`, and at most 1 sentence in 3 is four words or fewer. A side taken is said as ours ("Our take", "I think").
+- Facts marks lines; a marked line is rewritten in the same voice with what the source does say, never just cut (a cut leaves a hole the listener falls into).
+- Acted scenes: a small "Reenactment" label on the first acted frame, on screen only, never spoken and never in script.md (anim.py fails the word there). Acted lines only where facts.json holds that person's own reported words; otherwise the narrator tells it.
+- Cards only for numbers, names and the label; the people act it out (Part B adds the actions).
+- Gates: qa, facts, read-aloud (on script.md before the voice), pick (prompts/pick.md, against the benchmark), render-critic, viewer (a forecast under 4 for hold or finish fails, on trial). The first `told` lesson goes to Todd to watch before it posts.
 
 Gates, in order (prompts/README.md "v4"): facts on script.md before any voice; after the render: render critic, viewer,
 then facts once more on the transcript, screen and captions. Two fix rounds a gate at most, then shelve it.

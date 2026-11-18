@@ -25,3 +25,9 @@ Do not edit files. JSON only: {"pass": bool, "score": {"sentences": n, "and_then
 
 The local model (tools/local_job.py, kind read-aloud, workhorse) runs this same check as a pre-check first on every round from
 Nov 6, 2026 (_shared/local.md, rung 2); this Opus gate runs once the local check passes, and this gate decides.
+
+A `told` lesson (Todd, live chat, Nov 18, 2026, 9:20 am: "Go"; formats.md "Told"; BUILD-2026-11-18.md step 5): this gate
+runs on V/01_voice/script.md before any voice is made, after `anim.py script` passes (its readcheck counts and the 1 in 3
+short sentence rule are code's, so this gate does not count them again). It also checks: a side taken is said as ours;
+the script never says "Reenactment" (that is an on-screen label); an acted line sounds like that person, not the narrator.
+Results go to V/05_render/reviews/read-aloud.json; `anim.py ready` needs its PASS.

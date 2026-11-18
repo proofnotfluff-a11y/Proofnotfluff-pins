@@ -614,6 +614,9 @@ def cmd_estimate(slug):
 # voice (request locally, run in the Studio voice workflow)
 
 def cmd_speak(slug, takes=None, voice=None):
+    tp = told_problems(slug) if lesson_format(slug) == V4_TOLD else []
+    if tp:   # no credits on a script the told checks fail
+        raise SystemExit("ERROR speak: run `anim.py script " + slug + "`; the told checks fail: " + "; ".join(tp)[:400])
     tk = takes_of(slug)
     chars = sum(len(t) for t in tk)
     if chars > MAX_CHARS:
@@ -1531,6 +1534,8 @@ def gates_for(slug):
 
 
 def _gates_for(slug):
+    if lesson_format(slug) == V4_TOLD:   # Todd, Nov 18, 9:20 am: "Go" (BUILD-2026-11-18.md step 4)
+        return V4_TOLD_GATES
     if lesson_format(slug) in V4_FORMATS:   # Todd, Nov 9, 2:11 pm: four gates, each with a reason (formats.md "v4")
         return V4_GATES
     if lesson_format(slug) == "short":
@@ -1599,6 +1604,11 @@ def cmd_ready(slug, first=False, not_before=None):
     if "viewer" in gates_for(slug):   # Todd, Nov 8, 10:11 pm: the viewer gate's PASS must agree with its own answers
         vf = os.path.join(rev, "viewer.json")
         bad += [f"viewer: {x}" for x in viewer_review_problems(json.load(open(vf)) if os.path.exists(vf) else None)]
+        if lesson_format(slug) == V4_TOLD:   # Todd, Nov 18: the forecast rule, on trial
+            bad += [f"viewer: {x}" for x in told_viewer_problems(json.load(open(vf)) if os.path.exists(vf) else None)]
+    if "pick" in gates_for(slug):   # the pick gate's PASS must agree with its own answers (prompts/pick.md)
+        pf = os.path.join(rev, "pick.json")
+        bad += [f"pick: {x}" for x in pick_review_problems(json.load(open(pf)) if os.path.exists(pf) else None)]
     if lesson_format(slug) == "proven":   # Todd, Nov 7, 12:08 pm: the copy check runs again on the files being pinned
         bad += [f"copy: {x}" for x in proven_problems(slug)[0]]
     if bad:
@@ -1930,7 +1940,16 @@ BREATH_WORDS = 32
 def cmd_readcheck(slug, which=""):
     """script.md by default (before the voice); `readcheck <slug> transcript` after it. Exit 1 on a fault."""
     f = vdir(slug, "02_transcript", "transcript.md") if which == "transcript" else vdir(slug, "01_voice", "script.md")
-    sents = _sentences(open(f, encoding="utf-8").read())
+    out = readcheck_report(open(f, encoding="utf-8").read(), os.path.relpath(f, VIDEOS))
+    print(json.dumps(out, indent=1, ensure_ascii=False))
+    if not out["pass"]:
+        raise SystemExit(1)
+
+
+def readcheck_report(text, name=""):
+    """The read-aloud counts on a script's text: breath (over BREATH_WORDS), choppy runs (3 or more sentences of 1 to 4
+    words), "and then" starts. Used by `readcheck`, and by lint and ready for a told lesson."""
+    sents = _sentences(text)
     n = [len(x.split()) for x in sents]
     breath = [(i + 1, x) for i, x in enumerate(sents) if n[i] > BREATH_WORDS]
     choppy, i = [], 0
@@ -1942,15 +1961,13 @@ def cmd_readcheck(slug, which=""):
             choppy.append((i + 1, " / ".join(sents[i:j])))
         i = max(j, i + 1)
     andthen = [(i + 1, x) for i, x in enumerate(sents) if re.match(r"(?i)^(and then|and so then|then)\b", x)]
-    out = {"words": os.path.relpath(f, VIDEOS), "sentences": len(sents), "breath_fails": len(breath),
+    out = {"words": name, "sentences": len(sents), "breath_fails": len(breath),
            "choppy_runs": len(choppy), "and_then_starts": len(andthen),
            "faults": [f"breath s{i} ({len(x.split())} words): {x[:90]}" for i, x in breath] +
                      [f"choppy from s{i}: {x[:90]}" for i, x in choppy] +
                      [f"and-then s{i}: {x[:90]}" for i, x in andthen]}
     out["pass"] = not out["faults"]
-    print(json.dumps(out, indent=1, ensure_ascii=False))
-    if not out["pass"]:
-        raise SystemExit(1)
+    return out
 
 
 # Words that already passed are not re-judged (same Todd word): when the story gate passes on script.md, `storysnap`
@@ -2811,7 +2828,20 @@ FORMATS[V4_CASE] = {"min_seconds": 55.0, "max_seconds": 95.0, "words": (120, 240
 # first step by 40% like any answer, and the picture keeps changing like a case.
 V4_UPDATE = "update"
 FORMATS[V4_UPDATE] = {"min_seconds": 45.0, "max_seconds": 90.0, "words": (110, 230)}
-V4_FORMATS = V4_SHORT | {V4_CASE, V4_UPDATE}
+# told (Todd, live chat, Nov 18, 2026, 9:07 to 9:22 am, picks tapped, then "Go": "45 to 90 s (Recommended)", "On-screen tag
+# only (Recommended)", "Story first (Recommended)", the split check "Yes, only for open endings (Recommended)";
+# coo/DECISIONS-2026-11-18.md; video/studio/BUILD-2026-11-18.md; formats.md "Told"). He found dead-or-150 "very robotic,
+# very uninteresting": a story told whole, the way a person tells it, its shape set by what happened. The case rules hold
+# (the beats, the held payoff) plus the story test, the Ending line, readcheck in lint and ready, at most 1 sentence in 3
+# of four words or fewer, no "Reenactment" in the spoken script, and two more gates (read-aloud, pick).
+V4_TOLD = "told"
+FORMATS[V4_TOLD] = {"min_seconds": 45.0, "max_seconds": 90.0, "words": (110, 240)}
+V4_FORMATS = V4_SHORT | {V4_CASE, V4_UPDATE, V4_TOLD}
+V4_HELD = {V4_CASE, V4_TOLD}   # the [payoff] cue starts at V4_CASE_PAYOFF_FROM or later
+V4_TOLD_GATES = ("qa", "facts", "read-aloud", "pick", "render-critic", "viewer")
+TOLD_ROWS = 12              # the story test: claims rows in brief.md's table
+TOLD_SHORT = (4, 1 / 3)     # a sentence of this many words or fewer is short; at most this share of sentences
+TOLD_FORECAST = 4           # viewer (on trial, Nov 18): a told PASS needs a forecast of 4 or more for hold and finish
 V4_BEAT_FORMATS = {V4_CASE, V4_UPDATE}   # the beat rule (beat_problems) holds for these
 V4_CASE_PAYOFF_FROM = 0.60   # a case: the cue marked [payoff] starts at or after this share of the runtime
 V4_CASE_GAP = 8.0            # a case: the longest stretch between two cue starts
@@ -2968,6 +2998,8 @@ def cmd_script(slug):
         hn = script_hook_words("\n".join(ln for ln in open(sp, encoding="utf-8").read().splitlines() if not ln.lstrip().startswith(("#", "<!--", ">")))) if os.path.exists(sp) else 0
         if hn > HOOK["words"][1]:
             bad.append(f"the spoken hook is {hn} words (12 or fewer by 3.6 s for a proven lesson; {PROVEN_HOOK_NOTE})")
+    if lesson_format(slug) == V4_TOLD:   # before any voice (Todd, Nov 18; BUILD-2026-11-18.md step 4)
+        bad += told_problems(slug)
     takes = takes_of(slug)
     nw = sum(len(spoken_words(tk)) for tk in takes)
     for x in notes:
@@ -3742,6 +3774,82 @@ def cmd_selftest():
     v4_selftest()
 
 
+TOLD_GOOD_SCRIPT = """# Script: planted (told)
+
+[conversational] She paid the first half of a forty-two hundred dollar kitchen job, but the counters showed up cracked.
+She told the installer she would hold the rest until someone fixed them. He told her the crack was in the stone, not his work.
+So he packed his tools and left the job half done. That's when it got worse, because she hired a second crew to finish it.
+
+The second crew found the cabinets were never screwed to the wall. She took him to small claims court for the full bill.
+The judge heard both sides in under an hour. Who was right?
+"""
+
+
+def told_selftest_cases(c):
+    """Planted cases for the told checks (Todd, Nov 18; BUILD-2026-11-18.md step 4): one must fail, one must pass, for each."""
+    import tempfile
+    rows = lambda n: "".join(f"| claim {i} | source {i} | https://example.org/{i} |\n" for i in range(n))
+    def brief(n=12, ending="question", drop=None, money="$4,200", six=None):
+        ans = {1: "An act a stranger can picture: he packed his tools and walked off the job",
+               2: "Worse at least twice: the counters cracked; then the cabinets were never screwed in",
+               3: "Two people the viewer can tell apart: the homeowner and the installer",
+               4: f"A dollar figure: {money}", 5: "An ending: the judge heard both sides, the source gives no ruling",
+               6: f"Claims: {n if six is None else six} rows in the table below"}
+        lines = "".join(f"  {k}. {v}.\n" for k, v in ans.items() if k != drop)
+        return (f"# Brief: planted\n\n- **Format:** told\n- **Story test:** each a line from the source.\n{lines}"
+                f"- **Ending:** {ending}\n- **Shape:** in order.\n\n## Claims and their sources\n| Claim | Source | URL |\n|---|---|---|\n{rows(n)}\n## Numbers\n")
+    chop = TOLD_GOOD_SCRIPT.replace("The judge heard both sides in under an hour.", "The judge listened. Both sides talked. It was quick.")
+    shorty = TOLD_GOOD_SCRIPT.replace("She took him to small claims court for the full bill.", "She sued. He shrugged at that.").replace(
+        "The second crew found the cabinets were never screwed to the wall.", "Cabinets were loose.")
+    made = []
+    def lesson(script=TOLD_GOOD_SCRIPT, b=None, pay=40.0, dur=60.0, last=55.0):
+        d = tempfile.mkdtemp(prefix="told-selftest-"); made.append(d)
+        for sub in ("01_voice", "03_cues", "05_render"):
+            os.makedirs(os.path.join(d, sub))
+        open(os.path.join(d, "01_voice", "brief.md"), "w").write(b or brief())
+        open(os.path.join(d, "01_voice", "script.md"), "w").write(script)
+        cs = [c(str(i), 5.0 * i) for i in range(int(last // 5) + 1) if abs(5.0 * i - pay) > 1e-6]
+        cs.append(c("pay", pay, True))
+        json.dump({"duration": dur, "cues": sorted(cs, key=lambda x: x["t"])}, open(os.path.join(d, "03_cues", "cues.json"), "w"))
+        return d
+    good = lesson(pay=55.0)
+    out = [
+        ("told band is 45 to 90 s, 110 to 240 words", [] if FORMATS[V4_TOLD] == {"min_seconds": 45.0, "max_seconds": 90.0, "words": (110, 240)} and V4_TOLD in V4_FORMATS else [1], False),
+        ("told band: 60 s inside", [] if length_band(good)[0] <= 60.0 <= length_band(good)[1] else [1], False),
+        ("told band: 95 s outside", [] if length_band(good)[0] <= 95.0 <= length_band(good)[1] else [1], True),
+        ("told band: 40 s outside", [] if length_band(good)[0] <= 40.0 <= length_band(good)[1] else [1], True),
+        ("told gates for a told lesson", [] if gates_for(good) == V4_TOLD_GATES else [gates_for(good)], False),
+        ("told story test: six answers, 12 rows", story_test_problems(brief()), False),
+        ("told story test: 11 rows", story_test_problems(brief(11)), True),
+        ("told story test: answer 2 missing", story_test_problems(brief(drop=2)), True),
+        ("told story test: no dollar figure", story_test_problems(brief(money="a lot")), True),
+        ("told story test: answer 6 miscounts the rows", story_test_problems(brief(13, six=12)), True),
+        ("told story test: the blank template", story_test_problems(open(os.path.join(HERE, "_templates", "v4-brief.md"), encoding="utf-8").read()), True),
+        ("told readcheck in lint and ready: a good script", v4_static_problems(good), False),
+        ("told readcheck in lint and ready: a choppy run", v4_static_problems(lesson(chop, pay=55.0)), True),
+        ("told short sentences: 2 of 9", [x for x in told_script_problems(TOLD_GOOD_SCRIPT) if "words or fewer" in x], False),
+        ("told short sentences: 4 of 10", [x for x in told_script_problems(shorty) if "words or fewer" in x], True),
+        ("told Reenactment: not in the script", [x for x in told_script_problems(TOLD_GOOD_SCRIPT) if "Reenactment" in x], False),
+        ("told Reenactment: spoken", [x for x in told_script_problems(TOLD_GOOD_SCRIPT.replace("He told her", "Reenactment. He told her")) if "Reenactment" in x], True),
+        ("told Ending question: ends on the question, payoff last", ending_problems(brief(), TOLD_GOOD_SCRIPT, {"duration": 60.0, "cues": [c("a", 0), c("q", 50.0, True)]}), False),
+        ("told Ending question: ends on a statement", ending_problems(brief(), TOLD_GOOD_SCRIPT.replace("Who was right?", "Nobody won."), None), True),
+        ("told Ending question: payoff not the last cue", ending_problems(brief(), TOLD_GOOD_SCRIPT, {"duration": 60.0, "cues": [c("a", 0), c("q", 40.0, True), c("b", 50.0)]}), True),
+        ("told Ending line missing", ending_problems(brief().replace("- **Ending:** question\n", ""), TOLD_GOOD_SCRIPT), True),
+        ("told Ending result: held to 70%", payoff_problems({"duration": 60.0, "cues": [c("a", 0), c("r", 42.0, True)]}, V4_TOLD), False),
+        ("told Ending result: given at 40%", payoff_problems({"duration": 60.0, "cues": [c("a", 0), c("r", 24.0, True)]}, V4_TOLD), True),
+        ("told payoff at 40% fails lint and ready", v4_static_problems(lesson(b=brief(ending="result"), pay=25.0)), True),
+        ("told beats: one scene for 20 s", [x for x in v4_static_problems(lesson(pay=55.0, last=35.0)) if x.startswith("beats")], True),
+        ("told viewer forecast 4 and 4", told_viewer_problems({"pass": True, "score": {"forecast": {"stop": 3, "hold": 4, "finish": 4}}}), False),
+        ("told viewer forecast hold 3", told_viewer_problems({"pass": True, "score": {"forecast": {"stop": 5, "hold": 3, "finish": 4}}}), True),
+        ("told pick: ours kept, no stop", pick_review_problems({"pass": True, "ours": "B", "score": {"keep": "B", "stop": {"A": "s4", "B": "none"}}}), False),
+        ("told pick: theirs kept", pick_review_problems({"pass": True, "ours": "B", "score": {"keep": "A", "stop": {"A": "none", "B": "none"}}}), True),
+        ("told pick: ours stopped at s6", pick_review_problems({"pass": True, "ours": "A", "score": {"keep": "tie", "stop": {"A": "s6", "B": "none"}}}), True),
+    ]
+    for d in made:
+        shutil.rmtree(d, ignore_errors=True)
+    return out
+
+
 def v4_selftest():
     """Planted cases for the v4 checks (payoff by 40%, no hold over 4 s, the gate list, the band): bad ones caught, good ones pass."""
     c = lambda i, t, pay=False: dict({"id": i, "t": t, "level": 0}, **({"payoff": True} if pay else {}))
@@ -3759,7 +3867,8 @@ def v4_selftest():
         ("v4 a plate that drops out for one frame", flicker_problems(["A|B"] * 5 + ["A"] + ["A|B"] * 5), True),
         ("v4 a plate that drops out for two frames", flicker_problems(["A|B"] * 5 + ["A", "A"] + ["A|B"] * 5), True),
         ("v4 a real change is not a flicker", flicker_problems(["A"] * 5 + ["A|B"] * 5 + ["C"] * 5), False),
-        ("v4 gates are qa, facts, render-critic, viewer", list(V4_GATES) != ["qa", "facts", "render-critic", "viewer"], False),
+        ("v4 gates are qa, facts, render-critic, viewer; told adds read-aloud and pick", list(V4_GATES) != ["qa", "facts", "render-critic", "viewer"]
+         or list(V4_TOLD_GATES) != ["qa", "facts", "read-aloud", "pick", "render-critic", "viewer"], False),
         ("v4 band is 18 to 35 s", [1] if any((FORMATS[f]["min_seconds"], FORMATS[f]["max_seconds"]) != (18.0, 35.0) for f in V4_SHORT) else [], False),
         ("v4 case band is 55 to 95 s", [1] if (FORMATS[V4_CASE]["min_seconds"], FORMATS[V4_CASE]["max_seconds"]) != (55.0, 95.0) or V4_CASE not in V4_FORMATS else [], False),
         ("v4 update band is 45 to 90 s, beats held", [1] if (FORMATS[V4_UPDATE]["min_seconds"], FORMATS[V4_UPDATE]["max_seconds"]) != (45.0, 90.0) or V4_UPDATE not in V4_FORMATS or V4_BEAT_FORMATS != {V4_CASE, V4_UPDATE} else [], False),
@@ -3775,7 +3884,7 @@ def v4_selftest():
         ("v4 labels: Meta and TikTok on, YouTube off", [1] if V4_LABELS != {"instagram": ("aiLabel", True), "facebook": ("aiLabel", True), "tiktok": ("aiGenerated", True), "youtube": ("aiUse", False)} else [], False),
         ("1 a day from its date: day before keeps 3", [] if per_day_ceiling({"perDay": 3, "perDayFrom": {"from": "2026-11-10", "perDay": 1}}, dt.date(2026, 11, 9)) == 3 else [1], False),
         ("1 a day from its date: that day caps at 1", [] if per_day_ceiling({"perDay": 3, "perDayFrom": {"from": "2026-11-10", "perDay": 1}}, dt.date(2026, 11, 10)) == 1 else [1], False),
-    ]
+    ] + told_selftest_cases(c)
     right = 0
     for name, probs, want_bad in cases:
         ok = bool(probs) == want_bad
@@ -4441,10 +4550,10 @@ def payoff_problems(cues, fmt=None):
     if len(ps) != 1:
         return [f"{len(ps)} cues marked [payoff] in cues.md (exactly 1: the cue where the outcome or the answer lands)"]
     t, dur = float(ps[0]["t"]), float(cues["duration"])
-    if fmt == V4_CASE:
+    if fmt in V4_HELD:
         return [] if t >= V4_CASE_PAYOFF_FROM * dur - 1e-6 else [
-            f"the payoff cue '{ps[0]['id']}' starts at {t:.1f} s of {dur:.1f} s ({100 * t / dur:.0f}%; a case holds the result "
-            f"until {100 * V4_CASE_PAYOFF_FROM:.0f}% or later)"]
+            f"the payoff cue '{ps[0]['id']}' starts at {t:.1f} s of {dur:.1f} s ({100 * t / dur:.0f}%; a {fmt} holds the "
+            f"result or the closing question until {100 * V4_CASE_PAYOFF_FROM:.0f}% or later)"]
     return [] if t <= V4_PAYOFF_BY * dur + 1e-6 else [f"the payoff cue '{ps[0]['id']}' starts at {t:.1f} s of {dur:.1f} s ({100 * t / dur:.0f}%; by {100 * V4_PAYOFF_BY:.0f}%)"]
 
 
@@ -4463,6 +4572,122 @@ def beat_problems(cues):
         g, at = max(gaps)
         if g > V4_CASE_GAP + 1e-6:
             out.append(f"{g:.1f} s with no new cue from {at:.1f} s ({V4_CASE_GAP:.0f} s or less: add a shot change, a close shot or a new place)")
+    return out
+
+
+STORY_TEST = re.compile(r"(?ims)^- \*\*Story test:\*\*(.*?)(?=^- \*\*|^## |\Z)")
+ENDING_LINE = re.compile(r"(?im)^- \*\*Ending:\*\*\s*`?([a-z]+)")
+STORY_TEST_ITEMS = {1: "an act a stranger can picture", 2: "worse at least twice", 3: "two people the viewer can tell apart",
+                    4: "a dollar figure", 5: "an ending", 6: f"{TOLD_ROWS} or more claims rows"}
+
+
+def claims_rows(brief):
+    """Filled rows in brief.md's '## Claims and their sources' table (no header, no rule, no <placeholder>)."""
+    m = re.search(r"(?ms)^## Claims and their sources\s*$(.*?)(?=^## |\Z)", brief)
+    rows = [ln for ln in (m.group(1).splitlines() if m else []) if ln.strip().startswith("|")]
+    return len([r for r in rows[1:] if not re.match(r"^\|[\s|:-]+\|?\s*$", r) and "<" not in r and r.strip("| ").strip()])
+
+
+def story_test_problems(brief):
+    """told: brief.md's '- **Story test:**' holds six answers, each a line from the source (BUILD-2026-11-18.md step 3), and
+    the claims table has TOLD_ROWS or more rows."""
+    m = STORY_TEST.search(brief)
+    if not m:
+        return ["brief.md has no '- **Story test:**' block (six answers, each a line from the source; _templates/v4-brief.md)"]
+    ans = {int(n): a.strip() for n, a in re.findall(r"(?m)^\s*([1-6])\.\s*(.*)$", m.group(1))}
+    out = []
+    for k, what in STORY_TEST_ITEMS.items():
+        a = ans.get(k, "")
+        body = a.split(":", 1)[1].strip() if ":" in a else a
+        if "<" in a or len(body.split()) < (1 if k in (4, 6) else 3):
+            out.append(f"story test {k} ({what}) is not answered from the source")
+        elif k == 4 and not re.search(r"\$\s?\d", body):
+            out.append("story test 4 names no dollar figure")
+    rows = claims_rows(brief)
+    if rows < TOLD_ROWS:
+        out.append(f"{rows} claims rows in brief.md ({TOLD_ROWS} or more: a story too thin to check is too thin to tell)")
+    said = re.search(r"\d+", ans.get(6, "").split(":", 1)[-1])
+    if said and int(said.group(0)) != rows:
+        out.append(f"story test 6 says {said.group(0)} claims rows, the table has {rows}")
+    return out
+
+
+def ending_problems(brief, script_text, cues=None):
+    """told: '- **Ending:** result' holds the public result to 60% or later; 'question' ends the script on the question and
+    its [payoff] cue is the last cue, also at 60% or later (payoff_problems holds the 60%)."""
+    m = ENDING_LINE.search(brief)
+    if not m or m.group(1).lower() not in ("result", "question"):
+        return ["brief.md needs '- **Ending:** result' or '- **Ending:** question'"]
+    out = []
+    sents = _sentences(script_text)
+    if m.group(1).lower() == "question":
+        if not sents or not sents[-1].rstrip().endswith("?"):
+            out.append("Ending question, but the script's last sentence is not the question: "
+                       + (sents[-1][:60] if sents else "no sentences"))
+        if cues:
+            ps = [c for c in cues.get("cues", []) if c.get("payoff")]
+            last = max((float(c["t"]) for c in cues.get("cues", [])), default=0.0)
+            if len(ps) == 1 and float(ps[0]["t"]) < last - 1e-6:
+                out.append(f"Ending question, but the payoff cue '{ps[0]['id']}' is not the last cue (the question ends it)")
+    return out
+
+
+def told_script_problems(text):
+    """told, on script.md before the voice and again in lint and ready: readcheck's faults, at most 1 sentence in 3 of four
+    words or fewer, and no "Reenactment" in the spoken words (an on-screen label only, Todd, Nov 18)."""
+    out = list(readcheck_report(text)["faults"])
+    sents = _sentences(text)
+    short = [x for x in sents if len(x.split()) <= TOLD_SHORT[0]]
+    if sents and len(short) > TOLD_SHORT[1] * len(sents) + 1e-9:
+        out.append(f"{len(short)} of {len(sents)} sentences are {TOLD_SHORT[0]} words or fewer (1 in 3 at most: "
+                   f"it reads as headlines, not talk): {' / '.join(short[:4])[:90]}")
+    spoken = "\n".join(ln for ln in text.splitlines() if not ln.lstrip().startswith(("#", "<!--", ">")))
+    if re.search(r"(?i)\bre-?enact", spoken):
+        out.append("\"Reenactment\" is in the spoken script: it is a small label on the first acted frame, never said")
+    return out
+
+
+def told_problems(slug):
+    """Every told check that reads files: the story test, the Ending line, the script checks."""
+    bp, sp, cj = vdir(slug, "01_voice", "brief.md"), vdir(slug, "01_voice", "script.md"), vdir(slug, "03_cues", "cues.json")
+    brief = open(bp, encoding="utf-8").read() if os.path.exists(bp) else ""
+    text = open(sp, encoding="utf-8").read() if os.path.exists(sp) else ""
+    cues = json.load(open(cj)) if os.path.exists(cj) else None
+    return story_test_problems(brief) + ending_problems(brief, text, cues) + told_script_problems(text)
+
+
+def told_viewer_problems(d):
+    """told, on trial from Nov 18: a viewer PASS needs a forecast of TOLD_FORECAST or more for hold and for finish."""
+    if not d or not d.get("pass"):
+        return []
+    fc = (d.get("score") or {}).get("forecast") or {}
+    out = []
+    for k in ("hold", "finish"):
+        try:
+            v = float(fc.get(k))
+        except (TypeError, ValueError):
+            v = None
+        if v is None or v < TOLD_FORECAST:
+            out.append(f"PASS but the forecast for {k} is {fc.get(k)} ({TOLD_FORECAST} or more for a told lesson, on trial)")
+    return out
+
+
+def pick_review_problems(d):
+    """pick (prompts/pick.md): a PASS needs the reader to keep ours or call a tie, with no stop before our last sentence.
+    The runner writes "ours" (A or B) into the review; the reader never knew which was ours."""
+    if not d or not d.get("pass"):
+        return []
+    sc, out = d.get("score") or {}, []
+    ours = str(d.get("ours", "")).upper()
+    if ours not in ("A", "B"):
+        return ["PASS but the review does not say which script was ours (\"ours\": \"A\" or \"B\")"]
+    if str(sc.get("keep", "")).upper() not in (ours, "TIE"):
+        out.append(f"PASS but the reader kept {sc.get('keep')} and ours was {ours}")
+    stop = str((sc.get("stop") or {}).get(ours, "")).strip().lower()
+    if stop not in ("none", "end", ""):
+        out.append(f"PASS but the reader would stop ours at {stop} (no stop before our last sentence)")
+    elif stop == "":
+        out.append("PASS but the review has no stop answer for ours")
     return out
 
 
@@ -4499,13 +4724,15 @@ def v4_static_problems(slug):
     if os.path.exists(cj):
         fmt = lesson_format(slug)
         out += payoff_problems(json.load(open(cj)), fmt)
-        if fmt in V4_BEAT_FORMATS:
+        if fmt in V4_BEAT_FORMATS or fmt == V4_TOLD:
             out += [f"beats: {x}" for x in beat_problems(json.load(open(cj)))]
     if os.path.exists(vdir(slug, "05_render", "captions.json")):
         out += [f"captions: {x}" for x in captions_v4_problems(slug)]
     sj = vdir(slug, "04_scene", "scene.js")
     if os.path.exists(sj):
         out += [f"moves: {x}" for x in move_problems(open(sj, encoding="utf-8").read())]
+    if lesson_format(slug) == V4_TOLD:   # readcheck inside lint and ready (Todd, Nov 18; BUILD-2026-11-18.md step 4)
+        out += [f"told: {x}" for x in told_problems(slug)]
     return out
 
 
@@ -4575,7 +4802,7 @@ def lint_v4(slug, step=0.25):
         print("NOTE lint v4 (a guide, not a gate): " + x)
     print("hook: " + json.dumps(hook))
     print("\n".join(errors) if errors else f"lint: PASS v4 0 layout problems ({cues['duration']:.1f} s at {step} s steps); first change {hook['first_change']} s, "
-          f"{hook['changes_by_3s']} by 3 s; payoff {('from %d%%' % (100 * V4_CASE_PAYOFF_FROM)) if lesson_format(slug) == V4_CASE else ('by %d%%' % (100 * V4_PAYOFF_BY))}; no hold over {V4_HOLD_MAX:.0f} s")
+          f"{hook['changes_by_3s']} by 3 s; payoff {('from %d%%' % (100 * V4_CASE_PAYOFF_FROM)) if lesson_format(slug) in V4_HELD else ('by %d%%' % (100 * V4_PAYOFF_BY))}; no hold over {V4_HOLD_MAX:.0f} s")
     if errors:
         sys.exit(1)
 

@@ -56,6 +56,11 @@ lessons that earned 1 share between them, and one lesson burned 24 script rounds
   for a blocker (a wrong fact, hidden or unreadable words, a broken frame, the message lost). Still failing after 2: shelve
   the lesson (`anim.py shelve`) and take the next story. Faults go in LEARNINGS.md.
 - No design, send, story, copy, buyer or golden gate on a v4 lesson.
+- told (Todd, live chat, Nov 18, 2026, 9:20 am: "Go"; formats.md "Told"; BUILD-2026-11-18.md): six gates, in this order:
+  qa is `anim.py script` (its told checks) then `check` after the render; facts on script.md; read-aloud on script.md
+  (read-aloud.md, a told paragraph) before any voice; pick (pick.md) on script.md before any voice; after the render
+  render-critic, viewer (forecast under 4 for hold or finish fails, on trial), facts once more. A line facts marks is
+  rewritten in the same voice, never just cut.
 
 ## Smoother line (Todd, live chat, Nov 6, 2026, 7:14 pm: "Go with your recommendations for all")
 Why: on Nov 6 four runs queued 0 new lessons. Every round a new reviewer judged from scratch and found something new, so

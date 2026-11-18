@@ -145,6 +145,30 @@
    },
    "source": "videometrics account-health.2026-11-15 (evening PC run)",
    "docId": "account-health.2026-11-15"
+  },
+  {
+   "date": "2026-11-16",
+   "readAt": "2026-11-17T02:59:05Z",
+   "platforms": {
+    "facebook": "hidden",
+    "instagram": "hidden",
+    "tiktok": 0,
+    "youtube": 0
+   },
+   "source": "videometrics account-health.2026-11-16 (evening PC run)",
+   "docId": "account-health.2026-11-16"
+  },
+  {
+   "date": "2026-11-17",
+   "readAt": "2026-11-18T02:41:00Z",
+   "platforms": {
+    "facebook": "hidden",
+    "instagram": "hidden",
+    "tiktok": 0,
+    "youtube": 0
+   },
+   "source": "videometrics account-health.2026-11-17 (evening PC run)",
+   "docId": "account-health.2026-11-17"
   }
  ]
 }

@@ -53,6 +53,60 @@
    },
    "source": "videometrics 2026-12-01-where-100-goes.2026-11-15 (evening PC run, deep read)",
    "docId": "2026-12-01-where-100-goes.2026-11-15"
+  },
+  {
+   "date": "2026-11-17",
+   "depth": "deep",
+   "readAt": "2026-11-18T02:40:00Z",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": 4,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 0,
+     "shares": 0,
+     "viewers": 13,
+     "views": 13,
+     "views3s": 4
+    },
+    "instagram": {
+     "avgWatchS": 18,
+     "comments": 0,
+     "follows": 0,
+     "likes": 26,
+     "reach": 1478,
+     "saves": 0,
+     "shares": 0,
+     "skipRate": "hidden",
+     "viewers": 1460,
+     "views": 1932,
+     "watchTimeH": 7.38
+    },
+    "tiktok": {
+     "avgWatchS": 14.65,
+     "comments": 0,
+     "likes": 5,
+     "newFollowers": 0,
+     "saves": 1,
+     "shares": 0,
+     "views": 295,
+     "watchedFullPct": 20.5
+    },
+    "youtube": {
+     "avgPctViewed": "hidden",
+     "avgViewDurationS": "hidden",
+     "comments": "hidden",
+     "likes": 0,
+     "shares": "hidden",
+     "subscribersGained": 0,
+     "viewedVsSwipedPct": 52.1,
+     "views": 46,
+     "watchTimeH": 0.1
+    }
+   },
+   "source": "videometrics 2026-12-01-where-100-goes.2026-11-17 (evening PC run, deep read)",
+   "docId": "2026-12-01-where-100-goes.2026-11-17"
   }
  ]
 }

@@ -140,6 +140,59 @@
    "note": "Meta Business Suite Content table, last 30 days Oct 13 to Nov 11; TikTok Studio per-video analytics; YouTube Studio per-Short analytics overview; YouTube views shown as 2.5K",
    "source": "videometrics 2026-11-30-turned-down-8k.2026-11-12 (evening PC run, deep read)",
    "docId": "2026-11-30-turned-down-8k.2026-11-12"
+  },
+  {
+   "date": "2026-11-16",
+   "depth": "deep",
+   "readAt": "2026-11-17T02:59:05Z",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": 8,
+     "comments": 0,
+     "follows": 0,
+     "likes": 1,
+     "saves": 0,
+     "shares": 0,
+     "viewers": 190,
+     "views": 225,
+     "views3s": 73
+    },
+    "instagram": {
+     "avgWatchS": 19,
+     "comments": 1,
+     "follows": 0,
+     "likes": 20,
+     "reach": 1069,
+     "saves": 0,
+     "shares": 0,
+     "skipRate": "hidden",
+     "viewers": 1078,
+     "views": 1415
+    },
+    "tiktok": {
+     "avgWatchS": 17.15,
+     "comments": 1,
+     "likes": 29,
+     "newFollowers": 0,
+     "saves": 1,
+     "shares": 0,
+     "views": 569,
+     "watchedFullPct": 19.4
+    },
+    "youtube": {
+     "avgPctViewed": "hidden",
+     "avgViewDurationS": "hidden",
+     "comments": "hidden",
+     "likes": 31,
+     "shares": "hidden",
+     "subscribersGained": 2,
+     "viewedVsSwipedPct": 66.9,
+     "views": 2600,
+     "watchTimeH": 11.8
+    }
+   },
+   "source": "videometrics 2026-11-30-turned-down-8k.2026-11-16 (evening PC run, deep read)",
+   "docId": "2026-11-30-turned-down-8k.2026-11-16"
   }
  ]
 }

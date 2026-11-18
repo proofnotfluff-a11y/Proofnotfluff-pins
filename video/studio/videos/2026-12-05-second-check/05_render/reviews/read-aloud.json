@@ -1,0 +1,18 @@
+{
+ "pass": true,
+ "round": 2,
+ "on": "01_voice/script.md fix round 2",
+ "score": {
+  "sentences": 14,
+  "and_then_pairs": 0,
+  "unset_terms": 0,
+  "choppy_runs": 0,
+  "breath_fails": 0,
+  "order": "ok"
+ },
+ "reasons": [
+  "Both round 1 faults fixed; none of the earlier ones came back.",
+  "Note: 'So he pleaded guilty anyway' would answer why after the deal was thrown out.",
+  "Note: 'about six' sounds unsure; 'a half dozen' if the source allows."
+ ]
+}

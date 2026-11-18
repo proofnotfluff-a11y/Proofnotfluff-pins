@@ -24,3 +24,9 @@ Read on the first 3 lessons made under these rules, at 72 h. A watch or swipe nu
 | Shares | 3 or more across the 3 lessons | 0 over 5,000 Instagram reach | 0 over 4,093 |
 - Trigger, not a bar: TikTok average watch under 35% on 2 of the 3 brings the question of a short TikTok cut back to Todd.
 - The viewer forecast rule (under 4 on hold or finish fails) is on trial: each forecast is filed beside the real result, and the rule comes out if after 6 lessons the higher forecasts do not hold better.
+
+## Build chat, Part A (Opus 5.5, from 9:38 am)
+- [stated] Todd, live chat, Nov 18, 2026, tapped on a question card after the first told script (2026-12-05-second-check) passed facts but failed read-aloud and pick twice each (Foundational 6 sends a second fail to him): "One more round (Recommended)": fix the line, make the scenes easier to picture, re-run both checks once; if the pick still loses, move to the next story.
+- [stated] Todd, same chat, tapped after hearing one paragraph of the first told script at stability 0.7 and 0.5 (research/trials/2026-11-18-voice-stability): "B, looser (Recommended)". Applied: anim.py VOICE_SETTINGS stability 0.5, similarity 0.7 unchanged; _shared/voice.md.
+- The first told lesson, 2026-12-05-second-check, is shelved on his "One more round" word: facts and read-aloud passed, the blind pick lost to the benchmark in rounds 0, 1 and 2.
+- [stated] Todd, same chat, tapped after the HVAC story was shelved: "Find a picture story (Recommended)": search today for a story built on something strange you can see, check it, then build it.

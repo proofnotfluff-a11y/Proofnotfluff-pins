@@ -1,0 +1,28 @@
+{
+ "pass": false,
+ "ours": "B",
+ "round": 2,
+ "on": "01_voice/script.md fix round 2",
+ "benchmark": "2026-12-02-took-it-back",
+ "score": {
+  "keep": "A",
+  "stop": {
+   "A": "s24",
+   "B": "s10"
+  },
+  "real": {
+   "A": "Her roommate let him and his business partner in, and filmed it.",
+   "B": "The wife says she'll pray about it."
+  },
+  "scripted": {
+   "A": "Send this to someone who'd take it back.",
+   "B": "As for him: was the max enough, or did he get off easy?"
+  }
+ },
+ "reasons": [
+  "Kept the benchmark: a contractor smashing a shower is a picture, and it keeps getting bigger.",
+  "Ours: a check and a no-show, nothing to picture; after the judge's no, the sentence logistics.",
+  "Ours stop s10: after the payoff, 'But' and a late 2027 date sound like the story fizzling.",
+  "Ours s3 and s4 long, two dollar amounts; 'to me, that second check was the tell' slows it."
+ ]
+}

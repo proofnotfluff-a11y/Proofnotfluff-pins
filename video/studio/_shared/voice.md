@@ -2,7 +2,7 @@
 
 **The voice:** Todd's own ElevenLabs voice clone (`W3pJy9ibur1FKUihVxzY`; Todd, Oct 28, 1:41 pm), made from his recording,
 cleaned. Settings (`anim.py` VOICE_SETTINGS) lean steady: "Just make me sound a bit smoother and more confident" (Todd, Oct 28,
-1:03 pm). Since Oct 30: stability 0.7, similarity 0.7, nothing else (Eleven v4 has no style or speaker boost setting). Model: Eleven v4 (`eleven_v4`). The library voice Chris (`iP95p4xoKVk53GoZ742B`) stays
+1:03 pm). Since Nov 18: stability 0.5, similarity 0.7, nothing else (Eleven v4 has no style or speaker boost setting). Todd, live chat, Nov 18, 2026, after hearing the same paragraph at 0.7 and 0.5 (research/trials/2026-11-18-voice-stability), picked "B, looser (Recommended)"; he had called the last script "very robotic". Oct 30 to Nov 18 it was 0.7. Model: Eleven v4 (`eleven_v4`). The library voice Chris (`iP95p4xoKVk53GoZ742B`) stays
 as the fallback (`speak --voice iP95p4xoKVk53GoZ742B`). AI labels: TikTok on, the rest off (Todd, Oct 31; POSTING.md); the caption carries no AI voice line (Todd, Oct 29).
 
 ## Written as talk

@@ -1,0 +1,52 @@
+{
+ "about": "Every number and claim this lesson shows or says, with its source. Fort Worth, Texas: on Jul 12, 2013 a city-hired demolition company leveled the vacant family house at one address instead of the condemned house next door; the city settled for $102,500 (Apr 22, 2014). Every page was opened and read on Nov 18, 2026 in Todd's live chat (WebSearch, then WebFetch on the result's address). We name no person and no business; the city is named. The neighbor's warning is the neighbor's account as KDFW reported it. Not used: the house's appraisal ($122,200), the other cities' cases, the program administrator by title, the owner's words.",
+ "story": {
+  "title": "Fort Worth Pays Up For Demolishing Wrong Home",
+  "publisher": "CBS Texas",
+  "date": "2014-04-22",
+  "url": "https://www.cbsnews.com/texas/news/fort-worth-pays-up-for-demolishing-wrong-home",
+  "reread": "2026-11-18"
+ },
+ "sources": {
+  "kdfw": {
+   "url": "https://www.fox13seattle.com/news/crew-accidentally-demolishes-wrong-house",
+   "read": "2026-11-18"
+  },
+  "nbc": {
+   "url": "https://www.nbcdfw.com/news/local/fort-worth-demolishes-wrong-vacant-home/1952538/?amp=1",
+   "read": "2026-11-18"
+  },
+  "ap": {
+   "url": "https://csmonitor.com/layout/set/amphtml/USA/Latest-News-Wires/2013/0718/Wrong-house-demolished-Homeowners-billed-condemned-house-still-there",
+   "read": "2026-11-18"
+  },
+  "st": {
+   "url": "https://insurancenewsnet.com/oarticle/Fort-Worth-reaches-tentative-settlement-for-tearing-down-wrong-house-a-480316",
+   "read": "2026-11-18"
+  },
+  "cbs2": {
+   "url": "https://www.cbsnews.com/dfw/news/city-of-fort-worth-demolished-wrong-building-for-a-second-time/",
+   "read": "2026-11-18"
+  },
+  "cbs3": {
+   "url": "https://www.cbsnews.com/texas/news/fort-worth-pays-up-for-demolishing-wrong-home",
+   "read": "2026-11-18"
+  },
+  "abc": {
+   "url": "https://www.goodmorningamerica.com/news/story/worth-couple-fighting-city-home-demolished-accident-20882129",
+   "read": "2026-11-18"
+  }
+ },
+ "bedrooms": 3,
+ "bill": 6000,
+ "billNote": "more than $6,000 (AP); said as 'over six thousand'",
+ "total": 102500,
+ "city": 62500,
+ "company": 15000,
+ "insurer": 25000,
+ "companyAndInsurer": 40000,
+ "companyAndInsurerNote": "computed: 15,000 plus 25,000 (Star-Telegram); CBS Texas says the contractor and its insurer pay the rest of 102,500 after 62,500",
+ "secondBuilding": "on Jul 11, 2013 the same contractor tore down living quarters behind a fire-damaged house that were not in the order (CBS Texas, Aug 22, 2013)",
+ "neighbor": "a neighbor tried to alert city officials Friday morning when crews started demolishing the wrong house (KDFW, Jul 19, 2013)",
+ "personWords": {}
+}

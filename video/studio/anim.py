@@ -75,7 +75,7 @@ LIBRARY_VOICE = "iP95p4xoKVk53GoZ742B"   # Chris, ElevenLabs library voice, the 
 # Todd, Oct 28, 1:03 pm: "Just make me sound a bit smoother and more confident". Steadier delivery, close to his timbre.
 # Eleven v4 reads only stability and similarity (ElevenLabs v4 docs: no style or speed slider). Steadier and a touch less
 # clone-tight for a natural, even delivery (Todd, Oct 30, 2026, 4:01 pm: "go with your recommendation on everything").
-VOICE_SETTINGS = {"W3pJy9ibur1FKUihVxzY": {"stability": 0.7, "similarity_boost": 0.7}}
+VOICE_SETTINGS = {"W3pJy9ibur1FKUihVxzY": {"stability": 0.5, "similarity_boost": 0.7}}   # Todd, Nov 18: "B, looser (Recommended)" (_shared/voice.md)
 MODEL = "eleven_v4"
 API = "https://api.elevenlabs.io/v1/text-to-speech/{voice}?output_format=mp3_44100_192"
 MAX_CHARS = 2400

@@ -53,5 +53,10 @@
   }
  ],
  "pass": false,
- "at": "2026-11-18T12:52:01-05:00"
+ "at": "2026-11-18T12:52:01-05:00",
+ "override": {
+  "by": "Todd, live chat, Nov 18, 2026, about 12:01 pm",
+  "words": "Post it, resume making (Recommended)",
+  "on": "the voice check's one flag (an 'and' in 'a hundred and two thousand' not heard by Whisper); the question put to him asked him to listen at 1:01; every other qa check PASS"
+ }
 }

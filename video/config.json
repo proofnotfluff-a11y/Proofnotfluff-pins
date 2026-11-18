@@ -1,7 +1,6 @@
 {
  "about": "Video engine Phase 0 settings (the MVP). Pinned by the PNF Video Engine Blueprint, MVP build spec (https://claude.ai/artifact/3ssi8yGEKVxiL7JTD87kzS); changing a value here is a logged decision in coo/DECISIONS-<date>.md, never a call made mid-run.",
  "stop": false,
- "makePaused": "Todd, live chat, Nov 18, 2026, about 9:22 am, picked \"Pause making (Recommended)\": no lesson is made the old way while the story-first rules are built (coo/DECISIONS-2026-11-18.md). Posting, recording, the number reads and the box queue go on. Remove this key when the build lands; that is the build chat's last step.",
  "stopNote": "Set false Nov 6, 2026, 7:15 am in a live chat, after Todd watched the first video made on the new line (2026-11-17-after-hours-robot, review page in coo/HANDOFF.md): \"The new video is so much better. Go with you recommendations. Let's bump to 3 posts per day. start with the one I just watched this morning.\" Earlier: set true Nov 2, 9:00 pm (\"Hold all 6\"); the 6 old-gate lessons stay held in queue.json. Set true again by any live chat that hears Todd say \"stop videos\".",
  "data": "permits/rodents-chicago/weekly.json",
  "freshDays": 8,

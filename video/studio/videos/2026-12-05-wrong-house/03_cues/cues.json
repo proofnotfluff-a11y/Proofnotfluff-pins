@@ -6,7 +6,7 @@
   "level": 0.16,
   "tune": "night"
  },
- "duration": 73.74,
+ "duration": 73.96,
  "cues": [
   {
    "id": "hook",
@@ -54,7 +54,7 @@
    "text": "The street, wide: their house on the left, the condemned house on the right, set back in the trees.",
    "t": 16.88,
    "word": 50,
-   "end": 20.86
+   "end": 20.9
   },
   {
    "id": "trees",
@@ -64,9 +64,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Close on the condemned house in the trees, boarded; on \"mailbox\" closer on its faded mailbox, the number barely there.",
-   "t": 20.86,
+   "t": 20.9,
    "word": 61,
-   "end": 25.14
+   "end": 25.38
   },
   {
    "id": "mark",
@@ -76,9 +76,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to their house, close: a city worker (a plain dark shape, no source describes them) sprays an orange X on the wall.",
-   "t": 25.14,
+   "t": 25.38,
    "word": 75,
-   "end": 28.08
+   "end": 28.2
   },
   {
    "id": "level",
@@ -88,9 +88,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The street, wide: the excavator's arm comes down on their house; the house breaks, dust flies; then rubble.",
-   "t": 28.08,
+   "t": 28.2,
    "word": 83,
-   "end": 31.16
+   "end": 31.2
   },
   {
    "id": "neighbor",
@@ -100,9 +100,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "Behind a fence, a neighbor (a plain dark shape) on the phone; the machine's arm working beyond them.",
-   "t": 31.16,
+   "t": 31.2,
    "word": 90,
-   "end": 36.4
+   "end": 36.56
   },
   {
    "id": "gets",
@@ -112,9 +112,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut, close: the condemned house, still standing in the trees.",
-   "t": 36.4,
+   "t": 36.56,
    "word": 106,
-   "end": 38.32
+   "end": 38.48
   },
   {
    "id": "bill",
@@ -124,9 +124,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The condemned house held; on \"bill\" a plain cut to a bill on a desk, and on \"over\" the plate: OVER $6,000.",
-   "t": 38.32,
+   "t": 38.48,
    "word": 112,
-   "end": 45.4
+   "end": 45.56
   },
   {
    "id": "closer",
@@ -136,9 +136,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to city hall, its flag, wide; on \"found\" closer on the doors.",
-   "t": 45.4,
+   "t": 45.56,
    "word": 133,
-   "end": 51.46
+   "end": 51.6
   },
   {
    "id": "other",
@@ -148,9 +148,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "A plain cut to another lot: the same excavator knocking down a small back building.",
-   "t": 51.46,
+   "t": 51.6,
    "word": 151,
-   "end": 53.94
+   "end": 54.1
   },
   {
    "id": "stop",
@@ -160,9 +160,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The excavator parked and still, barrier tape across the frame.",
-   "t": 53.94,
+   "t": 54.1,
    "word": 158,
-   "end": 57.2
+   "end": 57.36
   },
   {
    "id": "back",
@@ -172,9 +172,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The couple close at the slab again, quiet; the mailbox beside them.",
-   "t": 57.2,
+   "t": 57.36,
    "word": 165,
-   "end": 59.4
+   "end": 59.58
   },
   {
    "id": "end",
@@ -185,9 +185,9 @@
    "pin": null,
    "text": "The slab, wide; on \"hundred\" the plate lands: $102,500; on \"city\" a second row: CITY $62,500.",
    "payoff": true,
-   "t": 59.4,
+   "t": 59.58,
    "word": 172,
-   "end": 66.08
+   "end": 66.32
   },
   {
    "id": "ask",
@@ -197,9 +197,9 @@
    "shift": 0.0,
    "pin": null,
    "text": "The frame splits: the city worker with the orange can on the left, the excavator on the right. On \"city\" the left label: CITY $62,500; on \"company\" the right label: COMPANY $40,000. Ends 1 s after the last word.",
-   "t": 66.08,
+   "t": 66.32,
    "word": 193,
-   "end": 73.74
+   "end": 73.96
   }
  ]
 }

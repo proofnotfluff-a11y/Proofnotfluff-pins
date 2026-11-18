@@ -299,7 +299,7 @@ window.SCENE = {
     end: (k, T) => {
       const t0 = k.S('end'), tH = W(k, 'end', /^hundred/i, 1.9), tC = W(k, 'end', /^city/i, 4.8);
       k.cut(t0);
-      push(k, T, t0, () => lot(k, LOT, 0.35), 0.05, 1000);
+      { const c = k.ctx, z = 1 + 0.16 * clamp((T - t0) / 7); c.save(); c.translate(540, 1000); c.scale(z, z); c.translate(-540, -1000); lot(k, LOT, 0.35); c.restore(); }   /* a push in over the whole cue (qa: flat) */
       if (T >= tH) steps(k, T, [[tH, [['$102,500', 198, GOLD]], 1], [tC, [['$102,500', 198, GOLD], ['CITY $62,500', 132, CREAM]], 1]]);
       return {host: false};
     },

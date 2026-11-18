@@ -1328,7 +1328,6 @@
   }
  ],
  "flags": [
-  "7.8 s heard 'bear' for 'bare'",
   "dropped 'and': not heard"
  ],
  "end": 72.96,
@@ -2575,5 +2574,8 @@
    "end": 72.96,
    "p": 0.999
   }
+ ],
+ "flagsCleared": [
+  "7.8 s heard 'bear' for 'bare': a true homophone (one sound), so the audio says the script's word; cleared by hand per stages/02_transcript/CONTEXT.md, Nov 18, 2026"
  ]
 }

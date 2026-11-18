@@ -1,22 +1,22 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-12-05-wrong-house",
- "mp4Sha256": "fc83421ebbb8493c3bb50862da0bb1ea720e4a55aad84b55771169a7f4784be9",
+ "mp4Sha256": "ee13f322a7d73f700e497d314b3b7f12e474dcf26cebbfae4f5194ac961f0fb0",
  "checks": [
   {
    "name": "length",
-   "value": 73.733,
+   "value": 73.967,
    "pass": true,
-   "detail": "73.73 s (45.0 to 90.0, told lesson, end card included)"
+   "detail": "73.97 s (45.0 to 90.0, told lesson, end card included)"
   },
   {
    "name": "loudness",
    "value": {
-    "lufs": -14.2,
-    "truePeak": -3.3
+    "lufs": -14.3,
+    "truePeak": -3.1
    },
    "pass": true,
-   "detail": "-14.2 LUFS (target -14 +/- 1), true peak -3.3 dBTP (at most -1.5)"
+   "detail": "-14.3 LUFS (target -14 +/- 1), true peak -3.1 dBTP (at most -1.5)"
   },
   {
    "name": "black",
@@ -26,46 +26,32 @@
   },
   {
    "name": "frozen",
-   "value": [
-    [
-     11.2,
-     12.2333
-    ],
-    [
-     15.7667,
-     16.9
-    ]
-   ],
-   "pass": false,
-   "detail": "2 frozen stretch(es) of 1.0 s or more before the end card at 72.84 s"
+   "value": [],
+   "pass": true,
+   "detail": "0 frozen stretch(es) of 1.0 s or more before the end card at 73.06 s"
   },
   {
    "name": "flat",
-   "value": [
-    [
-     15.7,
-     16.9
-    ]
-   ],
-   "pass": false,
-   "detail": "1 flat stretch(es) of 1.2 s or more under 0.1 before the end card at 72.84 s: [[15.7, 16.9]]"
+   "value": [],
+   "pass": true,
+   "detail": "0 flat stretch(es) of 1.2 s or more under 0.1 before the end card at 73.06 s"
   },
   {
    "name": "file",
    "value": {
-    "sha256": "fc83421ebbb8493c3bb50862da0bb1ea720e4a55aad84b55771169a7f4784be9",
-    "bytes": 5356567
+    "sha256": "ee13f322a7d73f700e497d314b3b7f12e474dcf26cebbfae4f5194ac961f0fb0",
+    "bytes": 6534073
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 5.4 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 6.5 MB, decodes clean"
   },
   {
    "name": "voice",
    "value": "whisper medium.en int8, re-spelled from script.md",
    "pass": false,
-   "detail": "whisper medium.en int8, re-spelled from script.md, 2 flag(s)"
+   "detail": "whisper medium.en int8, re-spelled from script.md, 1 flag(s)"
   }
  ],
  "pass": false,
- "at": "2026-11-18T12:13:57-05:00"
+ "at": "2026-11-18T12:39:58-05:00"
 }

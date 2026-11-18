@@ -3,7 +3,6 @@
 Voice W3pJy9ibur1FKUihVxzY (eleven_v4), 214 words, 73.0 s of voice.
 
 ## Flags
-- 7.8 s heard 'bear' for 'bare'
 - dropped 'and': not heard
 
 ## Pace per take (target 160 to 195 wpm)

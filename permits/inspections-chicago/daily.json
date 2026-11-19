@@ -1,22 +1,22 @@
 {
  "product": "Chicago Restaurant Daily List",
- "asOf": "2026-11-18",
- "asOfText": "Nov 18, 2026",
- "through": "2026-11-17",
- "throughText": "Nov 17, 2026",
- "recentFrom": "2026-11-04",
+ "asOf": "2026-11-19",
+ "asOfText": "Nov 19, 2026",
+ "through": "2026-11-18",
+ "throughText": "Nov 18, 2026",
+ "recentFrom": "2026-11-05",
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-11-18T19:37:33+00:00",
-  "rowsUpdatedAt": "2026-11-18T10:24:00+00:00",
+  "fetchedAt": "2026-11-19T19:37:59+00:00",
+  "rowsUpdatedAt": "2026-11-19T10:09:59+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "pests": 3,
-  "hood": 0,
-  "places": 3
+  "pests": 8,
+  "hood": 3,
+  "places": 9
  },
  "history": [
   {
@@ -226,11 +226,19 @@
    "hood": 0,
    "places": 3,
    "withPhone": 3
+  },
+  {
+   "asOf": "2026-11-19",
+   "through": "2026-11-18",
+   "pests": 8,
+   "hood": 3,
+   "places": 9,
+   "withPhone": 4
   }
  ],
  "examples": [
   {
-   "area": "Brighton Park",
+   "area": "Humboldt Park",
    "type": "Restaurant",
    "result": "Fail",
    "trades": [
@@ -238,15 +246,16 @@
    ]
   },
   {
-   "area": "Brighton Park",
+   "area": "Chatham",
    "type": "Restaurant",
    "result": "Fail",
    "trades": [
-    "pests"
+    "pests",
+    "hood and exhaust"
    ]
   },
   {
-   "area": "Jefferson Park",
+   "area": "West Elsdon",
    "type": "Restaurant",
    "result": "Fail",
    "trades": [
@@ -256,14 +265,9 @@
  ],
  "pestByDate": [
   {
-   "date": "2026-11-04",
+   "date": "2026-11-05",
    "pests": 6,
    "restaurant": 5
-  },
-  {
-   "date": "2026-11-05",
-   "pests": 4,
-   "restaurant": 4
   },
   {
    "date": "2026-11-06",
@@ -282,8 +286,8 @@
   },
   {
    "date": "2026-11-09",
-   "pests": 2,
-   "restaurant": 1
+   "pests": 5,
+   "restaurant": 4
   },
   {
    "date": "2026-11-10",
@@ -322,35 +326,43 @@
   },
   {
    "date": "2026-11-17",
+   "pests": 3,
+   "restaurant": 3
+  },
+  {
+   "date": "2026-11-18",
    "pests": 0,
    "restaurant": 0
   }
  ],
  "pestLast7": {
-  "from": "2026-11-11",
-  "to": "2026-11-17",
-  "inspections": 7,
-  "restaurantInspections": 7,
+  "from": "2026-11-12",
+  "to": "2026-11-18",
+  "inspections": 10,
+  "restaurantInspections": 10,
   "areas": [
    "Brighton Park",
+   "Chatham",
    "Gage Park",
+   "Humboldt Park",
    "Lake View",
    "Loop",
-   "North Park"
+   "North Park",
+   "West Elsdon"
   ]
  },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
  "phones": {
-  "rows": 3,
-  "withPhone": 3,
-  "coverage": 100.0
+  "rows": 9,
+  "withPhone": 4,
+  "coverage": 44.4
  },
  "seat": {
-  "asOf": "2026-11-18",
-  "places14": 24,
-  "new": 3,
+  "asOf": "2026-11-19",
+  "places14": 26,
+  "new": 8,
   "withPhone14": 16,
-  "coverage14": 66.7,
+  "coverage14": 61.5,
   "phonesChecked": true
  }
 }

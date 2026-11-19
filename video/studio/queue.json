@@ -1189,16 +1189,16 @@
   },
   {
    "slug": "2026-12-05-wrong-house",
-   "readyAt": "2026-11-18T13:04:50-05:00",
-   "commit": "18592f993fdd0ab7a88ee1a636df83e08d15aa5c",
+   "readyAt": "2026-11-19T07:34:19-05:00",
+   "commit": "e06ff1e7186005589083e87ae4e4e4acc1fdbd4f",
    "fingerprints": {
     "script": "4dc7c2558983",
     "takes": "087e71e7ec8c",
     "words": "a35e69343779",
-    "cues": "a7b903b17771",
-    "scene": "d189d4101ccb",
+    "cues": "721066692d04",
+    "scene": "0076749bb680",
     "data": "47335f3aaa37",
-    "captions": "93c292a57e4f",
+    "captions": "2d56593809c4",
     "mouth": "a0ee8cc5851c",
     "runtime_kit": "e963af86df8b",
     "runtime_player": "961e9dd986fc",
@@ -1214,7 +1214,32 @@
      "url": "https://www.youtube.com/shorts/N-OdDa4lzVE",
      "at": "2026-11-18T21:43:00-05:00"
     }
-   }
+   },
+   "earlierCuts": [
+    {
+     "commit": "18592f993fdd0ab7a88ee1a636df83e08d15aa5c",
+     "fingerprints": {
+      "script": "4dc7c2558983",
+      "takes": "087e71e7ec8c",
+      "words": "a35e69343779",
+      "cues": "a7b903b17771",
+      "scene": "d189d4101ccb",
+      "data": "47335f3aaa37",
+      "captions": "93c292a57e4f",
+      "mouth": "a0ee8cc5851c",
+      "runtime_kit": "e963af86df8b",
+      "runtime_player": "961e9dd986fc",
+      "runtime_looks": "0c1f257215e2",
+      "runtime_pixfont": "a8557997756e"
+     },
+     "readyAt": "2026-11-18T13:04:50-05:00",
+     "postedOn": [
+      "tiktok",
+      "youtube"
+     ]
+    }
+   ],
+   "recut": "coo/DECISIONS-2026-11-19.md"
   }
  ]
 }

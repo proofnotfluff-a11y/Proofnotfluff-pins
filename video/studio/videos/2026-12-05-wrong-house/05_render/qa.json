@@ -1,7 +1,7 @@
 {
  "schema": "pnf.studio.qa.v1",
  "slug": "2026-12-05-wrong-house",
- "mp4Sha256": "621b08061d603937fd14692c13f822bc408bfded25ace640c1192066c45a4468",
+ "mp4Sha256": "080ea83ebb0d449b42594f8f88571a496306366d6a031f20b72dbbff9ddbd684",
  "checks": [
   {
    "name": "length",
@@ -39,11 +39,11 @@
   {
    "name": "file",
    "value": {
-    "sha256": "621b08061d603937fd14692c13f822bc408bfded25ace640c1192066c45a4468",
-    "bytes": 6970080
+    "sha256": "080ea83ebb0d449b42594f8f88571a496306366d6a031f20b72dbbff9ddbd684",
+    "bytes": 7571489
    },
    "pass": true,
-   "detail": "H.264 1080x1920 30 fps, AAC, 7.0 MB, decodes clean"
+   "detail": "H.264 1080x1920 30 fps, AAC, 7.6 MB, decodes clean"
   },
   {
    "name": "voice",
@@ -53,10 +53,10 @@
   }
  ],
  "pass": false,
- "at": "2026-11-18T12:52:01-05:00",
+ "at": "2026-11-19T07:22:52-05:00",
  "override": {
-  "by": "Todd, live chat, Nov 18, 2026, about 12:01 pm",
-  "words": "Post it, resume making (Recommended)",
-  "on": "the voice check's one flag (an 'and' in 'a hundred and two thousand' not heard by Whisper); the question put to him asked him to listen at 1:01; every other qa check PASS"
+  "by": "Todd, live chat, Nov 19, 2026, about 6:05 am (coo/DECISIONS-2026-11-19.md)",
+  "words": "Yes, same voice, carry it (Recommended)",
+  "on": "the voice check's one flag, the same as on Nov 18 (same voice.mp3, sha256 70322fed6998); his Nov 18 override (\"Post it, resume making\") carried to the no-label re-cut; every other qa check PASS"
  }
 }

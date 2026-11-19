@@ -1,25 +1,23 @@
 {
- "pass": true,
  "round": 1,
- "on": "after render 5: transcript, cues, scene strings, captions",
+ "on": "after render, Nov 19 re-cut fix round 1: transcript, cues, scene strings, captions",
+ "pass": true,
+ "reviewer": "fresh Opus agent, Nov 19, 2026",
  "score": {
-  "numbers": 6,
+  "numbers": 7,
   "mismatches": 0
  },
  "reasons": [
-  "Round 0 faults fixed: COMPANY + INSURER $40,000; the wire copy named in every Source line.",
-  "Script round passes (facts r1 before voice) are in r0 and r1 files.",
-  "Note: 'a hundred and two thousand' with or without 'and' is 102,500."
+  "All 8 source pages opened, none not checked. 7 numbers across voice, plates, cues and captions: 0 mismatches. No person or business named; no run of 6 or more source words (closest 'to mow the lawn', 4 words); every caption has a Source: line; no em or en dashes. Missing Reenactment label not faulted (Nov 19 rule). Nothing new rises to a blocker."
  ],
  "sources_checked": [
-  "Star-Telegram via InsuranceNewsNet",
-  "CS Monitor wire copy",
-  "CBS Texas Apr 22, 2014",
-  "NBC DFW Apr 22, 2014",
-  "CBS Texas Aug 22, 2013",
-  "KDFW via Fox 13",
-  "NBC DFW Jul 16, 2013",
-  "ABC News Nov 15, 2013"
- ],
- "reviewer": "fresh Opus agent, Nov 18, 2026"
+  "cbsnews.com/texas Apr 22, 2014: $102,500, city $62,500, contractor and insurer the rest",
+  "fox13seattle.com (KDFW) Jul 19, 2013: neighbor tried to alert city officials Friday morning; family property; clean slab",
+  "nbcdfw.com Jul 16, 2013: buildings hide in trees; mailbox address barely visible",
+  "csmonitor.com wire Jul 18, 2013: mow the lawn Saturday, home gone; three bedrooms; billed more than $6,000; condemned structure standing",
+  "insurancenewsnet.com (Star-Telegram) Mar 26, 2014: city crew marked the wrong home; slab and mailbox; city $62,500, contractor $15,000, insurer $25,000; wrong home torn down Jul 11",
+  "cbsnews.com/dfw Aug 22, 2013: second building not part of the order; city halted all demolitions",
+  "goodmorningamerica.com (ABC News) Nov 15, 2013: grandmother's home; couple planned to move in",
+  "nbcdfw.com Apr 22, 2014: city $62,500; remaining $40,000 by the contractor and the insurance company"
+ ]
 }

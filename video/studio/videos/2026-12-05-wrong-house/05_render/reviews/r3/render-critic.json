@@ -1,0 +1,28 @@
+{
+ "round": 0,
+ "pass": false,
+ "on": "Nov 19 no-label re-cut",
+ "reviewer": "fresh Opus agent, Nov 19, 2026",
+ "score": {
+  "faults": 1
+ },
+ "faults": [
+  {
+   "kind": "cutoff",
+   "at": 71.0,
+   "text": "COMPANY + INSURER $40,000",
+   "scene": "final question, split city vs company (66.33 s to end)",
+   "what": "Once settled (71.1 s to 73.97 s) the plate's dark box runs from x 522 to x 1076, past the v4 scene-word bound of x 1040 and 4 px from the right edge; it almost touches the CITY plate (x 75 to 515). Measured on a frame at 72.0 s."
+  }
+ ],
+ "reasons": [
+  "1 hook PASS (caption 'One Saturday,' at 0.0 s; no hook number).",
+  "2 numbers PASS: OVER $6,000 up from 42.3 s for 43.10 s; $102,500 up from 61.27 s for 61.04 s; three bedrooms in the caption only.",
+  "3 layout FAIL, 1 fault (above); every other plate inside x 40 to 1040 and y 250 to 1440; captions never over eyes or scene words.",
+  "Not faulted (scenery): a dark green bar cut off at the right edge (x 1060 to 1080, y 345 to 620) at 0 to 6 s and 59.6 to 61 s; a similar bar top right at 28 to 30 s; a white sliver top left at 17.0 to 17.5 s; the excavator boom cut off at the right from 66.3 s.",
+  "4 audio end PASS: last word ends 72.96 s, video 73.97 s.",
+  "5 small text and flash PASS: scene rows 65 to 68 px; closest cuts 1.67 s apart.",
+  "30 fps sweep (2219 frames): nothing vanishes; 6 px camera jumps after cuts at 28.2, 51.6, 54.1, 59.6, 64.2 s; boom wobble at 31.9, 34.0, 36.1 s. Not faulted.",
+  "static PASS: longest unchanged shot 7.6 s (66.33 to 73.97 s)."
+ ]
+}

@@ -1,12 +1,23 @@
 {
- "pass": true,
  "round": 1,
+ "pass": true,
+ "on": "Nov 19 no-label re-cut, picture fix round 1",
+ "reviewer": "fresh Opus agent, Nov 19, 2026",
  "score": {
   "faults": 0
  },
+ "faults": [],
  "reasons": [
-  "Round 0 faults fixed: the worker's and the neighbor's heads above the captions; the split-frame head clears; no X over the rubble.",
-  "Notes: a thin dark bar at the top right corner at 4.0 to 5.5 s and 28 to 31 s (outside the word zone); the 6 px landing shake on plates."
- ],
- "reviewer": "fresh Opus agent, Nov 18, 2026"
+  "Round 0 cutoff at 71.0 s FIXED: COMPANY + INSURER box x 510 to 1040, y 273 to 746 on every frame 71.4 to 73.97 s; CITY x 45 to 461; 48 px gap.",
+  "Hook: slab, mailbox and caption at 0 s; couple at 0.5 s; no hook number.",
+  "Numbers: OVER $6,000 up from 42.5 s for 43.10 s; $102,500 at 61.3 s for 61.34 s; CITY and COMPANY plates stay to the end.",
+  "Audio end: last word ends 72.96 s, video 73.967 s.",
+  "Static: longest stretch with no cut 7.6 s (66.33 to 73.97 s), new plates inside it.",
+  "Text size: rows 66 to 78 px; no flashing.",
+  "30 fps sweep, 2219 frames: nothing vanishes.",
+  "note: one-frame jitter of a few pixels on plate punches (intended).",
+  "note: caption box shadow to y 1388, over no eyes or words.",
+  "note: a pale strip at the right edge at ground level (x 1046 to 1080) at 0 to 6 s and 59.6 to 61 s, and a speck at the top right around 28 to 30 s; hide no words.",
+  "note: captions over the couple's torsos below the eyes at 0.5 to 2.0 s and 57.5 to 59.5 s (allowed)."
+ ]
 }

@@ -32,7 +32,8 @@ fresh reviewer checks before the next stage runs.
   export SLUG              a copy under 9.5 MB for posting (two-pass H.264; Chrome uploads cap at 10 MB) -> 05_render/SLUG-post.mp4
   ready SLUG               every gate passed: queue it for posting (video/studio/queue.json, fingerprints of what the gates saw)
                            --first: ahead of every lesson still waiting; --not-before <Central time>: no earlier slot takes it
-                           (Todd, live chat, Nov 8, 2026, 5:10 pm: "post tomorrow 11:37")
+                           (Todd, live chat, Nov 8, 2026, 5:10 pm: "post tomorrow 11:37"); --recut coo/DECISIONS-<day>.md:
+                           a new pin for the platforms a partly posted lesson still lacks, on Todd's word in that file
   hookb SLUG               the lesson's second opening (01_voice/hook-b.md, 03_cues/hook-b.md) -> videos/SLUG-hookb/,
                            the same lesson after the hook; asks the voice workflow for take 1 only (Instagram trial reels)
   hookready SLUG           SLUG-hookb passed its gates (HOOKB_GATES) and matches the queued lesson after the hook: pin it
@@ -1584,7 +1585,26 @@ def queue_first(items, item):
     return rest[:at] + [item] + rest[at:]
 
 
-def cmd_ready(slug, first=False, not_before=None):
+def recut_item(old, new, recut, decision_text):
+    """`ready SLUG --recut coo/DECISIONS-<day>.md` (Todd, live chat, Nov 19, 2026, 5:55 am, picked "Re-cut without the
+    label": "TikTok and YouTube keep the copy that is up"): a lesson already live on some platforms gets a new pin for the
+    platforms still missing. Only on Todd's word: the named decisions file must exist and name the lesson. The posts stay,
+    the old pin is kept under earlierCuts with the platforms it went to. Returns (item, error)."""
+    if not recut:
+        return None, f"{old['slug']} is already posted on {', '.join(old['posts'])}"
+    if not decision_text or old["slug"] not in decision_text:
+        return None, f"--recut needs Todd's word for {old['slug']} in the named coo/DECISIONS file"
+    if set(PLATFORMS) <= set(old["posts"]):
+        return None, f"{old['slug']} is up on every platform: nothing is left to re-cut"
+    item = dict(new)
+    item["posts"] = dict(old["posts"])
+    item["earlierCuts"] = list(old.get("earlierCuts", [])) + [{"commit": old.get("commit"), "fingerprints": old.get("fingerprints"),
+                                                              "readyAt": old.get("readyAt"), "postedOn": sorted(old["posts"])}]
+    item["recut"] = recut
+    return item, None
+
+
+def cmd_ready(slug, first=False, not_before=None, recut=None):
     rev = vdir(slug, "05_render", "reviews")
     bad = []
     for g in gates_for(slug):
@@ -1635,8 +1655,12 @@ def cmd_ready(slug, first=False, not_before=None):
     pos = next((n for n, i in enumerate(q["items"]) if i["slug"] == slug), None)
     if pos is None:
         q["items"].append(item)
-    elif q["items"][pos]["posts"]:   # a lesson already live anywhere keeps its pin: every platform shows the same cut
-        raise SystemExit(f"ERROR ready: {slug} is already posted on {', '.join(q['items'][pos]['posts'])}")
+    elif q["items"][pos]["posts"]:   # a lesson already live anywhere keeps its pin, unless Todd asked for a re-cut (recut_item)
+        rp = os.path.join(ROOT, recut) if recut else None
+        item, err = recut_item(q["items"][pos], item, recut, open(rp, encoding="utf-8").read() if rp and os.path.exists(rp) else "")
+        if err:
+            raise SystemExit("ERROR ready: " + err)
+        q["items"][pos] = item
     else:   # a rebuild on the newest runtime (queue rule) keeps its place in line
         q["items"][pos] = item
     if first:   # Todd's word for this lesson in a live chat: first in the waiting line
@@ -3816,6 +3840,9 @@ def told_selftest_cases(c):
         json.dump({"duration": dur, "cues": sorted(cs, key=lambda x: x["t"])}, open(os.path.join(d, "03_cues", "cues.json"), "w"))
         return d
     good = lesson(pay=55.0)
+    labelled = lesson(pay=55.0)
+    _old = {"slug": "2026-12-05-x", "commit": "a", "fingerprints": {"scene": "x"}, "readyAt": "t", "posts": {"tiktok": {"url": "u"}, "youtube": {"url": "v"}}}
+    open(os.path.join(labelled, "03_cues", "cues.md"), "w").write("## open \"x\"\nclose on the couple: the small label REENACTMENT up top\n")
     out = [
         ("told band is 45 to 90 s, 110 to 240 words", [] if FORMATS[V4_TOLD] == {"min_seconds": 45.0, "max_seconds": 90.0, "words": (110, 240)} and V4_TOLD in V4_FORMATS else [1], False),
         ("told band: 60 s inside", [] if length_band(good)[0] <= 60.0 <= length_band(good)[1] else [1], False),
@@ -3834,6 +3861,17 @@ def told_selftest_cases(c):
         ("told short sentences: 4 of 10", [x for x in told_script_problems(shorty) if "words or fewer" in x], True),
         ("told Reenactment: not in the script", [x for x in told_script_problems(TOLD_GOOD_SCRIPT) if "Reenactment" in x], False),
         ("told Reenactment: spoken", [x for x in told_script_problems(TOLD_GOOD_SCRIPT.replace("He told her", "Reenactment. He told her")) if "Reenactment" in x], True),
+        ("told no label: a clean scene, storyboard and captions", reenactment_label_problems("/* no Reenactment label (Todd, Nov 19) */\nconst a = 1; // reenactment rule\nk.say('JUDGE', 1);", "## open \"the lot\"\nwide on the lot\n<!-- no reenactment label -->", {"instagram": {"caption": "A crew tore down the wrong house.\nSource: KDFW, 2013."}}), False),
+        ("told no label: drawn in scene.js", reenactment_label_problems("const reen = (k) => plate(k, [['REENACTMENT', 132]]);", "", None), True),
+        ("told no label: asked for in cues.md", reenactment_label_problems("", "close on the couple: the small label REENACTMENT up top", None), True),
+        ("told no label: a caption line", reenactment_label_problems("", "", {"tiktok": {"caption": "Source: KDFW, 2013. The scenes are reenactments."}}), True),
+        ("told no label: a label inside a string after a comment-like URL", reenactment_label_problems("const u = 'https://x.org'; k.say('Re-enactment', 2);", "", None), True),
+        ("told no label: fails lint and ready", [x for x in v4_static_problems(labelled) if "Reenactment" in x], True),
+        ("told no label: a clean lesson passes lint and ready", [x for x in v4_static_problems(good) if "Reenactment" in x], False),
+        ("recut: no --recut keeps the pin", [recut_item(_old, {"slug": "2026-12-05-x", "commit": "b"}, None, "2026-12-05-x")[1]] if recut_item(_old, {"slug": "2026-12-05-x", "commit": "b"}, None, "2026-12-05-x")[1] else [], True),
+        ("recut: a decisions file that does not name the lesson", [recut_item(_old, {"slug": "2026-12-05-x", "commit": "b"}, "coo/D.md", "re-cut 2026-12-04-y")[1]] if recut_item(_old, {"slug": "2026-12-05-x", "commit": "b"}, "coo/D.md", "re-cut 2026-12-04-y")[1] else [], True),
+        ("recut: up on all four, nothing to re-cut", [recut_item(dict(_old, posts={p: {} for p in PLATFORMS}), {"slug": "2026-12-05-x"}, "coo/D.md", "2026-12-05-x")[1]] if recut_item(dict(_old, posts={p: {} for p in PLATFORMS}), {"slug": "2026-12-05-x"}, "coo/D.md", "2026-12-05-x")[1] else [], True),
+        ("recut: Todd's word keeps the posts and the old pin", [] if (lambda r: r[1] is None and r[0]["posts"] == _old["posts"] and r[0]["commit"] == "b" and r[0]["earlierCuts"][-1]["commit"] == "a" and r[0]["earlierCuts"][-1]["postedOn"] == ["tiktok", "youtube"])(recut_item(_old, {"slug": "2026-12-05-x", "commit": "b", "fingerprints": {}}, "coo/D.md", "re-cut 2026-12-05-x")) else [1], False),
         ("told Ending question: ends on the question, payoff last", ending_problems(brief(), TOLD_GOOD_SCRIPT, {"duration": 60.0, "cues": [c("a", 0), c("q", 50.0, True)]}), False),
         ("told Ending question: ends on a statement", ending_problems(brief(), TOLD_GOOD_SCRIPT.replace("Who was right?", "Nobody won."), None), True),
         ("told Ending question: payoff not the last cue", ending_problems(brief(), TOLD_GOOD_SCRIPT, {"duration": 60.0, "cues": [c("a", 0), c("q", 40.0, True), c("b", 50.0)]}), True),
@@ -4639,7 +4677,7 @@ def ending_problems(brief, script_text, cues=None):
 
 def told_script_problems(text):
     """told, on script.md before the voice and again in lint and ready: readcheck's faults, at most 1 sentence in 3 of four
-    words or fewer, and no "Reenactment" in the spoken words (an on-screen label only, Todd, Nov 18)."""
+    words or fewer, and no "Reenactment" in the spoken words (Todd, Nov 18: never spoken; Nov 19: never shown either)."""
     out = list(readcheck_report(text)["faults"])
     sents = _sentences(text)
     short = [x for x in sents if len(x.split()) <= TOLD_SHORT[0]]
@@ -4648,8 +4686,43 @@ def told_script_problems(text):
                    f"it reads as headlines, not talk): {' / '.join(short[:4])[:90]}")
     spoken = "\n".join(ln for ln in text.splitlines() if not ln.lstrip().startswith(("#", "<!--", ">")))
     if re.search(r"(?i)\bre-?enact", spoken):
-        out.append("\"Reenactment\" is in the spoken script: it is a small label on the first acted frame, never said")
+        out.append("\"Reenactment\" is in the spoken script: never said, never shown (Todd, Nov 19: the cartoon makes it plain)")
     return out
+
+
+REENACT = re.compile(r"(?i)\bre-?enact")
+
+
+def reenactment_label_problems(scene_js="", cues_md="", captions=None):
+    """told (Todd, live chat, Nov 19, 2026, 5:51 am: "It's clear that these videos are reenactments because they are cartoon
+    animations"; picked "Remove it everywhere"): no Reenactment label on screen, in the storyboard or in any caption.
+    JavaScript comments and storyboard comment lines may name the rule; anything that can be drawn or posted may not."""
+    out = []
+    code = re.sub(r"/\*.*?\*/", "", scene_js, flags=re.S)
+    code = re.sub(r"(?m)(^|[^:\\])//.*$", r"\1", code)
+    if REENACT.search(code):
+        out.append("scene.js draws a Reenactment label: take it out (Todd, Nov 19)")
+    board = "\n".join(ln for ln in cues_md.splitlines() if not ln.lstrip().startswith(("<!--", ">")))
+    if REENACT.search(board):
+        out.append("cues.md asks for a Reenactment label: take it out (Todd, Nov 19)")
+    def walk(v, where):
+        if isinstance(v, str):
+            if REENACT.search(v):
+                out.append(f"captions.json {where} says the scenes are reenactments: take the line out (Todd, Nov 19)")
+        elif isinstance(v, dict):
+            for k, x in v.items():
+                walk(x, f"{where}.{k}" if where else str(k))
+        elif isinstance(v, list):
+            for n, x in enumerate(v):
+                walk(x, f"{where}[{n}]")
+    walk(captions or {}, "")
+    return out
+
+
+def reenactment_files_problems(slug):
+    rd = lambda *p: open(vdir(slug, *p), encoding="utf-8").read() if os.path.exists(vdir(slug, *p)) else ""
+    cj = vdir(slug, "05_render", "captions.json")
+    return reenactment_label_problems(rd("04_scene", "scene.js"), rd("03_cues", "cues.md"), json.load(open(cj)) if os.path.exists(cj) else None)
 
 
 def told_problems(slug):
@@ -4658,7 +4731,7 @@ def told_problems(slug):
     brief = open(bp, encoding="utf-8").read() if os.path.exists(bp) else ""
     text = open(sp, encoding="utf-8").read() if os.path.exists(sp) else ""
     cues = json.load(open(cj)) if os.path.exists(cj) else None
-    return story_test_problems(brief) + ending_problems(brief, text, cues) + told_script_problems(text)
+    return story_test_problems(brief) + ending_problems(brief, text, cues) + told_script_problems(text) + reenactment_files_problems(slug)
 
 
 def told_viewer_problems(d):
@@ -5078,7 +5151,7 @@ def main():
     ap.add_argument("slug", nargs="?")
     ap.add_argument("rest", nargs="*")
     ap.add_argument("--look"); ap.add_argument("--from", dest="t_from", type=float); ap.add_argument("--to", dest="t_to", type=float)
-    ap.add_argument("--out"); ap.add_argument("--mp4"); ap.add_argument("--take", type=int, action="append"); ap.add_argument("--voice"); ap.add_argument("--first", action="store_true"); ap.add_argument("--not-before", dest="not_before")
+    ap.add_argument("--out"); ap.add_argument("--mp4"); ap.add_argument("--take", type=int, action="append"); ap.add_argument("--voice"); ap.add_argument("--first", action="store_true"); ap.add_argument("--not-before", dest="not_before"); ap.add_argument("--recut")
     a = ap.parse_args()
     c = a.cmd
     if c == "kit":
@@ -5161,7 +5234,7 @@ def main():
         cmd_posted(a.slug, a.rest[0] if len(a.rest) > 0 else "", a.rest[1] if len(a.rest) > 1 else "",
                    a.rest[2] if len(a.rest) > 2 else None)
     elif c == "ready":
-        cmd_ready(a.slug, a.first, a.not_before)
+        cmd_ready(a.slug, a.first, a.not_before, a.recut)
     elif c == "hookb":
         cmd_hookb(a.slug)
     elif c == "hookready":

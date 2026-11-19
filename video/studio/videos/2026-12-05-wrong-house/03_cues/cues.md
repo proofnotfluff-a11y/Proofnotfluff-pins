@@ -3,7 +3,7 @@
 music: rooms night
 
 ## hook "One Saturday, a couple" [sfx: pop]
-Frame 0, wide and settled: the lot, a bare grey slab where a house stood, one mailbox at the curb, trees behind. At 0.5 s a plain cut to the couple close, stunned, palms up (the first acted frame): the small label REENACTMENT up top for about 3 s. On "mow" a plain cut close on the mailbox standing alone beside the slab. On "the house was gone" back to the wide slab.
+Frame 0, wide and settled: the lot, a bare grey slab where a house stood, one mailbox at the curb, trees behind. At 0.5 s a plain cut to the couple close, stunned, palms up. On "mow" a plain cut close on the mailbox standing alone beside the slab. On "the house was gone" back to the wide slab.
 
 ## slab "All that was left" [sfx: blip]
 Closer on the slab and the mailbox, the lawn grown up to the edge; on "mailbox" the camera eases in on it.

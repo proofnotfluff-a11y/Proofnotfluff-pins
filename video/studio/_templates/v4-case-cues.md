@@ -12,7 +12,7 @@ Frame 0, close and settled: <the wrong, as the two numbers or the number and the
 <close shot: what was paid and what was held back, the two numbers as plates>
 
 ## side.a "<the first acted line>" [sfx: pop]
-<close on side A, "Reenactment" on screen this once: the line in our own words>
+<close on side A: the line in our own words, no label>
 
 ## side.b "<the second acted line>" [sfx: pop]
 <cut to side B, close: the line in our own words>

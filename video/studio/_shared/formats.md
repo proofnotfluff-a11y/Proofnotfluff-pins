@@ -158,7 +158,7 @@ Six formats (brief.md `- **Format:**`), each a named show with a new case every 
 |---|---|---|
 | `verdict` | a real dispute between a tradesperson and a customer, acted by the cast, ending on "you decide" | the rule that prevents it |
 | `invoice` | a bill or quote built line by line: where the money goes | how to say the price so it sticks |
-| `call` | a phone call as captions and two speakers, said once to be a reenactment | what to say or send |
+| `call` | a phone call as captions and two speakers | what to say or send |
 | `case` | a real dispute with a public result (a ruling, a sentence, a refund, a fine), told in order, the result held for the end (rules: "Case" below) | the legal route that would have paid |
 | `update` | something that changed this week that an owner can act on: what it is, the catch, the steps, on the maker's real screens with a presenter talking (rules: "Update" below) | the steps, in order, to do today |
 | `told` | a real story told whole, the way a person tells it, its shape set by what happened (rules: "Told" below); the format for every new lesson from Nov 18 | the rule, said as ours, where the story earns it |
@@ -166,7 +166,7 @@ Six formats (brief.md `- **Format:**`), each a named show with a new case every 
 Pick the story (brief.md `- **Pull:**`, all three yes): two sides in conflict; a dollar figure; someone specific to send it
 to. Then breadth: would a tech or a homeowner stop too? An owner-only lesson is a site page, not a video. Sources: a
 publicly reported or publicly posted trade story, read that run (facts.json), told in our own words as the person's own
-account ("he says"), no person or business named, the source named in every caption. A made-up or acted scene says so once.
+account ("he says"), no person or business named, the source named in every caption. A made-up example says so once; a scene acted from a real report carries no label (Todd, Nov 19).
 
 The build (anim.py holds each line: `lint`, `check`, `ready`):
 - 18 to 35 s, 45 to 95 spoken words (a note). Ends 1 s after the last word; no end card, no send card, no host, no level bar.
@@ -198,7 +198,7 @@ Case (Todd, live chat, Nov 12, 2026, 10:03 am: "can we make the necessary change
 - A beat every few seconds: one cue for every 6 s on average and no stretch over 8 s between two cue starts. Each cue is a new shot, a close shot or a new place (`k.cut`, `k.cam`, `SCENE.rooms`), never the same frame with new words only.
 - The story must have: a real dispute, a dollar figure, and a result a public source reports (court, police, a licensing board, the press quoting them). No result on the record means it is a verdict, not a case.
 - The wrong comes first: frame 0 and the first sentence show what one side did to the other, with the two numbers. Then the story in order: what was agreed, what broke, what each side did, what the law did.
-- One acted line a side, at most two a side: the narrator speaks as that person over a close shot, and the first one carries "Reenactment" on screen. Each line says in our own words what the source reports that side said or did; it adds no new claim and never reads as an exact quote.
+- One acted line a side, at most two a side: the narrator speaks as that person over a close shot, with no Reenactment label (Todd, Nov 19). Each line says in our own words what the source reports that side said or did; it adds no new claim and never reads as an exact quote.
 - The owner's rule is the road not taken and comes before the result (the lien, small claims, the notice, with its number from a source read that run); the video ends within about 8 s of the result's last line (viewer r0 on the first case, Nov 12: the stranger left at the result when the rule came after it).
 - The end: the result, then one closing question that still splits the room (was it fair, who was more wrong). No spoken send line (dropped Nov 15 by its bar).
 - Cues start from `_templates/v4-case-cues.md` (copy it over 03_cues/cues.md after `anim.py new`).
@@ -220,8 +220,8 @@ Told (Todd, live chat, Nov 18, 2026, 9:07 to 9:22 am, picks tapped, then "Go"; c
 - The ending, brief.md `- **Ending:** result` or `question`. `result`: the one cue marked `[payoff]` is the public result and starts at 60% of the runtime or later; nothing before it gives it away. `question`: no result is on the record, so the `[payoff]` cue is the closing question, starting at 60% or later, and the split check (two sides a fair stranger could take) holds for it only.
 - The script is written whole as speech, by _shared/storycraft.md: one person telling a friend what happened, "you" and "I", contractions, but and therefore. `anim.py readcheck` runs inside `lint` and `ready`, and at most 1 sentence in 3 is four words or fewer. A side taken is said as ours ("Our take", "I think").
 - Facts marks lines; a marked line is rewritten in the same voice with what the source does say, never just cut (a cut leaves a hole the listener falls into).
-- Acted scenes: a small "Reenactment" label on the first acted frame, on screen only, never spoken and never in script.md (anim.py fails the word there). Acted lines only where facts.json holds that person's own reported words; otherwise the narrator tells it.
-- Cards only for numbers, names and the label; the people act it out (Part B adds the actions).
+- Acted scenes (Todd, live chat, Nov 19, 2026, 5:51 am: "It's clear that these videos are reenactments because they are cartoon animations"; picked "Remove it everywhere"): no Reenactment label on screen, no line in the captions, never spoken. anim.py fails the word in script.md, scene.js, cues.md and captions.json. What keeps it honest stays: acted lines only where facts.json holds that person's own reported words (otherwise the narrator tells it), "he says" for anything the source could not verify, and the sources on every caption's Source: line.
+- Cards only for numbers and names; the people act it out (Part B adds the actions).
 - Gates: qa, facts, read-aloud (on script.md before the voice), pick (prompts/pick.md, against the benchmark), render-critic, viewer (a forecast under 4 for hold or finish fails, on trial). The first `told` lesson goes to Todd to watch before it posts.
 
 Gates, in order (prompts/README.md "v4"): facts on script.md before any voice; after the render: render critic, viewer,

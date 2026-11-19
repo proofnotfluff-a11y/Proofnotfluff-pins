@@ -1,0 +1,28 @@
+{
+ "pass": true,
+ "round": 1,
+ "score": {
+  "about": "A city worker marked the wrong Fort Worth house, a demolition crew leveled a family's home while the condemned one stood; the couple got $102,500, mostly from the city. Who should pay most?",
+  "gets": "a feeling and a number: the split I did not know, and an argument to have",
+  "stop": "the first line with the slab and the mailbox on screen",
+  "watch_to_end": "yes",
+  "leave_at": "none",
+  "confused": "none",
+  "matches_idea": "same",
+  "comment": "yes, the company",
+  "send": "yes, a friend who runs an excavation and demo crew",
+  "forecast": {
+   "stop": 4,
+   "hold": 4,
+   "finish": 4,
+   "send": 3
+  },
+  "swipe_second": "none",
+  "guessed_result": "no"
+ },
+ "reasons": [
+  "Round 0 confusion at 23.5 to 25.0 s fixed: a faded mailbox in tall grass.",
+  "Not fully blind: the runner sent the one idea in the same message as step 1 (the reviewer answered step 1 first and says so). Round 0 was run in two separate steps and also matched 'same'."
+ ],
+ "reviewer": "fresh Opus agent, Nov 18, 2026"
+}

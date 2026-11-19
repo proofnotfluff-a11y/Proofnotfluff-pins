@@ -1,5 +1,5 @@
 /* 2026-12-05-wrong-house (v4 told), the v4 template's helpers (wordT, px, plate, stampPlate, steps, push) kept whole; */
-/* places drawn by hand for this story; cards only for numbers, names and the Reenactment label (formats.md "Told"). */
+/* places drawn by hand for this story; cards only for numbers and names, no label (formats.md "Told"; Todd, Nov 19). */
 const INK = '#120D14', CREAM = '#FFF7EA', SAND = '#E6D3BC', GOLD = '#F7C873', ORANGE = '#F2A541', RED = '#E2633B', TEAL = '#6FB7A8', DTEAL = '#2F6F67', NIGHT = '#1B1420', PLUM = '#2B2033', WINE = '#7A3442', SKY = '#87CEEB';
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 const WS = () => (window.WORDS && window.WORDS.words) || [];
@@ -106,20 +106,21 @@ const digger = (P, x, y, s = 1, a = 0, f = -1) => {
   seg(bx, by, ex, ey, 10 * s); seg(ex, ey, tx, ty, 8 * s);
   P(tx - 12 * s, ty - 4 * s, 24 * s, 14 * s, INK); P(tx - 10 * s, ty - 2 * s, 20 * s, 10 * s, '#6B7080'); for (let i = 0; i < 4; i++) P(tx - 9 * s + i * 6 * s, ty + 8 * s, 3 * s, 5 * s, '#9AA0AD');
 };
-/* the slab: a grey pad with the lawn grown up to it */
-const slab = (P, x, y, s = 1) => {   /* a foundation pad seen from the street: the top face going back in perspective, the front edge, a step, pipe stubs */
-  for (let r = 0; r < 40; r++) { const inset = Math.round((40 - r) * 0.5) * s; P(x + inset, y - (40 - r) * s, 170 * s - 2 * inset, 1 * s, r % 9 === 4 ? '#B4B2AA' : '#C9C7BF'); }
-  P(x, y - 41 * s, 170 * s, 2 * s, INK); P(x, y, 170 * s, 30 * s, INK); P(x + 3 * s, y + 3 * s, 164 * s, 24 * s, '#A8A69E');
-  P(x + 70 * s, y + 27 * s, 30 * s, 8 * s, INK); P(x + 72 * s, y + 29 * s, 26 * s, 5 * s, '#C9C7BF');
-  [[40, -26], [104, -14], [130, -32]].forEach(([a, b]) => { P(x + a * s, y + b * s, 5 * s, 9 * s, INK); P(x + (a + 1) * s, y + (b + 1) * s, 3 * s, 7 * s, '#9AA0AD'); });
-  P(x + 20 * s, y - 20 * s, 60 * s, 2 * s, '#B4B2AA'); P(x + 96 * s, y - 30 * s, 50 * s, 2 * s, '#B4B2AA');
+/* the slab: a bare concrete pad lying flat on the lawn, nothing standing (viewer r0, Nov 19: the old block read as a grey house) */
+const slab = (P, x, y, s = 1) => {   /* y is where the house's walls stood; the pad lies from y + 12 to y + 31, flush with the grass */
+  P(x - 10 * s, y + 6 * s, 190 * s, 30 * s, '#3E7A62');
+  for (let r = 0; r < 18; r++) { const inset = Math.round((18 - r) * 0.8) * s; P(x + inset, y + (12 + r) * s, 170 * s - 2 * inset, 1 * s, r % 6 === 3 ? '#B4B2AA' : '#C9C7BF'); }
+  P(x, y + 30 * s, 170 * s, 2 * s, '#8E8C85');
+  P(x + 34 * s, y + 20 * s, 34 * s, 1 * s, '#A09E96'); P(x + 98 * s, y + 25 * s, 28 * s, 1 * s, '#A09E96');
+  [[52, 17], [120, 22]].forEach(([u, v]) => { P(x + u * s, y + v * s, 3 * s, 3 * s, INK); P(x + (u + 1) * s, y + (v + 1) * s, 1 * s, 1 * s, '#9AA0AD'); });
+  for (let i = 0; i < 12; i++) P(x - 4 * s + i * 15 * s, y + (29 - i % 3) * s, 2 * s, (3 + i % 3) * s, '#2F5A4A');
 };
 /* the street scene: their house (left), the condemned house back in the trees (right), two mailboxes */
 const street = (k, st = 'whole', dim = 0, f = [180, 300, 1.5], armA = null, mark = 0) => {
   focus(k, f[0], f[1], f[2], (P) => {
     const F = Math.floor(k.T * 30 + 0.005);
     groundW(P, F);
-    tree(P, 214, 168, 1.1); tree(P, 330, 176, 1.2); tree(P, 268, 150, 0.9);
+    tree(P, 236, 168, 1.1); tree(P, 330, 176, 1.2); tree(P, 268, 150, 0.9);
     wreck(P, 222, 236, 0.9);
     tree(P, 246, 210, 0.8); tree(P, 300, 214, 0.75);
     if (st === 'slab') slab(P, 14, 290, 1); else home(P, 20, 240, 1, st);
@@ -152,8 +153,6 @@ const fence = (P, y) => { P(0, y, 360, 6, '#E6D3BC'); P(0, y + 30, 360, 6, '#E6D
 const tape = (k, y) => { const P = px(k); for (let x = -20; x < 380; x += 24) { P(x, y, 12, 10, GOLD); P(x + 12, y, 12, 10, INK); } };
 /* the split: city side left (slate blue), company side right (gold) */
 const split = (k) => { const P = px(k); P(0, 0, 180, 640, '#253048'); P(180, 0, 180, 640, '#5A4A2A'); P(178, 0, 4, 640, INK); for (let y = 20; y < 640; y += 22) { P(0, y + 11, 178, 1, '#1D2740'); P(182, y, 178, 1, '#4A3C22'); } };
-/* the small Reenactment label (Todd, Nov 18: "On-screen tag only"): one row, top left, on the first acted frames */
-const reen = (k) => plate(k, [['REENACTMENT', 132, ORANGE]], 264, {cx: 540, bg: INK, rule: ORANGE, pad: 24});
 /* the couple: she (homeowner) and he (buyer role: grey jacket) */
 const couple = (k, x, sc, pose, mood, o = {}) => {
   k.client(x + 110 * sc, o.feet || 1150, Object.assign({role: 'buyer', scale: sc, pose, mood, face: -1}, o));
@@ -162,10 +161,10 @@ const couple = (k, x, sc, pose, mood, o = {}) => {
 /* the city worker: no source describes them, so a plain dark shape, and the orange can in hand */
 const worker = (k, x, y, s = 1, spray = false) => { shape2(k, x, y, s); const c = k.ctx, q = (v) => Math.round(v / 3) * 3; c.fillStyle = INK; c.fillRect(q(x + 50 * s), q(y - 230 * s), q(30 * s), q(54 * s)); c.fillStyle = ORANGE; c.fillRect(q(x + 53 * s), q(y - 227 * s), q(24 * s), q(48 * s)); if (spray) { c.fillStyle = 'rgba(242,165,65,0.6)'; for (let i = 0; i < 8; i++) c.fillRect(q(x + 82 * s + i * 12), q(y - 250 * s - (i % 3) * 12), 9, 9); } };
 
-const L_CITY = {cx: 290, bg: INK, rule: TEAL}, L_CO = {cx: 795, bg: INK, rule: GOLD};
+const L_CITY = {cx: 250, bg: INK, rule: TEAL, pad: 24}, L_CO = {cx: 772, bg: INK, rule: GOLD, pad: 24};   /* side by side inside x 40 to 1040, a gap between (render critic r0, Nov 19: CO ran to x 1076) */
 const CITY = [['CITY', 132, CREAM], ['$62,500', 132, GOLD]], CO = [['COMPANY', 132, CREAM], ['+ INSURER', 132, CREAM], ['$40,000', 132, GOLD]];
 const LOT = [100, 300, 1.8], LOTC = [110, 310, 2.4];   /* the lot (slab and mailbox), wide and close */
-const lot = (k, f, dim = 0) => { focus(k, f[0], f[1], f[2], (P) => { groundW(P, 0); tree(P, 230, 190, 1.2); tree(P, -40, 196, 1.1); slab(P, 14, 290, 1); mailbox(P, 150, 336, 1, false); }); dimmer(k, dim); };
+const lot = (k, f, dim = 0) => { focus(k, f[0], f[1], f[2], (P) => { groundW(P, 0); tree(P, 165, 196, 1.0); tree(P, -40, 196, 1.1); slab(P, 14, 290, 1); mailbox(P, 150, 336, 1, false); }); dimmer(k, dim); };
 const woods = (P) => { groundW(P, 0); tree(P, 214, 168, 1.1); tree(P, 330, 176, 1.2); tree(P, 268, 150, 0.9); wreck(P, 222, 236, 0.9); tree(P, 246, 210, 0.8); tree(P, 300, 214, 0.75); };
 
 window.SCENE = {
@@ -186,11 +185,9 @@ window.SCENE = {
         k.cut(tC);
         lot(k, LOTC, 0.25);
         couple(k, 540, 2.0, 'argue', 'calm', {feet: 1760});
-        reen(k);
       } else if (T < tGone) {
         k.cut(tMow);
         focus(k, 140, 318, 4.5, (P) => { groundW(P, 0); slab(P, 14, 290, 1); mailbox(P, 150, 336, 1, false); });
-        if (T < tC + 3.2) reen(k);
       } else {
         k.cut(tGone);
         push(k, T, tGone, () => lot(k, LOT), 0.08, 1000);
@@ -249,8 +246,12 @@ window.SCENE = {
     neighbor: (k, T) => {
       const t0 = k.S('neighbor');
       k.cut(t0);
-      focus(k, 170, 330, 2.0, (P) => { groundW(P, Math.floor(T * 30)); home(P, 40, 270, 0.8, 'hit'); digger(P, 210, 330, 1.1, 0.5 + 0.4 * Math.sin(T * 3), -1); fence(P, 352); });
-      shape2(k, 300, 1720, 2.2); const c = k.ctx; c.fillStyle = INK; c.fillRect(375, 990, 54, 105); c.fillStyle = '#5B8FB9'; c.fillRect(381, 996, 42, 87);   /* head and phone above the captions (render critic r0) */
+      const u = clamp((T - t0) / 5);   /* the machine creeps toward the house while the neighbor waves and calls (viewer r0, Nov 19: six still seconds) */
+      push(k, T, t0, () => focus(k, 170, 330, 2.0, (P) => { groundW(P, Math.floor(T * 30)); home(P, 40, 270, 0.8, 'hit'); digger(P, 222 - 22 * u, 330, 1.1, 0.5 + 0.4 * Math.sin(T * 3), -1); fence(P, 352); }), 0.08, 1000);
+      const bob = Math.round(Math.sin(T * 7) * 1.5) * 3, up = Math.floor(T * 4) % 2 === 0, c = k.ctx;
+      shape2(k, 300, 1720 + bob, 2.2);
+      c.fillStyle = '#3A2F45'; if (up) { c.fillRect(111, 1002 + bob, 45, 192); c.fillRect(99, 954 + bob, 57, 60); } else { c.fillRect(81, 1047 + bob, 45, 150); c.fillRect(57, 1002 + bob, 60, 57); c.fillRect(111, 1137 + bob, 45, 60); }
+      c.fillStyle = INK; c.fillRect(375, 990 + bob, 54, 105); c.fillStyle = '#5B8FB9'; c.fillRect(381, 996 + bob, 42, 87);   /* head and phone above the captions (render critic r0) */
       return {host: false};
     },
     /* ---- gets: the condemned house, still standing ---- */

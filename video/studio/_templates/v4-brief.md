@@ -20,7 +20,7 @@ Planned <date>. Rules: `_shared/formats.md` "v4", "Case" and "Told"; coo/constit
 - **Shape:** <follows from what happened: the act on frame 0, then the story in order>.
 - **Music:** <classic, sunny, quest, night, chase or bounce; not the lesson before's>.
 - **Voice:** Todd's clone (`_shared/voice.md`).
-- **Source:** <publisher, title, date; whose account it is; what the source could not verify>. A made-up or acted scene: say so here and once in the video.
+- **Source:** <publisher, title, date; whose account it is; what the source could not verify>. A made-up example: say so here and once in the video. A scene acted from the source's report: no label, no caption line (Todd, Nov 19).
 
 ## Claims and their sources
 | Claim, as said | Source | URL |

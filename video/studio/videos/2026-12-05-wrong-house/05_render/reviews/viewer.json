@@ -1,28 +1,49 @@
 {
- "pass": true,
+ "pass": false,
  "round": 1,
+ "on": "Nov 19 no-label re-cut, picture fix round 1",
+ "reviewer": "fresh Opus agent, Nov 19, 2026, two steps",
  "score": {
-  "about": "A city worker marked the wrong Fort Worth house, a demolition crew leveled a family's home while the condemned one stood; the couple got $102,500, mostly from the city. Who should pay most?",
-  "gets": "a feeling and a number: the split I did not know, and an argument to have",
-  "stop": "the first line with the slab and the mailbox on screen",
+  "about": "A city worker in Fort Worth marked the wrong house, and a demolition crew flattened a family's home while the condemned house next door stayed up. The couple got $102,500. Who should pay most: the city or the crew?",
+  "gets": "a feeling plus two numbers ($102,500 split city $62,500 vs company and insurer $40,000; the city billed over $6,000); nothing to do",
+  "stop": "nothing in the first 3 s; 'the house was gone' lands at about 5 s; sound off, scroll at 2 to 3 s",
   "watch_to_end": "yes",
-  "leave_at": "none",
-  "confused": "none",
-  "matches_idea": "same",
-  "comment": "yes, the company",
-  "send": "yes, a friend who runs an excavation and demo crew",
+  "leave_at": "only before the hook, about 2.5 s",
+  "confused": "the slab (0 to 10 s) reads as a curb, bench or rail; the couple smiling and waving at 0.5 to 1.5 s over 'house was gone'; the house returning at 10.5 s with no 'before' signal; colored blocks at 30.0 to 30.5 s; 'COMPANY + INSURER $40,000' never said; the worker in the final split nearly invisible, dark purple on navy",
+  "matches_idea": "close",
+  "comment": "yes, the company should pay most",
+  "send": "maybe, one buddy who runs an excavation or demo crew",
+  "swipe_at": "about 2.5 s, before the hook",
+  "guessed_result": "no on the amounts; saw the 'who should pay' question coming",
   "forecast": {
-   "stop": 4,
-   "hold": 4,
-   "finish": 4,
-   "send": 3
-  },
-  "swipe_second": "none",
-  "guessed_result": "no"
+   "stop": 2,
+   "hold": 3,
+   "finish": 3,
+   "send": 2
+  }
  },
+ "earlier": {
+  "a": "slab still does not read as a bare foundation (curb, bench or rail now)",
+  "b": "seen",
+  "c": "in part, not counted as confusion",
+  "d": "not flagged",
+  "e": "not noticed"
+ },
+ "notes": "The $6,000 bill card and city hall read clearly; the middle keeps moving; the ending question sets up a real fight in the comments.",
  "reasons": [
-  "Round 0 confusion at 23.5 to 25.0 s fixed: a faded mailbox in tall grass.",
-  "Not fully blind: the runner sent the one idea in the same message as step 1 (the reviewer answered step 1 first and says so). Round 0 was run in two separate steps and also matched 'same'."
+  "FAIL on matches_idea close, confused, send maybe, forecast hold 3 and finish 3.",
+  "0 to 3 s: the hook line lands at about 5 s.",
+  "0 to 10 s: the slab still does not read as a foundation; suggests a footprint outline and steps to nowhere, seen from above.",
+  "0.5 to 1.5 s: the couple smile and wave over 'house was gone'.",
+  "10.5 s: the house returns with no 'before' cue.",
+  "30.0 to 30.5 s: rubble reads as colored blocks.",
+  "71 s: insurer never said.",
+  "66.5 to 73.5 s: the worker figure is nearly invisible.",
+  "Send: no trades takeaway said aloud."
  ],
- "reviewer": "fresh Opus agent, Nov 18, 2026"
+ "override": {
+  "by": "Todd, live chat, Nov 19, 2026, about 6:28 am (coo/DECISIONS-2026-11-19.md)",
+  "words": "Post the re-cut (Recommended)",
+  "on": "the viewer's second FAIL (round 1: forecast hold 3, finish 3; confused not none; send maybe), after render-critic and facts passed round 1"
+ }
 }

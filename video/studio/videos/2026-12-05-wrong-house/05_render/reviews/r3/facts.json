@@ -1,0 +1,26 @@
+{
+ "round": 0,
+ "on": "after render, Nov 19 re-cut: transcript, cues, scene strings, captions",
+ "pass": true,
+ "reviewer": "fresh Opus agent, Nov 19, 2026",
+ "score": {
+  "numbers": 7,
+  "mismatches": 0
+ },
+ "reasons": [
+  "note, not blocking: 00:54.1 'That's when the city stopped every demolition.' CBS Texas (Aug 22, 2013) says the city has halted all demolitions and gives no date; 'That's when' puts the halt right after the second find. Fair as told; if the voice is re-cut: 'By that August, the city had stopped every demolition.'",
+  "note, not blocking: 00:59.6 'the couple got': CBS Texas names one homeowner; ABC News reports the couple fighting the city together, so fair plain English.",
+  "checked, no fault: no private person, business, street or address; no em or en dashes; no run of 6 or more source words; plates are numbers and place names; every caption ends with a Source: line naming every outlet; the neighbor's warning is 'A neighbor says'; no Reenactment label, as the Nov 19 rule allows; data.js empty, numbers checked in scene.js.",
+  "checked, no fault: cartoon staging (the orange X, the neighbor on a phone, the red roof, the tape) carries no number or claim a viewer could take as data."
+ ],
+ "sources_checked": [
+  "csmonitor.com wire copy, Jul 18, 2013: mowing trip, three bedrooms, billed more than $6,000, condemned structure still standing",
+  "fox13seattle.com (KDFW): neighbor tried to alert city officials Friday morning; clean slab; family property; Jul 12, 2013",
+  "nbcdfw.com, Jul 16, 2013: buildings hide in trees, old mailbox address barely visible",
+  "insurancenewsnet.com (Star-Telegram, Mar 26, 2014): slab and mailbox; city crew marked the wrong home; same contractor tore down a wrong home Jul 11; city $62,500, contractor $15,000, insurer $25,000, total $102,500",
+  "cbsnews.com/dfw, Aug 22, 2013: second wrong building not part of the order; code officer misidentified the house; city halted all demolitions",
+  "cbsnews.com/texas, Apr 22, 2014: $102,500, city $62,500, contractor and insurer the rest",
+  "goodmorningamerica.com (ABC News), Nov 15, 2013: grandmother's home; couple planned to move in",
+  "nbcdfw.com, Apr 22, 2014: council agreed; city $62,500; remaining $40,000 by the contractor and the insurance company"
+ ]
+}

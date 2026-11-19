@@ -15,7 +15,7 @@
    "sfx": "pop",
    "shift": 0.0,
    "pin": null,
-   "text": "Frame 0, wide and settled: the lot, a bare grey slab where a house stood, one mailbox at the curb, trees behind. At 0.5 s a plain cut to the couple close, stunned, palms up (the first acted frame): the small label REENACTMENT up top for about 3 s. On \"mow\" a plain cut close on the mailbox standing alone beside the slab. On \"the house was gone\" back to the wide slab.",
+   "text": "Frame 0, wide and settled: the lot, a bare grey slab where a house stood, one mailbox at the curb, trees behind. At 0.5 s a plain cut to the couple close, stunned, palms up. On \"mow\" a plain cut close on the mailbox standing alone beside the slab. On \"the house was gone\" back to the wide slab.",
    "t": 0.0,
    "word": 0,
    "end": 6.56
@@ -63,7 +63,7 @@
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "Close on the condemned house in the trees, boarded; on \"mailbox\" closer on its faded mailbox, the number barely there.",
+   "text": "Close on the condemned house in the trees, boarded; on \"mailbox\" closer on its faded, rusted mailbox in the weeds, no number readable.",
    "t": 20.9,
    "word": 61,
    "end": 25.38
@@ -135,7 +135,7 @@
    "sfx": "whoosh",
    "shift": 0.0,
    "pin": null,
-   "text": "A plain cut to city hall, its flag, wide; on \"found\" closer on the doors.",
+   "text": "A plain cut to city hall, its flag, wide; on \"found\" a plain cut to another lot far off, a small back building and the same excavator beside it.",
    "t": 45.56,
    "word": 133,
    "end": 51.6
@@ -196,7 +196,7 @@
    "sfx": "blip",
    "shift": 0.0,
    "pin": null,
-   "text": "The frame splits: the city worker with the orange can on the left, the excavator on the right. On \"city\" the left label: CITY $62,500; on \"company\" the right label: COMPANY $40,000. Ends 1 s after the last word.",
+   "text": "The frame splits: the city worker with the orange can on the left, the excavator on the right. On \"city\" the left label: CITY $62,500; on \"company\" the right label: COMPANY + INSURER $40,000. Ends 1 s after the last word.",
    "t": 66.32,
    "word": 193,
    "end": 73.96

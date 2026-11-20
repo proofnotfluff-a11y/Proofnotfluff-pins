@@ -1,0 +1,37 @@
+{
+ "slug": "2026-12-05-wrong-house",
+ "reads": [
+  {
+   "date": "2026-11-19",
+   "readAt": "2026-11-20T02:21:42Z",
+   "depth": "deep",
+   "platforms": {
+    "facebook": "not posted",
+    "instagram": "not posted",
+    "tiktok": {
+     "avgWatchS": 14.89,
+     "comments": 1,
+     "likes": 18,
+     "newFollowers": 1,
+     "saves": 2,
+     "shares": 0,
+     "views": 270,
+     "watchedFullPct": 9.7
+    },
+    "youtube": {
+     "avgPctViewed": "hidden",
+     "avgViewDurationS": "hidden",
+     "comments": "hidden",
+     "likes": 29,
+     "shares": "hidden",
+     "subscribersGained": 0,
+     "viewedVsSwipedPct": 51.4,
+     "views": 1300,
+     "watchTimeH": 9.1
+    }
+   },
+   "source": "videometrics 2026-12-05-wrong-house.2026-11-19 (evening PC run, deep read)",
+   "docId": "2026-12-05-wrong-house.2026-11-19"
+  }
+ ]
+}

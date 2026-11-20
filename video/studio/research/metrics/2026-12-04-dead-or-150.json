@@ -1,0 +1,59 @@
+{
+ "slug": "2026-12-04-dead-or-150",
+ "reads": [
+  {
+   "date": "2026-11-19",
+   "readAt": "2026-11-20T02:21:42Z",
+   "depth": "deep",
+   "platforms": {
+    "facebook": {
+     "avgWatchS": 7,
+     "comments": 0,
+     "follows": 0,
+     "likes": 0,
+     "saves": 0,
+     "shares": 0,
+     "viewers": 194,
+     "views": 213,
+     "views3s": 73
+    },
+    "instagram": {
+     "avgWatchS": 20,
+     "comments": 0,
+     "follows": 0,
+     "likes": 34,
+     "reach": 1668,
+     "saves": 2,
+     "shares": 1,
+     "skipRate": "hidden",
+     "viewers": 1803,
+     "views": 2509
+    },
+    "tiktok": {
+     "avgWatchS": 19.99,
+     "comments": 0,
+     "likes": 12,
+     "newFollowers": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 301,
+     "watchedFullPct": 38.8
+    },
+    "youtube": {
+     "avgPctViewed": "hidden",
+     "avgViewDurationS": "hidden",
+     "comments": "hidden",
+     "likes": 2,
+     "shares": "hidden",
+     "subscribersGained": 0,
+     "viewedVsSwipedPct": 63.9,
+     "views": 158,
+     "views48h": 152,
+     "watchTimeH": 0.8
+    }
+   },
+   "source": "videometrics 2026-12-04-dead-or-150.2026-11-19 (evening PC run, deep read)",
+   "docId": "2026-12-04-dead-or-150.2026-11-19"
+  }
+ ]
+}

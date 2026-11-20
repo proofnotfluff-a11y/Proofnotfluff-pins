@@ -169,6 +169,19 @@
    },
    "source": "videometrics account-health.2026-11-17 (evening PC run)",
    "docId": "account-health.2026-11-17"
+  },
+  {
+   "date": "2026-11-19",
+   "readAt": "2026-11-20T02:21:42Z",
+   "platforms": {
+    "facebook": "hidden",
+    "instagram": 1,
+    "tiktok": "hidden",
+    "youtube": "hidden"
+   },
+   "note": "Instagram restriction dated Nov 18 (multiple sessions, Community Standards on cybersecurity), ended Nov 19, no review; plus a suspected automated behavior notice. From Todd's screenshots in a live chat. Other platforms not read.",
+   "source": "videometrics account-health.2026-11-19 (evening PC run)",
+   "docId": "account-health.2026-11-19"
   }
  ]
 }

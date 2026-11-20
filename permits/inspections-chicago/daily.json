@@ -1,22 +1,22 @@
 {
  "product": "Chicago Restaurant Daily List",
- "asOf": "2026-11-19",
- "asOfText": "Nov 19, 2026",
- "through": "2026-11-18",
- "throughText": "Nov 18, 2026",
- "recentFrom": "2026-11-05",
+ "asOf": "2026-11-20",
+ "asOfText": "Nov 20, 2026",
+ "through": "2026-11-19",
+ "throughText": "Nov 19, 2026",
+ "recentFrom": "2026-11-06",
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-11-19T19:37:59+00:00",
-  "rowsUpdatedAt": "2026-11-19T10:09:59+00:00",
+  "fetchedAt": "2026-11-20T19:16:50+00:00",
+  "rowsUpdatedAt": "2026-11-20T10:09:11+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "pests": 8,
-  "hood": 3,
-  "places": 9
+  "pests": 4,
+  "hood": 2,
+  "places": 4
  },
  "history": [
   {
@@ -234,11 +234,19 @@
    "hood": 3,
    "places": 9,
    "withPhone": 4
+  },
+  {
+   "asOf": "2026-11-20",
+   "through": "2026-11-19",
+   "pests": 4,
+   "hood": 2,
+   "places": 4,
+   "withPhone": 4
   }
  ],
  "examples": [
   {
-   "area": "Humboldt Park",
+   "area": "Garfield Ridge",
    "type": "Restaurant",
    "result": "Fail",
    "trades": [
@@ -246,7 +254,7 @@
    ]
   },
   {
-   "area": "Chatham",
+   "area": "Gage Park",
    "type": "Restaurant",
    "result": "Fail",
    "trades": [
@@ -255,20 +263,16 @@
    ]
   },
   {
-   "area": "West Elsdon",
+   "area": "Gage Park",
    "type": "Restaurant",
    "result": "Fail",
    "trades": [
-    "pests"
+    "pests",
+    "hood and exhaust"
    ]
   }
  ],
  "pestByDate": [
-  {
-   "date": "2026-11-05",
-   "pests": 6,
-   "restaurant": 5
-  },
   {
    "date": "2026-11-06",
    "pests": 4,
@@ -301,8 +305,8 @@
   },
   {
    "date": "2026-11-12",
-   "pests": 4,
-   "restaurant": 4
+   "pests": 5,
+   "restaurant": 5
   },
   {
    "date": "2026-11-13",
@@ -331,38 +335,41 @@
   },
   {
    "date": "2026-11-18",
-   "pests": 0,
-   "restaurant": 0
+   "pests": 2,
+   "restaurant": 2
+  },
+  {
+   "date": "2026-11-19",
+   "pests": 1,
+   "restaurant": 1
   }
  ],
  "pestLast7": {
-  "from": "2026-11-12",
-  "to": "2026-11-18",
-  "inspections": 10,
-  "restaurantInspections": 10,
+  "from": "2026-11-13",
+  "to": "2026-11-19",
+  "inspections": 9,
+  "restaurantInspections": 9,
   "areas": [
    "Brighton Park",
    "Chatham",
    "Gage Park",
+   "Garfield Ridge",
    "Humboldt Park",
-   "Lake View",
-   "Loop",
-   "North Park",
    "West Elsdon"
   ]
  },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
  "phones": {
-  "rows": 9,
+  "rows": 4,
   "withPhone": 4,
-  "coverage": 44.4
+  "coverage": 100.0
  },
  "seat": {
-  "asOf": "2026-11-19",
-  "places14": 26,
-  "new": 8,
-  "withPhone14": 16,
-  "coverage14": 61.5,
+  "asOf": "2026-11-20",
+  "places14": 25,
+  "new": 4,
+  "withPhone14": 17,
+  "coverage14": 68.0,
   "phonesChecked": true
  }
 }

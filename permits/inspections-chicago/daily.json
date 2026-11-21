@@ -1,22 +1,22 @@
 {
  "product": "Chicago Restaurant Daily List",
- "asOf": "2026-11-20",
- "asOfText": "Nov 20, 2026",
- "through": "2026-11-19",
- "throughText": "Nov 19, 2026",
- "recentFrom": "2026-11-06",
+ "asOf": "2026-11-21",
+ "asOfText": "Nov 21, 2026",
+ "through": "2026-11-20",
+ "throughText": "Nov 20, 2026",
+ "recentFrom": "2026-11-07",
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-11-20T19:16:50+00:00",
-  "rowsUpdatedAt": "2026-11-20T10:09:11+00:00",
+  "fetchedAt": "2026-11-21T18:13:33+00:00",
+  "rowsUpdatedAt": "2026-11-21T10:14:21+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "pests": 4,
-  "hood": 2,
-  "places": 4
+  "pests": 2,
+  "hood": 0,
+  "places": 2
  },
  "history": [
   {
@@ -242,11 +242,19 @@
    "hood": 2,
    "places": 4,
    "withPhone": 4
+  },
+  {
+   "asOf": "2026-11-21",
+   "through": "2026-11-20",
+   "pests": 2,
+   "hood": 0,
+   "places": 2,
+   "withPhone": 0
   }
  ],
  "examples": [
   {
-   "area": "Garfield Ridge",
+   "area": "Lower West Side",
    "type": "Restaurant",
    "result": "Fail",
    "trades": [
@@ -254,30 +262,15 @@
    ]
   },
   {
-   "area": "Gage Park",
-   "type": "Restaurant",
+   "area": "Auburn Gresham",
+   "type": "Grocery Store",
    "result": "Fail",
    "trades": [
-    "pests",
-    "hood and exhaust"
-   ]
-  },
-  {
-   "area": "Gage Park",
-   "type": "Restaurant",
-   "result": "Fail",
-   "trades": [
-    "pests",
-    "hood and exhaust"
+    "pests"
    ]
   }
  ],
  "pestByDate": [
-  {
-   "date": "2026-11-06",
-   "pests": 4,
-   "restaurant": 3
-  },
   {
    "date": "2026-11-07",
    "pests": 0,
@@ -335,19 +328,24 @@
   },
   {
    "date": "2026-11-18",
-   "pests": 2,
+   "pests": 3,
    "restaurant": 2
   },
   {
    "date": "2026-11-19",
-   "pests": 1,
-   "restaurant": 1
+   "pests": 2,
+   "restaurant": 2
+  },
+  {
+   "date": "2026-11-20",
+   "pests": 0,
+   "restaurant": 0
   }
  ],
  "pestLast7": {
-  "from": "2026-11-13",
-  "to": "2026-11-19",
-  "inspections": 9,
+  "from": "2026-11-14",
+  "to": "2026-11-20",
+  "inspections": 10,
   "restaurantInspections": 9,
   "areas": [
    "Brighton Park",
@@ -355,21 +353,22 @@
    "Gage Park",
    "Garfield Ridge",
    "Humboldt Park",
+   "Lower West Side",
    "West Elsdon"
   ]
  },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
  "phones": {
-  "rows": 4,
-  "withPhone": 4,
-  "coverage": 100.0
+  "rows": 2,
+  "withPhone": 0,
+  "coverage": 0.0
  },
  "seat": {
-  "asOf": "2026-11-20",
-  "places14": 25,
-  "new": 4,
-  "withPhone14": 17,
-  "coverage14": 68.0,
+  "asOf": "2026-11-21",
+  "places14": 23,
+  "new": 2,
+  "withPhone14": 16,
+  "coverage14": 69.6,
   "phonesChecked": true
  }
 }

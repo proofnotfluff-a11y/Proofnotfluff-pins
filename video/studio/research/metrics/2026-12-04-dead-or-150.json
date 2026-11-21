@@ -54,6 +54,39 @@
    },
    "source": "videometrics 2026-12-04-dead-or-150.2026-11-19 (evening PC run, deep read)",
    "docId": "2026-12-04-dead-or-150.2026-11-19"
+  },
+  {
+   "date": "2026-11-20",
+   "depth": "deep",
+   "platforms": {
+    "facebook": "held",
+    "instagram": "held",
+    "tiktok": {
+     "avgWatchS": 19.99,
+     "comments": 0,
+     "likes": 12,
+     "newFollowers": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 303,
+     "watchedFullPct": 38.6
+    },
+    "youtube": {
+     "avgPctViewed": "hidden",
+     "avgViewDurationS": "hidden",
+     "comments": "hidden",
+     "likes": 2,
+     "shares": "hidden",
+     "subscribersGained": 0,
+     "viewedVsSwipedPct": 64.8,
+     "views": 164,
+     "views48h": 139,
+     "watchTimeH": 0.8
+    }
+   },
+   "readAt": "2026-11-21T02:16:12Z",
+   "source": "videometrics 2026-12-04-dead-or-150.2026-11-20 (evening PC run, deep read)",
+   "docId": "2026-12-04-dead-or-150.2026-11-20"
   }
  ]
 }

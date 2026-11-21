@@ -182,6 +182,19 @@
    "note": "Instagram restriction dated Nov 18 (multiple sessions, Community Standards on cybersecurity), ended Nov 19, no review; plus a suspected automated behavior notice. From Todd's screenshots in a live chat. Other platforms not read.",
    "source": "videometrics account-health.2026-11-19 (evening PC run)",
    "docId": "account-health.2026-11-19"
+  },
+  {
+   "date": "2026-11-20",
+   "platforms": {
+    "facebook": "held",
+    "instagram": "held",
+    "tiktok": "hidden",
+    "youtube": 0
+   },
+   "readAt": "2026-11-21T02:16:12Z",
+   "source": "videometrics account-health.2026-11-20 (evening PC run)",
+   "docId": "account-health.2026-11-20",
+   "note": "YouTube Studio: no strike, restriction or notice. TikTok status page not readable. Instagram and Facebook held (Todd, Nov 19), not opened."
   }
  ]
 }

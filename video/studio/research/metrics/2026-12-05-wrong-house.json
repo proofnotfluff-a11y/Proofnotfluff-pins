@@ -65,6 +65,42 @@
    "readAt": "2026-11-21T02:16:12Z",
    "source": "videometrics 2026-12-05-wrong-house.2026-11-20 (evening PC run, deep read)",
    "docId": "2026-12-05-wrong-house.2026-11-20"
+  },
+  {
+   "date": "2026-11-21",
+   "depth": "deep",
+   "note": "72 h read. TikTok and YouTube only; Instagram and Facebook held (Todd, Nov 19: Meta automation restriction), not opened. YouTube views shown as 1.4K on the dashboard (1.3K on the video page).",
+   "platforms": {
+    "facebook": "held",
+    "instagram": "held",
+    "tiktok": {
+     "avgWatchS": 14.76,
+     "comments": 1,
+     "likes": 19,
+     "newFollowers": 1,
+     "saves": 2,
+     "shares": 0,
+     "views": 297,
+     "watchedFullPct": 9.8
+    },
+    "youtube": {
+     "avgPctViewed": 65.8,
+     "avgViewDurationS": 48,
+     "comments": 2,
+     "engagedViews": 666,
+     "likes": 29,
+     "shares": "hidden",
+     "stillWatchingAt30sPct": 62,
+     "subscribersGained": 0,
+     "viewedVsSwipedPct": 52,
+     "views": 1400,
+     "views48h": 35,
+     "watchTimeH": 9.5
+    }
+   },
+   "readAt": "2026-11-22T02:18:15Z",
+   "source": "videometrics 2026-12-05-wrong-house.2026-11-21 (evening PC run, deep read)",
+   "docId": "2026-12-05-wrong-house.2026-11-21"
   }
  ]
 }

@@ -195,6 +195,19 @@
    "source": "videometrics account-health.2026-11-20 (evening PC run)",
    "docId": "account-health.2026-11-20",
    "note": "YouTube Studio: no strike, restriction or notice. TikTok status page not readable. Instagram and Facebook held (Todd, Nov 19), not opened."
+  },
+  {
+   "date": "2026-11-21",
+   "note": "TikTok has no account status page on the web (Settings has none; Studio home shows no notice); YouTube Studio dashboard shows no strike, restriction or notice. Instagram and Facebook held, not opened.",
+   "platforms": {
+    "facebook": "held",
+    "instagram": "held",
+    "tiktok": "hidden",
+    "youtube": 0
+   },
+   "readAt": "2026-11-22T02:18:15Z",
+   "source": "videometrics account-health.2026-11-21 (evening PC run)",
+   "docId": "account-health.2026-11-21"
   }
  ]
 }

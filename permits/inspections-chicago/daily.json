@@ -1,22 +1,22 @@
 {
  "product": "Chicago Restaurant Daily List",
- "asOf": "2026-11-21",
- "asOfText": "Nov 21, 2026",
+ "asOf": "2026-11-22",
+ "asOfText": "Nov 22, 2026",
  "through": "2026-11-20",
  "throughText": "Nov 20, 2026",
  "recentFrom": "2026-11-07",
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-11-21T18:13:33+00:00",
-  "rowsUpdatedAt": "2026-11-21T10:14:21+00:00",
+  "fetchedAt": "2026-11-22T18:39:31+00:00",
+  "rowsUpdatedAt": "2026-11-22T10:07:12+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "pests": 2,
+  "pests": 0,
   "hood": 0,
-  "places": 2
+  "places": 0
  },
  "history": [
   {
@@ -250,26 +250,17 @@
    "hood": 0,
    "places": 2,
    "withPhone": 0
-  }
- ],
- "examples": [
-  {
-   "area": "Lower West Side",
-   "type": "Restaurant",
-   "result": "Fail",
-   "trades": [
-    "pests"
-   ]
   },
   {
-   "area": "Auburn Gresham",
-   "type": "Grocery Store",
-   "result": "Fail",
-   "trades": [
-    "pests"
-   ]
+   "asOf": "2026-11-22",
+   "through": "2026-11-20",
+   "pests": 0,
+   "hood": 0,
+   "places": 0,
+   "withPhone": 0
   }
  ],
+ "examples": [],
  "pestByDate": [
   {
    "date": "2026-11-07",
@@ -359,14 +350,14 @@
  },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
  "phones": {
-  "rows": 2,
+  "rows": 0,
   "withPhone": 0,
   "coverage": 0.0
  },
  "seat": {
-  "asOf": "2026-11-21",
+  "asOf": "2026-11-22",
   "places14": 23,
-  "new": 2,
+  "new": 0,
   "withPhone14": 16,
   "coverage14": 69.6,
   "phonesChecked": true

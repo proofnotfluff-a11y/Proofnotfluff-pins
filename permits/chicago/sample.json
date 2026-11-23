@@ -2,52 +2,52 @@
  "source": {
   "name": "City of Chicago Data Portal, Building Permits",
   "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
-  "rowsUpdatedAt": "2026-11-16T13:06:50+00:00",
-  "fetchedAt": "2026-11-16T21:04:10+00:00",
+  "rowsUpdatedAt": "2026-11-23T13:59:57+00:00",
+  "fetchedAt": "2026-11-23T22:41:22+00:00",
   "modified": "Filtered by ProofNotFluff: permits issued in the last 24 months, new construction or renovation, reported cost $500,000 or more, still open (City status Active or Phased Permitting; complete, suspended, cancelled, revoked and expired permits left out), apartment buildings of 4+ units or commercial work, with a business listed as general contractor; work that never needs a construction clean under its permit (foundation, superstructure, caisson, demolition, roof, facade, mechanical, equipment or site work only) left out; cleaning companies listed as contractor left out; a revision of a permit already on the list counted once; only project-level and business fields kept.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
  "window": {
-  "from": "2024-11-16",
-  "to": "2026-11-16"
+  "from": "2024-11-23",
+  "to": "2026-11-23"
  },
  "counts": {
-  "fetched": 3074,
-  "kept": 1138,
+  "fetched": 3085,
+  "kept": 1141,
   "excluded": {
-   "house or 2 to 3 flat": 593,
+   "house or 2 to 3 flat": 598,
    "no construction clean (foundation, demolition, roof, mechanical or site work only)": 258,
-   "no interior finish work or new building named": 37,
-   "common areas only, no homes worked on": 9,
    "one home inside a larger building": 42,
-   "no commercial or apartment wording": 79,
+   "no interior finish work or new building named": 39,
+   "common areas only, no homes worked on": 9,
+   "no commercial or apartment wording": 77,
    "apartment building with no unit count (could be a 2 or 3 flat)": 8,
    "no business listed as general contractor": 5,
-   "closed, complete or suspended": 892,
-   "revision or second listing of a permit already listed": 13
+   "closed, complete or suspended": 894,
+   "revision or second listing of a permit already listed": 14
   },
   "keptByType": {
-   "New construction": 336,
-   "Renovation": 802
+   "New construction": 331,
+   "Renovation": 810
   },
-  "keptCost": 8575615504,
-  "keptUnits": 6192,
+  "keptCost": 8641800326,
+  "keptUnits": 6062,
   "topAreas": [
    [
     "Loop",
-    162
+    170
    ],
    [
     "Near North Side",
-    142
+    143
    ],
    [
     "Near West Side",
-    104
+    102
    ],
    [
     "West Town",
-    70
+    72
    ],
    [
     "Lincoln Park",
@@ -55,7 +55,7 @@
    ],
    [
     "Lake View",
-    39
+    41
    ],
    [
     "Logan Square",
@@ -69,8 +69,8 @@
   "topGCs": [
    {
     "name": "Skender Construction LLC",
-    "projects": 26,
-    "cost": 669073824
+    "projects": 23,
+    "cost": 638685076
    },
    {
     "name": "Power Construction Company, LLC",
@@ -78,14 +78,14 @@
     "cost": 347789294
    },
    {
+    "name": "Executive Construction, Inc.",
+    "projects": 23,
+    "cost": 105008300
+   },
+   {
     "name": "JC Anderson Inc",
     "projects": 23,
     "cost": 47747594
-   },
-   {
-    "name": "Executive Construction, Inc.",
-    "projects": 22,
-    "cost": 63312600
    },
    {
     "name": "Leopardo Construction Inc",
@@ -95,7 +95,12 @@
    {
     "name": "Bulley & Andrews, L.L.C.",
     "projects": 19,
-    "cost": 160475924
+    "cost": 161175924
+   },
+   {
+    "name": "Bear Construction Company",
+    "projects": 18,
+    "cost": 28229024
    },
    {
     "name": "Clune Construction Company, L.P.",
@@ -106,11 +111,6 @@
     "name": "Development Solutions, Inc",
     "projects": 16,
     "cost": 50136520
-   },
-   {
-    "name": "Bear Construction Company",
-    "projects": 16,
-    "cost": 25799000
    },
    {
     "name": "Pintauro Construction Company LLC",
@@ -128,7 +128,7 @@
     "cost": 676237247
    }
   ],
-  "nearFinish": 19
+  "nearFinish": 16
  },
  "projects": [
   {
@@ -310,6 +310,24 @@
    ],
    "lat": 41.876808,
    "lon": -87.631916
+  },
+  {
+   "permit": "101077422",
+   "issued": "2026-11-18",
+   "type": "New construction",
+   "scope": "Full building permit for a 33-story, 383 dwelling unit mixed occupancy building",
+   "units": 383,
+   "sleeping": null,
+   "cost": 134000000,
+   "address": "410 N Elizabeth St",
+   "communityArea": "West Town",
+   "status": "Active",
+   "milestone": "Permit Issued (Fee Due)",
+   "gc": [
+    "Clark Construction Group Chicago LLC"
+   ],
+   "lat": 41.889264,
+   "lon": -87.659102
   },
   {
    "permit": "101082881",
@@ -510,24 +528,6 @@
    "lon": -87.624783
   },
   {
-   "permit": "101032812",
-   "issued": "2024-11-22",
-   "type": "New construction",
-   "scope": "Full building and associated site work for a 21-story residential apartment building with 386 units, parking garage and ground floor retail. R-2...",
-   "units": 386,
-   "sleeping": null,
-   "cost": 60705000,
-   "address": "1010 S Wells St",
-   "communityArea": "Loop",
-   "status": "Active",
-   "milestone": "Inspections (Certificate Of Occupancy Required)",
-   "gc": [
-    "Brandts Build, LLC"
-   ],
-   "lat": 41.869691,
-   "lon": -87.633631
-  },
-  {
    "permit": "101069804",
    "issued": "2026-11-06",
    "type": "New construction",
@@ -656,60 +656,6 @@
    "lon": -87.841638
   },
   {
-   "permit": "101053170",
-   "issued": "2025-02-11",
-   "type": "New construction",
-   "scope": "New construction of a proposed 3-story multi-family residential building with 12 dwelling units...",
-   "units": 12,
-   "sleeping": null,
-   "cost": 5100000,
-   "address": "4540 S State St",
-   "communityArea": "Grand Boulevard",
-   "status": "Active",
-   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
-   "gc": [
-    "Griggs Mitchell & Alma of IL, LLC"
-   ],
-   "lat": 41.811829,
-   "lon": -87.626299
-  },
-  {
-   "permit": "101073877",
-   "issued": "2026-01-30",
-   "type": "Renovation",
-   "scope": "Interior alterations to existing fitness center (5th floor) in existing 5-story building",
-   "units": null,
-   "sleeping": null,
-   "cost": 3500000,
-   "address": "3030 N Broadway",
-   "communityArea": "Lake View",
-   "status": "Active",
-   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
-   "gc": [
-    "Gallant Construction Company, Inc."
-   ],
-   "lat": 41.937338,
-   "lon": -87.644456
-  },
-  {
-   "permit": "101084515",
-   "issued": "2026-06-17",
-   "type": "Renovation",
-   "scope": "Interior alterations to existing 19th floor office space. No change to existing use",
-   "units": null,
-   "sleeping": null,
-   "cost": 3000000,
-   "address": "151 N Franklin St",
-   "communityArea": "Loop",
-   "status": "Active",
-   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
-   "gc": [
-    "Skender Construction LLC"
-   ],
-   "lat": 41.884499,
-   "lon": -87.635234
-  },
-  {
    "permit": "101078819",
    "issued": "2026-02-17",
    "type": "Renovation",
@@ -762,6 +708,60 @@
    ],
    "lat": 41.975933,
    "lon": -87.698122
+  },
+  {
+   "permit": "101068718",
+   "issued": "2025-08-13",
+   "type": "Renovation",
+   "scope": "5th floor addition - 8 additional units - to existing 4 story 24 unit building...",
+   "units": 32,
+   "sleeping": null,
+   "cost": 1900000,
+   "address": "1537 N Orleans St",
+   "communityArea": "Near North Side",
+   "status": "Active",
+   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
+   "gc": [
+    "Midwest Heritage Builders, LLC"
+   ],
+   "lat": 41.910432,
+   "lon": -87.637457
+  },
+  {
+   "permit": "101077418",
+   "issued": "2026-01-14",
+   "type": "Renovation",
+   "scope": "Interior alterations and renovations of existing restaurant tenant space at the street level and river level within existing 8-story building...",
+   "units": null,
+   "sleeping": null,
+   "cost": 1851000,
+   "address": "315 N La Salle Dr",
+   "communityArea": "Near North Side",
+   "status": "Active",
+   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
+   "gc": [
+    "Development Solutions, Inc"
+   ],
+   "lat": 41.887921,
+   "lon": -87.63236
+  },
+  {
+   "permit": "101066773",
+   "issued": "2025-06-05",
+   "type": "New construction",
+   "scope": "Erect new 4 story, 3-unit apartment building w/stair penthouse and private roof deck, ground floor retail space and attached 2 car garage with...",
+   "units": 3,
+   "sleeping": null,
+   "cost": 900000,
+   "address": "1412 W Belmont Ave",
+   "communityArea": "Lake View",
+   "status": "Active",
+   "milestone": "Certificate Of Occupancy Pending (Temporary Or Partial Occupancy Approved)",
+   "gc": [
+    "Desmond Builders"
+   ],
+   "lat": 41.939865,
+   "lon": -87.664396
   }
  ]
 }

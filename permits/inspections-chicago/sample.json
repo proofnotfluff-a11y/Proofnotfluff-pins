@@ -2,82 +2,82 @@
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "rowsUpdatedAt": "2026-11-15T10:07:22+00:00",
-  "fetchedAt": "2026-11-16T21:12:12+00:00",
+  "rowsUpdatedAt": "2026-11-23T10:06:05+00:00",
+  "fetchedAt": "2026-11-23T22:52:42+00:00",
   "modified": "Filtered by ProofNotFluff: food inspections of the last 7 days at licensed food businesses (schools, day care, hospitals, senior meal sites and mobile vendors left out) that failed with pest violations, failed or passed with conditions with hood, grease or grease trap violations, had a license (pre-opening) inspection, or failed twice in 30 days. Violation notes are read only to set category labels; inspector notes are not republished. Business-level fields only.",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
  },
  "window": {
-  "from": "2026-11-09",
-  "to": "2026-11-16"
+  "from": "2026-11-16",
+  "to": "2026-11-23"
  },
  "counts": {
-  "fetched": 1000,
-  "kept": 26,
+  "fetched": 1037,
+  "kept": 47,
   "segments": {
-   "pests": 6,
-   "hoodGrease": 2,
-   "newOpening": 22,
-   "repeatFail": 1
+   "pests": 13,
+   "hoodGrease": 8,
+   "newOpening": 34,
+   "repeatFail": 0
   },
   "excluded": {
-   "institution or mobile vendor": 16,
-   "no lead segment (passed, or no buyer-relevant violation)": 33
+   "institution or mobile vendor": 29,
+   "no lead segment (passed, or no buyer-relevant violation)": 74
   },
-  "licensePlaces": 19,
+  "licensePlaces": 21,
   "areas": [
+   [
+    "Irving Park",
+    5
+   ],
+   [
+    "West Ridge",
+    4
+   ],
    [
     "Loop",
     4
    ],
    [
-    "Gage Park",
-    2
-   ],
-   [
-    "Avondale",
-    2
-   ],
-   [
     "Lower West Side",
-    2
+    3
    ],
    [
     "Edgewater",
+    3
+   ],
+   [
+    "Gage Park",
+    3
+   ],
+   [
+    "Belmont Cragin",
     2
    ],
    [
-    "Irving Park",
+    "Chatham",
     2
    ],
    [
-    "Washington Park",
+    "Lincoln Square",
     2
    ],
    [
-    "Lincoln Park",
+    "Albany Park",
     2
-   ],
-   [
-    "Ashburn",
-    1
-   ],
-   [
-    "Logan Square",
-    1
    ]
   ]
  },
  "segments": {
   "pests": [
    {
-    "business": "Taqueria Mi Pueblo III Inc.",
-    "address": "2459 W 51st St",
-    "communityArea": "Gage Park",
+    "business": "Los Amantes",
+    "address": "4753 W 47th St",
+    "communityArea": "Garfield Ridge",
     "facilityType": "Restaurant",
     "result": "Fail",
     "inspectionType": "Canvass",
-    "date": "2026-11-12",
+    "date": "2026-11-19",
     "categories": [
      "Cleaning and sanitation",
      "Pests",
@@ -85,101 +85,238 @@
     ]
    },
    {
-    "business": "Roti",
-    "address": "80 E Lake St",
-    "communityArea": "Loop",
+    "business": "Dioxa 1896",
+    "address": "1626 S Halsted St",
+    "communityArea": "Lower West Side",
     "facilityType": "Restaurant",
     "result": "Fail",
-    "inspectionType": "Canvass Re-Inspection",
-    "date": "2026-11-12",
+    "inspectionType": "Canvass",
+    "date": "2026-11-19",
     "categories": [
      "Cleaning and sanitation",
      "Pests"
     ]
    },
    {
-    "business": "Sports Illustrated Resorts",
-    "address": "203 N Wabash Ave",
-    "communityArea": "Loop",
+    "business": "LA Haciendita Taqueria Kedzie, Inc.",
+    "address": "5151 S Kedzie Ave",
+    "communityArea": "Gage Park",
     "facilityType": "Restaurant",
     "result": "Fail",
-    "inspectionType": "License",
-    "date": "2026-11-10",
+    "inspectionType": "Canvass",
+    "date": "2026-11-18",
     "categories": [
-     "Cleaning and sanitation",
-     "Grease buildup",
      "Hood and ventilation",
      "Pests",
      "Plumbing"
     ]
    },
    {
-    "business": "LA Ciudad de Piedradura , Inc.",
-    "address": "4781 S Archer Ave",
-    "communityArea": "Archer Heights",
+    "business": "Gorditas Aguascalientes",
+    "address": "5249 S Kedzie Ave",
+    "communityArea": "Gage Park",
     "facilityType": "Restaurant",
     "result": "Fail",
-    "inspectionType": "License",
-    "date": "2026-11-10",
+    "inspectionType": "Canvass",
+    "date": "2026-11-18",
     "categories": [
      "Cleaning and sanitation",
-     "Pests",
-     "Plumbing"
+     "Hood and ventilation",
+     "Pests"
     ]
    },
    {
-    "business": "Green Leaf Thai Cuisine",
-    "address": "4658 N Western Ave",
-    "communityArea": "Lincoln Square",
-    "facilityType": "Restaurant",
+    "business": "Family Dollar #5630",
+    "address": "8030 S Halsted St",
+    "communityArea": "Auburn Gresham",
+    "facilityType": "Grocery Store",
     "result": "Fail",
-    "inspectionType": "Canvass Re-Inspection",
-    "date": "2026-11-10",
+    "inspectionType": "Complaint",
+    "date": "2026-11-18",
     "categories": [
      "Cleaning and sanitation",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Red Store Market",
+    "address": "2858 W Roosevelt Rd",
+    "communityArea": "North Lawndale",
+    "facilityType": "Grocery Store",
+    "result": "Fail",
+    "inspectionType": "License",
+    "date": "2026-11-17",
+    "categories": [
+     "Cleaning and sanitation",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Omar's Wholesale Foods",
+    "address": "4910 S Damen Ave",
+    "communityArea": "New City",
+    "facilityType": "Wholesale",
+    "result": "Fail",
+    "inspectionType": "License Re-Inspection",
+    "date": "2026-11-17",
+    "categories": [
+     "Cleaning and sanitation",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Las Islas Marias",
+    "address": "5401 S Pulaski Rd",
+    "communityArea": "West Elsdon",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-11-17",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
      "Grease trap",
      "Pests"
     ]
    },
    {
-    "business": "Big Boy Food Market",
-    "address": "255 W 95th St",
-    "communityArea": "Roseland",
-    "facilityType": "Grocery Store",
+    "business": "King Gyros",
+    "address": "7904 S Vincennes Ave",
+    "communityArea": "Chatham",
+    "facilityType": "Restaurant",
     "result": "Fail",
     "inspectionType": "Complaint",
-    "date": "2026-11-09",
+    "date": "2026-11-17",
     "categories": [
      "Cleaning and sanitation",
+     "Grease buildup",
+     "Hood and ventilation",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Dunkin Donuts/Baskin Robbins",
+    "address": "3347 W North Ave",
+    "communityArea": "Humboldt Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint",
+    "date": "2026-11-17",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease trap",
      "Pests"
     ]
    }
   ],
   "hoodGrease": [
    {
-    "business": "Sports Illustrated Resorts",
-    "address": "203 N Wabash Ave",
-    "communityArea": "Loop",
+    "business": "Wendys Old Fashioned Hamburgers",
+    "address": "758 W 117th St",
+    "communityArea": "West Pullman",
     "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "License",
-    "date": "2026-11-10",
+    "result": "Pass w/ Conditions",
+    "inspectionType": "Complaint",
+    "date": "2026-11-19",
     "categories": [
      "Cleaning and sanitation",
      "Grease buildup",
+     "Plumbing"
+    ]
+   },
+   {
+    "business": "LA Haciendita Taqueria Kedzie, Inc.",
+    "address": "5151 S Kedzie Ave",
+    "communityArea": "Gage Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-11-18",
+    "categories": [
      "Hood and ventilation",
      "Pests",
      "Plumbing"
     ]
    },
    {
-    "business": "Green Leaf Thai Cuisine",
-    "address": "4658 N Western Ave",
-    "communityArea": "Lincoln Square",
+    "business": "Gorditas Aguascalientes",
+    "address": "5249 S Kedzie Ave",
+    "communityArea": "Gage Park",
     "facilityType": "Restaurant",
     "result": "Fail",
-    "inspectionType": "Canvass Re-Inspection",
-    "date": "2026-11-10",
+    "inspectionType": "Canvass",
+    "date": "2026-11-18",
+    "categories": [
+     "Cleaning and sanitation",
+     "Hood and ventilation",
+     "Pests"
+    ]
+   },
+   {
+    "business": "Fiesta Tamaleria el Barrio, Inc.",
+    "address": "1820 W 18th St",
+    "communityArea": "Lower West Side",
+    "facilityType": "Restaurant",
+    "result": "Pass w/ Conditions",
+    "inspectionType": "Canvass",
+    "date": "2026-11-18",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease trap",
+     "Plumbing"
+    ]
+   },
+   {
+    "business": "Las Islas Marias",
+    "address": "5401 S Pulaski Rd",
+    "communityArea": "West Elsdon",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Canvass",
+    "date": "2026-11-17",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Grease trap",
+     "Pests"
+    ]
+   },
+   {
+    "business": "King Gyros",
+    "address": "7904 S Vincennes Ave",
+    "communityArea": "Chatham",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint",
+    "date": "2026-11-17",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup",
+     "Hood and ventilation",
+     "Pests"
+    ]
+   },
+   {
+    "business": "J J Fish & Chicken",
+    "address": "201-209 E 43rd St",
+    "communityArea": "Grand Boulevard",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint",
+    "date": "2026-11-17",
+    "categories": [
+     "Cleaning and sanitation",
+     "Grease buildup"
+    ]
+   },
+   {
+    "business": "Dunkin Donuts/Baskin Robbins",
+    "address": "3347 W North Ave",
+    "communityArea": "Humboldt Park",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "Complaint",
+    "date": "2026-11-17",
     "categories": [
      "Cleaning and sanitation",
      "Grease trap",
@@ -189,33 +326,85 @@
   ],
   "newOpening": [
    {
-    "business": "Taco & Burrito Palace",
-    "address": "3265 N Milwaukee Ave",
-    "communityArea": "Avondale",
+    "business": "The Original NYC Halal Eats Two",
+    "address": "1247 S Western Ave",
+    "communityArea": "Near West Side",
     "facilityType": "Restaurant",
-    "result": "Pass",
+    "result": "Fail",
     "inspectionType": "License",
-    "date": "2026-11-12",
+    "date": "2026-11-19",
     "categories": []
    },
    {
-    "business": "Jumping Bean Este LLC",
-    "address": "2025 S Halsted St",
-    "communityArea": "Lower West Side",
-    "facilityType": "Restaurant",
-    "result": "Pass",
-    "inspectionType": "License",
-    "date": "2026-11-12",
-    "categories": []
-   },
-   {
-    "business": "Fancy Sandwich LLC",
-    "address": "8248 S Kedzie Ave",
-    "communityArea": "Ashburn",
+    "business": "Pickleball Clubhouse",
+    "address": "4242 N Elston Ave",
+    "communityArea": "Irving Park",
     "facilityType": "Restaurant",
     "result": "Not Ready",
     "inspectionType": "License",
-    "date": "2026-11-12",
+    "date": "2026-11-19",
+    "categories": []
+   },
+   {
+    "business": "Miami Kitchen Cafe",
+    "address": "4612 W Fullerton Ave",
+    "communityArea": "Belmont Cragin",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-11-19",
+    "categories": []
+   },
+   {
+    "business": "Miami Kitchen Cafe",
+    "address": "4612 W Fullerton Ave",
+    "communityArea": "Belmont Cragin",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-11-19",
+    "categories": []
+   },
+   {
+    "business": "Market Red Store",
+    "address": "343 E 79th St",
+    "communityArea": "Chatham",
+    "facilityType": "Grocery Store",
+    "result": "Fail",
+    "inspectionType": "License",
+    "date": "2026-11-19",
+    "categories": [
+     "Cleaning and sanitation"
+    ]
+   },
+   {
+    "business": "Koji Japanese",
+    "address": "2114 W Lawrence Ave",
+    "communityArea": "Lincoln Square",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-11-19",
+    "categories": []
+   },
+   {
+    "business": "Koji Japanese",
+    "address": "2114 W Lawrence Ave",
+    "communityArea": "Lincoln Square",
+    "facilityType": "Restaurant",
+    "result": "Pass",
+    "inspectionType": "License",
+    "date": "2026-11-19",
+    "categories": []
+   },
+   {
+    "business": "Dioxa 1896",
+    "address": "1626 S Halsted St",
+    "communityArea": "Lower West Side",
+    "facilityType": "Restaurant",
+    "result": "Fail",
+    "inspectionType": "License",
+    "date": "2026-11-19",
     "categories": []
    },
    {
@@ -223,104 +412,25 @@
     "address": "5403 N Clark St",
     "communityArea": "Edgewater",
     "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "License",
-    "date": "2026-11-12",
-    "categories": [
-     "Cleaning and sanitation",
-     "Plumbing"
-    ]
-   },
-   {
-    "business": "Yaya Mas Greek Kuzina",
-    "address": "2300 N Milwaukee Ave",
-    "communityArea": "Logan Square",
-    "facilityType": "Restaurant",
     "result": "Pass",
-    "inspectionType": "License",
-    "date": "2026-11-10",
+    "inspectionType": "License Re-Inspection",
+    "date": "2026-11-19",
     "categories": [
      "Cleaning and sanitation"
     ]
    },
    {
-    "business": "The Siam Lotus Thai Cuisine LLC",
-    "address": "3445 W 51st St",
-    "communityArea": "Gage Park",
+    "business": "De Colores Mexican Grill",
+    "address": "5403 N Clark St",
+    "communityArea": "Edgewater",
     "facilityType": "Restaurant",
     "result": "Pass",
     "inspectionType": "License Re-Inspection",
-    "date": "2026-11-10",
-    "categories": [
-     "Plumbing"
-    ]
-   },
-   {
-    "business": "Tha Wing Lounge",
-    "address": "3652 W Chicago Ave",
-    "communityArea": "Humboldt Park",
-    "facilityType": "Restaurant",
-    "result": "Pass",
-    "inspectionType": "License",
-    "date": "2026-11-10",
-    "categories": [
-     "Cleaning and sanitation",
-     "Plumbing"
-    ]
-   },
-   {
-    "business": "Sports Illustrated Resorts",
-    "address": "203 N Wabash Ave",
-    "communityArea": "Loop",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "License",
-    "date": "2026-11-10",
-    "categories": [
-     "Cleaning and sanitation",
-     "Grease buildup",
-     "Hood and ventilation",
-     "Pests",
-     "Plumbing"
-    ]
-   },
-   {
-    "business": "Sports Illustrated Resorts",
-    "address": "203 N Wabash Ave",
-    "communityArea": "Loop",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "License",
-    "date": "2026-11-10",
-    "categories": []
-   },
-   {
-    "business": "Sports Illustrated Resorts",
-    "address": "203 N Wabash Ave",
-    "communityArea": "Loop",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "License",
-    "date": "2026-11-10",
+    "date": "2026-11-19",
     "categories": []
    }
   ],
-  "repeatFail": [
-   {
-    "business": "Green Leaf Thai Cuisine",
-    "address": "4658 N Western Ave",
-    "communityArea": "Lincoln Square",
-    "facilityType": "Restaurant",
-    "result": "Fail",
-    "inspectionType": "Canvass Re-Inspection",
-    "date": "2026-11-10",
-    "categories": [
-     "Cleaning and sanitation",
-     "Grease trap",
-     "Pests"
-    ]
-   }
-  ]
+  "repeatFail": []
  },
  "segmentNames": {
   "pests": "Failed with pests",

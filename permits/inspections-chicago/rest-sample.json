@@ -1,67 +1,63 @@
 {
  "product": "Chicago Restaurant Inspection Leads",
- "asOf": "2026-11-16",
- "asOfText": "Nov 16, 2026",
- "through": "2026-11-13",
- "throughText": "Nov 13, 2026",
+ "asOf": "2026-11-23",
+ "asOfText": "Nov 23, 2026",
+ "through": "2026-11-20",
+ "throughText": "Nov 20, 2026",
  "window": {
-  "from": "2026-10-15",
-  "to": "2026-11-13",
-  "newFrom": "2026-11-07",
-  "repeatFrom": "2026-08-16"
+  "from": "2026-10-22",
+  "to": "2026-11-20",
+  "newFrom": "2026-11-14",
+  "repeatFrom": "2026-08-23"
  },
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-11-16T21:12:12+00:00",
-  "rowsUpdatedAt": "2026-11-15T10:07:22+00:00",
+  "fetchedAt": "2026-11-23T22:52:42+00:00",
+  "rowsUpdatedAt": "2026-11-23T10:06:05+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
   "places": 233,
-  "flagged": 108,
-  "opening": 126,
-  "repeat": 11,
-  "new": 24,
+  "flagged": 109,
+  "opening": 125,
+  "repeat": 13,
+  "new": 41,
   "byCat": {
-   "pests": 77,
-   "hood": 20,
+   "pests": 78,
+   "hood": 18,
    "drain": 17,
-   "clean": 79
+   "clean": 82
   },
-  "flaggedFail": 74,
-  "openingPassed": 98,
+  "flaggedFail": 79,
+  "openingPassed": 100,
   "excluded": {
    "business name is a person's name": 2,
-   "school, day care, hospital, senior or mobile vendor": 48,
-   "the City's latest result is out of business or not located": 3
+   "school, day care, hospital, senior or mobile vendor": 43,
+   "the City's latest result is out of business or not located": 2
   },
-  "rowsRead": 1000,
-  "historyRead": 522,
+  "rowsRead": 1037,
+  "historyRead": 571,
   "areas": [
    [
     "West Town",
-    17
-   ],
-   [
-    "Loop",
-    15
+    13
    ],
    [
     "Near North Side",
-    11
-   ],
-   [
-    "Gage Park",
-    10
+    13
    ],
    [
     "Near West Side",
     10
    ],
    [
-    "Lake View",
+    "Loop",
+    10
+   ],
+   [
+    "Gage Park",
     9
    ],
    [
@@ -73,15 +69,27 @@
     8
    ],
    [
-    "Humboldt Park",
-    8
-   ],
-   [
     "Logan Square",
     7
    ],
    [
-    "Edgewater",
+    "Lower West Side",
+    7
+   ],
+   [
+    "Humboldt Park",
+    7
+   ],
+   [
+    "Lake View",
+    7
+   ],
+   [
+    "West Ridge",
+    6
+   ],
+   [
+    "South Lawndale",
     6
    ],
    [
@@ -89,11 +97,11 @@
     6
    ],
    [
-    "O'Hare",
-    6
+    "Edgewater",
+    5
    ],
    [
-    "Albany Park",
+    "Irving Park",
     5
    ],
    [
@@ -101,31 +109,19 @@
     5
    ],
    [
-    "Lower West Side",
+    "Uptown",
     5
    ],
    [
-    "Lincoln Park",
-    5
-   ],
-   [
-    "Hyde Park",
-    5
-   ],
-   [
-    "West Elsdon",
-    5
-   ],
-   [
-    "McKinley Park",
-    5
+    "Albany Park",
+    4
    ],
    [
     "Lincoln Square",
     4
    ],
    [
-    "Archer Heights",
+    "Auburn Gresham",
     4
    ],
    [
@@ -133,27 +129,55 @@
     4
    ],
    [
-    "South Lawndale",
+    "West Elsdon",
+    4
+   ],
+   [
+    "Archer Heights",
+    4
+   ],
+   [
+    "Portage Park",
+    4
+   ],
+   [
+    "O'Hare",
     4
    ],
    [
     "Belmont Cragin",
-    4
-   ],
-   [
-    "Greater Grand Crossing",
-    4
-   ],
-   [
-    "Grand Boulevard",
-    4
+    3
    ],
    [
     "Ashburn",
     3
    ],
    [
-    "Uptown",
+    "North Lawndale",
+    3
+   ],
+   [
+    "Greater Grand Crossing",
+    3
+   ],
+   [
+    "New City",
+    3
+   ],
+   [
+    "Kenwood",
+    3
+   ],
+   [
+    "North Center",
+    3
+   ],
+   [
+    "Lincoln Park",
+    3
+   ],
+   [
+    "Hyde Park",
     3
    ],
    [
@@ -161,11 +185,23 @@
     3
    ],
    [
-    "West Ridge",
-    3
+    "Chatham",
+    2
    ],
    [
-    "Irving Park",
+    "Garfield Ridge",
+    2
+   ],
+   [
+    "Jefferson Park",
+    2
+   ],
+   [
+    "Beverly",
+    2
+   ],
+   [
+    "Forest Glen",
     2
    ],
    [
@@ -173,19 +209,7 @@
     2
    ],
    [
-    "Auburn Gresham",
-    2
-   ],
-   [
     "East Garfield Park",
-    2
-   ],
-   [
-    "Bridgeport",
-    2
-   ],
-   [
-    "Edison Park",
     2
    ],
    [
@@ -193,8 +217,28 @@
     2
    ],
    [
-    "Dunning",
-    2
+    "West Pullman",
+    1
+   ],
+   [
+    "Clearing",
+    1
+   ],
+   [
+    "Grand Boulevard",
+    1
+   ],
+   [
+    "North Park",
+    1
+   ],
+   [
+    "Roseland",
+    1
+   ],
+   [
+    "South Deering",
+    1
    ],
    [
     "Morgan Park",
@@ -205,31 +249,7 @@
     1
    ],
    [
-    "North Center",
-    1
-   ],
-   [
-    "Roseland",
-    1
-   ],
-   [
-    "Clearing",
-    1
-   ],
-   [
-    "New City",
-    1
-   ],
-   [
-    "South Deering",
-    1
-   ],
-   [
-    "North Lawndale",
-    1
-   ],
-   [
-    "Garfield Ridge",
+    "West Garfield Park",
     1
    ],
    [
@@ -237,15 +257,7 @@
     1
    ],
    [
-    "Jefferson Park",
-    1
-   ],
-   [
     "Rogers Park",
-    1
-   ],
-   [
-    "Kenwood",
     1
    ],
    [
@@ -253,15 +265,11 @@
     1
    ],
    [
-    "Portage Park",
+    "Bridgeport",
     1
    ],
    [
-    "Douglas",
-    1
-   ],
-   [
-    "Beverly",
+    "Edison Park",
     1
    ],
    [
@@ -269,11 +277,11 @@
     1
    ],
    [
-    "Norwood Park",
+    "Dunning",
     1
    ],
    [
-    "Washington Heights",
+    "Norwood Park",
     1
    ]
   ]
@@ -308,10 +316,10 @@
   "flagged": [
    {
     "type": "Restaurant",
-    "area": "Loop",
-    "date": "2026-11-12",
+    "area": "Lower West Side",
+    "date": "2026-11-19",
     "result": "Fail",
-    "inspectionType": "Canvass Re-Inspection",
+    "inspectionType": "Canvass",
     "categories": [
      "Pests",
      "Cleaning"
@@ -319,29 +327,38 @@
    },
    {
     "type": "Restaurant",
-    "area": "Gage Park",
-    "date": "2026-11-12",
+    "area": "Garfield Ridge",
+    "date": "2026-11-19",
     "result": "Fail",
     "inspectionType": "Canvass",
     "categories": [
      "Pests",
-     "Grease trap and drains"
+     "Cleaning"
     ]
    },
    {
     "type": "Restaurant",
-    "area": "Lincoln Square",
-    "date": "2026-11-10",
-    "result": "Fail",
-    "inspectionType": "Canvass Re-Inspection",
+    "area": "West Pullman",
+    "date": "2026-11-19",
+    "result": "Pass w/ Conditions",
+    "inspectionType": "Complaint",
     "categories": [
-     "Pests",
-     "Grease trap and drains",
      "Cleaning"
     ]
    }
   ],
   "repeat": [
+   {
+    "type": "Restaurant",
+    "area": "North Park",
+    "date": "2026-11-12",
+    "result": "Fail",
+    "inspectionType": "Complaint Re-Inspection",
+    "categories": [
+     "Pests",
+     "Cleaning"
+    ]
+   },
    {
     "type": "Restaurant",
     "area": "Lincoln Square",
@@ -364,48 +381,35 @@
      "Pests",
      "Cleaning"
     ]
-   },
-   {
-    "type": "Restaurant",
-    "area": "Uptown",
-    "date": "2026-11-06",
-    "result": "Fail",
-    "inspectionType": "Complaint Re-Inspection",
-    "categories": [
-     "Pests",
-     "Hood and exhaust",
-     "Grease trap and drains",
-     "Cleaning"
-    ]
    }
   ],
   "opening": [
    {
-    "name": "Jumping Bean Este LLC",
-    "address": "2025 S Halsted St",
-    "area": "Lower West Side",
+    "name": "Bloom Cafe",
+    "address": "3757 W Lawrence Ave",
+    "area": "Albany Park",
     "type": "Restaurant",
-    "date": "2026-11-12",
+    "date": "2026-11-19",
     "result": "Pass",
     "inspectionType": "License"
    },
    {
-    "name": "Taco & Burrito Palace",
-    "address": "3265 N Milwaukee Ave",
-    "area": "Avondale",
+    "name": "Bucktown Pizza",
+    "address": "1912 N Western Ave",
+    "area": "Logan Square",
     "type": "Restaurant",
-    "date": "2026-11-12",
+    "date": "2026-11-19",
     "result": "Pass",
     "inspectionType": "License"
    },
    {
-    "name": "Devil Dawgs Andersonville",
-    "address": "5257 N Clark St",
+    "name": "De Colores Mexican Grill",
+    "address": "5403 N Clark St",
     "area": "Edgewater",
     "type": "Restaurant",
-    "date": "2026-11-10",
+    "date": "2026-11-19",
     "result": "Pass",
-    "inspectionType": "License"
+    "inspectionType": "License Re-Inspection"
    }
   ]
  }

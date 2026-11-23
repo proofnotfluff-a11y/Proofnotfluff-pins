@@ -2,30 +2,30 @@
  "source": {
   "name": "City of Austin, Issued Construction Permits",
   "url": "https://data.austintexas.gov/d/3syk-w9eu",
-  "rowsUpdatedAt": "2026-11-15T13:21:19+00:00",
-  "fetchedAt": "2026-11-16T21:11:53+00:00",
+  "rowsUpdatedAt": "2026-11-22T13:13:21+00:00",
+  "fetchedAt": "2026-11-23T22:52:09+00:00",
   "license": "Public Domain U.S. Government",
   "attribution": "City of Austin, Texas - data.austintexas.gov",
   "modified": "Filtered by ProofNotFluff: commercial building permits issued in the last 24 months, still Active, grouped into projects by the City's master permit, project valuation $500,000 or more (the largest valuation on its open building permits on the list, counted once; finaled, shell and garage permits do not count), with a business listed as general contractor; structures that are not buildings (carports, pergolas, canopies, enclosures, pools, EV chargers), parking garages, houses, duplexes and three-unit buildings, shell-only buildings, interior demolition, repairs, and roof, equipment, sign, elevator, site and exterior-only work left out; cleaning companies listed as contractor left out; only project-level and business fields kept.",
   "terms": "https://data.austintexas.gov/stories/s/ranj-cccq"
  },
  "window": {
-  "from": "2024-11-16",
-  "to": "2026-11-16"
+  "from": "2024-11-23",
+  "to": "2026-11-23"
  },
  "counts": {
-  "fetched": 8795,
-  "kept": 159,
+  "fetched": 8778,
+  "kept": 161,
   "excluded": {
-   "project valuation under $500,000": 1079,
    "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 239,
-   "work class Interior Demo Non-Structural (interior demolition or repair)": 54,
-   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 174,
-   "kept": 159,
-   "work class Demolition (interior demolition or repair)": 60,
-   "shell only, no finish work": 67,
-   "no open building permit in the window": 4182,
-   "no business listed as general contractor": 5,
+   "work class Demolition (interior demolition or repair)": 58,
+   "work class Interior Demo Non-Structural (interior demolition or repair)": 57,
+   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 167,
+   "project valuation under $500,000": 1062,
+   "kept": 161,
+   "shell only, no finish work": 65,
+   "no open building permit in the window": 4189,
+   "no business listed as general contractor": 4,
    "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)": 3,
    "parking garage": 4,
    "work class Repair (interior demolition or repair)": 2,
@@ -33,36 +33,35 @@
    "second master permit of a development already listed": 1
   },
   "permitReasons": {
-   "kept": 1945,
-   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 329,
-   "work class Interior Demo Non-Structural (interior demolition or repair)": 54,
-   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 544,
+   "no construction clean (roof, equipment, site, sign, elevator or exterior work only)": 326,
+   "work class Demolition (interior demolition or repair)": 59,
+   "work class Interior Demo Non-Structural (interior demolition or repair)": 57,
+   "structure that is not a building (carport, pergola, canopy, enclosure, pool, EV charger)": 536,
+   "kept": 1929,
+   "issued before the 24-month window": 498,
    "parking garage": 57,
-   "shell only, no finish work": 148,
-   "work class Demolition (interior demolition or repair)": 61,
-   "issued before the 24-month window": 499,
-   "permit closed (final, expired, withdrawn, void or cancelled)": 5119,
+   "shell only, no finish work": 146,
+   "permit closed (final, expired, withdrawn, void or cancelled)": 5131,
    "small accessory structure or garage (shed, booth, cabana, pavilion, trellis, garage)": 26,
    "work class Repair (interior demolition or repair)": 2,
    "house, duplex or three-unit building": 11
   },
   "keptByType": {
    "Remodel or addition": 43,
-   "New construction": 107,
+   "New construction": 109,
    "Finish-out": 9
   },
   "byStage": {
    "Work under way": 133,
-   "Permit issued": 24,
-   "Near finish": 2
+   "Permit issued": 27,
+   "Near finish": 1
   },
-  "keptCost": 7719797435,
+  "keptCost": 7759305094,
   "keptUnits": 8877,
   "oddCosts": [
-   18000001,
-   500002
+   18000001
   ],
-  "keptBuildings": 363,
+  "keptBuildings": 365,
   "topAreas": [
    [
     "78744",
@@ -85,15 +84,15 @@
     9
    ],
    [
-    "78753",
+    "78724",
     8
    ],
    [
-    "78724",
+    "78758",
     7
    ],
    [
-    "78758",
+    "78735",
     7
    ]
   ],
@@ -139,6 +138,11 @@
     "cost": 196687420
    },
    {
+    "name": "Hensel Phelps Construction Co.",
+    "projects": 3,
+    "cost": 100432661
+   },
+   {
     "name": "Hill & Wilkinson GC",
     "projects": 3,
     "cost": 89628562
@@ -152,17 +156,12 @@
     "name": "G Creek Inc.",
     "projects": 3,
     "cost": 14558020
-   },
-   {
-    "name": "A R Lucas Construction LLC",
-    "projects": 3,
-    "cost": 7100000
    }
   ],
-  "nearFinish": 2,
-  "builders": 106,
-  "mapped": 139,
-  "geocoded": 57
+  "nearFinish": 1,
+  "builders": 107,
+  "mapped": 140,
+  "geocoded": 58
  },
  "projects": [
   {
@@ -590,6 +589,26 @@
    "newThisWeek": false
   },
   {
+   "permit": "13689521",
+   "issued": "2026-11-17",
+   "type": "New construction",
+   "scope": "New Construction of New Six Gate Satellite Concourse at ABIA (38224 SF)",
+   "units": null,
+   "newUnits": 0,
+   "cost": 60000000,
+   "address": "10113 Maintainers Dr",
+   "communityArea": "78719",
+   "district": "2",
+   "status": "Active",
+   "milestone": "Permit issued",
+   "buildings": 1,
+   "buildingsFinal": 0,
+   "gc": [
+    "Hensel Phelps Construction Co."
+   ],
+   "newThisWeek": true
+  },
+  {
    "permit": "13617546",
    "issued": "2026-08-19",
    "type": "New construction",
@@ -648,49 +667,9 @@
     "Hoar Construction LLC"
    ],
    "newThisWeek": false
-  },
-  {
-   "permit": "13500054",
-   "issued": "2025-12-02",
-   "type": "New construction",
-   "scope": "Construction of a new 67619 SF two story elementary school (Building A)",
-   "units": null,
-   "newUnits": 0,
-   "cost": 47183562,
-   "address": "2206 Blue Meadow Dr",
-   "communityArea": "78744",
-   "district": "2",
-   "status": "Active",
-   "milestone": "Work under way",
-   "buildings": 4,
-   "buildingsFinal": 0,
-   "gc": [
-    "Hill & Wilkinson GC"
-   ],
-   "newThisWeek": false
   }
  ],
  "nearFinish": [
-  {
-   "permit": "13633322",
-   "issued": "2026-02-17",
-   "type": "Remodel or addition",
-   "scope": "Interior Remodel to Existing Research Services and Light Manufacturing Phase 2 (11535 SF)",
-   "units": null,
-   "newUnits": 0,
-   "cost": 25000000,
-   "address": "507 E Howard Ln Bldg 3",
-   "communityArea": "78753",
-   "district": "7",
-   "status": "Active",
-   "milestone": "Near finish",
-   "buildings": 1,
-   "buildingsFinal": 1,
-   "gc": [
-    "CM Constructors"
-   ],
-   "newThisWeek": false
-  },
   {
    "permit": "13525226",
    "issued": "2026-10-30",

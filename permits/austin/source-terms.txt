@@ -1,4 +1,4 @@
-Fetched: 2026-11-16T21:22:22+00:00
+Fetched: 2026-11-23T22:55:55+00:00
 
 == Dataset https://data.austintexas.gov/d/3syk-w9eu
 Name: Issued Construction Permits

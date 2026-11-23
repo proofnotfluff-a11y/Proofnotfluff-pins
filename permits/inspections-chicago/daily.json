@@ -1,15 +1,15 @@
 {
  "product": "Chicago Restaurant Daily List",
- "asOf": "2026-11-22",
- "asOfText": "Nov 22, 2026",
+ "asOf": "2026-11-23",
+ "asOfText": "Nov 23, 2026",
  "through": "2026-11-20",
  "throughText": "Nov 20, 2026",
  "recentFrom": "2026-11-07",
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-11-22T18:39:31+00:00",
-  "rowsUpdatedAt": "2026-11-22T10:07:12+00:00",
+  "fetchedAt": "2026-11-23T22:55:54+00:00",
+  "rowsUpdatedAt": "2026-11-23T10:06:05+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
@@ -19,14 +19,6 @@
   "places": 0
  },
  "history": [
-  {
-   "asOf": "2026-10-24",
-   "through": "2026-10-23",
-   "pests": 41,
-   "hood": 11,
-   "places": 47,
-   "withPhone": 30
-  },
   {
    "asOf": "2026-10-25",
    "through": "2026-10-23",
@@ -258,6 +250,14 @@
    "hood": 0,
    "places": 0,
    "withPhone": 0
+  },
+  {
+   "asOf": "2026-11-23",
+   "through": "2026-11-20",
+   "pests": 0,
+   "hood": 0,
+   "places": 0,
+   "withPhone": 0
   }
  ],
  "examples": [],
@@ -355,7 +355,7 @@
   "coverage": 0.0
  },
  "seat": {
-  "asOf": "2026-11-22",
+  "asOf": "2026-11-23",
   "places14": 23,
   "new": 0,
   "withPhone14": 16,

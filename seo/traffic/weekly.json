@@ -2,20 +2,20 @@
  "about": "Counts only, from Cloudflare Web Analytics (cookie-free, sampled at low traffic, so small numbers are estimates) and the anonymous calculator stage counts. Built by tools/traffic_report.py.",
  "ownVisits": "Our own visits are left out from 2026-10-29 (automated checks and our marked browsers never count; our preview pages are set aside under ownLeftOut).",
  "ok": true,
- "fetchedAt": "2026-11-16T15:56:33-06:00",
+ "fetchedAt": "2026-11-23T17:47:49-06:00",
  "week": {
-  "from": "2026-11-09",
-  "to": "2026-11-15"
+  "from": "2026-11-16",
+  "to": "2026-11-22"
  },
  "totals": {
-  "visits": 15,
-  "views": 21,
-  "prevVisits": 50,
-  "change": -70,
-  "search": 3,
+  "visits": 11,
+  "views": 15,
+  "prevVisits": 20,
+  "change": -45,
+  "search": 0,
   "uses": 0,
   "upgrades": 0,
-  "pagesWithVisits": 3,
+  "pagesWithVisits": 6,
   "livePages": 241
  },
  "ownLeftOut": {
@@ -25,14 +25,10 @@
  "sources": [
   {
    "label": "Direct",
-   "visits": 11
+   "visits": 10
   },
   {
-   "label": "Google",
-   "visits": 3
-  },
-  {
-   "label": "Other sites",
+   "label": "Social",
    "visits": 1
   }
  ],
@@ -51,11 +47,15 @@
   },
   {
    "week": "2026-11-02",
-   "visits": 50
+   "visits": 70
   },
   {
    "week": "2026-11-09",
-   "visits": 15
+   "visits": 20
+  },
+  {
+   "week": "2026-11-16",
+   "visits": 11
   }
  ],
  "pages": [
@@ -64,45 +64,78 @@
    "name": "Home",
    "kind": "Other page",
    "published": "",
-   "visits": 11,
-   "views": 11,
-   "prev": 30,
+   "visits": 6,
+   "views": 6,
+   "prev": 10,
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 9,
-   "gClicks": 0,
-   "gPos": 3.6
+   "staged": false
+  },
+  {
+   "slug": "austin-construction-cleaning-leads",
+   "name": "Austin Construction Cleaning Leads",
+   "kind": "Lead list",
+   "published": "",
+   "visits": 1,
+   "views": 1,
+   "prev": 0,
+   "search": 0,
+   "uses": 0,
+   "upgrades": 0,
+   "staged": false
   },
   {
    "slug": "chicago-basement-flooding",
    "name": "Chicago Basement Flooding Calls by Neighborhood",
    "kind": "Calculator",
    "published": "",
-   "visits": 2,
-   "views": 2,
-   "prev": 0,
-   "search": 2,
+   "visits": 1,
+   "views": 1,
+   "prev": 10,
+   "search": 0,
    "uses": 0,
    "upgrades": 0,
    "staged": false
   },
   {
-   "slug": "chicago-new-business-licenses",
-   "name": "Chicago New Business Licenses",
-   "kind": "Lead list",
+   "slug": "material-price-changes/steel-pipe-and-tube",
+   "name": "Material price changes/steel pipe and tube",
+   "kind": "Other page",
    "published": "",
-   "visits": 2,
-   "views": 2,
+   "visits": 1,
+   "views": 1,
    "prev": 0,
-   "search": 1,
+   "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 4,
-   "gClicks": 0,
-   "gPos": 6.8
+   "staged": false
+  },
+  {
+   "slug": "missed-call-cost-calculator",
+   "name": "Missed Call Cost Calculator",
+   "kind": "Calculator",
+   "published": "2026-10-26",
+   "visits": 1,
+   "views": 1,
+   "prev": 0,
+   "search": 0,
+   "uses": 0,
+   "upgrades": 0,
+   "staged": true
+  },
+  {
+   "slug": "new-in-chicago",
+   "name": "New in Chicago this week",
+   "kind": "Weekly City page",
+   "published": "",
+   "visits": 1,
+   "views": 1,
+   "prev": 0,
+   "search": 0,
+   "uses": 0,
+   "upgrades": 0,
+   "staged": false
   },
   {
    "slug": "chicago-data",
@@ -110,70 +143,12 @@
    "kind": "Other page",
    "published": "",
    "visits": 0,
-   "views": 2,
+   "views": 4,
    "prev": 0,
    "search": 0,
    "uses": 0,
    "upgrades": 0,
    "staged": false
-  },
-  {
-   "slug": "chicago-rat-complaints",
-   "name": "Chicago Rat Index: Rat Complaints by Neighborhood",
-   "kind": "Weekly City page",
-   "published": "",
-   "visits": 0,
-   "views": 1,
-   "prev": 0,
-   "search": 0,
-   "uses": 0,
-   "upgrades": 0,
-   "staged": false
-  },
-  {
-   "slug": "chicago-trades-news",
-   "name": "Chicago Trades News",
-   "kind": "Calculator",
-   "published": "",
-   "visits": 0,
-   "views": 1,
-   "prev": 0,
-   "search": 0,
-   "uses": 0,
-   "upgrades": 0,
-   "staged": false
-  },
-  {
-   "slug": "calculators",
-   "name": "Free calculators",
-   "kind": "Other page",
-   "published": "",
-   "visits": 0,
-   "views": 1,
-   "prev": 0,
-   "search": 0,
-   "uses": 0,
-   "upgrades": 0,
-   "staged": false,
-   "gImpr": 11,
-   "gClicks": 0,
-   "gPos": 55
-  },
-  {
-   "slug": "questions",
-   "name": "Questions",
-   "kind": "Other page",
-   "published": "",
-   "visits": 0,
-   "views": 1,
-   "prev": 0,
-   "search": 0,
-   "uses": 0,
-   "upgrades": 0,
-   "staged": false,
-   "gImpr": 1,
-   "gClicks": 0,
-   "gPos": 7
   },
   {
    "slug": "ecommerce-13-week-cash-flow-calculator",
@@ -226,22 +201,6 @@
    "uses": 0,
    "upgrades": 0,
    "staged": true
-  },
-  {
-   "slug": "austin-construction-cleaning-leads",
-   "name": "Austin Construction Cleaning Leads",
-   "kind": "Lead list",
-   "published": "",
-   "visits": 0,
-   "views": 0,
-   "prev": 0,
-   "search": 0,
-   "uses": 0,
-   "upgrades": 0,
-   "staged": false,
-   "gImpr": 3,
-   "gClicks": 0,
-   "gPos": 9.3
   },
   {
    "slug": "auto-detailing-price-calculator",
@@ -306,10 +265,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 4,
-   "gClicks": 0,
-   "gPos": 71.2
+   "staged": false
   },
   {
    "slug": "chicago-city-contracts",
@@ -318,7 +274,7 @@
    "published": "",
    "visits": 0,
    "views": 0,
-   "prev": 10,
+   "prev": 0,
    "search": 0,
    "uses": 0,
    "upgrades": 0,
@@ -364,6 +320,19 @@
    "staged": false
   },
   {
+   "slug": "chicago-new-business-licenses",
+   "name": "Chicago New Business Licenses",
+   "kind": "Lead list",
+   "published": "",
+   "visits": 0,
+   "views": 0,
+   "prev": 0,
+   "search": 0,
+   "uses": 0,
+   "upgrades": 0,
+   "staged": false
+  },
+  {
    "slug": "chicago-permit-wait-times",
    "name": "Chicago Permit Wait Times",
    "kind": "Calculator",
@@ -387,10 +356,20 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 4,
-   "gClicks": 0,
-   "gPos": 5.2
+   "staged": false
+  },
+  {
+   "slug": "chicago-rat-complaints",
+   "name": "Chicago Rat Index: Rat Complaints by Neighborhood",
+   "kind": "Weekly City page",
+   "published": "",
+   "visits": 0,
+   "views": 0,
+   "prev": 0,
+   "search": 0,
+   "uses": 0,
+   "upgrades": 0,
+   "staged": false
   },
   {
    "slug": "chicago-repair-demand",
@@ -403,10 +382,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 2,
-   "gClicks": 0,
-   "gPos": 5
+   "staged": false
   },
   {
    "slug": "chicago-restaurant-inspection-leads",
@@ -419,10 +395,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 3,
-   "gClicks": 0,
-   "gPos": 8.3
+   "staged": false
   },
   {
    "slug": "chicago-snow-season",
@@ -440,6 +413,19 @@
   {
    "slug": "chicago-trade-licenses",
    "name": "Chicago Trade License Finder",
+   "kind": "Calculator",
+   "published": "",
+   "visits": 0,
+   "views": 0,
+   "prev": 0,
+   "search": 0,
+   "uses": 0,
+   "upgrades": 0,
+   "staged": false
+  },
+  {
+   "slug": "chicago-trades-news",
+   "name": "Chicago Trades News",
    "kind": "Calculator",
    "published": "",
    "visits": 0,
@@ -1354,7 +1340,7 @@
    "published": "",
    "visits": 0,
    "views": 0,
-   "prev": 10,
+   "prev": 0,
    "search": 0,
    "uses": 0,
    "upgrades": 0,
@@ -2021,10 +2007,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": true,
-   "gImpr": 5,
-   "gClicks": 0,
-   "gPos": 4.2
+   "staged": true
   },
   {
    "slug": "chore-split-calculator",
@@ -2050,10 +2033,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": true,
-   "gImpr": 35,
-   "gClicks": 0,
-   "gPos": 83.4
+   "staged": true
   },
   {
    "slug": "cleaning-business-startup-cost-calculator",
@@ -2225,6 +2205,19 @@
    "staged": false
   },
   {
+   "slug": "calculators",
+   "name": "Free calculators",
+   "kind": "Other page",
+   "published": "",
+   "visits": 0,
+   "views": 0,
+   "prev": 0,
+   "search": 0,
+   "uses": 0,
+   "upgrades": 0,
+   "staged": false
+  },
+  {
    "slug": "free-cleaning-price-cheat-sheet",
    "name": "Free cleaning price cheat sheet",
    "kind": "Other page",
@@ -2326,10 +2319,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": true,
-   "gImpr": 1,
-   "gClicks": 0,
-   "gPos": 77
+   "staged": true
   },
   {
    "slug": "hourly-rate-calculator",
@@ -2355,10 +2345,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 2,
-   "gClicks": 0,
-   "gPos": 53.5
+   "staged": false
   },
   {
    "slug": "keep-rats-out-of-garden-chicago",
@@ -2371,10 +2358,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 1,
-   "gClicks": 0,
-   "gPos": 10
+   "staged": false
   },
   {
    "slug": "austin-post-construction-cleanup-contacts",
@@ -2387,10 +2371,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 6,
-   "gClicks": 0,
-   "gPos": 4.3
+   "staged": false
   },
   {
    "slug": "chicago-post-construction-cleaning-contracts",
@@ -2403,10 +2384,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 2,
-   "gClicks": 0,
-   "gPos": 27.5
+   "staged": false
   },
   {
    "slug": "chicago-hood-cleaning-first-restaurant-clients",
@@ -2432,10 +2410,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 5,
-   "gClicks": 0,
-   "gPos": 75.8
+   "staged": false
   },
   {
    "slug": "amazon-holding-funds-pay-production",
@@ -2474,10 +2449,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 6,
-   "gClicks": 0,
-   "gPos": 73.7
+   "staged": false
   },
   {
    "slug": "inventory-turnover-calculator",
@@ -2516,10 +2488,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 4,
-   "gClicks": 0,
-   "gPos": 14.2
+   "staged": false
   },
   {
    "slug": "junk-removal-startup-cost-calculator",
@@ -2584,10 +2553,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 9,
-   "gClicks": 0,
-   "gPos": 8.3
+   "staged": false
   },
   {
    "slug": "material-price-changes",
@@ -2600,10 +2566,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 12,
-   "gClicks": 0,
-   "gPos": 7.2
+   "staged": false
   },
   {
    "slug": "material-price-changes/aluminum-mill-shapes",
@@ -2892,35 +2855,6 @@
    "staged": false
   },
   {
-   "slug": "material-price-changes/steel-pipe-and-tube",
-   "name": "Material price changes/steel pipe and tube",
-   "kind": "Other page",
-   "published": "",
-   "visits": 0,
-   "views": 0,
-   "prev": 0,
-   "search": 0,
-   "uses": 0,
-   "upgrades": 0,
-   "staged": false
-  },
-  {
-   "slug": "missed-call-cost-calculator",
-   "name": "Missed Call Cost Calculator",
-   "kind": "Calculator",
-   "published": "2026-10-26",
-   "visits": 0,
-   "views": 0,
-   "prev": 0,
-   "search": 0,
-   "uses": 0,
-   "upgrades": 0,
-   "staged": true,
-   "gImpr": 18,
-   "gClicks": 0,
-   "gPos": 75.2
-  },
-  {
    "slug": "monthly-budget-calculator",
    "name": "Monthly Budget Calculator",
    "kind": "Calculator",
@@ -2947,22 +2881,6 @@
    "staged": false
   },
   {
-   "slug": "new-in-chicago",
-   "name": "New in Chicago this week",
-   "kind": "Weekly City page",
-   "published": "",
-   "visits": 0,
-   "views": 0,
-   "prev": 0,
-   "search": 0,
-   "uses": 0,
-   "upgrades": 0,
-   "staged": false,
-   "gImpr": 13,
-   "gClicks": 0,
-   "gPos": 13.4
-  },
-  {
    "slug": "post-construction-cleaning-bid-calculator",
    "name": "Post-Construction Cleaning Bid Calculator",
    "kind": "Calculator",
@@ -2973,10 +2891,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": true,
-   "gImpr": 8,
-   "gClicks": 0,
-   "gPos": 57.5
+   "staged": true
   },
   {
    "slug": "pressure-washing-startup-cost-calculator",
@@ -3015,10 +2930,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 2,
-   "gClicks": 0,
-   "gPos": 83
+   "staged": false
   },
   {
    "slug": "price-increase-calculator",
@@ -3031,10 +2943,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": true,
-   "gImpr": 1,
-   "gClicks": 0,
-   "gPos": 6
+   "staged": true
   },
   {
    "slug": "privacy",
@@ -3047,10 +2956,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 1,
-   "gClicks": 0,
-   "gPos": 6
+   "staged": false
   },
   {
    "slug": "profit-margin-calculator",
@@ -3069,6 +2975,19 @@
    "slug": "profit-and-loss-calculator",
    "name": "Profit and Loss Calculator",
    "kind": "Calculator",
+   "published": "",
+   "visits": 0,
+   "views": 0,
+   "prev": 0,
+   "search": 0,
+   "uses": 0,
+   "upgrades": 0,
+   "staged": false
+  },
+  {
+   "slug": "questions",
+   "name": "Questions",
+   "kind": "Other page",
    "published": "",
    "visits": 0,
    "views": 0,
@@ -3167,10 +3086,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 1,
-   "gClicks": 0,
-   "gPos": 8
+   "staged": false
   },
   {
    "slug": "snow-removal-pricing-calculator",
@@ -3183,10 +3099,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": true,
-   "gImpr": 11,
-   "gClicks": 0,
-   "gPos": 81.3
+   "staged": true
   },
   {
    "slug": "soft-wash-pricing-calculator",
@@ -3251,10 +3164,7 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 8,
-   "gClicks": 0,
-   "gPos": 36.9
+   "staged": false
   },
   {
    "slug": "trade-association-hood-cleaning-jobs",
@@ -3280,37 +3190,34 @@
    "search": 0,
    "uses": 0,
    "upgrades": 0,
-   "staged": false,
-   "gImpr": 6,
-   "gClicks": 0,
-   "gPos": 36.8
+   "staged": false
   }
  ],
  "flags": {
   "zero": [
    "chicago-data",
-   "chicago-rat-complaints",
-   "chicago-trades-news",
-   "calculators",
-   "questions",
    "ecommerce-13-week-cash-flow-calculator",
    "airbnb-break-even-nights-calculator",
    "airbnb-nightly-rate-calculator",
    "amazon-dd7-payout-calculator",
-   "austin-construction-cleaning-leads",
    "auto-detailing-price-calculator",
    "break-even-calculator",
    "business-expense-tracker-calculator",
    "cake-pricing-calculator",
+   "christmas-lights-charge-by-foot-or-hour",
+   "chicago-city-contracts",
    "chicago-construction-cleaning-leads",
    "chicago-demolition-rodent-baiting",
    "chicago-dumpster-permits",
+   "chicago-new-business-licenses",
    "chicago-permit-wait-times",
    "chicago-public-way-permit-costs",
+   "chicago-rat-complaints",
    "chicago-repair-demand",
    "chicago-restaurant-inspection-leads",
    "chicago-snow-season",
    "chicago-trade-licenses",
+   "chicago-trades-news",
    "chicago-city-contracts/demolition",
    "chicago-city-contracts/electrical",
    "chicago-city-contracts/hauling",
@@ -3380,6 +3287,7 @@
    "chicago-rat-complaints/jefferson-park",
    "chicago-rat-complaints/kenwood",
    "chicago-rat-complaints/lake-view",
+   "chicago-rat-complaints/lincoln-park",
    "chicago-rat-complaints/lincoln-square",
    "chicago-rat-complaints/logan-square",
    "chicago-rat-complaints/loop",
@@ -3446,15 +3354,18 @@
    "estate-cleanout-cost-calculator",
    "etsy-fee-calculator",
    "find-post-construction-cleaning-leads-chicago",
+   "calculators",
    "free-cleaning-price-cheat-sheet",
    "free-job-estimate-template",
    "free-price-increase-letter-template",
    "freelance-hourly-rate-calculator",
+   "google-local-services-ads-worth-it",
    "handmade-product-pricing-calculator",
    "handyman-hourly-rate-calculator",
    "hood-cleaning-price-calculator",
    "hourly-rate-calculator",
    "house-cleaning-price-calculator",
+   "keep-rats-out-of-garden-chicago",
    "austin-post-construction-cleanup-contacts",
    "chicago-post-construction-cleaning-contracts",
    "chicago-hood-cleaning-first-restaurant-clients",
@@ -3462,6 +3373,7 @@
    "shopify-payouts-supplier-deposits-cash-gap",
    "price-post-construction-cleaning-bid",
    "inventory-turnover-calculator",
+   "snow-plow-on-your-own-truck-worth-it",
    "chicago-post-construction-cleaning-bid-sites",
    "junk-removal-startup-cost-calculator",
    "junk-removal-price-calculator",
@@ -3491,10 +3403,7 @@
    "material-price-changes/ready-mixed-concrete",
    "material-price-changes/sand-gravel-crushed-stone",
    "material-price-changes/steel-mill-products",
-   "material-price-changes/steel-pipe-and-tube",
-   "missed-call-cost-calculator",
    "monthly-budget-calculator",
-   "new-in-chicago",
    "post-construction-cleaning-bid-calculator",
    "pressure-washing-startup-cost-calculator",
    "pressure-washing-price-calculator",
@@ -3503,9 +3412,11 @@
    "privacy",
    "profit-margin-calculator",
    "profit-and-loss-calculator",
+   "questions",
    "refunds",
    "rental-property-cash-flow-calculator",
    "inventory-reorder-point-calculator",
+   "snow-plowing-seasonal-or-per-push",
    "self-employment-tax-calculator",
    "shipping-cost-calculator",
    "shop",
@@ -3513,25 +3424,16 @@
    "soft-wash-pricing-calculator",
    "unit-cost-calculator",
    "chicago-crew-cost",
+   "christmas-light-installation-price-per-foot",
+   "when-to-start-advertising-christmas-light-installation",
    "window-cleaning-price-calculator"
   ],
   "new": [
-   "christmas-lights-charge-by-foot-or-hour",
-   "google-local-services-ads-worth-it",
-   "keep-rats-out-of-garden-chicago",
    "amazon-holding-funds-pay-production",
-   "snow-plow-on-your-own-truck-worth-it",
    "carpet-cleaning-leads-price-shoppers",
-   "snow-plowing-seasonal-or-per-push",
-   "christmas-light-installation-price-per-foot",
-   "when-to-start-advertising-christmas-light-installation",
    "trade-association-hood-cleaning-jobs"
   ],
   "zeroWeeks": 3
  },
- "search": {
-  "date": "2026-11-06",
-  "clicks": 5,
-  "impressions": 453
- }
+ "search": null
 }

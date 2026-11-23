@@ -1,21 +1,21 @@
 {
- "asOf": "2026-11-17",
- "release": "2026-10-21.0",
- "rows": 225,
- "withPhone": 53,
- "coverage": 23.6,
- "overture": 53,
+ "asOf": "2026-11-23",
+ "release": "2026-11-18.0",
+ "rows": 216,
+ "withPhone": 44,
+ "coverage": 20.4,
+ "overture": 44,
  "website": 0,
  "noPhoneWhy": {
-  "a place at the address under another name": 106,
-  "no Overture place with this name or address": 37,
-  "a place at the address under another name (shares a word)": 19,
+  "a place at the address under another name": 103,
+  "no Overture place with this name or address": 36,
+  "a place at the address under another name (shares a word)": 22,
   "the name nearby, at another or no street address": 3,
+  "matched, chain or listing site only": 2,
   "a place at the address under another name (spelled close)": 2,
-  "two close matches": 2,
-  "matched, chain or listing site only": 1,
-  "website: site unreachable": 1,
-  "website: no number on home or contact page": 1
+  "two close matches": 1,
+  "website: no number on home or contact page": 1,
+  "website: site unreachable": 1
  },
  "routes": "Overture Maps places and the business's own site only (legal/reviews/2026-10-23-phone-sources.md)"
 }

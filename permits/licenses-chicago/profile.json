@@ -1,6 +1,6 @@
 {
- "fetchedAt": "2026-11-16T21:51:28-06:00",
- "rowsUpdatedAt": "2026-11-16T11:20:07+00:00",
+ "fetchedAt": "2026-11-23T16:55:21-06:00",
+ "rowsUpdatedAt": "2026-11-21T10:56:34+00:00",
  "columns": [
   "id",
   "license_id",
@@ -48,67 +48,75 @@
  "byLicense": [
   [
    "Limited Business License",
-   155
+   161
   ],
   [
    "Retail Food Establishment",
-   119
+   116
   ],
   [
    "Pop-Up Retail User",
-   113
+   110
   ],
   [
    "Regulated Business License",
-   88
+   87
   ],
   [
    "Pharmaceutical Representative",
-   34
+   36
   ],
   [
    "Consumption on Premises - Incidental Activity",
-   23
+   26
+  ],
+  [
+   "Shared Kitchen User (Long Term)",
+   21
+  ],
+  [
+   "Peddler License",
+   17
   ],
   [
    "Video Gaming Location",
    17
   ],
   [
-   "Shared Kitchen User (Long Term)",
-   16
-  ],
-  [
-   "Peddler License",
-   15
-  ],
-  [
-   "Public Place of Amusement",
-   10
-  ],
-  [
    "Commercial Garage",
-   10
+   13
   ],
   [
    "Special Event Food",
-   10
-  ],
-  [
-   "Valet Parking Operator",
    9
   ],
   [
    "Animal Care License",
-   8
+   9
   ],
   [
    "Tobacco",
    8
   ],
   [
+   "Video Gaming Terminal",
+   7
+  ],
+  [
+   "Raffles",
+   7
+  ],
+  [
    "Children's Services Facility License",
    7
+  ],
+  [
+   "Outdoor Patio",
+   6
+  ],
+  [
+   "Public Place of Amusement",
+   6
   ],
   [
    "Tavern",
@@ -119,27 +127,19 @@
    6
   ],
   [
-   "Outdoor Patio",
+   "Valet Parking Operator",
    6
   ],
   [
-   "Package Goods",
-   6
-  ],
-  [
-   "Raffles",
-   6
-  ],
-  [
-   "Video Gaming Terminal",
-   6
-  ],
-  [
-   "Shared Housing Unit Operator",
-   6
+   "Mobile Food License",
+   5
   ],
   [
    "Special Event Liquor",
+   5
+  ],
+  [
+   "Package Goods",
    5
   ],
   [
@@ -147,12 +147,8 @@
    5
   ],
   [
-   "Towing - Tow Truck",
-   5
-  ],
-  [
-   "Mobile Food License",
-   4
+   "Manufacturing Establishments",
+   3
   ],
   [
    "Caterer's Liquor License",
@@ -161,6 +157,10 @@
   [
    "Shared Kitchen User (Short Term)",
    3
+  ],
+  [
+   "Shared Housing Unit Operator",
+   2
   ],
   [
    "Private Booting Registration",
@@ -177,14 +177,6 @@
   [
    "Filling Station",
    1
-  ],
-  [
-   "Manufacturing Establishments",
-   1
-  ],
-  [
-   "Emerging Business",
-   1
   ]
  ],
  "keptByLicense": [
@@ -194,66 +186,58 @@
   ],
   [
    "Retail Food Establishment",
-   68
-  ],
-  [
-   "Video Gaming Location",
-   15
+   70
   ],
   [
    "Regulated Business License",
-   12
+   13
   ],
   [
    "Commercial Garage",
-   9
+   11
   ],
   [
    "Consumption on Premises - Incidental Activity",
-   8
+   11
+  ],
+  [
+   "Video Gaming Location",
+   6
   ],
   [
    "Animal Care License",
    5
   ],
   [
-   "Motor Vehicle Services License",
-   5
-  ],
-  [
-   "Public Place of Amusement",
-   4
-  ],
-  [
-   "Tavern",
-   4
-  ],
-  [
-   "Children's Services Facility License",
-   4
-  ],
-  [
-   "Package Goods",
+   "Tobacco",
    3
   ],
   [
-   "Secondhand Dealer",
-   1
+   "Motor Vehicle Services License",
+   3
   ],
   [
-   "Filling Station",
-   1
+   "Children's Services Facility License",
+   3
   ],
   [
-   "Wholesale Food Establishment",
-   1
+   "Public Place of Amusement",
+   2
   ],
   [
-   "Caterer's Liquor License",
-   1
+   "Package Goods",
+   2
+  ],
+  [
+   "Tavern",
+   2
   ],
   [
    "Manufacturing Establishments",
+   1
+  ],
+  [
+   "Secondhand Dealer",
    1
   ]
  ],

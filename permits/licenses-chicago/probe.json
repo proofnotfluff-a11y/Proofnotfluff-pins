@@ -1,6 +1,6 @@
 {
- "ranAt": "2026-11-17T03:51:28+00:00",
- "since": "2026-10-05",
+ "ranAt": "2026-11-23T22:55:21+00:00",
+ "since": "2026-10-12",
  "columns": [
   "id",
   "license_id",
@@ -45,42 +45,38 @@
   ":@computed_region_bdys_3d7i",
   ":@computed_region_43wa_7qmu"
  ],
- "rows": 863,
+ "rows": 847,
  "byLicense": [
   [
    "Limited Business License",
-   182
-  ],
-  [
-   "Pop-Up Retail User",
-   137
+   186
   ],
   [
    "Retail Food Establishment",
-   134
+   147
+  ],
+  [
+   "Pop-Up Retail User",
+   133
   ],
   [
    "Regulated Business License",
-   103
+   98
   ],
   [
    "Pharmaceutical Representative",
-   37
-  ],
-  [
-   "Special Event Food",
-   33
+   39
   ],
   [
    "Consumption on Premises - Incidental Activity",
-   26
-  ],
-  [
-   "Peddler License",
-   23
+   29
   ],
   [
    "Shared Kitchen User (Long Term)",
+   22
+  ],
+  [
+   "Peddler License",
    21
   ],
   [
@@ -88,11 +84,15 @@
    17
   ],
   [
-   "Valet Parking Operator",
+   "Commercial Garage",
    13
   ],
   [
-   "Commercial Garage",
+   "Special Event Food",
+   12
+  ],
+  [
+   "Tobacco",
    11
   ],
   [
@@ -100,31 +100,15 @@
    10
   ],
   [
-   "Tobacco",
-   10
-  ],
-  [
-   "Shared Housing Unit Operator",
-   10
-  ],
-  [
    "Animal Care License",
-   8
+   9
   ],
   [
-   "Motor Vehicle Services License",
-   7
+   "Valet Parking Operator",
+   9
   ],
   [
-   "Special Event Liquor",
-   7
-  ],
-  [
-   "Outdoor Patio",
-   7
-  ],
-  [
-   "Children's Services Facility License",
+   "Video Gaming Terminal",
    7
   ],
   [
@@ -132,11 +116,27 @@
    7
   ],
   [
-   "Indoor Special Event",
+   "Outdoor Patio",
    7
   ],
   [
+   "Shared Housing Unit Operator",
+   7
+  ],
+  [
+   "Children's Services Facility License",
+   7
+  ],
+  [
+   "Mobile Food License",
+   6
+  ],
+  [
    "Tavern",
+   6
+  ],
+  [
+   "Motor Vehicle Services License",
    6
   ],
   [
@@ -144,20 +144,20 @@
    6
   ],
   [
-   "Video Gaming Terminal",
-   6
+   "Special Event Liquor",
+   5
+  ],
+  [
+   "Indoor Special Event",
+   5
   ],
   [
    "Towing - Tow Truck",
    5
   ],
   [
-   "Private Booting Registration",
-   4
-  ],
-  [
-   "Mobile Food License",
-   4
+   "Manufacturing Establishments",
+   3
   ],
   [
    "Caterer's Liquor License",
@@ -168,11 +168,11 @@
    3
   ],
   [
-   "Secondhand Dealer",
+   "Private Booting Registration",
    2
   ],
   [
-   "Filling Station",
+   "Secondhand Dealer",
    2
   ],
   [
@@ -180,53 +180,45 @@
    2
   ],
   [
-   "Manufacturing Establishments",
+   "Filling Station",
    1
   ],
   [
    "Emerging Business",
-   1
-  ],
-  [
-   "Pawnbroker",
    1
   ]
  ],
  "byActivity": [
   [
    "Sale of General Merchandise at Flea Market 181-365 Consecutive Days",
-   88
+   85
   ],
   [
    "Markets / Promotes Pharmaceuticals to Health Care Professionals and Conducts Bus",
-   37
-  ],
-  [
-   "Preparation of Food and Dining on Premises With Seating",
-   33
+   39
   ],
   [
    "Sale of Food Prepared Onsite With Dining Area",
-   32
+   38
   ],
   [
-   "Organizer of Event with Retail Vendors (1-5 Day Show)",
+   "Preparation of Food and Dining on Premises With Seating",
+   36
+  ],
+  [
+   "Sale of Food Prepared Onsite Without Dining Area",
    25
   ],
   [
    "Consumption of Liquor on Premises",
-   22
-  ],
-  [
-   "5 Day Single Event  - Special Event Food",
-   22
+   25
   ],
   [
    "Shared Kitchen User - Long Term",
-   21
+   22
   ],
   [
-   "Sale of Food Prepared Onsite Without Dining Area",
+   "Organizer of Event with Retail Vendors (1-5 Day Show)",
    21
   ],
   [
@@ -239,34 +231,22 @@
   ],
   [
    "Retail Sales of General Merchandise and Non-Perishable Food | Retail Sales of Pe",
-   15
-  ],
-  [
-   "Retail Sales of General Merchandise and Non-Perishable Food",
-   13
-  ],
-  [
-   "Valet Parking Operator",
-   13
+   14
   ],
   [
    "Hair Services",
-   12
-  ],
-  [
-   "180 Day Multiple Events - Special Event Food",
-   11
-  ],
-  [
-   "Vacation Rental Building Containing Five or More Dwelling Units For Transient Oc",
-   10
-  ],
-  [
-   "Operation of an Administrative Commercial Office",
-   10
+   14
   ],
   [
    "Retail Sales of Clothing / Accessories / Shoes",
+   11
+  ],
+  [
+   "Operation of an Administrative Commercial Office",
+   11
+  ],
+  [
+   "Provide 4 or More Parking Spaces For a Fee - to Residents, Tenants, Users, Emplo",
    10
   ],
   [
@@ -274,24 +254,24 @@
    10
   ],
   [
-   "Shared Housing Operator - Host of More Than One Shared Housing Unit",
+   "Retail Sales of General Merchandise and Non-Perishable Food",
    10
+  ],
+  [
+   "Vacation Rental Building Containing Five or More Dwelling Units For Transient Oc",
+   10
+  ],
+  [
+   "5 Day Single Event  - Special Event Food",
+   9
   ],
   [
    "Miscellaneous Commercial Services",
    9
   ],
   [
-   "Charges a Fee for Entertainment or Amusements or Recreational Activities",
-   8
-  ],
-  [
-   "Provide 4 or More Parking Spaces For a Fee - to Residents, Tenants, Users, Emplo",
-   8
-  ],
-  [
-   "6-30 Day Retail Pop Up Vendor (Sale of General Merchandise)",
-   8
+   "Valet Parking Operator",
+   9
   ],
   [
    "Sale of Food Prepared Onsite With Dining Area | Preparation and Sale of Coffee a",
@@ -299,18 +279,22 @@
   ],
   [
    "Retail Sales of Flavored Tobacco Products | Retail Sales of Tobacco Products and",
+   8
+  ],
+  [
+   "6-30 Day Retail Pop Up Vendor (Sale of General Merchandise)",
+   8
+  ],
+  [
+   "Charges a Fee for Entertainment or Amusements or Recreational Activities",
+   8
+  ],
+  [
+   "Own, Service, or Maintain Video Gaming Terminals for Placement in Licensed Estab",
    7
   ],
   [
-   "Sale of Liquor Outdoors on Private Property",
-   7
-  ],
-  [
-   "61-90 Day Retail Pop Up Vendor (Sale of General Merchandise)",
-   7
-  ],
-  [
-   "Not-For-Profit Selling Raffles for Prizes of $50 or More",
+   "Debt Collecting - Administrative Commercial Office",
    7
   ],
   [
@@ -318,7 +302,15 @@
    7
   ],
   [
-   "Indoor Special Event",
+   "Not-For-Profit Selling Raffles for Prizes of $50 or More",
+   7
+  ],
+  [
+   "Sale of Liquor Outdoors on Private Property",
+   7
+  ],
+  [
+   "Shared Housing Operator - Host of More Than One Shared Housing Unit",
    7
   ],
   [
@@ -326,35 +318,27 @@
    6
   ],
   [
-   "Web / Software Development",
+   "61-90 Day Retail Pop Up Vendor (Sale of General Merchandise)",
    6
   ],
   [
-   "Nail Services",
-   6
+   "Peddler (Over 65 Years of Age) - Retail Sales of General Merchandise, Whole Uncu",
+   5
   ],
   [
-   "Professional Consulting (Home Based Business)",
-   6
+   "Preparation and Sale of Food (ONLY) from a Mobile Food Truck (Mobile Food Prepar",
+   5
   ],
   [
-   "Own, Service, or Maintain Video Gaming Terminals for Placement in Licensed Estab",
-   6
-  ],
-  [
-   "Street Performer, Moving Along the Public Way",
-   6
+   "Retail Sales of Cell Phones and Accessories",
+   5
   ],
   [
    "Online Sales (Home Based Business)",
    5
   ],
   [
-   "Special Event Beer & Wine",
-   5
-  ],
-  [
-   "Debt Collecting - Administrative Commercial Office",
+   "Web / Software Development",
    5
   ],
   [
@@ -362,15 +346,19 @@
    5
   ],
   [
+   "Indoor Special Event",
+   5
+  ],
+  [
    "Operation of a Tow Truck",
    5
   ],
   [
-   "Private Booting Registration",
+   "Organizer of Event with Retail Vendors (One or More Shows within 6-30 Days)",
    4
   ],
   [
-   "Fitness Training On and Off Premises | Retail Sales of General Merchandise and N",
+   "Professional Consulting (Home Based Business)",
    4
   ],
   [
@@ -378,7 +366,15 @@
    4
   ],
   [
-   "Heating, Ventilation and Air Conditioning Services - Residential",
+   "Retail Sales of General Merchandise | Retail Sales of Clothing / Accessories / S",
+   4
+  ],
+  [
+   "Fitness Training On and Off Premises | Retail Sales of General Merchandise and N",
+   4
+  ],
+  [
+   "Nail Services",
    4
   ],
   [
@@ -390,27 +386,23 @@
    4
   ],
   [
-   "Hair Services | Retail Sales of General Merchandise",
+   "Street Performer, Moving Along the Public Way",
    4
   ],
   [
-   "Preparation and Sale of Coffee and/or Drinks",
+   "Retail Sales of General Merchandise and Non-Perishable Food | Sale of Food Prepa",
    3
   ],
   [
-   "Retail Sales of Cell Phones and Accessories",
+   "Preparation of Food and Dining on Premises With Seating | Retail Sales of Genera",
    3
   ],
   [
-   "Provide Tax Preparation Services",
+   "Provide Home Health Care Services",
    3
   ],
   [
-   "Preparation of Food, Coffee or Drinks | Retail Sales of Fresh Fruits and Vegetab",
-   3
-  ],
-  [
-   "Catering of Liquor To Events",
+   "180 Day Multiple Events - Special Event Food",
    3
   ],
   [
@@ -418,24 +410,28 @@
    3
   ],
   [
-   "Hotel - 7 or More Sleeping Rooms",
+   "Retail Sales of General Merchandise | Preparation and Sale of Coffee and/or Drin",
    3
   ],
   [
-   "Operation of a Financial Services Commercial Office",
+   "Operation of a Dry Cleaning - Drop Off Location",
    3
   ],
   [
-   "Organizer of Event with Retail Vendors (Multiple Shows within 31-90 Days)",
+   "Preparation and Sale of Coffee and/or Drinks",
    3
   ],
   [
-   "Preparation and Sale of Food (ONLY) from a Mobile Food Truck (Mobile Food Prepar",
+   "Special Event Beer & Wine",
+   3
+  ],
+  [
+   "Provide Tax Preparation Services",
    3
   ]
  ],
  "byStatus": {
-  "AAI": 861,
+  "AAI": 845,
   "AAC": 2
  }
 }

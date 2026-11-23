@@ -1,5 +1,4 @@
 week_from,week_to,community_area,rat_complaints,restaurant_inspections,restaurant_pest_citations,restaurant_hood_citations
-2026-08-24,2026-08-30,Hegewisch,1,0,0,0
 2026-08-31,2026-09-06,Hegewisch,4,0,0,0
 2026-09-07,2026-09-13,Hegewisch,0,0,0,0
 2026-09-14,2026-09-20,Hegewisch,6,0,0,0
@@ -11,3 +10,4 @@ week_from,week_to,community_area,rat_complaints,restaurant_inspections,restauran
 2026-10-26,2026-11-01,Hegewisch,0,1,1,0
 2026-11-02,2026-11-08,Hegewisch,1,0,0,0
 2026-11-09,2026-11-15,Hegewisch,0,1,0,0
+2026-11-16,2026-11-22,Hegewisch,1,0,0,0

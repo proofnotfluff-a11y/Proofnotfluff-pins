@@ -124,7 +124,7 @@ def foot_nav(rel):
     return ('<nav class="fnav" aria-label="Footer">'
             + col("Lead lists", f'<a href="{rel}shop/">Shop every list</a><a href="{rel or "./"}#trades">Free samples</a><a href="{rel}refunds/">Refunds and cancelling</a>')
             + col("Free tools", tools)
-            + col("ProofNotFluff", f'<a href="{rel}privacy/">Privacy</a><a href="{SHOP}">Workbooks on Etsy</a><a href="mailto:hello@proofnotfluff.com">hello@proofnotfluff.com</a>')
+            + col("ProofNotFluff", f'<a href="{rel}privacy/">Privacy</a><a href="{rel}terms/">Terms of Use</a><a href="{SHOP}">Workbooks on Etsy</a><a href="mailto:hello@proofnotfluff.com">hello@proofnotfluff.com</a>')
             + '</nav>')
 
 
@@ -2786,7 +2786,7 @@ def page_html(p):
     form, results, script = PAGE_KINDS[p["kind"]](p)
     results, _, after_grid = results.partition("\n<!--LC-EXTRA-->")   # sections a page puts right under the calculator
     body = (f'<p class="eyebrow">{E(p["eyebrow"])}</p><h1 style="view-transition-name:c-{p["slug"]}">{E(p["h1"])}</h1><p class="lede">{E(p["lede"])}</p>'
-            f'<div class="grid">{form}{results}</div>{after_grid}'
+            f'<div class="grid">{form}{results}</div>{calc_terms(rel)}{after_grid}'
             f'<section class="block"><h2>How it works</h2>{"".join(f"<p>{E(x)}</p>" for x in p["method"])}</section>'
             f'<section class="block"><h2>A worked example</h2><p>{E(p["example"])}</p></section>'
             f'{extra_cards(p["slug"])}{find_customers(p["slug"], rel)}{guides_block(calc=p["slug"], rel=rel)}{cta(p) if p.get("cta") else ""}{related_calcs(p["slug"], rel)}{faq_block(p["faq"])}'
@@ -3616,6 +3616,23 @@ def privacy_html():
                 f'Members cancel in their Gumroad library (see <a href="{rel}refunds/">Refunds and cancelling</a>).',
                 f"To see what we hold about you, or to have it deleted, write to {mail}. We keep only the note that you asked us to stop, "
                 "so we never email you again."]) +
+            # map loads named (Todd, live chat, Nov 23, 2026: "add the OpenStreetMap and cdnjs map loads to the privacy page");
+            # facts read Nov 23 at osmfoundation.org/wiki/Privacy_Policy, operations.osmfoundation.org/policies/tiles/ and cdnjs.com/about
+            '<h2>Maps in the members&#39; apps</h2>' + li([
+                "When you open a members&#39; app, your browser loads the free Leaflet map code from cdnjs, a free public service, powered by Cloudflare, that delivers code libraries.",
+                "When the app shows a map, your browser loads the map pictures from OpenStreetMap&#39;s map service. The OpenStreetMap Foundation runs it and delivers "
+                "the pictures through a network of cache servers from a delivery company it hires.",
+                "Your browser asks those servers directly, so they see what any website you visit sees: your IP address, your browser type and "
+                "our site&#39;s address. OpenStreetMap also sees which squares of the map you look at, so it can tell the area around a "
+                "project or business when you open its page or narrow the map to it. Apart from those map squares, we send them "
+                "nothing you type and no names or contacts from your list.",
+                "Some apps have buttons that open Google Maps or a Google search for a project, builder or business. If you tap one, "
+                "Google gets what that search holds: the name, the address or both, with the city. Like any website, Google also sees "
+                "your IP address, your browser type and our site&#39;s address. Before you cancel, the &quot;Tell us why first&quot; link "
+                "opens a Google form with your list&#39;s name filled in, and Google holds what you send in it. Nothing goes to Google "
+                "unless you tap.",
+                'Their own policies apply: the <a href="https://osmfoundation.org/wiki/Privacy_Policy" rel="noopener">OpenStreetMap Foundation '
+                'privacy policy</a> and the <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">Cloudflare privacy policy</a>.']) +
             '<h2>Changes and tracking</h2><p>If this policy changes, the date below changes and the new text goes on this page; we do not '
             'email about changes. This site does not respond to browser Do Not Track signals, because it does not track you across sites '
             'in the first place. The Monday email form sends your address straight to Kit, which has its own privacy policy.</p>' +
@@ -3626,6 +3643,68 @@ def privacy_html():
             '<p>Made by ProofNotFluff LLC. Questions about this policy: hello@proofnotfluff.com.</p></div></footer>\n</body></html>')
     return (HEAD.format(title="Privacy: what this site collects and why | ProofNotFluff", desc="What ProofNotFluff collects, why, who holds it, and how to stop. We never sell your details.",
                         url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body + foot)
+
+
+TERMS_LINE = "Estimates only, not advice."   # Todd, live chat, Nov 23, 2026: one site-wide Terms page with this line
+
+
+def calc_terms(rel):
+    """The line under every calculator (Todd, Nov 23, 2026): estimates only, not advice, one tap to the Terms of Use."""
+    return (f'<p class="asof calc-terms">{TERMS_LINE} Your result depends on the numbers you enter. '
+            f'See the <a href="{rel}terms/">Terms of Use</a>.</p>')
+
+
+def terms_html():
+    """/terms/ (Todd, live chat, Nov 23, 2026: "one site-wide Terms of Use page with an 'estimates only, not advice' line,
+    linked in the footer and under every calculator"). Built from the Legal desk clause library (legal/README.md section 4:
+    Information only, Estimates, Accuracy, No warranty, Limit of liability, Trademarks, AI assistance), worded for a free
+    website. Paid lists keep their own in-app Terms; this page does not replace them."""
+    CURRENT["nav"] = ""
+    rel = "../"
+    url = BASE + "terms/"
+    r = load_store().get("terms", {})
+    mail = '<a href="mailto:hello@proofnotfluff.com">hello@proofnotfluff.com</a>'
+    crumb, crumb_ld = crumbs(rel, [("Home", ""), ("Terms of Use", None)])
+    body = (f'{crumb}<article class="prose"><p class="eyebrow">Policy</p><h1>Terms of Use</h1>'
+            f'<p class="lede"><strong>{TERMS_LINE}</strong> Everything on this site is general information for planning, and every '
+            'calculator result is an estimate based on the numbers you enter.</p>'
+            '<h2>Information only</h2><p>The calculators, data pages, answers and news on this site share general information and tools '
+            'for planning. They are not legal, tax, accounting, financial, employment, medical or other professional advice, and using them '
+            'doesn&#39;t create a client relationship of any kind. Your situation may differ. For decisions that matter, check with a '
+            'qualified professional and the official source.</p>'
+            '<h2>Estimates</h2><p>Calculator results depend on the numbers you enter and simplify real-world conditions. They are '
+            'estimates, not promises of any price, income, savings, job, approval or outcome.</p>'
+            '<h2>Accuracy</h2><p>We aim to name the source and the date checked for every rate, rule or price a page uses. If you find '
+            'one without them, tell us at hello@proofnotfluff.com. Public '
+            'records come from the sources named on each page, as of the date shown, and can be late, incomplete or wrong. Laws, prices, fees and City records change, and state and local rules vary. You&#39;re responsible for '
+            'confirming anything you rely on. Pages that show City of Chicago or City of Austin records carry that city&#39;s own data '
+            'notice. ProofNotFluff isn&#39;t affiliated with or endorsed by either city.</p>'
+            '<h2>Lists you buy</h2><p>Each paid lead list has its own Terms of Use inside its members&#39; app. Those terms apply to that '
+            'list along with these, and where the two differ, the list&#39;s own terms apply. Checkout runs through Gumroad. Cancelling and refunds are on the '
+            f'<a href="{rel}refunds/">Refunds and cancelling</a> page.</p>'
+            '<h2>Using what&#39;s here</h2><p>You&#39;re welcome to use the free calculators and pages for yourself or your business and '
+            'to share links to them. Please don&#39;t copy our pages, calculators or write-ups to republish or sell them. The design, text '
+            'and code we made for this site belong to ProofNotFluff. Open-source code, fonts and public data used on it, such as the '
+            'Leaflet map code, keep their owners&#39; licenses. The public records shown on it come from the sources named on each page.</p>'
+            '<h2>No warranty</h2><p>The site and its tools are provided &quot;as is&quot;, without warranties of any kind, to the extent '
+            'the law allows.</p>'
+            '<h2>Limit of liability</h2><p>To the extent the law allows, ProofNotFluff is not liable for any loss or damage from using or '
+            'relying on this site. Its total liability for any claim is limited to the amount you paid ProofNotFluff, if anything, '
+            'for the product the claim is about. Nothing here limits rights you have under consumer protection laws that can&#39;t be '
+            'waived.</p>'
+            '<h2>Other sites and brands</h2><p>Links to other sites, such as Gumroad, Kit, Etsy, the City data portals and OpenStreetMap, '
+            'go to services with their own terms and privacy policies. Etsy, Amazon, Airbnb, VRBO, Shopify, TikTok, Google, Google Sheets, '
+            'Microsoft Excel, Gumroad, Kit, Cloudflare and OpenStreetMap are trademarks of their owners, named here only to say what a tool is for or works with. ProofNotFluff isn&#39;t '
+            'affiliated with, sponsored or endorsed by them.</p>'
+            '<h2>AI assistance</h2><p>This site was made with AI assistance and reviewed and tested by the shop owner.</p>'
+            f'<h2>Changes and contact</h2><p>If these terms change, the date below changes and the new text goes on this page. How we '
+            f'handle your details is on the <a href="{rel}privacy/">Privacy</a> page. Questions: {mail}. ProofNotFluff LLC, '
+            '680 North Lake Shore Drive, Suite 110-2964, Chicago, IL 60611.</p>'
+            f'<p class="asof">Terms updated {E(nice_date(r.get("updated", "")))}.</p></article>')
+    return (HEAD.format(title="Terms of Use: estimates only, not advice | ProofNotFluff",
+                        desc="The terms for using ProofNotFluff's free calculators and data pages: estimates only, not advice.",
+                        url=url, rel=rel, shop=SHOP, ld=ld_tags(crumb_ld), bodycls=' class="st-page"', robots="", analytics=analytics_tag()) + body +
+            FOOT.format(rel=rel, script="", sources=""))
 
 
 def calculators_html():
@@ -4051,6 +4130,7 @@ def og_all(pages, live):
     og_image("shop", "ProofNotFluff shop", "Pick the list that finds your customers.", "Free sample on every list, new every Monday.")
     og_image("refunds", "Policy", "Refunds and cancelling")
     og_image("privacy", "Policy", "Privacy", "What we collect, why, and how to stop. Never sold.")
+    og_image("terms", "Policy", "Terms of Use", "Estimates only, not advice.")
     og_image("questions", "Questions owners ask", "Plain answers, with this week's numbers")
     og_image("calculators", "Free calculators", "Price the job before you call", "Free pricing and money calculators, the same math as our workbooks.")
     for x in json.load(open(os.path.join(ROOT, "site", "extras.json"), encoding="utf-8")).get("pages", []) if os.path.exists(os.path.join(ROOT, "site", "extras.json")) else []:
@@ -4160,7 +4240,7 @@ def main():
     open(os.path.join(DOCS, "index.html"), "w", encoding="utf-8").write(home_html(pages, live))
     # two front doors draft (move 5): noindex, not in the sitemap, not linked; goes live only on Todd's go
     open(os.path.join(DOCS, "home-two-doors.html"), "w", encoding="utf-8").write(home_html(pages, live, doors=True))
-    store = ([("shop", shop_html()), ("refunds", refunds_html()), ("privacy", privacy_html()), ("calculators", calculators_html())] + ([("questions", questions_html())] if LIVE_QUESTIONS else [])
+    store = ([("shop", shop_html()), ("refunds", refunds_html()), ("privacy", privacy_html()), ("terms", terms_html()), ("calculators", calculators_html())] + ([("questions", questions_html())] if LIVE_QUESTIONS else [])
              + ([("chicago-data", data_hub_html())] if live_datapages() else []))
     for slug, page in store:
         d = os.path.join(DOCS, slug); os.makedirs(d, exist_ok=True)

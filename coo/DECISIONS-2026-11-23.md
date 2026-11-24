@@ -1,0 +1,8 @@
+# Decisions, Nov 23, 2026
+
+## Site Terms of Use page and privacy map loads (Legal desk)
+- Ask: Todd, live chat, Nov 23, 2026, 7:10 pm CT: "add the OpenStreetMap and cdnjs map loads to the privacy page, and add one site-wide Terms of Use page with an 'estimates only, not advice' line, linked in the footer and under every calculator ... show me both before anything goes live. No spend. Nothing removed."
+- Gates: code gates PASS; the fresh Legal desk reviewers failed it twice (round 1: 4.17, 4.33; round 2: 4.42, 4.17). Record: legal/reviews/2026-11-23-site-terms-and-map-privacy.md.
+- Call: Todd, live chat, Nov 23, 2026, about 7:55 pm CT, picked "Fix all 5, fresh review (Recommended)": make the 5 fixes both round-2 reviewers shared (map squares show a lead's area, name OpenStreetMap's delivery company, disclose the Google buttons, narrow the ownership line, soften the source-and-date claim), run every gate again, send it to new reviewers. Nothing goes live without his OK.
+- Round 3: reviewer E PASS 4.67, reviewer F FAIL 4.33 (no score under 4). Call: Todd, live chat, answered by Nov 24, 2026, 6:32 am CT, picked "Fix the 3, then you approve (Recommended)": fix the 3 items both round-3 reviewers shared (Google gets the name and the address with the city; disclose the Google Form cancel link; add "medical" to the not-advice list), rerun the code and browser checks, no fourth review round, then his own look and go before anything ships.
+- Go: Todd, live chat, Nov 24, 2026, by 6:38 AM CT, picked "Ship it (Recommended)" after his look at the final screenshots: set the policy date to the ship day and push to the live site.

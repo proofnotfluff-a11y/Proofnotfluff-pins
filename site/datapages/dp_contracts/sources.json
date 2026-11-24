@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-11-23T17:39:15-06:00",
+ "checkedAt": "2026-11-24T16:10:40-06:00",
  "terms": {
   "url": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "status": 200,
@@ -13,9 +13,9 @@
   "url": "https://www.chicago.gov/city/en/depts/dps/provdrs/contract/svcs/current_bid_opportunities.html",
   "status": 200,
   "weekly": {
-   "url": "https://www.chicago.gov/content/dam/city/depts/dps/WeeklyBidOpportunities/2026WeeklyBidOpportunities/102626.pdf",
+   "url": "https://www.chicago.gov/content/dam/city/depts/dps/WeeklyBidOpportunities/2026WeeklyBidOpportunities/112326.pdf",
    "text": "DOWNLOAD THE BID OPPORTUNITY LIST (PDF)",
-   "date": "2026-10-26",
+   "date": "2026-11-23",
    "year": 2026,
    "pdfStatus": 403,
    "pdfOpened": false

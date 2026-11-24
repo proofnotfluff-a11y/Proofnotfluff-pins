@@ -1,6 +1,6 @@
 {
- "checkedAt": "2026-11-17T15:05:51-06:00",
- "allOk": true,
+ "checkedAt": "2026-11-24T16:36:17-06:00",
+ "allOk": false,
  "items": [
   {
    "figure": "chicago.minWage",
@@ -106,9 +106,9 @@
    "source": "https://labor.illinois.gov/laws-rules/conmed/current-prevailing-rates.html",
    "http": 200,
    "expect": "October 19, 2026",
-   "found": "October 19, 2026",
-   "line": "required to be paid for work performed on or after October 19, 2026",
-   "ok": true
+   "found": "November 17, 2026",
+   "line": "required to be paid for work performed on or after November 17, 2026",
+   "ok": false
   }
  ]
 }

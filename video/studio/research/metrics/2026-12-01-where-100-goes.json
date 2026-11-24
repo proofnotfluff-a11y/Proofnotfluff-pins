@@ -140,6 +140,40 @@
    "readAt": "2026-11-22T02:18:15Z",
    "source": "videometrics 2026-12-01-where-100-goes.2026-11-21 (evening PC run, deep read)",
    "docId": "2026-12-01-where-100-goes.2026-11-21"
+  },
+  {
+   "date": "2026-11-23",
+   "depth": "deep",
+   "note": "7 day read (Nov 22 evening run fired late, 10:32 am Central Nov 23). TikTok and YouTube only; Instagram and Facebook held (Todd, Nov 19: Meta automation restriction), not opened.",
+   "platforms": {
+    "facebook": "held",
+    "instagram": "held",
+    "tiktok": {
+     "avgWatchS": 14.78,
+     "comments": 0,
+     "likes": 13,
+     "newFollowers": 0,
+     "saves": 1,
+     "shares": 0,
+     "views": 415,
+     "watchedFullPct": 21.7
+    },
+    "youtube": {
+     "avgPctViewed": 34,
+     "avgViewDurationS": 12,
+     "comments": "hidden",
+     "engagedViews": 25,
+     "likes": 0,
+     "shares": 0,
+     "subscribersGained": "hidden",
+     "viewedVsSwipedPct": 52.1,
+     "views": 46,
+     "views48h": 0
+    }
+   },
+   "readAt": "2026-11-23T16:35:57Z",
+   "source": "videometrics 2026-12-01-where-100-goes.2026-11-23 (evening PC run)",
+   "docId": "2026-12-01-where-100-goes.2026-11-23"
   }
  ]
 }

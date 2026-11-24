@@ -57,7 +57,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 1,Rogers Park,2026-08,9,5,2,0,20,1,69
 1,Rogers Park,2026-09,2,3,0,1,5,1,23
 1,Rogers Park,2026-10,0,2,0,0,7,0,15
-1,Rogers Park,2026-11,4,0,1,0,7,0,17
+1,Rogers Park,2026-11,4,0,1,0,7,0,19
 2,West Ridge,2022-01,0,0,0,1,9,2,9
 2,West Ridge,2022-02,0,0,2,1,0,0,11
 2,West Ridge,2022-03,15,2,7,6,3,2,59
@@ -175,7 +175,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 3,Uptown,2026-08,0,0,0,1,20,4,16
 3,Uptown,2026-09,9,1,18,1,16,3,41
 3,Uptown,2026-10,2,3,1,0,12,0,19
-3,Uptown,2026-11,1,0,0,0,4,0,6
+3,Uptown,2026-11,1,0,0,0,4,0,7
 4,Lincoln Square,2022-01,0,0,0,0,0,0,7
 4,Lincoln Square,2022-02,0,0,0,0,5,0,11
 4,Lincoln Square,2022-03,4,2,6,3,6,0,11
@@ -234,7 +234,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 4,Lincoln Square,2026-08,0,1,26,17,8,2,23
 4,Lincoln Square,2026-09,3,2,0,0,0,0,29
 4,Lincoln Square,2026-10,5,0,13,1,3,0,12
-4,Lincoln Square,2026-11,0,0,0,0,1,0,3
+4,Lincoln Square,2026-11,0,0,0,0,1,0,4
 5,North Center,2022-01,0,0,0,1,0,0,7
 5,North Center,2022-02,0,0,2,0,0,0,16
 5,North Center,2022-03,2,1,2,0,0,3,19
@@ -352,7 +352,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 6,Lake View,2026-08,6,8,2,0,16,0,51
 6,Lake View,2026-09,15,7,0,0,31,3,74
 6,Lake View,2026-10,10,5,1,0,37,6,37
-6,Lake View,2026-11,0,0,0,0,13,0,4
+6,Lake View,2026-11,0,0,1,0,22,0,16
 7,Lincoln Park,2022-01,2,0,1,3,6,1,8
 7,Lincoln Park,2022-02,0,0,0,0,18,1,3
 7,Lincoln Park,2022-03,0,1,0,1,5,1,16
@@ -469,8 +469,8 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 8,Near North Side,2026-07,1,1,2,20,138,0,21
 8,Near North Side,2026-08,1,1,1,4,118,0,18
 8,Near North Side,2026-09,0,0,1,8,108,0,21
-8,Near North Side,2026-10,0,1,0,6,121,0,33
-8,Near North Side,2026-11,0,0,2,1,82,0,20
+8,Near North Side,2026-10,0,1,0,6,121,0,36
+8,Near North Side,2026-11,0,0,2,1,84,0,21
 9,Edison Park,2022-01,0,0,0,0,0,0,0
 9,Edison Park,2022-02,0,0,0,1,7,0,3
 9,Edison Park,2022-03,0,2,0,0,0,0,4
@@ -824,7 +824,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 14,Albany Park,2026-08,0,2,18,17,0,1,19
 14,Albany Park,2026-09,4,3,6,0,8,0,22
 14,Albany Park,2026-10,6,0,11,2,0,0,16
-14,Albany Park,2026-11,0,0,0,3,0,0,3
+14,Albany Park,2026-11,0,0,0,5,0,0,6
 15,Portage Park,2022-01,13,1,5,3,0,0,32
 15,Portage Park,2022-02,5,5,17,0,14,12,78
 15,Portage Park,2022-03,9,5,4,0,3,8,51
@@ -883,7 +883,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 15,Portage Park,2026-08,0,2,4,7,4,5,38
 15,Portage Park,2026-09,1,2,4,0,0,14,21
 15,Portage Park,2026-10,2,1,0,1,0,0,12
-15,Portage Park,2026-11,0,0,0,3,0,2,9
+15,Portage Park,2026-11,0,0,0,3,0,2,10
 16,Irving Park,2022-01,1,0,19,4,0,11,16
 16,Irving Park,2022-02,3,0,34,0,0,5,31
 16,Irving Park,2022-03,2,0,0,0,0,1,36
@@ -1119,7 +1119,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 19,Belmont Cragin,2026-08,2,1,2,38,1,3,24
 19,Belmont Cragin,2026-09,7,3,2,0,0,0,35
 19,Belmont Cragin,2026-10,0,1,3,0,12,0,19
-19,Belmont Cragin,2026-11,3,0,0,1,0,0,8
+19,Belmont Cragin,2026-11,3,0,0,3,0,0,10
 20,Hermosa,2022-01,2,0,0,0,0,0,2
 20,Hermosa,2022-02,0,0,2,0,0,1,9
 20,Hermosa,2022-03,17,4,2,0,0,0,13
@@ -1296,7 +1296,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 22,Logan Square,2026-08,10,5,17,32,4,0,45
 22,Logan Square,2026-09,20,4,48,0,8,10,64
 22,Logan Square,2026-10,2,4,14,0,6,0,29
-22,Logan Square,2026-11,0,1,20,4,0,0,22
+22,Logan Square,2026-11,0,1,20,4,3,0,22
 23,Humboldt Park,2022-01,15,0,7,1,10,0,40
 23,Humboldt Park,2022-02,11,3,11,0,1,0,47
 23,Humboldt Park,2022-03,18,11,8,2,9,1,57
@@ -1355,7 +1355,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 23,Humboldt Park,2026-08,19,9,1,0,3,4,57
 23,Humboldt Park,2026-09,15,4,3,0,7,6,29
 23,Humboldt Park,2026-10,10,0,0,1,4,5,25
-23,Humboldt Park,2026-11,4,0,0,0,4,0,8
+23,Humboldt Park,2026-11,4,0,0,0,4,0,10
 24,West Town,2022-01,11,4,3,2,143,0,44
 24,West Town,2022-02,0,1,68,1,73,13,35
 24,West Town,2022-03,13,4,18,1,23,1,40
@@ -1414,7 +1414,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 24,West Town,2026-08,5,3,0,0,28,2,38
 24,West Town,2026-09,14,8,1,0,36,4,42
 24,West Town,2026-10,11,1,4,0,6,0,55
-24,West Town,2026-11,5,4,2,0,32,1,16
+24,West Town,2026-11,5,4,3,0,32,1,19
 25,Austin,2022-01,34,11,44,11,3,13,63
 25,Austin,2022-02,26,9,16,2,0,2,71
 25,Austin,2022-03,52,22,101,2,15,40,200
@@ -1473,7 +1473,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 25,Austin,2026-08,9,3,91,12,6,12,46
 25,Austin,2026-09,16,6,70,0,6,7,57
 25,Austin,2026-10,5,1,59,5,7,12,55
-25,Austin,2026-11,21,4,2,10,5,0,34
+25,Austin,2026-11,21,4,13,13,11,4,39
 26,West Garfield Park,2022-01,10,6,4,0,11,3,26
 26,West Garfield Park,2022-02,9,10,13,1,0,0,29
 26,West Garfield Park,2022-03,15,8,5,1,5,1,34
@@ -1532,7 +1532,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 26,West Garfield Park,2026-08,10,7,31,3,1,14,31
 26,West Garfield Park,2026-09,12,3,7,0,2,4,28
 26,West Garfield Park,2026-10,12,4,3,0,0,3,29
-26,West Garfield Park,2026-11,5,1,0,0,2,0,6
+26,West Garfield Park,2026-11,6,1,1,0,2,0,9
 27,East Garfield Park,2022-01,5,1,4,1,2,1,10
 27,East Garfield Park,2022-02,4,2,2,0,0,0,15
 27,East Garfield Park,2022-03,7,6,21,1,22,7,27
@@ -1591,7 +1591,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 27,East Garfield Park,2026-08,11,9,2,0,19,3,27
 27,East Garfield Park,2026-09,9,7,18,0,14,0,46
 27,East Garfield Park,2026-10,18,6,5,64,0,0,30
-27,East Garfield Park,2026-11,3,4,2,0,10,0,16
+27,East Garfield Park,2026-11,3,4,2,2,10,0,18
 28,Near West Side,2022-01,0,0,1,0,70,0,15
 28,Near West Side,2022-02,0,0,18,0,36,5,12
 28,Near West Side,2022-03,2,0,2,1,25,4,24
@@ -1650,7 +1650,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 28,Near West Side,2026-08,1,2,13,5,105,2,36
 28,Near West Side,2026-09,5,8,3,0,46,1,50
 28,Near West Side,2026-10,0,0,2,0,41,0,36
-28,Near West Side,2026-11,4,2,0,1,35,0,35
+28,Near West Side,2026-11,4,2,0,1,47,0,35
 29,North Lawndale,2022-01,5,1,8,4,0,1,34
 29,North Lawndale,2022-02,13,3,10,6,68,3,35
 29,North Lawndale,2022-03,32,11,8,13,3,11,58
@@ -1709,7 +1709,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 29,North Lawndale,2026-08,20,12,31,0,3,2,59
 29,North Lawndale,2026-09,51,25,14,7,0,4,130
 29,North Lawndale,2026-10,7,3,13,4,2,8,28
-29,North Lawndale,2026-11,15,8,11,5,4,2,38
+29,North Lawndale,2026-11,15,8,11,5,4,2,40
 30,South Lawndale,2022-01,4,3,15,2,21,2,21
 30,South Lawndale,2022-02,7,3,22,5,7,9,33
 30,South Lawndale,2022-03,11,2,11,8,11,2,74
@@ -1886,7 +1886,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 32,Loop,2026-08,0,0,0,0,107,0,22
 32,Loop,2026-09,1,0,0,0,29,0,21
 32,Loop,2026-10,1,1,0,3,58,7,25
-32,Loop,2026-11,3,0,4,8,49,0,23
+32,Loop,2026-11,3,0,4,8,56,0,23
 33,Near South Side,2022-01,0,0,0,0,31,0,2
 33,Near South Side,2022-02,0,0,0,0,12,0,2
 33,Near South Side,2022-03,1,2,0,0,8,0,8
@@ -1944,8 +1944,8 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 33,Near South Side,2026-07,2,0,1,0,51,1,15
 33,Near South Side,2026-08,2,1,1,2,25,1,11
 33,Near South Side,2026-09,0,0,0,0,43,0,3
-33,Near South Side,2026-10,1,0,11,1,41,0,7
-33,Near South Side,2026-11,0,0,0,1,32,0,3
+33,Near South Side,2026-10,1,0,11,1,41,0,8
+33,Near South Side,2026-11,1,2,0,1,32,0,10
 34,Armour Square,2022-01,0,1,1,0,0,2,6
 34,Armour Square,2022-02,0,0,0,0,8,0,9
 34,Armour Square,2022-03,0,0,0,0,30,0,2
@@ -2299,7 +2299,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 39,Kenwood,2026-08,4,1,6,1,8,0,28
 39,Kenwood,2026-09,1,0,2,0,8,0,27
 39,Kenwood,2026-10,2,1,0,0,1,0,29
-39,Kenwood,2026-11,2,2,2,0,1,1,35
+39,Kenwood,2026-11,2,2,2,0,3,1,35
 40,Washington Park,2022-01,2,0,6,3,2,0,18
 40,Washington Park,2022-02,6,5,4,1,2,0,30
 40,Washington Park,2022-03,0,0,2,0,0,0,11
@@ -2417,7 +2417,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 41,Hyde Park,2026-08,9,6,8,1,14,4,54
 41,Hyde Park,2026-09,2,0,0,0,5,0,7
 41,Hyde Park,2026-10,4,1,3,0,13,0,21
-41,Hyde Park,2026-11,3,0,0,4,0,0,18
+41,Hyde Park,2026-11,3,0,0,4,3,0,19
 42,Woodlawn,2022-01,10,10,10,11,6,5,60
 42,Woodlawn,2022-02,6,4,2,1,7,2,11
 42,Woodlawn,2022-03,8,4,3,1,6,4,26
@@ -2476,7 +2476,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 42,Woodlawn,2026-08,14,8,2,3,1,1,58
 42,Woodlawn,2026-09,14,2,2,0,4,1,51
 42,Woodlawn,2026-10,8,7,7,2,0,2,35
-42,Woodlawn,2026-11,5,7,4,1,0,1,36
+42,Woodlawn,2026-11,5,7,4,3,0,1,37
 43,South Shore,2022-01,29,4,17,22,5,10,85
 43,South Shore,2022-02,53,8,42,8,2,4,136
 43,South Shore,2022-03,27,10,39,4,8,21,193
@@ -2535,7 +2535,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 43,South Shore,2026-08,12,9,32,0,12,10,156
 43,South Shore,2026-09,20,7,16,4,5,5,133
 43,South Shore,2026-10,47,12,43,2,3,16,238
-43,South Shore,2026-11,20,5,13,5,5,2,93
+43,South Shore,2026-11,23,7,13,5,5,2,97
 44,Chatham,2022-01,10,2,18,15,3,8,30
 44,Chatham,2022-02,33,8,4,4,0,11,78
 44,Chatham,2022-03,21,6,31,1,2,11,91
@@ -2594,7 +2594,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 44,Chatham,2026-08,12,11,18,1,0,8,100
 44,Chatham,2026-09,6,2,22,4,1,5,38
 44,Chatham,2026-10,9,3,5,2,0,0,55
-44,Chatham,2026-11,5,3,1,1,4,1,27
+44,Chatham,2026-11,5,4,2,2,4,1,35
 45,Avalon Park,2022-01,0,0,0,0,0,0,11
 45,Avalon Park,2022-02,0,0,0,0,0,0,8
 45,Avalon Park,2022-03,8,5,0,0,12,7,17
@@ -2712,7 +2712,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 46,South Chicago,2026-08,12,7,5,2,0,4,81
 46,South Chicago,2026-09,3,1,0,9,6,1,24
 46,South Chicago,2026-10,4,4,3,0,0,3,27
-46,South Chicago,2026-11,4,4,5,2,20,4,36
+46,South Chicago,2026-11,4,5,5,2,20,5,46
 47,Burnside,2022-01,0,0,1,0,0,0,1
 47,Burnside,2022-02,1,1,1,0,0,0,1
 47,Burnside,2022-03,0,2,0,0,3,0,4
@@ -2889,7 +2889,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 49,Roseland,2026-08,5,2,8,5,4,5,66
 49,Roseland,2026-09,11,11,8,2,0,10,56
 49,Roseland,2026-10,8,5,22,0,1,16,57
-49,Roseland,2026-11,4,2,2,2,0,1,33
+49,Roseland,2026-11,4,2,2,2,0,1,34
 50,Pullman,2022-01,0,0,1,2,0,0,2
 50,Pullman,2022-02,2,1,0,2,3,0,1
 50,Pullman,2022-03,0,2,1,0,0,8,10
@@ -3125,7 +3125,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 53,West Pullman,2026-08,3,6,13,0,0,11,45
 53,West Pullman,2026-09,4,3,8,0,0,3,22
 53,West Pullman,2026-10,4,3,0,0,0,1,31
-53,West Pullman,2026-11,4,2,2,0,0,0,19
+53,West Pullman,2026-11,4,3,2,0,0,0,27
 54,Riverdale,2022-01,1,0,0,0,0,0,5
 54,Riverdale,2022-02,0,1,0,0,0,0,2
 54,Riverdale,2022-03,0,1,0,0,0,0,0
@@ -3420,7 +3420,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 58,Brighton Park,2026-08,1,2,9,0,0,2,25
 58,Brighton Park,2026-09,0,1,0,0,0,1,24
 58,Brighton Park,2026-10,2,3,0,2,0,0,15
-58,Brighton Park,2026-11,2,1,0,0,0,0,14
+58,Brighton Park,2026-11,2,1,0,0,0,0,15
 59,McKinley Park,2022-01,0,1,0,0,15,0,1
 59,McKinley Park,2022-02,4,2,0,0,0,0,26
 59,McKinley Park,2022-03,3,2,0,0,0,0,6
@@ -3479,7 +3479,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 59,McKinley Park,2026-08,2,0,0,0,0,1,18
 59,McKinley Park,2026-09,0,0,0,0,3,0,2
 59,McKinley Park,2026-10,1,1,0,0,4,0,4
-59,McKinley Park,2026-11,0,0,0,0,2,0,3
+59,McKinley Park,2026-11,1,0,0,0,2,0,5
 60,Bridgeport,2022-01,2,0,4,0,1,0,24
 60,Bridgeport,2022-02,0,1,12,1,1,9,9
 60,Bridgeport,2022-03,6,4,2,0,0,2,25
@@ -3536,9 +3536,9 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 60,Bridgeport,2026-06,1,3,11,0,12,2,23
 60,Bridgeport,2026-07,3,3,54,0,30,4,21
 60,Bridgeport,2026-08,8,4,5,3,5,0,31
-60,Bridgeport,2026-09,8,1,0,0,0,0,19
+60,Bridgeport,2026-09,8,1,0,0,0,0,20
 60,Bridgeport,2026-10,0,0,0,0,0,0,9
-60,Bridgeport,2026-11,2,3,3,0,2,0,14
+60,Bridgeport,2026-11,2,3,3,0,2,0,16
 61,New City,2022-01,13,16,35,6,0,2,84
 61,New City,2022-02,11,4,14,2,0,5,52
 61,New City,2022-03,7,11,15,1,0,1,55
@@ -3656,7 +3656,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 62,West Elsdon,2026-08,3,0,4,3,0,2,7
 62,West Elsdon,2026-09,0,2,1,0,0,0,10
 62,West Elsdon,2026-10,0,0,0,0,0,0,0
-62,West Elsdon,2026-11,0,0,0,0,0,0,0
+62,West Elsdon,2026-11,0,0,0,0,3,0,0
 63,Gage Park,2022-01,9,4,1,0,0,0,18
 63,Gage Park,2022-02,4,3,2,5,0,0,10
 63,Gage Park,2022-03,14,11,15,1,0,6,77
@@ -3714,7 +3714,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 63,Gage Park,2026-07,3,2,3,6,0,2,28
 63,Gage Park,2026-08,5,1,4,5,17,0,17
 63,Gage Park,2026-09,4,3,0,4,4,0,22
-63,Gage Park,2026-10,4,1,4,0,12,4,12
+63,Gage Park,2026-10,4,1,4,0,12,4,13
 63,Gage Park,2026-11,0,0,21,0,0,6,17
 64,Clearing,2022-01,0,2,5,1,0,0,14
 64,Clearing,2022-02,0,0,0,0,0,0,0
@@ -3892,7 +3892,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 66,Chicago Lawn,2026-08,4,1,18,4,4,4,24
 66,Chicago Lawn,2026-09,11,3,17,7,2,1,61
 66,Chicago Lawn,2026-10,15,6,6,2,0,11,91
-66,Chicago Lawn,2026-11,2,1,1,1,0,1,15
+66,Chicago Lawn,2026-11,2,1,1,1,0,1,17
 67,West Englewood,2022-01,6,6,24,3,12,1,62
 67,West Englewood,2022-02,11,9,12,2,0,1,55
 67,West Englewood,2022-03,26,14,17,0,1,32,117
@@ -4068,8 +4068,8 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 69,Greater Grand Crossing,2026-07,19,12,29,5,4,6,144
 69,Greater Grand Crossing,2026-08,11,5,42,4,1,11,101
 69,Greater Grand Crossing,2026-09,20,5,6,2,32,5,72
-69,Greater Grand Crossing,2026-10,13,8,14,0,9,4,62
-69,Greater Grand Crossing,2026-11,14,13,55,5,11,11,72
+69,Greater Grand Crossing,2026-10,13,8,14,0,9,4,63
+69,Greater Grand Crossing,2026-11,14,13,55,5,11,11,75
 70,Ashburn,2022-01,3,4,0,1,7,1,5
 70,Ashburn,2022-02,2,2,6,2,11,2,28
 70,Ashburn,2022-03,0,1,3,0,11,0,2
@@ -4187,7 +4187,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 71,Auburn Gresham,2026-08,11,6,9,1,1,1,91
 71,Auburn Gresham,2026-09,14,10,6,0,2,6,82
 71,Auburn Gresham,2026-10,9,10,81,0,6,10,115
-71,Auburn Gresham,2026-11,10,1,6,5,2,2,32
+71,Auburn Gresham,2026-11,10,1,6,6,2,2,33
 72,Beverly,2022-01,0,1,0,1,1,1,4
 72,Beverly,2022-02,0,0,6,2,0,2,6
 72,Beverly,2022-03,1,1,0,0,0,0,4
@@ -4246,7 +4246,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 72,Beverly,2026-08,0,1,0,0,6,0,5
 72,Beverly,2026-09,4,3,6,0,0,0,9
 72,Beverly,2026-10,2,1,0,1,1,0,7
-72,Beverly,2026-11,0,0,0,0,0,0,0
+72,Beverly,2026-11,1,0,0,0,0,0,2
 73,Washington Heights,2022-01,3,2,24,3,0,8,47
 73,Washington Heights,2022-02,0,0,12,0,0,1,22
 73,Washington Heights,2022-03,15,1,54,0,8,7,73
@@ -4423,7 +4423,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 75,Morgan Park,2026-08,8,3,2,1,29,2,21
 75,Morgan Park,2026-09,2,0,0,0,0,0,9
 75,Morgan Park,2026-10,0,1,1,1,8,0,19
-75,Morgan Park,2026-11,0,0,0,0,0,0,3
+75,Morgan Park,2026-11,0,0,10,0,0,4,6
 76,O'Hare,2022-01,0,0,0,0,0,0,0
 76,O'Hare,2022-02,0,0,0,0,7,0,3
 76,O'Hare,2022-03,0,1,0,0,5,0,1
@@ -4541,7 +4541,7 @@ community_area_number,community_area,month,Masonry,Porches and exterior stairs,E
 77,Edgewater,2026-08,2,4,0,0,20,0,25
 77,Edgewater,2026-09,3,3,4,10,12,0,49
 77,Edgewater,2026-10,0,1,0,0,8,2,10
-77,Edgewater,2026-11,0,1,0,0,13,0,12
+77,Edgewater,2026-11,0,1,0,1,13,0,15
 ,No map point on the record,2022-01,0,0,0,0,0,0,3
 ,No map point on the record,2022-02,0,0,0,0,0,0,0
 ,No map point on the record,2022-03,0,0,0,2,0,0,0

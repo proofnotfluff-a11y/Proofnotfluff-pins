@@ -10,3 +10,4 @@ target, shorts, a pulse every day, phone stories first, the slot check (`anim.py
 against coo/CONSTITUTION.md (its five wording fixes applied). The task was made by Todd, so agents cannot edit it: Todd
 pastes this file in place of its prompt at claude.ai/code/routines. Until he does, the old prompt's "fewer than 3 wait"
 make rule runs.
+Nov 24, 2026: this file is now the live prompt (copied Nov 24) plus the blocked told-bank rows passage after "...make nothing and say so." in step (3): Todd's pick, Nov 24, about 8:12 am, of the second fresh reviewer's wording (coo/DECISIONS-2026-11-23.md). update_trigger refuses this task (created outside agent tools), so Todd pastes that passage into the prompt at claude.ai/code/routines/trig_01DQgwhpsSPXrcejNQm9xg1L. SKILL step 4 carries the same rule meanwhile.

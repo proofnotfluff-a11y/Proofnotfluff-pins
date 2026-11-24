@@ -15,7 +15,7 @@ Four a day (Todd, live chat, Oct 30, 2026: three; Oct 31, 9:08 am: "let's add a 
 video/config.json "posting". Never two lessons in one run, except on burst days (video/config.json posting.burst; Todd, live chat, Nov 8, 2026, 10:08 am: "Just do 5 posts today and 5 tomorrow and then we can get back on track"): when `anim.py next` prints "perRun": 2, the run posts its lesson, records and pushes it, then runs `next` again and posts that lesson too, never more than perRun. A run that finds the lesson already fully posted takes the next.
 
 ## Before any platform
-1. `python3 video/studio/anim.py next` names the lesson, the platforms still missing and the commit its gates passed at.
+1. `python3 video/studio/anim.py next` names the lesson, the platforms still missing and the commit its gates passed at. A held platform (video/config.json "heldPlatforms", coo/DECISIONS-2026-11-19.md) is never in missing and is never opened; `next` lists it under "held".
 2. `python3 video/studio/anim.py postcopy <slug>` renders it from that commit (later improvements never change a gated
    video), checks every fingerprint, and writes the under-10 MB post copy to `video/studio/videos/<slug>/05_render/<slug>-post.mp4`
    (the path postcopy prints; upload that absolute path, never /mnt/user-data/outputs, which Chrome refuses). An ERROR: hold it and tell Todd.

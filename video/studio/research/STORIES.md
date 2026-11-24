@@ -11,7 +11,7 @@ texting back, speed to lead, the rules on automated texts. Each a different owne
 same story twice. Verdict after the 5 are posted: kept if their median views and deep-read watch beat the other story
 lessons; one cluster lesson that flops is not a verdict. Ready target: 5 stories at all times (story-desk SKILL step 6).
 
-## Told bank (Todd, live chat, Nov 18, 2026, 9:20 am: "Go", story first; formats.md "Told"; the make run takes the top Ready row, reads its sources again that day, and marks it made)
+## Told bank (Todd, live chat, Nov 18, 2026, 9:20 am: "Go", story first; formats.md "Told"; the make run takes the top Ready row, reads its sources again that day, and marks it made; a row whose sources it cannot open is marked blocked, video-studio SKILL step 4)
 Each row passed the story test (_templates/v4-brief.md) on sources read Nov 18, 2026 in a live chat (WebSearch, then WebFetch on the result's own address). No person or business is named here or in the lesson.
 | Read | Story | Story test (1 act, 2 worse twice, 3 two people, 4 dollars, 5 ending) | Ending | Sources | Status |
 |---|---|---|---|---|---|

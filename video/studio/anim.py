@@ -1487,7 +1487,32 @@ def cmd_remix(slug):
 
 QUEUE = os.path.join(HERE, "queue.json")
 PLATFORMS = ("instagram", "tiktok", "facebook", "youtube")
-GATES = ("qa", "facts", "facts-captions", "render-critic", "buyer", "send", "design", "golden")
+
+
+def held_platforms(cfg=None):
+    """video/config.json "heldPlatforms" (Todd, live chat, Nov 19, 2026, about 8:55 pm: Instagram and Facebook held until
+    they move to Meta's official API; coo/DECISIONS-2026-11-19.md). A held platform is never due: next, waiting and missed
+    skip it, so a lesson missing only held platforms counts as done. An unknown name stops the run (a typo never un-holds)."""
+    if cfg is None:
+        cfg = json.load(open(os.path.join(HERE, "..", "config.json"), encoding="utf-8"))
+    held = tuple(cfg.get("heldPlatforms") or ())
+    bad = [p for p in held if p not in PLATFORMS]
+    if bad:
+        raise SystemExit(f"ERROR config: heldPlatforms names {', '.join(map(str, bad))}; each must be one of {', '.join(PLATFORMS)}")
+    return held
+
+
+def due_missing(i, held, before=None):
+    """The platforms a lesson still needs: not held, and with no post (before `before`, when given)."""
+    def up(p):
+        x = i.get("posts", {}).get(p)
+        if not (isinstance(x, dict) and x.get("at")):
+            return False
+        return before is None or dt.datetime.fromisoformat(x["at"].replace("Z", "+00:00")) < before
+    return [p for p in PLATFORMS if p not in held and not up(p)]
+
+
+GATES =("qa", "facts", "facts-captions", "render-critic", "buyer", "send", "design", "golden")
 # The new line (Todd, live chat, Nov 6, 2026, 7:15 am: "Go with you recommendations", the gate list amendment in
 # coo/CONSTITUTION.md): story lessons swap buyer and golden for retell, read-aloud and compare (prompts/README.md).
 STORY_GATES = ("qa", "facts", "facts-captions", "render-critic", "story", "send", "design")
@@ -1837,8 +1862,13 @@ def queue_pin(slug):
     return it, (it.get("hookB") if base != slug else it)
 
 
+def waiting_slugs(items, held):
+    """Lessons not started anywhere, not held, with a platform still due (held platforms are not due)."""
+    return [i["slug"] for i in items if not i["posts"] and not i.get("hold") and due_missing(i, held)]
+
+
 def cmd_waiting():
-    print(json.dumps([i["slug"] for i in load_queue()["items"] if not i["posts"] and not i.get("hold")]))
+    print(json.dumps(waiting_slugs(load_queue()["items"], held_platforms())))
 
 
 # Story gate noise rule (Todd, live chat, Nov 6, 2026, 6:04 pm: "Yes", to: a "lost at" line counts only when two fresh
@@ -2104,9 +2134,10 @@ def derived_from(slug):
     return m.group(1).lower() if m else None
 
 
-def pick_next(items, at, fmt=None, parent=None):
+def pick_next(items, at, fmt=None, parent=None, held=None):
     """What the posting line takes at time `at`, with only the posts made before `at` counted. Returns
-    (item or None, why). fmt and parent are lookups (tests pass made-up ones)."""
+    (item or None, why). fmt and parent are lookups (tests pass made-up ones); held is the held platforms (None reads
+    video/config.json "heldPlatforms"): a held platform is never due, so a lesson missing only held ones is done."""
     from zoneinfo import ZoneInfo
     tz = ZoneInfo("America/Chicago")
     fmt = fmt or lesson_format
@@ -2117,7 +2148,8 @@ def pick_next(items, at, fmt=None, parent=None):
     # first for a later slot is not taken by an earlier one
     ready = lambda i: (not i.get("readyAt") or dt.datetime.fromisoformat(i["readyAt"]) <= at) and \
         (not i.get("notBefore") or dt.datetime.fromisoformat(i["notBefore"]) <= at)
-    waiting = [i for i in items if ready(i) and not _post_times(i, at) and not i.get("hold")]
+    held = held_platforms() if held is None else tuple(held)
+    waiting = [i for i in items if ready(i) and not _post_times(i, at) and not i.get("hold") and due_missing(i, held, at)]
     st = started_today(items, at)
     cap = cadence_cap(len(waiting) + st, day)
     skipped = []
@@ -2125,8 +2157,7 @@ def pick_next(items, at, fmt=None, parent=None):
         posted = _post_times(i, at)
         if (i.get("hold") and not posted) or not ready(i):
             continue
-        missing = [p for p in PLATFORMS if not (isinstance(i["posts"].get(p), dict)
-                   and dt.datetime.fromisoformat(i["posts"][p]["at"].replace("Z", "+00:00")) < at)]
+        missing = due_missing(i, held, at)
         if not missing:
             continue
         if posted:
@@ -2146,13 +2177,15 @@ def pick_next(items, at, fmt=None, parent=None):
 def cmd_next():
     from zoneinfo import ZoneInfo
     items = load_queue()["items"]
-    it, why = pick_next(items, dt.datetime.now(ZoneInfo("America/Chicago")))
+    held = held_platforms()
+    extra = {"held": list(held)} if held else {}   # never posted or checked while held (coo/DECISIONS-2026-11-19.md)
+    it, why = pick_next(items, dt.datetime.now(ZoneInfo("America/Chicago")), held=held)
     if not it:
-        print(json.dumps({"slug": None} if why == "nothing waiting" else {"slug": None, "why": why}))
+        print(json.dumps(dict({"slug": None} if why == "nothing waiting" else {"slug": None, "why": why}, **extra)))
         return
-    missing = [p for p in PLATFORMS if p not in it["posts"]]
+    missing = due_missing(it, held)
     b = burst_today()
-    print(json.dumps({"slug": it["slug"], "missing": missing, "commit": it.get("commit"), "perRun": (b or {}).get("perRun", 1)}))
+    print(json.dumps(dict({"slug": it["slug"], "missing": missing, "commit": it.get("commit"), "perRun": (b or {}).get("perRun", 1)}, **extra)))
 
 
 # Missed-slot alarm (Todd, live chat, Nov 7, 2026, 8:33 am: "Go", recommendation 5). PC posting runs have gone up as
@@ -2175,8 +2208,9 @@ def slot_times(day):
     return out
 
 
-def missed_check(items, slot_name, slot_at, now_at, fmt=None, parent=None):
-    it, why = pick_next(items, slot_at + dt.timedelta(minutes=1), fmt, parent)
+def missed_check(items, slot_name, slot_at, now_at, fmt=None, parent=None, held=None):
+    held = held_platforms() if held is None else tuple(held)   # a held platform is never due, so never INCOMPLETE
+    it, why = pick_next(items, slot_at + dt.timedelta(minutes=1), fmt, parent, held)
     window_end = slot_at + SLOT_WINDOW
     up = [i["slug"] for i in items if any(slot_at - dt.timedelta(minutes=10) <= t <= window_end for t in _post_times(i))]
     res = {"slot": slot_name, "at": slot_at.isoformat(timespec="minutes"), "due": it["slug"] if it else None,
@@ -2187,7 +2221,7 @@ def missed_check(items, slot_name, slot_at, now_at, fmt=None, parent=None):
         res["status"] = "MISSED"
     else:
         res["status"] = "OK"
-    late = [i["slug"] for i in items if _post_times(i) and len(_post_times(i)) < len(PLATFORMS)
+    late = [i["slug"] for i in items if _post_times(i) and due_missing(i, held)
             and now_at - min(_post_times(i)) >= SLOT_WINDOW and not i.get("hold")]
     if late:
         res["incomplete"] = late
@@ -3787,6 +3821,36 @@ def cmd_selftest():
         ("viewer gate: PASS but confused", viewer_review_problems({"pass": True, "score": {"matches_idea": "same", "watch_to_end": "yes", "gets": "a list", "confused": "the drawn roof, nothing to judge"}}), True),
         ("viewer gate: on every video from 2026-11-29, not before", ("viewer" in gates_for("2026-11-26-damage-or-not")) or VIEWER_GATE_FROM != "2026-11-29", False),
         ("first: planted bug, put at the very end", (pick_next(q0 + [new_], lunch, fmt_, par_)[0] or {}).get("slug") != "2026-11-26-new", True),
+    ]
+    # Held platforms (Todd, live chat, Nov 19, 2026, about 8:55 pm; video/config.json "heldPlatforms"): never due, so a
+    # lesson missing only held platforms is done. The Nov 19 to 23 deadlock: wrong-house was up on TikTok and YouTube,
+    # next kept naming it for Instagram and Facebook, and the posting task posted nothing for 5 nights.
+    H = ("instagram", "facebook")
+    upd = lambda *ps: {p: {"url": "u", "at": dt.datetime(2026, 11, 18, 20, 41, tzinfo=tz).isoformat()} for p in ps}
+    wh = {"slug": "2026-12-05-wrong-house", "readyAt": t_(1, 18), "posts": upd("tiktok", "youtube")}
+    fresh = {"slug": "2026-12-06-fresh", "readyAt": t_(1, 18), "posts": {}}
+    half = {"slug": "2026-12-06-half", "readyAt": t_(1, 18), "posts": upd("youtube")}
+    eve, slot23, now24 = dt.datetime(2026, 11, 24, 20, 14, tzinfo=tz), dt.datetime(2026, 11, 23, 20, 13, tzinfo=tz), dt.datetime(2026, 11, 24, 7, 30, tzinfo=tz)
+    told_ = lambda s_: "told"
+    leak = lambda it: (f"{it['slug']} named with nothing due" if it and not due_missing(it, H, eve) else None)
+    def typo_stops():
+        try:
+            held_platforms({"heldPlatforms": ["instagarm"]})
+        except SystemExit:
+            return True
+        return False
+    cases += [
+        ("held: wrong-house shape (only held platforms missing), next names no lesson", pick_next([wh], eve, told_, par_, H)[0], False),
+        ("held: planted, nothing held, the old line names wrong-house and the leak check catches it", leak(pick_next([wh], eve, told_, par_, ())[0]), True),
+        ("held: a started lesson still missing TikTok finishes, to TikTok only", (lambda it: not it or due_missing(it, H, eve) != ["tiktok"])(pick_next([wh, half], eve, told_, par_, H)[0]), False),
+        ("held: a fresh lesson behind wrong-house is taken as new", (pick_next([wh, fresh], eve, told_, par_, H)[0] or {}).get("slug") != "2026-12-06-fresh", False),
+        ("held: next's due list never names a held platform", set(due_missing(fresh, H)) & set(H), False),
+        ("held: waiting counts the fresh lesson, not wrong-house", waiting_slugs([wh, fresh], H) != ["2026-12-06-fresh"], False),
+        ("held: every platform held, nothing waits", waiting_slugs([fresh], PLATFORMS), False),
+        ("held: missed on the Nov 23 evening slot reads OK", missed_check([wh], "evening", slot23, now24, told_, par_, H)["status"] != "OK", False),
+        ("held: planted, nothing held, missed reads MISSED and INCOMPLETE", missed_check([wh], "evening", slot23, now24, told_, par_, ())["status"] in ("MISSED", "INCOMPLETE"), True),
+        ("held: planted, a typo in heldPlatforms stops the run", typo_stops(), True),
+        ("held: no heldPlatforms key holds nothing", held_platforms({}), False),
     ]
     right = 0
     for name, got, caught in cases:

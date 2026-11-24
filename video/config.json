@@ -1,6 +1,8 @@
 {
  "about": "Video engine Phase 0 settings (the MVP). Pinned by the PNF Video Engine Blueprint, MVP build spec (https://claude.ai/artifact/3ssi8yGEKVxiL7JTD87kzS); changing a value here is a logged decision in coo/DECISIONS-<date>.md, never a call made mid-run.",
  "stop": false,
+ "heldPlatforms": ["instagram", "facebook"],
+ "heldPlatformsNote": "Todd, live chat, Nov 19, 2026, about 8:55 pm, after Instagram restricted the account on Nov 18 (\"We suspect automated behavior on your account\"): \"ok let's do that. I want to maintain automation if possible. I want this to be hands off for me\", to stopping browser automation on Instagram and Facebook and moving them to Meta's official API. Held platforms are never due: anim.py next, waiting and missed skip them, so a lesson missing only held platforms counts as done (coo/DECISIONS-2026-11-19.md; code Nov 24). Emptied only by the live chat that moves them to the official API.",
  "stopNote": "Set false Nov 6, 2026, 7:15 am in a live chat, after Todd watched the first video made on the new line (2026-11-17-after-hours-robot, review page in coo/HANDOFF.md): \"The new video is so much better. Go with you recommendations. Let's bump to 3 posts per day. start with the one I just watched this morning.\" Earlier: set true Nov 2, 9:00 pm (\"Hold all 6\"); the 6 old-gate lessons stay held in queue.json. Set true again by any live chat that hears Todd say \"stop videos\".",
  "data": "permits/rodents-chicago/weekly.json",
  "freshDays": 8,

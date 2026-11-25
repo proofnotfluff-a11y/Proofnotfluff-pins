@@ -1,32 +1,24 @@
 {
  "product": "Chicago Restaurant Daily List",
- "asOf": "2026-11-24",
- "asOfText": "Nov 24, 2026",
- "through": "2026-11-23",
- "throughText": "Nov 23, 2026",
- "recentFrom": "2026-11-10",
+ "asOf": "2026-11-25",
+ "asOfText": "Nov 25, 2026",
+ "through": "2026-11-24",
+ "throughText": "Nov 24, 2026",
+ "recentFrom": "2026-11-11",
  "source": {
   "name": "City of Chicago Data Portal, Food Inspections",
   "url": "https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5",
-  "fetchedAt": "2026-11-24T21:31:55+00:00",
-  "rowsUpdatedAt": "2026-11-24T10:19:56+00:00",
+  "fetchedAt": "2026-11-25T20:40:33+00:00",
+  "rowsUpdatedAt": "2026-11-25T10:05:26+00:00",
   "terms": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
   "record": "https://data.cityofchicago.org/resource/4ijn-s7e5.json?inspection_id="
  },
  "counts": {
-  "pests": 9,
-  "hood": 3,
-  "places": 10
+  "pests": 3,
+  "hood": 1,
+  "places": 4
  },
  "history": [
-  {
-   "asOf": "2026-10-26",
-   "through": "2026-10-23",
-   "pests": 0,
-   "hood": 0,
-   "places": 0,
-   "withPhone": 0
-  },
   {
    "asOf": "2026-10-27",
    "through": "2026-10-26",
@@ -258,27 +250,35 @@
    "hood": 3,
    "places": 10,
    "withPhone": 8
+  },
+  {
+   "asOf": "2026-11-25",
+   "through": "2026-11-24",
+   "pests": 3,
+   "hood": 1,
+   "places": 4,
+   "withPhone": 3
   }
  ],
  "examples": [
   {
-   "area": "Lake View",
-   "type": "Restaurant",
-   "result": "Fail",
-   "trades": [
-    "pests"
-   ]
-  },
-  {
-   "area": "Lake View",
-   "type": "Restaurant",
-   "result": "Fail",
-   "trades": [
-    "pests"
-   ]
-  },
-  {
    "area": "Lincoln Square",
+   "type": "Restaurant",
+   "result": "Fail",
+   "trades": [
+    "pests"
+   ]
+  },
+  {
+   "area": "Rogers Park",
+   "type": "Restaurant",
+   "result": "Pass w/ Conditions",
+   "trades": [
+    "pests"
+   ]
+  },
+  {
+   "area": "Uptown",
    "type": "Restaurant",
    "result": "Fail",
    "trades": [
@@ -287,11 +287,6 @@
   }
  ],
  "pestByDate": [
-  {
-   "date": "2026-11-10",
-   "pests": 2,
-   "restaurant": 2
-  },
   {
    "date": "2026-11-11",
    "pests": 0,
@@ -354,39 +349,42 @@
   },
   {
    "date": "2026-11-23",
-   "pests": 0,
-   "restaurant": 0
+   "pests": 2,
+   "restaurant": 2
+  },
+  {
+   "date": "2026-11-24",
+   "pests": 1,
+   "restaurant": 1
   }
  ],
  "pestLast7": {
-  "from": "2026-11-17",
-  "to": "2026-11-23",
-  "inspections": 12,
-  "restaurantInspections": 11,
+  "from": "2026-11-18",
+  "to": "2026-11-24",
+  "inspections": 10,
+  "restaurantInspections": 9,
   "areas": [
-   "Chatham",
    "Gage Park",
    "Garfield Ridge",
-   "Humboldt Park",
    "Lake View",
    "Lincoln Square",
    "Lower West Side",
-   "Uptown",
-   "West Elsdon"
+   "Rogers Park",
+   "Uptown"
   ]
  },
  "note": "Places the City posted since the last daily list, with a failed or conditional result that cited a pest or a hood and exhaust violation. Business names are sent only to members.",
  "phones": {
-  "rows": 10,
-  "withPhone": 8,
-  "coverage": 80.0
+  "rows": 4,
+  "withPhone": 3,
+  "coverage": 75.0
  },
  "seat": {
-  "asOf": "2026-11-24",
+  "asOf": "2026-11-25",
   "places14": 26,
-  "new": 9,
-  "withPhone14": 20,
-  "coverage14": 76.9,
+  "new": 3,
+  "withPhone14": 21,
+  "coverage14": 80.8,
   "phonesChecked": true
  }
 }

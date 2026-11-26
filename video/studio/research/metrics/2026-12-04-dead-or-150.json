@@ -87,6 +87,40 @@
    "readAt": "2026-11-21T02:16:12Z",
    "source": "videometrics 2026-12-04-dead-or-150.2026-11-20 (evening PC run, deep read)",
    "docId": "2026-12-04-dead-or-150.2026-11-20"
+  },
+  {
+   "date": "2026-11-25",
+   "depth": "deep",
+   "note": "Late 7 day read (the Nov 24 read was missed; 8 days since posting). TikTok and YouTube only; Instagram and Facebook held (Todd, Nov 19: Meta automation restriction), not opened. YouTube since published: 169 views, 0.8 h watch, 0 subscribers; average view duration and average percentage viewed not shown on the new insights page.",
+   "platforms": {
+    "facebook": "held",
+    "instagram": "held",
+    "tiktok": {
+     "avgWatchS": 20.92,
+     "comments": 0,
+     "likes": 40,
+     "newFollowers": 0,
+     "saves": 0,
+     "shares": 0,
+     "views": 607,
+     "watchedFullPct": 39.5
+    },
+    "youtube": {
+     "avgPctViewed": "hidden",
+     "avgViewDurationS": "hidden",
+     "comments": "hidden",
+     "likes": 2,
+     "shares": "hidden",
+     "subscribersGained": 0,
+     "viewedVsSwipedPct": 64.8,
+     "views": 169,
+     "views48h": 0,
+     "watchTimeH": 0.8
+    }
+   },
+   "readAt": "2026-11-26T02:16:12Z",
+   "source": "videometrics 2026-12-04-dead-or-150.2026-11-25 (evening PC run, deep read)",
+   "docId": "2026-12-04-dead-or-150.2026-11-25"
   }
  ]
 }

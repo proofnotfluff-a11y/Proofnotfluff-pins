@@ -221,6 +221,19 @@
    "readAt": "2026-11-23T16:35:57Z",
    "source": "videometrics account-health.2026-11-23 (evening PC run)",
    "docId": "account-health.2026-11-23"
+  },
+  {
+   "date": "2026-11-25",
+   "note": "YouTube Studio dashboard shows no strike, restriction or notice. TikTok has no web account status page (hidden, as on earlier evenings). Instagram and Facebook held, not opened.",
+   "platforms": {
+    "facebook": "held",
+    "instagram": "held",
+    "tiktok": "hidden",
+    "youtube": 0
+   },
+   "readAt": "2026-11-25T20:44:02Z",
+   "source": "videometrics account-health.2026-11-25 (evening PC run)",
+   "docId": "account-health.2026-11-25"
   }
  ]
 }

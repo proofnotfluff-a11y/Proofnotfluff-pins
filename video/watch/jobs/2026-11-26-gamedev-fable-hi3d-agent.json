@@ -1,0 +1,4 @@
+{
+ "source": "https://www.youtube.com/watch?v=mIYsMnLInkY",
+ "question": "This video shows how someone builds a video game with AI coding agents. List every concrete method, tool and workflow step it shows for (a) making the art look good and consistent, (b) sound and voice, (c) testing that the game is fun and clear to play, and (d) organizing the AI agents (planning, specs, sub-agents, checks). For each: the timestamp, what it does, the exact settings, prompts or numbers shown, its cost if stated, and whether it would work for a 2D browser game played on a tablet. Say which claims the video shows evidence for and which it only asserts, and any failures or limits it shows. End with the three practices most useful for a 2D browser learning game for ages 5 to 7 that AI agents build in cloud sessions without a desktop app."
+}

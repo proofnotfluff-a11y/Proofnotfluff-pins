@@ -1,0 +1,4 @@
+{"pass": false, "round": 0, "on": "01_voice/script.md round 0",
+ "score": {"sentences": 20, "and_then_pairs": 2, "unset_terms": 3, "choppy_runs": 0, "breath_fails": 0, "order": "ok"},
+ "reasons": ["Chain faults 5-6 and 6-7 (and then); 11-12 a jump: why a license voids the deal is never said.", "Unset: 'the crew' (s1), 'the whole deal' (s2), 'public adjuster' (s12).", "One voice: the crew switches from they to it (s19).", "Side taken: no take said as ours; suggest 'I'd say the crew got paid because it stuck to damage, repair and cost.'", "Note: seventy-two and seventy-four back to back sound alike."],
+ "reviewer": "fresh Opus agent, Nov 26, 2026"}

@@ -1,0 +1,4 @@
+{"pass": false, "ours": "A", "round": 2, "on": "01_voice/script.md fix round 2 (before voice)", "benchmark": "2026-12-02-took-it-back",
+ "score": {"keep": "B", "stop": {"A": "s15", "B": "none"}, "real": {"A": "So he went online.", "B": "His side: she won't pay me, so I'm taking it back."}, "scripted": {"A": "So was he venting, or did he go too far?", "B": "Send this to someone who'd take it back."}},
+ "reasons": ["Keep B: a sledgehammer on a shower is a picture right away.", "A: the hook works, then it turns into a court report with no single moment to see.", "A stop s15: the story pays off at the $673K verdict; the bosses' separate appeal is legal process."],
+ "reviewer": "fresh Opus agent, blind, coin flip A, Nov 26, 2026"}

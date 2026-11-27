@@ -1,0 +1,43 @@
+{
+ "about": "Every number and claim this lesson shows or says, with its source. Palm Coast, Florida: a couple wired a contractor $40,000 in December 2025 under an agreement to finish their renovation within three months; the Flagler County Sheriff's Office says he came once, removed and painted one wall and never returned, ignored calls, texts and a certified letter, moved the money out by cash, debit and Zelle within days with none spent on materials, and ran recurring charges on an online auction site for signed baseball cards. He was arrested June 26, 2026, charged with grand theft of more than $20,000 and released on a $50,000 bond. Everything about his conduct is the sheriff's account; no plea or court finding is reported, and no response from him. Every page was opened and read on Nov 26, 2026 in Todd's live chat (WebSearch, then WebFetch on the result's address). We name no person and no business. Not used: the eviction, the 2019 arrest, the auction site's name, the card expert, the sheriff's movie line.",
+ "story": {
+  "title": "St. Augustine contractor accused of stealing $40K from couple, spent much on baseball cards",
+  "publisher": "News4JAX",
+  "date": "2026-06-30",
+  "url": "https://www.news4jax.com/news/local/2026/06/30/st-augustine-contractor-accused-of-stealing-40k-from-couple-spent-much-on-baseball-cards/",
+  "reread": "2026-11-26"
+ },
+ "sources": {
+  "fox35": {
+   "url": "https://www.fox35orlando.com/news/florida-contractor-accused-blowing-40k-down-payment-signed-baseball-cards",
+   "read": "2026-11-26"
+  },
+  "scd": {
+   "url": "https://www.sportscollectorsdaily.com/florida-contractor-bought-baseball-cards-with-40k-earmarked-for-home-renovations-deputies-say/",
+   "read": "2026-11-26",
+   "label": "Sports Collectors Daily, Jul 2, 2026, citing the sheriff's office and its booking records"
+  }
+ },
+ "down": 40000,
+ "downNote": "wired $40,000 in December 2025 after signing an agreement (News4JAX; FOX 35: a down payment)",
+ "months": 3,
+ "monthsNote": "the agreement called for the work to be finished within three months (News4JAX; FOX 35; SCD)",
+ "visit": "came to the home once, removed and painted a single wall, did not return (sheriff via News4JAX; the couple via FOX 35)",
+ "silence": "calls and texts unanswered; a certified letter demanding a refund was ignored (sheriff via News4JAX; FOX 35)",
+ "cash": 11500,
+ "cashNote": "within days of the wire, about $11,500 withdrawn in cash and by debit card (FOX 35; News4JAX); said as 'about eleven and a half thousand'",
+ "zelle": 33500,
+ "zelleNote": "more than $33,500 sent via Zelle (FOX 35; News4JAX); said as 'more than thirty-three thousand'",
+ "materials": "investigators say none of the money went to materials for the job (News4JAX; FOX 35)",
+ "cards": "recurring charges to an online auction site where he reportedly bought signed baseball cards (sheriff via News4JAX; FOX 35)",
+ "advice": "the sheriff's tips: reputable contractors usually don't demand most of the payment up front (News4JAX)",
+ "arrest": "arrested June 26, 2026 (SCD, booking records); charged with grand theft of more than $20,000; released on $50,000 bond (FOX 35; News4JAX)",
+ "charge": 20000,
+ "bond": 50000,
+ "allegation": "the charges are allegations; no plea, conviction or court finding is reported (FOX 35; SCD)",
+ "personWords": {},
+ "letterText": "his ex-wife told detectives he texted her that the certified letter was all good, already taken care of (News4JAX per the sheriff's office; SCD); said as 'someone who knew him told them he'd texted that the letter was already taken care of'; FOX 35 does not report it",
+ "overdrawn": "the account was overdrawn by the end of December and stayed negative most months after (News4JAX per the sheriff's office; SCD citing the subpoena); FOX 35 does not report it",
+ "outWithinDays": "within days of the wire, about $11,500 out in cash and debit and more than $33,500 by Zelle (FOX 35; News4JAX); said as 'the money went out within days, in cash, debit and Zelle'",
+ "someOnCards": "hook: 'Detectives say some of it bought him baseball cards': recurring auction charges where he reportedly bought signed baseball cards (News4JAX; FOX 35); the amount is not reported, so 'some of it'"
+}

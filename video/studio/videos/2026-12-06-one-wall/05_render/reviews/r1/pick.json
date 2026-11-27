@@ -1,0 +1,4 @@
+{"pass": false, "ours": "B", "round": 1, "on": "01_voice/script.md fix round 1 (before voice)", "benchmark": "2026-12-02-took-it-back",
+ "score": {"keep": "A", "stop": {"A": "s24", "B": "s11"}, "real": {"A": "His side: she won't pay me, so I'm taking it back.", "B": "But the part that gets me is where some of it went."}, "scripted": {"A": "Send this to someone who'd take it back.", "B": "So how much would you pay up front?"}},
+ "reasons": ["Keep A: the sledgehammer repossession keeps paying off.", "B a close second: strong open, but taking the money and vanishing is familiar and the fresh detail (signed baseball cards) does not show up until s14.", "B stop s11: a reading of police bank records, one long sentence of spoken money figures right before the payoff."],
+ "reviewer": "fresh Opus agent, blind, coin flip B, Nov 26, 2026"}

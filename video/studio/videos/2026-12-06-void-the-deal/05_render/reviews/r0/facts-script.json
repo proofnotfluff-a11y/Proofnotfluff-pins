@@ -1,0 +1,4 @@
+{"pass": false, "round": 0, "on": "01_voice/script.md round 0 (before voice)", "score": {"numbers": 12, "mismatches": 0},
+ "reasons": ["Line 2: 'was visiting her daughter in California' is a 6 word run from the opinion; fix: 'while she was out in California seeing her daughter'.", "Line 7: 'Here's the line for contractors' reads as a rule everywhere; it is Texas Department of Insurance guidance relied on by a Texas court; fix: say Texas."],
+ "sources_checked": ["insurancebusinessmag.com Sep 1, 2026: every figure and the order of events confirmed; no lifted run", "law.co opinion 06-25-00098-CV: every figure, dates, TDI line and the 31 day fee motion confirmed; 'partly' is fair"],
+ "reviewer": "fresh Opus agent, Nov 26, 2026"}

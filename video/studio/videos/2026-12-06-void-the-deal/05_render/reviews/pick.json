@@ -1,0 +1,4 @@
+{"pass": false, "ours": "A", "round": 2, "on": "01_voice/script.md fix round 2 (before voice)", "benchmark": "2026-12-02-took-it-back",
+ "score": {"keep": "B", "stop": {"A": "s11", "B": "none"}, "real": {"A": "So she sued.", "B": "His company called it repossessing the shower."}, "scripted": {"A": "But the crew didn't win everything.", "B": "Send this to someone who'd take it back."}},
+ "reasons": ["Keep B: a sledgehammer on a shower is a picture in one second and every beat gets bigger.", "Not A: the hook question is good, but s2 answers yes and the story goes the other way; s10 to s13 is a lecture on Texas public adjuster law; the stakes are paperwork, not a person.", "A stop s11: it turns into reading a ruling out loud."],
+ "reviewer": "fresh Opus agent, blind, coin flip A, Nov 26, 2026"}

@@ -1,0 +1,4 @@
+{"pass": false, "ours": "A", "round": 0, "on": "01_voice/script.md round 0 (before voice)", "benchmark": "2026-12-02-took-it-back",
+ "score": {"keep": "B", "stop": {"A": "s12", "B": "none"}, "real": {"A": "So she sued.", "B": "So the contractor came back with a sledgehammer."}, "scripted": {"A": "Here's the line for contractors.", "B": "Send this to someone who'd take it back."}},
+ "reasons": ["Keep B: a contractor smashing a shower is a picture by s2; A reads like a court summary with no single image.", "A: s3 to s10 pile up dates and dollar amounts before anything happens; stop at s12, 'license to act as a public adjuster' is jargon, and s13 to s15 promise a lecture; the fee twist at s18 to s19 is the best part and nobody hears it.", "B: heard to the end."],
+ "reviewer": "fresh Opus agent, blind, coin flip A, Nov 26, 2026"}

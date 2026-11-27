@@ -1,0 +1,3 @@
+{"pass": false, "round": 0, "on": "01_voice/script.md round 0", "score": {"sentences": 18, "and_then_pairs": 1, "unset_terms": 2, "choppy_runs": 0, "breath_fails": 0, "order": "ok"},
+ "reasons": ["Chain 14-15: the advice cuts into the timeline, then the arrest picks up with no link.", "Set-up s7: the sheriff is quoted before the listener knows the sheriff is involved.", "Set-up s9 and s12: 'they say' had meant the couple; say detectives.", "One voice: s14 talks to a crew owner, s18 to the homeowner who pays."],
+ "reviewer": "fresh Opus agent, Nov 26, 2026"}

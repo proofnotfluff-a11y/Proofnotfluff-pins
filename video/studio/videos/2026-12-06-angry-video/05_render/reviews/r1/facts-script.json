@@ -1,0 +1,2 @@
+{"pass": true, "round": 1, "on": "01_voice/script.md fix round 1", "score": {"numbers": 9, "mismatches": 0}, "fixed": {"1": true, "2": true, "3": true},
+ "reasons": ["All round 0 faults fixed; no lifted run over 5 words; notes: 'painted the two bosses as' is tighter."], "reviewer": "fresh Opus agent, Nov 26, 2026"}

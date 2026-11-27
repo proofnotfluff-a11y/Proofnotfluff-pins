@@ -1,0 +1,2 @@
+{"pass": false, "round": 1, "on": "01_voice/script.md fix round 1", "fixed": {"1": true, "2": false, "3": true}, "score": {"sentences": 18, "and_then_pairs": 1, "unset_terms": 0, "choppy_runs": 0, "breath_fails": 0, "order": "ok"},
+ "reasons": ["Pair 10-11 still opens 'And the video stayed up': should turn ('Even then, he kept the video up...').", "Notes: 7-8 jumps to the ruling then back; say who sued (the company and both bosses)."], "reviewer": "fresh Opus agent, Nov 26, 2026"}

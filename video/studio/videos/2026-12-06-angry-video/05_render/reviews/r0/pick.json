@@ -1,0 +1,4 @@
+{"pass": false, "ours": "A", "round": 0, "on": "01_voice/script.md round 0 (before voice)", "benchmark": "2026-12-02-took-it-back",
+ "score": {"keep": "B", "stop": {"A": "s12", "B": "s24"}, "real": {"A": "So the builder took him to court.", "B": "His company called it repossessing the shower."}, "scripted": {"A": "So was he venting, or did he go too far?", "B": "Send this to someone who'd take it back."}},
+ "reasons": ["Keep B: the sledgehammer hooks right away and short lines move.", "A: a strong opening threat, then s3 to s8 is a timeline of dates, platforms and view counts like a court filing.", "A stop s12: after the verdict, the directors' separate claims and the appeal feel like legal paperwork."],
+ "reviewer": "fresh Opus agent, blind, coin flip A, Nov 26, 2026"}

@@ -1,0 +1,3 @@
+{"pass": true, "round": 1, "on": "01_voice/script.md fix round 1", "score": {"sentences": 19, "and_then_pairs": 1, "unset_terms": 0, "choppy_runs": 0, "breath_fails": 0, "order": "ok"}, "fixed": {"1": true, "2": true, "3": true, "4": true},
+ "reasons": ["All four round 0 faults fixed.", "Note: 'pulled his bank records too' stacks a finding.", "Note: 'Someone close to him' can land on the sheriff.", "Note: the jump to the lesson has no hinge word; 'Either way'."],
+ "reviewer": "fresh Opus agent, Nov 26, 2026"}

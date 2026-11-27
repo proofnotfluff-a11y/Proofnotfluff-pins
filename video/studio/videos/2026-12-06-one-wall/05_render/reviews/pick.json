@@ -1,0 +1,4 @@
+{"pass": false, "ours": "A", "round": 2, "on": "01_voice/script.md fix round 2 (before voice)", "benchmark": "2026-12-02-took-it-back",
+ "score": {"keep": "B", "stop": {"A": "s10", "B": "none"}, "real": {"A": "They say he came out once.", "B": "His side: she won't pay me, so I'm taking it back."}, "scripted": {"A": "For now, those are still just charges.", "B": "Send this to someone who'd take it back."}},
+ "reasons": ["Keep B: the repossessed shower keeps twisting (two sides, a viral video, a free rebuild, jail).", "A: a strong hook, but s2 gives away the payoff, so the middle is waiting for something already known.", "A stop s10: called, texted, letter, sheriff are the expected beats; s10 reads like a bank statement; 'overdrawn by the end of December' tangles the timeline."],
+ "reviewer": "fresh Opus agent, blind, coin flip A, Nov 26, 2026"}

@@ -1,0 +1,4 @@
+{"pass": false, "round": 0, "on": "01_voice/script.md round 0 (before voice)", "score": {"numbers": 9, "mismatches": 0},
+ "reasons": ["'He came out once...never came back' unattributed conduct; attribute to the couple or the sheriff.", "'They say that within days' ambiguous; detectives say.", "'Not a dollar of it went to materials' needs 'they say'.", "'They say he kept running charges' ambiguous; detectives say."],
+ "sources_checked": ["News4JAX Jun 30, 2026: every figure and event confirmed", "FOX 35 Jun 30, 2026: confirmed; the couple says he came only once", "SCD Jul 2, 2026: confirmed; its money split wording differs, script follows FOX 35 and News4JAX"],
+ "reviewer": "fresh Opus agent, Nov 26, 2026"}

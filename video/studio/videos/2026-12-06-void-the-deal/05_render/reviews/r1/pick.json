@@ -1,0 +1,4 @@
+{"pass": false, "ours": "B", "round": 1, "on": "01_voice/script.md fix round 1 (before voice)", "benchmark": "2026-12-02-took-it-back",
+ "score": {"keep": "A", "stop": {"A": "none", "B": "s9"}, "real": {"A": "So the contractor came back with a sledgehammer.", "B": "This crew never crossed it."}, "scripted": {"A": "Send this to someone who'd take it back.", "B": "It can't argue your claim, or what your policy covers."}},
+ "reasons": ["Keep A: a sledgehammer, millions of views, strangers rebuilding for free and a felony keep getting worse.", "Not B: opens on a contract dispute and an insurance process; money totals but no picture.", "B stop s9: 'only a licensed public adjuster can argue your claim' turns it into a law lecture after eight sentences of setup with no image or turn."],
+ "reviewer": "fresh Opus agent, blind, coin flip B, Nov 26, 2026"}

@@ -1,0 +1,4 @@
+{"pass": false, "ours": "B", "round": 1, "on": "01_voice/script.md fix round 1 (before voice)", "benchmark": "2026-12-02-took-it-back",
+ "score": {"keep": "A", "stop": {"A": "none", "B": "s14"}, "real": {"A": "His side: she won't pay me, so I'm taking it back.", "B": "So he went online."}, "scripted": {"A": "Send this to someone who'd take it back.", "B": "So was he venting, or did he go too far?"}},
+ "reasons": ["Keep A: plays like a movie in your head.", "Not B: relatable hook, but a court case told through procedure and dollar figures; nothing to picture once he posts.", "B stop s14: the verdict landed in s13 and felt like the end; 'the two bosses had lost their own claims at first' opens an appeals detour."],
+ "reviewer": "fresh Opus agent, blind, coin flip B, Nov 26, 2026"}

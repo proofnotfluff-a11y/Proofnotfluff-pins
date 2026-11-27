@@ -1,0 +1,4 @@
+{"pass": false, "ours": "A", "round": 0, "on": "01_voice/script.md round 0 (before voice)", "benchmark": "2026-12-02-took-it-back",
+ "score": {"keep": "B", "stop": {"A": "s13", "B": "none"}, "real": {"A": "But the part that gets me is where some of it went.", "B": "His side: she won't pay me, so I'm taking it back."}, "scripted": {"A": "If you run a crew, a deposit should start the job, not a hobby.", "B": "Send this to someone who'd take it back."}},
+ "reasons": ["Keep B: a sledgehammer, two sides and a viral video give a reason to stay at every beat.", "A: a clean story with a strong opening line, but one-sided theft; once the money trail is told the ending is known.", "Stop A at s13: right after the baseball cards, the sheriff's advice and the 'not a hobby' line turn it into a PSA before the arrest."],
+ "reviewer": "fresh Opus agent, blind, coin flip A, Nov 26, 2026"}

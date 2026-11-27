@@ -1,0 +1,40 @@
+{
+ "about": "Every number and claim this lesson shows or says, with its source. Dallas County, Texas: after winter storm Uri flooded a house in Feb 2021, the homeowner signed a restoration crew's emergency work agreement, paid $72,724.59, told the crew to stand down in Sept 2021 and sued in Dec 2022, arguing the crew acted as an unlicensed public insurance adjuster so the contract was void. The trial court awarded the contractor $60,709.69 (June 6, 2025); the Texas Sixth Court of Appeals affirmed on Aug 20, 2026 (No. 06-25-00098-CV) and upheld the denial of the contractor's late $195,966.13 fee motion. Both pages were opened and read on Nov 26, 2026 in Todd's live chat (WebSearch, then WebFetch on the result's address). We name no person and no business. Not used: the policy limits ($197,000 dwelling), the insurer's total payment to her ($153,892.74), the second builder's $42,000, the public adjuster's $223,582.54 estimates, the overhead and profit lines, the legal theory of the award (the opinion does not name it).",
+ "story": {
+  "title": "Texas court rules contractor did not act as unlicensed adjuster",
+  "publisher": "Insurance Business",
+  "date": "2026-09-01",
+  "url": "https://www.insurancebusinessmag.com/us/news/risk-compliance-legal/texas-court-rules-contractor-did-not-act-as-unlicensed-adjuster-588168.aspx",
+  "reread": "2026-11-26"
+ },
+ "sources": {
+  "opinion": {
+   "url": "https://law.co/app/cases/9000006581",
+   "read": "2026-11-26",
+   "label": "Texas Sixth Court of Appeals memorandum opinion, No. 06-25-00098-CV, Aug 20, 2026 (public domain text hosted on law.co); name it as the court's opinion"
+  },
+  "ib": {
+   "url": "https://www.insurancebusinessmag.com/us/news/risk-compliance-legal/texas-court-rules-contractor-did-not-act-as-unlicensed-adjuster-588168.aspx",
+   "read": "2026-11-26"
+  }
+ },
+ "owed": 73963.43,
+ "owedNote": "the final invoice (Dec 2021) sought a balance of $73,963.43 (opinion); said as 'almost seventy-four thousand'",
+ "estimate": 166300.36,
+ "estimateNote": "April 2021 scope $152,886.08; July 2021 supplements brought it to $166,300.36 (opinion; Insurance Business); said as 'a hundred and sixty-six thousand dollars by July'",
+ "denied": "the insurer denied many line items (Insurance Business; opinion)",
+ "paid": 72724.59,
+ "paidNote": "paid weekly, $72,724.59, before telling the contractor to stand down in September 2021 (Insurance Business; opinion); said as 'over seventy-two thousand'",
+ "agreement": "Mar 4, 2021 Emergency Work Agreement: she was solely responsible for payment of the total cost and guaranteed payment if insurance did not pay (opinion; Insurance Business)",
+ "authorization": "Mar 12, 2021 third-party authorization let the contractor request inspections, claim status information and updates and be listed as a contact; it did not let it adjust the claim (opinion)",
+ "lawsuit": "she sued Dec 12, 2022 and argued the contractor violated Texas Insurance Code ch. 4102 by acting as an unlicensed public insurance adjuster, which would let her void the contract (opinion; Insurance Business)",
+ "line": "a contractor may discuss the amount of damage to the consumer's home, the appropriate replacement, and reasonable cost; it may not advocate on behalf of a consumer or discuss insurance policy coverages and exclusions (opinion, citing Texas Department of Insurance guidance)",
+ "judgment": 60709.69,
+ "judgmentNote": "final judgment June 6, 2025: the contractor recovers principal damages of $60,709.69; affirmed Aug 20, 2026 (opinion; Insurance Business); said as 'over sixty thousand dollars'",
+ "appealDate": "2026-08-20",
+ "fees": 195966.13,
+ "feesNote": "motion to reopen evidence for $195,966.13 in unsegregated attorney fees, filed 31 days after judgment; denial affirmed for lack of diligence and because the fees were not segregated (opinion); said as 'almost a hundred and ninety-six thousand', 'partly for waiting thirty-one days'",
+ "days": 31,
+ "year": 2021,
+ "personWords": {}
+}

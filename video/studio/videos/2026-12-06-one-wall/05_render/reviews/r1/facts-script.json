@@ -1,0 +1,3 @@
+{"pass": true, "round": 1, "on": "01_voice/script.md fix round 1", "score": {"numbers": 10, "mismatches": 0}, "fixed": {"1": true, "2": true, "3": true, "4": true},
+ "reasons": ["Note: the texted-letter line holds (ex-wife to detectives, News4JAX per the sheriff and SCD); 'close to him' is a slight stretch for an ex-wife, say 'someone who knew him'.", "Note: add claims rows for the letter text and the overdrawn account; drop 'the ex-wife's account' from not used.", "Note: present tense of the charge and bond is covered by 'still just charges'."],
+ "reviewer": "fresh Opus agent, Nov 26, 2026"}

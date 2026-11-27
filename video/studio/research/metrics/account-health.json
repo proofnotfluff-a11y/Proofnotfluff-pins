@@ -234,6 +234,19 @@
    "readAt": "2026-11-25T20:44:02Z",
    "source": "videometrics account-health.2026-11-25 (evening PC run)",
    "docId": "account-health.2026-11-25"
+  },
+  {
+   "date": "2026-11-26",
+   "note": "No lesson posted: anim.py next named none. No lesson due a 24 h, 72 h or 7 day read (wrong-house and dead-or-150 read Nov 25). YouTube Studio dashboard shows no strike, restriction or notice; 28 day views 10K, watch 57.2 h, 4 subscribers. TikTok Studio home shows no account status (hidden); last 7 days 1.1K views (-40%), 81 likes, 1 comment, 0 shares, 8 followers. Instagram and Facebook held, not opened.",
+   "platforms": {
+    "facebook": "held",
+    "instagram": "held",
+    "tiktok": "hidden",
+    "youtube": 0
+   },
+   "readAt": "2026-11-27T02:15:03Z",
+   "source": "videometrics account-health.2026-11-26 (evening PC run)",
+   "docId": "account-health.2026-11-26"
   }
  ]
 }
